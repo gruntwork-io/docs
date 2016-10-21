@@ -1,0 +1,11 @@
+package main
+
+// Return true if `slice` contains the given `strToFind`; missing generics about now...
+func strSliceContains(slice []string, strToFind string) bool {
+	for _, str := range slice {
+		if str == strToFind {
+			return true
+		}
+	}
+	return false
+}
