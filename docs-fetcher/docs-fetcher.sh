@@ -89,7 +89,7 @@ function fetch_github_repo {
     local readonly output_path="$2"
 
     echo "Copying files from $repo_url to $output_path/$(get_repo_name $repo_url)..."
-    fetch --repo "$repo_url" --branch "master" --source-path "/" "$output_path/$(get_repo_name $repo_url)" | echo_with_prefix "==> Fetch: "
+    fetch --repo "$repo_url" --branch "master" --source-path "/" "$output_path/$(get_repo_name $repo_url)" 2>&1 | echo_with_prefix "==> Fetch: "
 }
 
 # Given https://github.com/gruntwork-io/module-vpc, return "module-vpc"
@@ -144,7 +144,7 @@ function docs_fetcher {
     copy_folder "$content_path" "$output_path/global"
 
     for repo_url in "${repo_urls[@]}"; do
-        fetch_github_repo "$repo_url" "$output_path" 
+        fetch_github_repo "$repo_url" "$output_path/packages" 
     done
 
     echo "Success!"
