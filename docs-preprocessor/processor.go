@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // This function will walk all the files specified in opt.InputPath and process them into opts.OutputPath
@@ -12,10 +13,20 @@ func ProcessDocs(opts *Opts) error {
 		relPath, err := GetPathRelativeTo(path, opts.InputPath)
 		if err != nil {
 			return err
+		} else if shouldSkipPath(relPath, opts) {
+			fmt.Printf("Skipping path %s\n", relPath)
+			return nil
+		} else if isModuleDoc(relPath, opts) {
+			fmt.Printf("ModuleDoc: %s\n", relPath)
+			return nil
+		} else {
+			//fmt.Printf("Path %s\n", relPath)
+			return nil
 		}
 
-		fmt.Println(relPath)
-		return nil
+		//fmt.Println(relPath)
+		//return nil
+
 		// if err != nil {
 		// 	return err
 		// } else if shouldSkipPath(relPath, opts) {
@@ -29,10 +40,33 @@ func ProcessDocs(opts *Opts) error {
 	})
 }
 
-// // Return true if this is a file or folder we should skip completely and not generate any documentation for
-// func shouldSkipPath(path string, opts *Opts) bool {
-// 	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
-// }
+// Return true if this is a file or folder we should skip completely in the processing step
+func shouldSkipPath(path string, opts *Opts) bool {
+	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
+}
+
+// Return true if the path is of the form packages/<package-name>/modules/*.md
+func isModuleDoc(path string, opts *Opts) bool {
+	subpaths := strings.Split(path, "/")
+
+	var fileName string
+	if len(subpaths) > 3 {
+		fileName = subpaths[len(subpaths)-1]
+	} else {
+		return false
+	}
+
+	return subpaths[0] == "packages" &&
+		subpaths[2] == "modules" &&
+		isMarkdownFile(fileName)
+}
+
+// Return true if the given filename is a Markdown file
+func isMarkdownFile(filename string) bool {
+	validFileExtensions := []string{"markdown", "mdown", "mkdn", "mkd", "md"}
+	fileExtension := strings.Split(filename, ".")[1]
+	return strSliceContains(validFileExtensions, fileExtension)
+}
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
 // // copy the file largely unchanged, other than some placeholder text prepended and some URL tweaks. If file is a
