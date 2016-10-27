@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
+	"regexp"
+	"reflect"
+	"runtime"
 )
 
-// This function will walk all the files specified in opt.InputPath and process them into opts.OutputPath
+// This function will walk all the files specified in opt.InputPath and relocate them to their desired folder location
 func ProcessDocs(opts *Opts) error {
 	return filepath.Walk(opts.InputPath, func(path string, info os.FileInfo, err error) error {
 		relPath, err := GetPathRelativeTo(path, opts.InputPath)
@@ -16,57 +18,99 @@ func ProcessDocs(opts *Opts) error {
 		} else if shouldSkipPath(relPath, opts) {
 			fmt.Printf("Skipping path %s\n", relPath)
 			return nil
-		} else if isModuleDoc(relPath, opts) {
-			fmt.Printf("ModuleDoc: %s\n", relPath)
-			return nil
 		} else {
-			//fmt.Printf("Path %s\n", relPath)
+			funcs := []func(string, *Opts) (bool, error){
+				isModuleDoc,
+				isModuleOverview,
+				isModuleExampleDoc,
+				isModuleExampleOverview,
+			}
+			for key, f := range funcs {
+				result, err := f(relPath, opts)
+				if err != nil {
+					return WithStackTrace(err)
+				}
+				if result {
+					fmt.Printf("%v: %s\n", GetFunctionName(funcs[key]), relPath)
+				}
+			}
+
 			return nil
 		}
-
-		//fmt.Println(relPath)
-		//return nil
-
-		// if err != nil {
-		// 	return err
-		// } else if shouldSkipPath(relPath, opts) {
-		// 	Logger.Printf("Skipping path %s", relPath)
-		// 	return nil
-		// } else if info.IsDir() {
-		// 	return CreateDir(relPath, opts.OutputPath)
-		// } else {
-		// 	return generateDocsForFile(relPath, info, opts)
-		// }
 	})
 }
 
-// Return true if this is a file or folder we should skip completely in the processing step
+// Return true if this is a file or folder we should skip completely in the processing step.
 func shouldSkipPath(path string, opts *Opts) bool {
 	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
 }
 
-// Return true if the path is of the form packages/<package-name>/modules/*.md
-func isModuleDoc(path string, opts *Opts) bool {
-	subpaths := strings.Split(path, "/")
+// Return true if the path is a markdown doc in a module.
+func isModuleDoc(path string, opts *Opts) (bool, error) {
+	var isModuleDoc bool
 
-	var fileName string
-	if len(subpaths) > 3 {
-		fileName = subpaths[len(subpaths)-1]
-	} else {
-		return false
+	regexStr := `^packages/.*/modules/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`
+	regex, err := regexp.Compile(regexStr)
+	if err != nil {
+		return isModuleDoc, WithStackTrace(FailedToCompileRegEx(regexStr))
 	}
 
-	return subpaths[0] == "packages" &&
-		subpaths[2] == "modules" &&
-		isMarkdownFile(fileName)
+	isModuleDoc = regex.MatchString(path)
+	return isModuleDoc, nil
+}
+
+// Return true if the path is a module's overview markdown doc.
+func isModuleOverview(path string, opts *Opts) (bool, error) {
+	var isModuleOverview bool
+
+	regexStr := `^packages/.*/modules/.*/README.md$`
+	regex, err := regexp.Compile(regexStr)
+	if err != nil {
+		return isModuleOverview, WithStackTrace(FailedToCompileRegEx(regexStr))
+	}
+
+	isModuleOverview = regex.MatchString(path)
+	return isModuleOverview, nil
+}
+
+// Return true if the path is a module example's overview markdown doc.
+func isModuleExampleOverview(path string, opts *Opts) (bool, error) {
+	var isModuleExampleOverview bool
+
+	regexStr := `^packages/.*/examples/.*/README.md$`
+	regex, err := regexp.Compile(regexStr)
+	if err != nil {
+		return isModuleExampleOverview, WithStackTrace(FailedToCompileRegEx(regexStr))
+	}
+
+	isModuleExampleOverview = regex.MatchString(path)
+	return isModuleExampleOverview, nil
+}
+
+// Return true if the path is a markdown doc in a module example.
+func isModuleExampleDoc(path string, opts *Opts) (bool, error) {
+	var isModuleExampleDoc bool
+
+	regexStr := `^packages/.*/examples/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`
+	regex, err := regexp.Compile(regexStr)
+	if err != nil {
+		return isModuleExampleDoc, WithStackTrace(FailedToCompileRegEx(regexStr))
+	}
+
+	isModuleExampleDoc = regex.MatchString(path)
+	return isModuleExampleDoc, nil
+}
+
+func GetFunctionName(i interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
 
 // Return true if the given filename is a Markdown file
-func isMarkdownFile(filename string) bool {
-	validFileExtensions := []string{"markdown", "mdown", "mkdn", "mkd", "md"}
-	fileExtension := strings.Split(filename, ".")[1]
-	return strSliceContains(validFileExtensions, fileExtension)
-}
+// func isMarkdownFile(filename string) bool {
+// 	validFileExtensions := []string{"markdown", "mdown", "mkdn", "mkd", "md"}
+// 	fileExtension := strings.Split(filename, ".")[1]
+// 	return strSliceContains(validFileExtensions, fileExtension)
+// }
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
 // // copy the file largely unchanged, other than some placeholder text prepended and some URL tweaks. If file is a
@@ -138,3 +182,11 @@ func isMarkdownFile(filename string) bool {
 // func getContentsForNonDocumentationFile(file string, opts *Opts) ([]byte, error) {
 // 	return []byte(CreatePlaceholderTextForFile(file, opts)), nil
 // }
+
+// custom error types
+
+type FailedToCompileRegEx string
+
+func (regex FailedToCompileRegEx) Error() string {
+	return fmt.Sprintf("Regular Expression \"%s\" failed to compile.", string(regex))
+}
