@@ -100,10 +100,9 @@ func runApp(cliContext *cli.Context) error {
 
 	Logger.Printf("Starting to pre-process %s into %s", opts.InputPath, opts.OutputPath)
 
-	// TODO: Preprocess folder
-	// if err := GenerateDocs(opts); err != nil {
-	// 	return err
-	// }
+	if err := ProcessDocs(opts); err != nil {
+		return err
+	}
 
 	Logger.Printf("Done pre-processing %s into %s!", opts.InputPath, opts.OutputPath)
 	return nil

@@ -24,6 +24,8 @@ func ProcessDocs(opts *Opts) error {
 				isModuleOverview,
 				isModuleExampleDoc,
 				isModuleExampleOverview,
+				isPackageDoc,
+				isPackageOverview,
 			}
 			for key, f := range funcs {
 				result, err := f(relPath, opts)
@@ -45,72 +47,62 @@ func shouldSkipPath(path string, opts *Opts) bool {
 	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
 }
 
+// Produce a function that matches a string against a RegEx.
+func getRegexCheckFunc(regexStr string) func(string, *Opts) (bool, error) {
+	return func(path string, opts *Opts) (bool, error) {
+		var isMatch bool
+
+		regex, err := regexp.Compile(regexStr)
+		if err != nil {
+			return isMatch, WithStackTrace(FailedToCompileRegEx(regexStr))
+		}
+
+		isMatch = regex.MatchString(path)
+		return isMatch, nil
+	}
+}
+
 // Return true if the path is a markdown doc in a module.
 func isModuleDoc(path string, opts *Opts) (bool, error) {
-	var isModuleDoc bool
-
-	regexStr := `^packages/.*/modules/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`
-	regex, err := regexp.Compile(regexStr)
-	if err != nil {
-		return isModuleDoc, WithStackTrace(FailedToCompileRegEx(regexStr))
-	}
-
-	isModuleDoc = regex.MatchString(path)
-	return isModuleDoc, nil
+	return getRegexCheckFunc(`^packages/.*/modules/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
 }
 
 // Return true if the path is a module's overview markdown doc.
 func isModuleOverview(path string, opts *Opts) (bool, error) {
-	var isModuleOverview bool
-
-	regexStr := `^packages/.*/modules/.*/README.md$`
-	regex, err := regexp.Compile(regexStr)
-	if err != nil {
-		return isModuleOverview, WithStackTrace(FailedToCompileRegEx(regexStr))
-	}
-
-	isModuleOverview = regex.MatchString(path)
-	return isModuleOverview, nil
+	return getRegexCheckFunc(`^packages/.*/modules/.*/README.md$`)(path, opts)
 }
 
 // Return true if the path is a module example's overview markdown doc.
 func isModuleExampleOverview(path string, opts *Opts) (bool, error) {
-	var isModuleExampleOverview bool
-
-	regexStr := `^packages/.*/examples/.*/README.md$`
-	regex, err := regexp.Compile(regexStr)
-	if err != nil {
-		return isModuleExampleOverview, WithStackTrace(FailedToCompileRegEx(regexStr))
-	}
-
-	isModuleExampleOverview = regex.MatchString(path)
-	return isModuleExampleOverview, nil
+	return getRegexCheckFunc(`^packages/.*/examples/.*/README.md$`)(path, opts)
 }
 
 // Return true if the path is a markdown doc in a module example.
 func isModuleExampleDoc(path string, opts *Opts) (bool, error) {
-	var isModuleExampleDoc bool
+	return getRegexCheckFunc(`^packages/.*/examples/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
+}
 
-	regexStr := `^packages/.*/examples/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`
+// Return true if the path is a module example's overview markdown doc.
+func isPackageOverview(path string, opts *Opts) (bool, error) {
+	return getRegexCheckFunc(`^packages/.*/README.md$`)(path, opts)
+}
+
+// Return true if the path is a markdown doc in a module example.
+func isPackageDoc(path string, opts *Opts) (bool, error) {
+	return getRegexCheckFunc(`^packages/.*/modules/_docs/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
+}
+
+func getNewModuleDocPath(path string) string {
 	regex, err := regexp.Compile(regexStr)
 	if err != nil {
-		return isModuleExampleDoc, WithStackTrace(FailedToCompileRegEx(regexStr))
+		return isMatch, WithStackTrace(FailedToCompileRegEx(regexStr))
 	}
 
-	isModuleExampleDoc = regex.MatchString(path)
-	return isModuleExampleDoc, nil
 }
 
 func GetFunctionName(i interface{}) string {
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
-
-// Return true if the given filename is a Markdown file
-// func isMarkdownFile(filename string) bool {
-// 	validFileExtensions := []string{"markdown", "mdown", "mkdn", "mkd", "md"}
-// 	fileExtension := strings.Split(filename, ".")[1]
-// 	return strSliceContains(validFileExtensions, fileExtension)
-// }
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
 // // copy the file largely unchanged, other than some placeholder text prepended and some URL tweaks. If file is a
