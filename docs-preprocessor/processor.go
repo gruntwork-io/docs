@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	IS_GLOBAL_DOC_REGEX = `^global/[\s\w-]*/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]`
-	IS_MODULE_DOC_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]$`
+	IS_GLOBAL_DOC_REGEX = `^global/.*\.markdown|mdown|mkdn|mkd|md$`
+	IS_MODULE_DOC_REGEX = `^packages/[\w -]+/modules/[\w -]+/_docs/[\w -]+\.(markdown|mdown|mkdn|mkd|md)$`
 	IS_MODULE_OVERVIEW_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/README.md$`
 	IS_MODULE_EXAMPLE_OVERVIEW_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/README.md$`
-	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.[markdown|mdown|mkdn|mkd|md]$`
+	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.(markdown|mdown|mkdn|mkd|md)$`
 	IS_PACKAGE_OVERVIEW_REGEX = `^packages/[\s\w-]*/README.md$`
-	IS_PACKAGE_DOC_REGEX = `^packages/[\s\w-]*/modules/_docs/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]$`
+	IS_PACKAGE_DOC_REGEX = `^packages/[\w -]+/modules/_docs/[\w -/]+\.(markdown|mdown|mkdn|mkd|md)$`
 	IS_IMAGE_REGEX = `^.*\.jpg|jpeg|gif|png|svg$`
 )
 
@@ -29,6 +29,7 @@ func ProcessDocs(opts *Opts) error {
 			return nil
 		} else if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
 			fmt.Printf("GlobalDoc: %s\n", relPath)
+			placeGlobalDoc(relPath)
 			return nil
 		} else if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
 			fmt.Printf("ModuleDoc: %s\n", relPath)
@@ -66,12 +67,19 @@ func shouldSkipPath(path string, opts *Opts) bool {
 // Check whether the given path matches the given RegEx. We panic if there's an error (versus returning a bool and an
 // error) to keep the if-else statement in ProcessDocs simpler.
 func checkRegex(path string, regexStr string) bool {
-	regex, err := regexp.Compile(regexStr)
-	if err != nil {
-		panic(WithStackTrace(FailedToCompileRegEx(regexStr)))
-	}
-
+	regex := regexp.MustCompile(regexStr)
 	return regex.MatchString(path)
+}
+
+func placeGlobalDoc(path string) error {
+	regex := regexp.MustCompile(IS_GLOBAL_DOC_REGEX)
+	names := regex.SubexpNames()
+	submatches := regex.FindAllStringSubmatch(path, -1)
+
+	fmt.Printf("%v\n", names)
+	fmt.Printf("%v\n", submatches)
+
+	return nil
 }
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
