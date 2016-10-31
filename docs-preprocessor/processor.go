@@ -5,8 +5,17 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"reflect"
-	"runtime"
+)
+
+const (
+	IS_GLOBAL_DOC_REGEX = `^global/[\s\w-]*/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]`
+	IS_MODULE_DOC_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]$`
+	IS_MODULE_OVERVIEW_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/README.md$`
+	IS_MODULE_EXAMPLE_OVERVIEW_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/README.md$`
+	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.[markdown|mdown|mkdn|mkd|md]$`
+	IS_PACKAGE_OVERVIEW_REGEX = `^packages/[\s\w-]*/README.md$`
+	IS_PACKAGE_DOC_REGEX = `^packages/[\s\w-]*/modules/_docs/[\s\w-]*\.[markdown|mdown|mkdn|mkd|md]$`
+	IS_IMAGE_REGEX = `^.*\.jpg|jpeg|gif|png|svg$`
 )
 
 // This function will walk all the files specified in opt.InputPath and relocate them to their desired folder location
@@ -18,25 +27,32 @@ func ProcessDocs(opts *Opts) error {
 		} else if shouldSkipPath(relPath, opts) {
 			fmt.Printf("Skipping path %s\n", relPath)
 			return nil
+		} else if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
+			fmt.Printf("GlobalDoc: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
+			fmt.Printf("ModuleDoc: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_MODULE_OVERVIEW_REGEX) {
+			fmt.Printf("ModuleOverview: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_OVERVIEW_REGEX) {
+			fmt.Printf("ModuleExampleOverview: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_DOC_REGEX) {
+			fmt.Printf("ModuleExampleDoc: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_PACKAGE_OVERVIEW_REGEX) {
+			fmt.Printf("PackageOverview: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_PACKAGE_DOC_REGEX) {
+			fmt.Printf("PackageDoc: %s\n", relPath)
+			return nil
+		} else if checkRegex(relPath, IS_IMAGE_REGEX) {
+			fmt.Printf("Image: %s\n", relPath)
+			return nil
 		} else {
-			funcs := []func(string, *Opts) (bool, error){
-				isModuleDoc,
-				isModuleOverview,
-				isModuleExampleDoc,
-				isModuleExampleOverview,
-				isPackageDoc,
-				isPackageOverview,
-			}
-			for key, f := range funcs {
-				result, err := f(relPath, opts)
-				if err != nil {
-					return WithStackTrace(err)
-				}
-				if result {
-					fmt.Printf("%v: %s\n", GetFunctionName(funcs[key]), relPath)
-				}
-			}
-
+			fmt.Printf("Nothing: %s\n", relPath)
 			return nil
 		}
 	})
@@ -47,61 +63,15 @@ func shouldSkipPath(path string, opts *Opts) bool {
 	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
 }
 
-// Produce a function that matches a string against a RegEx.
-func getRegexCheckFunc(regexStr string) func(string, *Opts) (bool, error) {
-	return func(path string, opts *Opts) (bool, error) {
-		var isMatch bool
-
-		regex, err := regexp.Compile(regexStr)
-		if err != nil {
-			return isMatch, WithStackTrace(FailedToCompileRegEx(regexStr))
-		}
-
-		isMatch = regex.MatchString(path)
-		return isMatch, nil
-	}
-}
-
-// Return true if the path is a markdown doc in a module.
-func isModuleDoc(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/modules/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
-}
-
-// Return true if the path is a module's overview markdown doc.
-func isModuleOverview(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/modules/.*/README.md$`)(path, opts)
-}
-
-// Return true if the path is a module example's overview markdown doc.
-func isModuleExampleOverview(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/examples/.*/README.md$`)(path, opts)
-}
-
-// Return true if the path is a markdown doc in a module example.
-func isModuleExampleDoc(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/examples/.*/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
-}
-
-// Return true if the path is a module example's overview markdown doc.
-func isPackageOverview(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/README.md$`)(path, opts)
-}
-
-// Return true if the path is a markdown doc in a module example.
-func isPackageDoc(path string, opts *Opts) (bool, error) {
-	return getRegexCheckFunc(`^packages/.*/modules/_docs/.*\.[markdown|mdown|mkdn|mkd|md]$`)(path, opts)
-}
-
-func getNewModuleDocPath(path string) string {
+// Check whether the given path matches the given RegEx. We panic if there's an error (versus returning a bool and an
+// error) to keep the if-else statement in ProcessDocs simpler.
+func checkRegex(path string, regexStr string) bool {
 	regex, err := regexp.Compile(regexStr)
 	if err != nil {
-		return isMatch, WithStackTrace(FailedToCompileRegEx(regexStr))
+		panic(WithStackTrace(FailedToCompileRegEx(regexStr)))
 	}
 
-}
-
-func GetFunctionName(i interface{}) string {
-	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
+	return regex.MatchString(path)
 }
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
