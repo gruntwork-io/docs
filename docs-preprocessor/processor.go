@@ -5,16 +5,19 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
+	"io/ioutil"
+	"errors"
 )
 
 const (
-	IS_GLOBAL_DOC_REGEX = `^global/.*\.markdown|mdown|mkdn|mkd|md$`
-	IS_MODULE_DOC_REGEX = `^packages/[\w -]+/modules/[\w -]+/_docs/[\w -]+\.(markdown|mdown|mkdn|mkd|md)$`
+	IS_GLOBAL_DOC_REGEX = `^global/(.*\.md)$`
+	IS_MODULE_DOC_REGEX = `^(packages/[\w -]+/modules/[\w -]+)/_docs/([\w -]+\.md)$`
 	IS_MODULE_OVERVIEW_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/README.md$`
 	IS_MODULE_EXAMPLE_OVERVIEW_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/README.md$`
-	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.(markdown|mdown|mkdn|mkd|md)$`
+	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.md$`
 	IS_PACKAGE_OVERVIEW_REGEX = `^packages/[\s\w-]*/README.md$`
-	IS_PACKAGE_DOC_REGEX = `^packages/[\w -]+/modules/_docs/[\w -/]+\.(markdown|mdown|mkdn|mkd|md)$`
+	IS_PACKAGE_DOC_REGEX = `^packages/[\w -]+/modules/_docs/[\w -/]+\.md$`
 	IS_IMAGE_REGEX = `^.*\.jpg|jpeg|gif|png|svg$`
 )
 
@@ -28,32 +31,42 @@ func ProcessDocs(opts *Opts) error {
 			fmt.Printf("Skipping path %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
-			fmt.Printf("GlobalDoc: %s\n", relPath)
-			placeGlobalDoc(relPath)
+			dstPath, err := getGlobalDocOutputPath(path)
+			if err != nil {
+				return err
+			}
+
+			Logger.Printf("GlobalDoc: Copying %s to %s\n", path, dstPath)
+			//err = copyFile(path, dstPath)
+			if err != nil {
+				return err
+			}
+
 			return nil
+
 		} else if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
-			fmt.Printf("ModuleDoc: %s\n", relPath)
+			//fmt.Printf("ModuleDoc: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_MODULE_OVERVIEW_REGEX) {
-			fmt.Printf("ModuleOverview: %s\n", relPath)
+			//fmt.Printf("ModuleOverview: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_OVERVIEW_REGEX) {
-			fmt.Printf("ModuleExampleOverview: %s\n", relPath)
+			//fmt.Printf("ModuleExampleOverview: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_DOC_REGEX) {
-			fmt.Printf("ModuleExampleDoc: %s\n", relPath)
+			//fmt.Printf("ModuleExampleDoc: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_PACKAGE_OVERVIEW_REGEX) {
-			fmt.Printf("PackageOverview: %s\n", relPath)
+			//fmt.Printf("PackageOverview: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_PACKAGE_DOC_REGEX) {
-			fmt.Printf("PackageDoc: %s\n", relPath)
+			//fmt.Printf("PackageDoc: %s\n", relPath)
 			return nil
 		} else if checkRegex(relPath, IS_IMAGE_REGEX) {
-			fmt.Printf("Image: %s\n", relPath)
+			//fmt.Printf("Image: %s\n", relPath)
 			return nil
 		} else {
-			fmt.Printf("Nothing: %s\n", relPath)
+			//fmt.Printf("Nothing: %s\n", relPath)
 			return nil
 		}
 	})
@@ -71,15 +84,68 @@ func checkRegex(path string, regexStr string) bool {
 	return regex.MatchString(path)
 }
 
-func placeGlobalDoc(path string) error {
+// Return the output path for a GlobalDoc file. See TestGetGlobalDocOutputPath for expected output.
+func getGlobalDocOutputPath(path string) (string, error) {
+	var outputPath string
+
 	regex := regexp.MustCompile(IS_GLOBAL_DOC_REGEX)
-	names := regex.SubexpNames()
 	submatches := regex.FindAllStringSubmatch(path, -1)
 
-	fmt.Printf("%v\n", names)
-	fmt.Printf("%v\n", submatches)
+	if len(submatches) != 1 || len(submatches[0]) != 2 {
+		return outputPath, WithStackTrace(RegExReturnedUnexpectedNumberOfMatches(IS_GLOBAL_DOC_REGEX))
+	}
+
+	outputPath = submatches[0][1]
+
+	return outputPath, nil
+}
+
+// Return the output path for a ModuleDoc file. See TestGetModuleDocExampleOutputPath for expected output.
+func getModuleDocOutputPath(path string) (string, error) {
+	var outputPath string
+
+	regex := regexp.MustCompile(IS_MODULE_DOC_REGEX)
+	submatches := regex.FindAllStringSubmatch(path, -1)
+
+	if len(submatches) != 1 || len(submatches[0]) != 3 {
+		return outputPath, errors.New("Module documents must exist in the path /packages/<package-name>/modules/<module-name>/_docs/. Any subfolders in /_docs will generate an error.")
+	}
+
+	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
+	// This part: packages/module-vpc/modules/vpc-app
+	modulePath := submatches[0][1]
+	modulePath = strings.Replace(modulePath, "modules/", "", 1)
+
+	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
+	// This part: module-doc.md
+	fileName := submatches[0][2]
+
+	return modulePath + "/" + fileName, nil
+}
+
+// Copy the given file. If a file already exists at newPath, return an error.
+func copyFile(srcPath, dstPath string) error {
+	if isFileExist(dstPath) {
+		return errors.New("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.")
+	}
+
+	bytes, err := ioutil.ReadFile(srcPath)
+	if err != nil {
+		return WithStackTrace(err)
+	}
+
+	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
+	if err != nil {
+		return WithStackTrace(err)
+	}
 
 	return nil
+}
+
+// Return true if the file at the given path exists
+func isFileExist(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
 }
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
@@ -155,8 +221,7 @@ func placeGlobalDoc(path string) error {
 
 // custom error types
 
-type FailedToCompileRegEx string
-
-func (regex FailedToCompileRegEx) Error() string {
-	return fmt.Sprintf("Regular Expression \"%s\" failed to compile.", string(regex))
+type RegExReturnedUnexpectedNumberOfMatches string
+func (regex RegExReturnedUnexpectedNumberOfMatches) Error() string {
+	return fmt.Sprintf("The Regular Expression \"%s\" returned a different number of matches than we expected.\n", string(regex))
 }
