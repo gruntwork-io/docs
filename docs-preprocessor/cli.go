@@ -47,7 +47,10 @@ type Opts struct {
 }
 
 func CreateCli(version string) *cli.App {
+	// Override the exiter to do nothing, since we want our own code to handle errors
+	cli.OsExiter = func(code int) {}
 	cli.AppHelpTemplate = CUSTOM_HELP_TEXT
+
 	app := cli.NewApp()
 
 	app.Name = "docs-preprocessor"
