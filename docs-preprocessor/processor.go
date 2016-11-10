@@ -4,21 +4,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"regexp"
-	"strings"
-	"io/ioutil"
-	"errors"
-)
-
-const (
-	IS_GLOBAL_DOC_REGEX = `^global/(.*\.md)$`
-	IS_MODULE_DOC_REGEX = `^(packages/[\w -]+/modules/[\w -]+)/_docs/([\w -]+\.md)$`
-	IS_MODULE_OVERVIEW_REGEX = `^packages/[\s\w-]*/modules/[\s\w-]*/README.md$`
-	IS_MODULE_EXAMPLE_OVERVIEW_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/README.md$`
-	IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.md$`
-	IS_PACKAGE_OVERVIEW_REGEX = `^packages/[\s\w-]*/README.md$`
-	IS_PACKAGE_DOC_REGEX = `^packages/[\w -]+/modules/_docs/[\w -/]+\.md$`
-	IS_IMAGE_REGEX = `^.*\.jpg|jpeg|gif|png|svg$`
+	//"regexp"
+	//"strings"
+	//"io/ioutil"
+	//"errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/docfile"
 )
 
 // This function will walk all the files specified in opt.InputPath and relocate them to their desired folder location
@@ -30,43 +20,20 @@ func ProcessDocs(opts *Opts) error {
 		} else if shouldSkipPath(relPath, opts) {
 			fmt.Printf("Skipping path %s\n", relPath)
 			return nil
-		} else if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
-			dstPath, err := getGlobalDocOutputPath(path)
-			if err != nil {
-				return err
-			}
-
-			Logger.Printf("GlobalDoc: Copying %s to %s\n", path, dstPath)
-			//err = copyFile(path, dstPath)
-			if err != nil {
-				return err
-			}
-
-			return nil
-
-		} else if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
-			//fmt.Printf("ModuleDoc: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_MODULE_OVERVIEW_REGEX) {
-			//fmt.Printf("ModuleOverview: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_OVERVIEW_REGEX) {
-			//fmt.Printf("ModuleExampleOverview: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_MODULE_EXAMPLE_DOC_REGEX) {
-			//fmt.Printf("ModuleExampleDoc: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_PACKAGE_OVERVIEW_REGEX) {
-			//fmt.Printf("PackageOverview: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_PACKAGE_DOC_REGEX) {
-			//fmt.Printf("PackageDoc: %s\n", relPath)
-			return nil
-		} else if checkRegex(relPath, IS_IMAGE_REGEX) {
-			//fmt.Printf("Image: %s\n", relPath)
-			return nil
 		} else {
-			//fmt.Printf("Nothing: %s\n", relPath)
+			doc, err := docfile.NewDocFile(path, relPath)
+			if _, ok := err.(docfile.NoDocCouldBeCreatedFromGivenRelPath); ok {
+				Logger.Printf("Ignoring %s\n", relPath)
+				return nil
+			} else if err != nil {
+				return err
+			}
+
+			err = doc.Copy(opts.OutputPath)
+			if err != nil {
+				return err
+			}
+
 			return nil
 		}
 	})
@@ -77,76 +44,77 @@ func shouldSkipPath(path string, opts *Opts) bool {
 	return path == opts.InputPath || MatchesGlobs(path, opts.Excludes)
 }
 
-// Check whether the given path matches the given RegEx. We panic if there's an error (versus returning a bool and an
-// error) to keep the if-else statement in ProcessDocs simpler.
-func checkRegex(path string, regexStr string) bool {
-	regex := regexp.MustCompile(regexStr)
-	return regex.MatchString(path)
-}
-
-// Return the output path for a GlobalDoc file. See TestGetGlobalDocOutputPath for expected output.
-func getGlobalDocOutputPath(path string) (string, error) {
-	var outputPath string
-
-	regex := regexp.MustCompile(IS_GLOBAL_DOC_REGEX)
-	submatches := regex.FindAllStringSubmatch(path, -1)
-
-	if len(submatches) != 1 || len(submatches[0]) != 2 {
-		return outputPath, WithStackTrace(RegExReturnedUnexpectedNumberOfMatches(IS_GLOBAL_DOC_REGEX))
-	}
-
-	outputPath = submatches[0][1]
-
-	return outputPath, nil
-}
-
-// Return the output path for a ModuleDoc file. See TestGetModuleDocExampleOutputPath for expected output.
-func getModuleDocOutputPath(path string) (string, error) {
-	var outputPath string
-
-	regex := regexp.MustCompile(IS_MODULE_DOC_REGEX)
-	submatches := regex.FindAllStringSubmatch(path, -1)
-
-	if len(submatches) != 1 || len(submatches[0]) != 3 {
-		return outputPath, errors.New("Module documents must exist in the path /packages/<package-name>/modules/<module-name>/_docs/. Any subfolders in /_docs will generate an error.")
-	}
-
-	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
-	// This part: packages/module-vpc/modules/vpc-app
-	modulePath := submatches[0][1]
-	modulePath = strings.Replace(modulePath, "modules/", "", 1)
-
-	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
-	// This part: module-doc.md
-	fileName := submatches[0][2]
-
-	return modulePath + "/" + fileName, nil
-}
-
-// Copy the given file. If a file already exists at newPath, return an error.
-func copyFile(srcPath, dstPath string) error {
-	if isFileExist(dstPath) {
-		return errors.New("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.")
-	}
-
-	bytes, err := ioutil.ReadFile(srcPath)
-	if err != nil {
-		return WithStackTrace(err)
-	}
-
-	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
-	if err != nil {
-		return WithStackTrace(err)
-	}
-
-	return nil
-}
-
-// Return true if the file at the given path exists
-func isFileExist(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
-}
+//
+//// Check whether the given path matches the given RegEx. We panic if there's an error (versus returning a bool and an
+//// error) to keep the if-else statement in ProcessDocs simpler.
+//func checkRegex(path string, regexStr string) bool {
+//	regex := regexp.MustCompile(regexStr)
+//	return regex.MatchString(path)
+//}
+//
+//// Return the output path for a GlobalDoc file. See TestGetGlobalDocOutputPath for expected output.
+//func getGlobalDocOutputPath(path string) (string, error) {
+//	var outputPath string
+//
+//	regex := regexp.MustCompile(IS_GLOBAL_DOC_REGEX)
+//	submatches := regex.FindAllStringSubmatch(path, -1)
+//
+//	if len(submatches) != 1 || len(submatches[0]) != 2 {
+//		return outputPath, WithStackTrace(RegExReturnedUnexpectedNumberOfMatches(IS_GLOBAL_DOC_REGEX))
+//	}
+//
+//	outputPath = submatches[0][1]
+//
+//	return outputPath, nil
+//}
+//
+//// Return the output path for a ModuleDoc file. See TestGetModuleDocExampleOutputPath for expected output.
+//func getModuleDocOutputPath(path string) (string, error) {
+//	var outputPath string
+//
+//	regex := regexp.MustCompile(IS_MODULE_DOC_REGEX)
+//	submatches := regex.FindAllStringSubmatch(path, -1)
+//
+//	if len(submatches) != 1 || len(submatches[0]) != 3 {
+//		return outputPath, errors.New("Module documents must exist in the path /packages/<package-name>/modules/<module-name>/_docs/. Any subfolders in /_docs will generate an error.")
+//	}
+//
+//	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
+//	// This part: packages/module-vpc/modules/vpc-app
+//	modulePath := submatches[0][1]
+//	modulePath = strings.Replace(modulePath, "modules/", "", 1)
+//
+//	// Full string: packages/module-vpc/modules/vpc-app/module-doc.md
+//	// This part: module-doc.md
+//	fileName := submatches[0][2]
+//
+//	return modulePath + "/" + fileName, nil
+//}
+//
+//// Copy the given file. If a file already exists at newPath, return an error.
+//func copyFile(srcPath, dstPath string) error {
+//	if isFileExist(dstPath) {
+//		return errors.New("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.")
+//	}
+//
+//	bytes, err := ioutil.ReadFile(srcPath)
+//	if err != nil {
+//		return WithStackTrace(err)
+//	}
+//
+//	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
+//	if err != nil {
+//		return WithStackTrace(err)
+//	}
+//
+//	return nil
+//}
+//
+//// Return true if the file at the given path exists
+//func isFileExist(path string) bool {
+//	_, err := os.Stat(path)
+//	return err == nil
+//}
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
 // // copy the file largely unchanged, other than some placeholder text prepended and some URL tweaks. If file is a
