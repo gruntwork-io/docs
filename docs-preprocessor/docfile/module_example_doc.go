@@ -2,7 +2,7 @@ package docfile
 
 import "fmt"
 
-const IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*.md$`
+const IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/[\s\w-]*/examples/[\s\w-]*/.*[^README].md$`
 
 // Represents a non-overview document that's part of a specific module.
 type ModuleExampleDoc struct {
@@ -19,6 +19,6 @@ func NewModuleExampleDoc(absPath string, relPath string) (*ModuleExampleDoc, err
 }
 
 func (d *ModuleExampleDoc) Copy(outputPathRoot string) error {
-	fmt.Printf("Copying MOD-DOC file %s to %s...\n", d.relPath, outputPathRoot)
+	fmt.Printf("Copying MOD-EXAMPLE file %s to %s...\n", d.relPath, outputPathRoot)
 	return nil
 }

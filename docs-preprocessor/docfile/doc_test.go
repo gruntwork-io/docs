@@ -93,6 +93,7 @@ func TestIsModuleExampleDocRegEx(t *testing.T) {
 		expected bool
 	}{
 		{"packages/module-vpc/examples/vpc-app/Example.md", true},
+		{"packages/module-vpc/examples/vpc-app/README.md", false},
 		{"packages/module-vpc/examples/vpc-app/_docs/Example.md", true},
 		{"packages/module-vpc/examples/vpc-app/docs/Example.md", true},
 		{"packages/module-vpc/examples/vpc-app/docs/Example.txt", false},

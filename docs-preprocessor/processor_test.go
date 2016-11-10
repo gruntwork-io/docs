@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
 )
 
 const GENERATOR_TESTS_FIXTURES_PATH = "test-fixtures/generator-tests"

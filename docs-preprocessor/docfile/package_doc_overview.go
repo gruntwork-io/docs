@@ -19,6 +19,6 @@ func NewPackageDocOverview(absPath string, relPath string) (*PackageDocOverview,
 }
 
 func (d *PackageDocOverview) Copy(outputPathRoot string) error {
-	fmt.Printf("Copying MOD-DOC file %s to %s...\n", d.relPath, outputPathRoot)
+	fmt.Printf("Copying PACKAGE-OVERVIEW-DOC file %s to %s...\n", d.relPath, outputPathRoot)
 	return nil
 }
