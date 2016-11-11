@@ -3,6 +3,9 @@ package docfile
 import (
 	"strings"
 	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
+	"github.com/gruntwork-io/docs/docs-preprocessor/file"
+	"fmt"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 const IS_GLOBAL_DOC_REGEX = `^global/(.*\.md)$`
@@ -23,11 +26,12 @@ func NewGlobalDoc(absPath string, relPath string) (*GlobalDoc, error) {
 
 func (d *GlobalDoc) Copy(outputPathRoot string) error {
 	outRelPath := d.getRelOutputPath()
+	outAbsPath := fmt.Sprintf("%s/%s", outputPathRoot, outRelPath)
 
-	logger.Logger.Printf("Copying GLOBAL-DOC file %s to %s/%s\n", d.absPath, outputPathRoot, outRelPath)
-	err := copyFile(d.absPath, outRelPath)
+	logger.Logger.Printf("Copying GLOBAL-DOC file %s to %s\n", d.absPath, outAbsPath)
+	err := file.CopyFile(d.absPath, outAbsPath)
 	if err != nil {
-		return err
+		return errors.WithStackTrace(err)
 	}
 
 	return nil

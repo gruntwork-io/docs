@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/file"
 )
 
 const IS_GLOBAL_IMAGE_DOC_REGEX = `^global/([\w -/]*_images)/([\w -]+\.(jpg|jpeg|gif|png|svg))$`
@@ -26,10 +27,17 @@ func NewGlobalImageDoc(absPath string, relPath string) (*GlobalImageDoc, error) 
 func (d *GlobalImageDoc) Copy(outputPathRoot string) error {
 	outRelPath, err := d.getRelOutputPath()
 	if err != nil {
-		return err
+		return errors.WithStackTrace(err)
 	}
 
-	fmt.Printf("Copying GLOBAL-IMAGE-DOC file %s to %s/%s...\n", d.relPath, outputPathRoot, outRelPath)
+	outAbsPath := fmt.Sprintf("%s/%s", outputPathRoot, outRelPath)
+
+	fmt.Printf("Copying GLOBAL-IMAGE-DOC file %s to %s\n", d.relPath, outAbsPath)
+	err = file.CopyFile(d.absPath, outAbsPath)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
 	return nil
 }
 

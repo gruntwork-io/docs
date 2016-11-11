@@ -3,7 +3,6 @@ package file
 import (
 	"path/filepath"
 	"os"
-	"path"
 	"strings"
 	"io"
 	"os/exec"
@@ -11,6 +10,7 @@ import (
 	"net/http"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
+	//"io/ioutil"
 	"io/ioutil"
 )
 
@@ -49,11 +49,10 @@ func GetFileSize(path string) (int64, error) {
 	return fileInfo.Size(), nil
 }
 
-// Create a directory of the given name in the given basePath
-func CreateDir(name string, basePath string) error {
-	outDir := path.Join(basePath, name)
-	logger.Logger.Printf("Creating %s", outDir)
-	return errors.WithStackTrace(os.MkdirAll(outDir, 0777))
+// Create a directory and all the parent directories at the given path
+func CreateDir(path string) error {
+	logger.Logger.Printf("Creating %s", path)
+	return errors.WithStackTrace(os.MkdirAll(path, os.ModePerm))
 }
 
 // There is no way to know for sure if a file is text or binary. The best we can do is use various heuristics to guess.
@@ -83,10 +82,17 @@ func IsTextFile(path string) (bool, error) {
 	return strings.HasPrefix(mimeType, "text"), nil
 }
 
-// Copy the given file. If a file already exists at newPath, return an error.
+// Copy the given file. If a file already exists at dstPath, return an error.
 func CopyFile(srcPath, dstPath string) error {
+	containingDir := getContainingDirectory(dstPath)
+
+	err := CreateDir(containingDir)
+	if err != nil {
+		return errors.WithStackTrace(fmt.Errorf("Error while making directory %s", containingDir))
+	}
+
 	if isFileExist(dstPath) {
-		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.", dstPath))
+		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.\n", dstPath))
 	}
 
 	bytes, err := ioutil.ReadFile(srcPath)
@@ -106,6 +112,14 @@ func CopyFile(srcPath, dstPath string) error {
 func isFileExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil
+}
+
+func getContainingDirectory(path string) string {
+	return filepath.Dir(path)
+}
+
+func mkDirRecursive(path string) error {
+	return os.MkdirAll(path, os.ModePerm)
 }
 
 // Guess the mime type for the given file using a variety of heuristics. Under the hood, uses the Unix/Linux file
