@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"path/filepath"
 )
 
 // The DocFile interface represents a Gruntwork documentation file
@@ -47,6 +48,13 @@ func checkRegex(path string, regexStr string) bool {
 
 // Copy the given file. If a file already exists at dstPath, return an error.
 func copyFile(srcPath, dstPath string) error {
+	containingDir := getContainingDirectory(dstPath)
+
+	err := mkDirRecursive(containingDir)
+	if err != nil {
+		return errors.WithStackTrace(fmt.Errorf("Error while making directory %s", containingDir))
+	}
+
 	if isFileExist(dstPath) {
 		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.\n", dstPath))
 	}
@@ -68,6 +76,14 @@ func copyFile(srcPath, dstPath string) error {
 func isFileExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil
+}
+
+func getContainingDirectory(path string) string {
+	return filepath.Dir(path)
+}
+
+func mkDirRecursive(path string) error {
+	return os.MkdirAll(path, os.ModePerm)
 }
 
 // Custom errors

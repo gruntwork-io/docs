@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
+	"io/ioutil"
 )
 
 // Convert the given path into a path relative to basePath
@@ -80,6 +81,31 @@ func IsTextFile(path string) (bool, error) {
 	}
 
 	return strings.HasPrefix(mimeType, "text"), nil
+}
+
+// Copy the given file. If a file already exists at newPath, return an error.
+func CopyFile(srcPath, dstPath string) error {
+	if isFileExist(dstPath) {
+		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.", dstPath))
+	}
+
+	bytes, err := ioutil.ReadFile(srcPath)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
+	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
+	return nil
+}
+
+// Return true if the file at the given path exists
+func isFileExist(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
 }
 
 // Guess the mime type for the given file using a variety of heuristics. Under the hood, uses the Unix/Linux file
