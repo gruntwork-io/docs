@@ -7,6 +7,7 @@ import (
 	"github.com/gobwas/glob"
 	"github.com/urfave/cli"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
 )
 
 // Customize the --help text for the app so we don't show extraneous info
@@ -102,13 +103,13 @@ func runApp(cliContext *cli.Context) error {
 		return err
 	}
 
-	Logger.Printf("Starting to pre-process %s into %s", opts.InputPath, opts.OutputPath)
+	logger.Logger.Printf("Starting to pre-process %s into %s", opts.InputPath, opts.OutputPath)
 
 	if err := ProcessDocs(opts); err != nil {
 		return err
 	}
 
-	Logger.Printf("Done pre-processing %s into %s!", opts.InputPath, opts.OutputPath)
+	logger.Logger.Printf("Done pre-processing %s into %s!", opts.InputPath, opts.OutputPath)
 	return nil
 }
 

@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
 )
 
 // This variable is set at build time using -ldflags parameters. For more info, see:
@@ -23,8 +24,8 @@ func main() {
 // Display the given error in the console
 func printError(err error) {
 	if os.Getenv("DOCS_PREPROCESSOR_DEBUG") != "" {
-		Logger.Println(errors.PrintErrorWithStackTrace(err))
+		logger.Logger.Println(errors.PrintErrorWithStackTrace(err))
 	} else {
-		Logger.Println(err)
+		logger.Logger.Println(err)
 	}
 }

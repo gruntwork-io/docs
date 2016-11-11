@@ -9,12 +9,13 @@ import (
 	//"io/ioutil"
 	//"errors"
 	"github.com/gruntwork-io/docs/docs-preprocessor/docfile"
+	"github.com/gruntwork-io/docs/docs-preprocessor/file"
 )
 
 // This function will walk all the files specified in opt.InputPath and relocate them to their desired folder location
 func ProcessDocs(opts *Opts) error {
 	return filepath.Walk(opts.InputPath, func(path string, info os.FileInfo, err error) error {
-		relPath, err := GetPathRelativeTo(path, opts.InputPath)
+		relPath, err := file.GetPathRelativeTo(path, opts.InputPath)
 		if err != nil {
 			return err
 		} else if shouldSkipPath(relPath, opts) {

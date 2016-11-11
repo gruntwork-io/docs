@@ -1,4 +1,4 @@
-package main
+package file
 
 import (
 	"path/filepath"
@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"net/http"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
 )
 
 // Convert the given path into a path relative to basePath
@@ -50,7 +51,7 @@ func GetFileSize(path string) (int64, error) {
 // Create a directory of the given name in the given basePath
 func CreateDir(name string, basePath string) error {
 	outDir := path.Join(basePath, name)
-	Logger.Printf("Creating %s", outDir)
+	logger.Logger.Printf("Creating %s", outDir)
 	return errors.WithStackTrace(os.MkdirAll(outDir, 0777))
 }
 
