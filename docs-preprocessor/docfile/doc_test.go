@@ -40,7 +40,7 @@ func TestIsModuleExampleOverviewRegEx(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_MODULE_EXAMPLE_DOC_OVERVIEW_REGEX)
+		isMatch := checkRegex(testCase.path, IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX)
 		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
 	}
 }
@@ -83,7 +83,7 @@ func TestIsPackageOverviewRegEx(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_PACKAGE_DOC_OVERVIEW_REGEX)
+		isMatch := checkRegex(testCase.path, IS_PACKAGE_OVERVIEW_DOC_REGEX)
 		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
 	}
 }

@@ -17,7 +17,7 @@ func NewImageDoc(absPath string, relPath string) (*ImageDoc, error) {
 	if checkRegex(relPath, IS_IMAGE_DOC_REGEX) {
 		return &ImageDoc { absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDoctype("ImageDoc")
+		return nil, InvalidPathForThisDocType("ImageDoc")
 	}
 }
 

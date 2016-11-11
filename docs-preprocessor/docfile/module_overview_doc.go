@@ -6,24 +6,24 @@ import (
 	"errors"
 )
 
-const IS_MODULE_DOC_OVERVIEW_REGEX = `^packages/([\s\w -]+)/modules/([\s\w -]+)/README.md$`
-const IS_MODULE_DOC_OVERVIEW_REGEX_NUM_CAPTURE_GROUPS = 2
+const IS_MODULE_OVERVIEW_DOC_REGEX = `^packages/([\s\w -]+)/modules/([\s\w -]+)/README.md$`
+const IS_MODULE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS = 2
 
 // Represents a non-overview document that's part of a specific module.
-type ModuleDocOverview struct {
+type ModuleOverviewDoc struct {
 	relPath string
 	absPath string
 }
 
-func NewModuleDocOverview(absPath string, relPath string) (*ModuleDocOverview, error) {
-	if checkRegex(relPath, IS_MODULE_DOC_OVERVIEW_REGEX) {
-		return &ModuleDocOverview{ absPath: absPath, relPath: relPath}, nil
+func NewModuleOverviewDoc(absPath string, relPath string) (*ModuleOverviewDoc, error) {
+	if checkRegex(relPath, IS_MODULE_OVERVIEW_DOC_REGEX) {
+		return &ModuleOverviewDoc{ absPath: absPath, relPath: relPath}, nil
 	} else {
-		return nil, InvalidPathForThisDoctype("ModuleOverviewDoc")
+		return nil, InvalidPathForThisDocType("ModuleOverviewDoc")
 	}
 }
 
-func (d *ModuleDocOverview) Copy(outputPathRoot string) error {
+func (d *ModuleOverviewDoc) Copy(outputPathRoot string) error {
 	outRelPath, err := d.getRelOutputPath()
 	if err != nil {
 		return err
@@ -33,13 +33,13 @@ func (d *ModuleDocOverview) Copy(outputPathRoot string) error {
 	return nil
 }
 
-func (d *ModuleDocOverview) getRelOutputPath() (string, error) {
+func (d *ModuleOverviewDoc) getRelOutputPath() (string, error) {
 	var outputPath string
 
-	regex := regexp.MustCompile(IS_MODULE_DOC_OVERVIEW_REGEX)
+	regex := regexp.MustCompile(IS_MODULE_OVERVIEW_DOC_REGEX)
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
-	if len(submatches[0]) != IS_MODULE_DOC_OVERVIEW_REGEX_NUM_CAPTURE_GROUPS + 1 {
+	if len(submatches[0]) != IS_MODULE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
 		return outputPath, errors.New("Module Overview Documents must exist in the path /packages/<package-name>/modules/<module-name>README.md.")
 	}
 

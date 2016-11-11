@@ -16,15 +16,15 @@ func NewDocFile(absPath string, relPath string) (DocFile, error) {
 		return doc, nil
 	} else if doc, err := NewModuleDoc(absPath, relPath); err == nil {
 		return doc, nil
-	} else if doc, err := NewModuleDocOverview(absPath, relPath); err == nil {
+	} else if doc, err := NewModuleOverviewDoc(absPath, relPath); err == nil {
 		return doc, nil
 	} else if doc, err := NewModuleExampleDoc(absPath, relPath); err == nil {
 		return doc, nil
-	} else if doc, err := NewModuleExampleDocOverview(absPath, relPath); err == nil {
+	} else if doc, err := NewModuleExampleOverviewDoc(absPath, relPath); err == nil {
 		return doc, nil
 	} else if doc, err := NewPackageDoc(absPath, relPath); err == nil {
 		return doc, nil
-	} else if doc, err := NewPackageDocOverview(absPath, relPath); err == nil {
+	} else if doc, err := NewPackageOverviewDoc(absPath, relPath); err == nil {
 		return doc, nil
 	} else if doc, err := NewImageDoc(absPath, relPath); err == nil {
 		return doc, nil
@@ -42,8 +42,8 @@ func checkRegex(path string, regexStr string) bool {
 
 // Custom errors
 
-type InvalidPathForThisDoctype string
-func (docType InvalidPathForThisDoctype) Error() string {
+type InvalidPathForThisDocType string
+func (docType InvalidPathForThisDocType) Error() string {
 	return fmt.Sprintf("The given path is not valid for a doc of type %s\n", docType)
 }
 

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestIsModuleDocOverviewRegEx(t *testing.T) {
+func TestIsModuleOverviewDocRegEx(t *testing.T) {
 	t.Parallel()
 
 	testCases := []struct {
@@ -17,20 +17,20 @@ func TestIsModuleDocOverviewRegEx(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_MODULE_DOC_OVERVIEW_REGEX)
+		isMatch := checkRegex(testCase.path, IS_MODULE_OVERVIEW_DOC_REGEX)
 		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
 	}
 }
 
-func TestGetModuleDocOverviewRelOutputPath(t *testing.T) {
+func TestGetModuleOverviewDocRelOutputPath(t *testing.T) {
 	t.Parallel()
 
 	testCases := []struct {
-		moduleDocOverview *ModuleDocOverview
+		moduleDocOverview *ModuleOverviewDoc
 		expected string
 	}{
-		{ &ModuleDocOverview{ relPath: "packages/module-vpc/modules/vpc-app/README.md" }, "packages/module-vpc/vpc-app/overview.md" },
-		{ &ModuleDocOverview{ relPath: "packages/package-vpc/modules/vpc-peering/README.md" }, "packages/package-vpc/vpc-peering/overview.md" },
+		{ &ModuleOverviewDoc{ relPath: "packages/module-vpc/modules/vpc-app/README.md" }, "packages/module-vpc/vpc-app/overview.md" },
+		{ &ModuleOverviewDoc{ relPath: "packages/package-vpc/modules/vpc-peering/README.md" }, "packages/package-vpc/vpc-peering/overview.md" },
 	}
 
 	for _, testCase := range testCases {

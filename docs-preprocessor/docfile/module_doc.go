@@ -20,7 +20,7 @@ func NewModuleDoc(absPath string, relPath string) (*ModuleDoc, error) {
 	if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
 		return &ModuleDoc{absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDoctype("ModuleDoc")
+		return nil, InvalidPathForThisDocType("ModuleDoc")
 	}
 }
 

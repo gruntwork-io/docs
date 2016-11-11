@@ -14,7 +14,7 @@ func NewPackageDoc(absPath string, relPath string) (*PackageDoc, error) {
 	if checkRegex(relPath, IS_PACKAGE_DOC_REGEX) {
 		return &PackageDoc { absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDoctype("PackageDoc")
+		return nil, InvalidPathForThisDocType("PackageDoc")
 	}
 }
 

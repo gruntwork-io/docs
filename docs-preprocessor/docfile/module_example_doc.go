@@ -14,7 +14,7 @@ func NewModuleExampleDoc(absPath string, relPath string) (*ModuleExampleDoc, err
 	if checkRegex(relPath, IS_MODULE_EXAMPLE_DOC_REGEX) {
 		return &ModuleExampleDoc { absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDoctype("ModuleExampleDoc")
+		return nil, InvalidPathForThisDocType("ModuleExampleDoc")
 	}
 }
 
