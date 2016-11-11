@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gobwas/glob"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 func MatchesGlobs(path string, globs []glob.Glob) bool {
@@ -24,7 +25,7 @@ func ToGlobs(patterns []string) ([]glob.Glob, error) {
 	for _, pattern := range patterns {
 		compiled, err := glob.Compile(pattern)
 		if err != nil {
-			return []glob.Glob{}, WithStackTrace(err)
+			return []glob.Glob{}, errors.WithStackTrace(err)
 		}
 		globs = append(globs, compiled)
 	}

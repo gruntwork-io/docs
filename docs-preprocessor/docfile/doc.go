@@ -3,6 +3,9 @@ package docfile
 import (
 	"fmt"
 	"regexp"
+	"io/ioutil"
+	"os"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 // The DocFile interface represents a Gruntwork documentation file
@@ -40,6 +43,31 @@ func NewDocFile(absPath string, relPath string) (DocFile, error) {
 func checkRegex(path string, regexStr string) bool {
 	regex := regexp.MustCompile(regexStr)
 	return regex.MatchString(path)
+}
+
+// Copy the given file. If a file already exists at dstPath, return an error.
+func copyFile(srcPath, dstPath string) error {
+	if isFileExist(dstPath) {
+		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.\n", dstPath))
+	}
+
+	bytes, err := ioutil.ReadFile(srcPath)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
+	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
+	return nil
+}
+
+// Return true if the file at the given path exists
+func isFileExist(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
 }
 
 // Custom errors

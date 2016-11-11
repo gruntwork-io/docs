@@ -3,6 +3,7 @@ package docfile
 import (
 	"fmt"
 	"regexp"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 const IS_MODULE_OVERVIEW_DOC_REGEX = `^packages/([\w -]+)/modules/([\w -]+)/README.md$`
@@ -39,7 +40,7 @@ func (d *ModuleOverviewDoc) getRelOutputPath() (string, error) {
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
 	if len(submatches) == 0 || len(submatches[0]) != IS_MODULE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
-		return outputPath, &WrongNumberOfCaptureGroupsFound{ docTypeName: "ModuleOverviewDoc", path: d.relPath, regEx: IS_MODULE_OVERVIEW_DOC_REGEX }
+		return outputPath, errors.WithStackTrace(&WrongNumberOfCaptureGroupsFound{ docTypeName: "ModuleOverviewDoc", path: d.relPath, regEx: IS_MODULE_OVERVIEW_DOC_REGEX })
 	}
 
 	// If we were parsing d.relPath = packages/module-vpc/modules/vpc-app/README.md...

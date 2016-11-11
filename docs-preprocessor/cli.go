@@ -6,6 +6,7 @@ import (
 
 	"github.com/gobwas/glob"
 	"github.com/urfave/cli"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 // Customize the --help text for the app so we don't show extraneous info
@@ -114,12 +115,12 @@ func runApp(cliContext *cli.Context) error {
 func parseOpts(cliContext *cli.Context) (*Opts, error) {
 	inputPath := cliContext.String(OPT_INPUT_PATH)
 	if inputPath == "" {
-		return nil, WithStackTrace(MissingParam(OPT_INPUT_PATH))
+		return nil, errors.WithStackTrace(MissingParam(OPT_INPUT_PATH))
 	}
 
 	outputPath := cliContext.String(OPT_OUTPUT_PATH)
 	if outputPath == "" {
-		return nil, WithStackTrace(MissingParam(OPT_OUTPUT_PATH))
+		return nil, errors.WithStackTrace(MissingParam(OPT_OUTPUT_PATH))
 	}
 
 	docPatterns := cliContext.StringSlice(OPT_DOC_PATTERN)

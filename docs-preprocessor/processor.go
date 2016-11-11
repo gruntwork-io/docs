@@ -91,30 +91,6 @@ func shouldSkipPath(path string, opts *Opts) bool {
 //	return modulePath + "/" + fileName, nil
 //}
 //
-//// Copy the given file. If a file already exists at newPath, return an error.
-//func copyFile(srcPath, dstPath string) error {
-//	if isFileExist(dstPath) {
-//		return errors.New("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.")
-//	}
-//
-//	bytes, err := ioutil.ReadFile(srcPath)
-//	if err != nil {
-//		return WithStackTrace(err)
-//	}
-//
-//	err = ioutil.WriteFile(dstPath, bytes, os.ModePerm)
-//	if err != nil {
-//		return WithStackTrace(err)
-//	}
-//
-//	return nil
-//}
-//
-//// Return true if the file at the given path exists
-//func isFileExist(path string) bool {
-//	_, err := os.Stat(path)
-//	return err == nil
-//}
 
 // // Generate the documentation output for the given file into opts.OutputPath. If file is a documentation file, this will
 // // copy the file largely unchanged, other than some placeholder text prepended and some URL tweaks. If file is a

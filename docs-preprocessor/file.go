@@ -9,23 +9,24 @@ import (
 	"os/exec"
 	"fmt"
 	"net/http"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 )
 
 // Convert the given path into a path relative to basePath
 func GetPathRelativeTo(path string, basePath string) (string, error) {
 	inputFolderAbs, err := filepath.Abs(basePath)
 	if err != nil {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 
 	fileAbs, err := filepath.Abs(path)
 	if err != nil {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 
 	relPath, err := filepath.Rel(inputFolderAbs, fileAbs)
 	if err != nil {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 
 	return relPath, nil
@@ -41,7 +42,7 @@ func PathExists(path string) bool {
 func GetFileSize(path string) (int64, error) {
 	fileInfo, err := os.Stat(path)
 	if err != nil {
-		return 0, WithStackTrace(err)
+		return 0, errors.WithStackTrace(err)
 	}
 	return fileInfo.Size(), nil
 }
@@ -50,7 +51,7 @@ func GetFileSize(path string) (int64, error) {
 func CreateDir(name string, basePath string) error {
 	outDir := path.Join(basePath, name)
 	Logger.Printf("Creating %s", outDir)
-	return WithStackTrace(os.MkdirAll(outDir, 0777))
+	return errors.WithStackTrace(os.MkdirAll(outDir, 0777))
 }
 
 // There is no way to know for sure if a file is text or binary. The best we can do is use various heuristics to guess.
@@ -61,12 +62,12 @@ func CreateDir(name string, basePath string) error {
 // Since an empty file can be anything it wants to be, this function will return true for empty files!
 func IsTextFile(path string) (bool, error) {
 	if !PathExists(path) {
-		return false, WithStackTrace(NoSuchFile(path))
+		return false, errors.WithStackTrace(NoSuchFile(path))
 	}
 
 	size, err := GetFileSize(path)
 	if err != nil {
-		return false, WithStackTrace(err)
+		return false, errors.WithStackTrace(err)
 	}
 	if size == 0 {
 		return true, nil
@@ -101,14 +102,14 @@ func guessMimeTypeUsingFileCommand(path string) (string, error) {
 func guessMimeTypeUsingGoHttpPackage(path string) (string, error) {
 	file, err := os.Open(path)
 	if err != nil {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 	defer file.Close()
 
 	first512Bytes := make([]byte, 512)
 	numBytesRead, err := file.Read(first512Bytes)
 	if err != nil && err != io.EOF {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 
 	// If it's an empty file, there is no real distinction, so default to "false", as there is not much processing
@@ -126,7 +127,7 @@ func RunCommandAndGetOutput(command string, args ... string) (string, error) {
 
 	bytes, err := cmd.Output()
 	if err != nil {
-		return "", WithStackTrace(err)
+		return "", errors.WithStackTrace(err)
 	}
 
 	return string(bytes), nil
