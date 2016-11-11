@@ -9,8 +9,6 @@ import (
 	"fmt"
 	"net/http"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
-	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
-	//"io/ioutil"
 	"io/ioutil"
 )
 
@@ -51,7 +49,6 @@ func GetFileSize(path string) (int64, error) {
 
 // Create a directory and all the parent directories at the given path
 func CreateDir(path string) error {
-	logger.Logger.Printf("Creating %s", path)
 	return errors.WithStackTrace(os.MkdirAll(path, os.ModePerm))
 }
 
@@ -92,7 +89,7 @@ func CopyFile(srcPath, dstPath string) error {
 	}
 
 	if isFileExist(dstPath) {
-		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted to ensure no previously file gets overwritten.\n", dstPath))
+		return errors.WithStackTrace(fmt.Errorf("A file already exists at the path %s. Overwriting existing files is not permiitted. Most likely, another file with a conflicting name was already written to this location.\n", dstPath))
 	}
 
 	bytes, err := ioutil.ReadFile(srcPath)

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"regexp"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
+	"github.com/gruntwork-io/docs/docs-preprocessor/file"
 )
 
 const IS_MODULE_EXAMPLE_DOC_REGEX = `^packages/([\s\w- ]+)/examples/([\s\w -]+)/(.*[^README].md)$`
@@ -26,10 +28,17 @@ func (d *ModuleExampleDoc) IsMatch() bool {
 func (d *ModuleExampleDoc) Copy(outputPathRoot string) error {
 	outRelPath, err := d.getRelOutputPath()
 	if err != nil {
-		return err
+		return errors.WithStackTrace(err)
 	}
 
-	fmt.Printf("Copying MODULE-EXAMPLE-DOC file %s to %s/%s...\n", d.relPath, outputPathRoot, outRelPath)
+	outAbsPath := fmt.Sprintf("%s/%s", outputPathRoot, outRelPath)
+
+	logger.Logger.Printf("Copying MODULE-EXAMPLE-DOC file %s to %s\n", d.absPath, outAbsPath)
+	err = file.CopyFile(d.absPath, outAbsPath)
+	if err != nil {
+		return errors.WithStackTrace(err)
+	}
+
 	return nil
 }
 

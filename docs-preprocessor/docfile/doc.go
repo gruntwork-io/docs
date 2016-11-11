@@ -39,16 +39,6 @@ func checkRegex(path string, regexStr string) bool {
 
 // Custom errors
 
-type InvalidPathForThisDocType string
-func (docType InvalidPathForThisDocType) Error() string {
-	return fmt.Sprintf("The given path is not valid for a doc of type %s\n", docType)
-}
-
-type NoDocCouldBeCreatedFromGivenRelPath string
-func (path NoDocCouldBeCreatedFromGivenRelPath) Error() string {
-	return fmt.Sprintf("No doc could be created for the path \"%s\"\n", path)
-}
-
 type WrongNumberOfCaptureGroupsFound struct {
 	docTypeName string
 	path string
