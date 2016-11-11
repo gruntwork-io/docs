@@ -25,29 +25,6 @@ func TestIsGlobalDocRegEx(t *testing.T) {
 	}
 }
 
-func TestIsModuleDocRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/modules/vpc-app/_docs/example.md", true},
-		{"packages/some_otherPackageName/modules/modname/_docs/README.md", true},
-		{"packages5/some_otherPackageName/modules/modname/README.md", false},
-		{"packages/module-vpc/modules/vpc-app/_docs", false},
-		{"packages/module-vpc/modules/vpc-app/docs", false},
-		{"packages/module-vpc/modules/vpc-app/docs/example.md", false},
-		{"packages/module-vpc/modules/vpc-app/example.md", false},
-		{"packages5/module-vpc/modules/vpc-app/example.md", false},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, `^packages/[\w -]+/modules/[\w -]+/_docs/[\w -]+\.(markdown|mdown|mkdn|mkd|md)$`)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
 func TestIsModuleOverviewRegEx(t *testing.T) {
 	t.Parallel()
 

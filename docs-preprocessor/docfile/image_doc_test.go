@@ -28,7 +28,7 @@ func TestIsImageRegEx(t *testing.T) {
 	}
 }
 
-func TestGetImageOutputPath(t *testing.T) {
+func TestGetImageRelOutputPath(t *testing.T) {
 	t.Parallel()
 
 	testCases := []struct {
