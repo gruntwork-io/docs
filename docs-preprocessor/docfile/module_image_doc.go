@@ -19,8 +19,8 @@ func NewModuleImageDoc(absPath string, relPath string) *ModuleImageDoc {
 	return &ModuleImageDoc{ absPath: absPath, relPath: relPath }
 }
 
-func IsModuleImageDoc(relPath string) bool {
-	return checkRegex(relPath, IS_MODULE_IMAGE_DOC_REGEX)
+func (d *ModuleImageDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_MODULE_IMAGE_DOC_REGEX)
 }
 
 func (d *ModuleImageDoc) Copy(outputPathRoot string) error {

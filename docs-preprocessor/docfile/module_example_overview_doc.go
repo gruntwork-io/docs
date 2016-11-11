@@ -19,8 +19,8 @@ func NewModuleExampleOverviewDoc(absPath string, relPath string) *ModuleExampleO
 	return &ModuleExampleOverviewDoc { absPath: absPath, relPath: relPath }
 }
 
-func IsModuleExampleOverviewDoc(relPath string) bool {
-	return checkRegex(relPath, IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX)
+func (d *ModuleExampleOverviewDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX)
 }
 
 func (d *ModuleExampleOverviewDoc) Copy(outputPathRoot string) error {

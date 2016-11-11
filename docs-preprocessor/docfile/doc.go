@@ -7,45 +7,31 @@ import (
 
 // The DocFile interface represents a Gruntwork documentation file
 type DocFile interface {
+	// IsMatch returns true if the DocFile's properties make it a valid instance of the given DocFile type.
+	IsMatch() bool
+
 	// Copy writes a document file to the appropriate location relative to the outputPathRoot on the local filesystem.
 	Copy(outputPathRoot string) error
 }
 
-func NewDocFile(absPath string, relPath string) (DocFile, error) {
-	if IsGlobalDoc(relPath) {
-		return NewGlobalDoc(absPath, relPath), nil
-
-	} else if IsModuleDoc(relPath) {
-		return NewModuleDoc(absPath, relPath), nil
-
-	} else if IsModuleOverviewDoc(relPath) {
-		return NewModuleOverviewDoc(absPath, relPath), nil
-
-	} else if IsModuleExampleDoc(relPath) {
-		return NewModuleExampleDoc(absPath, relPath), nil
-
-	} else if IsModuleExampleOverviewDoc(relPath) {
-		return NewModuleOverviewDoc(absPath, relPath), nil
-
-	} else if IsPackageDoc(relPath) {
-		return NewPackageDoc(absPath, relPath), nil
-
-	} else if IsPackageOverviewDoc(relPath) {
-		return NewPackageOverviewDoc(absPath, relPath), nil
-
-	} else if IsGlobalImageDoc(relPath) {
-		return NewGlobalImageDoc(absPath, relPath), nil
-
-	} else if IsModuleImageDoc(relPath) {
-		return NewModuleImageDoc(absPath, relPath), nil
-
-	} else {
-		return nil, NoDocCouldBeCreatedFromGivenRelPath(relPath)
+func CreateAllDocFileTypes(absPath string, relPath string) []DocFile {
+	docTypes := []DocFile{
+		NewGlobalDoc(absPath, relPath),
+		NewGlobalImageDoc(absPath, relPath),
+		NewModuleDoc(absPath, relPath),
+		NewModuleExampleDoc(absPath, relPath),
+		NewModuleExampleOverviewDoc(absPath, relPath),
+		NewModuleImageDoc(absPath, relPath),
+		NewModuleOverviewDoc(absPath, relPath),
+		NewPackageDoc(absPath, relPath),
+		NewPackageOverviewDoc(absPath, relPath),
 	}
+
+	return docTypes
 }
 
 // Check whether the given path matches the given RegEx. We panic if there's an error (versus returning a bool and an
-// error) to keep the if-else statement in ProcessDocs simpler.
+// error) to keep the if-else statements throughout the code simpler.
 func checkRegex(path string, regexStr string) bool {
 	regex := regexp.MustCompile(regexStr)
 	return regex.MatchString(path)

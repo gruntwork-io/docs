@@ -19,8 +19,8 @@ func NewPackageOverviewDoc(absPath string, relPath string) *PackageOverviewDoc {
 	return &PackageOverviewDoc{ absPath: absPath, relPath: relPath }
 }
 
-func IsPackageOverviewDoc(relPath string) bool {
-	return checkRegex(relPath, IS_PACKAGE_OVERVIEW_DOC_REGEX)
+func (d *PackageOverviewDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_PACKAGE_OVERVIEW_DOC_REGEX)
 }
 
 func (d *PackageOverviewDoc) Copy(outputPathRoot string) error {

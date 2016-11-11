@@ -20,8 +20,8 @@ func NewGlobalImageDoc(absPath string, relPath string) *GlobalImageDoc {
 	return &GlobalImageDoc{ absPath: absPath, relPath: relPath }
 }
 
-func IsGlobalImageDoc(relPath string) bool {
-	return checkRegex(relPath, IS_GLOBAL_IMAGE_DOC_REGEX)
+func (d *GlobalImageDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_GLOBAL_IMAGE_DOC_REGEX)
 }
 
 func (d *GlobalImageDoc) Copy(outputPathRoot string) error {

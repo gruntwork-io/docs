@@ -19,8 +19,8 @@ func NewPackageDoc(absPath string, relPath string) *PackageDoc {
 	return &PackageDoc { absPath: absPath, relPath: relPath }
 }
 
-func IsPackageDoc(relPath string) bool {
-	return checkRegex(relPath, IS_PACKAGE_DOC_REGEX)
+func (d *PackageDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_PACKAGE_DOC_REGEX)
 }
 
 func (d *PackageDoc) Copy(outputPathRoot string) error {

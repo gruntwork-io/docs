@@ -10,6 +10,8 @@ import (
 	//"errors"
 	"github.com/gruntwork-io/docs/docs-preprocessor/docfile"
 	"github.com/gruntwork-io/docs/docs-preprocessor/file"
+	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
+	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
 )
 
 // This function will walk all the files specified in opt.InputPath and relocate them to their desired folder location
@@ -22,19 +24,19 @@ func ProcessDocs(opts *Opts) error {
 			fmt.Printf("Skipping path %s\n", relPath)
 			return nil
 		} else {
-			doc, err := docfile.NewDocFile(path, relPath)
-			if _, ok := err.(docfile.NoDocCouldBeCreatedFromGivenRelPath); ok {
-				//Logger.Printf("Ignoring %s\n", relPath)
-				return nil
-			} else if err != nil {
-				return err
+			allDocFileTypes := docfile.CreateAllDocFileTypes(path, relPath)
+
+			for _, docFile := range allDocFileTypes {
+				if docFile.IsMatch() {
+					if err = docFile.Copy(opts.OutputPath); err != nil {
+						return errors.WithStackTrace(err)
+					}
+					return nil
+				}
 			}
 
-			err = doc.Copy(opts.OutputPath)
-			if err != nil {
-				return err
-			}
-
+			// No DocFile could be created from the given relPath
+			logger.Logger.Printf("Ignoring %s", relPath)
 			return nil
 		}
 	})

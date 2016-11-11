@@ -20,8 +20,8 @@ func NewGlobalDoc(absPath string, relPath string) *GlobalDoc {
 	return &GlobalDoc { absPath: absPath, relPath: relPath }
 }
 
-func IsGlobalDoc(relPath string) bool {
-	return checkRegex(relPath, IS_GLOBAL_DOC_REGEX)
+func (d *GlobalDoc) IsMatch() bool {
+	return checkRegex(d.relPath, IS_GLOBAL_DOC_REGEX)
 }
 
 func (d *GlobalDoc) Copy(outputPathRoot string) error {
