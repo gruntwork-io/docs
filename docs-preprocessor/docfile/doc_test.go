@@ -28,28 +28,6 @@ func TestIsModuleExampleOverviewRegEx(t *testing.T) {
 	}
 }
 
-func TestIsModuleExampleDocRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/examples/vpc-app/Example.md", true},
-		{"packages/module-vpc/examples/vpc-app/README.md", false},
-		{"packages/module-vpc/examples/vpc-app/_docs/Example.md", true},
-		{"packages/module-vpc/examples/vpc-app/docs/Example.md", true},
-		{"packages/module-vpc/examples/vpc-app/docs/Example.txt", false},
-		{"packages/module-vpc/examples/vpc-app/Example.txt", false},
-		{"packages/module-vpc/examples/Example.txt", false},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_MODULE_EXAMPLE_DOC_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
 func TestIsPackageOverviewRegEx(t *testing.T) {
 	t.Parallel()
 

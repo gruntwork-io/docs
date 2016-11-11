@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"regexp"
 	"errors"
-	//"strings"
 )
 
 const IS_MODULE_DOC_REGEX = `^packages/([\w -]+)/modules/([\w -]+)/_docs/([\w -]+\.md)$`
