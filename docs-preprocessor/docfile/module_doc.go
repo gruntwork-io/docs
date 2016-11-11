@@ -41,7 +41,7 @@ func (d *ModuleDoc) getRelOutputPath() (string, error) {
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
 	if len(submatches[0]) != IS_MODULE_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
-		return outputPath, errors.New("Module documents must exist in the path /packages/<package-name>/modules/<module-name>/_docs/<doc-name>.md Any subfolders in /_docs will generate an error.")
+		return outputPath, errors.New("Module Documents must exist in the path /packages/<package-name>/modules/<module-name>/_docs/<doc-name>.md Any subfolders in /_docs will generate an error.")
 	}
 
 	// If we were parsing d.relPath = packages/module-vpc/modules/vpc-app/module-doc.md...

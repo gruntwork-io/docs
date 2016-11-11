@@ -25,23 +25,6 @@ func TestIsGlobalDocRegEx(t *testing.T) {
 	}
 }
 
-func TestIsModuleOverviewRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/modules/vpc-mgmt-network-acls/README.md", true},
-		{"packages/module-vpc/modules/vpc-peering/README.md", true},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_MODULE_DOC_OVERVIEW_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
 func TestIsModuleExampleOverviewRegEx(t *testing.T) {
 	t.Parallel()
 
