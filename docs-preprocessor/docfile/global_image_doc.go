@@ -18,7 +18,7 @@ func NewGlobalImageDoc(absPath string, relPath string) (*GlobalImageDoc, error) 
 	if checkRegex(relPath, IS_GLOBAL_IMAGE_DOC_REGEX) {
 		return &GlobalImageDoc{ absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDocType("ImageDoc")
+		return nil, InvalidPathForThisDocType("GlobalImageDoc")
 	}
 }
 
@@ -39,7 +39,7 @@ func (d *GlobalImageDoc) getRelOutputPath() (string, error) {
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
 	if len(submatches) == 0 || len(submatches[0]) != IS_GLOBAL_IMAGE_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
-		return outputPath, fmt.Errorf("The wrong number of capture groups was found. This may be because the path did not match the RegEx. RegEx = %s", IS_GLOBAL_IMAGE_DOC_REGEX)
+		return outputPath, &WrongNumberOfCaptureGroupsFound{ docTypeName: "GlobalImageDoc", path: d.relPath, regEx: IS_GLOBAL_IMAGE_DOC_REGEX }
 	}
 
 	// If we were parsing d.relPath = global/help/_images/sample.jpg...

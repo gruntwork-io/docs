@@ -17,7 +17,7 @@ func NewGlobalDoc(absPath string, relPath string) (*GlobalDoc, error) {
 	if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
 		return &GlobalDoc { absPath: absPath, relPath: relPath }, nil
 	} else {
-		return nil, InvalidPathForThisDocType("GlobalDoc")
+		return nil, InvalidPathForThisDocType("GlobalImageDoc")
 	}
 }
 

@@ -3,7 +3,6 @@ package docfile
 import (
 	"fmt"
 	"regexp"
-	"errors"
 )
 
 const IS_PACKAGE_DOC_REGEX = `^packages/([\w -]+)/modules/_docs/([\w -/]+\.md)$`
@@ -39,7 +38,7 @@ func (d *PackageDoc) getRelOutputPath() (string, error) {
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
 	if len(submatches) == 0 || len(submatches[0]) != IS_PACKAGE_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
-		return outputPath, errors.New("Package Documents must exist in the path packages/<package-name>/modules/_docs/<doc-name>.md.")
+		return outputPath, &WrongNumberOfCaptureGroupsFound{ docTypeName: "PackageDoc", path: d.relPath, regEx: IS_PACKAGE_DOC_REGEX }
 	}
 
 	// If we were parsing d.relPath = packages/package-vpc/modules/_docs/doc-name.md...

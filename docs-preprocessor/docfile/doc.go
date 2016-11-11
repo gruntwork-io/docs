@@ -28,6 +28,8 @@ func NewDocFile(absPath string, relPath string) (DocFile, error) {
 		return doc, nil
 	} else if doc, err := NewGlobalImageDoc(absPath, relPath); err == nil {
 		return doc, nil
+	} else if doc, err := NewModuleImageDoc(absPath, relPath); err == nil {
+		return doc, nil
 	} else {
 		return nil, NoDocCouldBeCreatedFromGivenRelPath(relPath)
 	}
@@ -50,4 +52,13 @@ func (docType InvalidPathForThisDocType) Error() string {
 type NoDocCouldBeCreatedFromGivenRelPath string
 func (path NoDocCouldBeCreatedFromGivenRelPath) Error() string {
 	return fmt.Sprintf("No doc could be created for the path \"%s\"\n", path)
+}
+
+type WrongNumberOfCaptureGroupsFound struct {
+	docTypeName string
+	path string
+	regEx string
+}
+func (err WrongNumberOfCaptureGroupsFound) Error() string {
+	return fmt.Sprintf("The wrong number of capture groups was found. This may be because the path did not match the RegEx.\ndocType = %s\npath = %s\nRegEx = %s", err.docTypeName	, err.path, err.regEx)
 }

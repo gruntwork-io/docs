@@ -3,7 +3,6 @@ package docfile
 import (
 	"fmt"
 	"regexp"
-	"errors"
 )
 
 const IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX = `^packages/([\s\w -]+)/examples/([\s\w -]+)/README.md$`
@@ -39,8 +38,8 @@ func (d *ModuleExampleOverviewDoc) getRelOutputPath() (string, error) {
 	regex := regexp.MustCompile(IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX)
 	submatches := regex.FindAllStringSubmatch(d.relPath, -1)
 
-	if len(submatches[0]) != IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
-		return outputPath, errors.New("Module Example Overview Documents must exist in the path /packages/<package-name>/examples/<module-name>/README.md.")
+	if len(submatches) == 0 || len(submatches[0]) != IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS + 1 {
+		return outputPath, &WrongNumberOfCaptureGroupsFound{ docTypeName: "ModuleExampleOverviewDoc", path: d.relPath, regEx: IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX }
 	}
 
 	// If we were parsing d.relPath = packages/module-vpc/examples/vpc-app/README.md...
