@@ -1,125 +1,13 @@
 package docfile
 
 import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
+	//"testing"
+	//
+	//"github.com/stretchr/testify/assert"
 )
 
 const GENERATOR_TESTS_FIXTURES_PATH = "test-fixtures/generator-tests"
 
-func TestIsModuleExampleOverviewRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/examples/vpc-app/README.md", true},
-		{"packages/package-vpc/examples/vpc-app/README.md", true},
-		{"packages/something_else/examples/some_module_name/README.md", true},
-		{"packages/something_else/examples/some_module_name/overview.md", false},
-		{"packages/package-name/some_module_name/README.md", false},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_MODULE_EXAMPLE_OVERVIEW_DOC_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
-func TestIsPackageOverviewRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/README.md", true},
-		{"packages/module-vpc/examples/README.md", false},
-		{"packages/module-vpc/examples/vpc-app/README.md", false},
-		{"packages/module-vpc/overview.md", false},
-		{"packages/package-vpc/README.md", true},
-		{"packages/package-_.vpc/overview.md", false},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_PACKAGE_OVERVIEW_DOC_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
-func TestIsPackageDocRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"packages/module-vpc/modules/_docs/README.md", true},
-		{"packages/module-vpc/modules/_docs/subfolder/README.md", true},
-		{"packages/module-vpc/_docs/README.md", false},
-		{"packages/module-vpc/_docs/subfolder/README.md", false},
-		{"packages/module-vpc/docs/README.md", false},
-		{"packages/module-vpc/README.md", false},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_PACKAGE_DOC_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
-//func TestGetGlobalDocOutputPath(t *testing.T) {
-//	t.Parallel()
-//
-//	testCases := []struct {
-//		path     string
-//		expected string
-//	}{
-//		{"global/help/support.md", "help/support.md"},
-//		{"global/introduction/Getting Started.md", "introduction/Getting Started.md"},
-//		{"global/introduction/overview.md", "introduction/overview.md"},
-//	}
-//
-//	for _, testCase := range testCases {
-//		actual, err := getGlobalDocOutputPath(testCase.path)
-//		assert.Nil(t, err, "Error calling getGlobalDocOutputPath where path = %s: %s", testCase.path, err)
-//		assert.Equal(t, testCase.expected, actual, "path = %s, regExStr = %s", testCase.path)
-//	}
-//}
-//
-//func TestGetModuleDocOutputPath(t *testing.T) {
-//	t.Parallel()
-//
-//	testCases := []struct {
-//		path     string
-//		expected string
-//	}{
-//		{"packages/module-vpc/modules/vpc-app/_docs/module-doc.md", "packages/module-vpc/vpc-app/module-doc.md"},
-//		{"packages/module-vpc/modules/vpc-app/_docs/something.md", "packages/module-vpc/vpc-app/something.md"},
-//		{"packages/module-vpc/modules/vpc-app/_docs/file_name.md", "packages/module-vpc/vpc-app/file_name.md"},
-//	}
-//
-//	for _, testCase := range testCases {
-//		actual, err := getModuleDocOutputPath(testCase.path)
-//		assert.Nil(t, err, "Error calling getGlobalDocOutputPath where path = %s: %s", testCase.path, err)
-//		assert.Equal(t, testCase.expected, actual, "path = %s", testCase.path)
-//	}
-//
-//	// These test cases should generate an error
-//	errorTestCases := []struct {
-//		path string
-//	}{
-//		{"packages/module-vpc/modules/vpc-app/_docs/subfolder/file_name.md"},
-//	}
-//
-//	for _, testCase := range errorTestCases {
-//		_, err := getModuleDocOutputPath(testCase.path)
-//		assert.NotNil(t, err, "Expected the path %s would return a non-Nil error", testCase.path)
-//	}
-//}
-//
 //func TestCopyFile(t *testing.T) {
 //	t.Parallel()
 //

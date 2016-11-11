@@ -6,7 +6,7 @@ import (
 	"errors"
 )
 
-const IS_MODULE_OVERVIEW_DOC_REGEX = `^packages/([\s\w -]+)/modules/([\s\w -]+)/README.md$`
+const IS_MODULE_OVERVIEW_DOC_REGEX = `^packages/([\w -]+)/modules/([\w -]+)/README.md$`
 const IS_MODULE_OVERVIEW_DOC_REGEX_NUM_CAPTURE_GROUPS = 2
 
 // Represents a non-overview document that's part of a specific module.
