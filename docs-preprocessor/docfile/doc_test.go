@@ -8,23 +8,6 @@ import (
 
 const GENERATOR_TESTS_FIXTURES_PATH = "test-fixtures/generator-tests"
 
-func TestIsGlobalDocRegEx(t *testing.T) {
-	t.Parallel()
-
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
-		{"global/help/support.md", true},
-		{"global/introduction/tools.md", true},
-	}
-
-	for _, testCase := range testCases {
-		isMatch := checkRegex(testCase.path, IS_GLOBAL_DOC_REGEX)
-		assert.Equal(t, testCase.expected, isMatch, "path = %s", testCase.path)
-	}
-}
-
 func TestIsModuleExampleOverviewRegEx(t *testing.T) {
 	t.Parallel()
 

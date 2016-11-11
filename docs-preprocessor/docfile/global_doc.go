@@ -1,6 +1,9 @@
 package docfile
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 const IS_GLOBAL_DOC_REGEX = `^global/(.*\.md)$`
 
@@ -19,6 +22,11 @@ func NewGlobalDoc(absPath string, relPath string) (*GlobalDoc, error) {
 }
 
 func (d *GlobalDoc) Copy(outputPathRoot string) error {
-	fmt.Printf("Copying GLOBAL-DOC file %s to %s...\n", d.relPath, outputPathRoot)
+	outRelPath := d.getRelOutputPath()
+	fmt.Printf("Copying GLOBAL-DOC file %s to %s/%s...\n", d.relPath, outputPathRoot, outRelPath)
 	return nil
+}
+
+func (d *GlobalDoc) getRelOutputPath() string {
+	return strings.Replace(d.relPath, "global/", "", -1)
 }
