@@ -28,8 +28,7 @@ function print_usage {
 }
 
 function get_script_name {
-    script_name=$(basename "$0")
-    echo "$script_name"
+    echo $(basename "$0")
 }
 
 function assert_env_var_not_empty {
@@ -88,8 +87,10 @@ function fetch_github_repo {
     local readonly repo_url="$1"
     local readonly output_path="$2"
 
-    echo "Copying files from $repo_url to $output_path/$(get_repo_name $repo_url)..."
-    fetch --repo "$repo_url" --branch "master" --source-path "/" "$output_path/$(get_repo_name $repo_url)" 2>&1 | echo_with_prefix "==> Fetch: "
+    local readonly full_output_path="$output_path/$(get_repo_name $repo_url)"
+
+    echo "Copying files from $repo_url to $full_output_path..."
+    fetch --repo "$repo_url" --branch "master" --source-path "/" "$full_output_path" 2>&1 | echo_with_prefix "==> Fetch: "
 }
 
 # Given https://github.com/gruntwork-io/module-vpc, return "module-vpc"

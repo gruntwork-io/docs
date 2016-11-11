@@ -57,8 +57,7 @@ func CreateCli(version string) *cli.App {
 
 	app.Name = "docs-preprocessor"
 	app.Author = "Gruntwork <www.gruntwork.io>"
-	app.Usage = `A tool for pre-processing a set of repos to make them more easily 
-				 						  processable by other tools into a website.`
+	app.Usage = `Transforms the existing folder structure of a collection of repos into one more suitable for a public documentation website.`
 	app.UsageText = "docs-preprocessor [OPTIONS]"
 	app.Version = version
 	app.Action = runApp
