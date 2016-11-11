@@ -26,7 +26,7 @@ func NewDocFile(absPath string, relPath string) (DocFile, error) {
 		return doc, nil
 	} else if doc, err := NewPackageOverviewDoc(absPath, relPath); err == nil {
 		return doc, nil
-	} else if doc, err := NewImageDoc(absPath, relPath); err == nil {
+	} else if doc, err := NewGlobalImageDoc(absPath, relPath); err == nil {
 		return doc, nil
 	} else {
 		return nil, NoDocCouldBeCreatedFromGivenRelPath(relPath)
