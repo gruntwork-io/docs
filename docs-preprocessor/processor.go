@@ -23,7 +23,7 @@ func ProcessDocs(opts *Opts) error {
 		} else {
 			doc, err := docfile.NewDocFile(path, relPath)
 			if _, ok := err.(docfile.NoDocCouldBeCreatedFromGivenRelPath); ok {
-				Logger.Printf("Ignoring %s\n", relPath)
+				//Logger.Printf("Ignoring %s\n", relPath)
 				return nil
 			} else if err != nil {
 				return err

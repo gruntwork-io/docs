@@ -1,6 +1,9 @@
 package docfile
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 const IS_IMAGE_DOC_REGEX = `^.*\.jpg|jpeg|gif|png|svg$`
 
@@ -19,6 +22,11 @@ func NewImageDoc(absPath string, relPath string) (*ImageDoc, error) {
 }
 
 func (d *ImageDoc) Copy(outputPathRoot string) error {
-	fmt.Printf("Copying IMAGE-DOC file %s to %s...\n", d.relPath, outputPathRoot)
+	outRelPath := d.getRelOutputPath()
+	fmt.Printf("Copying IMAGE-DOC file %s to %s/%s...\n", d.relPath, outputPathRoot, outRelPath)
 	return nil
+}
+
+func (d *ImageDoc) getRelOutputPath() string {
+	return strings.Replace(d.relPath, "global/", "", -1)
 }
