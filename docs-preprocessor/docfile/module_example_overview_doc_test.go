@@ -33,8 +33,8 @@ func TestGetModuleExampleOverviewDocRelOutputPath(t *testing.T) {
 		moduleExampleOverviewDoc *ModuleExampleOverviewDoc
 		expected string
 	}{
-		{ &ModuleExampleOverviewDoc{ relPath: "packages/module-vpc/examples/vpc-app/README.md" }, "packages/module-vpc/vpc-app/overview.md" },
-		{ &ModuleExampleOverviewDoc{ relPath: "packages/package-vpc/examples/network-acl-inbound/README.md" }, "packages/package-vpc/network-acl-inbound/overview.md" },
+		{ &ModuleExampleOverviewDoc{ relPath: "packages/module-vpc/examples/vpc-app/README.md" }, "packages/module-vpc/vpc-app/examples.md" },
+		{ &ModuleExampleOverviewDoc{ relPath: "packages/package-vpc/examples/network-acl-inbound/README.md" }, "packages/package-vpc/network-acl-inbound/examples.md" },
 	}
 
 	for _, testCase := range testCases {

@@ -47,5 +47,5 @@ func (d *ModuleExampleOverviewDoc) getRelOutputPath() (string, error) {
 	packageName := submatches[0][1] // = module-vpc
 	moduleName := submatches[0][2] 	// = vpc-app
 
-	return fmt.Sprintf("packages/%s/%s/overview.md", packageName, moduleName), nil
+	return fmt.Sprintf("packages/%s/%s/examples.md", packageName, moduleName), nil
 }
