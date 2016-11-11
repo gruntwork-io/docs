@@ -15,12 +15,12 @@ type ModuleOverviewDoc struct {
 	absPath string
 }
 
-func NewModuleOverviewDoc(absPath string, relPath string) (*ModuleOverviewDoc, error) {
-	if checkRegex(relPath, IS_MODULE_OVERVIEW_DOC_REGEX) {
-		return &ModuleOverviewDoc{ absPath: absPath, relPath: relPath}, nil
-	} else {
-		return nil, InvalidPathForThisDocType("ModuleOverviewDoc")
-	}
+func NewModuleOverviewDoc(absPath string, relPath string) *ModuleOverviewDoc {
+	return &ModuleOverviewDoc{ absPath: absPath, relPath: relPath}
+}
+
+func IsModuleOverviewDoc(relPath string) bool {
+	return checkRegex(relPath, IS_MODULE_OVERVIEW_DOC_REGEX)
 }
 
 func (d *ModuleOverviewDoc) Copy(outputPathRoot string) error {

@@ -15,13 +15,14 @@ type PackageDoc struct {
 	absPath string
 }
 
-func NewPackageDoc(absPath string, relPath string) (*PackageDoc, error) {
-	if checkRegex(relPath, IS_PACKAGE_DOC_REGEX) {
-		return &PackageDoc { absPath: absPath, relPath: relPath }, nil
-	} else {
-		return nil, InvalidPathForThisDocType("PackageDoc")
-	}
+func NewPackageDoc(absPath string, relPath string) *PackageDoc {
+	return &PackageDoc { absPath: absPath, relPath: relPath }
 }
+
+func IsPackageDoc(relPath string) bool {
+	return checkRegex(relPath, IS_PACKAGE_DOC_REGEX)
+}
+
 func (d *PackageDoc) Copy(outputPathRoot string) error {
 	outRelPath, err := d.getRelOutputPath()
 	if err != nil {

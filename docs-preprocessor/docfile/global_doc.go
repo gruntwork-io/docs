@@ -16,12 +16,12 @@ type GlobalDoc struct {
 	absPath string
 }
 
-func NewGlobalDoc(absPath string, relPath string) (*GlobalDoc, error) {
-	if checkRegex(relPath, IS_GLOBAL_DOC_REGEX) {
-		return &GlobalDoc { absPath: absPath, relPath: relPath }, nil
-	} else {
-		return nil, InvalidPathForThisDocType("GlobalImageDoc")
-	}
+func NewGlobalDoc(absPath string, relPath string) *GlobalDoc {
+	return &GlobalDoc { absPath: absPath, relPath: relPath }
+}
+
+func IsGlobalDoc(relPath string) bool {
+	return checkRegex(relPath, IS_GLOBAL_DOC_REGEX)
 }
 
 func (d *GlobalDoc) Copy(outputPathRoot string) error {

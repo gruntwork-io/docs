@@ -15,12 +15,12 @@ type PackageOverviewDoc struct {
 	absPath string
 }
 
-func NewPackageOverviewDoc(absPath string, relPath string) (*PackageOverviewDoc, error) {
-	if checkRegex(relPath, IS_PACKAGE_OVERVIEW_DOC_REGEX) {
-		return &PackageOverviewDoc{ absPath: absPath, relPath: relPath }, nil
-	} else {
-		return nil, InvalidPathForThisDocType("PackageDocOverview")
-	}
+func NewPackageOverviewDoc(absPath string, relPath string) *PackageOverviewDoc {
+	return &PackageOverviewDoc{ absPath: absPath, relPath: relPath }
+}
+
+func IsPackageOverviewDoc(relPath string) bool {
+	return checkRegex(relPath, IS_PACKAGE_OVERVIEW_DOC_REGEX)
 }
 
 func (d *PackageOverviewDoc) Copy(outputPathRoot string) error {

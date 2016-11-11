@@ -15,12 +15,12 @@ type ModuleDoc struct {
 	absPath string
 }
 
-func NewModuleDoc(absPath string, relPath string) (*ModuleDoc, error) {
-	if checkRegex(relPath, IS_MODULE_DOC_REGEX) {
-		return &ModuleDoc{absPath: absPath, relPath: relPath }, nil
-	} else {
-		return nil, InvalidPathForThisDocType("ModuleDoc")
-	}
+func NewModuleDoc(absPath string, relPath string) *ModuleDoc {
+	return &ModuleDoc{absPath: absPath, relPath: relPath }
+}
+
+func IsModuleDoc(relPath string) bool {
+	return checkRegex(relPath, IS_MODULE_DOC_REGEX)
 }
 
 func (d *ModuleDoc) Copy(outputPathRoot string) error {

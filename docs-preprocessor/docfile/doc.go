@@ -12,24 +12,33 @@ type DocFile interface {
 }
 
 func NewDocFile(absPath string, relPath string) (DocFile, error) {
-	if doc, err := NewGlobalDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewModuleDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewModuleOverviewDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewModuleExampleDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewModuleExampleOverviewDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewPackageDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewPackageOverviewDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewGlobalImageDoc(absPath, relPath); err == nil {
-		return doc, nil
-	} else if doc, err := NewModuleImageDoc(absPath, relPath); err == nil {
-		return doc, nil
+	if IsGlobalDoc(relPath) {
+		return NewGlobalDoc(absPath, relPath), nil
+
+	} else if IsModuleDoc(relPath) {
+		return NewModuleDoc(absPath, relPath), nil
+
+	} else if IsModuleOverviewDoc(relPath) {
+		return NewModuleOverviewDoc(absPath, relPath), nil
+
+	} else if IsModuleExampleDoc(relPath) {
+		return NewModuleExampleDoc(absPath, relPath), nil
+
+	} else if IsModuleExampleOverviewDoc(relPath) {
+		return NewModuleOverviewDoc(absPath, relPath), nil
+
+	} else if IsPackageDoc(relPath) {
+		return NewPackageDoc(absPath, relPath), nil
+
+	} else if IsPackageOverviewDoc(relPath) {
+		return NewPackageOverviewDoc(absPath, relPath), nil
+
+	} else if IsGlobalImageDoc(relPath) {
+		return NewGlobalImageDoc(absPath, relPath), nil
+
+	} else if IsModuleImageDoc(relPath) {
+		return NewModuleImageDoc(absPath, relPath), nil
+
 	} else {
 		return nil, NoDocCouldBeCreatedFromGivenRelPath(relPath)
 	}
