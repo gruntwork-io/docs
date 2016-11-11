@@ -8,6 +8,7 @@ import (
 	"github.com/urfave/cli"
 	"github.com/gruntwork-io/docs/docs-preprocessor/errors"
 	"github.com/gruntwork-io/docs/docs-preprocessor/logger"
+	"github.com/gruntwork-io/docs/docs-preprocessor/globs"
 )
 
 // Customize the --help text for the app so we don't show extraneous info
@@ -102,13 +103,14 @@ func runApp(cliContext *cli.Context) error {
 		return err
 	}
 
-	logger.Logger.Printf("Starting to pre-process %s into %s", opts.InputPath, opts.OutputPath)
-
-	if err := ProcessDocs(opts); err != nil {
+	logger.Logger.Printf("* * * Starting to pre-process %s into %s * * *", opts.InputPath, opts.OutputPath)
+	if err := PreprocessDocs(opts); err != nil {
 		return err
 	}
+	logger.Logger.Printf("* * * Pre-processing step complete! * * *")
 
-	logger.Logger.Printf("Done pre-processing %s into %s!", opts.InputPath, opts.OutputPath)
+
+
 	return nil
 }
 
@@ -127,7 +129,7 @@ func parseOpts(cliContext *cli.Context) (*Opts, error) {
 	if len(docPatterns) == 0 {
 		docPatterns = DEFAULT_DOC_PATTERNS
 	}
-	docGlobs, err := ToGlobs(docPatterns)
+	docGlobs, err := globs.ToGlobs(docPatterns)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +138,7 @@ func parseOpts(cliContext *cli.Context) (*Opts, error) {
 	if len(excludePatterns) == 0 {
 		excludePatterns = DEFAULT_EXCLUDES
 	}
-	excludeGlobs, err := ToGlobs(excludePatterns)
+	excludeGlobs, err := globs.ToGlobs(excludePatterns)
 	if err != nil {
 		return nil, err
 	}

@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"testing"
@@ -26,7 +26,7 @@ func TestStrSliceContains(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		actual := strSliceContains(testCase.slice, testCase.strToFind)
+		actual := StrSliceContains(testCase.slice, testCase.strToFind)
 		assert.Equal(t, testCase.expected, actual, "Expected %t but got %t when evaluating whether %s contains %v", testCase.expected, actual, testCase.slice, testCase.strToFind)
 	}
 }

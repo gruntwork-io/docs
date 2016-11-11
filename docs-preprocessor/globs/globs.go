@@ -1,4 +1,4 @@
-package main
+package globs
 
 import (
 	"github.com/gobwas/glob"
