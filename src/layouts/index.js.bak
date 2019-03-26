@@ -1,0 +1,50 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+
+//import '../../sass/style.scss';
+
+//import Favicon from '../../static/favicon.png';
+
+require("prismjs/themes/prism-solarizedlight.css");
+
+const TemplateWrapper = ({
+  children
+}) => ( <
+  div >
+  <
+  Helmet title = "Gruntwork"
+  meta = {
+    [{
+        name: 'description',
+        content: 'Gruntwork'
+      },
+      {
+        name: 'keywords',
+        content: 'aws, devops, cloud, computing, terraform, packer'
+      },
+    ]
+  }
+  link = {
+    [{
+      rel: 'shortcut icon',
+      type: 'image/png',
+      href: `${Favicon}`
+    }]
+  }
+  /> <
+  Header / > {
+    children()
+  } <
+  Footer / >
+  <
+  CookieBar / >
+  <
+  /div>
+)
+
+TemplateWrapper.propTypes = {
+  children: PropTypes.func,
+}
+
+export default TemplateWrapper
