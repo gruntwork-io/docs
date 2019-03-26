@@ -1,4 +1,2 @@
-output
 .idea
-docs.iml
-docs-preprocessor/docs-preprocessor
+node_modules
