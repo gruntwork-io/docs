@@ -20,6 +20,12 @@ module.exports = {
       options: {
         path: `${__dirname}/content`,
         name: "markdown-pages",
+        ignore: [
+          // Ignore all the hidden files (e.g. the .git folder)
+          `**\/.*`,
+          // Ignore all non markdown files
+          `**\/*!(.md)`
+        ]
       },
     },
     `gatsby-transformer-remark`,
