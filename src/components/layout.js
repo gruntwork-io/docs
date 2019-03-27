@@ -12,6 +12,8 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
+require("prismjs/themes/prism-solarizedlight.css");
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -51,3 +53,4 @@ Layout.propTypes = {
 }
 
 export default Layout
+
