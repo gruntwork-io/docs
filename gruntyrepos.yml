@@ -1,0 +1,5 @@
+---
+repos:
+  - url: "git@github.com:gruntwork-io/prototypes.git"
+    branch: "yori-quickstarts"
+    gruntyDocsRoot: "quickstarts"
