@@ -9,10 +9,17 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
-import "./layout.css"
+import Header from "./Header"
+import Breadcrumbs from "./Breadcrumbs"
+import Sidebar from "./Sidebar"
+//import "./layout.css"
 
-require("prismjs/themes/prism-solarizedlight.css");
+import 'modern-normalize/modern-normalize.css'
+//import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-solarizedlight.css'
+import 'scss/gatstrap.scss'
+//import 'animate.css/animate.css'
+import 'font-awesome/css/font-awesome.css'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -28,20 +35,17 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
+        <Breadcrumbs />
+        <div class="row">
+          <div class="col-md-3"><Sidebar /></div>
+          <div class="col-md-9">
+            <main>{children}</main>
+            <footer>
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a>
+            </footer>
+          </div>
         </div>
       </>
     )}
@@ -53,4 +57,3 @@ Layout.propTypes = {
 }
 
 export default Layout
-

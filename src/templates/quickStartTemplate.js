@@ -3,7 +3,8 @@ import {
   graphql
 } from "gatsby"
 
-require("prismjs/themes/prism-solarizedlight.css");
+import Layout from 'components/layout'
+//require("prismjs/themes/prism-solarizedlight.css");
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -15,7 +16,9 @@ export default function Template({
     frontmatter,
     html
   } = markdownRemark
-  return ( <
+  return (
+    <Layout>
+    <
     div className = "blog-post-container" >
     <
     div className = "blog-post" >
@@ -32,9 +35,10 @@ export default function Template({
         __html: html
       }
     }
-    /> <
-    /div> <
-    /div>
+    />
+  </div>
+</div>
+</Layout>
   )
 }
 

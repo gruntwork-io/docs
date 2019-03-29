@@ -1,0 +1,116 @@
+// Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+
+// Start with assigning color names to specific hex values.
+//
+// Color system
+//
+@import './colors.scss';
+
+// Add custom theme
+$color_main: #f04e30;
+$color_border: #e3e3e3;
+$color_text: #000000;
+$color_light_text: #7f8a8e;
+$color_dark_text: #494d51;
+
+$theme-colors: (
+  primary: #017CFF,
+  secondary: #F2F2F2,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: #ff4136,
+  light: $gray-100,
+  dark: $gray-800,
+  ) !default;
+
+$font-family-sans-serif: Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$font-family-monospace: 'BasisGrotesqueProMonoRegular', 'andale mono',
+  'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+  monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$headings-font-family: 'Poppins', sans-serif;
+$headings-font-weight: 500;
+//line-height: $headings-line-height;
+$headings-color: $color_text;
+$headings-margin-bottom: 1.5rem;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded: true !default;
+$enable-shadows: true !default;
+$enable-gradients: false !default;
+$enable-transitions: false !default;
+$enable-hover-media-query: false !default;
+$enable-grid-classes: true !default;
+$enable-print-styles: true !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (sm: 540px,
+md: 640px,
+lg: 710px,
+xl: 780px,
+) !default;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg: $white !default;
+$body-color: $gray-700 !default;
+$inverse-bg: $gray-900 !default;
+$inverse-color: $gray-600 !default;
+
+// Links
+//
+// Style anchor elements.
+$link-decoration: none !default;
+$link-hover-decoration: none !default;
+
+// Fonts
+//
+@import './fonts.scss';
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+img {
+  margin-bottom: 15px;
+  max-width: 100%;
+}
+
+img:hover {
+  animation: pulse 0.5s;
+}
+
+main {
+  margin: 2rem 1.5rem;
+}
+
+// include components
+@import './breadcrumbs.scss';
+@import './sidebar.scss';

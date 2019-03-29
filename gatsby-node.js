@@ -44,7 +44,7 @@ exports.createPages = ({
     createPage
   } = actions
 
-  const blogPostTemplate = path.resolve(`src/templates/quickStartTemplate.js`)
+  const pageTemplate = path.resolve(`src/templates/quickStartTemplate.js`)
 
   return graphql(`
     {
@@ -71,9 +71,23 @@ exports.createPages = ({
     }) => {
       createPage({
         path: node.fields.slug,
-        component: blogPostTemplate,
+        component: pageTemplate,
         context: {}, // additional data can be passed via context
       })
     })
+  })
+}
+
+exports.onCreateWebpackConfig = ({
+  actions
+}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        components: path.resolve(__dirname, 'src/components'),
+        templates: path.resolve(__dirname, 'src/templates'),
+        scss: path.resolve(__dirname, 'src/scss'),
+      },
+    },
   })
 }
