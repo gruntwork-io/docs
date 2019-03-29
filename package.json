@@ -7,11 +7,17 @@
   "dependencies": {
     "gatsby": "^2.2.13",
     "gatsby-image": "^2.0.34",
+    "gatsby-plugin-google-fonts": "^0.0.4",
     "gatsby-plugin-manifest": "^2.0.24",
+    "gatsby-plugin-nprogress": "^2.0.10",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.11",
+    "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.31",
+    "gatsby-plugin-sitemap": "^2.0.10",
+    "gatsby-remark-copy-linked-files": "^2.0.11",
     "gatsby-remark-prismjs": "^3.2.6",
+    "gatsby-remark-smartypants": "^2.0.9",
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.1.17",
@@ -22,6 +28,14 @@
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-brands-svg-icons": "^5.8.1",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "4.3.1",
+    "font-awesome": "^4.7.0",
+    "modern-normalize": "^0.5.0",
+    "node-sass": "^4.11.0",
     "prettier": "^1.16.4"
   },
   "keywords": [
