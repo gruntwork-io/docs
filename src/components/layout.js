@@ -14,12 +14,10 @@ import Breadcrumbs from "./Breadcrumbs"
 import Sidebar from "./Sidebar"
 //import "./layout.css"
 
-import 'modern-normalize/modern-normalize.css'
-//import 'prismjs/themes/prism.css'
-import 'prismjs/themes/prism-solarizedlight.css'
-import 'scss/gatstrap.scss'
+import "prismjs/themes/prism.css"
+import "scss/gatstrap.scss"
 //import 'animate.css/animate.css'
-import 'font-awesome/css/font-awesome.css'
+//import "font-awesome/css/font-awesome.css"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -35,16 +33,22 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <Breadcrumbs />
-        <div class="row">
-          <div class="col-md-3"><Sidebar /></div>
-          <div class="col-md-9">
-            <main>{children}</main>
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
+        <div class="container-fluid">
+          <div class="row">
+            <Sidebar />
+            <div class="col-md-9 ml-sm-auto col-lg-10 px-4 content">
+              <main>{children}</main>
+              <footer>
+                <div class="row mt-4 pb-3">
+                  <div class="col-12 text-center small">
+                    <span class="text-muted mr-1">
+                      &copy; {new Date().getFullYear()},{` `}
+                      <a href="https://www.gruntwork.io">Gruntwork Inc.</a>
+                    </span>
+                  </div>
+                </div>
+              </footer>
+            </div>
           </div>
         </div>
       </>

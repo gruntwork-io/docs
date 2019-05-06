@@ -3,40 +3,81 @@ import PropTypes from "prop-types"
 import React from "react"
 
 const Sidebar = () => (
-  <div class="sidebar-left">
-    <h3>Startups</h3>
-    <ul>
-      <li>Introduction</li>
-      <li>Getting Started Guides</li>
-      <li>Nulla volutpat aliquam velit
-        <ul>
-          <li>Phasellus iaculis neque</li>
-          <li>Purus sodales ultricies</li>
-          <li>Vestibulum laoreet porttitor sem</li>
-          <li>Ac tristique libero volutpat at</li>
-        </ul>
-      </li>
-      <li>Faucibus porta lacus fringilla vel</li>
-    </ul>
+  <>
+    <div class="col-md-2 d-none d-md-block sidebar bg-light">
+      <div class="navbar-nav weight-500">
+        <div class="nav-item">
+          <a class="nav-link text-dark" href="">
+            Introduction
+          </a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link text-dark" href="">
+            Guides
+          </a>
+        </div>
+        <div class="navbar-nav pl-2 small weight-500">
+          <div class="nav-item">
+            <Link
+              to="/guides/deploying-a-ha-vault-cluster-on-gcp/"
+              className="nav-link text-dark"
+            >
+              Deploying a HA Vault Cluster on GCP
+            </Link>
+          </div>
+          <div class="nav-item">
+            <Link
+              to="/for-startups/deploy-node-app-on-ecs/"
+              className="nav-link text-dark"
+            >
+              Deploying a Node App on ECS
+            </Link>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link text-dark" href="">
+            Startups
+          </a>
+        </div>
+        <div class="navbar-nav pl-2 small weight-500">
+          <div class="nav-item">
+            <a class="nav-link text-dark" href="">
+              Introduction
+            </a>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link text-dark" href="">
+              Overview
+            </a>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link text-dark" href="">
+              Contents
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link text-dark" href="">
+            Modules
+          </a>
+        </div>
+        <div class="navbar-nav pl-2 small weight-500">
+          <div class="nav-item">
+            <a class="nav-link text-dark" href="">
+              GKE
+            </a>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link text-dark" href="">
+              VPC
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <h3>Modules</h3>
-    <ul>
-      <li>AWS
-        <ul>
-          <li>EKS</li>
-          <li>RDS</li>
-          <li>VPC</li>
-        </ul>
-      </li>
-      <li>GCP
-        <ul>
-          <li>CloudSQL</li>
-          <li>GKE</li>
-          <li>Network</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+      <div class="border-bottom mt-3 mb-4 d-md-none" />
+    </div>
+  </>
 )
 
 export default Sidebar

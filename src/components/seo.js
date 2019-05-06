@@ -77,7 +77,12 @@ function SEO({ description, lang, meta, keywords, title }) {
             : []
         )
         .concat(meta)}
-    />
+      bodyAttributes={{
+        class: "light",
+      }}
+    >
+      <body className="light" />
+    </Helmet>
   )
 }
 
