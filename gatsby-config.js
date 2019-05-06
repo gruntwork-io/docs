@@ -13,6 +13,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/, // See below to configure properly
+        },
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -22,15 +30,15 @@ module.exports = {
           `Poppins:400,500,700`,
           `Nunito Sans:400,500`,
           `Open Sans:400,300,700`,
-          `Roboto\:400,500,700` // you can also specify font weights and styles
-        ]
-      }
+          `Roboto\:400,500,700`, // you can also specify font weights and styles
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content`,
-        name: "markdown-pages"
+        name: "markdown-pages",
       },
     },
     {
@@ -38,6 +46,7 @@ module.exports = {
       options: {
         plugins: [
           "gatsby-remark-copy-linked-files",
+          "gatsby-remark-code-buttons",
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -77,9 +86,9 @@ module.exports = {
         ],
       },
     },
-    'gatsby-remark-smartypants',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-sitemap',
+    "gatsby-remark-smartypants",
+    "gatsby-plugin-sass",
+    "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
