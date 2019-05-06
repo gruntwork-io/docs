@@ -59,7 +59,7 @@ const IndexPage = () => (
       <div class="col-12 col-md-4">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>Running Magento on GKE</h2>
+            <h2>Running Software on GKE</h2>
             <p class="mb-3">
               Harmonious colour themes have built up as the collection has
               evolved.
