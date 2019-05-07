@@ -295,6 +295,16 @@ module "gke_service_account" {
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
+# ALLOW THE CUSTOM SERVICE ACCOUNT TO PULL IMAGES FROM THE GCR REPO
+# ---------------------------------------------------------------------------------------------------------------------
+
+resource "google_storage_bucket_iam_member" "member" {
+  bucket = "artifacts.${var.project}.appspot.com"
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${module.gke_service_account.email}"
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
 # CREATE A NETWORK TO DEPLOY THE CLUSTER TO
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -448,19 +458,36 @@ The output should look similar to the following:
 
 ```bash
 NAME                                     READY     STATUS             RESTARTS   AGE
-simple-web-app-deploy-7fb787c449-vgtf6   0/1       ImagePullBackOff   0          7s
+simple-web-app-deploy-7fb787c449-vgtf6   0/1       ContainerCreating  0          7s
 ```
 
-can use the `kubectl` CLI tool.
+Now we need to expose the app to the public internet.
 
-Kub
+## Attaching a Load Balancer
 
-https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+So far we have deployed the dockerized app, but it is not currently accessible from the public internet. This is because
+we have not assigned an external IP address or load balancer to the Pod. We can easily achieve this, by running the
+following command:
+
+```bash
+kubectl expose deployment simple-web-app-deploy --type=LoadBalancer --port 80 --target-port 8080
+```
+
+**Note:** GKE assigns the external IP address to the Service resource, not the Deployment.
 
 ## Cleaning Up
 
-In order to save costs, we recommend you destroy any infrastructure you've created by following this guide. To destroy
-the GKE cluster, you can simply invoke the `terraform destroy` command:
+In order to save costs, we recommend you destroy any infrastructure you've created by following this guide.
+
+First, delete the Kubernetes Service:
+
+```bash
+$ kubectl delete service simple-web-app-deploy
+```
+
+This will destroy the Load Balancer created during the previous step.
+
+Next, to destroy the GKE cluster, you can simply invoke the `terraform destroy` command:
 
 ```bash
 $ terraform destroy
@@ -468,12 +495,14 @@ $ terraform destroy
 
 **Note**: This is a destructive command that will forcibly terminate and destroy your GKE cluster!
 
-## Deploying a Dockerized App
-
-## Hooking up a Load Balancer
-
 ## Hooking up a DNS entry
+
+TODO
 
 ## The underlying VPC stuff
 
+TODO
+
 ## Hooking up a DB
+
+TODO
