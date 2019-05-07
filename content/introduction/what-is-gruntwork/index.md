@@ -19,7 +19,7 @@ Currently, we offer the following products to our customers:
 [Dedicated Support](#dedicated-support)  
 
 
-### Infrastructure as Code Library
+### <a name="infrastructure-as-code-library"></a>Infrastructure as Code Library
 
 A collection of over 350k lines of reusable, battle-tested, production-ready infrastructure code for AWS and GCP.
 Instead of reinventing the wheel and building all of your infrastructure from scratch, you can build on top of a mature
@@ -30,7 +30,7 @@ See [our product page](https://gruntwork.io/infrastructure-as-code-library/) for
 IaC library. Also take a look at our [module
 catalog](https://gruntwork.io/infrastructure-as-code-library/#infra-modules) for a list of supported components.
 
-### Reference Architecture
+### <a name="reference-architecture"></a>Reference Architecture
 
 An opinionated, battle tested, best-practices end-to-end tech stack built on top of the Infrastructure as Code Library.
 Instead of spending months assembling everything from scratch, we can deploy the Reference Architecture into your AWS
@@ -41,7 +41,7 @@ VPN, and more.
 See [our product page](https://gruntwork.io/reference-architecture/) for more information on what we deploy to your
 account.
 
-### Gruntwork Houston
+### <a name="gruntwork-houston"></a>Gruntwork Houston
 
 Houston is Mission Control for your entire infrastructure. On the surface, it’s a simple web interface that your Dev
 team can use to deploy and manage infrastructure. Under the hood, the web interface and how it manages infrastructure
@@ -51,7 +51,7 @@ to ensure reliability, security, and compliance.
 
 See [our product page](https://gruntwork.io/houston/) for a demo of how Houston can optimize your workflows.
 
-### Dedicated Support
+### <a name="dedicated-support"></a>Dedicated Support
 
 With DevOps, it seems like there are a thousand little details you have to get just right—DNS, TLS, VPCs, secrets
 management, monitoring, alerting, CI, CD—and never enough time to learn them all. With Gruntwork Dedicated Support, you
