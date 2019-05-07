@@ -48,7 +48,6 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
       }
       ...MarkdownPageFooter

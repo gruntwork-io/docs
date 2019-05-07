@@ -1,8 +1,7 @@
 ---
-date: "2019-04-24"
 title: "Deploying a Dockerized app on GCP/GKE"
+date: 2019-04-24
 tags: ["gcp", "gke", "docker"]
-author: "robmorgan"
 ---
 
 This guide walks you through deploying a dockerized app to a GKE cluster running on Google Cloud Platform.

@@ -10,30 +10,24 @@ const IndexPage = () => (
       title="Home"
       keywords={[`gruntwork`, `aws`, `gcp`, `terraform`, `docker`]}
     />
+
     <h1>Gruntwork Docs</h1>
     <p>
-      Welcome to the Gruntwork documentation site. Here you'll find guides and
-      documentation that will get you started with our products.
+      Welcome to the Gruntwork documentation site. Here you will find guides and documentation that will get you started
+      with our products. If it is your first time hearing about Gruntwork,
+      check out <a href="/introduction/what-is-gruntwork">What is Gruntwork?</a> to learn more about what we do.
     </p>
-
-    <h2>What is Gruntwork?</h2>
-    <p>TODO - explain Gruntwork. Assuming the user has first landed here.</p>
-
-    <h2>Get Started</h2>
-    <p>Let's dive right in!</p>
-
-    <p>TODO - explain what the user will find on this website.</p>
 
     <div class="row py-3">
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>Deploying a Dockerized app on GCP/GKE</h2>
+            <h2>Deploying a Dockerized app on GKE</h2>
             <p class="mb-3">
-              Harmonious colour themes have built up as the collection has
-              evolved.
+              Learn how to deploy a production-grade GKE cluster on GCP and take a Node.js app, Dockerize it, and run it
+              in production on the cluster.
             </p>
-            <a class="weight-500 action-link" href="">
+            <a class="weight-500 action-link" href="/guides/deploying-a-dockerized-app-on-gke">
               <span>Read more</span>
             </a>
           </div>
@@ -42,13 +36,13 @@ const IndexPage = () => (
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>Deploying a Dockerized App on EKS</h2>
+            <h2>Deploying a Production Grade EKS Cluster</h2>
             <p class="mb-3">
-              Harmonious colour themes have built up as the collection has
-              evolved.
+              Learn how to use Gruntwork modules to deploy and manage a production-grade EKS cluster. Includes: network
+              topology, worker ASG pools, IAM roles and RBAC.
             </p>
             <Link
-              to="/guides/deploying-a-dockerized-app-on-gke/"
+              to="/guides/deploying-a-production-grade-eks-cluster/"
               className="weight-500 action-link"
             >
               <span>Read more</span>
@@ -71,6 +65,10 @@ const IndexPage = () => (
         </div>
       </div>
     </div>
+
+    <p>
+      <em>Don't see what you are looking for? Check out <a href="/support">How do I get help?</a></em>
+    </p>
   </Layout>
 )
 

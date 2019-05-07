@@ -13,16 +13,8 @@ const Sidebar = () => (
         </div>
         <div class="navbar-nav pl-2 small weight-500">
           <div class="nav-item">
-            <Link to="/intro/what-is-gruntwork/" className="nav-link text-dark">
+            <Link to="/introduction/what-is-gruntwork/" className="nav-link text-dark">
               What is Gruntwork?
-            </Link>
-          </div>
-          <div class="nav-item">
-            <Link
-              to="/intro/what-is-an-iac-library/"
-              className="nav-link text-dark"
-            >
-              What is an IaC Library?
             </Link>
           </div>
           <div class="nav-item">
@@ -50,10 +42,10 @@ const Sidebar = () => (
           </div>
           <div class="nav-item">
             <Link
-              to="/guides/deploying-a-dockerized-app-on-eks/"
+              to="/guides/deploying-a-production-grade-eks-cluster/"
               className="nav-link text-dark"
             >
-              Deploying a Dockerized App on EKS
+              Deploying a Production Grade EKS Cluster
             </Link>
           </div>
           <div class="nav-item">
@@ -68,7 +60,7 @@ const Sidebar = () => (
         </div>
         <div class="nav-item">
           <Link to="/support/" class="nav-link text-dark">
-            Support
+            How do I get help?
           </Link>
         </div>
       </div>
