@@ -5,6 +5,8 @@ import Layout from "components/layout"
 import SupportButton from "components/SupportButton"
 import MarkdownPageFooter from "components/markdown-page-footer"
 
+import moment from "moment"
+
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -14,7 +16,7 @@ export default function Template({
     <Layout>
       <div className="blog-post-container">
         <div className="blog-post">
-          <div class="d-flex justify-content-between align-items-end mb-3">
+          <div class="d-flex justify-content-between align-items-end mb-1">
             <div>
               <h1 class="mb-0"> {frontmatter.title} </h1>
             </div>
@@ -22,7 +24,10 @@ export default function Template({
               <SupportButton />
             </div>
           </div>
-          <h2> {frontmatter.date} </h2>{" "}
+          <h5 className="mt-0 mb-3">
+            {markdownRemark.timeToRead} min read &middot; Last Updated{" "}
+            {moment(frontmatter.date).fromNow()}
+          </h5>
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{
@@ -40,6 +45,7 @@ export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
+      timeToRead
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
