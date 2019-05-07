@@ -1,3 +1,9 @@
+# Terraform files
+.terraform
+terraform.tfstate
+terraform.tfvars
+*.tfstate*
+
 # Logs
 logs
 *.log
@@ -58,8 +64,9 @@ typings/
 .cache/
 public
 
-# Mac files
+# macOS files
 .DS_Store
+.history
 
 # Yarn
 yarn-error.log
