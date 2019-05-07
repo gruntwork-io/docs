@@ -16,6 +16,13 @@ We have extended it using plugins and custom code to support all of the relevant
 - Google Analytics
 - A dynamic sidebar with the ToC of the current page
 
+## Deploy
+
+To deploy a new version of the site, simply run:
+
+1. `yarn run build`
+2. `houston-cli exec websites -- yarn run deploy`
+
 ### The Generation Workflow
 
 Generating documentation is a multi-step process made up of the following stages:

@@ -13,6 +13,7 @@
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.11",
     "gatsby-plugin-react-svg": "^2.1.1",
+    "gatsby-plugin-s3": "^0.2.5",
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.31",
     "gatsby-plugin-sitemap": "^2.0.10",
@@ -48,6 +49,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "deploy": "gatsby-plugin-s3 deploy",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
