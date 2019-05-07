@@ -218,7 +218,7 @@ module "eks_workers" {
   cluster_min_size = "${var.worker_group_size}"
   cluster_max_size = "${var.worker_group_size * 2}"
 
-  # We use a t2.small so that we have enough container slots to run the supporting services
+  # We use a t3.small so that we have enough container slots to run the supporting services
   cluster_instance_type                        = "t3.small"
   cluster_instance_ami                         = "${data.aws_ami.eks_ami.id}"
 
