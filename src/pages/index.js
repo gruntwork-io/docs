@@ -4,12 +4,12 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faServer } from "@fortawesome/free-solid-svg-icons"
-
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO
+      title="Home"
+      keywords={[`gruntwork`, `aws`, `gcp`, `terraform`, `docker`]}
+    />
     <h1>Gruntwork Docs</h1>
     <p>
       Welcome to the Gruntwork documentation site. Here you'll find guides and
@@ -28,7 +28,7 @@ const IndexPage = () => (
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>EKS vs GKE: An in-depth comparison</h2>
+            <h2>Deploying a Dockerized app on GCP/GKE</h2>
             <p class="mb-3">
               Harmonious colour themes have built up as the collection has
               evolved.
@@ -42,7 +42,7 @@ const IndexPage = () => (
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>Deploying a Dockerized App on GCP/GKE</h2>
+            <h2>Deploying a Dockerized App on EKS</h2>
             <p class="mb-3">
               Harmonious colour themes have built up as the collection has
               evolved.
