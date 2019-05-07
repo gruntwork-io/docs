@@ -11,6 +11,29 @@ const Sidebar = () => (
             Introduction
           </a>
         </div>
+        <div class="navbar-nav pl-2 small weight-500">
+          <div class="nav-item">
+            <Link to="/intro/what-is-gruntwork/" className="nav-link text-dark">
+              What is Gruntwork?
+            </Link>
+          </div>
+          <div class="nav-item">
+            <Link
+              to="/intro/what-is-an-iac-library/"
+              className="nav-link text-dark"
+            >
+              What is an IaC Library?
+            </Link>
+          </div>
+          <div class="nav-item">
+            <a
+              href="https://github.com/gruntwork-io/toc#a-table-of-contents-for-all-gruntwork-code"
+              className="nav-link text-dark"
+            >
+              Library Catalog
+            </a>
+          </div>
+        </div>
         <div class="nav-item">
           <a class="nav-link text-dark" href="">
             Guides
@@ -27,51 +50,26 @@ const Sidebar = () => (
           </div>
           <div class="nav-item">
             <Link
-              to="/for-startups/deploy-node-app-on-ecs/"
+              to="/guides/deploying-a-dockerized-app-on-eks/"
               className="nav-link text-dark"
             >
-              Deploying a Node App on ECS
+              Deploying a Dockerized App on EKS
+            </Link>
+          </div>
+          <div class="nav-item">
+            <Link
+              to="/guides/deploying-a-dockerized-app-on-ecs-with-ref-arch/"
+              className="nav-link text-dark"
+            >
+              Deploying a Dockerized App on ECS with Gruntwork Reference
+              Architecture
             </Link>
           </div>
         </div>
         <div class="nav-item">
-          <a class="nav-link text-dark" href="">
-            Startups
-          </a>
-        </div>
-        <div class="navbar-nav pl-2 small weight-500">
-          <div class="nav-item">
-            <a class="nav-link text-dark" href="">
-              Introduction
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link text-dark" href="">
-              Overview
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link text-dark" href="">
-              Contents
-            </a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link text-dark" href="">
-            Modules
-          </a>
-        </div>
-        <div class="navbar-nav pl-2 small weight-500">
-          <div class="nav-item">
-            <a class="nav-link text-dark" href="">
-              GKE
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link text-dark" href="">
-              VPC
-            </a>
-          </div>
+          <Link to="/support/" class="nav-link text-dark">
+            Support
+          </Link>
         </div>
       </div>
 
