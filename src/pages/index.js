@@ -42,13 +42,13 @@ const IndexPage = () => (
       <div class="col-12 col-md-4 mb-3 mb-md-0">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2>Deploying a HA Vault Cluster on GCP</h2>
+            <h2>Deploying a Dockerized App on GCP/GKE</h2>
             <p class="mb-3">
               Harmonious colour themes have built up as the collection has
               evolved.
             </p>
             <Link
-              to="/guides/deploying-a-ha-vault-cluster-on-gcp/"
+              to="/guides/deploying-a-dockerized-app-on-gke/"
               className="weight-500 action-link"
             >
               <span>Read more</span>

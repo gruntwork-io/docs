@@ -19,10 +19,10 @@ const Sidebar = () => (
         <div class="navbar-nav pl-2 small weight-500">
           <div class="nav-item">
             <Link
-              to="/guides/deploying-a-ha-vault-cluster-on-gcp/"
+              to="/guides/deploying-a-dockerized-app-on-gke/"
               className="nav-link text-dark"
             >
-              Deploying a HA Vault Cluster on GCP
+              Deploying a Dockerized App on GCP/GKE
             </Link>
           </div>
           <div class="nav-item">
