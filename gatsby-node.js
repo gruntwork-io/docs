@@ -6,18 +6,10 @@
 
 // You can delete this file if you're not using it
 const path = require("path")
-const {
-  createFilePath
-} = require(`gatsby-source-filesystem`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.onCreateNode = ({
-  node,
-  getNode,
-  actions
-}) => {
-  const {
-    createNodeField
-  } = actions
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
   // Ensures we are processing only markdown files
   if (node.internal.type === "MarkdownRemark") {
     // Use `createFilePath` to turn markdown files in our `data/faqs` directory into `/faqs/slug`
@@ -36,15 +28,10 @@ exports.onCreateNode = ({
   }
 }
 
-exports.createPages = ({
-  actions,
-  graphql
-}) => {
-  const {
-    createPage
-  } = actions
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
 
-  const pageTemplate = path.resolve(`src/templates/quickStartTemplate.js`)
+  const pageTemplate = path.resolve(`src/templates/markdownTemplate.js`)
 
   return graphql(`
     {
@@ -66,9 +53,7 @@ exports.createPages = ({
       return Promise.reject(result.errors)
     }
 
-    result.data.allMarkdownRemark.edges.forEach(({
-      node
-    }) => {
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
         component: pageTemplate,
@@ -78,15 +63,13 @@ exports.createPages = ({
   })
 }
 
-exports.onCreateWebpackConfig = ({
-  actions
-}) => {
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        components: path.resolve(__dirname, 'src/components'),
-        templates: path.resolve(__dirname, 'src/templates'),
-        scss: path.resolve(__dirname, 'src/scss'),
+        components: path.resolve(__dirname, "src/components"),
+        templates: path.resolve(__dirname, "src/templates"),
+        scss: path.resolve(__dirname, "src/scss"),
       },
     },
   })
