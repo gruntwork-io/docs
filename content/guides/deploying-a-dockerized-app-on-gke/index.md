@@ -31,9 +31,7 @@ const HOST = "0.0.0.0"
 
 // App
 const app = express()
-app.get("/simple-web-app", (req, res) => {
-  res.send("Hello world\n")
-})
+app.get("/", (req, res) => res.send("Hello World!"))
 
 app.listen(PORT, HOST)
 console.log(`Running on http://${HOST}:${PORT}`)
@@ -50,7 +48,7 @@ Next, we need a simple `package.json` file in order to make this work properly:
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.1"
+    "express": "^4.16.4"
   }
 }
 ```
@@ -65,7 +63,7 @@ you check out our "[Crash Course on Docker and Packer](https://training.gruntwor
 For the purposes of this guide, we will use the following `Dockerfile` to package our app into a Docker image.
 
 ```docker
-FROM node:8
+FROM node:12
 
 # Create app directory
 WORKDIR /usr/app
@@ -87,7 +85,7 @@ The folder structure of our sample app should now look like this:
 └── package.json
 ```
 
-**Note:** Your actual app will definitely be way more complicated than this, but the main point to take from here, is that
+**Note:** Your actual app will definitely be a lot more complicated than this, but the main point to take from here, is that
 we need to ensure our Docker image is configured to EXPOSE the port that our app is going to need for external
 communication. See the [Docker examples](https://docs.docker.com/samples/) for more information on dockerizing popular
 app formats.
@@ -120,7 +118,7 @@ Next, let's go and open the app in your browser:
 $ open http://localhost:8080
 ```
 
-You should be able to see the "Hello world" message from the server.
+You should be able to see the "Hello World!" message from the server.
 
 ### Dockerfile Tips
 
@@ -135,29 +133,23 @@ So far we've successfully built a Docker image on our local computer. Now it's t
 [Google Container Registry](https://cloud.google.com/container-registry), so it can be deployed in the future.
 
 First, we must configure our local Docker client to be able to authenticate to Container Registry. Simply, run the
-following commands:
+following commands (Note: you'll only need to do this step once):
 
 ```bash
-
+$ export PROJECT_ID="$(gcloud config get-value project -q)"
+$ gcloud auth configure-docker
 ```
 
-Next, we'll tag the local Docker image for uploading:
+Next, tag the local Docker image for uploading:
 
 ```bash
 $ docker tag simple-web-app:latest gcr.io/${PROJECT_ID}/simple-web-app:v1
 ```
 
-Finally, we need to authenticate the local Docker client with your private Container Registry (Note: you'll only need to do this step once):
+Finally, push the Docker image to your private Container Registry:
 
 ```bash
-$ gcloud auth configure-docker
-```
-
-And push the Docker image:
-
-```bash
-$ export PROJECT_ID="$(gcloud config get-value project -q)"
-$ docker push gcr.io/${PROJECT_ID}/hello-app:v1
+$ docker push gcr.io/${PROJECT_ID}/simple-web-app:v1
 ```
 
 ## Launching a GKE Cluster
@@ -419,7 +411,7 @@ variable "vpc_secondary_cidr_block" {
 
 Now we can use Terraform to create the resources:
 
-1. Run `terraform get`.
+1. Run `terraform init`.
 2. Run `terraform plan`.
 3. If the plan looks good, run `terraform apply`.
 
@@ -427,7 +419,43 @@ Terraform will begin to create the GCP resources. This process can take up to XX
 
 ## Deploying the Dockerized App
 
-TODO
+To deploy our Dockerized App on the GKE cluster, we can use the `kubectl` CLI tool to create a
+[Kubernetes Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/). A Pod is the smallest deployable
+object in the Kubernetes object model and will contain only our `simple-web-app` Docker image.
+
+First, we must configure `kubectl` to use the newly created cluster:
+
+```
+$ gcloud container clusters get-credentials example-private-cluster
+```
+
+**Note**: Be sure to substitute `example-private-cluster` with the name of your GKE cluster.
+
+Use the `kubectl run` command to create a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+named `simple-web-app-deploy` on your cluster:
+
+```bash
+$ kubectl run simple-web-app-deploy --image=gcr.io/${PROJECT_ID}/simple-web-app:v1 --port 8080
+```
+
+To see the Pod created by the last command, you can run:
+
+```bash
+$ kubectl get pods
+```
+
+The output should look similar to the following:
+
+```bash
+NAME                                     READY     STATUS             RESTARTS   AGE
+simple-web-app-deploy-7fb787c449-vgtf6   0/1       ImagePullBackOff   0          7s
+```
+
+can use the `kubectl` CLI tool.
+
+Kub
+
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
 ## Cleaning Up
 
