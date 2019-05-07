@@ -38,7 +38,7 @@ export default function Template({
           <div class="mb-2 mb-lg-0">
             <a
               class="d-block d-lg-inline text-muted ml-lg-2 mb-2 mb-lg-0"
-              href=""
+              href="https://github.com/gruntwork.io"
             >
               <span>
                 <FontAwesomeIcon icon={faGithub} /> Edit this page on GitHub
