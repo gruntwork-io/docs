@@ -26,7 +26,7 @@ export default function Template({
           </div>
           <h5 className="mt-0 mb-3">
             {markdownRemark.timeToRead} min read &middot; Last Updated{" "}
-            {moment(frontmatter.date).fromNow()}
+            {moment(frontmatter.date, "MMMM DD, YYYY").fromNow()}
           </h5>
           <div
             className="blog-post-content"
