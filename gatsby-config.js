@@ -47,7 +47,6 @@ module.exports = {
       options: {
         plugins: [
           "gatsby-remark-copy-linked-files",
-          "gatsby-remark-code-buttons",
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

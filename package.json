@@ -17,7 +17,6 @@
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.31",
     "gatsby-plugin-sitemap": "^2.0.10",
-    "gatsby-remark-code-buttons": "^1.0.1",
     "gatsby-remark-copy-linked-files": "^2.0.11",
     "gatsby-remark-prismjs": "^3.2.6",
     "gatsby-remark-smartypants": "^2.0.9",
