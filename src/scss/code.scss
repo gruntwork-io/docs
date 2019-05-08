@@ -10,7 +10,7 @@ black: #333,
 purple: #a71d5d,
 maroon: #a71d5d,
 green: #63a35c,
-light-gray: #f7f7f7,
+light-gray: #f6f6f6,
 dark-gray: #969896);
 
 
@@ -36,7 +36,7 @@ pre[class*='language-'] {
   margin: 1em 0;
   padding: 1.2em;
   border-radius: 3px;
-  font-size: 100%;
+  font-size: 90%;
 }
 
 p code,
@@ -45,7 +45,7 @@ table code {
   margin: 0;
   border-radius: 3px;
   padding: 0.2em 0;
-  font-size: 100%;
+  font-size: 90%;
 
   &:before,
   &:after {
