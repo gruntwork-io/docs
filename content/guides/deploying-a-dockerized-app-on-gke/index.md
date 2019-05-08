@@ -129,7 +129,7 @@ Some things to note when writing up your Dockerfile and building your app:
 ## Pushing the Docker image
 
 So far we've successfully built a Docker image on our local computer. Now it's time to push the image to your private
-[Google Container Registry](https://cloud.google.com/container-registry), so it can be deployed in the future.
+[Google Container Registry](https://cloud.google.com/container-registry/), so it can be deployed in the future.
 
 First, we must configure our local Docker client to be able to authenticate to Container Registry. Simply, run the
 following commands (Note: you'll only need to do this step once):
