@@ -19,10 +19,10 @@ export default function Template({
       <div className="post-container">
         <div className="post">
           <div class="row">
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-10">
               <h1 class="mb-0"> {frontmatter.title} </h1>
             </div>
-            <div class="col-6 col-md-4 py-2 py-sm-0 text-md-right">
+            <div class="col-6 col-md-2 py-2 py-sm-0 text-md-right">
               <SupportButton />
             </div>
           </div>
