@@ -14,8 +14,8 @@ export default function Template({
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
-      <div className="blog-post-container">
-        <div className="blog-post">
+      <div className="post-container">
+        <div className="post">
           <div class="d-flex justify-content-between align-items-end mb-1">
             <div>
               <h1 class="mb-0"> {frontmatter.title} </h1>
@@ -29,7 +29,7 @@ export default function Template({
             {moment(frontmatter.date, "MMMM DD, YYYY").fromNow()}
           </h5>
           <div
-            className="blog-post-content"
+            className="post-content"
             dangerouslySetInnerHTML={{
               __html: html,
             }}
