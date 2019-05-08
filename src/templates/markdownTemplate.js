@@ -16,11 +16,11 @@ export default function Template({
     <Layout>
       <div className="post-container">
         <div className="post">
-          <div class="d-flex justify-content-between align-items-end mb-1">
-            <div>
+          <div class="row">
+            <div class="col-12 col-md-8">
               <h1 class="mb-0"> {frontmatter.title} </h1>
             </div>
-            <div>
+            <div class="col-6 col-md-4 py-2 py-sm-0 text-md-right">
               <SupportButton />
             </div>
           </div>
