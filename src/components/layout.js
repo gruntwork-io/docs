@@ -33,7 +33,7 @@ const Layout = ({ children }) => (
         <div class="container-fluid">
           <div class="row">
             <Sidebar />
-            <div class="col-md-9 ml-sm-auto col-lg-10 px-4 content">
+            <div class="col-md-9 ml-sm-auto col-lg-10 px-2 content">
               <main>{children}</main>
               <footer>
                 <div class="row mt-4 pb-3">
