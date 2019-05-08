@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import React from "react"
 
 import Logo from "./logo.png"
-import BurgerIcon from "../../assets/glyphs/burger.svg"
 
 const Header = ({ siteTitle }) => (
   <>
