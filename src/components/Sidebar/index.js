@@ -1,5 +1,4 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 
 const Sidebar = () => (
@@ -7,13 +6,14 @@ const Sidebar = () => (
     <div class="col-md-2 d-none d-md-block sidebar bg-light">
       <div class="navbar-nav weight-500">
         <div class="nav-item">
-          <a class="nav-link text-dark" href="">
-            Introduction
-          </a>
+          <div class="nav-item">Introduction</div>
         </div>
         <div class="navbar-nav pl-2 small weight-500">
           <div class="nav-item">
-            <Link to="/introduction/what-is-gruntwork/" className="nav-link text-dark">
+            <Link
+              to="/introduction/what-is-gruntwork/"
+              className="nav-link text-dark"
+            >
               What is Gruntwork?
             </Link>
           </div>
@@ -26,11 +26,7 @@ const Sidebar = () => (
             </a>
           </div>
         </div>
-        <div class="nav-item">
-          <a class="nav-link text-dark" href="">
-            Guides
-          </a>
-        </div>
+        <div class="nav-item">Guides</div>
         <div class="navbar-nav pl-2 small weight-500">
           <div class="nav-item">
             <Link
@@ -59,7 +55,11 @@ const Sidebar = () => (
           </div>
         </div>
         <div class="nav-item">
-          <Link to="/support/" class="nav-link text-dark">
+          <Link
+            to="/support/"
+            class="nav-link text-dark"
+            activeClassName="nav-link active"
+          >
             How do I get help?
           </Link>
         </div>
