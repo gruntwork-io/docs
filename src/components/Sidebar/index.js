@@ -18,12 +18,12 @@ const Sidebar = () => (
             </Link>
           </div>
           <div className="nav-item">
-            <a
-              href="https://github.com/gruntwork-io/toc#a-table-of-contents-for-all-gruntwork-code"
+            <Link
+              to="/introduction/library-catalog/"
               className="nav-link text-dark"
             >
               Library Catalog
-            </a>
+            </Link>
           </div>
         </div>
         <div className="nav-item">Guides</div>
