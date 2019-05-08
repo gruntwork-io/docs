@@ -28,7 +28,7 @@ hundreds of customers.
 
 See [our product page](https://gruntwork.io/infrastructure-as-code-library/) for more information on the features of our
 IaC library. Also take a look at our [module
-catalog](https://gruntwork.io/infrastructure-as-code-library/#infra-modules) for a list of supported components.
+catalog](/introduction/library-catalog) for a list of supported components.
 
 ### <a name="reference-architecture"></a>Reference Architecture
 
