@@ -20,18 +20,18 @@ const IndexPage = () => (
       more about what we do.
     </p>
 
-    <div class="row py-3">
-      <div class="col-12 col-md-4 mb-3 mb-md-0">
-        <div class="card shadow-sm">
-          <div class="card-body">
+    <div className="row py-3">
+      <div className="col-12 col-md-4 mb-3 mb-md-0">
+        <div className="card shadow-sm">
+          <div className="card-body">
             <h2>Deploying a Dockerized app on GKE</h2>
-            <p class="mb-3">
+            <p className="mb-3">
               Learn how to deploy a production-grade GKE cluster on GCP and take
               a Node.js app, Dockerize it, and run it in production on the
               cluster.
             </p>
             <a
-              class="weight-500 action-link"
+              className="weight-500 action-link"
               href="/guides/deploying-a-dockerized-app-on-gke/"
             >
               <span>Read more</span>
@@ -39,11 +39,11 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-4 mb-3 mb-md-0">
-        <div class="card shadow-sm">
-          <div class="card-body">
+      <div className="col-12 col-md-4 mb-3 mb-md-0">
+        <div className="card shadow-sm">
+          <div className="card-body">
             <h2>Deploying a Production Grade EKS Cluster</h2>
-            <p class="mb-3">
+            <p className="mb-3">
               Learn how to use Gruntwork modules to deploy and manage a
               production-grade EKS cluster. Includes: network topology, worker
               ASG pools, IAM roles and RBAC.
