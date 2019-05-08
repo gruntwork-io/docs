@@ -10,9 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./Header"
-import Breadcrumbs from "./Breadcrumbs"
 import Sidebar from "./Sidebar"
-//import "./layout.css"
 
 import "prismjs/themes/prism.css"
 import "scss/gatstrap.scss"
