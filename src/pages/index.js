@@ -26,16 +26,16 @@ const IndexPage = () => (
           <div className="card-body">
             <h2>Deploying a Dockerized app on GKE</h2>
             <p className="mb-3">
-              Learn how to deploy a production-grade GKE cluster on GCP and take
-              a Node.js app, Dockerize it, and run it in production on the
-              cluster.
+              Learn how to launch a production-grade GKE cluster on GCP, then
+              take a simple Dockerized Node.js app and deploy it using a Cloud
+              Load Balancer.
             </p>
-            <a
+            <Link
+              to="/guides/deploying-a-dockerized-app-on-gke/"
               className="weight-500 action-link"
-              href="/guides/deploying-a-dockerized-app-on-gke/"
             >
               <span>Read more</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
