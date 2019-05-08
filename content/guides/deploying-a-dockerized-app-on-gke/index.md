@@ -1,6 +1,6 @@
 ---
 title: "Deploying a Dockerized app on GCP/GKE"
-date: 2019-04-24
+date: 2019-05-08
 tags: ["gcp", "gke", "docker"]
 ---
 
