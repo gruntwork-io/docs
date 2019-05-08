@@ -23,6 +23,8 @@ img:hover {
 
 // include components
 @import './sidebar.scss';
+@import './typography.scss';
+@import './code.scss';
 
 .content {
   padding-top: 100px;

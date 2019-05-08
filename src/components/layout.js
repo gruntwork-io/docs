@@ -12,7 +12,6 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./Header"
 import Sidebar from "./Sidebar"
 
-import "prismjs/themes/prism.css"
 import "scss/gatstrap.scss"
 //import 'animate.css/animate.css'
 //import "font-awesome/css/font-awesome.css"
