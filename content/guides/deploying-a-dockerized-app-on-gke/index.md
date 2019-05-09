@@ -493,15 +493,3 @@ $ terraform destroy
 ```
 
 **Note**: This is a destructive command that will forcibly terminate and destroy your GKE cluster!
-
-## Hooking up a DNS entry
-
-TODO
-
-## The underlying VPC stuff
-
-TODO
-
-## Hooking up a DB
-
-TODO
