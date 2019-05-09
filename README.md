@@ -16,18 +16,16 @@ We have extended it using plugins and custom code to support all of the relevant
 - Google Analytics
 - A dynamic sidebar with the ToC of the current page
 
-
 ## doc-sourcer
 
-Some of the content is pooled from our other repos. You can look at `gruntyrepos.yml` for a list of repos where docs are
-sourced.
+Some of the content is pulled from our other repos. You can look at `gruntyrepos.yml` for a list of repos where docs
+are sourced.
 
 This is managed through the `doc-sourcer` tool. Make sure you have a copy of it available by running:
 
 ```
 (cd ./doc_sourcer && go build -o doc-sourcer .)
 ```
-
 
 ## Deploy
 
