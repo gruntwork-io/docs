@@ -469,7 +469,7 @@ we have not assigned an external IP address or load balancer to the Pod. We can 
 following command:
 
 ```bash
-kubectl expose deployment simple-web-app-deploy --type=LoadBalancer --port 80 --target-port 8080
+$ kubectl expose deployment simple-web-app-deploy --type=LoadBalancer --port 80 --target-port 8080
 ```
 
 **Note:** GKE assigns the external IP address to the Service resource, not the Deployment.
