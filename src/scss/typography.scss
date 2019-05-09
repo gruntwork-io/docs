@@ -1,3 +1,23 @@
+// Lists
+li {
+  >p {
+    display: inline;
+  }
+}
+
+li {
+  >ol {
+    margin-left: 1em;
+  }
+}
+
+li {
+  >ul {
+    margin-left: 1em;
+  }
+}
+
+// Post Content
 .post-content {
 
   h1,
