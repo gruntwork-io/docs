@@ -27,6 +27,9 @@ This is managed through the `doc-sourcer` tool. Make sure you have a copy of it 
 (cd ./doc_sourcer && go build -o doc-sourcer .)
 ```
 
+**NOTE: The doc-sourcer project uses [go modules](https://github.com/golang/go/wiki/Modules). You may experience
+dependency issues if you clone the repo in your GOPATH. To address, clone outside of the GOPATH.**
+
 ## Deploy
 
 To deploy a new version of the site, run:

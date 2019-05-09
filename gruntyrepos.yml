@@ -1,4 +1,4 @@
 ---
 repos:
   - url: "git@github.com:gruntwork-io/toc.git"
-    branch: "yori-doc-site-support"
+    branch: "master"
