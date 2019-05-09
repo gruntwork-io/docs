@@ -44,15 +44,6 @@ const Sidebar = () => (
               Deploying a Production Grade EKS Cluster
             </Link>
           </div>
-          <div className="nav-item">
-            <Link
-              to="/guides/deploying-a-dockerized-app-on-ecs-with-ref-arch/"
-              className="nav-link text-dark"
-            >
-              Deploying a Dockerized App on ECS with Gruntwork Reference
-              Architecture
-            </Link>
-          </div>
         </div>
         <div className="nav-item">
           <Link
