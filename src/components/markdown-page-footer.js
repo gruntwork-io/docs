@@ -10,6 +10,12 @@ export default class MarkdownPageFooter extends React.Component {
     this.state = { feedbackSubmitted: false }
   }
   render() {
+    var originUrl;
+    if (this.props.page && this.props.page.frontmatter.origin) {
+        originUrl = this.props.page.frontmatter.origin;
+    } else {
+        originUrl = `https://github.com/gruntwork-io/docs/blob/nextgen/content/${this.props.page ? this.props.page.parent.relativePath : ``}`;
+    }
     return (
       <>
         <div class="mt-4 pt-2 pb-2 border-top border-bottom">
@@ -17,9 +23,7 @@ export default class MarkdownPageFooter extends React.Component {
             <div class="mb-2 mb-lg-0">
               <a
                 class="d-block d-lg-inline text-muted ml-lg-2 mb-2 mb-lg-0"
-                href={`https://github.com/gruntwork-io/docs/blob/nextgen/content/${
-                  this.props.page ? this.props.page.parent.relativePath : ``
-                }`}
+                href={originUrl}
               >
                 <span>
                   <FontAwesomeIcon icon={faGithub} /> Edit this page on GitHub
@@ -35,6 +39,9 @@ export default class MarkdownPageFooter extends React.Component {
 
 export const fragment = graphql`
   fragment MarkdownPageFooter on MarkdownRemark {
+    frontmatter {
+      origin
+    }
     parent {
       ... on File {
         relativePath
