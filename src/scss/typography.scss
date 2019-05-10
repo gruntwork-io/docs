@@ -1,0 +1,47 @@
+// Lists
+li {
+  >p {
+    display: inline;
+  }
+}
+
+li {
+  >ol {
+    margin-left: 1em;
+  }
+}
+
+li {
+  >ul {
+    margin-left: 1em;
+  }
+}
+
+// Post Content
+.post-content {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  a:hover {
+    box-shadow: 0 1px 0 0 currentColor;
+  }
+
+  ol,
+  ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}

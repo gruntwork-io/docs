@@ -1,0 +1,31 @@
+// Links
+//
+// Style anchor elements.
+$link-decoration: none !default;
+$link-hover-decoration: none !default;
+
+//@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'bootstrap/bootstrap';
+
+$light: #F6F6F6;
+
+img:hover {
+  animation: pulse 0.5s;
+}
+
+// platforma
+.section-break {
+  background: #f2f2f2;
+  text-align: center;
+  line-height: 30px;
+  font-size: 11px;
+}
+
+// include components
+@import './sidebar.scss';
+@import './typography.scss';
+@import './code.scss';
+
+.content {
+  padding-top: 100px;
+}
