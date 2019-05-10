@@ -14,7 +14,7 @@ export default class MarkdownPageFooter extends React.Component {
     if (this.props.page && this.props.page.frontmatter.origin) {
         originUrl = this.props.page.frontmatter.origin;
     } else {
-        originUrl = `https://github.com/gruntwork-io/docs/blob/nextgen/content/${this.props.page ? this.props.page.parent.relativePath : ``}`;
+        originUrl = `https://github.com/gruntwork-io/docs/blob/master/content/${this.props.page ? this.props.page.parent.relativePath : ``}`;
     }
     return (
       <>
