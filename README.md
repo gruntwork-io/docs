@@ -24,6 +24,7 @@ are sourced.
 This is managed through the `doc-sourcer` tool. Make sure you have a copy of it available by running:
 
 ```
+go get -u -v gopkg.in/src-d/go-git.v4
 (cd ./doc_sourcer && go build -o doc-sourcer .)
 ```
 
