@@ -16,8 +16,8 @@ const IndexPage = () => (
       Welcome to the Gruntwork documentation site. Here you will find guides and
       documentation that will get you started with our products. If it is your
       first time hearing about Gruntwork, check out{" "}
-      <a href="/introduction/what-is-gruntwork/">What is Gruntwork?</a> to learn
-      more about what we do.
+      <Link to="/introduction/what-is-gruntwork/">What is Gruntwork?</Link> to
+      learn more about what we do.
     </p>
 
     <div className="row py-3">

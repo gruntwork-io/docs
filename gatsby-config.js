@@ -102,6 +102,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-76462621-5",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        // Avoids sending pageview hits from custom paths
+        exclude: ["/preview/**"],
+      },
+    },
+    {
       resolve: `gatsby-plugin-s3`,
       options: {
         bucketName: "docs.gruntwork.io",
