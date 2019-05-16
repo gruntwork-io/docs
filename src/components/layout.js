@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import Header from "./Header"
 import Sidebar from "./Sidebar"
@@ -40,7 +41,9 @@ const Layout = ({ children }) => (
                   <div class="col-12 text-center small">
                     <span class="text-muted mr-1">
                       &copy; {new Date().getFullYear()},{` `}
-                      <a href="https://www.gruntwork.io">Gruntwork Inc.</a>
+                      <OutboundLink href="https://www.gruntwork.io">
+                        Gruntwork Inc.
+                      </OutboundLink>
                     </span>
                   </div>
                 </div>
