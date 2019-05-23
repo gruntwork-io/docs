@@ -38,6 +38,14 @@ const Sidebar = () => (
           </div>
           <div className="nav-item">
             <Link
+              to="/guides/deploying-a-gitlab-cluster-on-gke/"
+              className="nav-link text-dark"
+            >
+              Deploying a GitLab Cluster on GCP/GKE
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
               to="/guides/deploying-a-production-grade-eks-cluster/"
               className="nav-link text-dark"
             >
