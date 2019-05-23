@@ -25,7 +25,13 @@ Our deployment will include:
 
 - The core GitLab components
 
-## Launching a GKE Cluster
+We use Kubergrunt to securely install Helm on our GKE cluster.
+
+We deploy a Cloud SQL for PostgreSQL instance with a private IP.
+
+**Note:** You cannot connect to the private Cloud SQL instance from outside Google Cloud Platform.
+
+## Deploying a GKE Cluster
 
 Before we can install GitLab, we need to first deploy a [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/)
 cluster. By using our open-source [GKE module](https://github.com/gruntwork-io/terraform-google-gke) we can easily
@@ -119,7 +125,7 @@ resource "google_container_node_pool" "node_pool" {
 
   node_config {
     image_type   = "COS"
-    machine_type = "n1-standard-1"
+    machine_type = "${var.node_machine_type}"
 
     labels = {
       private-pools-example = "true"
@@ -178,6 +184,42 @@ resource "google_storage_bucket_iam_member" "member" {
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
+# CREATE CLOUD SQL DATABASE INSTANCE WITH PRIVATE IP
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "postgres" {
+  # Use a recent version of the cloud-sql module
+  source = "git::git@github.com:gruntwork-io/terraform-google-sql.git//modules/cloud-sql?ref=v0.1.1"
+
+  project = "${var.project}"
+  region  = "${var.region}"
+  name    = "${local.instance_name}"
+  db_name = "${var.db_name}"
+
+  engine       = "${var.postgres_version}"
+  machine_type = "${var.db_machine_type}"
+
+  # These together will construct the master_user privileges, i.e.
+  # 'master_user_name'@'master_user_host' IDENTIFIED BY 'master_user_password'.
+  # These should typically be set as the environment variable TF_VAR_db_master_user_password, etc.
+  # so you don't check these into source control."
+  master_user_password = "${var.db_master_user_password}"
+
+  master_user_name = "${var.db_master_user_name}"
+  master_user_host = "%"
+
+  # Pass the private network link to the module
+  private_network = "${module.vpc_network.private_subnetwork}"
+
+  # Wait for the vpc connection to complete
+  dependencies = ["${google_service_networking_connection.private_vpc_connection.network}"]
+
+  custom_labels = {
+    test-id = "postgres-private-ip-example"
+  }
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
 # CREATE A NETWORK TO DEPLOY THE CLUSTER TO
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -190,6 +232,29 @@ module "vpc_network" {
 
   cidr_block           = "${var.vpc_cidr_block}"
   secondary_cidr_block = "${var.vpc_secondary_cidr_block}"
+}
+
+# Reserve global internal address range for the peering
+resource "google_compute_global_address" "private_ip_address" {
+  provider      = "google-beta"
+  name          = "${local.private_ip_name}"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  prefix_length = 16
+  network       = "${module.vpc_network.private_subnetwork}"
+}
+
+# Establish VPC network peering connection using the reserved address range
+resource "google_service_networking_connection" "private_vpc_connection" {
+  provider                = "google-beta"
+  network                 = "${module.vpc_network.private}"
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = ["${google_compute_global_address.private_ip_address.name}"]
+}
+
+locals {
+  instance_name   = "${format("%s-%s", var.db_name_prefix, random_string.suffix.result)}"
+  private_ip_name = "private-ip-${random_string.suffix.result}"
 }
 
 # Use a random suffix to prevent overlap in network names
@@ -228,6 +293,41 @@ output "cluster_ca_certificate" {
   sensitive   = true
   value       = "${module.gke_cluster.cluster_ca_certificate}"
 }
+
+output "db_master_instance_name" {
+  description = "The name of the database instance"
+  value       = "${module.postgres.master_instance_name}"
+}
+
+output "db_master_ip_addresses" {
+  description = "All IP addresses of the instance as list of maps, see https://www.terraform.io/docs/providers/google/r/sql_database_instance.html#ip_address-0-ip_address"
+  value       = "${module.postgres.master_ip_addresses}"
+}
+
+output "db_master_private_ip" {
+  description = "The private IPv4 address of the master instance"
+  value       = "${module.postgres.master_private_ip_address}"
+}
+
+output "db_master_instance" {
+  description = "Self link to the master instance"
+  value       = "${module.postgres.master_instance}"
+}
+
+output "db_master_proxy_connection" {
+  description = "Instance path for connecting with Cloud SQL Proxy. Read more at https://cloud.google.com/sql/docs/mysql/sql-proxy"
+  value       = "${module.postgres.master_proxy_connection}"
+}
+
+output "db_name" {
+  description = "Name of the default database"
+  value       = "${module.postgres.db_name}"
+}
+
+output "db" {
+  description = "Self link to the default database"
+  value       = "${module.postgres.db}"
+}
 ```
 
 **variables.tf**
@@ -250,6 +350,14 @@ variable "region" {
   description = "The region for the network. If the cluster is regional, this must be the same region. Otherwise, it should be the region of the zone."
 }
 
+variable "db_master_user_name" {
+  description = "The username part for the default user credentials, i.e. 'master_user_name'@'master_user_host' IDENTIFIED BY 'master_user_password'. This should typically be set as the environment variable TF_VAR_master_user_name so you don't check it into source control."
+}
+
+variable "db_master_user_password" {
+  description = "The password part for the default user credentials, i.e. 'master_user_name'@'master_user_host' IDENTIFIED BY 'master_user_password'. This should typically be set as the environment variable TF_VAR_master_user_password so you don't check it into source control."
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
@@ -268,6 +376,31 @@ variable "cluster_service_account_name" {
 variable "cluster_service_account_description" {
   description = "A description of the custom service account used for the GKE cluster."
   default     = "Example GKE Cluster Service Account managed by Terraform"
+}
+
+variable "node_machine_type" {
+  description = "The machine type to use for GKE cluster nodes, see https://cloud.google.com/kubernetes-engine/pricing for more details"
+  default     = "db-n1-standard-1"
+}
+
+# Note, after a db instance name is used, it cannot be reused for up to one week.
+variable "db_name_prefix" {
+  description = "The name prefix for the database instance. Will be appended with a random string. Use lowercase letters, numbers, and hyphens. Start with a letter."
+}
+
+variable "postgres_version" {
+  description = "The engine version of the database, e.g. `POSTGRES_9_6`. See https://cloud.google.com/sql/docs/db-versions for supported versions."
+  default     = "POSTGRES_9_6"
+}
+
+variable "db_machine_type" {
+  description = "The machine type to use, see https://cloud.google.com/sql/pricing for more details"
+  default     = "db-n1-standard-1"
+}
+
+variable "db_name" {
+  description = "Name for the db"
+  default     = "gitlab"
 }
 
 variable "master_ipv4_cidr_block" {
@@ -300,13 +433,14 @@ Now we can use Terraform to create the resources:
 
 Terraform will begin to create the GCP resources. This process can take up to XX minutes.
 
-## Install GitLab
+## Installing GitLab
 
-We install GitLab via a Helm chart which is the official and recommended way. The chart contains all of the required components to run GitLab and can easily scale to large deployments.
+We install GitLab by following the recommended way using a Helm chart. The chart contains all of the required components
+to run GitLab and can easily scale to large deployments.
 
 More information about the chart is explain on the GitLab cloud native Helm chart page. [GitLab cloud native Helm Chart | GitLab](https://docs.gitlab.com/charts/)
 
-_Note:_ Some GitLab features are currently not available when using the Helm chart:
+**Note:** Some GitLab features are currently not available when using the Helm chart:
 
 - GitLab Pages
 - GitLab Geo
@@ -322,6 +456,11 @@ gitlab/gitlab           1.9.0           11.11.0         Web-based Git-repository
 gitlab/gitlab           1.8.4           11.10.4         Web-based Git-repository manager with wiki and issue-trac...
 gitlab/gitlab           1.8.3           11.10.3         Web-based Git-repository manager with wiki and issue-trac...
 ```
+
+**Note**: The GitLab chart doesn't have the same version number as GitLab itself. For more information please refer to the [GitLab version mappings](https://docs.gitlab.com/charts/installation/version_mappings.html) document.
+
+Please read the GitLab [Helm Deployment Guide](https://docs.gitlab.com/charts/installation/deployment.html) for more information on customizing
+the GitLab installation.
 
 ## Deploying the Dockerized App
 
@@ -382,6 +521,12 @@ $ kubectl delete service simple-web-app-deploy
 ```
 
 This will destroy the Load Balancer created during the previous step.
+
+Then remove GitLab using the Helm chart:
+
+```bash
+$ helm delete gitlab
+```
 
 Next, to destroy the GKE cluster, you can simply invoke the `terraform destroy` command:
 
