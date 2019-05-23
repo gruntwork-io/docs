@@ -1,4 +1,5 @@
 import React from "react"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -31,9 +32,9 @@ const SupportPage = () => (
       </li>
       <li class="mb-2">
         <h3>
-          <a href="https://community.gruntwork.io/">
+          <OutboundLink href="https://community.gruntwork.io/">
             The Gruntwork Community Forum
-          </a>
+          </OutboundLink>
         </h3>
       </li>
       <li class="mb-2">
