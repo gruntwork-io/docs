@@ -48,13 +48,13 @@ Then create a `main.tf` file and copy the following code:
 
 ```hcl
 provider "google" {
-  version = "~> 2.3.0"
+  version = "~> 2.7.0"
   project = "${var.project}"
   region  = "${var.region}"
 }
 
 provider "google-beta" {
-  version = "~> 2.3.0"
+  version = "~> 2.7.0"
   project = "${var.project}"
   region  = "${var.region}"
 }
@@ -84,7 +84,7 @@ module "gke_cluster" {
   # This setting will make the cluster private
   enable_private_nodes = "true"
 
-  # To make testing easier, we keep the public endpoint available. In production, we highly recommend restricting access to only within the network boundary, requiring your users to use a bastion host or VPN.
+  # To make testing easier, we keep the public endpoint variable available. In production, we highly recommend restricting access to only within the network boundary, requiring your users to use a bastion host or VPN.
   disable_public_endpoint = "false"
 
   # With a private cluster, it is highly recommended to restrict access to the cluster master
@@ -193,11 +193,14 @@ module "postgres" {
 
   project = "${var.project}"
   region  = "${var.region}"
-  name    = "${local.instance_name}"
+  name    = "${local.db_instance_name}"
   db_name = "${var.db_name}"
 
   engine       = "${var.postgres_version}"
   machine_type = "${var.db_machine_type}"
+
+  # Indicate that we want to create a failover replica for high availability
+  enable_failover_replica = true
 
   # These together will construct the master_user privileges, i.e.
   # 'master_user_name'@'master_user_host' IDENTIFIED BY 'master_user_password'.
@@ -253,8 +256,8 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 }
 
 locals {
-  instance_name   = "${format("%s-%s", var.db_name_prefix, random_string.suffix.result)}"
-  private_ip_name = "private-ip-${random_string.suffix.result}"
+  db_instance_name = "${format("%s-%s", var.db_name_prefix, random_string.suffix.result)}"
+  private_ip_name  = "private-ip-${random_string.suffix.result}"
 }
 
 # Use a random suffix to prevent overlap in network names
@@ -421,6 +424,7 @@ variable "vpc_secondary_cidr_block" {
   description = "The IP address range of the VPC's secondary address range in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27."
   default     = "10.4.0.0/16"
 }
+
 ```
 
 **Note:** Be sure to fill in any required variables that don't have a default value.
