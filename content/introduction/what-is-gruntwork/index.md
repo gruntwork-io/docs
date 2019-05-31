@@ -1,6 +1,6 @@
 ---
 title: "What is Gruntwork?"
-date: 2019-05-07
+date: 2019-05-31
 ---
 
 Our goal is to make world-class infrastructure and DevOps practices accessible to everyone, and not just the small,
@@ -25,6 +25,9 @@ A collection of over 350k lines of reusable, battle-tested, production-ready inf
 Instead of reinventing the wheel and building all of your infrastructure from scratch, you can build on top of a mature
 Infrastructure as Code (IaC) Library, which has been built by a team of DevOps experts, and proven in production with
 hundreds of customers.
+
+A key feature of all our modules is our dedication to production-ready code. You can read more about our philosophy
+behind our modules in our article on [our philosophy](/introduction/philosophy).
 
 See [our product page](https://gruntwork.io/infrastructure-as-code-library/) for more information on the features of our
 IaC library. Also take a look at our [module
