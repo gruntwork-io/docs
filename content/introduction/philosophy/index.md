@@ -3,7 +3,7 @@ title: "Gruntwork Philosophy"
 date: 2019-05-31
 ---
 
-At Gruntwork, we strive to accelerate the deployment of production grade infrastructure by prodiving a library of
+At Gruntwork, we strive to accelerate the deployment of production grade infrastructure by providing a library of
 stable, reusable, and battle tested infrastructure as code organized into a series of [packages](#what-is-a-package) with
 [modules](#what-is-a-module). Each package represents a particular set of infrastructure that is componentized into
 smaller pieces represented by the modules within the package. By doing so, we have built a composable library that can
