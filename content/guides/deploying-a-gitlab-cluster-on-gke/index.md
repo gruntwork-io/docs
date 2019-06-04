@@ -383,7 +383,7 @@ variable "cluster_service_account_description" {
 
 variable "node_machine_type" {
   description = "The machine type to use for GKE cluster nodes, see https://cloud.google.com/kubernetes-engine/pricing for more details"
-  default     = "db-n1-standard-1"
+  default     = "n1-standard-1"
 }
 
 # Note, after a db instance name is used, it cannot be reused for up to one week.
