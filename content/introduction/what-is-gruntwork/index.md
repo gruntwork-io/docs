@@ -1,6 +1,6 @@
 ---
 title: "What is Gruntwork?"
-date: 2019-05-31
+date: 2019-06-06
 ---
 
 Our goal is to make world-class infrastructure and DevOps practices accessible to everyone, and not just the small,

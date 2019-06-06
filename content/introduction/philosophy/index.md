@@ -1,6 +1,6 @@
 ---
 title: "Gruntwork Philosophy"
-date: 2019-05-31
+date: 2019-06-06
 ---
 
 At Gruntwork, we strive to accelerate the deployment of production grade infrastructure by providing a library of
