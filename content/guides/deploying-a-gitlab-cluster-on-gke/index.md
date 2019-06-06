@@ -353,6 +353,11 @@ variable "region" {
   description = "The region for the network. If the cluster is regional, this must be the same region. Otherwise, it should be the region of the zone."
 }
 
+# Note, after a db instance name is used, it cannot be reused for up to one week.
+variable "db_name_prefix" {
+  description = "The name prefix for the database instance. Will be appended with a random string. Use lowercase letters, numbers, and hyphens. Start with a letter."
+}
+
 variable "db_master_user_name" {
   description = "The username part for the default user credentials, i.e. 'master_user_name'@'master_user_host' IDENTIFIED BY 'master_user_password'. This should typically be set as the environment variable TF_VAR_master_user_name so you don't check it into source control."
 }
@@ -384,11 +389,6 @@ variable "cluster_service_account_description" {
 variable "node_machine_type" {
   description = "The machine type to use for GKE cluster nodes, see https://cloud.google.com/kubernetes-engine/pricing for more details"
   default     = "n1-standard-1"
-}
-
-# Note, after a db instance name is used, it cannot be reused for up to one week.
-variable "db_name_prefix" {
-  description = "The name prefix for the database instance. Will be appended with a random string. Use lowercase letters, numbers, and hyphens. Start with a letter."
 }
 
 variable "postgres_version" {
