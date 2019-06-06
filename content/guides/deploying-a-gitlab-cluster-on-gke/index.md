@@ -250,7 +250,7 @@ resource "google_compute_global_address" "private_ip_address" {
 # Establish VPC network peering connection using the reserved address range
 resource "google_service_networking_connection" "private_vpc_connection" {
   provider                = "google-beta"
-  network                 = "${module.vpc_network.private}"
+  network                 = "${module.vpc_network.network}"
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = ["${google_compute_global_address.private_ip_address.name}"]
 }
