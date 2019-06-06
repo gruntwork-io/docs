@@ -212,7 +212,7 @@ module "postgres" {
   master_user_host = "%"
 
   # Pass the private network link to the module
-  private_network = "${module.vpc_network.private_subnetwork}"
+  private_network = "${module.vpc_network.network}"
 
   # Wait for the vpc connection to complete
   dependencies = ["${google_service_networking_connection.private_vpc_connection.network}"]
