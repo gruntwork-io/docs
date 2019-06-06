@@ -398,7 +398,8 @@ variable "postgres_version" {
 
 variable "db_machine_type" {
   description = "The machine type to use, see https://cloud.google.com/sql/pricing for more details"
-  default     = "db-n1-standard-1"
+  # See https://cloud.google.com/sql/docs/postgres/create-instance#machine-types
+  default     = "db-custom-1-3840"
 }
 
 variable "db_name" {
