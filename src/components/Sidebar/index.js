@@ -19,6 +19,14 @@ const Sidebar = () => (
           </div>
           <div className="nav-item">
             <Link
+              to="/introduction/philosophy/"
+              className="nav-link text-dark"
+            >
+              Gruntwork Philosophy
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
               to="/introduction/library-catalog/"
               className="nav-link text-dark"
             >
