@@ -53,6 +53,17 @@ const Sidebar = () => (
             </Link>
           </div>
         </div>
+        <div className="nav-item">Reference</div>
+        <div className="navbar-nav pl-2 small weight-500">
+          <div className="nav-item">
+            <Link
+              to="/reference/version-compatibility/"
+              className="nav-link text-dark"
+            >
+              Module Version Compatibility
+            </Link>
+          </div>
+        </div>
         <div className="nav-item">
           <Link
             to="/support/"
