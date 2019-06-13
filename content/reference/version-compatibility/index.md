@@ -25,5 +25,4 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0           | >=v0.5.0         |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2           | >=v0.2.0         |
-| [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-static-assets](https://github.com/gruntwork-io/terraform-google-static-assets) | <=v0.1.1           | >=v0.2.0         |
