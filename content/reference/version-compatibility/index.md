@@ -1,6 +1,6 @@
 ---
 title: "Module Version Compatibility"
-date: 2019-06-11
+date: 2019-06-21
 ---
 
 ## Terraform Version Compatibility Chart
@@ -22,8 +22,10 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [module-load-balancer](https://github.com/gruntwork-io/module-load-balancer)                     | <=v0.13.3          | >=v0.14.0        |
 | [module-data-storage](https://github.com/gruntwork-io/module-data-storage)                       | <=v0.8.9          | >=v0.9.0          |
 | [module-asg](https://github.com/gruntwork-io/module-asg)                                         | <=v0.6.26          | >=v0.7.0         |
+| [package-openvpn](https://github.com/gruntwork-io/package-openvpn)                               | <=v0.8.2           | >=v0.9.0         |
 | [package-messaging](https://github.com/gruntwork-io/package-messaging)                           | <=v0.2.0           | >=v0.3.0         |
 | [package-lambda](https://github.com/gruntwork-io/package-lambda)                                 | <=v0.5.1           | >=v0.6.0         |
+| [package-zookeeper](https://github.com/gruntwork-io/package-zookeeper)                           | <=v0.5.4           | >=v0.6.0         |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0           | >=v0.5.0         |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2           | >=v0.2.0         |
