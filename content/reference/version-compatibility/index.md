@@ -17,6 +17,7 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [Terratest](https://github.com/gruntwork-io/terratest)                                           | ALL                | >=v0.15.8        |
 | [package-terraform-utilities](https://github.com/gruntwork-io/package-terraform-utilities)       | <=v0.0.8           | >=v0.1.0         |
 | [module-ci](https://github.com/gruntwork-io/module-ci)                                           | <=v0.13.16         | >=v0.14.0        |
+| [module-security](https://github.com/gruntwork-io/module-security)                               | <=v0.16.6          | >=v0.17.0        |
 | [module-cache](https://github.com/gruntwork-io/module-cache)                                     | <=v0.5.0           | >=v0.6.0         |
 | [module-vpc](https://github.com/gruntwork-io/module-vpc)                                         | <=v0.5.8           | >=v0.6.0         |
 | [module-server](https://github.com/gruntwork-io/module-server)                                   | <=v0.6.2           | >=v0.7.0         |
