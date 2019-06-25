@@ -7,7 +7,7 @@ date: 2019-06-24
 
 The following lists our Terraform packages and their compatibility with Terraform versions.
 
-**NOTE**: If a package is not listed here, then it has not been updated for Terraform 0.12 compatibility yet.
+**NOTE**: If a package is not listed here, then either it does not contain any Terraform code (e.g., `gruntkms`) or it has not been updated for Terraform 0.12 compatibility yet.
 
 <!-- This was generated using the Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables -->
 
@@ -30,6 +30,7 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [package-messaging](https://github.com/gruntwork-io/package-messaging)                           | <=v0.2.0           | >=v0.3.0         |
 | [package-lambda](https://github.com/gruntwork-io/package-lambda)                                 | <=v0.5.1           | >=v0.6.0         |
 | [package-zookeeper](https://github.com/gruntwork-io/package-zookeeper)                           | <=v0.5.4           | >=v0.6.0         |
+| [terraform-aws-couchbase](https://github.com/gruntwork-io/terraform-aws-couchbase)               | <=v0.1.5           | >=v0.2.0         |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0           | >=v0.5.0         |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2           | >=v0.2.0         |
