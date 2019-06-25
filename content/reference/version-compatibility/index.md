@@ -7,7 +7,7 @@ date: 2019-06-24
 
 The following lists our Terraform packages and their compatibility with Terraform versions.
 
-**NOTE**: If a package is not listed here, then it has not been updated for Terraform 0.12 compatibility yet.
+**NOTE**: If a package is not listed here, then either it does not contain any Terraform code (e.g., `gruntkms`) or it has not been updated for Terraform 0.12 compatibility yet.
 
 <!-- This was generated using the Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables -->
 
