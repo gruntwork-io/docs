@@ -32,9 +32,10 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [package-sam](https://github.com/gruntwork-io/package-sam)                                       | <=v0.1.12          | >=v0.2.0         |
 | [package-zookeeper](https://github.com/gruntwork-io/package-zookeeper)                           | <=v0.5.4           | >=v0.6.0         |
 | [terraform-aws-couchbase](https://github.com/gruntwork-io/terraform-aws-couchbase)               | <=v0.1.5           | >=v0.2.0         |
-| [terraform-aws-consul](https://github.com/gruntwork-io/terraform-aws-consul)                     | <=v0.6.1           | >=v0.7.0         |
+| [terraform-aws-consul](https://github.com/hashicorp/terraform-aws-consul)                     | <=v0.6.1           | >=v0.7.0         |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0           | >=v0.5.0         |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2           | >=v0.2.0         |
 | [terraform-google-static-assets](https://github.com/gruntwork-io/terraform-google-static-assets) | <=v0.1.1           | >=v0.2.0         |
 | [terraform-google-gke](https://github.com/gruntwork-io/terraform-google-gke)                     | <=v0.2.0           | >=v0.3.0         |
+| [terraform-google-consul](https://github.com/hashicorp/terraform-google-consul)                     | <=v0.3.2           | >=v0.4.0         |
