@@ -41,3 +41,4 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-google-gke](https://github.com/gruntwork-io/terraform-google-gke)                     | <=v0.2.0         | >=v0.3.0         |
 | [terraform-google-consul](https://github.com/hashicorp/terraform-google-consul)                  | <=v0.3.2         | >=v0.4.0         |
 | [terraform-google-vault](https://github.com/hashicorp/terraform-google-vault)                    | <=v0.1.3         | >=v0.2.0         |
+| [terraform-google-nomad](https://github.com/hashicorp/terraform-google-nomad)                    | v0.0.1           | >=v0.1.0         |
