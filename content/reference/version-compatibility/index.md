@@ -31,7 +31,9 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [package-lambda](https://github.com/gruntwork-io/package-lambda)                                 | <=v0.5.1         | >=v0.6.0         |
 | [package-sam](https://github.com/gruntwork-io/package-sam)                                       | <=v0.1.12        | >=v0.2.0         |
 | [package-mongodb](https://github.com/gruntwork-io/package-mongodb)                               | <=v0.3.0         | >=v0.4.0         |
+| [package-elk](https://github.com/gruntwork-io/package-elk)                                       | <=v0.3.1         | >=v0.4.0         |
 | [package-zookeeper](https://github.com/gruntwork-io/package-zookeeper)                           | <=v0.5.4         | >=v0.6.0         |
+| [package-kafka](https://github.com/gruntwork-io/package-kafka)                                   | <=v0.5.3         | >=v0.6.0         |
 | [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks)                           | <=v0.5.5         | >=v0.6.0         |
 | [terraform-aws-couchbase](https://github.com/gruntwork-io/terraform-aws-couchbase)               | <=v0.1.5         | >=v0.2.0         |
 | [terraform-aws-consul](https://github.com/hashicorp/terraform-aws-consul)                        | <=v0.6.1         | >=v0.7.0         |
