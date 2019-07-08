@@ -11,6 +11,8 @@ The following lists our Terraform packages and their compatibility with Terrafor
 
 <!-- This was generated using the Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables -->
 
+### AWS
+
 | IaC Package                                                                                      | Terraform 0.11.X | Terraform 0.12.X |
 | ------------------------------------------------------------------------------------------------ | ---------------- | ---------------- |
 | [Terragrunt](https://github.com/gruntwork-io/terragrunt)                                         | <=v0.18.7        | >=v0.19.0        |
@@ -27,6 +29,7 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [module-asg](https://github.com/gruntwork-io/module-asg)                                         | <=v0.6.26        | >=v0.7.0         |
 | [module-ecs](https://github.com/gruntwork-io/module-ecs)                                         | <=v0.13.5        | >=v0.14.0        |
 | [package-openvpn](https://github.com/gruntwork-io/package-openvpn)                               | <=v0.8.2         | >=v0.9.0         |
+| [package-static-assets](https://github.com/gruntwork-io/package-static-assets)                   | <=v0.4.3         | >=v0.5.0         |
 | [package-messaging](https://github.com/gruntwork-io/package-messaging)                           | <=v0.2.0         | >=v0.3.0         |
 | [package-lambda](https://github.com/gruntwork-io/package-lambda)                                 | <=v0.5.1         | >=v0.6.0         |
 | [package-sam](https://github.com/gruntwork-io/package-sam)                                       | <=v0.1.12        | >=v0.2.0         |
@@ -34,11 +37,18 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [package-elk](https://github.com/gruntwork-io/package-elk)                                       | <=v0.3.1         | >=v0.4.0         |
 | [package-zookeeper](https://github.com/gruntwork-io/package-zookeeper)                           | <=v0.5.4         | >=v0.6.0         |
 | [package-kafka](https://github.com/gruntwork-io/package-kafka)                                   | <=v0.5.3         | >=v0.6.0         |
+| [package-beanstalk](https://github.com/gruntwork-io/package-beanstalk)                           | <=v0.0.4         | >=v0.1.0         |
 | [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks)                           | <=v0.5.5         | >=v0.6.0         |
 | [terraform-aws-couchbase](https://github.com/gruntwork-io/terraform-aws-couchbase)               | <=v0.1.5         | >=v0.2.0         |
 | [terraform-aws-consul](https://github.com/hashicorp/terraform-aws-consul)                        | <=v0.6.1         | >=v0.7.0         |
 | [terraform-aws-vault](https://github.com/hashicorp/terraform-aws-vault)                          | <=v0.12.2        | >=v0.13.0        |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0         | >=v0.5.0         |
+
+
+### GCP
+
+| IaC Package                                                                                      | Terraform 0.11.X | Terraform 0.12.X |
+| ------------------------------------------------------------------------------------------------ | ---------------- | ---------------- |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2         | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2         | >=v0.2.0         |
 | [terraform-google-sql](https://github.com/gruntwork-io/terraform-google-sql)                     | <=v0.1.1         | >=v0.2.0         |
@@ -47,4 +57,3 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-google-consul](https://github.com/hashicorp/terraform-google-consul)                  | <=v0.3.2         | >=v0.4.0         |
 | [terraform-google-vault](https://github.com/hashicorp/terraform-google-vault)                    | <=v0.1.3         | >=v0.2.0         |
 | [terraform-google-nomad](https://github.com/hashicorp/terraform-google-nomad)                    | v0.0.1           | >=v0.1.0         |
-| [package-beanstalk](https://github.com/gruntwork-io/package-beanstalk)                           | <=v0.0.4         | >=v0.1.0         |
