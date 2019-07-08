@@ -11,6 +11,8 @@ The following lists our Terraform packages and their compatibility with Terrafor
 
 <!-- This was generated using the Markdown Table Generator: https://www.tablesgenerator.com/markdown_tables -->
 
+### AWS
+
 | IaC Package                                                                                      | Terraform 0.11.X | Terraform 0.12.X |
 | ------------------------------------------------------------------------------------------------ | ---------------- | ---------------- |
 | [Terragrunt](https://github.com/gruntwork-io/terragrunt)                                         | <=v0.18.7        | >=v0.19.0        |
@@ -41,6 +43,12 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-aws-consul](https://github.com/hashicorp/terraform-aws-consul)                        | <=v0.6.1         | >=v0.7.0         |
 | [terraform-aws-vault](https://github.com/hashicorp/terraform-aws-vault)                          | <=v0.12.2        | >=v0.13.0        |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0         | >=v0.5.0         |
+
+
+### GCP
+
+| IaC Package                                                                                      | Terraform 0.11.X | Terraform 0.12.X |
+| ------------------------------------------------------------------------------------------------ | ---------------- | ---------------- |
 | [terraform-google-network](https://github.com/gruntwork-io/terraform-google-network)             | <=v0.1.2         | >=v0.2.0         |
 | [terraform-google-load-balancer](https://github.com/gruntwork-io/terraform-google-load-balancer) | <=v0.1.2         | >=v0.2.0         |
 | [terraform-google-sql](https://github.com/gruntwork-io/terraform-google-sql)                     | <=v0.1.1         | >=v0.2.0         |
