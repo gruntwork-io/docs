@@ -45,6 +45,7 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-aws-vault](https://github.com/hashicorp/terraform-aws-vault)                          | <=v0.12.2        | >=v0.13.0        |
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)           | <=v0.4.0         | >=v0.5.0         |
 
+
 ### GCP
 
 | IaC Package                                                                                      | Terraform 0.11.X | Terraform 0.12.X |
