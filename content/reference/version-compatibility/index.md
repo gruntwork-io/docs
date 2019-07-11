@@ -1,6 +1,6 @@
 ---
 title: "Module Version Compatibility"
-date: 2019-07-05
+date: 2019-07-11
 ---
 
 ## Terraform Version Compatibility Chart
