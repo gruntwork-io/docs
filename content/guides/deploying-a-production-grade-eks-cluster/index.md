@@ -4,8 +4,9 @@ date: 2019-05-07
 tags: ["aws", "eks", "docker"]
 ---
 
-This guide walks you through how to use Gruntwork's [terraform-aws-eks
-Terraform Module](https://github.com/gruntwork-io/terraform-aws-eks) to provision a production grade EKS cluster.
+This guide walks you through how to use Gruntwork's private [terraform-aws-eks
+Terraform Module](https://github.com/gruntwork-io/terraform-aws-eks) available to subscribers to provision a
+production grade EKS cluster.
 
 **NOTE: All the code in this guide use modules from Gruntwork's IaC Library. You must be a paying subscriber to have
 access. See gruntwork.io for more info and feel free to reach out to us at info@gruntwork.io if you have questions.**
