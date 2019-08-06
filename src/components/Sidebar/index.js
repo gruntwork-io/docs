@@ -52,6 +52,14 @@ const Sidebar = () => (
               Deploying a Production Grade EKS Cluster
             </Link>
           </div>
+          <div className="nav-item">
+            <Link
+              to="/guides/upgrading-to-tf12-tg19/"
+              className="nav-link text-dark"
+            >
+              Upgrading your Reference Architecture Deployment to Terraform 0.12.x and Terragrunt 0.19.x
+            </Link>
+          </div>
         </div>
         <div className="nav-item">Reference</div>
         <div className="navbar-nav pl-2 small weight-500">
