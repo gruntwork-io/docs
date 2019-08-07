@@ -11,14 +11,14 @@ Terraform 0.12.x and Terragrunt 0.19.x.
 
 Terraform 0.12 (referred to as TF12) was released in May, 2019, and it included a few major changes:
 
-1. More strict rules around what can go in a `.tfvars` file. In particular, any variable defined in a `.tfvars` file
-   that does not match a corresponding `variable` definition in your `.tf` files produces an error.
 1. A shift from HCL to HCL2 as the main syntax. This included support for first-class expressions (i.e., using variables
    and functions without having to wrap everything in `${...}`).
-1. Math behave differently. In particular, many functions that previously returned ints now return floats.
-1. Bools behave differently, where they are no longer auto type casted to ints.
 1. Some official providers have changed their syntax. For example, the `terraform_remote_state` data source now requires
    an `outputs` attribute to index into the outputs exported by the state.
+1. More strict rules around what can go in a `.tfvars` file. In particular, any variable defined in a `.tfvars` file
+   that does not match a corresponding `variable` definition in your `.tf` files produces an error.
+1. Math behave differently. In particular, many functions that previously returned ints now return floats.
+1. Bools behave differently, where they are no longer auto type casted to ints.
 
 To be compatible with Terraform 0.12 changes, Terragrunt 0.19 (referred to as TG19) was released. Before version 0.19.0,
 Terragrunt had you define its configuration in a `terragrunt = { ... }` variable in a `terraform.tfvars` file, but due
@@ -202,8 +202,10 @@ it is very easy to "start over", such as a sandbox or dev environment!**
 1. If you have terratest workflows for your modules, upgrade terratest to v0.16.x (or newer). You can see all available
    terratest versions, including detailed migration guides for each version in [the releases
    page](https://github.com/gruntwork-io/terratest/releases).
-1. Push your changes to a branch so that you can test it in your pre-prod environments (We will come back to this later
-   in the guide, when we upgrade the live config to TG19).
+1. Test the changes locally using `--terragrunt-source` (see the docs on [working
+   locally](https://github.com/gruntwork-io/terragrunt#working-locally)). Note that you will need to upgrade the
+   corresponding live config to [Terragrunt 0.19.x first](#upgrade-live-config-for-compatibility-with-terragrunt-019x).
+1. Once you are satisfied with the changes, create a branch, push to the repository, open a PR, merge, and release.
 
 
 ### Upgrade live config for compatibility with Terragrunt 0.19.x
@@ -264,12 +266,11 @@ environment to test the changes you are making to that module (e.g
 The rough process should be:
 
 1. Upgrade the module to TF12 syntax following the steps [listed above](#upgrade-each-module-for-0-12-compatibility).
-1. Push the changes to a branch for testing.
 1. Update the live config for a pre-prod environment that deploys the module.
-1. Update the `ref` tag to the module in the live config to point to the branch cut in step 2.
-1. Run `terragrunt plan` to verify the changes. Carefully review to make sure there are no disruptive changes. If you
-   had been keeping the modules up to date with Gruntwork releases, there should be minimal to 0 changes to the
-   underlying resources.
+1. Run `terragrunt plan` to verify the changes. Use `--terragrunt-source` so you can point to the updated module (see
+   the docs on [working locally](https://github.com/gruntwork-io/terragrunt#working-locally)). Carefully review to make
+   sure there are no disruptive changes. If you had been keeping the modules up to date with Gruntwork releases, there
+   should be minimal to 0 changes to the underlying resources.
 1. Once you are satisfied with the changes, run `terragrunt apply` to deploy the changes.
 1. Run smoke tests on your infrastructure to verify that the changes applied cleanly.
 1. Once you are satisfied with the deployment, open a PR, review, merge the changes, and issue a new release for the
