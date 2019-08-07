@@ -48,7 +48,7 @@ v0.18.x to Terraform 0.12.x and newer and Terragrunt 0.19.x and newer:
    0.19.x](#upgrade-live-config-for-compatibility-with-terragrunt-019x)
 
 
-### Upgrade modules for compatibility with Terraform 0.12.x
+### <a name="upgrade-modules-for-compatibility-with-terraform-012x" />Upgrade modules for compatibility with Terraform 0.12.x
 
 Terraform 0.12.x introduces many syntactic updates to make working with the language better, such as [first-class
 expressions, `for` and `for_each`, a more powerful type system, better error messages, and
@@ -66,7 +66,7 @@ Here is the rough process:
 1. [Install and setup Terraform 0.12](#install-and-setup-terraform-0-12)
 1. [Upgrade each module for 0.12 compatibility](#upgrade-each-module-for-0-12-compatibility)
 
-#### Install and setup Terraform 0.12
+#### <a name="install-and-setup-terraform-0-12" />Install and setup Terraform 0.12
 
 To use Terraform 0.12, you will need to have the binary available on your machine. However, you don't want to blindly
 replace your existing `terraform` binary to the newer version, because that would mean you wouldn't be able to use the
@@ -78,14 +78,14 @@ Here are two ways for you to support having 0.11 and 0.12 simultaneously on your
 - [Using tfenv to manage multiple terraform versions](#using-tfenv-to-manage-multiple-terraform-versions)
 - [Manually managing multiple terraform versions](#manually-managing-multiple-terraform-versions)
 
-##### Using homebrew to manage multiple terraform versions
+##### <a name="using-homebrew-to-manage-multiple-terraform-versions" />Using homebrew to manage multiple terraform versions
 
 If you are on a Mac, you have the option of managing multiple terraform versions using homebrew. You can follow the
 instructions published in our blog post [Installing Multiple Versions of Terraform with
 Homebrew](https://blog.gruntwork.io/installing-multiple-versions-of-terraform-with-homebrew-899f6d124ff9) to setup
 Homebrew to manage multiple versions of terraform, which you can then use `brew switch` to switch between them.
 
-##### Using tfenv to manage multiple terraform versions
+##### <a name="using-tfenv-to-manage-multiple-terraform-versions" />Using tfenv to manage multiple terraform versions
 
 If you are on any Unix based system, you have the option of relying on [tfenv](https://github.com/tfutils/tfenv).
 `tfenv` is a tool inspired by `rbenv` to provide a CLI for managing multiple versions of terraform. Once you have it
@@ -116,7 +116,7 @@ Note that it can get confusing which version of terraform is currently in use, e
 between the two. `tfenv` tracks the current version in a file available in `$TFENV_ROOT/version`. You can take advantage
 of this fact to setup your shell prompt to display the currently selected Terraform version.
 
-##### Manually managing multiple terraform versions
+##### <a name="manually-managing-multiple-terraform-versions" />Manually managing multiple terraform versions
 
 If you are on a non-Unix based machine (such that you can't use `tfenv`), or if you have restrictions on software that
 can be installed on your machine, then your only option is to manage the Terraform versions manually. In this method,
@@ -148,7 +148,7 @@ terraform version
 
 You can find the available binaries for each terraform version [here](https://releases.hashicorp.com/terraform/).
 
-#### Upgrade each module for 0.12 compatibility
+#### <a name="upgrade-each-module-for-0-12-compatibility" />Upgrade each module for 0.12 compatibility
 
 To upgrade each of your modules to HCL2 syntax, you can run the `terraform 0.12upgrade` command using version 0.12.x of
 the `terraform` binary. You will need to do the following for each of your Terraform modules (e.g in your
@@ -208,7 +208,7 @@ it is very easy to "start over", such as a sandbox or dev environment!**
 1. Once you are satisfied with the changes, create a branch, push to the repository, open a PR, merge, and release.
 
 
-### Upgrade live config for compatibility with Terragrunt 0.19.x
+### <a name="upgrade-live-config-for-compatibility-with-terragrunt-019x" />Upgrade live config for compatibility with Terragrunt 0.19.x
 
 Terragrunt 0.19.x introduces a new file format for the live config. This format has many advantages, including
 supporting all built in functions available to Terraform. However, this means that you will need to convert all your
@@ -220,7 +220,7 @@ Here is the rough process:
 1. [Migrate terraform.tfvars to terragrunt.hcl](#migrate-terraform-tfvars-to-terragrunt-hcl)
 1. [Switch common tfvars files to use yaml](#switch-common-tfvars-files-to-use-yaml)
 
-#### Install and setup Terragrunt 0.19
+#### <a name="install-and-setup-terragrunt-0-19" />Install and setup Terragrunt 0.19
 
 You will also need to setup the Terragrunt 0.19 binary in a [similar fashion to setting up Terraform
 0.12](#install-and-setup-terraform-0-12). You can use the same instructions available for managing Terraform 0.12 as for
@@ -229,7 +229,7 @@ managing Terragrunt 0.19, except for `tfenv` which only supports Terraform
 - [Using homebrew to manage multiple terragrunt versions](#using-homebrew-to-manage-multiple-terraform-versions)
 - [Manually managing multiple terragrunt versions](#manually-managing-multiple-terragrunt-versions)
 
-##### Using homebrew to manage multiple terragrunt versions
+##### <a name="using-homebrew-to-manage-multiple-terraform-versions" />Using homebrew to manage multiple terragrunt versions
 
 Like `terraform`, you can use Homebrew to manage multiple `terraform` versions, using the same method described above in
 [Using homebrew to manage multiple terraform versions](#using-homebrew-to-manage-multiple-terraform-versions). To use
@@ -242,7 +242,7 @@ $ git log master -- Formula/terragrunt.rb
 
 instead of the equivalent one for Terraform.
 
-##### Manually managing multiple terragrunt versions
+##### <a name="manually-managing-multiple-terragrunt-versions" />Manually managing multiple terragrunt versions
 
 Like `terraform`, you can use the method described above in [Manually managing multiple terraform
 versions](#manually-managing-multiple-terraform-versions) to manage multiple versions of Terragrunt.
@@ -251,7 +251,7 @@ You can find the available binaries for each terragrunt version
 [here](https://github.com/gruntwork-io/terragrunt/releases).
 
 
-#### Migrate terraform.tfvars to terragrunt.hcl
+#### <a name="migrate-terraform-tfvars-to-terragrunt-hcl" />Migrate terraform.tfvars to terragrunt.hcl
 
 Once you have terragrunt 0.19 available on your machine, you will need to migrate your `terraform.tfvars` files to
 `terragrunt.hcl` files before you can start to use the new version. You will need to follow the steps outlined in the
@@ -290,7 +290,7 @@ module before promoting the changes. Depending on your infrastructure setup, you
   prevent you from addressing issues in downstream modules.
 
 
-#### Switch common tfvars files to use yaml
+#### <a name="switch-common-tfvars-files-to-use-yaml" />Switch common tfvars files to use yaml
 
 Terragrunt supports ingesting common `tfvars` files to pass global variables to your terraform modules through the use
 of [`required_var_files` and `optional_var_files` in the
