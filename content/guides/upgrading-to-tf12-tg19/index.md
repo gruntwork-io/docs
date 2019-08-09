@@ -339,3 +339,13 @@ following steps to workaround the new warnings in TF12:
     },
   )
   ```
+
+## Acme change sets
+
+We applied the above procedure to our Acme Reference Architecture repos. You can see the pull requests for each repo
+here:
+
+- [infrastructure-live-multi-account-acme](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/pull/21)
+- [infrastructure-modules-multi-account-acme](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/pull/23)
+- [infrastructure-live-acme](https://github.com/gruntwork-io/infrastructure-live-acme/pull/18)
+- [infrastructure-modules-acme](https://github.com/gruntwork-io/infrastructure-modules-acme/pull/23)
