@@ -1,6 +1,6 @@
 ---
 title: "Upgrading your Reference Architecture Deployment to Terraform 0.12.x and Terragrunt 0.19.x"
-date: 2019-08-06
+date: 2019-08-14
 tags: ["terraform", "terragrunt"]
 ---
 
