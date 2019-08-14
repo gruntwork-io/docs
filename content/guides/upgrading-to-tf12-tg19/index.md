@@ -349,3 +349,117 @@ here:
 - [infrastructure-modules-multi-account-acme](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/pull/23)
 - [infrastructure-live-acme](https://github.com/gruntwork-io/infrastructure-live-acme/pull/18)
 - [infrastructure-modules-acme](https://github.com/gruntwork-io/infrastructure-modules-acme/pull/23)
+
+
+## Known issues
+
+- When upgrading `iam-groups`, you may run into an error where you will not be able to `plan`, `apply`, or `destroy` the
+  resources. You will get an error message similar to below:
+
+    ```
+    Error: Invalid count argument
+        on .terraform/modules/iam_groups/modules/iam-groups/main.tf line 230, in resource "aws_iam_group" "cross_account_access_groups":
+        230:   count = length(data.template_file.cross_account_group_names.*.rendered)
+    ```
+
+  This is due to a bug in terraform where it does not realize that the data source can be calculated at `plan` time. You
+  can read more about the issue on [the bug ticket here](https://github.com/hashicorp/terraform/issues/21450).
+  This issue is fixed in `module-security`
+  [v0.18.1](https://github.com/gruntwork-io/module-security/releases/tag/v0.18.1). If you encounter this issue, upgrade
+  `module-security` to `v0.18.1`. Note that `v0.18.0` has a backwards incompatible change and will require code changes
+  if you are upgrading from a version less than `v0.18.0`. You can see the necessary changes you need to make in [the
+  release notes](https://github.com/gruntwork-io/module-security/releases/tag/v0.18.0).
+
+- When upgrading `iam-groups` to `v0.18.1` from a version older than `v0.17.0`, you may run into an issue different from
+  the previous one where you will not be able to run `plan`, `apply`, or `destroy`. The error message in this case will
+  look similar to below:
+
+    ```
+    ...
+
+    Error: Unsupported attribute
+      on .terraform/modules/iam_groups/modules/iam-groups/outputs.tf line 38, in output "ssh_grunt_sudo_users_group_arns":
+      38:   value = [for _, group in aws_iam_group.ssh_iam_sudo_users : group.arn]
+
+    This value does not have any attributes.
+
+    ...
+    ```
+
+  This is due to a bug in terraform where it can not properly handle the migration of state representation from a single
+  resource to a resource using `for_each`. You can read more about the issue on [the bug ticket
+  here](https://github.com/hashicorp/terraform/issues/22375). To resolve this, you need to do state surgery to update
+  the representation. This will be done by first removing the original resource from the state, and then importing it.
+
+  To resolve this issue, follow the following steps:
+
+1. Make sure the module code is updated to `module-security` v0.18.1 and you are using terraform with version at
+   least 0.12.6.
+1. Run `terragrunt state list` to show all the state resources. You should see something like below:
+   ```
+   data.aws_caller_identity.current
+   module.iam_groups.aws_iam_group.billing
+   module.iam_groups.aws_iam_group.developers
+   module.iam_groups.aws_iam_group.full_access
+   module.iam_groups.aws_iam_group.iam_user_self_mgmt
+   module.iam_groups.aws_iam_group.read_only
+   module.iam_groups.aws_iam_group.ssh_iam_sudo_users
+   module.iam_groups.aws_iam_group.ssh_iam_users
+   module.iam_groups.aws_iam_group.use_existing_iam_roles
+   module.iam_groups.aws_iam_group_policy.billing
+   module.iam_groups.aws_iam_group_policy.developers
+   module.iam_groups.aws_iam_group_policy.developers_personal_s3_bucket
+   module.iam_groups.aws_iam_group_policy.full_access
+   module.iam_groups.aws_iam_group_policy.read_only
+   module.iam_groups.aws_iam_group_policy.use_existing_iam_roles
+   module.iam_groups.aws_iam_group_policy_attachment.billing_iam_user_self_mgmt
+   module.iam_groups.aws_iam_group_policy_attachment.developers_iam_user_self_mgmt
+   module.iam_groups.aws_iam_group_policy_attachment.full_access_iam_user_self_mgmt
+   module.iam_groups.aws_iam_group_policy_attachment.iam_user_self_mgmt
+   module.iam_groups.aws_iam_group_policy_attachment.read_only_iam_user_self_mgmt
+   module.iam_groups.aws_iam_policy.iam_user_self_mgmt
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.allow_access_from_other_accounts
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.billing
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.developers
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.developers_s3_bucket
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.full_access
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.houston_cli_permissions
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.iam_user_self_mgmt
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.read_only
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.ssh_grunt_houston_permissions
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.ssh_grunt_permissions
+   module.iam_groups.module.iam_policies.data.aws_iam_policy_document.use_existing_iam_roles
+   ```
+   The two objects to look for in particular are:
+   ```
+   module.iam_groups.aws_iam_group.ssh_iam_sudo_users
+   module.iam_groups.aws_iam_group.ssh_iam_users
+   ```
+   If you have those entries, then this method should resolve the problem for you.
+
+1. Inspect the state for one of the problem resources. Run `terragrunt state show
+   module.iam_groups.aws_iam_group.ssh_iam_sudo_users`. This should look like below:
+   ```
+   # module.iam_groups.aws_iam_group.ssh_iam_sudo_users:
+   resource "aws_iam_group" "ssh_iam_sudo_users" {
+       arn       = "arn:aws:iam::0000000000:group/ssh-grunt-sudo-users"
+       id        = "ssh-grunt-sudo-users"
+       name      = "ssh-grunt-sudo-users"
+       path      = "/"
+       unique_id = "00000000000000"
+   }
+   ```
+   Note the value of the `id` field, as we will need it later.
+
+1. Remove the state object so that it can be reconstructed in the new format. This operation doesn’t delete the
+   object, but does remove it from the state so that terraform loses track of it. Don’t worry: we will restore it in
+   step 4. The command to do this is: `terragrunt state rm module.iam_groups.aws_iam_group.ssh_iam_sudo_users`.
+
+1. Import the object into the state as the new format. Run the following command, replacing `ID_OF_IAM_GROUP` with
+   the `id` field you recorded in step 2: `terragrunt import
+   "module.iam_groups.aws_iam_group.ssh_iam_sudo_users[\"ID_OF_IAM_GROUP\"]" ID_OF_IAM_GROUP`
+
+1. Repeat steps 2-4 for `module.iam_groups.aws_iam_group.ssh_iam_users`.
+
+At the end of this, you should be able to run `terragrunt plan` cleanly.
+
