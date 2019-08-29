@@ -18,10 +18,7 @@ const Sidebar = () => (
             </Link>
           </div>
           <div className="nav-item">
-            <Link
-              to="/introduction/philosophy/"
-              className="nav-link text-dark"
-            >
+            <Link to="/introduction/philosophy/" className="nav-link text-dark">
               Gruntwork Philosophy
             </Link>
           </div>
@@ -57,7 +54,8 @@ const Sidebar = () => (
               to="/guides/upgrading-to-tf12-tg19/"
               className="nav-link text-dark"
             >
-              Upgrading your Reference Architecture Deployment to Terraform 0.12.x and Terragrunt 0.19.x
+              Upgrading your Reference Architecture Deployment to Terraform
+              0.12.x and Terragrunt 0.19.x
             </Link>
           </div>
         </div>
@@ -69,6 +67,14 @@ const Sidebar = () => (
               className="nav-link text-dark"
             >
               Module Version Compatibility
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to="/reference/gcp-reference-architecture/"
+              className="nav-link text-dark"
+            >
+              GCP Reference Architecture
             </Link>
           </div>
         </div>
