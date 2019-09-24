@@ -50,8 +50,8 @@ v0.18.x to Terraform 0.12.x and newer and Terragrunt 0.19.x and newer:
 
 ### <a name="upgrade-modules-for-compatibility-with-terraform-012x" />Upgrade modules for compatibility with Terraform 0.12.x
 
-Terraform 0.12.x introduces many syntactic updates to make working with the language better, such as [first-class
-expressions, `for` and `for_each`, a more powerful type system, better error messages, and
+Terraform 0.12.x introduces many syntactic updates to make working with the language better, such as first-class
+expressions, `for` and `for_each`, a more powerful type system, better error messages, [and
 more](https://www.hashicorp.com/blog/announcing-terraform-0-12). However, there a few backwards incompatible changes
 that prevent using your TF11 and older modules directly with TF12. For the safest and robust upgrade path, we recommend
 going through the process of updating all your modules to use the new HCL2 syntax using the `terraform 0.12upgrade` tool
