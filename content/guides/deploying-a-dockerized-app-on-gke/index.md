@@ -1,6 +1,6 @@
 ---
 title: "Deploying a Dockerized app on GCP/GKE"
-date: 2019-05-08
+date: 2019-10-22
 tags: ["gcp", "gke", "docker"]
 ---
 
@@ -9,14 +9,14 @@ This guide walks you through deploying a dockerized app to a GKE cluster running
 In order to follow this guide you will need:
 
 1. A GCP account with billing enabled. There is a [free tier](https://cloud.google.com/free/) that includes \$300 of free credit over a 12 month period.
-2. [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) v0.10.3 or later installed locally.
+2. [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) v0.12.7 or later installed locally.
 3. [Docker](https://www.docker.com/) v18.09.2 or later installed locally.
 4. A recent version of the [gcloud](https://cloud.google.com/sdk/gcloud/) command-line tool.
 5. A basic understanding of Node.js is also recommended.
 
 ## Creating a Basic App
 
-Before we can deploy a dockerized app, we need to first create one. For the purposes of this guide we will create
+Before we can deploy a dockerized app, we first need to create one. For the purposes of this guide we will create
 a basic Node.js app that responds to requests on port `8080`.
 
 Start by creating a file called `server.js` and paste in the following source code:
@@ -167,16 +167,21 @@ $ cd terraform
 Then create a `main.tf` file and copy the following code:
 
 ```hcl
+terraform {
+  # The modules used in this example require Terraform 0.12, additionally we depend on a bug fixed in version 0.12.7.
+  required_version = ">= 0.12.7"
+}
+
 provider "google" {
-  version = "~> 2.3.0"
-  project = "${var.project}"
-  region  = "${var.region}"
+  version = "~> 2.9.0"
+  project = var.project
+  region  = var.region
 }
 
 provider "google-beta" {
-  version = "~> 2.3.0"
-  project = "${var.project}"
-  region  = "${var.region}"
+  version = "~> 2.9.0"
+  project = var.project
+  region  = var.region
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -184,22 +189,22 @@ provider "google-beta" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "gke_cluster" {
-  # Use a recent version of the gke-cluster module
-  source = "git::git@github.com:gruntwork-io/terraform-google-gke.git//modules/gke-cluster?ref=v0.1.0"
+  # Use a version of the gke-cluster module that supports Terraform 0.12
+  source = "git::git@github.com:gruntwork-io/terraform-google-gke.git//modules/gke-cluster?ref=v0.3.8"
 
-  name = "${var.cluster_name}"
+  name = var.cluster_name
 
-  project  = "${var.project}"
-  location = "${var.location}"
-  network  = "${module.vpc_network.network}"
+  project  = var.project
+  location = var.location
+  network  = module.vpc_network.network
 
   # We're deploying the cluster in the 'public' subnetwork to allow outbound internet access
   # See the network access tier table for full details:
   # https://github.com/gruntwork-io/terraform-google-network/tree/master/modules/vpc-network#access-tier
-  subnetwork = "${module.vpc_network.public_subnetwork}"
+  subnetwork = module.vpc_network.public_subnetwork
 
   # When creating a private cluster, the 'master_ipv4_cidr_block' has to be defined and the size must be /28
-  master_ipv4_cidr_block = "${var.master_ipv4_cidr_block}"
+  master_ipv4_cidr_block = var.master_ipv4_cidr_block
 
   # This setting will make the cluster private
   enable_private_nodes = "true"
@@ -208,15 +213,19 @@ module "gke_cluster" {
   disable_public_endpoint = "false"
 
   # With a private cluster, it is highly recommended to restrict access to the cluster master
-  # However, for example purposes we will allow all inbound traffic.
-  master_authorized_networks_config = [{
-    cidr_blocks = [{
-      cidr_block   = "0.0.0.0/0"
-      display_name = "all-for-testing"
-    }]
-  }]
+  # However, for testing purposes we will allow all inbound traffic.
+  master_authorized_networks_config = [
+    {
+      cidr_blocks = [
+        {
+          cidr_block   = "0.0.0.0/0"
+          display_name = "all-for-testing"
+        },
+      ]
+    },
+  ]
 
-  cluster_secondary_range_name = "${module.vpc_network.public_subnetwork_secondary_range_name}"
+  cluster_secondary_range_name = module.vpc_network.public_subnetwork_secondary_range_name
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -224,12 +233,12 @@ module "gke_cluster" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_container_node_pool" "node_pool" {
-  provider = "google-beta"
+  provider = google-beta
 
   name     = "private-pool"
-  project  = "${var.project}"
-  location = "${var.location}"
-  cluster  = "${module.gke_cluster.name}"
+  project  = var.project
+  location = var.location
+  cluster  = module.gke_cluster.name
 
   initial_node_count = "1"
 
@@ -254,7 +263,7 @@ resource "google_container_node_pool" "node_pool" {
     # Add a private tag to the instances. See the network access tier table for full details:
     # https://github.com/gruntwork-io/terraform-google-network/tree/master/modules/vpc-network#access-tier
     tags = [
-      "${module.vpc_network.private}",
+      module.vpc_network.private,
       "private-pool-example",
     ]
 
@@ -262,7 +271,7 @@ resource "google_container_node_pool" "node_pool" {
     disk_type    = "pd-standard"
     preemptible  = false
 
-    service_account = "${module.gke_service_account.email}"
+    service_account = module.gke_service_account.email
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
@@ -270,7 +279,7 @@ resource "google_container_node_pool" "node_pool" {
   }
 
   lifecycle {
-    ignore_changes = ["initial_node_count"]
+    ignore_changes = [initial_node_count]
   }
 
   timeouts {
@@ -285,12 +294,11 @@ resource "google_container_node_pool" "node_pool" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "gke_service_account" {
-  # Use a recent version of the gke-service-account module
-  source = "git::git@github.com:gruntwork-io/terraform-google-gke.git//modules/gke-service-account?ref=v0.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-google-gke.git//modules/gke-service-account?ref=v0.3.8"
 
-  name        = "${var.cluster_service_account_name}"
-  project     = "${var.project}"
-  description = "${var.cluster_service_account_description}"
+  name        = var.cluster_service_account_name
+  project     = var.project
+  description = var.cluster_service_account_description
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -308,14 +316,14 @@ resource "google_storage_bucket_iam_member" "member" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "vpc_network" {
-  source = "git::git@github.com:gruntwork-io/terraform-google-network.git//modules/vpc-network?ref=v0.1.0"
+  source = "github.com/gruntwork-io/terraform-google-network.git//modules/vpc-network?ref=v0.2.1"
 
   name_prefix = "${var.cluster_name}-network-${random_string.suffix.result}"
-  project     = "${var.project}"
-  region      = "${var.region}"
+  project     = var.project
+  region      = var.region
 
-  cidr_block           = "${var.vpc_cidr_block}"
-  secondary_cidr_block = "${var.vpc_secondary_cidr_block}"
+  cidr_block           = var.vpc_cidr_block
+  secondary_cidr_block = var.vpc_secondary_cidr_block
 }
 
 # Use a random suffix to prevent overlap in network names
@@ -335,24 +343,24 @@ and `variables.tf` files:
 output "cluster_endpoint" {
   description = "The IP address of the cluster master."
   sensitive   = true
-  value       = "${module.gke_cluster.endpoint}"
+  value       = module.gke_cluster.endpoint
 }
 
 output "client_certificate" {
   description = "Public certificate used by clients to authenticate to the cluster endpoint."
-  value       = "${module.gke_cluster.client_certificate}"
+  value       = module.gke_cluster.client_certificate
 }
 
 output "client_key" {
   description = "Private key used by clients to authenticate to the cluster endpoint."
   sensitive   = true
-  value       = "${module.gke_cluster.client_key}"
+  value       = module.gke_cluster.client_key
 }
 
 output "cluster_ca_certificate" {
   description = "The public certificate that is the root of trust for the cluster."
   sensitive   = true
-  value       = "${module.gke_cluster.cluster_ca_certificate}"
+  value       = module.gke_cluster.cluster_ca_certificate
 }
 ```
 
@@ -366,14 +374,17 @@ output "cluster_ca_certificate" {
 
 variable "project" {
   description = "The project ID where all resources will be launched."
+  type        = string
 }
 
 variable "location" {
   description = "The location (region or zone) of the GKE cluster."
+  type        = string
 }
 
 variable "region" {
   description = "The region for the network. If the cluster is regional, this must be the same region. Otherwise, it should be the region of the zone."
+  type        = string
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -383,21 +394,25 @@ variable "region" {
 
 variable "cluster_name" {
   description = "The name of the Kubernetes cluster."
+  type        = string
   default     = "example-private-cluster"
 }
 
 variable "cluster_service_account_name" {
   description = "The name of the custom service account used for the GKE cluster. This parameter is limited to a maximum of 28 characters."
+  type        = string
   default     = "example-private-cluster-sa"
 }
 
 variable "cluster_service_account_description" {
   description = "A description of the custom service account used for the GKE cluster."
+  type        = string
   default     = "Example GKE Cluster Service Account managed by Terraform"
 }
 
 variable "master_ipv4_cidr_block" {
   description = "The IP range in CIDR notation (size must be /28) to use for the hosted master network. This range will be used for assigning internal IP addresses to the master or set of masters, as well as the ILB VIP. This range must not overlap with any other ranges in use within the cluster's network."
+  type        = string
   default     = "10.5.0.0/28"
 }
 
@@ -405,6 +420,7 @@ variable "master_ipv4_cidr_block" {
 # you will have to adjust the 'cidr_subnetwork_width_delta' in the 'vpc_network' -module accordingly.
 variable "vpc_cidr_block" {
   description = "The IP address range of the VPC in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27."
+  type        = string
   default     = "10.3.0.0/16"
 }
 
@@ -412,6 +428,7 @@ variable "vpc_cidr_block" {
 # you will have to adjust the 'cidr_subnetwork_width_delta' in the 'vpc_network' -module accordingly.
 variable "vpc_secondary_cidr_block" {
   description = "The IP address range of the VPC's secondary address range in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27."
+  type        = string
   default     = "10.4.0.0/16"
 }
 ```
@@ -424,7 +441,7 @@ Now we can use Terraform to create the resources:
 2. Run `terraform plan`.
 3. If the plan looks good, run `terraform apply`.
 
-Terraform will begin to create the GCP resources. This process can take up to XX minutes.
+Terraform will begin to create the GCP resources. This process can take between 10-15 minutes.
 
 ## Deploying the Dockerized App
 
@@ -435,22 +452,22 @@ object in the Kubernetes object model and will contain only our `simple-web-app`
 First, we must configure `kubectl` to use the newly created cluster:
 
 ```
-$ gcloud container clusters get-credentials example-private-cluster
+$ gcloud container clusters get-credentials example-private-cluster --region europe-west3
 ```
 
-**Note**: Be sure to substitute `example-private-cluster` with the name of your GKE cluster.
+**Note**: Be sure to substitute `example-private-cluster` with the name of your GKE cluster and use either `--region` or `--zone` to specify the location.
 
-Use the `kubectl run` command to create a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+Use the `kubectl create` command to create a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 named `simple-web-app-deploy` on your cluster:
 
 ```bash
-$ kubectl run simple-web-app-deploy --image=gcr.io/${PROJECT_ID}/simple-web-app:v1 --port 8080
+$ kubectl create deployment simple-web-app-deploy --image=gcr.io/${PROJECT_ID}/simple-web-app:v1
 ```
 
 To see the Pod created by the last command, you can run:
 
 ```bash
-$ kubectl get pods
+$ kubectl get pods -w
 ```
 
 The output should look similar to the following:
@@ -473,6 +490,20 @@ $ kubectl expose deployment simple-web-app-deploy --type=LoadBalancer --port 80 
 ```
 
 **Note:** GKE assigns the external IP address to the Service resource, not the Deployment.
+
+This will take approximately 1 minute to assign an external IP address to the service. You can follow the progress by running:
+
+```bash
+$ kubectl get services -w
+```
+
+Once this is done, you can easily open the external IP address in your web browser:
+
+```bash
+$ open http://34.89.172.43
+```
+
+If the service has been exposed correctly and the DNS has propagated you should see 'Hello World!'. Congratulations!
 
 ## Cleaning Up
 
