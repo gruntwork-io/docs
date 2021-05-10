@@ -13,10 +13,6 @@ import { OutboundLink } from "gatsby-plugin-google-analytics"
 import Header from "./Header"
 import Sidebar from "./Sidebar"
 
-import "scss/gatstrap.scss"
-//import 'animate.css/animate.css'
-//import "font-awesome/css/font-awesome.css"
-
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
