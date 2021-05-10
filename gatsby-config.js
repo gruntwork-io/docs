@@ -15,15 +15,13 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: `gatsby-plugin-react-svg`,
       options: {
         rule: {
           include: `${__dirname}/src/assets/`,
         },
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -86,9 +84,11 @@ module.exports = {
         ],
       },
     },
-    "gatsby-remark-smartypants",
-    "gatsby-plugin-sass",
-    "gatsby-plugin-sitemap",
+    `gatsby-remark-smartypants`,
+    `gatsby-plugin-sass`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -34,7 +34,7 @@ dependency issues if you clone the repo in your GOPATH. To address, clone outsid
 
 To deploy a new version of the site, run:
 
-1. `./doc-sourcer`
+1. `./doc_sourcer/doc-sourcer`
 1. `yarn run build`
 1. `houston-cli exec websites -- yarn run deploy`
 
