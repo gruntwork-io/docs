@@ -86,8 +86,6 @@ module.exports = {
     },
     `gatsby-remark-smartypants`,
     `gatsby-plugin-sass`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
