@@ -35,6 +35,14 @@ const Sidebar = () => (
         <div className="navbar-nav pl-2 small weight-500">
           <div className="nav-item">
             <Link
+              to="/guides/contributing/"
+              className="nav-link text-dark"
+            >
+              Contributing Guide
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
               to="/guides/deploying-a-dockerized-app-on-gke/"
               className="nav-link text-dark"
             >
