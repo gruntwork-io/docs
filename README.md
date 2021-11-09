@@ -1,51 +1,33 @@
-# Generating Gruntwork Package and Module Documentation
+# Website
 
-This repo contains a set of tools for generating Gruntwork Package and Gruntwork Module documentation on a public website
-in a customizable format.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Features
-
-This docs site is built using [Gatsby](https://www.gatsbyjs.org/), a static site generator that is based on React.
-We have extended it using plugins and custom code to support all of the relevant features required, including:
-
-- Syntax highlighting (via prismjs)
-- Copy code to clipboard
-- Image Captions
-- Responsive design with fixed header
-- Edit on GitHub buttons
-- Google Analytics
-- A dynamic sidebar with the ToC of the current page
-
-## doc-sourcer
-
-Some of the content is pulled from our other repos. You can look at `gruntyrepos.yml` for a list of repos where docs
-are sourced.
-
-This is managed through the `doc-sourcer` tool. Make sure you have a copy of it available by running:
+### Installation
 
 ```
-(cd ./doc_sourcer && go build -o doc-sourcer .)
+$ yarn
 ```
 
-**NOTE: The doc-sourcer project uses [go modules](https://github.com/golang/go/wiki/Modules). You may experience
-dependency issues if you clone the repo in your GOPATH. To address, clone outside of the GOPATH.**
+### Local Development
 
-## Deploy
+```
+$ yarn start
+```
 
-To deploy a new version of the site, run:
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-1. `./doc_sourcer/doc-sourcer`
-1. `yarn run build`
-1. `houston-cli exec websites -- yarn run deploy`
+### Build
 
-### The Generation Workflow
+```
+$ yarn build
+```
 
-Generating documentation is a multi-step process made up of the following stages:
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-1. `docs-fetcher`: Fetch all Gruntwork Package and Gruntwork Module source code into one repo.
-2. `docs-preprocessor`: Transform the default folder structure of Gruntwork docs into a folder structure that mirrors
-   the desired public website structure.
-3. `docs-generator`: Convert markdown files to HTML files, and generate an HTML-based navigation for all pages.
+### Deployment
 
-By using separate tools, we can compose this process to generate different kinds of documentation, pull from different
-sources, or output in a different format.
+```
+$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
