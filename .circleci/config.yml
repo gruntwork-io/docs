@@ -1,0 +1,102 @@
+version: 2.1
+
+######################################################################################################################
+# Define the ORBS we'll use in the rest of the workflow
+######################################################################################################################
+orbs:
+  docker: circleci/docker@0.5.13
+  awscli: circleci/aws-cli@0.1.13
+  slack: circleci/slack@3.4.1
+
+######################################################################################################################
+# We define all the actual build steps here in named, reusable references. This allows us to define jobs below as a
+# readable, composable list of references
+######################################################################################################################
+references:
+  base_container: &base_container
+    docker:
+      - image: circleci/node:14.15
+
+  ######################################################################################################################
+  # Build steps
+  ######################################################################################################################
+
+  deploy_to_staging: &deploy-to-staging
+    run:
+      name: deploy to staging
+      command: |
+        set +o pipefail
+        export CREDENTIALS=`aws sts assume-role --role-arn arn:aws:iam::151025255439:role/allow-gruntwork-website-ci-cd-access-from-other-accounts --role-session-name CircleCI --duration-seconds 900 --output=json`
+        export AWS_ACCESS_KEY_ID=`echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId'`
+        export AWS_SECRET_ACCESS_KEY=`echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey'`
+        export AWS_SESSION_TOKEN=`echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken'`
+        export AWS_EXPIRATION=`echo ${CREDENTIALS} | jq -r '.Credentials.Expiration'`
+        ./scripts/push-to-s3-stage.sh
+
+  deploy_to_prod: &deploy-to-prod
+    run:
+      name: deploy to prod
+      command: |
+        set +o pipefail
+        export CREDENTIALS=`aws sts assume-role --role-arn arn:aws:iam::996502968539:role/allow-gruntwork-website-ci-cd-access-from-other-accounts --role-session-name CircleCI --duration-seconds 900 --output=json`
+        export AWS_ACCESS_KEY_ID=`echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId'`
+        export AWS_SECRET_ACCESS_KEY=`echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey'`
+        export AWS_SESSION_TOKEN=`echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken'`
+        export AWS_EXPIRATION=`echo ${CREDENTIALS} | jq -r '.Credentials.Expiration'`
+        ./scripts/push-to-s3-prod.sh
+
+  notify_slack_staging: &notify_slack_staging
+    slack/status:
+      failure_message: ":red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
+      success_message: ":tada: [Stage] Docs site has been successfully deployed at version $CIRCLE_SHA1 to https://docs.dogfood-stage.com"
+      only_for_branches: "master"
+      channel: "C01J73HUKEF" # #team-platform-notifications
+
+  notify_slack_prod: &notify_slack_prod
+    slack/status:
+      failure_message: ":red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
+      success_message: ":tada: [Prod] Docs site has been successfully deployed at version $CIRCLE_TAG to https://docs.gruntwork.io"
+      channel: "C01J73HUKEF" # #team-platform-notifications
+
+#######################################################################################################################
+# The build jobs available, all consisting of lists of references to the references section above
+#######################################################################################################################
+jobs:
+  deploy-to-stage:
+    <<: *base_container
+    description: Deploy to Staging
+    steps:
+      - checkout
+      - awscli/install
+      - *deploy-to-staging
+      - *notify_slack_staging
+
+  deploy-to-prod:
+    <<: *base_container
+    description: Deploy to Prod
+    steps:
+      - checkout
+      - awscli/install
+      - *deploy-to-prod
+      - *notify_slack_prod
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Here we combine the jobs defined above into various workflows that can run in parallel or sequentially, define
+# dependencies on each other, and only run on certain branches/tags.
+# ---------------------------------------------------------------------------------------------------------------------
+
+workflows:
+  version: 2
+  each_commit:
+    jobs:
+      - deploy-to-stage:
+          filters:
+            branches:
+              # TODO: UPDATE TO `main/master`
+              only: docusaurus
+      - deploy-to-prod:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
