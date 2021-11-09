@@ -92,8 +92,7 @@ workflows:
       - deploy-to-stage:
           filters:
             branches:
-              # TODO: UPDATE TO `main/master`
-              only: docusaurus
+              only: master
       - deploy-to-prod:
           filters:
             tags:
