@@ -1,4 +1,0 @@
----
-repos:
-  - url: "git@github.com:gruntwork-io/toc.git"
-    branch: "master"
