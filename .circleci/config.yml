@@ -47,14 +47,14 @@ references:
 
   notify_slack_staging: &notify_slack_staging
     slack/status:
-      failure_message: ":red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
+      failure_message: "[Docs] :red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
       success_message: ":tada: [Stage] Docs site has been successfully deployed at version $CIRCLE_SHA1 to https://docs.dogfood-stage.com"
       only_for_branches: "master"
       channel: "C01J73HUKEF" # #team-platform-notifications
 
   notify_slack_prod: &notify_slack_prod
     slack/status:
-      failure_message: ":red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
+      failure_message: "[Docs] :red_circle: $CIRCLE_JOB has failed on master! Build triggered by: $CIRCLE_USERNAME. You have one hour to fix or revert!!"
       success_message: ":tada: [Prod] Docs site has been successfully deployed at version $CIRCLE_TAG to https://docs.gruntwork.io"
       channel: "C01J73HUKEF" # #team-platform-notifications
 
