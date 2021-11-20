@@ -6,6 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  /* default */
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
@@ -14,6 +15,36 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+
+  /* purple */
+  --ifm-color-primary: #5849a6;
+  --ifm-color-primary-dark: #4f4295;
+  --ifm-color-primary-darker: #4b3e8d;
+  --ifm-color-primary-darkest: #3e3374;
+  --ifm-color-primary-light: #6353b4;
+  --ifm-color-primary-lighter: #6a5cb7;
+  --ifm-color-primary-lightest: #8175c2;
+
+  /* blue */
+  --ifm-color-primary: #17A9F9;
+  --ifm-color-primary-dark: #069cef;
+  --ifm-color-primary-darker: #0694e1;
+  --ifm-color-primary-darkest: #057aba;
+  --ifm-color-primary-light: #32b3fa;
+  --ifm-color-primary-lighter: #3fb8fa;
+  --ifm-color-primary-lightest: #67c6fb;
+
+  --ifm-menu-color-background-hover: #E7F0F5;
+  --ifm-menu-color-background-active: #E7F0F5;
+
+  --ifm-navbar-height: 80px;
+
+  /*--ifm-footer-background-color: #252962;*/
+}
+
+html[data-theme='dark'] {
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.05);
+  --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
 }
 
 .docusaurus-highlight-code-line {
@@ -25,4 +56,25 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar__brand {
+  width: calc(var(--doc-sidebar-width) - var(--ifm-navbar-padding-horizontal));
+  border-right:  1px solid var(--ifm-toc-border-color);
+}
+
+.navbar {
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.25);
+}
+
+html[data-theme='dark'] .navbar {
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.75);
+}
+
+aside {
+  background-color: #F3F8FB;
+}
+
+html[data-theme='dark'] aside {
+  background-color: var(--ifm-background-surface-color);
 }
