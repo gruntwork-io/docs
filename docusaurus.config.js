@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
+          // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
         },
         blog: {
           showReadingTime: true,
@@ -39,24 +39,6 @@ const config = {
     ],
   ],
   plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "guides",
-        path: "guides",
-        routeBasePath: "guides",
-        sidebarPath: require.resolve("./sidebarsCommunity.js"),
-      },
-    ],
-    // [
-    //   "@docusaurus/plugin-content-docs",
-    //   {
-    //     id: "reference",
-    //     path: "reference",
-    //     routeBasePath: "reference",
-    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
-    //   },
-    // ],
     "plugin-image-zoom",
   ],
 
@@ -64,34 +46,56 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "My Site",
+        title: "Gruntwork Docs",
         logo: {
-          alt: "My Site Logo",
+          alt: "Gruntwork Logo",
           src: "img/logo.svg",
         },
         items: [
           {
             type: "doc",
-            docId: "intro",
             position: "left",
-            label: "Tutorial",
+            label: "Intro",
+            docId: "intro/overview/world-class-devops"
+          },
+          {
+            type: "doc",
+            position: "left",
+            label: "Guides",
+            docId: "guides/welcome"
           },
           {
             type: "dropdown",
             position: "left",
-            label: "Guides",
-            to: "/guides/guides-intro",
+            label: "Reference",
+            to: "/docs/reference/intro",
             items: [
               {
-                label: "Getting Started",
-                to: "/guides/getting-started/zero2hero/zero-to-hero",
+                label: "Services",
+                type: "doc",
+                docId: "reference/services/stub",
+              },
+              {
+                label: "Modules",
+                type: "doc",
+                docId: "reference/modules/stub",
+              },
+              {
+                label: "Tools",
+                type: "doc",
+                docId: "reference/tools/stub",
               },
             ],
           },
           { to: "/courses", label: "Courses", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/gruntwork-io",
             label: "GitHub",
+            position: "right",
+          },
+          {
+            href: "https://app.gruntwork.io",
+            label: "Sign In",
             position: "right",
           },
         ],
