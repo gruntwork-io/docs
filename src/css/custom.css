@@ -39,6 +39,8 @@
 
   --ifm-navbar-height: 100px;
 
+  --ifm-font-family-base: "Source Sans Pro";
+
   /*--ifm-footer-background-color: #252962;*/
 }
 
@@ -111,4 +113,8 @@ html[data-theme='light']
 /* remove external link icons on header/footer links */
 .footer__link-item svg, .navbar__items--right .navbar__link svg {
   display: none;
+}
+
+main {
+  margin-top: 2em;
 }
