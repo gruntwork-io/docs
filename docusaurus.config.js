@@ -142,6 +142,16 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+        /* we clear these icons out and use CSS to swap in our own images instead */
+        switchConfig: {
+          darkIcon: ' ',
+          lightIcon: ' ',
+        },
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
