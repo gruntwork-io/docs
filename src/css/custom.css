@@ -37,7 +37,7 @@
   --ifm-menu-color-background-hover: #E7F0F5;
   --ifm-menu-color-background-active: #E7F0F5;
 
-  --ifm-navbar-height: 80px;
+  --ifm-navbar-height: 100px;
 
   /*--ifm-footer-background-color: #252962;*/
 }
@@ -61,6 +61,15 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .navbar__brand {
   width: calc(var(--doc-sidebar-width) - var(--ifm-navbar-padding-horizontal));
   border-right:  1px solid var(--ifm-toc-border-color);
+  padding-right:  1em;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.navbar__logo {
+  height: 2.5rem;
+  margin-top: 0.5rem;
 }
 
 .navbar {
