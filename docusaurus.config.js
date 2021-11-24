@@ -94,8 +94,8 @@ const config = {
             position: "right",
           },
           {
-            href: "https://app.gruntwork.io",
-            label: "Sign In",
+            href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+            label: "Discussions",
             position: "right",
           },
         ],
