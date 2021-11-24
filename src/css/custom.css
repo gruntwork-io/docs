@@ -7,32 +7,31 @@
 /* You can override the default Infima variables here. */
 :root {
   /* default */
-  --ifm-color-primary: #25c2a0;
+/*  --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
   --ifm-color-primary-light: rgb(70, 203, 174);
   --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary-lightest: rgb(146, 224, 208);*/
 
   /* purple */
-  --ifm-color-primary: #5849a6;
-  --ifm-color-primary-dark: #4f4295;
-  --ifm-color-primary-darker: #4b3e8d;
-  --ifm-color-primary-darkest: #3e3374;
-  --ifm-color-primary-light: #6353b4;
-  --ifm-color-primary-lighter: #6a5cb7;
-  --ifm-color-primary-lightest: #8175c2;
+  --ifm-color-primary: #6f5bd7;
+  --ifm-color-primary-dark: #5942d1;
+  --ifm-color-primary-darker: #4f36ce;
+  --ifm-color-primary-darkest: #3f2aac;
+  --ifm-color-primary-light: #8574dd;
+  --ifm-color-primary-lighter: #8f80e0;
+  --ifm-color-primary-lightest: #b0a5e9;
 
   /* blue */
-  --ifm-color-primary: #17A9F9;
+/*  --ifm-color-primary: #17A9F9;
   --ifm-color-primary-dark: #069cef;
   --ifm-color-primary-darker: #0694e1;
   --ifm-color-primary-darkest: #057aba;
   --ifm-color-primary-light: #32b3fa;
   --ifm-color-primary-lighter: #3fb8fa;
-  --ifm-color-primary-lightest: #67c6fb;
+  --ifm-color-primary-lightest: #67c6fb;*/
 
   --ifm-menu-color-background-hover: #E7F0F5;
   --ifm-menu-color-background-active: #E7F0F5;
@@ -40,8 +39,9 @@
   --ifm-navbar-height: 100px;
 
   --ifm-font-family-base: "Source Sans Pro";
-
-  /*--ifm-footer-background-color: #252962;*/
+  --ifm-code-font-size: 95%;
+  /*--ifm-font-size-base: 110%;*/
+  --ifm-h1-font-size: 2.5rem; /* ! */
 }
 
 html[data-theme='dark'] {
@@ -59,6 +59,13 @@ html[data-theme='dark'] {
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+main {
+  margin-top: 2em;
+}
+
+
+/* NAVBAR + LOGO */
 
 .navbar__brand {
   width: calc(var(--doc-sidebar-width) - var(--ifm-navbar-padding-horizontal));
@@ -82,13 +89,8 @@ html[data-theme='dark'] .navbar {
   box-shadow: 0px 0px 15px rgba(0,0,0,0.75);
 }
 
-aside {
-  background-color: #F3F8FB;
-}
 
-html[data-theme='dark'] aside {
-  background-color: var(--ifm-background-surface-color);
-}
+/* THEME TOGGLE SWITCH */
 
 .toggle_node_modules-\@docusaurus-theme-classic-lib-next-theme-Toggle-styles-module {
   margin-left: 1rem;
@@ -110,11 +112,35 @@ html[data-theme='light']
   content: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjI5MyAxMy4yOTNDMTUuODExNSAxMy45NjMxIDE0LjE2MSAxNC4xNjU5IDEyLjU2MTQgMTMuODc0M0MxMC45NjE3IDEzLjU4MjcgOS40ODg5NSAxMi44MTA2IDguMzM5MTkgMTEuNjYwOUM3LjE4OTQ0IDEwLjUxMTEgNi40MTczNCA5LjAzODMgNi4xMjU3NCA3LjQzODY2QzUuODM0MTUgNS44MzkwMyA2LjAzNjkxIDQuMTg4NTIgNi43MDcwMSAyLjcwNzAzQzUuNTI3NTggMy4yNDAwNCA0LjQ5NTA1IDQuMDUxMjMgMy42OTgwMiA1LjA3MDk5QzIuOTAwOTkgNi4wOTA3NSAyLjM2MzI0IDcuMjg4NjUgMi4xMzA5MiA4LjU2MTkyQzEuODk4NiA5LjgzNTE4IDEuOTc4NjQgMTEuMTQ1OCAyLjM2NDE3IDEyLjM4MTNDMi43NDk3IDEzLjYxNjkgMy40MjkyMiAxNC43NDA0IDQuMzQ0NDIgMTUuNjU1NkM1LjI1OTYxIDE2LjU3MDggNi4zODMxOCAxNy4yNTAzIDcuNjE4NzEgMTcuNjM1OUM4Ljg1NDI0IDE4LjAyMTQgMTAuMTY0OSAxOC4xMDE0IDExLjQzODEgMTcuODY5MUMxMi43MTE0IDE3LjYzNjggMTMuOTA5MyAxNy4wOTkxIDE0LjkyOTEgMTYuMzAyQzE1Ljk0ODggMTUuNTA1IDE2Ljc2IDE0LjQ3MjUgMTcuMjkzIDEzLjI5M1YxMy4yOTNaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K);
 }
 
+
+/* PAGINATION */
+
+.pagination-nav__link {
+  transition: 0.2s ease-in-out;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0);
+}
+
+html[data-theme='light'] .pagination-nav__link:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+html[data-theme='light'] .pagination-nav__link:active {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] .pagination-nav__link:hover {
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  background-color: var(--ifm-background-surface-color);
+}
+
+html[data-theme='dark'] .pagination-nav__link:active {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+
+
 /* remove external link icons on header/footer links */
 .footer__link-item svg, .navbar__items--right .navbar__link svg {
   display: none;
-}
-
-main {
-  margin-top: 2em;
 }
