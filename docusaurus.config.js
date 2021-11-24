@@ -110,42 +110,83 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Company",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "About Gruntwork",
+                href: "https://gruntwork.io"
               },
-            ],
+              {
+                label: "Blog",
+                href: "https://blog.gruntwork.io/"
+              },
+              {
+                label: "Newsletter",
+                href: "https://gruntwork.io/newsletter/"
+              },
+              {
+                label: "Gruntwork Store",
+                href: "https://store.gruntwork.io/"
+              },
+            ]
           },
           {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "Community Slack",
+                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "GitHub Discussions",
+                href: "https://github.com/gruntwork-io"
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://twitter.com/gruntwork_io"
               },
-            ],
+            ]
           },
           {
-            title: "More",
+            title: "Resources",
             items: [
               {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                label: "Developer Portal",
+                href: "https://app.gruntwork.io"
               },
-            ],
+              {
+                label: "IaC Library on GitHub",
+                href: "https://github.com/gruntwork-io"
+              },
+              {
+                label: "DevOps Checklist",
+                href: "https://gruntwork.io/devops-checklist/"
+              },
+              {
+                label: "Learning Resources",
+                href: "https://gruntwork.io/devops-resources/"
+              },
+            ]
+          },
+          {
+            title: "Legal",
+            items: [
+              {
+                label: "Privacy Policy",
+                href: "https://gruntwork.io/legal/privacy-policy/"
+              },
+              {
+                label: "Cookie Policy",
+                href: "https://gruntwork.io/legal/cookie-policy/"
+              },
+              {
+                label: "Terms of Service",
+                href: "https://gruntwork.io/terms/"
+              },
+            ]
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
       },
       colorMode: {
         defaultMode: 'dark',
