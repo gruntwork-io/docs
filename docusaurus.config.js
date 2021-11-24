@@ -30,12 +30,6 @@ const config = {
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/facebook/docusaurus/edit/main/website/blog/",
-        },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -100,7 +94,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Discussions",
             position: "right",
           },
@@ -134,12 +128,12 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Community Slack",
-                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
+                label: "GitHub Discussions",
+                href: "https://github.com/gruntwork-io/knowledge-base/discussions"
               },
               {
-                label: "GitHub Discussions",
-                href: "https://github.com/gruntwork-io"
+                label: "Community Slack",
+                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
               },
               {
                 label: "Twitter",
