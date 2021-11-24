@@ -175,6 +175,31 @@ html[data-theme='dark'] .menu__link--sublist {
 }
 
 
+/* FOOTER */
+
+/* --ifm-footer-background-color doesn't appear to work */
+.footer {
+  background-color:  #252746;
+}
+
+.footer__links {
+  margin-bottom: 2rem;
+}
+
+.footer__title {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary-lightest);
+}
+
+.footer__copyright {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: .7rem;
+  color: var(--ifm-color-primary-lightest);
+}
+
 /* remove external link icons on header/footer links */
 .footer__link-item svg, .navbar__items--right .navbar__link svg {
   display: none;
