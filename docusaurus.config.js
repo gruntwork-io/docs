@@ -12,7 +12,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
 
@@ -46,10 +46,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Gruntwork Docs",
+        title: "",
         logo: {
           alt: "Gruntwork Logo",
-          src: "img/logo.svg",
+          src: "img/logo-dark.png",
+          srcDark: "img/logo-light.png",
         },
         items: [
           {
