@@ -16,6 +16,10 @@ const config = {
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
 
+  stylesheets: [
+    'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
+  ],
+
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -38,6 +42,7 @@ const config = {
       }),
     ],
   ],
+
   plugins: [
     "plugin-image-zoom",
   ],
