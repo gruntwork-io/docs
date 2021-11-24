@@ -140,6 +140,41 @@ html[data-theme='dark'] .pagination-nav__link:active {
 }
 
 
+/* SIDEBAR */
+
+aside {
+  background-color: #F3F8FB;
+}
+
+html[data-theme='dark'] aside {
+  background-color: var(--ifm-background-surface-color);
+}
+
+.menu__list-item > .menu__list > .menu__list-item:last-child {
+  padding-bottom: 1.5rem;
+}
+
+.menu__list-item > .menu__list {
+  border-left: 1px solid gray;
+}
+
+.menu__link--sublist {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+}
+
+html[data-theme='light'] .menu__link--sublist {
+  color:  black;
+  color:  #33376D;
+}
+
+html[data-theme='dark'] .menu__link--sublist {
+  color:  white;
+}
+
+
 /* remove external link icons on header/footer links */
 .footer__link-item svg, .navbar__items--right .navbar__link svg {
   display: none;
