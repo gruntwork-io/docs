@@ -67,9 +67,9 @@ references:
 # The build jobs available, all consisting of lists of references to the references section above
 #######################################################################################################################
 jobs:
-  validate-dev:
+  validate-build:
     <<: *base_container
-    description: Validate Dev
+    description: Validate Build
     steps:
       - checkout
       - *build_docs
@@ -80,7 +80,6 @@ jobs:
     steps:
       - checkout
       - awscli/install
-      - *build_docs
       - *deploy-to-staging
       - *notify_slack_staging
 
@@ -90,7 +89,6 @@ jobs:
     steps:
       - checkout
       - awscli/install
-      - *build_docs
       - *deploy-to-prod
       - *notify_slack_prod
 
@@ -103,7 +101,7 @@ workflows:
   version: 2
   each_commit:
     jobs:
-      - validate-dev:
+      - validate-build:
           context:
             - Gruntwork Platform CI
       - deploy-to-stage:
