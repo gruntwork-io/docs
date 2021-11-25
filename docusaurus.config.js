@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer/themes/github")
+const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -10,8 +10,8 @@ const config = {
   tagline: "Dinosaurs are cool",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "error", // Using 'error' instead of throw here so that all markdowns get processed
   favicon: "img/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
@@ -38,9 +38,7 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    "plugin-image-zoom",
-  ],
+  plugins: ["plugin-image-zoom"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -56,13 +54,13 @@ const config = {
             type: "doc",
             position: "left",
             label: "Intro",
-            docId: "intro/overview/world-class-devops"
+            docId: "intro/overview/world-class-devops",
           },
           {
             type: "doc",
             position: "left",
             label: "Guides",
-            docId: "guides/welcome"
+            docId: "guides/welcome",
           },
           {
             type: "dropdown",
@@ -147,6 +145,6 @@ const config = {
       },
       zoomSelector: ".markdown img",
     }),
-};
+}
 
-module.exports = config;
+module.exports = config
