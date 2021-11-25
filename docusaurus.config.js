@@ -12,9 +12,11 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "error", // Using 'error' instead of throw here so that all markdowns get processed
-  favicon: "img/favicon.ico",
+  favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
+
+  stylesheets: ["https://fonts.googleapis.com/css?family=Source+Sans+Pro"],
 
   presets: [
     [
@@ -38,16 +40,18 @@ const config = {
       }),
     ],
   ],
+
   plugins: ["plugin-image-zoom"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Gruntwork Docs",
+        title: "",
         logo: {
           alt: "Gruntwork Logo",
-          src: "img/logo.svg",
+          src: "img/logo-dark.png",
+          srcDark: "img/logo-light.png",
         },
         items: [
           {
@@ -92,8 +96,8 @@ const config = {
             position: "right",
           },
           {
-            href: "https://app.gruntwork.io",
-            label: "Sign In",
+            href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+            label: "Discussions",
             position: "right",
           },
         ],
@@ -102,11 +106,23 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Company",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "About Gruntwork",
+                href: "https://gruntwork.io",
+              },
+              {
+                label: "Blog",
+                href: "https://blog.gruntwork.io/",
+              },
+              {
+                label: "Newsletter",
+                href: "https://gruntwork.io/newsletter/",
+              },
+              {
+                label: "Gruntwork Store",
+                href: "https://store.gruntwork.io/",
               },
             ],
           },
@@ -114,30 +130,69 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "Community Slack",
+                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "GitHub Discussions",
+                href: "https://github.com/gruntwork-io",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://twitter.com/gruntwork_io",
               },
             ],
           },
           {
-            title: "More",
+            title: "Resources",
             items: [
               {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                label: "Developer Portal",
+                href: "https://app.gruntwork.io",
+              },
+              {
+                label: "IaC Library on GitHub",
+                href: "https://github.com/gruntwork-io",
+              },
+              {
+                label: "DevOps Checklist",
+                href: "https://gruntwork.io/devops-checklist/",
+              },
+              {
+                label: "Learning Resources",
+                href: "https://gruntwork.io/devops-resources/",
+              },
+            ],
+          },
+          {
+            title: "Legal",
+            items: [
+              {
+                label: "Privacy Policy",
+                href: "https://gruntwork.io/legal/privacy-policy/",
+              },
+              {
+                label: "Cookie Policy",
+                href: "https://gruntwork.io/legal/cookie-policy/",
+              },
+              {
+                label: "Terms of Service",
+                href: "https://gruntwork.io/terms/",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
+      },
+      colorMode: {
+        defaultMode: "dark",
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+        /* we clear these icons out and use CSS to swap in our own images instead */
+        switchConfig: {
+          darkIcon: " ",
+          lightIcon: " ",
+        },
       },
       prism: {
         theme: lightCodeTheme,
