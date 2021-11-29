@@ -10,7 +10,7 @@ const config = {
   tagline: "Dinosaurs are cool",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  onBrokenLinks: "error",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "error", // Using 'error' instead of throw here so that all markdowns get processed
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
