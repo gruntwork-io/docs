@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer/themes/github")
+const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -10,15 +10,13 @@ const config = {
   tagline: "Dinosaurs are cool",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "error",
+  onBrokenMarkdownLinks: "error", // Using 'error' instead of throw here so that all markdowns get processed
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
 
-  stylesheets: [
-    'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
-  ],
+  stylesheets: ["https://fonts.googleapis.com/css?family=Source+Sans+Pro"],
 
   presets: [
     [
@@ -43,9 +41,7 @@ const config = {
     ],
   ],
 
-  plugins: [
-    "plugin-image-zoom",
-  ],
+  plugins: ["plugin-image-zoom"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -62,13 +58,13 @@ const config = {
             type: "doc",
             position: "left",
             label: "Intro",
-            docId: "intro/overview/world-class-devops"
+            docId: "intro/overview/world-class-devops",
           },
           {
             type: "doc",
             position: "left",
             label: "Guides",
-            docId: "guides/welcome"
+            docId: "guides/welcome",
           },
           {
             type: "dropdown",
@@ -114,88 +110,88 @@ const config = {
             items: [
               {
                 label: "About Gruntwork",
-                href: "https://gruntwork.io"
+                href: "https://gruntwork.io",
               },
               {
                 label: "Blog",
-                href: "https://blog.gruntwork.io/"
+                href: "https://blog.gruntwork.io/",
               },
               {
                 label: "Newsletter",
-                href: "https://gruntwork.io/newsletter/"
+                href: "https://gruntwork.io/newsletter/",
               },
               {
                 label: "Gruntwork Store",
-                href: "https://store.gruntwork.io/"
+                href: "https://store.gruntwork.io/",
               },
-            ]
+            ],
           },
           {
             title: "Community",
             items: [
               {
                 label: "Community Slack",
-                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
+                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
               },
               {
                 label: "GitHub Discussions",
-                href: "https://github.com/gruntwork-io"
+                href: "https://github.com/gruntwork-io",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/gruntwork_io"
+                href: "https://twitter.com/gruntwork_io",
               },
-            ]
+            ],
           },
           {
             title: "Resources",
             items: [
               {
                 label: "Developer Portal",
-                href: "https://app.gruntwork.io"
+                href: "https://app.gruntwork.io",
               },
               {
                 label: "IaC Library on GitHub",
-                href: "https://github.com/gruntwork-io"
+                href: "https://github.com/gruntwork-io",
               },
               {
                 label: "DevOps Checklist",
-                href: "https://gruntwork.io/devops-checklist/"
+                href: "https://gruntwork.io/devops-checklist/",
               },
               {
                 label: "Learning Resources",
-                href: "https://gruntwork.io/devops-resources/"
+                href: "https://gruntwork.io/devops-resources/",
               },
-            ]
+            ],
           },
           {
             title: "Legal",
             items: [
               {
                 label: "Privacy Policy",
-                href: "https://gruntwork.io/legal/privacy-policy/"
+                href: "https://gruntwork.io/legal/privacy-policy/",
               },
               {
                 label: "Cookie Policy",
-                href: "https://gruntwork.io/legal/cookie-policy/"
+                href: "https://gruntwork.io/legal/cookie-policy/",
               },
               {
                 label: "Terms of Service",
-                href: "https://gruntwork.io/terms/"
+                href: "https://gruntwork.io/terms/",
               },
-            ]
+            ],
           },
         ],
         copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
       },
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: false,
         /* we clear these icons out and use CSS to swap in our own images instead */
         switchConfig: {
-          darkIcon: ' ',
-          lightIcon: ' ',
+          darkIcon: " ",
+          lightIcon: " ",
         },
       },
       prism: {
@@ -204,6 +200,6 @@ const config = {
       },
       zoomSelector: ".markdown img",
     }),
-};
+}
 
-module.exports = config;
+module.exports = config

@@ -21,6 +21,11 @@ references:
   # Build steps
   ######################################################################################################################
 
+  build_docs: &build_docs
+    run:
+      name: build
+      command: yarn && yarn build
+
   deploy_to_staging: &deploy-to-staging
     run:
       name: deploy to staging
@@ -62,6 +67,13 @@ references:
 # The build jobs available, all consisting of lists of references to the references section above
 #######################################################################################################################
 jobs:
+  validate-build:
+    <<: *base_container
+    description: Validate Build
+    steps:
+      - checkout
+      - *build_docs
+
   deploy-to-stage:
     <<: *base_container
     description: Deploy to Staging
@@ -89,6 +101,9 @@ workflows:
   version: 2
   each_commit:
     jobs:
+      - validate-build:
+          context:
+            - Gruntwork Platform CI
       - deploy-to-stage:
           context:
             - Gruntwork Platform CI
