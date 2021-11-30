@@ -1,3 +1,7 @@
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"a1715d16a673099fac9e6d4daa28101e"}
+##DOCS-SOURCER-END -->
+
 # Create an ECR Repository with Terraform
 
 ## Prerequisites

@@ -1,3 +1,7 @@
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"6113038c1e71fa3ff7d18b7db66e295d"}
+##DOCS-SOURCER-END -->
+
 # Setup for courses in Gruntwork Academy
 
 ## AWS

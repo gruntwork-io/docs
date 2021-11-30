@@ -1,3 +1,7 @@
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"032fcd9c67a72080a8c5b0d0eb30b58d"}
+##DOCS-SOURCER-END -->
+
 # A web app using Docker
 
 ## Prerequisites
