@@ -74,13 +74,13 @@ When you're done, destroy `docker-compose` with `Ctrl-C`, and then clean up:
 docker-compose down
 ```
 
-We've provided some helper scripts in the [scripts](scripts/) directory to facilitate the bringing up and down of the stack.
+We've provided some helper scripts in the scripts directory to facilitate the bringing up and down of the stack.
 
 Run `scripts/up.sh` to bring everything up, and `scripts/down.sh` to destroy everything. Note that the counter value will persist after bringing the stack down and then back up.
 If you want the counter to reset, you can run `scripts/up.sh clean`.
 
 ---
 
-[Table of Contents](../README.md)
+[Table of Contents](zero-to-hero)
 
-Next Section: [Create an ECR Repository with Terraform](../03_ECR_repo)
+Next Section: [Create an ECR Repository with Terraform](create-an-ecr-repository-with-terraform)

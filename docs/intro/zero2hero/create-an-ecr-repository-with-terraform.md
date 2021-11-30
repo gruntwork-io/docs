@@ -2,16 +2,16 @@
 
 ## Prerequisites
 
-- [Setup for the Course](../01_setup)
-- [Create a Web App via Docker](../02_web_app_via_docker)
+- [Setup for the Course](setup-for-courses-in-gruntwork-academy)
+- [Create a Web App via Docker](a-web-app-using-docker)
 
-This is using basic [Terraform](https://terraform.io) skills, so you'll either need Terraform installed locally or use the container provided in [Setup for the Course](../01_setup). Make sure you are properly set up for AWS authentication.
+This is using basic [Terraform](https://terraform.io) skills, so you'll either need Terraform installed locally or use the container provided in [Setup for the Course](./setup-for-courses-in-gruntwork-academy). Make sure you are properly set up for AWS authentication.
 
 ## Create the terrafom code
 
 tag::start-tag-name
 
-### [main.tf](main.tf)
+### main.tf
 
 This file is basic setup. We require a minimum version of terraform, pull in the Terraform [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs), and then set up a data block so that we can retrieve the AWS Account ID later on.
 
@@ -29,7 +29,7 @@ data "aws_caller_identity" "current" {}
 
 tag::end-tag-name
 
-### [variables.tf](variables.tf)
+### variables.tf
 
 We'll define just a few variables in this file, so that our code can be changed to suit our needs. We might want to launch resources in a different region or rename our application. Both variables have initial default values.
 
@@ -47,9 +47,9 @@ variable "app_name" {
 }
 ```
 
-### [ecr.tf](ecr.tf)
+### ecr.tf
 
-Here is where the AWS ECR repositories are actually created. We'll create one for each of our three applications (`web`, `api`, and `db`) from the [previous section](../02_web_app_via_docker).
+Here is where the AWS ECR repositories are actually created. We'll create one for each of our three applications (`web`, `api`, and `db`) from the [previous section](./a-web-app-using-docker).
 
 ```bash
 # AWS ECR Repository Terraform documentation: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository
@@ -67,7 +67,7 @@ resource "aws_ecr_repository" "db" {
 }
 ```
 
-### [outputs.tf](outputs.tf)
+### outputs.tf
 
 Finally, we specify some outputs for convenience. We'll output the AWS Account ID, and then URLs for the three repositories and URLs for ease of accessing the AWS ECR console for each of the three repositories.
 
@@ -245,7 +245,7 @@ Use the AWS CLI to log in to ECR with docker:
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com
 ```
 
-Build the Docker image (note this is referencing the directory in the [previous section](../02_web_app_via_docker)):
+Build the Docker image (note this is referencing the directory in the [previous section](a-web-app-using-docker)):
 
 ```bash
 docker build -t zero2hero_web ../02_web_app_via_docker/src/web
@@ -281,6 +281,4 @@ docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/zero2hero_db:lates
 
 ---
 
-[Table of Contents](../README.md)
-
-Next Section: [Launch Web App to ECS Fargate](../04_web_app_to_ecs_fargate)
+[Table of Contents](zero-to-hero)

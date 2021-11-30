@@ -88,6 +88,6 @@ aws  aws-vault  aws_completer  packer  terraform  terragrunt
 You can run the Zero to Hero Gruntwork Academy course from inside this running container.
 
 ---
-[Table of Contents](../README.md)
+[Table of Contents](zero-to-hero)
 
-Next Section: [A Web App via Docker](../02_web_app_via_docker)
+Next Section: [A Web App via Docker](a-web-app-using-docker)
