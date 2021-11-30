@@ -1,0 +1,5 @@
+{
+  "watch": ["_docs-sources"],
+  "exec": "yarn regenerate:local",
+  "ext": "md"
+}
