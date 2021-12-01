@@ -1,7 +1,3 @@
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"032fcd9c67a72080a8c5b0d0eb30b58d"}
-##DOCS-SOURCER-END -->
-
 # A web app using Docker
 
 ## Prerequisites
@@ -88,3 +84,8 @@ If you want the counter to reset, you can run `scripts/up.sh clean`.
 [Table of Contents](zero-to-hero)
 
 Next Section: [Create an ECR Repository with Terraform](create-an-ecr-repository-with-terraform)
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"032fcd9c67a72080a8c5b0d0eb30b58d"}
+##DOCS-SOURCER-END -->

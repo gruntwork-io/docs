@@ -1,7 +1,3 @@
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4bfc0c5153a2e2b9fd80023b3159d711"}
-##DOCS-SOURCER-END -->
-
 # Where to Get Support
 
 This is where the main content goes
@@ -13,3 +9,8 @@ This is where the main content goes
 <td>Stuff</td>
 </tr>
 </table>
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"4bfc0c5153a2e2b9fd80023b3159d711"}
+##DOCS-SOURCER-END -->
