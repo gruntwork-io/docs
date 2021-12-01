@@ -26,12 +26,6 @@ const config = {
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/facebook/docusaurus/edit/main/website/blog/",
-        },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -65,27 +59,10 @@ const config = {
             docId: "guides/welcome",
           },
           {
-            type: "dropdown",
+            type: "doc",
             position: "left",
             label: "Reference",
-            to: "/docs/reference/intro",
-            items: [
-              {
-                label: "Services",
-                type: "doc",
-                docId: "reference/services/stub",
-              },
-              {
-                label: "Modules",
-                type: "doc",
-                docId: "reference/modules/stub",
-              },
-              {
-                label: "Tools",
-                type: "doc",
-                docId: "reference/tools/stub",
-              },
-            ],
+            docId: "reference/services/intro",
           },
           { to: "/courses", label: "Courses", position: "left" },
           {
