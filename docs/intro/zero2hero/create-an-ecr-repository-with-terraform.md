@@ -282,3 +282,8 @@ docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/zero2hero_db:lates
 ---
 
 [Table of Contents](zero-to-hero)
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"a1715d16a673099fac9e6d4daa28101e"}
+##DOCS-SOURCER-END -->

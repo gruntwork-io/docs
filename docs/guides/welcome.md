@@ -6,3 +6,7 @@
 # Welcome
 
 This is an introduction to the guides section
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"b18be1468cbb969fa839d28cd90b9f97"}
+##DOCS-SOURCER-END -->

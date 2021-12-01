@@ -24,3 +24,8 @@ We recommend you start with the first section and work your way through the cour
 1. [Create an ECR Repository with Terraform](create-an-ecr-repository-with-terraform)
 
    We create a simple Terraform module to provision an [Elastic Container Registry](https://aws.amazon.com/ecr/) for your Docker image, and push your image to that repository.
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"f1fff0d34f39c232922f1e4878a860f9"}
+##DOCS-SOURCER-END -->

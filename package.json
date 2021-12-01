@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start & nodemon",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "regenerate:local": "docs-sourcer"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.9",
@@ -31,7 +32,11 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-beta.9",
     "@tsconfig/docusaurus": "^1.0.4",
+    "nodemon": "^2.0.15",
     "typescript": "^4.3.5"
+  },
+  "optionalDependencies": {
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.3"
   },
   "browserslist": {
     "production": [

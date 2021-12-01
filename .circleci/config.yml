@@ -24,7 +24,7 @@ references:
   build_docs: &build_docs
     run:
       name: build
-      command: yarn && yarn build
+      command: yarn --ignore-optional && yarn build
 
   deploy_to_staging: &deploy-to-staging
     run:
