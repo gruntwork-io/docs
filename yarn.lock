@@ -3563,9 +3563,9 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
-"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.2":
+"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.3":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#1a0300c677691d6ea021b38488be2185cd9d1150"
+  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#c0e21c37e9d2818b5c152568c5eace17740354ad"
   dependencies:
     "@octokit/auth-app" "^3.6.1"
     "@octokit/plugin-retry" "^3.0.9"
@@ -3578,6 +3578,7 @@ dns-txt@^2.0.2:
     dotenv "^10.0.0"
     file-loader "^6.2.0"
     fs "^0.0.1-security"
+    js-yaml "^4.1.0"
     lodash "^4.17.21"
     node-html-markdown "^1.1.3"
     querystring "^0.2.1"
@@ -5163,7 +5164,7 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-js-yaml@^4.0.0:
+js-yaml@^4.0.0, js-yaml@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
