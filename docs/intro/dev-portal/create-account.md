@@ -14,7 +14,7 @@ You'll be prompted to check your inbox for a sign in email. Gruntwork uses an pa
 
 :::note
 
-For security, sign in emails expire after 10 minutes. You can enter your email at [app.gruntwork.io](app.gruntwork.io) to receive a new sign in link at any time.
+For security, sign in emails expire after 10 minutes. You can enter your email at [app.gruntwork.io](https://app.gruntwork.io) to receive a new sign in link at any time.
 
 :::
 
@@ -26,5 +26,5 @@ If you are the admin for your organization, you'll be prompted to confirm detail
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"48323e85800184f93cf56d0bf30466f3"}
+{"sourcePlugin":"Local File Copier","hash":"089bac3903377b3729ecef08fbb206f7"}
 ##DOCS-SOURCER-END -->

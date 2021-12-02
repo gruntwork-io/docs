@@ -14,7 +14,7 @@ You'll be prompted to check your inbox for a sign in email. Gruntwork uses an pa
 
 :::note
 
-For security, sign in emails expire after 10 minutes. You can enter your email at [app.gruntwork.io](app.gruntwork.io) to receive a new sign in link at any time.
+For security, sign in emails expire after 10 minutes. You can enter your email at [app.gruntwork.io](https://app.gruntwork.io) to receive a new sign in link at any time.
 
 :::
 
