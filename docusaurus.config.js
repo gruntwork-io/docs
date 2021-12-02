@@ -61,7 +61,7 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Reference",
+            label: "Service Catalog API",
             docId: "reference/services/intro",
           },
           { to: "/courses", label: "Courses", position: "left" },
