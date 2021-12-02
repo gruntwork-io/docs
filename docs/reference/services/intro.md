@@ -1,4 +1,4 @@
-# Gruntwork Service Catalog for AWS
+# Overview
 
 The pages in this section contain the reference information for the Gruntwork
 Service Catalog for AWS. The Service Catalog consists of a number of reusable,
@@ -25,5 +25,5 @@ as Code Library.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5f09950f62b51b62a9972cf0ee18c7ad"}
+{"sourcePlugin":"Local File Copier","hash":"393920e3cb950f4cefe7cf6bd157e617"}
 ##DOCS-SOURCER-END -->
