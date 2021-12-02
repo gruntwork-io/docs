@@ -183,7 +183,6 @@ html[data-theme="dark"] aside {
   padding-bottom: 1.5rem;
 }
 
-/*.menu__list-item > .menu__list {*/
 nav.menu > ul.theme-doc-sidebar-menu > .menu__list-item > .menu__list {
   border-left: 1px solid var(--ifm-toc-border-color);
 }
