@@ -1,4 +1,4 @@
-# Gruntwork Service Catalog for AWS
+# Overview
 
 The pages in this section contain the reference information for the Gruntwork
 Service Catalog for AWS. The Service Catalog consists of a number of reusable,
