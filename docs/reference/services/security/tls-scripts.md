@@ -5,17 +5,17 @@ import TabItem from '@theme/TabItem';
 
 Create TLS certificates, download CA certs for RDS, and generate JVM trust stores.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/tls-scripts" class="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/tls-scripts" className="link-button">View on GitHub</a>
 
 ### Reference 
-              
+
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
         <thead>
             <tr>
-                <td>Variable name</td>
-                <td>Description</td>
+                <td><b>Variable name</b></td>
+                <td><b>Description</b></td>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +27,8 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
     <table>
         <thead>
             <tr>
-                <td>Variable name</td>
-                <td>Description</td>
+              <td><b>Variable name</b></td>
+              <td><b>Description</b></td>
             </tr>
         </thead>
         <tbody>
@@ -40,5 +40,5 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"604412358862f7d4be7022c8d1fe73de"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f3d0ff45b139ec55c2f2d24004de5bf8"}
 ##DOCS-SOURCER-END -->
