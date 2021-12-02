@@ -40,7 +40,6 @@
 
   --ifm-font-family-base: "Source Sans Pro";
   --ifm-code-font-size: 95%;
-  /*--ifm-font-size-base: 110%;*/
   --ifm-h1-font-size: 2.5rem; /* ! */
   --ifm-heading-color: #252746;
 }
@@ -49,6 +48,12 @@ html[data-theme="dark"] {
   --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.05);
   --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
   --ifm-heading-color: white;
+
+  --ifm-color-primary: #AB80FE;
+}
+
+.hero--primary {
+  background-color: #5849A6;
 }
 
 .docusaurus-highlight-code-line {
@@ -73,8 +78,9 @@ h4,
 h5,
 h6 {
   /* Source Sans Pro is a little wide at larger sizes, especially when bold */
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.025rem;
 }
+
 
 /* NAVBAR + LOGO */
 
@@ -177,13 +183,13 @@ html[data-theme="dark"] aside {
   padding-bottom: 1.5rem;
 }
 
-.menu__list-item > .menu__list {
-  border-left: 1px solid gray;
+nav.menu > ul.theme-doc-sidebar-menu > .menu__list-item > .menu__list {
+  border-left: 1px solid var(--ifm-toc-border-color);
 }
 
 .menu__link--sublist {
   font-weight: bold;
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.025rem;
 }
 
 html[data-theme="light"] .menu__link--sublist {

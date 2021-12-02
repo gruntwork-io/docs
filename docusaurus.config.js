@@ -66,13 +66,18 @@ const config = {
           },
           { to: "/courses", label: "Courses", position: "left" },
           {
-            href: "https://github.com/gruntwork-io",
-            label: "GitHub",
+            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+            label: "Knowledge Base",
             position: "right",
           },
           {
-            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
-            label: "Discussions",
+            href: "/docs/guides/support",
+            label: "Support",
+            position: "right",
+          },
+          {
+            href: "https://app.gruntwork.io",
+            label: "Sign In",
             position: "right",
           },
         ],
@@ -84,7 +89,7 @@ const config = {
             title: "Company",
             items: [
               {
-                label: "About Gruntwork",
+                label: "Gruntwork.io",
                 href: "https://gruntwork.io",
               },
               {
@@ -96,7 +101,7 @@ const config = {
                 href: "https://gruntwork.io/newsletter/",
               },
               {
-                label: "Gruntwork Store",
+                label: "Store",
                 href: "https://store.gruntwork.io/",
               },
             ],
@@ -105,12 +110,16 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "GitHub Discussions",
-                href: "https://github.com/gruntwork-io/knowledge-base/discussions"
+                label: "Knowledge Base",
+                href: "https://github.com/gruntwork-io/knowledge-base/discussions",
               },
               {
                 label: "Community Slack",
-                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
+                href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/gruntwork-io",
               },
               {
                 label: "Twitter",
@@ -133,10 +142,6 @@ const config = {
                 label: "DevOps Checklist",
                 href: "https://gruntwork.io/devops-checklist/",
               },
-              {
-                label: "Learning Resources",
-                href: "https://gruntwork.io/devops-resources/",
-              },
             ],
           },
           {
@@ -151,8 +156,8 @@ const config = {
                 href: "https://gruntwork.io/legal/cookie-policy/",
               },
               {
-                label: "Terms of Service",
-                href: "https://gruntwork.io/terms/",
+                label: "Website Terms",
+                href: "https://gruntwork.io/website-terms/",
               },
             ],
           },
