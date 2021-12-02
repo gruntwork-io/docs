@@ -7,6 +7,8 @@ Deploy an OpenVPN Server on AWS.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -209,5 +211,5 @@ Deploy an OpenVPN Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5679064132139a67c3618d08cc4c4a9c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"025db33d0158ac0865b7d2807a4c9415"}
 ##DOCS-SOURCER-END -->

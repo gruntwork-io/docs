@@ -7,6 +7,8 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -146,5 +148,5 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5d12ca681da23b1e62e7d0bc8932f369"}
+{"sourcePlugin":"Service Catalog Reference","hash":"01cbe0b1886c1bfe61e0ea5b0767dfa9"}
 ##DOCS-SOURCER-END -->

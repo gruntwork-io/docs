@@ -7,6 +7,8 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -53,5 +55,5 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"688f887ebb5f5e2e749e7756a4ce2455"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6f3bea305301015a3b11f451fd08aeda"}
 ##DOCS-SOURCER-END -->

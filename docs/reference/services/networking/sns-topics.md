@@ -7,6 +7,8 @@ Create Amazon Simple Notification Service topics
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -68,5 +70,5 @@ Create Amazon Simple Notification Service topics
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"40dc3a058229539327c10ce411194598"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a47cf97d0aa6d0a974a0a0ae9a6f9eae"}
 ##DOCS-SOURCER-END -->

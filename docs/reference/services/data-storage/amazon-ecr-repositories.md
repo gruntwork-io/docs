@@ -7,6 +7,8 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -71,5 +73,5 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"178ab0ac6a413bfdbe956225e70429d7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0a82595d32387ee161a07b658c55eb23"}
 ##DOCS-SOURCER-END -->

@@ -7,6 +7,8 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -194,5 +196,5 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0313769b15afb358cda90b709a9afc96"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8489189562bb88ea36d083a2bc02f10c"}
 ##DOCS-SOURCER-END -->

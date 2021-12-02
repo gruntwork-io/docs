@@ -7,6 +7,8 @@ Deploy a Lambda on AWS.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/lambda" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -212,5 +214,5 @@ Deploy a Lambda on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"151346aebd73eec3e288cff140a6d351"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e54e010c9fe1eae4b721ff4207db9cab"}
 ##DOCS-SOURCER-END -->

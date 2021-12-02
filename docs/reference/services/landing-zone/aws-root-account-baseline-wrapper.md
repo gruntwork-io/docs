@@ -7,6 +7,8 @@ A security baseline for AWS Landing Zone for configuring the root account (AKA m
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -680,5 +682,5 @@ A security baseline for AWS Landing Zone for configuring the root account (AKA m
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a10afc88f65d1c0e915e9a0592596659"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ff10926a01c001d96a2e942d34f169fe"}
 ##DOCS-SOURCER-END -->

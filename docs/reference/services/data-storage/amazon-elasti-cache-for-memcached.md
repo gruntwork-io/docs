@@ -7,6 +7,8 @@ Deploy and manage Amazon ElastiCache for Memcached
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/memcached" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -95,5 +97,5 @@ Deploy and manage Amazon ElastiCache for Memcached
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f3192aa6e205c02885e46e3bdf389efe"}
+{"sourcePlugin":"Service Catalog Reference","hash":"35ac3c50c119e4afaeb34df2ea2f9b36"}
 ##DOCS-SOURCER-END -->

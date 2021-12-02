@@ -7,6 +7,8 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -176,5 +178,5 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b48f650920f1d25ac9a437f563ab5014"}
+{"sourcePlugin":"Service Catalog Reference","hash":"497f2006ad47b1f4fe6a5a1a1afbd548"}
 ##DOCS-SOURCER-END -->

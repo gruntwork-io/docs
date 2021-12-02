@@ -7,6 +7,8 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -221,5 +223,5 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"33a5d6bf32bf394c05f6ee4a18818b58"}
+{"sourcePlugin":"Service Catalog Reference","hash":"4b973bc12756322a88c95a2419070306"}
 ##DOCS-SOURCER-END -->

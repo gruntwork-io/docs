@@ -7,6 +7,8 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-service" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -239,5 +241,5 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3085a4f31a95a38b80cc9ab7ca333c63"}
+{"sourcePlugin":"Service Catalog Reference","hash":"660c7b83a6ffecf5802783147090be22"}
 ##DOCS-SOURCER-END -->

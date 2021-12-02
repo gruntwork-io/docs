@@ -7,6 +7,8 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -281,5 +283,5 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"62333c33b89e583cb4c0f2ceafaf8b90"}
+{"sourcePlugin":"Service Catalog Reference","hash":"38b09faabd450e4d0cb2275675373a9c"}
 ##DOCS-SOURCER-END -->

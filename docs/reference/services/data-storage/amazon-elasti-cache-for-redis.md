@@ -7,6 +7,8 @@ Deploy and manage Amazon ElastiCache for Redis
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/redis" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -125,5 +127,5 @@ Deploy and manage Amazon ElastiCache for Redis
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"1f34e14a89ad2eaed7054446bf0b1b55"}
+{"sourcePlugin":"Service Catalog Reference","hash":"01de48c4ebecdb086ab12a7c6093386c"}
 ##DOCS-SOURCER-END -->

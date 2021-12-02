@@ -7,6 +7,8 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/s3-bucket" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -134,5 +136,5 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"dd27af5eda8f811ff4a3e6426fb127dd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5b3a120074ada62fcec6ce1e1f1551e2"}
 ##DOCS-SOURCER-END -->

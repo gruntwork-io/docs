@@ -7,6 +7,8 @@ Convenient module to manage best practices set of IAM Groups for permissions man
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -263,5 +265,5 @@ Convenient module to manage best practices set of IAM Groups for permissions man
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"628868540afd3f3cc62aef46e7c6d75b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d974c6150e5cb790199799284782f729"}
 ##DOCS-SOURCER-END -->

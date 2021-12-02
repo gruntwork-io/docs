@@ -7,6 +7,8 @@ Deploy and manage Amazon Elasticsearch Service
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/elasticsearch" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -170,5 +172,5 @@ Deploy and manage Amazon Elasticsearch Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"caf7c6b0bd823d6c6d7cf3ac9087cf7b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ad893cc03c8de1443c53aaf0179ee510"}
 ##DOCS-SOURCER-END -->

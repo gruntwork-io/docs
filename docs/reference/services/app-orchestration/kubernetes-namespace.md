@@ -7,6 +7,8 @@ Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-namespace" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -74,5 +76,5 @@ Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d2ff7bc8f54052fd0a4fc1f2724b7326"}
+{"sourcePlugin":"Service Catalog Reference","hash":"eb6acd4aaa1624125f37ff78a3fb860d"}
 ##DOCS-SOURCER-END -->

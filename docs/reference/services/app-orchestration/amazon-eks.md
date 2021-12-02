@@ -7,6 +7,8 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -359,5 +361,5 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"69a0385b38283da023b4fdd75121eeaf"}
+{"sourcePlugin":"Service Catalog Reference","hash":"44b372f3d5e99ed9b9320198f2913bd4"}
 ##DOCS-SOURCER-END -->

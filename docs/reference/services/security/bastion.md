@@ -7,6 +7,8 @@ Deploy a Bastion host on to your AWS VPC network.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -131,5 +133,5 @@ Deploy a Bastion host on to your AWS VPC network.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8d5e21bb3126e8ee415902bee851a331"}
+{"sourcePlugin":"Service Catalog Reference","hash":"4c94b62d31f164ac81cd5359853b8817"}
 ##DOCS-SOURCER-END -->

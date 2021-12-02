@@ -7,6 +7,8 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-app" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -494,5 +496,5 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5cc7c1f84b6760478b24f0d8d82f90f1"}
+{"sourcePlugin":"Service Catalog Reference","hash":"c1df9c1039021e290640697656407e54"}
 ##DOCS-SOURCER-END -->

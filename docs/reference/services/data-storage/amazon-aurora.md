@@ -7,8 +7,8 @@ Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS)
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/aurora" class="link-button">View on GitHub</a>
 
-### Reference
-
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -272,6 +272,7 @@ Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS)
   </TabItem>
 </Tabs>
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"cb54c5474707f1f2fa5597fc567e7770"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3144d5b86f00ac36d1e43463c2a162d1"}
 ##DOCS-SOURCER-END -->

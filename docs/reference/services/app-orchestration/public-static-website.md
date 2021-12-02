@@ -7,6 +7,8 @@ Deploy your static content and static websites on S3, using a CloudFront CDN. Su
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/public-static-website" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -104,5 +106,5 @@ Deploy your static content and static websites on S3, using a CloudFront CDN. Su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"eb2b238bb82a2a79e9fecff900462ddd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e286b1d3a952e9a0e064f8859270d2dc"}
 ##DOCS-SOURCER-END -->

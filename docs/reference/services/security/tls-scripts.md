@@ -7,6 +7,8 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/tls-scripts" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -38,5 +40,5 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"26bebf29a276a9a75f015dda705cecf2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"604412358862f7d4be7022c8d1fe73de"}
 ##DOCS-SOURCER-END -->

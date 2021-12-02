@@ -7,6 +7,8 @@ Deploy an Amazon ECS Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" class="link-button">View on GitHub</a>
 
+### Reference 
+              
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
     <table>
@@ -224,5 +226,5 @@ Deploy an Amazon ECS Cluster
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"329368eb68647e2638d3ccc868db4f59"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ae3ac1fa3396b95b8166b2adce4bf7fb"}
 ##DOCS-SOURCER-END -->
