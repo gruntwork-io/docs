@@ -1,10 +1,69 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Gruntwork Access
 
 Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!
 
-For details please see: [Gruntwork Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access/README.adoc)
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" class="link-button">View on GitHub</a>
+
+<Tabs>
+  <TabItem value="inputs" label="Inputs" default>
+    <table>
+        <thead>
+            <tr>
+                <td>Variable name</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+        <td>grant_security_account_access</td>
+        <td>Set to true to grant your security account, with the account ID specified in var.security_account_id, access to the IAM role. This is required for deploying a Reference Architecture.</td>
+    </tr><tr>
+        <td>gruntwork_aws_account_id</td>
+        <td>The ID of the AWS account that will be allowed to assume the IAM role.</td>
+    </tr><tr>
+        <td>iam_role_name</td>
+        <td>The name to use for the IAM role</td>
+    </tr><tr>
+        <td>managed_policy_name</td>
+        <td>The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default.</td>
+    </tr><tr>
+        <td>require_mfa</td>
+        <td>If set to true, require MFA to assume the IAM role from the Gruntwork account.</td>
+    </tr><tr>
+        <td>security_account_id</td>
+        <td>The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.</td>
+    </tr><tr>
+        <td>tags</td>
+        <td>Tags to apply to all resources created by this module</td>
+    </tr>
+        </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="outputs" label="Outputs">
+    <table>
+        <thead>
+            <tr>
+                <td>Variable name</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+        <td>iam_role_arn</td>
+        <td>The ARN of the IAM role</td>
+    </tr><tr>
+        <td>iam_role_name</td>
+        <td>The name of the IAM role</td>
+    </tr>
+        </tbody>
+    </table>
+  </TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d64fd78d0f9452f4ae5d1df80f182f42"}
+{"sourcePlugin":"Service Catalog Reference","hash":"814d51358de9cbc566ae41f23ffd26db"}
 ##DOCS-SOURCER-END -->
