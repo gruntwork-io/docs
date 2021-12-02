@@ -7,7 +7,7 @@ static website generator.
 
 All of the content that we see on the docs site is rendered to the top level
 `docs/` folder by the
-[docs-sourcer](https://githbu.com/gruntwork-io/docs-sourcer). `docs-sourcer` is
+[docs-sourcer](https://github.com/gruntwork-io/docs-sourcer). `docs-sourcer` is
 a process which can pull content from our GitHub repos as well as to pre-process
 the MarkDown files which comprise the docs site's manually authored content (in
 `_docs-sources/`). At present, `docs-sourcer` isn't augmenting the content all
