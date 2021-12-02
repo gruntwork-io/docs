@@ -8,7 +8,7 @@ static website generator.
 All of the content that we see on the docs site is rendered to the top level
 `docs/` folder by the
 [docs-sourcer](https://github.com/gruntwork-io/docs-sourcer). `docs-sourcer` is
-a process which can pull content from our GitHub repos as well as to pre-process
+a process which can pull content from our GitHub repos as well as pre-process
 the MarkDown files which comprise the docs site's manually authored content (in
 `_docs-sources/`). At present, `docs-sourcer` isn't augmenting the content all
 that much, but in the future, the idea is that `docs-sourcer` will be able to
@@ -43,9 +43,22 @@ you edit a file in `_docs-sources/` then the `docs-sourcer` will automatically
 re-run to regenerate the output files. Docusaurus will then hot-reload that
 content so that to the end user, they have "live reloading" while authoring.
 
-### Manually running docs-sourcer
+### Committing changes to docs
 
-It's possible to manually run the docs-sourcer by invoking:
+While authoring local content, you will exclusively be making your changes in
+the `_docs-sources/` folder. The `docs-sourcer` will then pre-process and
+generate output for you. To get your content _published_ you will need to commit
+**both** the "source" files in `_docs-sources/` as well as the generated content
+in the top level `docs/` folder.
+
+Generated content should be up to date if you are previewing locally while
+editing but you may wish to manually regenerate the output (see section below)
+to ensure it is totally up to date.
+
+### Manually generating docs output
+
+It's possible to manually regenerate output content from the sources in
+`_docs-sources/`:
 
 ```
 yarn regenerate:local
