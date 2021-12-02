@@ -59,27 +59,10 @@ const config = {
             docId: "guides/welcome",
           },
           {
-            type: "dropdown",
+            type: "doc",
             position: "left",
-            label: "Reference",
-            to: "/docs/reference/intro",
-            items: [
-              {
-                label: "Services",
-                type: "doc",
-                docId: "reference/services/stub",
-              },
-              {
-                label: "Modules",
-                type: "doc",
-                docId: "reference/modules/stub",
-              },
-              {
-                label: "Tools",
-                type: "doc",
-                docId: "reference/tools/stub",
-              },
-            ],
+            label: "Service Catalog API",
+            docId: "reference/services/intro",
           },
           { to: "/courses", label: "Courses", position: "left" },
           {
