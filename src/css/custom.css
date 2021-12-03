@@ -195,23 +195,12 @@ html[data-theme="dark"] .menu__link--sublist {
   font-size: 0.9rem;
 }
 
-ul.table-of-contents {
-  padding: 0;
-}
-
-.table-of-contents li {
-  margin-left: 0;
-}
-
-.table-of-contents__link,
-.table-of-contents__link code {
-  padding-left: 1em;
-  border-left: 2px solid transparent;
-}
-
-.table-of-contents__link--active,
-.table-of-contents__link--active code {
-  border-left-color: var(--ifm-color-primary);
+.table-of-contents__link--active:before {
+  position: absolute;
+  left: 0;
+  content: ".";
+  color: transparent;
+  border-left: 2px solid var(--ifm-color-primary);
 }
 
 /* FOOTER */
