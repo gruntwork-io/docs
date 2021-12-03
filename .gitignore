@@ -1,3 +1,6 @@
+# Docusaurus generated file
+docs/
+
 # Terraform files
 .terraform
 terraform.tfstate

@@ -26,10 +26,10 @@ const sidebars = {
       ],
     },
     {
-      "Accessing the Dev Portal": [
-        "intro/dev-portal/create-account",
-        "intro/dev-portal/invite-team",
-        "intro/dev-portal/link-github-id",
+      "Accessing Gruntwork": [
+        "intro/accessing-gruntwork/create-account",
+        "intro/accessing-gruntwork/invite-team",
+        "intro/accessing-gruntwork/link-github-id",
       ],
     },
     {
