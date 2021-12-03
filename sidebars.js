@@ -20,24 +20,25 @@ const sidebars = {
         "intro/overview/use-cases",
         "intro/overview/gruntwork-vs-other",
         "intro/overview/gruntwork-prod-framework",
+        "intro/overview/products",
         "intro/overview/getting-started",
       ],
     },
     {
-      "Accessing Gruntwork": [
-        "intro/accessing-gruntwork/create-account",
-        "intro/accessing-gruntwork/invite-team",
-        "intro/accessing-gruntwork/link-github-id",
+      "Access Gruntwork": [
+        "intro/access-gruntwork/create-account",
+        "intro/access-gruntwork/invite-team",
+        "intro/access-gruntwork/link-github-id",
       ],
     },
     {
-      "Setting Up Your Environmant": ["intro/environment-setup/stub"],
+      "Set Up Your Environmant": ["intro/environment-setup/stub"],
     },
     {
       "Tool Fundamentals": ["intro/tool-fundamentals/stub"],
     },
     {
-      "Deploying A Service Module": ["intro/first-deployment/stub"],
+      "Deploy A Service Module": ["intro/first-deployment/stub"],
     },
     {
       type: "doc",

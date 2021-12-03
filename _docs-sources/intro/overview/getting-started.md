@@ -2,4 +2,4 @@
 'title': 'Getting Started'
 ---
 
-# IaC Pipeline Header
+# Getting started
