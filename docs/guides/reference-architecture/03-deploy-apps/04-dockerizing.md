@@ -61,9 +61,9 @@ You should now be able to hit the app by opening `localhost:8080` in your browse
 Some things to note when writing up your `Dockerfile` and building your app:
 
 * Ensure your `Dockerfile` starts your app in the foreground so the container doesn't shutdown after app startup.
-* Your app should log to `stdout` / `stderr` to aid in [debugging](#debugging-errors) it after deployment to AWS.
+* Your app should log to `stdout` / `stderr` to aid in debugging it after deployment to AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5e9b1049c4cd41aa7f7c251fd9730da0"}
+{"sourcePlugin":"Local File Copier","hash":"2d6fc8ba4c4927f850bd052ab8189738"}
 ##DOCS-SOURCER-END -->
