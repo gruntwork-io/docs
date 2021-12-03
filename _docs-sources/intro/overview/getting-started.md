@@ -1,5 +1,5 @@
 ---
-'title': 'IaC Pipeline'
+'title': 'Getting Started'
 ---
 
 # IaC Pipeline Header
