@@ -71,17 +71,6 @@ main {
   margin-top: 2em;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  /* Source Sans Pro is a little wide at larger sizes, especially when bold */
-  letter-spacing: -0.025rem;
-}
-
-
 /* NAVBAR + LOGO */
 
 .navbar__brand {
@@ -189,7 +178,6 @@ nav.menu > ul.theme-doc-sidebar-menu > .menu__list-item > .menu__list {
 
 .menu__link--sublist {
   font-weight: bold;
-  letter-spacing: -0.025rem;
 }
 
 html[data-theme="light"] .menu__link--sublist {
