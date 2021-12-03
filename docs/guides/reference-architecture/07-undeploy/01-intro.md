@@ -8,7 +8,7 @@ In a previous section, you learned how to check [metrics, logs, and alerts](../m
 this section, we'll walk you through how to undeploy parts or all of the Reference Architecture.
 
 1. [Before you get started](before-you-get-started)
-1. [Pre-requisite: force_destroy on S3 buckets](pre-requisite-force-destroy-on-s3-bucket)
+1. [Pre-requisite: force_destroy on S3 buckets](pre-requisite-force-destroy-on-s3-buckets)
 1. [Pre-requisite: understand module dependencies](pre-requisite-understand-module-dependencies)
 1. [Undeploying modules using Gruntwork Pipelines](undeploying-modules-using-gruntwork-pipelines)
 1. [Manually undeploying a single module](manually-undeploying-a-single-module)
@@ -19,5 +19,5 @@ this section, we'll walk you through how to undeploy parts or all of the Referen
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b776914ef7e2ed35d410e7ffc796c995"}
+{"sourcePlugin":"Local File Copier","hash":"5efbc875d57569cf10827e3d88c6098f"}
 ##DOCS-SOURCER-END -->

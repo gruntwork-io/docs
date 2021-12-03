@@ -11,4 +11,4 @@ Architecture.
 * [What's already deployed](what-is-already-deployed)
 * [The App](the-app)
 * [Dockerizing](dockerizing)
-* [Publishing your docker image](publishing-docker-image)
+* [Publishing your docker image](publish-docker-image)
