@@ -15,7 +15,7 @@ There are a few reasons your call to `destroy` may fail:
     section.
 
 1. **Missing dependencies**: If you delete modules in the wrong order, as discussed in the [Pre-requisite: understand
-   module dependencies](#pre-requisite-understand-module-dependencies) section, then when you try to `destroy` on a
+   module dependencies](pre-requisite-understand-module-dependencies) section, then when you try to `destroy` on a
    module that's missing one of its dependencies, you'll get an error about a `data` source being unable to find the
    data it's looking for. Unfortunately, there are no good solutions in this scenario, just a few nasty workarounds:
 

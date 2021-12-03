@@ -3,7 +3,7 @@
 By default, if your Terraform code includes an S3 bucket, when you run `terraform destroy`, if that bucket contains
 any content, Terraform will _not_ delete the bucket and instead will give you an error like this:
 
-```bash
+```
 bucketNotEmpty: The bucket you tried to delete is not empty. You must delete all versions in the bucket.
 ```
 

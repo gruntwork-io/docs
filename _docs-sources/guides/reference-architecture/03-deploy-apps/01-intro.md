@@ -8,7 +8,7 @@ In the previous section, you learned how to [authenticate to AWS via web, CLI, V
 this guide, we'll walk you through deploying a Dockerized app to the  cluster running in your Reference
 Architecture.
 
-* [What's already deployed](#whats-already-deployed)
-* [The App](#the-app)
-* [Dockerizing](#dockerizing)
-* [Publishing your docker image](#publishing-your-docker-image)
+* [What's already deployed](what-is-already-deployed)
+* [The App](the-app)
+* [Dockerizing](dockerizing)
+* [Publishing your docker image](publishing-docker-image)
