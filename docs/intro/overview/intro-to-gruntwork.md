@@ -15,3 +15,8 @@ Gruntwork accelerates teams on Amazon Web Services (AWS). Support for additional
 ### Gruntwork and Terraform
 
 All Gruntwork products are built on and fully compatible with [open source Terraform](https://gruntwork.io). The one exception to this is the Gruntwork Reference Architecture, which uses Terragrunt to implement an end-to-end architecture.
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"dc9fc57942f36c3e03b60744283465cc"}
+##DOCS-SOURCER-END -->

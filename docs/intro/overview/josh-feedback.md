@@ -60,3 +60,8 @@
 ### Interpretation
 
 The difference in the first is that there are newlines between toplevel bullets. I'm not sure what the correct behavior here is. The difference in the second is the presence of the `:::note` admonition.
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"0f0c1c873e0e630001d78459ae59b309"}
+##DOCS-SOURCER-END -->

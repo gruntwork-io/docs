@@ -54,3 +54,8 @@ To understand how Gruntwork works, start by looking at our [products](products).
 ### Alternatives
 
 To understand how Gruntwork compares to similar solutions in the market, see [Gruntwork vs. Other](gruntwork-vs-other).
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"3a766bb9648e3fd525b5beb7e82c17c8"}
+##DOCS-SOURCER-END -->
