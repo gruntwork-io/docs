@@ -10,6 +10,8 @@
 - "Next Steps" at bottom should be the same boldness. 
 - Should "Deploy Your First Module" focus on teaching The Gruntwork Way? 
   - You could start by identifying a use case ("deploy a VPC"), then look at the service catalog, then, use Terraform or Terragrunt to deploy the module (we should cover both).
+- Zooming out leads to centered text. Should we left-align instead?
+- Are inline links too low-contrast (compared to black text) to easily see?
 
 # Bugs
 
@@ -33,8 +35,32 @@
 - Products
   - Service Catalog 
 
-- The difference is that there are newlines between toplevel bullets. I'm not sure what the correct behavior here is.
+### Another bug example
 
-- Zooming out leads to centered text. Should we left-align instead?
+- **DevOps Skill.** Gruntwork requires that users learn the following core DevOps skills:
+  - Terraform: Intermediate
+  - Bash: Beginner
+  - Packer: Beginner
+  - Docker: Intermediate
+    :::note
 
-- Are inline links too low-contrast (compared to black text) to easily see?
+    In the Gruntwork model, the user takes responsibility for developing these skills, however Gruntwork assists this effort by offering [DevOps Courses](/courses), [Professional Services](#), and [Support](#).
+
+    :::
+- **Ownership.** sdfadfasdfdfdf
+
+### Third bug example
+
+- **DevOps Ownership.** Someone at your organization must "own" the infrastructure. This could be an experienced DevOps engineer, software engineer learning DevOps for the first time, outside consultant, or anyone else committed to developing the necessary skills.
+- **DevOps Skill.** Gruntwork requires that users learn the following core DevOps skills:
+  - AWS: Intermediate
+  - Terraform: Intermediate
+  - Bash: Beginner
+  - Packer: Beginner
+  - Docker: Intermediate
+
+*In the Gruntwork model, the user takes responsibility for developing these skills, however Gruntwork assists this effort by offering [DevOps Courses](/courses), [Professional Services](#), and [Support](#).*
+
+### Interpretation
+
+The difference in the first is that there are newlines between toplevel bullets. I'm not sure what the correct behavior here is. The difference in the second is the presence of the `:::note` admonition.
