@@ -17,11 +17,13 @@ const sidebars = {
     {
       Overview: [
         "intro/overview/intro-to-gruntwork",
+        "intro/overview/business-case",
+        "intro/overview/gruntwork-production-framework",
+        "intro/overview/products",
         "intro/overview/use-cases",
         "intro/overview/gruntwork-vs-other",
-        "intro/overview/gruntwork-prod-framework",
-        "intro/overview/products",
         "intro/overview/getting-started",
+        "intro/overview/josh-feedback"
       ],
     },
     {
@@ -35,10 +37,10 @@ const sidebars = {
       "Set Up Your Environmant": ["intro/environment-setup/stub"],
     },
     {
-      "Tool Fundamentals": ["intro/tool-fundamentals/stub"],
+      "Set Up Your Tools": ["intro/tool-fundamentals/stub"],
     },
     {
-      "Deploy A Service Module": ["intro/first-deployment/stub"],
+      "Deploy Your First Module": ["intro/first-deployment/stub"],
     },
     {
       type: "doc",

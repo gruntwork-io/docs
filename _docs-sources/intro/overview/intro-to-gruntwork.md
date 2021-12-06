@@ -4,18 +4,10 @@
 
 # Introduction to Gruntwork
 
-- What is Gruntwork
-  - DevOps accelerator
-  - Products
-    - Service Catalog 
-    - Service Catalog + Compliance
-    - Gruntwork Landing Zone
-    - Gruntwork Pipelines 
-    - Reference Architecture
-    - Automatic updates
-    - Self-service
-- DevOps the Gruntwork Way
-  - DevOps production framework
-  - Maps to Gruntwork products
-- Key features
+Gruntwork is a "DevOps accelerator" designed to make it possible to achieve a world-class DevOps setup based completely on infrastructure-as-code in just a few days. 
 
+The core elements of a world-class DevOps setup are described in the [Gruntwork Production Framework](gruntwork-production-framework). The [Gruntwork product suite](products) is designed to help software teams implement the Gruntwork Production Framework.
+
+## Supported public clouds
+
+Gruntwork is designed to accelerate Amazon Web Services (AWS). Support for additional public clouds such as GCP and Azure may be added in the future.

@@ -55,7 +55,7 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Guides",
+            label: "Products",
             docId: "guides/welcome",
           },
           {
