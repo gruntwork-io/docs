@@ -7,53 +7,57 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster" className="link-button">View on GitHub</a>
 
-### Reference 
+### Reference
 
 <Tabs>
   <TabItem value="inputs" label="Inputs" default>
-    <table>
-        <thead>
-            <tr>
-                <td><b>Variable name</b></td>
-                <td><b>Description</b></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-        <td><a name="cluster_name" href="#cluster_name" className="snap-top"><code>cluster_name</code></a></td>
-        <td>The name of the ECS cluster</td>
-    </tr><tr>
-        <td><a name="custom_tags" href="#custom_tags" className="snap-top"><code>custom_tags</code></a></td>
-        <td>A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.</td>
-    </tr><tr>
-        <td><a name="enable_container_insights" href="#enable_container_insights" className="snap-top"><code>enable_container_insights</code></a></td>
-        <td>Whether or not to enable container insights monitoring on the ECS cluster.</td>
-    </tr>
-        </tbody>
-    </table>
+    <ul>
+      
+    <li>
+      <p>
+        <a name="cluster_name" href="#cluster_name" className="snap-top">
+          <code>cluster_name</code>
+        </a> - The name of the ECS cluster
+      </p>
+    </li>
+    <li>
+      <p>
+        <a name="custom_tags" href="#custom_tags" className="snap-top">
+          <code>custom_tags</code>
+        </a> - A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
+      </p>
+    </li>
+    <li>
+      <p>
+        <a name="enable_container_insights" href="#enable_container_insights" className="snap-top">
+          <code>enable_container_insights</code>
+        </a> - Whether or not to enable container insights monitoring on the ECS cluster.
+      </p>
+    </li>
+    </ul>
   </TabItem>
   <TabItem value="outputs" label="Outputs">
-    <table>
-        <thead>
-            <tr>
-              <td><b>Variable name</b></td>
-              <td><b>Description</b></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-        <td><a name="arn" href="#arn" className="snap-top"><code>arn</code></a></td>
-        <td>ARN of the ECS cluster that was created.</td>
-    </tr><tr>
-        <td><a name="name" href="#name" className="snap-top"><code>name</code></a></td>
-        <td>The name of the ECS cluster.</td>
-    </tr>
-        </tbody>
-    </table>
+    <ul>
+      
+    <li>
+      <p>
+        <a name="arn" href="#arn" className="snap-top">
+          <code>arn</code>
+        </a> - ARN of the ECS cluster that was created.
+      </p>
+    </li>
+    <li>
+      <p>
+        <a name="name" href="#name" className="snap-top">
+          <code>name</code>
+        </a> - The name of the ECS cluster.
+      </p>
+    </li>
+    </ul>
   </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f2356932fbe3cf7c7c65b5c992c82bc9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"aa367c880b6db855332114fe93de6b94"}
 ##DOCS-SOURCER-END -->
