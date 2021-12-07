@@ -1,4 +1,4 @@
-## CloudTrail
+# CloudTrail
 
 _[AWS CloudTrail](https://aws.amazon.com/cloudtrail/)_ is a service you can use to log most of the activity within your
 AWS account. CloudTrail automatically maintains an audit log of all API calls for
@@ -11,5 +11,5 @@ incidents, and maintaining audit logs for compliance.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"96e15c6313d098d001b3fcd9c7c83705"}
+{"sourcePlugin":"Service Catalog Reference","hash":"698e37f1f6939aa0500262a535388a76"}
 ##DOCS-SOURCER-END -->

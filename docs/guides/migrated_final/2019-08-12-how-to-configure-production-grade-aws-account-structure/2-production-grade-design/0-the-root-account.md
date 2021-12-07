@@ -1,4 +1,4 @@
-## The root account
+# The root account
 
 At the top of the design, you have the root account of your AWS organization. This account is not used to run any
 infrastructure, and only one or a small number of trusted admins should have IAM users in this account, using it
@@ -13,5 +13,5 @@ IAM group that gives the finance team access to the billing details.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"7f1e6427b6665d27293d447d9e03d912"}
+{"sourcePlugin":"Service Catalog Reference","hash":"4a98c8cc66056ba67f63b452f287d8ae"}
 ##DOCS-SOURCER-END -->

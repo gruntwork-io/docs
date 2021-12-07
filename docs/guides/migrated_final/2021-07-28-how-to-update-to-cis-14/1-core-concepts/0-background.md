@@ -1,8 +1,8 @@
-## Background
+# Background
 
 Version 1.4.0 of the CIS AWS Foundations Benchmark was released in May of 2021. You can refer to the [CIS website](https://www.cisecurity.org/benchmark/amazon_web_services/) where you can download the latest version of the Benchmark (as well as all the previous versions). The latest version introduces a few new recommendations, and also updates one recommendation.
 
-### Changes in recommendations
+## Changes in recommendations
 
 Changes in recommendations (both additions and removals) are listed below. You can think of these as a "diff"
 between versions 1.3.0 and 1.4.0.
@@ -23,7 +23,7 @@ Version 1.4.0 also updated a recommendation. It only affects the IAM password po
 
 - 1.12: Ensure credentials unused for 45 days or greater are disabled. The previous recommendation required credentials older than 90 days to be disabled.
 
-### New Gruntwork modules vs. existing modules
+## New Gruntwork modules vs. existing modules
 
 To achieve compliance with the new version of the benchmark, we’ve updated a bunch of existing modules. We’ve also
 created a new module for Amazon Macie, and updated the Landing Zone modules so that Landing Zone accounts now
@@ -37,5 +37,5 @@ necessary manual steps.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"507fb5f8090c94b3a2d01d904845733b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5cbd45ae97628a5f980f38877b60b114"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Root user
+# Root user
 
 Each AWS account has exactly one _root user_:
 
@@ -44,5 +44,5 @@ more limited permissions, and then you’ll likely never touch the root user acc
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6ed1d3562cb14b03db7a6d6a22016c63"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ea49fdea5bdf60a4f43f7ccb5e5c5720"}
 ##DOCS-SOURCER-END -->

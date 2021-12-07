@@ -1,6 +1,6 @@
-## Step 3: Deploy new modules
+# Step 3: Deploy new modules
 
-### 1. Deploy the Cleanup Expired Certs module (recommendation 1.19)
+## 1. Deploy the Cleanup Expired Certs module (recommendation 1.19)
 
 The new CIS AWS v1.3 recommendations require that all expired SSL/TLS certificates stored in AWS IAM are automatically removed. Removing expired SSL/TLS certificates eliminates the risk that an invalid certificate will be deployed
 accidentally to a resource such as AWS Elastic Load Balancer (ELB), which can damage the credibility of the application/website behind the ELB. As a best practice, it is recommended to delete expired certificates. To help you
@@ -10,7 +10,7 @@ For the code examples of deploying this module, see the
 [relevant section](https://gruntwork.io/guides/compliance/how-to-achieve-cis-benchmark-compliance/#cleanup_expired_certs_deployment)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
-### 2. Deploy IAM Access Analyzer module (recommendation 1.21)
+## 2. Deploy IAM Access Analyzer module (recommendation 1.21)
 
 The updated recommendations also require that the AWS IAM Access Analyzer service is enabled across all active regions in a given AWS account or organization.
 
@@ -34,7 +34,7 @@ For the code examples of deploying this module, see the
 [relevant section](https://gruntwork.io/guides/compliance/how-to-achieve-cis-benchmark-compliance/#iam_access_analyzer_deployment)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
-### 3. Deploy the ebs-encryption-multi-region module (recommendation 2.2.1)
+## 3. Deploy the ebs-encryption-multi-region module (recommendation 2.2.1)
 
 EC2 supports encryption at rest when using the Elastic Block Store (EBS) service. While disabled by default, forcing encryption when creating EBS volumes is supported. Encrypting data at rest reduces the likelihood that it is
 unintentionally exposed and can nullify the impact of disclosure if the encryption remains unbroken. Recommendation 2.2.1 specifies a manual process to encrypt EBS volumes using the AWS Console; however, Gruntwork has developed
@@ -45,7 +45,7 @@ For the code examples of deploying this module, see the
 [relevant section](https://gruntwork.io/guides/compliance/how-to-achieve-cis-benchmark-compliance/#encrypt_ebs_volumes)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
-### 4. Deploy the vpc-app-network-acl and vpc-mgmt-network-acl modules (recommendation 5.1)
+## 4. Deploy the vpc-app-network-acl and vpc-mgmt-network-acl modules (recommendation 5.1)
 
 To help us achieve CIS 1.3 compliance, we’ve also created the `vpc-app-network-acl` module in our [dedicated CIS service catalog](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.10.0/modules/vpc-app-network-acls). This module is designed to follow CIS 1.3 recommendations - restrict access by default, but only allow explicitly listed SSH and RDP connections and hosts. To be compliant, you’ll need to deploy the new module. For more details, please refer to the [dedicated module README](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/v0.10.0/modules/vpc-app-network-acls/README.md) and [the relevant example](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.10.0/examples/vpc-network-acls).
 
@@ -88,5 +88,5 @@ docs](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"02d9ddb4d223a3bae31b4dc5429fbda9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"7cb56b402577d466fe86257ae27226d4"}
 ##DOCS-SOURCER-END -->

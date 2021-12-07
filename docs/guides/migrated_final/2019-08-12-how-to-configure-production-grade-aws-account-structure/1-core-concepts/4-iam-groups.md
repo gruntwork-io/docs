@@ -1,4 +1,4 @@
-## IAM groups
+# IAM groups
 
 An _[IAM group](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html)_ is a collection of IAM users. You can
 attach IAM policies to an IAM group and all the users in that group will inherit the permissions from that policy.
@@ -10,5 +10,5 @@ and assign each IAM user to the appropriate IAM groups.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b40f4c9fed4bef23f9995f4ddbe8c4c1"}
+{"sourcePlugin":"Service Catalog Reference","hash":"33b6818f4780d2561d63a9a4999cf59b"}
 ##DOCS-SOURCER-END -->

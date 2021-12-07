@@ -1,4 +1,4 @@
-## Internet Gateways and NAT Gateways
+# Internet Gateways and NAT Gateways
 
 If the resources in your VPC need to be able to reach the outside world, you’ll need to deploy an Internet Gateway and
 NAT Gateway:
@@ -22,5 +22,5 @@ availability zone as the subnet itself).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d7a9a5b3f8e045a9a6dfe5eec77299b5"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e55b9a4593b033fe7646b57255b15c80"}
 ##DOCS-SOURCER-END -->

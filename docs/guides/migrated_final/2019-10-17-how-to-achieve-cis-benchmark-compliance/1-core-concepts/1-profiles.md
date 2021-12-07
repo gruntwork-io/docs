@@ -1,4 +1,4 @@
-## Profiles
+# Profiles
 
 The Benchmark defines two profile levels. Level one recommendations are easier to implement, incur less
 overhead, but still substantially improve security. Level two recommendations are meant for highly sensitive
@@ -8,5 +8,5 @@ day-to-day usage.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e63713b76b5b1f7c531243e9376c36fe"}
+{"sourcePlugin":"Service Catalog Reference","hash":"80b5f6ba5bc6e3579c5215e27c526166"}
 ##DOCS-SOURCER-END -->

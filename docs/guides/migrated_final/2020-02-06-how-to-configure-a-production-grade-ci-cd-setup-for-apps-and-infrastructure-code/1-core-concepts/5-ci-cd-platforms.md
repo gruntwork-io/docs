@@ -1,4 +1,4 @@
-## CI/CD platforms
+# CI/CD platforms
 
 Over the years, as practices for CI/CD for application code developed, many platforms emerged to support CI/CD workflows
 triggered from source control. Here we will list out a few of the major CI/CD platforms that exist to support these
@@ -132,5 +132,5 @@ provides, as well as how they mitigate the threat model that we cover:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d999d0e7cdec53b7017e24dbbaff3597"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d6e7236840ec021755b775484ddd1c32"}
 ##DOCS-SOURCER-END -->

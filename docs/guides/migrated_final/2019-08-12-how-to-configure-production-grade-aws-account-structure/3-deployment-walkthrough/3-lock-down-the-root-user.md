@@ -1,4 +1,4 @@
-## Lock down the root user
+# Lock down the root user
 
 After signing up for an AWS account, you’ll be logged in as the root user. The root user has unrestricted access to
 just about everything in your AWS account (and any child accounts), so if an attacker compromises your root user, the
@@ -35,5 +35,5 @@ your credentials) or for the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f1ce153433d74b226bd8f07fd3bdfda1"}
+{"sourcePlugin":"Service Catalog Reference","hash":"676606ab86a55623bc34e76ec399c8d2"}
 ##DOCS-SOURCER-END -->

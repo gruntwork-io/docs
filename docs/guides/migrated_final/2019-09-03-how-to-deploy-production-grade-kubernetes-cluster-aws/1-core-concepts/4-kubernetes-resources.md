@@ -1,9 +1,9 @@
-## Kubernetes resources
+# Kubernetes resources
 
 Using one of the previously mentioned tools, you can create one or more _resources_ within your Kubernetes cluster,
 such as pods, controllers, namespaces, services, and configuration.
 
-### Pods
+## Pods
 
 With Kubernetes, you don’t run containers directly. Instead, the basic building block in Kubernetes is a
 _[pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/)_, which is a group of one or more related containers that
@@ -37,7 +37,7 @@ time. This might happen because a node crashes or because you’re deploying a n
 other reasons. This is a critical idea to keep in mind as you design your system, especially when thinking about
 fault tolerance, replication, and state.
 
-### Controllers
+## Controllers
 
 Pods are the basic building blocks of Kubernetes, but you typically don’t deploy them directly either. A single pod on
 a single worker node is a single point of failure: the kubelet on that node can restart the pod if it crashes, but
@@ -58,7 +58,7 @@ The Deployment will deploy your replicas, constantly monitor them, and automatic
 When you apply a change to your Deployment—e.g., change the Docker image tag—the Deployment will automatically roll
 that change out using one of several built-in strategies, such as rolling deployment and canary deployment.
 
-### Namespaces
+## Namespaces
 
 _[Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)_ allow you to logically
 partition your Kubernetes cluster into multiple virtual clusters. Every command you issue to the Kubernetes API Server
@@ -67,7 +67,7 @@ you don’t specify a namespace, the `default` namespace is used. By granting us
 and by configuring your cluster to only allow connectivity between resources in the same namespace, you can use
 namespaces as a lightweight way to group applications and provide some isolation between them.
 
-### Services and Service Discovery
+## Services and Service Discovery
 
 Every pod in Kubernetes gets an IP address, but this IP could change every time the pod is redeployed. Moreover, you
 typically don’t want the IP of a single pod, but some way to talk to all the related pods that make up a logical
@@ -83,7 +83,7 @@ backend, you could configure a service called `backend` in front of the Java pod
 talk to the backend by sending requests to `backend.<NAMESPACE>.svc.cluster.local`, where `<NAMESPACE>` is the name of
 your Kubernetes namespace.
 
-### Configuration and secrets
+## Configuration and secrets
 
 To allow you to use the same container in different environments with different settings (e.g., dev, stage, prod), you
 can use a _[ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)_, which is a
@@ -112,5 +112,5 @@ files—with the main difference being that:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"620255f635365e95b677fed9757e9bcc"}
+{"sourcePlugin":"Service Catalog Reference","hash":"77b8c4132060e75af04b4ef9ece24605"}
 ##DOCS-SOURCER-END -->

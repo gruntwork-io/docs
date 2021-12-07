@@ -1,4 +1,4 @@
-## Try out the ECS Deploy Runner
+# Try out the ECS Deploy Runner
 
 At this point, you can see if the ECS Deploy Runner can be used to deploy your infrastructure. To test, use the
 [infrastructure-deployer CLI](https://github.com/gruntwork-io/module-ci/tree/master/modules/infrastructure-deployer).
@@ -47,5 +47,5 @@ Running this command will provide output similar to below:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"efcb21a2fe89f71e5025737a6201e2c9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fc9dcee4998e55e2213b6896cde8cf57"}
 ##DOCS-SOURCER-END -->

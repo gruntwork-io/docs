@@ -1,4 +1,4 @@
-## Why is it important to have CI/CD?
+# Why is it important to have CI/CD?
 
 To understand the benefits of CI/CD, it is worth exploring the opposite: _late integration and late delivery (LI/LD)_.
 We will explain LI/LD using a thought experiment about building the International Space Station (ISS).
@@ -39,5 +39,5 @@ ensuring that there is ample time for improvements and corrections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9d13414ac826aa0df6e0c4e4b0a5acd4"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6a5dda6a221f9274c83a407548185378"}
 ##DOCS-SOURCER-END -->

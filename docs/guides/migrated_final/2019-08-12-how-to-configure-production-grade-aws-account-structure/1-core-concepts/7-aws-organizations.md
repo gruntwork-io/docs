@@ -1,4 +1,4 @@
-## AWS Organizations
+# AWS Organizations
 
 _[AWS Organizations](https://aws.amazon.com/organizations/)_ gives you a central way to manage multiple AWS accounts. As
 you’ll see in [Production-grade design](#production_grade_design), it’s a good idea to use multiple separate AWS accounts to manage separate
@@ -38,5 +38,5 @@ those regions or services do not meet your company’s compliance requirements (
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"902cd15f2518eca733ef0d90cd8768bb"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a847e1ea9e4614a4211ded4d9344f7e8"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Configure role mapping
+# Configure role mapping
 
 When you deploy the `eks-cluster` module later in this guide, it’ll give your IAM user or IAM role (whatever you’re
 authenticated as) admin permissions in the cluster. You can use these admin permissions to configure permissions for
@@ -79,5 +79,5 @@ data "aws_eks_cluster_auth" "kubernetes_token" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"70ebea2f2cd0fd1134515f3a829ccde2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"87399eca4153bb9d4f438178d776f3d5"}
 ##DOCS-SOURCER-END -->

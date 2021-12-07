@@ -1,21 +1,21 @@
-## Testing: Terratest
+# Testing: Terratest
 
 Gruntwork uses [Terratest](https://terratest.gruntwork.io) to write tests for Terraform modules. Terratest is a Go
 library that provides patterns and helper functions for testing infrastructure code.
 
-### Terratest best practices
+## Terratest best practices
 
 Follow all the best practices listed in [Terratest best practices](https://terratest.gruntwork.io/docs/#testing-best-practices).
 
 The rest of the items below are additional conventions on top of the documented best practices that Gruntwork follows
 when writing tests using Terratest for terraform modules.
 
-### Code formatting
+## Code formatting
 
 Terratest is a Go library, so each test will be written in Go. All Go source files should be formatted using `goimports`
 and `go fmt`.
 
-### `examples` and `tests`
+## `examples` and `tests`
 
 In many cases the individual modules in the `modules` folder are narrowly focused to a specific subset of the overall
 infrastructure. This means that in many cases you will need to provide dependent resources externally to the module in
@@ -32,7 +32,7 @@ other words:
 
 - Tests should not directly call modules in the `modules` folder. Always go through the `examples`.
 
-### Parallel
+## Parallel
 
 Every test should have the `t.Parallel` call in the test function unless there is a specific need to run tests serially,
 e.g. manipulating process global resources, like environment variables. This is so that tests run as quickly as possible.
@@ -42,7 +42,7 @@ To facilitate this, every reference to a terraform example should use
 to create a copy of the example module in a temp directory. Then as the test runs, any stateful changes to the example
 module directory are isolated across tests, so that there’s no conflict on parallel runs.
 
-### Use TestStages for faster development
+## Use TestStages for faster development
 
 Use [test stages](https://terratest.gruntwork.io/docs/testing-best-practices/iterating-locally-using-test-stages/)
 in the test code, unless you only have 1 or 2 steps in the test code (e.g. a `plan` verification test).
@@ -119,7 +119,7 @@ When committing the final version of the test, all should be commented out so al
 //os.Setenv("SKIP_cleanup_ami", "true")
 ```
 
-### Setup and Teardown pattern
+## Setup and Teardown pattern
 
 In some cases you will want to write a group of tests that use a common resource, such as a Docker image or VPC. In this
 case, you will want to setup the common resource once, run a bunch of tests, and then teardown the resource. To achieve
@@ -171,5 +171,5 @@ func TestECS(t *testing.T) {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"50b251ba2026f8f531005ebad28a1a4d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9062815bb558e1d1dc123840f0460362"}
 ##DOCS-SOURCER-END -->

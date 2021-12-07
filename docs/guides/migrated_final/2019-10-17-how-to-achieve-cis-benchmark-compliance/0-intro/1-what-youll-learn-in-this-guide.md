@@ -1,4 +1,4 @@
-## What you’ll learn in this guide
+# What you’ll learn in this guide
 
 This guide consists of five main sections:
 
@@ -28,5 +28,5 @@ If you need to access older versions, please get in touch with us.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3cf760f9d1ceec7ace0a84fb2a2104a2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8fd4e9cfa68647654938c8865a73f4d0"}
 ##DOCS-SOURCER-END -->

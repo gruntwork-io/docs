@@ -1,4 +1,4 @@
-## What you’ll learn in this guide
+# What you’ll learn in this guide
 
 This guide consists of four main sections:
 
@@ -23,5 +23,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"93c8b1aefff24c2c49ba21f0b2b41975"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fbb500edc65f0748146569f984ef15ea"}
 ##DOCS-SOURCER-END -->

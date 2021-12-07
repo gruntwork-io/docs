@@ -1,4 +1,4 @@
-## Bastion host
+# Bastion host
 
 Since all of your application servers and data stores are in private subnets, they are not accessible from the public
 Internet. So what do you do if you need to access them? For example, you might need to SSH to an application server to
@@ -21,5 +21,5 @@ allow you to manage and connect to EC2 Instances via a custom protocol managed b
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"53450e48db7a4060985269eca7ac6ca2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e511f412cb9d8081cf08c76009999363"}
 ##DOCS-SOURCER-END -->

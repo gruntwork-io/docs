@@ -1,4 +1,4 @@
-## Launch a GKE Cluster
+# Launch a GKE Cluster
 
 Now you’ve successfully pushed the Docker image to the private Container Registry, you need to launch a
 [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/) cluster. You can quickly spin up a
@@ -300,5 +300,5 @@ Terraform will begin to create the GCP resources. This process can take several 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ff1f0013bebd5d4ff830fe49adc192e8"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0ca9de40db18b67186ccbc08b8e1578a"}
 ##DOCS-SOURCER-END -->

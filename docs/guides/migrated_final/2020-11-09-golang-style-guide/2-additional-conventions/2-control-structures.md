@@ -1,4 +1,4 @@
-## Control structures
+# Control structures
 
 When possible, avoid nesting `if`/`else` statements. (Of course, a single, non-nested `if`/`else` is perfectly fine.)
 Prefer multiple `return` statements over nested code. This makes the code more readable and avoids complexity.
@@ -31,5 +31,5 @@ if something {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2cf45bf102b79290d38cbc28876cbe40"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5bc373ff405fcafb68e769831367ff30"}
 ##DOCS-SOURCER-END -->

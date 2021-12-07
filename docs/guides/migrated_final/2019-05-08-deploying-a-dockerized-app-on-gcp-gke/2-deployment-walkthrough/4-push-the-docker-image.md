@@ -1,4 +1,4 @@
-## Push the Docker image
+# Push the Docker image
 
 So far you’ve successfully built a Docker image on your local computer. Now it’s time to push the image to your private
 [Google Container Registry](https://cloud.google.com/container-registry/), so it can be deployed from other locations,
@@ -27,5 +27,5 @@ docker push "gcr.io/${PROJECT_ID}/simple-web-app:v1"
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"eef8c22c42b386aa712e22b47af0a552"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9915e023d0f0bf1cd36b7addad59760e"}
 ##DOCS-SOURCER-END -->

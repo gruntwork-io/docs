@@ -1,4 +1,4 @@
-## Deploy the Dockerized App
+# Deploy the Dockerized App
 
 To deploy our Dockerized App on the GKE cluster, you can use the `kubectl` CLI tool to create a
 [Kubernetes Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/). A pod is the smallest deployable
@@ -37,5 +37,5 @@ Now you need to expose the app to the public Internet.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"37604026e4a88de092e2161808ca2ede"}
+{"sourcePlugin":"Service Catalog Reference","hash":"36651372d3864f9be52bd7b972f3feea"}
 ##DOCS-SOURCER-END -->

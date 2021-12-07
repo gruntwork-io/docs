@@ -1,4 +1,4 @@
-## Pointer usage
+# Pointer usage
 
 Prefer using value type over pointers, unless necessary. Generally speaking, there are only a few cases where pointer
 usage would be justified:
@@ -15,5 +15,5 @@ usage would be justified:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3d598f08a2a2a719262f6c5005d9ee27"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d0f3da3fbb24e32841018c5fc3926302"}
 ##DOCS-SOURCER-END -->

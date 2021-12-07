@@ -1,4 +1,4 @@
-## Regions and availability zones
+# Regions and availability zones
 
 ![AWS regions and availability zones](/assets/img/guides/vpc/aws-regions.png)
 
@@ -23,5 +23,5 @@ as starting points.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"75ab6878a6db23be7995be08bb0edb3d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"394be2f0d72615282e7c2397cfbe26d1"}
 ##DOCS-SOURCER-END -->

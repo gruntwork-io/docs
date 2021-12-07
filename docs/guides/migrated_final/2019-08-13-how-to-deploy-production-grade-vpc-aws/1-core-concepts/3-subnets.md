@@ -1,4 +1,4 @@
-## Subnets
+# Subnets
 
 ![VPCs partitioned into multiple subnets: public, private (services), private (persistence)](/assets/img/guides/vpc/vpc-subnets-diagram.png)
 
@@ -12,5 +12,5 @@ ranges.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c2d65baf64224d5e386baca624294a07"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3fa531d8ccae57acea20faba3ab78281"}
 ##DOCS-SOURCER-END -->

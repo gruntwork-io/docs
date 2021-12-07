@@ -1,4 +1,4 @@
-## What is Continuous Integration and Continuous Delivery?
+# What is Continuous Integration and Continuous Delivery?
 
 Continuous Integration and Continuous Delivery (also widely known as CI/CD) are software development practices that
 involve developers merging their work together and deploying it to production on a regular basis (oftentimes as
@@ -15,5 +15,5 @@ of a production-ready CI/CD pipeline for infrastructure code.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a734ff2fac3c9eb12f5d52506a3843c2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3b88ba35ab8309c07f91952d045cdfde"}
 ##DOCS-SOURCER-END -->

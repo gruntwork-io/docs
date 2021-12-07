@@ -1,4 +1,4 @@
-## Cleaning Up
+# Cleaning Up
 
 Once you’re done testing, you may want to clean up all the infrastructure you’ve deployed so GCP doesn’t charge you
 money for it.
@@ -22,5 +22,5 @@ This is a destructive command that will forcibly terminate and destroy your GKE 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ae4dece380b3fc859bac7004cf9d5ede"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2c66fa4ddcd570109cd7177cb1297f1a"}
 ##DOCS-SOURCER-END -->

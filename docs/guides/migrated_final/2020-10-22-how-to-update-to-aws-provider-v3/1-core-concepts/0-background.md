@@ -1,4 +1,4 @@
-## Background
+# Background
 
 Version [v3.0.0](https://github.com/terraform-providers/terraform-provider-aws/releases/tag/v3.0.0) of the Terraform AWS
 provider was released on July 30th 2020 with backwards incompatible updates. Following the provider release cycle,
@@ -18,5 +18,5 @@ the Gruntwork Reference Architecture to be compatible with AWS provider version 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"40e81d2e2685c93048353f47a76a08b8"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f1de5c831a3ab4480b37f2777e8d3f1d"}
 ##DOCS-SOURCER-END -->

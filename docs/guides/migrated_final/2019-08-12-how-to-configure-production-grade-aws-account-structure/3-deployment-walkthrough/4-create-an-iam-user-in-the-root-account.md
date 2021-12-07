@@ -1,4 +1,4 @@
-## Create an IAM user in the root account
+# Create an IAM user in the root account
 
 As the last action you do as the root user, you MUST create an IAM user. This is not only a better practice from a
 security standpoint, but also, the `account-baseline-xxx` modules we will use below assume IAM roles, which does not
@@ -19,5 +19,5 @@ IAM user manually by
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4d2f3a0184ca1165ae840445b152a89a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"408be18e59e98c88d19fbe1b8db03150"}
 ##DOCS-SOURCER-END -->

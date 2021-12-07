@@ -1,4 +1,4 @@
-## VPC Peering
+# VPC Peering
 
 ![Multiple VPCs connected via VPC peering](/assets/img/guides/vpc/vpc-diagram.png)
 
@@ -23,5 +23,5 @@ connections total) can quickly become impractical. In this case, you should look
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"28c23afdfcc513298b040a71b1f4676f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8a341f472d220d60e23da9e6246a072d"}
 ##DOCS-SOURCER-END -->

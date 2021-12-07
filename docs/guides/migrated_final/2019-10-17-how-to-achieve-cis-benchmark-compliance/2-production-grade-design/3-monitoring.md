@@ -1,4 +1,4 @@
-## Monitoring
+# Monitoring
 
 The Monitoring section has 15 recommendations for creating specific
 [CloudWatch Logs metric
@@ -13,5 +13,5 @@ Terraform resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e707781869cad8b9b5b5b59b233361fb"}
+{"sourcePlugin":"Service Catalog Reference","hash":"25833e2a43b25cc4aea958840fed6a3c"}
 ##DOCS-SOURCER-END -->

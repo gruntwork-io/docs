@@ -1,4 +1,4 @@
-## Deploy a management VPC
+# Deploy a management VPC
 
 The first step is to deploy a management VPC for DevOps tooling, such as a CI server or a bastion host. To do this, you
 can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
@@ -11,7 +11,7 @@ public and private-app. If you will be deploying data stores in the management V
 SonarQube), then use [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app) instead, which has
 a third private-persistence subnet tier.
 
-### Create a wrapper module
+## Create a wrapper module
 
 To deploy the `vpc-mgmt` module, create a _wrapper module_ called `vpc-mgmt` in your `infrastructure-modules` repo:
 
@@ -99,13 +99,13 @@ number of outputs, so see this
 [outputs.tf](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/networking/vpc-mgmt/outputs.tf)
 file for reference.
 
-### Test your wrapper module
+## Test your wrapper module
 
 At this point, you’ll want to test your code. See [Manual tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
 and [Automated tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
 for instructions.
 
-### Merge and release your wrapper module
+## Merge and release your wrapper module
 
 Once the module is working the way you want, submit a pull request, get your changes merged into the `master` branch,
 and create a new versioned release by using a Git tag. For example, to create a `v0.3.0` release:
@@ -115,7 +115,7 @@ git tag -a "v0.3.0" -m "Created vpc-mgmt module"
 git push --follow-tags
 ```
 
-### Pick the deployment environments
+## Pick the deployment environments
 
 The next step is to deploy your wrapper `vpc-mgmt` module. You can either deploy it in one AWS account or multiple:
 
@@ -135,7 +135,7 @@ completely separate, reducing the risk from both external attackers and mistakes
 drawback to this approach is that you have more infrastructure to manage: more VPCs, more peering connections, more
 route table entries, more bastion hosts, and more credentials.
 
-### Configure the wrapper module for each environment
+## Configure the wrapper module for each environment
 
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
@@ -197,7 +197,7 @@ In each account where you want to deploy a management VPC, you will need to:
     }
     ```
 
-### Deploy the wrapper module for each environment
+## Deploy the wrapper module for each environment
 
 Deploy the VPC by running `terragrunt apply`:
 
@@ -209,5 +209,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c00dccd68e2dd96c239a699fb8d938b9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f6e4912909ebd44b28986347d067d2b7"}
 ##DOCS-SOURCER-END -->

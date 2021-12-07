@@ -1,4 +1,4 @@
-## Threat model of CI/CD
+# Threat model of CI/CD
 
 The threat model of CI/CD is different between application code, infrastructure modules, and live infrastructure config.
 This largely stems from the amount of permissions required to implement each workflow. For a limited deployment workflow
@@ -49,5 +49,5 @@ With this threat model in mind, let’s take a look at the different CI/CD platf
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"da75eecf7933b1a52d2cd3b8e8689004"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b37476cdd97d01b88cf7d11c2716c38a"}
 ##DOCS-SOURCER-END -->

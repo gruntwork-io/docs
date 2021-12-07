@@ -1,4 +1,4 @@
-## Child accounts
+# Child accounts
 
 The admins in the root account can create the following child accounts in your AWS organization:
 
@@ -59,5 +59,5 @@ for large organizations to have dozens or even hundreds of AWS accounts.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"13ae6bb64760739e82a4dd59bd1680e4"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e4775ae1d4e9ac8722738e1434b6cc61"}
 ##DOCS-SOURCER-END -->

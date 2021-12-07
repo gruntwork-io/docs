@@ -1,4 +1,4 @@
-## Appendix: Dedicated service migration guides
+# Appendix: Dedicated service migration guides
 
 These dedicated guides are meant to be used in tandem with the main detailed guide above. They are stored in the
 `infrastructure-live-multi-account-acme` repository, which is now archived because it was used to share examples
@@ -59,5 +59,5 @@ The following modules require a different version of the Service Catalog than `v
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c8265b82b491d5b0241f0ee9b26c43d7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a15531af0d1af172e85c9cda30e0a552"}
 ##DOCS-SOURCER-END -->

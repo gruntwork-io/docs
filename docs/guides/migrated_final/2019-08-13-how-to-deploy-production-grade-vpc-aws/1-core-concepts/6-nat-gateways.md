@@ -1,4 +1,4 @@
-## NAT Gateways
+# NAT Gateways
 
 Resources in your public subnets can access the public Internet via an Internet Gateway. But what about resources in a
 private subnet? These resources don’t have public IP addresses, nor a route to an Internet Gateway, so what do you do?
@@ -38,5 +38,5 @@ the traffic for all other IPs, `0.0.0.0/0`, to a NAT Gateway with ID `nat-67890`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"566813dec23d37503515c0d45e9d50c5"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8f1fccfc8089bdd618a0e88bbcbfbdca"}
 ##DOCS-SOURCER-END -->

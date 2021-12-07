@@ -1,4 +1,4 @@
-## Summary of deployment sequence
+# Summary of deployment sequence
 
 To put it all together, the following sequence diagram shows how all the various components work together:
 
@@ -7,5 +7,5 @@ To put it all together, the following sequence diagram shows how all the various
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"21209fee1c7e8b821cd9a798bb8744c0"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0ef2a2d6b10fdc129e33c9b9729a462a"}
 ##DOCS-SOURCER-END -->

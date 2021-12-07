@@ -1,4 +1,4 @@
-## CIDR notation
+# CIDR notation
 
 When dealing with networking, you often need to reason about ranges of IPs, such as "all IP addresses between
 `172.31.0.0` and \`\`172.31.255.255\`\`" (there are 65,536 IP addresses in this range). The de facto standard for
@@ -35,5 +35,5 @@ CIDR notation for just one IP, `4.4.4.4`.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b71697c78a1eec72a234606cdeb77465"}
+{"sourcePlugin":"Service Catalog Reference","hash":"1e6ca89c59bdcd5b35f3d53508cdc989"}
 ##DOCS-SOURCER-END -->

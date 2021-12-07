@@ -1,4 +1,4 @@
-## AWS Config
+# AWS Config
 
 _[AWS Config](https://aws.amazon.com/config/)_ is a service that enables you to assess, audit, and evaluate the configurations of
 your [AWS resources](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html). You can use AWS
@@ -16,5 +16,5 @@ but you can also author your own [custom rules](https://docs.aws.amazon.com/conf
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a20ea2df2e44681033460c6e6b714f9a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ae439c83d438ed23983f5d2c9c8a63df"}
 ##DOCS-SOURCER-END -->

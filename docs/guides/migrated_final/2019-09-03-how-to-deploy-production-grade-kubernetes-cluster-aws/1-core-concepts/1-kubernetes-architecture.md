@@ -1,4 +1,4 @@
-## Kubernetes architecture
+# Kubernetes architecture
 
 Let’s start by looking at Kubernetes from a very high level, and then gradually zoom in. When starting at this high
 level, a simple way to think about Kubernetes is as an operating system for your data center.
@@ -34,7 +34,7 @@ If you zoom in a bit further on the Kubernetes architecture, it looks something 
 
 Kubernetes consists of two main pieces: the control plane and worker nodes. Each of these will be discussed next.
 
-### Control plane
+## Control plane
 
 The _[control plane](https://kubernetes.io/docs/concepts/#kubernetes-control-plane)_ is responsible for managing the
 entire cluster. It consists of one or more master nodes (typically 3 master nodes for high availability), where each
@@ -64,7 +64,7 @@ etcd
 _[etcd](https://etcd.io)_ is a distributed key-value store that the master nodes use as a persistent way to store the
 cluster configuration.
 
-### Worker nodes
+## Worker nodes
 
 The _[worker nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)_ (or just _nodes_, for short) are the
 servers that run your containers. Each worker node runs several components:
@@ -84,5 +84,5 @@ used for Service Discovery within Kubernetes, a topic we’ll discuss later.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"bd06609ebf422ee53a793d91f80f5bff"}
+{"sourcePlugin":"Service Catalog Reference","hash":"455f1b1e3ae1bf19ab7e6a98e547bf17"}
 ##DOCS-SOURCER-END -->

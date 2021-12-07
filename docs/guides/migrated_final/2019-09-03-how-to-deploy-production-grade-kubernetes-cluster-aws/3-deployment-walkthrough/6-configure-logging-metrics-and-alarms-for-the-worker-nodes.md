@@ -1,4 +1,4 @@
-## Configure logging, metrics, and alarms for the worker nodes
+# Configure logging, metrics, and alarms for the worker nodes
 
 In order for the CloudWatch Logs Agent to be able to write to CloudWatch Logs, you need to give it the worker nodes the
 proper IAM permissions. You can do that by using the
@@ -100,5 +100,5 @@ data "terraform_remote_state" "sns_region" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5accc46daa54f67e79b1c398ad299cfd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5c76a38e3fe3541b37acddd179c4df92"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Authenticate
+# Authenticate
 
 EKS manages authentication via AWS IAM, which is not an authentication method natively supported by most Kubernetes
 tooling, including `kubectl`. Therefore, before using `kubectl`, you have to use one of the following utilities to
@@ -52,5 +52,5 @@ this tool separately, so we are just recording this here for historical reasons.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5aab98a88f99175ee46c6e8d109ff087"}
+{"sourcePlugin":"Service Catalog Reference","hash":"eab13bef9441e2a62f22cd2d158083f4"}
 ##DOCS-SOURCER-END -->

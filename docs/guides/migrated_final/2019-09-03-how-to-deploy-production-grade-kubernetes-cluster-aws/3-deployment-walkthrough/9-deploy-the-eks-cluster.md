@@ -1,4 +1,4 @@
-## Deploy the EKS cluster
+# Deploy the EKS cluster
 
 Your `eks-cluster` module is nearly complete! The only thing left to do is to add some useful output variables to
 `outputs.tf`:
@@ -131,5 +131,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b7b3be41b1bb8119d516fdde8e596a4b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"176548da844e39fd16ab96497e56bec4"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Use generic CI/CD platforms as a workflow engine but run infrastructure deployments from within your account
+# Use generic CI/CD platforms as a workflow engine but run infrastructure deployments from within your account
 
 Given the limitations and tradeoffs of the various platforms we covered in [CI/CD platforms](#cicd_platforms), we don’t recommend
 relying on a single platform for implementing the entire workflow. Instead, we recommend a hybrid solution that takes
@@ -29,5 +29,5 @@ builds on existing code, but they don’t get arbitrary admin access.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"bb03fb8a1906345e8179dc863be7799d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d8f04c8c11b58a963e7ec98baf57a465"}
 ##DOCS-SOURCER-END -->

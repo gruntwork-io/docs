@@ -1,4 +1,4 @@
-## Updating the Gruntwork Reference Architecture to AWS Provider v3
+# Updating the Gruntwork Reference Architecture to AWS Provider v3
 
 If you purchased the Gruntwork Reference Architecture, you will have a copy of the `infrastructure-live` and
 `infrastructure-modules` repositories that contain the infrastructure code for deploying the Reference Architecture. You
@@ -25,5 +25,5 @@ compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"31791e5d16cf7749177711141adc1bd8"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b991d3c789d3e6fedca34dde10dacb87"}
 ##DOCS-SOURCER-END -->

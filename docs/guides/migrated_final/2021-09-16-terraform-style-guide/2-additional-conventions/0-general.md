@@ -1,15 +1,15 @@
-## General
+# General
 
-### 2 space indentations
+## 2 space indentations
 
 Block contents should be indented with 2 spaces.
 
-### 120 column limit
+## 120 column limit
 
 We follow a 120 column line-length limit, except for description strings in `variable` and `output` blocks, where single
 line strings are preferred.
 
-### Block Labels, Variables, and Outputs should be snake case
+## Block Labels, Variables, and Outputs should be snake case
 
 The label for blocks should be in snake case. E.g. `example_instance` , not `ExampleInstance` or `example-instance`.
 
@@ -29,7 +29,7 @@ variable "vpc_id" {}
 output "instance_name" {}
 ```
 
-### Module folder conventions
+## Module folder conventions
 
 Each module repo should have the following 3 folders:
 
@@ -56,7 +56,7 @@ Additionally, each module in `modules` should be organized with the following fi
 Any nonstandard file structure should be called out in the README (e.g., if `main.tf` is split up into multiple smaller
 terraform files).
 
-### `variables.tf` conventions
+## `variables.tf` conventions
 
 Each variable block should always define a `description` and `type`, even if it is of the `string` type (the default), in that order. E.g.:
 
@@ -77,7 +77,7 @@ free form maps. However, for particularly large objects it is useful to support 
 When using `any` type, always use comments to describe the supported attributes.
 [Example](https://github.com/gruntwork-io/module-security/blob/da69690/modules/kms-master-key/variables.tf#L10).
 
-### `outputs.tf` conventions
+## `outputs.tf` conventions
 
 Each output block should always define a `description`, before the `value`:
 
@@ -88,7 +88,7 @@ output "greeting" {
 }
 ```
 
-### `main.tf` conventions
+## `main.tf` conventions
 
 `main.tf` should (loosely) be organized by sections that correspond to components. There is no standard on grouping, but
 as a rule of thumb each section should be focused on a specific component of the module. For example, an ECS service
@@ -117,7 +117,7 @@ There is no standard on ordering the sections, but as a rule of thumb the follow
 
 - Any `data` blocks (at the bottom).
 
-### Conditionals
+## Conditionals
 
 Use `()` to break up conditionals across multiple lines.
 
@@ -145,5 +145,5 @@ locals {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"416bff51d796ed4d4f6bce448d7701bd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"113ccb06706c45ccf21ddafa2d0a551e"}
 ##DOCS-SOURCER-END -->

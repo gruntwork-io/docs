@@ -1,4 +1,4 @@
-## Configure CI Server
+# Configure CI Server
 
 Once we have our pipeline defined as code in our repository, we can hook it up to our CI server to start building.
 Configure CircleCI to start building the `infrastructure-live` repo by adding the project to your org.
@@ -40,5 +40,5 @@ events!
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c13972830e770129dfd947faf8a4d939"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ca3e9bf2393801b7c80b36a5094453f1"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Internet Gateways, public subnets, and private subnets
+# Internet Gateways, public subnets, and private subnets
 
 An _[Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)_ is a service managed
 by AWS that runs in your VPC. It allows access to and from the public Internet for resources in your subnet that have
@@ -12,5 +12,5 @@ the VPC.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a877687c37daf20f8607d97d4b570282"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3a7374c558deaafa32662525a2f43ad8"}
 ##DOCS-SOURCER-END -->

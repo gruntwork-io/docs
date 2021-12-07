@@ -1,4 +1,4 @@
-## Dockerize the App
+# Dockerize the App
 
 Before you can deploy the app to GKE, you need to Dockerize it. You can do this by creating a `Dockerfile` in the same
 folder as your `server.js` and `package.json`:
@@ -62,5 +62,5 @@ You should be able to see the "Hello World!" message from the server.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"da4375742157b76c969e029520d32241"}
+{"sourcePlugin":"Service Catalog Reference","hash":"91d4654932ef5d79da2467817ca50f70"}
 ##DOCS-SOURCER-END -->

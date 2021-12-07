@@ -1,4 +1,4 @@
-## Reset the root user password in each child account
+# Reset the root user password in each child account
 
 When creating the child accounts, you may have noticed that you provided an email address for each root user, but
 confusingly, not a password. So how do you login as the root user then? It’s not obvious, but the answer is that you
@@ -10,5 +10,5 @@ Use this process to reset the password for the root user of each child account y
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"349c29641b28eed2eb9c324dafd5bf09"}
+{"sourcePlugin":"Service Catalog Reference","hash":"61cf63082c046df27c91eb75126ac861"}
 ##DOCS-SOURCER-END -->

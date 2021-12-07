@@ -1,4 +1,4 @@
-## Trunk-based development model
+# Trunk-based development model
 
 ![Trunk branch with a continuous stream of commits.](/assets/img/guides/infrastructure-cicd-pipeline/trunk.png)
 
@@ -50,5 +50,5 @@ infrastructure code.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"984fbdace694c7a2bb08a53bcc62d077"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e99ac43b9fea1d9b273605bf32161cd8"}
 ##DOCS-SOURCER-END -->

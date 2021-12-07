@@ -1,4 +1,4 @@
-## Limit triggers for deploy server
+# Limit triggers for deploy server
 
 The deploy server should only expose a limited set of options for triggering deployments. That is, it should not allow
 arbitrary deployments on arbitrary code. For example, the default configuration of Atlantis allows webhooks from any
@@ -20,5 +20,5 @@ You can find similar mechanisms for limiting deployments in the various deploy s
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e8dd205c7e9cca32aaa4a9a898f91d4c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fb4f726ad505ac98872b08bd74b90ee7"}
 ##DOCS-SOURCER-END -->

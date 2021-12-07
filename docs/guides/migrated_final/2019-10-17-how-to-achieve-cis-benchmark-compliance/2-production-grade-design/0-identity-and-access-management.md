@@ -1,4 +1,4 @@
-## Identity and Access Management
+# Identity and Access Management
 
 The first section of the Benchmark centers on Identity and Access Management, including the following:
 
@@ -22,7 +22,7 @@ The first section of the Benchmark centers on Identity and Access Management, in
 
 In the subsequent sections, we’ll review the recommendations and discuss how to implement them using Terraform resources and data sources.
 
-### Configure authentication
+## Configure authentication
 
 One of main areas of concern in the IAM section relates to authentication. The Benchmark has recommendations for IAM
 users and the root user account, password policy, and multi-factor authentication. There is more than one way to
@@ -93,7 +93,7 @@ This code creates an IAM user called `support`, adds them to a new group called 
 3.  Recommendation 1.17 specifically requires that the Support policy be used. You should attach it to a group, as
     shown here.
 
-### Do not use full administrator privileges
+## Do not use full administrator privileges
 
 Recommendation 1.16 states that no IAM policies with full administrator privileges be assigned. However, some
 administrator access is needed to maintain the account on an ongoing basis, and use of the root account is also
@@ -138,7 +138,7 @@ resource "aws_iam_group_policy_attachment" "iam_admin_group_attach" {
 In this example, any IAM user that is a member of the `iam-admins` group will have has permissions to access all
 functionality in the IAM service, make them an effective administrator of the account.
 
-### Enabling multi-factor authentication for IAM users
+## Enabling multi-factor authentication for IAM users
 
 Recommendation 1.10, which requires all IAM users to have MFA enabled, seems straightforward on the surface, but in AWS,
 there’s no way to explicitly require MFA for log in. Instead, you can make sure that all groups and roles have a
@@ -228,7 +228,7 @@ them by other IAM policies.
 
 Attach a policy like this one to every group in your account.
 
-### Password policy
+## Password policy
 
 The IAM password policy is perhaps the most straightforward and explicit set of recommendations (1.8-1.9 and 1.12) in the entire
 Benchmark. You can invoke [the
@@ -246,7 +246,7 @@ resource "aws_iam_account_password_policy" "aws_foundations_benchmark_policy" {
 }
 ```
 
-### Cleanup Expired SSL/TLS certificates
+## Cleanup Expired SSL/TLS certificates
 
 The CIS AWS v1.3 recommendations require that all expired SSL/TLS certificates stored in AWS IAM are automatically removed
 (see 1.19). Unfortunately removing expired certificates via AWS Management Console is not currently supported so we must remove
@@ -286,7 +286,7 @@ To automate this process you might decide to implement a Lambda function that ru
 all expired SSL/TLS certificates. Check out the [Apply the baseline to the root account](#apply_account_baseline_root), [Apply the to the logs account](#apply_account_baseline_logs) and [Apply the to the security account](#apply_account_baseline_security) section of the deployment walkthrough
 to see how this module is used from the Landing Zone account baselines and is deployed in each of your AWS accounts.
 
-### IAM Access Analyzer
+## IAM Access Analyzer
 
 In both versions 1.3.0 and 1.4.0, the CIS recommendations stipulate that the AWS IAM Access Analyzer service is enabled across all active regions in a given
 AWS Account or Organization.
@@ -304,7 +304,7 @@ This lets you identify unintended access to these resources and data by external
 The findings from the IAM Access Analyzer can be found in the AWS web console, and can be archived or resolved.
 Please visit the [AWS guidance on how to do so](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings.html).
 
-### Manual steps
+## Manual steps
 
 A few of the recommendations in the IAM section are not achievable via API and require a one-time manual configuration.
 Perform the steps in this section manually.
@@ -342,5 +342,5 @@ For further detail, follow the manual steps outlined in the CIS Benchmark docume
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"66c315bd61b8714639b20517fb6fdaeb"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b1a8ee8710e6d23bbff7834ff1e2deae"}
 ##DOCS-SOURCER-END -->

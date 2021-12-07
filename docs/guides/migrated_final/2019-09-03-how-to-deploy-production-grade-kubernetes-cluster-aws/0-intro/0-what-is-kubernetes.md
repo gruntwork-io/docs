@@ -1,4 +1,4 @@
-## What is Kubernetes?
+# What is Kubernetes?
 
 [Kubernetes (K8S)](https://kubernetes.io/) is an open-source system for managing containerized applications, including:
 
@@ -29,5 +29,5 @@ Provide containers with environment-specific configuration data and secrets.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"943ed880d5f062854e6b93ded4b36293"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9a8a101311db1921bb23c77bc3ef7546"}
 ##DOCS-SOURCER-END -->

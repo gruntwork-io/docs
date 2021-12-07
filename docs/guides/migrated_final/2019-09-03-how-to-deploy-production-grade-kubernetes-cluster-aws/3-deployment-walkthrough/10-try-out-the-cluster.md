@@ -1,4 +1,4 @@
-## Try out the cluster
+# Try out the cluster
 
 At this point, you can start interacting with your EKS cluster using `kubectl`. First, configure `kubectl` to
 authenticate to the cluster. Here’s an example of how to do that using
@@ -20,5 +20,5 @@ kubectl get nodes
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c33801b10fd2c6234c126fd70fef9259"}
+{"sourcePlugin":"Service Catalog Reference","hash":"384cd76726bcec949792893f92b00a74"}
 ##DOCS-SOURCER-END -->

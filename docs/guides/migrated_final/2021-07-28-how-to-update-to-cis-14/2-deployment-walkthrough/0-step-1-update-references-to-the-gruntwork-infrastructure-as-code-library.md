@@ -1,4 +1,4 @@
-## Step 1: Update references to the Gruntwork Infrastructure as Code Library
+# Step 1: Update references to the Gruntwork Infrastructure as Code Library
 
 To update to the CIS AWS Foundations Benchmark v1.4.0, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library
@@ -47,5 +47,5 @@ compatible with CIS AWS v1.4.0:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b3ff7e85751453f69cb7f93eced02ddf"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ad5297b69ef334fb0f1bbeb623c120ab"}
 ##DOCS-SOURCER-END -->

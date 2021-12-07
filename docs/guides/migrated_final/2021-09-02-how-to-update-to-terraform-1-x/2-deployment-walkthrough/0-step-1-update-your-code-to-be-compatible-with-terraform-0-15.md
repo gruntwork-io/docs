@@ -1,4 +1,4 @@
-## Step 1: update your code to be compatible with Terraform 0.15
+# Step 1: update your code to be compatible with Terraform 0.15
 
 If you haven’t already, you need to:
 
@@ -24,5 +24,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c3ecc97a1ccd82388124ba100320c1ea"}
+{"sourcePlugin":"Service Catalog Reference","hash":"609d0f737cf3955c8a8ae41b76195dee"}
 ##DOCS-SOURCER-END -->

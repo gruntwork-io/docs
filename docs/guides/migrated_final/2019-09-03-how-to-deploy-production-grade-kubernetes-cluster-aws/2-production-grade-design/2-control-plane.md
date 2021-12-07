@@ -1,4 +1,4 @@
-## Control plane
+# Control plane
 
 To have EKS manage the control plane for you, you need to create an
 _[EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html)_. When you create an EKS cluster, behind
@@ -45,5 +45,5 @@ CloudWatch.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d316e7e7d07db5c0fd51bcd4dc08803b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ea014bf64cea5b942e951f7df5dd7084"}
 ##DOCS-SOURCER-END -->

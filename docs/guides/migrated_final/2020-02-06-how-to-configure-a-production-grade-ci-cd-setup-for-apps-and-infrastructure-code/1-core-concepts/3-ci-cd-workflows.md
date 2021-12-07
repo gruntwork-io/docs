@@ -1,4 +1,4 @@
-## CI/CD workflows
+# CI/CD workflows
 
 Now that we have gone over what, why, and how CI/CD works, let’s take a look at a more concrete example walking through
 the workflow.
@@ -38,7 +38,7 @@ Here are the steps:
 
 7.  [Deploy](#deploy)
 
-### Clone a copy of the source code and create a new branch
+## Clone a copy of the source code and create a new branch
 
 Typically the first step in making changes to any code base is to clone the repository locally and begin development on
 a new branch. Having a local copy makes it easier to iterate on the changes, and using an isolated branch allows you to
@@ -54,7 +54,7 @@ Whether you are developing application code, infrastructure modules, or live inf
 separate branch is a good idea. However, what you do to test that code will be vastly different, as we’ll cover in the
 next section.
 
-### Run the code locally
+## Run the code locally
 
 Before making any code changes, you want to make sure that you are working off of a clean slate. If you start off of
 broken code, you won’t know if the feature isn’t working because of a bug in the trunk, or if it is your code. It is
@@ -95,7 +95,7 @@ example, with Terraform, you could run `terraform plan` to sanity check the plan
 is especially useful for sanity checking a fresh clone of the code. The trunk should be a true reflection of the live
 environment, so you should expect there to be no changes to make on a fresh clone of trunk.
 
-### Make code changes
+## Make code changes
 
 Now that you have a working local copy, you can start to make changes to the code. This process is done iteratively
 while checking for validity of the changes along the way with manual or automated testing. It is important to invest
@@ -110,7 +110,7 @@ order of 10s of minutes). For ideas on how to improve the test cycles for infras
 [Iterating locally using
 test stages](https://terratest.gruntwork.io/docs/testing-best-practices/iterating-locally-using-test-stages/) in the Terratest documentation.
 
-### Submit changes for review
+## Submit changes for review
 
 Once the code implementation is done and the testing passes, the next step is to submit it for review. You want to focus
 your review process on things that are hard to check through automated testing, such as checking security flaws,
@@ -118,7 +118,7 @@ reviewing general code design, enforcing style guides, or identifying potential 
 Code review processes are also a great way to share knowledge across the team. The reviewer will oftentimes share
 valuable insights on the code that you might not have thought of.
 
-### Run automated tests
+## Run automated tests
 
 To help with code review, you should also set up a CI server (such as Jenkins or CircleCI) with commit hooks that
 automatically trigger testing of any branch that is submitted for review. Running the automated tests in this fashion
@@ -150,7 +150,7 @@ are not is potentially limitless. Therefore, the only way to review the results 
 Note that this has potential security issues as the logs for a dry run would typically include secrets. You will want
 to be sensitive to who has access to the logs, and potentially encrypt the results before it is posted.
 
-### Merge and release
+## Merge and release
 
 Once the code passes automated checks and goes through the review process, it is ready to be integrated into the trunk.
 Once you merge the code into trunk, you will also want to generate a new,
@@ -197,7 +197,7 @@ This leads to what we call _The Golden Rule of Infrastructure Code:_
 
 You will want to do everything that is in your power to maintain this representation to streamline your development.
 
-### Deploy
+## Deploy
 
 Now that you have a release artifact, the final stage of the process is to deploy the code.
 
@@ -243,7 +243,7 @@ include both modules and application code, what you automate should depend on th
 deployments to automated depend on the nature of the change, so typically the pipeline differs based on which
 configurations were updated.
 
-### Summary
+## Summary
 
 To summarize, here is a table highlighting each step of a typical CI/CD workflow and how it is implemented with each
 flavor of code:
@@ -413,5 +413,5 @@ for this type of workflow.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"dced1edffb49fc2afd4ae2555b86b37f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"439ca093f2258cb0abf14d57296ee10f"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Lock down the root account IAM users
+# Lock down the root account IAM users
 
 Although IAM users don’t have the same powers as a root user, having an IAM user account compromised can still be a
 huge problem for your company (especially if that IAM user had admin permissions), so it’s still critical to lock down
@@ -26,5 +26,5 @@ so using a virtual or hardware MFA device is preferable; that said, MFA with SMS
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"bde584523b5389fdee2753ec2139489f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"cd33aab81d11e8668a4ea5aa5dad19b1"}
 ##DOCS-SOURCER-END -->

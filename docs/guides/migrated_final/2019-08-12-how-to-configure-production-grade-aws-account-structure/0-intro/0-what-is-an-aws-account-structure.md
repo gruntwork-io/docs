@@ -1,4 +1,4 @@
-## What is an AWS account structure?
+# What is an AWS account structure?
 
 To use AWS, you sign up for an AWS account. An _AWS account structure_ is an organized collection of inter-connected
 AWS accounts designed to run production workloads.
@@ -26,5 +26,5 @@ breakdowns by account, service, tag, etc.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"12304560704ca086e4a2d2541256d61c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"751b95355f257140e8f6462e5d0b7b64"}
 ##DOCS-SOURCER-END -->

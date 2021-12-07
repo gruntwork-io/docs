@@ -1,4 +1,4 @@
-## Deploy a VPC
+# Deploy a VPC
 
 The first step is to deploy a VPC. Follow the instructions in
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) to use
@@ -34,5 +34,5 @@ that looks as follows:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9fe407c12e0dd4ce7b196ad54eaa567d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"905a78f583a9576efa09f70bc8f32e43"}
 ##DOCS-SOURCER-END -->

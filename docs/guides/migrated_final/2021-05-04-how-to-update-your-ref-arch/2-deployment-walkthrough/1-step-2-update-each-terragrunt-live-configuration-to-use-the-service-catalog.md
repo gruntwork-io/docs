@@ -1,4 +1,4 @@
-## Step 2: Update each Terragrunt live configuration to use the Service Catalog
+# Step 2: Update each Terragrunt live configuration to use the Service Catalog
 
 At this point, you are ready to update each live configuration! It’s important to take a bottom-up approach for migrating
 the live configurations. That is, update live configurations that don’t have any downstream dependencies first, then
@@ -149,5 +149,5 @@ Now for the full-fledged instructions to upgrade a single service:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4a882775dea10519ce43c0f36355b06b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5b2ebbe85dae9b997221ecbb7cefa06b"}
 ##DOCS-SOURCER-END -->

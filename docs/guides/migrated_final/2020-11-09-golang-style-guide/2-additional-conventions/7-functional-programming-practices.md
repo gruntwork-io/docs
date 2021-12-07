@@ -1,6 +1,6 @@
-## Functional programming practices
+# Functional programming practices
 
-### Immutability
+## Immutability
 
 Prefer returning a new value rather than mutating an existing one.
 
@@ -29,7 +29,7 @@ func add(a, b int) int {
 }
 ```
 
-### Pure functions
+## Pure functions
 
 Prefer functions that take all their inputs as function parameters, instead of reading those inputs via side effects
 (e.g., reading from disk or the network or global vars), and whose entire behavior is to return values
@@ -38,7 +38,7 @@ vars). Of course, you can’t avoid side effects forever if you want your code t
 much of your logic with pure functions as you can, try to pass everything around as explicit parameters and return
 everything as explicit values, and centralize the side effecting code to a few isolated places.
 
-### Composition
+## Composition
 
 Build your code out of small, reusable, named functions, that you compose together.
 
@@ -71,5 +71,5 @@ func mul(a, b int) int {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f39d7672cbdf71aca7628dba2f7246c7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"999d788f726e543e494e090602145be9"}
 ##DOCS-SOURCER-END -->

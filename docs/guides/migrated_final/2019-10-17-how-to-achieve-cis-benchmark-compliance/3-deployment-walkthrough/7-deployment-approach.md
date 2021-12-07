@@ -1,4 +1,4 @@
-## Deployment approach
+# Deployment approach
 
 Before we dive into the code and deployment for each resource, let’s take a step back and understand how the code is structured.
 Most of the features explained in the [Production-grade design](#production_grade_design) section will be deployed using the Landing Zone solution, and some more standalone modules like the VPC module.
@@ -10,5 +10,5 @@ The standalone modules will follow the pattern of referencing the module and pro
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b666d556f0b5926bfef5ed478d6b9e8c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"46868d6a80e1c063f582b0598269a7fb"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Defense in depth
+# Defense in depth
 
 ![Aerial view of Beaumaris Castle, showing multiple layers of walls for defense. Crown copyright 2016.](/assets/img/guides/vpc/castle.jpeg)
 
@@ -16,5 +16,5 @@ described in the next few sections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6c353b563295b616a5142ea471def463"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5eef99bbee825c23aa6a8d2506b990d7"}
 ##DOCS-SOURCER-END -->

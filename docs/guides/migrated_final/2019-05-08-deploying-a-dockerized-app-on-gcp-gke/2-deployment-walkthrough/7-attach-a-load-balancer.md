@@ -1,4 +1,4 @@
-## Attach a Load Balancer
+# Attach a Load Balancer
 
 So far you’ve deployed the Dockerized app, but it is not currently accessible from the public Internet. This is because
 you have not assigned an external IP address or load balancer to the Pod. To fix this, run the following command:
@@ -25,5 +25,5 @@ If the service has been exposed correctly and the DNS has propagated you should 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"207a927c94dc58365741808db453a69d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0afceff8c9a31d6ebdfc622c1bf87472"}
 ##DOCS-SOURCER-END -->

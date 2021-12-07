@@ -1,4 +1,4 @@
-## Background
+# Background
 
 [Terraform 0.13 was released on August 10th, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13).
 Some of the major new features in 0.13 include:
@@ -19,5 +19,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6feedefc2ef28d6a156e72d83bc1e3a3"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2f00c131ff585b437718df5bb0a88d88"}
 ##DOCS-SOURCER-END -->

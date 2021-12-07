@@ -1,4 +1,4 @@
-## IAM roles
+# IAM roles
 
 An _[IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)_ is a standalone IAM entity that (a) allows
 you to attach IAM policies to it, (b) specify which other IAM entities to trust, and then (c) those other IAM entities
@@ -104,5 +104,5 @@ services permissions to access specific resources in your AWS account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0d519700ec550b25c269fbc95d4444e2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"4e0865782a0adbe9a52db25eb2e868de"}
 ##DOCS-SOURCER-END -->

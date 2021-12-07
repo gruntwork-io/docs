@@ -1,4 +1,4 @@
-## Multiple AWS accounts
+# Multiple AWS accounts
 
 The first layer of defense is to define each environment (e.g., dev, stage, prod) in a completely separate AWS account.
 The reason you want separate AWS accounts is that isolating resources within a single account leads to a nightmare of
@@ -17,5 +17,5 @@ guide for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"401d8e810b8d9606f2fff0dc2ff97e2a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"dc8333b0e72f481e388cb6336d09e7df"}
 ##DOCS-SOURCER-END -->

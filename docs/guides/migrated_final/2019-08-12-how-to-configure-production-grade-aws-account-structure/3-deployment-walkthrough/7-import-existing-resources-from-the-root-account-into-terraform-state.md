@@ -1,4 +1,4 @@
-## Import existing resources from the root account into Terraform state
+# Import existing resources from the root account into Terraform state
 
 Before applying the `account-baseline-root` module to the root account, we need to import existing resources—including
 the IAM user you created manually earlier—into Terraform state, so that Terraform manages those resources instead of
@@ -40,5 +40,5 @@ Terraform will perform the following actions:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ea5bad3a13802af7009a0418682d9d51"}
+{"sourcePlugin":"Service Catalog Reference","hash":"bb737bc45993b846ea4323fcb1231414"}
 ##DOCS-SOURCER-END -->

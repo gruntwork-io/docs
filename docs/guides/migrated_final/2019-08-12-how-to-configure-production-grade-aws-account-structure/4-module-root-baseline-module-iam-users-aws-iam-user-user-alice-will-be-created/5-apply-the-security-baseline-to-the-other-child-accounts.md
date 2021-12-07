@@ -1,4 +1,4 @@
-## Apply the security baseline to the other child accounts
+# Apply the security baseline to the other child accounts
 
 Now that your security account is fully configured, you need to apply the security baseline to the remaining child
 accounts (i.e., dev, stage, prod, and shared, plus sandbox and testing accounts you might have) as
@@ -160,5 +160,5 @@ Remember to repeat this process in the other child accounts too (i.e., dev, prod
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"87dbdb829e3f8e15437f6094fadcad6c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"1c7c82ed66d48ab6b61ef9d4ae003ea7"}
 ##DOCS-SOURCER-END -->

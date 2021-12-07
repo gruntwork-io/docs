@@ -1,4 +1,4 @@
-## Configure the worker node User Data script
+# Configure the worker node User Data script
 
 Now that you know what will be installed on each worker node AMI, you can fill in the User Data script that each worker
 node will run on boot. Create `user-data.sh` in your `infrastructure-modules` repo:
@@ -108,5 +108,5 @@ data "template_file" "user_data" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"da1abfda1111f4ced8564e2d80eb58c5"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8db0859a33c07f592d436a16f195c836"}
 ##DOCS-SOURCER-END -->

@@ -1,6 +1,6 @@
-## Recommendation sections
+# Recommendation sections
 
-### Identity and Access Management
+## Identity and Access Management
 
 _Number of recommendations: 21_
 
@@ -10,13 +10,13 @@ On AWS, most identity and access control related concerns are managed using the
 this section discuss particular IAM configurations, such as the configuration of the password policy, the use
 of various groups and roles, and the configuration of multi-factor authentication (MFA) devices.
 
-### Storage
+## Storage
 
 _Number of recommendations: 7_
 
 This section was added originally in the previous CIS version (1.3.0), and now in 1.4.0 the recommendations are enhancements and updates to the use of AWS’s storage capabilities. The relevant services for this section are [S3](https://aws.amazon.com/s3/), [EC2](https://aws.amazon.com/ec2/) and [RDS](https://aws.amazon.com/rds/). The recommendations in this section pertain to in-transit and at-rest encryption, access control to the resources, and handling sensitive data.
 
-### Logging
+## Logging
 
 _Number of recommendations: 11_
 
@@ -36,7 +36,7 @@ AWS has several other logging related features that are not covered directly by 
 the primary log ingestion and query service, [Amazon CloudWatch
 Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html), is integrated with many other AWS services. The Benchmark recommends that CloudTrail is integratd with CloudWatch Logs. Within the Gruntwork modules we’ve setup CloudWatch with all the integrated services such as AWS Config, CloudTrail and S3.
 
-### Monitoring
+## Monitoring
 
 _Number of recommendations: 15_
 
@@ -48,7 +48,7 @@ filter metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Monitor
 Metric filter-related recommendations in this section are dependent on the "Ensure CloudTrail is enabled in all regions"
 and "Ensure CloudTrail trails are integrated with CloudWatch Logs" recommendation in the "Logging" section.
 
-### Networking
+## Networking
 
 _Number of recommendations: 4_
 
@@ -59,5 +59,5 @@ suggest limiting routing for VPC peering connections based on [the principle of 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8e54ef3c84261cbedfa0014930420051"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0e127d41a8231d7e951701b3886b0d54"}
 ##DOCS-SOURCER-END -->

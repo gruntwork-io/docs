@@ -1,4 +1,4 @@
-## IAM users
+# IAM users
 
 In AWS, you use _[Identity and Access Management (IAM)](https://aws.amazon.com/iam/)_ to manage access to your AWS
 account. One of the things you can do in IAM is create an
@@ -53,5 +53,5 @@ user permissions, you will need to use IAM policies, which are the topic of the 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8c704b4b0ab9f055bd5ca69ecccc6fec"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f3f0179cd646fb487facd8559dbb102f"}
 ##DOCS-SOURCER-END -->

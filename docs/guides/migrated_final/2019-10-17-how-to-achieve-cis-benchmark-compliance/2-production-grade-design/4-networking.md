@@ -1,4 +1,4 @@
-## Networking
+# Networking
 
 The networking section involves a paltry four recommendations. We don’t consider this section to be sufficient
 to ensure a secure networking configuration. For a deeper dive, refer to Gruntwork’s
@@ -22,5 +22,5 @@ on the services running on those subnets. This can help to avoid exposing servic
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2fb52dc8521562deaa1db2ba818a512d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fa19bdabe23a5cc28c2ae925fb5b2cc2"}
 ##DOCS-SOURCER-END -->

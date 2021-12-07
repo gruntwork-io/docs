@@ -1,4 +1,4 @@
-## Updating the Gruntwork Reference Architecture to Terraform 0.13
+# Updating the Gruntwork Reference Architecture to Terraform 0.13
 
 If you purchased the Gruntwork Reference Architecture, you will have a copy of the `infrastructure-live` and
 `infrastructure-modules` repositories that contain the infrastructure code for deploying the Reference Architecture. You
@@ -25,5 +25,5 @@ refer to PRs in the Standard Reference Architecture section above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2d2170e9ae4865789aded8fb4aa212fc"}
+{"sourcePlugin":"Service Catalog Reference","hash":"0b69537b0e1990832cf5fbf7ad9c0e43"}
 ##DOCS-SOURCER-END -->

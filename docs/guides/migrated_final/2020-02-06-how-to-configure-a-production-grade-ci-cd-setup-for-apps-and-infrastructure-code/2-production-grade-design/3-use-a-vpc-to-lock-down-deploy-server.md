@@ -1,4 +1,4 @@
-## Use a VPC to lock down deploy server
+# Use a VPC to lock down deploy server
 
 Run your infrastructure deployment workloads in a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/) to isolate
 the workloads in a restricted network topology (see [How
@@ -9,5 +9,5 @@ outbound access except for the minimum required (e.g, allow access to AWS APIs).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"da8cb0cd8724b7b2611c76cf6c1df488"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9fe9e8bfd9a3d30a67262453538aff1d"}
 ##DOCS-SOURCER-END -->

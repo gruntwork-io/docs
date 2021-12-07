@@ -1,6 +1,6 @@
-## Deploy Landing Zone solution
+# Deploy Landing Zone solution
 
-### Apply the `account-baseline-root` to the root account
+## Apply the `account-baseline-root` to the root account
 
 Configure the `account-baseline-root` for the root account
 
@@ -395,5 +395,5 @@ Terraform will perform the following actions:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ddfb22e5133b6930288ada005f9050a6"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f336a55ecefe0f1c92ae5d140098ef35"}
 ##DOCS-SOURCER-END -->

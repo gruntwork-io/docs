@@ -1,4 +1,4 @@
-## Federated authentication
+# Federated authentication
 
 _[Federation](https://aws.amazon.com/identity/federation/)_ allows you to authenticate to your AWS account using an
 existing _identity provider (IdP)_, such as Google, Active Directory, or Okta, rather than IAM users. Since just about
@@ -23,5 +23,5 @@ requires multiple steps, including manually copy/pasting credentials.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6de26c6d0115ddf644083a6af645b363"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a5dbfadb0de17efda39bc0f22cd697f7"}
 ##DOCS-SOURCER-END -->

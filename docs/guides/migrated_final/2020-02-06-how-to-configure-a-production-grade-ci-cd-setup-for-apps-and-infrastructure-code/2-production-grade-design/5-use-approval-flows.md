@@ -1,4 +1,4 @@
-## Use approval flows
+# Use approval flows
 
 It is important that human review is baked into each deployment. As covered in [CI/CD workflows](#cicd_workflows), it is difficult to
 build an automated test suite that builds enough confidence in your infrastructure code to do the right thing. This is
@@ -13,5 +13,5 @@ can approve the workflow.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4f6f86b6288b481239b57488ba459190"}
+{"sourcePlugin":"Service Catalog Reference","hash":"20d40d9684816b84eaeeed60ec416808"}
 ##DOCS-SOURCER-END -->

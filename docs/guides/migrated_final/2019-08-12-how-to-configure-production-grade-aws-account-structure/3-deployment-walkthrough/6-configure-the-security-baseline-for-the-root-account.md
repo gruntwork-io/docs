@@ -1,4 +1,4 @@
-## Configure the security baseline for the root account
+# Configure the security baseline for the root account
 
 Next, we’ll configure a security baseline for the root account that is responsible for creating all the child accounts.
 It will also configure AWS Organizations, IAM Roles, IAM Users, IAM Groups, IAM Password Policies, Amazon GuardDuty,
@@ -8,7 +8,7 @@ We’ll be using the `account-baseline-root` module from [terraform-aws-service-
 
 You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-service-catalog`.
 
-### Set up the inputs for `account-baseline` for the root account
+## Set up the inputs for `account-baseline` for the root account
 
 Next, create a `terragrunt.hcl` file in `infrastructure-live`. It should go under the file path `root/_global/account-baseline`:
 
@@ -170,5 +170,5 @@ and any other existing resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4f463f1eb8630d7d62152e25fd7ba4f3"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d4f1140e05487708ca79b4587c38afee"}
 ##DOCS-SOURCER-END -->

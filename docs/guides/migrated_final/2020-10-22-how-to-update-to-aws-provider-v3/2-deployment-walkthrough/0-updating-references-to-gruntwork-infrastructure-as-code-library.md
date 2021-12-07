@@ -1,4 +1,4 @@
-## Updating references to Gruntwork Infrastructure as Code Library
+# Updating references to Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform AWS provider version 3, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use a compatible version. We (Gruntwork) have gone through all our modules in the
@@ -141,5 +141,5 @@ v0.7.0, v0.8.0, and v0.9.0 to get the full list of backwards incompatible update
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"dc18bb5eef04b6fc117e5b2f1c8eb548"}
+{"sourcePlugin":"Service Catalog Reference","hash":"dfa38cd3c0a8eae368267151676ab213"}
 ##DOCS-SOURCER-END -->

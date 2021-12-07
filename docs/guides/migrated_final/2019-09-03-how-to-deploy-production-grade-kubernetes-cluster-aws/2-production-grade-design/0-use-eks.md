@@ -1,4 +1,4 @@
-## Use EKS
+# Use EKS
 
 We recommend using [Amazon EKS](https://aws.amazon.com/eks/) to run Kubernetes in AWS. It manages the control plane
 for you, which significantly reduces your operational burden; it has good integration with other AWS services; you can
@@ -9,5 +9,5 @@ solutions will most likely be eclipsed very quickly by future EKS releases.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"258807a23354307f9da2fb09e2f3bf43"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8b9aa5a738196d4f224985c1ef89cf0f"}
 ##DOCS-SOURCER-END -->

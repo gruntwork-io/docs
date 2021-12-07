@@ -1,16 +1,16 @@
-## Comments
+# Comments
 
 This section lists the Gruntwork conventions around comments in Terraform code.
 
-### # over //
+## # over //
 
 Use `#` for comment strings, not `//` or `/**/`.
 
-### # - over # ~
+## # - over # ~
 
 Delimit section header comment blocks with `# ----` instead of `# \~~~~`.
 
-### `variables.tf`
+## `variables.tf`
 
 `variables.tf` files should clearly indicate required environment variables, and separate out required variables from
 optional variables (with defaults) using block comments.
@@ -26,5 +26,5 @@ Example:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"29ceb68513d0ae945bfa4caf6c0d5f1c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"cae3520b74764eb6c5505e217d023958"}
 ##DOCS-SOURCER-END -->

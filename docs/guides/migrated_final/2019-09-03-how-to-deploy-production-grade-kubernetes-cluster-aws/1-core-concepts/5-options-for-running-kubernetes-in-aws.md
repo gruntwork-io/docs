@@ -1,4 +1,4 @@
-## Options for running Kubernetes in AWS
+# Options for running Kubernetes in AWS
 
 There are a number of different options for running Kubernetes in AWS:
 
@@ -30,5 +30,5 @@ still fairly new, so some functionality is missing or more complicated to use th
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c62c802142cdf8172e531fe135e3be4b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3a734adfdd9ce7b1ad4fb8900b1e4817"}
 ##DOCS-SOURCER-END -->

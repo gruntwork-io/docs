@@ -1,4 +1,4 @@
-## Step 2: Update the Account Baseline modules
+# Step 2: Update the Account Baseline modules
 
 Next, you will need to update the account baseline (landing zone) modules to the version compatible
 with v1.4.0 of the CIS AWS Foundations Benchmark. We strongly recommend upgrading straight to at least v0.27.0,
@@ -119,5 +119,5 @@ All the other child accounts (logs, stage, prod, etc) need the same configuratio
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"7cfd335bcb85277645ed2da83720666f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"7ee6dbc28c54ee189daf104ad218a549"}
 ##DOCS-SOURCER-END -->

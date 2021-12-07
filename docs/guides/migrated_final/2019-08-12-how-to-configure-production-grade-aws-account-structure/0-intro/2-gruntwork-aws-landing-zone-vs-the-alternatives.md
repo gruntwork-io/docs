@@ -1,4 +1,4 @@
-## Gruntwork AWS Landing Zone vs the alternatives
+# Gruntwork AWS Landing Zone vs the alternatives
 
 In June 2018, Amazon [announced](https://aws.amazon.com/about-aws/whats-new/2018/06/introducing-aws-landing-zone/)
 AWS Landing Zone, which solved three core problems:
@@ -48,5 +48,5 @@ automation tools.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2d355d51df301a04501541aa8da4303f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"385bcf3720011450b1a8811c4e3daff3"}
 ##DOCS-SOURCER-END -->

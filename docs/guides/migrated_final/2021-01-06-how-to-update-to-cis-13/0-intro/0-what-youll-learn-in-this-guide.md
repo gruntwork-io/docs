@@ -1,4 +1,4 @@
-## What you’ll learn in this guide
+# What you’ll learn in this guide
 
 This guide consists of two main sections:
 
@@ -13,5 +13,5 @@ tag is compatible with CIS AWS v1.3.0, as well as the manuals step you need to p
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"aee70fce92d9ff3f95c1df6837e9fd85"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e710fea57cfe633bacd97cfe02478000"}
 ##DOCS-SOURCER-END -->

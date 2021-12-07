@@ -1,4 +1,4 @@
-## Logging
+# Logging
 
 In the Logging section, the Benchmark recommendations target the following services:
 
@@ -12,7 +12,7 @@ In the Logging section, the Benchmark recommendations target the following servi
 
 We’ll cover each of them in turn.
 
-### AWS CloudTrail
+## AWS CloudTrail
 
 The Benchmark has specific requirements for the CloudTrail configuration, described in recommendations 3.1-4, 3.6-7 and 3.10-11.
 The CloudTrail must have the following characteristics:
@@ -68,7 +68,7 @@ Finally, you’ll need the
 create a CloudWatch Log group as another location for CloudTrail to send events. Use this ARN for the `aws_cloudtrail`
 resource `cloud_watch_logs_group_arn` parameter when creating the CloudTrail.
 
-### AWS Config
+## AWS Config
 
 Benchmark recommendation 3.5 states that AWS Config be enabled in all regions. This is challenging to implement with
 Terraform because running a particular configuration in all regions is not a feature that Terraform has natively.
@@ -131,7 +131,7 @@ When AWS launches new regions, they are [not enabled by default](https://docs.aw
 
 Alternatively, you could [disable](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable) the regions you aren’t using and only enable AWS Config for those that you need.
 
-### KMS Key rotation
+## KMS Key rotation
 
 Finally, a simple recommendation! To meet recommendation 3.8, create KMS keys with key rotation enabled. Using Terraform, it looks like this:
 
@@ -142,7 +142,7 @@ resource "aws_kms_key" "example" {
 }
 ```
 
-### VPC Flow Logs
+## VPC Flow Logs
 
 Under the Benchmark, all VPCs must have a Flow Log to log network traffic. Use the
 [`aws_flow_log`](https://www.terraform.io/docs/providers/aws/r/flow_log.html) Terraform resource, being sure to use
@@ -156,5 +156,5 @@ the default VPCs which exist in all regions of the account. You can use the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6064ae6962c4816e868b73ba219111aa"}
+{"sourcePlugin":"Service Catalog Reference","hash":"4fb5c93b07018ea98f7e816bc12440cd"}
 ##DOCS-SOURCER-END -->

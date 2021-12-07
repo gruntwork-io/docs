@@ -1,4 +1,4 @@
-## Configure the worker nodes
+# Configure the worker nodes
 
 The next step is to configure the worker nodes in the `eks-cluster` module. You can use an Auto Scaling Group to run
 the worker nodes using the
@@ -79,5 +79,5 @@ variable "cluster_instance_keypair_name" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f7084c319dd95e8ec68cd41859dd1048"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ebcccd4c23703f8db0a3624ac8ef359e"}
 ##DOCS-SOURCER-END -->

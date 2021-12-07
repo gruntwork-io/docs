@@ -1,4 +1,4 @@
-## Create VPC flow logs
+# Create VPC flow logs
 
 The Benchmark recommends enabling [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
 for all VPCs in all regions. You can use the
@@ -82,7 +82,7 @@ To limit the number of flow logs, you may want to use the
 [`cloud-nuke defaults-aws`](https://github.com/gruntwork-io/cloud-nuke) command. It will remove the default VPC from
 all regions in an account, saving you the hassle of creating flow logs in each default VPC.
 
-### Maintaining compliance by following Monitoring best practices
+## Maintaining compliance by following Monitoring best practices
 
 The Monitoring section of the Benchmark centers on a collection of
 [CloudWatch Logs Metric
@@ -95,7 +95,7 @@ deployed CloudTrail configuration.
 Note that you must have a subscriber on the SNS topic to be compliant. Refer to [Subscribe to SNS topic](#subscribe_sns) for details on how to
 setup a subscriber to the SNS topics that are created.
 
-### Maintaining compliance by following Networking best practices
+## Maintaining compliance by following Networking best practices
 
 To ensure all the networking recommendations are satisfied, use the
 [`vpc`](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/networking/vpc) (and/or
@@ -158,5 +158,5 @@ default security groups from all VPCs in all regions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d2b69543d1b412a87eb4f1ff7b5a3821"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d110e2b75fd0f631cd41e3507877c272"}
 ##DOCS-SOURCER-END -->

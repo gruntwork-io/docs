@@ -1,4 +1,4 @@
-## Error handling
+# Error handling
 
 Prefer using the `errors` standard library package for handling single errors. For operations that can produce multiple
 errors, leverage the [`MultiError`](https://github.com/gruntwork-io/terragrunt/blob/master/errors/multierror.go)
@@ -21,5 +21,5 @@ Go annoyingly doesn’t do this by default, but without it, sorting out an error
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"934774c86faf46afeb054e999520f978"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b9fcb2701eb476faaa32fe51b3483551"}
 ##DOCS-SOURCER-END -->

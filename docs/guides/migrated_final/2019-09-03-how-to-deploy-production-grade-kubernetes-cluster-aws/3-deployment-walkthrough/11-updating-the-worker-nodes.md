@@ -1,4 +1,4 @@
-## Updating the worker nodes
+# Updating the worker nodes
 
 Deploying the cluster initially is a start. In the future, you’ll also need a way to roll out updates:
 
@@ -27,5 +27,5 @@ kubergrunt eks deploy --region <AWS_REGION> --asg-name <AUTO_SCALING_GROUP_NAME>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9ba409c06c22a02526a510094dd823d7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5636e9edf38cccc6e5355185e257b14a"}
 ##DOCS-SOURCER-END -->

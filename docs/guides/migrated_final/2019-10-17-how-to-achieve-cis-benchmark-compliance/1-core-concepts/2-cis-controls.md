@@ -1,4 +1,4 @@
-## CIS Controls
+# CIS Controls
 
 Each recommendation is also linked to a corresponding [CIS Control](https://www.cisecurity.org/controls/). The
 controls are distinct from the Benchmark. They’re described by CIS as "a prioritized set of actions that collectively
@@ -11,5 +11,5 @@ controls.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"492b1860f27ac070ea565e6f9a1343eb"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d6b3d968b10f1ec3bb38783db063ab93"}
 ##DOCS-SOURCER-END -->

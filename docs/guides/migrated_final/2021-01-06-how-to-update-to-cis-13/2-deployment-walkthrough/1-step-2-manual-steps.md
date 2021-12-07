@@ -1,4 +1,4 @@
-## Step 2: Manual steps
+# Step 2: Manual steps
 
 Recommendation 4.15 requires an active subscriber for the SNS topic created by this recommendation (see Audit steps 6
 and 7 for 4.15). As it’s impossible to automate this subscriber’s creation, you’ll have to do so manually. See
@@ -8,5 +8,5 @@ on the AWS website for detailed instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"15c6508c9654f468a9feef94c9a8a315"}
+{"sourcePlugin":"Service Catalog Reference","hash":"cf3bb81e686840f514e1b25ac7da5308"}
 ##DOCS-SOURCER-END -->

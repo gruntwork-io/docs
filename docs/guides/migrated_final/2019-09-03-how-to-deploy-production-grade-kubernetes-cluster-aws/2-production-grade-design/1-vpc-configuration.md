@@ -1,4 +1,4 @@
-## VPC configuration
+# VPC configuration
 
 EKS relies on a _[Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/)_ to provide the basic network topology and
 to manage communication across the nodes (see
@@ -25,5 +25,5 @@ sure that remote VPC DNS resolution is enabled on both accepter and requester si
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3bb7ef4e475410a65172b76611099621"}
+{"sourcePlugin":"Service Catalog Reference","hash":"83be66630f1fc653ece6d89d45839684"}
 ##DOCS-SOURCER-END -->

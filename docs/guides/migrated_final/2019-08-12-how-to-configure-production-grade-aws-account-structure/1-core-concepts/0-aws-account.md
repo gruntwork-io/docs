@@ -1,4 +1,4 @@
-## AWS account
+# AWS account
 
 To use AWS, you must create an AWS account. You do this by signing up at <https://aws.amazon.com>. Once you’ve created
 an account, it will get a unique, 12-digit
@@ -9,5 +9,5 @@ to share it publicly on the Internet), and you will be logged into your new AWS 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e0aea03ddcbd1754231712b25eeea299"}
+{"sourcePlugin":"Service Catalog Reference","hash":"588824cd89338a62916341bc4d9c46ee"}
 ##DOCS-SOURCER-END -->

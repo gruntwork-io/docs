@@ -1,4 +1,4 @@
-## Protecting pods
+# Protecting pods
 
 There are several policies you may want to enable to protect the pods in your cluster:
 
@@ -23,5 +23,5 @@ gives it permissions to talk solely to the other pods it should be able to acces
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"cce7dc58b6d45e031648c1e3ccd58b69"}
+{"sourcePlugin":"Service Catalog Reference","hash":"edbd6cd27a83d682d3a34a3b6229bd70"}
 ##DOCS-SOURCER-END -->

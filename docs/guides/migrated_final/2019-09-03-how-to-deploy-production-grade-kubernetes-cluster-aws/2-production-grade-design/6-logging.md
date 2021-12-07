@@ -1,4 +1,4 @@
-## Logging
+# Logging
 
 We recommend enabling the following logging to help with debugging and troubleshooting:
 
@@ -15,5 +15,5 @@ the logs from the worker nodes (including all the pods on them) to CloudWatch.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0e027cdc7188ca2ce3c7e4476011573b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9ae3fa4c090ba93b8aeea55ed69613b3"}
 ##DOCS-SOURCER-END -->

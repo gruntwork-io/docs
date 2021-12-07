@@ -1,4 +1,4 @@
-## Create the worker node AMI
+# Create the worker node AMI
 
 The next step is to create the Amazon Machine Image (AMI) that will run on each worker node. We recommend using the
 [Amazon EKS-Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) as the base and
@@ -134,5 +134,5 @@ guide.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ed1c1f35947756e05db3f1157943b282"}
+{"sourcePlugin":"Service Catalog Reference","hash":"91a54507a5d1b8d61562a733aec32bd7"}
 ##DOCS-SOURCER-END -->

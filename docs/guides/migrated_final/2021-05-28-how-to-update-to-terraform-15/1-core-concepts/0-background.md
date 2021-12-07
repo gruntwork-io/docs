@@ -1,4 +1,4 @@
-## Background
+# Background
 
 [Terraform 0.15 was released on
 April 14, 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-15-general-availability). Some of the major new features in 0.15 include:
@@ -23,5 +23,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3fb27f067472268f9b5348cfdf2f9937"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8fb24961ff87395e2b936ac57ab205ca"}
 ##DOCS-SOURCER-END -->

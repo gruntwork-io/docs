@@ -1,4 +1,4 @@
-## Try authenticating as an IAM user to the child accounts
+# Try authenticating as an IAM user to the child accounts
 
 Now that you have IAM users in the security account and IAM roles in the other accounts, it’s time to practice
 authenticating:
@@ -26,5 +26,5 @@ authenticating:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"7355c8f75a935b06bdf255f6ff60f3f4"}
+{"sourcePlugin":"Service Catalog Reference","hash":"cfd2bf1a766beeca5f824f82821fc7c1"}
 ##DOCS-SOURCER-END -->

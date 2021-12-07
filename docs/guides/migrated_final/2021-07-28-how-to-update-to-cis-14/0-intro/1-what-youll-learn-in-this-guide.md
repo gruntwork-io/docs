@@ -1,4 +1,4 @@
-## What you’ll learn in this guide
+# What you’ll learn in this guide
 
 This guide consists of two main sections:
 
@@ -14,5 +14,5 @@ CIS AWS Foundations Benchmark.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0ab9e45c63711a215b62a79b7020709f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3d8c04372a935de2d22afd13d7e6fa2c"}
 ##DOCS-SOURCER-END -->

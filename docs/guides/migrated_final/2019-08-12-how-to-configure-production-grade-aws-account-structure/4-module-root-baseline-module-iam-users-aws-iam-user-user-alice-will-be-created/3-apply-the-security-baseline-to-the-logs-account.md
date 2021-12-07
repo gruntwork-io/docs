@@ -1,4 +1,4 @@
-## Apply the security baseline to the logs account
+# Apply the security baseline to the logs account
 
 The next step is to configure the logs account, which is used to aggregate AWS Config and CloudTrail data from all the
 other accounts.
@@ -150,5 +150,5 @@ On some operating systems, such as MacOS, you may also need to increase your ope
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"558e96dce98e7fba682ef646f951a912"}
+{"sourcePlugin":"Service Catalog Reference","hash":"577a5ceafd1d7a076cf725b6748223e7"}
 ##DOCS-SOURCER-END -->

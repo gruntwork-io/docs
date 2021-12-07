@@ -1,4 +1,4 @@
-## CloudTrail
+# CloudTrail
 
 You’ll want to enable CloudTrail in every single AWS account so that you have an audit log of the major activity
 happening in the account. We typically recommend that you aggregate these logs in the logs account. To do this, you:
@@ -19,5 +19,5 @@ happening in the account. We typically recommend that you aggregate these logs i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"756a5a781aea9a171bdb7e3bfc03ccaf"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2e993e19ef31ec53840a8e6c07b6f8fb"}
 ##DOCS-SOURCER-END -->

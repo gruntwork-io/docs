@@ -1,9 +1,9 @@
-## Interacting with Kubernetes
+# Interacting with Kubernetes
 
 Once you have a Kubernetes cluster up and running, there are a number of ways to interact with it. This section will
 go through a few of the most common ones, including the API, `kubectl`, the Web UI, and Terraform.
 
-### API
+## API
 
 Under the hood, any Kubernetes tool you use will be talking to the
 [Kubernetes API](https://kubernetes.io/docs/reference/using-api/api-overview/). However, it’s relatively rare for you to
@@ -11,7 +11,7 @@ have to make API calls directly (if you do have to, see the
 [API client libraries](https://kubernetes.io/docs/reference/#api-client-libraries)), so let’s quickly move on to the
 other tools that build on top of the API.
 
-### kubectl
+## kubectl
 
 [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) is the official command-line interface (CLI) for
 working with Kubernetes. For example, to deploy the [training/webapp](https://hub.docker.com/r/training/webapp) Docker
@@ -36,7 +36,7 @@ configuration files, which are typically called _kubeconfig files_ (note, the fi
 connect to and a user to use for authentication. You can then use the `kubectl config use-context` command to quickly
 switch between contexts—and therefore, different clusters and users.
 
-### Web UI (Dashboard)
+## Web UI (Dashboard)
 
 ![The Kubernetes Dashboard](/assets/img/guides/eks/kubernetes-dashboard.png)
 
@@ -48,7 +48,7 @@ and
 [Accessing the Dashboard UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/#accessing-the-dashboard-ui)
 for instructions.
 
-### Terraform
+## Terraform
 
 Terraform has a [Kubernetes provider](https://www.terraform.io/docs/providers/kubernetes/index.html) that allows you to
 write Terraform code that, under the hood, calls the Kubernetes API. This allows you to manage all your
@@ -60,5 +60,5 @@ Terraform code anyway (e.g., execute a script).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"093b388811c43ce777c6dd0309405265"}
+{"sourcePlugin":"Service Catalog Reference","hash":"82c247a04acb7d59073e484249bb717d"}
 ##DOCS-SOURCER-END -->

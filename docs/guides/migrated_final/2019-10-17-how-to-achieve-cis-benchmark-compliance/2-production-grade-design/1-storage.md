@@ -1,4 +1,4 @@
-## Storage
+# Storage
 
 Version 1.3.0 of the Benchmark includes a new storage section that has three recommendations pertaining to the S3 service as well as the EC2 service.
 These have to do with encryption at rest and in transit.
@@ -30,7 +30,7 @@ statement {
 }
 ```
 
-### Configure EBS Encryption
+## Configure EBS Encryption
 
 To comply with recommendation 2.2.1 be sure to configure [EBS volume encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 in all of the enabled AWS regions within your AWS Account(s). You can invoke the Terraform
@@ -44,7 +44,7 @@ resource "aws_ebs_encryption_by_default" "ebs_encryption" {
 }
 ```
 
-### Configure RDS Encryption
+## Configure RDS Encryption
 
 To comply with recommendation 2.3.1, if you use RDS it must be configured with [RDS encryption](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html) for all instances and in all of the enabled AWS regions within your AWS Account(s). You can set to `true` the Terraform `storage_encrypted` attribute for an RDS instance to implement the recommendation.
 
@@ -56,7 +56,7 @@ resource "aws_db_instance" "your_primary_db" {
 }
 ```
 
-### Secure your S3 Data
+## Secure your S3 Data
 
 The CIS 1.4.0 Benchmark recommends a few additional steps to ensure your data is secured and accessible. There are two new recommendations that relate to S3:
 
@@ -145,5 +145,5 @@ explicit list of buckets per region, namely in the variable `buckets_to_analyze`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"71df7fa7c8e9fa8a8ed072727a9ad5fd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6e14bf725bea08b10d8f16e1cbcd91dc"}
 ##DOCS-SOURCER-END -->

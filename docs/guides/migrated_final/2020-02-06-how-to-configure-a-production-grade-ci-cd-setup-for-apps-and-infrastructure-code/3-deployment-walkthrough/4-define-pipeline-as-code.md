@@ -1,4 +1,4 @@
-## Define pipeline as code
+# Define pipeline as code
 
 This guide will use [CircleCI](https://circleci.com/) as the CI server, but **it is NOT required for using the ECS
 Deploy Runner stack**. You can configure any other CI server in a similar fashion to invoke deployments against the ECS
@@ -492,5 +492,5 @@ jobs:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8b74ddfe65a33e708049795c81230d90"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f07c4c47e44987f59c837890d3073d40"}
 ##DOCS-SOURCER-END -->

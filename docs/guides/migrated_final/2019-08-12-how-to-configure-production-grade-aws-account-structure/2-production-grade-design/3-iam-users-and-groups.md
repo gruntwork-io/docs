@@ -1,4 +1,4 @@
-## IAM users and groups
+# IAM users and groups
 
 In the security account, you will need to create all the IAM users for your team. Do NOT attach any IAM policies
 directly to users; instead, create a set of IAM groups, with specific IAM policies attached to each group, and assign
@@ -33,5 +33,5 @@ You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to acce
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e02c893b1f8ed69b0a4ae68f2e916025"}
+{"sourcePlugin":"Service Catalog Reference","hash":"72043de8fc7f3062caddb75c3fbdc942"}
 ##DOCS-SOURCER-END -->

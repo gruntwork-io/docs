@@ -1,4 +1,4 @@
-## Step 1: Prepare your Terragrunt configuration to support the Service Catalog
+# Step 1: Prepare your Terragrunt configuration to support the Service Catalog
 
 The Terraform modules in the Service Catalog are missing some required blocks for Terraform to operate (e.g., the
 `provider` and `terraform` state backend blocks). This is by design, to allow the modules to be flexibly used in
@@ -365,5 +365,5 @@ these files into your own `infrastructure-live` repository.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"3afcfc0fff1d32e339b09a06bda29528"}
+{"sourcePlugin":"Service Catalog Reference","hash":"46c9f8e1b0cccac3afcf346052d43536"}
 ##DOCS-SOURCER-END -->

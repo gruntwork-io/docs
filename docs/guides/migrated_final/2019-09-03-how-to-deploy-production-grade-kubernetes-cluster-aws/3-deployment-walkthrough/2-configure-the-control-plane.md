@@ -1,4 +1,4 @@
-## Configure the control plane
+# Configure the control plane
 
 Now that you have the VPC ready, it’s time to configure the EKS control plane using the
 [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane)
@@ -132,5 +132,5 @@ variable "terraform_state_s3_bucket" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"257ae63efea912ce3e111cedcf7128ed"}
+{"sourcePlugin":"Service Catalog Reference","hash":"39bd70bd25121f5fff17fd2f6eb7c968"}
 ##DOCS-SOURCER-END -->

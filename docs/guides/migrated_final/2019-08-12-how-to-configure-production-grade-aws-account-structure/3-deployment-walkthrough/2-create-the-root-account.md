@@ -1,4 +1,4 @@
-## Create the root account
+# Create the root account
 
 Now let’s create your root AWS account. This account will be the parent of all of your other AWS accounts and
 the central place where you manage billing. You create this initial account manually, via a web browser:
@@ -15,5 +15,5 @@ the central place where you manage billing. You create this initial account manu
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e290695bb5961d9bb15608669e1dfc34"}
+{"sourcePlugin":"Service Catalog Reference","hash":"46e0ed5d6cc0528fd7f85fbe0c2b316e"}
 ##DOCS-SOURCER-END -->

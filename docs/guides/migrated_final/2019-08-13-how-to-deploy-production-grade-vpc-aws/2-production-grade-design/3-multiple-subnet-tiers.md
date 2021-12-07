@@ -1,4 +1,4 @@
-## Multiple subnet tiers
+# Multiple subnet tiers
 
 ![Each VPC is partitioned into multiple tiers of subnets](/assets/img/guides/vpc/subnets-diagram.png)
 
@@ -31,5 +31,5 @@ discussed in the next section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"07899858e1712f23f463cbd4d3db3bf8"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9fdc5aa57fd11885d8f64a3d2d37fcb3"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Apply the security baseline to the root account
+# Apply the security baseline to the root account
 
 You’re now ready to apply the security baseline to the root account. You should be authenticated as the same IAM user
 in the root account as in the previous two sections. To apply the security baseline, you run `terragrunt apply`:
@@ -78,5 +78,5 @@ echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"99491c296571fa86aa51c05c764d0136"}
+{"sourcePlugin":"Service Catalog Reference","hash":"03bee5baa497d002307ccc7a8c543f12"}
 ##DOCS-SOURCER-END -->

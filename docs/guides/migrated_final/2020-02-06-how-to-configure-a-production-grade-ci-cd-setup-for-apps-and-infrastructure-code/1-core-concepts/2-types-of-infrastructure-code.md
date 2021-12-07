@@ -1,4 +1,4 @@
-## Types of infrastructure code
+# Types of infrastructure code
 
 Before diving into infrastructure CI/CD workflows, it is important to understand the different types of infrastructure
 code that is available. There are two distinct types of infrastructure code:
@@ -31,5 +31,5 @@ infrastructure modules, and live infrastructure configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c6f95a03b137d49fd541c96554ab8013"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d61d54a4fa145a1ce55a3504cb47a629"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## AWS Config
+# AWS Config
 
 You’ll want to enable AWS Config in every one of your AWS accounts, plus any AWS Config Rules that are relevant to your
 company, so that you can track AWS resource configuration changes over time and enforce company policy. Note that you
@@ -18,5 +18,5 @@ We typically recommend that you aggregate AWS Config data in the logs account. T
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5fd43519a364e9b1962162ecc77b2de0"}
+{"sourcePlugin":"Service Catalog Reference","hash":"3fdc6027e3e37e09a307110b7a18b1a9"}
 ##DOCS-SOURCER-END -->

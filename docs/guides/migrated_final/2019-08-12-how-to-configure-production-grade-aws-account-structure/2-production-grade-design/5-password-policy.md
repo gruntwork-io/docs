@@ -1,4 +1,4 @@
-## Password policy
+# Password policy
 
 In any account that has IAM users (which should just be the root and security accounts), configure a password policy
 that ensures all IAM users have strong passwords. The exact policy you use depends on your company’s requirements (e.g.,
@@ -8,5 +8,5 @@ certain compliance requirements may force you to use a specific password policy)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b50fd16055b56b419029f88e5fc040de"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8ad99ede1a4dc9aed1cfe70b33416b6a"}
 ##DOCS-SOURCER-END -->

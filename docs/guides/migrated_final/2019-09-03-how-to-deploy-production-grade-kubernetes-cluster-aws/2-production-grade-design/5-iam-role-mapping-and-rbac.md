@@ -1,4 +1,4 @@
-## IAM role mapping and RBAC
+# IAM role mapping and RBAC
 
 You’ve seen that to determine _who_ the user is (authentication), EKS uses IAM. The next step is to determine _what_
 the user can do (authorization). Kubernetes uses its own roles and RBAC for authorization, so the question is, how does
@@ -46,5 +46,5 @@ assume those roles.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2184648f464cdfb75bfabce3a44ea82a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"19b22caaa94a9fa83aa6d8343e125fc6"}
 ##DOCS-SOURCER-END -->

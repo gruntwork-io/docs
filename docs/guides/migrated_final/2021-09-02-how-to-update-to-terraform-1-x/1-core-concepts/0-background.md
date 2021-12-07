@@ -1,4 +1,4 @@
-## Background
+# Background
 
 [Terraform 1.0.0 was released on
 June 08, 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability). Some of the major new features in 0.15 include:
@@ -18,5 +18,5 @@ bugs."
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d930f24555c249d7fb8a66f08bf4459f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"692e32eee5c0f0e715563a79b9aab998"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## Federated auth
+# Federated auth
 
 If you are using federated auth—that is, you are going to access AWS using an existing IdP such as Google, Active
 Directory, or Okta—you should use the same account structure, but with a few changes:
@@ -38,5 +38,5 @@ so if you want to require MFA, you need to do that in the IdP itself (i.e., in G
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f6319f34ea202a13e3bccdb140253220"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8cd0c3ab16323cf64492ea60d04255cf"}
 ##DOCS-SOURCER-END -->

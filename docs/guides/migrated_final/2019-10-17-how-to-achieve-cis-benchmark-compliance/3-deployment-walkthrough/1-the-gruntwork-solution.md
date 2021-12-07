@@ -1,4 +1,4 @@
-## The Gruntwork solution
+# The Gruntwork solution
 
 Gruntwork offers infrastructure-as-code battle-tested modules that will help you create _production-grade_ infrastructure faster and much more efficiently than if you develop your modules from scratch. In the CIS compliance library, there are many core modules, and each one of them is "compliance-ready". They are configured in a way to help you achieve CIS compliance up to the latest supported benchmark, but still allow some flexibility in the setup.
 
@@ -10,7 +10,7 @@ The image below shows the hierarchy between the different levels of modules from
 
 Let’s unpack this a bit.
 
-### Core modules
+## Core modules
 
 Core modules are broadly applicable and can be used with or without compliance requirements. For example,
 the [`iam-groups`
@@ -19,13 +19,13 @@ You could, for example, choose to create a group with read-only access, another 
 access, and no other groups. All Gruntwork subscribers have access to the core modules, which reside in
 Gruntwork’s [infrastructure as code repositories](https://gruntwork.io/repos).
 
-### Standalone Compliance modules
+## Standalone Compliance modules
 
 The standalone compliance modules complement the modules available in the IaC Library. They have the CIS compliance requirements built right in and may combine multiple modules including Core modules for a
 specific use case. For example, the [`cleanup-expired-certs` standalone module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/cleanup-expired-certs) deploys a Lambda function that runs regularly and automatically removes all expired SSL/TLS certificates stored in AWS IAM in compliance with recommendation 1.19 of the CIS AWS Foundations Benchmark. These modules are in the [`terraform-aws-cis-service-catalog`
 repository](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog) (accessible to Gruntwork Compliance subscribers).
 
-### Compliance wrapper modules
+## Compliance wrapper modules
 
 The compliance wrapper modules are an extension of the IaC Library. They use the
 [`source` argument in a Terraform module block](https://www.terraform.io/docs/modules/sources.html) to invoke
@@ -33,7 +33,7 @@ the core module with a configuration that is customized for compliance with the 
 These modules are in the [`terraform-aws-cis-service-catalog`
 repository](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog) (accessible to Gruntwork Compliance subscribers).
 
-### infrastructure-live
+## infrastructure-live
 
 `infrastructure-live` uses [Terragrunt](https://github.com/gruntwork-io/terragrunt) to make it easier to
 work with Terraform modules in multiple environments. `infrastructure-live` is optional - you can use all of the modules
@@ -43,7 +43,7 @@ If you’re not using Terragrunt, you can use Terraform modules to call the comp
 [Create your own service catalog section](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/core-concepts.md#create-your-own-service-catalog)
 in the Gruntwork Service Catalog documentation for more information on how you might use `infrastructure-live`.
 
-### Benefits
+## Benefits
 
 This modular, decomposed approach allows for maximum code reuse. The core modules can be used with or without
 compliance, depending on how they are configured. The compliance wrappers are like shadows of the core
@@ -61,5 +61,5 @@ the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/founda
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"cf29ecb7d5f5d16e2a5e116295855372"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a0bc5b1f86d9aa0bd9cab6c5a528d7c9"}
 ##DOCS-SOURCER-END -->

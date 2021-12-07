@@ -1,4 +1,4 @@
-## Security groups and NACLs
+# Security groups and NACLs
 
 ![Security group settings for the different subnet tiers](/assets/img/guides/vpc/peering-diagram.png)
 
@@ -27,5 +27,5 @@ environment.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5255b958a1e3de63729ce1157dd5bc62"}
+{"sourcePlugin":"Service Catalog Reference","hash":"18448985e4db85058c030e0ae609c2bd"}
 ##DOCS-SOURCER-END -->

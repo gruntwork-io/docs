@@ -1,4 +1,4 @@
-## Background
+# Background
 
 On August 26th, 2020, we announced the initial release of
 [the Service
@@ -36,5 +36,5 @@ repository before you can start using the Service Catalog.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e1cfee30d69f509df4f9d71804c2588f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"92eff39b0fb3fe404149591df5e4ce30"}
 ##DOCS-SOURCER-END -->

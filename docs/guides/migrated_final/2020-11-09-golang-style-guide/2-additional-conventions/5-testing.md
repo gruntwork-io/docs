@@ -1,4 +1,4 @@
-## Testing
+# Testing
 
 In terms of testing, we don’t necessarily aim for 100% test coverage. Rather, our goal is to have enough testing to give
 us confidence that our code works and allow us to update it quickly. When adding tests, keep in mind these factors:
@@ -12,7 +12,7 @@ us confidence that our code works and allow us to update it quickly. When adding
 
 Unless there’s a reason not to, tests should run in parallel. This is done by including a call to `t.Parallel` in the test function.
 
-### Setup and Teardown pattern
+## Setup and Teardown pattern
 
 In some cases you will want to write a group of tests that use a common resource, such as a Docker image or VPC.
 In this case, you will want to setup the common resource once, run a bunch of tests, and then teardown the resource.
@@ -68,5 +68,5 @@ func TestECS(t *testing.T) {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c8ec8f1b79a947d89fd784567444a0b6"}
+{"sourcePlugin":"Service Catalog Reference","hash":"66fcb887e00ddc553fc87e015d6dd319"}
 ##DOCS-SOURCER-END -->

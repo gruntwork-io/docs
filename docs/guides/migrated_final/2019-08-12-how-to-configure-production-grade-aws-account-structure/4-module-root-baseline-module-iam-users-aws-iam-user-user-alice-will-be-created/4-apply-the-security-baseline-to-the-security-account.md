@@ -1,4 +1,4 @@
-## Apply the security baseline to the security account
+# Apply the security baseline to the security account
 
 Now that your logs accounts is fully configured, you need to apply the security baseline to the security account, which
 is where all your IAM users and groups will be defined and managed.
@@ -200,5 +200,5 @@ echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"41e58ca68ecf93ace343dcbee052b0e6"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d8e64fb53eb3f0b3ca518dbf93a648a1"}
 ##DOCS-SOURCER-END -->

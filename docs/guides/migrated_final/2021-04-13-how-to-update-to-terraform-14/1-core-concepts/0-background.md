@@ -1,4 +1,4 @@
-## Background
+# Background
 
 [Terraform 0.14 was released on
 December 02, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-14-general-availability). Some of the major new features in 0.14 include:
@@ -20,5 +20,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e93496da236dca0890fa2300f2d7aef3"}
+{"sourcePlugin":"Service Catalog Reference","hash":"51aaf488823fe1d2d09ffce7045200b2"}
 ##DOCS-SOURCER-END -->

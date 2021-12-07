@@ -1,4 +1,4 @@
-## Configure access to the control plane and worker nodes
+# Configure access to the control plane and worker nodes
 
 If you want to make the control plane accessible outside of the cluster itself, you can add additional security group
 rules. For example, here is how you can make it possible to connect to the control plane from a VPN server:
@@ -114,5 +114,5 @@ resource "aws_iam_role_policy" "ssh_grunt_permissions" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4e772dddaa5e4d1f01aef395ee34ae0f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5f2af0d117c20b946dd3d8feaca24c4c"}
 ##DOCS-SOURCER-END -->

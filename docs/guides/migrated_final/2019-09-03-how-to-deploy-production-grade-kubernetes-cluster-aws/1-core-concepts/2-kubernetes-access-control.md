@@ -1,8 +1,8 @@
-## Kubernetes access control
+# Kubernetes access control
 
 To access your Kubernetes cluster, you have to understand Kubernetes authentication and authorization.
 
-### Kubernetes authentication
+## Kubernetes authentication
 
 Kubernetes uses authentication plugins to authenticate API requests. Depending on the plugins you’re using, there are
 a number of supported
@@ -24,7 +24,7 @@ Kubernetes creates some service accounts automatically; you can create others us
 credentials for service accounts are stored as secrets in Kubernetes and mounted into the pods that should have
 access to those service accounts.
 
-### Kubernetes authorization
+## Kubernetes authorization
 
 Once you’ve authenticated and the Kubernetes API Server knows _who_ you are, depending on the plugins you’re using,
 it will use one of several supported
@@ -37,5 +37,5 @@ namespace), and associate those roles with the specific user and service account
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"068c93c4a8100189a3ceb5edd18c769f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5a4077f13bbb343b5e9bcb9c951c6e7f"}
 ##DOCS-SOURCER-END -->

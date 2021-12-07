@@ -1,4 +1,4 @@
-## Step 4: start using lock files
+# Step 4: start using lock files
 
 One of the big new features in Terraform 0.14 is the lock file for provider dependencies. The next time you run `init`
 with Terraform 0.14, it will create a `.terraform.lock.hcl` file that locks you to specific versions of all the
@@ -13,5 +13,5 @@ to version control.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e080848235f69515ea90a746ead94c7b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f61f38e0162cec9e2c37183a237e5822"}
 ##DOCS-SOURCER-END -->

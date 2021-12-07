@@ -1,6 +1,6 @@
-## Step 3: Manual steps
+# Step 3: Manual steps
 
-### Enable MFA Delete (recommendation 2.1.3)
+## Enable MFA Delete (recommendation 2.1.3)
 
 Enabling MFA Delete in your bucket adds another layer of security by requiring MFA in any request to delete a version or change the versioning state of the bucket.
 
@@ -53,7 +53,7 @@ Example:
 aws-vault exec root-prod -- ./mfa-delete.sh --account-id 226486542153
 ```
 
-### Configure Amazon Macie (recommendation 2.1.4)
+## Configure Amazon Macie (recommendation 2.1.4)
 
 When configuring Macie for each account and each region, you’ll need to specify a few things:
 
@@ -104,7 +104,7 @@ terraform AWS provider has been resolved, we will
 [update the Gruntwork macie module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/issues/204)
 to add support for specifying all buckets in a region.
 
-### Known Issues
+## Known Issues
 
 You may encounter the following issues when trying to upgrade to v0.27.0 of the AWS CIS Service Catalog.
 
@@ -128,5 +128,5 @@ You may be using a region that doesn’t properly support AWS Config (e.g: `ap-n
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9f4e0c772ed9311256abf7548ef4627b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6e31928f431d0560f9d847a5e4994eba"}
 ##DOCS-SOURCER-END -->

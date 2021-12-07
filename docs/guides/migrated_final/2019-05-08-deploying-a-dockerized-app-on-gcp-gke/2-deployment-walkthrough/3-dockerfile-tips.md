@@ -1,4 +1,4 @@
-## Dockerfile Tips
+# Dockerfile Tips
 
 Some things to note when writing up your `Dockerfile` and building your app:
 
@@ -9,5 +9,5 @@ Some things to note when writing up your `Dockerfile` and building your app:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"99a199f2c131f386c6f021951c660dc6"}
+{"sourcePlugin":"Service Catalog Reference","hash":"114d3ae4fad79365d133b2f8bd25cedd"}
 ##DOCS-SOURCER-END -->

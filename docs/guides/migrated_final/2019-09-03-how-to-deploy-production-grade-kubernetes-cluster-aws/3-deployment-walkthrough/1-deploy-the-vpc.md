@@ -1,4 +1,4 @@
-## Deploy the VPC
+# Deploy the VPC
 
 The first step is to deploy a VPC. Follow the instructions in
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) to use
@@ -146,5 +146,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"40ff494b98aafab60ea91ec2b44b0dab"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b8b08d691beb51f7fe1dcb4276d36fb0"}
 ##DOCS-SOURCER-END -->

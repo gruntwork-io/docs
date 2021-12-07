@@ -1,4 +1,4 @@
-## IAM policies
+# IAM policies
 
 You can use _[IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)_ to define permissions
 in your AWS account.
@@ -48,5 +48,5 @@ S3 bucket.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9cac3426d473bd4806edc8ea0a8257fa"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2bfe4a399c9ea768352a01ee7ae4060d"}
 ##DOCS-SOURCER-END -->

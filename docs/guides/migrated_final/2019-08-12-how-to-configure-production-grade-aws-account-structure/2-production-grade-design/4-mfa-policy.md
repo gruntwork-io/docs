@@ -1,4 +1,4 @@
-## MFA policy
+# MFA policy
 
 MFA should be required to access any of your AWS accounts via the web or any API call. Unfortunately, AWS doesn’t have
 an easy way to enforce MFA globally, and if you try to enforce it in a naive manner, you’ll run into issues: e.g., you
@@ -28,5 +28,5 @@ place.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"161f66612abf4e372aee353b6fd5695d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"c825fc93ea9a95e49586262221be3f78"}
 ##DOCS-SOURCER-END -->

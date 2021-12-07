@@ -1,4 +1,4 @@
-## Step 3: update references to the Gruntwork Infrastructure as Code Library
+# Step 3: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 0.13, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use a compatible version. We (Gruntwork) have gone through all our modules in the
@@ -161,5 +161,5 @@ compatible with Terraform 0.13:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"31b5d06bf758cdec452e8e294b9ec1cc"}
+{"sourcePlugin":"Service Catalog Reference","hash":"16b4f3b73e37713d5bdeaef3f37f94b9"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,4 @@
-## What is the CIS AWS Foundations Benchmark?
+# What is the CIS AWS Foundations Benchmark?
 
 The [CIS Benchmarks](https://www.cisecurity.org/resources/?type=benchmark) are objective, consensus-driven
 configuration guidelines developed by security experts to help organizations improve their security posture.
@@ -9,5 +9,5 @@ account remains secure.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b916fc2ab2b820cdcd3e056f7bdbedfd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"c7f0211d07547da91d2199bfed4aaec3"}
 ##DOCS-SOURCER-END -->

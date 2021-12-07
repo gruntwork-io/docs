@@ -1,4 +1,4 @@
-## Worker nodes
+# Worker nodes
 
 While EKS will run the control plane for you, it’s up to you to create the worker nodes. Here are the key
 considerations:
@@ -55,5 +55,5 @@ a secure base image (e.g., CIS hardened images), intrusion prevention (e.g., `fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f0057298c0a74205d78205156d844db9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a38eda3b95e87a38f1245164302e4867"}
 ##DOCS-SOURCER-END -->

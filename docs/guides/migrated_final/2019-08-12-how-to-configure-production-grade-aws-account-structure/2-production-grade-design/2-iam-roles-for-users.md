@@ -1,4 +1,4 @@
-## IAM roles for users
+# IAM roles for users
 
 Whereas you’ll create IAM users within the security account (something we’ll discuss shortly), in all the other child
 accounts, you’ll solely create IAM roles that have a trust policy that allows these IAM roles to be assumed from the
@@ -43,5 +43,5 @@ server and allows developers with access to these IAM roles to request VPN certi
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"1419062b755ed54eabee912cc54dc35f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"5fd194da89b1b6acb46ed6006c862568"}
 ##DOCS-SOURCER-END -->

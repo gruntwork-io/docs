@@ -1,4 +1,4 @@
-## Deploy the ECS Deploy Runner
+# Deploy the ECS Deploy Runner
 
 **This guide is currently only compatible with ECS deploy runner version v0.27.x.** We are working on a
 series of updates to the Gruntwork CI/CD pipeline spread out across multiple versions. Once complete, we will update
@@ -20,7 +20,7 @@ To deploy the ECS Deploy Runner, we will follow four steps:
 
 - [Deploy ECS Deploy Runner stack](#deploy_ecs_deploy_runner_stack)
 
-### Create Secrets Manager Entries
+## Create Secrets Manager Entries
 
 The ECS deploy runner needs access to your git repositories that contain the infrastructure code in order to be able to
 deploy them. To allow access to the infrastructure code, you will need to provide it with an SSH key for a machine user
@@ -68,7 +68,7 @@ When you run this command, you should see a JSON output with metadata about the 
 
 Record the ARN. You will need this later when setting up the terraform module.
 
-### Create ECR repo
+## Create ECR repo
 
 The ECS Deploy Runner uses an ECS Task to run the infrastructure deployment. In order to run the ECS task, we need a
 Docker image that contains all the necessary software for the deployment, as well as an ECR repository to store that
@@ -191,7 +191,7 @@ cd infrastructure-live/production/us-east-2/prod/cicd/ecr-repo
 export ECR_REPO_URL=$(terragrunt output url)
 ```
 
-### Create Docker Image
+## Create Docker Image
 
 Once we have the ECR repository to house Docker images, we need to create the Docker image for the infrastructure
 deploy script. This Docker image should contain everything you need to deploy your infrastructure, such as `terraform` and
@@ -255,7 +255,7 @@ eval "$(aws ecr get-login --region "us-east-2" --no-include-email)"
 docker push "$ECR_REPO_URL:v1"
 ```
 
-### Deploy ECS Deploy Runner stack
+## Deploy ECS Deploy Runner stack
 
 Once we have the ECR repo with an available Docker image, it is time to configure the ECS task and Lambda function
 invoker. We will deploy both using the
@@ -754,5 +754,5 @@ Repeat for each environment that you want to support the ECS Deploy Runner stack
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"34a01623cce92f2d9bb78cddd7d2eea9"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2718b92aa6a8433feb9881377c9d63b4"}
 ##DOCS-SOURCER-END -->

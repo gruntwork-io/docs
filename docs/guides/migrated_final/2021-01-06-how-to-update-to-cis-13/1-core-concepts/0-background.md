@@ -1,4 +1,4 @@
-## Background
+# Background
 
 Version 1.3.0 of the CIS AWS Foundations Benchmark was released in September of 2020. You can refer to the
 [CIS website](https://www.cisecurity.org/benchmark/amazon_web_services/) where you can download the latest version of the
@@ -6,7 +6,7 @@ Benchmark (as well as all the previous versions). The latest version introduces 
 removes several recommendations. This guide will walk you through implementing these using Gruntwork’s Infrastructure as Code Library
 so that your infrastructure is fully compliant with version 1.3.0 of the framework.
 
-### Changes in recommendations
+## Changes in recommendations
 
 Changes in recommendations (both additions and removals) are listed below. You can think of these as a "diff"
 between versions 1.2.0 and 1.3.0.
@@ -47,7 +47,7 @@ Version 1.3.0 removed some recommendations, but they only affect the IAM passwor
 
 - 1.8: Ensure IAM password policy require at least one number
 
-### New Gruntwork modules vs. existing modules
+## New Gruntwork modules vs. existing modules
 
 To achieve compliance with the new version of the Framework, we created four new modules in the
 Gruntwork’s Infrastructure as Code Library, and updated a bunch of existing modules. Namely: recommendations 1.19, 1.21,
@@ -61,5 +61,5 @@ configure the newly created modules.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"cb07b20cf85977f1061c2f767a092c5d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f0ded5c64201b4e19f8268250d258b12"}
 ##DOCS-SOURCER-END -->

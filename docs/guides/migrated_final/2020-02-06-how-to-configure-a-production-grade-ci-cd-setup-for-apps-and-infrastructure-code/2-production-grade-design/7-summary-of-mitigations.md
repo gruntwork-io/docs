@@ -1,4 +1,4 @@
-## Summary of mitigations
+# Summary of mitigations
 
 With this production design in mind, let’s take a look at how each of the design decisions addresses the concerns of the
 threat model:
@@ -76,5 +76,5 @@ with the `sensitive` keyword so that terraform will mask the outputs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"53bf9e486bd4c85c276ab4367a75ede1"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b372c76fbabd6d7a24656817d3f42828"}
 ##DOCS-SOURCER-END -->

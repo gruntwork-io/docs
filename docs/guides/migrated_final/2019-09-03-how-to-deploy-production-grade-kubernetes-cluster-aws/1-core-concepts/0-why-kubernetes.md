@@ -1,4 +1,4 @@
-## Why Kubernetes
+# Why Kubernetes
 
 ![The popularity of container orchestration tools](/assets/img/guides/eks/docker-orchestration-google-trends.png)
 
@@ -30,5 +30,5 @@ continuously getting better.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a15fda2fd609cb356412dfe4e0e36c83"}
+{"sourcePlugin":"Service Catalog Reference","hash":"74b129a9458e8c7b53e3214ff46e1022"}
 ##DOCS-SOURCER-END -->
