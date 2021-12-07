@@ -1,12 +1,13 @@
 ---
-'title': 'Business Case'
+'title': 'Why Gruntwork?'
 ---
 
-# Business case
+# Why Gruntwork?
 
 ## Problem
 
 Every company needs infrastructure to run its software, but deploying and maintaining infrastructure can be complicated, error-prone and time-consuming. Also, most companies have the same core set of infrastructure needs, so redundantly implementing what is already built is a poor use of company resources.
+
 
 ## Traditional solutions
 
