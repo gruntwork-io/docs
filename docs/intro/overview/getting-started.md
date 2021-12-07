@@ -1,7 +1,3 @@
----
-'title': 'Getting Started'
----
-
 # Getting started
 
 Now here are the next steps:
@@ -11,5 +7,5 @@ Now here are the next steps:
 - Let's setup your first deployment
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"700022a4c806b9db49e6889f5e601e4a"}
+{"sourcePlugin":"Local File Copier","hash":"0126f500bf58402d82b329652b2dd9ff"}
 ##DOCS-SOURCER-END -->

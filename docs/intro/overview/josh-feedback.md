@@ -1,7 +1,3 @@
----
-'title': "Josh's Feedback"
----
-
 # Josh's Feedback
 
 - What's the vision for "tool fundamentals"?
@@ -67,5 +63,5 @@ The difference in the first is that there are newlines between toplevel bullets.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"aa38b92afb0d6666f8c2c984126dd4e4"}
+{"sourcePlugin":"Local File Copier","hash":"0f0c1c873e0e630001d78459ae59b309"}
 ##DOCS-SOURCER-END -->

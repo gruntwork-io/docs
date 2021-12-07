@@ -1,7 +1,3 @@
----
-'title': "Josh's Feedback"
----
-
 # Josh's Feedback
 
 - What's the vision for "tool fundamentals"?

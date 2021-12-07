@@ -1,12 +1,8 @@
----
-'title': 'Introduction to Gruntwork'
----
-
 # Introduction to Gruntwork
 
 ### What is Gruntwork?
 
-Gruntwork is a "DevOps accelerator" designed to make it possible to achieve a world-class DevOps setup based completely on infrastructure-as-code in just a few days. 
+Gruntwork is a "DevOps accelerator" designed to make it possible to achieve a world-class DevOps setup based completely on infrastructure-as-code in just a few days.
 
 Gruntwork works best for teams building new infrastructure ("greenfield"), whether from scratch or as part of a migration, however it can also be useful for teams with existing infrastructure ("brownfield").
 
@@ -20,6 +16,7 @@ Gruntwork accelerates teams on Amazon Web Services (AWS). Support for additional
 
 All Gruntwork products are built on and fully compatible with [open source Terraform](https://gruntwork.io). The one exception to this is the Gruntwork Reference Architecture, which uses Terragrunt to implement an end-to-end architecture.
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b7b3dc27215dac49d56f19a6c9892c9c"}
+{"sourcePlugin":"Local File Copier","hash":"c545290ffd8a8c083c7b870d51d64869"}
 ##DOCS-SOURCER-END -->

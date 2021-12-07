@@ -1,7 +1,3 @@
----
-'title': 'Use Cases'
----
-
 # Use Cases
 
 - App Teams
@@ -11,6 +7,7 @@
   - Accelerate your service catalog
   - Expert support
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"702cd9765c4f4a5e689f4867ed709e03"}
+{"sourcePlugin":"Local File Copier","hash":"1e19a1a129929ad12c1244fc0818eb3f"}
 ##DOCS-SOURCER-END -->

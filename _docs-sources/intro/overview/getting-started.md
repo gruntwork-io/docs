@@ -1,7 +1,3 @@
----
-'title': 'Getting Started'
----
-
 # Getting started
 
 Now here are the next steps:

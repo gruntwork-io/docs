@@ -1,13 +1,7 @@
----
-'title': 'Gruntwork vs. Other'
----
-
 # Gruntwork vs. Other
 
-## 
-
 - DIY
-- Consultant 
+- Consultant
 - Open source modules
 - Outsourcing DevOps to a third-party
   - [Managed Service Provider](https://aws.amazon.com/partners/msp/)

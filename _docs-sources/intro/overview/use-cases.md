@@ -1,7 +1,3 @@
----
-'title': 'Use Cases'
----
-
 # Use Cases
 
 - App Teams
