@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
-  tagline: "Dinosaurs are cool",
+  tagline: "Your entire infrastructure, defined as code, in about a day.",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   favicon: "/favicon.ico",
@@ -165,7 +165,7 @@ const config = {
         copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
       },
       colorMode: {
-        defaultMode: "dark",
+        defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: false,
         /* we clear these icons out and use CSS to swap in our own images instead */

@@ -42,6 +42,8 @@
   --ifm-code-font-size: 95%;
   --ifm-h1-font-size: 2.5rem; /* ! */
   --ifm-heading-color: #252746;
+
+  --ifm-button-border-radius: 50px;
 }
 
 html[data-theme="dark"] {
@@ -50,10 +52,6 @@ html[data-theme="dark"] {
   --ifm-heading-color: white;
 
   --ifm-color-primary: #AB80FE;
-}
-
-.hero--primary {
-  background-color: #5849A6;
 }
 
 .docusaurus-highlight-code-line {
@@ -69,6 +67,34 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 
 main {
   margin-top: 2em;
+}
+
+/* HOME PAGE */
+
+.hero--primary .button--lg {
+  --ifm-button-size-multiplier: 1.5;
+  --ifm-button-background-color: #5849A6;
+  border: none;
+  /*background-color: #5849A6 !important;*/
+  color: white !important;
+  font-weight: 600;
+  margin-top: 2rem;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: all 0.2s ease-in-out;
+}
+
+.hero--primary .button--lg:hover {
+  /*background-color: #5849A6 !important;*/
+  --ifm-button-background-color: var(--ifm-color-primary);
+  box-shadow: 0 10px 10px rgba(0,0,0,0.25);
+}
+
+.hero--primary {
+  background-color: #252746;
+}
+
+.hero__title, .hero__subtitle {
+  color:  white;
 }
 
 /* NAVBAR + LOGO */
