@@ -446,92 +446,92 @@ configurations were updated.
 To summarize, here is a table highlighting each step of a typical CI/CD workflow and how it is implemented with each
 flavor of code:
 
-<table style="width:100%;">
+<table>
 <caption>Typical CI/CD workflow for application code, infrastructure modules, and live infrastructure config.</caption>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 28%" />
-<col style="width: 28%" />
-<col style="width: 28%" />
+<col/>
+<col/>
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Workflow Step</strong></p></td>
-<td style="text-align: left;"><p>Application Code</p></td>
-<td style="text-align: left;"><p>Infrastructure Modules</p></td>
-<td style="text-align: left;"><p>Live Infrastructure Config</p></td>
+<tr className="odd">
+<td><p><strong>Workflow Step</strong></p></td>
+<td><p>Application Code</p></td>
+<td><p>Infrastructure Modules</p></td>
+<td><p>Live Infrastructure Config</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Clone local copy</strong></p></td>
-<td style="text-align: left;"><pre><code>git clone $REPO
+<tr className="even">
+<td><p><strong>Clone local copy</strong></p></td>
+<td><pre><code>git clone $REPO
 git checkout -b $NAME</code></pre>
 <p> <br />
 </p></td>
-<td style="text-align: left;"><pre><code>git clone $REPO
+<td><pre><code>git clone $REPO
 git checkout -b $NAME</code></pre>
 <p> <br />
 </p></td>
-<td style="text-align: left;"><pre><code>git clone $REPO
+<td><pre><code>git clone $REPO
 git checkout -b $NAME</code></pre>
 <p> <br />
 </p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Run the code locally</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="odd">
+<td><p><strong>Run the code locally</strong></p></td>
+<td><ul>
 <li><p>Run on localhost:<br />
 <code>ruby web-server.rb</code></p></li>
 <li><p>Run automated tests:<br />
 <code>ruby web-server-test.rb</code></p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Run in a sandbox environment:<br />
 <code>terraform apply</code></p></li>
 <li><p>Run automated tests:<br />
 <code>go test</code></p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Dry run:<br />
 <code>terraform plan</code></p></li>
 </ul></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Make code changes</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="even">
+<td><p><strong>Make code changes</strong></p></td>
+<td><ul>
 <li><p>Change the code</p></li>
 <li><p>Test manually</p></li>
 <li><p>Run automated tests</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Change the code</p></li>
 <li><p>Test manually</p></li>
 <li><p>Run automated tests</p></li>
 <li><p>Use test stages for faster iteration</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Change the code</p></li>
 <li><p>Dry run to check changes</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Submit changes for review</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="odd">
+<td><p><strong>Submit changes for review</strong></p></td>
+<td><ul>
 <li><p>Submit a pull request</p></li>
 <li><p>Enforce coding guidelines</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Submit a pull request</p></li>
 <li><p>Enforce coding guidelines</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Submit a pull request</p></li>
 <li><p>Enforce coding guidelines</p></li>
 <li><p>Review plan</p></li>
 </ul></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Run automated tests</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="even">
+<td><p><strong>Run automated tests</strong></p></td>
+<td><ul>
 <li><p>Tests run on CI server</p></li>
 <li><p>Local environment on CI server</p></li>
 <li><p>Tests:</p>
@@ -543,7 +543,7 @@ git checkout -b $NAME</code></pre>
 </ul></li>
 <li><p>Summary results</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Tests run on CI server</p></li>
 <li><p>Sandbox environment</p></li>
 <li><p>Tests:</p>
@@ -554,7 +554,7 @@ git checkout -b $NAME</code></pre>
 </ul></li>
 <li><p>Summary results</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Dry run changes from CI server</p></li>
 <li><p>Live environments</p></li>
 <li><p>Tests:</p>
@@ -564,9 +564,9 @@ git checkout -b $NAME</code></pre>
 <li><p>Full plan output</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Merge and release</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="odd">
+<td><p><strong>Merge and release</strong></p></td>
+<td><ul>
 <li><p><code>git tag</code></p></li>
 <li><p>Create versioned, immutable artifact:</p>
 <ul>
@@ -574,24 +574,24 @@ git checkout -b $NAME</code></pre>
 <li><p><code>packer build</code></p></li>
 </ul></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p><code>git tag</code></p></li>
 </ul></td>
-<td style="text-align: left;"><p>No release artifact</p></td>
+<td><p>No release artifact</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Deploy</strong></p></td>
-<td style="text-align: left;"><ul>
+<tr className="even">
+<td><p><strong>Deploy</strong></p></td>
+<td><ul>
 <li><p>Automatically update Live Infrastructure Config with new image.</p></li>
 <li><p>Many strategies: canary, blue-green, rolling deployment.</p></li>
 <li><p>Promote immutable, versioned artifacts across environments.</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Manually update Live Infrastructure Config with new ref tag.</p></li>
 <li><p>Limited deployment strategies.</p></li>
 <li><p>Promote immutable, versioned artifacts across environments.</p></li>
 </ul></td>
-<td style="text-align: left;"><ul>
+<td><ul>
 <li><p>Continuously deploy directly from master (with approval workflow).</p></li>
 <li><p>Only one deployment strategy.</p></li>
 </ul></td>
@@ -685,104 +685,104 @@ provides, as well as how they mitigate the threat model that we cover:
 
 <table>
 <colgroup>
-<col style="width: 7%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p><strong></strong></p></td>
-<td style="text-align: left;"><p><a href="https://jenkins.io/">Jenkins</a></p></td>
-<td style="text-align: left;"><p><a href="https://circleci.com/">CircleCI</a></p></td>
-<td style="text-align: left;"><p><a href="https://buildkite.com/">BuildKite</a></p></td>
-<td style="text-align: left;"><p><a href="https://gitlab.com/">GitLab</a></p></td>
-<td style="text-align: left;"><p><a href="https://www.runatlantis.io">Atlantis</a></p></td>
-<td style="text-align: left;"><p><a href="https://www.hashicorp.com/products/terraform/">TFE and TFC</a></p></td>
+<tr className="odd">
+<td><p><strong></strong></p></td>
+<td><p><a href="https://jenkins.io/">Jenkins</a></p></td>
+<td><p><a href="https://circleci.com/">CircleCI</a></p></td>
+<td><p><a href="https://buildkite.com/">BuildKite</a></p></td>
+<td><p><a href="https://gitlab.com/">GitLab</a></p></td>
+<td><p><a href="https://www.runatlantis.io">Atlantis</a></p></td>
+<td><p><a href="https://www.hashicorp.com/products/terraform/">TFE and TFC</a></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Hosting</strong></p></td>
-<td style="text-align: left;"><p>Self-hosted</p></td>
-<td style="text-align: left;"><p>SaaS</p></td>
-<td style="text-align: left;"><p>Hybrid (SaaS control plane, Self-hosted workers)</p></td>
-<td style="text-align: left;"><p>SaaS or Self-hosted</p></td>
-<td style="text-align: left;"><p>Self-hosted</p></td>
-<td style="text-align: left;"><p>SaaS or Self-hosted</p></td>
+<tr className="even">
+<td><p><strong>Hosting</strong></p></td>
+<td><p>Self-hosted</p></td>
+<td><p>SaaS</p></td>
+<td><p>Hybrid (SaaS control plane, Self-hosted workers)</p></td>
+<td><p>SaaS or Self-hosted</p></td>
+<td><p>Self-hosted</p></td>
+<td><p>SaaS or Self-hosted</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Purpose</strong></p></td>
-<td style="text-align: left;"><p>Generic CI/CD tool</p></td>
-<td style="text-align: left;"><p>Generic CI/CD tool</p></td>
-<td style="text-align: left;"><p>Generic CI/CD tool</p></td>
-<td style="text-align: left;"><p>Generic CI/CD tool</p></td>
-<td style="text-align: left;"><p>Specialized to terraform</p></td>
-<td style="text-align: left;"><p>Specialized to terraform</p></td>
+<tr className="odd">
+<td><p><strong>Purpose</strong></p></td>
+<td><p>Generic CI/CD tool</p></td>
+<td><p>Generic CI/CD tool</p></td>
+<td><p>Generic CI/CD tool</p></td>
+<td><p>Generic CI/CD tool</p></td>
+<td><p>Specialized to terraform</p></td>
+<td><p>Specialized to terraform</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>VCS integration</strong></p></td>
-<td style="text-align: left;"><p>Yes, with plugins</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
+<tr className="even">
+<td><p><strong>VCS integration</strong></p></td>
+<td><p>Yes, with plugins</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Provides static IP addresses for IP whitelisting</strong></p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>No</p></td>
-<td style="text-align: left;"><p>Yes (for workers)</p></td>
-<td style="text-align: left;"><p>Yes (self-hosted)</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes (TFE)</p></td>
+<tr className="odd">
+<td><p><strong>Provides static IP addresses for IP whitelisting</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes (for workers)</p></td>
+<td><p>Yes (self-hosted)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes (TFE)</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Built-in workflows</strong></p></td>
-<td style="text-align: left;"><p>None</p></td>
-<td style="text-align: left;"><p>None</p></td>
-<td style="text-align: left;"><p>None</p></td>
-<td style="text-align: left;"><p>Kubernetes Workflows</p></td>
-<td style="text-align: left;"><p>Terraform Workflows</p></td>
-<td style="text-align: left;"><p>Terraform Workflows</p></td>
+<tr className="even">
+<td><p><strong>Built-in workflows</strong></p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+<td><p>Kubernetes Workflows</p></td>
+<td><p>Terraform Workflows</p></td>
+<td><p>Terraform Workflows</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Custom workflows</strong></p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>No (Only supports a fixed Terraform-based workflow)</p></td>
-<td style="text-align: left;"><p>No (Only supports a fixed Terraform-based workflow)</p></td>
+<tr className="odd">
+<td><p><strong>Custom workflows</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No (Only supports a fixed Terraform-based workflow)</p></td>
+<td><p>No (Only supports a fixed Terraform-based workflow)</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Credentials storage</strong></p></td>
-<td style="text-align: left;"><p>Managed by you</p></td>
-<td style="text-align: left;"><p>Shared with 3rd party</p></td>
-<td style="text-align: left;"><p>Managed by you</p></td>
-<td style="text-align: left;"><p>Shared with 3rd party (SaaS); Managed by you (Self-hosted)</p></td>
-<td style="text-align: left;"><p>Managed by you</p></td>
-<td style="text-align: left;"><p>Shared with 3rd party (TFC); Managed by you (TFE)</p></td>
+<tr className="even">
+<td><p><strong>Credentials storage</strong></p></td>
+<td><p>Managed by you</p></td>
+<td><p>Shared with 3rd party</p></td>
+<td><p>Managed by you</p></td>
+<td><p>Shared with 3rd party (SaaS); Managed by you (Self-hosted)</p></td>
+<td><p>Managed by you</p></td>
+<td><p>Shared with 3rd party (TFC); Managed by you (TFE)</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p><strong>Update commit statuses</strong></p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
+<tr className="odd">
+<td><p><strong>Update commit statuses</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p><strong>Annotate pull requests</strong></p></td>
-<td style="text-align: left;"><p>Requires custom scripting</p></td>
-<td style="text-align: left;"><p>Requires custom scripting</p></td>
-<td style="text-align: left;"><p>Requires custom scripting</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Yes</p></td>
-<td style="text-align: left;"><p>Supports multiple infrastructure tools</p></td>
+<tr className="even">
+<td><p><strong>Annotate pull requests</strong></p></td>
+<td><p>Requires custom scripting</p></td>
+<td><p>Requires custom scripting</p></td>
+<td><p>Requires custom scripting</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Supports multiple infrastructure tools</p></td>
 </tr>
 </tbody>
 </table>
@@ -1034,7 +1034,7 @@ This guide uses code from the [Gruntwork Infrastructure as Code Library](https:/
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
 Terraform  
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re

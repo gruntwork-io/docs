@@ -95,25 +95,25 @@ compatible with CIS AWS v1.4.0:
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Gruntwork Repo</p></td>
-<td style="text-align: left;"><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
-<td style="text-align: left;"><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
+<tr className="odd">
+<td ><p>Gruntwork Repo</p></td>
+<td ><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
+<td ><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-security</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
-<td style="text-align: left;"><p>1.12, 2.1.3, 2.1.5</p></td>
+<tr className="even">
+<td ><p>terraform-aws-security</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
+<td ><p>1.12, 2.1.3, 2.1.5</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-cis-service-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
-<td style="text-align: left;"><p>2.1.4, 4.1</p></td>
+<tr className="odd">
+<td ><p>terraform-aws-cis-service-catalog</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
+<td ><p>2.1.4, 4.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -373,5 +373,5 @@ If you’ve got any feedback or you think something’s missing from the guide, 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"08f2bc37ce113e90df50790415d5e888"}
+{"sourcePlugin":"Local File Copier","hash":"71818a4fdd80876dabb8d981ae97923e"}
 ##DOCS-SOURCER-END -->

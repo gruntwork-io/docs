@@ -176,21 +176,21 @@ Here’s an example route table:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Destination</p></td>
-<td style="text-align: left;"><p>Target</p></td>
+<tr className="odd">
+<td><p>Destination</p></td>
+<td><p>Target</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>10.0.0.0/24</p></td>
-<td style="text-align: left;"><p>Local</p></td>
+<tr className="even">
+<td><p>10.0.0.0/24</p></td>
+<td><p>Local</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>0.0.0.0/0</p></td>
-<td style="text-align: left;"><p>igw-12345</p></td>
+<tr className="odd">
+<td><p>0.0.0.0/0</p></td>
+<td><p>igw-12345</p></td>
 </tr>
 </tbody>
 </table>
@@ -225,21 +225,21 @@ In order for the NAT Gateway to work, you’ll need to add a route to the route 
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Destination</p></td>
-<td style="text-align: left;"><p>Target</p></td>
+<tr className="odd">
+<td><p>Destination</p></td>
+<td><p>Target</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>10.10.0.0/24</p></td>
-<td style="text-align: left;"><p>Local</p></td>
+<tr className="even">
+<td><p>10.10.0.0/24</p></td>
+<td><p>Local</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>0.0.0.0/0</p></td>
-<td style="text-align: left;"><p>nat-67890</p></td>
+<tr className="odd">
+<td><p>0.0.0.0/0</p></td>
+<td><p>nat-67890</p></td>
 </tr>
 </tbody>
 </table>
@@ -260,35 +260,35 @@ Here’s an example of inbound rules:
 
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col/>
+<col/>
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Port range</p></td>
-<td style="text-align: left;"><p>Source</p></td>
-<td style="text-align: left;"><p>Protocol</p></td>
-<td style="text-align: left;"><p>Comment</p></td>
+<tr className="odd">
+<td><p>Port range</p></td>
+<td><p>Source</p></td>
+<td><p>Protocol</p></td>
+<td><p>Comment</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>80</p></td>
-<td style="text-align: left;"><p>10.0.0.0/16</p></td>
-<td style="text-align: left;"><p>tcp</p></td>
-<td style="text-align: left;"><p>Allow HTTP requests from within the VPC</p></td>
+<tr className="even">
+<td><p>80</p></td>
+<td><p>10.0.0.0/16</p></td>
+<td><p>tcp</p></td>
+<td><p>Allow HTTP requests from within the VPC</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>443</p></td>
-<td style="text-align: left;"><p>10.0.0.0/16</p></td>
-<td style="text-align: left;"><p>tcp</p></td>
-<td style="text-align: left;"><p>Allow HTTPS requests from within the VPC</p></td>
+<tr className="odd">
+<td><p>443</p></td>
+<td><p>10.0.0.0/16</p></td>
+<td><p>tcp</p></td>
+<td><p>Allow HTTPS requests from within the VPC</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>4000 - 5000</p></td>
-<td style="text-align: left;"><p>sg-abcd1234</p></td>
-<td style="text-align: left;"><p>tcp</p></td>
-<td style="text-align: left;"><p>Open a range of ports (e.g., for debugging) to another security group with ID <code>sg-abcd1234</code></p></td>
+<tr className="even">
+<td><p>4000 - 5000</p></td>
+<td><p>sg-abcd1234</p></td>
+<td><p>tcp</p></td>
+<td><p>Open a range of ports (e.g., for debugging) to another security group with ID <code>sg-abcd1234</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -297,23 +297,23 @@ And here’s an example of outbound rules:
 
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col/>
+<col/>
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Port range</p></td>
-<td style="text-align: left;"><p>Destination</p></td>
-<td style="text-align: left;"><p>Protocol</p></td>
-<td style="text-align: left;"><p>Comment</p></td>
+<tr className="odd">
+<td><p>Port range</p></td>
+<td><p>Destination</p></td>
+<td><p>Protocol</p></td>
+<td><p>Comment</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>443</p></td>
-<td style="text-align: left;"><p>0.0.0.0/0</p></td>
-<td style="text-align: left;"><p>tcp</p></td>
-<td style="text-align: left;"><p>Allow all outbound requests over HTTPS so you can talk to the public Internet</p></td>
+<tr className="even">
+<td><p>443</p></td>
+<td><p>0.0.0.0/0</p></td>
+<td><p>tcp</p></td>
+<td><p>Allow all outbound requests over HTTPS so you can talk to the public Internet</p></td>
 </tr>
 </tbody>
 </table>
@@ -612,7 +612,7 @@ This guide uses code from the [Gruntwork Infrastructure as Code Library](https:/
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
 Terraform  
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
@@ -633,7 +633,7 @@ The first step is to deploy a management VPC for DevOps tooling, such as a CI se
 can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
 Gruntwork Infrastructure as Code Library.
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
 
 This module assumes you do not run any data stores in the management VPC, so it solely contains two tiers of subnets,
 public and private-app. If you will be deploying data stores in the management VPC (e.g., a relational database for
@@ -842,7 +842,7 @@ services, data stores, and production infrastructure. The process is very simila
 except this time, you’ll be using the [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
 module from the Gruntwork Infrastructure as Code Library.
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
 
 ### Create a wrapper module
 
@@ -1121,5 +1121,5 @@ If you’re not sure which of these options to use, check out the `Server Cluste
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"bef1f8ac806ac2fe8e68b94bd168c037"}
+{"sourcePlugin":"Local File Copier","hash":"a994791dd1ca876e8bc4cda11ed862bd"}
 ##DOCS-SOURCER-END -->

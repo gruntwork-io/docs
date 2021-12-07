@@ -126,50 +126,50 @@ compatible with CIS AWS v1.3.0:
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col/>
+<col/>
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Gruntwork Repo</p></td>
-<td style="text-align: left;"><p><strong>Minimum version with CIS AWS v1.3.0 support</strong></p></td>
-<td style="text-align: left;"><p>Corresponding CIS AWS v1.3.0 recommendations</p></td>
+<tr className="odd">
+<td><p>Gruntwork Repo</p></td>
+<td><p><strong>Minimum version with CIS AWS v1.3.0 support</strong></p></td>
+<td><p>Corresponding CIS AWS v1.3.0 recommendations</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-security</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.6">v0.44.6</a></strong></p></td>
-<td style="text-align: left;"><p>1.20, 1.21, 2.1.1, 2.1.2, 3.10, 3.11</p></td>
+<tr className="even">
+<td><p>terraform-aws-security</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.6">v0.44.6</a></strong></p></td>
+<td><p>1.20, 1.21, 2.1.1, 2.1.2, 3.10, 3.11</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-monitoring</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.24.0">v0.24.0</a></strong></p></td>
-<td style="text-align: left;"><p>1.20, 2.1.1, 2.1.2</p></td>
+<tr className="odd">
+<td><p>terraform-aws-monitoring</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.24.0">v0.24.0</a></strong></p></td>
+<td><p>1.20, 2.1.1, 2.1.2</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-zookeeper</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.0">v0.8.0</a></strong></p></td>
-<td style="text-align: left;"><p>1.20, 2.1.1, 2.1.2</p></td>
+<tr className="even">
+<td><p>terraform-aws-zookeeper</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.0">v0.8.0</a></strong></p></td>
+<td><p>1.20, 2.1.1, 2.1.2</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-vpc</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
-<td style="text-align: left;"><p>1.20, 2.1.1, 2.1.2</p></td>
+<tr className="odd">
+<td><p>terraform-aws-vpc</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
+<td><p>1.20, 2.1.1, 2.1.2</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-openvpn</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
-<td style="text-align: left;"><p>1.20, 2.1.1, 2.1.2</p></td>
+<tr className="even">
+<td><p>terraform-aws-openvpn</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
+<td><p>1.20, 2.1.1, 2.1.2</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-cis-service-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.11.1">v0.11.1</a></strong></p></td>
-<td style="text-align: left;"><p>3.10, 3.11, 4.15, 5.1</p></td>
+<tr className="odd">
+<td><p>terraform-aws-cis-service-catalog</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.11.1">v0.11.1</a></strong></p></td>
+<td><p>3.10, 3.11, 4.15, 5.1</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-service-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.15.4">v0.15.4</a></strong></p></td>
-<td style="text-align: left;"><p>1.21</p></td>
+<tr className="even">
+<td><p>terraform-aws-service-catalog</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.15.4">v0.15.4</a></strong></p></td>
+<td><p>1.21</p></td>
 </tr>
 </tbody>
 </table>

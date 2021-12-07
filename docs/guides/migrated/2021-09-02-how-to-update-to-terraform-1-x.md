@@ -102,138 +102,138 @@ compatible with Terraform 1.x:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col />
+<col />
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Gruntwork Repo</p></td>
-<td style="text-align: left;"><p><strong>Minimum version with Terraform 1.x support</strong></p></td>
+<tr className="odd">
+<td ><p>Gruntwork Repo</p></td>
+<td ><p><strong>Minimum version with Terraform 1.x support</strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>Terratest</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/Terratest/releases/tag/v0.37.0">v0.37.0</a></strong></p></td>
+<tr className="even">
+<td ><p>Terratest</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/Terratest/releases/tag/v0.37.0">v0.37.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>Terragrunt</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/Terragrunt/releases/tag/v0.31.0">v0.31.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>Terragrunt</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/Terragrunt/releases/tag/v0.31.0">v0.31.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-utilities</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.6.0">v0.6.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-utilities</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.6.0">v0.6.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-vpc</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.17.0">v0.17.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-vpc</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.17.0">v0.17.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-asg</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.15.0">v0.15.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-asg</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.15.0">v0.15.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-server</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-server</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-lambda</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-lambda</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.13.0">v0.13.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-security</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.53.0">v0.53.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-security</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.53.0">v0.53.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-load-balancer</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-load-balancer</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-data-storage</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.21.0">v0.21.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-data-storage</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.21.0">v0.21.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-cache</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.16.0">v0.16.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-cache</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.16.0">v0.16.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-messaging</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.7.0">v0.7.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-messaging</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.7.0">v0.7.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-static-assets</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-static-assets</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-monitoring</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.30.0">v0.30.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-monitoring</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.30.0">v0.30.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-openvpn</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.16.0">v0.16.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-openvpn</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.16.0">v0.16.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-ecs</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.30.0">v0.30.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-ecs</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.30.0">v0.30.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-ci</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.0">v0.38.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-ci</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.0">v0.38.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-eks</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.43.0">v0.43.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-eks</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.43.0">v0.43.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-zookeeper</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0">v0.12.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-zookeeper</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0">v0.12.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-kafka</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-kafka</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-elk</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-elk</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-kubernetes-namespace</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-kubernetes-namespace/releases/tag/v0.4.0">v0.4.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-kubernetes-namespace</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-kubernetes-namespace/releases/tag/v0.4.0">v0.4.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-cis-service-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.26.0">v0.26.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-cis-service-catalog</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.26.0">v0.26.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-sam</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.6.0">v0.6.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-sam</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.6.0">v0.6.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-couchbase</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-couchbase/releases/tag/v0.7.0">v0.7.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-couchbase</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-couchbase/releases/tag/v0.7.0">v0.7.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-vault</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/hashicorp/terraform-aws-vault/releases/tag/v0.17.0">v0.17.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-vault</p></td>
+<td ><p><strong><a href="https://github.com/hashicorp/terraform-aws-vault/releases/tag/v0.17.0">v0.17.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-consul</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/hashicorp/terraform-aws-consul/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-consul</p></td>
+<td ><p><strong><a href="https://github.com/hashicorp/terraform-aws-consul/releases/tag/v0.11.0">v0.11.0</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-nomad</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/hashicorp/terraform-aws-nomad/releases/tag/v0.10.0">v0.10.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-nomad</p></td>
+<td ><p><strong><a href="https://github.com/hashicorp/terraform-aws-nomad/releases/tag/v0.10.0">v0.10.0</a></strong></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>terraform-aws-architecture-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.18">v0.0.18</a></strong></p></td>
+<tr className="even">
+<td ><p>terraform-aws-architecture-catalog</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.18">v0.0.18</a></strong></p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><p>terraform-aws-service-catalog</p></td>
-<td style="text-align: left;"><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.55.0">v0.55.0</a></strong></p></td>
+<tr className="odd">
+<td ><p>terraform-aws-service-catalog</p></td>
+<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.55.0">v0.55.0</a></strong></p></td>
 </tr>
 </tbody>
 </table>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"957cf65de4aabadc0c8252d796571742"}
+{"sourcePlugin":"Local File Copier","hash":"ceeb7f38d22418443a28dbe61c4b10b0"}
 ##DOCS-SOURCER-END -->

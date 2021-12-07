@@ -870,7 +870,7 @@ implements most of the production-grade design for you out of the box. Make sure
 This guide also uses code from the [Gruntwork CIS AWS
 Foundations Benchmark repository](https://gruntwork.io/achieve-compliance), which contains the necessary configurations to achieve compliance.
 
-You must be a <span class="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork
+You must be a <span className="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork
 Infrastructure as Code Library and the CIS AWS Foundations Benchmark modules.
 
 ### How to configure a production-grade AWS account structure
@@ -1082,7 +1082,7 @@ The standalone modules will follow the pattern of referencing the module and pro
 
 Configure the `account-baseline-root` for the root account
 
-You must be a <span class="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork Infrastructure as Code Library and the [CIS AWS Foundations Benchmark modules](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/).
+You must be a <span className="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork Infrastructure as Code Library and the [CIS AWS Foundations Benchmark modules](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/).
 
 First, let’s consider the repository structure that is recommended by this guide. It is available for your reference in the `/examples/for-production` folder of the [`terraform-aws-cis-service-catalog` repository](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/examples/for-production). Consider the following directory structure for your `infrastructure-live` repository. It showcases the configuration files for your local variables.
 
@@ -2801,11 +2801,11 @@ sections above.
 
 <table>
 <colgroup>
-<col style="width: 100%" />
+<col/>
 </colgroup>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>#;Section;Description
+<tr className="odd">
+<td><p>#;Section;Description
 1.1;<a href="#security_questions">Answer security questions and complete contact details</a>;Complete the contact details on the AWS account page
 1.2;<a href="#security_questions">Answer security questions and complete contact details</a>;Complete the security contact information on the AWS account page
 1.3;<a href="#security_questions">Answer security questions and complete contact details</a>;Answer the security questions on the AWS account page
@@ -2850,5 +2850,5 @@ sections above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a591b70547df8f33be86dc3c737c670f"}
+{"sourcePlugin":"Local File Copier","hash":"c1760f375c59d3c5c2bb02f547a5a846"}
 ##DOCS-SOURCER-END -->
