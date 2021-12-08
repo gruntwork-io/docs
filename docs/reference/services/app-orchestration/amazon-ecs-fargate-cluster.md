@@ -10,54 +10,35 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 ### Reference
 
 <Tabs>
-  <TabItem value="inputs" label="Inputs" default>
-    <ul>
-      
-    <li>
-      <p>
-        <a name="cluster_name" href="#cluster_name" className="snap-top">
-          <code>cluster_name</code>
-        </a> - The name of the ECS cluster
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="custom_tags" href="#custom_tags" className="snap-top">
-          <code>custom_tags</code>
-        </a> - A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="enable_container_insights" href="#enable_container_insights" className="snap-top">
-          <code>enable_container_insights</code>
-        </a> - Whether or not to enable container insights monitoring on the ECS cluster.
-      </p>
-    </li>
-    </ul>
-  </TabItem>
-  <TabItem value="outputs" label="Outputs">
-    <ul>
-      
-    <li>
-      <p>
-        <a name="arn" href="#arn" className="snap-top">
-          <code>arn</code>
-        </a> - ARN of the ECS cluster that was created.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="name" href="#name" className="snap-top">
-          <code>name</code>
-        </a> - The name of the ECS cluster.
-      </p>
-    </li>
-    </ul>
-  </TabItem>
+<TabItem value="inputs" label="Inputs" default>
+
+<a name="cluster_name" className="snap-top"></a>
+
+* [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
+
+<a name="custom_tags" className="snap-top"></a>
+
+* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
+
+<a name="enable_container_insights" className="snap-top"></a>
+
+* [**`enable_container_insights`**](#enable_container_insights) &mdash; Whether or not to enable container insights monitoring on the ECS cluster.
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+<a name="arn" className="snap-top"></a>
+
+* [**`arn`**](#arn) &mdash; ARN of the ECS cluster that was created.
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name of the ECS cluster.
+
+</TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"aa367c880b6db855332114fe93de6b94"}
+{"sourcePlugin":"Service Catalog Reference","hash":"570b2ae5d734e54f37ec19630f8153fa"}
 ##DOCS-SOURCER-END -->

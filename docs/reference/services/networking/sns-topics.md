@@ -10,89 +10,55 @@ Create Amazon Simple Notification Service topics
 ### Reference
 
 <Tabs>
-  <TabItem value="inputs" label="Inputs" default>
-    <ul>
-      
-    <li>
-      <p>
-        <a name="allow_publish_accounts" href="#allow_publish_accounts" className="snap-top">
-          <code>allow_publish_accounts</code>
-        </a> - A list of IAM ARNs that will be given the rights to publish to the SNS topic.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="allow_publish_services" href="#allow_publish_services" className="snap-top">
-          <code>allow_publish_services</code>
-        </a> - A list of AWS services that will be given the rights to publish to the SNS topic.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="allow_subscribe_accounts" href="#allow_subscribe_accounts" className="snap-top">
-          <code>allow_subscribe_accounts</code>
-        </a> - A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="allow_subscribe_protocols" href="#allow_subscribe_protocols" className="snap-top">
-          <code>allow_subscribe_protocols</code>
-        </a> - A list of protocols that can be used to subscribe to the SNS topic.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="create_resources" href="#create_resources" className="snap-top">
-          <code>create_resources</code>
-        </a> - Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="display_name" href="#display_name" className="snap-top">
-          <code>display_name</code>
-        </a> - The display name of the SNS topic
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="kms_master_key_id" href="#kms_master_key_id" className="snap-top">
-          <code>kms_master_key_id</code>
-        </a> - The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="name" href="#name" className="snap-top">
-          <code>name</code>
-        </a> - The name of the SNS topic
-      </p>
-    </li>
-    <li>
-      <p>
-        <a name="slack_webhook_url" href="#slack_webhook_url" className="snap-top">
-          <code>slack_webhook_url</code>
-        </a> - Send topic notifications to this Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ).
-      </p>
-    </li>
-    </ul>
-  </TabItem>
-  <TabItem value="outputs" label="Outputs">
-    <ul>
-      
-    <li>
-      <p>
-        <a name="topic_arn" href="#topic_arn" className="snap-top">
-          <code>topic_arn</code>
-        </a> - The ARN of the SNS topic.
-      </p>
-    </li>
-    </ul>
-  </TabItem>
+<TabItem value="inputs" label="Inputs" default>
+
+<a name="allow_publish_accounts" className="snap-top"></a>
+
+* [**`allow_publish_accounts`**](#allow_publish_accounts) &mdash; A list of IAM ARNs that will be given the rights to publish to the SNS topic.
+
+<a name="allow_publish_services" className="snap-top"></a>
+
+* [**`allow_publish_services`**](#allow_publish_services) &mdash; A list of AWS services that will be given the rights to publish to the SNS topic.
+
+<a name="allow_subscribe_accounts" className="snap-top"></a>
+
+* [**`allow_subscribe_accounts`**](#allow_subscribe_accounts) &mdash; A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
+
+<a name="allow_subscribe_protocols" className="snap-top"></a>
+
+* [**`allow_subscribe_protocols`**](#allow_subscribe_protocols) &mdash; A list of protocols that can be used to subscribe to the SNS topic.
+
+<a name="create_resources" className="snap-top"></a>
+
+* [**`create_resources`**](#create_resources) &mdash; Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
+
+<a name="display_name" className="snap-top"></a>
+
+* [**`display_name`**](#display_name) &mdash; The display name of the SNS topic
+
+<a name="kms_master_key_id" className="snap-top"></a>
+
+* [**`kms_master_key_id`**](#kms_master_key_id) &mdash; The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name of the SNS topic
+
+<a name="slack_webhook_url" className="snap-top"></a>
+
+* [**`slack_webhook_url`**](#slack_webhook_url) &mdash; Send topic notifications to this Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ).
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+<a name="topic_arn" className="snap-top"></a>
+
+* [**`topic_arn`**](#topic_arn) &mdash; The ARN of the SNS topic.
+
+</TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"20f8d418e3b2fd96f4d8dbe0b57b6bc0"}
+{"sourcePlugin":"Service Catalog Reference","hash":"28e5a8d03eed112176cd21eb83fad49d"}
 ##DOCS-SOURCER-END -->
