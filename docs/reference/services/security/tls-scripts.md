@@ -10,19 +10,19 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
 ### Reference
 
 <Tabs>
-  <TabItem value="inputs" label="Inputs" default>
-    <ul>
-      
-    </ul>
-  </TabItem>
-  <TabItem value="outputs" label="Outputs">
-    <ul>
-      
-    </ul>
-  </TabItem>
+<TabItem value="inputs" label="Inputs" default>
+
+
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+
+
+</TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4c8ae7cbb51d1ebc70c547b82916091a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6c6dd1eaaef0a8ea56487fd53addbfeb"}
 ##DOCS-SOURCER-END -->
