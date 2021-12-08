@@ -5,20 +5,30 @@
 The third layer of defense is to use separate _subnet tiers_, where each tier contains multiple subnets configured in
 the same way. We recommend the following three theirs for most use cases:
 
-Public tier  
+
+
+<div className="dlist">
+
+#### Public tier
+
 This tier contains public subnets, so any resources in this tier will be directly addressable from the public
 Internet. The only things you should run in this tier are highly locked down services that must be exposed directly
 to the public, including load balancers and the bastion host.
 
-Private application tier  
+#### Private application tier
+
 This tier contains private subnets, so any resources in tier will not be directly addressable from the public
 Internet. This tier should be used for all of your applications: e.g., EC2 instances, Docker containers, and so on.
 
-Private persistence tier  
+#### Private persistence tier
+
 This tier also contains private subnets, so any resources in tier will not be directly addressable from the public
 Internet. This tier should be used for all of your data stores: e.g., relational databases, caches, NoSQL stores, and
 so on. This allows you to add additional additional layers of defense for your data, as described in the next
 section. If you have no data stores (e.g., in a management VPC), this tier can be omitted.
+
+
+</div>
 
 Each tier should contain one subnet per availability zone in your chosen AWS region so that resources in that tier can
 take advantage of all availability zones. So, if you picked the `us-east-2` region, which has three availability zones
@@ -31,5 +41,5 @@ discussed in the next section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9fdc5aa57fd11885d8f64a3d2d37fcb3"}
+{"sourcePlugin":"Service Catalog Reference","hash":"7225399ca9f184e36455371be4338d0d"}
 ##DOCS-SOURCER-END -->

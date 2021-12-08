@@ -19,21 +19,32 @@ you:
 
 A few handy notes:
 
-CIDR calculators  
+
+
+<div className="dlist">
+
+#### CIDR calculators
+
 You can use [online CIDR calculators](http://cidr.xyz/) to quickly do the math for you.
 
-CIDR blocks  
+#### CIDR blocks
+
 IP addresses expressed in CIDR notation are often called CIDR Blocks.
 
-All IPs  
+#### All IPs
+
 The CIDR Block `0.0.0.0/0` corresponds to all IP address.
 
-Single IPs  
+#### Single IPs
+
 To specify a single IP address (e.g., the IP of a specific server), use the `/32` mask: e.g., `4.4.4.4/32` is the
 CIDR notation for just one IP, `4.4.4.4`.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"1e6ca89c59bdcd5b35f3d53508cdc989"}
+{"sourcePlugin":"Service Catalog Reference","hash":"039be11c6e84ff8b97cda09ce184351c"}
 ##DOCS-SOURCER-END -->

@@ -2,32 +2,46 @@
 
 [Kubernetes (K8S)](https://kubernetes.io/) is an open-source system for managing containerized applications, including:
 
-Scheduling  
+
+
+<div className="dlist">
+
+#### Scheduling
+
 Deploy containers across a cluster of servers, using the available resources (data centers, servers, CPU, memory,
 ports, etc.) as efficiently as possible.
 
-Deployments  
+#### Deployments
+
 Roll out updates to containers using a variety of deployment strategies, such as rolling deployment, blue-green
 deployment, and canary deployment, and automatically roll back if there’s an error.
 
-Auto healing  
+#### Auto healing
+
 Monitor the health of your containers and servers and automatically replace unhealthy ones.
 
-Auto scaling  
+#### Auto scaling
+
 Scale the number of containers and servers up or down in response to load.
 
-Load balancing  
+#### Load balancing
+
 Make your containers accessible to the outside world and distribute traffic across your containers.
 
-Service discovery  
+#### Service discovery
+
 Allow containers to find and communicate with each other over the network, automatically routing requests to the
 proper destination.
 
-Configuration and secrets  
+#### Configuration and secrets
+
 Provide containers with environment-specific configuration data and secrets.
+
+
+</div>
 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9a8a101311db1921bb23c77bc3ef7546"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e6784a217ebba3f5dbe4ea95e24f60ab"}
 ##DOCS-SOURCER-END -->

@@ -2,27 +2,36 @@
 
 Each AWS account has exactly one _root user_:
 
-User name  
+
+
+<div className="dlist">
+
+#### User name
+
 The email address you provide when creating a new AWS account becomes the user name of your root user. This email
 address must be unique across ALL AWS accounts globally, so you can’t use the same email address to create multiple
 AWS accounts.
 
-Console password  
+#### Console password
+
 When creating a new AWS account, you will create a _console password_ that, along with the root user’s user name,
 you can use to login to the AWS console.
 
-Logging into the AWS console  
+#### Logging into the AWS console
+
 After the initial sign up, if you wish to login as the root user, you have to go to
 <https://console.aws.amazon.com> and login using the root user’s email address and password.
 
-Access keys  
+#### Access keys
+
 The root user can optionally have a set of
 _[access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)_,
 which are the credentials you use to login to your AWS account programmatically (e.g., on the command line or when
 making API calls). Access keys consist of two parts: an access key ID (for example, `AKIAIOSFODNN7EXAMPLE`) and a
 secret access key (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`).
 
-Multi-Factor Authentication (MFA)  
+#### Multi-Factor Authentication (MFA)
+
 You can enable
 _[Multi-Factor Authentication (MFA)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html)_ for the
 root user (**strongly recommended**), which will require you to provide not only the user name and password when
@@ -34,7 +43,8 @@ required when logging in with the user name and console password in your web bro
 provide an MFA token when logging in programmatically with access keys. If you want to require MFA tokens for
 programmatic access too (**strongly recommended**), you will need to use IAM policies, which are described later.
 
-Root permissions  
+#### Root permissions
+
 The root user has access permissions to _everything_ in your AWS account. By design, there’s almost no way to limit
 those permissions. This is similar in concept to the root or administrator user of an operating system. If your root
 user account gets compromised, the attacker will likely be able to take over everything in your account. Therefore,
@@ -42,7 +52,10 @@ you typically only use the root user during initial setup to create IAM users (t
 more limited permissions, and then you’ll likely never touch the root user account again.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ea49fdea5bdf60a4f43f7ccb5e5c5720"}
+{"sourcePlugin":"Service Catalog Reference","hash":"1551d209088a674d42eafb8645d4f61e"}
 ##DOCS-SOURCER-END -->

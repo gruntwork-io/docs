@@ -17,16 +17,25 @@ domain names (e.g., `s3.us-east-1.amazonaws.com`) automatically route to these e
 
 There are two types of endpoints, each of which support different AWS services:
 
-Gateway endpoints  
+
+
+<div className="dlist">
+
+#### Gateway endpoints
+
 This is an older type of endpoint that is free, but only support S3 and DynamoDB.
 
-Interface endpoints  
+#### Interface endpoints
+
 This is a new type of endpoint that is backed by [PrivateLink](https://aws.amazon.com/privatelink/), which is
 a paid service, and includes support for CloudTrail, Secrets Manager, EC2, SNS, and many other services
 ([full list](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html)).
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"70c7c23b850be75f69e628089d4bda6a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"dc8ee00ed22f10cc3f607ccb511210c8"}
 ##DOCS-SOURCER-END -->

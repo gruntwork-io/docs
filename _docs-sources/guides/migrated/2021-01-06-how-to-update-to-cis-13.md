@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/upgrades/how-to-update-to-cis-13/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This guide will walk you through how to update from version 1.2.0 to version 1.3.0 of the CIS AWS Foundations Benchmark.
@@ -20,11 +23,13 @@ guide instead.
 
 This guide consists of two main sections:
 
-[Core Concepts](#core_concepts)  
-An overview of the CIS AWS Foundations Benchmark v1.3.0 and why it is important to update your code for compatibility.
+[Core Concepts](#core_concepts)
 
-[Deployment walkthrough](#deployment_walkthrough)  
-The steps you need to take to update your code to be compliant with CIS AWS v1.3.0. It includes a
+: An overview of the CIS AWS Foundations Benchmark v1.3.0 and why it is important to update your code for compatibility.
+
+[Deployment walkthrough](#deployment_walkthrough)
+
+: The steps you need to take to update your code to be compliant with CIS AWS v1.3.0. It includes a
 [version compatibility table](#compatibility_table) you can use as a reference to know which Gruntwork Repo version
 tag is compatible with CIS AWS v1.3.0, as well as the manuals step you need to perform to achieve said compliance.
 
@@ -126,9 +131,9 @@ compatible with CIS AWS v1.3.0:
 
 <table>
 <colgroup>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">

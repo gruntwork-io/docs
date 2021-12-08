@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/upgrades/how-to-update-your-ref-arch/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This guide walks you through how to update v1.0 of the [Gruntwork Reference
@@ -30,11 +33,13 @@ To add Gruntwork Pipelines, follow the [Gruntwork Pipelines deployment guide](ht
 
 This guide consists of two main sections:
 
-[Core Concepts](#core_concepts)  
-An overview of the differences between the Service Catalog and v1.0 of the Gruntwork Reference Architecture.
+[Core Concepts](#core_concepts)
 
-[Deployment Walkthrough](#deployment_walkthrough)  
-The steps you need to take to update your code from v1.0 of the Gruntwork Reference Architecture to work with the
+: An overview of the differences between the Service Catalog and v1.0 of the Gruntwork Reference Architecture.
+
+[Deployment Walkthrough](#deployment_walkthrough)
+
+: The steps you need to take to update your code from v1.0 of the Gruntwork Reference Architecture to work with the
 Service Catalog. Includes dedicated [service migration guides](#service_migration_guides) you can use to update on a
 module by module basis.
 

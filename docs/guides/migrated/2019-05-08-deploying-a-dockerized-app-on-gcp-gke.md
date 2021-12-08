@@ -6,6 +6,9 @@ excerpt: Learn how to deploy a Dockerized app to a Kubernetes (GKE) cluster runn
 redirect_from: /static/guides/kubernetes/deploying-a-dockerized-app-on-gcp-gke/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This guide walks you through the process of deploying a Dockerized app to a Kubernetes (GKE) cluster running on Google
@@ -15,44 +18,54 @@ Cloud Platform (GCP).
 
 [Kubernetes (K8S)](https://kubernetes.io/) is an open-source system for managing containerized applications, including:
 
-Scheduling  
-Deploy containers across a cluster of servers, using the available resources (data centers, servers, CPU, memory,
+Scheduling
+
+: Deploy containers across a cluster of servers, using the available resources (data centers, servers, CPU, memory,
 ports, etc.) as efficiently as possible.
 
-Deployments  
-Roll out updates to containers using a variety of deployment strategies, such as rolling deployment, blue-green
+Deployments
+
+: Roll out updates to containers using a variety of deployment strategies, such as rolling deployment, blue-green
 deployment, and canary deployment, and automatically roll back if there’s an error.
 
-Auto healing  
-Monitor the health of your containers and servers and automatically replace unhealthy ones.
+Auto healing
 
-Auto scaling  
-Scale the number of containers and servers up or down in response to load.
+: Monitor the health of your containers and servers and automatically replace unhealthy ones.
 
-Load balancing  
-Make your containers accessible to the outside world and distribute traffic across your containers.
+Auto scaling
 
-Service discovery  
-Allow containers to find and communicate with each other over the network, automatically routing requests to the
+: Scale the number of containers and servers up or down in response to load.
+
+Load balancing
+
+: Make your containers accessible to the outside world and distribute traffic across your containers.
+
+Service discovery
+
+: Allow containers to find and communicate with each other over the network, automatically routing requests to the
 proper destination.
 
-Configuration and secrets  
-Provide containers with environment-specific configuration data and secrets.
+Configuration and secrets
+
+: Provide containers with environment-specific configuration data and secrets.
 
 ## What you’ll learn in this guide
 
 This guide consists of three main sections:
 
-[Core concepts](#core_concepts)  
-An overview of the core concepts you need to understand to use Kubernetes, including why you may want to use
+[Core concepts](#core_concepts)
+
+: An overview of the core concepts you need to understand to use Kubernetes, including why you may want to use
 Kubernetes, Kubernetes architecture, the control plane, worker nodes, different ways to run Kubernetes, services,
 deployments, auto scaling, auto healing, RBAC, and more.
 
-[Deployment walkthrough](#deployment_walkthrough)  
-A step-by-step guide to deploying a Dockerized app on GKE using code from the Gruntwork Infrastructure as Code Library.
+[Deployment walkthrough](#deployment_walkthrough)
 
-[Next steps](#next_steps)  
-What to do once you’ve got your app deployed.
+: A step-by-step guide to deploying a Dockerized app on GKE using code from the Gruntwork Infrastructure as Code Library.
+
+[Next steps](#next_steps)
+
+: What to do once you’ve got your app deployed.
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you!
 
@@ -72,25 +85,29 @@ using the Gruntwork Infrastructure as Code Library.
 
 This walkthrough has the following pre-requisites:
 
-Terraform  
-This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
+Terraform
+
+: This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
 [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-Python and Kubergrunt  
-Some of the Terraform modules used in this guide call out to Python code and/or
+Python and Kubergrunt
+
+: Some of the Terraform modules used in this guide call out to Python code and/or
 [Kubergrunt](https://github.com/gruntwork-io/kubergrunt) to fill in missing features in Terraform. Make sure you have
 Python and Kubergrunt installed on any computer where you will be running Terraform.
 
-Docker and Packer  
-This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
+Docker and Packer
+
+: This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
 uses [Packer](https://www.packer.io) to build VM images. If you’re not familiar with Docker or Packer, check out
 [A Crash Course on Docker and Packer](https://training.gruntwork.io/p/a-crash-course-on-docker-packer) and
 [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-GCP  
-You will need a GCP account with billing enabled. There is a [free tier](https://cloud.google.com/free/) that
+GCP
+
+: You will need a GCP account with billing enabled. There is a [free tier](https://cloud.google.com/free/) that
 includes $300 of free credit overs a 12 month period. You will also need to install the
 [gcloud](https://cloud.google.com/sdk/gcloud/) command-line tool
 
@@ -622,5 +639,5 @@ following guides:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c87a7230f4d301385913acfdeb63942b"}
+{"sourcePlugin":"Local File Copier","hash":"15fe13542c4476b3277d65225087b4d3"}
 ##DOCS-SOURCER-END -->

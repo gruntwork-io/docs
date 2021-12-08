@@ -14,28 +14,39 @@ proxy for the Node.js app.
 
 Here are the key ideas to keep in mind when thinking about pods:
 
-How pods are deployed  
+
+
+<div className="dlist">
+
+#### How pods are deployed
+
 Whenever you tell Kubernetes to deploy a pod (e.g., using `kubectl`, which we’ll discuss below), the scheduler will
 pick a worker node for that pod, and the kubelet on that worker node will deploy all the containers for that pod
 together.
 
-A pod is like a logical machine  
+#### A pod is like a logical machine
+
 All the containers in a pod run in the same Linux namespace and can talk to each other over localhost (note: this
 implies the containers in a pod must all listen on different ports), so it can be helpful to think of each pod as a
 _logical machine_, with its own IP address and processes that are separate from all other pods.
 
-Sidecars  
+#### Sidecars
+
 Pods offer a nice format for combining and composing multiple processes together, even if the processes are built
 with totally different technologies, as each process can be encapsulated in its own container. For example, a common
 pattern is to define pods with one main container (e.g., a web service you wrote with Node.js/Javascript) and one or
 more _sidecars_: that is, containers that provide supporting functionality, such as a proxy sidecar (e.g., Envoy
 proxy, which is written in Go) and a log aggregation sidecar (e.g., Fluentd, which is written in Ruby).
 
-Pods are ephemeral  
+#### Pods are ephemeral
+
 Pods (and for that matter, containers) are relatively _ephemeral_: that is, they can be shut down and replaced at any
 time. This might happen because a node crashes or because you’re deploying a new version of the pod or a number of
 other reasons. This is a critical idea to keep in mind as you design your system, especially when thinking about
 fault tolerance, replication, and state.
+
+
+</div>
 
 ## Controllers
 
@@ -112,5 +123,5 @@ files—with the main difference being that:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"77b8c4132060e75af04b4ef9ece24605"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ddd1380ff61ad4586143bbfbd2f0e5d6"}
 ##DOCS-SOURCER-END -->

@@ -11,10 +11,10 @@ Here’s an example of inbound rules:
 
 <table>
 <colgroup>
-<col/>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -48,10 +48,10 @@ And here’s an example of outbound rules:
 
 <table>
 <colgroup>
-<col/>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -77,5 +77,5 @@ custom security group with rules that exactly match your use case, rather than r
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2920e02554799a985c6ee06448401608"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e60c1e1499782716f4fad11d72ed4140"}
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,12 @@ first place.
 
 Therefore, the best way to enforce MFA right now is as follows:
 
-IAM roles  
+
+
+<div className="dlist">
+
+#### IAM roles
+
 All the IAM roles in your non-security child accounts that are meant to be assumed by users should
 [require an MFA token in the trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html#MFAProtectedAPI-user-mfa).
 Since these IAM roles are the only way to access those child accounts (i.e., there are no IAM users in those child
@@ -16,7 +21,8 @@ accounts), this ensures that it’s only possible to access those accounts with 
 `OrganizationAccountAccessRole` IAM role is created automatically by AWS Organizations, so you’ll need to manually
 update it in each child account to require MFA.
 
-IAM users and groups  
+#### IAM users and groups
+
 The only place you have IAM users and groups are in the root and security account. None of the user accounts should
 have any IAM policies directly attached, so the only thing to think through is the policies attached to the IAM
 groups. To enforce MFA, make sure that all of these policies
@@ -26,7 +32,10 @@ permissions to access their own user account without an MFA token so they can co
 place.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c825fc93ea9a95e49586262221be3f78"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b2f712be8243616abeeed8565b3b8f30"}
 ##DOCS-SOURCER-END -->

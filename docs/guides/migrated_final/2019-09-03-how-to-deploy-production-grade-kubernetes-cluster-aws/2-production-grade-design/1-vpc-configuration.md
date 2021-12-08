@@ -5,13 +5,19 @@ to manage communication across the nodes (see
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) for more
 information on VPCs). Here are the key VPC considerations for your EKS cluster:
 
-Add tags to the VPC and subnets  
+
+
+<div className="dlist">
+
+#### Add tags to the VPC and subnets
+
 EKS relies on special tags on the VPC and subnets to know which VPC resources to use for deploying
 infrastructure. For example, EKS uses tags to figure out which subnets to use for the load balancers associated with a
 Service resource. See [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
 for more information.
 
-Configure DNS forwarding  
+#### Configure DNS forwarding
+
 EKS supports private API endpoints so that the Kubernetes API Server can only be accessed within the VPC. The
 hostname for this internal endpoint lives in a
 [Route 53 private hosted zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html),
@@ -23,7 +29,10 @@ not be able to talk to this private endpoint. To fix this issue, configure DNS f
 sure that remote VPC DNS resolution is enabled on both accepter and requester side of the connection peering.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"83be66630f1fc653ece6d89d45839684"}
+{"sourcePlugin":"Service Catalog Reference","hash":"df0c5e5ab179a6da59c5caa656786b66"}
 ##DOCS-SOURCER-END -->

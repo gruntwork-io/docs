@@ -8,10 +8,16 @@ port range.
 
 However, there are two main differences with NACLs:
 
-Allow/Deny  
+
+
+<div className="dlist">
+
+#### Allow/Deny
+
 Each NACL rule can either `ALLOW` or `DENY` the traffic defined in that rule.
 
-Stateful/Stateless  
+#### Stateful/Stateless
+
 Security groups are _stateful_, so if a security group has a rule that allows an inbound connection on, say, port 80, the security
 group will automatically also open up an outbound port for that specific connection so it can respond. With a NACL,
 if you have a rule that allows an inbound connection on port 80, that connection will not be able to respond unless
@@ -20,15 +26,18 @@ which port will be used to respond: these are called
 _[ephemeral ports](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-ephemeral-ports)_, and
 the rules depend on the operating system.
 
-For example, the networking stack on Linux usually picks any available port
-from the range 32768-61000, where as Windows Server 2003 uses 1025-5000, NAT Gateways use 1024-65535, and so on.
-Therefore, in practice, you typically have to open ephemeral ports 1024-65535 in your NACL, both for inbound and
-outbound (as when you establish outbound connections, anyone responding will likely do so on an ephemeral port),
-making them primarily useful for locking down the low-numbered ports (&lt; 1024) used for standard protocols (e.g., HTTP
-uses port 80), and locking down source/destination IP addresses.
+
+</div>
+
+    For example, the networking stack on Linux usually picks any available port
+    from the range 32768-61000, where as Windows Server 2003 uses 1025-5000, NAT Gateways use 1024-65535, and so on.
+    Therefore, in practice, you typically have to open ephemeral ports 1024-65535 in your NACL, both for inbound and
+    outbound (as when you establish outbound connections, anyone responding will likely do so on an ephemeral port),
+    making them primarily useful for locking down the low-numbered ports (&lt; 1024) used for standard protocols (e.g., HTTP
+    uses port 80), and locking down source/destination IP addresses.
 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b9a4eb4195692cdbfc0e82490f90c551"}
+{"sourcePlugin":"Service Catalog Reference","hash":"116d88fd9cdea912901944193c72f475"}
 ##DOCS-SOURCER-END -->

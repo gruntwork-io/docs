@@ -6,7 +6,7 @@ AWS CloudTrail, and AWS Config.
 
 We’ll be using the `account-baseline-root` module from [terraform-aws-service-catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-service-catalog`.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-service-catalog`.
 
 ## Set up the inputs for `account-baseline` for the root account
 
@@ -170,5 +170,5 @@ and any other existing resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d4f1140e05487708ca79b4587c38afee"}
+{"sourcePlugin":"Service Catalog Reference","hash":"03c3350ebe64522a3ad295a1f6daf9dc"}
 ##DOCS-SOURCER-END -->

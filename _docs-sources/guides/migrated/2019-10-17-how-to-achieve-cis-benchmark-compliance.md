@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/compliance/how-to-achieve-cis-benchmark-compliance/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is a complete guide to help you achieve compliance with the
@@ -35,21 +38,26 @@ account remains secure.
 
 This guide consists of five main sections:
 
-[Core concepts](#core_concepts)  
-An overview of the AWS Foundations Benchmark, including its control sections and structure.
+[Core concepts](#core_concepts)
 
-[Production-grade design](#production_grade_design)  
-How to use infrastructure as code to achieve compliance with minimal redundancy and maximum flexibility.
+: An overview of the AWS Foundations Benchmark, including its control sections and structure.
 
-[Deployment walkthrough](#deployment_walkthrough)  
-A step-by-step guide to achieving compliance using the Gruntwork Infrastructure as Code Library and the
+[Production-grade design](#production_grade_design)
+
+: How to use infrastructure as code to achieve compliance with minimal redundancy and maximum flexibility.
+
+[Deployment walkthrough](#deployment_walkthrough)
+
+: A step-by-step guide to achieving compliance using the Gruntwork Infrastructure as Code Library and the
 Gruntwork CIS AWS Foundations Benchmark wrapper modules.
 
-[Next steps](#next_steps)  
-How to measure and maintain compliance.
+[Next steps](#next_steps)
 
-[Traceability matrix](#traceability_matrix)  
-A reference table that maps each Benchmark recommendation to the corresponding section in the deployment
+: How to measure and maintain compliance.
+
+[Traceability matrix](#traceability_matrix)
+
+: A reference table that maps each Benchmark recommendation to the corresponding section in the deployment
 walkthrough.
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you!
@@ -986,39 +994,45 @@ After signing up for an AWS account, you’ll be logged in as the root user. The
 just about everything in your AWS account (and any child accounts), so if an attacker compromises your root user, the
 results can be catastrophic for your company. Therefore, you should lock down the root user as much as possible:
 
-Use a secrets manager  
-Do NOT store the root user’s password, or secrets of any kind, in plain text. Instead, always use a secrets manager
+Use a secrets manager
+
+: Do NOT store the root user’s password, or secrets of any kind, in plain text. Instead, always use a secrets manager
 such as [1Password](https://1password.com), [LastPass](https://www.lastpass.com), or [pass](https://www.passwordstore.org)
 to store the credentials in an encrypted format.
 
-Use a strong, generated password  
-Do NOT re-use passwords from other websites, or any password that you can remember at all. Instead, generate a random,
+Use a strong, generated password
+
+: Do NOT re-use passwords from other websites, or any password that you can remember at all. Instead, generate a random,
 cryptographically secure, long password (20+ characters) for the root user. All the password managers mentioned above
 can generate and store passwords for you in one step, so use them!
 
-Add security questions to your root account  
-The CIS benchmark suggests adding security questions when registering your AWS account so that when somebody contacts
+Add security questions to your root account
+
+: The CIS benchmark suggests adding security questions when registering your AWS account so that when somebody contacts
 AWS support, they will be required to complete a security challenge. To add security questions to the root account,
 navigate in the AWS web console to `My Account` and then to the `Personal Information` page. There you should be able
 to click on `Configure Security Challenge Questions` and add your questions.
 
-Enable MFA  
-Make sure to
+Enable MFA
+
+: Make sure to
 [enable MFA for your root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa).
 Feel free to use a virtual or hardware MFA device, whichever is more straightforward or required by your company, as either one
 dramatically improves the security of your root user. It is up to your discretion to decide which option is suitable
 for your use case. The CIS benchmark recommends using a dedicated or company-owned device for MFA and not a personal
 one. This applies to both virtual and hardware devices.
 
-Disable access keys  
-Make sure to
+Disable access keys
+
+: Make sure to
 [delete the root user’s access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_delete-key),
 so that the only way to login as the root user is via the web console, where MFA is required.
 
 The one exception to this rule is when you enable the MFA delete feature as it requires access keys for the root user. Under these circumstances, we recommend creating a set of access keys solely to enable the MFA Delete feature and immediately remove them afterward.
 
-Don’t use the root user again  
-In the next section, you will create an IAM user in the root account with admin permissions. Once you’ve created that
+Don’t use the root user again
+
+: In the next section, you will create an IAM user in the root account with admin permissions. Once you’ve created that
 IAM user, you should do everything as that IAM user, and more or less never touch the root user account again.
 The only time you’ll need it is for account recovery situations (e.g., you accidentally deleted the IAM user or lost
 your credentials) or for the
@@ -1048,18 +1062,21 @@ Although IAM users don’t have the same powers as a root user, having an IAM us
 huge problem for your company (especially if that IAM user had admin permissions), so it’s still critical to lock down
 IAM user accounts as much as possible:
 
-Use a secrets manager  
-Do NOT store the root user’s password, or secrets of any kind, in plain text. Instead, always use a secrets manager
+Use a secrets manager
+
+: Do NOT store the root user’s password, or secrets of any kind, in plain text. Instead, always use a secrets manager
 such as [1Password](https://1password.com), [LastPass](https://www.lastpass.com), or [pass](https://www.passwordstore.org)
 to store the credentials in an encrypted format.
 
-Use a strong, generated password  
-Do NOT re-use passwords from other websites, or any password that you can remember at all. Instead, generate a random,
+Use a strong, generated password
+
+: Do NOT re-use passwords from other websites, or any password that you can remember at all. Instead, generate a random,
 cryptographically secure, long password (20+ characters). All the password managers mentioned above can generate and
 store passwords for you in one step, so use them!
 
-Enable MFA  
-Always make sure to
+Enable MFA
+
+: Always make sure to
 [enable MFA for your IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable.html).
 Feel free to use a virtual or hardware MFA device—whichever is easier or required by your company—as either one
 dramatically improves the security of your IAM user. Note that using SMS (text messages) for MFA is
@@ -2801,7 +2818,7 @@ sections above.
 
 <table>
 <colgroup>
-<col/>
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">

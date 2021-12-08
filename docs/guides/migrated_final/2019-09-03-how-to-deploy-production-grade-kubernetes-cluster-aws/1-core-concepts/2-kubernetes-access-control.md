@@ -12,17 +12,26 @@ OpenID connect tokens, and more.
 
 When you authenticate, you authenticate as one of two types of accounts:
 
-User accounts  
+
+
+<div className="dlist">
+
+#### User accounts
+
 _[User accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-vs-service-accounts)_
 are used by humans or other services outside of the Kubernetes cluster. For example, an admin at your
 company may distribute X509 certificates to your team members, or if you’re using a Kubernetes service managed by AWS (i.e, EKS), the user accounts may be the IAM user accounts you have in AWS.
 
-Service accounts  
+#### Service accounts
+
 _[Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)_ are managed and
 used by resources within the Kubernetes cluster itself, such as your pods.
 Kubernetes creates some service accounts automatically; you can create others using the Kubernetes API. The
 credentials for service accounts are stored as secrets in Kubernetes and mounted into the pods that should have
 access to those service accounts.
+
+
+</div>
 
 ## Kubernetes authorization
 
@@ -37,5 +46,5 @@ namespace), and associate those roles with the specific user and service account
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"5a4077f13bbb343b5e9bcb9c951c6e7f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b842708395008a053b7607a25095694d"}
 ##DOCS-SOURCER-END -->

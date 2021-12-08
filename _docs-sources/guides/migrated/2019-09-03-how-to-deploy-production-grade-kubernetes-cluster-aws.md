@@ -1,6 +1,15 @@
 ---
 title: How to deploy a production-grade Kubernetes cluster on AWS
+categories: Kubernetes
+image: /assets/img/guides/eks/img-eks@3x.png
+excerpt: Learn about EKS, the Kubernetes control plane, worker nodes, auto scaling, auto healing, TLS certs, VPC tagging, DNS forwarding, RBAC, and more.
+tags: ["aws", "kubernetes", "eks", "docker"]
+cloud: ["aws"]
+redirect_from: /static/guides/kubernetes/how-to-deploy-production-grade-kubernetes-cluster-aws/
 ---
+
+:page-type: guide
+:page-layout: post
 
 # Intro
 
@@ -10,50 +19,61 @@ This guide will walk you through the process of configuring a production-grade K
 
 [Kubernetes (K8S)](https://kubernetes.io/) is an open-source system for managing containerized applications, including:
 
-Scheduling  
-Deploy containers across a cluster of servers, using the available resources (data centers, servers, CPU, memory,
+Scheduling
+
+: Deploy containers across a cluster of servers, using the available resources (data centers, servers, CPU, memory,
 ports, etc.) as efficiently as possible.
 
-Deployments  
-Roll out updates to containers using a variety of deployment strategies, such as rolling deployment, blue-green
+Deployments
+
+: Roll out updates to containers using a variety of deployment strategies, such as rolling deployment, blue-green
 deployment, and canary deployment, and automatically roll back if there’s an error.
 
-Auto healing  
-Monitor the health of your containers and servers and automatically replace unhealthy ones.
+Auto healing
 
-Auto scaling  
-Scale the number of containers and servers up or down in response to load.
+: Monitor the health of your containers and servers and automatically replace unhealthy ones.
 
-Load balancing  
-Make your containers accessible to the outside world and distribute traffic across your containers.
+Auto scaling
 
-Service discovery  
-Allow containers to find and communicate with each other over the network, automatically routing requests to the
+: Scale the number of containers and servers up or down in response to load.
+
+Load balancing
+
+: Make your containers accessible to the outside world and distribute traffic across your containers.
+
+Service discovery
+
+: Allow containers to find and communicate with each other over the network, automatically routing requests to the
 proper destination.
 
-Configuration and secrets  
-Provide containers with environment-specific configuration data and secrets.
+Configuration and secrets
+
+: Provide containers with environment-specific configuration data and secrets.
 
 ## What you’ll learn in this guide
 
 This guide consists of four main sections:
 
-[Core concepts](#core_concepts)  
-An overview of the core concepts you need to understand to use Kubernetes, including why you may want to use
+[Core concepts](#core_concepts)
+
+: An overview of the core concepts you need to understand to use Kubernetes, including why you may want to use
 Kubernetes, Kubernetes architecture, the control plane, worker nodes, different ways to run Kubernetes, services,
 deployments, auto scaling, auto healing, RBAC, and more.
 
-[Production-grade design](#production_grade_design)  
-An overview of how to configure a secure, scalable, highly available Kubernetes cluster that you can rely on in
+[Production-grade design](#production_grade_design)
+
+: An overview of how to configure a secure, scalable, highly available Kubernetes cluster that you can rely on in
 production. To get a sense of what production-grade means, check out
 [The production-grade infrastructure checklist](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
 
-[Deployment walkthrough](#deployment_walkthrough)  
-A step-by-step guide to deploying a production-grade Kubernetes cluster in AWS using code from the Gruntwork
+[Deployment walkthrough](#deployment_walkthrough)
+
+: A step-by-step guide to deploying a production-grade Kubernetes cluster in AWS using code from the Gruntwork
 Infrastructure as Code Library.
 
-[Next steps](#next_steps)  
-What to do once you’ve got your Kubernetes cluster deployed.
+[Next steps](#next_steps)
+
+: What to do once you’ve got your Kubernetes cluster deployed.
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you!
 
@@ -65,25 +85,29 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 Kubernetes has become the de facto choice for container orchestration. Here’s why:
 
-Massive feature set  
-Kubernetes offers a huge range of functionality for managing containers, including auto scaling, auto healing,
+Massive feature set
+
+: Kubernetes offers a huge range of functionality for managing containers, including auto scaling, auto healing,
 rolling deployments, service discovery, secrets management, configuration management, bin packing, storage
 orchestration, batch execution, access controls, log aggregation, SSH access, batch processing, and much more.
 
-Massive community  
-Kubernetes has the biggest community of any orchestration tool, with more than 50,000 stars and 2,500 contributors on
+Massive community
+
+: Kubernetes has the biggest community of any orchestration tool, with more than 50,000 stars and 2,500 contributors on
 [GitHub](https://github.com/kubernetes/kubernetes), thousands of blog posts, numerous books, hundreds of meetup groups,
 several dedicated conferences, and a huge ecosystem of frameworks, tools, plugins, integrations, and service
 providers.
 
-Run anywhere  
-You can run Kubernetes on-premise, in the cloud (with 1st class support from the cloud provider, e.g.,: AWS offers
+Run anywhere
+
+: You can run Kubernetes on-premise, in the cloud (with 1st class support from the cloud provider, e.g.,: AWS offers
 EKS, Google Cloud offers GKE, Azure offers AKS), and on your own computer (it’s built directly into the Docker
 desktop app). This reduces lock-in and makes multi-cloud and hybrid-cloud more manageable, as both the containers
 themselves and the way you manage them are portable.
 
-Proven technology  
-Kubernetes was originally designed by Google, based on years of experience with their internal container management
+Proven technology
+
+: Kubernetes was originally designed by Google, based on years of experience with their internal container management
 systems (Borg and Omega), and is now maintained by the Cloud Native Computing Foundation. It’s designed for massive
 scale and resiliency (Google runs billions of containers per week) and with a huge community behind it, it’s
 continuously getting better.
@@ -95,15 +119,17 @@ level, a simple way to think about Kubernetes is as an operating system for your
 
 ![Kubernetes is like an operating system for your data center, abstracting away the underlying hardware behind its API](/assets/img/guides/eks/kubernetes-simple.png)
 
-Operating system for a single computer  
-On a single computer, the operating system (e.g., Windows, Linux, macOS) abstracts away all the low-level hardware
+Operating system for a single computer
+
+: On a single computer, the operating system (e.g., Windows, Linux, macOS) abstracts away all the low-level hardware
 details so that as a developer, you can build apps against a high-level, consistent, safe API (the _Kernel API_),
 without having to worry too much about the differences between many types of hardware (i.e., the many types of CPU,
 RAM, hard drive, etc) or about managing any of the applications running on that hardware (i.e., the OS handles device
 drivers, time sharing, memory management, process isolation, etc).
 
-Operating system for a data center  
-In a data center, an orchestration tool like Kubernetes also abstracts away all the hardware details, but it does it
+Operating system for a data center
+
+: In a data center, an orchestration tool like Kubernetes also abstracts away all the hardware details, but it does it
 for multiple computers (multiple servers), so that as a developer, you can deploy your applications using a
 high-level, consistent, safe API (the _Kubernetes API_), without having to worry too much about the differences
 between the servers or about managing any of the applications running on those servers (i.e., the orchestration tool
@@ -130,28 +156,32 @@ The _[control plane](https://kubernetes.io/docs/concepts/#kubernetes-control-pla
 entire cluster. It consists of one or more master nodes (typically 3 master nodes for high availability), where each
 master node runs several components:
 
-Kubernetes API Server  
-The _[Kubernetes API Server](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)_ is the
+Kubernetes API Server
+
+: The _[Kubernetes API Server](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)_ is the
 endpoint you’re talking to when you use the Kubernetes API (e.g., via `kubectl`).
 
-Scheduler  
-The _[scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)_ is responsible for
+Scheduler
+
+: The _[scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)_ is responsible for
 figuring out which of the worker nodes to use to run your container(s). It tries to pick the "best" worker node based
 on a number of factors, such as high availability (try to run copies of the same container on different nodes so a
 failure in one node doesn’t take them all down), resource utilization (try to run the container on the least utilized
 node), container requirements (try to find nodes that meet the container’s requirements in terms of CPU, memory, port
 numbers, etc), and so on.
 
-Controller Manager  
-The _[controller manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)_
+Controller Manager
+
+: The _[controller manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)_
 runs all the _controllers_, each of which is a control loop that continuously watches the state of the cluster and
 makes changes to move the cluster towards the desired state (you define the desired state via API calls). For
 example, the _node controller_ watches worker nodes and tries to ensure the requested number of Nodes is always
 running and the _replication controller_ watches containers and tries to ensure the requested number of containers is
 always running.
 
-etcd  
-_[etcd](https://etcd.io)_ is a distributed key-value store that the master nodes use as a persistent way to store the
+etcd
+
+: _[etcd](https://etcd.io)_ is a distributed key-value store that the master nodes use as a persistent way to store the
 cluster configuration.
 
 ### Worker nodes
@@ -159,14 +189,16 @@ cluster configuration.
 The _[worker nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)_ (or just _nodes_, for short) are the
 servers that run your containers. Each worker node runs several components:
 
-Kubelet  
-The _[kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)_ is the primary agent that
+Kubelet
+
+: The _[kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/)_ is the primary agent that
 you run on each worker node. It is responsible for talking to the Kubernetes API Server, figuring out the containers
 that are supposed to be on its worker node, and deploying those containers, monitoring them, and restarting any
 containers that are unhealthy.
 
-kube-proxy  
-The _[Kubernetes Service Proxy (kube-proxy)](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)_
+kube-proxy
+
+: The _[Kubernetes Service Proxy (kube-proxy)](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)_
 also runs on each worker node. It is responsible for talking to the Kubernetes API Server, figuring out which
 containers live at which IPs, and proxying requests from containers on the same worker node to those IPs. This is
 used for Service Discovery within Kubernetes, a topic we’ll discuss later.
@@ -185,13 +217,15 @@ OpenID connect tokens, and more.
 
 When you authenticate, you authenticate as one of two types of accounts:
 
-User accounts  
-_[User accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-vs-service-accounts)_
+User accounts
+
+: _[User accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#user-accounts-vs-service-accounts)_
 are used by humans or other services outside of the Kubernetes cluster. For example, an admin at your
 company may distribute X509 certificates to your team members, or if you’re using a Kubernetes service managed by AWS (i.e, EKS), the user accounts may be the IAM user accounts you have in AWS.
 
-Service accounts  
-_[Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)_ are managed and
+Service accounts
+
+: _[Service accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)_ are managed and
 used by resources within the Kubernetes cluster itself, such as your pods.
 Kubernetes creates some service accounts automatically; you can create others using the Kubernetes API. The
 credentials for service accounts are stored as secrets in Kubernetes and mounted into the pods that should have
@@ -282,25 +316,29 @@ proxy for the Node.js app.
 
 Here are the key ideas to keep in mind when thinking about pods:
 
-How pods are deployed  
-Whenever you tell Kubernetes to deploy a pod (e.g., using `kubectl`, which we’ll discuss below), the scheduler will
+How pods are deployed
+
+: Whenever you tell Kubernetes to deploy a pod (e.g., using `kubectl`, which we’ll discuss below), the scheduler will
 pick a worker node for that pod, and the kubelet on that worker node will deploy all the containers for that pod
 together.
 
-A pod is like a logical machine  
-All the containers in a pod run in the same Linux namespace and can talk to each other over localhost (note: this
+A pod is like a logical machine
+
+: All the containers in a pod run in the same Linux namespace and can talk to each other over localhost (note: this
 implies the containers in a pod must all listen on different ports), so it can be helpful to think of each pod as a
 _logical machine_, with its own IP address and processes that are separate from all other pods.
 
-Sidecars  
-Pods offer a nice format for combining and composing multiple processes together, even if the processes are built
+Sidecars
+
+: Pods offer a nice format for combining and composing multiple processes together, even if the processes are built
 with totally different technologies, as each process can be encapsulated in its own container. For example, a common
 pattern is to define pods with one main container (e.g., a web service you wrote with Node.js/Javascript) and one or
 more _sidecars_: that is, containers that provide supporting functionality, such as a proxy sidecar (e.g., Envoy
 proxy, which is written in Go) and a log aggregation sidecar (e.g., Fluentd, which is written in Ruby).
 
-Pods are ephemeral  
-Pods (and for that matter, containers) are relatively _ephemeral_: that is, they can be shut down and replaced at any
+Pods are ephemeral
+
+: Pods (and for that matter, containers) are relatively _ephemeral_: that is, they can be shut down and replaced at any
 time. This might happen because a node crashes or because you’re deploying a new version of the pod or a number of
 other reasons. This is a critical idea to keep in mind as you design your system, especially when thinking about
 fault tolerance, replication, and state.
@@ -381,15 +419,17 @@ files—with the main difference being that:
 
 There are a number of different options for running Kubernetes in AWS:
 
-Deploy it yourself  
-You could try to follow the [Kubernetes documentation](https://kubernetes.io/docs/home/) and
+Deploy it yourself
+
+: You could try to follow the [Kubernetes documentation](https://kubernetes.io/docs/home/) and
 [Kubernetes the hard way](https://github.com/kelseyhightower/kubernetes-the-hard-way) to create a Kubernetes cluster
 from scratch on top of EC2 instances. This gives you full control over every aspect of your Kubernetes cluster, but
 it is a considerable amount of work (3-6 months to get something production-grade, minimum) and puts the full burden
 of maintenance, scalability, high availability, disaster recovery, and updates on you.
 
-Kubernetes deployment tools  
-There are a number of Kubernetes tools that can automatically spin up a cluster for you, including
+Kubernetes deployment tools
+
+: There are a number of Kubernetes tools that can automatically spin up a cluster for you, including
 [eksctl](https://eksctl.io) (the official tool from AWS), [kops](https://github.com/kubernetes/kops),
 [kubespray](https://kubespray.io/), and [kubeadm](https://github.com/kubernetes/kubeadm). These tools allow you to get a
 reasonable cluster up and running in a few commands, significantly reducing the amount of work compared to doing it
@@ -399,8 +439,9 @@ the code yourself and if you modify that code, it’s not clear if you can still
 these tools put the full burden of maintenance, scalability, high availability, disaster recovery, and updates on
 you (except `eksctl`, which spins up an EKS cluster).
 
-Amazon Elastic Kubernetes Service  
-[Amazon EKS](https://aws.amazon.com/eks/) is a managed service in AWS for using Kubernetes. It runs the entire control
+Amazon Elastic Kubernetes Service
+
+: [Amazon EKS](https://aws.amazon.com/eks/) is a managed service in AWS for using Kubernetes. It runs the entire control
 plane for you, with first-class integration with other AWS services (e.g., VPCs, IAM, etc). That means you can get
 EKS running quickly, manage everything as code, and benefit from AWS handling all the maintenance, scalability,
 high availability, disaster recovery, and updates of the control plane for you. The main drawbacks is that EKS is
@@ -428,14 +469,16 @@ to manage communication across the nodes (see
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) for more
 information on VPCs). Here are the key VPC considerations for your EKS cluster:
 
-Add tags to the VPC and subnets  
-EKS relies on special tags on the VPC and subnets to know which VPC resources to use for deploying
+Add tags to the VPC and subnets
+
+: EKS relies on special tags on the VPC and subnets to know which VPC resources to use for deploying
 infrastructure. For example, EKS uses tags to figure out which subnets to use for the load balancers associated with a
 Service resource. See [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
 for more information.
 
-Configure DNS forwarding  
-EKS supports private API endpoints so that the Kubernetes API Server can only be accessed within the VPC. The
+Configure DNS forwarding
+
+: EKS supports private API endpoints so that the Kubernetes API Server can only be accessed within the VPC. The
 hostname for this internal endpoint lives in a
 [Route 53 private hosted zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html),
 which works fine if you’re trying to access it from within the VPC, but does not work (by default) if you try to
@@ -452,40 +495,46 @@ _[EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html)_.
 the scenes, AWS fires up several master nodes in a highly available configuration, complete with the Kubernetes API
 Server, scheduler, controller manager, and etcd. Here are the key considerations for your EKS cluster:
 
-Kubernetes version  
-When creating your EKS cluster, you can pick which version of Kubernetes to use. For each version of Kubernetes,
+Kubernetes version
+
+: When creating your EKS cluster, you can pick which version of Kubernetes to use. For each version of Kubernetes,
 EKS may have one or more _[platform versions](https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html)_
 that are compatible with it. For example, Kubernetes 1.12.6 had platform versions `eks.1` and `eks.2`. AWS
 automatically updates the control plane to use the latest platform version compatible with your chosen Kubernetes
 minor version.
 
-Subnets  
-Your EKS cluster will run in the subnets you specify. We strongly recommend running solely in private subnets that
+Subnets
+
+: Your EKS cluster will run in the subnets you specify. We strongly recommend running solely in private subnets that
 are NOT directly accessible from the public Internet. See
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) for more
 info.
 
-Endpoint access  
-You can configure whether the [API endpoint for your EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+Endpoint access
+
+: You can configure whether the [API endpoint for your EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 is accessible from (a) within the same VPC and/or (b) from the public Internet. We recommend allowing access from
 within the VPC, but not from the public Internet. If you need to talk to your Kubernetes cluster from your own
 computer (e.g., to issue commands via `kubectl`), use a bastion host or VPN server. See
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) for more
 info.
 
-Cluster IAM Role  
-To be able to make API calls to other AWS services,
+Cluster IAM Role
+
+: To be able to make API calls to other AWS services,
 [your EKS cluster must have an IAM role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) with
 the following managed IAM policies: `AmazonEKSServicePolicy` and `AmazonEKSClusterPolicy`.
 
-Security group  
-You should define a security group that controls what traffic can go in and out of the control plane. The worker
+Security group
+
+: You should define a security group that controls what traffic can go in and out of the control plane. The worker
 nodes must be able to talk to the control plane and vice versa: see
 [Cluster Security Group Considerations](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) for the
 ports you should open up between them.
 
-Logging  
-We recommend enabling [control plane logging](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+Logging
+
+: We recommend enabling [control plane logging](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 so that the logs from the Kubernetes API server, controller manager, scheduler, and other components are sent to
 CloudWatch.
 
@@ -494,23 +543,27 @@ CloudWatch.
 While EKS will run the control plane for you, it’s up to you to create the worker nodes. Here are the key
 considerations:
 
-Auto Scaling Group  
-We recommend using an [Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html)
+Auto Scaling Group
+
+: We recommend using an [Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html)
 to run your worker nodes. This way, failed nodes will be automatically replaced, and you can use auto scaling
 policies to automatically scale the number of nodes up and down in response to load.
 
-Tags  
-EKS requires that all worker node EC2 instances have a tag with the key `kubernetes.io/cluster/<CLUSTER_NAME>` and
+Tags
+
+: EKS requires that all worker node EC2 instances have a tag with the key `kubernetes.io/cluster/<CLUSTER_NAME>` and
 value `owned`.
 
-Subnets  
-We strongly recommend running the Auto Scaling Group for your worker nodes in private subnets that are NOT directly
+Subnets
+
+: We strongly recommend running the Auto Scaling Group for your worker nodes in private subnets that are NOT directly
 accessible from the public Internet. See
 [How to deploy a production-grade VPC on AWS](/guides/networking/how-to-deploy-production-grade-vpc-aws) for more
 info.
 
-AMI  
-Each worker node will need Docker, kubelet,
+AMI
+
+: Each worker node will need Docker, kubelet,
 [AWS IAM Authenticator](https://github.com/kubernetes-sigs/aws-iam-authenticator), and a
 [bootstrap script](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html) installed. We recommend
 using the
@@ -518,27 +571,31 @@ using the
 [EKS partner AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-partner-amis.html) (e.g., there is an Ubuntu
 AMI), as these already have all the necessary software installed.
 
-User Data  
-Each worker node must register itself to the Kubernetes API. This can be done using a
+User Data
+
+: Each worker node must register itself to the Kubernetes API. This can be done using a
 [bootstrap script](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html) that is bundled with the EKS
 optimized AMI. We recommend running this bootstrap script as part of
 [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) so that it executes when the EC2
 instance is booting.
 
-IAM role  
-In order for the kubelet on each worker node to be able to make API calls, each
+IAM role
+
+: In order for the kubelet on each worker node to be able to make API calls, each
 [worker node must have an IAM role](https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html) with
 the following managed IAM policies: `AmazonEKSWorkerNodePolicy`, `AmazonEKS_CNI_Policy`,
 `AmazonEC2ContainerRegistryReadOnly`.
 
-Security group  
-You should define a security group that controls what traffic can go in and out of each worker node. The worker
+Security group
+
+: You should define a security group that controls what traffic can go in and out of each worker node. The worker
 nodes must be able to talk to the control plane and vice versa: see
 [Cluster Security Group Considerations](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) for the
 ports you should open up between them.
 
-Server hardening  
-There are a number of server-hardening techniques that you should apply to each worker node. This includes
+Server hardening
+
+: There are a number of server-hardening techniques that you should apply to each worker node. This includes
 a secure base image (e.g., CIS hardened images), intrusion prevention (e.g., `fail2ban`), file integrity monitoring
 (e.g., Tripwire), anti-virus (e.g., Sophos), automatically installing critical security updates (e.g.,
 `unattended-upgrades` for Ubuntu), locking down EC2 metadata (e.g., `ip-lockdown`), and so on.
@@ -549,48 +606,52 @@ EKS manages authentication via AWS IAM, which is not an authentication method na
 tooling, including `kubectl`. Therefore, before using `kubectl`, you have to use one of the following utilities to
 authenticate:
 
-[AWS CLI](https://aws.amazon.com/cli/)  
-AWS now has first-class support for authenticating to EKS built directly into the `aws` CLI (minimum version:
+[AWS CLI](https://aws.amazon.com/cli/)
+
+: AWS now has first-class support for authenticating to EKS built directly into the `aws` CLI (minimum version:
 `1.16.232`). See [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) for
 setup instructions. To use it, you fist run the `update-kubeconfig` command:
 
-```bash
-aws eks update-kubeconfig --region <AWS_REGION> --name <EKS_CLUSTER_NAME>
-```
+    ``` bash
+    aws eks update-kubeconfig --region <AWS_REGION> --name <EKS_CLUSTER_NAME>
+    ```
 
-This will update your kubeconfig so that `kubectl` will automatically call `aws eks get-token` for authentication; the
-`aws eks get-token` command will, in turn, use the standard
-[AWS CLI mechanisms to authenticate to AWS](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799):
-i.e., the credentials file at `~/.aws/credentials`, environment variables, etc.
+    This will update your kubeconfig so that `kubectl` will automatically call `aws eks get-token` for authentication; the
+    `aws eks get-token` command will, in turn, use the standard
+    [AWS CLI mechanisms to authenticate to AWS](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799):
+    i.e., the credentials file at `~/.aws/credentials`, environment variables, etc.
 
-[eksctl](https://eksctl.io)  
-`eksctl` is the official CLI tool for EKS. It’s primary purpose is to deploy and manage the EKS cluster itself, but
+[eksctl](https://eksctl.io)
+
+: `eksctl` is the official CLI tool for EKS. It’s primary purpose is to deploy and manage the EKS cluster itself, but
 you can also use it to authenticate to a cluster. To install `eksctl`, check out
 [these instructions](https://eksctl.io/introduction/installation/). To authenticate with `eksctl`, you run the
 `eksctl utils write-kubeconfig` command:
 
-```bash
-eksctl utils write-kubeconfig --region <AWS_REGION> --name=<EKS_CLUSTER_NAME>
-```
+    ``` bash
+    eksctl utils write-kubeconfig --region <AWS_REGION> --name=<EKS_CLUSTER_NAME>
+    ```
 
-This will update your kubeconfig so that `kubectl` will automatically call either the AWS CLI or AWS IAM Authenticator
-for authentication.
+    This will update your kubeconfig so that `kubectl` will automatically call either the AWS CLI or AWS IAM Authenticator
+    for authentication.
 
-[kubergrunt](https://github.com/gruntwork-io/kubergrunt)  
-A CLI tool maintained by Gruntwork that supports authentication to EKS, as well as several other important utilities,
+[kubergrunt](https://github.com/gruntwork-io/kubergrunt)
+
+: A CLI tool maintained by Gruntwork that supports authentication to EKS, as well as several other important utilities,
 such as tools for doing zero-downtime rolling deployments of EKS worker nodes and managing TLS certificates in
 Kubernetes. The easiest way to install it is to use one of the pre-built binaries from the
 [kubergrunt releases](https://github.com/gruntwork-io/kubergrunt/releases) page. To authenticate with `kubergrunt`, you
 run `kubergrunt eks configure`:
 
-```bash
-kubergrunt eks configure --eks-cluster-arn <EKS_CLUSTER_ARN>
-```
+    ``` bash
+    kubergrunt eks configure --eks-cluster-arn <EKS_CLUSTER_ARN>
+    ```
 
-This will update your kubeconfig to use `kubergrunt eks token` for authentication.
+    This will update your kubeconfig to use `kubergrunt eks token` for authentication.
 
-[AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator)  
-A CLI tool maintained by the Heptio and Amazon EKS teams. This was the main tool AWS recommended for authenticating
+[AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator)
+
+: A CLI tool maintained by the Heptio and Amazon EKS teams. This was the main tool AWS recommended for authenticating
 to EKS until first-class support was added directly to the AWS CLI. At this point, there is no reason to install
 this tool separately, so we are just recording this here for historical reasons.
 
@@ -643,13 +704,15 @@ assume those roles.
 
 We recommend enabling the following logging to help with debugging and troubleshooting:
 
-Control plane logging  
-We recommend enabling [control plane logging](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+Control plane logging
+
+: We recommend enabling [control plane logging](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 in EKS, at least for the API server logs, audit logs, and authenticator logs, as these are critical for debugging and
 auditing. You may wish to enable controller manager and scheduler logs too.
 
-Worker node logging  
-We recommend installing [fluentd-cloudwatch](https://github.com/helm/charts/tree/master/incubator/fluentd-cloudwatch)
+Worker node logging
+
+: We recommend installing [fluentd-cloudwatch](https://github.com/helm/charts/tree/master/incubator/fluentd-cloudwatch)
 in the EKS cluster. This will run [fluentd](https://www.fluentd.org/) on each worker node and configure it to send all
 the logs from the worker nodes (including all the pods on them) to CloudWatch.
 
@@ -657,8 +720,9 @@ the logs from the worker nodes (including all the pods on them) to CloudWatch.
 
 There are several policies you may want to enable to protect the pods in your cluster:
 
-PodSecurityPolicy  
-You can use a _[PodSecurityPolicy](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)_ to define what
+PodSecurityPolicy
+
+: You can use a _[PodSecurityPolicy](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)_ to define what
 security-related features users can or can’t use in their pods. For example, you can specify if pods can run
 `privileged` containers, which ports a container can bind to, which kernel capabilities can be added to a container,
 what user IDs a container can run as, and so on. Follow the
@@ -666,14 +730,15 @@ what user IDs a container can run as, and so on. Follow the
 permissions as possible. You can also use RBAC to assign a different PodSecurityPolicy to different users or roles
 (e.g., give admins a less restrictive PodSecurityPolicy than other users).
 
-NetworkPolicy  
-You can use a _[NetworkPolicy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)_ to define
+NetworkPolicy
+
+: You can use a _[NetworkPolicy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)_ to define
 the inbound and outbound networking rules for your pods. We recommend adding a default NetworkPolicy that denies all
 inbound and outbound traffic (again, principle of least privilege) and then adding a NetworkPolicy for each pod that
 gives it permissions to talk solely to the other pods it should be able to access.
 
-`NetworkPolicy` is not supported out of the box by EKS unless you use a custom networking engine such as
-[calico](https://docs.projectcalico.org/v3.9/introduction/) or [istio](https://istio.io).
+    `NetworkPolicy` is not supported out of the box by EKS unless you use a custom networking engine such as
+    [calico](https://docs.projectcalico.org/v3.9/introduction/) or [istio](https://istio.io).
 
 # Deployment walkthrough
 
@@ -684,32 +749,37 @@ using the Gruntwork Infrastructure as Code Library.
 
 This walkthrough has the following pre-requisites:
 
-Gruntwork Infrastructure as Code Library  
-This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
+Gruntwork Infrastructure as Code Library
+
+: This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
-Terraform  
-This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
+Terraform
+
+: This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
 [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-Python and Kubergrunt  
-Some of the Terraform modules used in this guide call out to Python code and/or
+Python and Kubergrunt
+
+: Some of the Terraform modules used in this guide call out to Python code and/or
 [kubergrunt](https://github.com/gruntwork-io/kubergrunt) to fill in missing features in Terraform. Make sure you have
 Python and `kubergrunt` installed on any computer where you will be running Terraform.
 
-Docker and Packer  
-This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
+Docker and Packer
+
+: This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
 uses [Packer](https://www.packer.io) to build VM images. If you’re not familiar with Docker or Packer, check out
 [A Crash Course on Docker and Packer](https://training.gruntwork.io/p/a-crash-course-on-docker-packer) and
 [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-AWS accounts  
-This guide deploys infrastructure into one or more AWS accounts. Check out the
+AWS accounts
+
+: This guide deploys infrastructure into one or more AWS accounts. Check out the
 [How to configure a production-grade AWS account structure](/guides/foundations/how-to-configure-production-grade-aws-account-structure)
 guide for instructions. You will also need to be able to authenticate to these accounts on the CLI: check out
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
@@ -755,7 +825,7 @@ Update this module to use the
 [eks-vpc-tags](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags) module from the
 `terraform-aws-eks` repo to add the tags required by EKS:
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-eks`.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-eks`.
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -800,7 +870,7 @@ Next, configure DNS forwarding rules using the
 [vpc-dns-forwarder](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-dns-forwarder) module in
 `module-vpc`:
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -1156,7 +1226,7 @@ Here’s what `eks-node.json` should look like:
 }
 ```
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access the `terraform-aws-eks`,
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the `terraform-aws-eks`,
 `module-aws-monitoring`, and `module-security` repos used in the Packer template above.
 
 This Packer template installs the following on top of the EKS-optimized AMI base image:
@@ -1752,27 +1822,29 @@ kubectl get nodes
 
 Deploying the cluster initially is a start. In the future, you’ll also need a way to roll out updates:
 
-Updating the control plane  
-EKS has built-in support for updating the control plane; the `eks-cluster-control-plane` module has built-in support
+Updating the control plane
+
+: EKS has built-in support for updating the control plane; the `eks-cluster-control-plane` module has built-in support
 for updating the plugins EKS uses, such as `aws-vpc-cni`, `coredns`, and `kube-proxy`. So, if you bump your Kubernetes
 version and run `terragrunt apply`, EKS will automatically roll out new master nodes with the new version installed,
 and the `eks-cluster-control-plane` module will automatically execute a Python script that will update all the plugin
 versions as described in the
 [official upgrade guide](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html).
 
-AWS warns that you may "experience minor service interruptions during an update." See
-[Updating an Amazon EKS Cluster Kubernetes Version](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html)
-for more info.
+    AWS warns that you may "experience minor service interruptions during an update." See
+    [Updating an Amazon EKS Cluster Kubernetes Version](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html)
+    for more info.
 
-Updating the worker nodes  
-EKS does not have a built-in way to update the worker nodes without downtime. If you need to update the worker
+Updating the worker nodes
+
+: EKS does not have a built-in way to update the worker nodes without downtime. If you need to update the worker
 nodes—e.g., roll out a new AMI—your best bet is to use the
 [kubergrunt deploy](https://github.com/gruntwork-io/kubergrunt#deploy) command, which can do a zero-downtime rolling
 deployment of the worker node Auto Scaling Group:
 
-```bash
-kubergrunt eks deploy --region <AWS_REGION> --asg-name <AUTO_SCALING_GROUP_NAME>
-```
+    ``` bash
+    kubergrunt eks deploy --region <AWS_REGION> --asg-name <AUTO_SCALING_GROUP_NAME>
+    ```
 
 # Next steps
 

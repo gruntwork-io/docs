@@ -3,13 +3,19 @@
 Before diving into infrastructure CI/CD workflows, it is important to understand the different types of infrastructure
 code that is available. There are two distinct types of infrastructure code:
 
-Infrastructure Modules  
+
+
+<div className="dlist">
+
+#### Infrastructure Modules
+
 Modules are bundles of infrastructure code that can be used to deploy a specific component of your architecture.
 For example, many companies have modules for deploying private networks using Virtual Private Clouds (VPCs),
 databases, docker clusters (e.g., Elastic Container Service, Kubernetes, Nomad), etc. Think of modules as the
 "blueprints" that define the way your company configures infrastructure.
 
-Live Infrastructure Configurations  
+#### Live Infrastructure Configurations
+
 Live infrastructure configurations are specific parameters for each component in your architecture. The live
 configurations are the frontend for your infrastructure deployments. For example, you might define your dev
 environment as a series of configuration files for the modules that specify the various parameters specific to
@@ -17,6 +23,9 @@ development (e.g., small instance sizes, naming instances with a `dev` prefix, u
 etc). If the modules are "blueprints" then the live configuration contain the "houses" that were built using the
 "blueprints." Each "house" may have slightly different features or customizations, even though they share a common
 blueprint.
+
+
+</div>
 
 Typically you would have separate repositories for each of these (e.g., `infrastructure-modules` for modules and
 `infrastructure-live` for live configuration). Organizing your infrastructure code in this way makes it easier to test
@@ -31,5 +40,5 @@ infrastructure modules, and live infrastructure configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"d61d54a4fa145a1ce55a3504cb47a629"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ed2e17495dcead7f4f025091250e80cc"}
 ##DOCS-SOURCER-END -->

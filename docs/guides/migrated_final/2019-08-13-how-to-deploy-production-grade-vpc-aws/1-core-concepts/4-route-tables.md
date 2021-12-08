@@ -9,8 +9,8 @@ Here’s an example route table:
 
 <table>
 <colgroup>
-<col/>
-<col/>
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -35,5 +35,5 @@ will be automatically routed within the subnet by AWS. This table then adds a fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b30c9ef5d5fa7eb500a03c9dfee0048a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2a60564aa43118d11ce9d978c0f36913"}
 ##DOCS-SOURCER-END -->

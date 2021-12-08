@@ -13,7 +13,12 @@ every single company already has all their user accounts defined in an IdP, this
 There are several ways to configure your AWS account to support _single sign-on (SSO)_, allowing you to authenticate
 using the users and credentials from your IdP:
 
-AWS Single Sign-On  
+
+
+<div className="dlist">
+
+#### AWS Single Sign-On
+
 [AWS Single Sign-On](https://aws.amazon.com/single-sign-on/) is a managed service that allows you to configure SSO for
 IdPs that support SAML, such as Active Directory and Google. It provides a simple SSO experience for the AWS web
 console, although
@@ -21,7 +26,10 @@ console, although
 requires multiple steps, including manually copy/pasting credentials.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a5dbfadb0de17efda39bc0f22cd697f7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"7f37acf6776c031960c2a116776acb55"}
 ##DOCS-SOURCER-END -->

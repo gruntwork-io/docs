@@ -49,11 +49,11 @@ html[data-theme="dark"] {
   --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
   --ifm-heading-color: white;
 
-  --ifm-color-primary: #AB80FE;
+  --ifm-color-primary: #ab80fe;
 }
 
 .hero--primary {
-  background-color: #5849A6;
+  background-color: #5849a6;
 }
 
 .docusaurus-highlight-code-line {
@@ -236,4 +236,8 @@ html[data-theme="dark"] .menu__link--sublist {
 
 .snap-top {
   scroll-margin-top: 140px;
+}
+
+.dlist > h4 {
+  margin-bottom: 0.25em;
 }

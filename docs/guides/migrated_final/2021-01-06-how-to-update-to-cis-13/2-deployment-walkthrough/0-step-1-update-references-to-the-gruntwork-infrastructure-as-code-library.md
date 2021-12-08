@@ -25,9 +25,9 @@ compatible with CIS AWS v1.3.0:
 
 <table>
 <colgroup>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -76,5 +76,5 @@ compatible with CIS AWS v1.3.0:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"369721bc0d13541bd7d57aca51ae028b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2f2ebba2baa4aa59cd56ef6dc4be6510"}
 ##DOCS-SOURCER-END -->

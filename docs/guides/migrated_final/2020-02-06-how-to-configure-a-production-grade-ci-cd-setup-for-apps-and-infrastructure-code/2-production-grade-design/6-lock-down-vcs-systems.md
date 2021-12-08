@@ -11,7 +11,12 @@ teams want contributions to the infrastructure code from developers as well, and
 deploy arbitrary infrastructure to production without any review can be undesirable. To mitigate these concerns, you
 should lock down your VCS systems:
 
-Only deploy from protected branches  
+
+
+<div className="dlist">
+
+#### Only deploy from protected branches
+
 In most git hosting platforms, there is a concept of protected branches (see
 [GitHub docs](https://help.github.com/en/github/administering-a-repository/about-protected-branches) for example).
 Protected branches allow you to implement policies for controlling what code can be merged in. For most platforms, you
@@ -20,7 +25,8 @@ cli, (c) merges require status checks to pass, (d) merges require approval from 
 pipelines from protected branches, you can add checks and balances to ensure a review of potentially harmful
 infrastructure actions.
 
-Consider a forking based workflow for pull requests  
+#### Consider a forking based workflow for pull requests
+
 When exposing your repository to a wider audience for contribution, you can consider implementing a forking based
 workflow. In this model, you only allow your trusted admins to have access to the main infrastructure repo, but anyone
 on the team can read and fork the code. When non-admins want to implement changes, instead of branching from the repo,
@@ -31,7 +37,10 @@ you won’t automatically see the `plan`, it prevents unwanted access to secrets
 internal environment variables or show infrastructure secrets using external data sources.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9dc0804de176c3d5822074733f67cc17"}
+{"sourcePlugin":"Service Catalog Reference","hash":"28b74b41a338fbba55864423e4a466b1"}
 ##DOCS-SOURCER-END -->

@@ -23,8 +23,8 @@ v0.7.0, v0.8.0, and v0.9.0 to get the full list of backwards incompatible update
 
 <table>
 <colgroup>
-<col/>
-<col/>
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -141,5 +141,5 @@ v0.7.0, v0.8.0, and v0.9.0 to get the full list of backwards incompatible update
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"dfa38cd3c0a8eae368267151676ab213"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b9cfa96f9c9cb3002f869f51999624bc"}
 ##DOCS-SOURCER-END -->

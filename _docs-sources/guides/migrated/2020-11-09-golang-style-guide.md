@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/styleguides/golang-style-guide/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is Gruntwork’s style guide for the Go programming language. It aims to help us ensure that the code we write is

@@ -2,22 +2,34 @@
 
 This guide consists of five main sections:
 
-[Core concepts](#core_concepts)  
+
+
+<div className="dlist">
+
+#### [Core concepts](#core_concepts)
+
 An overview of the AWS Foundations Benchmark, including its control sections and structure.
 
-[Production-grade design](#production_grade_design)  
+#### [Production-grade design](#production_grade_design)
+
 How to use infrastructure as code to achieve compliance with minimal redundancy and maximum flexibility.
 
-[Deployment walkthrough](#deployment_walkthrough)  
+#### [Deployment walkthrough](#deployment_walkthrough)
+
 A step-by-step guide to achieving compliance using the Gruntwork Infrastructure as Code Library and the
 Gruntwork CIS AWS Foundations Benchmark wrapper modules.
 
-[Next steps](#next_steps)  
+#### [Next steps](#next_steps)
+
 How to measure and maintain compliance.
 
-[Traceability matrix](#traceability_matrix)  
+#### [Traceability matrix](#traceability_matrix)
+
 A reference table that maps each Benchmark recommendation to the corresponding section in the deployment
 walkthrough.
+
+
+</div>
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you!
 
@@ -28,5 +40,5 @@ If you need to access older versions, please get in touch with us.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8fd4e9cfa68647654938c8865a73f4d0"}
+{"sourcePlugin":"Service Catalog Reference","hash":"c9181390cdab382aa75d0fa177bfde4d"}
 ##DOCS-SOURCER-END -->

@@ -13,8 +13,8 @@ In order for the NAT Gateway to work, you’ll need to add a route to the route 
 
 <table>
 <colgroup>
-<col/>
-<col/>
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -38,5 +38,5 @@ the traffic for all other IPs, `0.0.0.0/0`, to a NAT Gateway with ID `nat-67890`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8f1fccfc8089bdd618a0e88bbcbfbdca"}
+{"sourcePlugin":"Service Catalog Reference","hash":"69cb3192060f11b9cd822bf4a08bad5d"}
 ##DOCS-SOURCER-END -->

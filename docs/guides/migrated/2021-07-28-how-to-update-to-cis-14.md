@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/upgrades/how-to-update-to-cis-1.4/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This guide will walk you through the process of updating version 1.3.0 to version 1.4.0 of our CIS AWS Foundations
@@ -23,11 +26,13 @@ guide instead.
 
 This guide consists of two main sections:
 
-[Core Concepts](#core_concepts)  
-An overview of the CIS AWS Foundations Benchmark v1.4.0 and why it is important to update your code for compatibility.
+[Core Concepts](#core_concepts)
 
-[Deployment walkthrough](#deployment_walkthrough)  
-The steps you need to take to update your code to be compliant with v1.4.0. It includes a
+: An overview of the CIS AWS Foundations Benchmark v1.4.0 and why it is important to update your code for compatibility.
+
+[Deployment walkthrough](#deployment_walkthrough)
+
+: The steps you need to take to update your code to be compliant with v1.4.0. It includes a
 [version compatibility table](#compatibility_table) you can use as a reference to know which Gruntwork Repo version
 tag is compatible along with the deployment steps you need to perform to achieve compliance with version 1.4.0 of the
 CIS AWS Foundations Benchmark.
@@ -101,19 +106,19 @@ compatible with CIS AWS v1.4.0:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td ><p>Gruntwork Repo</p></td>
-<td ><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
-<td ><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
+<td><p>Gruntwork Repo</p></td>
+<td><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
+<td><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
 </tr>
 <tr className="even">
-<td ><p>terraform-aws-security</p></td>
-<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
-<td ><p>1.12, 2.1.3, 2.1.5</p></td>
+<td><p>terraform-aws-security</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
+<td><p>1.12, 2.1.3, 2.1.5</p></td>
 </tr>
 <tr className="odd">
-<td ><p>terraform-aws-cis-service-catalog</p></td>
-<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
-<td ><p>2.1.4, 4.1</p></td>
+<td><p>terraform-aws-cis-service-catalog</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
+<td><p>2.1.4, 4.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -373,5 +378,5 @@ If you’ve got any feedback or you think something’s missing from the guide, 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"71818a4fdd80876dabb8d981ae97923e"}
+{"sourcePlugin":"Local File Copier","hash":"4e714518a011b3feab600eb81c00d915"}
 ##DOCS-SOURCER-END -->

@@ -27,19 +27,19 @@ compatible with CIS AWS v1.4.0:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td ><p>Gruntwork Repo</p></td>
-<td ><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
-<td ><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
+<td><p>Gruntwork Repo</p></td>
+<td><p><strong>Minimum version with CIS AWS v1.4.0 support</strong></p></td>
+<td><p>Corresponding CIS AWS v1.4.0 recommendations</p></td>
 </tr>
 <tr className="even">
-<td ><p>terraform-aws-security</p></td>
-<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
-<td ><p>1.12, 2.1.3, 2.1.5</p></td>
+<td><p>terraform-aws-security</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.54.0">v0.54.0</a></strong></p></td>
+<td><p>1.12, 2.1.3, 2.1.5</p></td>
 </tr>
 <tr className="odd">
-<td ><p>terraform-aws-cis-service-catalog</p></td>
-<td ><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
-<td ><p>2.1.4, 4.1</p></td>
+<td><p>terraform-aws-cis-service-catalog</p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0">v0.27.0</a></strong></p></td>
+<td><p>2.1.4, 4.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -47,5 +47,5 @@ compatible with CIS AWS v1.4.0:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ad5297b69ef334fb0f1bbeb623c120ab"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d777a4c10bb41019f72548bc52bec783"}
 ##DOCS-SOURCER-END -->

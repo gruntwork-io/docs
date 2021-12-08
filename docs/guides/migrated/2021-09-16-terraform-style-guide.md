@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/styleguides/terraform-style-guide/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is Gruntwork’s style guide for Terraform. It aims to help us ensure that the code we write is
@@ -408,5 +411,5 @@ func TestECS(t *testing.T) {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a02462b50f539070f9924f911385a667"}
+{"sourcePlugin":"Local File Copier","hash":"0a43562f96ad6597101e41a8574f01a6"}
 ##DOCS-SOURCER-END -->

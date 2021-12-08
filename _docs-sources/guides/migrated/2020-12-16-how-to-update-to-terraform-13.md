@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/upgrades/how-to-update-to-terraform-13/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This guide will walk you through how to update the [Gruntwork Reference
@@ -20,11 +23,13 @@ and fixes, but it also has a number of backwards incompatibilities that have to 
 
 This guide consists of two main sections:
 
-[Core Concepts](#core_concepts)  
-An overview of Terraform 0.13 and why it is important to update your code for compatibility.
+[Core Concepts](#core_concepts)
 
-[Deployment walkthrough](#deployment_walkthrough)  
-The steps you need to take to update your code relying on the Gruntwork Infrastructure as Code library and your
+: An overview of Terraform 0.13 and why it is important to update your code for compatibility.
+
+[Deployment walkthrough](#deployment_walkthrough)
+
+: The steps you need to take to update your code relying on the Gruntwork Infrastructure as Code library and your
 version of the Gruntwork Reference Architecture to work with Terraform 0.13. Includes a
 [version compatibility table](#compatibility_table) you can use as a reference to know which Gruntwork Repo version
 tag is compatible with Terraform 0.13.
@@ -98,8 +103,8 @@ compatible with Terraform 0.13:
 
 <table>
 <colgroup>
-<col/>
-<col/>
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -240,16 +245,18 @@ To help guide you through the upgrade process, we have updated the Acme Referenc
 Terraform 0.13. You can refer to the pull requests to see an example of the updates you’lll need to do to make your
 Reference Architecture work with Terraform 0.13:
 
-Standard Reference Architecture  
-See the Release Notes for
+Standard Reference Architecture
+
+: See the Release Notes for
 [v0.0.1-20201218
 tag in infrastructure-modules](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201218) instructions on how to update the Reference Architecture for Terraform 0.13
 compatibility. You can also view the [infrastructure-modules PR](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/pull/46)
 and the [infrastructure-live PR](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/pull/44) for
 an example of a Terraform 0.13 update.
 
-CIS Reference Architecture  
-See the [infrastructure-modules PR](https://github.com/gruntwork-io/cis-infrastructure-modules-acme/pull/5)
+CIS Reference Architecture
+
+: See the [infrastructure-modules PR](https://github.com/gruntwork-io/cis-infrastructure-modules-acme/pull/5)
 and the [infrastructure-live PR](https://github.com/gruntwork-io/cis-infrastructure-live-acme/pull/7) for
 an example of a Terraform 0.13 update for the CIS components of the Reference Architecture. For all other components,
 refer to PRs in the Standard Reference Architecture section above.

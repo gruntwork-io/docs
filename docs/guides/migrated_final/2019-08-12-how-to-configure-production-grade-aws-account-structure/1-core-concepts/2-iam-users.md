@@ -5,14 +5,21 @@ account. One of the things you can do in IAM is create an
 _[IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)_, which is an account a human being can use
 to access AWS.
 
-User name  
+
+
+<div className="dlist">
+
+#### User name
+
 Every IAM user in your AWS account must have a unique _user name_.
 
-Console password  
+#### Console password
+
 Each IAM user can optionally have a _console password_. The user name and console password allows you to login as an
 IAM user to your AWS account in a web browser by using the IAM user sign-in URL.
 
-IAM user sign-in URL  
+#### IAM user sign-in URL
+
 Every AWS account has a unique
 _[IAM user sign-in URL](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html)_. Note
 that to login as an IAM user, you do NOT go to <https://console.aws.amazon.com>, as that’s solely the sign-in URL for
@@ -23,14 +30,16 @@ _[custom account alias](https://docs.aws.amazon.com/IAM/latest/UserGuide/console
 your AWS account (e.g., `\https://my-custom-alias.signin.aws.amazon.com/console`). Whenever you create a new IAM
 user, make sure to send that IAM user their user name, console password, and the IAM user sign-in URL.
 
-Access keys  
+#### Access keys
+
 Each IAM user can optionally have a set of
 _[access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)_,
 which are the credentials you use to login to your AWS account programmatically (e.g., on the command line or when
 making API calls). Access keys consist of two parts: an access key ID (for example, `AKIAIOSFODNN7EXAMPLE`) and a
 secret access key (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`).
 
-Multi-Factor Authentication (MFA)  
+#### Multi-Factor Authentication (MFA)
+
 Each IAM user can enable
 [Multi-Factor Authentication (MFA)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) (**strongly
 recommended**), which will require you to provide not only the user name and console password when logging in, but
@@ -39,19 +48,24 @@ app, RSA key fob, or a YubiKey). This adds a strong second layer of security for
 requires both something you know (the user name and password) and something you have (the virtual or physical MFA
 device).
 
-Password policy  
+#### Password policy
+
 You can configure a
 _[password policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html)_
 in your AWS account to enforce requirements on console passwords, such as minimum length, use of special characters,
 and password expiration.
 
-Permissions  
+#### Permissions
+
 By default, a new IAM user does not have permissions to do anything in the AWS account
 ([principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege)). In order to grant this
 user permissions, you will need to use IAM policies, which are the topic of the next section.
 
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f3f0179cd646fb487facd8559dbb102f"}
+{"sourcePlugin":"Service Catalog Reference","hash":"66b33b2c59dfe119fe5bf4882789cad0"}
 ##DOCS-SOURCER-END -->

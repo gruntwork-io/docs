@@ -9,7 +9,12 @@ To help guide you through the upgrade process, we have updated the Acme Referenc
 provider v3. You can refer to the following release notes for detailed information and code patches that you can apply
 to update your snapshot of the Gruntwork Reference Architecture:
 
-CIS Reference Architecture  
+
+
+<div className="dlist">
+
+#### CIS Reference Architecture
+
 Refer to the release notes for
 [v0.0.1-20201021](https://github.com/gruntwork-io/cis-infrastructure-live-acme/releases/tag/v0.0.1-20201021) of the
 `cis-infrastructure-live-acme` repository for instructions on how to update the CIS components of the Reference
@@ -17,13 +22,17 @@ Architecture to be compatible with AWS provider v3. For all other components, re
 [v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021)
 of the `infrastructure-modules-multi-account-acme` repository.
 
-Standard Reference Architecture  
+#### Standard Reference Architecture
+
 Refer to the release notes for
 [v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021)
 of the `infrastructure-modules-multi-account-acme` repository for instructions on how to update your components to be
 compatible with AWS provider v3.
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b991d3c789d3e6fedca34dde10dacb87"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b9eabee3b9ff82a9400e2bd3de3343d1"}
 ##DOCS-SOURCER-END -->

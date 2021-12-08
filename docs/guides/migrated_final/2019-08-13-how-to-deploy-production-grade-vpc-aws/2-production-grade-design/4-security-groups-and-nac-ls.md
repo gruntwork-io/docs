@@ -4,19 +4,29 @@
 
 Use security groups and NACLs to configure the following rules for each subnet tier:
 
-Public tier  
+
+
+<div className="dlist">
+
+#### Public tier
+
 The public tier should allow all requests.
 
-Private application tier  
+#### Private application tier
+
 The private application tier should only allow requests to/from the public tier, private application tier, private
 persistence tier, and the management VPC. Requests from all other subnets and the public Internet are not allowed.
 
-Private persistence tier  
+#### Private persistence tier
+
 The private persistence tier should only allow requests to/from the private application tier, private persistence
 tier, and optionally the management VPC (e.g., if you need to run schema migrations during a CI build). Requests
 from all other subnets—including the public subnet tier—and the public Internet are not allowed. This provides
 an extra layer of defense for your data, which is the most valuable, irreplaceable, and sought-after resource at most
 companies.
+
+
+</div>
 
 This is a defense-in-depth strategy in action: attackers outside your VPC have no direct access to any of your
 applications or data stores, only to the resources in your public subnets, such as load balancers, which should be
@@ -27,5 +37,5 @@ environment.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"18448985e4db85058c030e0ae609c2bd"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ae9be340a809560138d0ded11b8ec6de"}
 ##DOCS-SOURCER-END -->

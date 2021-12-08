@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/styleguides/terraform-style-guide/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is Gruntwork’s style guide for Terraform. It aims to help us ensure that the code we write is

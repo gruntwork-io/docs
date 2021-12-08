@@ -119,7 +119,12 @@ git push --follow-tags
 
 The next step is to deploy your wrapper `vpc-mgmt` module. You can either deploy it in one AWS account or multiple:
 
-One management VPC  
+
+
+<div className="dlist">
+
+#### One management VPC
+
 You could deploy a single management VPC and then peer it to all of your application VPCs. This is the simplest
 approach, but using the same management VPC for pre-production and production environments carries some risk: first,
 most companies are more lax with security for pre-production, but if an attacker can leverage that to get access to this
@@ -127,13 +132,17 @@ single management VPC, they will also have access to prod; second, having this s
 likely that someone on your team will accidentally affect production while they think they are working on
 pre-production (e.g., delete a database table in the wrong environment!).
 
-Multiple management VPCs  
+#### Multiple management VPCs
+
 An alternative is to run multiple management VPCs: typically, you have one that is peered to all of your
 pre-production environments and one that is peered to all your production environments; alternatively, you could have
 one management VPC for each of your environments. This way, you can keep production and non-production environments
 completely separate, reducing the risk from both external attackers and mistakes made by internal employees. The
 drawback to this approach is that you have more infrastructure to manage: more VPCs, more peering connections, more
 route table entries, more bastion hosts, and more credentials.
+
+
+</div>
 
 ## Configure the wrapper module for each environment
 
@@ -209,5 +218,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f6e4912909ebd44b28986347d067d2b7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8fed36238edc8f0660a6b6ee3f0f1a9d"}
 ##DOCS-SOURCER-END -->

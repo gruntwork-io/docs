@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/automations/how-to-configure-a-production-grade-ci-cd-setup-for-apps-and-infrastructure-code/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is a comprehensive guide of how to design, configure, and implement a Continuous Integration and Continuous
@@ -37,37 +40,43 @@ of a production-ready CI/CD pipeline for infrastructure code.
 
 This guide consists of four main sections:
 
-[Core Concepts](#core_concepts)  
-An overview of the core concepts you need to understand what a typical CI/CD pipeline entails for infrastructure code,
+[Core Concepts](#core_concepts)
+
+: An overview of the core concepts you need to understand what a typical CI/CD pipeline entails for infrastructure code,
 including a comparison with CI/CD for application code, a sample workflow, infrastructure to support CI/CD, and threat
 models to consider to protect your infrastructure.
 
-[Production-grade design](#production_grade_design)  
-An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
+[Production-grade design](#production_grade_design)
+
+: An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
 production application and infrastructure code. To get a sense of what production-grade means, check out
 [The production-grade infrastructure checklist](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
 
-[Deployment walkthrough](#deployment_walkthrough)  
-A step-by-step guide to deploying a production-grade CI/CD pipeline in AWS using code from the Gruntwork
+[Deployment walkthrough](#deployment_walkthrough)
+
+: A step-by-step guide to deploying a production-grade CI/CD pipeline in AWS using code from the Gruntwork
 Infrastructure as Code Library.
 
-[Next steps](#next_steps)  
-What to do once you’ve got your CI/CD pipeline set up.
+[Next steps](#next_steps)
+
+: What to do once you’ve got your CI/CD pipeline set up.
 
 ## What this guide will not cover
 
 CI/CD for infrastructure code is a large topic and a single guide cannot cover everything. There
 are several items that this guide will not cover, including:
 
-A pipeline for setting up new environments  
-This guide will focus on a CI/CD workflow for making changes to infrastructure in an environment that is already set
+A pipeline for setting up new environments
+
+: This guide will focus on a CI/CD workflow for making changes to infrastructure in an environment that is already set
 up. In other words, the design and implementation of the pipeline covered in this guide intentionally does not solve
 the use case of infrastructure code for setting up an environment from scratch. Setting up new environments typically
 require complex deployment orders and permissions modeling that complicate the task. This makes it hard to automate in
 a reasonable fashion that still respects the threat model we cover here.
 
-Automated testing and feature toggling strategies for infrastructure code  
-An important factor of CI/CD pipelines is the existence of automated testing and feature toggles. Automated tests give
+Automated testing and feature toggling strategies for infrastructure code
+
+: An important factor of CI/CD pipelines is the existence of automated testing and feature toggles. Automated tests give
 you confidence in the code before it is deployed to production. Similarly, feature toggles allow you to partially
 integrate and deploy code for a feature without enabling it. By doing so, you are able to continuously integrate new
 developments over time. This guide will briefly introduce automated testing and feature toggles for infrastructure
@@ -136,24 +145,27 @@ scale of billions of lines of code with 10s of thousands of commits per day?
 
 There are three factors that make this possible:
 
-Small, frequent commits reduce the scope of each integration  
-It turns out that if you’re integrating small amounts of code on a regular basis, the number of conflicts that arise is
+Small, frequent commits reduce the scope of each integration
+
+: It turns out that if you’re integrating small amounts of code on a regular basis, the number of conflicts that arise is
 also fairly small. Instead of having big, monolithic merge conflicts, each conflict that arises will be in a tiny
 portion of the work being integrated. In fact, these conflicts can be viewed as helpful as it is a sign that there is
 a design flaw. These integration challenges are part and parcel to distributed software development projects. You’ll
 have to deal with conflicts no matter what, and it is going to be easier to deal with conflicts that arise from one or
 two days of work than with conflicts that represents months of work.
 
-Automated testing  
-When frequent development happens on `trunk`/`master`, naturally it can make the branch unstable. A broken
+Automated testing
+
+: When frequent development happens on `trunk`/`master`, naturally it can make the branch unstable. A broken
 `trunk`/`master` is something you want to avoid at all costs in trunk-based development as it could block all
 development. To prevent this, it is important to have a self-testing build with a solid automated testing suite. A
 self-testing build is a fully automated build process that is triggered on any work being committed to the repository.
 The associated test suite should be complete enough that when they pass, you can be confident the code is stable.
 Typically code is only merged into the trunk when the self-testing build passes.
 
-Feature toggles  
-One potential problem with continuous integration is that it can be difficult to break down your work to bite-sized
+Feature toggles
+
+: One potential problem with continuous integration is that it can be difficult to break down your work to bite-sized
 units. Major features cannot be implemented in a day. How can you ship parts of your feature without breaking the
 overall functionality of the application? Feature toggles are constructs in your code that allow you to disable or
 enable entire features in the application. This allows you to continuously develop, integrate, and ship partially
@@ -171,14 +183,16 @@ infrastructure code.
 Before diving into infrastructure CI/CD workflows, it is important to understand the different types of infrastructure
 code that is available. There are two distinct types of infrastructure code:
 
-Infrastructure Modules  
-Modules are bundles of infrastructure code that can be used to deploy a specific component of your architecture.
+Infrastructure Modules
+
+: Modules are bundles of infrastructure code that can be used to deploy a specific component of your architecture.
 For example, many companies have modules for deploying private networks using Virtual Private Clouds (VPCs),
 databases, docker clusters (e.g., Elastic Container Service, Kubernetes, Nomad), etc. Think of modules as the
 "blueprints" that define the way your company configures infrastructure.
 
-Live Infrastructure Configurations  
-Live infrastructure configurations are specific parameters for each component in your architecture. The live
+Live Infrastructure Configurations
+
+: Live infrastructure configurations are specific parameters for each component in your architecture. The live
 configurations are the frontend for your infrastructure deployments. For example, you might define your dev
 environment as a series of configuration files for the modules that specify the various parameters specific to
 development (e.g., small instance sizes, naming instances with a `dev` prefix, using cloud provider accounts that are accessible to all developers,
@@ -261,16 +275,18 @@ working code.
 
 How to run the code locally will be very different depending on the type of code you are working with:
 
-Application Code  
-You can typically spin up a local environment for application code to test it out. For example, if you had a simple
+Application Code
+
+: You can typically spin up a local environment for application code to test it out. For example, if you had a simple
 web server written in a general purpose programming language such as Ruby, you can run the server code to bring up a
 local copy of the application that you can interact with (e.g., `ruby web-server.rb`). You can then manually test it by
 loading the web server in the browser. Alternatively, you could run the automated test suite associated with your
 application (e.g., `ruby web-server-test.rb`). The point is that (almost) everything can be done locally for fast
 iteration.
 
-Infrastructure Modules  
-You will need to bring up real infrastructure to test infrastructure code. Unlike with application code, there is no
+Infrastructure Modules
+
+: You will need to bring up real infrastructure to test infrastructure code. Unlike with application code, there is no
 way to have a true and complete local copy of a cloud. Therefore, the only way to know for sure your infrastructure
 code works is by making the actual API calls to the cloud to deploy it. With infrastructure modules, this involves
 deploying the module into a sandbox environment. For example, to test a terraform module, you can define example code
@@ -279,15 +295,16 @@ that sets up the necessary resource dependencies that the module needs, and then
 convenience, this process could be captured in an automated test using a framework such as
 [Terratest](https://terratest.gruntwork.io/).
 
-Live Infrastructure Config  
-Locally testing live infrastructure config is more difficult than either application code or infrastructure modules.
+Live Infrastructure Config
+
+: Locally testing live infrastructure config is more difficult than either application code or infrastructure modules.
 Unlike with infrastructure modules, it is difficult to deploy the live infrastructure config temporarily as the code
 is tied to a specific live environment by nature of the code. After all, this is the configuration to manage live
 infrastructure.  
-To illustrate this point, consider a scenario where you are working on updating the cross account IAM
+ To illustrate this point, consider a scenario where you are working on updating the cross account IAM
 roles to access your environments, and you are at the point of reflecting your changes to prod. Would you want to
 deploy that code to your live production environment off of an unreviewed branch?  
-The only real test you can do for live infrastructure config is to do a dry run of your infrastructure code. Most
+ The only real test you can do for live infrastructure config is to do a dry run of your infrastructure code. Most
 Infrastructure as Code tools support a dry run of the code to check what it would do against your environment. For
 example, with Terraform, you could run `terraform plan` to sanity check the planned actions Terraform will take. This
 is especially useful for sanity checking a fresh clone of the code. The trunk should be a true reflection of the live
@@ -327,22 +344,25 @@ feedback cycles.
 
 The tests that the CI server runs will be different across the three flavors of code:
 
-Application Code  
-The CI server should run the entire automated test suite for the application code, and report the results as a
+Application Code
+
+: The CI server should run the entire automated test suite for the application code, and report the results as a
 summary. Since automated testing has clear results (whether it failed or passed), you can usually summarize the report
 down to a single icon (a green check mark to indicate success or a red "X" for failure). For reporting failures, most
 CI servers has first class support for consuming the results of the test framework to display cleanly in the UI.
 
-Infrastructure Modules  
-Like with application code, the CI server should run automated tests for infrastructure modules. However, since
+Infrastructure Modules
+
+: Like with application code, the CI server should run automated tests for infrastructure modules. However, since
 tests for infrastructure modules can cost money and can take a long time to run, it is recommended to only run the
 tests for the modules that changed instead of doing a regression test for all the modules on every commit. You can run
 a nightly build that runs the whole suite on a regular interval that is less frequent than developers updating the
 code. Like with application code, automated infrastructure testing is also very clear when it comes to results so
 you can use the same reporting mechanisms to share results back to the PR.
 
-Live Infrastructure Config  
-For live infrastructure config, the CI server should perform the dry run of the infrastructure and post the entire
+Live Infrastructure Config
+
+: For live infrastructure config, the CI server should perform the dry run of the infrastructure and post the entire
 log of the run. Analyzing a plan is hard to automate since the rules surrounding what changes are ok and what changes
 are not is potentially limitless. Therefore, the only way to review the results is by looking at the entire dry run.
 Note that this has potential security issues as the logs for a dry run would typically include secrets. You will want
@@ -357,21 +377,24 @@ immutable, versioned release artifact that can be deployed (see
 infrastructure vs Immutable infrastructure](https://blog.gruntwork.io/why-we-use-terraform-and-not-chef-puppet-ansible-saltstack-or-cloudformation-7989dad2865c#b264:)). What the release artifact looks
 like depends on the type of code you are working with:
 
-Application Code  
-The release artifact will vary widely from project to project for application code. This could be anything from a
+Application Code
+
+: The release artifact will vary widely from project to project for application code. This could be anything from a
 source file tarball or a `jar` file executable to a docker image or a VM image. Whatever format the artifact is in,
 make sure the artifact is immutable (i.e., you never change it), and that it has a unique version number (so you can
 distinguish this artifact from all the others).
 
-Infrastructure Modules  
-Infrastructure modules are typically consumed as a library in the tool. Most infrastructure as code tools consume
+Infrastructure Modules
+
+: Infrastructure modules are typically consumed as a library in the tool. Most infrastructure as code tools consume
 libraries directly from a Git repository. For example, with Terraform you can consume modules through module blocks
 that reference a Git repository (see
 [the official documentation](https://www.terraform.io/docs/configuration/modules.html) for more details). In this case,
 using a Git tag to mark a revision with a human friendly name is sufficient to generate the release artifact.
 
-Live Infrastructure Config  
-For live infrastructure config, there is typically no release artifact. Live infrastructure code doesn’t need to be
+Live Infrastructure Config
+
+: For live infrastructure config, there is typically no release artifact. Live infrastructure code doesn’t need to be
 packaged to deploy as it is directly consumable. For example, for Terraform or Terragrunt live config, you can
 directly run `terraform apply` or `terragrunt apply` on the repo. In general, it is not necessary to tag your commits
 for live infrastructure config because in practice you will end up deploying every commit off trunk.
@@ -406,8 +429,9 @@ changes require updating the live infrastructure config.
 
 Let’s take a look at how to deploy each flavor of code:
 
-Application Code  
-Deploying the release artifact to your environment depends on how the code is packaged. If it is a library, then it
+Application Code
+
+: Deploying the release artifact to your environment depends on how the code is packaged. If it is a library, then it
 will be deployed when the application that consumes it updates the library version. In this case, nothing needs to be
 done to deploy it to the application. For services, you would need to deploy the application onto live servers so that
 it is running. For docker images, this might mean updating your service definitions for the docker cluster (e.g., ECS or
@@ -419,22 +443,24 @@ code, such as canary and blue-green deployments. We will not get into details he
 overview of various rollout strategies. In terms of automation, you should be able to automate the entire deployment
 as the surface area of each change should be fairly small and localized to just the application.
 
-Infrastructure Modules  
-To deploy your infrastructure modules, you need to create or update references to the modules in your live
+Infrastructure Modules
+
+: To deploy your infrastructure modules, you need to create or update references to the modules in your live
 infrastructure config. If the module is already deployed, this may be as simple as bumping the ref tag in your live
 config. However, if the module is being deployed for the first time, then this will require creating a new
 configuration in your live infrastructure config to deploy the module. In either case, the only way to deploy
 infrastructure modules is by making the corresponding edits to the live infrastructure config to roll out the changes
 across your environments. In terms of automation, an automated deployment of infrastructure modules may be risky as a
 simple change could destroy your database.  
-With that said, it is not practical to always manually roll out deployments even for infrastructure modules, and in
+ With that said, it is not practical to always manually roll out deployments even for infrastructure modules, and in
 some circumstances that can be more risky from a security perspective (e.g., increasing attack surface by passing out
 admin credentials to all your developers). To handle this, we impose human verification to the automated steps of the
 workflow. That is, we do automated deployments like with application code, but include a human approval step of the
 `plan` before proceeding.
 
-Live Infrastructure Config  
-For live infrastructure config, deploying the code is the act of applying the code to the live environment. This
+Live Infrastructure Config
+
+: For live infrastructure config, deploying the code is the act of applying the code to the live environment. This
 depends on the tool. For example, your terraform code can be applied with `terraform apply` or `terragrunt apply`,
 while Kubernetes manifests require `kubectl apply`. In terms of automation, since live infrastructure config changes
 include both modules and application code, what you automate should depend on the nature of the change. Which
@@ -449,10 +475,10 @@ flavor of code:
 <table>
 <caption>Typical CI/CD workflow for application code, infrastructure modules, and live infrastructure config.</caption>
 <colgroup>
-<col/>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -685,13 +711,13 @@ provides, as well as how they mitigate the threat model that we cover:
 
 <table>
 <colgroup>
-<col/>
-<col/>
-<col/>
-<col/>
-<col/>
-<col/>
-<col/>
+<col />
+<col />
+<col />
+<col />
+<col />
+<col />
+<col />
 </colgroup>
 <tbody>
 <tr className="odd">
@@ -829,16 +855,18 @@ avoid executing arbitrary workflows. Finally, it should support configurations o
 the server. This limits the options for what you can use as your deploy server. Here is a list of platforms that satisfy
 these constraints, and their strengths and weaknesses:
 
-Gruntwork ECS Deploy Runner Stack  
-This is a stack you can deploy in your AWS account that sets up an ECS task with a customizable docker container for
+Gruntwork ECS Deploy Runner Stack
+
+: This is a stack you can deploy in your AWS account that sets up an ECS task with a customizable docker container for
 running `terraform validate`, `terraform plan`, and `terraform apply`, or the Terragrunt equivalent. It is also
 extensible to support other commands as well, such as running `go test` for Terratest or `packer build` for building
 images. To limit the ability to run arbitrary code, the stack includes a Lambda function that can be used as a trigger
 which exposes a limited set of options and additional checks for source repository. It relies on serverless
 technologies to limit the amount of overhead required for maintaining the system.
 
-Terraform Enterprise  
-Terraform enterprise provides an API for triggering runs manually (as opposed to Atlantis which only supports VCS
+Terraform Enterprise
+
+: Terraform enterprise provides an API for triggering runs manually (as opposed to Atlantis which only supports VCS
 webhook based triggers). In addition, Terraform Enterprise supports
 [Sentinel Policies](https://www.terraform.io/docs/cloud/sentinel/manage-policies.html), a feature to enforce that
 the Terraform code are in compliance with company policies (e.g., it has the appropriate tags). As a self hosted
@@ -915,8 +943,9 @@ teams want contributions to the infrastructure code from developers as well, and
 deploy arbitrary infrastructure to production without any review can be undesirable. To mitigate these concerns, you
 should lock down your VCS systems:
 
-Only deploy from protected branches  
-In most git hosting platforms, there is a concept of protected branches (see
+Only deploy from protected branches
+
+: In most git hosting platforms, there is a concept of protected branches (see
 [GitHub docs](https://help.github.com/en/github/administering-a-repository/about-protected-branches) for example).
 Protected branches allow you to implement policies for controlling what code can be merged in. For most platforms, you
 can protect a branch such that: (a) it can never be force pushed, (b) it can never be merged to or commit to from the
@@ -924,8 +953,9 @@ cli, (c) merges require status checks to pass, (d) merges require approval from 
 pipelines from protected branches, you can add checks and balances to ensure a review of potentially harmful
 infrastructure actions.
 
-Consider a forking based workflow for pull requests  
-When exposing your repository to a wider audience for contribution, you can consider implementing a forking based
+Consider a forking based workflow for pull requests
+
+: When exposing your repository to a wider audience for contribution, you can consider implementing a forking based
 workflow. In this model, you only allow your trusted admins to have access to the main infrastructure repo, but anyone
 on the team can read and fork the code. When non-admins want to implement changes, instead of branching from the repo,
 they will fork the repo, implement changes on their fork, and then open a PR from the fork. The advantage of this
@@ -939,8 +969,9 @@ internal environment variables or show infrastructure secrets using external dat
 With this production design in mind, let’s take a look at how each of the design decisions addresses the concerns of the
 threat model:
 
-Minimal access to target environments  
-All the infrastructure is deployed from within the accounts using a serverless platform. This means that attackers
+Minimal access to target environments
+
+: All the infrastructure is deployed from within the accounts using a serverless platform. This means that attackers
 that gain access to the underlying AWS secrets used by the CI environments will at most have the ability to run
 deployments against a predefined set of code. This means that external attackers who do not have access to the source
 code will at most be able to: (a) deploy code that has already been deployed before, (b) see the plan of the
@@ -950,31 +981,34 @@ access to trigger predefined events. They do not have access to arbitrarily invo
 potentially expose arbitrary deployments by modifying the command property (e.g., use a command to `echo` some
 infrastructure code and run `terraform`).
 
-- Note that there is still a risk of rolling back the existing infrastructure by attempting to deploy a previous
-  version. See below for potential ways to mitigate this type of attack.
+    -   Note that there is still a risk of rolling back the existing infrastructure by attempting to deploy a previous
+        version. See below for potential ways to mitigate this type of attack.
 
-- Similarly, this alone does not mitigate threats from internal attackers who have access to the source code, as a
-  potential attacker with access to the source code can write arbitrary code to destroy or lookup arbitrary
-  infrastructure in the target environment. See below for potential ways to mitigate this type of attack.
+    -   Similarly, this alone does not mitigate threats from internal attackers who have access to the source code, as a
+        potential attacker with access to the source code can write arbitrary code to destroy or lookup arbitrary
+        infrastructure in the target environment. See below for potential ways to mitigate this type of attack.
 
-Minimal options for deployment  
-The Lambda function exposes a minimal interface for triggering deployments. Attackers will only be able to trigger a
+Minimal options for deployment
+
+: The Lambda function exposes a minimal interface for triggering deployments. Attackers will only be able to trigger a
 deployment against a known repo and known git refs (branches, tags, etc). To further limit the scope, the lambda
 function can be restricted to only allow references to repositories that matches a predefined regular expression.
 Terraform Enterprise exposes similar configuration parameters to restrict what deployments can be triggered. This
 prevents attackers from creating an open source repo with malicious code that they subsequently deploy by pointing the
 deploy runner to it.
 
-Restricted refs for `apply`  
-Since many CI systems depend on the pipeline being managed as code in the same repository, internal attackers can
+Restricted refs for `apply`
+
+: Since many CI systems depend on the pipeline being managed as code in the same repository, internal attackers can
 easily circumvent approval flows by modifying the CI configuration on a test branch. This means that potential
 attackers can run an `apply` to destroy the environment or open backdoors by running infrastructure code from test
 branches without having the code approved. To mitigate this, the Lambda function allows specifying a list of git refs
 (branches, tags, etc) as the source of `apply` and `apply-all`. If you limit the source of `apply` to only protected
 branches (see below), it prevents attackers from having the ability to run `apply` unless it has been reviewed.
 
-CI server does not need access to the source code  
-Since the deployments are being done remotely in separate infrastructure, the actual CI server does not need to make
+CI server does not need access to the source code
+
+: Since the deployments are being done remotely in separate infrastructure, the actual CI server does not need to make
 any modifications to the code for the deployment. You can limit the CI server to read only access to the underlying
 repository, limiting the damage from a potential breach of the CI server.
 
@@ -987,22 +1021,25 @@ However, the reality is that _any_ CI/CD solution can likely be compromised if a
 For these types of threats, your best bet is to implement various policies and controls on the source control repository
 and build configurations:
 
-[Use approval flows](#use_approval_flows)  
-In addition to providing a moment to pause and inspect the exact infrastructure changes that are about to be deployed,
+[Use approval flows](#use_approval_flows)
+
+: In addition to providing a moment to pause and inspect the exact infrastructure changes that are about to be deployed,
 approval workflows in the CI server can mitigate attacks such that attackers will need enough privileges on the CI
 server to approve builds in order to actually modify infrastructure. This can mitigate potential attacks where the
 attacker has access to the CI server to trigger arbitrary builds manually (e.g., to run a previous job that is deploying
 an older version to roll back the infrastructure), but not enough access to approve the job. Note that this will not
 mitigate potential threats from internal attackers who have enough permissions to approve builds.
 
-[Lock down VCS systems](#lock_down_vcs_systems)  
-As mentioned in the previous section, it is important that you implement various controls on the VCS repositories.
+[Lock down VCS systems](#lock_down_vcs_systems)
+
+: As mentioned in the previous section, it is important that you implement various controls on the VCS repositories.
 Once you implement a CI/CD pipeline, access to source code translates to access to your infrastructure environments,
 so you will want to reflect the same kind of security controls you implement on your environments in your VCS
 repositories.
 
-Avoid logging secrets  
-Our threat model assumes that attackers can get access to the CI servers, which means they will have access to the
+Avoid logging secrets
+
+: Our threat model assumes that attackers can get access to the CI servers, which means they will have access to the
 deployment logs. This will include detailed outputs from a `terraform plan` or `apply`. While it is impossible to
 prevent terraform from leaking secrets into the state, it is possible to avoid terraform from logging sensitive
 information. Make use of PGP encryption functions or encrypted environment variables / config files (in the case of
@@ -1029,34 +1066,39 @@ We will implement the following workflow for `live` infrastructure:
 
 This walkthrough has the following pre-requisites:
 
-Gruntwork Infrastructure as Code Library  
-This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
+Gruntwork Infrastructure as Code Library
+
+: This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
-Terraform  
-This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
+Terraform
+
+: This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
 [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
 
-CircleCI  
-This guide uses [CircleCI](https://circleci.com/) as the CI platform. Although the approach is compatible with any CI
+CircleCI
+
+: This guide uses [CircleCI](https://circleci.com/) as the CI platform. Although the approach is compatible with any CI
 platform, a basic understanding of the CircleCI configuration will be useful for translating the configuration format
 to other platforms. You can take a look at [the
 official getting started guide](https://circleci.com/docs/2.0/getting-started/#section=getting-started) to get a basic understanding of CircleCI and their configuration format.
 
-AWS accounts  
-This guide deploys infrastructure into one or more AWS accounts. Check out the
+AWS accounts
+
+: This guide deploys infrastructure into one or more AWS accounts. Check out the
 [Production Grade AWS Account Structure](/guides/foundations/how-to-configure-production-grade-aws-account-structure) guide for instructions.
 You will also need to be able to authenticate to these accounts on the CLI: check out
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
 for instructions.
 
-Repository structure  
-This guide assumes your infrastructure code is organized in a manner similar to that covered in the
+Repository structure
+
+: This guide assumes your infrastructure code is organized in a manner similar to that covered in the
 [Using
 Terraform Modules section of the How to Use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#using_terraform_modules) guide. This means that you
 should have two repositories for your infrastructure code, `infrastructure-modules` and `infrastructure-live`. Make

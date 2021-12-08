@@ -9,7 +9,12 @@ To help guide you through the upgrade process, we have updated the Acme Referenc
 Terraform 0.13. You can refer to the pull requests to see an example of the updates you’lll need to do to make your
 Reference Architecture work with Terraform 0.13:
 
-Standard Reference Architecture  
+
+
+<div className="dlist">
+
+#### Standard Reference Architecture
+
 See the Release Notes for
 [v0.0.1-20201218
 tag in infrastructure-modules](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201218) instructions on how to update the Reference Architecture for Terraform 0.13
@@ -17,13 +22,17 @@ compatibility. You can also view the [infrastructure-modules PR](https://github.
 and the [infrastructure-live PR](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/pull/44) for
 an example of a Terraform 0.13 update.
 
-CIS Reference Architecture  
+#### CIS Reference Architecture
+
 See the [infrastructure-modules PR](https://github.com/gruntwork-io/cis-infrastructure-modules-acme/pull/5)
 and the [infrastructure-live PR](https://github.com/gruntwork-io/cis-infrastructure-live-acme/pull/7) for
 an example of a Terraform 0.13 update for the CIS components of the Reference Architecture. For all other components,
 refer to PRs in the Standard Reference Architecture section above.
 
+</div>
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0b69537b0e1990832cf5fbf7ad9c0e43"}
+{"sourcePlugin":"Service Catalog Reference","hash":"033fabea1c6414c73e9d5bcb76ad5e8e"}
 ##DOCS-SOURCER-END -->

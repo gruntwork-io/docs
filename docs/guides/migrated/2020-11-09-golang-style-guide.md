@@ -8,6 +8,9 @@ cloud: ["aws"]
 redirect_from: /static/guides/styleguides/golang-style-guide/
 ---
 
+:page-type: guide
+:page-layout: post
+
 # Intro
 
 This is Gruntwork’s style guide for the Go programming language. It aims to help us ensure that the code we write is
@@ -266,5 +269,5 @@ suffix `E` return an error as the last return value; methods without `E` mark th
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3edf93fc52ea3cf07be15f7fdcb6effa"}
+{"sourcePlugin":"Local File Copier","hash":"ce35a597f4afa381204d3a22182278e7"}
 ##DOCS-SOURCER-END -->

@@ -85,7 +85,7 @@ Here’s what `eks-node.json` should look like:
 }
 ```
 
-You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to access the `terraform-aws-eks`,
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the `terraform-aws-eks`,
 `module-aws-monitoring`, and `module-security` repos used in the Packer template above.
 
 This Packer template installs the following on top of the EKS-optimized AMI base image:
@@ -134,5 +134,5 @@ guide.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"91a54507a5d1b8d61562a733aec32bd7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"b8d13a7f4af24f820273c7137981a0df"}
 ##DOCS-SOURCER-END -->
