@@ -1411,6 +1411,7 @@ aws-vault exec root-iam-user -- terragrunt plan
 
 You should get a whole bunch of log output, including something that looks like this:
 
+```bash
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
 
@@ -1421,7 +1422,7 @@ Terraform will perform the following actions:
 
 # … (ommitting lots of log output for simplicity) …
 
-# module.root_baseline.module.iam_users.aws_iam_user.user\["alice"\] will be created
+# … module.root_baseline.module.iam_users.aws_iam_user.user\["alice"\] will be created
 
 - resource "aws_iam_user" "user" {
 - arn = (known after apply)
@@ -1439,6 +1440,7 @@ Plan: 160 to add, 0 to change, 0 to destroy.
     Note: You didn't specify an "-out" parameter to save this plan, so Terraform
     can't guarantee that exactly these actions will be performed if
     "terraform apply" is subsequently run.
+```
 
 This `plan` output is telling you that Terraform will create a bunch of resources, including the `aws_iam_user` named
 `alice`. Of course, this user already exists, so we want to `import` the user rather than create it again. The text
