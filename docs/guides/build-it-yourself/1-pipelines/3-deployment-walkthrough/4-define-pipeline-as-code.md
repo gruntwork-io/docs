@@ -35,9 +35,7 @@ Create the CircleCI configuration folder in your `infrastructure-live` repo:
 The scripts `deploy.sh` and `install.sh` are helper scripts to make the CircleCI configuration more readable. Here are
 the contents of the scripts:
 
-**infrastructure-live/.circleci/install.sh**
-
-```bash
+```bash title="infrastructure-live/.circleci/install.sh"
 #!/bin/bash
 #
 # Script used by CircleCI to install the necessary helpers for the CI/CD pipeline
@@ -73,9 +71,7 @@ function run {
 run "${GRUNTWORK_INSTALLER_VERSION}" "${MODULE_CI_VERSION}" "${MODULE_SECURITY_VERSION}"
 ```
 
-**infrastructure-live/.circleci/deploy.sh**
-
-```bash
+```bash title="infrastructure-live/.circleci/deploy.sh"
 #!/bin/bash
 #
 # Script used by CircleCI to trigger deployments via the infrastructure-deployer CLI utility.
@@ -162,9 +158,7 @@ We will call out to these scripts in the CI pipeline to setup our environment fo
 defined, let’s start building out our CircleCI config. We will start by defining the workflows, which acts as the basis
 of our pipeline:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 version: 2.1
 
 workflows:
@@ -213,9 +207,7 @@ define a few aliases in the config to reuse common components.
 
 The first is the runtime environment of each job:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 # Global constants for the jobs. This includes:
 # - Using machine executor
 # - Tools versions
@@ -234,9 +226,7 @@ are related to the commit that has triggered the build, but for notification pur
 build is a tag, branch, or SHA. The following routine updates the runtime with the environment variable
 `CIRCLE_FRIENDLY_REF` which tells us whether the change was a tag, branch, or bare commit:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 # This common step is used to determine the user friendly Git Ref name of the build, either the branch or tag.
 set_friendly_git_ref: &set_friendly_git_ref
   run:
@@ -254,9 +244,7 @@ set_friendly_git_ref: &set_friendly_git_ref
 We also need to know what the base comparison point is for finding updated modules. We will set this as the environment
 variable `SOURCE_REF` in the runtime environment:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 # This is used to determine what to use as the base comparison point for determining what modules to deploy. The logic
 # is as follows:
 #   - If we are on the master branch, the comparison is only the current commit.
@@ -276,9 +264,7 @@ set_source_ref: &set_source_ref
 Finally, we need to import functionality to notify on Slack. We will use the
 [official Slack Orb](https://github.com/CircleCI-Public/slack-orb) from CircleCI:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 orbs:
   slack: circleci/slack@3.4.2
 ```
@@ -286,9 +272,7 @@ orbs:
 Once we have the common elements defined as aliases, we can start defining each of the jobs. We will start with the
 `plan` job:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
   plan:
     <<: *defaults
     steps:
@@ -323,9 +307,7 @@ This job will do the following:
 
 Next, we will define the `deploy` job, which will closely resemble the `plan` job:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
   deploy:
     <<: *defaults
     steps:
@@ -356,9 +338,7 @@ This is very similar to the `plan` job, with two differences:
 
 Finally, we define the jobs for the approval notifications:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
   notify:
     <<: *defaults
     steps:
@@ -373,9 +353,7 @@ approval.
 
 For convenience, here is the full configuration in its entirety, with a few components reorganized for readability:
 
-**infrastructure-live/.circleci/config.yml**
-
-```yaml
+```yaml title="infrastructure-live/.circleci/config.yml"
 version: 2.1
 
 workflows:
@@ -495,5 +473,5 @@ jobs:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"df25910e5ad9251b6fef5123ee699a6f"}
+{"sourcePlugin":"Local File Copier","hash":"5e170f18736a77f9cef786d57bde6f1e"}
 ##DOCS-SOURCER-END -->

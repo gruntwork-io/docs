@@ -25,10 +25,14 @@ infrastructure-deployer --aws-region "us-east-2" -- \
 If everything is set up correctly, you should see a stream of logs that indicate a `terragrunt plan` running on the
 `vpc-mgmt` module.
 
-Note that we don’t specify the infrastructure-live repository in the command. The ECS Deploy Runner will automatically
+:::note
+
+We don’t specify the infrastructure-live repository in the command. The ECS Deploy Runner will automatically
 select the provided `infrastructure-live` repository when
 `var.terraform_planner_config.infrastructure_live_repositories` and
 `var.terraform_applier_config.infrastructure_live_repositories` is a list with a single item.
+
+:::
 
 You can see all the containers and scripts that you can invoke using the `infrastructure-deployer` by running the
 `--describe-containers` command:

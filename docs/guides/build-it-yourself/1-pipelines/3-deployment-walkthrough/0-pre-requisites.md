@@ -48,7 +48,7 @@ This guide assumes your infrastructure code is organized in a manner similar to 
 [Using
 Terraform Modules section of the How to Use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#using_terraform_modules) guide. This means that you
 should have two repositories for your infrastructure code, `infrastructure-modules` and `infrastructure-live`. Make
-sure that the `infrastructure-live` repository is locked down as recommended in [Lock down VCS systems](#lock_down_vcs_systems). This guide
+sure that the `infrastructure-live` repository is locked down as recommended in [Lock down VCS systems](../2-production-grade-design/7-lock-down-vcs-systems.md). This guide
 will assume that `master` is the protected branch where infrastructure is deployed from.
 
 </div>
@@ -66,5 +66,5 @@ on alternative options, such as how to
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7b6bbc5c07237cb78afe33ba9024f0e1"}
+{"sourcePlugin":"Local File Copier","hash":"dfb13a4a3e3365c370a71608ef46f7e2"}
 ##DOCS-SOURCER-END -->

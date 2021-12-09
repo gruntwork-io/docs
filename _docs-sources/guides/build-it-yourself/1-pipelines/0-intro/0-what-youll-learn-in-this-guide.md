@@ -1,5 +1,14 @@
 # What you’ll learn in this guide
 
+This is a comprehensive guide of how to design, configure, and implement a Continuous Integration and Continuous
+Delivery pipeline for your infrastructure code. This guide will walk you through the steps to set up a secure CI/CD
+pipeline for your favorite infrastructure as code tools (e.g., Terraform) using your favorite CI/CD platform (e.g.,
+Jenkins, Circle, GitLab, etc).
+
+TLDR: If you follow this guide, you’ll be able to set up a pipeline that works like this:
+
+![For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>](/img/guides/build-it-yourself/pipelines/walkthrough.gif)
+
 This guide consists of four main sections:
 
 <div className="dlist">
@@ -10,7 +19,7 @@ An overview of the core concepts you need to understand what a typical CI/CD pip
 including a comparison with CI/CD for application code, a sample workflow, infrastructure to support CI/CD, and threat
 models to consider to protect your infrastructure.
 
-#### [Production-grade design](../2-production-grade-design/0-use-generic-ci-cd-platforms-as-a-workflow-engine-but-run-infrastructure-deployments-from-within-your-account.md)
+#### [Production-grade design](../2-production-grade-design/0-intro.md)
 
 An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
 production application and infrastructure code. To get a sense of what production-grade means, check out
@@ -26,8 +35,3 @@ Infrastructure as Code Library.
 What to do once you’ve got your CI/CD pipeline set up.
 
 </div>
-
-
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"73fc47d958eaa776fe8b547dc3b62de4"}
-##DOCS-SOURCER-END -->
