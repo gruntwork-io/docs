@@ -1,8 +1,12 @@
 # Define pipeline as code
 
+:::info
+
 This guide will use [CircleCI](https://circleci.com/) as the CI server, but **it is NOT required for using the ECS
 Deploy Runner stack**. You can configure any other CI server in a similar fashion to invoke deployments against the ECS
 Deploy Runner.
+
+:::
 
 Now that we have a working ECS Deploy Runner stack, the final step is to configure our CI/CD pipeline in our CI server
 of choice. For this guide, we will configure CircleCI to implement the workflow described at the beginning of this
@@ -491,5 +495,5 @@ jobs:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"629e1bce4505213a2495ff0f21958d3c"}
+{"sourcePlugin":"Local File Copier","hash":"df25910e5ad9251b6fef5123ee699a6f"}
 ##DOCS-SOURCER-END -->
