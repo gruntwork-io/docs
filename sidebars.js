@@ -115,7 +115,7 @@ const sidebars = {
       ],
     },
     {
-      "Staying Up to Date": ["guides/staying-up-to-date/stub"],
+      "Stay Up to Date": ["guides/stay-up-to-date/stub"],
     },
     {
       type: "doc",
