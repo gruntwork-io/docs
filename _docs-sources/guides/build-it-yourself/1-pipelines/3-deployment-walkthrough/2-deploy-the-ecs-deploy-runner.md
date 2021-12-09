@@ -1,8 +1,12 @@
 # Deploy the ECS Deploy Runner
 
+:::caution
+
 **This guide is currently only compatible with ECS deploy runner version v0.27.x.** We are working on a
 series of updates to the Gruntwork CI/CD pipeline spread out across multiple versions. Once complete, we will update
 this guide to the latest version. In the meantime, use `v0.27.2` for a stable deployment process.
+
+:::
 
 For this guide, we will use
 [Gruntwork’s ECS Deploy
@@ -12,13 +16,13 @@ module](https://github.com/gruntwork-io/module-ci/tree/master/modules/ecs-deploy
 
 To deploy the ECS Deploy Runner, we will follow four steps:
 
-- [Create Secrets Manager Entries](#create_secrets_manager_entries)
+- [Create Secrets Manager Entries](#create-secrets-manager-entries)
 
-- [Create ECR repo](#create_ecr_repo)
+- [Create ECR repo](#create-ecr-repo)
 
-- [Create Docker Image](#create_docker_image)
+- [Create Docker Image](#create-docker-image)
 
-- [Deploy ECS Deploy Runner stack](#deploy_ecs_deploy_runner_stack)
+- [Deploy ECS Deploy Runner stack](#deploy-ecs-deploy-runner-stack)
 
 ## Create Secrets Manager Entries
 
@@ -35,10 +39,10 @@ securely share the secrets with the deploy runner.
     ssh-keygen -t rsa -b 4096 -C "MACHINE_USER_EMAIL"
     ```
 
-Make sure to set a different path to store the key (to avoid overwriting any existing key). Also avoid setting a
-passphrase on the key.
+    Make sure to set a different path to store the key (to avoid overwriting any existing key). Also avoid setting a
+    passphrase on the key.
 
-1.  Upload the SSH key pair to the machine user. See the following docs for the major VCS platforms:
+3.  Upload the SSH key pair to the machine user. See the following docs for the major VCS platforms:
 
     - [GitHub](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 
@@ -46,7 +50,7 @@ passphrase on the key.
 
     - [BitBucket](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-#installpublickeyStep3.AddthepublickeytoyourBitbucketsettings) (Note: you will need to expand one of the instructions to see the full instructions for adding an SSH key to the machine user account)
 
-2.  Create an AWS Secrets Manager entry with the contents of the private key. In the following example, we use the aws
+4.  Create an AWS Secrets Manager entry with the contents of the private key. In the following example, we use the aws
     CLI to create the entry in `us-east-2`, sourcing the contents from the SSH private key file `~/.ssh/machine_user`:
 
     ```bash
@@ -55,8 +59,6 @@ passphrase on the key.
     ```
 
 When you run this command, you should see a JSON output with metadata about the created secret:
-
-\+
 
 ```json
 {
@@ -90,9 +92,7 @@ Create a new module called `ecr-repo` in `infrastructure-modules`:
 
 Inside of `main.tf`, configure the ECR repository:
 
-**infrastructure-modules/cicd/ecr-repo/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/cicd/ecr-repo/main.tf"
 resource "aws_ecr_repository" "repo" {
   name                 = var.name
 
@@ -107,9 +107,7 @@ scanned automatically on push.
 
 Add the corresponding `name` variable to `variables.tf`:
 
-**infrastructure-modules/cicd/ecr-repo/variables.tf**
-
-```hcl
+```hcl title="infrastructure-modules/cicd/ecr-repo/variables.tf"
 variable "name" {
   description = "The name of the ECR repository to be created."
   type        = string
@@ -119,9 +117,7 @@ variable "name" {
 Also make sure that the repository URL is exposed in `outputs.tf`, as we will need it later when deploying the ECS
 Deploy Runner:
 
-**infrastructure-modules/cicd/ecr-repo/outputs.tf**
-
-```hcl
+```hcl title="infrastructure-modules/cicd/ecr-repo/outputs.tf"
 output "url" {
   description = "The Docker URL for the created ECR repository. This can be used as the push URL for containers."
   value       = aws_ecr_repository.repo.repository_url
@@ -129,9 +125,9 @@ output "url" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
+[Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
 and
-[Automated tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+[Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
 for instructions.
 
 Once your `ecr-repo` module is working the way you want, submit a pull request, get your changes merged into the
@@ -157,9 +153,7 @@ Now that we have a module for managing an ECR repo, head over to your `infrastru
               └ vpc-mgmt
                 └ terragrunt.hcl
 
-**infrastructure-live/production/us-east-2/prod/cicd/ecr-repo/terragrunt.hcl**
-
-```hcl
+```hcl title="infrastructure-live/production/us-east-2/prod/cicd/ecr-repo/terragrunt.hcl"
 # Pull in the backend and provider configurations from a root terragrunt.hcl file that you include in each child terragrunt.hcl:
 include {
   path = find_in_parent_folders()
@@ -281,9 +275,7 @@ Create a new module called `ecs-deploy-runner` in `infrastructure-modules`:
 
 Inside of `main.tf`, configure the ECS Deploy Runner:
 
-**infrastructure-modules/cicd/ecs-deploy-runner/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/cicd/ecs-deploy-runner/main.tf"
 module "ecs_deploy_runner" {
   source = "git::git@github.com:gruntwork-io/module-ci.git//modules/ecs-deploy-runner?ref=v0.27.2"
 
@@ -432,9 +424,7 @@ This module call does the following:
 
 Add the corresponding input variables to `variables.tf`:
 
-**infrastructure-modules/cicd/ecs-deploy-runner/variables.tf**
-
-```hcl
+```hcl title="infrastructure-modules/cicd/ecs-deploy-runner/variables.tf"
 variable "vpc_id" {
   description = "ID of the VPC where the ECS task and Lambda function should run."
   type        = string
@@ -591,15 +581,23 @@ Next, head over to your `infrastructure-live` repo to deploy the
 stack to your environments. Add a new `terragrunt.hcl` file that calls the module. We will use Terragrunt `dependency`
 blocks to get the outputs of our dependencies to pass them to the module:
 
+:::info
+
 Below is a sample `terragrunt.hcl` file that you can use, but it is incomplete. You will need to update all
 the TODOs and set the appropriate IAM permissions for the containers (the `iam_policy` attribute) to deploy your
 infrastructure.
+
+:::
+
+:::info
 
 It is tempting to grant admin permissions to both the planner and applier ECS tasks. In production it is
 **strongly** recommended to take the effort to identify the least privileges the Deploy Runner needs to accomplish plan
 and apply separately. `plan` runs on _every branch_, so you don’t have the typical "protected branches" permissions
 during the plan action. Given that Terraform has many escape hatches that allow you to run arbitrary code even during
 plan, it is important to ensure that you don’t give powerful permissions to the `terraform-planner` task.
+
+:::
 
     infrastructure-live
       └ production
@@ -615,9 +613,7 @@ plan, it is important to ensure that you don’t give powerful permissions to th
               └ vpc-mgmt
                 └ terragrunt.hcl
 
-**infrastructure-live/production/us-east-2/prod/cicd/ecs-deploy-runner/terragrunt.hcl**
-
-```hcl
+```hcl title="infrastructure-live/production/us-east-2/prod/cicd/ecs-deploy-runner/terragrunt.hcl"
 # Pull in the backend and provider configurations from a root terragrunt.hcl file that you include in each child terragrunt.hcl:
 include {
   path = find_in_parent_folders()

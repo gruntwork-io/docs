@@ -14,7 +14,7 @@ models to consider to protect your infrastructure.
 
 An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
 production application and infrastructure code. To get a sense of what production-grade means, check out
-[The production-grade infrastructure checklist](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
+[The production-grade infrastructure checklist](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
 
 #### [Deployment walkthrough](../3-deployment-walkthrough/0-pre-requisites.md)
 

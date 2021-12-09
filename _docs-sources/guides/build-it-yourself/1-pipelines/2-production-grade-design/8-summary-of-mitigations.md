@@ -65,7 +65,7 @@ and build configurations:
 
 <div className="dlist">
 
-#### [Use approval flows](#use_approval_flows)
+#### Use approval flows
 
 In addition to providing a moment to pause and inspect the exact infrastructure changes that are about to be deployed,
 approval workflows in the CI server can mitigate attacks such that attackers will need enough privileges on the CI
@@ -74,7 +74,7 @@ attacker has access to the CI server to trigger arbitrary builds manually (e.g.,
 an older version to roll back the infrastructure), but not enough access to approve the job. Note that this will not
 mitigate potential threats from internal attackers who have enough permissions to approve builds.
 
-#### [Lock down VCS systems](#lock_down_vcs_systems)
+#### Lock down VCS systems
 
 As mentioned in the previous section, it is important that you implement various controls on the VCS repositories.
 Once you implement a CI/CD pipeline, access to source code translates to access to your infrastructure environments,
@@ -91,8 +91,3 @@ service deployments) to ensure sensitive data does not show up in the plan outpu
 with the `sensitive` keyword so that terraform will mask the outputs.
 
 </div>
-
-
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"91eab322bc96435138d2e73d45c0f921"}
-##DOCS-SOURCER-END -->

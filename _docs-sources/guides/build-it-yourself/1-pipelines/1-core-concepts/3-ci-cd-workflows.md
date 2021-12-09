@@ -24,17 +24,17 @@ For the purposes of illustrating this workflow, we will assume the following:
 
 Here are the steps:
 
-1.  [Clone a copy of the source code and create a new branch](#clone_a_copy_of_the_source_code)
+1.  [Clone a copy of the source code and create a new branch](#clone-a-copy-of-the-source-code-and-create-a-new-branch)
 
-2.  [Run the code locally](#run_the_code_locally)
+2.  [Run the code locally](#run-the-code-locally)
 
-3.  [Make code changes](#make_code_changes)
+3.  [Make code changes](#make-code-changes)
 
-4.  [Submit changes for review](#submit_changes_for_review)
+4.  [Submit changes for review](#submit-changes-for-review)
 
-5.  [Run automated tests](#run_automated_tests)
+5.  [Run automated tests](#run-automated-tests)
 
-6.  [Merge and release](#merge_and_release)
+6.  [Merge and release](#merge-and-release)
 
 7.  [Deploy](#deploy)
 
@@ -201,7 +201,7 @@ for live infrastructure config because in practice you will end up deploying eve
 
 It is worth expanding a bit on the reason why live infrastructure config does not have any release artifact. To
 understand this, consider what it means to have a working trunk on live infrastructure config. If you
-recall from [Run the code locally](#run_the_code_locally), the only way to test live infrastructure config is by doing a dry run of the code.
+recall from [Run the code locally](#run-the-code-locally), the only way to test live infrastructure config is by doing a dry run of the code.
 If the only way to test live infrastructure config is with dry runs, then you would want to make sure that there are no
 new changes to make to the live environments when you start. This is so that you get an accurate representation of the
 changes that are being introduced, since you don’t want to be differentiating between existing changes that will be

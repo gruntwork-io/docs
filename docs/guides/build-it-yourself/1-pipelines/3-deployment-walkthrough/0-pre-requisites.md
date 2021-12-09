@@ -58,13 +58,13 @@ will assume that `master` is the protected branch where infrastructure is deploy
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out
-[How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library) for instructions
+[How to Use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
+[Deploy using plain Terraform](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#deploy_using_plain_terraform).
 
 :::
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2a3734be711771c1063f55810a2bb7c6"}
+{"sourcePlugin":"Local File Copier","hash":"7b6bbc5c07237cb78afe33ba9024f0e1"}
 ##DOCS-SOURCER-END -->

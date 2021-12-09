@@ -1,6 +1,6 @@
 # Use generic CI/CD platforms as a workflow engine but run infrastructure deployments from within your account
 
-Given the limitations and tradeoffs of the various platforms we covered in [CI/CD platforms](#cicd_platforms), we don’t recommend
+Given the limitations and tradeoffs of the various platforms we covered in [CI/CD platforms](../1-core-concepts/5-ci-cd-platforms.md), we don’t recommend
 relying on a single platform for implementing the entire workflow. Instead, we recommend a hybrid solution that takes
 advantage of the strengths of each platform, and cover the weaknesses. The design looks as follows:
 
@@ -25,3 +25,8 @@ arbitrary code and regularly used (and written to) by your entire dev team to ha
 Instead, we delegate this responsibility to an isolated, closed off system in the AWS account that only exposes a limited
 set of actions that can be triggered. That way, if anyone gets access to your CI server, they can at most kick off
 builds on existing code, but they don’t get arbitrary admin access.
+
+
+<!-- ##DOCS-SOURCER-START
+{"sourcePlugin":"Local File Copier","hash":"ed40c32dd1398e4ad40b96ba605a302c"}
+##DOCS-SOURCER-END -->
