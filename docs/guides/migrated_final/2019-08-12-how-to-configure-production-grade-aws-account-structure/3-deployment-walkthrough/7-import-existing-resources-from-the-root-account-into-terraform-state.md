@@ -28,34 +28,34 @@ aws-vault exec root-iam-user -- terragrunt plan
 You should get a whole bunch of log output, including something that looks like this:
 
 ```bash
+------------------------------------------------------------------------
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
-
-- create
-  ⇐ read (data resources)
+  + create
+  <= read (data resources)
 
 Terraform will perform the following actions:
 
-# … (ommitting lots of log output for simplicity) …
+# ... (ommitting lots of log output for simplicity) ...
 
-# … module.root_baseline.module.iam_users.aws_iam_user.user\["alice"\] will be created
+# module.root_baseline.module.iam_users.aws_iam_user.user["alice"] will be created
+  + resource "aws_iam_user" "user" {
+      + arn           = (known after apply)
+      + force_destroy = true
+      + id            = (known after apply)
+      + name          = "alice"
+      + path          = "/"
+      + unique_id     = (known after apply)
+    }
 
-- resource "aws_iam_user" "user" {
-- arn = (known after apply)
-- force_destroy = true
-- id = (known after apply)
-- name = "alice"
-- path = "/"
-- unique_id = (known after apply)
-  }
-
-# … (ommitting lots of log output for simplicity) …
+# ... (ommitting lots of log output for simplicity) ...
 
 Plan: 160 to add, 0 to change, 0 to destroy.
 
-    Note: You didn't specify an "-out" parameter to save this plan, so Terraform
-    can't guarantee that exactly these actions will be performed if
-    "terraform apply" is subsequently run.
+------------------------------------------------------------------------
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
 ```
 
 This `plan` output is telling you that Terraform will create a bunch of resources, including the `aws_iam_user` named
@@ -143,8 +143,6 @@ modified by the `aws-provider-patch` command.
 rm -rf .terragrunt-cache
 ```
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6a0ef2b0c4fe0a946fa96826edbebec4"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fa31502dace66612bc95f4dc8f03df9c"}
 ##DOCS-SOURCER-END -->

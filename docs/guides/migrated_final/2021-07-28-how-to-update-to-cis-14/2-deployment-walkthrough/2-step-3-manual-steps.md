@@ -8,7 +8,11 @@ The attribute `mfa_delete` is only used by Terraform to [reflect the current sta
 
 To make this change [**you need to use the root user of the account**](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root) that owns the bucket, and MFA needs to be enabled.
 
+:::caution
+
 We do not recommend having active AWS access keys for the root user, so remember to delete them when you finish this step.
+
+:::
 
 In order to enable MFA Delete, you need to:
 
@@ -125,8 +129,6 @@ Error: Error creating AWSConfig rule: Failed to create AWSConfig rule: InvalidPa
 
 You may be using a region that doesn’t properly support AWS Config (e.g: `ap-northeast-3` Osaka). Please ensure this region is disabled or remove it from your opt-in regions.
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6e31928f431d0560f9d847a5e4994eba"}
+{"sourcePlugin":"Service Catalog Reference","hash":"08e42b630041408349893ddf4a247e2f"}
 ##DOCS-SOURCER-END -->

@@ -5,7 +5,11 @@ services, data stores, and production infrastructure. The process is very simila
 except this time, you’ll be using the [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
 module from the Gruntwork Infrastructure as Code Library.
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 ## Create a wrapper module
 
@@ -253,8 +257,6 @@ cd infrastructure-live/production/us-east-2/prod/networking/vpc-app
 terragrunt apply
 ```
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9073ab3a9355697ff2f1a18c70fb044c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8788750e5afd61e1d85b3a8141e0bf24"}
 ##DOCS-SOURCER-END -->

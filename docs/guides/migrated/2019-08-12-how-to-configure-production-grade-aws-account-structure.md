@@ -908,7 +908,11 @@ Gruntwork Infrastructure as Code Library
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
+
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+
+:::
 
 Terraform
 
@@ -1221,7 +1225,11 @@ AWS CloudTrail, and AWS Config.
 
 We’ll be using the `account-baseline-root` module from [terraform-aws-service-catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-service-catalog`.
+
+:::
 
 ### Set up the inputs for `account-baseline` for the root account
 
@@ -1251,7 +1259,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (i.e., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Set the variables for the `account-baseline-root` module in this environment in the `inputs = { ... }` block.
 
@@ -1411,36 +1423,34 @@ aws-vault exec root-iam-user -- terragrunt plan
 
 You should get a whole bunch of log output, including something that looks like this:
 
-```bash
-An execution plan has been generated and is shown below.
-Resource actions are indicated with the following symbols:
+    !------------------------------------------------------------------------
+    An execution plan has been generated and is shown below.
+    Resource actions are indicated with the following symbols:
+      + create
+     <= read (data resources)
 
-- create
-  ⇐ read (data resources)
+    Terraform will perform the following actions:
 
-Terraform will perform the following actions:
+    # ... (ommitting lots of log output for simplicity) ...
 
-# … (ommitting lots of log output for simplicity) …
+    # module.root_baseline.module.iam_users.aws_iam_user.user["alice"] will be created
+      + resource "aws_iam_user" "user" {
+          + arn           = (known after apply)
+          + force_destroy = true
+          + id            = (known after apply)
+          + name          = "alice"
+          + path          = "/"
+          + unique_id     = (known after apply)
+        }
 
-# … module.root_baseline.module.iam_users.aws_iam_user.user\["alice"\] will be created
+    # ... (ommitting lots of log output for simplicity) ...
 
-- resource "aws_iam_user" "user" {
-- arn = (known after apply)
-- force_destroy = true
-- id = (known after apply)
-- name = "alice"
-- path = "/"
-- unique_id = (known after apply)
-  }
+    Plan: 160 to add, 0 to change, 0 to destroy.
 
-# … (ommitting lots of log output for simplicity) …
-
-Plan: 160 to add, 0 to change, 0 to destroy.
-
+    !------------------------------------------------------------------------
     Note: You didn't specify an "-out" parameter to save this plan, so Terraform
     can't guarantee that exactly these actions will be performed if
     "terraform apply" is subsequently run.
-```
 
 This `plan` output is telling you that Terraform will create a bunch of resources, including the `aws_iam_user` named
 `alice`. Of course, this user already exists, so we want to `import` the user rather than create it again. The text
@@ -1537,7 +1547,11 @@ cd infrastructure-live/root/_global/account-baseline
 aws-vault exec root-iam-user -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 Once `apply` completes, you should see output variables with all of your account IDs, the name of the AWS Config S3
 bucket, the name of the CloudTrail S3 bucket, and the ARN of the CloudTrail KMS key:
@@ -1651,7 +1665,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (e.g., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Include all the settings from the root terragrunt.hcl file:
 
@@ -1766,7 +1784,11 @@ cd infrastructure-live/logs/_global/account-baseline
 aws-vault exec logs-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 ## Apply the security baseline to the security account
 
@@ -1801,7 +1823,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (e.g., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Include all the settings from the root terragrunt.hcl file:
 
@@ -1957,7 +1983,11 @@ cd infrastructure-live/security/_global/account-baseline
 aws-vault exec security-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 When `apply` finishes, the module will output the encrypted passwords for the users defined above. Send the encrypted
 password to each user, along with their user name, and the IAM user sign-in URL for the account. Each user can then
@@ -2010,7 +2040,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (e.g., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Include all the settings from the root terragrunt.hcl file:
 
@@ -2122,7 +2156,11 @@ cd infrastructure-live/stage/_global/account-baseline
 aws-vault exec stage-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 Remember to repeat this process in the other child accounts too (i.e., dev, prod, shared, etc)!
 
@@ -2159,5 +2197,5 @@ accounts! Usually, the best starting point is to configure your network topology
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a621cf3d370edf846a526513b2627cb0"}
+{"sourcePlugin":"Local File Copier","hash":"d344c3dd0d6d21e654b01868ae191b91"}
 ##DOCS-SOURCER-END -->

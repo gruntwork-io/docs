@@ -38,7 +38,11 @@ Update this module to use the
 [eks-vpc-tags](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags) module from the
 `terraform-aws-eks` repo to add the tags required by EKS:
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-eks`.
+
+:::
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -83,7 +87,11 @@ Next, configure DNS forwarding rules using the
 [vpc-dns-forwarder](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-dns-forwarder) module in
 `module-vpc`:
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -143,8 +151,6 @@ cd infrastructure-live/production/us-east-2/stage/networking/vpc-app
 terragrunt apply
 ```
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"eab1d8db9338a9b7a9404d2114e6e74b"}
+{"sourcePlugin":"Service Catalog Reference","hash":"517d904e32be435bef5b98e9c97387c6"}
 ##DOCS-SOURCER-END -->

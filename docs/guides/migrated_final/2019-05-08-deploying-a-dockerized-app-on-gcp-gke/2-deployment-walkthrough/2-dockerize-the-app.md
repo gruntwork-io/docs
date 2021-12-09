@@ -5,7 +5,7 @@ folder as your `server.js` and `package.json`:
 
 **Dockerfile**
 
-```Dockerfile
+``` Dockerfile
 FROM node:12
 
 # Create app directory
@@ -33,13 +33,13 @@ app formats.
 
 To build this Docker image from the `Dockerfile`, run:
 
-```bash
+``` bash
 docker build -t simple-web-app:latest .
 ```
 
 Now you can test you container to see if it is working:
 
-```bash
+``` bash
 docker run --rm -p 8080:8080 simple-web-app:latest
 ```
 
@@ -53,7 +53,7 @@ the following output when you run the above command:
 
 Next, open the app in your browser:
 
-```bash
+``` bash
 open http://localhost:8080
 ```
 
@@ -62,5 +62,5 @@ You should be able to see the "Hello World!" message from the server.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"91d4654932ef5d79da2467817ca50f70"}
+{"sourcePlugin":"Service Catalog Reference","hash":"dcfd7df1606bd287558295b44909b34b"}
 ##DOCS-SOURCER-END -->

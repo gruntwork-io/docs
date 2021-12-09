@@ -251,7 +251,11 @@ The attribute `mfa_delete` is only used by Terraform to [reflect the current sta
 
 To make this change [**you need to use the root user of the account**](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root) that owns the bucket, and MFA needs to be enabled.
 
+:::caution
+
 We do not recommend having active AWS access keys for the root user, so remember to delete them when you finish this step.
+
+:::
 
 In order to enable MFA Delete, you need to:
 
@@ -378,5 +382,5 @@ If you’ve got any feedback or you think something’s missing from the guide, 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4e714518a011b3feab600eb81c00d915"}
+{"sourcePlugin":"Local File Copier","hash":"f8d93cb60afbec7f9bba68a3517c134f"}
 ##DOCS-SOURCER-END -->

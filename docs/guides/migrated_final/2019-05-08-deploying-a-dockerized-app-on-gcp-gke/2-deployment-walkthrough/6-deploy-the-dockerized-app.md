@@ -6,7 +6,7 @@ object in the Kubernetes object model and will contain only your `simple-web-app
 
 First, configure `kubectl` to use the newly created cluster:
 
-```bash
+``` bash
 gcloud container clusters get-credentials <YOUR_CLUSTER_NAME> --region europe-west3
 ```
 
@@ -17,13 +17,13 @@ Use the `kubectl create` command to create a
 [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) named `simple-web-app-deploy` on your
 cluster:
 
-```bash
+``` bash
 kubectl create deployment simple-web-app-deploy --image=gcr.io/${PROJECT_ID}/simple-web-app:v1
 ```
 
 To see the Pod created by the last command, you can run:
 
-```bash
+``` bash
 kubectl get pods
 ```
 
@@ -37,5 +37,5 @@ Now you need to expose the app to the public Internet.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"36651372d3864f9be52bd7b972f3feea"}
+{"sourcePlugin":"Service Catalog Reference","hash":"ed3b77ca78fd21be7c3c690c795cf48b"}
 ##DOCS-SOURCER-END -->

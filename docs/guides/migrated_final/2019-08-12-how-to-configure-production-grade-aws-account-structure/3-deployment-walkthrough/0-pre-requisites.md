@@ -2,8 +2,6 @@
 
 This walkthrough has the following pre-requisites:
 
-
-
 <div className="dlist">
 
 #### Gruntwork Infrastructure as Code Library
@@ -12,12 +10,13 @@ This guide uses code from the [Gruntwork Infrastructure as Code Library](https:/
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-
 </div>
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
 
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
+:::
 
 <div className="dlist">
 
@@ -47,11 +46,8 @@ manually, but a more manageable option may be to have your team members to sign 
 create PGP keys for themselves, and then you can provide their Keybase usernames, and the PGP keys will be retrieved
 automatically.
 
-
 </div>
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"c01bee30e4a03b73e53bea1f5fbe800c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"c089320fa8930dec6880342cce9f4785"}
 ##DOCS-SOURCER-END -->

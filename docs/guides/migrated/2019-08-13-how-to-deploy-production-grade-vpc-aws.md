@@ -652,7 +652,11 @@ Gruntwork Infrastructure as Code Library
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
+
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+
+:::
 
 Terraform
 
@@ -675,7 +679,11 @@ The first step is to deploy a management VPC for DevOps tooling, such as a CI se
 can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
 Gruntwork Infrastructure as Code Library.
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 This module assumes you do not run any data stores in the management VPC, so it solely contains two tiers of subnets,
 public and private-app. If you will be deploying data stores in the management VPC (e.g., a relational database for
@@ -886,7 +894,11 @@ services, data stores, and production infrastructure. The process is very simila
 except this time, you’ll be using the [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
 module from the Gruntwork Infrastructure as Code Library.
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 ### Create a wrapper module
 
@@ -1165,5 +1177,5 @@ If you’re not sure which of these options to use, check out the `Server Cluste
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"581cdc4c6efaa55d3bac61a8fb504d1f"}
+{"sourcePlugin":"Local File Copier","hash":"af74c051b8df14c80e95427607258867"}
 ##DOCS-SOURCER-END -->

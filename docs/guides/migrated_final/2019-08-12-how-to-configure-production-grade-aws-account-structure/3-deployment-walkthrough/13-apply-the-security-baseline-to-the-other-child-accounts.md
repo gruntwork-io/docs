@@ -41,7 +41,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (e.g., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Include all the settings from the root terragrunt.hcl file:
 
@@ -153,12 +157,14 @@ cd infrastructure-live/stage/_global/account-baseline
 aws-vault exec stage-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 Remember to repeat this process in the other child accounts too (i.e., dev, prod, shared, etc)!
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"1c7c82ed66d48ab6b61ef9d4ae003ea7"}
+{"sourcePlugin":"Service Catalog Reference","hash":"2b6a00c8c870574790eed550bae7b50c"}
 ##DOCS-SOURCER-END -->

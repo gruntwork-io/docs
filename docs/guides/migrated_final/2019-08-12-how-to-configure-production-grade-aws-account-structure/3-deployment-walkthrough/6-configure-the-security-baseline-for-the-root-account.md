@@ -6,7 +6,11 @@ AWS CloudTrail, and AWS Config.
 
 We’ll be using the `account-baseline-root` module from [terraform-aws-service-catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-service-catalog`.
+
+:::
 
 ## Set up the inputs for `account-baseline` for the root account
 
@@ -36,7 +40,11 @@ terraform {
 }
 ```
 
+:::caution
+
 We **strongly** recommend setting Terraform parallelism to a low value (i.e., `-parallelism=2`), as shown above, with the `account-baseline-xxx` modules. This is because these modules deploy multi-region resources (e.g., GuardDuty, AWS Config, etc), and for each region, Terraform spins up a separate process, so if you don’t limit the parallelism, it may peg all your CPU cores and lead to network connectivity errors.
+
+:::
 
 Set the variables for the `account-baseline-root` module in this environment in the `inputs = { ... }` block.
 
@@ -167,8 +175,6 @@ You should get JSON output with information about your IAM user:
 You’re now almost ready to deploy the `account-baseline` module in the root account. But first, let’s import the IAM user
 and any other existing resources.
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"03c3350ebe64522a3ad295a1f6daf9dc"}
+{"sourcePlugin":"Service Catalog Reference","hash":"e2c533fb7d2b15a8052a614ca3c98702"}
 ##DOCS-SOURCER-END -->

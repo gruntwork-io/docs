@@ -2,8 +2,6 @@
 
 This walkthrough has the following pre-requisites:
 
-
-
 <div className="dlist">
 
 #### Gruntwork Infrastructure as Code Library
@@ -12,12 +10,13 @@ This guide uses code from the [Gruntwork Infrastructure as Code Library](https:/
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-
 </div>
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
 
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
+:::
 
 <div className="dlist">
 
@@ -49,11 +48,8 @@ guide for instructions. You will also need to be able to authenticate to these a
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
 for instructions.
 
-
 </div>
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"00e8cc71445e4751fb6a300f5477090c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"958152c7378c11ba7c70df9784ca43ee"}
 ##DOCS-SOURCER-END -->

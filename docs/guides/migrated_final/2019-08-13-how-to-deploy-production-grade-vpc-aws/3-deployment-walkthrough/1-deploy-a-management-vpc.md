@@ -4,7 +4,11 @@ The first step is to deploy a management VPC for DevOps tooling, such as a CI se
 can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
 Gruntwork Infrastructure as Code Library.
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 This module assumes you do not run any data stores in the management VPC, so it solely contains two tiers of subnets,
 public and private-app. If you will be deploying data stores in the management VPC (e.g., a relational database for
@@ -119,8 +123,6 @@ git push --follow-tags
 
 The next step is to deploy your wrapper `vpc-mgmt` module. You can either deploy it in one AWS account or multiple:
 
-
-
 <div className="dlist">
 
 #### One management VPC
@@ -140,7 +142,6 @@ one management VPC for each of your environments. This way, you can keep product
 completely separate, reducing the risk from both external attackers and mistakes made by internal employees. The
 drawback to this approach is that you have more infrastructure to manage: more VPCs, more peering connections, more
 route table entries, more bastion hosts, and more credentials.
-
 
 </div>
 
@@ -215,8 +216,6 @@ cd infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt
 terragrunt apply
 ```
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8fed36238edc8f0660a6b6ee3f0f1a9d"}
+{"sourcePlugin":"Service Catalog Reference","hash":"01d8a05b9f42451b0aa9e812a277f668"}
 ##DOCS-SOURCER-END -->

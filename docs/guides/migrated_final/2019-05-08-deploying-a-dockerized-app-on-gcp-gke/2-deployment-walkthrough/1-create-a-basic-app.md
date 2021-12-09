@@ -7,26 +7,26 @@ Create a file called `server.js` and paste in the following source code:
 
 **server.js**
 
-```javascript
-const express = require("express")
+``` javascript
+const express = require("express");
 
 // Constants
-const PORT = 8080
-const HOST = "0.0.0.0"
+const PORT = 8080;
+const HOST = "0.0.0.0";
 
 // App
-const app = express()
-app.get("/", (req, res) => res.send("Hello World!"))
+const app = express();
+app.get("/", (req, res) => res.send("Hello World!"));
 
-app.listen(PORT, HOST)
-console.log(`Running on http://${HOST}:${PORT}`)
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
 ```
 
 Next, create a `package.json` that defines your dependencies:
 
 **package.json**
 
-```json
+``` json
 {
   "name": "docker_web_app",
   "version": "1.0.0",
@@ -43,5 +43,5 @@ Next, create a `package.json` that defines your dependencies:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"b84f775d910bf82db2b72bdd3fbfcfd2"}
+{"sourcePlugin":"Service Catalog Reference","hash":"be776541cbdff34cde435123753ea5b2"}
 ##DOCS-SOURCER-END -->

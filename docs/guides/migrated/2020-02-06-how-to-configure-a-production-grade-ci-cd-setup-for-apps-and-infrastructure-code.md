@@ -1072,7 +1072,11 @@ Gruntwork Infrastructure as Code Library
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
+
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+
+:::
 
 Terraform
 
@@ -2485,5 +2489,5 @@ Now that you have a CI/CD pipeline for your infrastructure code, test it out by 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3fb079fff7a63cf460a192d86b7ed73e"}
+{"sourcePlugin":"Local File Copier","hash":"7a121d984cf59ee19e1d63b433742d30"}
 ##DOCS-SOURCER-END -->

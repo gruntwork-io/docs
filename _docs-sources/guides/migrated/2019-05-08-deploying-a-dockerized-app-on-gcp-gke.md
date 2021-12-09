@@ -626,7 +626,11 @@ Next, to destroy the GKE cluster, run the `terraform destroy` command:
 terraform destroy
 ```
 
+:::caution
+
 This is a destructive command that will forcibly terminate and destroy your GKE cluster!
+
+:::
 
 # Next steps
 

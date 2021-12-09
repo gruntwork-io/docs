@@ -7,7 +7,7 @@ from the Gruntwork Infrastructure as Code Library.
 
 First, create a `terraform` directory:
 
-```bash
+``` bash
 mkdir -p terraform
 cd terraform
 ```
@@ -16,7 +16,7 @@ Then create a `main.tf` file with the following code:
 
 **terraform/main.tf**
 
-```hcl
+``` hcl
 terraform {
   # The modules used in this guide require Terraform 0.12, additionally we depend on a bug fixed in version 0.12.7.
   required_version = ">= 0.12.7"
@@ -189,7 +189,7 @@ input variables:
 
 **terraform/variables.tf**
 
-```hcl
+``` hcl
 # ---------------------------------------------------------------------------------------------------------------------
 # REQUIRED PARAMETERS
 # These variables are expected to be passed in by the operator.
@@ -260,7 +260,7 @@ And an `outputs.tf` file with output variables:
 
 **terraform/outputs.tf**
 
-```hcl
+``` hcl
 output "cluster_endpoint" {
   description = "The IP address of the cluster master."
   sensitive   = true
@@ -300,5 +300,5 @@ Terraform will begin to create the GCP resources. This process can take several 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"0ca9de40db18b67186ccbc08b8e1578a"}
+{"sourcePlugin":"Service Catalog Reference","hash":"91d80e20264e1e0ee7752ea856ca9489"}
 ##DOCS-SOURCER-END -->

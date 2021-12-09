@@ -2,8 +2,6 @@
 
 This walkthrough has the following pre-requisites:
 
-
-
 <div className="dlist">
 
 #### Gruntwork Infrastructure as Code Library
@@ -12,12 +10,13 @@ This guide uses code from the [Gruntwork Infrastructure as Code Library](https:/
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-
 </div>
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
 
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
 
+:::
 
 <div className="dlist">
 
@@ -52,7 +51,6 @@ should have two repositories for your infrastructure code, `infrastructure-modul
 sure that the `infrastructure-live` repository is locked down as recommended in [Lock down VCS systems](#lock_down_vcs_systems). This guide
 will assume that `master` is the protected branch where infrastructure is deployed from.
 
-
 </div>
 
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
@@ -62,8 +60,6 @@ the Gruntwork Infrastructure as Code Library.** Check out
 on alternative options, such as how to
 [Deploy using plain Terraform](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"795e4792e40b826c9683a187bbaf3378"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8e2085c50e7ed189ad1170dfe3cf7e23"}
 ##DOCS-SOURCER-END -->

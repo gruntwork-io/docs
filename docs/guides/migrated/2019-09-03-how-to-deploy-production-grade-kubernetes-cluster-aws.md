@@ -755,7 +755,11 @@ Gruntwork Infrastructure as Code Library
 implements most of the production-grade design for you out of the box. Make sure to read
 [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
 
-    You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+:::caution
+
+You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access the Gruntwork Infrastructure as Code Library.
+
+:::
 
 Terraform
 
@@ -825,7 +829,11 @@ Update this module to use the
 [eks-vpc-tags](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags) module from the
 `terraform-aws-eks` repo to add the tags required by EKS:
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `terraform-aws-eks`.
+
+:::
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -870,7 +878,11 @@ Next, configure DNS forwarding rules using the
 [vpc-dns-forwarder](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-dns-forwarder) module in
 `module-vpc`:
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
+
+:::
 
 **infrastructure-modules/networking/vpc-app/main.tf**
 
@@ -1857,5 +1869,5 @@ any data stores they depend on by using the following guides:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f214f9423be02fff884369dee82b96f8"}
+{"sourcePlugin":"Local File Copier","hash":"a2e4ebe2f099b3ba755d512a2e7f104f"}
 ##DOCS-SOURCER-END -->

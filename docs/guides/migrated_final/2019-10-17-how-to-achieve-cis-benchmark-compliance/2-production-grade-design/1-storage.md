@@ -84,7 +84,11 @@ To make this change [**you need to use the root user of the account**](https://d
 
 ====== MFA Delete - manual steps
 
+:::caution
+
 We do not recommend having active AWS access keys for the root user, so remember to delete them when you finish this step.
+
+:::
 
 In order to enable MFA Delete, you need to:
 
@@ -142,8 +146,6 @@ To set up Macie to analyze the desired S3 buckets, you’ll need to create a **M
 [here](https://github.com/hashicorp/terraform-provider-aws/issues/20044)). Therefore, you’ll need to maintain an
 explicit list of buckets per region, namely in the variable `buckets_to_analyze`. For more details, see the production _Deployment Walkthrough_ guide section below.
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6e14bf725bea08b10d8f16e1cbcd91dc"}
+{"sourcePlugin":"Service Catalog Reference","hash":"a9ad5034e3cce00a8bcbc8cfbafea7bb"}
 ##DOCS-SOURCER-END -->

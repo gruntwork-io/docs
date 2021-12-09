@@ -8,7 +8,11 @@ cd infrastructure-live/root/_global/account-baseline
 aws-vault exec root-iam-user -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 10240`.
+
+:::
 
 Once `apply` completes, you should see output variables with all of your account IDs, the name of the AWS Config S3
 bucket, the name of the CloudTrail S3 bucket, and the ARN of the CloudTrail KMS key:
@@ -75,8 +79,6 @@ Each user can then decrypt the password on their own computer (which should have
 echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 ```
 
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"03bee5baa497d002307ccc7a8c543f12"}
+{"sourcePlugin":"Service Catalog Reference","hash":"d2f718d308c8a1cdd38d628bd9181268"}
 ##DOCS-SOURCER-END -->

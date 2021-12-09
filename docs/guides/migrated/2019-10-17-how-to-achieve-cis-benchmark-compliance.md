@@ -611,7 +611,11 @@ To make this change [**you need to use the root user of the account**](https://d
 
 ====== MFA Delete - manual steps
 
+:::caution
+
 We do not recommend having active AWS access keys for the root user, so remember to delete them when you finish this step.
+
+:::
 
 In order to enable MFA Delete, you need to:
 
@@ -1099,7 +1103,11 @@ The standalone modules will follow the pattern of referencing the module and pro
 
 Configure the `account-baseline-root` for the root account
 
+:::caution
+
 You must be a <span className="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork Infrastructure as Code Library and the [CIS AWS Foundations Benchmark modules](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/).
+
+:::
 
 First, let’s consider the repository structure that is recommended by this guide. It is available for your reference in the `/examples/for-production` folder of the [`terraform-aws-cis-service-catalog` repository](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/examples/for-production). Consider the following directory structure for your `infrastructure-live` repository. It showcases the configuration files for your local variables.
 
@@ -1477,30 +1485,30 @@ aws-vault exec root-iam-user -- terragrunt plan
 
 You should get a whole bunch of log output, including something that looks like this:
 
-An execution plan has been generated and is shown below.
-Resource actions are indicated with the following symbols:
+    !------------------------------------------------------------------------
+    An execution plan has been generated and is shown below.
+    Resource actions are indicated with the following symbols:
+      + create
+     <= read (data resources)
 
-- create
-  ⇐ read (data resources)
+    Terraform will perform the following actions:
 
-Terraform will perform the following actions:
+    # ... (ommitting lots of log output for simplicity) ...
 
-# … (ommitting lots of log output for simplicity) …
+    # module.root_baseline.module.iam_users.aws_iam_user.user["alice"] will be created
+      + resource "aws_iam_user" "user" {
+          + arn           = (known after apply)
+          + id            = (known after apply)
+          + name          = "alice"
+          + path          = "/"
+          + unique_id     = (known after apply)
+        }
 
-# module.root_baseline.module.iam_users.aws_iam_user.user\["alice"\] will be created
+    # ... (ommitting lots of log output for simplicity) ...
 
-- resource "aws_iam_user" "user" {
-- arn = (known after apply)
-- id = (known after apply)
-- name = "alice"
-- path = "/"
-- unique_id = (known after apply)
-  }
+    Plan: 160 to add, 0 to change, 0 to destroy.
 
-# … (ommitting lots of log output for simplicity) …
-
-Plan: 160 to add, 0 to change, 0 to destroy.
-
+    !------------------------------------------------------------------------
     Note: You didn't specify an "-out" parameter to save this plan, so Terraform
     can't guarantee that exactly these actions will be performed if
     "terraform apply" is subsequently run.
@@ -1547,7 +1555,11 @@ cd infrastructure-live/root/_global/account-baseline
 aws-vault exec root-iam-user -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 1024`.
+
+:::
 
 Once `apply` completes, you should see output variables with all of your account IDs, the name of the AWS Config S3
 bucket, the name of the CloudTrail S3 bucket, and the ARN of the CloudTrail KMS key:
@@ -1934,7 +1946,11 @@ cd infrastructure-live/logs/_global/account-baseline
 aws-vault exec logs-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 1024`.
+
+:::
 
 ### Apply the `account-baseline-security` to the security account
 
@@ -2259,7 +2275,11 @@ cd infrastructure-live/security/_global/account-baseline
 aws-vault exec security-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 1024`.
+
+:::
 
 When `apply` finishes, the module will output the encrypted passwords for the users defined above. Send the encrypted
 password to each user, along with their user name, and the IAM user sign-in URL for the account. Each user can then
@@ -2533,7 +2553,11 @@ cd infrastructure-live/stage/_global/account-baseline
 aws-vault exec stage-from-root -- terragrunt apply
 ```
 
+:::caution
+
 On some operating systems, such as MacOS, you may also need to increase your open files limit to avoid "pipe: too many open files" errors by running: `ulimit -n 1024`.
+
+:::
 
 **Remember to repeat this process in the other child accounts too (i.e., `dev`, `prod`, `shared-services`, etc)!**
 
@@ -2867,5 +2891,5 @@ sections above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"355ae1b1c4de6abadebd2cdb7dcaf4dc"}
+{"sourcePlugin":"Local File Copier","hash":"548555e6aac6982d74d3799192c09b8e"}
 ##DOCS-SOURCER-END -->
