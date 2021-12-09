@@ -107,7 +107,9 @@ const sidebars = {
       ],
     },
     {
-      "Deploying Your Own Services": ["guides/service-catalog/stub"],
+      "Deploying Your Own Services": [
+        "guides/deploying-your-own-services/stub",
+      ],
     },
     {
       "Staying Up to Date": ["guides/staying-up-to-date/stub"],
