@@ -738,9 +738,12 @@ NetworkPolicy
 the inbound and outbound networking rules for your pods. We recommend adding a default NetworkPolicy that denies all
 inbound and outbound traffic (again, principle of least privilege) and then adding a NetworkPolicy for each pod that
 gives it permissions to talk solely to the other pods it should be able to access.
+:::info
 
     `NetworkPolicy` is not supported out of the box by EKS unless you use a custom networking engine such as
     [calico](https://docs.projectcalico.org/v3.9/introduction/) or [istio](https://istio.io).
+
+:::
 
 # Deployment walkthrough
 

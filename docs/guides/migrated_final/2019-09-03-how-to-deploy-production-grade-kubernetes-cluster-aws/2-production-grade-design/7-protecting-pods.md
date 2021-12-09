@@ -2,8 +2,6 @@
 
 There are several policies you may want to enable to protect the pods in your cluster:
 
-
-
 <div className="dlist">
 
 #### PodSecurityPolicy
@@ -23,13 +21,14 @@ the inbound and outbound networking rules for your pods. We recommend adding a d
 inbound and outbound traffic (again, principle of least privilege) and then adding a NetworkPolicy for each pod that
 gives it permissions to talk solely to the other pods it should be able to access.
 
-
 </div>
 
-    `NetworkPolicy` is not supported out of the box by EKS unless you use a custom networking engine such as
-    [calico](https://docs.projectcalico.org/v3.9/introduction/) or [istio](https://istio.io).
+:::info
 
+`NetworkPolicy` is not supported out of the box by EKS unless you use a custom networking engine such as
+[calico](https://docs.projectcalico.org/v3.9/introduction/) or [istio](https://istio.io).
 
+:::
 
 <!-- ##DOCS-SOURCER-START
 {"sourcePlugin":"Service Catalog Reference","hash":"93c07124b3407cf1594cb39b554c40d5"}
