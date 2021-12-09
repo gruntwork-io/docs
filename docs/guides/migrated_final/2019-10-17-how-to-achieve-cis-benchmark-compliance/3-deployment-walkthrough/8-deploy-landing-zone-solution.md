@@ -50,10 +50,14 @@ Next, we’ll configure the `account-baseline-root` with settings needed for cre
 
 We’ll be using the `landingzone/account-baseline-root` module from [terraform-aws-cis-service-catalog](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog).
 
+:::info
+
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from the Gruntwork Infrastructure as Code Library.** Check out [How to use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
 for instructions on alternative options, such as how to
 [deploying how to use plain terraform](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
+
+:::
 
 Next, create a `terragrunt.hcl` file in `infrastructure-live`, under the file path `root/_global/account-baseline`:
 

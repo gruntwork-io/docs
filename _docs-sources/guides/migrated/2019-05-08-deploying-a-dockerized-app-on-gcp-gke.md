@@ -181,10 +181,14 @@ The folder structure of the sample app should now look like this:
     ├── Dockerfile
     └── package.json
 
+:::info
+
 Real-world applications will be a lot more complicated than this, but the main point to take from here is that
 you need to ensure your Docker image is configured to `EXPOSE` the port that your app is going to need for external
 communication. See the [Docker examples](https://docs.docker.com/samples/) for more information on Dockerizing popular
 app formats.
+
+:::
 
 To build this Docker image from the `Dockerfile`, run:
 

@@ -410,10 +410,12 @@ files—with the main difference being that:
   never written to disk.
 
 - Kubernetes stores Secrets in an encrypted form in etcd.
+  :::info
 
   [etcd encryption](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) is only available as of
   Kubernetes 1.13 and not available out of the box on all Kubernetes platforms (older versions of Kubernetes stored
   secrets unencrypted!).
+  :::
 
 ## Options for running Kubernetes in AWS
 

@@ -805,10 +805,14 @@ the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in Cir
 MFA for a machine user, so before giving credentials to an external system, think very carefully if that system is
 worth trusting with access to your AWS account, and limit the machine user’s permissions as much as possible.
 
-    When you come across a 3rd party service that requires you to create an IAM machine user, you should think of
-    that as a red flag. Just about all vendors these days should support using IAM roles instead, as creating an IAM role
-    and giving the vendor permissions to assume that role is significantly more secure than manually copying around
-    sensitive machine user access keys.
+:::info
+
+When you come across a 3rd party service that requires you to create an IAM machine user, you should think of
+that as a red flag. Just about all vendors these days should support using IAM roles instead, as creating an IAM role
+and giving the vendor permissions to assume that role is significantly more secure than manually copying around
+sensitive machine user access keys.
+
+:::
 
 ## CloudTrail
 
@@ -2197,5 +2201,5 @@ accounts! Usually, the best starting point is to configure your network topology
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d344c3dd0d6d21e654b01868ae191b91"}
+{"sourcePlugin":"Local File Copier","hash":"77fa8a06d338c3f4a1ad1a70f67a5557"}
 ##DOCS-SOURCER-END -->

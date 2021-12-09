@@ -14,8 +14,6 @@ proxy for the Node.js app.
 
 Here are the key ideas to keep in mind when thinking about pods:
 
-
-
 <div className="dlist">
 
 #### How pods are deployed
@@ -44,7 +42,6 @@ Pods (and for that matter, containers) are relatively _ephemeral_: that is, they
 time. This might happen because a node crashes or because you’re deploying a new version of the pod or a number of
 other reasons. This is a critical idea to keep in mind as you design your system, especially when thinking about
 fault tolerance, replication, and state.
-
 
 </div>
 
@@ -116,11 +113,12 @@ files—with the main difference being that:
 
 - Kubernetes stores Secrets in an encrypted form in etcd.
 
+  :::info
+
   [etcd encryption](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) is only available as of
   Kubernetes 1.13 and not available out of the box on all Kubernetes platforms (older versions of Kubernetes stored
   secrets unencrypted!).
-
-
+  :::
 
 <!-- ##DOCS-SOURCER-START
 {"sourcePlugin":"Service Catalog Reference","hash":"ddd1380ff61ad4586143bbfbd2f0e5d6"}

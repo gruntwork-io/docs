@@ -5,7 +5,7 @@ folder as your `server.js` and `package.json`:
 
 **Dockerfile**
 
-``` Dockerfile
+```Dockerfile
 FROM node:12
 
 # Create app directory
@@ -26,20 +26,24 @@ The folder structure of the sample app should now look like this:
     ├── Dockerfile
     └── package.json
 
+:::info
+
 Real-world applications will be a lot more complicated than this, but the main point to take from here is that
 you need to ensure your Docker image is configured to `EXPOSE` the port that your app is going to need for external
 communication. See the [Docker examples](https://docs.docker.com/samples/) for more information on Dockerizing popular
 app formats.
 
+:::
+
 To build this Docker image from the `Dockerfile`, run:
 
-``` bash
+```bash
 docker build -t simple-web-app:latest .
 ```
 
 Now you can test you container to see if it is working:
 
-``` bash
+```bash
 docker run --rm -p 8080:8080 simple-web-app:latest
 ```
 
@@ -53,13 +57,11 @@ the following output when you run the above command:
 
 Next, open the app in your browser:
 
-``` bash
+```bash
 open http://localhost:8080
 ```
 
 You should be able to see the "Hello World!" message from the server.
-
-
 
 <!-- ##DOCS-SOURCER-START
 {"sourcePlugin":"Service Catalog Reference","hash":"dcfd7df1606bd287558295b44909b34b"}

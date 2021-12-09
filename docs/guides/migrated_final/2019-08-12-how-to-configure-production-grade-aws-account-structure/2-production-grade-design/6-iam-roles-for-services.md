@@ -4,8 +4,6 @@ In addition to the IAM roles you create for users, you will also need to create 
 and automated users in your child accounts. The exact set of IAM roles you need depends on your company’s
 requirements, but here are some common ones:
 
-
-
 <div className="dlist">
 
 #### allow-auto-deploy-access-from-other-accounts
@@ -23,13 +21,10 @@ accounts. Typically, you’d have this role in your security account to allow th
 authenticate SSH attempts using
 [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt).
 
-
 </div>
 
     You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `ssh-grunt` in
     [terraform-aws-security](https://github.com/gruntwork-io/terraform-aws-security/).
-
-
 
 <div className="dlist">
 
@@ -42,12 +37,9 @@ cluster `ec2:DescribeInstances`, `ec2:DescribeTags`, and `autoscaling:DescribeAu
 the instances can look up instance, tag, and auto scaling group information to automatically discover and connect
 to the other instances in the cluster.
 
-
 </div>
 
 A few important notes on IAM roles for services:
-
-
 
 <div className="dlist">
 
@@ -66,7 +58,6 @@ The trust policy in service IAM roles will need to specify the appropriate `Prin
 assume it. For example, if you’re running Jenkins on an EC2 instance, and you want that EC2 instance to be able to
 assume an IAM role to get specific permissions (e.g., to get permissions to deploy some code in one of your child
 accounts), you’ll need a trust policy that looks like this:
-
 
 </div>
 
@@ -87,8 +78,6 @@ accounts), you’ll need a trust policy that looks like this:
     intended for IAM users) used the format `"AWS": "<ARN>"`. Each AWS service has its own `Principal`: e.g., if you
     want an IAM role that can be assumed by a Lambda function, the `Principal` will be `"lambda.amazonaws.com"`.
 
-
-
 <div className="dlist">
 
 #### Protecting IAM roles
@@ -103,7 +92,6 @@ any compromise of that EC2 instance instantly gives an attacker access to all th
 the root user), e.g., by using `iptables`. You can do this automatically using
 [ip-lockdown](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ip-lockdown)
 
-
 </div>
 
     ``` bash
@@ -113,8 +101,6 @@ the root user), e.g., by using `iptables`. You can do this automatically using
 
     You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `ip-lockdown` in
     [terraform-aws-security](https://github.com/gruntwork-io/terraform-aws-security).
-
-
 
 <div className="dlist">
 
@@ -129,15 +115,16 @@ the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in Cir
 MFA for a machine user, so before giving credentials to an external system, think very carefully if that system is
 worth trusting with access to your AWS account, and limit the machine user’s permissions as much as possible.
 
-
 </div>
 
-    When you come across a 3rd party service that requires you to create an IAM machine user, you should think of
-    that as a red flag. Just about all vendors these days should support using IAM roles instead, as creating an IAM role
-    and giving the vendor permissions to assume that role is significantly more secure than manually copying around
-    sensitive machine user access keys.
+:::info
 
+When you come across a 3rd party service that requires you to create an IAM machine user, you should think of
+that as a red flag. Just about all vendors these days should support using IAM roles instead, as creating an IAM role
+and giving the vendor permissions to assume that role is significantly more secure than manually copying around
+sensitive machine user access keys.
 
+:::
 
 <!-- ##DOCS-SOURCER-START
 {"sourcePlugin":"Service Catalog Reference","hash":"906ba8cb5d24f4dd926dd23a3a0072d2"}
