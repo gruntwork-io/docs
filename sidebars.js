@@ -107,25 +107,16 @@ const sidebars = {
       ],
     },
     {
-      "Service Catalog": ["guides/service-catalog/stub"],
+      "Deploying Your Own Services": ["guides/service-catalog/stub"],
     },
     {
-      "Application Catalog": [],
+      "Staying Up to Date": ["guides/staying-up-to-date/stub"],
     },
     {
       "Landing Zone": ["guides/landing-zone/stub"],
     },
     {
       Pipelines: ["guides/pipelines/stub"],
-    },
-    {
-      "Self Service": [],
-    },
-    {
-      Patcher: ["guides/patcher/stub"],
-    },
-    {
-      Compliance: [],
     },
     {
       type: "doc",
