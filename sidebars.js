@@ -127,10 +127,6 @@ const sidebars = {
     {
       Compliance: [],
     },
-    {
-      type: "doc",
-      id: "guides/support",
-    },
   ],
   referenceSidebar: [
     {

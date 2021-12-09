@@ -1,16 +1,123 @@
-# Where to Get Support
+---
+toc_max_heading_level: 2
+---
 
-This is where the main content goes
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<b>There's also just</b> regular HTML content
+# Need Help?
 
-<table>
-<tr>
-<td>Stuff</td>
-</tr>
-</table>
+We’re here to assist when you get stuck. [Community support](#community-resources) is included with every Gruntwork subscription, providing access to our knowledge base and an active community of users. Our [paid support plans](#paid-support-tiers) offer additional avenues for obtaining support, and guaranteed response times. Lastly, our [Pro Serve](#pro-serve) team offers personalized services via paid engagements to help your team overcome any hurdles you have using your Gruntwork subscription to realize its goals.
+
+
+## Community Resources
+
+* **[Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions)** — Find answers to the most common questions from Gruntwork experts, or ask your own.
+
+* **[Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62)** — Get assistance from others solving the same problems as you.
+
+* **[File a Bug](https://github.com/orgs/gruntwork-io/repositories)** — Find a bug? File it in the appropriate repo and we’ll triage it for a fix.
+
+
+## Paid Support Tiers
+
+Select your support tier below to learn how to get personalized help from a knowledgeable Grunt. If you don’t have a support plan but discover the need, you may add it to your subscription at any time by contacting sales@gruntwork.io.
+
+<Tabs>
+  <TabItem value="pro" label="Professional">
+
+
+With Gruntwork Professional Support, you get to work with a team of DevOps experts who can help you set up your infrastructure, design highly available and scalable systems, automate builds and deployments, troubleshoot issues, and avoid gotchas and pitfalls. As a Professional Support subscriber, you get access to a team of DevOps experts for a tiny fraction of the cost of hiring a single DevOps engineer full time.
+
+
+### What’s covered?
+
+We’re here to help you with:
+
+* **Questions** — Ask us anything about our products, guides, or details regarding your particular use case.
+
+* **Troubleshooting** — Get unstuck when you’re having trouble using our code library or following our guides.
+
+* **Bug fixes** — Raise concerns regarding any bugs you find, and help us understand how they impact you.
+
+* **DevOps guidance** — While we don’t provide DevOps training beyond our [video training courses](/courses), we can help you understand how to apply general DevOps principles to devise the right infrastructure for your needs.
+
+
+### How to reach us
+
+#### Chat with us in Slack
+
+We create a shared Slack channel so you can chat with Gruntwork engineers from your own Slack account. Message us there any time with questions relating to your Gruntwork infrastructure, and one of our Gruntwork engineers will respond in no more than two business days.
+
+If you’re a new subscriber…
+
+
+#### Email us
+
+Send your support requests to support@gruntwork.io. You can track your request through our [support portal](https://gruntwork.zendesk.com), and you’ll receive a response within two business days.
+
+
+### Guaranteed Response Times
+
+Our Professional Support Service Level Agreement guarantees that we will respond to your support requests within two business days. _Professional support is not an emergency service._ In addition, there will be a limited number of pre-announced dates during which no Gruntwork personnel will be available. These dates will be announced in the [#ask-community](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) channel in Community Slack at least two weeks in advance.
+
+  </TabItem>
+  <TabItem value="enterprise" label="Enterprise">
+
+
+Gruntwork Enterprise Support extends our professional support offering, adding real-time support via phone or video chat, code and design reviews, and prioritized bug fixes. Additionally, it increases the service level agreement and guarantees a one day response to any support requests.
+
+### What’s covered?
+
+We’re here to help you with:
+
+* **Questions** — Ask us anything about our products, guides, or details regarding your particular use case.
+
+* **Troubleshooting** — Get unstuck when you’re having trouble using our code library or following our guides.
+
+* **Bug fixes** — Raise concerns regarding any bugs you find. We’ll work with you to understand the impact to your team, and prioritize any bugs that interfere with getting your infrastructure into production.
+
+* **Design reviews** — Receive feedback on the design of your infrastructure from knowledgeable Gruntwork engineers. This can help identify opportunities for improvement, or provide insight on how to use Gruntwork to achieve your goals.
+
+* **Code reviews** — Get another pair of eyes on any changes you make to your infrastructure so you can have confidence taking them live.
+
+* **DevOps guidance** — While we don’t provide DevOps training beyond our [video training courses](/courses), we can help you understand how to apply general DevOps principles to devise the right infrastructure for your needs.
+
+
+### How to reach us
+
+#### Schedule a live call
+
+Enterprise support includes a limited number of hours of live support, via phone or video chat. On these calls you’ll get direct support from a Gruntwork engineer regarding any of the covered topics listed above. To schedule a live call, reach out to us via [email](#email-us-1) or [Slack](#chat-with-us-in-slack-1).
+
+
+#### Chat with us in Slack
+
+We create a shared Slack channel so you can chat with Gruntwork engineers from your own Slack account. Message us there any time with questions relating to your Gruntwork infrastructure. A Gruntwork engineer will get back to you in no more than one business day.
+
+
+If you’re a new subscriber…
+
+#### Email us
+
+Send your support requests to support@gruntwork.io. You can track your request through our [support portal](https://gruntwork.zendesk.com), and you’ll receive a response within one business day.
+
+
+### Guaranteed Response Times
+
+Our Enterprise Support Service Level Agreement guarantees that we will respond to your support requests within one business day. _Enterprise support is not an emergency service._ In addition, there will be a limited number of pre-announced dates during which no Gruntwork personnel will be available. These dates will be announced in the [#ask-community](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) channel in Community Slack at least two weeks in advance.
+
+  </TabItem>
+</Tabs>
+
+---
+
+
+## Pro Serve
+
+Looking for more personalized assistance using a particular Gruntwork product? Our Pro Serve team is available to assist customers who need a higher degree of consultation and support setting up their infrastructure. Contact sales@gruntwork.io for more details.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4bfc0c5153a2e2b9fd80023b3159d711"}
+{"sourcePlugin":"Local File Copier","hash":"90e0911af7a141e7d37c665c7dccb3f9"}
 ##DOCS-SOURCER-END -->
