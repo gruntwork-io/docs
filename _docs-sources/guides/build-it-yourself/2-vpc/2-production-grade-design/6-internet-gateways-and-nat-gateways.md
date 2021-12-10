@@ -20,12 +20,7 @@ production, you may want to deploy multiple NAT Gateways, each one in a differen
 
 </div>
 
-    Each NAT Gateway should get an Elastic IP Address so that it has a consistent IP address you (and your
-    customers/partners) can use in firewalls. In each of your private subnets, you’ll need to configure a fallback route
-    (i.e., `0.0.0.0/0`) to point to one of your NAT Gateway (if using multiple NAT Gateways, point to the one in the same
-    availability zone as the subnet itself).
-
-
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4d81dd25ee886679c16bf82378f8c428"}
-##DOCS-SOURCER-END -->
+Each NAT Gateway should get an Elastic IP Address so that it has a consistent IP address you (and your
+customers/partners) can use in firewalls. In each of your private subnets, you’ll need to configure a fallback route
+(i.e., `0.0.0.0/0`) to point to one of your NAT Gateway (if using multiple NAT Gateways, point to the one in the same
+availability zone as the subnet itself).
