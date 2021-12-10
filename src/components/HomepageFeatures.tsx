@@ -48,7 +48,7 @@ const FeatureList: FeatureItem[] = [
     docId: '/docs/guides/reference-architecture/overview/overview',
     description: (
       <>
-        Bootstrap your infrastructure in about a day by letting Gruntwork deploy one customized just for you.
+        Bootstrap your infrastructure in about a day by letting Gruntwork deploy a Reference Architecture customized just for you.
       </>
     ),
   },
