@@ -16,12 +16,16 @@ user, pay special attention to the release notes!
 
 :::caution
 
-Gruntwork follows
-[semantic
-versioning](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backwards
-incompatible releases for any version updates prior to 1.0.0 release. Make sure to read the release notes for the
-relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each
-minor version that is updated (e.g., if you are going from `v0.5.x` to `v0.9.x`, you will want to read the notes for `v0.6.0`, `v0.7.0`, `v0.8.0`, and `v0.9.0` to get the full list of backwards incompatible updates).
+Gruntwork follows [semantic
+versioning](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#versioning).
+For any pre-1.0 modules, this means that version updates to the minor version
+are considered backwards incompatible releases for any version updates prior to
+1.0.0 release. Make sure to read the release notes for the relevant modules any
+time you are updating minor versions! Note that you will want to read the
+release notes for each minor version that is updated (e.g., if you are going
+from `v0.5.x` to `v0.9.x`, you will want to read the notes for `v0.6.0`,
+`v0.7.0`, `v0.8.0`, and `v0.9.0` to get the full list of backwards incompatible
+updates).
 
 :::
 
