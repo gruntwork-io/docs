@@ -47,12 +47,12 @@ you’re typically better off creating a new, custom VPC.
 
 #### Custom VPCs
 
-For any production use cases, you should create a _custom VPC_. In the [Production-grade design](../2-production-grade-design/0-defense-in-depth.md) section, we’ll go
+For any production use cases, you should create a _custom VPC_. In the [Production-grade design](../2-production-grade-design/0-intro.md) section, we’ll go
 over how to configure a VPC with the kind of security, scalability, and high availability you need in production.
 
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9869d98a552bc0ed747eb117ae3b0fd4"}
+{"sourcePlugin":"Local File Copier","hash":"ee21bf304ed30a271834bc6bcec0ef49"}
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ This guide consists of four main sections:
 An overview of the core concepts you need to understand to use VPCs, including subnets, route tables, security
 groups, NACLs, peering connections, and endpoints.
 
-#### [Production-grade design](../2-production-grade-design/0-defense-in-depth.md)
+#### [Production-grade design](../2-production-grade-design/0-intro.md)
 
 An overview of how to configure a secure, scalable, highly available VPC that you can rely on in production. To get a
 sense of what production-grade means, check out [The production-grade infrastructure checklist](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
