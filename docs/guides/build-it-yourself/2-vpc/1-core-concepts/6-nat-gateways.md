@@ -18,8 +18,8 @@ In order for the NAT Gateway to work, you’ll need to add a route to the route 
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Destination</p></td>
-<td><p>Target</p></td>
+<td><p><b>Destination</b></p></td>
+<td><p><b>Target</b></p></td>
 </tr>
 <tr className="even">
 <td><p>10.10.0.0/24</p></td>
@@ -37,5 +37,5 @@ the traffic for all other IPs, `0.0.0.0/0`, to a NAT Gateway with ID `nat-67890`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d5554af895310cd9988d545c3fbd9faf"}
+{"sourcePlugin":"Local File Copier","hash":"15d7ee1da61bdf479f662a44cee6c79a"}
 ##DOCS-SOURCER-END -->

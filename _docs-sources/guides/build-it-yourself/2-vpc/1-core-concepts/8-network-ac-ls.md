@@ -26,9 +26,11 @@ the rules depend on the operating system.
 
 </div>
 
-    For example, the networking stack on Linux usually picks any available port
-    from the range 32768-61000, where as Windows Server 2003 uses 1025-5000, NAT Gateways use 1024-65535, and so on.
-    Therefore, in practice, you typically have to open ephemeral ports 1024-65535 in your NACL, both for inbound and
-    outbound (as when you establish outbound connections, anyone responding will likely do so on an ephemeral port),
-    making them primarily useful for locking down the low-numbered ports (&lt; 1024) used for standard protocols (e.g., HTTP
-    uses port 80), and locking down source/destination IP addresses.
+For example, the networking stack on Linux usually picks any available port from
+the range 32768-61000, where as Windows Server 2003 uses 1025-5000, NAT Gateways
+use 1024-65535, and so on. Therefore, in practice, you typically have to open
+ephemeral ports 1024-65535 in your NACL, both for inbound and outbound (as when
+you establish outbound connections, anyone responding will likely do so on an
+ephemeral port), making them primarily useful for locking down the low-numbered
+ports (&lt; 1024) used for standard protocols (e.g., HTTP uses port 80), and
+locking down source/destination IP addresses.

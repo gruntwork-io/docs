@@ -15,12 +15,16 @@ production VPCs). Note that peering connections are not transitive, so while the
 to staging and production, staging and production will not have any access to each other (this is why it makes sense to
 put the DevOps tooling in its own VPC, rather than shoving it directly into the staging or production VPCs).
 
+:::info
+
 If you have a large number of VPCs to interconnect, setting up a peering connection between each pair (n<sup>2</sup>
 connections total) can quickly become impractical. In this case, you should look into using the
 [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) or
 [Shared VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html).
 
+:::
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5be5df68eb4709049fccc368ef1cc387"}
+{"sourcePlugin":"Local File Copier","hash":"29e8ed8c5281f7822258c6df63ce1abf"}
 ##DOCS-SOURCER-END -->

@@ -18,10 +18,10 @@ Here’s an example of inbound rules:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Port range</p></td>
-<td><p>Source</p></td>
-<td><p>Protocol</p></td>
-<td><p>Comment</p></td>
+<td><p><b>Port range</b></p></td>
+<td><p><b>Source</b></p></td>
+<td><p><b>Protocol</b></p></td>
+<td><p><b>Comment</b></p></td>
 </tr>
 <tr className="even">
 <td><p>80</p></td>
@@ -55,10 +55,10 @@ And here’s an example of outbound rules:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Port range</p></td>
-<td><p>Destination</p></td>
-<td><p>Protocol</p></td>
-<td><p>Comment</p></td>
+<td><p><b>Port range</b></p></td>
+<td><p><b>Source</b></p></td>
+<td><p><b>Protocol</b></p></td>
+<td><p><b>Comment</b></p></td>
 </tr>
 <tr className="even">
 <td><p>443</p></td>
