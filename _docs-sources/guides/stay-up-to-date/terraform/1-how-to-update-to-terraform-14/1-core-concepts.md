@@ -1,4 +1,6 @@
-# Background
+# Core Concepts
+
+## Background
 
 [Terraform 0.14 was released on
 December 02, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-14-general-availability). Some of the major new features in 0.14 include:

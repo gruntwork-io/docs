@@ -1,12 +1,17 @@
 # Updating the Gruntwork Reference Architecture to Terraform 0.13
 
-If you purchased the Gruntwork Reference Architecture, you will have a copy of the `infrastructure-live` and
-`infrastructure-modules` repositories that contain the infrastructure code for deploying the Reference Architecture. You
-will need to update the relevant code in `infrastructure-modules` to use a compatible version of the
-Gruntwork Infrastructure as Code Library, as per [the compatibility table](2-step-3-update-references-to-the-gruntwork-infrastructure-as-code-library.md#version-compatibility-table) above.
+If you purchased the Gruntwork Reference Architecture, you will have a copy of
+the `infrastructure-live` and `infrastructure-modules` repositories that contain
+the infrastructure code for deploying the Reference Architecture. You will need
+to update the relevant code in `infrastructure-modules` to use a compatible
+version of the Gruntwork Infrastructure as Code Library, as per [the
+compatibility
+table](2-step-3-update-references-to-the-gruntwork-infrastructure-as-code-library.md#version-compatibility-table)
+above.
 
-To help guide you through the upgrade process, we have updated the Acme Reference Architecture examples to support
-Terraform 0.13. You can refer to the pull requests to see an example of the updates you’ll need to do to make your
+To help guide you through the upgrade process, we have updated the Acme
+Reference Architecture examples to support Terraform 0.13. You can refer to the
+pull requests to see an example of the updates you’ll need to do to make your
 Reference Architecture work with Terraform 0.13:
 
 <div className="dlist">
