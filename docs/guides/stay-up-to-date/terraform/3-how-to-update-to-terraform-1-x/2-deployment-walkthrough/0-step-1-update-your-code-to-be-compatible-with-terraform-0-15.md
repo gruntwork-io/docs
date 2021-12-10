@@ -9,13 +9,13 @@ If you haven’t already, you need to:
         [Terraform 0.12 upgrade guide](https://docs.gruntwork.io/guides/upgrading-to-tf12-tg19/).
 
     2.  If you’re still on Terraform 0.12, see our
-        [Terraform 0.13 upgrade guide](https://gruntwork.io/guides/upgrades/how-to-update-to-terraform-13/).
+        [Terraform 0.13 upgrade guide](/guides/stay-up-to-date/terraform/0-how-to-update-to-terraform-13/0-intro.md).
 
     3.  If you’re still on Terraform 0.13, see our
-        [Terraform 0.14 upgrade guide](https://gruntwork.io/guides/upgrades/how-to-update-to-terraform-14/).
+        [Terraform 0.14 upgrade guide](/guides/stay-up-to-date/terraform/1-how-to-update-to-terraform-14/0-intro.md).
 
     4.  If you’re still on Terraform 0.14, see our
-        [Terraform 0.15 upgrade guide](https://gruntwork.io/guides/upgrades/how-to-update-to-terraform-15/).
+        [Terraform 0.15 upgrade guide](/guides/stay-up-to-date/terraform/2-how-to-update-to-terraform-15/0-intro.md).
 
 2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 1.x versions in the compatibility
     table below. The upgrade will be much easier and less error prone if you keep the number of version jumps as small
@@ -23,5 +23,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"84d6b3b446a47b5b778a9e8984c2af73"}
+{"sourcePlugin":"Local File Copier","hash":"597a9c219119a572eb7fb264d74a5cf2"}
 ##DOCS-SOURCER-END -->

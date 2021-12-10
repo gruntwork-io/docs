@@ -1,3 +1,7 @@
+---
+pagination_label: Deployment Walkthrough - Step 1
+---
+
 # Step 1: update your code to be compatible with Terraform 0.14
 
 If you haven’t already, you need to:
@@ -9,10 +13,10 @@ If you haven’t already, you need to:
         [Terraform 0.12 upgrade guide](https://docs.gruntwork.io/guides/upgrading-to-tf12-tg19/).
 
     2.  If you’re still on Terraform 0.12, see our
-        [Terraform 0.13 upgrade guide](https://gruntwork.io/guides/upgrades/how-to-update-to-terraform-13/).
+        [Terraform 0.13 upgrade guide](/guides/stay-up-to-date/terraform/0-how-to-update-to-terraform-13/0-intro.md).
 
     3.  If you’re still on Terraform 0.13, see our
-        [Terraform 0.14 upgrade guide](https://gruntwork.io/guides/upgrades/how-to-update-to-terraform-14/).
+        [Terraform 0.14 upgrade guide](/guides/stay-up-to-date/terraform/1-how-to-update-to-terraform-14/0-intro.md).
 
 2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 0.15 versions in the compatibility
     table below. The upgrade will be much easier and less error prone if you keep the number of version jumps as small
@@ -20,5 +24,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ce2bbc1ac93d86af9cf6ca24ddbcfa18"}
+{"sourcePlugin":"Local File Copier","hash":"981f95c153d12653defba186ae1f6e37"}
 ##DOCS-SOURCER-END -->

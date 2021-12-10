@@ -1,3 +1,7 @@
+---
+pagination_label: Deployment Walkthrough - Step 1
+---
+
 # Step 1: update your code to be compatible with Terraform 0.12
 
 If you haven’t already, you need to:

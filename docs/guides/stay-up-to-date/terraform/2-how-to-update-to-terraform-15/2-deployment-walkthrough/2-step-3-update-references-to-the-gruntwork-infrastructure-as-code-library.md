@@ -13,17 +13,25 @@ require more extensive code changes and state migrations. To upgrade without dow
 the migration instructions in the release notes in each repo to know what changes need to be made to update to the new
 version.**
 
-Gruntwork follows
-[semantic
-versioning](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backwards
-incompatible releases for any version updates prior to 1.0.0 release. Make sure to read the release notes for the
-relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each
-minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0,
-v0.7.0, v0.8.0, and v0.9.0 to get the full list of backwards incompatible updates).
+:::caution
+
+Gruntwork follows [semantic
+versioning](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#versioning).
+For any pre-1.0 modules, this means that version updates to the minor version
+are considered backwards incompatible releases for any version updates prior to
+1.0.0 release. Make sure to read the release notes for the relevant modules any
+time you are updating minor versions! Note that you will want to read the
+release notes for each minor version that is updated (e.g., if you are going
+from `v0.5.x` to `v0.9.x`, you will want to read the notes for `v0.6.0`,
+`v0.7.0`, `v0.8.0`, and `v0.9.0` to get the full list of backwards incompatible
+updates).
+
+:::
 
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with Terraform 0.15:
 
+<a id="version-compatibility-table" className="snap-top" />
 <table>
 <colgroup>
 <col />
@@ -31,7 +39,7 @@ compatible with Terraform 0.15:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Gruntwork Repo</p></td>
+<td><p><strong>Gruntwork Repo</strong></p></td>
 <td><p><strong>Minimum version with Terraform 0.15 support</strong></p></td>
 </tr>
 <tr className="even">
@@ -159,5 +167,5 @@ compatible with Terraform 0.15:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"360d0ce9aa788d9ef6f41c3b14f8f665"}
+{"sourcePlugin":"Local File Copier","hash":"60ae5152f07eae39d6afd5d9c4006dc8"}
 ##DOCS-SOURCER-END -->

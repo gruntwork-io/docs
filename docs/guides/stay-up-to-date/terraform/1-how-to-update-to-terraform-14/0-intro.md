@@ -7,7 +7,7 @@ Library](https://gruntwork.io/infrastructure-as-code-library/) to [Terraform
 introduces several new features and fixes, but it also has a number of backwards
 incompatibilities that have to be incorporated into your codebase.
 
-# What you’ll learn in this guide
+## What you’ll learn in this guide
 
 This guide consists of two main sections:
 
@@ -21,12 +21,12 @@ An overview of Terraform 0.14 and why it is important to update your code for co
 
 The steps you need to take to update your code relying on the Gruntwork Infrastructure as Code library to work with
 Terraform 0.14. Includes a
-[version compatibility table](#compatibility_table) you can use as a reference to know which Gruntwork Repo version
+[version compatibility table](2-deployment-walkthrough/2-step-3-update-references-to-the-gruntwork-infrastructure-as-code-library.md#version-compatibility-table) you can use as a reference to know which Gruntwork Repo version
 tag is compatible with Terraform 0.14.
 
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"51f97a226963eceaa73eb7062825508d"}
+{"sourcePlugin":"Local File Copier","hash":"20ca69e1d00dab16c0b3340cb075be11"}
 ##DOCS-SOURCER-END -->
