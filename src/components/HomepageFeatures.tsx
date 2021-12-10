@@ -10,51 +10,82 @@ import styles from './HomepageFeatures.module.css';
 
 type FeatureItem = {
   title: string;
-  image: string;
   description: JSX.Element;
+  image?: string;
+  docId?: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    title: 'Set Up Your Accounts',
+    docId: '/docs/guides/build-it-yourself/landing-zone',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Streamline how you create, configure, and secure AWS accounts and multi-account structures.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    image: '/img/undraw_docusaurus_tree.svg',
+    title: 'Configure a CI/CD Pipeline',
+    docId: '/docs/guides/build-it-yourself/pipelines',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Use your preferred CI tool to set up an end‑to‑end pipeline for your infrastructure code.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    image: '/img/undraw_docusaurus_react.svg',
+    title: 'Achieve Compliance',
+    docId: '/docs/guides/build-it-yourself/compliance',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Implement the CIS AWS Foundations Benchmark using our curated collection of modules and services.
+      </>
+    ),
+  },
+  {
+    title: 'The Reference Architecture',
+    docId: '/docs/guides/reference-architecture/overview/overview',
+    description: (
+      <>
+        Bootstrap your infrastructure in about a day by letting Gruntwork deploy a Reference Architecture customized just for you.
+      </>
+    ),
+  },
+  {
+    title: 'Deploy a Service',
+    docId: '/docs/guides/build-it-yourself/overview',
+    description: (
+      <>
+        Learn how to deploy Gruntwork services to construct your own bespoke architecture.
+      </>
+    ),
+  },
+  {
+    title: 'Courses',
+    docId: '/courses',
+    description: (
+      <>
+        Learn DevOps fundamentals with our series of introductory video tutorials.
       </>
     ),
   },
 ];
 
-function Feature({title, image, description}: FeatureItem) {
+function Feature({title, image, description, docId}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <img className={styles.featureSvg} alt={title} src={image} />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
+      { image && (
+        <div className="text--center">
+          <img className={styles.featureSvg} alt={title} src={image} />
+        </div>
+      )}
+      <div className="padding-horiz--lg padding-vert--lg">
+        {docId ? (
+          <h3><a href={docId}>{title}</a></h3>
+        ) : (
+          <h3>{title}</h3>)
+        }
         <p>{description}</p>
       </div>
     </div>
