@@ -14,8 +14,8 @@ Here’s an example route table:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Destination</p></td>
-<td><p>Target</p></td>
+<td><p><b>Destination</b></p></td>
+<td><p><b>Target</b></p></td>
 </tr>
 <tr className="even">
 <td><p>10.0.0.0/24</p></td>
@@ -34,5 +34,5 @@ will be automatically routed within the subnet by AWS. This table then adds a fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ec96380d9dd01feb419dc299f7a3640d"}
+{"sourcePlugin":"Local File Copier","hash":"d8ec27c10689e15775980056dfec5918"}
 ##DOCS-SOURCER-END -->

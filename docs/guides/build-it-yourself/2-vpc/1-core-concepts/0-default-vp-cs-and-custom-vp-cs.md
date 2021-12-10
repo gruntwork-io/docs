@@ -12,10 +12,10 @@ over the public Internet (unless you blocked it using security groups and OS-lev
 
 </div>
 
-    ![Before VPCs, all your AWS resources were in one global IP address space anyone could access (unless you blocked them via security groups or firewalls)](/img/guides/build-it-yourself/vpc/no-vpc-diagram.png)
+![Before VPCs, all your AWS resources were in one global IP address space anyone could access (unless you blocked them via security groups or firewalls)](/img/guides/build-it-yourself/vpc/no-vpc-diagram.png)
 
-    From a security standpoint, this represented a step backwards compared to traditional data centers where you could
-    configure most of your servers so they were physically unreachable from the public Internet.
+From a security standpoint, this represented a step backwards compared to traditional data centers where you could
+configure most of your servers so they were physically unreachable from the public Internet.
 
 <div className="dlist">
 
@@ -27,10 +27,10 @@ your production environment:
 
 </div>
 
-    ![With VPCs, you could separate your AWS resources into completely isolated networks](/img/guides/build-it-yourself/vpc/vpc-no-subnets-diagram.png)
+![With VPCs, you could separate your AWS resources into completely isolated networks](/img/guides/build-it-yourself/vpc/vpc-no-subnets-diagram.png)
 
-    You’ll see later in this guide how you can use VPCs, route tables, subnets, security groups, and NACLs to get
-    fine-grained control over what network traffic can or can’t reach your AWS resources.
+You’ll see later in this guide how you can use VPCs, route tables, subnets, security groups, and NACLs to get
+fine-grained control over what network traffic can or can’t reach your AWS resources.
 
 <div className="dlist">
 
@@ -47,12 +47,12 @@ you’re typically better off creating a new, custom VPC.
 
 #### Custom VPCs
 
-For any production use cases, you should create a _custom VPC_. In the [Production-grade design](#production_grade_design) section, we’ll go
+For any production use cases, you should create a _custom VPC_. In the [Production-grade design](../2-production-grade-design/0-defense-in-depth.md) section, we’ll go
 over how to configure a VPC with the kind of security, scalability, and high availability you need in production.
 
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a6da8734e22b05b7d1e36f9ba35cfeee"}
+{"sourcePlugin":"Local File Copier","hash":"9869d98a552bc0ed747eb117ae3b0fd4"}
 ##DOCS-SOURCER-END -->

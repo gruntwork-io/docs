@@ -1,7 +1,7 @@
 # CIDR notation
 
 When dealing with networking, you often need to reason about ranges of IPs, such as "all IP addresses between
-`172.31.0.0` and \`\`172.31.255.255\`\`" (there are 65,536 IP addresses in this range). The de facto standard for
+`172.31.0.0` and `172.31.255.255`" (there are 65,536 IP addresses in this range). The de facto standard for
 representing IP address ranges is called
 _[Classless Inter-Domain Routing (CIDR) notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)_. For
 example, the same 65,536 IP addresses can be represented in CIDR notation as `172.31.0.0/16`. This notation includes
@@ -42,5 +42,5 @@ CIDR notation for just one IP, `4.4.4.4`.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"bd8e97ae51918b9f2d541d3307a68b8a"}
+{"sourcePlugin":"Local File Copier","hash":"7b2b8b88ad17636beedfea22b23770f8"}
 ##DOCS-SOURCER-END -->

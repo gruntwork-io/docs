@@ -14,8 +14,8 @@ Here’s an example route table:
 </colgroup>
 <tbody>
 <tr className="odd">
-<td><p>Destination</p></td>
-<td><p>Target</p></td>
+<td><p><b>Destination</b></p></td>
+<td><p><b>Target</b></p></td>
 </tr>
 <tr className="even">
 <td><p>10.0.0.0/24</p></td>
