@@ -5,7 +5,7 @@ services, data stores, and production infrastructure. The process is very simila
 except this time, you’ll be using the [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
 module from the Gruntwork Infrastructure as Code Library.
 
-:::caution
+:::note
 
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
 
@@ -25,9 +25,7 @@ To deploy the `vpc-app` module, create a wrapper module called `vpc-app` in your
 
 Inside of `main.tf`, configure your AWS provider and Terraform settings:
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 provider "aws" {
   # The AWS region in which all resources will be created
   region = var.aws_region
@@ -53,9 +51,7 @@ terraform {
 Next, use the `vpc-app` module from the Gruntwork Infrastructure as Code Library, making sure to replace the `<VERSION>` placeholder
 with the latest version from the [releases page](https://github.com/gruntwork-io/module-vpc/releases):
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 module "vpc" {
   # Make sure to replace <VERSION> in this URL with the latest module-vpc release
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-app?ref=<VERSION>"
@@ -67,17 +63,19 @@ module "vpc" {
 }
 ```
 
-Note that all of the parameters should be exposed as input variables in `variables.tf`; see this
+:::note
+
+All of the parameters should be exposed as input variables in `variables.tf`; see this
 [variables.tf](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/networking/vpc-app/variables.tf)
 file for reference. This will allow you to set those variables to different values in different environments or AWS
 accounts.
 
+:::
+
 You’ll also want to configure the NACLs for this VPC using the `vpc-app-network-acls` module from the Gruntwork
 Infrastructure as Code Library:
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 module "vpc_network_acls" {
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-app-network-acls?ref=<VERSION>"
 
@@ -102,9 +100,7 @@ VPC ID and CIDR block. Instead of hard-coding these, you can retrieve them using
 of the management VPC, you can use the
 [terraform_remote_state](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) data source:
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 data "terraform_remote_state" "mgmt_vpc" {
   backend = "s3"
 
@@ -119,9 +115,7 @@ data "terraform_remote_state" "mgmt_vpc" {
 You can then use the [vpc-peering](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-peering) module to
 create a VPC peering connection and all the necessary route table entries between the application and management VPCs:
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 module "mgmt_vpc_peering_connection" {
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-peering?ref=v0.6.0"
 
@@ -159,9 +153,7 @@ module "mgmt_vpc_peering_connection" {
 
 You’ll also need to update the NACLs to allow access from the management VPC:
 
-**infrastructure-modules/networking/vpc-app/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 module "vpc_network_acls" {
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-app-network-acls?ref=<VERSION>"
 
@@ -179,8 +171,8 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
-and [Automated tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
+and [Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
 for instructions.
 
 ## Merge and release your wrapper module
@@ -213,9 +205,7 @@ In each account where you want to deploy an application VPC, you will need to:
     Point the `source` URL in your `terragrunt.hcl` file to your `vpc-app` wrapper module in the `infrastructure-modules`
     repo, setting the `ref` param to the version you released earlier:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl"
     terraform {
       source = "git@github.com/<YOUR_ORG>/infrastructure-modules.git//networking/vpc-app?ref=v0.4.0"
     }
@@ -226,9 +216,7 @@ In each account where you want to deploy an application VPC, you will need to:
     pre-production environments and 2-3 NAT Gateways for production environments). You can set these values in the
     `inputs = { ... }` block of `terragrunt.hcl`. Example:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl"
     inputs = {
       aws_region       = "us-east-2"
       aws_account_id   = "111122223333"
@@ -240,9 +228,7 @@ In each account where you want to deploy an application VPC, you will need to:
 
 3.  **Configure the Terraform backend.**:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-app/terragrunt.hcl"
     include {
       path = find_in_parent_folders()
     }

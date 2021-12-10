@@ -4,7 +4,7 @@ The first step is to deploy a management VPC for DevOps tooling, such as a CI se
 can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
 Gruntwork Infrastructure as Code Library.
 
-:::caution
+:::note
 
 You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to access `module-vpc`.
 
@@ -28,9 +28,7 @@ To deploy the `vpc-mgmt` module, create a _wrapper module_ called `vpc-mgmt` in 
 
 Inside of `main.tf`, configure your AWS provider and Terraform settings:
 
-**infrastructure-modules/networking/vpc-mgmt/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-mgmt/main.tf"
 provider "aws" {
   # The AWS region in which all resources will be created
   region = var.aws_region
@@ -56,9 +54,7 @@ terraform {
 Next, use the `vpc-mgmt` module from the Gruntwork Infrastructure as Code Library, making sure to replace the `<VERSION>` placeholder
 with the latest version from the [releases page](https://github.com/gruntwork-io/module-vpc/releases):
 
-**infrastructure-modules/networking/vpc-mgmt/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-mgmt/main.tf"
 module "vpc" {
   # Make sure to replace <VERSION> in this URL with the latest module-vpc release
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-mgmt?ref=<VERSION>"
@@ -70,17 +66,19 @@ module "vpc" {
 }
 ```
 
-Note that all of the parameters should be exposed as input variables in `variables.tf`; see this
+::: note
+
+All of the parameters should be exposed as input variables in `variables.tf`; see this
 [variables.tf](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/networking/vpc-mgmt/variables.tf)
 file for reference. This will allow you to set those variables to different values in different environments or AWS
 accounts.
 
+:::
+
 You’ll also want to configure the NACLs for this VPC using the `vpc-mgmt-network-acls` module from the Gruntwork
 Infrastructure as Code Library:
 
-**infrastructure-modules/networking/vpc-mgmt/main.tf**
-
-```hcl
+```hcl title="infrastructure-modules/networking/vpc-mgmt/main.tf"
 module "vpc_network_acls" {
   # Make sure to replace <VERSION> in this URL with the latest module-vpc release
   source = "git@github.com:gruntwork-io/module-vpc.git//modules/vpc-mgmt-network-acls?ref=<VERSION>"
@@ -105,8 +103,8 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
-and [Automated tests for Terraform code](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
+and [Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
 for instructions.
 
 ## Merge and release your wrapper module
@@ -147,11 +145,15 @@ route table entries, more bastion hosts, and more credentials.
 
 ## Configure the wrapper module for each environment
 
+:::info
+
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
-the Gruntwork Infrastructure as Code Library.** Check out [How to Use the Gruntwork Infrastructure as Code Library](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
+the Gruntwork Infrastructure as Code Library.** Check out [How to Use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
 for instructions on alternative options, such as how to
-[deploy using plain terraform](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
+[deploy using plain terraform](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
+
+:::
 
 In each account where you want to deploy a management VPC, you will need to:
 
@@ -171,9 +173,7 @@ In each account where you want to deploy a management VPC, you will need to:
     Point the `source` URL in your `terragrunt.hcl` file to your `vpc-mgmt` wrapper module in the `infrastructure-modules`
     repo, setting the `ref` param to the version you released earlier:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl"
     terraform {
       source = "git@github.com/<YOUR_ORG>/infrastructure-modules.git//networking/vpc-mgmt?ref=v0.3.0"
     }
@@ -184,9 +184,7 @@ In each account where you want to deploy a management VPC, you will need to:
     pre-production environments and 2-3 NAT Gateways for production environments). You can set these values in the
     `inputs = { ... }` block of `terragrunt.hcl`. Example:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl
     inputs = {
       aws_region       = "us-east-2"
       aws_account_id   = "111122223333"
@@ -199,9 +197,7 @@ In each account where you want to deploy a management VPC, you will need to:
 3.  **Configure the Terraform backend.** Pull in the [backend](https://www.terraform.io/docs/backends/) configuration from a
     root `terragrunt.hcl` file that you `include` in each child `terragrunt.hcl`:
 
-    **infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl**
-
-    ```hcl
+    ```hcl title="infrastructure-live/production/us-east-2/prod/networking/vpc-mgmt/terragrunt.hcl"
     include {
       path = find_in_parent_folders()
     }
@@ -218,5 +214,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d3973e4eaba99bea467c4a68abfda404"}
+{"sourcePlugin":"Local File Copier","hash":"e3218d4671a08e526bc0491272bf99cf"}
 ##DOCS-SOURCER-END -->

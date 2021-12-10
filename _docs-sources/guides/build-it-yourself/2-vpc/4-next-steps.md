@@ -4,7 +4,7 @@ Now that you have your management and application VPCs deployed, you can start b
 on top of them! Typically, the best next step is to deploy a cluster of servers for running your applications by using
 one of the following guides:
 
-1.  [How to deploy a production-grade Kubernetes cluster on AWS](/guides/kubernetes/how-to-deploy-production-grade-kubernetes-cluster-aws)
+1.  [How to deploy a production-grade Kubernetes cluster on AWS](/guides/build-it-yourself/3-kubernetes-cluster/stub.md)
 
 2.  `How to deploy a production grade ECS cluster on AWS` _(coming soon!)_
 
