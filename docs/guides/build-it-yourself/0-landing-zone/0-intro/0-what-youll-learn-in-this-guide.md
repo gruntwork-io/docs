@@ -16,7 +16,7 @@ This guide consists of four main sections:
 An overview of the core concepts you need to understand to set up an AWS account structure, including AWS
 Organizations, IAM Users, IAM Roles, IAM Groups, CloudTrail, and more.
 
-#### [Production-grade design](../2-production-grade-design/1-the-root-account.md)
+#### [Production-grade design](../2-production-grade-design/0-intro.md)
 
 An overview of how to configure a secure, scalable, highly available AWS account structure that you can rely on in
 production. To get a sense of what production-grade means, check out
@@ -38,5 +38,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d2a5a38e5d83b140ccad64c606b08317"}
+{"sourcePlugin":"Local File Copier","hash":"13ce0bbfb0d0a9120d194242d1fb3430"}
 ##DOCS-SOURCER-END -->
