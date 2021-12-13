@@ -14,7 +14,8 @@ import {
 /* eslint-disable jsx-a11y/control-has-associated-label */
 
 function TOCItemList({ toc, className, linkClassName, isChild }) {
-  if (!toc.length) {
+  // Hide TOC if it contains fewer than 2 items
+  if (!toc.length || toc.length < 2) {
     return null
   }
 
