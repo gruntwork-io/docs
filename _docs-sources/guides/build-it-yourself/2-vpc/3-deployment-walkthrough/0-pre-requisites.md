@@ -1,5 +1,5 @@
 ---
-pagination_label: Deployment walkthrough - Prerequisites
+pagination_label: Deployment walkthrough — Prerequisites
 ---
 
 # Pre-requisites
