@@ -1,3 +1,7 @@
+---
+sidebar_label: Manual Steps
+---
+
 # Step 2: Manual steps
 
 Recommendation 4.15 requires an active subscriber for the SNS topic created by this recommendation (see Audit steps 6

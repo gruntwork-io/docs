@@ -1,3 +1,7 @@
+---
+sidebar_label: Update references to the Gruntwork Infrastructure as Code Library
+---
+
 # Step 1: Update references to the Gruntwork Infrastructure as Code Library
 
 :::info
@@ -5,8 +9,8 @@
 Please follow the steps listed to upgrade from version 1.2.0 to version 1.3.0 of the Benchmark. To see examples of what the relevant code
 changes look like, please refer to these pull requests in the Acme CIS Reference Architecture:
 
-* https://github.com/gruntwork-io/cis-infrastructure-modules-acme/pull/6[cis-infrastructure-modules-acme]
-* https://github.com/gruntwork-io/cis-infrastructure-live-acme/pull/8[cis-infrastructure-live-acme]
+- [`cis-infrastructure-modules-acme`](https://github.com/gruntwork-io/cis-infrastructure-modules-acme/pull/6)
+- [`cis-infrastructure-live-acme`](https://github.com/gruntwork-io/cis-infrastructure-live-acme/pull/8)
 
 :::
 

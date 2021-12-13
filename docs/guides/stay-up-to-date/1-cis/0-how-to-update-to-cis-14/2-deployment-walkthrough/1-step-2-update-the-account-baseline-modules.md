@@ -1,3 +1,7 @@
+---
+sidebar_label: Update the Account Baseline modules
+---
+
 # Step 2: Update the Account Baseline modules
 
 Next, you will need to update the account baseline (landing zone) modules to the version compatible
@@ -112,5 +116,5 @@ All the other child accounts (logs, stage, prod, etc) need the same configuratio
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"87d476164c212bee69a268167ddf192a"}
+{"sourcePlugin":"Local File Copier","hash":"decb328f25528e87d8fc07b097ac194f"}
 ##DOCS-SOURCER-END -->

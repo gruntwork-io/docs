@@ -1,3 +1,7 @@
+---
+sidebar_label: Update the Account Baseline modules
+---
+
 # Step 2: Update the Account Baseline modules
 
 Next, you will need to update the account baseline (landing zone) modules to the version compatible

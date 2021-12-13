@@ -1,3 +1,7 @@
+---
+sidebar_label: Deploy new modules
+---
+
 # Step 3: Deploy new modules
 
 ## 1. Deploy the Cleanup Expired Certs module (recommendation 1.19)
@@ -84,5 +88,5 @@ docs](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"8cf9cec9bbe1fd96b31efe24c434f213"}
+{"sourcePlugin":"Local File Copier","hash":"9fbce39666bb032198017187164465f9"}
 ##DOCS-SOURCER-END -->

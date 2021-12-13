@@ -1,3 +1,7 @@
+---
+sidebar_label: Manual Steps
+---
+
 # Step 3: Manual steps
 
 ## Enable MFA Delete (recommendation 2.1.3)
@@ -113,5 +117,5 @@ You may be using a region that doesn’t properly support AWS Config (e.g: `ap-n
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"edb065d9e7f90ba0225c5ccec5e6fd73"}
+{"sourcePlugin":"Local File Copier","hash":"5250bc3df49b44685b7aa4292cd28582"}
 ##DOCS-SOURCER-END -->

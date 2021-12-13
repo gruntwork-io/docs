@@ -1,3 +1,7 @@
+---
+sidebar_label: Deploy new modules
+---
+
 # Step 3: Deploy new modules
 
 ## 1. Deploy the Cleanup Expired Certs module (recommendation 1.19)

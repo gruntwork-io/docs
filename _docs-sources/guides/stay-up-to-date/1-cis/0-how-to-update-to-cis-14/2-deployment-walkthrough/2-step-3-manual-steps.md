@@ -1,3 +1,7 @@
+---
+sidebar_label: Manual Steps
+---
+
 # Step 3: Manual steps
 
 ## Enable MFA Delete (recommendation 2.1.3)

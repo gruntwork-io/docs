@@ -1,3 +1,7 @@
+---
+sidebar_label: Manual Steps
+---
+
 # Step 2: Manual steps
 
 Recommendation 4.15 requires an active subscriber for the SNS topic created by this recommendation (see Audit steps 6
@@ -7,5 +11,5 @@ on the AWS website for detailed instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"42250673887ed572ea409dc4afb3578b"}
+{"sourcePlugin":"Local File Copier","hash":"8f30fea3c56323b9c5c0ce3cd5fa1841"}
 ##DOCS-SOURCER-END -->
