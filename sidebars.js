@@ -117,10 +117,6 @@ const sidebars = {
     {
       "Stay Up to Date": ["guides/stay-up-to-date/stub"],
     },
-    {
-      type: "doc",
-      id: "guides/support",
-    },
   ],
   referenceSidebar: [
     {
