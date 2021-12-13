@@ -1,5 +1,6 @@
 ---
 pagination_label: Deployment Walkthrough - Step 1
+sidebar_label: Update to Terraform 12
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.12

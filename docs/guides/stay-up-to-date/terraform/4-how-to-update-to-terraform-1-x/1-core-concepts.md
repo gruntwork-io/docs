@@ -14,13 +14,15 @@ For more info, check out the for a complete introduction, check out the
 post](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability).
 
 From the [release
-notes](https://github.com/hashicorp/terraform/releases/tag/v1.0.0): "Terraform
-v1.0.0 intentionally has no significant changes compared to Terraform v0.15.5.
-You can consider the v1.0 series as a direct continuation of the v0.15 series;
-we do not intend to issue any further releases in the v0.15 series, because all
-of the v1.0 releases will be only minor updates to address bugs."
+notes](https://github.com/hashicorp/terraform/releases/tag/v1.0.0):
+
+> Terraform v1.0.0 intentionally has no significant changes compared to
+> Terraform v0.15.5. You can consider the v1.0 series as a direct continuation of
+> the v0.15 series; we do not intend to issue any further releases in the v0.15
+> series, because all of the v1.0 releases will be only minor updates to address
+> bugs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"32dfa12d7365f573fe84ed6c56b2b427"}
+{"sourcePlugin":"Local File Copier","hash":"c0a1841dd882b1835ac9b04609b084a0"}
 ##DOCS-SOURCER-END -->

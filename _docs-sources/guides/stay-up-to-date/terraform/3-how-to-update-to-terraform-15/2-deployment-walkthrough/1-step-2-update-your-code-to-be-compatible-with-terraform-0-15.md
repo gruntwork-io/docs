@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update your code to Terraform 15
 ---
 
 # Step 2: update your code to be compatible with Terraform 0.15

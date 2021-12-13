@@ -1,5 +1,5 @@
 ---
-pagination_label: Deployment Walkthrough - Step 1
+sidebar_label: Update to Terraform 13
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.13
@@ -21,5 +21,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"98c78504102c41a1cec69a4127bd2ecf"}
+{"sourcePlugin":"Local File Copier","hash":"e3846989b7a9fd089f74ef65322bb141"}
 ##DOCS-SOURCER-END -->

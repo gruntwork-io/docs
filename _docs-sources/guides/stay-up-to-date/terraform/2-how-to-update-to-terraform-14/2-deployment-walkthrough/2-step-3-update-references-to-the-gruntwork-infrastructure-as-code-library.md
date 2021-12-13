@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update Gruntwork IaC module references
 ---
 
 # Step 3: update references to the Gruntwork Infrastructure as Code Library

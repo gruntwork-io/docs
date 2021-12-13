@@ -1,3 +1,7 @@
+---
+sidebar_label: Update Gruntwork IaC module references
+---
+
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 0.13, you need to update your references to the Gruntwork

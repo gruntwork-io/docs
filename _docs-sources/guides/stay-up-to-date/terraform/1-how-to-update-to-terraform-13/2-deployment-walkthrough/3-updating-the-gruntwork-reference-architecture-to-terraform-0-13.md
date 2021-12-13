@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update the Gruntwork Reference Architecture
 ---
 
 # Updating the Gruntwork Reference Architecture to Terraform 0.13

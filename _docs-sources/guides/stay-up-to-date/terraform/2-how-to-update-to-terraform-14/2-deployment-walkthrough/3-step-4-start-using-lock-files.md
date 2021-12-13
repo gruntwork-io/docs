@@ -1,4 +1,5 @@
 ---
+sidebar_label: Start using lock files
 ---
 
 # Step 4: start using lock files

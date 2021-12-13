@@ -1,5 +1,5 @@
 ---
-pagination_label: Deployment Walkthrough - Step 1
+sidebar_label: Update to Terraform 14
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.14
@@ -24,5 +24,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"949bfd156bb01644e3960b9eb3d740b5"}
+{"sourcePlugin":"Local File Copier","hash":"97004aa31a0b47b3ab8529a84e665640"}
 ##DOCS-SOURCER-END -->

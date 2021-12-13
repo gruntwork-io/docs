@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update your code to Terraform 15
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.15
@@ -26,5 +27,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ed66c0e8b987584a5747023a3df6ea62"}
+{"sourcePlugin":"Local File Copier","hash":"a24048224786a0cff49e2fba842baa44"}
 ##DOCS-SOURCER-END -->

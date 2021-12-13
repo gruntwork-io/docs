@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update your code to Terraform 13
 ---
 
 # Step 2: update your code to be compatible with Terraform 0.13
@@ -9,5 +10,5 @@ Upgrade Guide](https://www.terraform.io/upgrade-guides/0-13.html).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7f46cae95b9752c0a439a5b8787bfd3b"}
+{"sourcePlugin":"Local File Copier","hash":"83a6302bbb28cc6c2ae6474a94d32c78"}
 ##DOCS-SOURCER-END -->

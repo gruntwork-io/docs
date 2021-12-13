@@ -1,4 +1,5 @@
 ---
+sidebar_label: Update Gruntwork IaC module references
 ---
 
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
@@ -171,5 +172,5 @@ compatible with Terraform 0.15:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ed7d2eb2bc76b53b8e90ce1bb618afe6"}
+{"sourcePlugin":"Local File Copier","hash":"f51fcf637c9244f4048f0d1851a931a2"}
 ##DOCS-SOURCER-END -->

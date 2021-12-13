@@ -1,3 +1,7 @@
+---
+sidebar_label: Update Gruntwork IaC module references
+---
+
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 0.13, you need to update your references to the Gruntwork
@@ -169,5 +173,5 @@ compatible with Terraform 0.13:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"74d993dfd6e93e5bb7dd3cd54bb333e7"}
+{"sourcePlugin":"Local File Copier","hash":"50742c14a30107fac0fa6a3f4b3036ea"}
 ##DOCS-SOURCER-END -->

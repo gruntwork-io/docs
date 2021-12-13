@@ -1,4 +1,5 @@
 ---
+sidebar_label: Start using lock files
 ---
 
 # Step 4: start using lock files
@@ -16,5 +17,5 @@ to version control.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e985eed93a86234b374ac213d9195cbc"}
+{"sourcePlugin":"Local File Copier","hash":"a8737cd633b12986e72317de6dde4a3c"}
 ##DOCS-SOURCER-END -->
