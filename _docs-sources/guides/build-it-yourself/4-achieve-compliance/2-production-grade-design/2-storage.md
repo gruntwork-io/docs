@@ -65,10 +65,8 @@ The CIS 1.4.0 Benchmark recommends a few additional steps to ensure your data is
 
 :::info
 
-The steps below are not the full list of actions needed to configure MFA Delete or Amazon Macie for your account. To follow the steps necessary to configure it according to the CIS 1.4.0 Benchmark, please follow the MFA Delete and Macie section in the ...
-
+The steps below are not the full list of actions needed to configure MFA Delete or Amazon Macie for your account. To follow the steps necessary to configure it according to the CIS 1.4.0 Benchmark, please follow the MFA Delete and Macie section in the [the migration guide to CIS 1.4.0](../../../stay-up-to-date/1-cis/0-how-to-update-to-cis-14/0-intro.md), or the deployment guide section in this guide.
 :::
-<!-- TODO: fix this link [the migration guide to CIS 1.4.0](/guides/upgrades/how-to-update-to-cis-14/), or the deployment guide section in this guide. -->
 
 ### Enable MFA Delete (recommendation 2.1.3)
 

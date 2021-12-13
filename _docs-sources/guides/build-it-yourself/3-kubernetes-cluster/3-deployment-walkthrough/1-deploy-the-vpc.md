@@ -4,7 +4,7 @@ The first step is to deploy a VPC. Follow the instructions in
 [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) to use
 `module-vpc` to create a VPC setup that looks like this:
 
-<!-- TODO: SHOW THIS IMAGE (References an image for the VPC) ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/assets/img/guides/vpc/vpc-diagram.png) -->
+![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
 
 After following this guide, you should have `vpc-app` wrapper module in your `infrastructure-modules` repo:
 

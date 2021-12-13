@@ -11,9 +11,8 @@ compliant state over time because all of the infrastructure is defined as code. 
 
 Previously, we supported versions 1.3.0 and 1.2.0 of the Benchmark. If you are looking to upgrade from an older version please follow these in order:
 
-<!-- TODO: Fix the links below -->
-* To upgrade from v1.2.0 to v1.3.0, please follow [this upgrade guide](/guides/upgrades/how-to-update-to-cis-13/);
-* To upgrade from v1.3.0 to v1.4.0, please follow [this upgrade guide](/guides/upgrades/how-to-update-to-cis-14/).
+* To upgrade from v1.2.0 to v1.3.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/1-how-to-update-to-cis-13/0-intro.md);
+* To upgrade from v1.3.0 to v1.4.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/0-how-to-update-to-cis-14/0-intro.md).
 
 ![CIS Benchmark Architecture](/img/guides/build-it-yourself/achieve-compliance/cis-account-architecture.png)
 
@@ -58,5 +57,5 @@ If you need to access older versions, please get in touch with us.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6916029aef7faad115f0094bd686f735"}
+{"sourcePlugin":"Local File Copier","hash":"92bb88590e282066fb4327ab1b0ff917"}
 ##DOCS-SOURCER-END -->

@@ -599,6 +599,7 @@ plan, it is important to ensure that you don’t give powerful permissions to th
 
 :::
 
+```bash
     infrastructure-live
       └ production
         └ terragrunt.hcl
@@ -612,6 +613,7 @@ plan, it is important to ensure that you don’t give powerful permissions to th
             └ networking
               └ vpc-mgmt
                 └ terragrunt.hcl
+```
 
 ```hcl title="infrastructure-live/production/us-east-2/prod/cicd/ecs-deploy-runner/terragrunt.hcl"
 # Pull in the backend and provider configurations from a root terragrunt.hcl file that you include in each child terragrunt.hcl:

@@ -599,6 +599,7 @@ plan, it is important to ensure that you don’t give powerful permissions to th
 
 :::
 
+```bash
     infrastructure-live
       └ production
         └ terragrunt.hcl
@@ -612,6 +613,7 @@ plan, it is important to ensure that you don’t give powerful permissions to th
             └ networking
               └ vpc-mgmt
                 └ terragrunt.hcl
+```
 
 ```hcl title="infrastructure-live/production/us-east-2/prod/cicd/ecs-deploy-runner/terragrunt.hcl"
 # Pull in the backend and provider configurations from a root terragrunt.hcl file that you include in each child terragrunt.hcl:
@@ -749,5 +751,5 @@ Repeat for each environment that you want to support the ECS Deploy Runner stack
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c8178ba8b6864e761c6fe395d8b616f0"}
+{"sourcePlugin":"Local File Copier","hash":"1667e483c28e9a465fe18fb2d55cfbda"}
 ##DOCS-SOURCER-END -->
