@@ -122,10 +122,6 @@ const sidebars = {
         },
       ],
     },
-    {
-      type: "doc",
-      id: "guides/support",
-    },
   ],
   referenceSidebar: [
     {

@@ -145,6 +145,10 @@ const config = {
                 label: "DevOps Checklist",
                 href: "https://gruntwork.io/devops-checklist/",
               },
+              {
+                label: "Support",
+                href: "/docs/guides/support",
+              },
             ],
           },
           {
