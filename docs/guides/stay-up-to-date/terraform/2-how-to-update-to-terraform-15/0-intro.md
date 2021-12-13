@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Intro
 
 This guide will walk you through how to update any code that depends on the
@@ -30,5 +34,5 @@ compatible with Terraform 0.15.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"53b52d58017ada739609f85d97cb43e2"}
+{"sourcePlugin":"Local File Copier","hash":"ac82c7854be36222cdb52bfaedafa587"}
 ##DOCS-SOURCER-END -->

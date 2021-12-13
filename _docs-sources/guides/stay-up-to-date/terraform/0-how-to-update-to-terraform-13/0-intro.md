@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Intro
 
 This guide will walk you through how to update the [Gruntwork Reference

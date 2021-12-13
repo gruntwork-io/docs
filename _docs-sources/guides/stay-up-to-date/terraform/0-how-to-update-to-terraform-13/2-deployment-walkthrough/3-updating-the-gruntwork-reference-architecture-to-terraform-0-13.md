@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Updating the Gruntwork Reference Architecture to Terraform 0.13
 
 If you purchased the Gruntwork Reference Architecture, you will have a copy of

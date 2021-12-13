@@ -32,7 +32,8 @@ updates).
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with Terraform 0.13:
 
-<a id="version-compatibility-table" className="snap-top" />
+## Version Compatibility Table
+
 <table>
 <colgroup>
 <col />

@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Step 2: update your code to be compatible with Terraform 0.14
 
 You will have to update your own code (e.g., the code that lives in your `infrastructure-modules` repo) to be

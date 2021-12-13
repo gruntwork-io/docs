@@ -1,6 +1,8 @@
-# Core Concepts
+---
+hide_table_of_contents: true
+---
 
-## Background
+# Core Concepts
 
 [Terraform 0.14 was released on
 December 02, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-14-general-availability). Some of the major new features in 0.14 include:
@@ -21,5 +23,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0e06de300abdb9e13e7ab3c9d3be54b7"}
+{"sourcePlugin":"Local File Copier","hash":"dde71e87c010c4c9fabaa06c9461a50c"}
 ##DOCS-SOURCER-END -->

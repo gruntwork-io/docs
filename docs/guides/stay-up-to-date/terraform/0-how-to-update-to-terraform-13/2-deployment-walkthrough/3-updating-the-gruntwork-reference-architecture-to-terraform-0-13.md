@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Updating the Gruntwork Reference Architecture to Terraform 0.13
 
 If you purchased the Gruntwork Reference Architecture, you will have a copy of
@@ -36,5 +40,5 @@ refer to PRs in the Standard Reference Architecture section above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"41f0f3a6b153d2903823d71ee473bfc3"}
+{"sourcePlugin":"Local File Copier","hash":"6590f11e6ead78d40420449b4a84c0e4"}
 ##DOCS-SOURCER-END -->

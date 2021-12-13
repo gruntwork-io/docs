@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Step 4: start using lock files
 
 One of the big new features in Terraform 0.14 is the lock file for provider dependencies. The next time you run `init`

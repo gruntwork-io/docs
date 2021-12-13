@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Intro
 
 This guide will walk you through how to update any code that depends on the
@@ -28,5 +32,5 @@ tag is compatible with Terraform 0.14.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"20ca69e1d00dab16c0b3340cb075be11"}
+{"sourcePlugin":"Local File Copier","hash":"b17c4f2b004ebe54ea91d5ebe0f1810b"}
 ##DOCS-SOURCER-END -->

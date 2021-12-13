@@ -1,6 +1,8 @@
-# Core Concepts
+---
+hide_table_of_contents: true
+---
 
-## Background
+# Core Concepts
 
 [Terraform 0.13 was released on August 10th, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13).
 Some of the major new features in 0.13 include:
@@ -20,5 +22,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a169564c548e23db019edc9597b4f909"}
+{"sourcePlugin":"Local File Copier","hash":"13a591cd746973fb6ddb19101f856846"}
 ##DOCS-SOURCER-END -->

@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 0.15, you need to update your references to the Gruntwork
@@ -31,7 +35,8 @@ updates).
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with Terraform 0.15:
 
-<a id="version-compatibility-table" className="snap-top" />
+## Version Compatibility Table
+
 <table>
 <colgroup>
 <col />
@@ -167,5 +172,5 @@ compatible with Terraform 0.15:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"60ae5152f07eae39d6afd5d9c4006dc8"}
+{"sourcePlugin":"Local File Copier","hash":"89a0289f659e8993e36afdddde0c2822"}
 ##DOCS-SOURCER-END -->

@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Step 4: start using lock files
 
 One of the big new features in Terraform 0.14 is the lock file for provider dependencies. The next time you run `init`
@@ -13,5 +17,5 @@ to version control.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f61f38e0162cec9e2c37183a237e5822"}
+{"sourcePlugin":"Local File Copier","hash":"cd417e1cbfe8be43a7534645cf8bdd71"}
 ##DOCS-SOURCER-END -->

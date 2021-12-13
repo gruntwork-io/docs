@@ -32,7 +32,8 @@ updates).
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with Terraform 0.13:
 
-<a id="version-compatibility-table" className="snap-top" />
+## Version Compatibility Table
+
 <table>
 <colgroup>
 <col />
@@ -168,5 +169,5 @@ compatible with Terraform 0.13:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5a60c610f51677f416fc9adbc84dc056"}
+{"sourcePlugin":"Local File Copier","hash":"74d993dfd6e93e5bb7dd3cd54bb333e7"}
 ##DOCS-SOURCER-END -->

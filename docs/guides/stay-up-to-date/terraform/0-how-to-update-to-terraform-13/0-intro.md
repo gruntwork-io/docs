@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Intro
 
 This guide will walk you through how to update the [Gruntwork Reference
@@ -27,5 +31,5 @@ tag is compatible with Terraform 0.13.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"22caaee62774247be69b7798aa29b514"}
+{"sourcePlugin":"Local File Copier","hash":"bb9dc557964f0d596aa411e616a77bef"}
 ##DOCS-SOURCER-END -->

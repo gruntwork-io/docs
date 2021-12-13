@@ -1,6 +1,8 @@
-# Core Concepts
+---
+hide_table_of_contents: true
+---
 
-## Background
+# Core Concepts
 
 [Terraform 0.15 was released on April 14,
 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-15-general-availability).

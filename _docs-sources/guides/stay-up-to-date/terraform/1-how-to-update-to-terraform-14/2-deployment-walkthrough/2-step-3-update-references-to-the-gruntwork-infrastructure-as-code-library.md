@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 0.14, you need to update your references to the Gruntwork
@@ -31,7 +35,8 @@ updates).
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with Terraform 0.14:
 
-<a id="version-compatibility-table" className="snap-top" />
+## Version Compatibility Table
+
 <table>
 <colgroup>
 <col />
