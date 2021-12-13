@@ -1,28 +1,52 @@
-import React from 'react';
-import styles from './Grid.module.css';
+import React from "react"
+import clsx from "clsx"
+import styles from "./Grid.module.css"
 
 type GridProps = {
-  cols?: number;
-  colGap?: number | string;
-  rowGap?: number | string;
-  equalHeight?: boolean;
-  children?: JSX.Element;
-};
+  cols?: number
+  gap?: number | string
+  colGap?: number | string
+  rowGap?: number | string
+  equalHeightRows?: boolean
+  stacked?: boolean
+  children?: JSX.Element | JSX.Element[]
+}
 
 export default function Grid({
-  cols=3,
-  colGap="1rem",
-  rowGap="1rem",
-  equalHeight=true,
-  children
+  cols = 3,
+  gap = "1rem",
+  colGap,
+  rowGap,
+  equalHeightRows = true,
+  stacked = false,
+  children,
 }: GridProps): JSX.Element {
+  const classes = clsx(
+    styles.grid,
+    cols == 1 && styles.col1,
+    cols == 2 && styles.col2,
+    cols == 3 && styles.col3,
+    cols == 4 && styles.col4,
+    cols == 5 && styles.col5
+  )
+
+  colGap = colGap || gap
+  rowGap = rowGap || gap
+
   return (
-    <section className={styles.grid} style={{
-      gridTemplateColumns: `repeat(${cols}, 1fr)`,
-      gridColumnGap: Number.isInteger(colGap) ? `${colGap}px` : colGap,
-      gridRowGap: Number.isInteger(rowGap) ? `${rowGap}px` : rowGap,
-      gridAutoRows: equalHeight ? "1fr" : "inherit"
-    }}>
+    <section
+      className={classes}
+      style={{
+        gridColumnGap: Number.isInteger(colGap) ? `${colGap}px` : colGap,
+        gridRowGap: Number.isInteger(rowGap) ? `${rowGap}px` : rowGap,
+        gridAutoRows: equalHeightRows ? "1fr" : "inherit",
+        margin: stacked
+          ? Number.isInteger(rowGap)
+            ? `${rowGap}px 0`
+            : `${rowGap} 0`
+          : "3rem 0",
+      }}
+    >
       {children}
     </section>
   )
