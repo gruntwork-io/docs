@@ -66,7 +66,7 @@ module "vpc" {
 }
 ```
 
-::: note
+:::note
 
 All of the parameters should be exposed as input variables in `variables.tf`; see this
 [variables.tf](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/networking/vpc-mgmt/variables.tf)

@@ -66,7 +66,7 @@ module "vpc" {
 }
 ```
 
-::: note
+:::note
 
 All of the parameters should be exposed as input variables in `variables.tf`; see this
 [variables.tf](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/master/networking/vpc-mgmt/variables.tf)
@@ -214,5 +214,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e3218d4671a08e526bc0491272bf99cf"}
+{"sourcePlugin":"Local File Copier","hash":"a26ec54c99de12474c53cce2df0a8092"}
 ##DOCS-SOURCER-END -->
