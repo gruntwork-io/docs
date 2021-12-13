@@ -11,7 +11,7 @@ A few important notes on authenticating via the CLI:
    your access keys and an MFA token. To authenticate to all other accounts (e.g., dev, stage, prod), you will need
    access keys, an MFA token, and the ARN of an IAM role in that account to assume: e.g., to get read-only access to an
    account, you could assume the `allow-read-only-access-from-other-accounts` IAM role. See the
-   [cross-account-iam-roles module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles#iam-roles-intended-for-human-users)
+   [`cross-account-iam-roles` module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles#iam-roles-intended-for-human-users)
    for the default set of IAM roles that exist in each account. Note that to be able to access an IAM role `xxx` in
    some account `yyy`, your IAM user must be in an IAM group that has permissions to assume that IAM role. For example,
    to assume the `allow-read-only-access-from-other-accounts` IAM role in the prod account, you must be in the
@@ -29,15 +29,15 @@ We recommend [aws-vault](https://github.com/99designs/aws-vault) for its wide pl
 
 Do the following steps to configure aws-vault for use with the reference architecture:
 
-* [Install aws-vault](https://github.com/99designs/aws-vault#installing).
-* Make sure your IAM user has MFA configured, as mentioned above.
-* Add your IAM user credentials:
+- [Install aws-vault](https://github.com/99designs/aws-vault#installing).
+- Make sure your IAM user has MFA configured, as mentioned above.
+- Add your IAM user credentials:
 
 ```bash
 aws-vault add security
 ```
 
-* Add new profiles for each of the accounts to `~/.aws/config`. We have generated a configuration for you.
+- Add new profiles for each of the accounts to `~/.aws/config`. We have generated a configuration for you.
 
 ```bash
 [default]

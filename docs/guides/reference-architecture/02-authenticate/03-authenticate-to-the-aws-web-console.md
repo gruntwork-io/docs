@@ -23,7 +23,7 @@ To authenticate to any other account (e.g., dev, stage, prod), you need to:
 1. [Switching to an IAM Role in the other AWS account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html).
    To access other accounts, you "switch" to (AKA, "assume") an IAM role defined in that account: e.g., to get
    read-only access to an account, you could assume the `allow-read-only-access-from-other-accounts` IAM role. See the
-   [cross-account-iam-roles module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles#iam-roles-intended-for-human-users)
+   [`cross-account-iam-roles` module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles#iam-roles-intended-for-human-users)
    for the default set of IAM roles that exist in each account. Note that to be able to access an IAM role `xxx` in
    some account `yyy`, your IAM user must be in an IAM group that has permissions to assume that IAM role. For example,
    to assume the `allow-read-only-access-from-other-accounts` IAM role in the prod account, you must be in the
@@ -32,5 +32,5 @@ To authenticate to any other account (e.g., dev, stage, prod), you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d3b75d2e1672ef179b20e335f4a03770"}
+{"sourcePlugin":"Local File Copier","hash":"979ec28e782e43d075a0a2ffc0e492c6"}
 ##DOCS-SOURCER-END -->
