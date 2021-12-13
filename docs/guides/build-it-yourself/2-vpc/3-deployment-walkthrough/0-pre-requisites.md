@@ -1,5 +1,5 @@
 ---
-pagination_label: Deployment Walkthrough — Prerequisites
+pagination_label: Deployment walkthrough — Prerequisites
 ---
 
 # Pre-requisites
@@ -43,5 +43,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"953eb4037d7ea974a816881f38c8de2a"}
+{"sourcePlugin":"Local File Copier","hash":"c2f7be8db67ac7b9167af9a5f59cccde"}
 ##DOCS-SOURCER-END -->
