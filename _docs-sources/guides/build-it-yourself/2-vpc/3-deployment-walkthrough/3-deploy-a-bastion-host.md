@@ -1,3 +1,3 @@
 # Deploy a bastion host
 
-Check out the `How to deploy a production-grade bastion host on AWS` guide _(coming soon!)_ for instructions.
+Please check out our [Bastion Host](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host) service for instructions.

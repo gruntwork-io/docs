@@ -2,7 +2,7 @@
 
 Now that you have your management VPC(s) deployed, the next step is to deploy application VPCs to run all of your
 services, data stores, and production infrastructure. The process is very similar to deploying the management VPC,
-except this time, you’ll be using the [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
+except this time, you’ll be using the [`vpc-app`](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app)
 module from the Gruntwork Infrastructure as Code Library.
 
 :::note
@@ -96,9 +96,9 @@ module "vpc_network_acls" {
 
 If you wish to peer this VPC to your management VPC, you first need to get all the management VPC details, such as the
 VPC ID and CIDR block. Instead of hard-coding these, you can retrieve them using a data source such as
-[aws_vpc](https://www.terraform.io/docs/providers/aws/d/vpc.html) or, to read the data straight from the Terraform state
+[`aws_vpc`](https://www.terraform.io/docs/providers/aws/d/vpc.html) or, to read the data straight from the Terraform state
 of the management VPC, you can use the
-[terraform_remote_state](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) data source:
+[`terraform_remote_state`](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) data source:
 
 ```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
 data "terraform_remote_state" "mgmt_vpc" {
@@ -112,7 +112,7 @@ data "terraform_remote_state" "mgmt_vpc" {
 }
 ```
 
-You can then use the [vpc-peering](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-peering) module to
+You can then use the [`vpc-peering`](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-peering) module to
 create a VPC peering connection and all the necessary route table entries between the application and management VPCs:
 
 ```hcl title="infrastructure-modules/networking/vpc-app/main.tf"
@@ -245,5 +245,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"8b5c6e07f63356012e51c82371cf3f2b"}
+{"sourcePlugin":"Local File Copier","hash":"801665efbedc24e66f1be44e8e656746"}
 ##DOCS-SOURCER-END -->

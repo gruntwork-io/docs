@@ -1,7 +1,7 @@
 # Deploy a management VPC
 
 The first step is to deploy a management VPC for DevOps tooling, such as a CI server or a bastion host. To do this, you
-can use the [vpc-mgmt](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
+can use the [`vpc-mgmt`](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-mgmt) module from the
 Gruntwork Infrastructure as Code Library.
 
 :::note
@@ -12,7 +12,7 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 
 This module assumes you do not run any data stores in the management VPC, so it solely contains two tiers of subnets,
 public and private-app. If you will be deploying data stores in the management VPC (e.g., a relational database for
-SonarQube), then use [vpc-app](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app) instead, which has
+SonarQube), then use [`vpc-app`](https://github.com/gruntwork-io/module-vpc/tree/master/modules/vpc-app) instead, which has
 a third private-persistence subnet tier.
 
 ## Create a wrapper module
@@ -214,5 +214,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a26ec54c99de12474c53cce2df0a8092"}
+{"sourcePlugin":"Local File Copier","hash":"b023121822efde1e6383aa30e71c402f"}
 ##DOCS-SOURCER-END -->
