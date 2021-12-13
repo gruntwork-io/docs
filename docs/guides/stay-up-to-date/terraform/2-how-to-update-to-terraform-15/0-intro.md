@@ -1,5 +1,5 @@
 ---
-hide_table_of_contents: true
+pagination_label: Update to Terraform 15
 ---
 
 # Intro
@@ -34,5 +34,5 @@ compatible with Terraform 0.15.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ac82c7854be36222cdb52bfaedafa587"}
+{"sourcePlugin":"Local File Copier","hash":"6d2277ee927460e6c6f261cbfb497e12"}
 ##DOCS-SOURCER-END -->

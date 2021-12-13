@@ -1,6 +1,7 @@
-# Core Concepts
+---
+---
 
-## Background
+# Core Concepts
 
 [Terraform 1.0.0 was released on June 08,
 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability).
@@ -21,5 +22,5 @@ of the v1.0 releases will be only minor updates to address bugs."
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ed6c7bd7252a6bf8a25b689cd6ec7b48"}
+{"sourcePlugin":"Local File Copier","hash":"32dfa12d7365f573fe84ed6c56b2b427"}
 ##DOCS-SOURCER-END -->

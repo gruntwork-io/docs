@@ -1,3 +1,7 @@
+---
+pagination_label: DRY your Reference Architecture
+---
+
 # Intro
 
 This guide walks you through how to DRY (don’t repeat yourself) up the

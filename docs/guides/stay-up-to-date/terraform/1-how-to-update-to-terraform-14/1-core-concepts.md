@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Core Concepts
@@ -23,5 +22,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"dde71e87c010c4c9fabaa06c9461a50c"}
+{"sourcePlugin":"Local File Copier","hash":"9d458b9c4910959b3b19b685344a37f3"}
 ##DOCS-SOURCER-END -->

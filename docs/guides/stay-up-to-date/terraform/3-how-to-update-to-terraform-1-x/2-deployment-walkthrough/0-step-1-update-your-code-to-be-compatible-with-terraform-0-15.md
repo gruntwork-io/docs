@@ -1,3 +1,6 @@
+---
+---
+
 # Step 1: update your code to be compatible with Terraform 0.15
 
 If you haven’t already, you need to:
@@ -23,5 +26,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"597a9c219119a572eb7fb264d74a5cf2"}
+{"sourcePlugin":"Local File Copier","hash":"15a44891a62cb233f079373f5bfff17d"}
 ##DOCS-SOURCER-END -->

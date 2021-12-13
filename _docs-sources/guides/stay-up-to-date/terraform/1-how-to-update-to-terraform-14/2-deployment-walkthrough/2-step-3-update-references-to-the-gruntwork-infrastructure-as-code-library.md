@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 3: update references to the Gruntwork Infrastructure as Code Library

@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 4: start using lock files

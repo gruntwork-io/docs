@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Updating the Gruntwork Reference Architecture to Terraform 0.13

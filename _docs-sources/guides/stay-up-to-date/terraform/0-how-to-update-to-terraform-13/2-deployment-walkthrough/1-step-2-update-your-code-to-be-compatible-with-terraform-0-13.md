@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 2: update your code to be compatible with Terraform 0.13

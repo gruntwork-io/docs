@@ -1,3 +1,6 @@
+---
+---
+
 # Step 1: update your code to be compatible with Terraform 0.15
 
 If you haven’t already, you need to:

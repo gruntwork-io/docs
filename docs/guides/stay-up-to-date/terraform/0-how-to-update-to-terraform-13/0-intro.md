@@ -1,5 +1,5 @@
 ---
-hide_table_of_contents: true
+pagination_label: Update to Terraform 13
 ---
 
 # Intro
@@ -31,5 +31,5 @@ tag is compatible with Terraform 0.13.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"bb9dc557964f0d596aa411e616a77bef"}
+{"sourcePlugin":"Local File Copier","hash":"9ce84b5d01352a6d8dbc986f0c086ea3"}
 ##DOCS-SOURCER-END -->

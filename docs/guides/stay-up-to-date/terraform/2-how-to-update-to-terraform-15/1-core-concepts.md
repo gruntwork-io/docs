@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Core Concepts
@@ -31,5 +30,5 @@ following section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"221285be738089cfa9c68428228bdc2c"}
+{"sourcePlugin":"Local File Copier","hash":"588a9ca888b329beeda3d9ac98ec1b78"}
 ##DOCS-SOURCER-END -->

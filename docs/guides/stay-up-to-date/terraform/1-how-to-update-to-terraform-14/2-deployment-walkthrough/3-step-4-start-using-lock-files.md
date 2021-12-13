@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 4: start using lock files
@@ -17,5 +16,5 @@ to version control.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"cd417e1cbfe8be43a7534645cf8bdd71"}
+{"sourcePlugin":"Local File Copier","hash":"e985eed93a86234b374ac213d9195cbc"}
 ##DOCS-SOURCER-END -->

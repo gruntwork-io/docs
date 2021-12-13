@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 2: update your code to be compatible with Terraform 0.14
@@ -10,5 +9,5 @@ Upgrade Guide](https://www.terraform.io/upgrade-guides/0-14.html).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c0e6cadabb990bd212e21a15c85ed06d"}
+{"sourcePlugin":"Local File Copier","hash":"2bf8d2aaa859b37000d7e248eb7d4c0b"}
 ##DOCS-SOURCER-END -->

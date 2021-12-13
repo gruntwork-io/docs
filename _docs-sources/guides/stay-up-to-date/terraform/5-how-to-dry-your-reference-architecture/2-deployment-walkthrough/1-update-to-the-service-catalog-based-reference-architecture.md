@@ -1,3 +1,6 @@
+---
+---
+
 # (Optional) Update to the Service Catalog based Reference Architecture
 
 If you haven’t already, it is recommended to [update your Reference Architecture

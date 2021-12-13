@@ -1,3 +1,6 @@
+---
+---
+
 # Step 2: update references to the Gruntwork Infrastructure as Code Library
 
 In order to take advantage of the Terraform 1.x, you need to update your
@@ -34,7 +37,8 @@ updates).
 The following table provides a summary of all the relevant Gruntwork AWS modules
 and the respective versions that are compatible with Terraform 1.x:
 
-<a id="version-compatibility-table" className="snap-top" />
+## Version Compatibility Table
+
 <table>
 <colgroup>
 <col />
@@ -170,5 +174,5 @@ and the respective versions that are compatible with Terraform 1.x:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7a56943d8ee162b0d5e6733cddd89041"}
+{"sourcePlugin":"Local File Copier","hash":"a2ff3e2c779a9ab6304511e275f5c5dd"}
 ##DOCS-SOURCER-END -->

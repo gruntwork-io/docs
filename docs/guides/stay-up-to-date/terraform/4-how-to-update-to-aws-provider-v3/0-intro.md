@@ -1,3 +1,7 @@
+---
+pagination_label: Upgrade to AWS Provider V3
+---
+
 # Intro
 
 This guide will walk you through how to update the [Gruntwork Reference
@@ -22,12 +26,12 @@ your code for compatibility.
 The steps you need to take to update your code relying on the Gruntwork
 Infrastructure as Code library and your version of the Gruntwork Reference
 Architecture with compatibility with AWS provider v3. Includes a [version
-compatibility table](2-deployment-walkthrough.md#compatibility-table) you can use as a reference to know
+compatibility table](2-deployment-walkthrough.md#version-compatibility-table) you can use as a reference to know
 which Gruntwork Repo version tag is compatible with AWS provider v3.
 
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fa5d2ac35bd64d2b0b3b146830f3c1fb"}
+{"sourcePlugin":"Local File Copier","hash":"b8c02fcd560ac70fd7dd82ebcfb9087c"}
 ##DOCS-SOURCER-END -->

@@ -1,7 +1,5 @@
 # Core Concepts
 
-## Background
-
 Version
 [v3.0.0](https://github.com/terraform-providers/terraform-provider-aws/releases/tag/v3.0.0)
 of the Terraform AWS provider was released on July 30th 2020 with backwards
@@ -24,5 +22,5 @@ Architecture to be compatible with AWS provider version 3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9f04e592e842cd5e296a6c9cb735c332"}
+{"sourcePlugin":"Local File Copier","hash":"56d01e92f2d0efef79e79bee9f272d89"}
 ##DOCS-SOURCER-END -->

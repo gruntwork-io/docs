@@ -1,6 +1,7 @@
-# Core Concepts
+---
+---
 
-## Background
+# Core Concepts
 
 [Terraform 1.0.0 was released on June 08,
 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability).

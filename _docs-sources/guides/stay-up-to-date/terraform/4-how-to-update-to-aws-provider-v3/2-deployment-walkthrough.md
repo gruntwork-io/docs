@@ -30,7 +30,7 @@ updates).
 
 :::
 
-### Compatibility table
+## Version Compatibility table
 
 <table>
 <colgroup>

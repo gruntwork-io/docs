@@ -1,3 +1,7 @@
+---
+pagination_label: Update to Terraform 1.x
+---
+
 # Intro
 
 This guide will walk you through how to update any code that depends on the

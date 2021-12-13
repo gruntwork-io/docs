@@ -1,7 +1,5 @@
 # Core Concepts
 
-## Background
-
 Terragrunt
 [v0.32.0](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.32.0)
 introduced the feature of multiple `include` blocks, which allowed you to have

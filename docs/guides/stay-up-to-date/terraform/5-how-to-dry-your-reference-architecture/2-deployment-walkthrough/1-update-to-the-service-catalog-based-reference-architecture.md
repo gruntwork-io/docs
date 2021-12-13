@@ -1,3 +1,6 @@
+---
+---
+
 # (Optional) Update to the Service Catalog based Reference Architecture
 
 If you haven’t already, it is recommended to [update your Reference Architecture
@@ -18,5 +21,5 @@ fully supported by Gruntwork.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"24a3db335764cc576e90875b6f142150"}
+{"sourcePlugin":"Local File Copier","hash":"e37118a917612c867c76bfede201046c"}
 ##DOCS-SOURCER-END -->

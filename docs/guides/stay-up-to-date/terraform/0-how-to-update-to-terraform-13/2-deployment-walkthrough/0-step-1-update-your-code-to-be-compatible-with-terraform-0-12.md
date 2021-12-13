@@ -1,6 +1,5 @@
 ---
 pagination_label: Deployment Walkthrough - Step 1
-hide_table_of_contents: true
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.12
@@ -17,5 +16,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b71f18ddfd342f2f7db8fd5ce4100d1d"}
+{"sourcePlugin":"Local File Copier","hash":"5e85b42eff91ef1fe544ee039ecf1c37"}
 ##DOCS-SOURCER-END -->

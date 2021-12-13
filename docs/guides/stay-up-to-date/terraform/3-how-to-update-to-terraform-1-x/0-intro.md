@@ -1,3 +1,7 @@
+---
+pagination_label: Update to Terraform 1.x
+---
+
 # Intro
 
 This guide will walk you through how to update any code that depends on the
@@ -29,5 +33,5 @@ tag is compatible with Terraform 0.15.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"73a07aebc3114aadb8cc65b89a6acc82"}
+{"sourcePlugin":"Local File Copier","hash":"0d8f0b1c3d8a24ea56d19b9e340be482"}
 ##DOCS-SOURCER-END -->

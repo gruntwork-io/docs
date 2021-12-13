@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Updating the Gruntwork Reference Architecture to Terraform 0.13
@@ -40,5 +39,5 @@ refer to PRs in the Standard Reference Architecture section above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6590f11e6ead78d40420449b4a84c0e4"}
+{"sourcePlugin":"Local File Copier","hash":"b91b2abef51544ef2204e5dcb8b8c17e"}
 ##DOCS-SOURCER-END -->

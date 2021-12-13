@@ -1,5 +1,5 @@
 ---
-hide_table_of_contents: true
+pagination_label: Update to Terraform 14
 ---
 
 # Intro

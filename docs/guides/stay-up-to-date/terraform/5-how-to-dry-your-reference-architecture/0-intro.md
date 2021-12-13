@@ -1,3 +1,7 @@
+---
+pagination_label: DRY your Reference Architecture
+---
+
 # Intro
 
 This guide walks you through how to DRY (don’t repeat yourself) up the
@@ -24,5 +28,5 @@ The steps you need to take to update your code to use multi-include to avoid dup
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"8c28813f028eea6b9d035966a98e0199"}
+{"sourcePlugin":"Local File Copier","hash":"9875d177f3b07e965b0113934c1e983b"}
 ##DOCS-SOURCER-END -->

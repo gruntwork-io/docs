@@ -1,7 +1,5 @@
 # Core Concepts
 
-## Background
-
 Terragrunt
 [v0.32.0](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.32.0)
 introduced the feature of multiple `include` blocks, which allowed you to have
@@ -46,5 +44,5 @@ documentation](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrun
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"db494749cc0bfa4911444f91af5ef97b"}
+{"sourcePlugin":"Local File Copier","hash":"29aa2eab851b8a4a259acf265a6c2315"}
 ##DOCS-SOURCER-END -->

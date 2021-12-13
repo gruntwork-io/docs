@@ -30,7 +30,7 @@ updates).
 
 :::
 
-### Compatibility table
+## Version Compatibility table
 
 <table>
 <colgroup>
@@ -183,5 +183,5 @@ on how to update your components to be compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d942cf0dfd842a4f609448b2d49a8ab1"}
+{"sourcePlugin":"Local File Copier","hash":"7c4372b1052f9c34b5461162221a42cf"}
 ##DOCS-SOURCER-END -->

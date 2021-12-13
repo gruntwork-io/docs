@@ -1,5 +1,4 @@
 ---
-hide_table_of_contents: true
 ---
 
 # Step 3: update references to the Gruntwork Infrastructure as Code Library
@@ -172,5 +171,5 @@ compatible with Terraform 0.15:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"89a0289f659e8993e36afdddde0c2822"}
+{"sourcePlugin":"Local File Copier","hash":"ed7d2eb2bc76b53b8e90ce1bb618afe6"}
 ##DOCS-SOURCER-END -->

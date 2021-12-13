@@ -1,6 +1,5 @@
 ---
 pagination_label: Deployment Walkthrough - Step 1
-hide_table_of_contents: true
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.14

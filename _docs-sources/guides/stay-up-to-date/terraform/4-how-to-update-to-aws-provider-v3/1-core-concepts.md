@@ -1,7 +1,5 @@
 # Core Concepts
 
-## Background
-
 Version
 [v3.0.0](https://github.com/terraform-providers/terraform-provider-aws/releases/tag/v3.0.0)
 of the Terraform AWS provider was released on July 30th 2020 with backwards
