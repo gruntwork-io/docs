@@ -4,7 +4,7 @@ pagination_label: Production-grade Design
 
 # Intro
 
-In [core-concepts](../1-core-concepts/0-intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
+In [core concepts](../1-core-concepts/0-intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
 compliance with the Benchmark by manually configuring each setting in the web console or entering the CLI commands, we
 strongly discourage this approach. It precludes [the myriad benefits of using code to manage infrastructure](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#infrastructure-as-code).
 
@@ -18,5 +18,5 @@ edition of Terraform Up & Running](https://blog.gruntwork.io/terraform-up-runnin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2eeabb46dfe59856bb89a3e6a18644df"}
+{"sourcePlugin":"Local File Copier","hash":"2dc4142f593fe95453c03bc819fc7aba"}
 ##DOCS-SOURCER-END -->

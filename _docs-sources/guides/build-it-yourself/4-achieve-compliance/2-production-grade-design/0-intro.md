@@ -4,7 +4,7 @@ pagination_label: Production-grade Design
 
 # Intro
 
-In [core-concepts](../1-core-concepts/0-intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
+In [core concepts](../1-core-concepts/0-intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
 compliance with the Benchmark by manually configuring each setting in the web console or entering the CLI commands, we
 strongly discourage this approach. It precludes [the myriad benefits of using code to manage infrastructure](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#infrastructure-as-code).
 

@@ -20,7 +20,7 @@ implements most of the production-grade design for you out of the box. Make sure
 This guide also uses code from the [Gruntwork CIS AWS
 Foundations Benchmark repository](https://gruntwork.io/achieve-compliance), which contains the necessary configurations to achieve compliance.
 
-:::caution
+:::info
 
 You must be a <span className="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork
 Infrastructure as Code Library and the CIS AWS Foundations Benchmark modules.
@@ -56,5 +56,5 @@ automatically.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"54ff280689704ba9a2615e7edcaf6487"}
+{"sourcePlugin":"Local File Copier","hash":"c2cbde343efc822a2fceb8e7d5403580"}
 ##DOCS-SOURCER-END -->

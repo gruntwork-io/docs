@@ -1,3 +1,7 @@
+---
+sidebar_label: Apply the account-baseline-security to the security account
+---
+
 # Apply the `account-baseline-security` to the security account
 
 Now that your logs accounts is fully configured, you need to apply the security baseline to the security account, which
@@ -333,5 +337,5 @@ echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"eff402bf7a745396534aedbc4596d262"}
+{"sourcePlugin":"Local File Copier","hash":"f468685e4e7a3c96e847d3353bb6c680"}
 ##DOCS-SOURCER-END -->

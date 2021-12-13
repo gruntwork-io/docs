@@ -3,21 +3,13 @@
 The first section of the Benchmark centers on Identity and Access Management, including the following:
 
 - Avoiding usage of the "root" account
-
 - Requiring MFA for IAM users and the root account
-
 - Setting a specific password policy
-
 - Disabling administrative permissions
-
 - Limiting the use of API access keys
-
 - Using IAM roles
-
 - Removing expired SSL/TLS certificates
-
 - Enabling IAM Access Analyzer
-
 - Using AWS Organizations or identity federation to manage multi-account environments
 
 In the subsequent sections, we’ll review the recommendations and discuss how to implement them using Terraform resources and data sources.

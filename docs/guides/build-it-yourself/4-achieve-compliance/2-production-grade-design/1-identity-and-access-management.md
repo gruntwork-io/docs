@@ -3,21 +3,13 @@
 The first section of the Benchmark centers on Identity and Access Management, including the following:
 
 - Avoiding usage of the "root" account
-
 - Requiring MFA for IAM users and the root account
-
 - Setting a specific password policy
-
 - Disabling administrative permissions
-
 - Limiting the use of API access keys
-
 - Using IAM roles
-
 - Removing expired SSL/TLS certificates
-
 - Enabling IAM Access Analyzer
-
 - Using AWS Organizations or identity federation to manage multi-account environments
 
 In the subsequent sections, we’ll review the recommendations and discuss how to implement them using Terraform resources and data sources.
@@ -341,5 +333,5 @@ For further detail, follow the manual steps outlined in the CIS Benchmark docume
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7ac3a4f43f95ee539911ace10444875f"}
+{"sourcePlugin":"Local File Copier","hash":"c8625987504ed1f1abe4a158708e6a9c"}
 ##DOCS-SOURCER-END -->

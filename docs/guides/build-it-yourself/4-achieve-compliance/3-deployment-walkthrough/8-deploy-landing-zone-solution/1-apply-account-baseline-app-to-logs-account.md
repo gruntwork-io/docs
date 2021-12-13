@@ -1,3 +1,7 @@
+---
+sidebar_label: Apply the account-baseline-app to the logs account
+---
+
 # Apply the `account-baseline-app` to the logs account
 
 The next step is to configure the **logs** account, which is used to aggregate AWS Config, CloudTrail, IAM Access Analyzer,
@@ -275,5 +279,5 @@ On some operating systems, such as MacOS, you may also need to increase your ope
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ca70a47d7f568fa2d67698a082940de1"}
+{"sourcePlugin":"Local File Copier","hash":"1e95d860557dc4159ade32bb1da1da32"}
 ##DOCS-SOURCER-END -->

@@ -1,3 +1,6 @@
+---
+sidebar_label: Apply the account-baseline-app to the other child accounts
+---
 # Apply the `account-baseline-app` to the other child accounts
 
 Now that your **security** account is fully configured, you need to apply the security baseline to the remaining child
@@ -305,5 +308,5 @@ the benchmark, v1.3.0; the AWS Security Hub does not support this version at the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"38b3785e8525be2ffe8b00c529f8b98d"}
+{"sourcePlugin":"Local File Copier","hash":"dcee106a2d02575c40ba6804c33686bb"}
 ##DOCS-SOURCER-END -->

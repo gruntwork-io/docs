@@ -1,3 +1,7 @@
+---
+sidebar_label: Apply the account-baseline-security to the security account
+---
+
 # Apply the `account-baseline-security` to the security account
 
 Now that your logs accounts is fully configured, you need to apply the security baseline to the security account, which

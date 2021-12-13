@@ -61,7 +61,6 @@ resource "aws_db_instance" "your_primary_db" {
 The CIS 1.4.0 Benchmark recommends a few additional steps to ensure your data is secured and accessible. There are two new recommendations that relate to S3:
 
 - 2.1.3 prescribes that the MFA Delete is enabled on all S3 buckets in your accounts
-
 - 2.1.4 recommends that all data in your S3 buckets be classified, discovered and secured
 
 :::info
@@ -96,13 +95,10 @@ We do not recommend having active AWS access keys for the root user, so remember
 
 In order to enable MFA Delete, you need to:
 
-1. [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key)
-
-2. [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa)
-
-3. Create a bucket with `mfa_delete=false`.
-
-4. Using the root user, call the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag.
+- [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key)
+- [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa)
+- Create a bucket with `mfa_delete=false`.
+- Using the root user, call the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag.
 
 ```bash
 aws s3api put-bucket-versioning --region <REGION> \
@@ -126,23 +122,15 @@ in our CIS service catalog.
 
 When configuring Macie for each region, you’ll need to specify a few things: \* the S3 bucket to be a repository for the sensitive data discovery results; \* the KMS key that the data in that bucket will be encrypted with; \* and the S3 bucket(s) that you’ll need Macie to analyze for you. The following manual steps are not a comprehensive full setup for Macie. To configure Macie fully and understand the details, please follow
 
-1. Log into the AWS console and for every region where you have enabled Macie, repeat the steps 2 to 9.
-
-2. Go to the Amazon Macie service.
-
-3. In the left pane, under Settings, click on "Discovery results".
-
-4. Click on "Configure now" to configure an S3 bucket for long-term retention of sensitive data discovery results.
-
-5. Choose "Existing bucket".
-
-6. Under "Choose a bucket", select your bucket. This can be either one you already have, or the one that the `macie` module created (if you set the `create_macie_bucket` variable to `true`). You will use the same bucket for every region.
-
-7. Under "KMS encryption" choose "Select a key from your account".
-
-8. Under "KMS key alias" select your KMS key. This can be either one you already have, or the one that the `macie` module created (if you set the `create_kms_key` variable to `true`). You will use the same key for every region.
-
-9. Click "Save".
+- Log into the AWS console and for every region where you have enabled Macie, repeat the steps 2 to 9.
+- Go to the Amazon Macie service.
+- In the left pane, under Settings, click on "Discovery results".
+- Click on "Configure now" to configure an S3 bucket for long-term retention of sensitive data discovery results.
+- Choose "Existing bucket".
+- Under "Choose a bucket", select your bucket. This can be either one you already have, or the one that the `macie` module created (if you set the `create_macie_bucket` variable to `true`). You will use the same bucket for every region.
+- Under "KMS encryption" choose "Select a key from your account".
+- Under "KMS key alias" select your KMS key. This can be either one you already have, or the one that the `macie` module created (if you set the `create_kms_key` variable to `true`). You will use the same key for every region.
+- Click "Save".
 
 ### Manually maintain buckets to analyze in the `buckets_to_analyze` variable
 

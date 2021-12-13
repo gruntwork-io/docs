@@ -1,3 +1,6 @@
+---
+sidebar_label: Apply the account-baseline-app to the other child accounts
+---
 # Apply the `account-baseline-app` to the other child accounts
 
 Now that your **security** account is fully configured, you need to apply the security baseline to the remaining child

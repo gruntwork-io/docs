@@ -6,17 +6,13 @@ work with a root user. Later on, we’ll create and manage all IAM users as code
 IAM user manually by
 [following these instructions](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console):
 
-1. Enter a username for your IAM user.
-
-2. Select both "programmatic access" and "AWS Management Console access."
-
-3. On the next page, click "Attach existing policies to user directly" and attach the `AdministratorAccess` policy.
-
-4. Click next a few more times to create the IAM user.
-
-5. In a secrets manager, save the IAM sign-in URL, your IAM user’s username, the password, and your Access Keys.
+- Enter a username for your IAM user.
+- Select both "programmatic access" and "AWS Management Console access."
+- On the next page, click "Attach existing policies to user directly" and attach the `AdministratorAccess` policy.
+- Click next a few more times to create the IAM user.
+- In a secrets manager, save the IAM sign-in URL, your IAM user’s username, the password, and your Access Keys.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a101684204db60a27bcace52b801c84b"}
+{"sourcePlugin":"Local File Copier","hash":"4d6487d6c1c3be7d2da2e166f24c93e0"}
 ##DOCS-SOURCER-END -->

@@ -1,12 +1,13 @@
 ---
 pagination_label: Deploy Landing Zone Solution
+sidebar_label: Apply the account-baseline-root to the root account
 ---
 
 # Apply the `account-baseline-root` to the root account
 
 Configure the `account-baseline-root` for the root account
 
-:::caution
+:::info
 
 You must be a <span className="js-subscribe-cta">Gruntwork Compliance subscriber</span> to access the Gruntwork Infrastructure as Code Library and the [CIS AWS Foundations Benchmark modules](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/).
 

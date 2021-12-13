@@ -20,7 +20,30 @@ as opposed to compulsory or regulated and centralized standards such as the
 [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html) for covered
 health care entities.
 
+## Assessment Status
+
+Each recommendation is classified as either _Automated_ or _Manual_. _Automated_ recommendations indicate that
+the check for the recommendation may be accessed programmatically (e.g., an API exists to validate or enable
+the recommendation). _Manual_ recommendations must be checked and remediated manually.
+
+## Profiles
+
+The Benchmark defines two profile levels. Level one recommendations are easier to implement, incur less
+overhead, but still substantially improve security. Level two recommendations are meant for highly sensitive
+environments with a lower risk appetite. They may be more difficult to implement and/or cause more overhead in
+day-to-day usage.
+
+## CIS Controls
+
+Each recommendation is also linked to a corresponding [CIS Control](https://www.cisecurity.org/controls/). The
+controls are distinct from the Benchmark. They’re described by CIS as "a prioritized set of actions that collectively
+form a defense-in-depth set of best practices that mitigate the most common attacks against systems and networks".
+Organizations seeking to implement a comprehensive security program or framework can use the controls to measure their
+progress and prioritize security efforts. The Foundations Benchmark is just one of several guidelines that can help
+reach the bar set by the CIS Controls. Refer to the Benchmark document directly to view how the recommendations map to
+controls.
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"73314505afe03f863a4f7c80791baa3c"}
+{"sourcePlugin":"Local File Copier","hash":"56c0543c5fd2cf410b922c940c4a414a"}
 ##DOCS-SOURCER-END -->

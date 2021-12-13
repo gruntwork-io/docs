@@ -1,3 +1,7 @@
+---
+sidebar_label: Apply the account-baseline-app to the logs account
+---
+
 # Apply the `account-baseline-app` to the logs account
 
 The next step is to configure the **logs** account, which is used to aggregate AWS Config, CloudTrail, IAM Access Analyzer,
