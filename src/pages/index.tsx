@@ -32,7 +32,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Documentation and guides for Gruntwork's tools and services"
     >
       <HomepageHeader />
       <main>
