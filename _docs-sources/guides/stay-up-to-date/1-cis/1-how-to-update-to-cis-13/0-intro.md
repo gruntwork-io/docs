@@ -7,7 +7,7 @@ pagination_label: Update to CIS AWS Foundations Benchmark 1.3.0
 This guide will walk you through how to update from version 1.2.0 to version 1.3.0 of the CIS AWS Foundations Benchmark.
 If your infrastructure is already compliant with the Benchmark's version 1.2.0, and you are looking to upgrade to v1.3.0,
 this guide is for you. If you are starting to work on compliance with this benchmark from scratch, check out our
-[How to achieve compliance with the CIS AWS Foundations Benchmark](../../../build-it-yourself/4-achieve-compliance/0-intro/0-what-youll-learn-in-this-guide.md) guide instead.
+[How to achieve compliance with the CIS AWS Foundations Benchmark](../../../build-it-yourself/6-achieve-compliance/0-intro/0-what-youll-learn-in-this-guide.md) guide instead.
 
 This guide consists of two main sections:
 
