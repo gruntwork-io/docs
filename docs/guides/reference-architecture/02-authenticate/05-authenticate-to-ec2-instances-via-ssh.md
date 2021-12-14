@@ -4,7 +4,7 @@ You can SSH to any of your EC2 Instances as follows:
 
 ## (Recommended) ssh-grunt
 
-Every EC2 instance has [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt)
+Every EC2 instance has [`ssh-grunt`](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt)
 installed, which allows you to manage SSH access using IAM groups. Here's how it works:
 
 ### Add users to SSH IAM Groups
@@ -26,13 +26,13 @@ IAM users](setting-up-initial-access#configure-other-iam-users) for instructions
 
 Your username for SSH is typically the same as your IAM user name. However, if your IAM user name has special
 characters that are not allowed by operating systems (e.g., most punctuation is not allowed), your SSH username may be a
-bit different, as specified in the [ssh-grunt
+bit different, as specified in the [`ssh-grunt`
 documentation](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt#syncing-users-from-iam).
 For example:
 
-* If your IAM User name is `josh`, your SSH username will also be `josh`.
-* If your IAM User name is `josh@gruntwork.io`, your SSH username will be `josh`.
-* If your IAM User name is `_gruntwork.josh.padnick`, your SSH username will be `gruntwork_josh_padnick`.
+- If your IAM User name is `josh`, your SSH username will also be `josh`.
+- If your IAM User name is `josh@gruntwork.io`, your SSH username will be `josh`.
+- If your IAM User name is `_gruntwork.josh.padnick`, your SSH username will be `gruntwork_josh_padnick`.
 
 ### Connect to VPN
 
@@ -43,10 +43,10 @@ public Internet. Therefore, you must first [connect to the VPN server](authentic
 
 Let's assume that:
 
-* Your IAM User name is `josh`.
-* You've uploaded your public SSH key to your IAM User profile.
-* Your private key is located at `/Users/josh/.ssh/id_rsa` on your local machine.
-* Your EC2 Instance's IP address is `1.2.3.4`.
+- Your IAM User name is `josh`.
+- You've uploaded your public SSH key to your IAM User profile.
+- Your private key is located at `/Users/josh/.ssh/id_rsa` on your local machine.
+- Your EC2 Instance's IP address is `1.2.3.4`.
 
 Then you can SSH to the EC2 Instance as follows:
 
@@ -74,5 +74,5 @@ Key Pairs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"933e79dde2cf04f5623a62b2513f5399"}
+{"sourcePlugin":"Local File Copier","hash":"7c0ac42ce4c59251e14f2f2515cde419"}
 ##DOCS-SOURCER-END -->
