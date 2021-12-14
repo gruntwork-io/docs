@@ -2,7 +2,7 @@
 
 EKS relies on a _[Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/)_ to provide the basic network topology and
 to manage communication across the nodes (see
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) for more
+[How to deploy a production-grade VPC on AWS](../../2-vpc/0-intro/0-what-youll-learn-in-this-guide.md) for more
 information on VPCs). Here are the key VPC considerations for your EKS cluster:
 
 <div className="dlist">

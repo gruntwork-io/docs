@@ -1,7 +1,7 @@
 # Deploy the VPC
 
 The first step is to deploy a VPC. Follow the instructions in
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) to use
+[How to deploy a production-grade VPC on AWS](../../2-vpc/0-intro/0-what-youll-learn-in-this-guide.md) to use
 `module-vpc` to create a VPC setup that looks like this:
 
 ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/vpc/vpc-diagram.png)

@@ -12,7 +12,7 @@ groups, NACLs, peering connections, and endpoints.
 #### [Production-grade design](../2-production-grade-design/0-intro.md)
 
 An overview of how to configure a secure, scalable, highly available VPC that you can rely on in production. To get a
-sense of what production-grade means, check out [The production-grade infrastructure checklist](/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
+sense of what production-grade means, check out [The production-grade infrastructure checklist](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#production_grade_infra_checklist).
 
 #### [Deployment walkthrough](../3-deployment-walkthrough/0-pre-requisites.md)
 
@@ -28,5 +28,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"40ccd32b29079d57ef4133819f0570cd"}
+{"sourcePlugin":"Local File Copier","hash":"4ae2802a409a764054df57d2f29bcbe9"}
 ##DOCS-SOURCER-END -->

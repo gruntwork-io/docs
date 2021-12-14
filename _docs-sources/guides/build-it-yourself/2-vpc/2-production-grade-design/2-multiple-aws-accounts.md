@@ -11,5 +11,5 @@ change something in prod rather than pre-prod).
 
 Therefore, your best bet is to put pre-production environments and production environments in completely separate AWS
 accounts. This makes it easy to, for example, grant relatively lax permissions in pre-prod environments, but very
-strict permissions in production. Check out the [Production Grade AWS Account Structure](/guides/build-it-yourself/0-landing-zone/stub.md)
+strict permissions in production. Check out the [Production Grade AWS Account Structure](../../0-landing-zone/0-intro/0-what-youll-learn-in-this-guide.md)
 guide for instructions.

@@ -34,7 +34,7 @@ Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guid
 #### AWS accounts
 
 This guide deploys infrastructure into one or more AWS accounts. Check out the
-[Production Grade AWS Account Structure](/guides/build-it-yourself/0-landing-zone/stub.md) guide for instructions.
+[Production Grade AWS Account Structure](../../0-landing-zone/0-intro/0-what-youll-learn-in-this-guide.md) guide for instructions.
 You will also need to be able to authenticate to these accounts on the CLI: check out
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
 for instructions.
@@ -43,5 +43,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c2f7be8db67ac7b9167af9a5f59cccde"}
+{"sourcePlugin":"Local File Copier","hash":"5d138dd87243a7887d4bee2ff2b87735"}
 ##DOCS-SOURCER-END -->

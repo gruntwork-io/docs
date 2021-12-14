@@ -11,7 +11,7 @@ accidentally to a resource such as AWS Elastic Load Balancer (ELB), which can da
 achieve this recommendation, check out the [example](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.10.0/examples/cleanup-expired-certs/terraform) of the ready-made `cleanup-expired-certs` module.
 
 For the code examples of deploying this module, see the
-[relevant section](/docs/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#cleanup-expired-ssl-tls-certificates)
+[relevant section](../../../../build-it-yourself/4-achieve-compliance/2-production-grade-design/1-identity-and-access-management.md#cleanup-expired-ssl-tls-certificates)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
 ## 2. Deploy IAM Access Analyzer module (recommendation 1.21)
@@ -31,7 +31,7 @@ The IAM Access Analyzer will scan only within the AWS Account or Organization bo
 To help you achieve CIS AWS v1.3 compliance, you can find examples of how to use the ready-made module as part of the `landingzone` module in the `terraform-aws-service-catalog` repository [v0.15.4](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.15.4), and specifically the `account-baseline-root` and `account-baseline-security` [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.15.4/examples/for-learning-and-testing/landingzone).
 
 For the code examples of deploying this module, see the
-[relevant section](/docs/guides/build-it-yourself/achieve-compliance/production-grade-design/identity-and-access-management#iam-access-analyzer)
+[relevant section](../../../../build-it-yourself/4-achieve-compliance/2-production-grade-design/1-identity-and-access-management.md#iam-access-analyzer)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
 ## 3. Deploy the ebs-encryption-multi-region module (recommendation 2.2.1)
@@ -42,7 +42,7 @@ a module that configures volume encryption by default in all enabled regions. Ch
 configure AWS EBS encryption in all allowed regions of an AWS Account.
 
 For the code examples of deploying this module, see the
-[relevant section](/docs/guides/build-it-yourself/achieve-compliance/production-grade-design/storage#configure-ebs-encryption)
+[relevant section](../../../../build-it-yourself/4-achieve-compliance/2-production-grade-design/2-storage.md#configure-ebs-encryption)
 of our "Achieve Compliance With the CIS AWS Foundations Benchmark" guide.
 
 ## 4. Deploy the vpc-app-network-acl and vpc-mgmt-network-acl modules (recommendation 5.1)
@@ -72,7 +72,7 @@ module "vpc_app_network_acls" {
 ```
 
 For the code examples of deploying this module, see the
-[relevant section](/docs/guides/build-it-yourself/achieve-compliance/production-grade-design/networking)
+[relevant section](../../../../build-it-yourself/4-achieve-compliance/2-production-grade-design/5-networking.md)
 of our "How to achieve compliance with the CIS AWS Foundations Benchmark" guide.
 
 ### 4.1 Network ACL Rules Quota limit

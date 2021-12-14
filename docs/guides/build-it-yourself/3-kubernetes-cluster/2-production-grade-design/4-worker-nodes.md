@@ -20,7 +20,7 @@ value `owned`.
 
 We strongly recommend running the Auto Scaling Group for your worker nodes in private subnets that are NOT directly
 accessible from the public Internet. See
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) for more
+[How to deploy a production-grade VPC on AWS](../../2-vpc/0-intro/0-what-youll-learn-in-this-guide.md) for more
 info.
 
 #### AMI
@@ -66,5 +66,5 @@ a secure base image (e.g., CIS hardened images), intrusion prevention (e.g., `fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"25fd4a8355c5e534f5d3cc67a8e6e474"}
+{"sourcePlugin":"Local File Copier","hash":"c3b397eff7bd022a9cf0568572e70aa0"}
 ##DOCS-SOURCER-END -->

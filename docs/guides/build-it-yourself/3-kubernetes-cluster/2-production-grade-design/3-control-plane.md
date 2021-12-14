@@ -19,7 +19,7 @@ minor version.
 
 Your EKS cluster will run in the subnets you specify. We strongly recommend running solely in private subnets that
 are NOT directly accessible from the public Internet. See
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) for more
+[How to deploy a production-grade VPC on AWS](../../2-vpc/0-intro/0-what-youll-learn-in-this-guide.md) for more
 info.
 
 #### Endpoint access
@@ -28,7 +28,7 @@ You can configure whether the [API endpoint for your EKS cluster](https://docs.a
 is accessible from (a) within the same VPC and/or (b) from the public Internet. We recommend allowing access from
 within the VPC, but not from the public Internet. If you need to talk to your Kubernetes cluster from your own
 computer (e.g., to issue commands via `kubectl`), use a bastion host or VPN server. See
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/stub) for more
+[How to deploy a production-grade VPC on AWS](../../2-vpc/0-intro/0-what-youll-learn-in-this-guide.md) for more
 info.
 
 #### Cluster IAM Role
@@ -54,5 +54,5 @@ CloudWatch.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d018425139d4c0df4d9b95cf8ac20bfe"}
+{"sourcePlugin":"Local File Copier","hash":"5946c0407edaba15bdf2fedc4a7486f0"}
 ##DOCS-SOURCER-END -->

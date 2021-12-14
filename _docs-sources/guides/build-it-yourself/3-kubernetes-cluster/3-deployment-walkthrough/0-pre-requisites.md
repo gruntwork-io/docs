@@ -49,7 +49,7 @@ uses [Packer](https://www.packer.io) to build VM images. If you’re not familia
 #### AWS accounts
 
 This guide deploys infrastructure into one or more AWS accounts. Check out the
-[How to configure a production-grade AWS account structure](/docs/guides/build-it-yourself/landing-zone/stub)
+[How to configure a production-grade AWS account structure](../../0-landing-zone/0-intro/0-what-youll-learn-in-this-guide.md)
 guide for instructions. You will also need to be able to authenticate to these accounts on the CLI: check out
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
 for instructions.
