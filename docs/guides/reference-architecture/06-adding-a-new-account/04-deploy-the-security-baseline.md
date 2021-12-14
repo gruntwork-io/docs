@@ -58,7 +58,7 @@ looks correct, and then approve it roll out the security baseline.
 
 At this point, you can now use the cross account access from the `security` account to authenticate to the new account.
 Use your security account IAM user to assume the `allow-full-access-from-other-accounts` IAM role in the new account to
-confirm this. Refer to the [authentication section of this guide](../authenticate/intro) for more details on how to do
+confirm this. Refer to the [authentication section of this guide](../02-authenticate/01-intro.md) for more details on how to do
 this.
 
 Once you confirm you have access to the new account from the `security` account, login using the
@@ -66,5 +66,5 @@ Once you confirm you have access to the new account from the `security` account,
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0aa8703c49263cae13d9e27a50125f81"}
+{"sourcePlugin":"Local File Copier","hash":"6b2971383476a10a88bcaa6c38599547"}
 ##DOCS-SOURCER-END -->

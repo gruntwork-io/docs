@@ -1,10 +1,11 @@
 ---
+pagination_label: Configure Gruntwork Pipelines
 title: Intro
 ---
 
 # Configure Gruntwork Pipelines
 
-In the previous section, you saw [how to deploy your apps into the Reference Architecture](../deploy-apps/intro). Now it's
+In the previous section, you saw [how to deploy your apps into the Reference Architecture](../03-deploy-apps/01-intro.md). Now it's
 time to see how to configure a CI / CD pipeline to automate deployments.
 
 If you are not familiar with Gruntwork Pipelines, you can learn more by reading the Gruntwork Production Deployment Guide
@@ -22,5 +23,5 @@ code](https://gruntwork.io/guides/automations/how-to-configure-a-production-grad
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d14d22526ca4e534feda8bee7486c7f7"}
+{"sourcePlugin":"Local File Copier","hash":"67653fed90dd281158b77be9e0708328"}
 ##DOCS-SOURCER-END -->

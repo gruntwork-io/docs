@@ -95,4 +95,4 @@ That's it. Access the pipeline in the Actions tab in GitHub.
 
 ### Destroying infrastructure
 
-For instructions on how to destroy infrastructure, see the [Undeploy guide](../undeploy/intro).
+For instructions on how to destroy infrastructure, see the [Undeploy guide](../07-undeploy/01-intro.md).

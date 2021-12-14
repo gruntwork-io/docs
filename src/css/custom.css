@@ -51,7 +51,7 @@ html[data-theme="dark"] {
   --ifm-menu-color-background-active: rgba(255, 255, 255, 0.05);
   --ifm-heading-color: white;
 
-  --ifm-color-primary: #AB80FE;
+  --ifm-color-primary: #ab80fe;
 }
 
 .docusaurus-highlight-code-line {
@@ -73,28 +73,29 @@ main {
 
 .hero--primary .button--lg {
   --ifm-button-size-multiplier: 1.5;
-  --ifm-button-background-color: #5849A6;
+  --ifm-button-background-color: #5849a6;
   border: none;
   /*background-color: #5849A6 !important;*/
   color: white !important;
   font-weight: 600;
   margin-top: 2rem;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transition: all 0.2s ease-in-out;
 }
 
 .hero--primary .button--lg:hover {
   /*background-color: #5849A6 !important;*/
   --ifm-button-background-color: var(--ifm-color-primary);
-  box-shadow: 0 10px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .hero--primary {
   background-color: #252746;
 }
 
-.hero__title, .hero__subtitle {
-  color:  white;
+.hero__title,
+.hero__subtitle {
+  color: white;
 }
 
 /* NAVBAR + LOGO */
@@ -106,6 +107,12 @@ main {
   display: grid;
   align-items: center;
   justify-items: center;
+}
+
+@media only screen and (max-width: 996px) {
+  .navbar__brand {
+    border-right: none;
+  }
 }
 
 .navbar__logo {
@@ -262,4 +269,12 @@ html[data-theme="dark"] .menu__link--sublist {
 
 .snap-top {
   scroll-margin-top: 140px;
+}
+
+/* MOBILE */
+
+@media only screen and (max-width: 480px) {
+  .hideOnMobile {
+    display: none;
+  }
 }
