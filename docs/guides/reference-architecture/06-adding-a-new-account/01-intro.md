@@ -1,4 +1,5 @@
 ---
+pagination_label: Adding a new account
 title: Intro
 ---
 
@@ -14,5 +15,5 @@ need to expand the Reference Architecture with more accounts, like a test or san
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"27f3ab75cf983f0eaa5ea88538e431e0"}
+{"sourcePlugin":"Local File Copier","hash":"3d890f5e4c4e675de3c2f252b8cac965"}
 ##DOCS-SOURCER-END -->

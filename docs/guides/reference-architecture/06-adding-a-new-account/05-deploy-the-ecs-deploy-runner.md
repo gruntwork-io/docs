@@ -2,7 +2,7 @@
 
 Once the security baseline is deployed on the new account, you can deploy the ECS Deploy Runner. With the ECS Deploy
 Runner, you will be able to provision new resources in the account using the CI/CD pipeline that you configured in
-[Configure Gruntwork Pipelines](../configure-gw-pipelines/intro).
+[Configure Gruntwork Pipelines](../04-configure-gw-pipelines/01-intro.md).
 
 To deploy the ECS Deploy Runner, copy the terragrunt configurations for `mgmt/vpc-mgmt` and `mgmt/ecs-deploy-runner`
 from the `dev` account:
@@ -33,5 +33,5 @@ to provision new infrastructure in the account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"57cdbfd4b76b9e7474553eb10ae9e5e7"}
+{"sourcePlugin":"Local File Copier","hash":"d45e6387b5fc09c9e6ced9d19a69a784"}
 ##DOCS-SOURCER-END -->

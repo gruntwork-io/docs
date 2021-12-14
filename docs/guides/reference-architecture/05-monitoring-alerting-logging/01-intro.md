@@ -1,4 +1,5 @@
 ---
+pagination_label: Monitoring, Alerting and Logging
 title: Intro
 ---
 
@@ -13,5 +14,5 @@ and deploy your code, you'll want to see what's happening in your AWS account:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0973cc4dbe668dba17ab5d704bae0a17"}
+{"sourcePlugin":"Local File Copier","hash":"3efb17c2d90c457160524db0ff13195d"}
 ##DOCS-SOURCER-END -->

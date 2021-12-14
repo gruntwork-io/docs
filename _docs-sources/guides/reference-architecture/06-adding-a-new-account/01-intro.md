@@ -1,4 +1,5 @@
 ---
+pagination_label: Adding a new account
 title: Intro
 ---
 
