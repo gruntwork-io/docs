@@ -1,3 +1,5 @@
-# Overview
+---
+sidebar_label: Overview
+---
 
-Stub content
+# Build Your Own Architecture

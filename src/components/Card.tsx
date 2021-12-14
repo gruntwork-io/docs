@@ -6,7 +6,7 @@ type CardProps = {
   icon?: string
   href?: string
   description?: JSX.Element
-  children?: JSX.Element
+  children?: JSX.Element | string
 }
 
 export default function Card({

@@ -1,8 +1,10 @@
-# Overview
+---
+sidebar_label: Overview
+---
 
-Stub content
+# Build Your Own Architecture
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"66e831592c5de24fc0599938eade1120"}
+{"sourcePlugin":"Local File Copier","hash":"13d419b5803a910f53b358e0b309d8fe"}
 ##DOCS-SOURCER-END -->
