@@ -39,8 +39,7 @@ Library](https://training.gruntwork.io/p/a-crash-course-on-docker-packer).
 
 ## Create infrastructure code to deploy your app
 
-If you've already followed the previous guide [How to deploy your apps into the Reference
-Architecture](../deploy-apps/intro), you should already have your module defined in the `infrastructure-live` repository
+If you've already followed the previous guide [How to deploy your apps into the Reference Architecture](../03-deploy-apps/01-intro.md)), you should already have your module defined in the `infrastructure-live` repository
 to deploy the app.
 
 **Make note of the path from the account folder to the service configuration.** An example path is `"dev/us-east-1/dev/services/application`. These values will be used your `.circleci/config.yml` for `DEV_DEPLOY_PATH` and `STAGE_DEPLOY_PATH`.

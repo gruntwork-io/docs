@@ -1,3 +1,7 @@
+---
+pagination_label: Reference Architecture
+---
+
 # Architecture Overview
 
 This documentation contains an overview of a deployed and managed architecture.
@@ -52,7 +56,7 @@ The list of accounts includes:
 - **shared-services**: DevOps tooling.
 - **logs**: An account for centralizing logs from all of the accounts.
 
-Check out the [Authentication docs](../authenticate/intro) for more info on how to authenticate to these accounts and
+Check out the [Authentication docs](../02-authenticate/01-intro.md) for more info on how to authenticate to these accounts and
 switch between them.
 
 ## VPCs and subnets
@@ -103,21 +107,21 @@ to your EC2 Instances).
 
 For more info, see the [openvpn
 service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server) and the VPN
-section of the [Authentication docs](../authenticate/authenticate-to-the-vpn-server).
+section of the [Authentication docs](../02-authenticate/06-authenticate-to-the-vpn-server.md).
 
 ## GitHub
 
 We have set up [GitHub](https://github.com) as a Continuous Integration (CI) server. After every commit, a GitHub
 job runs your build, tests, packaging, and automated deployment steps.
 
-For more info, see the [Gruntwork Pipelines docs](../configure-gw-pipelines/intro).
+For more info, see the [Gruntwork Pipelines docs](../04-configure-gw-pipelines/01-intro.md).
 
 ## Monitoring, log aggregation, alerting
 
 You can find metrics, log files from all your servers, and subscribe to alert notifications using [Amazon
 CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-For more info, see the [Monitoring, Alerting, and Logging docs](../monitoring-alerting-logging/intro).
+For more info, see the [Monitoring, Alerting, and Logging docs](../05-monitoring-alerting-logging/01-intro.md).
 
 ## DNS and TLS
 
@@ -133,9 +137,9 @@ We have configured security best practices in every aspect of this infrastructur
 
 - **Network security**: see [VPCs and subnets](#vpcs-and-subnets).
 
-- **Server access**: see SSH and VPN sections of the [Authentication docs](../authenticate/intro).
+- **Server access**: see SSH and VPN sections of the [Authentication docs](../02-authenticate/01-intro.md).
 
-- **Application secrets**: see secrets management section of the [Deploy your Apps docs](../deploy-apps/intro).
+- **Application secrets**: see secrets management section of the [Deploy your Apps docs](../03-deploy-apps/01-intro.md).
 
 - **User accounts**: see the [Authentication docs](../authenticate/setting-up-initial-access).
 
@@ -157,5 +161,5 @@ Next up, let's have a look at [how to authenticate](../authenticate/intro).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4f7e63364d35185307fdef801a5d3bbf"}
+{"sourcePlugin":"Local File Copier","hash":"42d3505e2f74e68073d0fa3de3d2ff73"}
 ##DOCS-SOURCER-END -->

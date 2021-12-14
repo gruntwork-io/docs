@@ -1,4 +1,5 @@
 ---
+pagination_label: Monitoring, Alerting and Logging
 title: Intro
 ---
 
