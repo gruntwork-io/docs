@@ -6,21 +6,20 @@ type CardProps = {
   icon?: string
   href?: string
   description?: JSX.Element
-  children?: JSX.Element | string
 }
 
-export default function Card({
+export const Card: React.FunctionComponent<CardProps> = ({
   title,
   icon,
   description,
   href,
   children,
-}: CardProps): JSX.Element {
+}) => {
   const body = (
     <div className={styles.card}>
       {icon && <img className={styles.icon} alt={title} src={icon} />}
       <h3>{title}</h3>
-      <p>{children || description}</p>
+      <div>{children || description}</div>
     </div>
   )
 
@@ -32,3 +31,5 @@ export default function Card({
     </a>
   )
 }
+
+export default Card

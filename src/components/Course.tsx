@@ -14,7 +14,7 @@ type CourseProps = {
   duration: number
 }
 
-export default function Course({
+export const Course: React.FunctionComponent<CourseProps> = ({
   title,
   icon,
   description,
@@ -23,24 +23,24 @@ export default function Course({
   authorImg,
   videos,
   duration,
-}: CourseProps): JSX.Element {
+}) => {
   return (
     <Card title={title} icon={icon} href={href}>
-      <>
-        <p>{description}</p>
-        <p className={styles.author}>
-          <img src={authorImg} />
-          <span>{author}</span>
-        </p>
-        <p>
-          <span className={clsx(styles.videos, styles.metadata)}>
-            {videos} micro videos
-          </span>
-          <span className={clsx(styles.duration, styles.metadata)}>
-            {duration} minutes
-          </span>
-        </p>
-      </>
+      <p>{description}</p>
+      <p className={styles.author}>
+        <img src={authorImg} />
+        <span>{author}</span>
+      </p>
+      <p>
+        <span className={clsx(styles.videos, styles.metadata)}>
+          {videos} micro videos
+        </span>
+        <span className={clsx(styles.duration, styles.metadata)}>
+          {duration} minutes
+        </span>
+      </p>
     </Card>
   )
 }
+
+export default Course
