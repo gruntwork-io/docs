@@ -77,7 +77,7 @@ export default function Home(): JSX.Element {
                   Learn how to deploy Gruntwork services to construct your own
                   bespoke architecture.
                 </Card>
-                <Card title="Courses" href="/courses">
+                <Card title="Courses" href="/docs/courses">
                   Learn DevOps fundamentals with our series of introductory
                   video tutorials.
                 </Card>

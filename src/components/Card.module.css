@@ -12,8 +12,9 @@
 }
 
 .card .icon {
-  width: 60px;
   height: 60px;
+  object-fit: contain;
+  object-position: left;
   margin-bottom: 1rem;
 }
 

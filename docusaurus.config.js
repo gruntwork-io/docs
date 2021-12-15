@@ -66,7 +66,7 @@ const config = {
             label: "Service Catalog API",
             docId: "reference/services/intro",
           },
-          { to: "/courses", label: "Courses", position: "left" },
+          { to: "/docs/courses", label: "Courses", position: "left" },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",
