@@ -6,6 +6,7 @@ type CardProps = {
   icon?: string
   href?: string
   description?: JSX.Element
+  tags?: string[]
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
@@ -13,6 +14,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   icon,
   description,
   href,
+  tags,
   children,
 }) => {
   const body = (
@@ -20,6 +22,13 @@ export const Card: React.FunctionComponent<CardProps> = ({
       {icon && <img className={styles.icon} alt={title} src={icon} />}
       <h3>{title}</h3>
       <div>{children || description}</div>
+      {tags && (
+        <ul className={styles.tags}>
+          {tags.map((tag, idx) => (
+            <li key={idx}>{tag}</li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 
