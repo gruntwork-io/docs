@@ -9,6 +9,7 @@
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transition: 0.15s ease-in-out;
+  border: solid 1px transparent;
 }
 
 .card .icon {
@@ -18,8 +19,43 @@
   margin-bottom: 1rem;
 }
 
+.card strong {
+  font-weight: 600;
+}
+
+.card address {
+  font-weight: 600;
+  text-decoration: underline;
+  font-style: normal;
+  display: inline;
+}
+
 .card p:last-child {
   margin-bottom: 0;
+}
+
+ul.tags {
+  padding: 1em 0 0 0;
+  margin: auto 0 0 0;
+}
+
+ul.tags li {
+  list-style: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #e7f0f5;
+  padding: 0 0.5rem;
+  margin-right: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: #333;
+}
+
+html[data-theme="dark"] ul.tags li {
+  background-color: #666;
+  color: black;
 }
 
 .cardlink,
