@@ -43,21 +43,21 @@ export default function Home(): JSX.Element {
               <Grid cols={3} gap="2rem">
                 <Card
                   title="Set Up Your Accounts"
-                  href="/docs/guides/build-it-yourself/landing-zone"
+                  href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
                 >
                   Streamline how you create, configure, and secure AWS accounts
                   and multi-account structures.
                 </Card>
                 <Card
                   title="Configure a CI/CD Pipeline"
-                  href="/docs/guides/build-it-yourself/pipelines"
+                  href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
                 >
                   Use your preferred CI tool to set up an end‑to‑end pipeline
                   for your infrastructure code.
                 </Card>
                 <Card
                   title="Achieve Compliance"
-                  href="/docs/guides/build-it-yourself/compliance"
+                  href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
                 >
                   Implement the CIS AWS Foundations Benchmark using our curated
                   collection of modules and services.
