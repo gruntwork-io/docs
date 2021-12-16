@@ -17,12 +17,12 @@ const sidebars = {
     {
       Overview: [
         "intro/overview/intro-to-gruntwork",
-        "intro/overview/account-baselines",
-        "intro/overview/service-catalog",
-        "intro/overview/app-catalog",
-        "intro/overview/iac-pipeline",
-        "intro/overview/self-service",
-        "intro/overview/auto-updates",
+        "intro/overview/why-gruntwork",
+        "intro/overview/gruntwork-production-framework",
+        "intro/overview/how-it-works",
+        "intro/overview/use-cases",
+        "intro/overview/gruntwork-vs-other",
+        "intro/overview/getting-started",
       ],
     },
     {
