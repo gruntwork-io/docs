@@ -6,7 +6,7 @@ operating system, containers virtualize solely user space, which gives you many 
 (each container is isolated in terms of memory, CPU, networking, hard drive, etc), but with much less memory, CPU, and
 start-up time overhead. For example, here is how you can define an Ubuntu 18.04 Docker image that has Node.js installed:
 
-```dockerfile
+```dockerfile title="Dockerfile"
 FROM ubuntu:18.04
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
