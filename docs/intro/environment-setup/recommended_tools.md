@@ -6,7 +6,7 @@
 * [Golang](https://go.dev/dl/) - Golang is an exciting language that has taken the DevOps / infrastructure world by storm. Terraform, Terragrunt, and Terratest are all written in Go.
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/) - If you need to control your Kubernetes cluster, `kubectl` is at the operational core.
 * [Packer](https://www.packer.io/downloads) - Packer lets you build a variety of images, including AWS AMIs and Docker containers. Those images are defined via code for repeatability.
-* [Terraform](https://www.terraform.io/downloads) - Terraform's declarative nature describes your infrastructure as code. If you're using Gruntwork products, you're using Terraform.
+* [Terraform](https://www.terraform.io/downloads) - Terraform's declarative nature describes your infrastructure as code. If you're using Gruntwork's products, you're using Terraform.
 * [Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) - Terragrunt is our layer on top of Terraform to enable a highly DRY code base.
 * [Terratest](https://github.com/gruntwork-io/terratest) - If you want to test your infrastructure, Terratest enables you to write those tests for manual testing or integration with a CI/CD pipeline.
 * [tfenv](https://github.com/tfutils/tfenv#installation) - `tfenv` is a version manager for Terraform, similar to `pyenv` for Python.
@@ -85,5 +85,5 @@ docker run -it -v $(pwd):/work gruntwork /bin/bash
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ad8f41a7d24d9a7614cdc0767d334188"}
+{"sourcePlugin":"Local File Copier","hash":"12eea33b7b04669206b849b5fa4a945c"}
 ##DOCS-SOURCER-END -->
