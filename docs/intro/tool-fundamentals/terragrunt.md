@@ -22,11 +22,18 @@ Once you've created your `terragrunt.hcl` configuration, you can run all the usu
 [Terragrunt: how to keep your Terraform code DRY and maintainable](https://blog.gruntwork.io/terragrunt-how-to-keep-your-terraform-code-dry-and-maintainable-f61ae06959d8)
 for a thorough introduction.
 
-Note that while the Gruntwork Reference Architecture relies on Terragrunt as one of its opinionated tools, the
+
+:::note
+
+While the Gruntwork Reference Architecture relies on Terragrunt as one of its opinionated tools, the
 Gruntwork Infrastructure as Code Library does NOT require Terragrunt; you can use the Terraform modules in the Gruntwork
 Infrastructure as Code Library with plain Terraform, Terraform Enterprise, Atlantis, Terragrunt, or any other tools you prefer.
 
+:::
+
+
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"dff455f0d67edfa21c386e3f4fc6925a"}
+{"sourcePlugin":"Local File Copier","hash":"e917fe5423fd33a6c7c528e404a75f40"}
 ##DOCS-SOURCER-END -->
