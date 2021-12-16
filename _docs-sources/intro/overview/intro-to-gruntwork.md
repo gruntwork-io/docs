@@ -12,6 +12,6 @@ Gruntwork works best for teams building new infrastructure ("greenfield"), eithe
 
 Gruntwork products focus on Amazon Web Services (AWS). Support for other public clouds such as GCP and Azure may be added in the future.
 
-### Gruntwork and Terraform
+### Gruntwork uses Terraform
 
-All Gruntwork products are built on and fully compatible with [open source Terraform](https://gruntwork.io). The one exception to this is the Gruntwork Reference Architecture, which uses Terragrunt to implement an end-to-end architecture.
+All Gruntwork products are built on and fully compatible with [open source Terraform](https://gruntwork.io). The one exception to this is the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), which uses [Terragrunt](https://terragrunt.gruntwork.io/) to implement an end-to-end architecture.
