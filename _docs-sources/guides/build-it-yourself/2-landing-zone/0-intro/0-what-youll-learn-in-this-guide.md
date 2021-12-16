@@ -1,13 +1,13 @@
 ---
-pagination_label: Build it Yourself - Configure Your Accounts With Landing Zone
+sidebar_label: What you’ll learn in this guide
+pagination_label: Configure Your Accounts With Landing Zone
 ---
 
-# What you’ll learn in this guide
+# Configure Your Accounts with Landing Zone
 
 This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, and audit logging. We’ll also discuss how to implement a Landing Zone solution that lets you quickly spin up new AWS accounts that all implement a security baseline that enforces your company’s policies.
 
 This guide consists of four main sections:
-
 
 <div className="dlist">
 
@@ -30,7 +30,6 @@ solution, including how to manage it all with customizable security baselines de
 #### [Next steps](../4-next-steps.md)
 
 What to do once you’ve got your AWS account structure configured.
-
 
 </div>
 

@@ -32,10 +32,17 @@ const sidebars = {
       ],
     },
     {
-      "Setting Up Your Environment": ["intro/environment-setup/stub"],
+      "Setting Up Your Environment": [
+        "intro/environment-setup/recommended_tools",
+      ],
     },
     {
-      "Tool Fundamentals": ["intro/tool-fundamentals/stub"],
+      "Tool Fundamentals": [
+        "intro/tool-fundamentals/docker",
+        "intro/tool-fundamentals/packer",
+        "intro/tool-fundamentals/terraform",
+        "intro/tool-fundamentals/terragrunt",
+      ],
     },
     {
       "Deploying A Service Module": ["intro/first-deployment/stub"],

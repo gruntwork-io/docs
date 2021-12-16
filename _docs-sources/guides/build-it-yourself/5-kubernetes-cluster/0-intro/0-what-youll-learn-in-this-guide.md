@@ -1,8 +1,9 @@
 ---
-pagination_label: Deploy a Kubernetes Cluster
+sidebar_label: What you’ll learn in this guide
+pagination_label: Deploy a Production-grade Kubernetes Cluster
 ---
 
-# What you’ll learn in this guide
+# Deploy a Production-grade Kubernetes Cluster
 
 This guide will walk you through the process of configuring a production-grade Kubernetes cluster on AWS.
 
