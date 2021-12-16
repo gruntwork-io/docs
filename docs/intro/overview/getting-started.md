@@ -1,10 +1,6 @@
----
-'title': 'Getting started'
----
-
 # Getting started
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"cec9ef36a1a05b7312d23d384e686641"}
+{"sourcePlugin":"Local File Copier","hash":"4afe79f1f320341e925881c96a22e07a"}
 ##DOCS-SOURCER-END -->

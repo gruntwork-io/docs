@@ -1,10 +1,6 @@
----
-'title': 'Grunwork vs. other'
----
-
 # Grunwork vs. other
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4fda6cff5527c894e717b8029ffe8b01"}
+{"sourcePlugin":"Local File Copier","hash":"c8aeff437ffbf0d5134c70daf339a109"}
 ##DOCS-SOURCER-END -->

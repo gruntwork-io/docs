@@ -1,10 +1,6 @@
----
-'title': 'Why Gruntwork?'
----
-
 # Why Gruntwork?
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9de55836bd949a5b9a9ba9848d1d7eaf"}
+{"sourcePlugin":"Local File Copier","hash":"287e7fb23f7959d6e9a784e4a9721963"}
 ##DOCS-SOURCER-END -->
