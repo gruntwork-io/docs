@@ -1,13 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-require("dotenv").config() // Load Environment variables
-
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
-const EnvConfig = require("config")
+const cfg = require("config")
 
-const googleAnalyticsConfig = EnvConfig.get("Google_Analytics")
+const googleAnalyticsConfig = cfg.has("googleAnalytics")
+  ? cfg.get("googleAnalytics")
+  : undefined
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -191,10 +191,7 @@ const config = {
         additionalLanguages: ["hcl"],
       },
       zoomSelector: ".markdown img",
-      googleAnalytics: {
-        trackingID: googleAnalyticsConfig.tracking_id,
-        anonymizeIP: googleAnalyticsConfig.anonymize_ip,
-      },
+      googleAnalytics: googleAnalyticsConfig,
     }),
 }
 
