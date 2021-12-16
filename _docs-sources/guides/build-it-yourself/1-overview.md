@@ -8,39 +8,41 @@ import Grid from "/src/components/Grid"
 
 # Build Your Own Architecture
 
-The Gruntwork IaC library empowers you to construct your own bespoke architecture in record time. By mix-and-matching our modules and services you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood. This series of guides aims to teach you how to configure and deploy some of our most popular modules. Additional guides will be added over time, but the principles covered extend to the rest of the IaC library. If you have trouble, don’t hesitate to ask questions via our [support channels](/docs/guides/support).
+The Gruntwork IaC library empowers you to construct your own bespoke architecture in record time. By mix-and-matching our modules and services you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood. This series of guides aims to teach you how to configure and deploy some of our most popular services. Additional guides will be added over time, but the principles covered extend to the rest of the IaC library. If you have trouble, don’t hesitate to ask questions via our [support channels](/docs/guides/support).
 
 ### Follow Our Step-By-Step Guides
 
 <Grid>
   <Card
     title="Set Up Your AWS Accounts"
-    href="/docs/build-it-yourself/landing-zone"
+    href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
   >
     Set up a multi-account structure using Gruntwork Landing Zone.
   </Card>
-  <Card title="Configure a CI/CD Pipeline" href="/docs/guides/pipelines">
+  <Card
+  	title="Configure a CI/CD Pipeline"
+  	href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
+  >
     Implement continuous deployment for your infrastructure code with Gruntwork
     Pipelines.
   </Card>
   <Card
     title="Deploy a VPC"
-    href="/docs/guides/reference-architecture/overview/overview"
+    href="/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide"
   >
-    Configure your network with our VPC service module.
+    Set up your network according to industry best practices using our VPC service.
   </Card>
   <Card
     title="Deploy a Kubernetes Cluster"
-    href="/docs/guides/reference-architecture/overview/overview"
+    href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
   >
-    Deploy a Kubernetes Cluster to scalably host all of your apps and services.
+    Deploy a Kubernetes Cluster to host all of your apps and services.
   </Card>
   <Card
     title="Acheive Compliance"
-    href="/docs/guides/reference-architecture/overview/overview"
+    href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
   >
     Make your infrastructure compliant with the CIS AWS Foundations Benchmark.
-    by step.
   </Card>
 </Grid>
 
