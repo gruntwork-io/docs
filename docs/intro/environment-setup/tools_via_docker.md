@@ -56,7 +56,7 @@ Build the container:
 docker build . -t gruntwork
 ```
 
-If you need to change the version of any of the binaries, you can pass those variables in as `--build-arg`parameters:
+If you need to change the version of any of the binaries, you can pass those variables in as `--build-arg` parameters:
 
 ```bash
 # Build the docker container with specific tool versions
@@ -71,5 +71,5 @@ docker run -it -v $(pwd):/work gruntwork /bin/bash
 ```
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c922b3f024e1d414f8a1d8ce019ec366"}
+{"sourcePlugin":"Local File Copier","hash":"d13cea260ad0ded4bfefb7748c1d6667"}
 ##DOCS-SOURCER-END -->

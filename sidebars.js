@@ -33,7 +33,7 @@ const sidebars = {
       ],
     },
     {
-      "Setting Up Your Environment": ["intro/environment-setup/overview", "intro/environment-setup/local_installation", "intro/environment-setup/tools_via_docker"],
+      "Setting Up Your Environment": ["intro/environment-setup/recommended_tools", "intro/environment-setup/local_installation", "intro/environment-setup/tools_via_docker"],
     },
     {
       "Tool Fundamentals": ["intro/tool-fundamentals/docker", "intro/tool-fundamentals/packer", "intro/tool-fundamentals/terraform", "intro/tool-fundamentals/terragrunt"],
