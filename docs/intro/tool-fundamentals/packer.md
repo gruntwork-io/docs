@@ -24,7 +24,7 @@ images, Docker images) as code. For example, here is how you can use Packer to d
 }
 ```
 
-You can run `packer build packer-example.json` to build an AMI from this code and then deploy this AMI to your AWS
+You can run `packer build packer-example.json` to build an AMI from this code and then leverage this AMI in your AWS
 account using other tools. For example, the Gruntwork Infrastructure as Code Library contains several Terraform modules that can
 deploy AMIs across one or more servers (e.g., into an AWS Auto Scaling Group), with support for auto scaling, auto
 healing, zero-downtime deployments, etc.
@@ -41,5 +41,5 @@ Reference Architecture does use Packer as one of its opinionated tools.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fd32480f936f751310a3837c38f16003"}
+{"sourcePlugin":"Local File Copier","hash":"4405a4bf5e54183c6e9ee286311ac947"}
 ##DOCS-SOURCER-END -->
