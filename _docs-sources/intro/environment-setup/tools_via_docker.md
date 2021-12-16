@@ -56,7 +56,7 @@ Build the container:
 docker build . -t gruntwork
 ```
 
-If you need to change the version of any of the binaries, you can pass those variables in as `--build-arg`parameters:
+If you need to change the version of any of the binaries, you can pass those variables in as `--build-arg` parameters:
 
 ```bash
 # Build the docker container with specific tool versions
