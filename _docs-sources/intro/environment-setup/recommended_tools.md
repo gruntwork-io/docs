@@ -21,7 +21,7 @@ You can use a docker container with all of the tooling built in. If you would pr
 
 Save following to a `Dockerfile`:
 
-```dockerfile
+```dockerfile title="Dockerfile"
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y wget unzip curl git

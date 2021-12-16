@@ -21,7 +21,7 @@ You can use a docker container with all of the tooling built in. If you would pr
 
 Save following to a `Dockerfile`:
 
-```dockerfile
+```dockerfile title="Dockerfile"
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y wget unzip curl git
@@ -85,5 +85,5 @@ docker run -it -v $(pwd):/work gruntwork /bin/bash
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"1506a543412bc8e6982c01bc83f4d9e0"}
+{"sourcePlugin":"Local File Copier","hash":"26a6be4996bccdc836818d75d0c47470"}
 ##DOCS-SOURCER-END -->
