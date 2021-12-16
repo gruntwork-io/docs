@@ -1,7 +1,7 @@
 # Terraform
 
-[Terraform](https://www.terraform.io) is an open source _provisioning_ tool that allows you to define and manage as code a
-wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) across
+[Terraform](https://www.terraform.io) is an open source _provisioning_ tool that allows you to define and manage a
+wide variety of infrastructure (e.g., servers, load balancers, databases, network settings, and so on) as code across
 a wide variety of _providers_ (e.g., AWS, GCP, Azure). For example, here's some example Terraform code you can use to
 deploy an EC2 instance (a virtual server) running Ubuntu 18.04 into the `us-east-2` region of AWS:
 
