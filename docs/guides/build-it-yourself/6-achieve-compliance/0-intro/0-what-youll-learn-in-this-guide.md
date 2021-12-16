@@ -13,12 +13,6 @@ If you need to access older versions, please [get in touch](/docs/guides/support
 
 :::
 
-:::caution
-
-This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
-
-:::
-
 This is a complete guide to help you achieve compliance with the
 [CIS AWS Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/). By following this guide,
 you can launch infrastructure that is compliant with the Benchmark recommendations, and you'll be set to retain a
@@ -63,5 +57,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a12b5047e0306d808b5fc469de952585"}
+{"sourcePlugin":"Local File Copier","hash":"05e3a323f06c17b93d87eecb2964bf94"}
 ##DOCS-SOURCER-END -->
