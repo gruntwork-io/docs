@@ -5,6 +5,12 @@ pagination_label: Deploy a Production-grade VPC
 
 # Deploy a Production-grade VPC
 
+:::caution
+
+This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+
+:::
+
 This guide consists of four main sections:
 
 <div className="dlist">

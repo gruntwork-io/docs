@@ -5,6 +5,12 @@ pagination_label: Deploy a Production-grade Kubernetes Cluster
 
 # Deploy a Production-grade Kubernetes Cluster
 
+:::caution
+
+This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+
+:::
+
 This guide will walk you through the process of configuring a production-grade Kubernetes cluster on AWS.
 
 The guide consists of four main sections:
@@ -38,5 +44,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b74a95f5f490bd7761c2455442930a7f"}
+{"sourcePlugin":"Local File Copier","hash":"95672d60d6b25f481165830c05e97925"}
 ##DOCS-SOURCER-END -->

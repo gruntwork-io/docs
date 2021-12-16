@@ -5,6 +5,12 @@ pagination_label: Set Up an Infrastructure CI/CD Pipeline
 
 # Set Up an Infrastructure CI/CD Pipeline
 
+:::caution
+
+This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+
+:::
+
 This is a comprehensive guide of how to design, configure, and implement a Continuous Integration and Continuous
 Delivery pipeline for your infrastructure code. This guide will walk you through the steps to set up a secure CI/CD
 pipeline for your favorite infrastructure as code tools (e.g., Terraform) using your favorite CI/CD platform (e.g.,
