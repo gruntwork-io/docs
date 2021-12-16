@@ -3,6 +3,11 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const cfg = require("config")
+
+const googleAnalyticsConfig = cfg.has("googleAnalytics")
+  ? cfg.get("googleAnalytics")
+  : undefined
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,7 +27,7 @@ const config = {
     [
       "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
@@ -31,7 +36,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
@@ -186,6 +191,7 @@ const config = {
         additionalLanguages: ["hcl"],
       },
       zoomSelector: ".markdown img",
+      googleAnalytics: googleAnalyticsConfig,
     }),
 }
 
