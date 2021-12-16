@@ -1,8 +1,17 @@
 ---
+sidebar_label: What you’ll learn in this guide
 pagination_label: Achieve Compliance With the CIS AWS Foundations Benchmark
 ---
 
-# What you’ll learn in this guide
+# Achieve Compliance With the CIS AWS Foundations Benchmark
+
+:::info
+
+This guide was last updated on 6th September 2021, and it covers CIS 1.4.0 Benchmark recommendations. We aim to keep
+it up to date with our infrastructure-as-code modules with the latest CIS Benchmark that has been released.
+If you need to access older versions, please [get in touch](/docs/guides/support) with us.
+
+:::
 
 This is a complete guide to help you achieve compliance with the
 [CIS AWS Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/). By following this guide,
@@ -11,8 +20,8 @@ compliant state over time because all of the infrastructure is defined as code. 
 
 Previously, we supported versions 1.3.0 and 1.2.0 of the Benchmark. If you are looking to upgrade from an older version please follow these in order:
 
-* To upgrade from v1.2.0 to v1.3.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/1-how-to-update-to-cis-13/0-intro.md);
-* To upgrade from v1.3.0 to v1.4.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/0-how-to-update-to-cis-14/0-intro.md).
+- To upgrade from v1.2.0 to v1.3.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/1-how-to-update-to-cis-13/0-intro.md);
+- To upgrade from v1.3.0 to v1.4.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/0-how-to-update-to-cis-14/0-intro.md).
 
 ![CIS Benchmark Architecture](/img/guides/build-it-yourself/achieve-compliance/cis-account-architecture.png)
 
@@ -42,20 +51,11 @@ How to measure and maintain compliance.
 A reference table that maps each Benchmark recommendation to the corresponding section in the deployment
 walkthrough.
 
-
 </div>
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you!
 
-:::info
-
-This guide was last updated on 6th September 2021, and it covers CIS 1.4.0 Benchmark recommendations. We aim to keep
-it up to date with our infrastructure-as-code modules with the latest CIS Benchmark that has been released.
-If you need to access older versions, please get in touch with us.
-
-:::
-
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"92bb88590e282066fb4327ab1b0ff917"}
+{"sourcePlugin":"Local File Copier","hash":"05e3a323f06c17b93d87eecb2964bf94"}
 ##DOCS-SOURCER-END -->

@@ -1,4 +1,9 @@
-# What you’ll learn in this guide
+---
+sidebar_label: What you’ll learn in this guide
+pagination_label: Set Up an Infrastructure CI/CD Pipeline
+---
+
+# Set Up an Infrastructure CI/CD Pipeline
 
 This is a comprehensive guide of how to design, configure, and implement a Continuous Integration and Continuous
 Delivery pipeline for your infrastructure code. This guide will walk you through the steps to set up a secure CI/CD
@@ -38,5 +43,5 @@ What to do once you’ve got your CI/CD pipeline set up.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e1dca32970bbcb9d9f8f5c1b7f07a4df"}
+{"sourcePlugin":"Local File Copier","hash":"bf8091f18c65b6c08ea348daed589419"}
 ##DOCS-SOURCER-END -->
