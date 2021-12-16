@@ -48,9 +48,6 @@ const sidebars = {
       ],
     },
     {
-      "Deploying A Service Module": ["intro/first-deployment/stub"],
-    },
-    {
       type: "doc",
       id: "intro/next-steps",
     },
