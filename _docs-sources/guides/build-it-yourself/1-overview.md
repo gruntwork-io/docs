@@ -8,7 +8,7 @@ import Grid from "/src/components/Grid"
 
 # Build Your Own Architecture
 
-Now that your foundational knowledge is in place and your workspace is configured, you’re ready to dive in and learn how to deploy production-grade infrastructure. If you’ve purchased a Gruntwork Reference Architecture, use [this guide](/docs/guides/reference-architecture/overview/overview) to get started. Otherwise, view our [courses](/docs/courses) and [guides](/docs/guides/welcome), or check out the [Service Catalog API reference](/docs/reference/services/intro) to learn what's available.
+The Gruntwork IaC library empowers you to construct your own bespoke architecture in record time. By mix-and-matching our modules and services you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood. This series of guides aims to teach you how to configure and deploy some of our most popular modules. Additional guides will be added over time, but the principles covered extend to the rest of the IaC library. If you have trouble, don’t hesitate to ask questions via our [support channels](/docs/guides/support).
 
 ### Follow Our Step-By-Step Guides
 
