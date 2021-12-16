@@ -1,0 +1,3 @@
+Google_Analytics:
+  tracking_id: random
+  anonymize_ip: true

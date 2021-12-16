@@ -1,8 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+require("dotenv").config() // Load Environment variables
+
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const EnvConfig = require("config")
+
+const googleAnalyticsConfig = EnvConfig.get("Google_Analytics")
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,7 +27,7 @@ const config = {
     [
       "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
@@ -31,7 +36,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
@@ -186,6 +191,10 @@ const config = {
         additionalLanguages: ["hcl"],
       },
       zoomSelector: ".markdown img",
+      googleAnalytics: {
+        trackingID: googleAnalyticsConfig.tracking_id,
+        anonymizeIP: googleAnalyticsConfig.anonymize_ip,
+      },
     }),
 }
 
