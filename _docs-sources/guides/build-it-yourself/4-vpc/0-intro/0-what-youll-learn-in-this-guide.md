@@ -1,4 +1,9 @@
-# What you’ll learn in this guide
+---
+sidebar_label: What you’ll learn in this guide
+pagination_label: Deploy a Production-grade VPC
+---
+
+# Deploy a Production-grade VPC
 
 This guide consists of four main sections:
 
