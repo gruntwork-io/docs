@@ -17,7 +17,6 @@ const sidebars = {
     {
       Overview: [
         "intro/overview/intro-to-gruntwork",
-        "intro/overview/why-gruntwork",
         "intro/overview/gruntwork-production-framework",
         "intro/overview/how-it-works",
         "intro/overview/use-cases",
