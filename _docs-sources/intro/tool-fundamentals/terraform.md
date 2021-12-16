@@ -18,7 +18,7 @@ resource "aws_instance" "example" {
 }
 ```
 
-You can deploy this server by running `terraform init` and `terraform apply`. Check out the
+You can deploy this server by running `terraform init` and then `terraform apply`. Check out our
 [Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) for a
 thorough introduction to the language.
 
