@@ -3,12 +3,15 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const cfg = require("config")
+
+const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
   tagline: "Your entire infrastructure, defined as code, in about a day.",
-  url: "https://your-docusaurus-test-site.com",
+  url: "http://host.docker.internal:3000",
   baseUrl: "/",
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
@@ -185,6 +188,28 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["hcl"],
       },
+      algolia: algoliaConfig
+        ? {
+            // If Algolia did not provide you any appId, use 'BH4D9OD16A'
+            appId: algoliaConfig.appId,
+
+            // Public API key: it is safe to commit it
+            apiKey: algoliaConfig.apiKey,
+
+            indexName: algoliaConfig.indexName,
+
+            // Optional: see doc section below
+            // contextualSearch: true,
+
+            // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+            // externalUrlRegex: "github\\.com|gruntwork.io\\.com",
+
+            // Optional: Algolia search parameters
+            searchParameters: {},
+
+            //... other Algolia params
+          }
+        : undefined,
       zoomSelector: ".markdown img",
     }),
 }
