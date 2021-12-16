@@ -32,7 +32,7 @@ const sidebars = {
       ],
     },
     {
-      "Setting Up Your Environmant": ["intro/environment-setup/stub"],
+      "Setting Up Your Environment": ["intro/environment-setup/stub"],
     },
     {
       "Tool Fundamentals": ["intro/tool-fundamentals/stub"],
