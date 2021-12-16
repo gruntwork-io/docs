@@ -1,7 +1,3 @@
----
-'title': 'Packer'
----
-
 # Packer
 
 [Packer](https://www.packer.io) is an open source tool you can use to define _machine images_ (e.g., VM
@@ -45,5 +41,5 @@ Reference Architecture does use Packer as one of its opinionated tools.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2c9db58c91d5886a55087a5f96da775b"}
+{"sourcePlugin":"Local File Copier","hash":"5358e9ef487a237a90512dad8e076cc6"}
 ##DOCS-SOURCER-END -->

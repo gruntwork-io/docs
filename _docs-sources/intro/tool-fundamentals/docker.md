@@ -1,7 +1,3 @@
----
-'title': 'Docker'
----
-
 # Docker
 
 [Docker](https://www.docker.com) is an open source tool you can use to run _containers_ and define _container images_ as

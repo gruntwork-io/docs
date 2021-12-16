@@ -1,7 +1,3 @@
----
-'title': 'Docker'
----
-
 # Docker
 
 [Docker](https://www.docker.com) is an open source tool you can use to run _containers_ and define _container images_ as
@@ -23,6 +19,7 @@ Registry (e.g., ECR or Docker Hub), and then deploy the Docker image using other
 Infrastructure as Code Library contains a number of modules for running _container orchestration tools_ such as Kubernetes, ECS, and
 Nomad that you can use to deploy and manage Docker images.
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"1916179fa766fe97eed5aa7390c524f9"}
+{"sourcePlugin":"Local File Copier","hash":"aac0ccc2a98a01c83a0a38d1e50253b0"}
 ##DOCS-SOURCER-END -->

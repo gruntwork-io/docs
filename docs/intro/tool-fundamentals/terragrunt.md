@@ -1,7 +1,3 @@
----
-'title': 'Terragrunt'
----
-
 # Terragrunt
 
 [Terragrunt](https://github.com/gruntwork-io/terragrunt) is a thin, open source wrapper for Terraform. It is designed to
@@ -32,5 +28,5 @@ Infrastructure as Code Library with plain Terraform, Terraform Enterprise, Atlan
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2e86362857960d86f265686a12908bc2"}
+{"sourcePlugin":"Local File Copier","hash":"dff455f0d67edfa21c386e3f4fc6925a"}
 ##DOCS-SOURCER-END -->

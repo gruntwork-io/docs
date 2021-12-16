@@ -1,7 +1,3 @@
----
-'title': 'Terraform'
----
-
 # Terraform
 
 [Terraform](https://www.terraform.io) is an open source _provisioning_ tool that allows you to define and manage as code a

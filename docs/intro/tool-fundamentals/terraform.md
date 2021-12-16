@@ -1,7 +1,3 @@
----
-'title': 'Terraform'
----
-
 # Terraform
 
 [Terraform](https://www.terraform.io) is an open source _provisioning_ tool that allows you to define and manage as code a
@@ -29,6 +25,7 @@ thorough introduction to the language.
 A large percentage of the infrastructure code in the Gruntwork Infrastructure as Code Library is defined using Terraform. We even
 wrote [the book](https://www.terraformupandrunning.com) on it!
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"88df8d65adf7f8380f387eb77d66196d"}
+{"sourcePlugin":"Local File Copier","hash":"c778deb4a8a8a688069855c6f0d5c2a2"}
 ##DOCS-SOURCER-END -->

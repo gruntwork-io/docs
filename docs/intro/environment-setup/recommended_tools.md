@@ -1,7 +1,3 @@
----
-'title': 'Recommended Tools'
----
-
 # Recommended Tools
 
 * [AWS CLI](https://aws.amazon.com/cli/) - The AWS CLI is a powerful tool that lets perform most of the actions that you can do via the AWS Console.
@@ -87,6 +83,7 @@ Once the container has been built, you can run the container, mounting the curre
 docker run -it -v $(pwd):/work gruntwork /bin/bash
 ```
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"49a195d1b3faba275d466977443b52d4"}
+{"sourcePlugin":"Local File Copier","hash":"ad8f41a7d24d9a7614cdc0767d334188"}
 ##DOCS-SOURCER-END -->

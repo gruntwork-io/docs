@@ -1,7 +1,3 @@
----
-'title': 'Terragrunt'
----
-
 # Terragrunt
 
 [Terragrunt](https://github.com/gruntwork-io/terragrunt) is a thin, open source wrapper for Terraform. It is designed to

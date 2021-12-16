@@ -1,7 +1,3 @@
----
-'title': 'Packer'
----
-
 # Packer
 
 [Packer](https://www.packer.io) is an open source tool you can use to define _machine images_ (e.g., VM

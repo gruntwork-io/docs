@@ -1,7 +1,3 @@
----
-'title': 'Recommended Tools'
----
-
 # Recommended Tools
 
 * [AWS CLI](https://aws.amazon.com/cli/) - The AWS CLI is a powerful tool that lets perform most of the actions that you can do via the AWS Console.
