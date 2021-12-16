@@ -16,7 +16,7 @@ const sidebars = {
   introSidebar: [
     {
       Overview: [
-        "intro/overview/world-class-devops",
+        "intro/overview/intro-to-gruntwork",
         "intro/overview/account-baselines",
         "intro/overview/service-catalog",
         "intro/overview/app-catalog",

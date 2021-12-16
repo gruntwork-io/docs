@@ -52,7 +52,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Intro",
-            docId: "intro/overview/world-class-devops",
+            docId: "intro/overview/intro-to-gruntwork",
           },
           {
             type: "doc",
