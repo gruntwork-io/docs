@@ -1,10 +1,11 @@
 ---
+pagination_label: Authentication
 title: Intro
 ---
 
 # Authentication
 
-In the last section, you got a basic [overview of the architecture](../overview/overview), including learning that there is
+In the last section, you got a basic [overview of the architecture](../01-overview/overview.md), including learning that there is
 a variety of infrastructure deployed across multiple AWS accounts. In this section, you'll learn about authenticating
 and connecting to all the resources in your AWS accounts:
 
@@ -28,5 +29,5 @@ and connecting to all the resources in your AWS accounts:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"075f808523a8cb81e5b324c8d2ac975d"}
+{"sourcePlugin":"Local File Copier","hash":"ce4a1512822da8c46bc92f584d43495a"}
 ##DOCS-SOURCER-END -->

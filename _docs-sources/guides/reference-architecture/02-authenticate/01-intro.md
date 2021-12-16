@@ -1,10 +1,11 @@
 ---
+pagination_label: Authentication
 title: Intro
 ---
 
 # Authentication
 
-In the last section, you got a basic [overview of the architecture](../overview/overview), including learning that there is
+In the last section, you got a basic [overview of the architecture](../01-overview/overview.md), including learning that there is
 a variety of infrastructure deployed across multiple AWS accounts. In this section, you'll learn about authenticating
 and connecting to all the resources in your AWS accounts:
 

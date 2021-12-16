@@ -7,14 +7,16 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
-  tagline: "Dinosaurs are cool",
+  tagline: "Your entire infrastructure, defined as code, in about a day.",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
 
-  stylesheets: ["https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"],
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap",
+  ],
 
   presets: [
     [
@@ -61,10 +63,10 @@ const config = {
           {
             type: "doc",
             position: "left",
-            label: "Service Catalog API",
+            label: "Service Catalog API",
             docId: "reference/services/intro",
           },
-          { to: "/courses", label: "Courses", position: "left" },
+          { to: "/docs/courses", label: "Courses", position: "left" },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",
@@ -142,6 +144,10 @@ const config = {
                 label: "DevOps Checklist",
                 href: "https://gruntwork.io/devops-checklist/",
               },
+              {
+                label: "Support",
+                href: "/docs/guides/support",
+              },
             ],
           },
           {
@@ -165,7 +171,7 @@ const config = {
         copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
       },
       colorMode: {
-        defaultMode: "dark",
+        defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: false,
         /* we clear these icons out and use CSS to swap in our own images instead */
@@ -177,6 +183,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["hcl"],
       },
       zoomSelector: ".markdown img",
     }),

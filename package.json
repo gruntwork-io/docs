@@ -36,7 +36,7 @@
     "typescript": "^4.3.5"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.4"
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.5"
   },
   "browserslist": {
     "production": [

@@ -1,3 +1,7 @@
+---
+pagination_label: Reference Architecture
+---
+
 # Architecture Overview
 
 This documentation contains an overview of a deployed and managed architecture.
@@ -52,7 +56,7 @@ The list of accounts includes:
 - **shared-services**: DevOps tooling.
 - **logs**: An account for centralizing logs from all of the accounts.
 
-Check out the [Authentication docs](../authenticate/intro) for more info on how to authenticate to these accounts and
+Check out the [Authentication docs](../02-authenticate/01-intro.md) for more info on how to authenticate to these accounts and
 switch between them.
 
 ## VPCs and subnets
@@ -63,8 +67,8 @@ what can go in and out of that network. The IP addresses within each VPC are fur
 [subnets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html), where each subnet controls the
 routing for its IP address.
 
-- *Public subnets* are directly accessible from the public Internet.
-- *Private subnets* are only accessible from within the VPC.
+- _Public subnets_ are directly accessible from the public Internet.
+- _Private subnets_ are only accessible from within the VPC.
 
 Just about everything in this infrastructure is deployed in private subnets to reduce the surface area to attackers.
 The only exceptions are load balancers and the [OpenVPN server](#openvpn-server), both of which are described below.
@@ -73,8 +77,7 @@ Each VPC is also configured with [VPC flow logs](https://docs.aws.amazon.com/vpc
 can be useful for monitoring and auditing network traffic across the VPC. Each VPC publishes its flow logs to CloudWatch
 Logs, under the log group `VPC_NAME-vpc-flow-logs`, where the `VPC_NAME` is an input variable to the `vpc` module.
 
-To learn more about VPCs and subnets, check out the Gruntwork [vpc
-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc).
+To learn more about VPCs and subnets, check out the Gruntwork [`vpc service`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc).
 
 ## Load balancers
 
@@ -101,23 +104,22 @@ we expose a single server publicly: an [OpenVPN server](https://openvpn.net/). O
 VPN client, you are "in the network", and will be able to access the private resources (e.g., you will be able to SSH
 to your EC2 Instances).
 
-For more info, see the [openvpn
-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server) and the VPN
-section of the [Authentication docs](../authenticate/authenticate-to-the-vpn-server).
+For more info, see the [`openvpn` service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server) and the VPN
+section of the [Authentication docs](../02-authenticate/06-authenticate-to-the-vpn-server.md).
 
 ## GitHub
 
 We have set up [GitHub](https://github.com) as a Continuous Integration (CI) server. After every commit, a GitHub
 job runs your build, tests, packaging, and automated deployment steps.
 
-For more info, see the [Gruntwork Pipelines docs](../configure-gw-pipelines/intro).
+For more info, see the [Gruntwork Pipelines docs](../04-configure-gw-pipelines/01-intro.md).
 
 ## Monitoring, log aggregation, alerting
 
 You can find metrics, log files from all your servers, and subscribe to alert notifications using [Amazon
 CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-For more info, see the [Monitoring, Alerting, and Logging docs](../monitoring-alerting-logging/intro).
+For more info, see the [Monitoring, Alerting, and Logging docs](../05-monitoring-alerting-logging/01-intro.md).
 
 ## DNS and TLS
 
@@ -133,19 +135,19 @@ We have configured security best practices in every aspect of this infrastructur
 
 - **Network security**: see [VPCs and subnets](#vpcs-and-subnets).
 
-- **Server access**: see SSH and VPN sections of the [Authentication docs](../authenticate/intro).
+- **Server access**: see SSH and VPN sections of the [Authentication docs](../02-authenticate/01-intro.md).
 
-- **Application secrets**: see secrets management section of the [Deploy your Apps docs](../deploy-apps/intro).
+- **Application secrets**: see secrets management section of the [Deploy your Apps docs](../03-deploy-apps/01-intro.md).
 
 - **User accounts**: see the [Authentication docs](../authenticate/setting-up-initial-access).
 
 - **Auditing**: see the [CloudTrail](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cloudtrail) and
   [AWS Config](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/aws-config) modules.
 
-- **Intrusion detection**: see the [fail2ban](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/fail2ban)
+- **Intrusion detection**: see the [`fail2ban`](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/fail2ban)
   and [GuardDuty](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/guardduty-multi-region) modules.
 
-- **Security updates**: see the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update).
+- **Security updates**: see the [`auto-update` module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update).
 
 Check out [Gruntwork Security Best
 Practices](https://docs.google.com/document/d/e/2PACX-1vTikva7hXPd2h1SSglJWhlW8W6qhMlZUxl0qQ9rUJ0OX22CQNeM-91w4lStRk9u2zQIn6lPejUbe-dl/pub)

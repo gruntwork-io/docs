@@ -95,9 +95,9 @@ That's it. Access the pipeline in the Actions tab in GitHub.
 
 ### Destroying infrastructure
 
-For instructions on how to destroy infrastructure, see the [Undeploy guide](../undeploy/intro).
+For instructions on how to destroy infrastructure, see the [Undeploy guide](../07-undeploy/01-intro.md).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"49e7c4540239202df1457efa5c39bc8d"}
+{"sourcePlugin":"Local File Copier","hash":"cd851b602bff6adff11783bf0bb679a4"}
 ##DOCS-SOURCER-END -->
