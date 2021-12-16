@@ -19,6 +19,11 @@
   margin-bottom: 1rem;
 }
 
+.card .title {
+  margin-top: 1em;
+  margin-bottom: 0.75rem;
+}
+
 .card strong {
   font-weight: 600;
 }
@@ -30,7 +35,11 @@
   display: inline;
 }
 
-.card p:last-child {
+.card *:first-child {
+  margin-top: 0;
+}
+
+.card *:last-child {
   margin-bottom: 0;
 }
 
