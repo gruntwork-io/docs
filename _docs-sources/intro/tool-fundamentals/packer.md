@@ -1,7 +1,7 @@
 # Packer
 
 [Packer](https://www.packer.io) is an open source tool you can use to define _machine images_ (e.g., VM
-images, Docker images) as code. For example, here is how you can use Packer to define an Ubuntu 18.04 Amazon Machine Image (AMI) that has Node.js installed:
+images, Docker images) as code. For example, here is how you can use Packer to define an Ubuntu 18.04 [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) that has Node.js installed:
 
 ```json
 {
