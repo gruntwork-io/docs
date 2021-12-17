@@ -1,34 +1,58 @@
 import React from "react"
+import clsx from "clsx"
 import styles from "./Card.module.css"
 
-type CardProps = {
+export type CardProps = {
   title: string
-  icon?: string
-  href?: string
   description?: JSX.Element
+  href?: string
+  icon?: string
+  number?: number
   tags?: string[]
+  orientation?: "horizontal" | "vertical"
+  appearance?: "flush" | "float"
+  className?: string
 }
 
 export const Card: React.FunctionComponent<CardProps> = ({
   title,
-  icon,
   description,
   href,
+  icon,
+  number,
   tags,
+  orientation,
+  appearance,
+  className,
   children,
 }) => {
   const body = (
-    <div className={styles.card}>
-      {icon && <img className={styles.icon} alt={title} src={icon} />}
-      <h3 className={styles.title}>{title}</h3>
-      <div>{children || description}</div>
-      {tags && (
-        <ul className={styles.tags}>
-          {tags.map((tag, idx) => (
-            <li key={idx}>{tag}</li>
-          ))}
-        </ul>
+    <div
+      className={clsx(
+        styles.card,
+        orientation === "horizontal" && styles.horizontal,
+        appearance === "flush" && styles.flush,
+        appearance === "float" && styles.float,
+        className
       )}
+    >
+      <div>
+        {number && <span className={styles.num}>{number}</span>}
+        {icon && !number && (
+          <img className={styles.icon} alt={title} src={icon} />
+        )}
+      </div>
+      <div>
+        <h3 className={styles.title}>{title}</h3>
+        <div>{children || description}</div>
+        {tags && (
+          <ul className={styles.tags}>
+            {tags.map((tag, idx) => (
+              <li key={idx}>{tag}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   )
 

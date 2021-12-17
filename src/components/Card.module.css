@@ -12,6 +12,26 @@
   border: solid 1px transparent;
 }
 
+.card.horizontal {
+  flex-direction: row;
+  align-items: left;
+  /*  padding: 1.5rem;
+*/
+}
+
+.flush {
+  background-color: transparent;
+  box-shadow: none;
+  border: solid 1px #ddd;
+}
+
+.float {
+}
+
+.card.horizontal .title {
+  margin-bottom: 0.25rem;
+}
+
 .card .icon {
   height: 60px;
   object-fit: contain;
@@ -41,6 +61,15 @@
 
 .card *:last-child {
   margin-bottom: 0;
+}
+
+.card .num {
+  font-weight: bold;
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1.5rem;
+  margin-top: -1rem !important;
+  color: #5849a6;
 }
 
 ul.tags {
