@@ -13,15 +13,15 @@ The Gruntwork product suite is designed to help you implement a world-class DevO
 
 ### Gruntwork IaC Library
 
-A battle-tested, production-grade _catalog_ of infrastructure code that contains the core "building blocks" of infrastructure:
+A battle-tested, production-grade _catalog_ of infrastructure code that contains the core "building blocks" of infrastructure. It includes everything you’ll need to set up:
 
-- **[Landing Zone](https://gruntwork.io/landing-zone-for-aws/)** &mdash; See how you can use Gruntwork Landing Zone to [configure your AWS accounts](/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide).
-- **[Pipelines](https://gruntwork.io/pipelines/)** &mdash; See how you can use Gruntwork Pipelines to [set up a CI/CD pipeline for your IaC code](/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide).
-- **Networking** &mdash; For instance, you can [deploy a production grade VPC](/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide).
-- **App Orchestration** &mdash; See how you can [deploy a production grade Kubernetes Cluster](/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide).
-- **Data Storage** &mdash; …
-- **Security** &mdash; …
-- [and more…](https://gruntwork.io/infrastructure-as-code-library/#whats-in-the-library)
+- A Multi-account structure
+- An infrastrucutre CI/CD Pipeline
+- Networking and VPCs
+- App orchestration — ECS, EC2, Kubernetes, and more
+- Data storage — Aurora, Elasticache, RDS, and more
+- Best-practice security baselines
+- _and more…_
 
 ### Gruntwork Compliance
 
@@ -39,22 +39,21 @@ A team of experienced Gruntwork engineers who can help you:
 Gruntwork offers three levels of support:
 
 - **[Community support](/docs/guides/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
-- **[Paid support](/docs/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with all response times backed by SLAa.
+- **[Paid support](/docs/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
 
 ## What you provide
 
-In the Gruntwork model, you (or your trusted DevOps consultant/contractor) take responsibility for:
+Gruntwork products and services can help you quickly achieve world-class infrastrcuture. However, we aren’t a consulting company. To suceced, you (or your trusted DevOps consultant/contractor) must commit to learning how to leverage our products for your use cases, making any additional customizations, and deploying or migrating your apps and services.
 
 ### Learn how to use our products
 
-- Learning how to use the Gruntwork products.
-- Learning the Gruntwork opinions on DevOps best practices.
+To work effectively with our products, you’ll need to understand our opinionated stance on DevOps best practices and how to apply it for your purposes. You'll also need to learn how to use the Gruntwork products themselves. Our guides and support remain available to assist you in these endeavors.
 
-### Implementing the "last mile"
+### Implement the “last mile”
 
-- Implementing the "last mile" of customizations for your use case.
+Gruntwork products strike a balance between opinionatedness and configurability. They’ll get you most of the way to your goal, but you may need to make some customizations to suit your use case. You may also need to adapt your apps and services to run in your new infrastructure. Our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions) and [Community Slack Channel](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) provide great resources to assist you in this effort.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fd359ce84a01a6700ef9b80927900abc"}
+{"sourcePlugin":"Local File Copier","hash":"d9fa8619fd1365ab8a3f7b1bd56a14b2"}
 ##DOCS-SOURCER-END -->
