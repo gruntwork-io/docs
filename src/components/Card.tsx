@@ -21,8 +21,8 @@ export const Card: React.FunctionComponent<CardProps> = ({
   icon,
   number,
   tags,
-  orientation,
-  appearance,
+  orientation = "vertical",
+  appearance = "float",
   className,
   children,
 }) => {
