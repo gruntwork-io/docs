@@ -10,11 +10,13 @@ const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
 
+const siteUrl = cfg.get("siteUrl")
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
   tagline: "Your entire infrastructure, defined as code, in about a day.",
-  url: "http://host.docker.internal:3000",
+  url: siteUrl,
   baseUrl: "/",
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.

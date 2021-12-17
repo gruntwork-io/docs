@@ -1,5 +1,7 @@
 # This is the default config for all environments. Check out custom-environment-variables.yml for all possible settings.
 
+siteUrl: http://host.docker.internal:3000
+
 algolia:
   appId: 7AWZHGNJE2
   apiKey: 502f05673fef49bd9ccb1b701c727cdd
