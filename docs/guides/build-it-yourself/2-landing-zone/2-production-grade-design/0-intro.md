@@ -2,7 +2,7 @@
 pagination_label: Production-grade Design
 ---
 
-# Intro
+# Intro to Production-grade Design
 
 With all the core concepts out of the way, let’s now discuss how to configure a production-grade AWS account structure that looks something like this:
 
@@ -13,5 +13,5 @@ we'll break it down piece by piece in the next few sections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"85058905f9714898d3255264660201f1"}
+{"sourcePlugin":"Local File Copier","hash":"cba12c0619ad568620c14ecef35e7318"}
 ##DOCS-SOURCER-END -->
