@@ -36,31 +36,31 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 <CardList>
   <Card
     title="Core Concepts"
-    href="../core-concepts/intro"
+    href="/docs/guides/build-it-yourself/achieve-compliance/core-concepts/intro"
   >
     An overview of the AWS Foundations Benchmark, including its control sections and structure.
   </Card>
   <Card
     title="Production-grade Design"
-    href="../production-grade-design/intro"
+    href="/docs/guides/build-it-yourself/achieve-compliance/production-grade-design/intro"
   >
     How to use infrastructure as code to achieve compliance with minimal redundancy and maximum flexibility.
   </Card>
   <Card
     title="Deployment Walkthrough"
-    href="../deployment-walkthrough/pre-requisites"
+    href="/docs/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/pre-requisites"
   >
     A step-by-step guide to achieving compliance using the Gruntwork Infrastructure as Code Library and the Gruntwork CIS AWS Foundations Benchmark wrapper modules.
   </Card>
   <Card
     title="Next Steps"
-    href="../next-steps"
+    href="/docs/guides/build-it-yourself/achieve-compliance/next-steps"
   >
     How to measure and maintain compliance.
   </Card>
   <Card
     title="Traceability Matrix"
-    href="../traceability-matrix"
+    href="/docs/guides/build-it-yourself/achieve-compliance/traceability-matrix"
   >
     A reference table that maps each Benchmark recommendation to the corresponding section in the deployment
 walkthrough.
@@ -69,5 +69,5 @@ walkthrough.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7ca30366e3ac345298f23d3bcd59a06f"}
+{"sourcePlugin":"Local File Copier","hash":"ebb13b17e88425bde70b3c89967a8689"}
 ##DOCS-SOURCER-END -->
