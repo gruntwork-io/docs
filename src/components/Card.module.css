@@ -38,7 +38,7 @@
 }
 
 .card .title {
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: 0.75rem;
 }
 
@@ -53,11 +53,11 @@
   display: inline;
 }
 
-.card *:first-child {
+.card > div:first-child > *:first-child {
   margin-top: 0;
 }
 
-.card *:last-child {
+.card > div:last-child > *:last-child {
   margin-bottom: 0;
 }
 
