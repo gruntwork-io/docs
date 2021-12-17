@@ -207,7 +207,7 @@ Terragrunt configuration that includes these values.
 
 1.  Once you have the common configuration, copy over all the blocks,
     attributes, and input keys that you identified as common in [Step 2:
-    Identify common configurations](#step_2) from the reference configuration
+    Identify common configurations](#step-2-identify-common-configurations) from the reference configuration
     into the common configuration. You should also copy any relevant comment
     blocks as well so you can keep the comment references. Be sure to copy over
     the `locals` block as well.
@@ -297,5 +297,5 @@ moved to the common component configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d4898fa24bada3882ea12804bb38c4bc"}
+{"sourcePlugin":"Local File Copier","hash":"3c2b313569a38dbb31bcbd328b86fa47"}
 ##DOCS-SOURCER-END -->

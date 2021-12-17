@@ -24,7 +24,7 @@ organization, AWS does _not_ allow you to set those passwords. So, to get the pa
 1. Click "Forgot your password" to reset the password.
 1. Check the email address associated with the root user account for a link you can use to create a new password.
 
-Please note that the root user account can do just about *anything* in your AWS account, bypassing almost all security
+Please note that the root user account can do just about _anything_ in your AWS account, bypassing almost all security
 restrictions you put in place, so you need to take extra care with protecting this account. We **very strongly**
 recommend that when you reset the password for each account, you:
 
@@ -60,7 +60,7 @@ Once you have access with the IAM user, be sure to do the following to finish co
 
 1. **Enable MFA**. [Follow these instructions to enable
    MFA](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable.html) for your IAM user. It takes
-less than a minute and_dramatically_ improves your security posture. Moreover, MFA is **required** by the Reference
+   less than a minute and*dramatically* improves your security posture. Moreover, MFA is **required** by the Reference
    Architecture, and you won't be able to access any other accounts without it!
 
 1. **Logout and log back in**. After enabling MFA, you need to log out and then log back in, thereby forcing AWS to
@@ -133,7 +133,7 @@ A few notes about the code above:
 
 To deploy this new code and create the new IAM users, you will need to:
 
-1. **Authenticate**. [Authenticate to AWS via the CLI](#authenticate-to-aws-via-the-cli).
+1. **Authenticate**. [Authenticate to AWS via the CLI](04-authenticate-to-aws-via-the-cli.md).
 
 1. **Apply your changes**. Run `terragrunt apply`.
 

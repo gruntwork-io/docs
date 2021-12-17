@@ -33,7 +33,7 @@ that has access to the SQS queues in those accounts.
 
 To be able to assume an IAM role, your IAM user needs to be part of an IAM group with the proper permissions, such as
 `_account.xxx-full-access` or `_account.xxx-openvpn-users`, where `xxx` is the name of the account you want to access
-(`stage`, `prod`, etc). See [Configure other IAM users](#configure-other-iam-users) for instructions on adding users to
+(`stage`, `prod`, etc). See [Configure other IAM users](02-setting-up-initial-access.md#configure-other-iam-users) for instructions on adding users to
 IAM groups.
 
 ## Use openvpn-admin to generate a configuration file
@@ -43,7 +43,7 @@ to authenticate. To generate this configuration file, do the following:
 
 1. Install the latest [openvpn-admin binary](https://github.com/gruntwork-io/terraform-aws-openvpn/releases) for your OS.
 
-1. [Authenticate to AWS via the CLI](#authenticate-to-aws-via-the-cli). You will need to assume an IAM role in the AWS
+1. [Authenticate to AWS via the CLI](04-authenticate-to-aws-via-the-cli.md). You will need to assume an IAM role in the AWS
    account with the OpenVPN server you're trying to connect to. This IAM role must have access to the SQS queues used
    by OpenVPN server. Typically, the `allow-full-access-from-other-accounts` or
    `openvpn-server-allow-certificate-requests-for-external-accounts` IAM role is what you want.

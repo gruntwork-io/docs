@@ -83,7 +83,7 @@ This code creates an IAM user called `support`, adds them to a new group called 
 2. The policy is attached to an IAM group, not directly to the IAM user (recommendation 1.15).
 
 3. Recommendation 1.17 specifically requires that the Support policy be used. You should attach it to a group, as
-    shown here.
+   shown here.
 
 ## Do not use full administrator privileges
 
@@ -275,7 +275,7 @@ aws iam delete-server-certificate --server-certificate-name <CERTIFICATE_NAME>
 ```
 
 To automate this process you might decide to implement a Lambda function that runs on a regular schedule and removes
-all expired SSL/TLS certificates. Check out the [Apply the baseline to the root account](#apply_account_baseline_root), [Apply the to the logs account](#apply_account_baseline_logs) and [Apply the to the security account](#apply_account_baseline_security) section of the deployment walkthrough
+all expired SSL/TLS certificates. Check out the [Apply the baseline to the root account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/0-apply-account-baseline-root-to-root-account.md#apply-the-account-baseline-root-baseline-to-the-root-account), [Apply the to the logs account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/1-apply-account-baseline-app-to-logs-account.md) and [Apply the to the security account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/2-apply-account-baseline-security-to-security-account.md) section of the deployment walkthrough
 to see how this module is used from the Landing Zone account baselines and is deployed in each of your AWS accounts.
 
 ## IAM Access Analyzer
@@ -285,7 +285,7 @@ AWS Account or Organization.
 
 To achieve this compliance requirement, enable the IAM Access Analyzer service for every AWS region you have enabled in
 every one of your AWS accounts. Alternatively, you could make use of the [`iam-access-analyzer-multi-region`](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-access-analyzer-multi-region) module
-available in the Gruntwork Service Catalog, or if you’re following this guide, refer to [Apply the baseline to the root account](#apply_account_baseline_root), [Apply the to the logs account](#apply_account_baseline_logs) and [Apply the to the security account](#apply_account_baseline_security) sections of the
+available in the Gruntwork Service Catalog, or if you’re following this guide, refer to [Apply the baseline to the root account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/0-apply-account-baseline-root-to-root-account.md#apply-the-account-baseline-root-baseline-to-the-root-account), [Apply the to the logs account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/1-apply-account-baseline-app-to-logs-account.md) and [Apply the to the security account](../3-deployment-walkthrough/8-deploy-landing-zone-solution/2-apply-account-baseline-security-to-security-account.md) sections of the
 deployment walkthrough to see how this module is used from the Landing Zone account baselines and is deployed in each of your AWS accounts.
 
 Once enabled, it will scan only within the boundaries of the AWS Account or Organization it has access to. Only specific
