@@ -2,7 +2,7 @@
 pagination_label: Production-grade Design
 ---
 
-# Intro
+# Intro to Production-grade Design
 
 In [core concepts](../1-core-concepts/0-intro.md) we discussed the basics of the AWS Foundations Benchmark. Although it's possible to achieve
 compliance with the Benchmark by manually configuring each setting in the web console or entering the CLI commands, we
@@ -18,5 +18,5 @@ edition of Terraform Up & Running](https://blog.gruntwork.io/terraform-up-runnin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2dc4142f593fe95453c03bc819fc7aba"}
+{"sourcePlugin":"Local File Copier","hash":"6e07b1fda93b464943f4c9e20a9ac129"}
 ##DOCS-SOURCER-END -->

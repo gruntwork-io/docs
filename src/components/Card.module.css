@@ -5,11 +5,29 @@
   padding: 2rem;
   width: 100%;
   height: 100%;
-  background-color: #f9fbfc;
   border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   transition: 0.15s ease-in-out;
+}
+
+.card.horizontal {
+  flex-direction: row;
+  align-items: left;
+}
+
+.flush {
+  background-color: transparent;
+  box-shadow: none;
+  border: solid 1px #ddd;
+}
+
+.float {
+  background-color: #f9fbfc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   border: solid 1px transparent;
+}
+
+.card.horizontal .title {
+  margin-bottom: 0.25rem;
 }
 
 .card .icon {
@@ -41,6 +59,15 @@
 
 .card *:last-child {
   margin-bottom: 0;
+}
+
+.card .num {
+  font-weight: bold;
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1.5rem;
+  margin-top: -1rem !important;
+  color: #5849a6;
 }
 
 ul.tags {

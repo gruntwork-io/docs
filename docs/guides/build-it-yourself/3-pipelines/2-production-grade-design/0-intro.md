@@ -3,7 +3,7 @@ pagination_label: Production Grade Design
 sidebar_label: Intro
 ---
 
-# Intro to Production Grade Design
+# Intro to Production-grade Design
 
 With all the core concepts out of the way, let’s now discuss how to configure a production-grade CI/CD workflow for
 infrastructure code, using a platform that looks something like this:
@@ -12,5 +12,5 @@ infrastructure code, using a platform that looks something like this:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"55e328e4f33398cd96aeaf9d34a82c97"}
+{"sourcePlugin":"Local File Copier","hash":"85dfc1646a1dc0b0f306a424397fcb8f"}
 ##DOCS-SOURCER-END -->

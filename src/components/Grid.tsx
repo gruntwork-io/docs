@@ -2,7 +2,7 @@ import React from "react"
 import clsx from "clsx"
 import styles from "./Grid.module.css"
 
-type GridProps = {
+export type GridProps = {
   cols?: number
   gap?: number | string
   colGap?: number | string
@@ -12,7 +12,7 @@ type GridProps = {
   children?: JSX.Element | JSX.Element[]
 }
 
-export default function Grid({
+export const Grid: React.FunctionComponent<GridProps> = ({
   cols = 3,
   gap = "1rem",
   colGap,
@@ -20,7 +20,7 @@ export default function Grid({
   equalHeightRows = true,
   stacked = false,
   children,
-}: GridProps): JSX.Element {
+}) => {
   const classes = clsx(
     styles.grid,
     cols == 1 && styles.col1,
@@ -51,3 +51,5 @@ export default function Grid({
     </section>
   )
 }
+
+export default Grid
