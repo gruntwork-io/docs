@@ -1,4 +1,15 @@
-# What you’ll learn in this guide
+---
+sidebar_label: What you’ll learn in this guide
+pagination_label: Deploy a Production-grade VPC
+---
+
+# Deploy a Production-grade VPC
+
+:::caution
+
+This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+
+:::
 
 This guide consists of four main sections:
 
@@ -28,5 +39,5 @@ Feel free to read the guide from start to finish or skip around to whatever part
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4ae2802a409a764054df57d2f29bcbe9"}
+{"sourcePlugin":"Local File Copier","hash":"65dc88437a892264c5378f7fa282fd6c"}
 ##DOCS-SOURCER-END -->

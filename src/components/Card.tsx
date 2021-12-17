@@ -20,7 +20,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   const body = (
     <div className={styles.card}>
       {icon && <img className={styles.icon} alt={title} src={icon} />}
-      <h3>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <div>{children || description}</div>
       {tags && (
         <ul className={styles.tags}>

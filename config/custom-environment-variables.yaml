@@ -1,0 +1,7 @@
+# This file allows us to define custom environment variables that can be used to override parts of the config. This
+# provides a convenient mechanism for specifying different config values in different environments.
+
+# Google Analytics tracking config
+googleAnalytics:
+  trackingID: CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
+  anonymizeIP: CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP

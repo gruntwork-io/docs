@@ -1,13 +1,19 @@
 ---
-pagination_label: Build it Yourself - Configure Your Accounts With Landing Zone
+sidebar_label: What you’ll learn in this guide
+pagination_label: Configure Your Accounts With Landing Zone
 ---
 
-# What you’ll learn in this guide
+# Configure Your Accounts with Landing Zone
+
+:::caution
+
+This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+
+:::
 
 This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, and audit logging. We’ll also discuss how to implement a Landing Zone solution that lets you quickly spin up new AWS accounts that all implement a security baseline that enforces your company’s policies.
 
 This guide consists of four main sections:
-
 
 <div className="dlist">
 
@@ -31,12 +37,11 @@ solution, including how to manage it all with customizable security baselines de
 
 What to do once you’ve got your AWS account structure configured.
 
-
 </div>
 
 Feel free to read the guide from start to finish or skip around to whatever part interests you.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"13ce0bbfb0d0a9120d194242d1fb3430"}
+{"sourcePlugin":"Local File Copier","hash":"e5028f988cafa3aab0c12080ba157b0e"}
 ##DOCS-SOURCER-END -->

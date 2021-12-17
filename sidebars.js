@@ -16,13 +16,15 @@ const sidebars = {
   introSidebar: [
     {
       Overview: [
-        "intro/overview/world-class-devops",
-        "intro/overview/account-baselines",
-        "intro/overview/service-catalog",
-        "intro/overview/app-catalog",
-        "intro/overview/iac-pipeline",
-        "intro/overview/self-service",
-        "intro/overview/auto-updates",
+        "intro/overview/intro-to-gruntwork",
+        // Temporarily hiding the unfinished sections from the sidebar We'll put
+        // them back shortly and don't want to delete the pages as we know we're
+        // going to have these sections within a few days.
+        // "intro/overview/gruntwork-production-framework",
+        "intro/overview/how-it-works",
+        // "intro/overview/use-cases",
+        // "intro/overview/gruntwork-vs-other",
+        "intro/overview/getting-started",
       ],
     },
     {
@@ -33,13 +35,17 @@ const sidebars = {
       ],
     },
     {
-      "Setting Up Your Environmant": ["intro/environment-setup/stub"],
+      "Setting Up Your Environment": [
+        "intro/environment-setup/recommended_tools",
+      ],
     },
     {
-      "Tool Fundamentals": ["intro/tool-fundamentals/stub"],
-    },
-    {
-      "Deploying A Service Module": ["intro/first-deployment/stub"],
+      "Tool Fundamentals": [
+        "intro/tool-fundamentals/docker",
+        "intro/tool-fundamentals/packer",
+        "intro/tool-fundamentals/terraform",
+        "intro/tool-fundamentals/terragrunt",
+      ],
     },
     {
       type: "doc",

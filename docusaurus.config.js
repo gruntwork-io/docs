@@ -6,6 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 const cfg = require("config")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
+const googleAnalyticsConfig = cfg.has("googleAnalytics")
+  ? cfg.get("googleAnalytics")
+  : undefined
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -25,7 +28,7 @@ const config = {
     [
       "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
@@ -34,7 +37,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
@@ -55,7 +58,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Intro",
-            docId: "intro/overview/world-class-devops",
+            docId: "intro/overview/intro-to-gruntwork",
           },
           {
             type: "doc",
@@ -211,6 +214,7 @@ const config = {
           }
         : undefined,
       zoomSelector: ".markdown img",
+      googleAnalytics: googleAnalyticsConfig,
     }),
 }
 
