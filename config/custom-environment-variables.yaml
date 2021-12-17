@@ -5,3 +5,9 @@
 googleAnalytics:
   trackingID: CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
   anonymizeIP: CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP
+
+# Algolia Doc Search config
+algolia:
+  appId: DOCS_ALGOLIA_APP_ID
+  apiKey: DOCS_ALGOLIA_API_KEY
+  indexName: DOCS_ALGOLIA_INDEX_NAME
