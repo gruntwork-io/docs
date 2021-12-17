@@ -291,29 +291,29 @@ The example code above does the following:
 1. **Create 6 child AWS accounts**. These accounts are described in more detail in the [How to configure a production-grade AWS account structure using Gruntwork AWS Landing Zone child accounts section](https://www.gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/#child_accounts).
 
 2. **Associate an email address with each of the child accounts**. This will be the email address for the root user of
-    each account and AWS requires that the root user’s email address is _globally_ unique, so it cannot be the email
-    address you used for the root account or any of the other child accounts. You’ll have to either create multiple email
-    accounts in your company’s email system, or, if your company uses Gmail (perhaps as part of G Suite), you can take
-    advantage of the fact that [Gmail
-    ignores everything after a plus sign in an email address](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html), so that while AWS will see
-    `root-accounts+security@acme.com`, `root-accounts+shared@acme.com`, and
-    `root-accounts+dev@acme.com` as three unique email addresses, Gmail will see them all as the same email
-    address, `root-accounts@acme.com`.
+   each account and AWS requires that the root user’s email address is _globally_ unique, so it cannot be the email
+   address you used for the root account or any of the other child accounts. You’ll have to either create multiple email
+   accounts in your company’s email system, or, if your company uses Gmail (perhaps as part of G Suite), you can take
+   advantage of the fact that [Gmail
+   ignores everything after a plus sign in an email address](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html), so that while AWS will see
+   `root-accounts+security@acme.com`, `root-accounts+shared@acme.com`, and
+   `root-accounts+dev@acme.com` as three unique email addresses, Gmail will see them all as the same email
+   address, `root-accounts@acme.com`.
 
 3. **Mark one of the child accounts as a logs account**. We set `is_logs_account = true` on one of the child accounts
-    to indicate it is the logs account where we will aggregate AWS Config, CloudTrail, IAM Access Analyzer, Security Hub and Amazon Macie data from all the other accounts.
-    The `account-baseline-root` module will automatically create an S3 bucket for AWS Config and an S3 bucket and KMS CMK
-    = for CloudTrail in this account and configure the root account to send all the AWS Config and CloudTrail data to these
-    S3 buckets. Later on, you’ll configure all the other accounts to send their data to these S3 buckets too.
+   to indicate it is the logs account where we will aggregate AWS Config, CloudTrail, IAM Access Analyzer, Security Hub and Amazon Macie data from all the other accounts.
+   The `account-baseline-root` module will automatically create an S3 bucket for AWS Config and an S3 bucket and KMS CMK
+   = for CloudTrail in this account and configure the root account to send all the AWS Config and CloudTrail data to these
+   S3 buckets. Later on, you’ll configure all the other accounts to send their data to these S3 buckets too.
 
 4. **Create IAM groups**. By default, `account-baseline-root` will **not** create a `full-access` IAM group as CIS requirement 1.16 guides. It will create a `support` and a `billing` IAM group (for the support and finance teams).
 
 5. **Create IAM users**. For this example, we create `alice` and `bob`, adding `alice` to the `full-access`
-    IAM group and `bob` to the `billing` IAM group. _Note_: your own IAM user (the one you created manually) should be
-    in the `users` list; we’ll use the `import` command to put this user under Terraform management shortly.
+   IAM group and `bob` to the `billing` IAM group. _Note_: your own IAM user (the one you created manually) should be
+   in the `users` list; we’ll use the `import` command to put this user under Terraform management shortly.
 
 6. **Generate a password for each user**. We encrypt this password with that user’s PGP key from Keybase (we’ll come
-    back to how to handle the passwords shortly).
+   back to how to handle the passwords shortly).
 
 Pull in the [backend](https://www.terraform.io/docs/backends/) settings from a root `terragrunt.hcl` file that you
 `include` in each child `terragrunt.hcl`:
@@ -581,11 +581,11 @@ Use this process to reset the password for the root user of each child account y
 
 ## Lock down the root user in the child accounts
 
-Once you’re able to access the root user of each child account, you should follow the steps in [Lock down the root user](#lock_down_root_user)
+Once you’re able to access the root user of each child account, you should follow the steps in [Lock down the root user](../4-lock-down-the-root-user.md)
 for each of those child accounts—including enabling MFA and deleting the root user’s access keys—and (almost) never use
 those root users again.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"546f61d3f5d62a932bc94b5ddfb91c76"}
+{"sourcePlugin":"Local File Copier","hash":"dd1f7c46ce87ef9ea812eff0e7f357db"}
 ##DOCS-SOURCER-END -->
