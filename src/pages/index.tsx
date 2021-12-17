@@ -17,7 +17,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro/overview/world-class-devops"
+            to="/docs/intro/overview/intro-to-gruntwork"
           >
             Get Started{" "}
             <span className="hideOnMobile">With the Gruntwork Tutorial</span>
