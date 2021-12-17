@@ -1,6 +1,7 @@
 ---
 sidebar_label: Apply the account-baseline-app to the other child accounts
 ---
+
 # Apply the `account-baseline-app` to the other child accounts
 
 Now that your **security** account is fully configured, you need to apply the security baseline to the remaining child
@@ -206,15 +207,15 @@ The code above does the following:
 2. **Enable AWS Config**. We’ve configured AWS Config to use the S3 bucket in the logs account.
 
 3. **Configure the dev IAM role**. We create a `dev` IAM role in this account, which will get read and write access to
-    the services specified in `dev_permitted_services`.
+   the services specified in `dev_permitted_services`.
 
 4. **Configure the Auto Deploy IAM role**. We also create an `auto-deploy` IAM role that can be assumed by a CI server
-    in the `shared-services` account to do deployments. This role will have the permissions specified in
-    `auto_deploy_permissions`.
+   in the `shared-services` account to do deployments. This role will have the permissions specified in
+   `auto_deploy_permissions`.
 
 5. **Configure cross-account IAM roles**. We then specify which other accounts are allowed to assume the IAM roles in
-    this account. For the most part, we grant all permissions to the security account, so that by assigning users to IAM
-    groups in that account, you’ll be able to access IAM roles in all the other child accounts.
+   this account. For the most part, we grant all permissions to the security account, so that by assigning users to IAM
+   groups in that account, you’ll be able to access IAM roles in all the other child accounts.
 
 Configure your Terraform backend:
 
@@ -272,24 +273,24 @@ On some operating systems, such as MacOS, you may also need to increase your ope
 **Next, try authenticating as an IAM user to the child accounts:**
 
 1. Use your IAM user’s user name and password (decrypted using keybase) to log into the web console of the security
-    account (remember to use the IAM user sign-in URL for the security account).
+   account (remember to use the IAM user sign-in URL for the security account).
 
-2. Follow the steps in [Lock down the root account IAM users](#lock_down_iam_users) to lock down your IAM user in the security account. This includes
-    configuring an MFA device for your IAM user.
+2. Follow the steps in [Lock down the root account IAM users](../6-lock-down-the-root-account-iam-users.md) to lock down your IAM user in the security account. This includes
+   configuring an MFA device for your IAM user.
 
 3. After configuring an MFA device, log out, and then log back into the security account again, this time providing your
-    MFA token. If you don’t do this, attempting to assume IAM roles in other accounts won’t work, as those roles require
-    an MFA token to be present.
+   MFA token. If you don’t do this, attempting to assume IAM roles in other accounts won’t work, as those roles require
+   an MFA token to be present.
 
 4. Try to [switch to a role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html) in
-    one of the other child accounts using the AWS Web Console. For example, authenticate as one of the IAM users in the
-    security account, and then assume the `allow-full-access-from-other-accounts` role in the dev account (you can find
-    the default list of IAM roles created in each account
-    [here](https://github.com/gruntwork-io/module-security/tree/master/modules/cross-account-iam-roles#resources-created)).
+   one of the other child accounts using the AWS Web Console. For example, authenticate as one of the IAM users in the
+   security account, and then assume the `allow-full-access-from-other-accounts` role in the dev account (you can find
+   the default list of IAM roles created in each account
+   [here](https://github.com/gruntwork-io/module-security/tree/master/modules/cross-account-iam-roles#resources-created)).
 
 5. Alternatively, you can use the `aws-vault login xxx` command to login to the AWS Web Console for any profile `xxx`
-    that you’ve configured in `aws-vault`. For example, `aws-vault login logs-from-root` will open up your web browser
-    and log you into the `logs` account using the `OrganizationAccountAccessRole` IAM Role.
+   that you’ve configured in `aws-vault`. For example, `aws-vault login logs-from-root` will open up your web browser
+   and log you into the `logs` account using the `OrganizationAccountAccessRole` IAM Role.
 
 ## Configure AWS Security Hub in the root account
 
@@ -308,5 +309,5 @@ the benchmark, v1.3.0; the AWS Security Hub does not support this version at the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"dcee106a2d02575c40ba6804c33686bb"}
+{"sourcePlugin":"Local File Copier","hash":"411b6c28a2cb43ebe952f0d22be083f6"}
 ##DOCS-SOURCER-END -->

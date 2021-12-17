@@ -154,7 +154,7 @@ updates).
 If you purchased the Gruntwork Reference Architecture, you will have a copy of the `infrastructure-live` and
 `infrastructure-modules` repositories that contain the infrastructure code for deploying the Reference Architecture. You
 will need to update the relevant code in `infrastructure-modules` to use a compatible version of the
-Gruntwork Infrastructure as Code Library, as per [the compatibility table](#compatibility-table) above.
+Gruntwork Infrastructure as Code Library, as per [the compatibility table](#version-compatibility-table) above.
 
 To help guide you through the upgrade process, we have updated the Acme Reference Architecture examples to support AWS
 provider v3. You can refer to the following release notes for detailed information and code patches that you can apply
