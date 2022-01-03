@@ -24,25 +24,25 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 <CardList>
   <Card
     title="Core Concepts"
-    href="../core-concepts/aws-account"
+    href="/docs/guides/build-it-yourself/landing-zone/core-concepts/aws-account"
   >
     An overview of the core concepts you need to understand to set up an AWS account structure, including AWS Organizations, IAM Users, IAM Roles, IAM Groups, CloudTrail, and more.
   </Card>
   <Card
     title="Production-grade Design"
-    href="../production-grade-design/intro"
+    href="/docs/guides/build-it-yourself/landing-zone/production-grade-design/intro"
   >
     An overview of how to configure a secure, scalable, highly available AWS account structure that you can rely on in production.
   </Card>
   <Card
     title="Deployment Walkthrough"
-    href="../deployment-walkthrough/pre-requisites"
+    href="/docs/guides/build-it-yourself/landing-zone/deployment-walkthrough/pre-requisites"
   >
     A step-by-step guide to configuring a production-grade AWS account structure using the Gruntwork AWS Landing Zone solution, including how to manage it all with customizable security baselines defined in Terraform.
   </Card>
   <Card
     title="Next Steps"
-    href="../next-steps"
+    href="/docs/guides/build-it-yourself/landing-zone/next-steps"
   >
     What to do once you’ve got your AWS account structure configured.
   </Card>
