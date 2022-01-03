@@ -31,7 +31,7 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 <CardList>
   <Card
     title="Core Concepts"
-    href="../core-concepts/why-is-it-important-to-have-ci-cd"
+    href="/docs/guides/build-it-yourself/pipelines/core-concepts/why-is-it-important-to-have-ci-cd"
   >
     An overview of the core concepts you need to understand what a typical CI/CD pipeline entails for infrastructure code,
     including a comparison with CI/CD for application code, a sample workflow, infrastructure to support CI/CD, and threat
@@ -39,21 +39,21 @@ Feel free to read this guide from start to finish or skip around to whatever sec
   </Card>
   <Card
     title="Production-grade Design"
-    href="../production-grade-design/intro"
+    href="/docs/guides/build-it-yourself/pipelines/production-grade-design/intro"
   >
     An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
     production application and infrastructure code.
   </Card>
   <Card
     title="Deployment Walkthrough"
-    href="../deployment-walkthrough/pre-requisites"
+    href="/docs/guides/build-it-yourself/pipelines/deployment-walkthrough/pre-requisites"
   >
     A step-by-step guide to deploying a production-grade CI/CD pipeline in AWS using code from the Gruntwork
     Infrastructure as Code Library.
   </Card>
   <Card
     title="Next Steps"
-    href="../next-steps"
+    href="/docs/guides/build-it-yourself/pipelines/next-steps"
   >
     What to do once you’ve got your CI/CD pipeline set up.
   </Card>
@@ -61,5 +61,5 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3841b7cace1c48bcc45a198ff5765319"}
+{"sourcePlugin":"Local File Copier","hash":"9fadda147564499d6fa99721cd23d902"}
 ##DOCS-SOURCER-END -->
