@@ -1,13 +1,10 @@
-import React, { ReactElement, useEffect } from "react"
+import React, { useEffect } from "react"
 import ModalCmp from "react-modal"
-
-import styles from "./Modal.module.css"
 
 interface ModalProps {
   externalLink: string
   showModal: boolean
   children?: React.ReactNode
-  disclaimer?: string | ReactElement
   shouldCloseOnEsc?: boolean
   shouldAcceptOnEnter?: boolean
   shouldCloseOnOverlayClick?: boolean
@@ -21,13 +18,9 @@ if (typeof window !== "undefined") {
   ModalCmp.setAppElement("body")
 }
 
-// const modalDefaultstyle =
-//   "outline-none absolute top-1/2 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 md:-mr-50%  md:right-auto bg-white rounded-md shadow-xl px-8 py-15 mt-4 md:ml-0 md:mr-0 sm:px-24 w-auto md:w-564px w-full-mx-5 overflow-y-auto max-h-full"
-
-export const SusbscriptionNoticeModal: React.FC<ModalProps> = ({
+export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
   externalLink,
   showModal,
-  disclaimer,
   shouldCloseOnEsc = false,
   shouldAcceptOnEnter = false,
   shouldCloseOnOverlayClick = false,
@@ -87,14 +80,14 @@ export const SusbscriptionNoticeModal: React.FC<ModalProps> = ({
       shouldCloseOnEsc={shouldCloseOnEsc}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       closeTimeoutMS={200}
-      className={styles.subscription_notice}
+      defaultStyles={{
+        overlay: {
+          ...ModalCmp.defaultStyles.overlay,
+          zIndex: 999,
+        },
+      }}
     >
-      <p
-        className="mb-3 font-bold text-2xl text-gw-gray-800"
-        data-cy="modal-title"
-      >
-        You need to be a subscriber to access this Gruntwork repository.
-      </p>
+      <p>You need to be a subscriber to access this Gruntwork repository.</p>
       <p>
         <a id={idOfNoticeLink} href={externalLink} target="_blank">
           Continue to Link
@@ -105,11 +98,6 @@ export const SusbscriptionNoticeModal: React.FC<ModalProps> = ({
           Dismiss
         </a>
       </p>
-      {disclaimer && (
-        <div className="mt-1.5">
-          <p className="text-center text-gw-gray-600 text-sm">{disclaimer}</p>
-        </div>
-      )}
     </ModalCmp>
   )
 }
