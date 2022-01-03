@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import {
-  SusbscriptionNoticeModal,
+  SubscriptionNoticeModal,
   idOfNoticeLink,
 } from "/src/components/Modal.tsx"
 
@@ -12,7 +12,6 @@ function Root({ children }) {
 
   useEffect(() => {
     const listener = (event) => {
-      console.log("Route------->", event.target.id)
       if (event.target.id === idOfNoticeLink) {
         setDisplaySubscriberNotice(false)
         return
@@ -34,9 +33,13 @@ function Root({ children }) {
 
   return (
     <>
-      <SusbscriptionNoticeModal
+      <SubscriptionNoticeModal
         showModal={displaySubscriberNotice}
         externalLink={externalLink}
+        handleCancelRequest={() => {
+          setDisplaySubscriberNotice(false)
+          setExternalLink("")
+        }}
       />
       {children}
     </>
