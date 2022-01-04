@@ -5,7 +5,7 @@
   "strip_chars": " .,;:#",
   "selectors": {
     "lvl0": {
-      "selector": "//nav[contains(@class,'navbar')]//a[contains(@class, 'navbar__link--active')]/text()",
+      "selector": "(//nav[contains(@class,'navbar')]//a[contains(@class, 'navbar__link--active')]/text()|//header/h1/text())[1]",
       "type": "xpath",
       "global": true,
       "default_value": "Documentation"
@@ -13,14 +13,12 @@
     "lvl1": {
       "selector": "//nav[contains(@class,'menu')]/ul/li/a[contains(@class, 'active')]/text()",
       "type": "xpath",
-      "global": true,
-      "default_value": "Documentation"
+      "global": true
     },
     "lvl2": {
       "selector": "//nav[contains(@class,'menu')]/ul/li/ul/li/a[contains(@class, 'active')]/text()",
       "type": "xpath",
-      "global": true,
-      "default_value": "Documentation"
+      "global": true
     },
     "lvl3": {
       "selector": "//nav[contains(@class,'menu')]/ul/li/ul/li/ul/li/a[contains(@class, 'active')]/text()",
