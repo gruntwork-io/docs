@@ -11,41 +11,41 @@ Here are the manual steps for this process:
 
 1. Run each script while authenticating to the `shared` account.
 
-```bash
-aws-vault exec your-shared -- shared/us-west-2/_regional/container_images/build_deploy_runner_image.sh
-aws-vault exec your-shared -- shared/us-west-2/_regional/container_images/build_kaniko_image.sh
-```
+  ```bash
+  aws-vault exec your-shared -- shared/us-west-2/_regional/container_images/build_deploy_runner_image.sh
+  aws-vault exec your-shared -- shared/us-west-2/_regional/container_images/build_kaniko_image.sh
+  ```
 
 1. Update [`common.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/common.hcl) with new tag values for these images. The new tag value will be version of
 `terraform-aws-ci` that the images use. For example, if your newly created images are using the `v0.38.9` release of
 `terraform-aws-ci`, update [`common.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/common.hcl) to:
 
-```bash
-deploy_runner_container_image_tag = "v0.38.9"
-kaniko_container_image_tag = "v0.38.9"
-```
+  ```bash
+  deploy_runner_container_image_tag = "v0.38.9"
+  kaniko_container_image_tag = "v0.38.9"
+  ```
 
 1. Run `apply` on the `ecs-deploy-runner` modules in each account. These can be run simultaneously in different terminal sessions.
 
-```bash
-cd logs/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
+  ```bash
+  cd logs/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-logs -- terragrunt apply --terragrunt-source-update -auto-approve
 
-cd shared/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-shared -- terragrunt apply --terragrunt-source-update -auto-approve
+  cd shared/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-shared -- terragrunt apply --terragrunt-source-update -auto-approve
 
-cd security/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-security -- terragrunt apply --terragrunt-source-update -auto-approve
+  cd security/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-security -- terragrunt apply --terragrunt-source-update -auto-approve
 
-cd dev/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-dev -- terragrunt apply --terragrunt-source-update -auto-approve
+  cd dev/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-dev -- terragrunt apply --terragrunt-source-update -auto-approve
 
-cd stage/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-stage -- terragrunt apply --terragrunt-source-update -auto-approve
+  cd stage/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-stage -- terragrunt apply --terragrunt-source-update -auto-approve
 
-cd prod/us-west-2/mgmt/ecs-deploy-runner
-aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-approve
-```
+  cd prod/us-west-2/mgmt/ecs-deploy-runner
+  aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-approve
+  ```
 
 ## Why manually?
 
@@ -70,5 +70,5 @@ pull request as your changes to the `ecs-deploy-runner` module configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"818b397756d1caa4edac9fda61035e12"}
+{"sourcePlugin":"Local File Copier","hash":"6457637d554e50c34b0c4e2e1785d09b"}
 ##DOCS-SOURCER-END -->
