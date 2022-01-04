@@ -69,6 +69,22 @@ main {
   margin-top: 2em;
 }
 
+/* IMAGES & CAPTIONS */
+
+p > img {
+  display: block;
+  margin: auto;
+}
+
+p > img + em {
+  color: gray;
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+  max-width: 80%;
+  margin: 1rem auto 2rem auto;
+}
+
 /* HOME PAGE */
 
 .hero--primary .button--lg {
