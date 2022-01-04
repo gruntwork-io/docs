@@ -9,8 +9,9 @@ With all the core concepts out of the way, let’s now discuss how to configure 
 infrastructure code, using a platform that looks something like this:
 
 ![Architecture of platform for running Terraform/Terragrunt CI/CD workflows.](/img/guides/build-it-yourself/pipelines/tftg-pipeline-architecture.png)
+_Architecture of platform for running Terraform/Terragrunt CI/CD workflows._
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"85dfc1646a1dc0b0f306a424397fcb8f"}
+{"sourcePlugin":"Local File Copier","hash":"b980d131cbffb3362235f90d9deb68d0"}
 ##DOCS-SOURCER-END -->

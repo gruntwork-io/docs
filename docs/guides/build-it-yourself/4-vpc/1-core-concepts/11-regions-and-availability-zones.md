@@ -1,6 +1,7 @@
 # Regions and availability zones
 
 ![AWS regions and availability zones](/img/guides/build-it-yourself/vpc/aws-regions.png)
+_AWS regions and availability zones_
 
 AWS has data centers all over the world, grouped into regions and availability zones. An _AWS region_ is a separate
 geographic area, such as `us-east-2` (Ohio), `eu-west-1` (Ireland), and `ap-southeast-2` (Sydney). Within each region,
@@ -22,5 +23,5 @@ as starting points.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b9de64a86c71d7442fc242dad729d910"}
+{"sourcePlugin":"Local File Copier","hash":"7c685b4ee39f2865e250f1fb4f3e69fc"}
 ##DOCS-SOURCER-END -->

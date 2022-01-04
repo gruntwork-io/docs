@@ -1,6 +1,7 @@
 # VPC Peering
 
 ![Multiple VPCs connected via VPC peering](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
+_Multiple VPCs connected via VPC peering_
 
 Normally, you use VPCs to create isolated networks, so the resources in one VPC have no way to access the resources in
 another VPC. _[VPC Peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)_ is a networking

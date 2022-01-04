@@ -24,6 +24,7 @@ minute moments before release. As a result, the integration process is very expe
 conflicts, tracking down subtle bugs, and trying to stabilize release branches.
 
 ![Many teams employ a practice of working on their features over long periods of time on isolated branches. These long lived feature branches have a higher chance of merge conflicts when they’re finally ready to be integrated.](/img/guides/build-it-yourself/pipelines/feature-branch-merge-conflict.png)
+_Many teams employ a practice of working on their features over long periods of time on isolated branches. These long lived feature branches have a higher chance of merge conflicts when they’re finally ready to be integrated._
 
 In contrast, the Continuous Integration and Continuous Delivery model of development promotes more cross team
 communication and integration work as development progresses. Going back to the ISS thought experiment, a CI/CD style of

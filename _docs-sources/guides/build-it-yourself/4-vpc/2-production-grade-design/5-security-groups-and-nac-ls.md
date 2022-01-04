@@ -1,6 +1,7 @@
 # Security groups and NACLs
 
 ![Security group settings for the different subnet tiers](/img/guides/build-it-yourself/vpc/peering-diagram.png)
+_Security group settings for the different subnet tiers_
 
 Use security groups and NACLs to configure the following rules for each subnet tier:
 

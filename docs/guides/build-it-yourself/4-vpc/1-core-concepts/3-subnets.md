@@ -1,6 +1,7 @@
 # Subnets
 
 ![VPCs partitioned into multiple subnets: public, private (services), private (persistence)](/img/guides/build-it-yourself/vpc/vpc-subnets-diagram.png)
+_VPCs partitioned into multiple subnets: public, private (services), private (persistence)_
 
 Each VPC is partitioned into one or more _[subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html:)_
 (sub-networks). Each subnet controls a portion of the VPC’s CIDR range. For example, a VPC with the CIDR block
@@ -11,5 +12,5 @@ ranges.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"899c124ac187450accd3186087b583f2"}
+{"sourcePlugin":"Local File Copier","hash":"50abad5cda90441fbe2376a4f4c5e2f2"}
 ##DOCS-SOURCER-END -->

@@ -5,6 +5,7 @@ The first step is to deploy a VPC. Follow the instructions in
 `module-vpc` to create a VPC setup that looks like this:
 
 ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/pipelines/vpc-diagram.png)
+_A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library_
 
 We will use the Mgmt VPC to deploy our infrastructure deployment CD platform, since the infrastructure deployment
 platform is a management infrastructure that is designed to deploy to multiple environments.
@@ -37,5 +38,5 @@ infrastructure-live
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4d12419b9ffc0a62bfbd89aeabe97b83"}
+{"sourcePlugin":"Local File Copier","hash":"d1830e373953d458538590ab52aa3f6c"}
 ##DOCS-SOURCER-END -->

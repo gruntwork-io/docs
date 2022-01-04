@@ -8,8 +8,9 @@ With all the core concepts out of the way, let’s now discuss how to configure 
 something like this:
 
 ![A production-grade VPC setup](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
+_A production-grade VPC setup_
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3f015395ed57051b605f4d66bd4e29e6"}
+{"sourcePlugin":"Local File Copier","hash":"d15cd9663103a198c34273b8ca0842d5"}
 ##DOCS-SOURCER-END -->

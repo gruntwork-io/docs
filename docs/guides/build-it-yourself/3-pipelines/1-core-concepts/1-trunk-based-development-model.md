@@ -1,6 +1,7 @@
 # Trunk-based development model
 
 ![Trunk branch with a continuous stream of commits.](/img/guides/build-it-yourself/pipelines/trunk.png)
+_Trunk branch with a continuous stream of commits._
 
 The most common way to implement CI/CD is to use a _trunk-based development model_. In trunk-based development, all the
 work is done on the same branch, called `trunk` or `master` depending on the Version Control System (VCS). You would
@@ -56,5 +57,5 @@ infrastructure code.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7e5794c67b0a6291110316f83cf3ec40"}
+{"sourcePlugin":"Local File Copier","hash":"c746f24d4ea31e0d9d087fb57fd1d260"}
 ##DOCS-SOURCER-END -->

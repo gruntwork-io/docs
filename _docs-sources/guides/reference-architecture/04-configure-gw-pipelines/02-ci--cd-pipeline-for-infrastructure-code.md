@@ -3,6 +3,7 @@
 This diagram shows a rough overview of the Gruntwork Pipelines architecture:
 
 ![Architecture Diagram](/img/guides/reference-architecture/gruntwork-pipelines-architecture.png)
+_Architecture Diagram_
 
 The Gruntwork Pipelines workflow, defined in [`.github/workflows/pipelines.yml`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/examples/for-production/infrastructure-live/.github/workflows/pipelines.yml), works like this:
 
@@ -35,22 +36,26 @@ If you'd like to send Slack notifications when the pipeline is running, follow t
 1. In Slack, open the Workflow builder:
 
    ![Slack Workflow Builder](/img/guides/reference-architecture/slack-workflow-1.png)
+   _Slack Workflow Builder_
 
 2. Create a new Webhook workflow called "Gruntwork Pipelines"
 
    ![Slack Webhook workflow](/img/guides/reference-architecture/slack-workflow-2.png)
+   _Slack Webhook workflow_
 
 3. Add the following text variables to the workflow: `branch`, `status`, `url`, `repo`, and `actor`
 
    ![Slack workflow variables](/img/guides/reference-architecture/slack-workflow-3.png)
+   _Slack workflow variables_
 
 4. Once all of the variables are added, click Next.
 
 5. Now add another step to the workflow
 
    ![Slack workflow add step](/img/guides/reference-architecture/slack-workflow-4.png)
+   _Slack workflow add step_
 
-6. Add the "Send a message"  step
+6. Add the "Send a message" step
 
 7. Choose a channel from the dropdown menu
 
@@ -72,7 +77,8 @@ If you'd like to send Slack notifications when the pipeline is running, follow t
 
 12. Copy the webhook URL and save it. We will use this value below.
 
-   ![Slack workflow add step](/img/guides/reference-architecture/slack-workflow-5.png)
+![Slack workflow add step](/img/guides/reference-architecture/slack-workflow-5.png)
+_Slack workflow add step_
 
 13. Note that the webhook URL should be treated as sensitive. Anyone with the URL can send HTTP requests to the webhook!
 
@@ -81,11 +87,12 @@ If you'd like to send Slack notifications when the pipeline is running, follow t
 1. Open the GitHub repository and navigate to Settings => Secrets.
 
    ![GitHub Secrets](/img/guides/reference-architecture/secrets.png)
+   _GitHub Secrets_
 
 1. Create the following repository secrets:
 
-- `AWS_ACCESS_KEY_ID`:  This is the first value from the AWS IAM user step above.
-- `AWS_SECRET_ACCESS_KEY`:  This is the second value from the AWS IAM user step above.
+- `AWS_ACCESS_KEY_ID`: This is the first value from the AWS IAM user step above.
+- `AWS_SECRET_ACCESS_KEY`: This is the second value from the AWS IAM user step above.
 - `GH_TOKEN`: Enter the GitHub machine user's oauth token here. If you don't know this, you can find it in the AWS Secrets Manager secret that you provided in the [`reference-architecture-form.yml`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/reference-architecture-form.yml).
 - `SLACK_WEBHOOK_URL`: This is the value from the Slack Workflow step above.
 

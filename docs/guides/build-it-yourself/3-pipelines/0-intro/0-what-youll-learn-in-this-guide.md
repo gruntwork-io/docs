@@ -23,6 +23,7 @@ Jenkins, Circle, GitLab, etc).
 TLDR: If you follow this guide, you’ll be able to set up a pipeline that works like this:
 
 ![For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>](/img/guides/build-it-yourself/pipelines/walkthrough.gif)
+_For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>_
 
 ## Sections
 
@@ -61,5 +62,5 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9fadda147564499d6fa99721cd23d902"}
+{"sourcePlugin":"Local File Copier","hash":"e828c394d886509b79be08bf588eea7f"}
 ##DOCS-SOURCER-END -->

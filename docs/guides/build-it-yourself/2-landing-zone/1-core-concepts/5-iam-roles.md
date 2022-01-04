@@ -5,8 +5,6 @@ you to attach IAM policies to it, (b) specify which other IAM entities to trust,
 can _assume_ the IAM role to be temporarily get access to the permissions in those IAM policies. The two most common
 use cases for IAM roles are:
 
-
-
 <div className="dlist">
 
 #### Service roles
@@ -26,12 +24,9 @@ S3 bucket in account `B` and allow that role to be assumed by an IAM user in acc
 able to access the contents of the S3 bucket by assuming the IAM role in account `B`. This ability to assume IAM
 roles across different AWS accounts is the critical glue that truly makes a multi AWS account structure possible.
 
-
 </div>
 
 Here are some more details on how IAM roles work:
-
-
 
 <div className="dlist">
 
@@ -45,30 +40,29 @@ You must define a _trust policy_ for each IAM role, which is a JSON document (ve
 specifies who can assume this IAM role. For example, here is a trust policy that allows this IAM role to be assumed
 by an IAM user named `Bob` in AWS account `111122223333`:
 
-
 </div>
 
-``` json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
-      "Principal": {"AWS": "arn:aws:iam::111122223333:user/Bob"}
+      "Principal": { "AWS": "arn:aws:iam::111122223333:user/Bob" }
     }
   ]
 }
 ```
 
 Note that a trust policy alone does NOT automatically give Bob the ability to assume this IAM role. Cross-account
-access always requires permissions in *both* accounts. So, if Bob is in AWS account `111122223333` and you want him to
+access always requires permissions in _both_ accounts. So, if Bob is in AWS account `111122223333` and you want him to
 have access to an IAM role called `foo` in account `444455556666`, then you need to configure permissions in both
 accounts: first, in account `444455556666`, the `foo` IAM role must have a trust policy that gives `sts:AssumeRole`
 permissions to account `111122223333`, as shown above; second, in account `111122223333`, you also need to attach an
 IAM policy to Bob’s IAM user that allows him to assume the `foo` IAM role, which might look like this:
 
-``` json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -80,8 +74,6 @@ IAM policy to Bob’s IAM user that allows him to assume the `foo` IAM role, whi
   ]
 }
 ```
-
-
 
 <div className="dlist">
 
@@ -96,10 +88,10 @@ will be valid for 1-12 hours, depending on IAM role settings, after which you mu
 new keys. Note that to make the `AssumeRole` API call, you must first authenticate to AWS using some other
 mechanism. For example, for an IAM user to assume an IAM role, the workflow looks like this:
 
-
 </div>
 
 ![The process for assuming an IAM role](/img/guides/build-it-yourself/landing-zone/assume-iam-role.png)
+_The process for assuming an IAM role_
 
 The basic steps are:
 
@@ -113,8 +105,6 @@ The basic steps are:
 
 5.  Now all of your subsequent API calls will be on behalf of the assumed IAM role, with access to whatever permissions
     are attached to that role
-
-
 
 <div className="dlist">
 
@@ -132,14 +122,9 @@ copy credentials (access keys) onto that instance. The same strategy works with 
 use IAM roles as a secure way to give your Lambda functions, ECS services, Step Functions, and many other AWS
 services permissions to access specific resources in your AWS account.
 
-
 </div>
 
 
-
-
-
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d06110ba9de50f3c41b4575c7626d88d"}
+{"sourcePlugin":"Local File Copier","hash":"bf03ccb6439583c2146163feab86a16d"}
 ##DOCS-SOURCER-END -->

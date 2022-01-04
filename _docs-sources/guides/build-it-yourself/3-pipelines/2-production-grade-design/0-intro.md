@@ -9,3 +9,4 @@ With all the core concepts out of the way, let’s now discuss how to configure 
 infrastructure code, using a platform that looks something like this:
 
 ![Architecture of platform for running Terraform/Terragrunt CI/CD workflows.](/img/guides/build-it-yourself/pipelines/tftg-pipeline-architecture.png)
+_Architecture of platform for running Terraform/Terragrunt CI/CD workflows._

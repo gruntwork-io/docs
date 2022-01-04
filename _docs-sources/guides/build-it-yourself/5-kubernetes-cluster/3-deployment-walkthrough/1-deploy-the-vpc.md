@@ -5,6 +5,7 @@ The first step is to deploy a VPC. Follow the instructions in
 `module-vpc` to create a VPC setup that looks like this:
 
 ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
+_A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library_
 
 After following this guide, you should have `vpc-app` wrapper module in your `infrastructure-modules` repo:
 

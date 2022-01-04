@@ -28,6 +28,7 @@ Previously, we supported versions 1.3.0 and 1.2.0 of the Benchmark. If you are l
 - To upgrade from v1.3.0 to v1.4.0, please follow [this upgrade guide](../../../stay-up-to-date/1-cis/0-how-to-update-to-cis-14/0-intro.md).
 
 ![CIS Benchmark Architecture](/img/guides/build-it-yourself/achieve-compliance/cis-account-architecture.png)
+_CIS Benchmark Architecture_
 
 ## Sections
 

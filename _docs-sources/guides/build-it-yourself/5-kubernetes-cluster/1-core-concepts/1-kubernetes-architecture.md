@@ -4,6 +4,7 @@ Let’s start by looking at Kubernetes from a very high level, and then graduall
 level, a simple way to think about Kubernetes is as an operating system for your data center.
 
 ![Kubernetes is like an operating system for your data center, abstracting away the underlying hardware behind its API](/img/guides/build-it-yourself/kubernetes-cluster/kubernetes-simple.png)
+_Kubernetes is like an operating system for your data center, abstracting away the underlying hardware behind its API_
 
 <div className="dlist">
 
@@ -23,7 +24,6 @@ high-level, consistent, safe API (the _Kubernetes API_), without having to worry
 between the servers or about managing any of the applications running on those servers (i.e., the orchestration tool
 handles deploying applications, restarting them if they fail, allowing them to communicate over the network, etc.).
 
-
 </div>
 
 To use the Kernel API, your application makes system calls. To use the Kubernetes API, you make HTTPS calls, typically
@@ -38,6 +38,7 @@ of containers up and down with load, and so on.
 If you zoom in a bit further on the Kubernetes architecture, it looks something like this:
 
 ![Kubernetes architecture](/img/guides/build-it-yourself/kubernetes-cluster/kubernetes-architecture.png)
+_Kubernetes architecture_
 
 Kubernetes consists of two main pieces: the control plane and worker nodes. Each of these will be discussed next.
 
@@ -77,7 +78,6 @@ always running.
 _[etcd](https://etcd.io)_ is a distributed key-value store that the master nodes use as a persistent way to store the
 cluster configuration.
 
-
 </div>
 
 ## Worker nodes
@@ -100,6 +100,5 @@ The _[Kubernetes Service Proxy (kube-proxy)](https://kubernetes.io/docs/referenc
 also runs on each worker node. It is responsible for talking to the Kubernetes API Server, figuring out which
 containers live at which IPs, and proxying requests from containers on the same worker node to those IPs. This is
 used for Service Discovery within Kubernetes, a topic we’ll discuss later.
-
 
 </div>

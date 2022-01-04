@@ -1,6 +1,7 @@
 # Why Kubernetes
 
 ![The popularity of container orchestration tools](/img/guides/build-it-yourself/kubernetes-cluster/docker-orchestration-google-trends.png)
+_The popularity of container orchestration tools_
 
 Kubernetes has become the de facto choice for container orchestration. Here’s why:
 
@@ -32,6 +33,5 @@ Kubernetes was originally designed by Google, based on years of experience with 
 systems (Borg and Omega), and is now maintained by the Cloud Native Computing Foundation. It’s designed for massive
 scale and resiliency (Google runs billions of containers per week) and with a huge community behind it, it’s
 continuously getting better.
-
 
 </div>

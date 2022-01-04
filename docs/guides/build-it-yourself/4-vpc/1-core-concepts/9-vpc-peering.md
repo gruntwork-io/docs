@@ -1,6 +1,7 @@
 # VPC Peering
 
 ![Multiple VPCs connected via VPC peering](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
+_Multiple VPCs connected via VPC peering_
 
 Normally, you use VPCs to create isolated networks, so the resources in one VPC have no way to access the resources in
 another VPC. _[VPC Peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)_ is a networking
@@ -26,5 +27,5 @@ connections total) can quickly become impractical. In this case, you should look
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"29e8ed8c5281f7822258c6df63ce1abf"}
+{"sourcePlugin":"Local File Copier","hash":"dab34892f6577864629243af24c23978"}
 ##DOCS-SOURCER-END -->

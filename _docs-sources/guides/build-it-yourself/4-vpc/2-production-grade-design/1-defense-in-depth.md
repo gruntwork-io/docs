@@ -1,6 +1,7 @@
 # Defense in depth
 
 ![Aerial view of Beaumaris Castle, showing multiple layers of walls for defense. Crown copyright 2016.](/img/guides/build-it-yourself/vpc/castle.jpeg)
+_Aerial view of Beaumaris Castle, showing multiple layers of walls for defense. Crown copyright 2016._
 
 People make mistakes all the time: forgetting to remove accounts, keeping ports open, including test credentials in
 production code, etc. Rather than living in an idealized model where you assume people won’t make mistakes, you can

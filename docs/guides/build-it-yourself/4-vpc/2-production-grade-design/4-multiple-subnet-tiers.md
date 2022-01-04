@@ -1,6 +1,7 @@
 # Multiple subnet tiers
 
 ![Each VPC is partitioned into multiple tiers of subnets](/img/guides/build-it-yourself/vpc/subnets-diagram.png)
+_Each VPC is partitioned into multiple tiers of subnets_
 
 The third layer of defense is to use separate _subnet tiers_, where each tier contains multiple subnets configured in
 the same way. We recommend the following three theirs for most use cases:
@@ -37,5 +38,5 @@ discussed in the next section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"82d0988a700d0886134f55402940d47a"}
+{"sourcePlugin":"Local File Copier","hash":"e36f9e7ff5d5c999fbcde95f4d962cd8"}
 ##DOCS-SOURCER-END -->

@@ -8,3 +8,4 @@ With all the core concepts out of the way, let's now discuss how to configure a 
 that looks something like this:
 
 ![Production-grade EKS architecture](/img/guides/build-it-yourself/kubernetes-cluster/eks-architecture.png)
+_Production-grade EKS architecture_

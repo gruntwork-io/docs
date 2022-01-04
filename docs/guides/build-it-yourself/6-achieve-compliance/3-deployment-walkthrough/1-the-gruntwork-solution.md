@@ -7,6 +7,7 @@ The compliance library is known as "Gruntwork CIS Service Catalog" and it has it
 The image below shows the hierarchy between the different levels of modules from the different code libraries Gruntwork offers.
 
 ![Types of CIS module relationships to avoid repetitive code and minimize the amount of extra work needed to achieve compliance.](/img/guides/build-it-yourself/achieve-compliance/cis-module-relationships.png)
+_Types of CIS module relationships to avoid repetitive code and minimize the amount of extra work needed to achieve compliance._
 
 Let’s unpack this a bit.
 
@@ -60,5 +61,5 @@ the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/founda
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"eac6710a32380876ea582651ceb51a2a"}
+{"sourcePlugin":"Local File Copier","hash":"465dea6655d5cfebea582dd2e398d72d"}
 ##DOCS-SOURCER-END -->

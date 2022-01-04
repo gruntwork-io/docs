@@ -1,6 +1,7 @@
 # Security groups and NACLs
 
 ![Security group settings for the different subnet tiers](/img/guides/build-it-yourself/vpc/peering-diagram.png)
+_Security group settings for the different subnet tiers_
 
 Use security groups and NACLs to configure the following rules for each subnet tier:
 
@@ -33,5 +34,5 @@ environment.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6c6ba79465b3a5149489da3d2c535cf1"}
+{"sourcePlugin":"Local File Copier","hash":"d13bb2c711bc273f6b6ede9bd206b796"}
 ##DOCS-SOURCER-END -->

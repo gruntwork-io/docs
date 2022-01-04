@@ -8,3 +8,4 @@ With all the core concepts out of the way, let’s now discuss how to configure 
 something like this:
 
 ![A production-grade VPC setup](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
+_A production-grade VPC setup_

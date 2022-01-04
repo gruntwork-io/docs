@@ -39,6 +39,7 @@ switch between contexts—and therefore, different clusters and users.
 ## Web UI (Dashboard)
 
 ![The Kubernetes Dashboard](/img/guides/build-it-yourself/kubernetes-cluster/kubernetes-dashboard.png)
+_The Kubernetes Dashboard_
 
 The _[Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)_ is a
 web-based interface you can use to manage your Kubernetes cluster. The dashboard is not enabled by default in most

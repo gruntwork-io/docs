@@ -23,6 +23,7 @@ Jenkins, Circle, GitLab, etc).
 TLDR: If you follow this guide, you’ll be able to set up a pipeline that works like this:
 
 ![For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>](/img/guides/build-it-yourself/pipelines/walkthrough.gif)
+_For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>_
 
 ## Sections
 

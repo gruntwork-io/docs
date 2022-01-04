@@ -15,6 +15,7 @@ First, the short version:
 Here's a diagram that shows a rough overview of what the Reference Architecture looks like:
 
 ![Architecture Diagram](/img/guides/reference-architecture/landing-zone-ref-arch.png)
+_Architecture Diagram_
 
 Now, the long version:
 
@@ -159,5 +160,5 @@ Next up, let's have a look at [how to authenticate](../authenticate/intro).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"acb48c8a375f667d962048bb03995b78"}
+{"sourcePlugin":"Local File Copier","hash":"6225b98e3f33866ed08f79a5edb1750f"}
 ##DOCS-SOURCER-END -->

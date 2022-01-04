@@ -15,6 +15,7 @@ First, the short version:
 Here's a diagram that shows a rough overview of what the Reference Architecture looks like:
 
 ![Architecture Diagram](/img/guides/reference-architecture/landing-zone-ref-arch.png)
+_Architecture Diagram_
 
 Now, the long version:
 

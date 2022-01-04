@@ -1,6 +1,7 @@
 # Why Kubernetes
 
 ![The popularity of container orchestration tools](/img/guides/build-it-yourself/kubernetes-cluster/docker-orchestration-google-trends.png)
+_The popularity of container orchestration tools_
 
 Kubernetes has become the de facto choice for container orchestration. Here’s why:
 
@@ -33,10 +34,9 @@ systems (Borg and Omega), and is now maintained by the Cloud Native Computing Fo
 scale and resiliency (Google runs billions of containers per week) and with a huge community behind it, it’s
 continuously getting better.
 
-
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"87ef2e892443e7eb5ba94d715722233f"}
+{"sourcePlugin":"Local File Copier","hash":"415019187d1e7aced3b49716f4f3db3c"}
 ##DOCS-SOURCER-END -->

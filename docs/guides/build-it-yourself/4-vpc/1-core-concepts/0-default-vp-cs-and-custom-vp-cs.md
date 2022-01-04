@@ -13,6 +13,7 @@ over the public Internet (unless you blocked it using security groups and OS-lev
 </div>
 
 ![Before VPCs, all your AWS resources were in one global IP address space anyone could access (unless you blocked them via security groups or firewalls)](/img/guides/build-it-yourself/vpc/no-vpc-diagram.png)
+_Before VPCs, all your AWS resources were in one global IP address space anyone could access (unless you blocked them via security groups or firewalls)_
 
 From a security standpoint, this represented a step backwards compared to traditional data centers where you could
 configure most of your servers so they were physically unreachable from the public Internet.
@@ -28,6 +29,7 @@ your production environment:
 </div>
 
 ![With VPCs, you could separate your AWS resources into completely isolated networks](/img/guides/build-it-yourself/vpc/vpc-no-subnets-diagram.png)
+_With VPCs, you could separate your AWS resources into completely isolated networks_
 
 You’ll see later in this guide how you can use VPCs, route tables, subnets, security groups, and NACLs to get
 fine-grained control over what network traffic can or can’t reach your AWS resources.
@@ -54,5 +56,5 @@ over how to configure a VPC with the kind of security, scalability, and high ava
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ee21bf304ed30a271834bc6bcec0ef49"}
+{"sourcePlugin":"Local File Copier","hash":"47f527602eae65c6ec4bf65b89e00962"}
 ##DOCS-SOURCER-END -->
