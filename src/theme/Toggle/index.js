@@ -8,22 +8,11 @@ import React, {useState, useRef, memo} from 'react';
 import {useThemeConfig} from '@docusaurus/theme-common';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import clsx from 'clsx';
-import styles from './styles.module.css';
+import styles from './styles.module.css'; // Based on react-toggle (https://github.com/aaronshaf/react-toggle/).
 
-const Dark = ({icon, style}) => (
-  <span className={clsx(styles.toggleIcon, styles.dark)} style={style}>
-    {icon}
-  </span>
-);
-
-const Light = ({icon, style}) => (
-  <span className={clsx(styles.toggleIcon, styles.light)} style={style}>
-    {icon}
-  </span>
-); // Based on react-toggle (https://github.com/aaronshaf/react-toggle/).
-
-const Toggle = memo(
-  ({className, icons, checked: defaultChecked, disabled, onChange}) => {
+const ToggleComponent = memo(
+  ({className, switchConfig, checked: defaultChecked, disabled, onChange}) => {
+    const {darkIcon, darkIconStyle, lightIcon, lightIconStyle} = switchConfig;
     const [checked, setChecked] = useState(defaultChecked);
     const [focused, setFocused] = useState(false);
     const inputRef = useRef(null);
@@ -40,8 +29,16 @@ const Toggle = memo(
           role="button"
           tabIndex={-1}
           onClick={() => inputRef.current?.click()}>
-          <div className={styles.toggleTrackCheck}>{icons.checked}</div>
-          <div className={styles.toggleTrackX}>{icons.unchecked}</div>
+          <div className={styles.toggleTrackCheck}>
+            <span className={styles.toggleIcon} style={darkIconStyle}>
+              {darkIcon}
+            </span>
+          </div>
+          <div className={styles.toggleTrackX}>
+            <span className={styles.toggleIcon} style={lightIconStyle}>
+              {lightIcon}
+            </span>
+          </div>
           <div className={styles.toggleTrackThumb} />
         </div>
 
@@ -65,20 +62,15 @@ const Toggle = memo(
     );
   },
 );
-export default function (props) {
+export default function Toggle(props) {
   const {
-    colorMode: {
-      switchConfig: {darkIcon, darkIconStyle, lightIcon, lightIconStyle},
-    },
+    colorMode: {switchConfig},
   } = useThemeConfig();
   const isBrowser = useIsBrowser();
   return (
-    <Toggle
+    <ToggleComponent
+      switchConfig={switchConfig}
       disabled={!isBrowser}
-      icons={{
-        checked: <Dark icon={darkIcon} style={darkIconStyle} />,
-        unchecked: <Light icon={lightIcon} style={lightIconStyle} />,
-      }}
       {...props}
     />
   );
