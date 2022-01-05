@@ -7,6 +7,8 @@ set -e
 unset CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
 unset CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP
 
+export CONFIG_SITE_URL="https://docs.dogfood-stage.com"
+
 yarn --ignore-optional && yarn build
 
 aws s3 cp --recursive build/ s3://docs.dogfood-stage.com
