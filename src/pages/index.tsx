@@ -31,10 +31,7 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext()
   return (
-    <Layout
-      title={`Gruntwork Docs`}
-      description="Documentation and guides for Gruntwork's tools and services"
-    >
+    <Layout description="Documentation and guides for Gruntwork's tools and services">
       <HomepageHeader />
       <main>
         <section className={styles.features}>

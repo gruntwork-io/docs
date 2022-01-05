@@ -16,7 +16,7 @@ The Gruntwork product suite is designed to help you implement a world-class DevO
 A battle-tested, production-grade _catalog_ of infrastructure code that contains the core "building blocks" of infrastructure. It includes everything you’ll need to set up:
 
 - A Multi-account structure
-- An infrastrucutre CI/CD Pipeline
+- An infrastructure CI/CD Pipeline
 - Networking and VPCs
 - App orchestration — ECS, EC2, Kubernetes, and more
 - Data storage — Aurora, Elasticache, RDS, and more
@@ -29,21 +29,21 @@ An optional _catalog extension_ that contains building blocks that implement var
 
 ### Professional Services
 
-A team of experienced Gruntwork engineers who can help you:
+A team of experienced Gruntwork engineers who help you achieve success using Gruntwork products:
 
-- **Learn Gruntwork.** Pair directly with Gruntwork engineers to understand how Gruntwork products work in depth.
-- **Customize Gruntwork.** Pay us to update our product to support the features you need to achieve your use case.
+- **Learn.** Pair directly with Gruntwork engineers on your infrastructure project so you can learn by doing as you go.
+- **Customize.** Engage with Gruntwork subject matter experts to customize our products to suit your specific needs.
 
 ### Support
 
-Gruntwork offers three levels of support:
+Gruntwork offers basic and paid support options:
 
 - **[Community support](/docs/guides/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
 - **[Paid support](/docs/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
 
 ## What you provide
 
-Gruntwork products and services can help you quickly achieve world-class infrastrcuture. However, we aren’t a consulting company. To suceced, you (or your trusted DevOps consultant/contractor) must commit to learning how to leverage our products for your use cases, making any additional customizations, and deploying or migrating your apps and services.
+Gruntwork products and services can help you quickly achieve world-class infrastructure. However, we aren’t a consulting company. To succeed, you (or your trusted DevOps consultant/contractor) must commit to learning how to leverage our products for your use cases, making any additional customizations, and deploying or migrating your apps and services.
 
 ### Learn how to use our products
 
@@ -55,5 +55,5 @@ Gruntwork products strike a balance between opinionatedness and configurability.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d9fa8619fd1365ab8a3f7b1bd56a14b2"}
+{"sourcePlugin":"Local File Copier","hash":"622ba0cc84323b51623f74d9fb9c8b1d"}
 ##DOCS-SOURCER-END -->

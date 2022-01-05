@@ -5,12 +5,19 @@ const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 const cfg = require("config")
 
+const captionsPlugin = require("./src/plugins/captions")
+
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
+
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
 
-const siteUrl = cfg.get("siteUrl")
+const siteUrl = cfg.has("siteUrl")
+  ? cfg.get("siteUrl")
+  : process.env["NETLIFY"]
+  ? process.env["DEPLOY_URL"]
+  : "http://localhost:3000"
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -35,6 +42,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
+          beforeDefaultRemarkPlugins: [captionsPlugin],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

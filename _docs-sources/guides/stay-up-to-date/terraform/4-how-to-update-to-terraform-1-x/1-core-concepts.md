@@ -7,7 +7,7 @@
 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability).
 Some of the major new features in 0.15 include:
 
-1.  A more stable state file format that will be compatible with Terraform 0.14, 0.15, and, once it’s released, 1.0.
+- A more stable state file format that will be compatible with Terraform 0.14, 0.15, and, once it’s released, 1.0.
 
 For more info, check out the for a complete introduction, check out the
 [announcement blog

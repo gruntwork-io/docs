@@ -1,13 +1,13 @@
 # This file allows us to define custom environment variables that can be used to override parts of the config. This
 # provides a convenient mechanism for specifying different config values in different environments.
 
-# Site URL
-siteUrl: CONFIG_DOCS_SITE_URL
-
 # Google Analytics tracking config
 googleAnalytics:
   trackingID: CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
   anonymizeIP: CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP
+
+# Site Url
+siteUrl: CONFIG_SITE_URL
 
 # Algolia Doc Search config
 algolia:
