@@ -4,5 +4,5 @@ siteUrl: http://host.docker.internal:3000
 
 algolia:
   appId: 7AWZHGNJE2
-  apiKey: 502f05673fef49bd9ccb1b701c727cdd
-  indexName: docs_stage
+  apiKey: a976ea48057ceaa662656ec8f4f591af
+  indexName: docs_site

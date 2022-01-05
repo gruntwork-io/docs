@@ -1,6 +1,6 @@
 {
-  "index_name": "docs_stage",
-  "sitemap_urls": ["https://docs.gruntwork.io/sitemap.xml"],
+  "index_name": "docs_site",
+  "sitemap_urls": ["https://docs.dogfood-stage.com/sitemap.xml"],
   "sitemap_alternate_links": true,
   "strip_chars": " .,;:#",
   "selectors": {
