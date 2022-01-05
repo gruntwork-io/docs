@@ -11,11 +11,17 @@ const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
 
+const siteUrl = cfg.has("siteUrl")
+  ? cfg.get("siteUrl")
+  : process.env["NETLIFY"]
+  ? process.env["DEPLOY_URL"]
+  : "http://localhost:3000"
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
   tagline: "Your entire infrastructure, defined as code, in about a day.",
-  url: "https://your-docusaurus-test-site.com",
+  url: siteUrl,
   baseUrl: "/",
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
