@@ -11,6 +11,10 @@ const googleAnalyticsConfig = cfg.has("googleAnalytics")
 
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
+  : // When the site is deployed via Netlify, the URL is stored in the following
+  // env variable
+  process.env["DEPLOY_URL"]
+  ? process.env["DEPLOY_URL"]
   : "http://localhost:3000"
 
 /** @type {import('@docusaurus/types').Config} */
