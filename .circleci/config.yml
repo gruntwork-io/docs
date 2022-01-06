@@ -63,6 +63,21 @@ references:
       success_message: ":tada: [Prod] Docs site has been successfully deployed at version $CIRCLE_TAG to https://docs.gruntwork.io"
       channel: "C01J73HUKEF" # #team-platform-notifications
 
+  rebuild_prod_search_index: &rebuild_prod_search_index
+    run:
+      name: Rebuild prod search index
+      command: |
+        echo "Sleeping for 30 seconds to allow the new updates to take effect."
+        sleep 30
+        # The API key below is a search only key and is not a secret.
+        ./scripts/update-search-index.sh --api-key a976ea48057ceaa662656ec8f4f591af
+
+  notify_slack_prod_reindex: &notify_slack_prod_reindex
+    slack/status:
+      failure_message: "[Docs] :red_circle: Re-indexing prod has failed! Build triggered by: $CIRCLE_USERNAME. Please investigate. Latest changes are likely not indexed and unavailable via search."
+      success_message: ":tada: Successfully rebuilt the search index for docs site version $CIRCLE_TAG. See: https://docs.gruntwork.io"
+      channel: "C01J73HUKEF" # #team-platform-notifications
+
 #######################################################################################################################
 # The build jobs available, all consisting of lists of references to the references section above
 #######################################################################################################################
@@ -91,6 +106,8 @@ jobs:
       - awscli/install
       - *deploy-to-prod
       - *notify_slack_prod
+      - *rebuild_prod_search_index
+      - *notify_slack_prod_reindex
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Here we combine the jobs defined above into various workflows that can run in parallel or sequentially, define
