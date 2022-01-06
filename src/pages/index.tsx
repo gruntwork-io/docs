@@ -41,8 +41,8 @@ export default function Home(): JSX.Element {
                 href="/docs/intro/overview/intro-to-gruntwork"
                 icon="/img/icons/learn.svg"
               >
-                Learn what Gruntwork is and how its products can help you deploy
-                a world class infrastructure.
+                Learn how Gruntwork products can help you deploy a world class
+                infrastructure.
               </Card>
               <Card
                 title="The Reference Architecture"
@@ -67,14 +67,14 @@ export default function Home(): JSX.Element {
             <h2>Discover Your Use Case</h2>
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card
-                title="Set Up Your Accounts"
+                title="Set Up Your Multi-account Structure"
                 href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
               >
-                Streamline how you create, configure, and secure AWS accounts
-                and multi-account structures.
+                Streamline how you create, configure, and secure your AWS
+                accounts using Gruntwork Landing Zone.
               </Card>
               <Card
-                title="Create a CI/CD Pipeline"
+                title="Create an Infra CI/CD Pipeline"
                 href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
               >
                 Use your preferred CI tool to set up an end‑to‑end pipeline for
@@ -91,8 +91,8 @@ export default function Home(): JSX.Element {
                 title="Deploy a Kubernetes Cluster"
                 href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
               >
-                Deploy a Kubernetes Cluster to host all of your apps and
-                services.
+                Deploy Kubernetes to host all of your apps and services using
+                EKS.
               </Card>
               <Card
                 title="Achieve Compliance"
