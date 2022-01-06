@@ -149,7 +149,7 @@ route table entries, more bastion hosts, and more credentials.
 
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
-the Gruntwork Infrastructure as Code Library.** Check out [How to Use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
+the Gruntwork Infrastructure as Code Library.** Check out [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork)
 for instructions on alternative options, such as how to
 [deploy using plain terraform](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
 

@@ -17,6 +17,7 @@ const sidebars = {
     {
       Overview: [
         "intro/overview/intro-to-gruntwork",
+        "intro/overview/infrastructure-as-code",
         // Temporarily hiding the unfinished sections from the sidebar We'll put
         // them back shortly and don't want to delete the pages as we know we're
         // going to have these sections within a few days.
@@ -45,6 +46,13 @@ const sidebars = {
         "intro/tool-fundamentals/packer",
         "intro/tool-fundamentals/terraform",
         "intro/tool-fundamentals/terragrunt",
+      ],
+    },
+    {
+      "Deploy Your First Module": [
+        "intro/first-deployment/using-terraform-modules",
+        "intro/first-deployment/testing",
+        "intro/first-deployment/deploy",
       ],
     },
     {

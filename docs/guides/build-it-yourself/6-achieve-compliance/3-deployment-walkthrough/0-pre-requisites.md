@@ -13,7 +13,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-[How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
+[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Gruntwork Compliance for CIS AWS Foundations Benchmark
 
@@ -56,5 +56,5 @@ automatically.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c2cbde343efc822a2fceb8e7d5403580"}
+{"sourcePlugin":"Local File Copier","hash":"90efd6d3bc110471ecf3e16129122b8f"}
 ##DOCS-SOURCER-END -->
