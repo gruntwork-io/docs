@@ -209,6 +209,7 @@ const config = {
             apiKey: algoliaConfig.apiKey,
 
             indexName: algoliaConfig.indexName,
+            contextualSearch: true,
           }
         : undefined,
       zoomSelector: ".markdown img",

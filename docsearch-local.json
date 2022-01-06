@@ -1,6 +1,6 @@
 {
   "index_name": "docs_site",
-  "sitemap_urls": ["https://docs.gruntwork.io/sitemap.xml"],
+  "sitemap_urls": ["http://host.docker.internal:3000/sitemap.xml"],
   "sitemap_alternate_links": true,
   "strip_chars": " .,;:#",
   "selectors": {
@@ -11,25 +11,16 @@
       "default_value": "Documentation"
     },
     "lvl1": {
-      "selector": "//nav[contains(@class,'menu')]/ul/li/div/a[contains(@class, 'active')]/text()",
+      "selector": "(//ul[contains(@class,'menu__list')]//a[contains(@class, 'menu__link menu__link--sublist menu__link--active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
       "type": "xpath",
-      "global": true
+      "global": true,
+      "default_value": "Documentation"
     },
-    "lvl2": {
-      "selector": "//nav[contains(@class,'menu')]/ul/li/ul/li/a[contains(@class, 'active')]/text()",
-      "type": "xpath",
-      "global": true
-    },
-    "lvl3": {
-      "selector": "//nav[contains(@class,'menu')]/ul/li/ul/li/ul/li/a[contains(@class, 'active')]/text()",
-      "type": "xpath",
-      "global": true
-    },
-    "lvl4": {
-      "selector": "//nav[contains(@class,'menu')]/ul/li/ul/li/ul/li/ul/li/a[contains(@class, 'active')]/text()",
-      "type": "xpath",
-      "global": true
-    },
+    "lvl2": "header h1",
+    "lvl3": "article h2",
+    "lvl4": "article h3",
+    "lvl5": "article h4",
+    "lvl6": "article h5, article td:first-child",
     "content": "article p, article li, article td:last-child"
   },
   "custom_settings": {

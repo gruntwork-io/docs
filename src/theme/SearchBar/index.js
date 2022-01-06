@@ -27,38 +27,38 @@ function getTitle(hit) {
   }
 
   const { lvl1, lvl2, lvl3, lvl4, lvl5, lvl6 } = hit.hierarchy
-  return lvl6 || lvl5 || lvl4 || lvl3 || lvl2 || lvl1 || ""
+  // return lvl6 || lvl5 || lvl4 || lvl3 || lvl2 || lvl1 || ""
 
-  // let breadcrumb = lvl1 || ""
+  let breadcrumb = lvl1 || ""
 
-  // if (lvl2) {
-  //   breadcrumb += ` > ${lvl2}`
-  // }
+  if (lvl2) {
+    breadcrumb += ` > ${lvl2}`
+  }
 
-  // if (lvl3) {
-  //   breadcrumb += ` > ${lvl3}`
-  // }
+  if (lvl3) {
+    breadcrumb += ` > ${lvl3}`
+  }
 
-  // if (lvl4) {
-  //   breadcrumb += ` > ${lvl4}`
-  // }
+  if (lvl4) {
+    breadcrumb += ` > ${lvl4}`
+  }
 
-  // if (lvl5) {
-  //   breadcrumb += ` > ${lvl5}`
-  // }
+  if (lvl5) {
+    breadcrumb += ` > ${lvl5}`
+  }
 
-  // if (lvl6) {
-  //   breadcrumb += ` > ${lvl6}`
-  // }
+  if (lvl6) {
+    breadcrumb += ` > ${lvl6}`
+  }
 
-  // return breadcrumb
+  return breadcrumb
 }
 
 function Hit({ hit, children }) {
   console.log(`Hit: %o`, hit)
   return (
     <Link to={hit.url}>
-      <div className="DocSearch-Hit-Container">
+      {/* <div className="DocSearch-Hit-Container">
         <div className="DocSearch-Hit-content-wrapper">
           <span className="DocSearch-Hit-title">{getTitle(hit)}</span>
           <div
@@ -73,7 +73,8 @@ function Hit({ hit, children }) {
             }}
           ></div>
         </div>
-      </div>
+      </div> */}
+      {children}
     </Link>
   )
 }
@@ -168,7 +169,6 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
 
   const transformItems = useRef((items) => {
     return items.map((item) => {
-      console.log(`-----ITEM ---> %o`, item)
       // If Algolia contains a external domain, we should navigate without relative URL
       if (isRegexpStringMatch(externalUrlRegex, item.url)) {
         return item
