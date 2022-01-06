@@ -10,7 +10,7 @@
 * [Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) – Terragrunt is our layer on top of Terraform to enable a highly DRY code base.
 * [Terratest](https://github.com/gruntwork-io/terratest) – If you want to test your infrastructure, Terratest enables you to write those tests for manual testing or integration with a CI/CD pipeline.
 * [tfenv](https://github.com/tfutils/tfenv#installation) – `tfenv` is a set of bash scripts that provide a workflow for managing and using multiple versions of Terraform. It was inspired by similar tools `rbenv` for Ruby versions and `pyenv` for Python.
-* [tgswitch](https://github.com/warrensbox/tgswitch) – `tgswitch` is a tool for managing and using multiple versions of Terragrunt. Written in golang, it offers similar features as `tfenv`, including managing the versions to use in a version file.
+* [tgswitch](https://github.com/warrensbox/tgswitch#installation) – `tgswitch` is a tool for managing and using multiple versions of Terragrunt. Written in golang, it offers similar features as `tfenv`, including managing the versions to use in a version file.
 
 ## Installation
 
