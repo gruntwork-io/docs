@@ -10,7 +10,7 @@ export type CardProps = {
   number?: number
   tags?: string[]
   orientation?: "horizontal" | "vertical"
-  appearance?: "flush" | "float"
+  appearance?: "float" | "flush" | "invisible"
   className?: string
 }
 
@@ -31,8 +31,10 @@ export const Card: React.FunctionComponent<CardProps> = ({
       className={clsx(
         styles.card,
         orientation === "horizontal" && styles.horizontal,
-        appearance === "flush" && styles.flush,
+        orientation === "vertical" && styles.vertical,
         appearance === "float" && styles.float,
+        appearance === "flush" && styles.flush,
+        appearance === "invisible" && styles.invisible,
         className
       )}
     >

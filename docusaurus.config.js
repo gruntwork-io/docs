@@ -20,7 +20,7 @@ const siteUrl = cfg.has("siteUrl")
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
-  tagline: "Your entire infrastructure, defined as code, in about a day.",
+  tagline: "Learn how to deploy and manage your entire infrastructure as code.",
   url: siteUrl,
   baseUrl: "/",
   favicon: "/favicon.ico",
