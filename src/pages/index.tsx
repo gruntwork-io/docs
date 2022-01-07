@@ -91,8 +91,8 @@ export default function Home(): JSX.Element {
                 title="Deploy a Kubernetes Cluster"
                 href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
               >
-                Deploy Kubernetes to host all of your apps and services using
-                EKS.
+                Deploy Kubernetes using EKS to host all of your apps and
+                services.
               </Card>
               <Card
                 title="Achieve Compliance"

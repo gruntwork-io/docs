@@ -75,6 +75,9 @@ html[data-theme="dark"] .icon {
 
   /* matches gruntwork brand purple */
   /*filter: brightness(1.5) hue-rotate(10deg);*/
+
+  /* brighter "brand" purple */
+  filter: brightness(2) hue-rotate(10deg);
 }
 
 .card .title {
