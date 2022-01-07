@@ -23,10 +23,14 @@ Deploy Runner:
 (cd <REPLACE_WITH_NAME_OF_ACCOUNT>/us-west-2/mgmt && terragrunt run-all apply)
 ```
 
-**NOTE:** Because this uses `run-all`, the command will not pause to show you the plan. If you wish to view the plan,
+:::note
+
+Because this uses `run-all`, the command will not pause to show you the plan. If you wish to view the plan,
 run `apply` in each subfolder of the `mgmt` folder, in dependency graph order. You can see the dependency graph by using
 the [graph-dependencies terragrunt
 command](https://terragrunt.gruntwork.io/docs/reference/cli-options/#graph-dependencies).
+
+:::
 
 At this point, the ECS Deploy Runner is provisioned in the new account, and you can start using the Gruntwork Pipeline
 to provision new infrastructure in the account.
