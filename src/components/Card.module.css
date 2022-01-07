@@ -65,6 +65,18 @@ html[data-theme="dark"] .float {
   margin-bottom: 1rem;
 }
 
+/* Use filters to make our icons appear legible in the dark
+ * theme. Note that this depends on all icon files using the
+ * plum purple (gw-purple-900) by default.
+ */
+html[data-theme="dark"] .icon {
+  /* matches --ifm-color-primary */
+  filter: brightness(2.5) hue-rotate(25deg);
+
+  /* matches gruntwork brand purple */
+  /*filter: brightness(1.5) hue-rotate(10deg);*/
+}
+
 .card .title {
   margin-top: 0;
   margin-bottom: 0.75rem;
