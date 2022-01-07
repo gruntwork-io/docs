@@ -7,6 +7,8 @@ const cfg = require("config")
 
 const captionsPlugin = require("./src/plugins/captions")
 
+const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
+
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
@@ -199,6 +201,15 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["hcl"],
       },
+      algolia: algoliaConfig
+        ? {
+            appId: algoliaConfig.appId,
+            // Public API key: safe to commit, but still sourced from config
+            apiKey: algoliaConfig.apiKey,
+            indexName: algoliaConfig.indexName,
+            contextualSearch: true,
+          }
+        : undefined,
       zoomSelector: ".markdown img",
       googleAnalytics: googleAnalyticsConfig,
     }),

@@ -8,3 +8,9 @@ googleAnalytics:
 
 # Site Url
 siteUrl: CONFIG_SITE_URL
+
+# Algolia Doc Search config
+algolia:
+  appId: ALGOLIA_APP_ID
+  apiKey: ALGOLIA_API_KEY
+  indexName: ALGOLIA_INDEX_NAME
