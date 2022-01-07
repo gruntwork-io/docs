@@ -63,6 +63,6 @@ structure to deploy Terraform modules. Please note that **Terragrunt is NOT requ
 the Gruntwork Infrastructure as Code Library.** Check out
 [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#deploy_using_plain_terraform).
+[Deploy using plain Terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::

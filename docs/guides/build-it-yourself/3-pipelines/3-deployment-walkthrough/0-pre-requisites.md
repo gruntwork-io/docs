@@ -63,11 +63,11 @@ structure to deploy Terraform modules. Please note that **Terragrunt is NOT requ
 the Gruntwork Infrastructure as Code Library.** Check out
 [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#deploy_using_plain_terraform).
+[Deploy using plain Terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"275f1ae0cfd5dd7d4456847404d367b0"}
+{"sourcePlugin":"Local File Copier","hash":"0567efcc993a00d3532c34f572481cca"}
 ##DOCS-SOURCER-END -->
