@@ -49,9 +49,8 @@ export default function Home(): JSX.Element {
                 href="/docs/guides/reference-architecture/overview/overview"
                 icon="/img/icons/refarch.svg"
               >
-                Bootstrap your infrastructure in about a day by letting
-                Gruntwork deploy a Reference Architecture customized just for
-                you.
+                Bought a Reference Architecture? Get your new infrastructure up
+                and running quickly with our comprehensive guide.
               </Card>
               <Card
                 title="Deploy A Service"
