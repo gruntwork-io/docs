@@ -17,7 +17,6 @@ const sidebars = {
     {
       Overview: [
         "intro/overview/intro-to-gruntwork",
-        "intro/overview/infrastructure-as-code",
         // Temporarily hiding the unfinished sections from the sidebar We'll put
         // them back shortly and don't want to delete the pages as we know we're
         // going to have these sections within a few days.
@@ -26,6 +25,12 @@ const sidebars = {
         // "intro/overview/use-cases",
         // "intro/overview/gruntwork-vs-other",
         "intro/overview/getting-started",
+      ],
+    },
+    {
+      "Core Concepts": [
+        "intro/core-concepts/infrastructure-as-code",
+        "intro/core-concepts/immutable-infrastructure",
       ],
     },
     {
