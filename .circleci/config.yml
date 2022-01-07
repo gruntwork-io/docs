@@ -90,9 +90,7 @@ references:
 #######################################################################################################################
 jobs:
   validate-build:
-    machine:
-      image: ubuntu-2004:202010-01
-      docker_layer_caching: true
+    <<: *base_container
     description: Validate Build
     steps:
       - checkout
