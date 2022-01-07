@@ -24,3 +24,15 @@ thorough introduction to the language.
 
 A large percentage of the infrastructure code in the Gruntwork Infrastructure as Code Library is defined using Terraform. We even
 wrote [the book](https://www.terraformupandrunning.com) on it!
+
+## Terraform Cloud and Terraform Enterprise
+
+[Terraform Cloud](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise](https://www.terraform.io/docs/enterprise/index.html) are HashiCorp’s commercial Terraform products. They include many additional features for Terraform, including plan and apply workflows with approvals, role-based access control for teams, policy as code using Sentinel, and more.
+
+![](/img/intro/tool-fundamentals/tfc.png)
+
+:::note We're compatible with TFC/TFE
+
+The Gruntwork module library and open source tools are compatible with Terraform Cloud and Terraform Enterprise.
+
+:::

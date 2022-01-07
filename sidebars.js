@@ -28,6 +28,12 @@ const sidebars = {
       ],
     },
     {
+      "Core Concepts": [
+        "intro/core-concepts/infrastructure-as-code",
+        "intro/core-concepts/immutable-infrastructure",
+      ],
+    },
+    {
       "Accessing the Dev Portal": [
         "intro/dev-portal/create-account",
         "intro/dev-portal/invite-team",
@@ -45,6 +51,13 @@ const sidebars = {
         "intro/tool-fundamentals/packer",
         "intro/tool-fundamentals/terraform",
         "intro/tool-fundamentals/terragrunt",
+      ],
+    },
+    {
+      "Deploy Your First Module": [
+        "intro/first-deployment/using-terraform-modules",
+        "intro/first-deployment/testing",
+        "intro/first-deployment/deploy",
       ],
     },
     {
