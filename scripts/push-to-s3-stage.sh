@@ -8,6 +8,7 @@ unset CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
 unset CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP
 
 export CONFIG_SITE_URL="https://docs.dogfood-stage.com"
+export ALGOLIA_INDEX_NAME="docs_site_stage"
 
 yarn --ignore-optional && yarn build
 

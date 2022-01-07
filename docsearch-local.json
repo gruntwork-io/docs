@@ -1,5 +1,5 @@
 {
-  "index_name": "docs_site",
+  "index_name": "docs_site_dev",
   "sitemap_urls": ["http://host.docker.internal:3000/sitemap.xml"],
   "sitemap_alternate_links": true,
   "selectors": {

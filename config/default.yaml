@@ -5,4 +5,4 @@ siteUrl: http://host.docker.internal:3000
 algolia:
   appId: 7AWZHGNJE2
   apiKey: a976ea48057ceaa662656ec8f4f591af # This is a search only API key. It's safe to check in.
-  indexName: docs_site
+  indexName: docs_site_stage

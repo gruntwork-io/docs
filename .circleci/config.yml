@@ -84,6 +84,20 @@ references:
       success_message: ":tada: Successfully rebuilt the search index for docs site version $CIRCLE_TAG. See: https://docs.gruntwork.io"
       channel: "C01J73HUKEF" # #team-platform-notifications
 
+  rebuild_stage_search_index: &rebuild_stage_search_index
+    run:
+      name: Rebuild prod search index
+      command: |
+        echo "Sleeping for 30 seconds to allow the new updates to take effect."
+        sleep 30
+        ./scripts/update-search-index.sh --api-key "$ALGOLIA_API_KEY" --config docsearch-stage.json
+
+  notify_slack_stage_reindex: &notify_slack_stage_reindex
+    slack/status:
+      failure_message: "[Docs] :red_circle: Re-indexing stage has failed! Build triggered by: $CIRCLE_USERNAME. Please investigate."
+      success_message: ":tada: Successfully rebuilt the search index for staging docs site version $CIRCLE_TAG. See: https://docs.dogfood-stage.com"
+      channel: "C01J73HUKEF" # #team-platform-notifications
+
 #######################################################################################################################
 # The build jobs available, all consisting of lists of references to the references section above
 #######################################################################################################################
@@ -103,6 +117,11 @@ jobs:
       - awscli/install
       - *deploy-to-staging
       - *notify_slack_staging
+      - *install_bash_commons
+      - setup_remote_docker:
+          version: 19.03.13
+      - *rebuild_stage_search_index
+      - *notify_slack_stage_reindex
 
   deploy-to-prod:
     <<: *base_container

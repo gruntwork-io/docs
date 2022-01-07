@@ -1,5 +1,5 @@
 {
-  "index_name": "docs_site_prod",
+  "index_name": "docs_site_stage",
   "sitemap_urls": ["https://docs.gruntwork.io/sitemap.xml"],
   "sitemap_alternate_links": true,
   "selectors": {
