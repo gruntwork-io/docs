@@ -149,16 +149,17 @@ workflows:
       - validate-build:
           context:
             - Gruntwork Platform CI
-            - GitHub OAuth Token
       - deploy-to-stage:
           context:
             - Gruntwork Platform CI
+            - GitHub OAuth Token
           filters:
             branches:
               only: master
       - deploy-to-prod:
           context:
             - Gruntwork Platform CI
+            - GitHub OAuth Token
           filters:
             tags:
               only: /^v.*/
