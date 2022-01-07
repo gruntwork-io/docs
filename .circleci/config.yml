@@ -86,7 +86,7 @@ references:
 
   rebuild_stage_search_index: &rebuild_stage_search_index
     run:
-      name: Rebuild prod search index
+      name: Rebuild stage search index
       command: |
         echo "Sleeping for 30 seconds to allow the new updates to take effect."
         sleep 30
