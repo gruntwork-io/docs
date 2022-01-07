@@ -21,6 +21,13 @@ references:
   # Build steps
   ######################################################################################################################
 
+  install_bash_commons: &install_bash_commons
+    run:
+      name: install bash commons
+      command: |
+        curl -Ls https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/master/bootstrap-gruntwork-installer.sh | bash /dev/stdin --version v0.0.21
+        gruntwork-install --module-name bash-commons --repo https://github.com/gruntwork-io/bash-commons --tag "v0.1.2"
+
   build_docs: &build_docs
     run:
       name: build
@@ -108,6 +115,7 @@ jobs:
       - awscli/install
       - *deploy-to-prod
       - *notify_slack_prod
+      - *install_bash_commons
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
