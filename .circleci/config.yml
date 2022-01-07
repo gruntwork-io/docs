@@ -94,11 +94,6 @@ jobs:
     steps:
       - checkout
       - *build_docs
-      - *install_bash_commons
-      - setup_remote_docker:
-          version: 19.03.13
-      - *rebuild_prod_search_index
-      - *notify_slack_prod_reindex
 
   deploy-to-stage:
     <<: *base_container
@@ -118,6 +113,8 @@ jobs:
       - *deploy-to-prod
       - *notify_slack_prod
       - *install_bash_commons
+      - setup_remote_docker:
+          version: 19.03.13
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
