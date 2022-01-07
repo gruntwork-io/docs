@@ -7,7 +7,7 @@
       "selector": "(//nav[contains(@class,'menu')]/ul/li/div/a[contains(@class, 'active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
       "type": "xpath",
       "global": true,
-      "default_value": "Documentation"
+      "default_value": "Docs"
     },
     "lvl1": "header h1",
     "lvl2": "article h2",
