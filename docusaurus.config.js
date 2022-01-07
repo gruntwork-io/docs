@@ -204,8 +204,7 @@ const config = {
       algolia: algoliaConfig
         ? {
             appId: algoliaConfig.appId,
-            // Public API key: it is safe to commit it but we still source from
-            // config.
+            // Public API key: safe to commit, but still sourced from config
             apiKey: algoliaConfig.apiKey,
             indexName: algoliaConfig.indexName,
             contextualSearch: true,
