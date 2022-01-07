@@ -12,7 +12,7 @@ fi
 source "$BASH_COMMONS_DIR/log.sh"
 source "$BASH_COMMONS_DIR/assert.sh"
 
-readonly ALGOLIA_APP_ID=7AWZHGNJE2
+readonly ALGOLIA_APP_ID="7AWZHGNJE2"
 
 function print_usage() {
   echo
