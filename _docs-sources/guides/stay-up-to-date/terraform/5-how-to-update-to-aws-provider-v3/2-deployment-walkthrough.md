@@ -8,7 +8,7 @@ library to test and update the code to be compatible with AWS provider version 3
 the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Be sure to
 read the release notes to know what changes need to be made to update to that version.
 
-Refer to [the "Updating to new versions" section of "Stay Up to Date"](/docs/guides/stay-up-to-date/versioning#updating-to-new-versions)
+Refer to our ["Updating to new versions"](/docs/guides/stay-up-to-date/versioning#updating-to-new-versions) guide
 for instructions on how to update the versions in your code.
 
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are

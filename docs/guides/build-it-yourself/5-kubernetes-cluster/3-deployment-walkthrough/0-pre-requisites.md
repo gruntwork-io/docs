@@ -14,7 +14,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 </div>
 
@@ -31,7 +31,7 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 #### Python and Kubergrunt
 
@@ -44,7 +44,7 @@ Python and `kubergrunt` installed on any computer where you will be running Terr
 This guide assumes you are deploying a Kubernetes cluster for use with [Docker](https://www.docker.com). The guide also
 uses [Packer](https://www.packer.io) to build VM images. If you’re not familiar with Docker or Packer, check out
 [A Crash Course on Docker and Packer](https://training.gruntwork.io/p/a-crash-course-on-docker-packer) and
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 #### AWS accounts
 
@@ -58,5 +58,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"73b6eb2c6f779ec1d32a2555110a6f85"}
+{"sourcePlugin":"Local File Copier","hash":"27e94f0698deb1f1538caac41e676ec7"}
 ##DOCS-SOURCER-END -->

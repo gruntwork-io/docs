@@ -76,9 +76,7 @@ The only way to build confidence that your infrastructure code works as you expe
 account. That means you’ll primarily be writing _integration tests_ that:
 
 1.  Run `terraform apply` to deploy your module
-
 2.  Perform a bunch of validations that the deployed infrastructure works as expected
-
 3.  Run `terraform destroy` at the end to clean up
 
 In short, you’re automating the steps you took to manually test your module!
@@ -209,7 +207,6 @@ For a lot more information on writing automated tests for Terraform code, see:
 1.  [Terratest documentation](https://github.com/gruntwork-io/terratest/), especially the many examples and corresponding
     tests in the `examples` and `test` folders, respectively, and the
     [testing best practices](https://github.com/gruntwork-io/terratest/#testing-best-practices) section.
-
 2.  _[Terraform: Up & Running](https://www.terraformupandrunning.com)_, 2nd edition, has an entire chapter dedicated to
     automated testing for Terraform code, including unit tests, integration tests, end-to-end tests, dependency injection,
     running tests in parallel, test stages, and more.

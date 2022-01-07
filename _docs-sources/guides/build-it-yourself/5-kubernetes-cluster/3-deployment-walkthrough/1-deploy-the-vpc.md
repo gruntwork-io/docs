@@ -126,7 +126,7 @@ git push --follow-tags
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
 [Deploy using plain Terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
 

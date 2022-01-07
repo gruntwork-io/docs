@@ -13,7 +13,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Gruntwork Compliance for CIS AWS Foundations Benchmark
 
@@ -37,7 +37,7 @@ This guide uses [Terraform](https://www.terraform.io/) to define and manage all 
 you’re not familiar with Terraform, check out
 [A Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca),
 [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Terragrunt
 
@@ -55,5 +55,5 @@ automatically.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"bfc10d26a6e159ea84002281be9be6ff"}
+{"sourcePlugin":"Local File Copier","hash":"66e00bc4b6bc468084ece0b3d08297af"}
 ##DOCS-SOURCER-END -->
