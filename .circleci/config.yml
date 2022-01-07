@@ -95,6 +95,7 @@ jobs:
     steps:
       - checkout
       - *build_docs
+      - *install_bash_commons
       - *rebuild_prod_search_index
       - *notify_slack_prod_reindex
 
