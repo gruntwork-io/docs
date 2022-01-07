@@ -5,7 +5,7 @@ To destroy a module with no downstream dependencies, such as `route53-private` i
 1.  Update the `force_destroy` variable in `dev/us-west-2/dev/networking/route53-private/terragrunt.hcl`.
     ([See the `force_destroy` section](./03-pre-requisite-force-destroy-on-s3-buckets.md).)
 
-            force_destroy = true
+        force_destroy = true
 
 1.  Open a pull request for that change and verify the plan in CI. You should see a trivial change to update the
     module.
@@ -35,5 +35,5 @@ modules that have no existing downstream dependencies.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9674596ad857646ce738121ff294b02d"}
+{"sourcePlugin":"Local File Copier","hash":"b29d1696372fb2955b41113f2eee5f96"}
 ##DOCS-SOURCER-END -->
