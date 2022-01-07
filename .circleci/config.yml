@@ -76,8 +76,7 @@ references:
       command: |
         echo "Sleeping for 30 seconds to allow the new updates to take effect."
         sleep 30
-        # The API key below is a search only key and is not a secret.
-        ./scripts/update-search-index.sh --api-key a976ea48057ceaa662656ec8f4f591af
+        ./scripts/update-search-index.sh --api-key "$ALGOLIA_API_KEY"
 
   notify_slack_prod_reindex: &notify_slack_prod_reindex
     slack/status:
