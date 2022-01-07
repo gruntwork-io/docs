@@ -88,6 +88,8 @@ jobs:
     steps:
       - checkout
       - *build_docs
+      - *rebuild_prod_search_index
+      - *notify_slack_prod_reindex
 
   deploy-to-stage:
     <<: *base_container

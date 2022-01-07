@@ -1,6 +1,6 @@
 {
   "index_name": "docs_site",
-  "sitemap_urls": ["http://host.docker.internal:3000/sitemap.xml"],
+  "sitemap_urls": ["https://docs.gruntwork.io/sitemap.xml"],
   "sitemap_alternate_links": true,
   "selectors": {
     "lvl0": {
