@@ -61,7 +61,7 @@ Follow the steps below to keep your code up to date:
     was increased (e.g., `v0.18.0` → `v0.19.0`), that implies a backwards incompatible change, and the release notes will
     explain what you need to do (e.g., you might have to add, remove, or change arguments you pass to the module).
 
-4.  Test your changes locally. You do this using the same process outlined in [Manual tests for Terraform code](#manual_tests_terraform) and
-    [Automated tests for Terraform code](#automated_tests_terraform).
+4.  Test your changes locally. You do this using the same process outlined in [Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code) and
+    [Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code).
 
 5.  Deploy your changes to each environment. You do this using the same process outlined in [Deploying Terraform code](#deploy_terraform).

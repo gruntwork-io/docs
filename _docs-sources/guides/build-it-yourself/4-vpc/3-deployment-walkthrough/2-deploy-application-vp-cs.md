@@ -171,8 +171,8 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
-and [Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
+and [Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 ## Merge and release your wrapper module

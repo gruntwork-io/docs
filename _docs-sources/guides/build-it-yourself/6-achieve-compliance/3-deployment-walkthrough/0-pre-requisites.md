@@ -37,8 +37,7 @@ This guide uses [Terraform](https://www.terraform.io/) to define and manage all 
 you’re not familiar with Terraform, check out
 [A Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca),
 [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-[How to Use the Gruntwork
-Infrastructure as Code Library](https://gruntwork.ioguides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
+[Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Terragrunt
 

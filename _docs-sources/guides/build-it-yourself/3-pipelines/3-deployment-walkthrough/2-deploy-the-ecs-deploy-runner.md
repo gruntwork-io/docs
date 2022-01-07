@@ -125,9 +125,9 @@ output "url" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
+[Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
 and
-[Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+[Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 Once your `ecr-repo` module is working the way you want, submit a pull request, get your changes merged into the

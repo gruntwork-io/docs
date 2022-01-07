@@ -125,9 +125,9 @@ output "url" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#manual_tests_terraform)
+[Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
 and
-[Automated tests for Terraform code](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#automated_tests_terraform)
+[Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 Once your `ecr-repo` module is working the way you want, submit a pull request, get your changes merged into the
@@ -751,5 +751,5 @@ Repeat for each environment that you want to support the ECS Deploy Runner stack
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"1667e483c28e9a465fe18fb2d55cfbda"}
+{"sourcePlugin":"Local File Copier","hash":"7d011d8a358b5022a2a89a159c5b7136"}
 ##DOCS-SOURCER-END -->

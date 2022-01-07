@@ -58,9 +58,9 @@ We’ll be using the `landingzone/account-baseline-root` module from [terraform-
 :::info
 
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
-structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from the Gruntwork Infrastructure as Code Library.** Check out [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.ioguides/foundations/how-to-use-gruntwork-infrastructure-as-code-library)
+structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from the Gruntwork Infrastructure as Code Library.** Check out [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section
 for instructions on alternative options, such as how to
-[deploying how to use plain terraform](https://gruntwork.ioguides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#deploy_using_plain_terraform).
+[deploying how to use plain terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::
 
