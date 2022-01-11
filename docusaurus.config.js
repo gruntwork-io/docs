@@ -28,6 +28,7 @@ const config = {
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.,
+  trailingSlash: false,
 
   stylesheets: [
     "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap",
@@ -75,6 +76,7 @@ const config = {
             position: "left",
             label: "Guides",
             docId: "guides/welcome",
+            activeBasePath: "docs/guides",
           },
           {
             type: "doc",

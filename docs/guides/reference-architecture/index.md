@@ -2,7 +2,7 @@
 pagination_label: Reference Architecture
 ---
 
-# Architecture Overview
+# Setting Up Your Reference Architecture
 
 This documentation contains an overview of a deployed and managed architecture.
 
@@ -56,7 +56,7 @@ The list of accounts includes:
 - **shared-services**: DevOps tooling.
 - **logs**: An account for centralizing logs from all of the accounts.
 
-Check out the [Authentication docs](../02-authenticate/01-intro.md) for more info on how to authenticate to these accounts and
+Check out the [Authentication docs](02-authenticate/01-intro.md) for more info on how to authenticate to these accounts and
 switch between them.
 
 ## VPCs and subnets
@@ -105,21 +105,21 @@ VPN client, you are "in the network", and will be able to access the private res
 to your EC2 Instances).
 
 For more info, see the [`openvpn` service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server) and the VPN
-section of the [Authentication docs](../02-authenticate/06-authenticate-to-the-vpn-server.md).
+section of the [Authentication docs](02-authenticate/06-authenticate-to-the-vpn-server.md).
 
 ## GitHub
 
 We have set up [GitHub](https://github.com) as a Continuous Integration (CI) server. After every commit, a GitHub
 job runs your build, tests, packaging, and automated deployment steps.
 
-For more info, see the [Gruntwork Pipelines docs](../04-configure-gw-pipelines/01-intro.md).
+For more info, see the [Gruntwork Pipelines docs](04-configure-gw-pipelines/01-intro.md).
 
 ## Monitoring, log aggregation, alerting
 
 You can find metrics, log files from all your servers, and subscribe to alert notifications using [Amazon
 CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-For more info, see the [Monitoring, Alerting, and Logging docs](../05-monitoring-alerting-logging/01-intro.md).
+For more info, see the [Monitoring, Alerting, and Logging docs](05-monitoring-alerting-logging/01-intro.md).
 
 ## DNS and TLS
 
@@ -135,11 +135,11 @@ We have configured security best practices in every aspect of this infrastructur
 
 - **Network security**: see [VPCs and subnets](#vpcs-and-subnets).
 
-- **Server access**: see SSH and VPN sections of the [Authentication docs](../02-authenticate/01-intro.md).
+- **Server access**: see SSH and VPN sections of the [Authentication docs](02-authenticate/01-intro.md).
 
-- **Application secrets**: see secrets management section of the [Deploy your Apps docs](../03-deploy-apps/01-intro.md).
+- **Application secrets**: see secrets management section of the [Deploy your Apps docs](03-deploy-apps/01-intro.md).
 
-- **User accounts**: see the [Authentication docs](../authenticate/setting-up-initial-access).
+- **User accounts**: see the [Authentication docs](02-authenticate/02-setting-up-initial-access.md).
 
 - **Auditing**: see the [CloudTrail](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cloudtrail) and
   [AWS Config](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/aws-config) modules.
@@ -155,9 +155,9 @@ for more info.
 
 ## Next steps
 
-Next up, let's have a look at [how to authenticate](../authenticate/intro).
+Next up, let's have a look at [how to authenticate](02-authenticate/01-intro.md).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a6edc43b09a3c63807f96816f1954e26"}
+{"sourcePlugin":"Local File Copier","hash":"acddc75145ab07da73fc6eb933e8869c"}
 ##DOCS-SOURCER-END -->
