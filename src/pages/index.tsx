@@ -46,7 +46,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="The Reference Architecture"
-                href="/docs/guides/reference-architecture/overview/overview"
+                href="/docs/guides/reference-architecture"
                 icon="/img/icons/refarch.svg"
               >
                 Bought a Reference Architecture? Get your new infrastructure up
