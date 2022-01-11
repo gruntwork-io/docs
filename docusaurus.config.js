@@ -9,6 +9,8 @@ const captionsPlugin = require("./src/plugins/captions")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
+const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined
+
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
@@ -18,6 +20,12 @@ const siteUrl = cfg.has("siteUrl")
   : process.env["NETLIFY"]
   ? process.env["DEPLOY_URL"]
   : "http://localhost:3000"
+
+const plugins = ["plugin-image-zoom"]
+
+if (posthogConfig) {
+  plugins.push("posthog-docusaurus")
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -51,7 +59,7 @@ const config = {
     ],
   ],
 
-  plugins: ["plugin-image-zoom"],
+  plugins: plugins,
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -212,6 +220,12 @@ const config = {
         : undefined,
       zoomSelector: ".markdown img",
       googleAnalytics: googleAnalyticsConfig,
+      posthog: posthogConfig
+        ? {
+            apiKey: posthogConfig.apiKey,
+            appUrl: posthogConfig.appUrl,
+          }
+        : undefined,
     }),
 }
 
