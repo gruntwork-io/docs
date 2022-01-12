@@ -67,35 +67,35 @@ export default function Home(): JSX.Element {
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card
                 title="Set Up Your Multi-account Structure"
-                href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
+                href="/docs/guides/build-it-yourself/landing-zone"
               >
                 Streamline how you create, configure, and secure your AWS
                 accounts using Gruntwork Landing Zone.
               </Card>
               <Card
                 title="Create an Infra CI/CD Pipeline"
-                href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
+                href="/docs/guides/build-it-yourself/pipelines"
               >
                 Use your preferred CI tool to set up an end‑to‑end pipeline for
                 your infrastructure code.
               </Card>
               <Card
                 title="Configure Your Network"
-                href="/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide"
+                href="/docs/guides/build-it-yourself/vpc"
               >
                 Set up your network according to industry best practices using
                 our VPC service.
               </Card>
               <Card
                 title="Deploy a Kubernetes Cluster"
-                href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
+                href="/docs/guides/build-it-yourself/kubernetes-cluster"
               >
                 Deploy Kubernetes using EKS to host all of your apps and
                 services.
               </Card>
               <Card
                 title="Achieve Compliance"
-                href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
+                href="/docs/guides/build-it-yourself/achieve-compliance"
               >
                 Implement the CIS AWS Foundations Benchmark using our curated
                 collection of modules and services.

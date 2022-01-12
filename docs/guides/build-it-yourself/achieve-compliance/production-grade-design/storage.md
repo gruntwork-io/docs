@@ -65,7 +65,7 @@ The CIS 1.4.0 Benchmark recommends a few additional steps to ensure your data is
 
 :::info
 
-The steps below are not the full list of actions needed to configure MFA Delete or Amazon Macie for your account. To follow the steps necessary to configure it according to the CIS 1.4.0 Benchmark, please follow the MFA Delete and Macie section in the [the migration guide to CIS 1.4.0](../../../stay-up-to-date/cis/how-to-update-to-cis-14/intro.md), or the deployment guide section in this guide.
+The steps below are not the full list of actions needed to configure MFA Delete or Amazon Macie for your account. To follow the steps necessary to configure it according to the CIS 1.4.0 Benchmark, please follow the MFA Delete and Macie section in the [the migration guide to CIS 1.4.0](/docs/guides/stay-up-to-date/cis/cis-1.4.0), or the deployment guide section in this guide.
 :::
 
 ### Enable MFA Delete (recommendation 2.1.3)
@@ -138,5 +138,5 @@ explicit list of buckets per region, namely in the variable `buckets_to_analyze`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7add6db97470547ed2b5294fecab6b65"}
+{"sourcePlugin":"Local File Copier","hash":"9703e9d01c91a2f7c040068bba12e09f"}
 ##DOCS-SOURCER-END -->

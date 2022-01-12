@@ -41,32 +41,32 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 <Grid>
   <Card
     title="Set Up Your AWS Accounts"
-    href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/landing-zone"
   >
     Set up a multi-account structure using Gruntwork Landing Zone.
   </Card>
   <Card
     title="Configure a CI/CD Pipeline"
-    href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/pipelines"
   >
     Implement continuous deployment for your infrastructure code with Gruntwork
     Pipelines.
   </Card>
   <Card
     title="Deploy a VPC"
-    href="/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/vpc"
   >
     Set up your network according to industry best practices using our VPC service.
   </Card>
   <Card
     title="Deploy a Kubernetes Cluster"
-    href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/kubernetes-cluster"
   >
     Deploy a Kubernetes Cluster to host all of your apps and services.
   </Card>
   <Card
     title="Acheive Compliance"
-    href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/achieve-compliance"
   >
     Make your infrastructure compliant with the CIS AWS Foundations Benchmark.
   </Card>
@@ -91,32 +91,34 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 ## Stay Up to Date
 
 <Grid cols={2}>
-  <div>
 
-### CIS AWS Foundations Benchmark
-
-- [Update to version 1.4.0](#)
-- [Update to version 1.3.0](#)
-
-  </div>
-  <div>
+<span>
 
 ### Terraform
 
-- [Update to version 1.X](#)
-- [Update to Terraform 15](#)
-- [Update to Terraform 14](#)
-- [Update to Terraform 13](#)
-- [Update to Terraform 12](#)
-- [Update to Version 3 of the Terraform provider](#)
-- [DRY your Reference Architecture](#)
+- [Update to version 1.X](/docs/guides/stay-up-to-date/terraform/terraform-1.x)
+- [Update to Terraform 15](/docs/guides/stay-up-to-date/terraform/terraform-15)
+- [Update to Terraform 14](/docs/guides/stay-up-to-date/terraform/terraform-14)
+- [Update to Terraform 13](/docs/guides/stay-up-to-date/terraform/terraform-13)
+- [Update to Terraform 12](/docs/guides/stay-up-to-date/terraform/terraform-12)
+- [Update to Version 3 of the Terraform provider](/docs/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3)
+- [DRY your Reference Architecture](/docs/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture)
 
-  </div>
+</span>
+<span>
+
+### CIS AWS Foundations Benchmark
+
+- [Update to version 1.4.0](/docs/guides/stay-up-to-date/cis/cis-1.4.0)
+- [Update to version 1.3.0](/docs/guides/stay-up-to-date/cis/cis-1.3.0)
+
+</span>
+
 </Grid>
 
 </CenterLayout>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a41976c5d1c73076a98ba822861432ef"}
+{"sourcePlugin":"Local File Copier","hash":"ad7aca064c83377e1f0b6f67ee657aee"}
 ##DOCS-SOURCER-END -->
