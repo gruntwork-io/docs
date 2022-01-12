@@ -58,6 +58,7 @@ const landingZoneGuide = [
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/try-authenticating-as-an-iam-user-to-the-child-accounts",
         ],
       },
+      "guides/build-it-yourself/landing-zone/next-steps",
     ],
   },
 ]
