@@ -11,7 +11,7 @@
 
 const introSidebar = require("./sidebars/intro-guide.js")
 const refarchSidebar = require("./sidebars/refarch-guide.js")
-// const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
+const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
 // const pipelineSidebar = require("./sidebars/pipelines-guide.js")
 // const vpcSidebar = require("./sidebars/vpc-guide.js")
 // const kuberneteSidebar = require("./sidebars/kubernetes-guide.js")
@@ -24,7 +24,7 @@ const apiSidebars = require("./sidebars/api-reference.js")
 const sidebars = {
   introSidebar,
   refarchSidebar,
-  // landingZoneSidebar,
+  landingZoneSidebar,
   // pipelinesSidebar,
   // vpcSidebar,
   // kubernetesSidebar,
