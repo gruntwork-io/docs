@@ -15,7 +15,7 @@ const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
 const pipelineSidebar = require("./sidebars/pipelines-guide.js")
 const vpcSidebar = require("./sidebars/vpc-guide.js")
 const kubernetesSidebar = require("./sidebars/kubernetes-guide.js")
-// const complianceSidebar = require("./sidebars/compliance-guide.js")
+const complianceSidebar = require("./sidebars/compliance-guide.js")
 const apiSidebars = require("./sidebars/api-reference.js")
 
 // @ts-check
@@ -28,7 +28,7 @@ const sidebars = {
   pipelineSidebar,
   vpcSidebar,
   kubernetesSidebar,
-  // complianceSidebar,
+  complianceSidebar,
   ...apiSidebars,
 }
 
