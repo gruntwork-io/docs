@@ -88,9 +88,35 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
   </Card>
 </Grid>
 
+## Stay Up to Date
+
+<Grid cols={2}>
+  <div>
+
+### CIS AWS Foundations Benchmark
+
+- [Update to version 1.4.0](#)
+- [Update to version 1.3.0](#)
+
+  </div>
+  <div>
+
+### Terraform
+
+- [Update to version 1.X](#)
+- [Update to Terraform 15](#)
+- [Update to Terraform 14](#)
+- [Update to Terraform 13](#)
+- [Update to Terraform 12](#)
+- [Update to Version 3 of the Terraform provider](#)
+- [DRY your Reference Architecture](#)
+
+  </div>
+</Grid>
+
 </CenterLayout>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9bd2a4efd5b5c03f4923cf52dfa9d890"}
+{"sourcePlugin":"Local File Copier","hash":"a41976c5d1c73076a98ba822861432ef"}
 ##DOCS-SOURCER-END -->
