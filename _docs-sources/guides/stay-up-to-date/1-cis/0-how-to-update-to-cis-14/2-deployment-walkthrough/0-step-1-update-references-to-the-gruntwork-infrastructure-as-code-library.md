@@ -7,14 +7,12 @@ sidebar_label: Update references to the Gruntwork Infrastructure as Code Library
 To update to the CIS AWS Foundations Benchmark v1.4.0, you need to update your references to the Gruntwork
 Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library
 modules for compatibility with the new version of the benchmark. As a customer, you need to update to
-the proper versions of the Gruntwork library to pick up the fixes/changes made to be compatible. Refer to
-[the
-"Updating" section of "How to use the Gruntwork Infrastructure as Code Library"](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#updating) for instructions on how to update the
+the proper versions of the Gruntwork library to pick up the fixes/changes made to be compatible. Refer to our ["Updating to new versions"](/docs/guides/stay-up-to-date/versioning#updating-to-new-versions) guide for instructions on how to update the
 versions in your code.
 
 Gruntwork follows
 [semantic
-versioning](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/#versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward
+versioning](/docs/guides/stay-up-to-date/versioning#semantic-versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward
 incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the
 relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each
 minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0,
@@ -24,6 +22,7 @@ The following table provides a summary of all the relevant Gruntwork AWS modules
 compatible with CIS AWS v1.4.0:
 
 <a id="compatibility-table" class="snap-top"></a>
+
 <table id="compatibility-table">
   <colgroup>
     <col />

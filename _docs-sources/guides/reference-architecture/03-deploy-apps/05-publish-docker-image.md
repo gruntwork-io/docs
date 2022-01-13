@@ -11,25 +11,25 @@ First, you'll need to create the new ECR repository.
 add the desired repository name of your app. For the purposes of our example, let's call
 ours `simple-web-app`:
 
-```yaml
-simple-web-app:
-  external_account_ids_with_read_access:
-  # NOTE: we have to comment out the directives so that the python based data merger (see the `merge-data` hook under
-  # blueprints in this repository) can parse this yaml file. This still works when feeding through templatefile, as it
-  # will interleave blank comments with the list items, which yaml handles gracefully.
-  # %{ for account in accounts }
-  - '${account}'
-  # %{ endfor }
-  external_account_ids_with_write_access: []
-  tags: {}
-  enable_automatic_image_scanning: true
-```
+  ```yaml
+  simple-web-app:
+    external_account_ids_with_read_access:
+    # NOTE: we have to comment out the directives so that the python based data merger (see the `merge-data` hook under
+    # blueprints in this repository) can parse this yaml file. This still works when feeding through templatefile, as it
+    # will interleave blank comments with the list items, which yaml handles gracefully.
+    # %{ for account in accounts }
+    - '${account}'
+    # %{ endfor }
+    external_account_ids_with_write_access: []
+    tags: {}
+    enable_automatic_image_scanning: true
+  ```
 
 1. Commit and push the change:
 
-```bash
-git add shared/us-west-2/shared/data-stores/ecr-repos/terragrunt.hcl && git commit -m 'Added simple-web-app repo' && git push
-```
+  ```bash
+  git add shared/us-west-2/shared/data-stores/ecr-repos/terragrunt.hcl && git commit -m 'Added simple-web-app repo' && git push
+  ```
 
 1. Now open a pull request on the `simple-web-app-repo` branch.
 

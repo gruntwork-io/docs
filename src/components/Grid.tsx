@@ -14,7 +14,7 @@ export type GridProps = {
 
 export const Grid: React.FunctionComponent<GridProps> = ({
   cols = 3,
-  gap = "1rem",
+  gap = "2rem",
   colGap,
   rowGap,
   equalHeightRows = true,
@@ -34,7 +34,7 @@ export const Grid: React.FunctionComponent<GridProps> = ({
   rowGap = rowGap || gap
 
   return (
-    <section
+    <div
       className={classes}
       style={{
         gridColumnGap: Number.isInteger(colGap) ? `${colGap}px` : colGap,
@@ -48,7 +48,7 @@ export const Grid: React.FunctionComponent<GridProps> = ({
       }}
     >
       {children}
-    </section>
+    </div>
   )
 }
 

@@ -5,7 +5,7 @@ import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import styles from "./index.module.css"
 import Card from "../components/Card"
-import Grid from "../components/Grid"
+import CardGroup from "../components/CardGroup"
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext()
@@ -19,8 +19,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro/overview/intro-to-gruntwork"
           >
-            Get Started{" "}
-            <span className="hideOnMobile">With the Gruntwork Tutorial</span>
+            Get Started
           </Link>
         </div>
       </div>
@@ -31,58 +30,77 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext()
   return (
-    <Layout
-      title={`Gruntwork Docs`}
-      description="Documentation and guides for Gruntwork's tools and services"
-    >
+    <Layout description="Documentation and guides for Gruntwork's tools and services">
       <HomepageHeader />
       <main>
         <section className={styles.features}>
           <div className="container">
-            <div className="row">
-              <Grid cols={3} gap="2rem">
-                <Card
-                  title="Set Up Your Accounts"
-                  href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
-                >
-                  Streamline how you create, configure, and secure AWS accounts
-                  and multi-account structures.
-                </Card>
-                <Card
-                  title="Configure a CI/CD Pipeline"
-                  href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
-                >
-                  Use your preferred CI tool to set up an end‑to‑end pipeline
-                  for your infrastructure code.
-                </Card>
-                <Card
-                  title="Achieve Compliance"
-                  href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
-                >
-                  Implement the CIS AWS Foundations Benchmark using our curated
-                  collection of modules and services.
-                </Card>
-                <Card
-                  title="The Reference Architecture"
-                  href="/docs/guides/reference-architecture/overview/overview"
-                >
-                  Bootstrap your infrastructure in about a day by letting
-                  Gruntwork deploy a Reference Architecture customized just for
-                  you.
-                </Card>
-                <Card
-                  title="Deploy a Service"
-                  href="/docs/guides/build-it-yourself/overview"
-                >
-                  Learn how to deploy Gruntwork services to construct your own
-                  bespoke architecture.
-                </Card>
-                <Card title="Courses" href="/docs/courses">
-                  Learn DevOps fundamentals with our series of introductory
-                  video tutorials.
-                </Card>
-              </Grid>
-            </div>
+            <CardGroup>
+              <Card
+                title="What is Gruntwork?"
+                href="/docs/intro/overview/intro-to-gruntwork"
+                icon="/img/icons/learn.svg"
+              >
+                Learn how Gruntwork products can help you deploy a world class
+                infrastructure.
+              </Card>
+              <Card
+                title="The Reference Architecture"
+                href="/docs/guides/reference-architecture/overview/overview"
+                icon="/img/icons/refarch.svg"
+              >
+                Bought a Reference Architecture? Get your new infrastructure up
+                and running quickly with our comprehensive guide.
+              </Card>
+              <Card
+                title="Deploy A Service"
+                href="/docs/guides/build-it-yourself/overview"
+                icon="/img/icons/deploy.svg"
+              >
+                Follow our tutorials and learn how to deploy Gruntwork services
+                to construct your own bespoke architecture.
+              </Card>
+            </CardGroup>
+          </div>
+          <div className="container" style={{ margin: "6rem auto" }}>
+            <h2>Discover Your Use Case</h2>
+            <CardGroup commonCardProps={{ appearance: "invisible" }}>
+              <Card
+                title="Set Up Your Multi-account Structure"
+                href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
+              >
+                Streamline how you create, configure, and secure your AWS
+                accounts using Gruntwork Landing Zone.
+              </Card>
+              <Card
+                title="Create an Infra CI/CD Pipeline"
+                href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
+              >
+                Use your preferred CI tool to set up an end‑to‑end pipeline for
+                your infrastructure code.
+              </Card>
+              <Card
+                title="Configure Your Network"
+                href="/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide"
+              >
+                Set up your network according to industry best practices using
+                our VPC service.
+              </Card>
+              <Card
+                title="Deploy a Kubernetes Cluster"
+                href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
+              >
+                Deploy Kubernetes using EKS to host all of your apps and
+                services.
+              </Card>
+              <Card
+                title="Achieve Compliance"
+                href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
+              >
+                Implement the CIS AWS Foundations Benchmark using our curated
+                collection of modules and services.
+              </Card>
+            </CardGroup>
           </div>
         </section>
       </main>

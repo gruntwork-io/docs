@@ -13,7 +13,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-[How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Gruntwork Compliance for CIS AWS Foundations Benchmark
 
@@ -37,8 +37,7 @@ This guide uses [Terraform](https://www.terraform.io/) to define and manage all 
 you’re not familiar with Terraform, check out
 [A Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca),
 [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-[How to Use the Gruntwork
-Infrastructure as Code Library](https://gruntwork.ioguides/foundations/how-to-use-gruntwork-infrastructure-as-code-library).
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 
 ## Terragrunt
 

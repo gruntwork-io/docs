@@ -36,25 +36,25 @@ If you'd like to send Slack notifications when the pipeline is running, follow t
 
    ![Slack Workflow Builder](/img/guides/reference-architecture/slack-workflow-1.png)
 
-2. Create a new Webhook workflow called "Gruntwork Pipelines"
+1. Create a new Webhook workflow called "Gruntwork Pipelines"
 
    ![Slack Webhook workflow](/img/guides/reference-architecture/slack-workflow-2.png)
 
-3. Add the following text variables to the workflow: `branch`, `status`, `url`, `repo`, and `actor`
+1. Add the following text variables to the workflow: `branch`, `status`, `url`, `repo`, and `actor`
 
    ![Slack workflow variables](/img/guides/reference-architecture/slack-workflow-3.png)
 
-4. Once all of the variables are added, click Next.
+1. Once all of the variables are added, click Next.
 
-5. Now add another step to the workflow
+1. Now add another step to the workflow
 
    ![Slack workflow add step](/img/guides/reference-architecture/slack-workflow-4.png)
 
-6. Add the "Send a message"  step
+1. Add the "Send a message"  step
 
-7. Choose a channel from the dropdown menu
+1. Choose a channel from the dropdown menu
 
-8. In the Message Text field, paste the following contents:
+1. In the Message Text field, paste the following contents:
 
    ```bash
    Repo: <insert the repo variable>
@@ -64,17 +64,17 @@ If you'd like to send Slack notifications when the pipeline is running, follow t
    Workflow URL: <<insert the url variable>
    ```
 
-9. Use the "Insert a variable" button to insert a variable for each of the placeholders in the message above.
+1. Use the "Insert a variable" button to insert a variable for each of the placeholders in the message above.
 
-10. Save the Send a message step.
+1. Save the Send a message step.
 
-11. Hit the Publish button to make the Workflow live.
+1. Hit the Publish button to make the Workflow live.
 
-12. Copy the webhook URL and save it. We will use this value below.
+1. Copy the webhook URL and save it. We will use this value below.
 
    ![Slack workflow add step](/img/guides/reference-architecture/slack-workflow-5.png)
 
-13. Note that the webhook URL should be treated as sensitive. Anyone with the URL can send HTTP requests to the webhook!
+1. Note that the webhook URL should be treated as sensitive. Anyone with the URL can send HTTP requests to the webhook!
 
 ### Add secrets to GitHub
 
@@ -99,5 +99,5 @@ For instructions on how to destroy infrastructure, see the [Undeploy guide](../0
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"cd851b602bff6adff11783bf0bb679a4"}
+{"sourcePlugin":"Local File Copier","hash":"d9302cc6a37ecfd864d6283582486a92"}
 ##DOCS-SOURCER-END -->

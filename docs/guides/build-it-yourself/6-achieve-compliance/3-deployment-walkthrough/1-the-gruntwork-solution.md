@@ -55,10 +55,9 @@ You can use this approach on each AWS account. In many cases, you’ll only need
 same methodology can be applied to pre-production accounts as well.
 
 If you need to brush up on how the IaC Library works, read the
-[How to use
-the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/) guide.
+our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"eac6710a32380876ea582651ceb51a2a"}
+{"sourcePlugin":"Local File Copier","hash":"226a73303fb8039d7177afc6afab4e23"}
 ##DOCS-SOURCER-END -->

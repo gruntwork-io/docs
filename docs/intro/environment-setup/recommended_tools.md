@@ -9,8 +9,9 @@
 * [Terraform](https://www.terraform.io/downloads) – Terraform's declarative nature describes your infrastructure as code. If you're using Gruntwork's products, you're using Terraform.
 * [Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/) – Terragrunt is our layer on top of Terraform to enable a highly DRY code base.
 * [Terratest](https://github.com/gruntwork-io/terratest) – If you want to test your infrastructure, Terratest enables you to write those tests for manual testing or integration with a CI/CD pipeline.
-* [tfenv](https://github.com/tfutils/tfenv#installation) – `tfenv` is a version manager for Terraform, similar to `pyenv` for Python.
-* [tgenv](https://gitlab.com/claudiuskastner/tgenv) – `tgenv` is a version manager for Terragrunt
+* [tfenv](https://github.com/tfutils/tfenv#installation) – `tfenv` is a set of bash scripts that provide a workflow for managing and using multiple versions of Terraform. It was inspired by similar tools `rbenv` for Ruby versions and `pyenv` for Python.
+* [tgswitch](https://github.com/warrensbox/tgswitch#installation) – `tgswitch` is a tool for managing and using multiple versions of Terragrunt. Written in golang, it offers similar features as `tfenv`, including managing the versions to use in a version file.
+
 ## Installation
 
 If you would like to run the tools natively on your computer, the links provided above give installation instructions. If you are a user of [brew](https://brew.sh/), then in many cases, a `brew install <TOOL>` will work.
@@ -85,5 +86,5 @@ docker run -it -v $(pwd):/work gruntwork /bin/bash
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f4bb8e80ecea20726805aff623a16d05"}
+{"sourcePlugin":"Local File Copier","hash":"a5e7757f47c27e156d50f93192c30d35"}
 ##DOCS-SOURCER-END -->

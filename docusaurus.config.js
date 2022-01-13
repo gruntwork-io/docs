@@ -5,15 +5,25 @@ const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 const cfg = require("config")
 
+const captionsPlugin = require("./src/plugins/captions")
+
+const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
+
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
 
+const siteUrl = cfg.has("siteUrl")
+  ? cfg.get("siteUrl")
+  : process.env["NETLIFY"]
+  ? process.env["DEPLOY_URL"]
+  : "http://localhost:3000"
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Gruntwork Docs",
-  tagline: "Your entire infrastructure, defined as code, in about a day.",
-  url: "https://your-docusaurus-test-site.com",
+  tagline: "Learn how to deploy and manage your entire infrastructure as code.",
+  url: siteUrl,
   baseUrl: "/",
   favicon: "/favicon.ico",
   organizationName: "gruntwork-io", // Usually your GitHub org/user name.
@@ -32,6 +42,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
+          beforeDefaultRemarkPlugins: [captionsPlugin],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -190,6 +201,15 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["hcl"],
       },
+      algolia: algoliaConfig
+        ? {
+            appId: algoliaConfig.appId,
+            // Public API key: safe to commit, but still sourced from config
+            apiKey: algoliaConfig.apiKey,
+            indexName: algoliaConfig.indexName,
+            contextualSearch: true,
+          }
+        : undefined,
       zoomSelector: ".markdown img",
       googleAnalytics: googleAnalyticsConfig,
     }),
