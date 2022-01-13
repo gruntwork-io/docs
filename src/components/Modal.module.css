@@ -19,6 +19,7 @@ html[data-theme="dark"] .mainContainer {
   flex: auto;
   text-align: right;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
 .buttonsContainer > * {
@@ -38,4 +39,8 @@ html[data-theme="dark"] .mainContainer {
 
 html[data-theme="dark"] .overlay {
   background-color: rgba(0, 0, 0, 0.75);
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
 }

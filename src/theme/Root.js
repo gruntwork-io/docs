@@ -6,6 +6,8 @@ import {
 
 const gruntworkRepos = "https://github.com/gruntwork-io"
 
+export const DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY = "dontWarnGitHubLinks"
+
 function Root({ children }) {
   const [displaySubscriberNotice, setDisplaySubscriberNotice] = useState(false)
   const [externalLink, setExternalLink] = useState("")
@@ -13,6 +15,14 @@ function Root({ children }) {
   useEffect(() => {
     const listener = (event) => {
       if (event.target.id === idOfNoticeLink) {
+        setDisplaySubscriberNotice(false)
+        return
+      }
+      const dontWarn = window.localStorage.getItem(
+        DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
+      )
+
+      if (dontWarn) {
         setDisplaySubscriberNotice(false)
         return
       }
