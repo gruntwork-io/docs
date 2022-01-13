@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import ModalCmp from "react-modal"
+import styles from "./Modal.module.css"
 
 interface ModalProps {
   externalLink: string
@@ -30,6 +31,9 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
   const onRequestClose = () => {
     handleCancelRequest()
   }
+
+  const gitHubRepoName = externalLink.match(/https:\/\/github.com\/gruntwork-io\/(.*?)\/.*/)
+
 
   // function to check if there's any active button (focus on the button) to avoid conflicts with shouldAcceptOnEnter property
   const checkIfAnyActiveButton = () => {
@@ -80,6 +84,7 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
       shouldCloseOnEsc={shouldCloseOnEsc}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       closeTimeoutMS={200}
+      className={styles.mainContainer}
       defaultStyles={{
         overlay: {
           ...ModalCmp.defaultStyles.overlay,
@@ -87,17 +92,18 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
         },
       }}
     >
-      <p>You need to be a subscriber to access this Gruntwork repository.</p>
+      <p className={styles.modalTitle}>For Subscribers Only</p>
       <p>
-        <a id={idOfNoticeLink} href={externalLink} target="_blank">
-          Continue to Link
-        </a>
+        This link leads to the private {gitHubRepoName && gitHubRepoName.length >= 1 && <code>{gitHubRepoName[1]}</code>} repository visible only to subscribers; everyone else will see a 404.
       </p>
-      <p>
+      <div className="modalButtonsContainer">
         <a onClick={() => onRequestClose()} href="#">
-          Dismiss
+          Cancel
         </a>
-      </p>
+        <a id={idOfNoticeLink} href={externalLink} target="_blank">
+          Continue to GitHub
+        </a>
+      </div>
     </ModalCmp>
   )
 }

@@ -1,0 +1,15 @@
+.mainContainer {
+}
+
+.modalTitle {
+  margin-bottom: 3rem;
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+  --tw-text-opacity: 1;
+  color: rgba(45, 55, 72, var(--tw-text-opacity));
+  font-weight: 700;
+}
+
+.modalButtonsContainer {
+  flex: auto;
+}
