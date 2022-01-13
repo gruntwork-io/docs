@@ -16,6 +16,7 @@ const pipelineSidebar = require("./sidebars/pipelines-guide.js")
 const vpcSidebar = require("./sidebars/vpc-guide.js")
 const kubernetesSidebar = require("./sidebars/kubernetes-guide.js")
 const complianceSidebar = require("./sidebars/compliance-guide.js")
+const updateGuideSidebars = require("./sidebars/update-guides.js")
 const apiSidebars = require("./sidebars/api-reference.js")
 
 // @ts-check
@@ -29,6 +30,7 @@ const sidebars = {
   vpcSidebar,
   kubernetesSidebar,
   complianceSidebar,
+  ...updateGuideSidebars,
   ...apiSidebars,
 }
 
