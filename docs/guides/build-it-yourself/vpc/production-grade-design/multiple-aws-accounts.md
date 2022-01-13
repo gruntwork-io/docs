@@ -11,10 +11,10 @@ change something in prod rather than pre-prod).
 
 Therefore, your best bet is to put pre-production environments and production environments in completely separate AWS
 accounts. This makes it easy to, for example, grant relatively lax permissions in pre-prod environments, but very
-strict permissions in production. Check out the [Production Grade AWS Account Structure](../../landing-zone/intro/what-youll-learn-in-this-guide.md)
+strict permissions in production. Check out the [Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/)
 guide for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"407621bb1deec7b985b46f0ded71dcc6"}
+{"sourcePlugin":"Local File Copier","hash":"a0d25ddca282e5554b0fc948d61b3e9a"}
 ##DOCS-SOURCER-END -->

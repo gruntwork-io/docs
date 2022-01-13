@@ -1,7 +1,7 @@
 # Deploy the VPC
 
 The first step is to deploy a VPC. Follow the instructions in
-[How to deploy a production-grade VPC on AWS](../../vpc/intro/what-youll-learn-in-this-guide.md) to use
+[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/) to use
 `module-vpc` to create a VPC setup that looks like this:
 
 ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
@@ -149,5 +149,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7f9cce0109bc83ddf51004eb5df23535"}
+{"sourcePlugin":"Local File Copier","hash":"25998d0f52b570803234fa1b86512c30"}
 ##DOCS-SOURCER-END -->

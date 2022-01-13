@@ -15,32 +15,32 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 <Grid>
   <Card
     title="Set Up Your AWS Accounts"
-    href="/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/landing-zone/"
   >
     Set up a multi-account structure using Gruntwork Landing Zone.
   </Card>
   <Card
   	title="Configure a CI/CD Pipeline"
-  	href="/docs/guides/build-it-yourself/pipelines/intro/what-youll-learn-in-this-guide"
+  	href="/docs/guides/build-it-yourself/pipelines/"
   >
     Implement continuous deployment for your infrastructure code with Gruntwork
     Pipelines.
   </Card>
   <Card
     title="Deploy a VPC"
-    href="/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/vpc/"
   >
     Set up your network according to industry best practices using our VPC service.
   </Card>
   <Card
     title="Deploy a Kubernetes Cluster"
-    href="/docs/guides/build-it-yourself/kubernetes-cluster/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/kubernetes-cluster/"
   >
     Deploy a Kubernetes Cluster to host all of your apps and services.
   </Card>
   <Card
     title="Acheive Compliance"
-    href="/docs/guides/build-it-yourself/achieve-compliance/intro/what-youll-learn-in-this-guide"
+    href="/docs/guides/build-it-yourself/achieve-compliance/"
   >
     Make your infrastructure compliant with the CIS AWS Foundations Benchmark.
   </Card>
@@ -64,5 +64,5 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"21204454b6914ebf2ad140d7efa79ba3"}
+{"sourcePlugin":"Local File Copier","hash":"0de104354377b7a3aa9abd19f96a7039"}
 ##DOCS-SOURCER-END -->

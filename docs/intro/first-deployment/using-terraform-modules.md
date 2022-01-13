@@ -10,7 +10,7 @@ You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to acce
 :::
 
 You can use this module to deploy a production-grade VPC on AWS. For full background information on VPCs, check
-out [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide).
+out [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/).
 
 ## Create a wrapper module
 
@@ -66,7 +66,7 @@ The code above will only allow you to run it against the AWS account with ID pas
 variable (you’ll declare this shortly). This is an extra safety measure to ensure you don’t accidentally authenticate
 to the wrong AWS account while deploying this code—e.g., so you don’t accidentally deploy changes intended for
 staging to production (for more info on working with multiple AWS accounts, see
-[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide)).
+[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/)).
 
 </div>
 
@@ -248,5 +248,5 @@ output "private_persistence_subnet_ids" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3ca8c50b4f2012ba9b31d9742c5d92cc"}
+{"sourcePlugin":"Local File Copier","hash":"6421545b7e056decc53c0fa6cd23e401"}
 ##DOCS-SOURCER-END -->

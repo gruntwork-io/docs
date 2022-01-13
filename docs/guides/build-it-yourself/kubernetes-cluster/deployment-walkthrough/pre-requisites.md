@@ -49,7 +49,7 @@ our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
 #### AWS accounts
 
 This guide deploys infrastructure into one or more AWS accounts. Check out the
-[How to configure a production-grade AWS account structure](../../landing-zone/intro/what-youll-learn-in-this-guide.md)
+[How to configure a production-grade AWS account structure](/docs/guides/build-it-yourself/landing-zone/)
 guide for instructions. You will also need to be able to authenticate to these accounts on the CLI: check out
 [A Comprehensive Guide to Authenticating to AWS on the Command Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799)
 for instructions.
@@ -58,5 +58,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5a93f10db02d3bb58007d4cedb46e3e6"}
+{"sourcePlugin":"Local File Copier","hash":"84c48c3858a2c9855ecdf8078f675566"}
 ##DOCS-SOURCER-END -->

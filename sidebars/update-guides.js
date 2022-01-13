@@ -141,11 +141,11 @@ const updateGuideSidebars = {
       type: "category",
       link: {
         type: "doc",
-        id: "guides/stay-up-to-date/terraform/aws-provider-v3/index",
+        id: "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3/index",
       },
       items: [
-        "guides/stay-up-to-date/terraform/aws-provider-v3/core-concepts",
-        "guides/stay-up-to-date/terraform/aws-provider-v3/deployment-walkthrough",
+        "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3/core-concepts",
+        "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3/deployment-walkthrough",
       ],
     },
   ],
