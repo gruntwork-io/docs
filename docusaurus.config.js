@@ -75,7 +75,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Guides",
-            docId: "guides/welcome",
+            docId: "guides/index",
             activeBasePath: "docs/guides",
           },
           {
