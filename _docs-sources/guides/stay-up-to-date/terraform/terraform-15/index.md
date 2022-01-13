@@ -1,8 +1,4 @@
----
-pagination_label: Update to Terraform 15
----
-
-# Intro
+# Update to Terraform 15
 
 This guide will walk you through how to update any code that depends on the
 [Gruntwork Infrastructure as Code

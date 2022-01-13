@@ -1,4 +1,4 @@
-# Intro
+# Update to Terraform 12
 
 This guide walks you through the steps you should take when upgrading your Reference Architecture deployment to Terraform 0.12.x and Terragrunt 0.19.x.
 

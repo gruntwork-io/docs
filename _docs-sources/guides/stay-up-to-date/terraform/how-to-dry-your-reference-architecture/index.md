@@ -1,8 +1,4 @@
----
-pagination_label: DRY your Reference Architecture
----
-
-# Intro
+# DRY your Reference Architecture
 
 This guide walks you through how to DRY (don’t repeat yourself) up the
 Terragrunt configurations in the [Gruntwork Reference

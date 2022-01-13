@@ -1,8 +1,4 @@
----
-pagination_label: DRY your Reference Architecture
----
-
-# Intro
+# DRY your Reference Architecture
 
 This guide walks you through how to DRY (don’t repeat yourself) up the
 Terragrunt configurations in the [Gruntwork Reference
@@ -28,5 +24,5 @@ The steps you need to take to update your code to use multi-include to avoid dup
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"044766b300a60ad7e9b84bc12bb6097f"}
+{"sourcePlugin":"Local File Copier","hash":"e6b78a8b5feffb8c40a83d5aeab2ae0b"}
 ##DOCS-SOURCER-END -->

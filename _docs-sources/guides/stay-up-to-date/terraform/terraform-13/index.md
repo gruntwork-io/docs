@@ -1,8 +1,4 @@
----
-pagination_label: Update to Terraform 13
----
-
-# Intro
+# Update to Terraform 13
 
 This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the

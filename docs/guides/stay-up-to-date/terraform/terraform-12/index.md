@@ -1,4 +1,4 @@
-# Intro
+# Update to Terraform 12
 
 This guide walks you through the steps you should take when upgrading your Reference Architecture deployment to Terraform 0.12.x and Terragrunt 0.19.x.
 
@@ -34,5 +34,5 @@ This means that both the modules and the live config need to be updated in order
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b8419c8eadabe6e2b2044729362c56fa"}
+{"sourcePlugin":"Local File Copier","hash":"18301a838452f27f0c74540894001124"}
 ##DOCS-SOURCER-END -->

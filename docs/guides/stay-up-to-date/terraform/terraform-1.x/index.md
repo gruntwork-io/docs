@@ -1,8 +1,4 @@
----
-pagination_label: Update to Terraform 1.x
----
-
-# Intro
+# Update to Terraform 1.x
 
 This guide will walk you through how to update any code that depends on the
 [Gruntwork Infrastructure as Code
@@ -33,5 +29,5 @@ tag is compatible with Terraform 0.15.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"458d537895cebc498d16154e1cd50669"}
+{"sourcePlugin":"Local File Copier","hash":"bd6812d6e7489f951426bbbd3d228121"}
 ##DOCS-SOURCER-END -->

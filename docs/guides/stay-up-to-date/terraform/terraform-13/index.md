@@ -1,8 +1,4 @@
----
-pagination_label: Update to Terraform 13
----
-
-# Intro
+# Update to Terraform 13
 
 This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the
@@ -31,5 +27,5 @@ tag is compatible with Terraform 0.13.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f1bfdd5852842acaf0dc9aed26665390"}
+{"sourcePlugin":"Local File Copier","hash":"5af4917757d6b1ce995384040c414e4f"}
 ##DOCS-SOURCER-END -->

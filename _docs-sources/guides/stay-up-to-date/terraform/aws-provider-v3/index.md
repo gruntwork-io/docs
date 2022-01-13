@@ -1,8 +1,4 @@
----
-pagination_label: Upgrade to AWS Provider V3
----
-
-# Intro
+# Upgrade to AWS Provider V3
 
 This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the

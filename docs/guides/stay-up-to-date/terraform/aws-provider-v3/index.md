@@ -1,8 +1,4 @@
----
-pagination_label: Upgrade to AWS Provider V3
----
-
-# Intro
+# Upgrade to AWS Provider V3
 
 This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the
@@ -33,5 +29,5 @@ which Gruntwork Repo version tag is compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"bb13fe9036a1429cd1afdb8e126d4549"}
+{"sourcePlugin":"Local File Copier","hash":"d893235577f4c44c0b19f7f0eed0a15d"}
 ##DOCS-SOURCER-END -->
