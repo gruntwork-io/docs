@@ -230,6 +230,25 @@ html[data-theme="dark"] .menu__link--sublist {
   border-left: 2px solid var(--ifm-color-primary);
 }
 
+/* BUTTONS */
+.link-button {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  background: #5849a6;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: 100vh;
+  transition: 0.2s ease-in-out;
+}
+
+.link-button:hover {
+  color: white;
+  text-decoration: none;
+  filter: brightness(1.1);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+
 /* FOOTER */
 
 /* --ifm-footer-background-color doesn't appear to work */

@@ -22,9 +22,9 @@ if (typeof window !== "undefined") {
 export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
   externalLink,
   showModal,
-  shouldCloseOnEsc = false,
+  shouldCloseOnEsc = true,
   shouldAcceptOnEnter = false,
-  shouldCloseOnOverlayClick = false,
+  shouldCloseOnOverlayClick = true,
   handleCancelRequest,
   handleAcceptRequest,
 }) => {
@@ -32,8 +32,9 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
     handleCancelRequest()
   }
 
-  const gitHubRepoName = externalLink.match(/https:\/\/github.com\/gruntwork-io\/(.*?)\/.*/)
-
+  const gitHubRepoName = externalLink.match(
+    /https:\/\/github.com\/gruntwork-io\/(.*?)\/.*/
+  )
 
   // function to check if there's any active button (focus on the button) to avoid conflicts with shouldAcceptOnEnter property
   const checkIfAnyActiveButton = () => {
@@ -83,20 +84,19 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
       onRequestClose={onRequestClose}
       shouldCloseOnEsc={shouldCloseOnEsc}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-      closeTimeoutMS={200}
+      closeTimeoutMS={0}
       className={styles.mainContainer}
-      defaultStyles={{
-        overlay: {
-          ...ModalCmp.defaultStyles.overlay,
-          zIndex: 999,
-        },
-      }}
+      overlayClassName={styles.overlay}
     >
-      <p className={styles.modalTitle}>For Subscribers Only</p>
+      <h2>For Subscribers Only</h2>
       <p>
-        This link leads to the private {gitHubRepoName && gitHubRepoName.length >= 1 && <code>{gitHubRepoName[1]}</code>} repository visible only to subscribers; everyone else will see a 404.
+        This link leads to the private{" "}
+        {gitHubRepoName && gitHubRepoName.length >= 1 && (
+          <code>{gitHubRepoName[1]}</code>
+        )}{" "}
+        repository visible only to subscribers; everyone else will see a 404.
       </p>
-      <div className="modalButtonsContainer">
+      <div className={styles.buttonsContainer}>
         <a onClick={() => onRequestClose()} href="#">
           Cancel
         </a>
