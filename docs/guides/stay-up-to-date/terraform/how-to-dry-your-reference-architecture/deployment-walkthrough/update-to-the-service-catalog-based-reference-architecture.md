@@ -1,7 +1,14 @@
 ---
+sidebar_label: Use the Service Catalog (optional)
 ---
 
-# (Optional) Update to the Service Catalog based Reference Architecture
+# Update to the Service Catalog based Reference Architecture
+
+:::note
+
+This step is optional, but recommended.
+
+:::
 
 If you haven’t already, it is recommended to [update your Reference Architecture
 to the Service Catalog based
@@ -21,5 +28,5 @@ fully supported by Gruntwork.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e37118a917612c867c76bfede201046c"}
+{"sourcePlugin":"Local File Copier","hash":"0375aad45a4e44290040bdf324035ce2"}
 ##DOCS-SOURCER-END -->

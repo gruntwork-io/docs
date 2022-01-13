@@ -5,11 +5,8 @@ in your Reference Architecture. These steps can be used to refactor any componen
 accounts or environments in your Reference Architecture.
 
 - [Step 1: Identify the component](#step-identify-the-component)
-
 - [Step 2: Identify common configurations](#step-identify-common-configurations)
-
 - [Step 3: Extract common configurations](#step-extract-common-configurations)
-
 - [Step 4: Update child configurations](#step-1-update-child-configurations)
 
 ## Step 1: Identify the component
@@ -26,31 +23,21 @@ Example inventory:
 - `vpc`
 
   - `dev/us-west-2/dev/networking/vpc`
-
   - `stage/us-west-2/stage/networking/vpc`
-
   - `prod/us-west-2/prod/networking/vpc`
 
 - `openvpn-server`
 
   - `dev/us-west-2/dev/networking/openvpn-server`
-
   - `stage/us-west-2/stage/networking/openvpn-server`
-
   - `prod/us-west-2/prod/networking/openvpn-server`
 
 - `ecs-deploy-runner`
-
   - `dev/us-west-2/mgmt/ecs-deploy-runner`
-
   - `stage/us-west-2/mgmt/ecs-deploy-runner`
-
   - `prod/us-west-2/mgmt/ecs-deploy-runner`
-
   - `shared/us-west-2/mgmt/ecs-deploy-runner`
-
   - `logs/us-west-2/mgmt/ecs-deploy-runner`
-
   - `security/us-west-2/mgmt/ecs-deploy-runner`
 
 As mentioned in the [Background](../core-concepts.md#background), the changes will be isolated to Terragrunt configuration files (syntactic changes vs
@@ -82,9 +69,7 @@ To construct this initial list, follow these steps:
     - For example, in the file [dev/us-west-2/dev/networking/vpc/terragrunt.hcl](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/6ca162dd1a8d8d6b7cf05e6a22bc4ac7bf01215f/examples/for-production/infrastructure-live/dev/us-west-2/dev/networking/vpc/terragrunt.hcl), the list would be:
 
       - `terraform`
-
       - `locals`
-
       - `inputs`
 
 3.  Next, note all the top level keys in the `inputs` attribute in the reference configuration. `inputs` need special treatment because it will contain a mix of items that are common and different across environments, so to maximize the DRY potential, we need to look at each `input` element separately.
@@ -92,15 +77,10 @@ To construct this initial list, follow these steps:
     - In the same example file, the list would be:
 
       - `vpc_name`
-
       - `num_nat_gateways`
-
       - `cidr_block`
-
       - `kms_key_user_iam_arns`
-
       - `eks_cluster_names`
-
       - `tag_for_use_with_eks`
 
 Once you have the candidate configurations, you will want to run through a diff utility to cross off any that are

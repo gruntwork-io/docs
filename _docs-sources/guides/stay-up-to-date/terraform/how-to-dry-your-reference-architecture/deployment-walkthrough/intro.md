@@ -1,8 +1,4 @@
----
-pagination_label: Deployment Walkthrough
----
-
-# Intro
+# Update Approach
 
 :::danger Prerequisite: Update Terragrunt to a compatible version
 

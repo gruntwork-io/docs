@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 0.15 was released on April 14,

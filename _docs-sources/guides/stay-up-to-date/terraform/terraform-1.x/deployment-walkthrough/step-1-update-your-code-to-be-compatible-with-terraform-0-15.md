@@ -1,5 +1,5 @@
 ---
-sidebar_label: Update your code to Terraform 15
+sidebar_label: Update to Terraform 15
 ---
 
 # Step 1: update your code to be compatible with Terraform 0.15
@@ -21,6 +21,6 @@ If you haven’t already, you need to:
     4.  If you’re still on Terraform 0.14, see our
         [Terraform 0.15 upgrade guide](../../terraform-15).
 
-2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 1.x versions in the compatibility
-    table below. The upgrade will be much easier and less error prone if you keep the number of version jumps as small
+2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 1.x versions in the [compatibility
+    table](/docs/guides/stay-up-to-date/terraform/terraform-1.x/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library#version-compatibility-table). The upgrade will be much easier and less error prone if you keep the number of version jumps as small
     as possible.

@@ -1,4 +1,14 @@
-# (Optional) Even DRYer configuration
+---
+sidebar_label: DRYer Configuration (optional)
+---
+
+# Even DRYer configuration
+
+:::note
+
+This step outlines optional optimizations.
+
+:::
 
 This guide takes a conservative approach to refactoring the Terragrunt configurations. However, there are additional
 Terragrunt features that can be leveraged to further DRY your configuration. Note that these features requires a bit
@@ -172,5 +182,5 @@ the `inputs` attribute even if it references `dependency` blocks.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ef889c3f222cd0850a8930967403599a"}
+{"sourcePlugin":"Local File Copier","hash":"9c88b007237c084a93910cc7da9b2bad"}
 ##DOCS-SOURCER-END -->

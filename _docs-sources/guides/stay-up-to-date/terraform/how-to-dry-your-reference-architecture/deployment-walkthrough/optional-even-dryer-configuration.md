@@ -1,4 +1,14 @@
-# (Optional) Even DRYer configuration
+---
+sidebar_label: DRYer Configuration (optional)
+---
+
+# Even DRYer configuration
+
+:::note
+
+This step outlines optional optimizations.
+
+:::
 
 This guide takes a conservative approach to refactoring the Terragrunt configurations. However, there are additional
 Terragrunt features that can be leveraged to further DRY your configuration. Note that these features requires a bit

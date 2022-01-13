@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 0.15 was released on April 14,
@@ -30,5 +27,5 @@ following section.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"588a9ca888b329beeda3d9ac98ec1b78"}
+{"sourcePlugin":"Local File Copier","hash":"11dd054fc7d70bce30badb6f78ce6f46"}
 ##DOCS-SOURCER-END -->

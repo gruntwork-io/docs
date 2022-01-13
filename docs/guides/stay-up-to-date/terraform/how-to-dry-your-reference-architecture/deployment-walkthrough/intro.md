@@ -1,8 +1,4 @@
----
-pagination_label: Deployment Walkthrough
----
-
-# Intro
+# Update Approach
 
 :::danger Prerequisite: Update Terragrunt to a compatible version
 
@@ -45,5 +41,5 @@ include "envcommon" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e584be7fb053909a869b8d4d269332c4"}
+{"sourcePlugin":"Local File Copier","hash":"05542d29c57c912a1c745fa10f80a326"}
 ##DOCS-SOURCER-END -->

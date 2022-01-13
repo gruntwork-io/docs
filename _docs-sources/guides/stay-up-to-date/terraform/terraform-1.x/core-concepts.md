@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 1.0.0 was released on June 08,

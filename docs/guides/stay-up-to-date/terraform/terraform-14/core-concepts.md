@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 0.14 was released on
@@ -22,5 +19,5 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"61907248f66b7f275c30abd7e6cc5ae5"}
+{"sourcePlugin":"Local File Copier","hash":"48fcddcdc6f186656c1bc87989c83e60"}
 ##DOCS-SOURCER-END -->

@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 1.0.0 was released on June 08,
@@ -24,5 +21,5 @@ notes](https://github.com/hashicorp/terraform/releases/tag/v1.0.0):
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"630e925a644a74d50ed723a279fa7436"}
+{"sourcePlugin":"Local File Copier","hash":"d727d820c74f9fd5eddc4beb49259467"}
 ##DOCS-SOURCER-END -->

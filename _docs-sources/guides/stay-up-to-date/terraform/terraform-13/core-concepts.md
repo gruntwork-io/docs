@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 0.13 was released on August 10th, 2020](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-13).

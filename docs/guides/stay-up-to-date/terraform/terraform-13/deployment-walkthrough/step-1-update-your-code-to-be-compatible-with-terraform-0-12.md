@@ -1,5 +1,4 @@
 ---
-pagination_label: Deployment Walkthrough - Step 1
 sidebar_label: Update to Terraform 12
 ---
 
@@ -17,5 +16,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f56113b9b5136ebd08c06ef26c1de7eb"}
+{"sourcePlugin":"Local File Copier","hash":"3a52849ba611d6006e2e631293d16822"}
 ##DOCS-SOURCER-END -->

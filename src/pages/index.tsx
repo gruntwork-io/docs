@@ -54,7 +54,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="Deploy A Service"
-                href="/docs/guides/build-it-yourself/overview"
+                href="/docs/guides#build-your-own-architecture"
                 icon="/img/icons/deploy.svg"
               >
                 Follow our tutorials and learn how to deploy Gruntwork services

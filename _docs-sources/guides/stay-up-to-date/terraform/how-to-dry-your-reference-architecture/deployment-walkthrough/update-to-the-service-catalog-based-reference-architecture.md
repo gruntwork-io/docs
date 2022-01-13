@@ -1,7 +1,14 @@
 ---
+sidebar_label: Use the Service Catalog (optional)
 ---
 
-# (Optional) Update to the Service Catalog based Reference Architecture
+# Update to the Service Catalog based Reference Architecture
+
+:::note
+
+This step is optional, but recommended.
+
+:::
 
 If you haven’t already, it is recommended to [update your Reference Architecture
 to the Service Catalog based

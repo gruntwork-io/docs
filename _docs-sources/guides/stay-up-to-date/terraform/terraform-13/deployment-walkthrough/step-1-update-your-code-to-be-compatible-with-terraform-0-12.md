@@ -1,5 +1,4 @@
 ---
-pagination_label: Deployment Walkthrough - Step 1
 sidebar_label: Update to Terraform 12
 ---
 

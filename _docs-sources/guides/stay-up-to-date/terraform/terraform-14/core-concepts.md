@@ -1,6 +1,3 @@
----
----
-
 # Core Concepts
 
 [Terraform 0.14 was released on

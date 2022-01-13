@@ -77,7 +77,7 @@ const updateGuideSidebars = {
   ],
   terraform14: [
     {
-      label: "Terraform 14",
+      label: "Update to Terraform 14",
       type: "category",
       link: {
         type: "doc",
@@ -98,7 +98,7 @@ const updateGuideSidebars = {
   ],
   terraform15: [
     {
-      label: "Terraform 15",
+      label: "Update to Terraform 15",
       type: "category",
       link: {
         type: "doc",
@@ -118,7 +118,7 @@ const updateGuideSidebars = {
   ],
   terraform1x: [
     {
-      label: "Terraform 1",
+      label: "Update to Terraform 1.X",
       type: "category",
       link: {
         type: "doc",
@@ -137,7 +137,7 @@ const updateGuideSidebars = {
   ],
   terraformServiceProviderV3: [
     {
-      label: "Aws Provider V 3",
+      label: "Update to AWS Provider v3",
       type: "category",
       link: {
         type: "doc",
@@ -151,7 +151,7 @@ const updateGuideSidebars = {
   ],
   dryRefArch: [
     {
-      label: "How To Dry Your Reference Architecture",
+      label: "How To DRY Your Reference Architecture",
       type: "category",
       link: {
         type: "doc",
