@@ -14,7 +14,7 @@ setup instructions. To use it, you fist run the `update-kubeconfig` command:
 
 </div>
 
-``` bash
+```bash
 aws eks update-kubeconfig --region <AWS_REGION> --name <EKS_CLUSTER_NAME>
 ```
 
@@ -29,12 +29,12 @@ i.e., the credentials file at `~/.aws/credentials`, environment variables, etc.
 
 `eksctl` is the official CLI tool for EKS. It’s primary purpose is to deploy and manage the EKS cluster itself, but
 you can also use it to authenticate to a cluster. To install `eksctl`, check out
-[these instructions](https://eksctl.io/introduction/installation/). To authenticate with `eksctl`, you run the
+[these instructions](https://eksctl.io/introduction/#installation). To authenticate with `eksctl`, you run the
 `eksctl utils write-kubeconfig` command:
 
 </div>
 
-``` bash
+```bash
 eksctl utils write-kubeconfig --region <AWS_REGION> --name=<EKS_CLUSTER_NAME>
 ```
 
@@ -53,7 +53,7 @@ run `kubergrunt eks configure`:
 
 </div>
 
-``` bash
+```bash
 kubergrunt eks configure --eks-cluster-arn <EKS_CLUSTER_ARN>
 ```
 

@@ -22,7 +22,7 @@ Gruntwork’s [infrastructure as code repositories](https://gruntwork.io/repos).
 ## Standalone Compliance modules
 
 The standalone compliance modules complement the modules available in the IaC Library. They have the CIS compliance requirements built right in and may combine multiple modules including Core modules for a
-specific use case. For example, the [`cleanup-expired-certs` standalone module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/cleanup-expired-certs) deploys a Lambda function that runs regularly and automatically removes all expired SSL/TLS certificates stored in AWS IAM in compliance with recommendation 1.19 of the CIS AWS Foundations Benchmark. These modules are in the [`terraform-aws-cis-service-catalog`
+specific use case. For example, the [`cleanup-expired-certs` standalone module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/security/cleanup-expired-certs) deploys a Lambda function that runs regularly and automatically removes all expired SSL/TLS certificates stored in AWS IAM in compliance with recommendation 1.19 of the CIS AWS Foundations Benchmark. These modules are in the [`terraform-aws-cis-service-catalog`
 repository](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog) (accessible to Gruntwork Compliance subscribers).
 
 ## Compliance wrapper modules
@@ -59,5 +59,5 @@ our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"226a73303fb8039d7177afc6afab4e23"}
+{"sourcePlugin":"Local File Copier","hash":"7a0b46868c3bef4b60bcd8b808688a14"}
 ##DOCS-SOURCER-END -->

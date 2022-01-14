@@ -215,7 +215,7 @@ You can find the available binaries for each terragrunt version
 Once you have terragrunt 0.19 available on your machine, you will need to migrate your `terraform.tfvars` files to
 `terragrunt.hcl` files before you can start to use the new version. You will need to follow the steps outlined in the
 [Terragrunt 0.19.x migration
-guide](https://github.com/gruntwork-io/terragrunt/blob/master/_docs/migration_guides/upgrading_to_terragrunt_0.19.x.md)
+guide](https://github.com/gruntwork-io/terragrunt/blob/master/docs/_docs/06_migration_guides/upgrading_to_terragrunt_0.19.x.md)
 for each of your live config (e.g in your `infrastructure-live` repo).
 
 You should do this in parallel with each module upgrade. For example, if you were upgrading the module
@@ -430,5 +430,5 @@ At the end of this, you should be able to run `terragrunt plan` cleanly.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0b835b97d91030035ee948b33ed98fb0"}
+{"sourcePlugin":"Local File Copier","hash":"1133a6f06da0e83fa0be975301931929"}
 ##DOCS-SOURCER-END -->

@@ -172,7 +172,7 @@ should replace `<VERSION>` with the latest version from the releases page of the
 
 Below the `source` URL, you’ll need to pass in the module-specific arguments. You can find all the required and
 optional variables defined in `vars.tf` (old name) or `variables.tf` (new name) of the module (e.g.,
-here’s [the variables.tf for vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/blob/master/modules/vpc-app/vars.tf)).
+here’s [the variables.tf for vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/blob/master/modules/vpc-app/variables.tf)).
 The code above sets these to input variables (which you’ll define shortly) so that you can use different values in
 different environments.
 

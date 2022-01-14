@@ -101,7 +101,7 @@ This Packer template installs the following on top of the EKS-optimized AMI base
   the labels on a worker node EC2 instance and converts them to a format that can be passed to the EKS bootstrap script
   so that those tags show up as labels in Kubernetes.
 
-- [cloudwatch-memory-disk-metrics-scripts](https://github.com/gruntwork-io/module-aws-monitoring/tree/master/modules/metrics/cloudwatch-memory-disk-metrics-scripts):
+- [cloudwatch-agent](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent):
   Send memory and disk usage metrics for your EC2 Instances to CloudWatch. These metrics are not available by default
   as they are only visible from inside a VM.
 
@@ -137,5 +137,5 @@ guide.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f7eb38bb78aaa22e80fdc7aac70d8ad8"}
+{"sourcePlugin":"Local File Copier","hash":"e5f9d652cc31940ba66f4a28616a859c"}
 ##DOCS-SOURCER-END -->

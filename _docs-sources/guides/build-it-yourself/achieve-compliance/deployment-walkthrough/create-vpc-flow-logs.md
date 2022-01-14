@@ -85,7 +85,7 @@ all regions in an account, saving you the hassle of creating flow logs in each d
 The Monitoring section of the Benchmark centers on a collection of
 [CloudWatch Logs Metric
 Filters](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html). Gruntwork has simplified this section to a single module: the
-[`cloudwatch-logs-metric -filters` wrapper module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/cloudwatch-logs-metric-filters/README.adoc). It will create and configure all the CloudWatch Logs metric filters necessary for
+[`cloudwatch-logs-metric -filters` wrapper module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/observability/cloudwatch-logs-metric-filters/README.adoc). It will create and configure all the CloudWatch Logs metric filters necessary for
 compliance with the Benchmark. Note that when you deploy the CIS account baseline modules, the CloudWatch Logs metric
 filters will be created and configured automatically, so that you don’t have to do anything special to enable the metric filters on the
 deployed CloudTrail configuration.
@@ -147,7 +147,7 @@ inputs = {
 }
 ```
 
-Refer to the [terraform-aws-cis-service-catalog](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/examples/for-learning-and-testing/networking/vpc/terraform)
+Refer to the [terraform-aws-cis-service-catalog](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/examples/for-learning-and-testing/networking/vpc/)
 repo for a more comprehensive example.
 
 Finally, run the [`cloud-nuke defaults-aws`](https://github.com/gruntwork-io/cloud-nuke) command to remove all

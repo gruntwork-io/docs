@@ -38,7 +38,7 @@ fine-grained control over what network traffic can or can’t reach your AWS res
 
 Every AWS account created after 2013 requires that you use a VPC for just about all resources. If you don’t specify a
 VPC, your resource will be deployed into the
-[_Default VPC_](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html:) in your AWS account. The Default VPC
+[_Default VPC_](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html) in your AWS account. The Default VPC
 is great for learning and experimenting, but it is not a good choice for production use cases. That’s because the
 default settings in the Default VPC makes all your resources accessible on the public Internet, a bit like having no
 VPC at all. You can modify those settings to lock things down more, but it’s a lot of settings to change, and as
