@@ -10,7 +10,7 @@ You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to acce
 :::
 
 You can use this module to deploy a production-grade VPC on AWS. For full background information on VPCs, check
-out [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/intro/what-youll-learn-in-this-guide).
+out [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/).
 
 ## Create a wrapper module
 
@@ -66,7 +66,7 @@ The code above will only allow you to run it against the AWS account with ID pas
 variable (you’ll declare this shortly). This is an extra safety measure to ensure you don’t accidentally authenticate
 to the wrong AWS account while deploying this code—e.g., so you don’t accidentally deploy changes intended for
 staging to production (for more info on working with multiple AWS accounts, see
-[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/intro/what-youll-learn-in-this-guide)).
+[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/)).
 
 </div>
 
@@ -172,7 +172,7 @@ should replace `<VERSION>` with the latest version from the releases page of the
 
 Below the `source` URL, you’ll need to pass in the module-specific arguments. You can find all the required and
 optional variables defined in `vars.tf` (old name) or `variables.tf` (new name) of the module (e.g.,
-here’s [the variables.tf for vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/blob/master/modules/vpc-app/vars.tf)).
+here’s [the variables.tf for vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/blob/master/modules/vpc-app/variables.tf)).
 The code above sets these to input variables (which you’ll define shortly) so that you can use different values in
 different environments.
 
