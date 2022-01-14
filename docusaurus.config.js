@@ -10,6 +10,7 @@ const captionsPlugin = require("./src/plugins/captions")
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
 const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined
+const enablePosthog = posthogConfig && posthogConfig.apiKey
 
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
@@ -23,7 +24,7 @@ const siteUrl = cfg.has("siteUrl")
 
 const plugins = ["plugin-image-zoom"]
 
-if (posthogConfig) {
+if (enablePosthog) {
   plugins.push("posthog-docusaurus")
 }
 
@@ -220,7 +221,7 @@ const config = {
         : undefined,
       zoomSelector: ".markdown img",
       googleAnalytics: googleAnalyticsConfig,
-      posthog: posthogConfig
+      posthog: enablePosthog
         ? {
             apiKey: posthogConfig.apiKey,
             appUrl: posthogConfig.appUrl,
