@@ -15,6 +15,8 @@ const enablePosthog = posthogConfig && posthogConfig.apiKey
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
+const enableGoogleAnalytics =
+  googleAnalyticsConfig && googleAnalyticsConfig.trackingID
 
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
@@ -57,10 +59,12 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        googleAnalytics: {
-          trackingID: googleAnalyticsConfig.trackingID,
-          anonymizeIP: true,
-        },
+        googleAnalytics: enableGoogleAnalytics
+          ? {
+              trackingID: googleAnalyticsConfig.trackingID,
+              anonymizeIP: true,
+            }
+          : undefined,
       },
     ],
   ],
