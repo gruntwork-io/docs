@@ -57,6 +57,10 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        googleAnalytics: {
+          trackingID: googleAnalyticsConfig.trackingID,
+          anonymizeIP: true,
+        },
       },
     ],
   ],
@@ -222,7 +226,6 @@ const config = {
           }
         : undefined,
       zoomSelector: ".markdown img",
-      googleAnalytics: googleAnalyticsConfig,
       posthog: enablePosthog
         ? {
             apiKey: posthogConfig.apiKey,

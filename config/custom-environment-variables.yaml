@@ -4,7 +4,6 @@
 # Google Analytics tracking config
 googleAnalytics:
   trackingID: CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
-  anonymizeIP: CONFIG_GOOGLE_ANALYTICS_ANONYMIZE_IP
 
 # Site Url
 siteUrl: CONFIG_SITE_URL
