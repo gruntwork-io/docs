@@ -31,7 +31,7 @@ An optional _catalog extension_ that contains building blocks that implement var
 
 A team of experienced Gruntwork engineers who help you achieve success using Gruntwork products:
 
-- **Learn.** Pair directly with Gruntwork engineers on your infrastructure project so you can learn by doing as you go.
+- **Learn.** Pair directly with Gruntwork engineers who will teach you the DevOps fundamentals you need to use Gruntwork products to set up reliable, secure, and scalable infrastructure.
 - **Customize.** Engage with Gruntwork subject matter experts to customize our products to suit your specific needs.
 
 ### Support
@@ -55,5 +55,5 @@ Gruntwork products strike a balance between opinionatedness and configurability.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"622ba0cc84323b51623f74d9fb9c8b1d"}
+{"sourcePlugin":"Local File Copier","hash":"01fc31a27897f01c8140b08de6999cae"}
 ##DOCS-SOURCER-END -->
