@@ -89,7 +89,7 @@ want an IAM role that can be assumed by a Lambda function, the `Principal` will 
 While IAM roles offer a convenient way to give an EC2 instance permissions to make API calls without having to
 manually copy credentials to the EC2 instance, the default security configuration for them is not particularly secure.
 That’s because the IAM role is exposed to the code on the EC2 instance through
-[EC2 instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ecinstance-metadata.html#instancedata-data-retrieval),
+[EC2 instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-data-retrieval),
 which is an http endpoint (`\http://169.254.169.254`) that _anyone_ on the EC2 instance can access. That means that
 any compromise of that EC2 instance instantly gives an attacker access to all the permissions in that IAM role. We
 **strongly** recommend mitigating this by limiting access to the endpoint solely to specific OS users (e.g., solely to

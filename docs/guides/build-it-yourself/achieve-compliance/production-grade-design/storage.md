@@ -105,7 +105,7 @@ aws s3api put-bucket-versioning --region <REGION> \
     --mfa "arn:aws:iam::<ACCOUNT ID>:mfa/root-account-mfa-device <MFA CODE>"
 ```
 
-We also created a [script](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-sbucket/mfa-delete-script) to help you enable MFA Delete in all buckets from a single account at once. To learn how to run it and when, please follow the production _Deployment Walkthrough_ guide section below.
+We also created a [script](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket/mfa-delete-script) to help you enable MFA Delete in all buckets from a single account at once. To learn how to run it and when, please follow the production _Deployment Walkthrough_ guide section below.
 
 ### Configure Amazon Macie (recommendation 2.1.4)
 
@@ -138,5 +138,5 @@ explicit list of buckets per region, namely in the variable `buckets_to_analyze`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9703e9d01c91a2f7c040068bba12e09f"}
+{"sourcePlugin":"Local File Copier","hash":"24bb2e4b78e4d2e26adcc516f73a3932"}
 ##DOCS-SOURCER-END -->

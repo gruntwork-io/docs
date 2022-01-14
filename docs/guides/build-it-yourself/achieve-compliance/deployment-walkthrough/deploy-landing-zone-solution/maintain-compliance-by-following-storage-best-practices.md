@@ -3,7 +3,7 @@
 ## S3 Buckets
 
 To make sure your S3 buckets are compliant with the benchmark, use the
-[`private-s3-bucket` module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-sbucket)
+[`private-s3-bucket` module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket)
 to create and manage all of your S3 buckets. This module blocks public access and enforces encryption by default. Note
 that all Gruntwork modules that create S3 buckets use this module under the hood.
 
@@ -18,5 +18,5 @@ the hood.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6abe9bb8309a284de45e950eda7dca41"}
+{"sourcePlugin":"Local File Copier","hash":"9d94cfc626574ad661ab12bba2b358d6"}
 ##DOCS-SOURCER-END -->

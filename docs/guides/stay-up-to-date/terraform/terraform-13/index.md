@@ -3,7 +3,7 @@
 This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the
 [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) to
-[Terraform 0.13](https://www.terraform.io/upgrade-guides/13.html). Terraform 0.13 introduces a number of new features
+[Terraform 0.13](https://www.terraform.io/upgrade-guides/0-13.html). Terraform 0.13 introduces a number of new features
 and fixes, but it also has a number of backwards incompatibilities that have to be incorporated into your codebase.
 
 ## What you’ll learn in this guide
@@ -27,5 +27,5 @@ tag is compatible with Terraform 0.13.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5af4917757d6b1ce995384040c414e4f"}
+{"sourcePlugin":"Local File Copier","hash":"be501a70cd0f8c6716015ad5523e3a3e"}
 ##DOCS-SOURCER-END -->

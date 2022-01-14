@@ -164,17 +164,17 @@ to update your snapshot of the Gruntwork Reference Architecture:
 #### CIS Reference Architecture
 
 Refer to the release notes for
-[v0.0.1-20201021](https://github.com/gruntwork-io/cis-infrastructure-live-acme/releases/tag/v0.0.20201021)
+[v0.0.1-20201021](https://github.com/gruntwork-io/cis-infrastructure-live-acme/releases/tag/v0.0.1-20201021)
 of the `cis-infrastructure-live-acme` repository for instructions on how to
 update the CIS components of the Reference Architecture to be compatible with
 AWS provider v3. For all other components, refer to the release notes for
-[v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.20201021)
+[v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021)
 of the `infrastructure-modules-multi-account-acme` repository.
 
 #### Standard Reference Architecture
 
 Refer to the release notes for
-[v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.20201021)
+[v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021)
 of the `infrastructure-modules-multi-account-acme` repository for instructions
 on how to update your components to be compatible with AWS provider v3.
 
@@ -182,5 +182,5 @@ on how to update your components to be compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"35ab6118092cfd9f248d8df0a40a9fa0"}
+{"sourcePlugin":"Local File Copier","hash":"29e0fd72bacb557d77a43cea86a67657"}
 ##DOCS-SOURCER-END -->

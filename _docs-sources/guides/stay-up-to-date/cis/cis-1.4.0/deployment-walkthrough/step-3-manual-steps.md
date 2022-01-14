@@ -39,7 +39,7 @@ We also created a script to help you enable MFA Delete in all buckets from a sin
 
 ### Using mfa-delete.sh
 
-If you want to enable MFA Delete to _all_ your buckets at once, you can use the script at [terraform-aws-security/private-s3-bucket/mfa-delete-script](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-sbucket). You need to use the access keys for the root user and the root MFA code.
+If you want to enable MFA Delete to _all_ your buckets at once, you can use the script at [terraform-aws-security/private-s3-bucket/mfa-delete-script](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket). You need to use the access keys for the root user and the root MFA code.
 
 Usage:
 
@@ -88,7 +88,7 @@ so that it completely automates all the steps of configuring Amazon Macie, and n
 To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically, you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying all the buckets in a region - it requires that an explicit list of buckets be provided (see related bug
 [here](https://github.com/hashicorp/terraform-provider-aws/issues/20044)). Therefore, you’ll need to maintain an
 explicit list of buckets per region, namely in the variable `buckets_to_analyze`. Please read the
-[documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L2L30)
+[documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
 for this variable in order to understand how to structure the list of buckets per region. Once the above issue in the
 terraform AWS provider has been resolved, we will
 [update the Gruntwork macie module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/issues/204)

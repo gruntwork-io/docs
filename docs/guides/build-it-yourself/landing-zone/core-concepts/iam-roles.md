@@ -112,7 +112,7 @@ The basic steps are:
 Most AWS services have native support built-in for assuming IAM roles. For example, you can associate an IAM role
 directly with an EC2 instance, and that instance will automatically assume the IAM role every few hours, making the
 temporary credentials available in
-_[EC2 instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ecinstance-metadata.html#instancedata-data-retrieval)_.
+_[EC2 instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-data-retrieval)_.
 Just about every AWS CLI and SDK tool knows how to read and periodically update temporary credentials from EC2
 instance metadata, so in practice, as soon as you attach an IAM role to an EC2 instance, any code running on that EC2
 instance can automatically make API calls on behalf of that IAM role, with whatever permissions are attached to that
@@ -125,5 +125,5 @@ services permissions to access specific resources in your AWS account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e7862def125fa23fb6de82c4623f641d"}
+{"sourcePlugin":"Local File Copier","hash":"4665d08042eeca71ae65dd366edfc6b6"}
 ##DOCS-SOURCER-END -->

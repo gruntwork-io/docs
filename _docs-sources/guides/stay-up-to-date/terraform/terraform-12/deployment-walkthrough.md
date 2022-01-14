@@ -16,7 +16,7 @@ that prevent using your TF11 and older modules directly with TF12. For the safes
 going through the process of updating all your modules to use the new HCL2 syntax using the `terraform 0.12upgrade` tool
 that ships with TF12.
 
-Before starting, read through the [Terraform 0.12 upgrade guide](https://www.terraform.io/upgrade-guides/12.html) so
+Before starting, read through the [Terraform 0.12 upgrade guide](https://www.terraform.io/upgrade-guides/0-12.html) so
 you can learn about the types of changes you’ll have to make. Familiarity of the changes help with detecting errors and
 gotchas that the upgrade tool occasionally misses.
 

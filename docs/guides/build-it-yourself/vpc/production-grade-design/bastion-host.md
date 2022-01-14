@@ -13,12 +13,12 @@ the server, lock down all ports (except SSH and/or VPN), rebuild and redeploy th
 the `How to deploy a production-grade bastion host on AWS` guide _(coming soon!)_ for full details on bastion hosts.
 
 Other solutions that can work with resources in private subnets include
-[EC2 Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-ECInstance-Connect.html),
+[EC2 Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html),
 which can allow you to SSH to EC2 Instances via a browser-based SSH client in the Amazon EC2 Console, and
 [AWS Systems Manager Sessions](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html), which
 allow you to manage and connect to EC2 Instances via a custom protocol managed by AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7cb8603c7cb5874f8ac84a097c61ff92"}
+{"sourcePlugin":"Local File Copier","hash":"ced5f0444b037cc4e6f71ffacb6f4fdb"}
 ##DOCS-SOURCER-END -->
