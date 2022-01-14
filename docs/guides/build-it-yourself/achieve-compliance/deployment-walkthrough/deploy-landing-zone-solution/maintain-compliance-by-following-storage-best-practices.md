@@ -8,7 +8,7 @@ to create and manage all of your S3 buckets. This module blocks public access an
 that all Gruntwork modules that create S3 buckets use this module under the hood.
 
 You can either use the `private-s3-bucket` module in your own modules, or, if you wish to deploy a standalone S3 bucket,
-use the [`s3-bucket` service](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/data-stores/sbucket/)
+use the [`s3-bucket` service](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/data-stores/s3-bucket/)
 from the Gruntwork Service Catalog.
 
 To ensure that all the data in your S3 buckets has been discovered, classified and secured, use the
@@ -18,5 +18,5 @@ the hood.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9d94cfc626574ad661ab12bba2b358d6"}
+{"sourcePlugin":"Local File Copier","hash":"b2f8907a2b4273753794fb96e9f89ffe"}
 ##DOCS-SOURCER-END -->
