@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start & onchange '_docs-sources/**/*.md' '_docs-sources/**/*.mdx' '_docs-sources/**/*.json' -- yarn regenerate:local",
+    "start": "docusaurus start & onchange '_docs-sources/**/*(.md|.mdx|.json)' -- yarn regenerate:local",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
