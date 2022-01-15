@@ -276,7 +276,8 @@ html[data-theme="dark"] .menu__link--sublist {
 
 /* remove external link icons on header/footer links */
 .footer__link-item svg,
-.navbar__items--right .navbar__link svg {
+.navbar__items--right .navbar__link svg,
+.navbar__items--right .dropdown__link svg {
   display: none;
 }
 
@@ -289,5 +290,19 @@ html[data-theme="dark"] .menu__link--sublist {
 @media only screen and (max-width: 480px) {
   .hideOnMobile {
     display: none;
+  }
+}
+
+#more_dropdown {
+  display: none;
+}
+
+@media only screen and (max-width: 1280px) {
+  .navbar__items--right > a {
+    display: none;
+  }
+
+  #more_dropdown {
+    display: block;
   }
 }
