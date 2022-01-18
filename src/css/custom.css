@@ -71,12 +71,12 @@ main {
 
 /* IMAGES & CAPTIONS */
 
-p > img {
+p > img:not(.no-zoom) {
   display: block;
   margin: auto;
 }
 
-p > img + em {
+p > img:not(.no-zoom) + em {
   color: gray;
   font-size: 0.9rem;
   display: block;

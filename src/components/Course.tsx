@@ -28,7 +28,7 @@ export const Course: React.FunctionComponent<CourseProps> = ({
     <Card title={title} icon={icon} href={href}>
       <p>{description}</p>
       <p className={styles.author}>
-        <img src={authorImg} />
+        <img src={authorImg} className="no-zoom" />
         <span>{author}</span>
       </p>
       <p>
