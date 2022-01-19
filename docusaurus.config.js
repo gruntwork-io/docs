@@ -116,6 +116,26 @@ const config = {
             label: "Sign In",
             position: "right",
           },
+          {
+            type: "dropdown",
+            label: "More…",
+            position: "right",
+            id: "more_dropdown",
+            items: [
+              {
+                href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+                label: "Knowledge Base",
+              },
+              {
+                href: "/docs/guides/support",
+                label: "Support",
+              },
+              {
+                href: "https://app.gruntwork.io",
+                label: "Sign In",
+              },
+            ],
+          },
         ],
       },
       footer: {
