@@ -62,9 +62,9 @@ Each module repo should have the following 3 folders:
 
 - `examples`: Folder that contains top level Terraform modules that provide an example of how to use the modules in the
   `modules` folder. The `examples` folder often has subfolders `for-learning-and-testing` and `for-production` that contain
-  corresponding example code. See [Testing: Terratest](#testing) for more info on how these examples should be organized.
+  corresponding example code. See [Testing: Terratest](#testing-terratest) for more info on how these examples should be organized.
 
-- `test`: Terratest Go files for testing the code in the repo. See [Testing: Terratest](#testing) for specific conventions around Terratest.
+- `test`: Terratest Go files for testing the code in the repo. See [Testing: Terratest](#testing-terratest) for specific conventions around Terratest.
 
 Additionally, each module in `modules` should be organized with the following files:
 
@@ -211,7 +211,7 @@ variable "optional_var" {
 
 ##### Section comments
 
-Each section (as described in [ conventions](#main_tf_conventions)) of `main.tf` should have block comments describing the component
+Each section (as described in [ conventions](#maintf-conventions)) of `main.tf` should have block comments describing the component
 managed in the section.
 
 Example:
