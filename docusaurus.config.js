@@ -249,7 +249,7 @@ const config = {
             contextualSearch: true,
           }
         : undefined,
-      zoomSelector: ".markdown img",
+      zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
       posthog: enablePosthog
         ? {
             apiKey: posthogConfig.apiKey,
