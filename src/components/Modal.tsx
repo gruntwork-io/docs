@@ -29,14 +29,17 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
   handleCancelRequest,
   handleAcceptRequest,
 }) => {
-  const onRequestClose = () => {
+  const onRequestClose = (e) => {
     // If the user checked to never see this notice but subsequently cancels we will disregard their selection. We will
     // only stop showing this notice if they check the box and then proceed to GitHub
-    if(window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
+    if (window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
       window.localStorage.removeItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)
     }
-    
+
     handleCancelRequest()
+
+    // prevent the browser from handling a Cancel button click and scrolling to top
+    e.preventDefault()
   }
 
   const gitHubRepoName = externalLink.match(
@@ -86,7 +89,7 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
 
   const setDontWarnMe = (event) => {
     event.stopPropagation()
-    if(!window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
+    if (!window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
       window.localStorage.setItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY, "true")
     } else {
       window.localStorage.removeItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)
@@ -117,7 +120,7 @@ export const SubscriptionNoticeModal: React.FC<ModalProps> = ({
         <label>Don't warn me again</label>
       </div>
       <div className={styles.buttonsContainer}>
-        <a onClick={() => onRequestClose()} href="#">
+        <a onClick={(e) => onRequestClose(e)} href="#">
           Cancel
         </a>
         <a id={idOfNoticeLink} href={externalLink} target="_blank">
