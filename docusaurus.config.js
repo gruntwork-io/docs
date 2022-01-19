@@ -80,6 +80,7 @@ const config = {
           src: "img/logo-dark.png",
           srcDark: "img/logo-light.png",
         },
+        hideOnScroll: true,
         items: [
           {
             type: "doc",
