@@ -116,4 +116,9 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 
 </Grid>
 
+## Style Guides
+
+- [Terraform Style Guide](/docs/guides/style/terraform-style-guide)
+- [Go Style Guide](/docs/guides/style/golang-style-guide)
+
 </CenterLayout>
