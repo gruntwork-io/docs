@@ -1,6 +1,6 @@
 const complianceGuide = [
   {
-    label: "Achieve Compliance Guide",
+    label: "CIS Benchmark Compliance Guide",
     type: "category",
     link: {
       type: "doc",
