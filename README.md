@@ -1,9 +1,9 @@
-# Website
+# Docs Site
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern
 static website generator.
 
-### Docs Sourcer
+## Docs Sourcer
 
 All of the content that we see on the docs site is rendered to the top level
 `docs/` folder by the
@@ -16,7 +16,7 @@ pull in tagged content from other files, located in other GitHub repos, pull in
 images and auto-correct links. This will allow content creators to have more
 features when authoring content.
 
-### Content creation
+## Content creation
 
 All manually created MarkDown source content lives in the `_docs-sources/`
 folder. The top level `docs/` folder contains the _generated_ output that
@@ -24,16 +24,16 @@ results after the `docs-sourcer` processes the `_docs-sources/` directory.
 Grunts should **never edit any of the MarkDown files in the `docs/` folder
 directly**. We should always be editing the content in `_docs-sources/`.
 
-### Installation of dependencies
+## Installation of dependencies
 
-```
-$ yarn
+```sh
+yarn
 ```
 
-### Local development
+## Local development
 
-```
-$ yarn start
+```sh
+yarn start
 ```
 
 This command starts a local development server and opens up a browser window.
@@ -43,7 +43,16 @@ you edit a file in `_docs-sources/` then the `docs-sourcer` will automatically
 re-run to regenerate the output files. Docusaurus will then hot-reload that
 content so that to the end user, they have "live reloading" while authoring.
 
-### Committing changes to docs
+### Run production build locally
+
+```sh
+yarn build && yarn serve
+```
+
+This will create and serve a production build. This can be used to verify the
+expected behaviors in a production environment and view the Google analytics.
+
+## Committing changes to docs
 
 While authoring local content, you will exclusively be making your changes in
 the `_docs-sources/` folder. The `docs-sourcer` will then pre-process and
@@ -55,22 +64,22 @@ Generated content should be up to date if you are previewing locally while
 editing but you may wish to manually regenerate the output (see section below)
 to ensure it is totally up to date.
 
-### Manually generating docs output
+## Manually generating docs output
 
 It's possible to manually regenerate output content from the sources in
 `_docs-sources/`:
 
-```
+```sh
 yarn regenerate:local
 ```
 
 This command can be run at any time, regardless of whether `yarn start` is
 currently running.
 
-### Build
+## Build
 
-```
-$ yarn build
+```sh
+yarn build
 ```
 
 This command generates static content into the `build` directory and can be
