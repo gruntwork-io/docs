@@ -11,16 +11,16 @@ answer to "what do I have to do to put a new app in prod?"
 
 There are many types of requirements to take into consideration:
 
-| Requirement               | Examples                                                                        |
-|---------------------------|---------------------------------------------------------------------------------|
-| Infrastructure            | Servers, databases, load balancers, etc.                                        |
-| Compliance                | SOC 2, ISO 27001, HIPAA, PCI, FedRAMP, NIST 800-53, CIS, etc.                   |
-| Observability             | Metrics, dashboards, log aggregation, alerting, tracing, audit trails.          |
-| Governance                | Operations, access control, data management, assets management, etc.            |
-| Security                  | Encryption, secrets management, auth, server hardening, network hardening, etc. |
-| Scalability               | Load, throughput, response time, etc.                                           |
-| Availability & resiliency | SLAs, data backup, replication, disaster recovery, etc.                         |
-| Cost                      | Budget, cost tracking, cost optimization, etc.                                  |
+| Requirement                   | Examples                                       |
+|-------------------------------|------------------------------------------------|
+| Infrastructure                | Servers, databases, load balancers, etc.       |
+| Compliance                    | SOC 2, ISO 27001, HIPAA, PCI, CIS, etc.        |
+| Observability                 | Metrics, logging, alerting, audit trails, etc. |
+| Governance                    | Operations, access control, data mgmt, etc.    |
+| Security                      | Encryption, secrets management, auth, etc.     |
+| Scalability                   | Load, throughput, response time, etc.          |
+| Availability &amp; resiliency | SLAs, backup, replication, etc.                |
+| Cost                          | Budget, cost tracking, cost optimization, etc. |
 
 This list is just a starting point; depending on your company's needs, there may be other requirements to take into
 account. The good news is that once you start getting these down systematically, in writing, you'll realize what else
@@ -28,5 +28,5 @@ you need to think through as well.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7807c6440579bd4c305c3212883154e7"}
+{"sourcePlugin":"Local File Copier","hash":"277bc73a0e644860eed4353af1b375c1"}
 ##DOCS-SOURCER-END -->

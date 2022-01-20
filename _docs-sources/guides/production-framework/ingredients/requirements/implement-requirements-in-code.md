@@ -9,16 +9,16 @@ further and capture and enforce requirements *as code*.
 Let's extend the table of requirements from the previous section with examples of how you can implement each one using
 different types of code:
 
-| Requirement               | Examples                                                                        | Code examples                                                                      |
-|---------------------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| Infrastructure            | Servers, databases, load balancers, etc.                                        | Infrastructure as Code (IaC) tools such as Terraform or CloudFormation.            |
-| Compliance                | SOC 2, ISO 27001, HIPAA, PCI, FedRAMP, NIST 800-53, CIS, etc.                   | Continuous testing with tools such as Terratest and Open Policy Agent (OPA).       |
-| Observability             | Metrics, dashboards, log aggregation, alerting, tracing, audit trails.          | Configure metrics and dashboards with tools such as CloudWatch.                    |
-| Governance                | Operations, access control, data management, assets management, etc.            | Configure fully automated deployments with tools such as Jenkins and GitLab.       |
-| Security                  | Encryption, secrets management, auth, server hardening, network hardening, etc. | Use Packer to configure hardened servers and Istio to configure hardened networks. |
-| Scalability               | Load, throughput, response time, etc.                                           | Use tools like Kubernetes and Fargate to scale up and down in response to load.    |
-| Availability & resiliency | SLAs, data backup, replication, disaster recovery, etc.                         | Configure replication and backups in your Terraform or CloudFormation code.        |
-| Cost                      | Budget, cost tracking, cost optimization, etc.                                  | Enforce tagging and spot instances in your Terraform or CloudFormation code.       |
+| Requirement                   | Examples                                       | Code examples                                                  |
+|-------------------------------|------------------------------------------------|----------------------------------------------------------------|
+| Infrastructure                | Servers, databases, load balancers, etc.       | Infrastructure as Code (IaC) tools: Terraform, CloudFormation. |
+| Compliance                    | SOC 2, ISO 27001, HIPAA, PCI, CIS, etc.        | Continuous testing tools: Terratest, Open Policy Agent (OPA).  |
+| Observability                 | Metrics, logging, alerting, audit trails, etc. | Monitoring tools: CloudWatch, DataDog, Prometheus.             |
+| Governance                    | Operations, access control, data mgmt, etc.    | CI / CD tools: Jenkins, GitLab, GitHub Actions.                |
+| Security                      | Encryption, secrets management, auth, etc.     | Server &amp; network hardening tools: Packer, Istio.           |
+| Scalability                   | Load, throughput, response time, etc.          | Auto scaling tools: e.g., Kubernetes, Fargate.                 |
+| Availability &amp; resiliency | SLAs, backup, replication, etc.                | Replication &amp; backup tools: AWS Backup, S3 replication.    |
+| Cost                          | Budget, cost tracking, cost optimization, etc. | Cost management tools: AWS Cost Explorer, Harness.             |
 
 The list above is just an example of some of the tools you use. There are plenty of other options available, and it's
 less important which tool you pick, so long as that tool lets you manage everything as code.
