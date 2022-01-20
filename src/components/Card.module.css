@@ -81,8 +81,11 @@ html[data-theme="dark"] .icon {
 }
 
 .card .title {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin: 0;
+}
+
+.card .description {
+  margin-top: 0.75rem;
 }
 
 .card strong {
@@ -177,4 +180,8 @@ html[data-theme="dark"] .cardlink .invisible:hover {
 
 .cardlink .invisible:hover h3 {
   color: var(--ifm-color-primary);
+}
+
+.cardlink .flush:hover {
+  border-color: transparent;
 }

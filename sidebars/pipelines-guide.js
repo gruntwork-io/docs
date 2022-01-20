@@ -1,5 +1,11 @@
 const pipelineGuide = [
   {
+    label: "Build Your Own Architecture",
+    type: "link",
+    href: "/docs/guides/build-it-yourself",
+    className: "back-button",
+  },
+  {
     label: "Pipelines Guide",
     type: "category",
     link: {

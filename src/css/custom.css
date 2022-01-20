@@ -69,6 +69,14 @@ main {
   margin-top: 2em;
 }
 
+/* Constrain pages without a TOC to same width */
+@media only screen and (min-width: 997px) {
+  aside + main [class="col"]:only-child {
+    /*.container > .row:first-child > .col:only-child > div:first-child {*/
+    max-width: 75% !important;
+  }
+}
+
 /* IMAGES & CAPTIONS */
 
 p > img:not(.no-zoom) {
@@ -211,11 +219,34 @@ html[data-theme="dark"] aside {
   font-weight: 600;
 }
 
-/* Special styles for top level guide titles */
-.menu__list-item-collapsible a:not(.menu__link--sublist) {
+/* Special styles for top level guide titles. This selects a top-level
+   category which uses the category-index pattern (is selectable) and
+   is either the only or last of exactly two items in the sidebar
+   (the other of which could be a back button.)
+ */
+li.theme-doc-sidebar-item-category-level-1:last-child:nth-child(1)
+  > *:first-child,
+li.theme-doc-sidebar-item-category-level-1:last-child:nth-child(2)
+  > *:first-child {
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 0.05rem;
+}
+
+.back-button {
+  margin-bottom: 1rem;
+  font-size: 15px;
+  font-weight: bold;
+  justify-content: left;
+}
+
+.back-button a {
+  justify-content: left;
+}
+
+.back-button > a:before {
+  content: "←";
+  margin-right: 0.5rem;
 }
 
 /* Hide disclosure carats on top level of guides */
@@ -320,16 +351,18 @@ html[data-theme="dark"] .menu__link--sublist {
   }
 }
 
-#more_dropdown {
+#more_dropdown,
+#more_dropdown + ul {
   display: none;
 }
 
-@media only screen and (max-width: 1280px) and (min-width: 996px) {
+@media only screen and (max-width: 1280px) and (min-width: 997px) {
   .navbar__items--right > a {
     display: none;
   }
 
-  #more_dropdown {
+  #more_dropdown,
+  #more_dropdown + ul {
     display: block;
   }
 }
@@ -337,5 +370,9 @@ html[data-theme="dark"] .menu__link--sublist {
 @media only screen and (max-width: 996px) {
   .navbar__brand {
     border-right: none;
+  }
+
+  .navbar-sidebar__brand .navbar__brand {
+    display: none;
   }
 }

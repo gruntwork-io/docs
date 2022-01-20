@@ -1,5 +1,11 @@
 const refarchSidebar = [
   {
+    label: "Reference Architecture Guides",
+    type: "link",
+    href: "/docs/guides/reference-architecture-index",
+    className: "back-button",
+  },
+  {
     label: "Reference Architecture Guide",
     type: "category",
     link: {

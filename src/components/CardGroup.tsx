@@ -16,6 +16,7 @@ export const CardGroup: React.FunctionComponent<CardGroupProps> = ({
   colGap,
   rowGap,
   equalHeightRows,
+  stacked,
   children,
 }) => {
   return (
@@ -24,6 +25,7 @@ export const CardGroup: React.FunctionComponent<CardGroupProps> = ({
       gap={gap}
       colGap={colGap}
       rowGap={rowGap}
+      stacked={stacked}
       equalHeightRows={equalHeightRows}
     >
       {React.Children.map(children || null, (child: JSX.Element, idx) => (
