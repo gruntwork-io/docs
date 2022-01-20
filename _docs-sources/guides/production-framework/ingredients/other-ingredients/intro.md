@@ -1,8 +1,3 @@
----
-pagination_label: Other Ingredients
-title: Intro
----
-
 # Other Ingredients
 
 No framework or tutorial could possibly cover everything. So, in this section, you'll find an incomplete list of other ingredients you may want to research independently:

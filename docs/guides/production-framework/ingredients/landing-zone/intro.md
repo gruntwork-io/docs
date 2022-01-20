@@ -1,8 +1,3 @@
----
-pagination_label: Landing Zone
-title: Intro
----
-
 # Landing Zone
 
 One of the first things you'll need to deploy from your Service Catalog is your *Landing Zone*, which is the basic
@@ -15,5 +10,5 @@ controls in the first place.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d8b0ec25da0c4a0c32d424b8cc0bd043"}
+{"sourcePlugin":"Local File Copier","hash":"252b279f3ac24c12047578c3423a2b17"}
 ##DOCS-SOURCER-END -->

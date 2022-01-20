@@ -1,8 +1,3 @@
----
-pagination_label: Requirements
-title: Intro
----
-
 # Requirements
 
 Here's a fun experiment to try at your company: go around to 5 different teams, and ask them, "what do I have to do to
@@ -23,5 +18,5 @@ From working with hundreds of companies, we've found that make successful use of
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9ae535c7b7ce65a40652b43b102a70fb"}
+{"sourcePlugin":"Local File Copier","hash":"f69e60e9d1fcc677d9b99e7fe7680644"}
 ##DOCS-SOURCER-END -->

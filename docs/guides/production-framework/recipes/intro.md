@@ -1,8 +1,3 @@
----
-pagination_label: Recipes
-title: Intro
----
-
 # Recipes
 
 Let's now put all the ingredients together into a recipe and walk through what the experience will look like for your
@@ -12,5 +7,5 @@ work together, but hopefully, it gives you a pretty good idea of what to aim for
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6593bc691755c063b6fd24abd300b55e"}
+{"sourcePlugin":"Local File Copier","hash":"84a25c315b6a15169c6f75c22ab827db"}
 ##DOCS-SOURCER-END -->

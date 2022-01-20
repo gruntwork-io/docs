@@ -1,7 +1,3 @@
----
-pagination_label: Production Framework
----
-
 # The Gruntwork Production Framework
 
 In this guide, we are going to share our opinionated, step-by-step framework for successfully going to production on
@@ -87,5 +83,5 @@ experience for your Dev and Ops teams. Finally, we'll talk about where Gruntwork
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"323d65c4a9933282fb6315bd4b553523"}
+{"sourcePlugin":"Local File Copier","hash":"ad72128fea4e14fcf2f808dd2f687f95"}
 ##DOCS-SOURCER-END -->

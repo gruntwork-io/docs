@@ -1,8 +1,3 @@
----
-pagination_label: Other Ingredients
-title: Intro
----
-
 # Other Ingredients
 
 No framework or tutorial could possibly cover everything. So, in this section, you'll find an incomplete list of other ingredients you may want to research independently:
@@ -14,5 +9,5 @@ No framework or tutorial could possibly cover everything. So, in this section, y
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e3f2aa4963dca2ac4c7d1d37bcef1bc5"}
+{"sourcePlugin":"Local File Copier","hash":"84db01d25ebe257dd0dc584596a2df74"}
 ##DOCS-SOURCER-END -->

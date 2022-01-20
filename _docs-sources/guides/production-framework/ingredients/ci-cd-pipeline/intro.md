@@ -1,8 +1,3 @@
----
-pagination_label: CI / CD Pipeline
-title: Intro
----
-
 # CI / CD Pipeline
 
 One trend you may have noticed in this guide is that automation is preferred over manual processes. Most companies that

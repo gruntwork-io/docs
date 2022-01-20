@@ -1,8 +1,3 @@
----
-pagination_label: How Gruntwork can help
-title: Intro
----
-
 # How Gruntwork can help
 
 At this point, you've now seen the Gruntwork Production Framework. It consists of six key ingredients that, if you put
@@ -28,5 +23,5 @@ Here's an overview of each ingredient and the off-the-shelf solutions available 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"50ca2a8b289705c1b9ea63df7410803c"}
+{"sourcePlugin":"Local File Copier","hash":"8a5d34bdd0fa6ed7786d7e0ffc885d05"}
 ##DOCS-SOURCER-END -->

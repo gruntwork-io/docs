@@ -1,8 +1,3 @@
----
-pagination_label: Automatic Updates
-title: Intro
----
-
 # Automatic Updates
 
 The software world is constantly changing: the cloud vendors we use (e.g., AWS, Azure, and Google Cloud) release

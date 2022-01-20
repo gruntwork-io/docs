@@ -1,8 +1,3 @@
----
-pagination_label: Application Catalog
-title: Intro
----
-
 # Application Catalog
 
 Whereas a Service Catalog is a way to provide your team with off-the-shelf solutions for infrastructure, an Application
@@ -14,5 +9,5 @@ frameworks, and templates your team can use to create new apps.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a543aca81ea544854f6bb8fa6ab18827"}
+{"sourcePlugin":"Local File Copier","hash":"887c01928219fcaab7572e586662b620"}
 ##DOCS-SOURCER-END -->

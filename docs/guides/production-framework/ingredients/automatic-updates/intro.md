@@ -1,8 +1,3 @@
----
-pagination_label: Automatic Updates
-title: Intro
----
-
 # Automatic Updates
 
 The software world is constantly changing: the cloud vendors we use (e.g., AWS, Azure, and Google Cloud) release
@@ -14,5 +9,5 @@ so that all your hard work doesn't turn into tech debt.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ef537009fb8496ddcce751346d05b8dc"}
+{"sourcePlugin":"Local File Copier","hash":"48e5b8e73b19e9f36cb31a85d42e1412"}
 ##DOCS-SOURCER-END -->

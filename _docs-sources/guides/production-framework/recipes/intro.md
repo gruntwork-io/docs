@@ -1,8 +1,3 @@
----
-pagination_label: Recipes
-title: Intro
----
-
 # Recipes
 
 Let's now put all the ingredients together into a recipe and walk through what the experience will look like for your

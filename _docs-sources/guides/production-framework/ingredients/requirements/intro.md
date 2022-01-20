@@ -1,8 +1,3 @@
----
-pagination_label: Requirements
-title: Intro
----
-
 # Requirements
 
 Here's a fun experiment to try at your company: go around to 5 different teams, and ask them, "what do I have to do to

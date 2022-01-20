@@ -1,8 +1,3 @@
----
-pagination_label: CI / CD Pipeline
-title: Intro
----
-
 # CI / CD Pipeline
 
 One trend you may have noticed in this guide is that automation is preferred over manual processes. Most companies that
@@ -11,5 +6,5 @@ Continuous Integration / Continuous Delivery pipeline, or CI / CD pipeline.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"36eb9e94cb8f8d3b981a46902630a077"}
+{"sourcePlugin":"Local File Copier","hash":"009f1aef544300915bd3848888a86ff8"}
 ##DOCS-SOURCER-END -->

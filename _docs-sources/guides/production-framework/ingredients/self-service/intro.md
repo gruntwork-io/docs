@@ -1,8 +1,3 @@
----
-pagination_label: Self-Service
-title: Intro
----
-
 # Self-Service
 
 The next step is to take all the previous ingredients—the Service Catalog, the CI / CD pipeline, etc—and expose it to

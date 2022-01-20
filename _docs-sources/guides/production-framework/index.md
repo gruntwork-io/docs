@@ -1,7 +1,3 @@
----
-pagination_label: Production Framework
----
-
 # The Gruntwork Production Framework
 
 In this guide, we are going to share our opinionated, step-by-step framework for successfully going to production on

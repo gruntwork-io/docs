@@ -1,8 +1,3 @@
----
-pagination_label: Landing Zone
-title: Intro
----
-
 # Landing Zone
 
 One of the first things you'll need to deploy from your Service Catalog is your *Landing Zone*, which is the basic

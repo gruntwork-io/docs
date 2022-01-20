@@ -1,8 +1,3 @@
----
-pagination_label: How Gruntwork can help
-title: Intro
----
-
 # How Gruntwork can help
 
 At this point, you've now seen the Gruntwork Production Framework. It consists of six key ingredients that, if you put

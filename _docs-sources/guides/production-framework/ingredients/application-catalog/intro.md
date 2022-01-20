@@ -1,8 +1,3 @@
----
-pagination_label: Application Catalog
-title: Intro
----
-
 # Application Catalog
 
 Whereas a Service Catalog is a way to provide your team with off-the-shelf solutions for infrastructure, an Application
