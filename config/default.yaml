@@ -6,4 +6,4 @@ algolia:
   indexName: docs_site_dev
 
 googleAnalytics:
-  trackingID: UA-154792164-3
+  trackingID: UA-154792164-4
