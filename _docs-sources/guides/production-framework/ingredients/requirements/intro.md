@@ -18,5 +18,5 @@ cloud for months is much harder.
 
 From working with hundreds of companies, we've found that make successful use of the cloud, you need to:
 
-1. [Define your requirements in writing](02-define-requirements-in-writing.md).
-2. [Implement your requirements inc ode](03-implement-requirements-in-code.md).
+1. [Define your requirements in writing](define-requirements-in-writing.md).
+2. [Implement your requirements inc ode](implement-requirements-in-code.md).

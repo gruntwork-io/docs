@@ -70,17 +70,17 @@ take a look at a *recipe*: a walkthrough of one way you could put all those ingr
 experience for your Dev and Ops teams. Finally, we'll talk about where Gruntwork fits into this picture.
 
 1. **The ingredients**
-    1. [Requirements](01-ingredients/01-requirements/01-intro.md)
-    1. [Service Catalog](01-ingredients/02-service-catalog/01-intro.md)
-    1. [Application Catalog](01-ingredients/03-application-catalog/01-intro.md)
-    1. [Landing Zone](01-ingredients/04-landing-zone/01-intro.md)
-    1. [CI / CD Pipeline](01-ingredients/05-ci-cd-pipeline/01-intro.md)
-    1. [Self-Service](01-ingredients/06-self-service/01-intro.md)
-    1. [Automatic Updates](01-ingredients/07-automatic-updates/01-intro.md)
-    1. [Other Ingredients](01-ingredients/08-other-ingredients/01-intro.md)
+    1. [Requirements](ingredients/requirements/intro.md)
+    1. [Service Catalog](ingredients/service-catalog/intro.md)
+    1. [Application Catalog](ingredients/application-catalog/intro.md)
+    1. [Landing Zone](ingredients/landing-zone/intro.md)
+    1. [CI / CD Pipeline](ingredients/ci-cd-pipeline/intro.md)
+    1. [Self-Service](ingredients/self-service/intro.md)
+    1. [Automatic Updates](ingredients/automatic-updates/intro.md)
+    1. [Other Ingredients](ingredients/other-ingredients/intro.md)
 2. **The recipes**
-    1. [Intro](02-recipes/01-intro.md)
-    1. [The Dev team experience](02-recipes/02-dev-team-experience.md)
-    1. [The Ops team experience](02-recipes/03-ops-team-experience.md)
+    1. [Intro](recipes/intro.md)
+    1. [The Dev team experience](recipes/dev-team-experience.md)
+    1. [The Ops team experience](recipes/ops-team-experience.md)
 3. **How Gruntwork can help**
-    1. [Gruntwork solutions](03-gruntwork/01-intro.md)
+    1. [Gruntwork solutions](gruntwork-solutions/intro.md)

@@ -74,7 +74,7 @@ const refarchSidebar = [
       },
       {
         "How Gruntwork can help": [
-          "guides/production-framework/gruntwork/intro",
+          "guides/production-framework/gruntwork-solutions/intro",
         ]
       },
     ],
