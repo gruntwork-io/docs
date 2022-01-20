@@ -1,6 +1,6 @@
 const landingZoneGuide = [
   {
-    label: "Landing Zone Guides",
+    label: "Landing Zone Guide",
     type: "category",
     link: {
       type: "doc",
