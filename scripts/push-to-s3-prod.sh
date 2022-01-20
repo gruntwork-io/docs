@@ -3,6 +3,9 @@
 set -e
 
 export CONFIG_SITE_URL="https://docs.gruntwork.io"
+
+export CONFIG_GOOGLE_ANALYTICS_TRACKING_ID="UA-76462621-5"
+
 export ALGOLIA_INDEX_NAME="docs_site_prod"
 export ALGOLIA_API_KEY="49a495ba4c210780a28feed306d05522" # This is a search only key. It is safe to check in.
 
