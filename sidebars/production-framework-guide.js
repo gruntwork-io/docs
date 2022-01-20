@@ -10,13 +10,6 @@ const refarchSidebar = [
       {
         "Ingredients": [
             {
-              "Requirements": [
-                "guides/production-framework/ingredients/requirements/intro",
-                "guides/production-framework/ingredients/requirements/define-requirements-in-writing",
-                "guides/production-framework/ingredients/requirements/implement-requirements-in-code",
-              ],
-            },
-            {
               "Service Catalog": [
                 "guides/production-framework/ingredients/service-catalog/intro",
                 "guides/production-framework/ingredients/service-catalog/modern-service-catalog",
