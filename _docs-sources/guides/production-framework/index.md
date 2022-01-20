@@ -5,6 +5,8 @@ the public cloud. At Gruntwork, we've had the privilege to work with everything 
 50 companies to some of the world's largest government agencies, and this document captures the common patterns we've
 seen that actually worked.
 
+![Gruntwork Production Framework](/img/guides/production-framework/gruntwork-production-framework-small.png)
+
 This is not another high-level, vague "cloud operating model" document that is heavy on buzzwords but light on
 actionable content. Instead, you'll find a clear mental model of how to think about cloud usage, plus a set of
 concrete, opinionated set of steps you can follow to make better use of the cloud at your company. Think of this as a

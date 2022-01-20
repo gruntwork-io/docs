@@ -1,9 +1,12 @@
 # Service Catalog
 
 The first ingredient, and arguably the one that takes the most time, is to create a Service Catalog, which has all of
-your company's vetted, tested, reusable, off-the-shelf solutions for infrastructure and applications. Developers love
-to try out new languages, frameworks, and tools, and while that can be a lot of fun, in a company setting, that can be
-harmful, both in terms of wasting some of your precious innovation tokens (see: [Choose Boring
+your company's vetted, tested, reusable, off-the-shelf solutions for infrastructure and applications.
+
+![The Gruntwork Service Catalog](/img/guides/production-framework/gruntwork-service-catalog-api.png)
+
+Developers love to try out new languages, frameworks, and tools, and while that can be a lot of fun, in a company
+setting, that can be harmful, both in terms of wasting some of your precious innovation tokens (see: [Choose Boring
 Technology](http://boringtechnology.club/)) and in terms of failing to meet all your company's requirements for going
 to prod (as defined in the previous section).
 

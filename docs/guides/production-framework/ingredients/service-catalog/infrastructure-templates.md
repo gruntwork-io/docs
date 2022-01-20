@@ -1,4 +1,4 @@
-# Infrastructure templates your Service Catalog should include
+# Infrastructure templates
 
 Your Service Catalog will need to include off-the-shelf solutions for _infrastructure_: e.g., servers, data stores,
 networking, etc. Here's a starting list of the type of infrastructure you'll need to build out:
@@ -36,5 +36,5 @@ networking, etc. Here's a starting list of the type of infrastructure you'll nee
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"44791f8462f15eb7022f5bd032a0ae7a"}
+{"sourcePlugin":"Local File Copier","hash":"316c44735b27b9192fbe275282165db1"}
 ##DOCS-SOURCER-END -->

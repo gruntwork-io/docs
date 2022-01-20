@@ -13,8 +13,8 @@ const refarchSidebar = [
               "Service Catalog": [
                 "guides/production-framework/ingredients/service-catalog/intro",
                 "guides/production-framework/ingredients/service-catalog/modern-service-catalog",
-                "guides/production-framework/ingredients/service-catalog/infrastructure-templates-service-catalog-should-include",
-                "guides/production-framework/ingredients/service-catalog/application-templates-service-catalog-should-include",
+                "guides/production-framework/ingredients/service-catalog/infrastructure-templates",
+                "guides/production-framework/ingredients/service-catalog/application-templates",
               ],
             },
             {

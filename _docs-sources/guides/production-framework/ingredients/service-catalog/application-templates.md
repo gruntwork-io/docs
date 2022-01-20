@@ -1,4 +1,4 @@
-# Application templates your Service Catalog should include
+# Application templates
 
 Your Service Catalog should also include templates for building applications. By "applications," we mean server-side
 and client-side software your team might build using general purpose programming languages (e.g., Java, Ruby, Python,
@@ -23,8 +23,3 @@ You should typically provide templates, libraries, and frameworks for *at least*
 13. **Database management**: If your app interacts with a database, you'll want to think through how to manage schema migrations (e.g., using Flyway, ActiveRecord, Phinx), how to connect to the database (e.g., service discovery, TLS, cert validation), how to manage DB users, credentials, and permissions, how to manage connection pooling, whether to use an ORM or other database access library, whether or not to enable Transparent Data Encryption (TDE), and how to sanitize user input (avoiding the good old [Bobby Tables](https://xkcd.com/327/) attack).
 14. **Asset pipeline:** If your app depends on static content (images, CSS, JS, fonts), you will need to think through asset compilation (e.g., compile TypeScript to JS), minification, concatenation, fingerprinting, deployment to a CDN, rollbacks and cache invalidation in the face of deployment issues or a bad release, and making the URLs work across all environments.
 15. **CI / CD**: You'll want to make it as simple as possible for new apps to be integrated into your CI / CD pipeline (which we'll cover in more detail in the next section), including thinking through how to get the pipeline to build, test, and deploy your app completely automatically.
-
-
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b889a003225fba6c48822ab3b3b18ba4"}
-##DOCS-SOURCER-END -->

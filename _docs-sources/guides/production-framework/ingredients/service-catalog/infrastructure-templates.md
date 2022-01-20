@@ -1,4 +1,4 @@
-# Infrastructure templates your Service Catalog should include
+# Infrastructure templates
 
 Your Service Catalog will need to include off-the-shelf solutions for _infrastructure_: e.g., servers, data stores,
 networking, etc. Here's a starting list of the type of infrastructure you'll need to build out:

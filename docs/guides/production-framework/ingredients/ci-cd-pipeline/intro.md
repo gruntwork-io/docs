@@ -4,7 +4,9 @@ One trend you may have noticed in this guide is that automation is preferred ove
 succeed with the cloud invest heavily in setting up a Continuous Integration / Continuous Delivery pipeline (CI / CD
 pipeline) to automate their build, test, and deployment processes.
 
+![Gruntwork Pipelines](/img/guides/production-framework/gruntwork-pipelines.png)
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ab50adb98f46e48e3d51ce0c98cab92f"}
+{"sourcePlugin":"Local File Copier","hash":"ba6270b591efb22fbe6b9b5adb930269"}
 ##DOCS-SOURCER-END -->
