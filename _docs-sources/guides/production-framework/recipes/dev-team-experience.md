@@ -3,10 +3,10 @@
 Let's imagine that you've started a team with two developers, Ann and Bob. The two of them are starting a brand new app. This app will be a web service called `search` that your customers will be able to access at `https://search.your-company.com`. Here is how Ann and Bob can bring this app to life:
 
 1. **Scaffold the app**
-    1. First, Ann browses your company's Application Catalog to see what languages and frameworks you support for web services. She sees a list that includes:
+    1. First, Ann browses your company's Service Catalog to see what languages and frameworks you support for web services. She sees a list that includes:
         1. Java on Spring Boot.
         2. Ruby on Rails.
-    2. Ann and Bob are both familiar with Ruby on Rails, so Ann picks that, enters `search` as the name, and clicks "Create new Ruby on Rails app". The Application Catalog then:
+    2. Ann and Bob are both familiar with Ruby on Rails, so Ann picks that, enters `search` as the name, and clicks "Create new Ruby on Rails app". The Service Catalog then:
         1. Creates a new repo called `search` in your company's GitHub org.
         2. Generates the scaffolding for the Ruby on Rails app and commits the code to the `search` repo. The scaffolding includes all the basic libraries, packaging tools, monitoring code, automated test scaffolding, and everything else a web service needs to have to meet your company's requirements.
         3. Configures a CI / CD pipeline for the `search` repo so that you get automatic builds and tests (but not yet deployment) for the app.
@@ -19,9 +19,9 @@ Let's imagine that you've started a team with two developers, Ann and Bob. The t
     4. Now she can code locally and use `localhost:3000` to test manually.
     5. The app scaffold includes tests, so Ann can use `rails test` to test automatically.
 3. **Scaffold new features in the app**
-    1. Occasionally, Ann will come back to the Application Catalog to look up how to accomplish common tasks in the Ruby on Rails app.
-    2. Example #1: The `search` service may need to read a secret, such as a database password. Secrets management should be one of the core use cases in your Application Catalog, so when Ann looks it up, the Application Catalog generates some example code for her showing, for example, how to read secrets from HashiCorp Vault while the app is booting, and checks that example code directly into a branch of the `search` repo for Ann to build on top of.
-    3. Example #2: While Ann is working on the `search` service, she realizes that the service should only be accessible to logged in users, so she browses the Application Catalog for how to handle auth. The Application Catalog generates and checks in some code that shows Ann how to make API calls to your company's `auth` service, how to extract data from the response, and how to redirect the user to a login page if they aren't logged in.
+    1. Occasionally, Ann will come back to the Service Catalog to look up how to accomplish common tasks in the Ruby on Rails app.
+    2. Example #1: The `search` service may need to read a secret, such as a database password. Secrets management should be one of the core use cases in your Service Catalog, so when Ann looks it up, the Service Catalog generates some example code for her showing, for example, how to read secrets from HashiCorp Vault while the app is booting, and checks that example code directly into a branch of the `search` repo for Ann to build on top of.
+    3. Example #2: While Ann is working on the `search` service, she realizes that the service should only be accessible to logged in users, so she browses the Service Catalog for how to handle auth. The Service Catalog generates and checks in some code that shows Ann how to make API calls to your company's `auth` service, how to extract data from the response, and how to redirect the user to a login page if they aren't logged in.
 4. **Deploy the infrastructure**
     1. Meanwhile, Bob heads over to the Service Catalog to set up the infrastructure for the new app. First, he sees the clouds your company uses:
         1. AWS

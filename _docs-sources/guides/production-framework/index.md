@@ -162,7 +162,6 @@ Gruntwork to help you implement this framework.
 
 1. **Ingredients**
     1. [Service Catalog](ingredients/service-catalog/intro.md)
-    1. [Application Catalog](ingredients/application-catalog/intro.md)
     1. [Landing Zone](ingredients/landing-zone/intro.md)
     1. [CI / CD Pipeline](ingredients/ci-cd-pipeline/intro.md)
     1. [Self-Service](ingredients/self-service/intro.md)

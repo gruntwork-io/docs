@@ -1,7 +1,7 @@
-# What your Service Catalog should include
+# Infrastructure templates your Service Catalog should include
 
-Your Service Catalog will typically include need to include off-the-shelf solutions for *at least* the following types
-of infrastructure:
+Your Service Catalog will need to include off-the-shelf solutions for _infrastructure_: e.g., servers, data stores,
+networking, etc. Here's a starting list of the type of infrastructure you'll need to build out:
 
 1. **Account baselines ("Landing Zone")**: enforce a baseline for each of your cloud accounts.  We'll discuss this more in a dedicated section later on.
    1. **Authentication**: e.g., IAM users, SSO, MFA.
@@ -30,6 +30,6 @@ of infrastructure:
    2. **Encryption**: encrypt all data in transit (e.g., TLS, self-signed certs, private CA, service mesh) and at rest (e.g., disk encryption, KMS).
    3. **Server hardening**: intrusion detection (e.g., TripWire, fail2ban), antivirus, file integrity monitoring, sandboxing (e.g., SELinux, AppArmor), limited OS users and permissions, etc.
    4. **Network hardening**: server firewalls, network firewalls, web application firewalls (WAF).
-5. **App orchestration**: deploy your apps on top of virtual servers, Kubernetes, serverless architectures, etc.
+5. **Application orchestration**: deploy your apps on top of virtual servers, Kubernetes, serverless architectures, etc.
 6. **Data storage**: set up data stores such as relational databases (MySQL, PostgreSQL), caches (Redis, Memcached), search indices (Elasticsearch), file stores (S3), Docker registries (ECR), queues (SQS), streams (Kafka), etc.
 7. **CI / CD**: configure CI / CD tools such as Jenkins, GitLab, GitHub Actions, CircleCi, Argo CD, etc. We'll discuss this more in a dedicated section later on.
