@@ -14,6 +14,7 @@ const introSidebar = [
   },
   {
     "Core Concepts": [
+      "intro/core-concepts/production-framework",
       "intro/core-concepts/infrastructure-as-code",
       "intro/core-concepts/immutable-infrastructure",
     ],
