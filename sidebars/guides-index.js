@@ -7,7 +7,7 @@ const guidesIndex = [
   {
     label: "Reference Architecture",
     type: "doc",
-    id: "guides/reference-architecture-index",
+    id: "guides/reference-architecture/index",
   },
   {
     label: "Build Your Own Architecture",
