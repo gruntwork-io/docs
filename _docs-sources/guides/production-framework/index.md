@@ -163,15 +163,15 @@ experience for your Dev and Ops teams. Finally, we'll talk about the off-the-she
 Gruntwork to help you implement this framework.
 
 1. **Ingredients**
-    1. [Service Catalog](ingredients/service-catalog/intro.md)
-    1. [Landing Zone](ingredients/landing-zone/intro.md)
-    1. [CI / CD Pipeline](ingredients/ci-cd-pipeline/intro.md)
-    1. [Self-Service](ingredients/self-service/intro.md)
-    1. [Automatic Updates](ingredients/automatic-updates/intro.md)
-    1. [Other Ingredients](ingredients/other-ingredients/intro.md)
+    1. [Service Catalog](ingredients/service-catalog/index.md)
+    1. [Landing Zone](ingredients/landing-zone/index.md)
+    1. [CI / CD Pipeline](ingredients/ci-cd-pipeline/index.md)
+    1. [Self-Service](ingredients/self-service/index.md)
+    1. [Automatic Updates](ingredients/automatic-updates/index.md)
+    1. [Other Ingredients](ingredients/other-ingredients/index.md)
 2. **Recipes**
-    1. [Intro](recipes/intro.md)
+    1. [Intro](recipes/index.md)
     1. [The Dev team experience](recipes/dev-team-experience.md)
     1. [The Ops team experience](recipes/ops-team-experience.md)
 3. **Solutions**
-    1. [How Gruntwork can help](gruntwork-solutions/intro.md)
+    1. [How Gruntwork can help](gruntwork-solutions/index.md)

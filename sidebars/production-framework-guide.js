@@ -8,61 +8,97 @@ const refarchSidebar = [
     },
     items: [
       {
-        "Ingredients": [
+        label: "Ingredients",
+        type: "category",
+        link: {
+          type: "doc",
+          id: "guides/production-framework/ingredients/index"
+        },
+        items: [
             {
-              "Service Catalog": [
-                "guides/production-framework/ingredients/service-catalog/intro",
+              label: "Service Catalog",
+              type: "category",
+              link: {
+                type: "doc",
+                id: "guides/production-framework/ingredients/service-catalog/index"
+              },
+              items: [
                 "guides/production-framework/ingredients/service-catalog/modern-service-catalog",
                 "guides/production-framework/ingredients/service-catalog/infrastructure-templates",
                 "guides/production-framework/ingredients/service-catalog/application-templates",
-              ],
+              ]
             },
             {
-              "Landing Zone": [
-                "guides/production-framework/ingredients/landing-zone/intro",
+              label: "Landing Zone",
+              type: "category",
+              link: {
+                type: "doc",
+                id: "guides/production-framework/ingredients/landing-zone/index"
+              },
+              items: [
                 "guides/production-framework/ingredients/landing-zone/what-landing-zone-should-include",
                 "guides/production-framework/ingredients/landing-zone/account-vending-machine",
               ],
             },
             {
-              "CI / CD Pipeline": [
-                "guides/production-framework/ingredients/ci-cd-pipeline/intro",
+              label: "CI / CD Pipeline",
+              type: "category",
+              link: {
+                type: "doc",
+                id: "guides/production-framework/ingredients/ci-cd-pipeline/index"
+              },
+              items: [
                 "guides/production-framework/ingredients/ci-cd-pipeline/ci-cd-only-path-to-prod",
                 "guides/production-framework/ingredients/ci-cd-pipeline/ci-cd-features",
               ],
             },
             {
-              "Self-Service": [
-                "guides/production-framework/ingredients/self-service/intro",
+              label: "Self-Service",
+              type: "category",
+              link: {
+                type: "doc",
+                id: "guides/production-framework/ingredients/self-service/index"
+              },
+              items: [
                 "guides/production-framework/ingredients/self-service/how-self-service-should-work",
                 "guides/production-framework/ingredients/self-service/common-self-service-use-cases",
               ],
             },
             {
-              "Automatic Updates": [
-                "guides/production-framework/ingredients/automatic-updates/intro",
+              label: "Automatic Updates",
+              type: "category",
+              link: {
+                type: "doc",
+                id: "guides/production-framework/ingredients/automatic-updates/index"
+              },
+              items: [
                 "guides/production-framework/ingredients/automatic-updates/how-auto-update-should-work",
                 "guides/production-framework/ingredients/automatic-updates/auto-update-features",
               ],
             },
             {
-              "Other Ingredients": [
-                "guides/production-framework/ingredients/other-ingredients/intro",
-              ],
+              label: "Other Ingredients",
+              type: "doc",
+              id: "guides/production-framework/ingredients/other-ingredients/index"
             },
         ]
       },
       {
-        "Recipes": [
-          "guides/production-framework/recipes/intro",
+        label: "Recipes",
+        type: "category",
+        link: {
+          type: "doc",
+          id: "guides/production-framework/recipes/index"
+        },
+        items: [
           "guides/production-framework/recipes/dev-team-experience",
           "guides/production-framework/recipes/ops-team-experience",
         ]
       },
       {
-        "How Gruntwork can help": [
-          "guides/production-framework/gruntwork-solutions/intro",
-        ]
+        label: "How Gruntwork can help",
+        type: "doc",
+        id: "guides/production-framework/gruntwork-solutions/index"
       },
     ],
   },
