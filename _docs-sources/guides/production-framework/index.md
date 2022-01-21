@@ -134,7 +134,7 @@ Software managed manually with a web UI—e.g., setting up infrastructure by man
 code:
 
 1. **Customization**. Every company's requirements are a bit different. With a web UI, it's all or nothing: either the web UI lets you customize things as you need them, or it doesn't. With code, you can typically configure things exactly as you need it. Well-designed code is flexible, modular, and expressive.
-2. **Speed, safety, consistency**. Computers are exceptionally good at doing the same thing, again and again, exactly the same way, at extreme speeds. Humans are not. Compared to do anything manually, capturing your requirements as code means you'll be able to meet and enforce those requirements in a way that is far faster, more consistent, and less error prone.
+2. **Speed, safety, consistency**. Computers are exceptionally good at doing the same thing, again and again, exactly the same way, at extreme speeds. Humans are not. Compared to doing anything manually, capturing your requirements as code means you'll be able to meet and enforce those requirements in a way that is far faster, more consistent, and less error prone.
 3. **Documentation**. Instead of the state of your infrastructure being locked away in a single sysadmin’s head, you can represent the state of your infrastructure in source files that
    anyone can read. In other words, code acts as documentation, allowing everyone
    in the organization to understand how things work, even if the sysadmin goes on
