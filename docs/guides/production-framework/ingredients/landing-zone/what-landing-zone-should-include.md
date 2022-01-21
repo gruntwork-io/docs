@@ -12,7 +12,10 @@ Your Landing Zone should include *at least* the following items:
   6. **Compliance**. Your account baselines should enforce your compliance requirements out-of-the-box. For example, if you're using AWS, you may wish to create account baselines that meet all the requirements of the CIS AWS Foundations Benchmark out-of-the-box.
   7. **Tagging and billing**. Your account baselines should configure whatever tagging, billing, and other information is necessary to ensure that your accounts are properly tracked and paid for.
 
+For a concrete example of a Landing Zone for AWS, see [Configure Your AWS Accounts with Landing
+Zone](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d68c200c094fa01149e61b840e2bfe0e"}
+{"sourcePlugin":"Local File Copier","hash":"ee8acda7ddda993e2292cb28be579ee4"}
 ##DOCS-SOURCER-END -->

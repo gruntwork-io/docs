@@ -11,3 +11,6 @@ Your Landing Zone should include *at least* the following items:
   5. **Guard Rails.** Your account baselines should put *guard rails* in place to prevent both accidental and malicious security issues. For example, you may choose to disable certain regions or services that your company or particular organizations or teams shouldn't be using.
   6. **Compliance**. Your account baselines should enforce your compliance requirements out-of-the-box. For example, if you're using AWS, you may wish to create account baselines that meet all the requirements of the CIS AWS Foundations Benchmark out-of-the-box.
   7. **Tagging and billing**. Your account baselines should configure whatever tagging, billing, and other information is necessary to ensure that your accounts are properly tracked and paid for.
+
+For a concrete example of a Landing Zone for AWS, see [Configure Your AWS Accounts with Landing
+Zone](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).

@@ -29,3 +29,5 @@ panic. The modern Service Catalog is an entirely different beast. Here are the k
        test-unit for Ruby, and so on.
     4. **Policy enforcement**: You can run tools such as Open Policy Agent (OPA) to test that your code meets various
        compliance and regulatory requirements.
+
+For a concrete example of a Service Catalog for AWS, see the [Gruntwork Service Catalog](https://gruntwork.io/repos).

@@ -8,3 +8,6 @@
 6. **Approval workflows**. Deployments to sensitive environments (e.g., `prod`) and in regulated environments (e.g., PCI compliance) can require approvals from specific team members. Those team members would get a notification by email or chat (e.g., Slack), can review the request (including what is being deployed and by whom), and then approve or deny the deployment.
 7. **Deployment workflows**. Depending on what you're deploying, you'll want your tools to support different deployment workflows and strategies, such as blue/green deployments, rolling deployments, and canary deployments. You'll also want to make use of [feature toggles](https://martinfowler.com/articles/feature-toggles.html) to be able to separate deployment from release, do dark launches, ramp up new features, and do bucket testing.
 8. **Application and infrastructure code**. The CI / CD pipeline needs to work with both application code (e.g., a web service written in Java, Ruby, Go, or Python) and infrastructure code (e.g., Terraform, CloudFormation). These two types of pipelines have slightly different requirements. You'll see examples of this later in this guide.
+
+For a concrete example of a CI / CD Pipeline for AWS, see [Set up a CI/CD Pipeline for
+AWS](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).

@@ -30,7 +30,9 @@ panic. The modern Service Catalog is an entirely different beast. Here are the k
     4. **Policy enforcement**: You can run tools such as Open Policy Agent (OPA) to test that your code meets various
        compliance and regulatory requirements.
 
+For a concrete example of a Service Catalog for AWS, see the [Gruntwork Service Catalog](https://gruntwork.io/repos).
+
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"aa6b4aa720c7353c2638f6fbe2371ef5"}
+{"sourcePlugin":"Local File Copier","hash":"6eac11a19bdf97adb5d435e3f7fc5daa"}
 ##DOCS-SOURCER-END -->
