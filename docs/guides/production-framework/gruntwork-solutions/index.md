@@ -1,5 +1,7 @@
 # How Gruntwork can help
 
+## Don't reinvent the wheel
+
 At this point, you've now seen the Gruntwork Production Framework. It consists of several ingredients that, if you put
 them in place, will make your organization more successful in the cloud. You could build all of these ingredients from
 scratch, but why reinvent the wheel?
@@ -21,6 +23,8 @@ ingredients for many years, and hundreds of companies have used them to go to pr
 higher quality than anything you build from scratch. Finally, we provide commercial maintenance and support for all
 of these ingredients, so we can reduce the work to keep up-to-date with all the latest changes by **90%** as well!
 
+## Gruntwork solutions
+
 Here's an overview of each ingredient and the off-the-shelf solutions available at Gruntwork:
 
 | Ingredient              | Available now                                                                                                                                                                                                                                                                                                                                                                                                        | On the roadmap                                                                                             |
@@ -31,10 +35,12 @@ Here's an overview of each ingredient and the off-the-shelf solutions available 
 | **Self-Service**        | [Terragrunt](https://terragrunt.gruntwork.io/) + [Gruntwork Pipelines](https://gruntwork.io/pipelines/): DRY Terraform code plus a GitOps-driven CI / CD pipline for running `plan`, `apply`, and `destroy`.<br/><br/>[Terraform Cloud](https://cloud.hashicorp.com/products/terraform) / [Enterprise](https://www.terraform.io/enterprise): the Service Catalog can also be used with HashiCorp's Terraform web UI. | Gruntwork Aperture, a dedicated self-service platform.                                                     |
 | **Automatic Update**    | [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) (3rd party solution).                                                                                                                                                                                                                                                                                                                 | Gruntwork Patcher with dedicated support for updating infrastructure code.                                 |
 
+## Try it out
+
 Ready to try Gruntwork out? [Sign up on our website now](https://gruntwork.io/pricing/)! Otherwise, if you still have
 questions, please [contact sales](https://gruntwork.io/contact/).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"8386e11334668cb3ad78f89cc638745c"}
+{"sourcePlugin":"Local File Copier","hash":"e8391cb15a0600d103ec673a33377616"}
 ##DOCS-SOURCER-END -->
