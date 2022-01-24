@@ -250,7 +250,10 @@ li.theme-doc-sidebar-item-category-level-1:last-child:nth-child(2)
 }
 
 /* Hide disclosure carats on top level of guides */
-.menu__list-item-collapsible a:not(.menu__link--sublist) + button {
+li.theme-doc-sidebar-item-category-level-1
+  > div
+  > a:not(.menu__link--sublist)
+  + button {
   display: none;
 }
 
@@ -264,13 +267,11 @@ li.theme-doc-sidebar-item-category-level-1:last-child:nth-child(2)
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
 }
 
-html[data-theme="light"] .menu__link--sublist {
-  color: black;
+html[data-theme="light"] .menu__link--sublist:not(.menu__link--active),
+html[data-theme="light"]
+  .menu__list-item-collapsible
+  a:not(.menu__link--active) {
   color: #33376d;
-}
-
-html[data-theme="dark"] .menu__link--sublist {
-  color: white;
 }
 
 /* TOC */
