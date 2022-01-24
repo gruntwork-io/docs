@@ -63,6 +63,7 @@ html[data-theme="dark"] .float {
 
 .card .iconRight {
   margin-left: auto;
+  padding-left: 1rem;
 }
 
 /* Use filters to make our icons appear legible in the dark

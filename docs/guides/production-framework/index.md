@@ -8,11 +8,11 @@ the public cloud. At Gruntwork, we've had the privilege to work with everything 
 50 companies to some of the world's largest government agencies, and this document captures the common patterns we've
 seen that actually worked.
 
-![Gruntwork Production Framework](/img/guides/production-framework/gruntwork-production-framework-small.png)
+<div style={{maxWidth: "640px", margin: "auto", marginTop: "3rem"}}>
 
 ## The Elements of the Gruntwork Production Framework
 
-<CardList stacked style={{maxWidth: "640px", marginLeft: "auto", marginRight: "auto"}}>
+<CardList style={{marginTop: 0}}>
 
 <Card
   title="Service Catalog"
@@ -46,6 +46,8 @@ Kepp all your application and infrastructure dependencies up to date, automatica
 </Card>
 
 </CardList>
+
+</div>
 
 This is not another high-level, vague "cloud operating model" document that is heavy on buzzwords but light on
 actionable content. Instead, you'll find a clear mental model of how to think about cloud usage, plus a set of
@@ -217,5 +219,5 @@ Gruntwork to help you implement this framework.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f44ce5df445ce25efe698edcbf13411b"}
+{"sourcePlugin":"Local File Copier","hash":"8e70078144f75a63e78b504b6c04e253"}
 ##DOCS-SOURCER-END -->
