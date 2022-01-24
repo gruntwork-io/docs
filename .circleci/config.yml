@@ -28,6 +28,11 @@ references:
         curl -Ls https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/master/bootstrap-gruntwork-installer.sh | bash /dev/stdin --version v0.0.21
         gruntwork-install --module-name bash-commons --repo https://github.com/gruntwork-io/bash-commons --tag "v0.1.2"
 
+  configure_npm: &configure_npm
+    run:
+      name: configure npm
+      command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
   build_docs: &build_docs
     run:
       name: build
@@ -107,6 +112,7 @@ jobs:
     description: Validate Build
     steps:
       - checkout
+      - *configure_npm
       - *build_docs
 
   deploy-to-stage:
