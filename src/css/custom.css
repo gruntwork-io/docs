@@ -72,7 +72,6 @@ main {
 /* Constrain pages without a TOC to same width */
 @media only screen and (min-width: 997px) {
   aside + main [class="col"]:only-child {
-    /*.container > .row:first-child > .col:only-child > div:first-child {*/
     max-width: 75% !important;
   }
 }

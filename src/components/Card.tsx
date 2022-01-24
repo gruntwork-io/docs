@@ -50,9 +50,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
         )}
       </div>
       <div>
-        <h3 className={styles.title} style={{ margin: 0 }}>
-          {title}
-        </h3>
+        <h3 className={styles.title}>{title}</h3>
         {(children || description) && (
           <div className={styles.description}>{children || description}</div>
         )}
