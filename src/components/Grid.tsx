@@ -9,6 +9,7 @@ export type GridProps = {
   rowGap?: number | string
   equalHeightRows?: boolean
   stacked?: boolean
+  style?: any
   children?: JSX.Element | JSX.Element[]
 }
 
@@ -19,6 +20,7 @@ export const Grid: React.FunctionComponent<GridProps> = ({
   rowGap,
   equalHeightRows = true,
   stacked = false,
+  style,
   children,
 }) => {
   const classes = clsx(
@@ -45,6 +47,7 @@ export const Grid: React.FunctionComponent<GridProps> = ({
             ? `${rowGap}px 0`
             : `${rowGap} 0`
           : "3rem 0",
+        ...style,
       }}
     >
       {children}

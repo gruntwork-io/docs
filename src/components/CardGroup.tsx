@@ -6,6 +6,7 @@ import { Grid, GridProps } from "./Grid"
 interface CardGroupProps extends GridProps {
   commonCardProps?: Partial<CardProps>
   numbered?: boolean
+  style?: any
 }
 
 export const CardGroup: React.FunctionComponent<CardGroupProps> = ({
@@ -17,6 +18,7 @@ export const CardGroup: React.FunctionComponent<CardGroupProps> = ({
   rowGap,
   equalHeightRows,
   stacked,
+  style,
   children,
 }) => {
   return (
@@ -26,6 +28,7 @@ export const CardGroup: React.FunctionComponent<CardGroupProps> = ({
       colGap={colGap}
       rowGap={rowGap}
       stacked={stacked}
+      style={style}
       equalHeightRows={equalHeightRows}
     >
       {React.Children.map(children || null, (child: JSX.Element, idx) => (
@@ -43,10 +46,13 @@ export const CardList: React.FunctionComponent<CardGroupProps> = (props) => {
   const { commonCardProps, ...allButCommonCardProps } = props
   return (
     <CardGroup
+      style={props.style}
       cols={1}
+      gap="1rem"
       commonCardProps={{
         orientation: "horizontal",
         appearance: "flush",
+        padding: "1.5rem",
         ...commonCardProps,
       }}
       equalHeightRows={false}

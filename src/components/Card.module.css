@@ -61,6 +61,10 @@ html[data-theme="dark"] .float {
   margin-bottom: 1rem;
 }
 
+.card .iconRight {
+  margin-left: auto;
+}
+
 /* Use filters to make our icons appear legible in the dark
  * theme. Note that this depends on all icon files using the
  * plum purple (gw-purple-900) by default.

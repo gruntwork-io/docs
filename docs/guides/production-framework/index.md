@@ -12,36 +12,36 @@ seen that actually worked.
 
 ## The Elements of the Gruntwork Production Framework
 
-<CardList>
+<CardList stacked style={{maxWidth: "640px", marginLeft: "auto", marginRight: "auto"}}>
 
 <Card
   title="Service Catalog"
   href="./ingredients/service-catalog"
-  icon="/img/support/question-icon.svg">
+  icon="/img/icons/service-catalog.svg">
 Your company's vetted, tested, reusable, off-the-shelf solutions for infrastructure and appliactions.
 </Card>
 <Card
   title="Landing Zone"
   href="./ingredients/landing-zone"
-  icon="/img/support/question-icon.svg">
+  icon="/img/icons/landing-zone.svg">
 The basic structure for your cloud accounts, including auth, guard rails, and other scaffolding.
 </Card>
 <Card
   title="CI / CD"
   href="./ingredients/ci-cd-pipeline"
-  icon="/img/support/question-icon.svg">
+  icon="/img/icons/ci-cd.svg">
 A Continuous Integration / Continuous Delivery pipeline to automate builds, tests, and deployments.
 </Card>
 <Card
   title="Self-service"
   href="./ingredients/self-service"
-  icon="/img/support/question-icon.svg">
+  icon="/img/icons/self-service.svg">
 Allow developers to deploy and manage their own apps and infrastructure.
 </Card>
 <Card
   title="Automatic Updates"
   href="./ingredients/automatic-updates"
-  icon="/img/support/question-icon.svg">
+  icon="/img/icons/auto-update.svg">
 Kepp all your application and infrastructure dependencies up to date, automatically.
 </Card>
 
@@ -217,5 +217,5 @@ Gruntwork to help you implement this framework.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5f98111205b4ba85f5f57e70dde67798"}
+{"sourcePlugin":"Local File Copier","hash":"f44ce5df445ce25efe698edcbf13411b"}
 ##DOCS-SOURCER-END -->

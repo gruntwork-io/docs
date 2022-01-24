@@ -62,6 +62,9 @@ export const Card: React.FunctionComponent<CardProps> = ({
           </ul>
         )}
       </div>
+      {icon && number && (
+        <img className={styles.iconRight} alt={title} src={icon} />
+      )}
     </div>
   )
 
