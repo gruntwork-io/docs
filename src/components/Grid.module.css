@@ -31,13 +31,13 @@
 }
 
 @media only screen and (max-width: 1280px) {
-  .grid {
+  .grid:not(.col1) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (max-width: 640px) {
-  .grid {
+  .grid:not(.col1) {
     grid-template-columns: repeat(1, 1fr);
   }
 }

@@ -1,5 +1,11 @@
 const vpcGuide = [
   {
+    label: "Build Your Own Architecture",
+    type: "link",
+    href: "/docs/guides/build-it-yourself",
+    className: "back-button",
+  },
+  {
     label: "VPC Guide",
     type: "category",
     link: {

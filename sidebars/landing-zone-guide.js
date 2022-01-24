@@ -1,5 +1,11 @@
 const landingZoneGuide = [
   {
+    label: "Build Your Own Architecture",
+    type: "link",
+    href: "/docs/guides/build-it-yourself",
+    className: "back-button",
+  },
+  {
     label: "Landing Zone Guide",
     type: "category",
     link: {

@@ -1,5 +1,13 @@
+const backLink = {
+  label: "Update Guides",
+  type: "link",
+  href: "/docs/guides/stay-up-to-date",
+  className: "back-button",
+}
+
 const updateGuideSidebars = {
   cis130: [
+    backLink,
     {
       label: "CIS 1.3.0 Update Guide",
       type: "category",
@@ -20,6 +28,7 @@ const updateGuideSidebars = {
     },
   ],
   cis140: [
+    backLink,
     {
       label: "CIS 1.4.0 Update Guide",
       type: "category",
@@ -41,6 +50,7 @@ const updateGuideSidebars = {
     },
   ],
   terraform12: [
+    backLink,
     {
       label: "Update to Terraform 12",
       type: "category",
@@ -55,6 +65,7 @@ const updateGuideSidebars = {
     },
   ],
   terraform13: [
+    backLink,
     {
       label: "Update to Terraform 13",
       type: "category",
@@ -76,6 +87,7 @@ const updateGuideSidebars = {
     },
   ],
   terraform14: [
+    backLink,
     {
       label: "Update to Terraform 14",
       type: "category",
@@ -97,6 +109,7 @@ const updateGuideSidebars = {
     },
   ],
   terraform15: [
+    backLink,
     {
       label: "Update to Terraform 15",
       type: "category",
@@ -117,6 +130,7 @@ const updateGuideSidebars = {
     },
   ],
   terraform1x: [
+    backLink,
     {
       label: "Update to Terraform 1.X",
       type: "category",
@@ -136,6 +150,7 @@ const updateGuideSidebars = {
     },
   ],
   terraformServiceProviderV3: [
+    backLink,
     {
       label: "Update to AWS Provider v3",
       type: "category",
@@ -150,6 +165,7 @@ const updateGuideSidebars = {
     },
   ],
   dryRefArch: [
+    backLink,
     {
       label: "How To DRY Your Reference Architecture",
       type: "category",

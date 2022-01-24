@@ -11,6 +11,7 @@ export type CardProps = {
   tags?: string[]
   orientation?: "horizontal" | "vertical"
   appearance?: "float" | "flush" | "invisible"
+  padding?: number | string
   className?: string
 }
 
@@ -23,6 +24,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   tags,
   orientation = "vertical",
   appearance = "float",
+  padding,
   className,
   children,
 }) => {
@@ -37,6 +39,9 @@ export const Card: React.FunctionComponent<CardProps> = ({
         appearance === "invisible" && styles.invisible,
         className
       )}
+      style={{
+        padding: padding !== undefined ? padding : "",
+      }}
     >
       <div>
         {number && <span className={styles.num}>{number}</span>}
@@ -46,7 +51,9 @@ export const Card: React.FunctionComponent<CardProps> = ({
       </div>
       <div>
         <h3 className={styles.title}>{title}</h3>
-        <div>{children || description}</div>
+        {(children || description) && (
+          <div className={styles.description}>{children || description}</div>
+        )}
         {tags && (
           <ul className={styles.tags}>
             {tags.map((tag, idx) => (

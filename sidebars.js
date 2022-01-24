@@ -10,8 +10,9 @@
  */
 
 const introSidebar = require("./sidebars/intro-guide.js")
-const refarchSidebar = require("./sidebars/refarch-guide.js")
-const productionFrameworkSidebars = require("./sidebars/production-framework-guide.js")
+const guidesSidebar = require("./sidebars/guides-index.js")
+const productionFrameworkSidebar = require("./sidebars/production-framework-guide.js")
+const refarchUsageSidebar = require("./sidebars/refarch-usage-guide.js")
 const landingZoneSidebar = require("./sidebars/landing-zone-guide.js")
 const pipelineSidebar = require("./sidebars/pipelines-guide.js")
 const vpcSidebar = require("./sidebars/vpc-guide.js")
@@ -25,8 +26,9 @@ const apiSidebars = require("./sidebars/api-reference.js")
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   introSidebar,
-  refarchSidebar,
-  productionFrameworkSidebars,
+  guidesSidebar,
+  productionFrameworkSidebar,
+  refarchUsageSidebar,
   landingZoneSidebar,
   pipelineSidebar,
   vpcSidebar,

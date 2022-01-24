@@ -1,5 +1,11 @@
 const complianceGuide = [
   {
+    label: "Build Your Own Architecture",
+    type: "link",
+    href: "/docs/guides/build-it-yourself",
+    className: "back-button",
+  },
+  {
     label: "CIS Benchmark Compliance Guide",
     type: "category",
     link: {
