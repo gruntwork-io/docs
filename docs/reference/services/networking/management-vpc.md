@@ -12,6 +12,14 @@ Deploy a VPC  on AWS for administrative and management functions.
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<a name="apply_default_nacl_rules" className="snap-top"></a>
+
+* [**`apply_default_nacl_rules`**](#apply_default_nacl_rules) &mdash; If true, will apply the default NACL rules in [`default_nacl_ingress_rules`](#default_nacl_ingress_rules) and [`default_nacl_egress_rules`](#default_nacl_egress_rules) on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
+
+<a name="associate_default_nacl_to_subnets" className="snap-top"></a>
+
+* [**`associate_default_nacl_to_subnets`**](#associate_default_nacl_to_subnets) &mdash; If true, will associate the default NACL to the public, private, and persistence subnets created by this module. Only used if [`apply_default_nacl_rules`](#apply_default_nacl_rules) is true. Note that this does not guarantee that the subnets are associated with the default NACL. Subnets can only be associated with a single NACL. The default NACL association will be dropped if the subnets are associated with a custom NACL later.
+
 <a name="availability_zone_exclude_ids" className="snap-top"></a>
 
 * [**`availability_zone_exclude_ids`**](#availability_zone_exclude_ids) &mdash; List of excluded Availability Zone IDs.
@@ -47,6 +55,26 @@ Deploy a VPC  on AWS for administrative and management functions.
 <a name="custom_tags_vpc_only" className="snap-top"></a>
 
 * [**`custom_tags_vpc_only`**](#custom_tags_vpc_only) &mdash; A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
+
+<a name="default_nacl_egress_rules" className="snap-top"></a>
+
+* [**`default_nacl_egress_rules`**](#default_nacl_egress_rules) &mdash; The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the [`aws_default_network_acl`](#aws_default_network_acl) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl).
+
+<a name="default_nacl_ingress_rules" className="snap-top"></a>
+
+* [**`default_nacl_ingress_rules`**](#default_nacl_ingress_rules) &mdash; The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the [`aws_default_network_acl`](#aws_default_network_acl) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl).
+
+<a name="default_security_group_egress_rules" className="snap-top"></a>
+
+* [**`default_security_group_egress_rules`**](#default_security_group_egress_rules) &mdash; The egress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the [`aws_default_security_group`](#aws_default_security_group) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group)#egress-block.
+
+<a name="default_security_group_ingress_rules" className="snap-top"></a>
+
+* [**`default_security_group_ingress_rules`**](#default_security_group_ingress_rules) &mdash; The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the [`aws_default_security_group`](#aws_default_security_group) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group)#ingress-block.
+
+<a name="enable_default_security_group" className="snap-top"></a>
+
+* [**`enable_default_security_group`**](#enable_default_security_group) &mdash; If set to false, the default security groups will NOT be created.
 
 <a name="kms_key_arn" className="snap-top"></a>
 
@@ -164,5 +192,5 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"a57bbba61f9581491a7d83da30d7974c"}
+{"sourcePlugin":"Service Catalog Reference","hash":"6eeb435a6c66a038beb515fc47058640"}
 ##DOCS-SOURCER-END -->

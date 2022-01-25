@@ -30,7 +30,7 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 <a name="alb_health_check_port" className="snap-top"></a>
 
-* [**`alb_health_check_port`**](#alb_health_check_port) &mdash; String value specifying the port that the ALB health check should probe. By default, this will be set to the traffic port.
+* [**`alb_health_check_port`**](#alb_health_check_port) &mdash; String value specifying the port that the ALB health check should probe. By default, this will be set to the traffic port (the NodePort or port where the service receives traffic). This can also be set to a Kubernetes named port, or direct integer value. See https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingress/annotations/#healthcheck-port for more information.
 
 <a name="alb_health_check_protocol" className="snap-top"></a>
 
@@ -116,6 +116,10 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 * [**`force_destroy_ingress_access_logs`**](#force_destroy_ingress_access_logs) &mdash; A boolean that indicates whether the access logs bucket should be destroyed, even if there are files in it, when you run Terraform destroy. Unless you are using this bucket only for test purposes, you'll want to leave this variable set to false.
 
+<a name="helm_chart_version" className="snap-top"></a>
+
+* [**`helm_chart_version`**](#helm_chart_version) &mdash; The version of the k8s-service helm chart to deploy.
+
 <a name="horizontal_pod_autoscaler" className="snap-top"></a>
 
 * [**`horizontal_pod_autoscaler`**](#horizontal_pod_autoscaler) &mdash; Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
@@ -166,11 +170,19 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 <a name="ingress_path" className="snap-top"></a>
 
-* [**`ingress_path`**](#ingress_path) &mdash; Path prefix that should be matched to route to the service. Use /* to match all paths.
+* [**`ingress_path`**](#ingress_path) &mdash; Path prefix that should be matched to route to the service. For Kubernetes Versions &lt;1.19, Use /* to match all paths. For Kubernetes Versions >=1.19, use / with [`ingress_path_type`](#ingress_path_type) set to Prefix to match all paths.
+
+<a name="ingress_path_type" className="snap-top"></a>
+
+* [**`ingress_path_type`**](#ingress_path_type) &mdash; The path type to use for the ingress rule. Refer to https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types for more information.
 
 <a name="ingress_ssl_redirect_rule_already_exists" className="snap-top"></a>
 
 * [**`ingress_ssl_redirect_rule_already_exists`**](#ingress_ssl_redirect_rule_already_exists) &mdash; Set to true if the Ingress SSL redirect rule is managed externally. This is useful when configuring Ingress grouping and you only want one service to be managing the SSL redirect rules. Only used if [`ingress_configure_ssl_redirect`](#ingress_configure_ssl_redirect) is true.
+
+<a name="ingress_ssl_redirect_rule_requires_path_type" className="snap-top"></a>
+
+* [**`ingress_ssl_redirect_rule_requires_path_type`**](#ingress_ssl_redirect_rule_requires_path_type) &mdash; Whether or not the redirect rule requires setting path type. Set to true when deploying to Kubernetes clusters with version >=1.19. Only used if [`ingress_configure_ssl_redirect`](#ingress_configure_ssl_redirect) is true.
 
 <a name="ingress_target_type" className="snap-top"></a>
 
@@ -290,5 +302,5 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2465858e36b798a5465a95a2d1a01be8"}
+{"sourcePlugin":"Service Catalog Reference","hash":"f4b1bc4a06d95b4adf0194eeaf2f60da"}
 ##DOCS-SOURCER-END -->

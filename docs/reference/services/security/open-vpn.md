@@ -164,6 +164,10 @@ Deploy an OpenVPN Server on AWS.
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
+<a name="use_strong_prime" className="snap-top"></a>
+
+* [**`use_strong_prime`**](#use_strong_prime) &mdash; When true, generate Diffie-Hellman parameters using strong primes. Note that while stronger primes make the keys more cryptographically secure, the effective security gains are known to be insignificant in practice.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the OpenVPN server.
@@ -248,5 +252,5 @@ Deploy an OpenVPN Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"acc8387f98145bdb9a7c26e79028d1ce"}
+{"sourcePlugin":"Service Catalog Reference","hash":"9e55f76ca30c259671b8853eadafb409"}
 ##DOCS-SOURCER-END -->

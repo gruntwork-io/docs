@@ -232,6 +232,10 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 * [**`enable_encrypted_volumes`**](#enable_encrypted_volumes) &mdash; Checks whether the EBS volumes that are in an attached state are encrypted.
 
+<a name="enable_github_actions_access" className="snap-top"></a>
+
+* [**`enable_github_actions_access`**](#enable_github_actions_access) &mdash; When true, create an Open ID Connect Provider that GitHub actions can use to assume IAM roles in the account. Refer to https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services for more information.
+
 <a name="enable_iam_access_analyzer" className="snap-top"></a>
 
 * [**`enable_iam_access_analyzer`**](#enable_iam_access_analyzer) &mdash; A feature flag to enable or disable this module.
@@ -271,6 +275,10 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 <a name="encrypted_volumes_kms_id" className="snap-top"></a>
 
 * [**`encrypted_volumes_kms_id`**](#encrypted_volumes_kms_id) &mdash; ID or ARN of the KMS key that is used to encrypt the volume. Used for configuring the encrypted volumes config rule.
+
+<a name="github_actions_openid_connect_provider_thumbprint_list" className="snap-top"></a>
+
+* [**`github_actions_openid_connect_provider_thumbprint_list`**](#github_actions_openid_connect_provider_thumbprint_list) &mdash; When set, use the statically provided hardcoded list of thumbprints rather than looking it up dynamically. This is useful if you want to trade reliability of the OpenID Connect Provider across certificate renewals with a static list that is obtained using a trustworthy mechanism, to mitigate potential damage from a domain hijacking attack on GitHub domains.
 
 <a name="guardduty_cloudwatch_event_rule_name" className="snap-top"></a>
 
@@ -583,6 +591,14 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 * [**`config_sns_topic_arns`**](#config_sns_topic_arns) &mdash; The ARNs of the SNS Topic used by the config notifications.
 
+<a name="github_actions_iam_openid_connect_provider_arn" className="snap-top"></a>
+
+* [**`github_actions_iam_openid_connect_provider_arn`**](#github_actions_iam_openid_connect_provider_arn) &mdash; ARN of the OpenID Connect Provider that can be used to attach AWS IAM Roles to GitHub Actions.
+
+<a name="github_actions_iam_openid_connect_provider_url" className="snap-top"></a>
+
+* [**`github_actions_iam_openid_connect_provider_url`**](#github_actions_iam_openid_connect_provider_url) &mdash; URL of the OpenID Connect Provider that can be used to attach AWS IAM Roles to GitHub Actions.
+
 <a name="guardduty_cloudwatch_event_rule_arns" className="snap-top"></a>
 
 * [**`guardduty_cloudwatch_event_rule_arns`**](#guardduty_cloudwatch_event_rule_arns) &mdash; The ARNs of the cloudwatch event rules used to publish findings to sns if [`publish_findings_to_sns`](#publish_findings_to_sns) is set to true.
@@ -628,5 +644,5 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"7e490ffab4c1faeb560250923dfa8e4e"}
+{"sourcePlugin":"Service Catalog Reference","hash":"821cb76fe52909d8ec745793472bb061"}
 ##DOCS-SOURCER-END -->

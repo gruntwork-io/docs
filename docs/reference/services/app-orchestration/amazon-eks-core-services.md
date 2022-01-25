@@ -50,7 +50,7 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 <a name="cluster_autoscaler_pod_resources" className="snap-top"></a>
 
-* [**`cluster_autoscaler_pod_resources`**](#cluster_autoscaler_pod_resources) &mdash; Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.
+* [**`cluster_autoscaler_pod_resources`**](#cluster_autoscaler_pod_resources) &mdash; Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information. This is most useful for configuring CPU+Memory availability for Fargate, which defaults to 0.25 vCPU and 256MB RAM.
 
 <a name="cluster_autoscaler_pod_tolerations" className="snap-top"></a>
 
@@ -156,6 +156,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 * [**`fluent_bit_log_group_already_exists`**](#fluent_bit_log_group_already_exists) &mdash; If set to true, that means that the CloudWatch Log Group fluent-bit should use for streaming logs already exists and does not need to be created.
 
+<a name="fluent_bit_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`fluent_bit_log_group_kms_key_id`**](#fluent_bit_log_group_kms_key_id) &mdash; The ARN of the KMS key to use to encrypt the logs in the CloudWatch Log Group used for storing container logs streamed with FluentBit. Set to null to disable encryption.
+
 <a name="fluent_bit_log_group_name" className="snap-top"></a>
 
 * [**`fluent_bit_log_group_name`**](#fluent_bit_log_group_name) &mdash; Name of the CloudWatch Log Group fluent-bit should use to stream logs to. When null (default), uses the [`eks_cluster_name`](#eks_cluster_name) as the Log Group name.
@@ -228,5 +232,5 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"4198afaf954a2d58f04a5bc2fce01d91"}
+{"sourcePlugin":"Service Catalog Reference","hash":"8adf4fe7421ff047d2c90b864e1e2953"}
 ##DOCS-SOURCER-END -->

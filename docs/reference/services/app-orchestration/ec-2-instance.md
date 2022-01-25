@@ -175,6 +175,14 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 * [**`ec2_instance_iam_role_arn`**](#ec2_instance_iam_role_arn) &mdash; The ARN of the EC2 server's IAM role.
 
+<a name="ec2_instance_iam_role_id" className="snap-top"></a>
+
+* [**`ec2_instance_iam_role_id`**](#ec2_instance_iam_role_id) &mdash; The ID of the EC2 server's IAM role.
+
+<a name="ec2_instance_iam_role_name" className="snap-top"></a>
+
+* [**`ec2_instance_iam_role_name`**](#ec2_instance_iam_role_name) &mdash; The name of the EC2 server's IAM role.
+
 <a name="ec2_instance_instance_id" className="snap-top"></a>
 
 * [**`ec2_instance_instance_id`**](#ec2_instance_instance_id) &mdash; The EC2 instance ID of the EC2 server.
@@ -204,5 +212,5 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9cc9a5a80ca8dba7845d32b8c5e1b631"}
+{"sourcePlugin":"Service Catalog Reference","hash":"fa97a3d11fe7e865187ba4cbb66a1acb"}
 ##DOCS-SOURCER-END -->
