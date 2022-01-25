@@ -3,7 +3,7 @@
 1. [How to deploy Terraform code from the Service Catalog](#how-to-deploy-terraform-code-from-the-service-catalog)
 1. [How to build machine images using Packer templates from the Service Catalog](#how-to-build-machine-images-using-packer-templates-from-the-service-catalog)
 
-### How to deploy Terraform code from the Service Catalog
+## How to deploy Terraform code from the Service Catalog
 
 There are three ways to use Terraform code from the Service Catalog:
 
@@ -11,7 +11,7 @@ There are three ways to use Terraform code from the Service Catalog:
 1. [Using Terragrunt with the Service Catalog](#using-terragrunt-with-the-service-catalog)
 1. [Using Terraform Cloud or Terraform Enterprise with the Service Catalog](#using-terraform-cloud-or-terraform-enterprise-with-the-service-catalog)
 
-#### Using vanilla Terraform with the Service Catalog
+### Using vanilla Terraform with the Service Catalog
 
 Below are the instructions for using the vanilla `terraform` binary—that is, with no wrappers, extensions, or UI—to
 deploy Terraform code from the Service Catalog. See
@@ -131,7 +131,7 @@ deploy Terraform code from the Service Catalog. See
    terraform apply
    ```
 
-#### Using Terragrunt with the Service Catalog
+### Using Terragrunt with the Service Catalog
 
 [Terragrunt](https://terragrunt.gruntwork.io/) is a thin, open source wrapper for Terraform that helps you keep your
 code [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Below are the instructions for using the `terragrunt`
@@ -270,11 +270,11 @@ Now you can create child `terragrunt.hcl` files to deploy services as follows:
    terragrunt apply
    ```
 
-#### Using Terraform Cloud or Terraform Enterprise with the Service Catalog
+### Using Terraform Cloud or Terraform Enterprise with the Service Catalog
 
 _(Documentation coming soon. If you need help with this ASAP, please contact [support@gruntwork.io](mailto:support@gruntwork.io).)_
 
-### How to build machine images using Packer templates from the Service Catalog
+## How to build machine images using Packer templates from the Service Catalog
 
 Some of the services in the Gruntwork Service Catalog require you to build an [Amazon Machine Image
 (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to install and configure the software that will
@@ -359,5 +359,5 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0009bb17aa86019f754f6851dbf8e408"}
+{"sourcePlugin":"Local File Copier","hash":"627556dd904d28df051de58b0f1b967a"}
 ##DOCS-SOURCER-END -->

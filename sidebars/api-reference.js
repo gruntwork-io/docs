@@ -7,7 +7,7 @@ const apiSidebars = {
     {
       type: "ref",
       label: "Service APIs",
-      id: "reference/services/intro/index",
+      id: "reference/services/intro/overview",
     },
     {
       type: "ref",
@@ -24,7 +24,7 @@ const apiSidebars = {
   servicesSidebar: [
     {
       Introduction: [
-        "reference/services/intro/index",
+        "reference/services/intro/overview",
         "reference/services/intro/deploy-new-infrastructure",
         "reference/services/intro/make-changes-to-your-infrastructure",
         "reference/services/intro/create-your-own-service-catalog",

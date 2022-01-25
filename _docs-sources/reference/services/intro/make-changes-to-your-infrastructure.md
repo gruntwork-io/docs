@@ -5,13 +5,13 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
 1. [Making changes to Terraform code](#making-changes-to-terraform-code)
 1. [Making changes to Packer templates](#making-changes-to-packer-templates)
 
-### Making changes to Terraform code
+## Making changes to Terraform code
 
 1. [Making changes to vanilla Terraform code](#making-changes-to-vanilla-terraform-code)
 1. [Making changes to Terragrunt code](#making-changes-to-terragrunt-code)
 1. [Making changes with Terraform Cloud or Terraform Enterprise](#making-changes-with-terraform-cloud-or-terraform-enterprise)
 
-#### Making changes to vanilla Terraform code
+### Making changes to vanilla Terraform code
 
 1. **(Optional) Update your configuration**: One type of change you could do in your Terraform code (in the `.tf`
    files) is to update the arguments you're passing to the service. For example, perhaps you update from one NAT
@@ -61,7 +61,7 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    NOTE: Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/#maintenance-and-versioning) for details)!
+   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 1. **Deploy**. Once you've made your changes, you can re-run `terraform apply` to deploy them:
 
@@ -75,7 +75,7 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    output carefully to catch potential issues, such as something important being deleted that shouldn't be (e.g., a
    database!).
 
-#### Making changes to Terragrunt code
+### Making changes to Terragrunt code
 
 1. **(Optional) Update your configuration**: One type of change you could do in your Terragrunt code (in the
    `terragrunt.hcl` files) is to update the arguments you're passing to the service. For example, perhaps you update
@@ -125,7 +125,7 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    NOTE: Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/#maintenance-and-versioning) for details)!
+   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 1. **Deploy**. Once you've made your changes, you can re-run `terragrunt apply` to deploy them:
 
@@ -139,11 +139,11 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    output carefully to catch potential issues, such as something important being deleted that shouldn't be (e.g., a
    database!).
 
-#### Making changes with Terraform Cloud or Terraform Enterprise
+### Making changes with Terraform Cloud or Terraform Enterprise
 
 _(Documentation coming soon. If you need help with this ASAP, please contact [support@gruntwork.io](mailto:support@gruntwork.io).)_
 
-### Making changes to Packer templates
+## Making changes to Packer templates
 
 1. **(Optional) Update variables**: One type of change you might make is to update the variables you set in your vars
    file. In particular, you may wish to use a newer version of the Service Catalog for the build. For example, perhaps
@@ -166,7 +166,7 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
    NOTE: Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/#maintenance-and-versioning) for details)!
+   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 1. **(Optional) Update your custom Packer template**: If you made a copy of one of of the Packer templates, you can
    of course also make updates to your own template.

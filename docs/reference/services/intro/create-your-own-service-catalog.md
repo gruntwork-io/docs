@@ -9,7 +9,7 @@ cases by creating your own Service Catalog:
 1. [Testing your Service Catalog](#testing-your-service-catalog)
 1. [Deploying from your Service Catalog](#deploying-from-your-service-catalog)
 
-### Do it with the Gruntwork Service Catalog
+## Do it with the Gruntwork Service Catalog
 
 Creating and maintaining your own Service Catalog is a lot of work, so the first thing to ask is: can you do it with
 the Gruntwork Service Catalog? There are two things to check:
@@ -31,7 +31,7 @@ the Gruntwork Service Catalog? There are two things to check:
 If your use case isn't handled by the Gruntwork Service Catalog, and it's something fairly specific to your company,
 then you'll need to handle it in your own Service Catalog. Let's discuss how to do that.
 
-### Creating a Service Catalog
+## Creating a Service Catalog
 
 A Service Catalog is really just a Git repo used in a certain way! Here's what you need to do:
 
@@ -56,7 +56,7 @@ Now that you have a Service Catalog, you can start populating it with services. 
 1. [Extend Gruntwork Services](#extend-gruntwork-services)
 1. [Create totally new Services](#create-totally-new-services)
 
-#### Extend Gruntwork Services
+### Extend Gruntwork Services
 
 One way to populate your Service Catalog is to extend Gruntwork Services. There are several ways to do this:
 
@@ -99,13 +99,13 @@ One way to populate your Service Catalog is to extend Gruntwork Services. There 
 1. **(NOT RECOMMENDED) Copy a Gruntwork Service**. Another way to extend a Gruntwork Service is to copy all of the code
    for that one service into your own Git repo and modify the code directly. This is not recommended, as then you'll
    have to maintain all of the code for that service yourself, and won't benefit from all the [maintenance
-   work](/docs/reference/services/intro/#maintenance-and-versioning) done by the Gruntwork team. The only reason to copy the code this way is if you
+   work](/docs/reference/services/intro/overview#maintenance-and-versioning) done by the Gruntwork team. The only reason to copy the code this way is if you
    need a significant change that cannot be done from outside the service.
 
 1. **(NOT RECOMMENDED) Fork the Gruntwork Service Catalog**. Yet another option is to
    [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the entire Gruntwork Service
    Catalog into a repo of your own. This is not recommended, as then you'll have to maintain all of that code yourself,
-   and won't benefit from all the [maintenance work](/docs/reference/services/intro/#maintenance-and-versioning) done by the Gruntwork team. The only
+   and won't benefit from all the [maintenance work](/docs/reference/services/intro/overview/#maintenance-and-versioning) done by the Gruntwork team. The only
    reason to fork the entire repo is if you have a company policy that only allows you consume code from your own
    repositories. Note that if you do end up forking the entire Service Catalog, you can use `git fetch` and `git merge`
    to [automatically pull in changes from
@@ -113,7 +113,7 @@ One way to populate your Service Catalog is to extend Gruntwork Services. There 
    (that is, from the original Gruntwork Service Catalog), but if you make any changes to your local fork, it'll be up
    to you to deal with merge conflicts.
 
-#### Create totally new Services
+### Create totally new Services
 
 If you need something that is not supported at all in the Gruntwork Service Catalog, then you'll need to create your
 own services from scratch. Here are a few resources to help you build your own reusable infrastructure code for
@@ -140,7 +140,7 @@ production:
 1. [The Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/). You can of course also use
    the Gruntwork Service Catalog for inspiration and examples of how to build your own Service Catalog!
 
-### Testing your Service Catalog
+## Testing your Service Catalog
 
 We strongly recommend writing automated tests for your Service Catalog. Here are some resources to help you along:
 
@@ -156,7 +156,7 @@ We strongly recommend writing automated tests for your Service Catalog. Here are
    has [thorough automated tests](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test), so you can use it for inspiration and examples of how to test your own
    Service Catalog!
 
-### Deploying from your Service Catalog
+## Deploying from your Service Catalog
 
 Once you've created your own Service Catalog, developers at your company can deploy from it using the exact same
 techniques you use for [deploying from the Gruntwork Service Catalog](#deploy-new-infrastructure)! The only difference
@@ -187,5 +187,5 @@ inputs = {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"34191c4b15c4cc77d11bb674d486a554"}
+{"sourcePlugin":"Local File Copier","hash":"558bbf657c2f418f50eeca59cfbf207b"}
 ##DOCS-SOURCER-END -->

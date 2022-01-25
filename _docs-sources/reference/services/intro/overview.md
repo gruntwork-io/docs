@@ -10,7 +10,7 @@ management, VPN, and much more.
 1. [How to navigate the Service Catalog](#how-to-navigate-the-service-catalog)
 1. [Maintenance and versioning](#maintenance-and-versioning)
 
-### Service Catalog Terminology
+## Service Catalog Terminology
 
 - **Module**: Reusable code to deploy and manage one piece of infrastructure. Modules are fairly generic building
   blocks, so you don't typically deploy a single module directly, but rather, you write code that combines the modules
@@ -27,7 +27,7 @@ management, VPN, and much more.
   Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/) is a collection of battle-tested, commercially
   supported and maintained services that you can use to deploy production-grade infrastructure in minutes.
 
-### The tools used in the Service Catalog
+## The tools used in the Service Catalog
 
 The Gruntwork Service Catalog is designed to be deployed using the following tools:
 
@@ -41,7 +41,7 @@ The Gruntwork Service Catalog is designed to be deployed using the following too
    to package code as [Amazon Machine Images (AMIs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
    that run on EC2 instances. Once you've built an AMI, you use Terraform to deploy it into AWS.
 
-### How to navigate the Service Catalog
+## How to navigate the Service Catalog
 
 The code in the `terraform-aws-service-catalog` repo is organized into three primary folders:
 
@@ -67,7 +67,7 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
 
 1. `test`: Automated tests for the code in `modules` and `examples`.
 
-### Maintenance and versioning
+## Maintenance and versioning
 
 All of the code in the Gruntwork Service Catalog is _versioned_. The Service Catalog is commercially maintained by
 Gruntwork, and every time we make a change, we put out a new [versioned

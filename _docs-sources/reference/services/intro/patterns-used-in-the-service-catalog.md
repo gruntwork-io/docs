@@ -49,7 +49,7 @@ the ECS node AMI against Service Catalog version `v0.30.0`:
 
         packer build -var-file /path/to/var-file.json ./ecs-node-al2.json
 
-### How to deploy newly built AMIs?
+## How to deploy newly built AMIs?
 
 Once you build the AMI, the next step is to deploy it to your infrastructure. Each service that requires an AMI offers
 two configuration inputs for selecting the AMI, and you must pick one:
