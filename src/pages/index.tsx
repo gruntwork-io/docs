@@ -46,7 +46,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="The Reference Architecture"
-                href="/docs/guides/reference-architecture"
+                href="/docs/guides/reference-architecture/index"
                 icon="/img/icons/refarch.svg"
               >
                 Bought a Reference Architecture? Get your new infrastructure up
@@ -54,7 +54,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="Deploy A Service"
-                href="/docs/guides#build-your-own-architecture"
+                href="/docs/guides/build-it-yourself"
                 icon="/img/icons/deploy.svg"
               >
                 Follow our tutorials and learn how to deploy Gruntwork services
