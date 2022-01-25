@@ -24,6 +24,15 @@ const guidesIndex = [
     type: "doc",
     id: "guides/style/index",
   },
+  {
+    label: "Working with our code",
+    type: "category",
+    items: [
+      "guides/working-with-code/versioning",
+      "guides/working-with-code/contributing",
+      "guides/working-with-code/forking",
+    ],
+  },
 ]
 
 module.exports = guidesIndex
