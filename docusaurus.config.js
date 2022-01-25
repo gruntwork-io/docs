@@ -99,7 +99,7 @@ const config = {
             type: "doc",
             position: "left",
             label: "Service Catalog API",
-            docId: "reference/services/intro",
+            docId: "reference/services/intro/index",
           },
           { to: "/docs/courses", label: "Courses", position: "left" },
           {
