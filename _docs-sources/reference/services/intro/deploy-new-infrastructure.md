@@ -286,7 +286,7 @@ want on an EC2 instance in production, such as tools for gathering metrics, log 
 and so on.
 
 Below are instructions on how to build an AMI using these Packer templates. We'll be using the
-[eks-node-al2.pkr.hcl](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template as an example.
+[`eks-node-al2.pkr.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template as an example.
 
 1. **Check out the code**. Run `git clone git@github.com:gruntwork-io/terraform-aws-service-catalog.git` to check out the code
    onto your own computer.
