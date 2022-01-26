@@ -15,7 +15,7 @@ The packer templates are provided as `json` files in each service module folder,
 ```
 
 For example, the packer template for ECS workers is the file
-[ecs-node-al2.json](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/ecs-cluster/ecs-node-al2.json),
+[`ecs-node-al2.json`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/ecs-cluster/ecs-node-al2.json),
 providing an Amazon Linux 2 based AMI.
 
 You can directly build any packer template by calling `packer` on it. The following walks through the steps for building
