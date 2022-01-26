@@ -25,7 +25,7 @@ the Gruntwork Service Catalog? There are two things to check:
    common and likely affects many companies, we should support it! If that's the case, please [file a GitHub issue in
    this repo](https://github.com/gruntwork-io/terraform-aws-service-catalog/issues/new), and the Gruntwork team may be able to implement it for you. Also, pull requests are VERY welcome! See
    [Contributing to the Gruntwork Service
-   Catalog](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#_contributing_to_the_gruntwork_infrastructure_as_code_library)
+   Catalog](/docs/guides/working-with-code/contributing)
    for instructions.
 
 If your use case isn't handled by the Gruntwork Service Catalog, and it's something fairly specific to your company,
