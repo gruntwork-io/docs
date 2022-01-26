@@ -277,7 +277,7 @@ Some of the services in the Gruntwork Service Catalog require you to build an [A
 (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to install and configure the software that will
 run on EC2 instances. These services define and manage the AMI as code using [Packer](https://www.packer.io/) templates.
 
-For example, the [eks-cluster](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster) service defines an
+For example, the [`eks-cluster`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster) service defines an
 [eks-node-al2.pkr.hcl](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template that can be used to create an AMI
 for the Kubernetes worker nodes. This Packer template uses the [EKS optimized
 AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) as its base, which already has Docker,
