@@ -25,7 +25,7 @@ the Gruntwork Service Catalog? There are two things to check:
    common and likely affects many companies, we should support it! If that's the case, please [file a GitHub issue in
    this repo](https://github.com/gruntwork-io/terraform-aws-service-catalog/issues/new), and the Gruntwork team may be able to implement it for you. Also, pull requests are VERY welcome! See
    [Contributing to the Gruntwork Service
-   Catalog](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library#_contributing_to_the_gruntwork_infrastructure_as_code_library)
+   Catalog](/docs/guides/working-with-code/contributing)
    for instructions.
 
 If your use case isn't handled by the Gruntwork Service Catalog, and it's something fairly specific to your company,
@@ -130,12 +130,12 @@ production:
 1. [Modules from the Gruntwork IaC Library](https://gruntwork.io/infrastructure-as-code-library/). We strongly
    recommend building your own services by combining modules from the Gruntwork IaC Library. For example, if your
    service runs in an Auto Scaling Group (ASG), you may want to use the modules from
-   [terraform-aws-asg](https://github.com/gruntwork-io/terraform-aws-asg) to create an ASG that can do zero-downtime rolling
+   [`terraform-aws-asg`](https://github.com/gruntwork-io/terraform-aws-asg) to create an ASG that can do zero-downtime rolling
    deployments; if your service needs custom CloudWatch metrics, log aggregation, or alerts, you may want to use
-   modules from [terraform-aws-monitoring](https://github.com/gruntwork-io/terraform-aws-monitoring); if your service is
+   modules from [`terraform-aws-monitoring`](https://github.com/gruntwork-io/terraform-aws-monitoring); if your service is
    doing something related to Kubernetes, you may want to use modules from
-   [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) or
-   [helm-kubernetes-services](https://github.com/gruntwork-io/helm-kubernetes-servicesv); and so on.
+   [`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks) or
+   [`helm-kubernetes-services`](https://github.com/gruntwork-io/helm-kubernetes-servicesv); and so on.
 
 1. [The Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/). You can of course also use
    the Gruntwork Service Catalog for inspiration and examples of how to build your own Service Catalog!
@@ -187,5 +187,5 @@ inputs = {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"558bbf657c2f418f50eeca59cfbf207b"}
+{"sourcePlugin":"Local File Copier","hash":"ebab1908283ea942f6a6324444ee743b"}
 ##DOCS-SOURCER-END -->

@@ -1,8 +1,5 @@
 # Deploy new infrastructure
 
-1. [How to deploy Terraform code from the Service Catalog](#how-to-deploy-terraform-code-from-the-service-catalog)
-1. [How to build machine images using Packer templates from the Service Catalog](#how-to-build-machine-images-using-packer-templates-from-the-service-catalog)
-
 ## How to deploy Terraform code from the Service Catalog
 
 There are three ways to use Terraform code from the Service Catalog:
@@ -280,8 +277,8 @@ Some of the services in the Gruntwork Service Catalog require you to build an [A
 (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to install and configure the software that will
 run on EC2 instances. These services define and manage the AMI as code using [Packer](https://www.packer.io/) templates.
 
-For example, the [eks-cluster](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster) service defines an
-[eks-node-al2.pkr.hcl](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template that can be used to create an AMI
+For example, the [`eks-cluster`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster) service defines an
+[`eks-node-al2.pkr.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template that can be used to create an AMI
 for the Kubernetes worker nodes. This Packer template uses the [EKS optimized
 AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) as its base, which already has Docker,
 kubelet, and the AWS IAM Authenticator installed, and on top of that, it installs the other common software you'll
@@ -289,7 +286,7 @@ want on an EC2 instance in production, such as tools for gathering metrics, log 
 and so on.
 
 Below are instructions on how to build an AMI using these Packer templates. We'll be using the
-[eks-node-al2.pkr.hcl](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template as an example.
+[`eks-node-al2.pkr.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template as an example.
 
 1. **Check out the code**. Run `git clone git@github.com:gruntwork-io/terraform-aws-service-catalog.git` to check out the code
    onto your own computer.
@@ -354,10 +351,10 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
 
 1. **Deploy**. At the end of the build, Packer will output the ID of your new AMI. Typically, you deploy this AMI by
    plugging the AMI ID into some Terraform code and using Terraform to deploy it: e.g., plugging in the EKS worker node
-   AMI ID into the `cluster_instance_ami` input variable of the [eks-cluster Terraform
+   AMI ID into the `cluster_instance_ami` input variable of the [`eks-cluster` Terraform
    module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"627556dd904d28df051de58b0f1b967a"}
+{"sourcePlugin":"Local File Copier","hash":"39b464de3bd02d164cfc1f65c8087dcb"}
 ##DOCS-SOURCER-END -->

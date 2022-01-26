@@ -58,10 +58,14 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    }
    ```
 
-   NOTE: Whenever changing version numbers, make sure to read the [release
-   notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
-   release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+:::note
+
+Whenever changing version numbers, make sure to read the [release
+notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
+incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
+versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+
+:::
 
 1. **Deploy**. Once you've made your changes, you can re-run `terraform apply` to deploy them:
 
@@ -122,10 +126,14 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
    }
    ```
 
-   NOTE: Whenever changing version numbers, make sure to read the [release
-   notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
-   release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+:::note
+
+Whenever changing version numbers, make sure to read the [release
+notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
+incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
+versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+
+:::
 
 1. **Deploy**. Once you've made your changes, you can re-run `terragrunt apply` to deploy them:
 
@@ -163,10 +171,14 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
    }
    ```
 
-   NOTE: Whenever changing version numbers, make sure to read the [release
+   :::note
+
+   Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
    versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+
+   :::
 
 1. **(Optional) Update your custom Packer template**: If you made a copy of one of of the Packer templates, you can
    of course also make updates to your own template.
@@ -182,5 +194,5 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b25bfccdabe25f5c4db825ed831f00f2"}
+{"sourcePlugin":"Local File Copier","hash":"d6b9c7da1fd12fdb2699180ccce36fa7"}
 ##DOCS-SOURCER-END -->

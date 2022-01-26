@@ -77,13 +77,19 @@ most commonly used filters will be:
 - `tag:<key>`: Filter by the given tag key. Note that `<key>` can be any tag key that is applied to the AMI. For
   example, to search for AMIs with the tag `service-catalog-module = ecs-cluster`, you can use the following filter:
 
-        cluster_instance_ami_filters = {
-          owners = ["self"]
-          filters = [{
-            name   = "tag:service-catalog-module"
-            values = ["ecs-cluster"]
-          }]
-        }
+  ```hcl
+      cluster_instance_ami_filters = {
+        owners = ["self"]
+        filters = [{
+          name   = "tag:service-catalog-module"
+          values = ["ecs-cluster"]
+        }]
+      }
+  ```
 
-  Note that tags are only visible in the account that owns the AMI. Even if you share the AMI in the packer template,
+  :::note
+
+  Tags are only visible in the account that owns the AMI. Even if you share the AMI in the packer template,
   the AMI tags will not be visible when you query it from a shared account.
+
+  :::

@@ -15,7 +15,7 @@ The packer templates are provided as `json` files in each service module folder,
 ```
 
 For example, the packer template for ECS workers is the file
-[ecs-node-al2.json](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/ecs-cluster/ecs-node-al2.json),
+[`ecs-node-al2.json`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/ecs-cluster/ecs-node-al2.json),
 providing an Amazon Linux 2 based AMI.
 
 You can directly build any packer template by calling `packer` on it. The following walks through the steps for building
@@ -77,18 +77,24 @@ most commonly used filters will be:
 - `tag:<key>`: Filter by the given tag key. Note that `<key>` can be any tag key that is applied to the AMI. For
   example, to search for AMIs with the tag `service-catalog-module = ecs-cluster`, you can use the following filter:
 
-        cluster_instance_ami_filters = {
-          owners = ["self"]
-          filters = [{
-            name   = "tag:service-catalog-module"
-            values = ["ecs-cluster"]
-          }]
-        }
+  ```hcl
+      cluster_instance_ami_filters = {
+        owners = ["self"]
+        filters = [{
+          name   = "tag:service-catalog-module"
+          values = ["ecs-cluster"]
+        }]
+      }
+  ```
 
-  Note that tags are only visible in the account that owns the AMI. Even if you share the AMI in the packer template,
+  :::note
+
+  Tags are only visible in the account that owns the AMI. Even if you share the AMI in the packer template,
   the AMI tags will not be visible when you query it from a shared account.
+
+  :::
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"60bc3d04057a4aa59329a1e387968c0f"}
+{"sourcePlugin":"Local File Copier","hash":"eb242cc736928f7cfbad162272a7e6df"}
 ##DOCS-SOURCER-END -->
