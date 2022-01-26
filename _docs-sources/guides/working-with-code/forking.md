@@ -34,7 +34,7 @@ so you’ll want to pull in these updates as quickly as you can.
 
 ## How to use your forked code
 
-Once you’ve forked the code, using it in is very similar to what is outlined in [Using Terraform Modules](#using_terraform_modules) and
+Once you’ve forked the code, using it in is very similar to what is outlined in [Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules) and
 [Using scripts and binaries](#using_scripts_binaries), except for the following differences:
 
 1.  Point the `source` URLs of your Terraform modules to your own Git repos, rather than the `gruntwork-io` GitHub org.
@@ -51,6 +51,6 @@ While forking is allowed under the Gruntwork Terms of Services, it has some down
   participate in issues and pull requests, and you won’t be benefiting as much from the Gruntwork community.
 
 So, whenever possible, use the code directly from the `gruntwork-io` GitHub org, as documented in
-[Using Terraform Modules](#using_terraform_modules) and [Using scripts and binaries](#using_scripts_binaries). If your team relies on NPM, Docker Hub, Maven Central,
+[Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules) and [Using scripts and binaries](#using_scripts_binaries). If your team relies on NPM, Docker Hub, Maven Central,
 GitHub, or the Terraform Registry, using Gruntwork repos directly is no different. However, if your company completely
 bans all outside sources, then follow the instructions above to fork the code, and good luck!
