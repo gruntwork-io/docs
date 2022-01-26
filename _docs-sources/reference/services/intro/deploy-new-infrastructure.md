@@ -351,5 +351,5 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
 
 1. **Deploy**. At the end of the build, Packer will output the ID of your new AMI. Typically, you deploy this AMI by
    plugging the AMI ID into some Terraform code and using Terraform to deploy it: e.g., plugging in the EKS worker node
-   AMI ID into the `cluster_instance_ami` input variable of the [eks-cluster Terraform
+   AMI ID into the `cluster_instance_ami` input variable of the [`eks-cluster` Terraform
    module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster).
