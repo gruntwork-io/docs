@@ -1,9 +1,6 @@
 # Make changes to your infrastructure
 
-Now that your infrastructure is deployed, let's discuss how to make changes to it:
-
-1. [Making changes to Terraform code](#making-changes-to-terraform-code)
-1. [Making changes to Packer templates](#making-changes-to-packer-templates)
+Now that your infrastructure is deployed, let's discuss how to make changes to it.
 
 ## Making changes to Terraform code
 
