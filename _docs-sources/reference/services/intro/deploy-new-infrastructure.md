@@ -1,8 +1,5 @@
 # Deploy new infrastructure
 
-1. [How to deploy Terraform code from the Service Catalog](#how-to-deploy-terraform-code-from-the-service-catalog)
-1. [How to build machine images using Packer templates from the Service Catalog](#how-to-build-machine-images-using-packer-templates-from-the-service-catalog)
-
 ## How to deploy Terraform code from the Service Catalog
 
 There are three ways to use Terraform code from the Service Catalog:
