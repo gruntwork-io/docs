@@ -130,12 +130,12 @@ production:
 1. [Modules from the Gruntwork IaC Library](https://gruntwork.io/infrastructure-as-code-library/). We strongly
    recommend building your own services by combining modules from the Gruntwork IaC Library. For example, if your
    service runs in an Auto Scaling Group (ASG), you may want to use the modules from
-   [terraform-aws-asg](https://github.com/gruntwork-io/terraform-aws-asg) to create an ASG that can do zero-downtime rolling
+   [`terraform-aws-asg`](https://github.com/gruntwork-io/terraform-aws-asg) to create an ASG that can do zero-downtime rolling
    deployments; if your service needs custom CloudWatch metrics, log aggregation, or alerts, you may want to use
-   modules from [terraform-aws-monitoring](https://github.com/gruntwork-io/terraform-aws-monitoring); if your service is
+   modules from [`terraform-aws-monitoring`](https://github.com/gruntwork-io/terraform-aws-monitoring); if your service is
    doing something related to Kubernetes, you may want to use modules from
-   [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) or
-   [helm-kubernetes-services](https://github.com/gruntwork-io/helm-kubernetes-servicesv); and so on.
+   [`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks) or
+   [`helm-kubernetes-services`](https://github.com/gruntwork-io/helm-kubernetes-servicesv); and so on.
 
 1. [The Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/). You can of course also use
    the Gruntwork Service Catalog for inspiration and examples of how to build your own Service Catalog!
