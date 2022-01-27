@@ -96,5 +96,5 @@ Deploy and manage Amazon ElastiCache for Memcached
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2fb7c9e39315d159b33ad9916c0634cf"}
+{"sourcePlugin":"service-catalog-api","hash":"2fb7c9e39315d159b33ad9916c0634cf"}
 ##DOCS-SOURCER-END -->

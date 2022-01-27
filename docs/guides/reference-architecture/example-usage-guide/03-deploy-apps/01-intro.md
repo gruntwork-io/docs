@@ -16,5 +16,5 @@ Architecture.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"cefe5964d0785734ed4c4376653050e7"}
+{"sourcePlugin":"local-copier","hash":"cefe5964d0785734ed4c4376653050e7"}
 ##DOCS-SOURCER-END -->

@@ -90,5 +90,5 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7bc81688253ed25fe174fa43506dcda0"}
+{"sourcePlugin":"local-copier","hash":"7bc81688253ed25fe174fa43506dcda0"}
 ##DOCS-SOURCER-END -->

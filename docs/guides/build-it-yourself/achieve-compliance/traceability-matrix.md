@@ -734,5 +734,5 @@ sections above.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"deda90311b36e4b300a2d13b43d04817"}
+{"sourcePlugin":"local-copier","hash":"deda90311b36e4b300a2d13b43d04817"}
 ##DOCS-SOURCER-END -->

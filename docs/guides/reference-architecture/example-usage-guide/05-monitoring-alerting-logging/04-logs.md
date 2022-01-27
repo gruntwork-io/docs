@@ -9,5 +9,5 @@ your servers in near-real-time.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"25e86ad1c431db7ea9afe1ebe3fbdb3a"}
+{"sourcePlugin":"local-copier","hash":"25e86ad1c431db7ea9afe1ebe3fbdb3a"}
 ##DOCS-SOURCER-END -->

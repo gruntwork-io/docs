@@ -40,5 +40,5 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"570b2ae5d734e54f37ec19630f8153fa"}
+{"sourcePlugin":"service-catalog-api","hash":"570b2ae5d734e54f37ec19630f8153fa"}
 ##DOCS-SOURCER-END -->

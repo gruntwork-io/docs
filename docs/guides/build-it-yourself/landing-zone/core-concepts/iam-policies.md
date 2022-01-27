@@ -70,5 +70,5 @@ S3 bucket.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a4908e782e751d52c4e94bd29c054a42"}
+{"sourcePlugin":"local-copier","hash":"a4908e782e751d52c4e94bd29c054a42"}
 ##DOCS-SOURCER-END -->

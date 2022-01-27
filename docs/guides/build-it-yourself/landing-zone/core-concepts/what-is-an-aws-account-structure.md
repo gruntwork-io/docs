@@ -35,5 +35,5 @@ breakdowns by account, service, tag, etc.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"362ad001515117c47bdd32c727dda5cb"}
+{"sourcePlugin":"local-copier","hash":"362ad001515117c47bdd32c727dda5cb"}
 ##DOCS-SOURCER-END -->

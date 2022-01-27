@@ -8,5 +8,5 @@ solutions will most likely be eclipsed very quickly by future EKS releases.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5c1d0eaffbf00b57e330e9a2dc9dc150"}
+{"sourcePlugin":"local-copier","hash":"5c1d0eaffbf00b57e330e9a2dc9dc150"}
 ##DOCS-SOURCER-END -->

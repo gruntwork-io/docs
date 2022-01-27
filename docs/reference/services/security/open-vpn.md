@@ -60,6 +60,18 @@ Deploy an OpenVPN Server on AWS.
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the OpenVPN server while it boots. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax.
 
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
 <a name="cmk_administrator_iam_arns" className="snap-top"></a>
 
 * [**`cmk_administrator_iam_arns`**](#cmk_administrator_iam_arns) &mdash; A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and [`kms_key_arn`](#kms_key_arn) is null, the ARN of the current user will be used.
@@ -148,6 +160,10 @@ Deploy an OpenVPN Server on AWS.
 
 * [**`revocation_queue_name`**](#revocation_queue_name) &mdash; The name of the sqs queue that will be used to receive certification revocation requests. Note that the queue name will be automatically prefixed with 'openvpn-requests-'.
 
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
 <a name="ssh_grunt_iam_group" className="snap-top"></a>
 
 * [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
@@ -163,6 +179,10 @@ Deploy an OpenVPN Server on AWS.
 <a name="tenancy" className="snap-top"></a>
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
+
+<a name="use_strong_prime" className="snap-top"></a>
+
+* [**`use_strong_prime`**](#use_strong_prime) &mdash; When true, generate Diffie-Hellman parameters using strong primes. Note that while stronger primes make the keys more cryptographically secure, the effective security gains are known to be insignificant in practice.
 
 <a name="vpc_id" className="snap-top"></a>
 
@@ -248,5 +268,5 @@ Deploy an OpenVPN Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"acc8387f98145bdb9a7c26e79028d1ce"}
+{"sourcePlugin":"service-catalog-api","hash":"702493d57d87e68b42883d2bd0cfda3f"}
 ##DOCS-SOURCER-END -->

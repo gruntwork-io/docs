@@ -59,5 +59,5 @@ our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7a0b46868c3bef4b60bcd8b808688a14"}
+{"sourcePlugin":"local-copier","hash":"7a0b46868c3bef4b60bcd8b808688a14"}
 ##DOCS-SOURCER-END -->

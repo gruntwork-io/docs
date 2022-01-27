@@ -56,5 +56,5 @@ bans all outside sources, then follow the instructions above to fork the code, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"aa5e9f290e27513b656e9bfaee4c4fa8"}
+{"sourcePlugin":"local-copier","hash":"aa5e9f290e27513b656e9bfaee4c4fa8"}
 ##DOCS-SOURCER-END -->

@@ -9,5 +9,5 @@ terragrunt destroy
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"611be9e2302e61959431d8e5512fd72c"}
+{"sourcePlugin":"local-copier","hash":"611be9e2302e61959431d8e5512fd72c"}
 ##DOCS-SOURCER-END -->

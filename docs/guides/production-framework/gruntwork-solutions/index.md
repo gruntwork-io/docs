@@ -42,5 +42,5 @@ questions, please [contact sales](https://gruntwork.io/contact/).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e8391cb15a0600d103ec673a33377616"}
+{"sourcePlugin":"local-copier","hash":"e8391cb15a0600d103ec673a33377616"}
 ##DOCS-SOURCER-END -->

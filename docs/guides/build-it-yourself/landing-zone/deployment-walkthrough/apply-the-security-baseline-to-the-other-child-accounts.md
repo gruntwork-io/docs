@@ -163,5 +163,5 @@ Remember to repeat this process in the other child accounts too (i.e., dev, prod
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e352ecf9534a680befc2ff59c579e4e1"}
+{"sourcePlugin":"local-copier","hash":"e352ecf9534a680befc2ff59c579e4e1"}
 ##DOCS-SOURCER-END -->

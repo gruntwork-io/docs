@@ -16,5 +16,5 @@ It's a bad idea to have give your CI server (e.g., Jenkins)—which your entire 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"184306807d3afdf76391109109b4fe83"}
+{"sourcePlugin":"local-copier","hash":"184306807d3afdf76391109109b4fe83"}
 ##DOCS-SOURCER-END -->

@@ -56,6 +56,18 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax.
 
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
 <a name="create_dns_record" className="snap-top"></a>
 
 * [**`create_dns_record`**](#create_dns_record) &mdash; Set to true to create a DNS record in Route53 pointing to the EC2 instance. If true, be sure to set [`fully_qualified_domain_name`](#fully_qualified_domain_name).
@@ -140,6 +152,10 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 * [**`route53_zone_id`**](#route53_zone_id) &mdash; The ID of the hosted zone to use. Allows specifying the hosted zone directly instead of looking it up via domain name. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
 
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
 <a name="ssh_grunt_iam_group" className="snap-top"></a>
 
 * [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
@@ -175,6 +191,14 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 * [**`ec2_instance_iam_role_arn`**](#ec2_instance_iam_role_arn) &mdash; The ARN of the EC2 server's IAM role.
 
+<a name="ec2_instance_iam_role_id" className="snap-top"></a>
+
+* [**`ec2_instance_iam_role_id`**](#ec2_instance_iam_role_id) &mdash; The ID of the EC2 server's IAM role.
+
+<a name="ec2_instance_iam_role_name" className="snap-top"></a>
+
+* [**`ec2_instance_iam_role_name`**](#ec2_instance_iam_role_name) &mdash; The name of the EC2 server's IAM role.
+
 <a name="ec2_instance_instance_id" className="snap-top"></a>
 
 * [**`ec2_instance_instance_id`**](#ec2_instance_instance_id) &mdash; The EC2 instance ID of the EC2 server.
@@ -204,5 +228,5 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"9cc9a5a80ca8dba7845d32b8c5e1b631"}
+{"sourcePlugin":"service-catalog-api","hash":"e43bf84e77883bf51ad3db497d5e3d36"}
 ##DOCS-SOURCER-END -->

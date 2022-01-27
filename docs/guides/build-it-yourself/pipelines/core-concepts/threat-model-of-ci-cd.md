@@ -48,5 +48,5 @@ With this threat model in mind, let’s take a look at the different CI/CD platf
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0405627489307382892291a16e5ecc7b"}
+{"sourcePlugin":"local-copier","hash":"0405627489307382892291a16e5ecc7b"}
 ##DOCS-SOURCER-END -->

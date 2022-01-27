@@ -277,5 +277,5 @@ moved to the common component configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3b740cb5844fe232f5ac8126887b90d6"}
+{"sourcePlugin":"local-copier","hash":"3b740cb5844fe232f5ac8126887b90d6"}
 ##DOCS-SOURCER-END -->

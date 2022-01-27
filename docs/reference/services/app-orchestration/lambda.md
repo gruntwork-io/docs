@@ -252,5 +252,5 @@ Deploy a Lambda on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e6b48c957b265b26c0407a4f8024f1f2"}
+{"sourcePlugin":"service-catalog-api","hash":"e6b48c957b265b26c0407a4f8024f1f2"}
 ##DOCS-SOURCER-END -->

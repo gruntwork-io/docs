@@ -196,5 +196,5 @@ Deploy and manage Amazon Elasticsearch Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"ce0d32f309f9f536e2f719833010966f"}
+{"sourcePlugin":"service-catalog-api","hash":"ce0d32f309f9f536e2f719833010966f"}
 ##DOCS-SOURCER-END -->

@@ -13,5 +13,5 @@ If you’re not sure which of these options to use, check out the `Server Cluste
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2d41777d239607561dfef17b39e6e4ba"}
+{"sourcePlugin":"local-copier","hash":"2d41777d239607561dfef17b39e6e4ba"}
 ##DOCS-SOURCER-END -->

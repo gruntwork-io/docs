@@ -30,5 +30,5 @@ terragrunt destroy-all \
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"aba0a579f1326a57f833dba058bbbc67"}
+{"sourcePlugin":"local-copier","hash":"aba0a579f1326a57f833dba058bbbc67"}
 ##DOCS-SOURCER-END -->

@@ -95,5 +95,5 @@ data "terraform_remote_state" "sns_region" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"89574f3a5a0644f6cc08c0ac71026395"}
+{"sourcePlugin":"local-copier","hash":"89574f3a5a0644f6cc08c0ac71026395"}
 ##DOCS-SOURCER-END -->

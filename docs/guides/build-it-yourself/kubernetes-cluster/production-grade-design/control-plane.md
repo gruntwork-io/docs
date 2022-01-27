@@ -54,5 +54,5 @@ CloudWatch.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c12632ebc1aea13de480176e30ee40e1"}
+{"sourcePlugin":"local-copier","hash":"c12632ebc1aea13de480176e30ee40e1"}
 ##DOCS-SOURCER-END -->

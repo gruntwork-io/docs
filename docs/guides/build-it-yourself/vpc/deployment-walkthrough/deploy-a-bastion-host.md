@@ -4,5 +4,5 @@ Please check out our [Bastion Host](https://github.com/gruntwork-io/terraform-aw
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f7a9be2aa12f7a05ca7c8cf17a38192e"}
+{"sourcePlugin":"local-copier","hash":"f7a9be2aa12f7a05ca7c8cf17a38192e"}
 ##DOCS-SOURCER-END -->

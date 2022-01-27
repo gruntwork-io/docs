@@ -24,5 +24,5 @@ The steps you need to take to update your code to use multi-include to avoid dup
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e6b78a8b5feffb8c40a83d5aeab2ae0b"}
+{"sourcePlugin":"local-copier","hash":"e6b78a8b5feffb8c40a83d5aeab2ae0b"}
 ##DOCS-SOURCER-END -->

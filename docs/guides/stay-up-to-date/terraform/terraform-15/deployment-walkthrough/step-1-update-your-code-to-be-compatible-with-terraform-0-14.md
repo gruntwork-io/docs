@@ -24,5 +24,5 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a9b2f859859d10ee40520a67c4f6853d"}
+{"sourcePlugin":"local-copier","hash":"a9b2f859859d10ee40520a67c4f6853d"}
 ##DOCS-SOURCER-END -->

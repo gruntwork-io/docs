@@ -176,5 +176,5 @@ Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, wi
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"629812da57377f4c07a34bcec15e0264"}
+{"sourcePlugin":"service-catalog-api","hash":"629812da57377f4c07a34bcec15e0264"}
 ##DOCS-SOURCER-END -->

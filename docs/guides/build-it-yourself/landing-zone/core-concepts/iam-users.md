@@ -70,5 +70,5 @@ user permissions, you will need to use IAM policies, which are the topic of the 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"17f37d79f888c3473e9bb0d065d07342"}
+{"sourcePlugin":"local-copier","hash":"17f37d79f888c3473e9bb0d065d07342"}
 ##DOCS-SOURCER-END -->

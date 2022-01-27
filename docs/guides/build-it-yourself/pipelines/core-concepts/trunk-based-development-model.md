@@ -56,5 +56,5 @@ infrastructure code.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7e5794c67b0a6291110316f83cf3ec40"}
+{"sourcePlugin":"local-copier","hash":"7e5794c67b0a6291110316f83cf3ec40"}
 ##DOCS-SOURCER-END -->

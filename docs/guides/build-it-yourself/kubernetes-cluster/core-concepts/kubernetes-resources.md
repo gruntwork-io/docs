@@ -123,5 +123,5 @@ secrets unencrypted!).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"515b338cb8b99a1ad5127df1aa98c187"}
+{"sourcePlugin":"local-copier","hash":"515b338cb8b99a1ad5127df1aa98c187"}
 ##DOCS-SOURCER-END -->

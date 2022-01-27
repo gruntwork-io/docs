@@ -35,5 +35,5 @@ longer work, e.g., if certain packages have been removed from APT or YUM).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"159cda91c449de4ffd9bc29a10116c09"}
+{"sourcePlugin":"local-copier","hash":"159cda91c449de4ffd9bc29a10116c09"}
 ##DOCS-SOURCER-END -->

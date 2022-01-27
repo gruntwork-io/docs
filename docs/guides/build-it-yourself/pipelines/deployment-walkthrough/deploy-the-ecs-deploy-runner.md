@@ -751,5 +751,5 @@ Repeat for each environment that you want to support the ECS Deploy Runner stack
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7d011d8a358b5022a2a89a159c5b7136"}
+{"sourcePlugin":"local-copier","hash":"7d011d8a358b5022a2a89a159c5b7136"}
 ##DOCS-SOURCER-END -->

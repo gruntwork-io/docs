@@ -11,5 +11,5 @@ ranges.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9d8faa2989a62412f9b7b87826e4abea"}
+{"sourcePlugin":"local-copier","hash":"9d8faa2989a62412f9b7b87826e4abea"}
 ##DOCS-SOURCER-END -->

@@ -47,5 +47,5 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"76bd75277bb1a3ebced828e532950f87"}
+{"sourcePlugin":"local-copier","hash":"76bd75277bb1a3ebced828e532950f87"}
 ##DOCS-SOURCER-END -->

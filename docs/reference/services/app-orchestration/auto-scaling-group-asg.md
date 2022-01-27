@@ -48,6 +48,18 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the ASG instances during boot. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax
 
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
 <a name="create_route53_entry" className="snap-top"></a>
 
 * [**`create_route53_entry`**](#create_route53_entry) &mdash; Set to true to create a DNS A record in Route 53 for this service.
@@ -184,6 +196,10 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 * [**`server_ports`**](#server_ports) &mdash; The ports the EC2 instances listen on for requests. A Target Group will be created for each port and any rules specified in [`forward_rules`](#forward_rules) will forward traffic to these Target Groups.
 
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
 <a name="ssh_grunt_iam_group" className="snap-top"></a>
 
 * [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the instances. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
@@ -264,5 +280,5 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"79f18ee98f85ad50817f2fb6b75355e2"}
+{"sourcePlugin":"service-catalog-api","hash":"61deac19bc2aab5dd10c91980cbc9136"}
 ##DOCS-SOURCER-END -->

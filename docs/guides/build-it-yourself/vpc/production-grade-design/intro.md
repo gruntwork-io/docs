@@ -11,5 +11,5 @@ something like this:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3f015395ed57051b605f4d66bd4e29e6"}
+{"sourcePlugin":"local-copier","hash":"3f015395ed57051b605f4d66bd4e29e6"}
 ##DOCS-SOURCER-END -->

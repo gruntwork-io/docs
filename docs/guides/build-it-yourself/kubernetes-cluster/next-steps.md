@@ -9,5 +9,5 @@ any data stores they depend on by using the following guides:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"643cf72893cefb9b09e6294e3290486f"}
+{"sourcePlugin":"local-copier","hash":"643cf72893cefb9b09e6294e3290486f"}
 ##DOCS-SOURCER-END -->

@@ -15,5 +15,5 @@ practices from [aws-sample-app](https://github.com/gruntwork-io/aws-sample-app/)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"825877259e74045470098650457e418f"}
+{"sourcePlugin":"local-copier","hash":"825877259e74045470098650457e418f"}
 ##DOCS-SOURCER-END -->

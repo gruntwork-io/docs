@@ -24,5 +24,5 @@ See a preview of how to use your customized Reference Architecture once we've de
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"2f17db19758f8477ead61801bae97e9c"}
+{"sourcePlugin":"local-copier","hash":"2f17db19758f8477ead61801bae97e9c"}
 ##DOCS-SOURCER-END -->

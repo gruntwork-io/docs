@@ -320,5 +320,5 @@ Convenient module to manage best practices set of IAM Groups for permissions man
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"f03934a3e7d8c499c48d58d6fd33e94b"}
+{"sourcePlugin":"service-catalog-api","hash":"f03934a3e7d8c499c48d58d6fd33e94b"}
 ##DOCS-SOURCER-END -->

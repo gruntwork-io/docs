@@ -27,5 +27,5 @@ CIS AWS Foundations Benchmark.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f6d60f7125da7ab7113175fd4d7f72c6"}
+{"sourcePlugin":"local-copier","hash":"f6d60f7125da7ab7113175fd4d7f72c6"}
 ##DOCS-SOURCER-END -->

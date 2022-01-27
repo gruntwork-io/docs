@@ -66,5 +66,5 @@ a secure base image (e.g., CIS hardened images), intrusion prevention (e.g., `fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a17897f8b4b3730ce0c9206f71d36a3f"}
+{"sourcePlugin":"local-copier","hash":"a17897f8b4b3730ce0c9206f71d36a3f"}
 ##DOCS-SOURCER-END -->

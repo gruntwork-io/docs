@@ -262,5 +262,5 @@ suffix `E` return an error as the last return value; methods without `E` mark th
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"e3576d96a0cb8b02e8913e36d63bbf90"}
+{"sourcePlugin":"local-copier","hash":"e3576d96a0cb8b02e8913e36d63bbf90"}
 ##DOCS-SOURCER-END -->

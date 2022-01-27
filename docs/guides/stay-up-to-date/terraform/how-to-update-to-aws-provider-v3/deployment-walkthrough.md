@@ -182,5 +182,5 @@ on how to update your components to be compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"17a025af41678a561f54d802977e6f36"}
+{"sourcePlugin":"local-copier","hash":"17a025af41678a561f54d802977e6f36"}
 ##DOCS-SOURCER-END -->

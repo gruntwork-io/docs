@@ -38,5 +38,5 @@ continuously getting better.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"87ef2e892443e7eb5ba94d715722233f"}
+{"sourcePlugin":"local-copier","hash":"87ef2e892443e7eb5ba94d715722233f"}
 ##DOCS-SOURCER-END -->

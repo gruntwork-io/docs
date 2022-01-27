@@ -15,5 +15,5 @@ need to expand the Reference Architecture with more accounts, like a test or san
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"1d4107f663861340fc8b02b91a6a1990"}
+{"sourcePlugin":"local-copier","hash":"1d4107f663861340fc8b02b91a6a1990"}
 ##DOCS-SOURCER-END -->

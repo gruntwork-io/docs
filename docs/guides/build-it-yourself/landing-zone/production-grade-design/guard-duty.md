@@ -8,5 +8,5 @@ publishing GuardDuty’s findings to a dedicated Amazon SNS topic.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f8a2464c61fa3e9f9f138b75d8cc477d"}
+{"sourcePlugin":"local-copier","hash":"f8a2464c61fa3e9f9f138b75d8cc477d"}
 ##DOCS-SOURCER-END -->

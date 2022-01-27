@@ -440,5 +440,5 @@ for this type of workflow.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"284f183e734e92f7edc7feef7d0fc603"}
+{"sourcePlugin":"local-copier","hash":"284f183e734e92f7edc7feef7d0fc603"}
 ##DOCS-SOURCER-END -->

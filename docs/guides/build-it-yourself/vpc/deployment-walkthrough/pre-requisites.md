@@ -43,5 +43,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a2ede7e054a17736ddfbd917000a0111"}
+{"sourcePlugin":"local-copier","hash":"a2ede7e054a17736ddfbd917000a0111"}
 ##DOCS-SOURCER-END -->

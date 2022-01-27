@@ -74,5 +74,5 @@ Key Pairs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7c0ac42ce4c59251e14f2f2515cde419"}
+{"sourcePlugin":"local-copier","hash":"7c0ac42ce4c59251e14f2f2515cde419"}
 ##DOCS-SOURCER-END -->

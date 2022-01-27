@@ -16,6 +16,18 @@ Use a CI/CD pipeline for deploying infrastructure code updates.
 
 * [**`ami_builder_config`**](#ami_builder_config) &mdash; Configuration options for the ami-builder container of the ECS deploy runner stack. This container will be used for building AMIs in the CI/CD pipeline using packer. Set to `null` to disable this container.
 
+<a name="cloudwatch_log_group_for_ec2_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_for_ec2_kms_key_id`**](#cloudwatch_log_group_for_ec2_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_for_ec2_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_for_ec2_retention_in_days`**](#cloudwatch_log_group_for_ec2_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_for_ec2_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_for_ec2_tags`**](#cloudwatch_log_group_for_ec2_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
 <a name="container_cpu" className="snap-top"></a>
 
 * [**`container_cpu`**](#container_cpu) &mdash; The default CPU units for the instances that Fargate will spin up. The invoker allows users to override the CPU at run time, but this value will be used if the user provides no value for the CPU. Options here: [`https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate`](#https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate).html#fargate-tasks-size.
@@ -83,6 +95,10 @@ Use a CI/CD pipeline for deploying infrastructure code updates.
 <a name="shared_secrets_kms_cmk_arn" className="snap-top"></a>
 
 * [**`shared_secrets_kms_cmk_arn`**](#shared_secrets_kms_cmk_arn) &mdash; The ARN of the KMS CMK used for sharing AWS Secrets Manager secrets between accounts.
+
+<a name="should_create_cloudwatch_log_group_for_ec2" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group_for_ec2`**](#should_create_cloudwatch_log_group_for_ec2) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
 
 <a name="snapshot_encryption_kms_cmk_arns" className="snap-top"></a>
 
@@ -152,5 +168,5 @@ Use a CI/CD pipeline for deploying infrastructure code updates.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"bf0afac1a81f6164223c1ef85470c69a"}
+{"sourcePlugin":"service-catalog-api","hash":"09ab7ab8f1e39374f35dfd6e900f5011"}
 ##DOCS-SOURCER-END -->

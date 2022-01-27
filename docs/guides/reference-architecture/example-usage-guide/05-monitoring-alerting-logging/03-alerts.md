@@ -20,5 +20,5 @@ module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/mod
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"584b4a2ae80caff18e9aabc951d9878d"}
+{"sourcePlugin":"local-copier","hash":"584b4a2ae80caff18e9aabc951d9878d"}
 ##DOCS-SOURCER-END -->

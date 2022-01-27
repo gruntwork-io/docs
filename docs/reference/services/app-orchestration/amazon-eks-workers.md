@@ -352,5 +352,5 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2912419672a85b229f6cd596fb45941f"}
+{"sourcePlugin":"service-catalog-api","hash":"2912419672a85b229f6cd596fb45941f"}
 ##DOCS-SOURCER-END -->

@@ -68,5 +68,5 @@ Follow the steps below to keep your code up to date:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b2db9c198c60896ee871fe9017008760"}
+{"sourcePlugin":"local-copier","hash":"b2db9c198c60896ee871fe9017008760"}
 ##DOCS-SOURCER-END -->

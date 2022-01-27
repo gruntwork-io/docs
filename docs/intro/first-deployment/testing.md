@@ -213,5 +213,5 @@ For a lot more information on writing automated tests for Terraform code, see:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"5ab7f3dbd4aa0424b2e7611b1a4036e7"}
+{"sourcePlugin":"local-copier","hash":"5ab7f3dbd4aa0424b2e7611b1a4036e7"}
 ##DOCS-SOURCER-END -->

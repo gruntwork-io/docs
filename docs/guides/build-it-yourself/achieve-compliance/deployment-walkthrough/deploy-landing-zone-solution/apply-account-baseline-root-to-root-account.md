@@ -587,5 +587,5 @@ those root users again.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4d2c256eab29805b37863d1cb894df64"}
+{"sourcePlugin":"local-copier","hash":"4d2c256eab29805b37863d1cb894df64"}
 ##DOCS-SOURCER-END -->

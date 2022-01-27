@@ -248,5 +248,5 @@ output "private_persistence_subnet_ids" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c78de100bb6dcda611653f87e2d9ee1e"}
+{"sourcePlugin":"local-copier","hash":"c78de100bb6dcda611653f87e2d9ee1e"}
 ##DOCS-SOURCER-END -->

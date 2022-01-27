@@ -34,5 +34,5 @@ gives it permissions to talk solely to the other pods it should be able to acces
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c3d9ad836a5f25fa94a9454107f65885"}
+{"sourcePlugin":"local-copier","hash":"c3d9ad836a5f25fa94a9454107f65885"}
 ##DOCS-SOURCER-END -->

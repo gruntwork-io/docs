@@ -14,5 +14,5 @@ and deploy your code, you'll want to see what's happening in your AWS account:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3f4bcd017d055703ea7d6a51c69ca309"}
+{"sourcePlugin":"local-copier","hash":"3f4bcd017d055703ea7d6a51c69ca309"}
 ##DOCS-SOURCER-END -->

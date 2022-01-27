@@ -48,9 +48,21 @@ Deploy an Amazon ECS Cluster
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the ECS cluster instances during boot. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax
 
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
 <a name="cloudwatch_log_group_name" className="snap-top"></a>
 
 * [**`cloudwatch_log_group_name`**](#cloudwatch_log_group_name) &mdash; The name of the log group to create in CloudWatch. Defaults to [``var.cluster_name`](#`var.cluster_name)-logs`.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 <a name="cluster_access_from_sgs" className="snap-top"></a>
 
@@ -180,6 +192,10 @@ Deploy an Amazon ECS Cluster
 
 * [**`public_alb_sg_ids`**](#public_alb_sg_ids) &mdash; The Security Group ID for the public ALB
 
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
 <a name="ssh_grunt_iam_group" className="snap-top"></a>
 
 * [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the nodes in this ECS cluster. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
@@ -268,5 +284,5 @@ Deploy an Amazon ECS Cluster
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"2d4c93ecbe320e4f5a04f50e83a42a26"}
+{"sourcePlugin":"service-catalog-api","hash":"431d3e7a216bc8e0e44a7a1d4e66a9fe"}
 ##DOCS-SOURCER-END -->

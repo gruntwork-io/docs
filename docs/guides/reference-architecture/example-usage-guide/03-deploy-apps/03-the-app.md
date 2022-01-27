@@ -40,5 +40,5 @@ Since we need to pull in the dependencies to run this app, we will also need a c
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"6e307243ed73a07a528949ca977e651b"}
+{"sourcePlugin":"local-copier","hash":"6e307243ed73a07a528949ca977e651b"}
 ##DOCS-SOURCER-END -->

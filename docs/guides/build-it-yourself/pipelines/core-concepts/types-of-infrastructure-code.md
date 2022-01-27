@@ -36,5 +36,5 @@ infrastructure modules, and live infrastructure configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c2807b3ca886f83c5a5bbab1b46bbdf3"}
+{"sourcePlugin":"local-copier","hash":"c2807b3ca886f83c5a5bbab1b46bbdf3"}
 ##DOCS-SOURCER-END -->

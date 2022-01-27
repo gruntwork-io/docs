@@ -54,5 +54,5 @@ those regions or services do not meet your company’s compliance requirements (
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"df14aceb0e5fea0111dd18018e2d7bf7"}
+{"sourcePlugin":"local-copier","hash":"df14aceb0e5fea0111dd18018e2d7bf7"}
 ##DOCS-SOURCER-END -->

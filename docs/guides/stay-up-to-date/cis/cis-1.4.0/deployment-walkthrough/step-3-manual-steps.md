@@ -117,5 +117,5 @@ You may be using a region that doesn’t properly support AWS Config (e.g: `ap-n
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"339270287018e92e149b0be448340c4d"}
+{"sourcePlugin":"local-copier","hash":"339270287018e92e149b0be448340c4d"}
 ##DOCS-SOURCER-END -->

@@ -108,5 +108,5 @@ Deploy your static content and static websites on S3, using a CloudFront CDN. Su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"03605e66ac78a1f3e74c36667456f8b0"}
+{"sourcePlugin":"service-catalog-api","hash":"03605e66ac78a1f3e74c36667456f8b0"}
 ##DOCS-SOURCER-END -->

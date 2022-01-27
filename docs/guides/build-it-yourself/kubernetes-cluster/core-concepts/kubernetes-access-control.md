@@ -42,5 +42,5 @@ namespace), and associate those roles with the specific user and service account
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"d29f803c93ab0f3d203614b9f0e15d33"}
+{"sourcePlugin":"local-copier","hash":"d29f803c93ab0f3d203614b9f0e15d33"}
 ##DOCS-SOURCER-END -->

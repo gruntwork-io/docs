@@ -38,5 +38,5 @@ necessary manual steps.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"7d268f35eb0dde2c125ed3ce6289d575"}
+{"sourcePlugin":"local-copier","hash":"7d268f35eb0dde2c125ed3ce6289d575"}
 ##DOCS-SOURCER-END -->

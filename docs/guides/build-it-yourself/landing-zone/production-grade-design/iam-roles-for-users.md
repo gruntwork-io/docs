@@ -56,5 +56,5 @@ server and allows developers with access to these IAM roles to request VPN certi
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f159d5c23afaa110863cab6ea08681f6"}
+{"sourcePlugin":"local-copier","hash":"f159d5c23afaa110863cab6ea08681f6"}
 ##DOCS-SOURCER-END -->

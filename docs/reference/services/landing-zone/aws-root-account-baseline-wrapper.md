@@ -876,5 +876,5 @@ A security baseline for AWS Landing Zone for configuring the root account (AKA m
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8d71379e3c511532548f68d8d09f43b8"}
+{"sourcePlugin":"service-catalog-api","hash":"8d71379e3c511532548f68d8d09f43b8"}
 ##DOCS-SOURCER-END -->

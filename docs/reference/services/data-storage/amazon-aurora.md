@@ -323,6 +323,10 @@ Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS)
 
 * [**`primary_host`**](#primary_host) &mdash; The host portion of the Aurora endpoint. [`primary_endpoint`](#primary_endpoint) is in the form '&lt;host>:&lt;port>', and this output returns just the host part.
 
+<a name="reader_endpoint" className="snap-top"></a>
+
+* [**`reader_endpoint`**](#reader_endpoint) &mdash; A read-only endpoint for the Aurora cluster, automatically load-balanced across replicas.
+
 <a name="share_snapshot_lambda_arn" className="snap-top"></a>
 
 * [**`share_snapshot_lambda_arn`**](#share_snapshot_lambda_arn) &mdash; The ARN of the AWS Lambda Function used for sharing manual snapshots with secondary accounts.
@@ -332,5 +336,5 @@ Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"e19b8c29b34bdcecc859467a5bdd2d11"}
+{"sourcePlugin":"service-catalog-api","hash":"9ea36f8aebea33170b5d75642e2b124e"}
 ##DOCS-SOURCER-END -->

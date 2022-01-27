@@ -39,5 +39,5 @@ The Gruntwork module library and open source tools are compatible with Terraform
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"35d2a05aaaf155d7193c065022234ada"}
+{"sourcePlugin":"local-copier","hash":"35d2a05aaaf155d7193c065022234ada"}
 ##DOCS-SOURCER-END -->

@@ -36,5 +36,5 @@ Open `docs/intro.md` and edit some lines: the site **reloads automatically** and
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9a76adceeb3958af906263551c8dc0c4"}
+{"sourcePlugin":"local-copier","hash":"9a76adceeb3958af906263551c8dc0c4"}
 ##DOCS-SOURCER-END -->

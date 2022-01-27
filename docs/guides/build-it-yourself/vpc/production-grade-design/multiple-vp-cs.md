@@ -54,5 +54,5 @@ your corporate intranet via site-to-site VPN connections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"784b8265b51b59059718a34b68ea4339"}
+{"sourcePlugin":"local-copier","hash":"784b8265b51b59059718a34b68ea4339"}
 ##DOCS-SOURCER-END -->
