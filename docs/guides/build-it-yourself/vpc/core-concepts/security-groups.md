@@ -76,5 +76,5 @@ custom security group with rules that exactly match your use case, rather than r
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"596687737b7eef31327fd9ca1202ac12"}
+{"sourcePlugin":"local-copier","hash":"596687737b7eef31327fd9ca1202ac12"}
 ##DOCS-SOURCER-END -->

@@ -136,5 +136,5 @@ Deploy and manage Amazon ElastiCache for Redis
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"1f2b5674c9b8918072ce10412fdb24dc"}
+{"sourcePlugin":"service-catalog-api","hash":"1f2b5674c9b8918072ce10412fdb24dc"}
 ##DOCS-SOURCER-END -->

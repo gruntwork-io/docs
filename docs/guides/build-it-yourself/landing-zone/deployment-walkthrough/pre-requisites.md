@@ -56,5 +56,5 @@ automatically.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"29b8c6bff7024eeabc149de8c5748f18"}
+{"sourcePlugin":"local-copier","hash":"29b8c6bff7024eeabc149de8c5748f18"}
 ##DOCS-SOURCER-END -->

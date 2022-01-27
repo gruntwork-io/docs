@@ -56,5 +56,5 @@ Grant the Gruntwork team access to one of your AWS accounts so we can deploy a R
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"051683bd37521ec998c2b41a6a98f2ef"}
+{"sourcePlugin":"service-catalog-api","hash":"051683bd37521ec998c2b41a6a98f2ef"}
 ##DOCS-SOURCER-END -->

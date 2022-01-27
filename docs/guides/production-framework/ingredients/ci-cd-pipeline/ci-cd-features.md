@@ -39,5 +39,5 @@ AWS](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"be59b854b7665f188f7878b449f542e7"}
+{"sourcePlugin":"local-copier","hash":"be59b854b7665f188f7878b449f542e7"}
 ##DOCS-SOURCER-END -->

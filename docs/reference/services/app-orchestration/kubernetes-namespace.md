@@ -68,5 +68,5 @@ Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"96d8ebf9fa3a0bb4255025e8eca57475"}
+{"sourcePlugin":"service-catalog-api","hash":"96d8ebf9fa3a0bb4255025e8eca57475"}
 ##DOCS-SOURCER-END -->

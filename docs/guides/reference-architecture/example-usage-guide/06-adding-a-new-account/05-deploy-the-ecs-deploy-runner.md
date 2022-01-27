@@ -37,5 +37,5 @@ to provision new infrastructure in the account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"f383a1b3ce7b725423c02c57370d347b"}
+{"sourcePlugin":"local-copier","hash":"f383a1b3ce7b725423c02c57370d347b"}
 ##DOCS-SOURCER-END -->

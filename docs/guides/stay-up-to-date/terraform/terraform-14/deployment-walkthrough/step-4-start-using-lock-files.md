@@ -17,5 +17,5 @@ to version control.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a8737cd633b12986e72317de6dde4a3c"}
+{"sourcePlugin":"local-copier","hash":"a8737cd633b12986e72317de6dde4a3c"}
 ##DOCS-SOURCER-END -->

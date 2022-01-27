@@ -360,5 +360,5 @@ Deploy and manage Amazon Relational Database Service (RDS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"fca933595498df2d630bdd31383475e3"}
+{"sourcePlugin":"service-catalog-api","hash":"fca933595498df2d630bdd31383475e3"}
 ##DOCS-SOURCER-END -->

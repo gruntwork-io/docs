@@ -58,5 +58,5 @@ for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"84c48c3858a2c9855ecdf8078f675566"}
+{"sourcePlugin":"local-copier","hash":"84c48c3858a2c9855ecdf8078f675566"}
 ##DOCS-SOURCER-END -->

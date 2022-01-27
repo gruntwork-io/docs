@@ -24,5 +24,5 @@ To link a new GitHub ID, you’ll first have to unlink the current one. Although
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c132161ce803b2d0c160f6f595a88b6e"}
+{"sourcePlugin":"local-copier","hash":"c132161ce803b2d0c160f6f595a88b6e"}
 ##DOCS-SOURCER-END -->

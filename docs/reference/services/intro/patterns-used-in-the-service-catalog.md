@@ -96,5 +96,5 @@ most commonly used filters will be:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"eb242cc736928f7cfbad162272a7e6df"}
+{"sourcePlugin":"local-copier","hash":"eb242cc736928f7cfbad162272a7e6df"}
 ##DOCS-SOURCER-END -->

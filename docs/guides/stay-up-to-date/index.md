@@ -72,5 +72,5 @@ import CardGroup from "/src/components/CardGroup"
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4e286a4930d5ff733245cc2fb2cc0843"}
+{"sourcePlugin":"local-copier","hash":"4e286a4930d5ff733245cc2fb2cc0843"}
 ##DOCS-SOURCER-END -->

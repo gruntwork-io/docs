@@ -80,6 +80,18 @@ Deploy Jenkins CI Server on AWS.
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax.
 
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
 <a name="custom_tags" className="snap-top"></a>
 
 * [**`custom_tags`**](#custom_tags) &mdash; A list of custom tags to apply to Jenkins and all other resources.
@@ -204,6 +216,10 @@ Deploy Jenkins CI Server on AWS.
 
 * [**`root_volume_size`**](#root_volume_size) &mdash; The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see [`jenkins_volume_size`](#jenkins_volume_size)), so this root volume is primarily used for the OS, temp folders, apps, etc.
 
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
 <a name="skip_health_check" className="snap-top"></a>
 
 * [**`skip_health_check`**](#skip_health_check) &mdash; If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
@@ -300,5 +316,5 @@ Deploy Jenkins CI Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"09eeab5f01f7ab54b163a2d80790c36f"}
+{"sourcePlugin":"service-catalog-api","hash":"1802ceea003ed81cc32f34d1f08eb64d"}
 ##DOCS-SOURCER-END -->

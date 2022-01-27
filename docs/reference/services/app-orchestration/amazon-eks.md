@@ -456,5 +456,5 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"815a8d666cdaee3a0dd7556b7ec239e2"}
+{"sourcePlugin":"service-catalog-api","hash":"815a8d666cdaee3a0dd7556b7ec239e2"}
 ##DOCS-SOURCER-END -->

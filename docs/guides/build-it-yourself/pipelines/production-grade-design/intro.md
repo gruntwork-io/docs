@@ -12,5 +12,5 @@ infrastructure code, using a platform that looks something like this:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"85dfc1646a1dc0b0f306a424397fcb8f"}
+{"sourcePlugin":"local-copier","hash":"85dfc1646a1dc0b0f306a424397fcb8f"}
 ##DOCS-SOURCER-END -->

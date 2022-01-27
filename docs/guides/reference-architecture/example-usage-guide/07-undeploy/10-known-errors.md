@@ -24,5 +24,5 @@ There are a few reasons your call to `destroy` may fail:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"33d1173bfb40293642e364d45877e81b"}
+{"sourcePlugin":"local-copier","hash":"33d1173bfb40293642e364d45877e81b"}
 ##DOCS-SOURCER-END -->

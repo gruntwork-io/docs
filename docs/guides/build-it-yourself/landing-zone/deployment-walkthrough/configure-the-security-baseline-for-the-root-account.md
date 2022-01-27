@@ -173,5 +173,5 @@ and any other existing resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"aab2869fda484bcedecb279d35bebae3"}
+{"sourcePlugin":"local-copier","hash":"aab2869fda484bcedecb279d35bebae3"}
 ##DOCS-SOURCER-END -->

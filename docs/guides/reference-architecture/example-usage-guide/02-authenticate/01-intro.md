@@ -29,5 +29,5 @@ and connecting to all the resources in your AWS accounts:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"878828833c0d8190d83d0d2e63132c86"}
+{"sourcePlugin":"local-copier","hash":"878828833c0d8190d83d0d2e63132c86"}
 ##DOCS-SOURCER-END -->

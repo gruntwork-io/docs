@@ -356,5 +356,5 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"39b464de3bd02d164cfc1f65c8087dcb"}
+{"sourcePlugin":"local-copier","hash":"39b464de3bd02d164cfc1f65c8087dcb"}
 ##DOCS-SOURCER-END -->

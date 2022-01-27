@@ -62,5 +62,5 @@ docker push 234567890123.dkr.ecr.us-west-2.amazonaws.com/simple-web-app:v1
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"4e7ca8a7e4911b5a9e0e63182b09cffc"}
+{"sourcePlugin":"local-copier","hash":"4e7ca8a7e4911b5a9e0e63182b09cffc"}
 ##DOCS-SOURCER-END -->

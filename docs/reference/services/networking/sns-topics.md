@@ -60,5 +60,5 @@ Create Amazon Simple Notification Service topics
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"28e5a8d03eed112176cd21eb83fad49d"}
+{"sourcePlugin":"service-catalog-api","hash":"28e5a8d03eed112176cd21eb83fad49d"}
 ##DOCS-SOURCER-END -->

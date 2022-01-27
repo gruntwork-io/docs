@@ -14,5 +14,5 @@ incidents, and maintaining audit logs for compliance.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a50f2d65b0b6df3c41b2ac3f06978253"}
+{"sourcePlugin":"local-copier","hash":"a50f2d65b0b6df3c41b2ac3f06978253"}
 ##DOCS-SOURCER-END -->

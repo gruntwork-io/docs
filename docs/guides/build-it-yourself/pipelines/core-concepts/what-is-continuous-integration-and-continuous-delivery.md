@@ -14,5 +14,5 @@ of a production-ready CI/CD pipeline for infrastructure code.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"055f3cc7ce91e5b026c8544984db2953"}
+{"sourcePlugin":"local-copier","hash":"055f3cc7ce91e5b026c8544984db2953"}
 ##DOCS-SOURCER-END -->

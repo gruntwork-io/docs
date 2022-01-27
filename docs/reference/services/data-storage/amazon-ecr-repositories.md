@@ -32,9 +32,17 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 * [**`default_image_tag_mutability`**](#default_image_tag_mutability) &mdash; The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTABLE. Can be overridden on a per repo basis by the [`image_tag_mutability`](#image_tag_mutability) property in the repositories map.
 
+<a name="default_lifecycle_policy_rules" className="snap-top"></a>
+
+* [**`default_lifecycle_policy_rules`**](#default_lifecycle_policy_rules) &mdash; Add lifecycle policy to ECR repo.
+
 <a name="global_tags" className="snap-top"></a>
 
 * [**`global_tags`**](#global_tags) &mdash; A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
+
+<a name="replication_regions" className="snap-top"></a>
+
+* [**`replication_regions`**](#replication_regions) &mdash; List of regions (e.g., us-east-1) to replicate the ECR repository to.
 
 <a name="repositories" className="snap-top"></a>
 
@@ -64,5 +72,5 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"cd799e05c546778e80ddc8353ebd2bb7"}
+{"sourcePlugin":"service-catalog-api","hash":"6f96cf09810f77caa69e6c8e03f93e81"}
 ##DOCS-SOURCER-END -->

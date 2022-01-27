@@ -187,5 +187,5 @@ inputs = {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ebab1908283ea942f6a6324444ee743b"}
+{"sourcePlugin":"local-copier","hash":"ebab1908283ea942f6a6324444ee743b"}
 ##DOCS-SOURCER-END -->

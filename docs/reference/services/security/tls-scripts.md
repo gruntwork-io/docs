@@ -24,5 +24,5 @@ Create TLS certificates, download CA certs for RDS, and generate JVM trust store
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"6c6dd1eaaef0a8ea56487fd53addbfeb"}
+{"sourcePlugin":"service-catalog-api","hash":"6c6dd1eaaef0a8ea56487fd53addbfeb"}
 ##DOCS-SOURCER-END -->

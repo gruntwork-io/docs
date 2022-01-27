@@ -17,5 +17,5 @@ We typically recommend that you aggregate AWS Config data in the logs account. T
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fe326f40c8b8ed46a200d6adef9a1f2b"}
+{"sourcePlugin":"local-copier","hash":"fe326f40c8b8ed46a200d6adef9a1f2b"}
 ##DOCS-SOURCER-END -->

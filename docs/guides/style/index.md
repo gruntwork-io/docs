@@ -20,5 +20,5 @@ Learn Gruntwork's Go coding style.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"3fcd5f49a3d53d4bcb70065ea2bf83b6"}
+{"sourcePlugin":"local-copier","hash":"3fcd5f49a3d53d4bcb70065ea2bf83b6"}
 ##DOCS-SOURCER-END -->

@@ -187,5 +187,5 @@ compatible with CIS AWS v1.3.0:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"eb861e0394f4d2313c7442d627edc531"}
+{"sourcePlugin":"local-copier","hash":"eb861e0394f4d2313c7442d627edc531"}
 ##DOCS-SOURCER-END -->

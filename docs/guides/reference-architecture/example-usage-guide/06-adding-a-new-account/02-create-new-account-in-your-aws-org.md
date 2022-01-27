@@ -24,5 +24,5 @@ At this point, you won't need to use the root credentials again until you are re
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"ce81ca7d4a533a62629db83aa91e9910"}
+{"sourcePlugin":"local-copier","hash":"ce81ca7d4a533a62629db83aa91e9910"}
 ##DOCS-SOURCER-END -->

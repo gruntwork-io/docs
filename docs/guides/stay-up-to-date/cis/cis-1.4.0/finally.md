@@ -8,5 +8,5 @@ If you’ve got any feedback or you think something’s missing from the guide, 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fc0e11f55277352da621976d3d7f4967"}
+{"sourcePlugin":"local-copier","hash":"fc0e11f55277352da621976d3d7f4967"}
 ##DOCS-SOURCER-END -->

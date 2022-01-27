@@ -27,5 +27,5 @@ the logs from the worker nodes (including all the pods on them) to CloudWatch.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"345e40c904372f680deb43eb3be26cd4"}
+{"sourcePlugin":"local-copier","hash":"345e40c904372f680deb43eb3be26cd4"}
 ##DOCS-SOURCER-END -->

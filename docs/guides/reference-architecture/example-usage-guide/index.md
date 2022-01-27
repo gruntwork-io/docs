@@ -161,5 +161,5 @@ Next up, let's have a look at [how to authenticate](02-authenticate/01-intro.md)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"0005c89bf8d9356bc7a93ace98e33976"}
+{"sourcePlugin":"local-copier","hash":"0005c89bf8d9356bc7a93ace98e33976"}
 ##DOCS-SOURCER-END -->

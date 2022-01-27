@@ -76,5 +76,5 @@ Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"28151d6a249ed9a43b593961c28ae574"}
+{"sourcePlugin":"service-catalog-api","hash":"28151d6a249ed9a43b593961c28ae574"}
 ##DOCS-SOURCER-END -->

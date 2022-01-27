@@ -16,6 +16,10 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 * [**`access_logging_bucket`**](#access_logging_bucket) &mdash; The S3 bucket where access logs for this bucket should be stored. Set to null to disable access logging.
 
+<a name="access_logging_bucket_lifecycle_rules" className="snap-top"></a>
+
+* [**`access_logging_bucket_lifecycle_rules`**](#access_logging_bucket_lifecycle_rules) &mdash; The lifecycle rules for the access logs bucket. See [`lifecycle_rules`](#lifecycle_rules) for details.
+
 <a name="access_logging_bucket_ownership" className="snap-top"></a>
 
 * [**`access_logging_bucket_ownership`**](#access_logging_bucket_ownership) &mdash; Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
@@ -68,6 +72,10 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 * [**`force_destroy_replica`**](#force_destroy_replica) &mdash; If set to true, when you run 'terraform destroy', delete all objects from the replica bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
 
+<a name="lifecycle_rules" className="snap-top"></a>
+
+* [**`lifecycle_rules`**](#lifecycle_rules) &mdash; The lifecycle rules for this S3 bucket. These can be used to change storage types or delete objects based on customizable rules. This should be a map, where each key is a unique ID for the lifecycle rule, and each value is an object that contains the parameters defined in the comment above.
+
 <a name="mfa_delete" className="snap-top"></a>
 
 * [**`mfa_delete`**](#mfa_delete) &mdash; Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. Only used if [`enable_versioning`](#enable_versioning) is true. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module.
@@ -83,6 +91,10 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 <a name="replica_bucket_already_exists" className="snap-top"></a>
 
 * [**`replica_bucket_already_exists`**](#replica_bucket_already_exists) &mdash; If set to true, replica bucket will be expected to already exist.
+
+<a name="replica_bucket_lifecycle_rules" className="snap-top"></a>
+
+* [**`replica_bucket_lifecycle_rules`**](#replica_bucket_lifecycle_rules) &mdash; The lifecycle rules for the replica bucket. See [`lifecycle_rules`](#lifecycle_rules) for details.
 
 <a name="replica_bucket_ownership" className="snap-top"></a>
 
@@ -152,5 +164,5 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Service Catalog Reference","hash":"8124aaac3247202dde74ab84e0946d38"}
+{"sourcePlugin":"service-catalog-api","hash":"a677b83f6405cd346d06f0250ac7958e"}
 ##DOCS-SOURCER-END -->

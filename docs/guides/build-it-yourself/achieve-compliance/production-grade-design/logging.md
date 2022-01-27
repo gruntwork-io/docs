@@ -148,5 +148,5 @@ the default VPCs which exist in all regions of the account. You can use the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"fa7e59351da6b6e1fadfd62d09cf2c27"}
+{"sourcePlugin":"local-copier","hash":"fa7e59351da6b6e1fadfd62d09cf2c27"}
 ##DOCS-SOURCER-END -->

@@ -11,5 +11,5 @@ intelligence to identify and prioritize potential threats.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"9cb49659918b9b4e5dd2a2d286b0e06e"}
+{"sourcePlugin":"local-copier","hash":"9cb49659918b9b4e5dd2a2d286b0e06e"}
 ##DOCS-SOURCER-END -->

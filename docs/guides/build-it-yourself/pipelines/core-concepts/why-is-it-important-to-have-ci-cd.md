@@ -38,5 +38,5 @@ ensuring that there is ample time for improvements and corrections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a6ab72f0c256b45899a32fc4d7da617f"}
+{"sourcePlugin":"local-copier","hash":"a6ab72f0c256b45899a32fc4d7da617f"}
 ##DOCS-SOURCER-END -->

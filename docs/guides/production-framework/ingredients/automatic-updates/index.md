@@ -13,5 +13,5 @@ everything up-to-date, so that all your hard work doesn't turn into tech debt.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"b1f78cbc1cf2063fa44c3a3b09932c0a"}
+{"sourcePlugin":"local-copier","hash":"b1f78cbc1cf2063fa44c3a3b09932c0a"}
 ##DOCS-SOURCER-END -->

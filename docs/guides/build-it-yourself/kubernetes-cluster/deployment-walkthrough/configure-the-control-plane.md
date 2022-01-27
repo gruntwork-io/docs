@@ -129,5 +129,5 @@ variable "terraform_state_s3_bucket" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"c117b6c75e7609d24e95b51029946518"}
+{"sourcePlugin":"local-copier","hash":"c117b6c75e7609d24e95b51029946518"}
 ##DOCS-SOURCER-END -->

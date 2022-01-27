@@ -94,5 +94,5 @@ with the `sensitive` keyword so that terraform will mask the outputs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"Local File Copier","hash":"a11ceab4a04a9730d22dad8113b22d42"}
+{"sourcePlugin":"local-copier","hash":"a11ceab4a04a9730d22dad8113b22d42"}
 ##DOCS-SOURCER-END -->
