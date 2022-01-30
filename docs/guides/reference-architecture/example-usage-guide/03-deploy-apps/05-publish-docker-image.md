@@ -51,7 +51,7 @@ docker tag simple-web-app:latest 234567890123.dkr.ecr.us-west-2.amazonaws.com/si
 Next, authenticate your Docker client with ECR in the shared-services account:
 
 ```bash
-aws ecr get-login-password --region "us-west-2"  | docker login --username AWS --password-stdin 234567890123.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region "us-west-2"  | docker login --username AWS --password-stdin 234567890123.dkr.ecr.us-west-2.amazonaws.com
 ```
 
 And finally, push your newly tagged image to publish it:
