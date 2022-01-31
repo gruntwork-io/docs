@@ -109,7 +109,7 @@ const config = {
             position: "right",
           },
           {
-            href: "/guides/support",
+            href: "/support",
             label: "Support",
             position: "right",
           },
@@ -129,7 +129,7 @@ const config = {
                 label: "Knowledge Base",
               },
               {
-                href: "/guides/support",
+                href: "/support",
                 label: "Support",
               },
               {
@@ -202,7 +202,7 @@ const config = {
               },
               {
                 label: "Support",
-                href: "/guides/support",
+                href: "/support",
               },
             ],
           },

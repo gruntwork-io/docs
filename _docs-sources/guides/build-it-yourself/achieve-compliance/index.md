@@ -11,7 +11,7 @@ import { CardList } from "/src/components/CardGroup"
 
 This guide was last updated on 6th September 2021, and it covers CIS 1.4.0 Benchmark recommendations. We aim to keep
 it up to date with our infrastructure-as-code modules with the latest CIS Benchmark that has been released.
-If you need to access older versions, please [get in touch](/guides/support) with us.
+If you need to access older versions, please [get in touch](/support) with us.
 
 :::
 
