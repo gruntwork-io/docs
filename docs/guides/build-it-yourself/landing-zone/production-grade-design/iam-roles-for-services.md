@@ -54,7 +54,7 @@ need to take extra care in terms of who can assume this IAM role, what permissio
 services. For example, if you have Jenkins running on an EC2 instance, and you give that EC2 instance access to an
 IAM role so it can deploy your apps, you should do your best to minimize the permissions that IAM role has (e.g.,
 to just `ecs` permissions if deploying to ECS) and you should ensure that your Jenkins instance runs in private
-subnets so that it is NOT accessible from the public Internet (see [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/)).
+subnets so that it is NOT accessible from the public Internet (see [How to deploy a production-grade VPC on AWS](/guides/build-it-yourself/vpc/)).
 
 #### Use the right Principal
 
@@ -136,5 +136,5 @@ sensitive machine user access keys.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5f42e5b6fc72aaaf319e757d874f4f2c"}
+{"sourcePlugin":"local-copier","hash":"6a6f172c3ecdc65911aeb1e7770e05e6"}
 ##DOCS-SOURCER-END -->

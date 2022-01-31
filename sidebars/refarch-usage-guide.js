@@ -2,7 +2,7 @@ const refarchUsageSidebar = [
   {
     label: "Reference Architecture Guides",
     type: "link",
-    href: "/docs/guides/reference-architecture",
+    href: "/guides/reference-architecture",
     className: "back-button",
   },
   {

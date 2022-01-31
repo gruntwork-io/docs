@@ -12,4 +12,4 @@ cloud:
 
 If you'd like to build your mental model on how to think about cloud usage, and you're looking for a set of steps you
 can follow to make better use of the cloud at your company, read the [Gruntwork Production Framework
-Guide](/docs/guides/production-framework) for the full details.
+Guide](/guides/production-framework) for the full details.

@@ -11,12 +11,12 @@ If you've purchased a Reference Architecture, these guides will help guide you t
 
 <Card
   title="Configure Your Reference Architecture"
-  href="/docs/guides/reference-architecture/configuration-guide">
+  href="/guides/reference-architecture/configuration-guide">
 Learn how to configure your Reference Architecture so Gruntwork can deliver it directly into your repo.
 </Card>
 <Card
   title="Example Usage Guide"
-  href="/docs/guides/reference-architecture/example-usage-guide">
+  href="/guides/reference-architecture/example-usage-guide">
 See a preview of how to use your customized Reference Architecture once we've delivered it in your repo.
 </Card>
 
@@ -24,5 +24,5 @@ See a preview of how to use your customized Reference Architecture once we've de
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"2f17db19758f8477ead61801bae97e9c"}
+{"sourcePlugin":"local-copier","hash":"21aa6a8e8b5ae6d1b2c9cb6b1e8d5a37"}
 ##DOCS-SOURCER-END -->

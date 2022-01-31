@@ -11,12 +11,12 @@ If you've purchased a Reference Architecture, these guides will help guide you t
 
 <Card
   title="Configure Your Reference Architecture"
-  href="/docs/guides/reference-architecture/configuration-guide">
+  href="/guides/reference-architecture/configuration-guide">
 Learn how to configure your Reference Architecture so Gruntwork can deliver it directly into your repo.
 </Card>
 <Card
   title="Example Usage Guide"
-  href="/docs/guides/reference-architecture/example-usage-guide">
+  href="/guides/reference-architecture/example-usage-guide">
 See a preview of how to use your customized Reference Architecture once we've delivered it in your repo.
 </Card>
 

@@ -144,7 +144,7 @@ balancers, and so on. Each module is configured via a `terragrunt.hcl` file.
 </div>
 
 For example, if you were using AWS, with separate accounts for staging and production (see
-[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/)),
+[How to Configure a Production Grade AWS Account Structure](/guides/build-it-yourself/landing-zone/)),
 and you wanted to deploy the `vpc-app` module in the `us-east-2` region in
 each of these accounts, the folder structure would look like this:
 

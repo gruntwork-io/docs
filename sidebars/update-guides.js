@@ -1,7 +1,7 @@
 const backLink = {
   label: "Update Guides",
   type: "link",
-  href: "/docs/guides/stay-up-to-date",
+  href: "/guides/stay-up-to-date",
   className: "back-button",
 }
 

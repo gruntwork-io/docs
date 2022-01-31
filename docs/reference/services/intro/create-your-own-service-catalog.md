@@ -25,7 +25,7 @@ the Gruntwork Service Catalog? There are two things to check:
    common and likely affects many companies, we should support it! If that's the case, please [file a GitHub issue in
    this repo](https://github.com/gruntwork-io/terraform-aws-service-catalog/issues/new), and the Gruntwork team may be able to implement it for you. Also, pull requests are VERY welcome! See
    [Contributing to the Gruntwork Service
-   Catalog](/docs/guides/working-with-code/contributing)
+   Catalog](/guides/working-with-code/contributing)
    for instructions.
 
 If your use case isn't handled by the Gruntwork Service Catalog, and it's something fairly specific to your company,
@@ -99,13 +99,13 @@ One way to populate your Service Catalog is to extend Gruntwork Services. There 
 1. **(NOT RECOMMENDED) Copy a Gruntwork Service**. Another way to extend a Gruntwork Service is to copy all of the code
    for that one service into your own Git repo and modify the code directly. This is not recommended, as then you'll
    have to maintain all of the code for that service yourself, and won't benefit from all the [maintenance
-   work](/docs/reference/services/intro/overview#maintenance-and-versioning) done by the Gruntwork team. The only reason to copy the code this way is if you
+   work](/reference/services/intro/overview#maintenance-and-versioning) done by the Gruntwork team. The only reason to copy the code this way is if you
    need a significant change that cannot be done from outside the service.
 
 1. **(NOT RECOMMENDED) Fork the Gruntwork Service Catalog**. Yet another option is to
    [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the entire Gruntwork Service
    Catalog into a repo of your own. This is not recommended, as then you'll have to maintain all of that code yourself,
-   and won't benefit from all the [maintenance work](/docs/reference/services/intro/overview/#maintenance-and-versioning) done by the Gruntwork team. The only
+   and won't benefit from all the [maintenance work](/reference/services/intro/overview/#maintenance-and-versioning) done by the Gruntwork team. The only
    reason to fork the entire repo is if you have a company policy that only allows you consume code from your own
    repositories. Note that if you do end up forking the entire Service Catalog, you can use `git fetch` and `git merge`
    to [automatically pull in changes from
@@ -187,5 +187,5 @@ inputs = {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ebab1908283ea942f6a6324444ee743b"}
+{"sourcePlugin":"local-copier","hash":"1f4ef9cbba76e05f0cc247508e82dc54"}
 ##DOCS-SOURCER-END -->

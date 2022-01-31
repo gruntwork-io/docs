@@ -171,8 +171,8 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
-and [Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
+and [Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 ## Merge and release your wrapper module

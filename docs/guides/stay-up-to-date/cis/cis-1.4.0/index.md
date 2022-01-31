@@ -23,9 +23,9 @@ CIS AWS Foundations Benchmark.
 
 ## Previous versions of this guide
 
-- [How to update to CIS AWS Foundations Benchmark v1.3.0](/docs/guides/stay-up-to-date/cis/cis-1.3.0)
+- [How to update to CIS AWS Foundations Benchmark v1.3.0](/guides/stay-up-to-date/cis/cis-1.3.0)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"f6d60f7125da7ab7113175fd4d7f72c6"}
+{"sourcePlugin":"local-copier","hash":"17fec984c7dd73e582569161c07af67c"}
 ##DOCS-SOURCER-END -->

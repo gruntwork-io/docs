@@ -39,7 +39,7 @@ All of the infrastructure in this repo is managed as **code** using [Terragrunt]
   [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/).
 
 For more info on Infrastructure as Code and Terraform, check out [A Comprehensive Guide to
-Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) and our our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section.
+Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) and our our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) section.
 
 ## AWS accounts
 

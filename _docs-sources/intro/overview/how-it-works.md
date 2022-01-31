@@ -5,7 +5,7 @@
 There are two fundamental ways to engage Gruntwork:
 
 1. **Gruntwork builds your architecture.** We generate the [Reference Architecture](https://gruntwork.io/reference-architecture/) based on your needs, deploy into your AWS accounts, and give you 100% of the code. Since you have all the code, you can extend, enhance, and customize the environment exactly according to your needs. The deploy process takes about one day.
-2. **Build it yourself.** The Gruntwork IaC library empowers you to [construct your own bespoke architecture](/docs/guides#build-your-own-architecture) in record time. By mix-and-matching our modules and services you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood.
+2. **Build it yourself.** The Gruntwork IaC library empowers you to [construct your own bespoke architecture](/guides#build-your-own-architecture) in record time. By mix-and-matching our modules and services you can quickly define a custom architecture to suit your needs, all with the confidence of having world-class, battle-tested code running under the hood.
 
 ## What we provide
 
@@ -38,8 +38,8 @@ A team of experienced Gruntwork engineers who help you achieve success using Gru
 
 Gruntwork offers basic and paid support options:
 
-- **[Community support](/docs/guides/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
-- **[Paid support](/docs/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
+- **[Community support](/guides/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
+- **[Paid support](/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
 
 ## What you provide
 

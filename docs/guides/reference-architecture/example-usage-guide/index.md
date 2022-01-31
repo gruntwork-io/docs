@@ -39,7 +39,7 @@ All of the infrastructure in this repo is managed as **code** using [Terragrunt]
   [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/).
 
 For more info on Infrastructure as Code and Terraform, check out [A Comprehensive Guide to
-Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) and our our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) section.
+Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca) and our our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) section.
 
 ## AWS accounts
 
@@ -161,5 +161,5 @@ Next up, let's have a look at [how to authenticate](02-authenticate/01-intro.md)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"0005c89bf8d9356bc7a93ace98e33976"}
+{"sourcePlugin":"local-copier","hash":"16a73da5e040233872dddede948a3e66"}
 ##DOCS-SOURCER-END -->

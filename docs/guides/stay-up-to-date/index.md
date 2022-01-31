@@ -18,31 +18,31 @@ import CardGroup from "/src/components/CardGroup"
 
 <Card
   title="Update to version 1.X"
-  href="/docs/guides/stay-up-to-date/terraform/terraform-1.x"
+  href="/guides/stay-up-to-date/terraform/terraform-1.x"
   />
 <Card
   title="Update to Terraform 15"
-  href="/docs/guides/stay-up-to-date/terraform/terraform-15"
+  href="/guides/stay-up-to-date/terraform/terraform-15"
   />
 <Card
   title="Update to Terraform 14"
-  href="/docs/guides/stay-up-to-date/terraform/terraform-14"
+  href="/guides/stay-up-to-date/terraform/terraform-14"
   />
 <Card
   title="Update to Terraform 13"
-  href="/docs/guides/stay-up-to-date/terraform/terraform-13"
+  href="/guides/stay-up-to-date/terraform/terraform-13"
   />
 <Card
   title="Update to Terraform 12"
-  href="/docs/guides/stay-up-to-date/terraform/terraform-12"
+  href="/guides/stay-up-to-date/terraform/terraform-12"
   />
 <Card
   title="Update to Version 3 of the Terraform provider"
-  href="/docs/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
+  href="/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v3"
   />
 <Card
   title="DRY your Reference Architecture"
-  href="/docs/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
+  href="/guides/stay-up-to-date/terraform/how-to-dry-your-reference-architecture"
   />
 
 </CardGroup>
@@ -57,11 +57,11 @@ import CardGroup from "/src/components/CardGroup"
 
 <Card
   title="Update to version 1.4.0"
-  href="/docs/guides/stay-up-to-date/cis/cis-1.4.0"
+  href="/guides/stay-up-to-date/cis/cis-1.4.0"
   />
 <Card
   title="Update to version 1.3.0"
-  href="/docs/guides/stay-up-to-date/cis/cis-1.3.0"
+  href="/guides/stay-up-to-date/cis/cis-1.3.0"
   />
 
 </CardGroup>
@@ -72,5 +72,5 @@ import CardGroup from "/src/components/CardGroup"
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"4e286a4930d5ff733245cc2fb2cc0843"}
+{"sourcePlugin":"local-copier","hash":"22ec7fce1c9d00548395baed02c4b112"}
 ##DOCS-SOURCER-END -->

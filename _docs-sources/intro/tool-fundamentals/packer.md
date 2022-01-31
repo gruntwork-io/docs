@@ -39,7 +39,7 @@ includes an `ssh-grunt` binary you can run on each server to manage SSH access t
 IAM users in specific IAM groups will be able to SSH to specific servers using their own usernames and SSH keys).
 
 To get these scripts and binaries onto your virtual servers (e.g., onto EC2 instances in AWS), we recommend using Packer to build VM images that have these scripts and binaries installed. You'll see an
-example of how to do this in our [Deploy Your First Module](/docs/intro/first-deployment/using-terraform-modules) section.
+example of how to do this in our [Deploy Your First Module](/intro/first-deployment/using-terraform-modules) section.
 
 :::note
 
