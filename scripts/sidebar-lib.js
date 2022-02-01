@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
 const yargs = require("yargs/yargs")
-const path = require(`path`)
+const path = require("path")
 const fs = require("fs")
 const startCase = require("lodash").startCase
-
-// global, for convenience
-let verbose
 
 function toOutputDocId(sourcePath) {
   // assume it could run against either source or output directories,
@@ -37,19 +34,17 @@ const isSupportedFileType = (filepath) => {
   return filepath.match(/\.mdx?$/)
 }
 
-const resolveDir = (dir) => {
-  return path.resolve(path.join(process.env.INIT_CWD, dir))
-}
-
-async function generateSidebar(dir, backButtonLabel = null, spacer = "") {
+async function generateSidebar(dir, opts) {
   // bail if it isn't actually a directory
   if (!fs.statSync(dir).isDirectory()) {
     console.log(`WARNING: skipping top-level plain file %o`, dir)
     return
   }
 
-  if (verbose) {
-    console.log("Generating: " + spacer + `%o`, path.parse(dir).name)
+  opts.spacer = opts.spacer || ""
+
+  if (opts.verbose) {
+    console.log("Generating: " + opts.spacer + `%o`, path.parse(dir).name)
   }
 
   // fetch the directory contents
@@ -75,7 +70,11 @@ async function generateSidebar(dir, backButtonLabel = null, spacer = "") {
   for (const fullPath of fullPaths) {
     if (fs.statSync(fullPath).isDirectory()) {
       // process subdirectories recusively (back button is top level only!)
-      const items = await generateSidebar(fullPath, null, spacer + "  ")
+      const items = await generateSidebar(fullPath, {
+        backButton: opts.backButton,
+        verbose: opts.verbose,
+        spacer: opts.spacer + "  ",
+      })
       if (items) {
         sidebarItems.push({ [formatName(fullPath)]: items })
       }
@@ -104,9 +103,9 @@ async function generateSidebar(dir, backButtonLabel = null, spacer = "") {
   }
 
   // add a back button, if requested
-  if (backButtonLabel) {
+  if (opts.backButton) {
     sidebarItems.unshift({
-      label: backButtonLabel,
+      label: opts.backButton,
       type: "link",
       href: toOutputDocId(path.dirname(dir)),
       className: "back-button",
@@ -116,13 +115,13 @@ async function generateSidebar(dir, backButtonLabel = null, spacer = "") {
   return sidebarItems
 }
 
-async function generateSingleSidebarFile(dir, backButtonLabel) {
-  if (verbose) {
+async function generateSingleSidebarFile(dir, opts) {
+  if (opts.verbose) {
     console.log("Generating sidebar for %o", dir)
   }
 
   // generate it!
-  const sidebar = await generateSidebar(dir, backButtonLabel)
+  const sidebar = await generateSidebar(dir, opts)
 
   // exit with error if no sidebar was generated
   if (!sidebar) {
@@ -139,8 +138,8 @@ async function generateSingleSidebarFile(dir, backButtonLabel) {
   return data
 }
 
-async function generateMultiSidebarFile(dirs, backButtonLabel) {
-  if (verbose) {
+async function generateMultiSidebarFile(dirs, opts) {
+  if (opts.verbose) {
     console.log(`Generating sidebars for multiple directories: %o`, dirs)
   }
 
@@ -148,9 +147,8 @@ async function generateMultiSidebarFile(dirs, backButtonLabel) {
   const sidebars = {}
 
   for (const dir of dirs) {
-
     // generate it!
-    const sidebar = await generateSidebar(dir, backButtonLabel)
+    const sidebar = await generateSidebar(dir, opts)
     // add the sidebar to our result object
     if (sidebar) {
       sidebars[path.parse(dir).name] = sidebar
@@ -172,67 +170,8 @@ async function generateMultiSidebarFile(dirs, backButtonLabel) {
   return data
 }
 
-async function main() {
-  const { hideBin } = require("yargs/helpers")
-
-  // parse command line args
-  const argv = yargs(hideBin(process.argv))
-    .usage("$0 [-bv] [-o file] [directory]")
-    .option("back", {
-      alias: "b",
-      type: "string",
-      description: "Include a back button with the specified label",
-    })
-    .option("output", {
-      alias: "o",
-      type: "string",
-      description: "The path at which to write sidebar file",
-    })
-    .option("verbose", {
-      alias: "v",
-      type: "boolean",
-      description: "Run with verbose logging",
-    })
-    .positional("directory", {
-      description:
-        "The directory to generate a sidebar for, e.g. a multi-page guide, or a list of directories to generate a multi-sidebar file",
-    })
-    .strictOptions()
-    .version("1.0")
-    .parse()
-
-  verbose = argv.verbose
-
-  let data
-
-  // generate a single or multi-sidebar file
-  if (argv._.length < 2) {
-    // operate on the working dir if not otherwise specified
-    const inputDir = resolveDir(argv._[0] || "")
-    data = await generateSingleSidebarFile(inputDir, argv.back)
-  } else {
-    const inputDirs = argv._.map(resolveDir)
-    data = await generateMultiSidebarFile(inputDirs, argv.back)
-  }
-
-  if (verbose) {
-    console.log(
-      "Done. Don't forget to place your sidebar file in /sidebars and update /sidebars.js to require it.\n"
-    )
-  }
-
-  // write to file or print to stdout
-  if (argv.output) {
-    fs.writeFile(argv.output, data, (err) => {
-      if (err) {
-        console.log("Error writing sidebar file: ", err)
-      } else {
-        console.log("Wrote sidebar file to %o", argv.output)
-      }
-    })
-  } else {
-    console.log(data)
-  }
+module.exports = {
+  generateSidebar: generateSidebar,
+  generateSingleSidebarFile: generateSingleSidebarFile,
+  generateMultiSidebarFile: generateMultiSidebarFile,
 }
-
-main()

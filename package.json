@@ -15,7 +15,7 @@
     "typecheck": "tsc",
     "regenerate": "env-cmd --silent docs-sourcer",
     "regenerate:local": "yarn regenerate --plugins local-copier",
-    "sidebar": "scripts/generate-sidebar"
+    "sidebar": "scripts/generate-sidebar.js",
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.14",
