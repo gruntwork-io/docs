@@ -5,86 +5,73 @@ const path = require(`path`)
 const fs = require("fs")
 const startCase = require("lodash").startCase
 
-function toOutputPath(sourcePath) {
-  return sourcePath.replace(/.*_docs-sources/, "")
+function toOutputDocId(sourcePath) {
+  const outputPath = sourcePath.replace(/.*_docs-sources\//, "")
+  const docId = path.join(
+    path.parse(outputPath).dir,
+    path.parse(outputPath).name
+  )
+  return docId
 }
 
-async function generateSidebar(dir) {
+const formatName = (filepath) => {
+  // TODO: extract from _category_.json file or file itself?
+  return startCase(path.parse(filepath).name.replace(/\-/gim, " "))
+}
+
+const isCategoryIndexPredicate = (p) => {
+  // e.g. .../index.md (we don't support the README variant)
+  return fs.statSync(p).isFile && path.parse(p).name.toLowerCase() === "index"
+}
+
+const isSupportedFileType = (filepath) => {
+  // we only support .md and .mdx files
+  return filepath.match(/\.mdx?$/)
+}
+
+async function generateSidebar(dir, spacer = "") {
+  if (argv.verbose) {
+    console.log("Processing directory: " + spacer + `%o`, path.parse(dir).name)
+  }
+
   const paths = fs.readdirSync(dir)
+  let fullPaths = paths.map((p) => {
+    return path.join(dir, p)
+  })
   const resultingItems = []
 
-  // // console.log(paths)
-  // const foundIndex = paths.find((p) => {
-  //   let fullPath = path.join(dir, p)
-  //   // console.log(fullPath)
-  //   if (fs.statSync(fullPath).isDirectory()) {
-  //     // console.log("DIR: ", fullPath)
-  //     return false
-  //   }
-  //   // console.log(path.parse(p).name.toLowerCase())
-  //   return path.parse(p).name.toLowerCase() === "index"
-  // })
-  // if (foundIndex) {
-  //   console.log("AHA! AN INDEX FILE in: %o", paths)
-  // }
-  // process.exit(1)
+  const categoryIndex = fullPaths.find(isCategoryIndexPredicate)
+  fullPaths = fullPaths.filter((p) => !isCategoryIndexPredicate(p))
 
-  // iterate over all files in this directory
-  for (const file of paths) {
-    let fullDir = path.join(dir, file)
-    const newFullDir = path.join(dir, file.substring(2))
-
-    // process subdirectories recusively
-    if (fs.statSync(fullDir).isDirectory()) {
-      if (argv.verbose) {
-        console.log(`Processing subdirectory: %o`, path.parse(fullDir).name)
-      }
-
-      const items = await generateSidebar(fullDir)
-      const foundIndex = items.find((item) => {
-        if (typeof item === "object") {
-          return false
-        }
-        // console.log(path.parse(item).name.toLowerCase())
-        return path.parse(item).name.toLowerCase() === "index"
-      })
-      const betterName = startCase(
-        path.parse(fullDir).name.replace(/\-/gim, " ")
-      )
-
-      // apply the category-index convention to make the category clickable,
-      // and remove it from the list of subpages
-      if (foundIndex) {
-        // console.log(`Found index in %o`, fullDir)
-        resultingItems.push({
-          label: betterName,
-          type: "category",
-          link: {
-            type: "doc",
-            id: foundIndex,
-          },
-          items: items.filter((item) => {
-            if (typeof item === "object") {
-              return true
-            }
-            return path.parse(item).name.toLowerCase() !== "index"
-          }),
-        })
-      } else {
-        resultingItems.push({ [betterName]: items })
-      }
-      // if it's a file, output its path
+  // iterate over all non-index files in this directory
+  for (const fullPath of fullPaths) {
+    if (fs.statSync(fullPath).isDirectory()) {
+      // process subdirectories recusively
+      const items = await generateSidebar(fullPath, spacer + "  ")
+      resultingItems.push({ [formatName(fullPath)]: items })
     } else {
-      if (file.match(/.md$/)) {
-        const properPath = toOutputPath(fullDir)
-        const generatedPageId = path.join(
-          path.parse(properPath).dir,
-          path.parse(properPath).name
-        )
+      // if it's a (supported) file, just output its path
+      if (isSupportedFileType(fullPath)) {
+        const generatedPageId = toOutputDocId(fullPath)
         resultingItems.push(generatedPageId)
       }
     }
   }
+
+  if (categoryIndex) {
+    return [
+      {
+        label: formatName(dir),
+        type: "category",
+        link: {
+          type: "doc",
+          id: toOutputDocId(categoryIndex),
+        },
+        items: resultingItems,
+      },
+    ]
+  }
+
   return resultingItems
 }
 
@@ -123,23 +110,21 @@ async function main() {
   const inputDir = argv._[0] || process.cwd()
   const sideBar = await generateSidebar(inputDir)
 
-  // add a back button, if called for
+  // add a back button, if requested
   if (argv.back) {
     sideBar.unshift({
-      label: "Back to INSERT_TITLE_HERE",
+      label: "INSERT_BACK_LABEL_HERE",
       type: "link",
-      href: toOutputPath(path.dirname(inputDir)),
+      href: toOutputDocId(path.dirname(inputDir)),
       className: "back-button",
     })
   }
 
   if (argv.verbose) {
-    console.log("Done.\n")
+    console.log(
+      "Done. Don't forget to place your sidebar file in /sidebars and update /sidebars.js to require it.\n"
+    )
   }
-
-  // console.log(
-  //   "Done. Don't forget to place your sidebar file in /sidebars and update /sidebars.js to require it.\n"
-  // )
 
   // construct the final output
   data =
