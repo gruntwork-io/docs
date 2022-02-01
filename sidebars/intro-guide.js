@@ -1,4 +1,4 @@
-const introSidebar = [
+const sidebar = [
   {
     Overview: [
       "intro/overview/intro-to-gruntwork",
@@ -52,4 +52,4 @@ const introSidebar = [
   },
 ]
 
-module.exports = introSidebar
+module.exports = sidebar

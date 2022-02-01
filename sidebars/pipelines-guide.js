@@ -1,4 +1,4 @@
-const pipelineGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -53,4 +53,4 @@ const pipelineGuide = [
   },
 ]
 
-module.exports = pipelineGuide
+module.exports = sidebar

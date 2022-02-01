@@ -1,4 +1,4 @@
-const refarchUsageSidebar = [
+const sidebar = [
   {
     label: "Reference Architecture Guides",
     type: "link",
@@ -74,4 +74,4 @@ const refarchUsageSidebar = [
   },
 ]
 
-module.exports = refarchUsageSidebar
+module.exports = sidebar

@@ -1,4 +1,4 @@
-const guidesIndex = [
+const sidebar = [
   {
     label: "Foundations",
     type: "doc",
@@ -35,4 +35,4 @@ const guidesIndex = [
   },
 ]
 
-module.exports = guidesIndex
+module.exports = sidebar

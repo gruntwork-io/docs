@@ -1,4 +1,4 @@
-const landingZoneGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -69,4 +69,4 @@ const landingZoneGuide = [
   },
 ]
 
-module.exports = landingZoneGuide
+module.exports = sidebar

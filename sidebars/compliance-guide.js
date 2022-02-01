@@ -1,4 +1,4 @@
-const complianceGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -61,4 +61,4 @@ const complianceGuide = [
   },
 ]
 
-module.exports = complianceGuide
+module.exports = sidebar

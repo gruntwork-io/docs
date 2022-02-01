@@ -1,4 +1,4 @@
-const vpcGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -56,4 +56,4 @@ const vpcGuide = [
   },
 ]
 
-module.exports = vpcGuide
+module.exports = sidebar
