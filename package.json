@@ -14,7 +14,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "regenerate": "env-cmd --silent docs-sourcer",
-    "regenerate:local": "yarn regenerate --plugins local-copier"
+    "regenerate:local": "yarn regenerate --plugins local-copier",
+    "sidebar": "scripts/generate-sidebar"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.14",

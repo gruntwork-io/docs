@@ -5,9 +5,12 @@ const path = require(`path`)
 const fs = require("fs")
 const startCase = require("lodash").startCase
 
+// global, for convenience
+let verbose
+
 function toOutputDocId(sourcePath) {
-  // assume it could run in either source or output directories, but strip
-  // out everything up to the docs site base path
+  // assume it could run against either source or output directories,
+  // but strip out everything up to the docs site base path
   const outputPath = path
     .resolve(sourcePath)
     .replace(/.*\/(_docs-sources|docs)\//, "")
@@ -32,6 +35,10 @@ const isCategoryIndexFilePredicate = (p) => {
 const isSupportedFileType = (filepath) => {
   // we only support .md and .mdx files
   return filepath.match(/\.mdx?$/)
+}
+
+const resolveDir = (dir) => {
+  return path.resolve(path.join(process.env.INIT_CWD, dir))
 }
 
 async function generateSidebar(dir, backButtonLabel = null, spacer = "") {
@@ -141,6 +148,7 @@ async function generateMultiSidebarFile(dirs, backButtonLabel) {
   const sidebars = {}
 
   for (const dir of dirs) {
+
     // generate it!
     const sidebar = await generateSidebar(dir, backButtonLabel)
     // add the sidebar to our result object
@@ -193,7 +201,6 @@ async function main() {
     .version("1.0")
     .parse()
 
-  // we'll let this be global, for convenience
   verbose = argv.verbose
 
   let data
@@ -201,10 +208,11 @@ async function main() {
   // generate a single or multi-sidebar file
   if (argv._.length < 2) {
     // operate on the working dir if not otherwise specified
-    const inputDir = argv._[0] || process.cwd()
+    const inputDir = resolveDir(argv._[0] || "")
     data = await generateSingleSidebarFile(inputDir, argv.back)
   } else {
-    data = await generateMultiSidebarFile(argv._, argv.back)
+    const inputDirs = argv._.map(resolveDir)
+    data = await generateMultiSidebarFile(inputDirs, argv.back)
   }
 
   if (verbose) {
