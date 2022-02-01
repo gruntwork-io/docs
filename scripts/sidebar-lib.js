@@ -26,7 +26,11 @@ const formatName = (filepath) => {
 
 const isCategoryIndexFilePredicate = (p) => {
   // e.g. .../index.md (we don't support the README variant)
-  return fs.statSync(p).isFile && path.parse(p).name.toLowerCase() === "index"
+  return (
+    fs.statSync(p).isFile() &&
+    isSupportedFileType(p) &&
+    path.parse(p).name.toLowerCase() === "index"
+  )
 }
 
 const isSupportedFileType = (filepath) => {
@@ -34,7 +38,7 @@ const isSupportedFileType = (filepath) => {
   return filepath.match(/\.mdx?$/)
 }
 
-async function generateSidebar(dir, opts) {
+async function generateSidebar(dir, opts = {}) {
   // bail if it isn't actually a directory
   if (!fs.statSync(dir).isDirectory()) {
     console.log(`WARNING: skipping top-level plain file %o`, dir)
@@ -115,35 +119,7 @@ async function generateSidebar(dir, opts) {
   return sidebarItems
 }
 
-async function generateSingleSidebarFile(dir, opts) {
-  if (opts.verbose) {
-    console.log("Generating sidebar for %o", dir)
-  }
-
-  // generate it!
-  const sidebar = await generateSidebar(dir, opts)
-
-  // exit with error if no sidebar was generated
-  if (!sidebar) {
-    console.log(`ERROR: Failed to generate a sidebar for %o`, dir)
-    process.exit(1)
-  }
-
-  // construct the final output
-  const data =
-    "const sidebar = " +
-    JSON.stringify(sidebar, null, 2) +
-    "\n\nmodule.exports = sidebar\n"
-
-  return data
-}
-
-async function generateMultiSidebarFile(dirs, opts) {
-  if (opts.verbose) {
-    console.log(`Generating sidebars for multiple directories: %o`, dirs)
-  }
-
-  // iterate over all dirs and generate a sidebar from each
+async function generateMultiSidebar(dirs, opts = {}) {
   const sidebars = {}
 
   for (const dir of dirs) {
@@ -155,10 +131,44 @@ async function generateMultiSidebarFile(dirs, opts) {
     }
   }
 
+  return sidebars
+}
+
+async function generateSidebarFile(dir, opts = {}) {
+  if (opts.verbose) {
+    console.log("Generating sidebar for %o", dir)
+  }
+
+  // generate it!
+  const sidebar = await generateSidebar(dir, opts)
+
+  // exit with error if no sidebar was generated
+  if (!sidebar) {
+    console.log(`ERROR: Failed to generate a sidebar for %o`, dir)
+    return undefined
+  }
+
+  // construct the final output
+  const data =
+    "const sidebar = " +
+    JSON.stringify(sidebar, null, 2) +
+    "\n\nmodule.exports = sidebar\n"
+
+  return data
+}
+
+async function generateMultiSidebarFile(dirs, opts = {}) {
+  if (opts.verbose) {
+    console.log(`Generating sidebars for multiple directories: %o`, dirs)
+  }
+
+  // iterate over all dirs and generate a sidebar from each
+  const sidebars = await generateMultiSidebar(dirs, opts)
+
   // exit with error if no sidebars were generated
   if (Object.keys(sidebars).length === 0) {
     console.log("ERROR: Failed to generate sidebars")
-    process.exit(1)
+    return undefined
   }
 
   // construct the final output
@@ -171,7 +181,17 @@ async function generateMultiSidebarFile(dirs, opts) {
 }
 
 module.exports = {
-  generateSidebar: generateSidebar,
-  generateSingleSidebarFile: generateSingleSidebarFile,
+  // for execution
+  generateSidebarFile: generateSidebarFile,
   generateMultiSidebarFile: generateMultiSidebarFile,
+
+  // for testing
+  generateSidebar: generateSidebar,
+  generateMultiSidebar: generateMultiSidebar,
+
+  // helpers, also for testing
+  toOutputDocId: toOutputDocId,
+  formatName: formatName,
+  isCategoryIndexFilePredicate: isCategoryIndexFilePredicate,
+  isSupportedFileType: isSupportedFileType,
 }

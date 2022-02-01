@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require("yargs/yargs")
-const path = require(`path`)
+const path = require("path")
 const fs = require("fs")
 const {
   generateSingleSidebarFile,
@@ -55,13 +55,18 @@ async function main() {
   let data
 
   // generate a single or multi-sidebar file
-  if (argv._.length < 2) {
-    // operate on the working dir if not otherwise specified
-    const inputDir = resolveDir(argv._[0] || ".")
-    data = await generateSingleSidebarFile(inputDir, opts)
-  } else {
-    const inputDirs = argv._.map(resolveDir)
-    data = await generateMultiSidebarFile(inputDirs, opts)
+  try {
+    if (argv._.length < 2) {
+      // operate on the working dir if not otherwise specified
+      const inputDir = resolveDir(argv._[0] || ".")
+      data = await generateSingleSidebarFile(inputDir, opts)
+    } else {
+      const inputDirs = argv._.map(resolveDir)
+      data = await generateMultiSidebarFile(inputDirs, opts)
+    }
+  } catch (err) {
+    console.log(`ERROR: Failed to generate a sidebar — %o`, err.message)
+    process.exit(1)
   }
 
   if (opts.verbose) {
