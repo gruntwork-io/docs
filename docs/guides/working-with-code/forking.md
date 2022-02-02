@@ -34,7 +34,7 @@ so you’ll want to pull in these updates as quickly as you can.
 
 ## How to use your forked code
 
-Once you’ve forked the code, using it in is very similar to what is outlined in [Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules), except for the following differences:
+Once you’ve forked the code, using it is very similar to what is outlined in [Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules), except for the following differences:
 
 1.  Point the `source` URLs of your Terraform modules to your own Git repos, rather than the `gruntwork-io` GitHub org.
 2.  Point the `--repo` parameter of `gruntwork-install` to your own Git repos, rather than the `gruntwork-io` GitHub org.
@@ -56,5 +56,5 @@ bans all outside sources, then follow the instructions above to fork the code, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"aa5e9f290e27513b656e9bfaee4c4fa8"}
+{"sourcePlugin":"local-copier","hash":"97914adc87d6c65cb7c00383378e43b2"}
 ##DOCS-SOURCER-END -->

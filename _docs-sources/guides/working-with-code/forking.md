@@ -34,7 +34,7 @@ so you’ll want to pull in these updates as quickly as you can.
 
 ## How to use your forked code
 
-Once you’ve forked the code, using it in is very similar to what is outlined in [Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules), except for the following differences:
+Once you’ve forked the code, using it is very similar to what is outlined in [Using Terraform Modules](/docs/intro/first-deployment/using-terraform-modules), except for the following differences:
 
 1.  Point the `source` URLs of your Terraform modules to your own Git repos, rather than the `gruntwork-io` GitHub org.
 2.  Point the `--repo` parameter of `gruntwork-install` to your own Git repos, rather than the `gruntwork-io` GitHub org.

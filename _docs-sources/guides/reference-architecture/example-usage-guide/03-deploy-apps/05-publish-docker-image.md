@@ -7,29 +7,29 @@ First, you'll need to create the new ECR repository.
 
 1. Create a new branch on your infrastructure-live repository: `git checkout -b simple-web-app-repo`.
 1. Open [`repos.yml` in
-`shared/us-west-2/_regional/ecr-repos`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/shared/us-west-2/_regional/ecr-repos/repos.yml) and
-add the desired repository name of your app. For the purposes of our example, let's call
-ours `simple-web-app`:
+   `shared/us-west-2/_regional/ecr-repos`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/shared/us-west-2/_regional/ecr-repos/repos.yml) and
+   add the desired repository name of your app. For the purposes of our example, let's call
+   ours `simple-web-app`:
 
-  ```yaml
-  simple-web-app:
-    external_account_ids_with_read_access:
+```yaml
+simple-web-app:
+  external_account_ids_with_read_access:
     # NOTE: we have to comment out the directives so that the python based data merger (see the `merge-data` hook under
     # blueprints in this repository) can parse this yaml file. This still works when feeding through templatefile, as it
     # will interleave blank comments with the list items, which yaml handles gracefully.
     # %{ for account in accounts }
-    - '${account}'
-    # %{ endfor }
-    external_account_ids_with_write_access: []
-    tags: {}
-    enable_automatic_image_scanning: true
-  ```
+    - "${account}"
+  # %{ endfor }
+  external_account_ids_with_write_access: []
+  tags: {}
+  enable_automatic_image_scanning: true
+```
 
 1. Commit and push the change:
 
-  ```bash
-  git add shared/us-west-2/shared/data-stores/ecr-repos/terragrunt.hcl && git commit -m 'Added simple-web-app repo' && git push
-  ```
+```bash
+git add shared/us-west-2/shared/data-stores/ecr-repos/terragrunt.hcl && git commit -m 'Added simple-web-app repo' && git push
+```
 
 1. Now open a pull request on the `simple-web-app-repo` branch.
 
@@ -51,7 +51,7 @@ docker tag simple-web-app:latest 234567890123.dkr.ecr.us-west-2.amazonaws.com/si
 Next, authenticate your Docker client with ECR in the shared-services account:
 
 ```bash
-aws ecr get-login-password --region "us-west-2"  | docker login --username AWS --password-stdin 234567890123.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region "us-west-2"  | docker login --username AWS --password-stdin 234567890123.dkr.ecr.us-west-2.amazonaws.com
 ```
 
 And finally, push your newly tagged image to publish it:
