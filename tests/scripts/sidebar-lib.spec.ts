@@ -140,7 +140,7 @@ describe("Script:generate-sidebar", () => {
 
   describe("Helpers", () => {
     describe("Function:formatName", () => {
-      test("Converts hyphens to strings", () => {
+      test("Converts hyphens to spaces", () => {
         const formattedName = formatName("name-with-dashes")
         expect(formattedName).toBe("Name With Dashes")
       })
@@ -156,10 +156,28 @@ describe("Script:generate-sidebar", () => {
         expect(formattedName).toBe("Lowercase Title")
       })
 
-      test("Leaves acronyms untouched", () => {
+      test("Leaves acronyms uppercase", () => {
         let formattedName
         formattedName = formatName("ABC-acronym")
         expect(formattedName).toBe("ABC Acronym")
+      })
+
+      test.skip("Leaves articles lowercase", () => {
+        let formattedName
+        formattedName = formatName("read-the-manual")
+        expect(formattedName).toBe("Read the Manual")
+      })
+
+      test.skip("Leaves conjunctions lowercase", () => {
+        let formattedName
+        formattedName = formatName("that-and-that")
+        expect(formattedName).toBe("This and That")
+      })
+
+      test("Supports title with numbers", () => {
+        let formattedName
+        formattedName = formatName("1-is-the-loneliest")
+        expect(formattedName).toBe("1 Is The Loneliest")
       })
     })
 
@@ -183,6 +201,11 @@ describe("Script:generate-sidebar", () => {
         const b = isCategoryIndexFilePredicate(sampleDataPath("index.md"))
         expect(b).toBeTruthy()
       })
+
+      test("Returns true for MDX files named index", () => {
+        const b = isCategoryIndexFilePredicate(sampleDataPath("index.mdx"))
+        expect(b).toBeTruthy()
+      })
     })
 
     describe("Function:isSupportedFileType", () => {
@@ -202,7 +225,7 @@ describe("Script:generate-sidebar", () => {
       })
 
       test("Returns false _category_.json files", () => {
-        const b = isSupportedFileType(sampleDataPath("script.js"))
+        const b = isSupportedFileType(sampleDataPath("_category_.json"))
         expect(b).toBeFalsy()
       })
 
@@ -210,19 +233,24 @@ describe("Script:generate-sidebar", () => {
         const b = isSupportedFileType(sampleDataPath("index.txt"))
         expect(b).toBeFalsy()
       })
+
+      test("Returns false for non-existent files", () => {
+        const b = isSupportedFileType(sampleDataPath("bogus.foo"))
+        expect(b).toBeFalsy()
+      })
     })
 
     describe("Function:toOutputDocId", () => {
       test("Generates proper docId for files inside _docs-sources", () => {
         const docId = toOutputDocId(
-          "/any/asbsolute/path/that/ends/with/_docs-sources/foo/bar/baz.md"
+          "/any/absolute/path/that/ends/with/_docs-sources/foo/bar/baz.md"
         )
         expect(docId).toBe("foo/bar/baz")
       })
 
       test("Generates proper docId for files inside output docs", () => {
         const docId = toOutputDocId(
-          "/any/asbsolute/path/that/ends/with/docs/foo/bar/baz.md"
+          "/any/absolute/path/that/ends/with/docs/foo/bar/baz.md"
         )
         expect(docId).toBe("foo/bar/baz")
       })
