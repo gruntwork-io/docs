@@ -43,7 +43,7 @@ const sidebar = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/vpc/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/vpc/deployment-walkthrough/deploy-a-management-vpc",
           "guides/build-it-yourself/vpc/deployment-walkthrough/deploy-application-vp-cs",

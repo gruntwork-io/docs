@@ -38,7 +38,7 @@ const sidebar = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/deploy-the-vpc",
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/configure-the-control-plane",

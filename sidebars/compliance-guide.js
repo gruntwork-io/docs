@@ -30,7 +30,7 @@ const sidebar = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/the-gruntwork-solution",
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/prepare-your-infrastructure-live-repository",

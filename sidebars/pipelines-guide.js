@@ -39,7 +39,7 @@ const sidebar = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/pipelines/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/pipelines/deployment-walkthrough/deploy-a-vpc",
           "guides/build-it-yourself/pipelines/deployment-walkthrough/deploy-the-ecs-deploy-runner",

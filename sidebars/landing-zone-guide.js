@@ -46,7 +46,7 @@ const sidebar = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/prepare-your-infrastructure-live-repository",
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/create-the-root-account",
