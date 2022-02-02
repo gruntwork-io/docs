@@ -8,7 +8,7 @@ library to test and update the code to be compatible with AWS provider version 3
 the proper versions of the Gruntwork library to pick up the fixes/changes that were made to be compatible. Be sure to
 read the release notes to know what changes need to be made to update to that version.
 
-Refer to our ["Updating to new versions"](/docs/guides/working-with-code/versioning#updating-to-new-versions) guide
+Refer to our ["Updating to new versions"](/guides/working-with-code/versioning#updating-to-new-versions) guide
 for instructions on how to update the versions in your code.
 
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
@@ -17,7 +17,7 @@ compatible with AWS provider version 3.
 :::caution
 
 Gruntwork follows [semantic
-versioning](/docs/guides/working-with-code/versioning#semantic-versioning).
+versioning](/guides/working-with-code/versioning#semantic-versioning).
 For any pre-1.0 modules, this means that version updates to the minor version
 are considered backwards incompatible releases for any version updates prior to
 1.0.0 release. Make sure to read the release notes for the relevant modules any
@@ -182,5 +182,5 @@ on how to update your components to be compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"17a025af41678a561f54d802977e6f36"}
+{"sourcePlugin":"local-copier","hash":"ab6bc780e5dab16724fdb9635ba78a15"}
 ##DOCS-SOURCER-END -->

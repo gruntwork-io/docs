@@ -14,7 +14,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
 
 </div>
 
@@ -31,7 +31,7 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
 
 #### Terragrunt
 
@@ -56,5 +56,5 @@ automatically.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"29b8c6bff7024eeabc149de8c5748f18"}
+{"sourcePlugin":"local-copier","hash":"236b0439a1fea830fcd050c5a4b2bbbf"}
 ##DOCS-SOURCER-END -->

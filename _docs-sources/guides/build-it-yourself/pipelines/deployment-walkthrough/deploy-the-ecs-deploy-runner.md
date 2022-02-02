@@ -125,9 +125,9 @@ output "url" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
+[Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
 and
-[Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
+[Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 Once your `ecr-repo` module is working the way you want, submit a pull request, get your changes merged into the

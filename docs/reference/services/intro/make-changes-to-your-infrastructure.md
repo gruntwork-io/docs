@@ -60,7 +60,7 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
 Whenever changing version numbers, make sure to read the [release
 notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
 incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 :::
 
@@ -128,7 +128,7 @@ versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning)
 Whenever changing version numbers, make sure to read the [release
 notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
 incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 :::
 
@@ -173,7 +173,7 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
    Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+   versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
    :::
 
@@ -191,5 +191,5 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"bbf58d35c7af9d23efff17b3f3383068"}
+{"sourcePlugin":"local-copier","hash":"9c1c897ca51d75cc9c36cb94c514a683"}
 ##DOCS-SOURCER-END -->

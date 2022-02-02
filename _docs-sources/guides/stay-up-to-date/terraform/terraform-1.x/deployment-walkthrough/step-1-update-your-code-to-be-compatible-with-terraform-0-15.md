@@ -22,5 +22,5 @@ If you haven’t already, you need to:
         [Terraform 0.15 upgrade guide](../../terraform-15).
 
 2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 1.x versions in the [compatibility
-    table](/docs/guides/stay-up-to-date/terraform/terraform-1.x/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library#version-compatibility-table). The upgrade will be much easier and less error prone if you keep the number of version jumps as small
+    table](/guides/stay-up-to-date/terraform/terraform-1.x/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library#version-compatibility-table). The upgrade will be much easier and less error prone if you keep the number of version jumps as small
     as possible.

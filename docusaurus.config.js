@@ -50,11 +50,12 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
+          routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
+          // editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           beforeDefaultRemarkPlugins: [captionsPlugin],
         },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -101,14 +102,14 @@ const config = {
             label: "Service Catalog API",
             docId: "reference/services/intro/overview",
           },
-          { to: "/docs/courses", label: "Courses", position: "left" },
+          { to: "/courses", label: "Courses", position: "left" },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
             label: "Knowledge Base",
             position: "right",
           },
           {
-            href: "/docs/guides/support",
+            href: "/guides/support",
             label: "Support",
             position: "right",
           },
@@ -128,7 +129,7 @@ const config = {
                 label: "Knowledge Base",
               },
               {
-                href: "/docs/guides/support",
+                href: "/guides/support",
                 label: "Support",
               },
               {
@@ -201,7 +202,7 @@ const config = {
               },
               {
                 label: "Support",
-                href: "/docs/guides/support",
+                href: "/guides/support",
               },
             ],
           },

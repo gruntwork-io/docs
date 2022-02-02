@@ -1,7 +1,7 @@
 # Deploy the VPC
 
 The first step is to deploy a VPC. Follow the instructions in
-[How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/) to use
+[How to deploy a production-grade VPC on AWS](/guides/build-it-yourself/vpc/) to use
 `module-vpc` to create a VPC setup that looks like this:
 
 ![A production-grade VPC setup deployed using module-vpc from the Gruntwork Infrastructure as Code Library](/img/guides/build-it-yourself/vpc/vpc-diagram.png)
@@ -107,9 +107,9 @@ module "dns_mgmt_to_app" {
 ```
 
 At this point, you’ll want to test your code. See
-[Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
+[Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
 and
-[Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
+[Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 Once your updated `vpc-app` wrapper module is working the way you want, submit a pull request, get your changes merged
@@ -126,9 +126,9 @@ git push --follow-tags
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[Deploy using plain Terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::
 
@@ -149,5 +149,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"25998d0f52b570803234fa1b86512c30"}
+{"sourcePlugin":"local-copier","hash":"58b8f9e6fdf484fe77a7af365a0b1d52"}
 ##DOCS-SOURCER-END -->

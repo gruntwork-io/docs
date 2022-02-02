@@ -60,7 +60,7 @@ Now that your infrastructure is deployed, let's discuss how to make changes to i
 Whenever changing version numbers, make sure to read the [release
 notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
 incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 :::
 
@@ -128,7 +128,7 @@ versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning)
 Whenever changing version numbers, make sure to read the [release
 notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards
 incompatible release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
 :::
 
@@ -173,7 +173,7 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
    Whenever changing version numbers, make sure to read the [release
    notes](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases), especially if it's a backwards incompatible
    release (e.g., `v0.0.1` -> `v0.1.0`), to avoid errors and outages (see [maintenance and
-   versioning](/docs/reference/services/intro/overview/#maintenance-and-versioning) for details)!
+   versioning](/reference/services/intro/overview/#maintenance-and-versioning) for details)!
 
    :::
 

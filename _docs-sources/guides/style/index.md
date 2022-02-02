@@ -7,12 +7,12 @@ import CardGroup from "/src/components/CardGroup"
 
 <Card
   title="Terraform Style Guide"
-  href="/docs/guides/style/terraform-style-guide">
+  href="/guides/style/terraform-style-guide">
 Learn Gruntwork's Terraform coding style.
 </Card>
 <Card
   title="Go Style Guide"
-  href="/docs/guides/style/golang-style-guide">
+  href="/guides/style/golang-style-guide">
 Learn Gruntwork's Go coding style.
 </Card>
 

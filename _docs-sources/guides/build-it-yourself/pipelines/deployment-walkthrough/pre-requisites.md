@@ -8,7 +8,7 @@ This walkthrough has the following pre-requisites:
 
 This guide uses code from the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), as it
 implements most of the production-grade design for you out of the box. Make sure to read
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork).
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork).
 
 </div>
 
@@ -25,7 +25,7 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 This guide uses [Terraform](https://www.terraform.io/) to define and manage all the infrastructure as code. If you’re
 not familiar with Terraform, check out [A
 Comprehensive Guide to Terraform](https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca), [A Crash Course on Terraform](https://training.gruntwork.io/p/terraform), and
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork)
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork)
 
 #### CircleCI
 
@@ -46,7 +46,7 @@ instructions.
 #### Repository structure
 
 This guide assumes your infrastructure code is organized in a manner similar to that covered in the [Prepare Your
-Module](/docs/intro/first-deployment/using-terraform-modules) introduction section. This means that you should have two
+Module](/intro/first-deployment/using-terraform-modules) introduction section. This means that you should have two
 repositories for your≤ infrastructure code, `infrastructure-modules` and `infrastructure-live`. Make sure that the
 `infrastructure-live` repository is locked down as recommended in [Lock down VCS
 systems](../production-grade-design/lock-down-vcs-systems.md). This guide will assume that `master` is the protected
@@ -59,8 +59,8 @@ branch where infrastructure is deployed from.
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
 the Gruntwork Infrastructure as Code Library.** Check out
-our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork) for instructions
+our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork) for instructions
 on alternative options, such as how to
-[Deploy using plain Terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[Deploy using plain Terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::

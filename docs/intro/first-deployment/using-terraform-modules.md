@@ -10,7 +10,7 @@ You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to acce
 :::
 
 You can use this module to deploy a production-grade VPC on AWS. For full background information on VPCs, check
-out [How to deploy a production-grade VPC on AWS](/docs/guides/build-it-yourself/vpc/).
+out [How to deploy a production-grade VPC on AWS](/guides/build-it-yourself/vpc/).
 
 ## Create a wrapper module
 
@@ -66,7 +66,7 @@ The code above will only allow you to run it against the AWS account with ID pas
 variable (you’ll declare this shortly). This is an extra safety measure to ensure you don’t accidentally authenticate
 to the wrong AWS account while deploying this code—e.g., so you don’t accidentally deploy changes intended for
 staging to production (for more info on working with multiple AWS accounts, see
-[How to Configure a Production Grade AWS Account Structure](/docs/guides/build-it-yourself/landing-zone/)).
+[How to Configure a Production Grade AWS Account Structure](/guides/build-it-yourself/landing-zone/)).
 
 </div>
 
@@ -158,7 +158,7 @@ This code pulls in a module using Terraform’s native `module` functionality. F
 
 The `source` URL in the code above uses a Git URL with SSH authentication (see
 [module sources](https://www.terraform.io/docs/modules/sources.html) for all the types of `source` URLs you can use).
-If you have established your account and linked your GitHub ID according to the instruction in [Accessing the Dev Portal](/docs/intro/dev-portal/create-account), this will allow you to access private repos in the Gruntwork
+If you have established your account and linked your GitHub ID according to the instruction in [Accessing the Dev Portal](/intro/dev-portal/create-account), this will allow you to access private repos in the Gruntwork
 Infrastructure as Code Library without having to hard-code a password in your Terraform code.
 
 #### Versioned URL
@@ -248,5 +248,5 @@ output "private_persistence_subnet_ids" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"c78de100bb6dcda611653f87e2d9ee1e"}
+{"sourcePlugin":"local-copier","hash":"2ab1d4784c7c5b3a7426615c1be3dd3f"}
 ##DOCS-SOURCER-END -->

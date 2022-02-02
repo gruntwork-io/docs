@@ -60,7 +60,7 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 <CardList>
   <Card
     title="Core Concepts"
-    href="/docs/guides/build-it-yourself/pipelines/core-concepts/why-is-it-important-to-have-ci-cd"
+    href="/guides/build-it-yourself/pipelines/core-concepts/why-is-it-important-to-have-ci-cd"
   >
     An overview of the core concepts you need to understand what a typical CI/CD pipeline entails for infrastructure code,
     including a comparison with CI/CD for application code, a sample workflow, infrastructure to support CI/CD, and threat
@@ -68,21 +68,21 @@ Feel free to read this guide from start to finish or skip around to whatever sec
   </Card>
   <Card
     title="Production-grade Design"
-    href="/docs/guides/build-it-yourself/pipelines/production-grade-design/intro"
+    href="/guides/build-it-yourself/pipelines/production-grade-design/intro"
   >
     An overview of how to configure a secure, scalable, and robust CI/CD workflow that you can rely on for your
     production application and infrastructure code.
   </Card>
   <Card
     title="Deployment Walkthrough"
-    href="/docs/guides/build-it-yourself/pipelines/deployment-walkthrough/pre-requisites"
+    href="/guides/build-it-yourself/pipelines/deployment-walkthrough/pre-requisites"
   >
     A step-by-step guide to deploying a production-grade CI/CD pipeline in AWS using code from the Gruntwork
     Infrastructure as Code Library.
   </Card>
   <Card
     title="Next Steps"
-    href="/docs/guides/build-it-yourself/pipelines/next-steps"
+    href="/guides/build-it-yourself/pipelines/next-steps"
   >
     What to do once you’ve got your CI/CD pipeline set up.
   </Card>

@@ -103,8 +103,8 @@ file for reference.
 
 ## Test your wrapper module
 
-At this point, you’ll want to test your code. See [Manual tests for Terraform code](/docs/intro/first-deployment/testing#manual-tests-for-terraform-code)
-and [Automated tests for Terraform code](/docs/intro/first-deployment/testing#automated-tests-for-terraform-code)
+At this point, you’ll want to test your code. See [Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code)
+and [Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code)
 for instructions.
 
 ## Merge and release your wrapper module
@@ -149,9 +149,9 @@ route table entries, more bastion hosts, and more credentials.
 
 This guide will use [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
-the Gruntwork Infrastructure as Code Library.** Check out our [Introduction to Gruntwork](/docs/intro/overview/intro-to-gruntwork)
+the Gruntwork Infrastructure as Code Library.** Check out our [Introduction to Gruntwork](/intro/overview/intro-to-gruntwork)
 for instructions on alternative options, such as how to
-[deploy using plain terraform](/docs/intro/first-deployment/deploy#deploy-using-plain-terraform).
+[deploy using plain terraform](/intro/first-deployment/deploy#deploy-using-plain-terraform).
 
 :::
 
@@ -214,5 +214,5 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"7f08e438f61898654f9a4b98cdc19bd0"}
+{"sourcePlugin":"local-copier","hash":"8a19045805626f1cc39de968f2bb0727"}
 ##DOCS-SOURCER-END -->

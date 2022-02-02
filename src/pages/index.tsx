@@ -17,7 +17,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro/overview/intro-to-gruntwork"
+            to="/intro/overview/intro-to-gruntwork"
           >
             Get Started
           </Link>
@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
             <CardGroup>
               <Card
                 title="What is Gruntwork?"
-                href="/docs/intro/overview/intro-to-gruntwork"
+                href="/intro/overview/intro-to-gruntwork"
                 icon="/img/icons/learn.svg"
               >
                 Learn how Gruntwork products can help you deploy a world class
@@ -46,7 +46,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="The Reference Architecture"
-                href="/docs/guides/reference-architecture/index"
+                href="/guides/reference-architecture/index"
                 icon="/img/icons/refarch.svg"
               >
                 Bought a Reference Architecture? Get your new infrastructure up
@@ -54,7 +54,7 @@ export default function Home(): JSX.Element {
               </Card>
               <Card
                 title="Deploy A Service"
-                href="/docs/guides/build-it-yourself"
+                href="/guides/build-it-yourself"
                 icon="/img/icons/deploy.svg"
               >
                 Follow our tutorials and learn how to deploy Gruntwork services
@@ -67,35 +67,35 @@ export default function Home(): JSX.Element {
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card
                 title="Set Up Your Multi-account Structure"
-                href="/docs/guides/build-it-yourself/landing-zone"
+                href="/guides/build-it-yourself/landing-zone"
               >
                 Streamline how you create, configure, and secure your AWS
                 accounts using Gruntwork Landing Zone.
               </Card>
               <Card
                 title="Create an Infra CI/CD Pipeline"
-                href="/docs/guides/build-it-yourself/pipelines"
+                href="/guides/build-it-yourself/pipelines"
               >
                 Use your preferred CI tool to set up an end‑to‑end pipeline for
                 your infrastructure code.
               </Card>
               <Card
                 title="Configure Your Network"
-                href="/docs/guides/build-it-yourself/vpc"
+                href="/guides/build-it-yourself/vpc"
               >
                 Set up your network according to industry best practices using
                 our VPC service.
               </Card>
               <Card
                 title="Deploy a Kubernetes Cluster"
-                href="/docs/guides/build-it-yourself/kubernetes-cluster"
+                href="/guides/build-it-yourself/kubernetes-cluster"
               >
                 Deploy Kubernetes using EKS to host all of your apps and
                 services.
               </Card>
               <Card
                 title="Achieve Compliance"
-                href="/docs/guides/build-it-yourself/achieve-compliance"
+                href="/guides/build-it-yourself/achieve-compliance"
               >
                 Implement the CIS AWS Foundations Benchmark using our curated
                 collection of modules and services.
