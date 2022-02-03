@@ -73,9 +73,9 @@ async function generateSidebar(dir, opts = {}) {
 
   for (const fullPath of fullPaths) {
     if (fs.statSync(fullPath).isDirectory()) {
-      // process subdirectories recusively (back button is top level only!)
+      // process subdirectories recusively
       const items = await generateSidebar(fullPath, {
-        backButton: opts.backButton,
+        // note: back button is ommited as it's top-level only
         verbose: opts.verbose,
         spacer: opts.spacer + "  ",
       })
@@ -111,7 +111,7 @@ async function generateSidebar(dir, opts = {}) {
     sidebarItems.unshift({
       label: opts.backButton,
       type: "link",
-      href: toOutputDocId(path.dirname(dir)),
+      href: "/" + toOutputDocId(path.dirname(dir)), // must be absolute
       className: "back-button",
     })
   }

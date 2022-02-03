@@ -94,7 +94,15 @@ describe("Script:generate-sidebar", () => {
       expect(backButton.type).toBe("link")
       expect(backButton.label).toBe("Back")
       expect(backButton.className).toBe("back-button")
-      expect(backButton.href).toBe(docId("."))
+      expect(backButton.href).toBe("/" + docId(".")) // must be absolute
+    })
+
+    test("Back button only appears at the top level", async () => {
+      const sidebar = await generateSidebar(sampleDataPath("hierarchy"), {
+        backButton: "Back",
+      })
+      const firstSection = findSidebarSectionByName(sidebar, "First Section")
+      expect(firstSection[0].label).not.toBe("Back")
     })
   })
 
@@ -133,7 +141,7 @@ describe("Script:generate-sidebar", () => {
         expect(backButton.type).toBe("link")
         expect(backButton.label).toBe("Back")
         expect(backButton.className).toBe("back-button")
-        expect(backButton.href).toBe(docId("."))
+        expect(backButton.href).toBe("/" + docId(".")) // must be absolute
       })
     })
   })

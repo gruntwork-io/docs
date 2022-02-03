@@ -4,7 +4,7 @@ const yargs = require("yargs/yargs")
 const path = require("path")
 const fs = require("fs")
 const {
-  generateSingleSidebarFile,
+  generateSidebarFile,
   generateMultiSidebarFile,
 } = require("./sidebar-lib")
 
@@ -59,7 +59,7 @@ async function main() {
     if (argv._.length < 2) {
       // operate on the working dir if not otherwise specified
       const inputDir = resolveDir(argv._[0] || ".")
-      data = await generateSingleSidebarFile(inputDir, opts)
+      data = await generateSidebarFile(inputDir, opts)
     } else {
       const inputDirs = argv._.map(resolveDir)
       data = await generateMultiSidebarFile(inputDirs, opts)
