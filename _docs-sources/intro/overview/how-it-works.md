@@ -38,8 +38,8 @@ A team of experienced Gruntwork engineers who help you achieve success using Gru
 
 Gruntwork offers basic and paid support options:
 
-- **[Community support](/guides/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
-- **[Paid support](/guides/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
+- **[Community support](/support#get-support).** Get help via a [Gruntwork Community Slack](https://gruntwork-community.slack.com/archives/CHH9Y3Z62) and our [Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions).
+- **[Paid support](/support#paid-support-tiers).** Get help via email, a private Slack channel, or scheduled Zoom calls, with response times backed by SLAs.
 
 ## What you provide
 
