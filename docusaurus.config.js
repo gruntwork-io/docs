@@ -24,6 +24,10 @@ const siteUrl = cfg.has("siteUrl")
   ? process.env["DEPLOY_URL"]
   : "http://localhost:3000"
 
+const buildVersion = cfg.has("app.buildVersion")
+  ? cfg.get("app.buildVersion")
+  : "N/A"
+
 const plugins = ["plugin-image-zoom"]
 
 if (enablePosthog) {
@@ -257,6 +261,10 @@ const config = {
             appUrl: posthogConfig.appUrl,
           }
         : undefined,
+      metadata: [
+        { name: "buildVersion", content: buildVersion },
+        { name: "buildTime", content: new Date().toString() },
+      ],
     }),
 }
 
