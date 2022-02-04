@@ -32,6 +32,3 @@ For security, sign in emails expire after 10 minutes. You can enter your email a
 If you are the admin for your organization, you'll be prompted to confirm details including your company address and phone number, as well as a billing email. Provide the required information and click **Continue** to finish signing in.
 
 
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"01375ec9b14d989af4af205eba101d88"}
-##DOCS-SOURCER-END -->
