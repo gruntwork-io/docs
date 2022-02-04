@@ -277,13 +277,19 @@ Some of the services in the Gruntwork Service Catalog require you to build an [A
 (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to install and configure the software that will
 run on EC2 instances. These services define and manage the AMI as code using [Packer](https://www.packer.io/) templates.
 
-For example, the [`eks-cluster`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster) service defines an
+For example, the [`eks-workers`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers) service defines an
 [`eks-node-al2.pkr.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template that can be used to create an AMI
 for the Kubernetes worker nodes. This Packer template uses the [EKS optimized
 AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) as its base, which already has Docker,
 kubelet, and the AWS IAM Authenticator installed, and on top of that, it installs the other common software you'll
 want on an EC2 instance in production, such as tools for gathering metrics, log aggregation, intrusion prevention,
 and so on.
+
+The packer templates are provided as `hcl` files in each service module folder, and follow the naming convention of:
+
+```
+<servertype>-<os>.pkr.hcl
+```
 
 Below are instructions on how to build an AMI using these Packer templates. We'll be using the
 [`eks-node-al2.pkr.hcl`](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/eks-workers/eks-node-al2.pkr.hcl) Packer template as an example.
@@ -346,15 +352,49 @@ Below are instructions on how to build an AMI using these Packer templates. We'l
 1. **Build**. Now you can build an AMI as follows:
 
    ```bash
-   packer build -var-file=eks-vars.json eks-node-al2.json
+   packer build -var-file=eks-vars.json eks-node-al2.pkr.hcl
    ```
 
-1. **Deploy**. At the end of the build, Packer will output the ID of your new AMI. Typically, you deploy this AMI by
-   plugging the AMI ID into some Terraform code and using Terraform to deploy it: e.g., plugging in the EKS worker node
-   AMI ID into the `cluster_instance_ami` input variable of the [`eks-cluster` Terraform
-   module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster).
+#### How to deploy newly built AMIs?
+
+Once you build the AMI, the next step is to deploy it to your infrastructure. Each service that requires an AMI offers
+two configuration inputs for selecting the AMI, and you must pick one:
+
+- `*_ami` (e.g., the [`cluster_instance_ami` input
+  variable](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/v0.72.0/modules/services/eks-workers/variables.tf#L185-L188)
+  in the `eks-workers` module)
+- `*_ami_filters` (e.g., the [`cluster_instance_ami_filters` input
+  variable](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/v0.72.0/modules/services/eks-workers/variables.tf#L190-L204)
+  in the `eks-workers` module)
+
+The two approaches are mutually exclusive. When specifying both, `*_ami` is always used and the input to
+`*_ami_filters` is ignored.
+
+The `*_ami` input variable can be used to directly specify the AMI to use. When using this input, the value should be
+set to the AMI ID that is returned by the packer call. It should be in the format `ami-<some_unique_hash>`.
+
+The `*_ami_filters` input variable takes in an AMI filter expression that can be used for dynamically looking up a
+prebuilt AMI. The supported filters for the lookup can be obtained from the [describe-images command
+description](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) in the AWS CLI reference. The
+most commonly used filters will be:
+
+- `name`: Filter by the name of the AMI. Note that this supports unix glob expressions (e.g., `*-eks-node` will match
+  any image with the suffix `-eks-node` in the name).
+- `tag:<key>`: Filter by the given tag key. Note that `<key>` can be any tag key that is applied to the AMI. For
+  example, to search for AMIs with the tag `service-catalog-module = eks-workers`, you can use the following filter:
+
+        cluster_instance_ami_filters = {
+          owners = ["self"]
+          filters = [{
+            name   = "tag:service-catalog-module"
+            values = ["eks-workers"]
+          }]
+        }
+
+  Note that tags are only visible in the account that owns the AMI. Even if you share the AMI in the packer template,
+  the AMI tags will not be visible when you query it from a shared account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"40356c39e4d55f5f9e1f9b9b98fab377"}
+{"sourcePlugin":"local-copier","hash":"d9f703f17d3e41684bef2ab8f2fae2a1"}
 ##DOCS-SOURCER-END -->
