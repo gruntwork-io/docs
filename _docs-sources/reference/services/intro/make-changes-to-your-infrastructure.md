@@ -183,7 +183,7 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
 1. **Build**. Once you've made your changes, you can re-run `packer build` to build a new AMI:
 
    ```bash
-   packer build -var-file=eks-vars.json eks-node-al2.json
+   packer build -var-file=eks-vars.json eks-node-al2.pkr.hcl
    ```
 
 1. **Deploy**. Once you've built a new AMI, you'll need to [make changes to your Terraform code and deploy

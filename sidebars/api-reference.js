@@ -28,7 +28,6 @@ const apiSidebars = {
         "reference/services/intro/deploy-new-infrastructure",
         "reference/services/intro/make-changes-to-your-infrastructure",
         "reference/services/intro/create-your-own-service-catalog",
-        "reference/services/intro/patterns-used-in-the-service-catalog",
       ],
     },
     {
