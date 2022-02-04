@@ -3,7 +3,9 @@
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern
 static website generator.
 
-## Docs Sourcer
+## Overview
+
+### Docs Sourcer
 
 All of the content that we see on the docs site is rendered to the top level
 `docs/` folder by the
@@ -16,7 +18,7 @@ pull in tagged content from other files, located in other GitHub repos, pull in
 images and auto-correct links. This will allow content creators to have more
 features when authoring content.
 
-## Content creation
+### Content creation
 
 All manually created MarkDown source content lives in the `_docs-sources/`
 folder. The top level `docs/` folder contains the _generated_ output that
@@ -24,7 +26,7 @@ results after the `docs-sourcer` processes the `_docs-sources/` directory.
 Grunts should **never edit any of the MarkDown files in the `docs/` folder
 directly**. We should always be editing the content in `_docs-sources/`.
 
-## Installation of dependencies
+## Installing dependencies
 
 ```sh
 yarn
@@ -43,16 +45,7 @@ you edit a file in `_docs-sources/` then the `docs-sourcer` will automatically
 re-run to regenerate the output files. Docusaurus will then hot-reload that
 content so that to the end user, they have "live reloading" while authoring.
 
-### Run production build locally
-
-```sh
-yarn build && yarn serve
-```
-
-This will create and serve a production build. This can be used to verify the
-expected behaviors in a production environment and view the Google analytics.
-
-## Committing changes to docs
+### Committing changes
 
 While authoring local content, you will exclusively be making your changes in
 the `_docs-sources/` folder. The `docs-sourcer` will then pre-process and
@@ -64,7 +57,16 @@ Generated content should be up to date if you are previewing locally while
 editing but you may wish to manually regenerate the output (see section below)
 to ensure it is totally up to date.
 
-## Manually generating docs output
+### Running a production build locally
+
+```sh
+yarn build && yarn serve
+```
+
+This will create and serve a production build. This can be used to verify the
+expected behaviors in a production environment and view the Google analytics.
+
+### Manually generating docs output
 
 It's possible to manually regenerate output content from the sources in
 `_docs-sources/`:
@@ -76,11 +78,28 @@ yarn regenerate:local
 This command can be run at any time, regardless of whether `yarn start` is
 currently running.
 
-## Build
+### Generating sidebars for guides
+
+We utilitize explicit sidebar definitions for most of our docs content. Doing
+so enables authors to easily provide explicit titles for all category labels,
+as well as define the relative ordering of pages in a maintainable way.
+Long-form docs with many sections receive a dedicated sidebar to provide a
+focused reading experience (e.g. /guides/build-it-yourself/\*).
+
+A tool is provided to automatically generate sidebars for any new guide. To
+run it, specify the path to the directory you wish to create a sidebar for in
+either `_docs-sources/` or the output `docs/` path, relative to your current
+working directory.
 
 ```sh
-yarn build
+yarn sidebar docs/guides/build-it-yourself/my-new-guide/
 ```
 
-This command generates static content into the `build` directory and can be
-served using any static contents hosting service.
+Once generated, you're free to adjust the names of each category, which only
+appear in the sidebar itself. You may also reorder any of the linked pages
+within each section, which will be reflected in the rendered output.
+
+See the usage instructions with `yarn sidebar --help` to learn how to add a
+back button or specify an output file. The resulting file should be placed in
+the `sidebars/` directory. You'll also need to require this file in
+`sidebars.js`, and then re-run `yarn start` to see your changes.

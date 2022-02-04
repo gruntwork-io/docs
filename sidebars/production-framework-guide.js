@@ -1,4 +1,4 @@
-const productionFrameworkSidebar = [
+const sidebar = [
   {
     label: "Production Framework Guide",
     type: "category",
@@ -104,4 +104,4 @@ const productionFrameworkSidebar = [
   },
 ]
 
-module.exports = productionFrameworkSidebar
+module.exports = sidebar

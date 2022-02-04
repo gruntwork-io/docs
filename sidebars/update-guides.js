@@ -5,7 +5,7 @@ const backLink = {
   className: "back-button",
 }
 
-const updateGuideSidebars = {
+const sidebars = {
   cis130: [
     backLink,
     {
@@ -188,4 +188,4 @@ const updateGuideSidebars = {
   ],
 }
 
-module.exports = updateGuideSidebars
+module.exports = sidebars

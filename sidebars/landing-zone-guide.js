@@ -1,4 +1,4 @@
-const landingZoneGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -46,7 +46,7 @@ const landingZoneGuide = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/prepare-your-infrastructure-live-repository",
           "guides/build-it-yourself/landing-zone/deployment-walkthrough/create-the-root-account",
@@ -69,4 +69,4 @@ const landingZoneGuide = [
   },
 ]
 
-module.exports = landingZoneGuide
+module.exports = sidebar

@@ -1,4 +1,4 @@
-const complianceGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -30,7 +30,7 @@ const complianceGuide = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/the-gruntwork-solution",
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/prepare-your-infrastructure-live-repository",
@@ -61,4 +61,4 @@ const complianceGuide = [
   },
 ]
 
-module.exports = complianceGuide
+module.exports = sidebar

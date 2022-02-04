@@ -1,4 +1,4 @@
-const vpcGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -43,7 +43,7 @@ const vpcGuide = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/vpc/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/vpc/deployment-walkthrough/deploy-a-management-vpc",
           "guides/build-it-yourself/vpc/deployment-walkthrough/deploy-application-vp-cs",
@@ -56,4 +56,4 @@ const vpcGuide = [
   },
 ]
 
-module.exports = vpcGuide
+module.exports = sidebar

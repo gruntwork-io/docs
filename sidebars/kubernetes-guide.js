@@ -1,4 +1,4 @@
-const vpcGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -38,7 +38,7 @@ const vpcGuide = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/deploy-the-vpc",
           "guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/configure-the-control-plane",
@@ -58,4 +58,4 @@ const vpcGuide = [
   },
 ]
 
-module.exports = vpcGuide
+module.exports = sidebar

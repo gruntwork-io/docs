@@ -1,4 +1,4 @@
-const pipelineGuide = [
+const sidebar = [
   {
     label: "Build Your Own Architecture",
     type: "link",
@@ -39,7 +39,7 @@ const pipelineGuide = [
         ],
       },
       {
-        "Deployment walkthrough": [
+        "Deployment Walkthrough": [
           "guides/build-it-yourself/pipelines/deployment-walkthrough/pre-requisites",
           "guides/build-it-yourself/pipelines/deployment-walkthrough/deploy-a-vpc",
           "guides/build-it-yourself/pipelines/deployment-walkthrough/deploy-the-ecs-deploy-runner",
@@ -53,4 +53,4 @@ const pipelineGuide = [
   },
 ]
 
-module.exports = pipelineGuide
+module.exports = sidebar
