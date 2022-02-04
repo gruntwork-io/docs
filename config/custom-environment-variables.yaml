@@ -1,6 +1,11 @@
 # This file allows us to define custom environment variables that can be used to override parts of the config. This
 # provides a convenient mechanism for specifying different config values in different environments.
 
+# App-wide settings
+app:
+  # The SHA1 of the commit which resulted in this application
+  buildVersion: CIRCLE_SHA1
+
 # Google Analytics tracking config
 googleAnalytics:
   trackingID: CONFIG_GOOGLE_ANALYTICS_TRACKING_ID
