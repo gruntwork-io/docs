@@ -1,6 +1,3 @@
-import Card from "/src/components/Card"
-import { CardList } from "/src/components/CardGroup"
-
 # The Gruntwork Production Framework
 
 In this guide, we are going to share our opinionated, step-by-step framework for successfully going to production on
@@ -8,46 +5,7 @@ the public cloud. At Gruntwork, we've had the privilege to work with everything 
 50 companies to some of the world's largest government agencies, and this document captures the common patterns we've
 seen that actually worked.
 
-<div style={{maxWidth: "640px", margin: "auto", marginTop: "3rem"}}>
-
-## The Elements of the Gruntwork Production Framework
-
-<CardList style={{marginTop: 0}}>
-
-<Card
-  title="Service Catalog"
-  href="./ingredients/service-catalog"
-  icon="/img/icons/service-catalog.svg">
-Your company's vetted, tested, reusable, off-the-shelf solutions for infrastructure and appliactions.
-</Card>
-<Card
-  title="Landing Zone"
-  href="./ingredients/landing-zone"
-  icon="/img/icons/landing-zone.svg">
-The basic structure for your cloud accounts, including auth, guard rails, and other scaffolding.
-</Card>
-<Card
-  title="CI / CD"
-  href="./ingredients/ci-cd-pipeline"
-  icon="/img/icons/ci-cd.svg">
-A Continuous Integration / Continuous Delivery pipeline to automate builds, tests, and deployments.
-</Card>
-<Card
-  title="Self-service"
-  href="./ingredients/self-service"
-  icon="/img/icons/self-service.svg">
-Allow developers to deploy and manage their own apps and infrastructure.
-</Card>
-<Card
-  title="Automatic Updates"
-  href="./ingredients/automatic-updates"
-  icon="/img/icons/auto-update.svg">
-Kepp all your application and infrastructure dependencies up to date, automatically.
-</Card>
-
-</CardList>
-
-</div>
+![Gruntwork Production Framework](/img/guides/production-framework/gruntwork-production-framework-small.png)
 
 This is not another high-level, vague "cloud operating model" document that is heavy on buzzwords but light on
 actionable content. Instead, you'll find a clear mental model of how to think about cloud usage, plus a set of
