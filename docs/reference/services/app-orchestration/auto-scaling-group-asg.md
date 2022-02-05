@@ -1,11 +1,20 @@
+---
+title: Auto Scaling Group (ASG)
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Auto Scaling Group (ASG)
 
 Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime, rolling deployment, load balancing, health checks, service discovery, and auto scaling.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/asg-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -280,5 +289,5 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"61deac19bc2aab5dd10c91980cbc9136"}
+{"sourcePlugin":"service-catalog-api","hash":"425a035c2c92fd6438b6072cf34f6acd"}
 ##DOCS-SOURCER-END -->

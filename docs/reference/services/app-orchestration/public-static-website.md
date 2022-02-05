@@ -1,11 +1,20 @@
+---
+title: Public Static Website
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Public Static Website
 
 Deploy your static content and static websites on S3, using a CloudFront CDN. Supports bucket versioning, redirects, and access logging.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/public-static-website" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/public-static-website" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/public-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -108,5 +117,5 @@ Deploy your static content and static websites on S3, using a CloudFront CDN. Su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"03605e66ac78a1f3e74c36667456f8b0"}
+{"sourcePlugin":"service-catalog-api","hash":"f53b5f8366b1ee09e3b37c97a8588392"}
 ##DOCS-SOURCER-END -->

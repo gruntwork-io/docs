@@ -1,11 +1,20 @@
+---
+title: Amazon ECS Service
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Amazon ECS Service
 
 Deploy an Amazon ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-service" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-service" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -484,5 +493,5 @@ Deploy an Amazon ECS Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"522f99e1b9a3d09d8b36c509ccf942b7"}
+{"sourcePlugin":"service-catalog-api","hash":"e4bf79620e6ad9ecdf360600d1060d73"}
 ##DOCS-SOURCER-END -->

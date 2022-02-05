@@ -1,11 +1,20 @@
+---
+title: Amazon ECS Fargate Cluster
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Amazon ECS Fargate Cluster
 
 Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-fargate-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -40,5 +49,5 @@ Deploy an Amazon ECS Cluster optimized for Fargate only usage.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"570b2ae5d734e54f37ec19630f8153fa"}
+{"sourcePlugin":"service-catalog-api","hash":"a908a4f13b226199cdf4f8a555ebf048"}
 ##DOCS-SOURCER-END -->

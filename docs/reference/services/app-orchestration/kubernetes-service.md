@@ -1,11 +1,20 @@
+---
+title: Kubernetes Service
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Kubernetes Service
 
 Deploy your application containers as a Kubernetes Service and Deployment following best practices.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-service" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-service" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -302,5 +311,5 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f4b1bc4a06d95b4adf0194eeaf2f60da"}
+{"sourcePlugin":"service-catalog-api","hash":"2121ccade55124cdc7999252e96d23fd"}
 ##DOCS-SOURCER-END -->

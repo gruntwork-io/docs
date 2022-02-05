@@ -1,11 +1,20 @@
+---
+title: Amazon EKS
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Amazon EKS
 
 Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -456,5 +465,5 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"815a8d666cdaee3a0dd7556b7ec239e2"}
+{"sourcePlugin":"service-catalog-api","hash":"84bcf1b9b3668b7e7fc25523a6e0c3fc"}
 ##DOCS-SOURCER-END -->

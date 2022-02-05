@@ -1,11 +1,20 @@
+---
+title: Jenkins
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Jenkins
 
 Deploy Jenkins CI Server on AWS.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/jenkins" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/jenkins" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/jenkins" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -316,5 +325,5 @@ Deploy Jenkins CI Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1802ceea003ed81cc32f34d1f08eb64d"}
+{"sourcePlugin":"service-catalog-api","hash":"d1bd430daf1103da01ade4342721f8f5"}
 ##DOCS-SOURCER-END -->

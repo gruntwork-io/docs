@@ -1,11 +1,20 @@
+---
+title: Bastion
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Bastion
 
 Deploy a Bastion host on to your AWS VPC network.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/bastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -160,5 +169,5 @@ Deploy a Bastion host on to your AWS VPC network.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ce0e4577cef968267e3aaace573cdc72"}
+{"sourcePlugin":"service-catalog-api","hash":"afb40015b9cb73f460fc245dba18fc43"}
 ##DOCS-SOURCER-END -->

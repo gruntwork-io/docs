@@ -1,11 +1,20 @@
+---
+title: Amazon EKS Workers
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Amazon EKS Workers
 
 Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-workers" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -352,5 +361,5 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"2912419672a85b229f6cd596fb45941f"}
+{"sourcePlugin":"service-catalog-api","hash":"ac2acc79a0d81c3570d52c8f1f37171e"}
 ##DOCS-SOURCER-END -->

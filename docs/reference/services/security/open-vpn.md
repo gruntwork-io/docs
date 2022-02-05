@@ -1,11 +1,20 @@
+---
+title: OpenVPN
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # OpenVPN
 
 Deploy an OpenVPN Server on AWS.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/openvpn-server" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -268,5 +277,5 @@ Deploy an OpenVPN Server on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"702493d57d87e68b42883d2bd0cfda3f"}
+{"sourcePlugin":"service-catalog-api","hash":"37840dbd3f4d46a135e3ffe509759768"}
 ##DOCS-SOURCER-END -->

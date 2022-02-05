@@ -1,11 +1,20 @@
+---
+title: Virtual Private Cloud (VPC)
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Virtual Private Cloud (VPC)
 
 Deploy a VPC on AWS.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -43,6 +52,10 @@ Deploy a VPC on AWS.
 <a name="create_flow_logs" className="snap-top"></a>
 
 * [**`create_flow_logs`**](#create_flow_logs) &mdash; If you set this variable to false, this module will not create VPC Flow Logs resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+
+<a name="create_igw" className="snap-top"></a>
+
+* [**`create_igw`**](#create_igw) &mdash; Whether the VPC will create an Internet Gateway. There are use cases when the VPC is desired to not be routable from the internet, and hence, they should not have an Internet Gateway. For example, when it is desired that public subnets exist but they are not directly public facing, since they can be routed from other VPC hosting the IGW.
 
 <a name="create_network_acls" className="snap-top"></a>
 
@@ -128,6 +141,10 @@ Deploy a VPC on AWS.
 
 * [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
 
+<a name="kms_key_deletion_window_in_days" className="snap-top"></a>
+
+* [**`kms_key_deletion_window_in_days`**](#kms_key_deletion_window_in_days) &mdash; The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
+
 <a name="kms_key_user_iam_arns" className="snap-top"></a>
 
 * [**`kms_key_user_iam_arns`**](#kms_key_user_iam_arns) &mdash; VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
@@ -168,6 +185,10 @@ Deploy a VPC on AWS.
 
 * [**`origin_vpc_route_table_ids`**](#origin_vpc_route_table_ids) &mdash; A list of route tables from the origin VPC that should have routes to this app VPC.
 
+<a name="persistence_propagating_vgws" className="snap-top"></a>
+
+* [**`persistence_propagating_vgws`**](#persistence_propagating_vgws) &mdash; A list of Virtual Private Gateways that will propagate routes to persistence subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of persistence subnets. If left empty, no routes will be propagated.
+
 <a name="persistence_subnet_bits" className="snap-top"></a>
 
 * [**`persistence_subnet_bits`**](#persistence_subnet_bits) &mdash; Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
@@ -179,6 +200,10 @@ Deploy a VPC on AWS.
 <a name="private_app_allow_inbound_ports_from_cidr" className="snap-top"></a>
 
 * [**`private_app_allow_inbound_ports_from_cidr`**](#private_app_allow_inbound_ports_from_cidr) &mdash; A map of unique names to client IP CIDR block and inbound ports that should be exposed in the private app subnet tier nACLs. This is useful when exposing your service on a privileged port with an NLB, where the address isn't translated.
+
+<a name="private_app_allow_outbound_ports_to_destination_cidr" className="snap-top"></a>
+
+* [**`private_app_allow_outbound_ports_to_destination_cidr`**](#private_app_allow_outbound_ports_to_destination_cidr) &mdash; A map of unique names to destination IP CIDR block and outbound ports that should be allowed in the private app subnet tier nACLs. This is useful when allowing your VPC specific outbound communication to defined CIDR blocks(known networks)
 
 <a name="private_app_subnet_cidr_blocks" className="snap-top"></a>
 
@@ -196,6 +221,10 @@ Deploy a VPC on AWS.
 
 * [**`private_persistence_subnet_custom_tags`**](#private_persistence_subnet_custom_tags) &mdash; A map of tags to apply to the private-persistence Subnet, on top of the [`custom_tags`](#custom_tags). The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
 
+<a name="private_propagating_vgws" className="snap-top"></a>
+
+* [**`private_propagating_vgws`**](#private_propagating_vgws) &mdash; A list of Virtual Private Gateways that will propagate routes to private subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of private subnets. If left empty, no routes will be propagated.
+
 <a name="private_subnet_bits" className="snap-top"></a>
 
 * [**`private_subnet_bits`**](#private_subnet_bits) &mdash; Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
@@ -203,6 +232,10 @@ Deploy a VPC on AWS.
 <a name="private_subnet_spacing" className="snap-top"></a>
 
 * [**`private_subnet_spacing`**](#private_subnet_spacing) &mdash; The amount of spacing between private app subnets. Defaults to [`subnet_spacing`](#subnet_spacing) in vpc-app module if not set.
+
+<a name="public_propagating_vgws" className="snap-top"></a>
+
+* [**`public_propagating_vgws`**](#public_propagating_vgws) &mdash; A list of Virtual Private Gateways that will propagate routes to public subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of public subnets. If left empty, no routes will be propagated.
 
 <a name="public_subnet_bits" className="snap-top"></a>
 
@@ -352,5 +385,5 @@ Deploy a VPC on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c641b929b64167ae46a226f3df766011"}
+{"sourcePlugin":"service-catalog-api","hash":"95d909e11c5471b512ed1c92bb4216c8"}
 ##DOCS-SOURCER-END -->

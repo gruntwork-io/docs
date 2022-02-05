@@ -1,11 +1,20 @@
+---
+title: Amazon ElastiCache for Redis
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Amazon ElastiCache for Redis
 
 Deploy and manage Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/redis" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/redis" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/redis" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -136,5 +145,5 @@ Deploy and manage Amazon ElastiCache for Redis
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1f2b5674c9b8918072ce10412fdb24dc"}
+{"sourcePlugin":"service-catalog-api","hash":"3386cf2b2f8810f33dcb615010dc878f"}
 ##DOCS-SOURCER-END -->

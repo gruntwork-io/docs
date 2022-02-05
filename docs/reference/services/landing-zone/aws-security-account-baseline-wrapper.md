@@ -1,11 +1,20 @@
+---
+title: AWS Security Account baseline wrapper
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # AWS Security Account baseline wrapper
 
 A security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM users and IAM groups are defined), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/account-baseline-security" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -15,6 +24,10 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 <a name="additional_config_rules" className="snap-top"></a>
 
 * [**`additional_config_rules`**](#additional_config_rules) &mdash; Map of additional managed rules to add. The key is the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an object specifying the rule details
+
+<a name="allow_auto_deploy_from_github_actions_for_sources" className="snap-top"></a>
+
+* [**`allow_auto_deploy_from_github_actions_for_sources`**](#allow_auto_deploy_from_github_actions_for_sources) &mdash; Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with [`allow_auto_deploy_from_other_account_arns`](#allow_auto_deploy_from_other_account_arns). Only used if [`enable_github_actions_access`](#enable_github_actions_access) is true. 
 
 <a name="allow_auto_deploy_from_other_account_arns" className="snap-top"></a>
 
@@ -908,5 +921,5 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"fbb4dae8b3ad39b53338a272baabf6bb"}
+{"sourcePlugin":"service-catalog-api","hash":"8a16d23b3214bffca34ea94416de5a9b"}
 ##DOCS-SOURCER-END -->

@@ -1,11 +1,20 @@
+---
+title: SNS Topics
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # SNS Topics
 
 Create Amazon Simple Notification Service topics
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/sns-topics" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -60,5 +69,5 @@ Create Amazon Simple Notification Service topics
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"28e5a8d03eed112176cd21eb83fad49d"}
+{"sourcePlugin":"service-catalog-api","hash":"1e07e99bb5ec75ccbcdaa50dda8065f2"}
 ##DOCS-SOURCER-END -->

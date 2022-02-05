@@ -1,11 +1,20 @@
+---
+title: Elastic Load Balancer (ELB)
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.73.2"/>
 
 # Elastic Load Balancer (ELB)
 
 Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, with support for routing rules and WebSockets.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/alb" className="link-button">View on GitHub</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/alb" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/alb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
 ### Reference
 
@@ -176,5 +185,5 @@ Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, wi
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"629812da57377f4c07a34bcec15e0264"}
+{"sourcePlugin":"service-catalog-api","hash":"97f486d3574a9ae6711dbacd5ebcace8"}
 ##DOCS-SOURCER-END -->
