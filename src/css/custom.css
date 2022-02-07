@@ -299,6 +299,7 @@ html[data-theme="light"]
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   border-radius: 100vh;
   transition: 0.2s ease-in-out;
+  margin-bottom: 2rem;
 }
 
 .link-button:hover {
