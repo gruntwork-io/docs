@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Amazon ECR Repositories
 
-Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images.
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/ecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images.
 
 ### Reference
 
@@ -81,5 +81,5 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"78345f73a397879cea27bd89d3004757"}
+{"sourcePlugin":"service-catalog-api","hash":"9e95fe49e5ff4f0b6f1c3b87406102a2"}
 ##DOCS-SOURCER-END -->

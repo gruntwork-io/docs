@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # AWS App Account baseline wrapper
 
-A security baseline for AWS Landing Zone for configuring app accounts (dev, stage, prod, and other similar child accounts), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-app" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/account-baseline-app" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+A security baseline for AWS Landing Zone for configuring app accounts (dev, stage, prod, and other similar child accounts), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
 
 ### Reference
 
@@ -657,5 +657,5 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e00354ef965bf858d4d064a31378becf"}
+{"sourcePlugin":"service-catalog-api","hash":"53b761770a1c504e44547a5c8d78410b"}
 ##DOCS-SOURCER-END -->

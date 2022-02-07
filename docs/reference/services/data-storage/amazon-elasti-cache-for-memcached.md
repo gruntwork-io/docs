@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Amazon ElastiCache for Memcached
 
-Deploy and manage Amazon ElastiCache for Memcached
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/memcached" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/memcached" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy and manage Amazon ElastiCache for Memcached
 
 ### Reference
 
@@ -105,5 +105,5 @@ Deploy and manage Amazon ElastiCache for Memcached
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"97efeaaffcb40d83aa542927527304b6"}
+{"sourcePlugin":"service-catalog-api","hash":"0ae007b3dcafcead99968face1643a8d"}
 ##DOCS-SOURCER-END -->

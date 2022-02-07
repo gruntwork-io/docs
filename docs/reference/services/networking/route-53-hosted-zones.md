@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Route 53 Hosted Zones
 
-Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/route53" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/route53" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
 
 ### Reference
 
@@ -85,5 +85,5 @@ Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"01f897471d2fc42fa71bddddd90e9bc1"}
+{"sourcePlugin":"service-catalog-api","hash":"820bddfdb4a2c92cfc1082f0615789d1"}
 ##DOCS-SOURCER-END -->

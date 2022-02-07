@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Amazon EKS Workers
 
-Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-workers" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)
 
 ### Reference
 
@@ -285,6 +285,10 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 * [**`use_kubergrunt_to_fetch_token`**](#use_kubergrunt_to_fetch_token) &mdash; EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if [`use_exec_plugin_for_auth`](#use_exec_plugin_for_auth) is set to true.
 
+<a name="use_prefix_mode_to_calculate_max_pods" className="snap-top"></a>
+
+* [**`use_prefix_mode_to_calculate_max_pods`**](#use_prefix_mode_to_calculate_max_pods) &mdash; When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node.
+
 <a name="worker_k8s_role_mapping_name" className="snap-top"></a>
 
 * [**`worker_k8s_role_mapping_name`**](#worker_k8s_role_mapping_name) &mdash; Name of the IAM role to Kubernetes RBAC group mapping ConfigMap. Only used if [`aws_auth_merger_namespace`](#aws_auth_merger_namespace) is not null.
@@ -361,5 +365,5 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ac2acc79a0d81c3570d52c8f1f37171e"}
+{"sourcePlugin":"service-catalog-api","hash":"75844374aec8c0e2efa34cb3e4eeb273"}
 ##DOCS-SOURCER-END -->

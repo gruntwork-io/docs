@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Amazon ECS Cluster
 
-Deploy an Amazon ECS Cluster
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy an Amazon ECS Cluster
 
 ### Reference
 
@@ -293,5 +293,5 @@ Deploy an Amazon ECS Cluster
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d0be5b539fafcdd002edb448a10f8183"}
+{"sourcePlugin":"service-catalog-api","hash":"e180c0dbc4452c0afeebd495e8f33d71"}
 ##DOCS-SOURCER-END -->

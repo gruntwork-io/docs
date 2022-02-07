@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Kubernetes Namespace
 
-Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-namespace" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-namespace" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 ### Reference
 
@@ -77,5 +77,5 @@ Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a6c2be69ecbe873d5b099eb40c0164d4"}
+{"sourcePlugin":"service-catalog-api","hash":"f5d4952c26f4d7e088205d3f4df4dd6d"}
 ##DOCS-SOURCER-END -->

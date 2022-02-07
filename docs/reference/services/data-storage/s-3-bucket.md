@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # S3 Bucket
 
-Deploy an S3 bucket for data storage, with support for access logging, versioning and replication.
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/s3-bucket" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/s3-bucket" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy an S3 bucket for data storage, with support for access logging, versioning and replication.
 
 ### Reference
 
@@ -173,5 +173,5 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"28e847cea176410f43ac0c577b66f760"}
+{"sourcePlugin":"service-catalog-api","hash":"cfa0e2c0bd5072fa66dd502ced2a8ede"}
 ##DOCS-SOURCER-END -->

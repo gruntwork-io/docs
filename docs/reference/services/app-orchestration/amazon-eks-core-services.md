@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Amazon EKS Core Services
 
-Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)
 
 ### Reference
 
@@ -257,5 +257,5 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9f3b523c80df4ee75a642ffcd947078a"}
+{"sourcePlugin":"service-catalog-api","hash":"ff9501d658d0a8266e8daf8188a6276b"}
 ##DOCS-SOURCER-END -->

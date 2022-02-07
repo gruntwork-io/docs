@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from "../../../../src/components/VersionBadge.tsx"
 
-<VersionBadge version="0.73.2"/>
+<VersionBadge version="0.74.0"/>
 
 # Management VPC
 
-Deploy a VPC  on AWS for administrative and management functions.
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View Source</a>
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+
+Deploy a VPC  on AWS for administrative and management functions.
 
 ### Reference
 
@@ -205,5 +205,5 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e052dc83dfc2a7fa568008cbbb321985"}
+{"sourcePlugin":"service-catalog-api","hash":"26fd4690c4849e44746c7df069ac0e6e"}
 ##DOCS-SOURCER-END -->
