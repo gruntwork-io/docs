@@ -42,14 +42,14 @@ More content.
 
 1.  `## Topic`: The rest of your headings should start from level 2.
 
-### Line Breaks
+### Intermediate line breaks
 
 Unless otherwise indicated, all markdown elements in your document should be
 separated by exactly one blank line. Preserving a small gap makes it easier
 to identify individual elements in the source. However, avoid using multiple
 blank lines as this can lead to inconsistent spacing and longer source files.
 
-## Character line limit
+### Character line limit
 
 Obey projects' character line limit wherever possible. Long URLs and tables are
 the usual suspects when breaking the rule. (Headings also can't be wrapped, but
@@ -71,6 +71,12 @@ Lorem ipsum dolor sit amet. See the
 [foo docs](https://gerrit.googlesource.com/gitiles/+/master/Documentation/markdown.md)
 for details.
 ```
+
+### Ending newline
+
+All files should end with a single empty line to avoid any potential
+incompatibilities with some Markdown editors and/or rendering engines. For more
+info, see [this thread](https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file).
 
 ## Paragraphs
 
@@ -175,6 +181,33 @@ _This is also italicized. DO NOT DO THIS._
 
 ## Lists
 
+### Dashes for bulleted lists
+
+Prefer dashes (-) for all bulleted lists over asterisks (\*) or plus signs (+).
+
+```markdown
+- Foo.
+- Bar.
+- Baz.
+```
+
+They're a touch easier to type and make it easier to recognize what's going
+on if the list item opens with bold text. Compare this:
+
+```markdown
+- **Foo.** foo foo
+- **Bar.** bar bar
+- **Baz.** baz baz
+```
+
+To this:
+
+```
+* **Foo.** foo foo
+* **Bar.** bar bar
+* **Baz.** baz baz DO NOT DO THIS
+```
+
 ### Lazy numbering for long lists
 
 Markdown is smart enough to let the resulting HTML render your numbered lists
@@ -202,17 +235,17 @@ numbered lists, because it's nicer to read in source:
 
 When nesting lists, use a 4 space indent for both numbered and bulleted lists:
 
-```markdown
+```
 1.  2 spaces after a numbered list.
     4 space indent for wrapped text.
 2.  2 spaces again.
 
-- 3 spaces after a bullet.
-  4 space indent for wrapped text.
-  1.  2 spaces after a numbered list.
-      8 space indent for the wrapped text of a nested list.
-  2.  Looks nice, don't it?
-- 3 spaces after a bullet.
+-   3 spaces after a bullet.
+    4 space indent for wrapped text.
+    1.  2 spaces after a numbered list.
+        8 space indent for the wrapped text of a nested list.
+    2.  Looks nice, don't it?
+-   3 spaces after a bullet.
 ```
 
 The following works, but it's very messy:
@@ -350,7 +383,7 @@ additional spaces from the list indentation:
 Long links make source Markdown difficult to read and break the 80 character
 wrapping. **Wherever possible, shorten your links**.
 
-### Use informative Markdown link titles
+### Use informative link titles
 
 Markdown link syntax allows you to set a link title, just as HTML does. Use it
 wisely.
@@ -370,6 +403,29 @@ appropriate phrase with the link:
 ```markdown
 See the [syntax guide](syntax_guide.md) for more info.
 Or, check out the [style guide](style_guide.md).
+```
+
+### Avoid bare links
+
+Avoid bare links without any syntax, as these won't be rendered reliably in
+all contexts:
+
+```markdown
+This is a bare link to https://docs.gruntwork.io. DO NOT DO THIS.
+```
+
+If you wish to present a link as its own link text, you must duplicate the URL
+within the text of the link syntax:
+
+```markdown
+This is a proper link to [https://docs.gruntwork.io](https://docs.gruntwork.io)
+```
+
+If you're using the text of a link purely informatively and _do not want it to
+function as a link_, use backticks to treat it as inline code:
+
+```markdown
+This link to `https://docs.gruntwork.io` is for informational purposes only.
 ```
 
 ## Images
@@ -513,5 +569,5 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"af8e3409e1915f4f9fd8b6e058a149dc"}
+{"sourcePlugin":"local-copier","hash":"cb79cdb0438aea820601c8d7c865433d"}
 ##DOCS-SOURCER-END -->
