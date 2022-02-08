@@ -322,6 +322,17 @@ html[data-theme="dark"] .link-button:hover {
   background-color: var(--ifm-background-surface-color);
 }
 
+/* ADMONITIONS */
+
+.admonition-icon img {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.admonition-icon img + img {
+  margin-left: 0.25rem;
+}
+
 /* FOOTER */
 
 /* --ifm-footer-background-color doesn't appear to work */
