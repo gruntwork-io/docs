@@ -65,6 +65,11 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Override accidental margin on Markdown code fences */
+pre.language-markdown {
+  margin-bottom: 0;
+}
+
 main {
   margin-top: 2em;
 }
