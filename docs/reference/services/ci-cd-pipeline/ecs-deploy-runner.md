@@ -1,11 +1,20 @@
+---
+title: ECS Deploy Runner
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # ECS Deploy Runner
 
-Use a CI/CD pipeline for deploying infrastructure code updates.
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/ecs-deploy-runner" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/ecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/ecs-deploy-runner" className="link-button">View on GitHub</a>
+Use a CI/CD pipeline for deploying infrastructure code updates.
 
 ### Reference
 
@@ -168,5 +177,5 @@ Use a CI/CD pipeline for deploying infrastructure code updates.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"09ab7ab8f1e39374f35dfd6e900f5011"}
+{"sourcePlugin":"service-catalog-api","hash":"55e710fc4686176fab9772d872375699"}
 ##DOCS-SOURCER-END -->

@@ -1,11 +1,20 @@
+---
+title: Amazon EKS
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # Amazon EKS
 
-Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View on GitHub</a>
+Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 ### Reference
 
@@ -368,6 +377,22 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 * [**`use_kubergrunt_verification`**](#use_kubergrunt_verification) &mdash; When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
 
+<a name="use_vpc_cni_customize_script" className="snap-top"></a>
+
+* [**`use_vpc_cni_customize_script`**](#use_vpc_cni_customize_script) &mdash; When set to true, this will enable management of the aws-vpc-cni configuration options using kubergrunt running as a local-exec provisioner. If you set this to false, the [`vpc_cni_`](#vpc_cni_)* variables will be ignored.
+
+<a name="vpc_cni_enable_prefix_delegation" className="snap-top"></a>
+
+* [**`vpc_cni_enable_prefix_delegation`**](#vpc_cni_enable_prefix_delegation) &mdash; When true, enable prefix delegation mode for the AWS VPC CNI component of the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. Note that by default, AWS VPC CNI will always preallocate 1 full prefix - this means that you can potentially take up 32 IP addresses from the VPC network space even if you only have 1 Pod on the node. You can tweak this behavior by configuring the [`vpc_cni_warm_ip_target`](#vpc_cni_warm_ip_target) input variable.
+
+<a name="vpc_cni_minimum_ip_target" className="snap-top"></a>
+
+* [**`vpc_cni_minimum_ip_target`**](#vpc_cni_minimum_ip_target) &mdash; The minimum number of IP addresses (free and used) each node should start with. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). For example, if this is set to 25, every node will allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to the default value, then each node will allocate only 1 prefix (16 IP addresses).
+
+<a name="vpc_cni_warm_ip_target" className="snap-top"></a>
+
+* [**`vpc_cni_warm_ip_target`**](#vpc_cni_warm_ip_target) &mdash; The number of free IP addresses each node should maintain. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In prefix delegation mode, determines whether the node will preallocate another full prefix. For example, if this is set to 5 and a node is currently has 9 Pods scheduled, then the node will NOT preallocate a new prefix block of 16 IP addresses. On the other hand, if this was set to the default value, then the node will allocate a new block when the first pod is scheduled.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the EKS resources will be deployed.
@@ -456,5 +481,5 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"815a8d666cdaee3a0dd7556b7ec239e2"}
+{"sourcePlugin":"service-catalog-api","hash":"01dc65d744fd6fefb1cc678f90abed2e"}
 ##DOCS-SOURCER-END -->

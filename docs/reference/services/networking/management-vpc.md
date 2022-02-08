@@ -1,11 +1,20 @@
+---
+title: Management VPC
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # Management VPC
 
-Deploy a VPC  on AWS for administrative and management functions.
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View on GitHub</a>
+Deploy a VPC  on AWS for administrative and management functions.
 
 ### Reference
 
@@ -79,6 +88,10 @@ Deploy a VPC  on AWS for administrative and management functions.
 <a name="kms_key_arn" className="snap-top"></a>
 
 * [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
+
+<a name="kms_key_deletion_window_in_days" className="snap-top"></a>
+
+* [**`kms_key_deletion_window_in_days`**](#kms_key_deletion_window_in_days) &mdash; The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
 
 <a name="kms_key_user_iam_arns" className="snap-top"></a>
 
@@ -192,5 +205,5 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6eeb435a6c66a038beb515fc47058640"}
+{"sourcePlugin":"service-catalog-api","hash":"26fd4690c4849e44746c7df069ac0e6e"}
 ##DOCS-SOURCER-END -->

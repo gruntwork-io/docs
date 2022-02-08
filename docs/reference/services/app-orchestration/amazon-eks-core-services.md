@@ -1,11 +1,20 @@
+---
+title: Amazon EKS Core Services
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # Amazon EKS Core Services
 
-Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View on GitHub</a>
+Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)
 
 ### Reference
 
@@ -31,6 +40,18 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 <a name="autoscaler_skip_nodes_with_local_storage" className="snap-top"></a>
 
 * [**`autoscaler_skip_nodes_with_local_storage`**](#autoscaler_skip_nodes_with_local_storage) &mdash; If true cluster autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath
+
+<a name="aws_cloudwatch_agent_pod_node_affinity" className="snap-top"></a>
+
+* [**`aws_cloudwatch_agent_pod_node_affinity`**](#aws_cloudwatch_agent_pod_node_affinity) &mdash; Configure affinity rules for the AWS CloudWatch Agent Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
+
+<a name="aws_cloudwatch_agent_pod_resources" className="snap-top"></a>
+
+* [**`aws_cloudwatch_agent_pod_resources`**](#aws_cloudwatch_agent_pod_resources) &mdash; Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.
+
+<a name="aws_cloudwatch_agent_pod_tolerations" className="snap-top"></a>
+
+* [**`aws_cloudwatch_agent_pod_tolerations`**](#aws_cloudwatch_agent_pod_tolerations) &mdash; Configure tolerations rules to allow the AWS CloudWatch Agent Pods to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
 
 <a name="aws_region" className="snap-top"></a>
 
@@ -83,6 +104,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 <a name="enable_alb_ingress_controller" className="snap-top"></a>
 
 * [**`enable_alb_ingress_controller`**](#enable_alb_ingress_controller) &mdash; Whether or not to enable the AWS LB Ingress controller.
+
+<a name="enable_aws_cloudwatch_agent" className="snap-top"></a>
+
+* [**`enable_aws_cloudwatch_agent`**](#enable_aws_cloudwatch_agent) &mdash; Whether to enable the AWS CloudWatch Agent DaemonSet for collecting container and node metrics from worker nodes (self-managed ASG or managed node groups).
 
 <a name="enable_cluster_autoscaler" className="snap-top"></a>
 
@@ -232,5 +257,5 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8adf4fe7421ff047d2c90b864e1e2953"}
+{"sourcePlugin":"service-catalog-api","hash":"ff9501d658d0a8266e8daf8188a6276b"}
 ##DOCS-SOURCER-END -->

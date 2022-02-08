@@ -1,11 +1,20 @@
+---
+title: IAM Users and IAM Groups
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # IAM Users and IAM Groups
 
-Convenient module to manage best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups.
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/iam-users-and-groups" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups" className="link-button">View on GitHub</a>
+Convenient module to manage best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups.
 
 ### Reference
 
@@ -320,5 +329,5 @@ Convenient module to manage best practices set of IAM Groups for permissions man
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f03934a3e7d8c499c48d58d6fd33e94b"}
+{"sourcePlugin":"service-catalog-api","hash":"c70520b1c494d33e11eb78b9857f22e1"}
 ##DOCS-SOURCER-END -->

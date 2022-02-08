@@ -1,11 +1,20 @@
+---
+title: Gruntwork Access
+hide_title: true
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+
+<VersionBadge version="0.74.0"/>
 
 # Gruntwork Access
 
-Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/gruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" className="link-button">View on GitHub</a>
+Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!
 
 ### Reference
 
@@ -56,5 +65,5 @@ Grant the Gruntwork team access to one of your AWS accounts so we can deploy a R
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"051683bd37521ec998c2b41a6a98f2ef"}
+{"sourcePlugin":"service-catalog-api","hash":"f1592659a2e00848cd0bba1c4e67a1a4"}
 ##DOCS-SOURCER-END -->
