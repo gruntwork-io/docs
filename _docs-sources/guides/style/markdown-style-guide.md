@@ -188,8 +188,8 @@ For clarity, always bold text by surrounding it with double asterisks. This also
 
 Avoid using double underscores for bold text, as it's harder to distinguish from italics at a glance.
 
-```markdown
-**This is also bold. DO NOT DO THIS.**
+```
+__This is also bold. DO NOT DO THIS.__
 ```
 
 ### Single underscores for italics
@@ -202,8 +202,8 @@ _italicized text_
 
 Avoid using single asterisks for italicized text, as it's harder to distinguish from bold text at a glance.
 
-```markdown
-_This is also italicized. DO NOT DO THIS._
+```
+*This is also italicized. DO NOT DO THIS.*
 ```
 
 ## Lists
@@ -464,6 +464,7 @@ same appearance using a blockquote with bold text on the first line:
 
 ```markdown
 > **Note**
+>
 > This text appears like a callout on the page.
 ```
 
