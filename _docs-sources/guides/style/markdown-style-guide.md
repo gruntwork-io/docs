@@ -111,7 +111,7 @@ info, see [this thread](https://unix.stackexchange.com/questions/18743/whats-the
 To create paragraphs, use a single blank line to separate one or more lines of
 text.
 
-```markdown
+```markdown title="DO THIS"
 This is a paragraph. Make it as long as you want,
 and wrap text as needed.
 
@@ -121,9 +121,9 @@ This is the beginning of a second paragraph.
 Don't indent the first line of a paragraph unless it part of a [list](#lists).
 This can cause unexpected formatting issues, and makes it harder to read.
 
-```
+```plain title="DON'T DO THIS"
     The first line of this paragraph is indented, which may
-cause it to be interpreted incorrectly. DO NOT DO THIS.
+cause it to be interpreted incorrectly.
 ```
 
 ### Trailing whitespace
@@ -142,7 +142,7 @@ paragraph tags for you simply with newlines: get used to that.
 
 ### ATX-style headings
 
-```markdown
+```markdown title="DO THIS"
 ## Heading 2
 ```
 
@@ -150,8 +150,8 @@ Headings with `=` or `-` underlines can be annoying to maintain and don't fit
 with the rest of the heading syntax. The user has to ask: Does `---` mean H1 or
 H2?
 
-```
-Heading - do you remember what level? DO NOT DO THIS.
+```plain title="DON'T DO THIS"
+Heading - do you remember what level?
 ---
 ```
 
@@ -159,7 +159,7 @@ Heading - do you remember what level? DO NOT DO THIS.
 
 Prefer a single space after `#` and newlines before and after:
 
-```markdown
+```markdown title="DO THIS"
 ...text before.
 
 # Heading 1
@@ -169,11 +169,11 @@ Text after...
 
 Lack of spacing makes it a little harder to read in source:
 
-```markdown
+```markdown title="DON'T DO THIS"
 ...text before.
 
 #Heading 1
-Text after... DO NOT DO THIS.
+Text after...
 ```
 
 ## Emphasis
@@ -182,28 +182,28 @@ Text after... DO NOT DO THIS.
 
 For clarity, always bold text by surrounding it with double asterisks. This also ensures that it works properly when attempting to bold a portion of a longer word.
 
-```markdown
+```markdown title="DO THIS"
 **bold text**
 ```
 
 Avoid using double underscores for bold text, as it's harder to distinguish from italics at a glance.
 
-```
-__This is also bold. DO NOT DO THIS.__
+```plain title="DON'T DO THIS"
+__This is also bold.__
 ```
 
 ### Single underscores for italics
 
 For clarity, always italicize text by surrounding it with single underscores.
 
-```markdown
+```markdown title="DO THIS"
 _italicized text_
 ```
 
 Avoid using single asterisks for italicized text, as it's harder to distinguish from bold text at a glance.
 
-```
-*This is also italicized. DO NOT DO THIS.*
+```plain title="DON'T DO THIS"
+*This is also italicized.*
 ```
 
 ## Lists
@@ -212,7 +212,7 @@ Avoid using single asterisks for italicized text, as it's harder to distinguish 
 
 Prefer dashes (-) for all bulleted lists over asterisks (\*) or plus signs (+).
 
-```markdown
+```markdown title="DO THIS"
 - Foo.
 - Bar.
 - Baz.
@@ -221,7 +221,7 @@ Prefer dashes (-) for all bulleted lists over asterisks (\*) or plus signs (+).
 They're a touch easier to type and make it easier to recognize what's going
 on if the list item opens with bold text. This has reasonable legibility:
 
-```markdown
+```markdown title="DO THIS"
 - **Foo.** foo foo
 - **Bar.** bar bar
 - **Baz.** baz baz
@@ -229,10 +229,10 @@ on if the list item opens with bold text. This has reasonable legibility:
 
 Whereas this does not:
 
-```
+```plain title="DON'T DO THIS"
 * **Foo.** foo foo
 * **Bar.** bar bar
-* **Baz.** baz baz DO NOT DO THIS
+* **Baz.** baz baz
 ```
 
 ### Lazy numbering for long lists
@@ -262,7 +262,7 @@ numbered lists, because it's nicer to read in source:
 
 When nesting lists, use a 4 space indent for both numbered and bulleted lists:
 
-```
+```plain title="DO THIS"
 1.  Two spaces after a numbered list.
     Four space indent for wrapped text.
 2.  Two spaces again.
@@ -277,16 +277,16 @@ When nesting lists, use a 4 space indent for both numbered and bulleted lists:
 
 The following works, but it's very messy:
 
-```
+```plain title="DON'T DO THIS"
 - One space,
 with no indent for wrapped text.
-    1. Irregular nesting... DO NOT DO THIS.
+    1. Irregular nesting...
 ```
 
 Even when there's no nesting, using the 4 space indent makes layout consistent
 for wrapped text:
 
-```
+```plain
 -   Foo,
     wrapped.
 
@@ -371,12 +371,10 @@ Because most commandline snippets are intended to be copied and pasted directly
 into a terminal, it's best practice to escape any newlines. Use a single
 backslash at the end of the line:
 
-<pre>
-```shell
-bazel run :target -- --flag --foo=longlonglonglonglongvalue \
---bar=anotherlonglonglonglonglonglonglonglonglonglongvalue
-```
-</pre>
+    ```shell
+    bazel run :target -- --flag --foo=longlonglonglonglongvalue \
+    --bar=anotherlonglonglonglonglonglonglonglonglonglongvalue
+    ```
 
 #### Nest codeblocks within lists
 
@@ -411,22 +409,28 @@ additional spaces from the list indentation:
 To create a blockquote, add a `>` in front of _each_ line of a content block,
 (including any blank lines):
 
-```markdown
+```markdown title="DO THIS"
 > Our mission at Gruntwork is to make it 10x easier to understand, build, and
 > deploy software.
 ```
 
+```markdown title="DO THIS"
+> Your Entire Infrastructure.
+>
+> Defined as code.
+>
+> In about a day.
+```
+
 Don't omit the `>` even in contexts where the Markdown syntax supports it, such
-as a single paragraph. It's far less obvious in the source at a glance, and
-it retains consistency with multi-paragraph blockquotes and any that contain
-formatted content like lists, which require the carat on each line anyway.
+as a single paragraph. Including it on each line improves clarity in the source
+and retains consistency with multi-paragraph blockquotes or those that contain
+formatted content like lists, which require it.
 
-```
+```plain title="DON'T DO THIS"
 > Our mission at Gruntwork is to make it 10x easier to understand, build, and
-deploy software. DO NOT DO THIS.
+deploy software.
 ```
-
-Dorothy followed her through many of the beautiful rooms in her castle.
 
 ## Admonitions
 
@@ -461,7 +465,7 @@ When writing Markdown that won't appear in our documentation site the above
 syntax will be rendered in plain text. In such cases, you can approximate the
 same appearance using a blockquote with bold text on the first line:
 
-```markdown
+```markdown title="DO THIS"
 > **Note**
 >
 > This text appears like a callout on the page.
@@ -474,6 +478,13 @@ it will be automatically translated into the Docusaurus admonition syntax and
 appear rendered in the same style.
 
 :::
+
+Feel free to use phrasing like "Note that…" in the body of a paragraph, but
+avoid using it to open a paragraph with a colon:
+
+```markdown title="DON'T DO THIS"
+Note: This text won't appear with any custom styling.
+```
 
 ## Expandable details
 
@@ -517,16 +528,15 @@ wisely.
 Titling your links as "link" or "here" tells the reader precisely nothing when
 quickly scanning your doc and is a waste of space:
 
-```markdown
+```markdown title="DON'T DO THIS"
 See the syntax guide for more info: [link](syntax_guide.md).
 Or, check out the style guide [here](style_guide.md).
-DO NOT DO THIS.
 ```
 
 Instead, write the sentence naturally, then go back and wrap the most
 appropriate phrase with the link:
 
-```markdown
+```markdown title="DO THIS"
 See the [syntax guide](syntax_guide.md) for more info.
 Or, check out the [style guide](style_guide.md).
 ```
@@ -536,14 +546,14 @@ Or, check out the [style guide](style_guide.md).
 Avoid bare links without any syntax, as these won't be rendered reliably in
 all contexts:
 
-```markdown
-This is a bare link to https://docs.gruntwork.io. DO NOT DO THIS.
+```markdown title="DON'T DO THIS"
+This is a bare link to https://docs.gruntwork.io.
 ```
 
 If you wish to present a link as its own link text, you must duplicate the URL
 within the text of the link syntax:
 
-```markdown
+```markdown title="DO THIS"
 This is a proper link to [https://docs.gruntwork.io](https://docs.gruntwork.io)
 ```
 
@@ -566,8 +576,14 @@ sometimes very helpful to show what you mean.
 Always specify alt text for your images to improve accessibility by providing
 text in the brackets preceding the link:
 
-```markdown
+```markdown title="DO THIS"
 ![Describe the image briefly](/img/path/to/image.png)
+```
+
+Omitting the alt text is bad for accessibility.
+
+```markdown title="DON'T DO THIS"
+![](/img/path/to/image.png)
 ```
 
 ### Captions
@@ -621,7 +637,7 @@ When you do decide to use a horizontal rule, always use three dashes (---) on a
 line by themselves, surrounded by blank lines. Don't use three underscores
 (\_\_\_) or three asterisks (\*\*\*).
 
-```markdown
+```markdown title="DO THIS"
 Always put a blank line before…
 
 ---
@@ -629,24 +645,30 @@ Always put a blank line before…
 …and after a horizontal rule.
 ```
 
+Using mixed characters and/or omitting spaces makes rules harder to identify.
+
+```plain title="DON'T DO THIS"
+Without a gap…
+***
+…the rule is harder to spot.
+```
+
 ## Prefer lists to tables
 
 Any tables in your Markdown should be small. Complex, large tables are difficult
 to read in source and most importantly, **a pain to modify later**.
 
-```markdown
+```markdown title="DON'T DO THIS"
 | Fruit  | Attribute                                                                                                             | Notes                                                 |
 | ------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | Apple  | [Juicy](https://example.com/SomeReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Firm, Sweet               | Apples keep doctors away.                             |
 | Banana | [Convenient](https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
-
-DO NOT DO THIS
 ```
 
 [Lists](#lists) and subheadings usually suffice to present the same information
 in a slightly less compact, though much more edit-friendly way:
 
-```markdown
+```markdown title="DO THIS"
 ## Fruits
 
 ### Apple
