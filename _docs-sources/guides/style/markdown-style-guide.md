@@ -258,7 +258,7 @@ numbered lists, because it's nicer to read in source:
 3.  Baz.
 ```
 
-### Nested list spacing
+### Consistent indentation
 
 When nesting lists, use a 4 space indent for both numbered and bulleted lists:
 
@@ -305,6 +305,52 @@ suffice for both kinds of lists:
 
 1. Foo
 2. Bar
+```
+
+### Inter-item spacing
+
+For lists with concise items most or all of which fit on one line, _do not_ leave
+an empty line between list items:
+
+```markdown title="DO THIS"
+- Foo
+- Bar
+- Baz
+```
+
+Leaving gaps like this produces gaps in the rendered output also, which leads to
+lists which appear to lack structure:
+
+```markdown title="DON'T DO THIS"
+- Foo
+
+- Bar
+
+- Baz
+```
+
+However, if many of your list items are longer and wrap onto multiple lines, a
+blank line between list items improves legibility by making it easy to see
+where each one begins:
+
+```markdown title="DO THIS"
+1.  This is a list item that's long enough to wrap onto multiple lines when
+    rendered on the page.
+
+2.  In circumstances like these, it's helpful to leave a blank line between each
+    list item to help distinguish one from the next and improve legibility in
+    both the source and the output.
+
+3.  A third list item helps make the point, even if it doesn't wrap itself.
+```
+
+```markdown title="DON'T DO THIS"
+1.  This is a list item that's long enough to wrap onto multiple lines when
+    rendered on the page.
+2.  In circumstances like these, it's helpful to leave a blank line between each
+    list item to help distinguish one from the next and improve legibility in
+    both the source and the output.
+3.  A third list item helps make the point, even if it doesn't wrap itself.
 ```
 
 ## Code
