@@ -58,8 +58,8 @@ More content.
 ### Table of contents
 
 Markdown doesn't include native syntax for a table of contents. While a TOC
-can help users find relevant content on longer pages more easily, they are
-difficult to maintain manually, and easily get out of sync with the content.
+can help readers find relevant content on longer pages more easily, they are
+difficult to maintain and can easily get out of sync with the content.
 
 Because both GitHub (where our code and READMEs are hosted) and Docusaurus
 (where our documentation is hosted) provide an auto-generated table of contents
@@ -157,7 +157,7 @@ Heading - do you remember what level? DO NOT DO THIS.
 
 ### Add spacing to headings
 
-Prefer spacing after `#` and newlines before and after:
+Prefer a single space after `#` and newlines before and after:
 
 ```markdown
 ...text before.
@@ -219,7 +219,7 @@ Prefer dashes (-) for all bulleted lists over asterisks (\*) or plus signs (+).
 ```
 
 They're a touch easier to type and make it easier to recognize what's going
-on if the list item opens with bold text. Compare this:
+on if the list item opens with bold text. This has reasonable legibility:
 
 ```markdown
 - **Foo.** foo foo
@@ -227,7 +227,7 @@ on if the list item opens with bold text. Compare this:
 - **Baz.** baz baz
 ```
 
-To this:
+Whereas this does not:
 
 ```
 * **Foo.** foo foo
@@ -263,35 +263,36 @@ numbered lists, because it's nicer to read in source:
 When nesting lists, use a 4 space indent for both numbered and bulleted lists:
 
 ```
-1.  2 spaces after a numbered list.
-    4 space indent for wrapped text.
-2.  2 spaces again.
+1.  Two spaces after a numbered list.
+    Four space indent for wrapped text.
+2.  Two spaces again.
 
--   3 spaces after a bullet.
-    4 space indent for wrapped text.
-    1.  2 spaces after a numbered list.
-        8 space indent for the wrapped text of a nested list.
-    2.  Looks nice, don't it?
--   3 spaces after a bullet.
+-   Three spaces after a bullet.
+    Four space indent for wrapped text.
+    1.  Two spaces after a numbered list.
+        Eight space indent for the wrapped text of a nested list.
+    2.  Looks nice, right?
+-   Three spaces after a bullet.
 ```
 
 The following works, but it's very messy:
 
-```markdown
+```
 - One space,
-  with no indent for wrapped text. 1. Irregular nesting... DO NOT DO THIS.
+with no indent for wrapped text.
+    1. Irregular nesting... DO NOT DO THIS.
 ```
 
 Even when there's no nesting, using the 4 space indent makes layout consistent
 for wrapped text:
 
-```markdown
-- Foo,
-  wrapped.
+```
+-   Foo,
+    wrapped.
 
-1.  2 spaces
-    and 4 space indenting.
-2.  2 spaces again.
+1.  Two spaces after the numeral,
+    and four space indenting.
+2.  Two spaces again.
 ```
 
 However, when lists are small, not nested, and a single line, one space can
@@ -300,10 +301,10 @@ suffice for both kinds of lists:
 ```markdown
 - Foo
 - Bar
-- Baz.
+- Baz
 
-1. Foo.
-2. Bar.
+1. Foo
+2. Bar
 ```
 
 ## Code
@@ -334,12 +335,10 @@ anyway.
 
 For code quotations longer than a single line, use a codeblock:
 
-<pre>
-```python
-def Foo(self, bar):
-  self.bar = bar
-```
-</pre>
+    ```python
+    def Foo(self, bar):
+      self.bar = bar
+    ```
 
 #### Declare the language
 
@@ -479,7 +478,7 @@ appear rendered in the same style.
 ## Expandable details
 
 Although you should generally [avoid HTML](#strongly-prefer-markdown-to-html),
-the `<details>` element enables one to expand and collapse sections of content
+the `<details>` element enables readers to expand and collapse sections of content
 on the page. This is useful when content needs to be made available, but
 needn't be presented in the default view of the page where it could make it
 needlessly long or distract from the main message.
@@ -696,5 +695,5 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6004fe4f30e0049b4ea8a4d86a435880"}
+{"sourcePlugin":"local-copier","hash":"1d06ad043918b65d2933e8a6537429c3"}
 ##DOCS-SOURCER-END -->
