@@ -1,7 +1,20 @@
+---
+toc_max_heading_level: 2
+---
+
 import Admonition from "@theme/Admonition"
 import { CCLicense } from "/src/components/CCLicense"
 
 # Markdown style guide
+
+<!--
+
+NOTE TO EDITORS: some of the code-fenced examples in this document omit
+the `markdown` language declaration. This is done purposefully to avoid
+auto-formatting by IDEs of examples by specifically intended to demonstrate
+incorrect Markdown syntax.
+
+-->
 
 Much of what makes Markdown great is the ability to write plain text and get great formatted output as a result. We want to keep our source Markdown as simple and consistent as possible to make it easier for our many authors to contribute to Gruntwork documentation over time. It’s much easier to understand and make edits to a large collection of docs when they all share a consistent style.
 
@@ -41,6 +54,21 @@ More content.
     "What is Foo? Why would I extend it?"
 
 1.  `## Topic`: The rest of your headings should start from level 2.
+
+### Table of contents
+
+Markdown doesn't include native syntax for a table of contents. While a TOC
+can help users find relevant content on longer pages more easily, they are
+difficult to maintain manually, and easily get out of sync with the content.
+
+Because both GitHub (where our code and READMEs are hosted) and Docusaurus
+(where our documentation is hosted) provide an auto-generated table of contents
+based on the headers in the document, you should generally _omit_ a TOC from
+your document and rely on the rendering context to provide one.
+
+You may make an exception to this rule in order to provide smaller, inline TOCs
+which enumerate only the items within a given section of the document, as a
+means of introducing what comes next.
 
 ### Intermediate line breaks
 
@@ -90,12 +118,11 @@ and wrap text as needed.
 This is the beginning of a second paragraph.
 ```
 
-Don't indent the first line of a paragraph unless it part of a [list](#Lists).
+Don't indent the first line of a paragraph unless it part of a [list](#lists).
 This can cause unexpected formatting issues, and makes it harder to read.
 
-```markdown
+```
     The first line of this paragraph is indented, which may
-
 cause it to be interpreted incorrectly. DO NOT DO THIS.
 ```
 
@@ -378,6 +405,105 @@ additional spaces from the list indentation:
 - Next bullet.
 ```
 
+## Blockquotes
+
+### Include `>` on every line
+
+To create a blockquote, add a `>` in front of _each_ line of a content block,
+(including any blank lines):
+
+```markdown
+> Our mission at Gruntwork is to make it 10x easier to understand, build, and
+> deploy software.
+```
+
+Don't omit the `>` even in contexts where the Markdown syntax supports it, such
+as a single paragraph. It's far less obvious in the source at a glance, and
+it retains consistency with multi-paragraph blockquotes and any that contain
+formatted content like lists, which require the carat on each line anyway.
+
+```
+> Our mission at Gruntwork is to make it 10x easier to understand, build, and
+deploy software. DO NOT DO THIS.
+```
+
+Dorothy followed her through many of the beautiful rooms in her castle.
+
+## Admonitions
+
+Use admonitions to call attention to particular details within the body of a doc, such as a cautionary warning, or a bit of supplemental information that isn’t essential to its primary reading. These come in several flavors depending on the type or severity of the information being communicated: `note`, `tip`, `info`, `caution`, and `danger`.
+
+Markdown doesn’t provide native support for this feature. However, Docusaurus enables a custom syntax as shown below:
+
+```markdown
+:::note
+
+Keep in mind that…
+
+:::
+```
+
+You can also provide a custom title:
+
+```markdown
+:::tip Did you know…
+
+I'll bet you didn't!
+
+:::
+```
+
+See [the Docusaurus documentation](https://docusaurus.io/docs/markdown-features/admonitions)
+for additional details.
+
+### Simulated admonitions
+
+When writing Markdown that won't appear in our documentation site the above
+syntax will be rendered in plain text. In such cases, you can approximate the
+same appearance using a blockquote with bold text on the first line:
+
+```markdown
+> **Note**
+> This text appears like a callout on the page.
+```
+
+:::note
+
+When a simulated admonition of this kind is imported into our documentation,
+it will be automatically translated into the Docusaurus admonition syntax and
+appear rendered in the same style.
+
+:::
+
+## Expandable details
+
+Although you should generally [avoid HTML](#strongly-prefer-markdown-to-html),
+the `<details>` element enables one to expand and collapse sections of content
+on the page. This is useful when content needs to be made available, but
+needn't be presented in the default view of the page where it could make it
+needlessly long or distract from the main message.
+
+You may use this native HTML element directly in your Markdown, as it is
+supported by both
+[GitHub](https://gist.github.com/scmx/eca72d44afee0113ceb0349dd54a84a2) and
+[Docusuarus](https://docusaurus.io/docs/markdown-features#details):
+
+```
+<details>
+<summary>Details toggle example</summary>
+
+Expandable markdown content. Take note of:
+
+1. The blank line above this content
+2. The blank line below this content
+
+</details>
+```
+
+Use an informative title in the summary to make clear what it contains.
+In order to utilize Markdown within the body, ensure that you leave a
+blank line both after the summary and before the closing `</details>` tag.
+
 ## Links
 
 Long links make source Markdown difficult to read and break the 80 character
@@ -447,7 +573,7 @@ text in the brackets preceding the link:
 ### Captions
 
 Markdown doesn't support captions natively. However, you can approximate
-captions by placing [italicized text](#Emphasis) on the line _immediately
+captions by placing [italicized text](#emphasis) on the line _immediately
 after_ your image (omit a blank line). This provides basic formatting that
 looks good in most Markdown rendering contexts, and also enables custom
 styling in our documentation platform.
