@@ -512,7 +512,7 @@ syntax will be rendered in plain text. In such cases, you can approximate the
 same appearance using a blockquote with bold text on the first line:
 
 ```markdown title="DO THIS"
-> **Note**
+> **NOTE**
 >
 > This text appears like a callout on the page.
 ```

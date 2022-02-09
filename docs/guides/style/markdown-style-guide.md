@@ -512,7 +512,7 @@ syntax will be rendered in plain text. In such cases, you can approximate the
 same appearance using a blockquote with bold text on the first line:
 
 ```markdown title="DO THIS"
-> **Note**
+> **NOTE**
 >
 > This text appears like a callout on the page.
 ```
@@ -763,5 +763,5 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"efbac96ec62addff9f3e74d668b4eb21"}
+{"sourcePlugin":"local-copier","hash":"9d54eca259f7356c15081b6126010383"}
 ##DOCS-SOURCER-END -->
