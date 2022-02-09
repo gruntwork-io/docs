@@ -56,7 +56,7 @@ const config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
+          editUrl: "https://github.com/gruntwork-io/docs/edit/master/",
           beforeDefaultRemarkPlugins: [captionsPlugin],
         },
         blog: false,
