@@ -144,11 +144,11 @@ jobs:
 
 workflows:
   version: 2
-  each_commit:
+  validate_build:
     jobs:
-      - validate-build:
-          context:
-            - Gruntwork Platform CI
+      - validate-build
+  stage_deployment:
+    jobs:
       - deploy-to-stage:
           context:
             - Gruntwork Platform CI
@@ -156,6 +156,8 @@ workflows:
           filters:
             branches:
               only: master
+  prod_deployment:
+    jobs:
       - deploy-to-prod:
           context:
             - Gruntwork Platform CI
