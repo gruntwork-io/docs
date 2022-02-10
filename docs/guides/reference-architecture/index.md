@@ -19,10 +19,15 @@ Learn how to configure your Reference Architecture so Gruntwork can deliver it d
   href="/guides/reference-architecture/example-usage-guide">
 See a preview of how to use your customized Reference Architecture once we've delivered it in your repo.
 </Card>
+<Card
+  title="Update to the Gruntwork Service Catalog"
+  href="/guides/reference-architecture/update-to-service-catalog">
+Modernize your legacy Reference Architecture to use our new Service Catalog patterns.
+</Card>
 
 </CardGroup>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"21aa6a8e8b5ae6d1b2c9cb6b1e8d5a37"}
+{"sourcePlugin":"local-copier","hash":"675db72e2d75cc00ff5d3ec1a5407f0a"}
 ##DOCS-SOURCER-END -->
