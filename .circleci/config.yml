@@ -146,13 +146,18 @@ workflows:
   version: 2
   validate_build:
     jobs:
-      - validate-build
+      - validate-build:
+          filters:
+            branches:
+              ignore: master
   stage_deployment:
     jobs:
       - deploy-to-stage:
           context:
             - Gruntwork Platform CI
             - GitHub OAuth Token
+          requires:
+            - validate-build
           filters:
             branches:
               only: master
@@ -162,6 +167,8 @@ workflows:
           context:
             - Gruntwork Platform CI
             - GitHub OAuth Token
+          requires:
+            - validate-build
           filters:
             tags:
               only: /^v.*/
