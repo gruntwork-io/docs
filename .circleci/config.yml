@@ -152,6 +152,7 @@ workflows:
               ignore: master
   stage_deployment:
     jobs:
+      - validate-build
       - deploy-to-stage:
           context:
             - Gruntwork Platform CI
@@ -163,6 +164,7 @@ workflows:
               only: master
   prod_deployment:
     jobs:
+      - validate-build
       - deploy-to-prod:
           context:
             - Gruntwork Platform CI
