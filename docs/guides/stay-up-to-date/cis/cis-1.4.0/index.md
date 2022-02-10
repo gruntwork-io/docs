@@ -1,8 +1,4 @@
----
-pagination_label: Update to CIS AWS Foundations Benchmark 1.4.0
----
-
-# What you’ll learn in this guide
+# Update to CIS AWS Foundations Benchmark 1.4.0
 
 This guide consists of two main sections:
 
