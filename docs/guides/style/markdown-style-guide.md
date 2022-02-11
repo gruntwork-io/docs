@@ -727,7 +727,7 @@ Without a gap…
 
 ## Tables
 
-Any tables in your Markdown should be small. Complex, large tables are difficult
+Any tables in your Markdown should be small. Large, complex tables are difficult
 to read in source and most importantly, _a pain to modify later_ (although
 [online tools](https://www.tablesgenerator.com/markdown_tables) and IDE features
 like those for [Vim](https://github.com/dhruvasagar/vim-table-mode) and
@@ -793,10 +793,10 @@ as possible. Include the link definitions immediately beneath the table (not
 at the end of the file) where readers can find them in context.
 
 ```markdown title="✅ DO THIS"
-| Fruit  | Attribute                    | Notes                                                 |
-| ------ | ---------------------------- | ----------------------------------------------------- |
-| Apple  | [Juicy][1], Firm, Sweet      | Apples keep doctors away.                             |
-| Banana | [Convenient][2], Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
+| Fruit  | Attribute                    | Notes                          |
+| ------ | ---------------------------- | ------------------------------ |
+| Apple  | [Juicy][1], Firm, Sweet      | Apples keep doctors away.      |
+| Banana | [Convenient][2], Soft, Sweet | Actually, apes prefer mangoes. |
 
 [1]: https://SomeReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongURL
 [2]: https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery
@@ -821,5 +821,5 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"d34d5290723410eb185b7f86b1b9e078"}
+{"sourcePlugin":"local-copier","hash":"db9d2c8922fee9b192e062ac2c7026d9"}
 ##DOCS-SOURCER-END -->
