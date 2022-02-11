@@ -15,10 +15,15 @@ Learn Gruntwork's Terraform coding style.
   href="/guides/style/golang-style-guide">
 Learn Gruntwork's Go coding style.
 </Card>
+<Card
+  title="Markdown Style Guide"
+  href="/guides/style/markdown-style-guide">
+Learn how Gruntwork formats our READMEs and documentation.
+</Card>
 
 </CardGroup>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"43ecd69204c9e64dda7b7fd30291c64b"}
+{"sourcePlugin":"local-copier","hash":"570c137a65cf9623f2e9e018df8121d1"}
 ##DOCS-SOURCER-END -->

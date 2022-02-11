@@ -39,7 +39,7 @@
   --ifm-navbar-height: 100px;
 
   --ifm-font-family-base: "Source Sans Pro";
-  --ifm-code-font-size: 95%;
+  --ifm-code-font-size: 85%;
   --ifm-h1-font-size: 2.5rem; /* ! */
   --ifm-heading-color: #252746;
 
@@ -63,6 +63,16 @@ html[data-theme="dark"] {
 
 html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Override accidental margin on Markdown code fences */
+pre.language-markdown {
+  margin-bottom: 0;
+}
+
+/* Sneaky selector to target code fence titles */
+.theme-code-block > div:first-child:not(only-child) {
+  font-weight: 600;
 }
 
 main {
@@ -320,6 +330,17 @@ html[data-theme="dark"] .link-button {
 
 html[data-theme="dark"] .link-button:hover {
   background-color: var(--ifm-background-surface-color);
+}
+
+/* ADMONITIONS */
+
+.admonition-icon img {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.admonition-icon img + img {
+  margin-left: 0.25rem;
 }
 
 /* FOOTER */
