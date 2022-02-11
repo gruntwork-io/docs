@@ -49,7 +49,8 @@ More content.
 
 1.  `# Document Title`: The first heading should be a level one heading, and
     should ideally be the same or nearly the same as the filename. The first
-    level one heading is used as the page `<title>`.
+    level one heading is used as the page `<title>`. In nearly all cases, you
+    should only include _one_ level one heading in the file.
 
 1.  `Short introduction.` 1-3 sentences providing a high-level overview of the
     topic. Imagine yourself as a complete newbie, who landed on your "Extending
@@ -66,7 +67,7 @@ difficult to maintain and can easily get out of sync with the content.
 
 Because both GitHub (where our code and READMEs are hosted) and Docusaurus
 (where our documentation is hosted) provide an auto-generated table of contents
-based on the headers in the document, you should generally _omit_ a TOC from
+based on the headers in the document, you should generally omit a TOC from
 your document and rely on the rendering context to provide one.
 
 You may make an exception to this rule in order to provide smaller, inline TOCs
@@ -105,9 +106,10 @@ for details.
 
 ### Ending newline
 
-All files should end with a single empty line to avoid any potential
-incompatibilities with some Markdown editors and/or rendering engines. For more
-info, see [this thread](https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file).
+All files should end with a single empty line to avoid
+[any potential tool incompatibilities](https://unix.stackexchange.com/questions/18743/whats-the-point-in-adding-a-new-line-to-the-end-of-a-file).
+But, let's be honest — do it because we don't like seeing
+`\ No newline at end of file` in our diffs.
 
 ## Paragraphs
 
@@ -129,7 +131,7 @@ This can cause unexpected formatting issues, and makes it harder to read.
 cause it to be interpreted incorrectly.
 ```
 
-### Trailing whitespace
+### No trailing whitespace
 
 Don't use trailing whitespace, use a trailing backslash.
 
