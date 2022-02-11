@@ -85,7 +85,8 @@ blank lines as this can lead to inconsistent spacing and longer source files.
 
 Obey projects' character line limit wherever possible. Long URLs and tables are
 the usual suspects when breaking the rule. (Headings also can't be wrapped, but
-we encourage keeping them short). Otherwise, wrap your text to 80 characters:
+we encourage keeping them short). Unless instructed otherwise, wrap your text
+to 120 characters:
 
 ```markdown
 Lorem ipsum dolor sit amet, nec eius volumus patrioque cu, nec et commodo
@@ -485,9 +486,19 @@ deploy software.
 
 ## Admonitions
 
-Use admonitions to call attention to particular details within the body of a doc, such as a cautionary warning, or a bit of supplemental information that isn’t essential to its primary reading. These come in several flavors depending on the type or severity of the information being communicated: `note`, `tip`, `info`, `caution`, and `danger`.
+Use admonitions to call attention to particular details within the body of a
+doc, such as a cautionary warning, or a bit of supplemental information that
+isn’t essential to its primary reading. Our documentation supports a custom
+syntax for this purpose. Below, we also provide a means of
+[simulating admonitions](#simulated-admonitions) in native Markdown syntax.
 
-Markdown doesn’t provide native support for this feature. However, Docusaurus enables a custom syntax as shown below:
+### Docusaurus admonitions
+
+Docusaurus admonitions come in several flavors depending on the type or
+severity of the information being communicated: `note`, `tip`, `info`,
+`caution`, and `danger`.
+
+Use the following custom syntax in documentation:
 
 ```markdown
 :::note
@@ -568,8 +579,10 @@ blank line both after the summary and before the closing `</details>` tag.
 
 ## Links
 
-Long links make source Markdown difficult to read and break the 80 character
-wrapping. **Wherever possible, shorten your links**.
+Use inline links within your document. This makes it easier for authors to
+see where a link leads in context. However, long links make source Markdown
+difficult to read and can break the line limit. _Wherever possible, shorten
+your links_.
 
 ### Use informative link titles
 
@@ -601,11 +614,10 @@ all contexts:
 This is a bare link to https://docs.gruntwork.io.
 ```
 
-If you wish to present a link as its own link text, you must duplicate the URL
-within the text of the link syntax:
+If you wish to present a link as its own link text, wrap it in angle brackets:
 
 ```markdown title="✅ DO THIS"
-This is a proper link to [https://docs.gruntwork.io](https://docs.gruntwork.io)
+This is a proper link to <https://docs.gruntwork.io>
 ```
 
 If you're using the text of a link purely informatively and _do not want it to
@@ -615,12 +627,21 @@ function as a link_, use backticks to treat it as inline code:
 This link to `https://docs.gruntwork.io` is for informational purposes only.
 ```
 
+### Email addresses
+
+Use angle brackets to automatically create `mailto` links for any emails:
+
+```markdown
+Contact <support@gruntwork.io>.
+```
+
 ## Images
 
-Use images sparingly, and prefer simple screenshots. This guide is designed
-around the idea that plain text gets users down to the business of communication
-faster with less reader distraction and author procrastination. However, it's
-sometimes very helpful to show what you mean.
+Feel free to use images to support your text. Diagrams and illustrations can
+aid visual learners and help explain difficult concepts; and screenshots can
+provide clarity when explaining how to interact with software. However, avoid
+superfluous imagery or photography that doesn't directly help you communicate
+your message.
 
 ### Provide Alt Text
 
@@ -704,10 +725,24 @@ Without a gap…
 …the rule is harder to spot.
 ```
 
-## Prefer lists to tables
+## Tables
 
 Any tables in your Markdown should be small. Complex, large tables are difficult
-to read in source and most importantly, **a pain to modify later**.
+to read in source and most importantly, _a pain to modify later_ (although
+[online tools](https://www.tablesgenerator.com/markdown_tables) and IDE features
+like those for [Vim](https://github.com/dhruvasagar/vim-table-mode) and
+[VSCode](https://github.com/rpeshkov/vscode-text-tables) can help).
+
+Keep two considerations in mind when deciding if a table is appropriate:
+
+1.  **Number of columns.** Tables with too many columns can exceed the width of
+    text editors, causing individual rows to wrap onto multiple lines and making
+    them virtually impossible to read in the source. _Prefer tables with only a
+    few columns._
+
+2.  **Length of cell content.** Text within cells can't wrap, so even short
+    sentences in any of your cells can cause the width of the table to explode
+    quicky. _Prefer tables with concise data._
 
 ```markdown title="⛔️ DON'T DO THIS"
 | Fruit  | Attribute                                                                                                             | Notes                                                 |
@@ -716,8 +751,10 @@ to read in source and most importantly, **a pain to modify later**.
 | Banana | [Convenient](https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
 ```
 
-[Lists](#lists) and subheadings usually suffice to present the same information
-in a slightly less compact, though much more edit-friendly way:
+[Lists](#lists) and subheadings often suffice to present the same information
+in a slightly less compact, though much more edit-friendly way. This can also
+keep all relevant information for a particular item visible to readers at once,
+without requiring horizontal scrolling.
 
 ```markdown title="✅ DO THIS"
 ## Fruits
@@ -747,6 +784,22 @@ However, there are times when a small table is called for:
 | Swallow          | Coconuts       | Otherwise unladen             |
 | Bicycle          | Miss Gulch     | Weatherproof                  |
 | X-34 landspeeder | Whiny farmboys | Cheap since the X-38 came out |
+```
+
+### Use reference style links
+
+Use reference style links in tables to keep the contents of each cell as short
+as possible. Include the link definitions immediately beneath the table (not
+at the end of the file) where readers can find them in context.
+
+```markdown title="✅ DO THIS"
+| Fruit  | Attribute                    | Notes                                                 |
+| ------ | ---------------------------- | ----------------------------------------------------- |
+| Apple  | [Juicy][1], Firm, Sweet      | Apples keep doctors away.                             |
+| Banana | [Convenient][2], Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
+
+[1]: https://SomeReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyReallyLongURL
+[2]: https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery
 ```
 
 ## Strongly prefer Markdown to HTML
