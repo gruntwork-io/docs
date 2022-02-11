@@ -744,12 +744,7 @@ Keep two considerations in mind when deciding if a table is appropriate:
     sentences in any of your cells can cause the width of the table to explode
     quicky. _Prefer tables with concise data._
 
-```markdown title="⛔️ DON'T DO THIS"
-| Fruit  | Attribute                                                                                                             | Notes                                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Apple  | [Juicy](https://example.com/SomeReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Firm, Sweet               | Apples keep doctors away.                             |
-| Banana | [Convenient](https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
-```
+### Consider lists for complex content
 
 [Lists](#lists) and subheadings often suffice to present the same information
 in a slightly less compact, though much more edit-friendly way. This can also
@@ -774,6 +769,13 @@ Apples keep doctors away.
 - Sweet
 
 Contrary to popular belief, most apes prefer mangoes.
+```
+
+```markdown title="⛔️ DON'T DO THIS"
+| Fruit  | Attribute                                                                                                             | Notes                                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Apple  | [Juicy](https://example.com/SomeReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Firm, Sweet               | Apples keep doctors away.                             |
+| Banana | [Convenient](https://example.com/SomeDifferentReallyReallyReallyReallyReallyReallyReallyReallyLongQuery), Soft, Sweet | Contrary to popular belief, most apes prefer mangoes. |
 ```
 
 However, there are times when a small table is called for:
