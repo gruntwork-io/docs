@@ -4,7 +4,7 @@
 
 **Gruntwork is a "DevOps accelerator" designed to make it possible to achieve a world-class DevOps setup based completely on infrastructure-as-code in just a few days.**
 
-All Gruntwork products exist within a framework we’ve devised specifically to emphasize DevOps industry best-practices and maximize your team’s efficiency. In the [how it works](how-it-works) section, we’ll cover how Gruntwork can help your team implement your infrastructure using this framework.
+All Gruntwork products exist within a framework we’ve devised specifically to emphasize DevOps industry best-practices and maximize your team’s efficiency. In the [how it works](./how-it-works) section, we’ll cover how Gruntwork can help your team implement your infrastructure using this framework.
 
 Gruntwork works best for teams building new infrastructure ("greenfield"), either from scratch or as part of a migration. However, it can also be used by teams with existing infrastructure ("brownfield") if they have sufficient DevOps experience.
 
