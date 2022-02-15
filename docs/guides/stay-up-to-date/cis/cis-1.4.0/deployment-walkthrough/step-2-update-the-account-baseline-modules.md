@@ -47,7 +47,7 @@ git::git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/
 ```
 
 Now execute Terraform/Terragrunt `apply`. It should take approximately ~30 minutes to apply the account baseline
-modules. If you encounter any issues then please check out the [Known Issues](./step-3-manual-steps.md#known-issues) section.
+modules. If you encounter any issues then please check out the [Known Issues](step-3-manual-steps.md#known-issues) section.
 
 :::info
 
@@ -64,7 +64,7 @@ in our CIS service catalog.
 :::info
 
 Manual steps required! After updating the account baseline modules as described below, make sure you perform the manual steps
-outlined in the [Configure Amazon Macie (recommendation 2.1.4)](./step-3-manual-steps.md#configure-amazon-macie-recommendation-214) section.
+outlined in the [Configure Amazon Macie (recommendation 2.1.4)](step-3-manual-steps.md#configure-amazon-macie-recommendation-214) section.
 
 :::
 
@@ -116,5 +116,5 @@ All the other child accounts (logs, stage, prod, etc) need the same configuratio
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"9ad3db5be033a94b90b4d5e9a0498144"}
+{"sourcePlugin":"local-copier","hash":"cb0578642a724e3749d66a16916e7194"}
 ##DOCS-SOURCER-END -->

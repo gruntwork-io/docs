@@ -102,33 +102,33 @@ inputs = {
 
 The example code above does the following:
 
-1. **Create 6 child AWS accounts**. These are the accounts described in the [Child accounts](../production-grade-design/child-accounts) sections.
+1. **Create 6 child AWS accounts**. These are the accounts described in the [Child accounts](../production-grade-design/child-accounts.md) sections.
 
 2. **Associate an email address with each of the child accounts**. This will be the email address for the root user of
-    each account and AWS requires that the root user’s email address is _globally_ unique, so it cannot be the email
-    address you used for the root account or any of the other child accounts. You’ll have to either create multiple email
-    accounts in your company’s email system, or, if your company uses Gmail (perhaps as part of G Suite), you can take
-    advantage of the fact that [Gmail
-    ignores everything after a plus sign in an email address](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html), so that while AWS will see
-    `root-accounts+security@your-company.com`, `root-accounts+shared@your-company.com`, and
-    `root-accounts+dev@your-company.com` as three unique email addresses, Gmail will see them all as the same email
-    address, `root-accounts@your-company.com`.
+   each account and AWS requires that the root user’s email address is _globally_ unique, so it cannot be the email
+   address you used for the root account or any of the other child accounts. You’ll have to either create multiple email
+   accounts in your company’s email system, or, if your company uses Gmail (perhaps as part of G Suite), you can take
+   advantage of the fact that [Gmail
+   ignores everything after a plus sign in an email address](https://gmail.googleblog.com/2008/03/2-hidden-ways-to-get-more-from-your.html), so that while AWS will see
+   `root-accounts+security@your-company.com`, `root-accounts+shared@your-company.com`, and
+   `root-accounts+dev@your-company.com` as three unique email addresses, Gmail will see them all as the same email
+   address, `root-accounts@your-company.com`.
 
 3. **Mark one of the child accounts as a logs account**. We set `is_logs_account = true` on one of the child accounts
-    to indicate it is the logs account where we will aggregate AWS Config and CloudTrail data from all the other accounts.
-    The `account-baseline-root` module will automatically create an S3 bucket for AWS Config and an S3 bucket and KMS CMK
-    for CloudTrail in this account and configure the root account to send all the AWS Config and CloudTrail data to these
-    S3 buckets. Later on, you’ll configure all the other accounts to send their data to these S3 buckets too.
+   to indicate it is the logs account where we will aggregate AWS Config and CloudTrail data from all the other accounts.
+   The `account-baseline-root` module will automatically create an S3 bucket for AWS Config and an S3 bucket and KMS CMK
+   for CloudTrail in this account and configure the root account to send all the AWS Config and CloudTrail data to these
+   S3 buckets. Later on, you’ll configure all the other accounts to send their data to these S3 buckets too.
 
 4. **Create IAM groups**. By default, `account-baseline-root` will create a `full-access` IAM group (for admins) and a
-    `billing` IAM group (for the finance team).
+   `billing` IAM group (for the finance team).
 
 5. **Create IAM users**. For this example, we create `alice` and `bob`, and `carol`, adding `alice` to the `full-access`
-    IAM group and `carol` to the `billing` IAM group. _Note_: your own IAM user (the one you created manually) should be
-    in the `users` list; we’ll use the `import` command to put this user under Terraform management shortly.
+   IAM group and `carol` to the `billing` IAM group. _Note_: your own IAM user (the one you created manually) should be
+   in the `users` list; we’ll use the `import` command to put this user under Terraform management shortly.
 
 6. **Generate a password for each user**. We encrypt this password with that user’s PGP key from Keybase (we’ll come
-    back to how to handle the passwords shortly).
+   back to how to handle the passwords shortly).
 
 Pull in the [backend](https://www.terraform.io/docs/backends/) settings from a root `terragrunt.hcl` file that you
 `include` in each child `terragrunt.hcl`. The file you created earlier in `infrastructure-live/terragrunt.hcl` will be pulled.

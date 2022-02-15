@@ -32,11 +32,11 @@ created a new module for Amazon Macie, and updated the Landing Zone modules so t
 include relevant configurations for the Amazon Macie service. The latter will satisfy the recommendation 2.1.4.
 
 To ensure compliance with version 1.4.0 of the CIS AWS Foundations Benchmark, you’ll need to follow all the
-instructions in the [Deployment walkthrough](./deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md) section; precisely, follow Steps 1 and 2 to ensure that
+instructions in the [Deployment walkthrough](deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md) section; precisely, follow Steps 1 and 2 to ensure that
 the existing modules get updated to their CIS AWS v1.4.0 compliant versions and follow Step 3 to perform the
 necessary manual steps.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"7d268f35eb0dde2c125ed3ce6289d575"}
+{"sourcePlugin":"local-copier","hash":"d2e11fe53ce1dd113f0a0d8ecc1e8f11"}
 ##DOCS-SOURCER-END -->

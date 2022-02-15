@@ -3,7 +3,7 @@
 To destroy a module with no downstream dependencies, such as `route53-private` in the `dev` environment:
 
 1.  Update the `force_destroy` variable in `dev/us-west-2/dev/networking/route53-private/terragrunt.hcl`.
-    ([See the `force_destroy` section](./03-pre-requisite-force-destroy-on-s3-buckets.md).)
+    ([See the `force_destroy` section](03-pre-requisite-force-destroy-on-s3-buckets.md).)
 
         force_destroy = true
 
@@ -24,7 +24,7 @@ To destroy a module with no downstream dependencies, such as `route53-private` i
 1.  Go through the typical git workflow to get the change merged into the main branch.
 1.  As CI runs on the main branch, watch for the job to be held for approval. Approve the job, and wait for the
     `deployment` step to complete so that the module is fully _deleted_.
-1.  [Remove the terraform state](./08-removing-the-terraform-state.md).
+1.  [Remove the terraform state](08-removing-the-terraform-state.md).
 
 :::note
 

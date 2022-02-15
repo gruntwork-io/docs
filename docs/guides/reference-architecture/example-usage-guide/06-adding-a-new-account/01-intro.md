@@ -8,12 +8,12 @@ title: Intro
 This document is a guide to how to add a new AWS account into the Reference Architecture. This is useful if you have a
 need to expand the Reference Architecture with more accounts, like a test or sandbox account.
 
-* [Create new Account in your AWS Org](./02-create-new-account-in-your-aws-org.md)
-* [Update Logs, Security, and Shared accounts to allow cross account access](./03-update-logs-security-shared-accounts-to-allow-cross-account-access.md)
-* [Deploy the security baseline](./04-deploy-the-security-baseline.md)
-* [Deploy the ECS Deploy Runner](./05-deploy-the-ecs-deploy-runner.md)
+- [Create new Account in your AWS Org](02-create-new-account-in-your-aws-org.md)
+- [Update Logs, Security, and Shared accounts to allow cross account access](03-update-logs-security-shared-accounts-to-allow-cross-account-access.md)
+- [Deploy the security baseline](04-deploy-the-security-baseline.md)
+- [Deploy the ECS Deploy Runner](05-deploy-the-ecs-deploy-runner.md)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1d4107f663861340fc8b02b91a6a1990"}
+{"sourcePlugin":"local-copier","hash":"4642c93de8e8463703cbd58048a53b80"}
 ##DOCS-SOURCER-END -->

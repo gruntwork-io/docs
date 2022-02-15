@@ -2,7 +2,7 @@
 
 Now that your security account is fully configured, you need to apply the security baseline to the remaining child
 accounts (i.e., dev, stage, prod, and shared, plus sandbox and testing accounts you might have) as
-detailed in the [Child accounts](../production-grade-design/child-accounts) section. Feel free to adjust this as necessary based on the accounts your company
+detailed in the [Child accounts](../production-grade-design/child-accounts.md) section. Feel free to adjust this as necessary based on the accounts your company
 needs.
 
 The `account-baseline-app` module in the Service Catalog can be used interchangeably between app accounts and log
@@ -106,15 +106,15 @@ The code above does the following:
 2. **Enable AWS Config**. We’ve configured AWS Config to use the S3 bucket in the logs account.
 
 3. **Configure the dev IAM role**. We create a `dev` IAM role in this account, which will get read and write access to
-    the services specified in `dev_permitted_services`.
+   the services specified in `dev_permitted_services`.
 
 4. **Configure the Auto Deploy IAM role**. We also create an `auto-deploy` IAM role that can be assumed by a CI server
-    in the shared-services account to do deployments. This role will have the permissions specified in
-    `auto_deploy_permissions`.
+   in the shared-services account to do deployments. This role will have the permissions specified in
+   `auto_deploy_permissions`.
 
 5. **Configure cross-account IAM roles**. We then specify which other accounts are allowed to assume the IAM roles in
-    this account. For the most part, we grant all permissions to the security account, so that by assigning users to IAM
-    groups in that account, you’ll be able to access IAM roles in all the other child accounts.
+   this account. For the most part, we grant all permissions to the security account, so that by assigning users to IAM
+   groups in that account, you’ll be able to access IAM roles in all the other child accounts.
 
 Just as with the logs and security accounts, you’re going to use the `OrganizationAccountAccessRole` IAM role created by
 `account-baseline-root` to authenticate to the stage account and all other child accounts. There are many ways to

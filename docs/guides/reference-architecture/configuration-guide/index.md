@@ -12,9 +12,9 @@ We recommend that you use the Gruntwork CLI tool to automate most of this proces
 
 :::
 
-:::note
+:::caution
 
-At this time, the Reference Architecture does not configure or manage the root/management account of an AWS Organization set up. That is, it does not include the [`account-baseline-root` module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root). Gruntwork is planning to add this in a future enhancement to the reference architecture.
+Caveat: at this time, the Reference Architecture does not configure or manage the root/management account of an AWS Organization set up. That is, it does not include the [`account-baseline-root` module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root). Gruntwork is planning to add this in a future enhancement to the reference architecture.
 
 :::
 
@@ -24,15 +24,15 @@ The very first step is to clone this repository to your local machine. You must 
 
 1. Clone the repository.
 
-    ```bash
-    git clone git@github.com:gruntwork-clients/<this-repo>.git
-    ```
+  ```bash
+  git clone git@github.com:gruntwork-clients/<this-repo>.git
+  ```
 
-2. Check out a new branch with your changes:
+1. Check out a new branch with your changes:
 
-    ```bash
-    git checkout -b ref-arch-form
-    ```
+  ```bash
+  git checkout -b ref-arch-form
+  ```
 
 ## Create and configure AWS Accounts
 
@@ -49,17 +49,15 @@ The very first step is to clone this repository to your local machine. You must 
 
 1. These account IDs will go under `AWSAccounts` in the reference architecture form.
 
-:::info
-
 For the best results, use [Gruntwork CLI](https://github.com/gruntwork-io/gruntwork) to create the accounts. The Gruntwork CLI automatically grants Gruntwork engineers access to your accounts through an IAM role. However, **if you choose to create the accounts manually and do not use the Gruntwork CLI, you still MUST run the `gruntwork aws grant` command to grant the Gruntwork team access to these accounts**. MFA is enforced for all Gruntwork access. You can use the same tool to revoke access when the deployment is complete. See [CLI documentation](https://github.com/gruntwork-io/gruntwork) for details.
 
-:::
-
-**Important**:
+:::info
 
 - The accounts must be new, empty accounts, with no resources present. That means no EC2 instances, RDS databases, CloudTrail trails, AWS Config recorders, etc.
 - Do not apply any Service Control Policies to the accounts as they may interfere with the Terraform resources in the Reference Architecture.
 - You can name the _dev, stage,_ and _prod_ accounts anything you like, but the others must be named _shared_, _logs_, and _security_.
+
+:::
 
 ## Purchase and register domain names
 
@@ -103,27 +101,27 @@ Once everything is configured up correctly, check that you can resolve the domai
 
 1. On MacOS or Linux, use `dig` to confirm that the domain can be resolved correctly over the Internet:
 
-    ```bash
-    $ dig gruntwork.in +short ns
-    ns-1202.awsdns-22.org.
-    ns-1749.awsdns-26.co.uk.
-    ns-559.awsdns-05.net.
-    ns-67.awsdns-08.com.
-    ```
+  ```bash
+  $ dig gruntwork.in +short ns
+  ns-1202.awsdns-22.org.
+  ns-1749.awsdns-26.co.uk.
+  ns-559.awsdns-05.net.
+  ns-67.awsdns-08.com.
+  ```
 
 1. On Windows, use `nslookup`:
 
-    ```bash
-    $ nslookup -type=mx gruntwork.in
-    Server:             8.8.8.8
-    Address:    8.8.8.8#53
+  ```bash
+  $ nslookup -type=mx gruntwork.in
+  Server:             8.8.8.8
+  Address:    8.8.8.8#53
 
-    Non-authoritative answer:
-    gruntwork.in        nameserver = ns-1202.awsdns-22.org.
-    gruntwork.in        nameserver = ns-1749.awsdns-26.co.uk.
-    gruntwork.in        nameserver = ns-559.awsdns-05.net.
-    gruntwork.in        nameserver = ns-67.awsdns-08.com.
-    ```
+  Non-authoritative answer:
+  gruntwork.in        nameserver = ns-1202.awsdns-22.org.
+  gruntwork.in        nameserver = ns-1749.awsdns-26.co.uk.
+  gruntwork.in        nameserver = ns-559.awsdns-05.net.
+  gruntwork.in        nameserver = ns-67.awsdns-08.com.
+  ```
 
 Notice that the NS records in the image match the values returned by the commands. The same process applies if you’re using subdomains. Make sure to validate each domain or subdomain in this manner.
 
@@ -134,11 +132,7 @@ Notice that the NS records in the image match the values returned by the command
 3. `InfraLiveRepoSSHURL` is where you enter this repo’s SSH URL (e.g. <git@github.com>:gruntwork-io/infrastructure-live.git).
 4. `InfraLiveDefaultBranchName` is where you enter your repo’s default branch name (e.g. main).
 
-:::info
-
 This current repository will contain all of the infrastructure code you need to extend and operate the environment. For you to have access to all the code, you should copy this code into your newly created _infrastructure-live_ repo once the deployment is done.
-
-:::
 
 ## Set up the machine user
 
@@ -188,14 +182,10 @@ The [reference architecture form](https://github.com/gruntwork-clients/infrastru
 
 You’ll need all the information you’ve noted in the previous steps. This is where you’ll also be able to customize your infrastructure by choosing a compute option (e.g. ASG, ECS, or EKS), a cache cluster (Redis or Memcached), and a database (e.g. MySQL, PostgreSQL, Aurora, etc). The form contains detailed descriptions of each field.
 
-:::caution
-
 YAML files are space-sensitive. As you edit the file, be sure to retain the correct whitespace! This should be apparent as you review the file.
 
-:::
-
 1. Open `reference-architecture-form.yml` in a text editor.
-2. Update the _replace-me_ placeholder text in each field. Use double quotes (`""`) to wrap the values, as shown in the examples.
+1. Update the _replace-me_ placeholder text in each field. Use double quotes (`""`) to wrap the values, as shown in the examples.
 
 If you’re unsure about how to answer any of the questions, email <support@gruntwork.io> and let us know!
 
@@ -203,17 +193,17 @@ If you’re unsure about how to answer any of the questions, email <support@grun
 
 1. Review your changes. If you notice any errors, correct them, and rerun:
 
-    ```bash
-    git diff
-    ```
+  ```bash
+  git diff
+  ```
 
 1. Commit the changes and push to the remote repository:
 
-    ```bash
-    git add reference-architecture-form.yml
-    git commit -m 'Completed reference architecture form.'
-    git push origin ref-arch-form
-    ```
+  ```bash
+  git add reference-architecture-form.yml
+  git commit -m 'Completed reference architecture form.'
+  git push origin ref-arch-form
+  ```
 
 1. [Open a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Gruntwork will review the pull request, resolve any open questions or issues, then merge and begin the deployment.
 
@@ -241,6 +231,7 @@ Choose a name for the secret (we’ve chosen _GitHubPAT_ here), then click _Next
 
 In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"ref-arc-setup","hash":"a2773bd8ff6be8f327c128ca7e4575b8"}
+{"sourcePlugin":"local-copier","hash":"745a1271cf4657c0800489c9de81cac6"}
 ##DOCS-SOURCER-END -->
