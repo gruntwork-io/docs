@@ -47,15 +47,9 @@ yarn docs-sourcer --help
 
 # Test!
 
-this is a test change
-
-More Testing!
-
-Yet more testing...
-
-Actually more testing
+I'm writing a better paragraph here.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"docs-sourcer-readme","hash":"761318d7fbf09de4b374858c2d14850a"}
+{"sourcePlugin":"docs-sourcer-readme","hash":"40907cb3eae1c667224ade85192c8fda"}
 ##DOCS-SOURCER-END -->
