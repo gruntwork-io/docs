@@ -1,22 +1,113 @@
 ---
 title: Amazon EKS
 hide_title: true
+type: service
+name: Amazon EKS
+description: Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS).
+category: docker-orchestration
+cloud: aws
+tags: ["docker", "orchestration", "kubernetes", "containers"]
+license: gruntwork
+built-with: terraform, bash, python, go
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
 # Amazon EKS
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
-### Reference
+
+
+
+
+## Overview
+
+This service contains [Terraform](https://www.terraform.io) and [Packer](https://www.packer.io) code to deploy a
+production-grade Kubernetes cluster on [AWS](https://aws.amazon.com) using
+[Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
+
+![EKS architecture](/img/modules/services/eks-cluster/eks-architecture.png)
+
+## Features
+
+*   Deploy a fully-managed control plane
+*   Deploy worker nodes in an Auto Scaling Group
+*   Deploy Pods using Fargate instead of managing worker nodes
+*   Zero-downtime, rolling deployment for updating worker nodes
+*   IAM to RBAC mapping
+*   Auto scaling and auto healing
+*   For Self Managed and Managed Node Group Workers:
+
+    *   Server-hardening with fail2ban, ip-lockdown, auto-update, and more
+    *   Manage SSH access via IAM groups via ssh-grunt
+    *   CloudWatch log aggregation
+    *   CloudWatch metrics and alerts
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+To understand core concepts like what is Kubernetes, the different worker types, how to authenticate to Kubernetes, and
+more, see the documentation in the [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to deploy a production-grade Kubernetes cluster on AWS](https://docs.gruntwork.io/guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites):
+    A step-by-step guide for deploying a production-grade EKS cluster on AWS using the code in this repo.
+
+## Manage
+
+For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
+to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
+
+To add and manage additional worker groups, refer to the [eks-workers module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers).
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -176,6 +267,18 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 <a name="cluster_name" className="snap-top"></a>
 
 * [**`cluster_name`**](#cluster_name) &mdash; The name of the EKS cluster
+
+<a name="control_plane_cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`control_plane_cloudwatch_log_group_kms_key_id`**](#control_plane_cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data in the CloudWatch log group for EKS control plane logs.
+
+<a name="control_plane_cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`control_plane_cloudwatch_log_group_retention_in_days`**](#control_plane_cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the CloudWatch log group for EKS control plane logs. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="control_plane_cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`control_plane_cloudwatch_log_group_tags`**](#control_plane_cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group for EKS control plane logs, encoded as a map where the keys are tag keys and values are tag values.
 
 <a name="control_plane_disallowed_availability_zones" className="snap-top"></a>
 
@@ -349,6 +452,10 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 * [**`secret_envelope_encryption_kms_key_arn`**](#secret_envelope_encryption_kms_key_arn) &mdash; ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By default Secrets in EKS are encrypted at rest at the EBS layer in the managed etcd cluster using shared AWS managed keys. Setting this variable will configure Kubernetes to use envelope encryption to encrypt Secrets using this KMS key on top of the EBS layer encryption.
 
+<a name="should_create_control_plane_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_control_plane_cloudwatch_log_group`**](#should_create_control_plane_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for EKS control plane logging. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, EKS will automatically create a basic log group to use. Note that logs are only streamed to this group if [`enabled_cluster_log_types`](#enabled_cluster_log_types) is true.
+
 <a name="ssh_grunt_iam_group" className="snap-top"></a>
 
 * [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the EKS workers. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
@@ -481,5 +588,5 @@ Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"01dc65d744fd6fefb1cc678f90abed2e"}
+{"sourcePlugin":"service-catalog-api","hash":"580ac459529c56bcba278b023dfa8c21"}
 ##DOCS-SOURCER-END -->

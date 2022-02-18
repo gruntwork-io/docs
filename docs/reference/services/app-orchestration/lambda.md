@@ -1,22 +1,95 @@
 ---
 title: Lambda
 hide_title: true
+type: service
+name: Lambda
+description: Deploy a Lambda on AWS.
+category: lambda
+cloud: aws
+tags: ["lambda"]
+license: gruntwork
+built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
 # Lambda
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/lambda" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/lambda" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy a Lambda on AWS.
 
-### Reference
+
+
+## Overview
+
+This service contains code to deploy a [Lambda](https://aws.amazon.com/lambda) on AWS that can be used for either
+production or non-production workloads.
+
+![Lambda architecture](/img/modules/services/lambda/lambda-service-architecture.png)
+
+## Features
+
+*   The lambda function
+*   Optionally, a schedule expression if you want to execute the lambda periodically
+*   Optionally, an alarm that can be triggered when the lambda fails
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-lambda](https://github.com/gruntwork-io/terraform-aws-lambda) repo. If you are a subscriber and don’t
+have access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+To understand core concepts like what’s a Lambda, how to test it, and more, see the
+documentation in the [terraform-aws-lambda](https://github.com/gruntwork-io/terraform-aws-lambda) repo.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to deploy a production-grade VPC on AWS](https://docs.gruntwork.io/guides/build-it-yourself/vpc/)
+
+*   [How to configure a production-grade CI/CD workflow for application and infrastructure code](https://docs.gruntwork.io/guides/build-it-yourself/pipelines/):
+    step-by-step guide on how to configure CI / CD for your apps and infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -261,5 +334,5 @@ Deploy a Lambda on AWS.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"71d5d1814ac3eb4391ee26f690ae4708"}
+{"sourcePlugin":"service-catalog-api","hash":"7ff8f012d300864b97cf967eb380cbd2"}
 ##DOCS-SOURCER-END -->

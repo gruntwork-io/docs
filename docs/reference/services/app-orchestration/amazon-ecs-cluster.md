@@ -1,22 +1,147 @@
 ---
-title: Amazon ECS Cluster
+title: Amazon ECS
 hide_title: true
+type: service
+name: Amazon ECS Cluster
+description: Deploy an Amazon ECS Cluster.
+category: docker-orchestration
+cloud: aws
+tags: ["docker", "orchestration", "ecs", "containers"]
+license: gruntwork
+built-with: terraform, bash, python, go
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
-# Amazon ECS Cluster
+# Amazon ECS
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy an Amazon ECS Cluster
 
-### Reference
+
+
+## Overview
+
+This service contains [Terraform](https://www.terraform.io) code to deploy a production-grade ECS cluster on
+[AWS](https://aws.amazon.com) using [Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html).
+
+This service launches an ECS cluster on top of an Auto Scaling Group that you manage. If you wish to launch an ECS
+cluster on top of Fargate that is completely managed by AWS, refer to the
+[ecs-fargate-cluster module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster). Refer to the section
+[EC2 vs Fargate Launch Types](https://github.com/gruntwork-io/terraform-aws-ecs/blob/master/core-concepts.md#ec2-vs-fargate-launch-types)
+for more information on the differences between the two flavors.
+
+![ECS architecture](/img/modules/services/ecs-cluster/ecs-architecture.png)
+
+## Features
+
+This Terraform Module launches an [EC2 Container Service Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run Docker containers. The cluster consists of a configurable number of instances in an Auto Scaling
+Group (ASG). Each instance:
+
+*   Runs the [ECS Container Agent](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_agent.html) so it can communicate with the ECS scheduler.
+
+*   Authenticates with a Docker repo so it can download private images. The Docker repo auth details should be encrypted
+    using [Amazon Key Management Service (KMS)](https://aws.amazon.com/kms/) and passed in as input variables. The
+    instances, when booting up, will use [gruntkms](https://github.com/gruntwork-io/gruntkms) to decrypt the data
+    in-memory. Note that the IAM role for these instances, which uses `var.cluster_name` as its name, must be granted
+    access to the
+    [Customer Master Key (CMK)](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys)
+    used to encrypt the data.
+
+*   Runs the
+    [CloudWatch Logs Agent](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html)
+    to send all logs in syslog to
+    [CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html). This
+    is configured using the
+    [cloudwatch-agent](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent).
+
+*   Emits custom metrics that are not available by default in CloudWatch, including memory and disk usage. This is
+    configured using the [cloudwatch-agent
+    module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent).
+
+*   Runs the [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/syslog)
+    to automatically rotate and rate limit syslog so that your instances don’t run out of disk space from large volumes.
+
+*   Runs the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
+    that developers can upload their public SSH keys to IAM and use those SSH keys, along with their IAM user names, to
+    SSH to the ECS Nodes.
+
+*   Runs the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
+    so that the ECS nodes install security updates automatically.
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+To understand core concepts like what is ECS, and the different cluster types, see the documentation in the
+[terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo.
+
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". The ECS scheduler can then deploy Docker
+containers across any of the instances in this cluster. Each instance needs to have the
+[Amazon ECS Agent](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_agent.html) installed so it can
+communicate with ECS and register itself as part of the right cluster.
+
+For more info on ECS clusters, including how to run Docker containers in a cluster, how to add additional security
+group rules, how to handle IAM policies, and more, check out the
+[ecs-cluster documentation](https://github.com/gruntwork-io/terraform-aws-ecs/tree/master/modules/ecs-cluster) in the
+[terraform-aws-ecs repo](https://github.com/gruntwork-io/terraform-aws-ecs).
+
+For info on finding your Docker container logs and custom metrics in CloudWatch, check out the
+[cloudwatch-agent documentation](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent).
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Manage
+
+For information on how to configure cluster autoscaling, see
+[How do you configure cluster autoscaling?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/master/modules/ecs-cluster#how-do-you-configure-cluster-autoscaling)
+
+For information on how to manage your ECS cluster, see the documentation in the
+[terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -293,5 +418,5 @@ Deploy an Amazon ECS Cluster
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e180c0dbc4452c0afeebd495e8f33d71"}
+{"sourcePlugin":"service-catalog-api","hash":"0d33f84884a5c09ca97422a6e82232c0"}
 ##DOCS-SOURCER-END -->

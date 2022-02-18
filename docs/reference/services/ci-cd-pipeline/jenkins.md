@@ -1,22 +1,89 @@
 ---
-title: Jenkins
+title: Jenkins CI Server
 hide_title: true
+type: service
+name: Jenkins
+description: Deploy Jenkins CI Server on AWS.
+category: ci-cd
+cloud: aws
+tags: ["jenkins", "ec2", "ci", "cd", "ci-cd"]
+license: gruntwork
+built-with: terraform, bash, packer
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
-# Jenkins
+# Jenkins CI Server
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/jenkins" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/jenkins" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy Jenkins CI Server on AWS.
+## Overview
 
-### Reference
+This service contains code to deploy [Jenkins CI Server](https://jenkins.io/) on AWS.
+
+![Jenkins architecture](/img/modules/mgmt/jenkins/jenkins-architecture.png)
+
+## Features
+
+* Deploy Jenkins CI Server
+* Run Jenkins in an Auto Scaling Group for high availability
+* Store the `JENKINS_HOME` directory in an EBS Volume
+* Take nightly snapshots of the EBS Volume using the `ec2-backup` scheduled Lambda function
+* Run an ALB in front of Jenkins so it’s not accessible directly to users
+* Configure DNS in Route 53 and TLS in AWS Certificate Manager (ACM)
+* Send all logs and metrics to CloudWatch
+* Configure alerts in CloudWatch for CPU, memory, and disk space usage
+* Manage SSH access with IAM groups using `ssh-grunt`
+* Manage deployment permissions for the server using IAM roles
+* OS hardening, including `fail2ban`, `ntp`, `auto-update`, `ip-lockdown`, and more
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+* [CI/ CD Core Concepts](https://docs.gruntwork.io/guides/build-it-yourself/pipelines/core-concepts/why-is-it-important-to-have-ci-cds):
+    An overview of the core concepts you need to understand what a typical CI/CD pipeline entails for application and
+    infrastructure code, including a sample workflow, infrastructure to support CI/CD, an threat models to consider to
+    protect your infrastructure.
+
+* [Jenkins Documentation](https://jenkins.io/doc/): The official documentation for Jenkins.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+* [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+* [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+* [How to configure a production-grade CI/CD workflow for application and infrastructure code](https://docs.gruntwork.io/guides/build-it-yourself/pipelines/):
+    step-by-step guide on how to configure CI / CD for your apps and infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -290,11 +357,11 @@ Deploy Jenkins CI Server on AWS.
 
 <a name="backup_lambda_function_arn" className="snap-top"></a>
 
-* [**`backup_lambda_function_arn`**](#backup_lambda_function_arn) &mdash; 
+* [**`backup_lambda_function_arn`**](#backup_lambda_function_arn) &mdash;
 
 <a name="backup_lambda_function_name" className="snap-top"></a>
 
-* [**`backup_lambda_function_name`**](#backup_lambda_function_name) &mdash; 
+* [**`backup_lambda_function_name`**](#backup_lambda_function_name) &mdash;
 
 <a name="jenkins_asg_name" className="snap-top"></a>
 
@@ -323,7 +390,6 @@ Deploy Jenkins CI Server on AWS.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0edc246af8b4e94708d927f655cf6693"}
+{"sourcePlugin":"service-catalog-api","hash":"165e9bdfcb34c6b67d2c5fe2455405b7"}
 ##DOCS-SOURCER-END -->

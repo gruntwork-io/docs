@@ -1,22 +1,90 @@
 ---
-title: Amazon Elasticsearch
+title: Amazon Elasticsearch Service
 hide_title: true
+type: service
+name: Amazon Elasticsearch
+description: Deploy and manage Amazon Elasticsearch Service.
+category: nosql
+cloud: aws
+tags: ["analytics", "data"]
+license: gruntwork
+built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
-# Amazon Elasticsearch
+# Amazon Elasticsearch Service
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/elasticsearch" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/elasticsearch" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy and manage Amazon Elasticsearch Service
 
-### Reference
+
+
+## Overview
+
+This service contains code to deploy an Amazon Elasticsearch Service cluster.
+See the [Amazon Elasticsearch Service documentation](http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html)
+and the [Getting Started](https://aws.amazon.com/elasticsearch-service/getting-started/) page for more information.
+
+## Features
+
+*   A fully-managed native Elasticsearch cluster in a VPC
+*   A fully functional Kibana UI
+*   VPC-based security
+*   Zone awareness, i.e., deployment of Elasticsearch nodes across Availability Zones
+*   Automatic nightly snapshots
+*   CloudWatch Alarms for alerting when CPU, memory, and disk metrics exceed certain thresholds
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [About Amazon Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/)
+*   [Features of Amazon ES](https://aws.amazon.com/elasticsearch-service/features/)
+*   [Developer Guide](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html):
+    Contains the main documentation on how to use Amazon ES and answers questions such as "What is Amazon Elasticsearch
+    Service?"
+*   [Streaming CloudWatch monitoring logs to Amazon Elasticsearch Service](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_ES_Stream.html)
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+*   [AWS Free tier](https://aws.amazon.com/free/): Using Amazon ES on Amazon’s free tier is a great way to get started,
+    but it has limited features and does not include encryption at rest, ultra warm data notes, or advanced security
+    options such as fine-grained access control. The free tier does allow multiple availability zones, VPC-based access
+    control, TLS-only requests, and node-to-node encryption.
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
+    and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [Amazon Elasticsearch Service pricing](https://aws.amazon.com/elasticsearch-service/pricing/)
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -205,5 +273,5 @@ Deploy and manage Amazon Elasticsearch Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"edacef7e4e01f227ed3940e9448ca4b9"}
+{"sourcePlugin":"service-catalog-api","hash":"c604c25ad06a4a863a908318713e97bf"}
 ##DOCS-SOURCER-END -->

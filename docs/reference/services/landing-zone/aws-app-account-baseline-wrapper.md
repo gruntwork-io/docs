@@ -1,22 +1,94 @@
 ---
-title: AWS App Account baseline wrapper
+title: Account Baseline for app accounts
 hide_title: true
+type: service
+name: AWS App Account baseline wrapper
+description: A security baseline for AWS Landing Zone for configuring app accounts (dev, stage, prod, and other similar child accounts), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
+category: landing-zone
+cloud: aws
+tags: ["aws-landing-zone", "logging", "security"]
+license: gruntwork
+built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.76.0"/>
 
-# AWS App Account baseline wrapper
+# Account Baseline for app accounts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-app" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/account-baseline-app" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-A security baseline for AWS Landing Zone for configuring app accounts (dev, stage, prod, and other similar child accounts), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
 
-### Reference
+
+
+## Overview
+
+A security baseline for AWS Landing Zone for configuring the app accounts (dev, stage, prod, and other similar child
+accounts), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password
+policy, and more.
+
+## Features
+
+Get a secure baseline for the app accounts of your AWS Organization that includes:
+
+*   [aws-config-multi-region](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/aws-config-multi-region)
+*   [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cloudtrail)
+*   [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles)
+*   [guardduty-multi-region](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/guardduty-multi-region)
+*   [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-groups)
+*   [iam-users](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-users)
+*   [iam-user-password-policy](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-user-password-policy)
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+*   Learn more about each individual module, click the link in the [Features](#features) section.
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing/landingzone): The
+    `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
+    experimenting, and testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -212,6 +284,10 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 <a name="configrules_maximum_execution_frequency" className="snap-top"></a>
 
 * [**`configrules_maximum_execution_frequency`**](#configrules_maximum_execution_frequency) &mdash; The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´ rules. See [`https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency`](#https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency)
+
+<a name="custom_cloudtrail_trail_name" className="snap-top"></a>
+
+* [**`custom_cloudtrail_trail_name`**](#custom_cloudtrail_trail_name) &mdash; A custom name to use for the Cloudtrail Trail. If null, defaults to the [`name_prefix`](#name_prefix) input variable.
 
 <a name="dev_permitted_services" className="snap-top"></a>
 
@@ -657,5 +733,5 @@ A security baseline for AWS Landing Zone for configuring app accounts (dev, stag
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"53b761770a1c504e44547a5c8d78410b"}
+{"sourcePlugin":"service-catalog-api","hash":"0f25743982a9a118448511c762f588bc"}
 ##DOCS-SOURCER-END -->
