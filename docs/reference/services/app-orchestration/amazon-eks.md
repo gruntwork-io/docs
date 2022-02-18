@@ -1,14 +1,14 @@
 ---
-title: Amazon EKS
+type: "service"
+name: "Amazon EKS"
+description: "Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS)."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, bash, python, go"
+title: "Amazon EKS"
 hide_title: true
-type: service
-name: Amazon EKS
-description: Deploy Kubernetes on top of Amazon Elastic Kubernetes Service (EKS).
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "kubernetes", "containers"]
-license: gruntwork
-built-with: terraform, bash, python, go
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,14 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon EKS
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
-
-
 
 ## Overview
 
@@ -45,7 +41,6 @@ production-grade Kubernetes cluster on [AWS](https://aws.amazon.com) using
 *   IAM to RBAC mapping
 *   Auto scaling and auto healing
 *   For Self Managed and Managed Node Group Workers:
-
     *   Server-hardening with fail2ban, ip-lockdown, auto-update, and more
     *   Manage SSH access via IAM groups via ssh-grunt
     *   CloudWatch log aggregation
@@ -588,5 +583,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"580ac459529c56bcba278b023dfa8c21"}
+{"sourcePlugin":"service-catalog-api","hash":"23d9a9e14e6443a421f50e55b9671f54"}
 ##DOCS-SOURCER-END -->

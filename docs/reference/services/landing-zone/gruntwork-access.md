@@ -1,14 +1,14 @@
 ---
-title: Gruntwork Access
+type: "service"
+name: "Gruntwork Access"
+description: "Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!"
+category: "remote-access"
+cloud: "aws"
+tags: ["reference-architecture","troubleshooting"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Gruntwork Access"
 hide_title: true
-type: service
-name: Gruntwork Access
-description: Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!
-category: remote-access
-cloud: aws
-tags: ["reference-architecture", "troubleshooting"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Gruntwork Access
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/gruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -128,5 +126,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"61a65d5f09a70e01775674389bbc2889"}
+{"sourcePlugin":"service-catalog-api","hash":"5826aa64f183a32020029b9dac14d8fd"}
 ##DOCS-SOURCER-END -->

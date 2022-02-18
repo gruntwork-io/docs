@@ -1,14 +1,14 @@
 ---
-title: Amazon Simple Notification Service
+type: "service"
+name: "SNS Topics"
+description: "Create Amazon Simple Notification Service topics."
+category: "networking"
+cloud: "aws"
+tags: ["sns","messaging","networking"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon Simple Notification Service"
 hide_title: true
-type: service
-name: SNS Topics
-description: Create Amazon Simple Notification Service topics.
-category: networking
-cloud: aws
-tags: ["sns", "messaging", "networking"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon Simple Notification Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/sns-topics" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -125,5 +123,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"fce15489f3d1271790f4bfe76358528a"}
+{"sourcePlugin":"service-catalog-api","hash":"e81e9c9ca8b852d3bdbf53085ccfa054"}
 ##DOCS-SOURCER-END -->

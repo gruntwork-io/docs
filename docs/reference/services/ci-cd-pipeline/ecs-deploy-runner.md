@@ -1,14 +1,14 @@
 ---
-title: ECS Deploy Runner
+type: "service"
+name: "ECS Deploy Runner"
+description: "Use a CI/CD pipeline for deploying infrastructure code updates."
+category: "ci-cd"
+cloud: "aws"
+tags: ["ci-cd","pipelines","ci","cd"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "ECS Deploy Runner"
 hide_title: true
-type: service
-name: ECS Deploy Runner
-description: Use a CI/CD pipeline for deploying infrastructure code updates.
-category: ci-cd
-cloud: aws
-tags: ["ci-cd", "pipelines", "ci", "cd"]
-license: gruntwork
-built-with: terraform, bash, packer
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # ECS Deploy Runner
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/ecs-deploy-runner" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/ecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -87,10 +85,9 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production
-    folder](/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/): The
-    `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from the
-    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+    The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
+    the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
 ## Reference
@@ -254,5 +251,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"826b4e8b39cd6f78a9859b39ded2a52e"}
+{"sourcePlugin":"service-catalog-api","hash":"7c6606e09cd0720c6c0825fca43c3659"}
 ##DOCS-SOURCER-END -->

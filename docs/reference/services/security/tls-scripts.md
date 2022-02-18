@@ -1,14 +1,14 @@
 ---
-title: TLS Scripts
+type: "service"
+name: "TLS Scripts"
+description: "Create TLS certificates, download CA certs for RDS, and generate JVM trust stores."
+category: "tools"
+cloud: "aws"
+tags: ["TLS","SSL","certificates","certificate-authority","trust-store","key-store"]
+license: "gruntwork"
+built-with: "terraform, bash, docker"
+title: "TLS Scripts"
 hide_title: true
-type: service
-name: TLS Scripts
-description: Create TLS certificates, download CA certs for RDS, and generate JVM trust stores.
-category: tools
-cloud: aws
-tags: ["TLS", "SSL", "certificates", "certificate-authority", "trust-store", "key-store"]
-license: gruntwork
-built-with: terraform, bash, docker
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # TLS Scripts
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/tls-scripts" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=tls-scripts/README.md" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -101,5 +99,5 @@ If you’ve never used the Service Catalog before, make sure to read
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f929edf0af238effe4f35f9588817d5b"}
+{"sourcePlugin":"service-catalog-api","hash":"a6cc61506e1fd5ee4474883a2b0ee06f"}
 ##DOCS-SOURCER-END -->

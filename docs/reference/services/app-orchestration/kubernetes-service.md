@@ -1,14 +1,14 @@
 ---
-title: Kubernetes Service
+type: "service"
+name: "Kubernetes Service"
+description: "Deploy your application containers as a Kubernetes Service and Deployment following best practices."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, helm"
+title: "Kubernetes Service"
 hide_title: true
-type: service
-name: Kubernetes Service
-description: Deploy your application containers as a Kubernetes Service and Deployment following best practices.
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "kubernetes", "containers"]
-license: gruntwork
-built-with: terraform, helm
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,13 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Kubernetes Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-service" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
-
 
 ## Overview
 
@@ -393,5 +390,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0cfbee911cbb04de6020e5dbf686071b"}
+{"sourcePlugin":"service-catalog-api","hash":"1cab06cb9560ca258d614a7dceb0e204"}
 ##DOCS-SOURCER-END -->

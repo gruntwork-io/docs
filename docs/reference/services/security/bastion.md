@@ -1,14 +1,14 @@
 ---
-title: Bastion Host
+type: "service"
+name: "Bastion"
+description: "Deploy a Bastion host on to your AWS VPC network."
+category: "remote-access"
+cloud: "aws"
+tags: ["bastion","ec2","ssh","security"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "Bastion Host"
 hide_title: true
-type: service
-name: Bastion
-description: Deploy a Bastion host on to your AWS VPC network.
-category: remote-access
-cloud: aws
-tags: ["bastion", "ec2", "ssh", "security"]
-license: gruntwork
-built-with: terraform, bash, packer
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Bastion Host
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/bastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -256,5 +254,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3e62e31c5933c26fd86a7e26467f84cf"}
+{"sourcePlugin":"service-catalog-api","hash":"594c2136ed79b2e95ff229b4b35710d6"}
 ##DOCS-SOURCER-END -->

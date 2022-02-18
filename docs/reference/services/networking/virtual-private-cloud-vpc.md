@@ -1,14 +1,14 @@
 ---
-title: VPC
+type: "service"
+name: "Virtual Private Cloud (VPC)"
+description: "Deploy a VPC on AWS."
+category: "networking"
+cloud: "aws"
+tags: ["vpc","ec2"]
+license: "gruntwork"
+built-with: "terraform"
+title: "VPC"
 hide_title: true
-type: service
-name: Virtual Private Cloud (VPC)
-description: Deploy a VPC on AWS.
-category: networking
-cloud: aws
-tags: ["vpc", "ec2"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # VPC
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -462,5 +460,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e31f03c49982818c6581babbf495310c"}
+{"sourcePlugin":"service-catalog-api","hash":"8646b4fb76f63c846d418cfa999c9d6c"}
 ##DOCS-SOURCER-END -->

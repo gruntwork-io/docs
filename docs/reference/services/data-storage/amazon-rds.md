@@ -1,14 +1,14 @@
 ---
-title: Amazon Relational Database Service
+type: "service"
+name: "Amazon RDS"
+description: "Deploy and manage Amazon Relational Database Service (RDS)."
+category: "database"
+cloud: "aws"
+tags: ["data","database","sql","rds","postgresql","mysql"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon Relational Database Service"
 hide_title: true
-type: service
-name: Amazon RDS
-description: Deploy and manage Amazon Relational Database Service (RDS).
-category: database
-cloud: aws
-tags: ["data", "database", "sql", "rds", "postgresql", "mysql"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon Relational Database Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/rds" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/rds" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -439,5 +437,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d53dbe94389d372359a3a0264efd3982"}
+{"sourcePlugin":"service-catalog-api","hash":"f6c95826fea22ccfeebcadc02dffc89a"}
 ##DOCS-SOURCER-END -->

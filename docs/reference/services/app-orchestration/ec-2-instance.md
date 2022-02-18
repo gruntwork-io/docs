@@ -1,14 +1,14 @@
 ---
-title: EC2 Instance
+type: "service"
+name: "EC2 Instance"
+description: "Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, and CloudWatch metrics, logs, and alerts."
+category: "services"
+cloud: "aws"
+tags: ["ec2","ssh","security"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "EC2 Instance"
 hide_title: true
-type: service
-name: EC2 Instance
-description: Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, and CloudWatch metrics, logs, and alerts.
-category: services
-cloud: aws
-tags: ["ec2", "ssh", "security"]
-license: gruntwork
-built-with: terraform, bash, packer
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # EC2 Instance
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ec2-instance" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -322,5 +320,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"26d7e65c6ac91e0e36320502ca410f63"}
+{"sourcePlugin":"service-catalog-api","hash":"dbb12c870c77f3566f97d1625d01c2c6"}
 ##DOCS-SOURCER-END -->

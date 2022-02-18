@@ -1,14 +1,14 @@
 ---
-title: Amazon ElastiCache for Memcached
+type: "service"
+name: "Amazon ElastiCache for Memcached"
+description: "Deploy and manage Amazon ElastiCache for Memcached."
+category: "nosql"
+cloud: "aws"
+tags: ["data","database","nosql","memcached","elasticache"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon ElastiCache for Memcached"
 hide_title: true
-type: service
-name: Amazon ElastiCache for Memcached
-description: Deploy and manage Amazon ElastiCache for Memcached.
-category: nosql
-cloud: aws
-tags: ["data", "database", "nosql", "memcached", "elasticache"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon ElastiCache for Memcached
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/memcached" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/memcached" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -168,5 +166,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1a553bc21ceea7344d8ed07a965a57bd"}
+{"sourcePlugin":"service-catalog-api","hash":"8b7f0852917c14dffcf1c702cc43291b"}
 ##DOCS-SOURCER-END -->

@@ -1,14 +1,14 @@
 ---
-title: Kubernetes Namespace
+type: "service"
+name: "Kubernetes Namespace"
+description: "Provision a best practices Kubernetes Namespace on any Kubernetes Cluster."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Kubernetes Namespace"
 hide_title: true
-type: service
-name: Kubernetes Namespace
-description: Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "kubernetes", "containers"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Kubernetes Namespace
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-namespace" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-namespace" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -151,5 +149,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c9b1b6b1027ce81162ba9384631d1840"}
+{"sourcePlugin":"service-catalog-api","hash":"33e037f9756d96d7c83147f1e2e75aa1"}
 ##DOCS-SOURCER-END -->

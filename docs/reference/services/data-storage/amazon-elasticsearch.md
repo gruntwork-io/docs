@@ -1,14 +1,14 @@
 ---
-title: Amazon Elasticsearch Service
+type: "service"
+name: "Amazon Elasticsearch"
+description: "Deploy and manage Amazon Elasticsearch Service."
+category: "nosql"
+cloud: "aws"
+tags: ["analytics","data"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon Elasticsearch Service"
 hide_title: true
-type: service
-name: Amazon Elasticsearch
-description: Deploy and manage Amazon Elasticsearch Service.
-category: nosql
-cloud: aws
-tags: ["analytics", "data"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon Elasticsearch Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/elasticsearch" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/elasticsearch" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -273,5 +271,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c604c25ad06a4a863a908318713e97bf"}
+{"sourcePlugin":"service-catalog-api","hash":"b55a5aa849debeb0a3e68e22ead8fbb3"}
 ##DOCS-SOURCER-END -->

@@ -1,14 +1,14 @@
 ---
-title: Route 53 Hosted Zones
+type: "service"
+name: "Route 53 Hosted Zones"
+description: "Manage DNS entries using https"
+category: "networking"
+cloud: "aws"
+tags: ["route53","dns","networking"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Route 53 Hosted Zones"
 hide_title: true
-type: service
-name: Route 53 Hosted Zones
-description: Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53.
-category: networking
-cloud: aws
-tags: ["route53", "dns", "networking"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Route 53 Hosted Zones
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/route53" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/route53" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -145,5 +143,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d917da4f7a33d2e1b417e1b4881b01f4"}
+{"sourcePlugin":"service-catalog-api","hash":"93887ca596f4174697998231c44963cc"}
 ##DOCS-SOURCER-END -->

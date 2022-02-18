@@ -1,14 +1,14 @@
 ---
-title: Amazon EKS Core Services
+type: "service"
+name: "Amazon EKS Core Services"
+description: "Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, helm"
+title: "Amazon EKS Core Services"
 hide_title: true
-type: service
-name: Amazon EKS Core Services
-description: Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS).
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "kubernetes", "containers"]
-license: gruntwork
-built-with: terraform, helm
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,14 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon EKS Core Services
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
-
-
 
 ## Overview
 
@@ -355,5 +351,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"dad4e55c6fac70f2e51232f94be66e68"}
+{"sourcePlugin":"service-catalog-api","hash":"3a86d9f31ab1ac9a21df5b013feebe64"}
 ##DOCS-SOURCER-END -->

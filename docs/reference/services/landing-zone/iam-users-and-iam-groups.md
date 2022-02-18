@@ -1,14 +1,14 @@
 ---
-title: IAM Users and IAM Groups
+type: "service"
+name: "IAM Users and IAM Groups"
+description: "Convenient service for managing best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups."
+category: "landing-zone"
+cloud: "aws"
+tags: ["aws-landing-zone","logging","security"]
+license: "gruntwork"
+built-with: "terraform"
+title: "IAM Users and IAM Groups"
 hide_title: true
-type: service
-name: IAM Users and IAM Groups
-description: Convenient service for managing best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups.
-category: landing-zone
-cloud: aws
-tags: ["aws-landing-zone", "logging", "security"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # IAM Users and IAM Groups
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/iam-users-and-groups" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -414,5 +412,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"2a38541847881c560f26c0f59d9999ff"}
+{"sourcePlugin":"service-catalog-api","hash":"3ad43b95c16e2afa4a2c60d755b70f1f"}
 ##DOCS-SOURCER-END -->

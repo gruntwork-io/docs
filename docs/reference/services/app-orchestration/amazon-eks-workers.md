@@ -1,14 +1,14 @@
 ---
-title: Amazon EKS Workers
+type: "service"
+name: "Amazon EKS Workers"
+description: "Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, bash, python, go"
+title: "Amazon EKS Workers"
 hide_title: true
-type: service
-name: Amazon EKS Workers
-description: Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS).
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "kubernetes", "containers"]
-license: gruntwork
-built-with: terraform, bash, python, go
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,14 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon EKS Workers
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-workers" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
-
-
 
 ## Overview
 
@@ -460,5 +456,5 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f6eb674ce2cf2ec36b4f360648cc2ebd"}
+{"sourcePlugin":"service-catalog-api","hash":"d8698ec6b17ffe37c08df0f523c8b117"}
 ##DOCS-SOURCER-END -->

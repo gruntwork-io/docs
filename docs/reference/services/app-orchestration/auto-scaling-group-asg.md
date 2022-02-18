@@ -1,14 +1,14 @@
 ---
-title: Auto Scaling Group
+type: "service"
+name: "Auto Scaling Group (ASG)"
+description: "Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime, rolling deployment, load balancing, health checks, service discovery, and auto scaling."
+category: "services"
+cloud: "aws"
+tags: ["asg","ec2"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Auto Scaling Group"
 hide_title: true
-type: service
-name: Auto Scaling Group (ASG)
-description: Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime, rolling deployment, load balancing, health checks, service discovery, and auto scaling.
-category: services
-cloud: aws
-tags: ["asg", "ec2"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Auto Scaling Group
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/asg-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -351,5 +349,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"fec1ca1ffada7a5a5112f0cb5101466f"}
+{"sourcePlugin":"service-catalog-api","hash":"01730edf44e0568f663dbfcbd2b14434"}
 ##DOCS-SOURCER-END -->

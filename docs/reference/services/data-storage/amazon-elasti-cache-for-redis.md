@@ -1,14 +1,14 @@
 ---
-title: Amazon ElastiCache for Redis
+type: "service"
+name: "Amazon ElastiCache for Redis"
+description: "Deploy and manage Amazon ElastiCache for Redis."
+category: "nosql"
+cloud: "aws"
+tags: ["data","database","nosql","redis","elasticache"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon ElastiCache for Redis"
 hide_title: true
-type: service
-name: Amazon ElastiCache for Redis
-description: Deploy and manage Amazon ElastiCache for Redis.
-category: nosql
-cloud: aws
-tags: ["data", "database", "nosql", "redis", "elasticache"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon ElastiCache for Redis
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/redis" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/redis" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -211,5 +209,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d923f72f11cd97d25567df763bc7366f"}
+{"sourcePlugin":"service-catalog-api","hash":"f81a3118d144ab7b84249434c49b978c"}
 ##DOCS-SOURCER-END -->

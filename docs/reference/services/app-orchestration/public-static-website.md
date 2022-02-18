@@ -1,14 +1,14 @@
 ---
-title: Public Static Website
+type: "service"
+name: "Public Static Website"
+description: "Deploy your static content and static websites on S3, using a CloudFront CDN. Supports bucket versioning, redirects, and access logging."
+category: "static-website"
+cloud: "aws"
+tags: ["cloudfront","s3","website","static-website"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Public Static Website"
 hide_title: true
-type: service
-name: Public Static Website
-description: Deploy your static content and static websites on S3, using a CloudFront CDN. Supports bucket versioning, redirects, and access logging.
-category: static-website
-cloud: aws
-tags: ["cloudfront", "s3", "website", "static-website"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Public Static Website
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/public-static-website" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/public-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -205,5 +203,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8e65c0f1839841cfea47eb752b6a1b5e"}
+{"sourcePlugin":"service-catalog-api","hash":"59c6e2e72eff95e68f21ea43d453fa6e"}
 ##DOCS-SOURCER-END -->

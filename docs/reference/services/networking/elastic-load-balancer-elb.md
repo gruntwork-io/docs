@@ -1,14 +1,14 @@
 ---
-title: Application Load Balancer
+type: "service"
+name: "Elastic Load Balancer (ELB)"
+description: "Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, with support for routing rules and WebSockets."
+category: "networking"
+cloud: "aws"
+tags: ["alb","elb","load-balancer"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Application Load Balancer"
 hide_title: true
-type: service
-name: Elastic Load Balancer (ELB)
-description: Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, with support for routing rules and WebSockets.
-category: networking
-cloud: aws
-tags: ["alb", "elb", "load-balancer"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Application Load Balancer
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/alb" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/alb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -246,5 +244,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"01dcf57565b00cc63a185447b795082f"}
+{"sourcePlugin":"service-catalog-api","hash":"e649fdf19f677637eb5e3ef315ff2bf3"}
 ##DOCS-SOURCER-END -->

@@ -1,14 +1,14 @@
 ---
-title: Amazon ECS
+type: "service"
+name: "Amazon ECS Cluster"
+description: "Deploy an Amazon ECS Cluster."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","ecs","containers"]
+license: "gruntwork"
+built-with: "terraform, bash, python, go"
+title: "Amazon ECS"
 hide_title: true
-type: service
-name: Amazon ECS Cluster
-description: Deploy an Amazon ECS Cluster.
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", "ecs", "containers"]
-license: gruntwork
-built-with: terraform, bash, python, go
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon ECS
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -418,5 +416,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0d33f84884a5c09ca97422a6e82232c0"}
+{"sourcePlugin":"service-catalog-api","hash":"02794cef3b76474c64ab2f74045b88f3"}
 ##DOCS-SOURCER-END -->

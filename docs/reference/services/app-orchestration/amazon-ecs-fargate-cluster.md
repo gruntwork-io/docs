@@ -1,14 +1,14 @@
 ---
-title: Amazon ECS Fargate Cluster
+type: "service"
+name: "Amazon ECS Fargate Cluster"
+description: "Deploy an Amazon ECS Cluster optimized for Fargate only usage."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","ecs","containers"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon ECS Fargate Cluster"
 hide_title: true
-type: service
-name: Amazon ECS Fargate Cluster
-description: Deploy an Amazon ECS Cluster optimized for Fargate only usage.
-category: docker-orchestration
-cloud: aws
-tags: ["docker", "orchestration", ecs, "containers"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon ECS Fargate Cluster
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ecs-fargate-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -127,5 +125,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"7f93b4155ee32dd20eae62014912f778"}
+{"sourcePlugin":"service-catalog-api","hash":"667215bd97721c2de3a1d8fa7407308a"}
 ##DOCS-SOURCER-END -->

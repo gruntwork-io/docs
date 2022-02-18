@@ -1,14 +1,14 @@
 ---
-title: Lambda
-hide_title: true
-type: service
-name: Lambda
-description: Deploy a Lambda on AWS.
-category: lambda
-cloud: aws
+type: "service"
+name: "Lambda"
+description: "Deploy a Lambda on AWS."
+category: "lambda"
+cloud: "aws"
 tags: ["lambda"]
-license: gruntwork
-built-with: terraform
+license: "gruntwork"
+built-with: "terraform"
+title: "Lambda"
+hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Lambda
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/lambda" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/lambda" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -334,5 +332,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"7ff8f012d300864b97cf967eb380cbd2"}
+{"sourcePlugin":"service-catalog-api","hash":"4a69435be244243a8183116076714588"}
 ##DOCS-SOURCER-END -->

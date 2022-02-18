@@ -1,14 +1,14 @@
 ---
-title: OpenVPN Server
+type: "service"
+name: "OpenVPN"
+description: "Deploy an OpenVPN Server on AWS."
+category: "remote-access"
+cloud: "aws"
+tags: ["vpn","ec2","ssh","security"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "OpenVPN Server"
 hide_title: true
-type: service
-name: OpenVPN
-description: Deploy an OpenVPN Server on AWS.
-category: remote-access
-cloud: aws
-tags: ["vpn", "ec2", "ssh", "security"]
-license: gruntwork
-built-with: terraform, bash, packer
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # OpenVPN Server
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/openvpn-server" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/openvpn-server" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -351,5 +349,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"31d80d771761ed19394668ce2c6a0671"}
+{"sourcePlugin":"service-catalog-api","hash":"1da49198145bfa5ccfa664995b324110"}
 ##DOCS-SOURCER-END -->

@@ -1,14 +1,14 @@
 ---
-title: Amazon ECR Repositories
+type: "service"
+name: "Amazon ECR Repositories"
+description: "Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["data","database","container"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon ECR Repositories"
 hide_title: true
-type: service
-name: Amazon ECR Repositories
-description: Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images.
-category: docker-orchestration
-cloud: aws
-tags: ["data", "database", "container"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon ECR Repositories
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/ecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -139,5 +137,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"24d201e8331c88dd6fd7119b2fbaf674"}
+{"sourcePlugin":"service-catalog-api","hash":"cf447046215b3a0305945386724039ff"}
 ##DOCS-SOURCER-END -->

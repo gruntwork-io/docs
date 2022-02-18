@@ -1,14 +1,14 @@
 ---
-title: Amazon Aurora
+type: "service"
+name: "Amazon Aurora"
+description: "Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS)."
+category: "database"
+cloud: "aws"
+tags: ["data","database","sql","rds","aurora"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon Aurora"
 hide_title: true
-type: service
-name: Amazon Aurora
-description: Deploy and manage Amazon Aurora using Amazon's Relational Database Service (RDS).
-category: database
-cloud: aws
-tags: ["data", "database", "sql", "rds", "aurora"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Amazon Aurora
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/aurora" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/aurora" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -413,5 +411,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"164b6cd2e58cae7d2299eaeec2adf488"}
+{"sourcePlugin":"service-catalog-api","hash":"68545e6c5befe6935fd315e9fde03538"}
 ##DOCS-SOURCER-END -->

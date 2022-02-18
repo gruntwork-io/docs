@@ -1,14 +1,14 @@
 ---
-title: S3 Bucket
+type: "service"
+name: "S3 Bucket"
+description: "Deploy an S3 bucket for data storage, with support for access logging, versioning and replication."
+category: "data-store"
+cloud: "aws"
+tags: ["s3","data","storage"]
+license: "gruntwork"
+built-with: "terraform"
+title: "S3 Bucket"
 hide_title: true
-type: service
-name: S3 Bucket
-description: Deploy an S3 bucket for data storage, with support for access logging, versioning and replication.
-category: data-store
-cloud: aws
-tags: ["s3", "data", "storage"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # S3 Bucket
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/s3-bucket" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/s3-bucket" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -233,5 +231,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1c6164263ede32020e94aef9a2afe81c"}
+{"sourcePlugin":"service-catalog-api","hash":"c72e911da2d54d65939d056b4d330b5e"}
 ##DOCS-SOURCER-END -->

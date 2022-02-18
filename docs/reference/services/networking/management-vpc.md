@@ -1,14 +1,14 @@
 ---
-title: Management VPC
+type: "service"
+name: "Management VPC"
+description: "Deploy a VPC on AWS for administrative and management functions."
+category: "networking"
+cloud: "aws"
+tags: ["vpc","ec2"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Management VPC"
 hide_title: true
-type: service
-name: Management VPC
-description: Deploy a VPC on AWS for administrative and management functions.
-category: networking
-cloud: aws
-tags: ["vpc", "ec2"]
-license: gruntwork
-built-with: terraform
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,12 +19,10 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 # Management VPC
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
-
-
-
 
 ## Overview
 
@@ -282,5 +280,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"66e347acd54d95babc4a1b181c1a169c"}
+{"sourcePlugin":"service-catalog-api","hash":"8f279d36f1c1c9d74d4f5d83685b36b6"}
 ##DOCS-SOURCER-END -->
