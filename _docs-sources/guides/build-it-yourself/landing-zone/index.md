@@ -71,7 +71,7 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 <CardList>
   <Card
     title="Core Concepts"
-    href="/guides/build-it-yourself/landing-zone/core-concepts/aws-account"
+    href="/guides/build-it-yourself/landing-zone/core-concepts/what-is-an-aws-account-structure"
   >
     An overview of the core concepts you need to understand to set up an AWS account structure, including AWS Organizations, IAM Users, IAM Roles, IAM Groups, CloudTrail, and more.
   </Card>
