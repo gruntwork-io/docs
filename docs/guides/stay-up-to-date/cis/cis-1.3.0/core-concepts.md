@@ -46,11 +46,11 @@ Gruntwork’s Infrastructure as Code Library, and updated a bunch of existing mo
 2.2.1 and 5.1 required creating new modules; the rest of the recommendations were achieved by updating existing modules.
 
 To ensure compliance with version 1.3.0 of the CIS AWS Foundations Benchmark, you’ll need to follow all the
-instructions in the [Deployment walkthrough](./deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library) section of this guide; precisely, follow Steps 1 and 2 to ensure that
+instructions in the [Deployment walkthrough](deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md) section of this guide; precisely, follow Steps 1 and 2 to ensure that
 the existing modules get updated to their CIS AWS v1.3.0 compliant versions and follow Step 3 to ensure that you install and
 configure the newly created modules.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"0522670e2f8ad124b3ddfac3a17b996e"}
+{"sourcePlugin":"local-copier","hash":"43e5a48a98d74f7993a9e6a02c7570df"}
 ##DOCS-SOURCER-END -->

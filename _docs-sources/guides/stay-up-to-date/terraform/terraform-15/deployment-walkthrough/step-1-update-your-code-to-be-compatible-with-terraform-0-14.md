@@ -10,13 +10,13 @@ If you haven’t already, you need to:
     0.14.0 or above first!
 
     1.  If you’re still on Terraform 0.11 or older, see our
-        [Terraform 0.12 upgrade guide](../../terraform-12).
+        [Terraform 0.12 upgrade guide](../../terraform-12/index.md).
 
     2.  If you’re still on Terraform 0.12, see our
-        [Terraform 0.13 upgrade guide](../../terraform-13).
+        [Terraform 0.13 upgrade guide](../../terraform-13/index.md).
 
     3.  If you’re still on Terraform 0.13, see our
-        [Terraform 0.14 upgrade guide](../../terraform-14).
+        [Terraform 0.14 upgrade guide](../../terraform-14/index.md).
 
 2.  Update all your Gruntwork modules to the latest versions just _before_ the TF 0.15 versions in the compatibility
     table below. The upgrade will be much easier and less error prone if you keep the number of version jumps as small

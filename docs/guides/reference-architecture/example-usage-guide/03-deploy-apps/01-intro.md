@@ -6,15 +6,15 @@ title: Intro
 # How To Deploy A Docker Service
 
 In the previous section, you learned how to [authenticate to AWS via web, CLI, VPN, and SSH](../02-authenticate/01-intro.md). In
-this guide, we'll walk you through deploying a Dockerized app to the  cluster running in your Reference
+this guide, we'll walk you through deploying a Dockerized app to the cluster running in your Reference
 Architecture.
 
-* [What's already deployed](./02-what-is-already-deployed.md)
-* [The App](./03-the-app.md)
-* [Dockerizing](./04-dockerizing.md)
-* [Publishing your docker image](./05-publish-docker-image.md)
+- [What's already deployed](02-what-is-already-deployed.md)
+- [The App](03-the-app.md)
+- [Dockerizing](04-dockerizing.md)
+- [Publishing your docker image](05-publish-docker-image.md)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"cefe5964d0785734ed4c4376653050e7"}
+{"sourcePlugin":"local-copier","hash":"aa44de3dbcbfce8dd6c85a400d5b48c4"}
 ##DOCS-SOURCER-END -->

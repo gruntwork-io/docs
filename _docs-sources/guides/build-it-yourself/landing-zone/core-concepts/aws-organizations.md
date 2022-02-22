@@ -1,10 +1,8 @@
 # AWS Organizations
 
 _[AWS Organizations](https://aws.amazon.com/organizations/)_ gives you a central way to manage multiple AWS accounts. As
-you’ll see in [Production-grade design](../production-grade-design/intro), it’s a good idea to use multiple separate AWS accounts to manage separate
+you’ll see in [Production-grade design](../production-grade-design/intro.md), it’s a good idea to use multiple separate AWS accounts to manage separate
 environments, and AWS organizations is the best way to create and manage all of those accounts.
-
-
 
 <div className="dlist">
 
@@ -45,9 +43,4 @@ account itself. For example, you could use SCPs to completely block a child acco
 (e.g., block all regions outside of Europe) or AWS services (e.g., Redshift or Amazon Elasticsearch), perhaps because
 those regions or services do not meet your company’s compliance requirements (e.g., PCI, HIPAA, GDPR, etc).
 
-
 </div>
-
-
-
-

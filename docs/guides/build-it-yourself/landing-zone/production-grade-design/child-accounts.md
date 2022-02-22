@@ -2,14 +2,13 @@
 
 The admins in the root account can create the following child accounts in your AWS organization:
 
-
 <div className="dlist">
 
 #### Security account
 
 You will want a single _security account_ for managing authentication and authorization. This account is not used to
 run any infrastructure. Instead, this is where you define all of the IAM users and IAM groups for your team (unless
-you’re using [Federated auth](./federated-auth), as described later). None of the other child accounts will have IAM users; instead,
+you’re using [Federated auth](federated-auth.md), as described later). None of the other child accounts will have IAM users; instead,
 those accounts will have IAM roles that can be assumed from the security account. That way, each person on your team
 will have a single IAM user and a single set of credentials in the security account (with the exception of the small
 number of admins who will also have a separate IAM user in the root account) and they will be able to access the
@@ -58,7 +57,6 @@ accounts, shared-services, etc.—will send their AWS Config and CloudTrail data
 single, central place where all logs are stored and can be viewed. This account will also contain a KMS customer
 master key (CMK) that is used to encrypt CloudTrail logs.
 
-
 </div>
 
 Note that for larger organizations with multiple separate business units, you may need to repeat the structure above
@@ -70,5 +68,5 @@ for large organizations to have dozens or even hundreds of AWS accounts.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"59749cc69175511bee412377b15e200b"}
+{"sourcePlugin":"local-copier","hash":"3e830de18a177052333745fb4918957c"}
 ##DOCS-SOURCER-END -->

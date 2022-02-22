@@ -4,14 +4,14 @@ This guide consists of two main sections:
 
 <div className="dlist">
 
-#### [Core Concepts](./core-concepts.md)
+#### [Core Concepts](core-concepts.md)
 
 An overview of the CIS AWS Foundations Benchmark v1.4.0 and why it is important to update your code for compatibility.
 
-#### [Deployment walkthrough](./deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md)
+#### [Deployment walkthrough](deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md)
 
 The steps you need to take to update your code to be compliant with v1.4.0. It includes a
-[version compatibility table](./deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md#compatibility-table) you can use as a reference to know which Gruntwork Repo version
+[version compatibility table](deployment-walkthrough/step-1-update-references-to-the-gruntwork-infrastructure-as-code-library.md#compatibility-table) you can use as a reference to know which Gruntwork Repo version
 tag is compatible along with the deployment steps you need to perform to achieve compliance with version 1.4.0 of the
 CIS AWS Foundations Benchmark.
 
@@ -23,5 +23,5 @@ CIS AWS Foundations Benchmark.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"b3833c90d50cfd64b306c26b52b63b3e"}
+{"sourcePlugin":"local-copier","hash":"8c0f9be6013feef70b809f0778c9116f"}
 ##DOCS-SOURCER-END -->
