@@ -1,22 +1,107 @@
 ---
-title: Bastion
+type: "service"
+name: "Bastion"
+description: "Deploy a Bastion host on to your AWS VPC network."
+category: "remote-access"
+cloud: "aws"
+tags: ["bastion","ec2","ssh","security"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "Bastion Host"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
-# Bastion
+# Bastion Host
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/bastion-host" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt/bastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy a Bastion host on to your AWS VPC network.
+## Overview
 
-### Reference
+This service creates a single EC2 instance that is meant to serve as a [bastion host](https://en.wikipedia.org/wiki/Bastion_host).
+
+![Bastion architecture](/img/reference/services/security/bastion-architecture.png)
+
+A bastion host is a security practice where it is the **only** server exposed to the public. You must connect to it
+before you can connect to any of the other servers on your network. This way, you minimize the surface area you expose
+to attackers, and can focus all your efforts on locking down just a single server.
+
+## Features
+
+*   Build an AMI to run on the bastion host
+*   Create EC2 instance for the host
+*   Allocate an Elastic IP Address (EIP) and an associated DNS record
+*   Create an IAM Role and IAM instance profile
+*   Create a security group allowing access to the host
+*   Harden the OS by installing `fail2ban`, `ntp`, `auto-update`, `ip-lockdown`, and more
+*   Send all logs and metrics to CloudWatch
+*   Configure alerts in CloudWatch for CPU, memory, and disk space usage
+*   Manage SSH access with IAM groups using `ssh-grunt`
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+To understand core concepts like why you should use a bastion host, how to connect to the bastion host, how to use the
+bastion host as a "jump host" to connect to other instances, port forwarding, and more, see the
+[bastion-host documentation](https://github.com/gruntwork-io/terraform-aws-server/tree/master/examples/bastion-host)
+documentation in the [terraform-aws-server](https://github.com/gruntwork-io/terraform-aws-server) repo.
+
+### The bastion host AMI
+
+The bastion host AMI is defined using the [Packer](https://www.packer.io/) templates `bastion-host-ubuntu.json` (Packer
+< v1.7.0) and `bastion-host-ubuntu.pkr.hcl` (Packer >= v1.7.0). The template configures the AMI to:
+
+*   Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
+    that developers can upload their public SSH keys to IAM and use those SSH keys, along with their IAM user names, to
+    SSH to the bastion host.
+
+*   Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
+    so that the bastion host installs security updates automatically.
+
+*   Optionally run the
+    [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/syslog) to
+    automatically rotate and rate limit syslog so that the bastion host doesn’t run out of disk space from large volumes
+    of logs.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
+    infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -169,5 +254,5 @@ Deploy a Bastion host on to your AWS VPC network.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bc7f828a987fdea6cc77effc1e798f57"}
+{"sourcePlugin":"service-catalog-api","hash":"2d0e0febdabd2b171e77e4c0cfed5c29"}
 ##DOCS-SOURCER-END -->

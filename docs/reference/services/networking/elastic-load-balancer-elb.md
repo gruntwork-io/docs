@@ -1,22 +1,81 @@
 ---
-title: Elastic Load Balancer (ELB)
+type: "service"
+name: "Elastic Load Balancer (ELB)"
+description: "Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, with support for routing rules and WebSockets."
+category: "networking"
+cloud: "aws"
+tags: ["alb","elb","load-balancer"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Application Load Balancer"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
-# Elastic Load Balancer (ELB)
+# Application Load Balancer
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/alb" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/alb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, with support for routing rules and WebSockets.
+## Overview
 
-### Reference
+This service contains code to deploy [Application Load Balancer](https://aws.amazon.com/elasticloadbalancing/) on AWS.
+
+![ALB architecture](/img/reference/services/networking/alb-architecture.png)
+
+## Features
+
+*   Deploy public or internal Application Load Balancers
+*   Configure DNS in Route 53
+*   Configure TLS in AWS Certificate Manager (ACM)
+*   Send access logs into S3
+*   Manage access with security groups or CIDR blocks
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [Gruntwork Documentation on ALBs](https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/master/modules/alb#background):
+    Background information from Gruntwork about ALBs including what it is, differences from other ELB flavors, and when
+    you should use ALBs.
+
+*   [ALB Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html):
+    Amazon’s docs for ALB that cover core concepts such as listeners, target groups, autoscaling, TLS and migrations.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -185,5 +244,5 @@ Deploy the Application Load Balancer (ALB) for load balancing HTTP and HTTPS, wi
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"29e18f03190f76012e8780133e5e472c"}
+{"sourcePlugin":"service-catalog-api","hash":"b1ef68a4cd4cf05d34aecea5e3272df8"}
 ##DOCS-SOURCER-END -->

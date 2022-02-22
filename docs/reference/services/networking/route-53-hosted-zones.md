@@ -1,22 +1,80 @@
 ---
-title: Route 53 Hosted Zones
+type: "service"
+name: "Route 53 Hosted Zones"
+description: "Manage DNS entries using https"
+category: "networking"
+cloud: "aws"
+tags: ["route53","dns","networking"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Route 53 Hosted Zones"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Route 53 Hosted Zones
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/route53" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/route53" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
+## Overview
 
-### Reference
+This service contains code to deploy [Route 53 Hosted Zones](https://aws.amazon.com/route53/) and
+[AWS Cloud Map Namespaces](https://aws.amazon.com/cloud-map/) on AWS.
+
+![Route 53 architecture](/img/reference/services/networking/route53-architecture.png)
+
+## Features
+
+*   Manage DNS entries using AWS Route 53 or AWS Cloud Map
+*   Optionally order and automatically verify ACM wildcard certificates for public zones
+*   Automatic health checks to route traffic only to healthy endpoints
+*   Automatic integration with other AWS services, such as ELBs
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
+*   [AWS Cloud Map Documentation](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html): Amazon’s docs
+    for AWS Cloud Map that cover core concepts and configuration.
+*   [Route 53 Documentation](https://docs.aws.amazon.com/route53/): Amazon’s docs for Route 53 that cover core concepts
+    and configuration.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -85,5 +143,5 @@ Manage DNS entries using https://aws.amazon.com/route53/:Amazon Route 53
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"820bddfdb4a2c92cfc1082f0615789d1"}
+{"sourcePlugin":"service-catalog-api","hash":"e0b3cf3dc2b33929ddbcc4a92453c7fb"}
 ##DOCS-SOURCER-END -->

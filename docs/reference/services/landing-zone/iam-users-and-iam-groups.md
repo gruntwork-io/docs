@@ -1,22 +1,105 @@
 ---
-title: IAM Users and IAM Groups
+type: "service"
+name: "IAM Users and IAM Groups"
+description: "Convenient service for managing best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups."
+category: "landing-zone"
+cloud: "aws"
+tags: ["aws-landing-zone","logging","security"]
+license: "gruntwork"
+built-with: "terraform"
+title: "IAM Users and IAM Groups"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # IAM Users and IAM Groups
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/iam-users-and-groups" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Convenient module to manage best practices set of IAM Groups for permissions management, and configuring IAM Users that take advantage of those groups.
+## Overview
 
-### Reference
+This service contains [Terraform](https://www.terraform.io) code to provision and manage best practices set of IAM
+Groups for permissions management, and configuring IAM Users that take advantage of those groups.
+
+This feature exists in `account-baseline-security`, but having a separate module to manage IAM Users and Groups is
+useful for large scale organizations that frequently:
+
+*   Onboard and offboard new users
+*   Add and remove AWS accounts in their org
+
+The rationale behind this change comes from addressing two issues:
+
+*   The cadence of changes for IAM users and groups in the security account is considerably higher than the other things
+    that are managed in `account-baseline-security` (e.g., consider CloudTrail, which should only be configured once in
+    the lifetime of the account).
+
+*   `account-baseline-security` is, by nature, a heavy module that manages tons of resources. Having to go through the
+    `plan` and `apply` cycle for all those resources can be very painful, especially for large orgs that need to
+    onboard/offboard user frequently.
+
+## Features
+
+*   Provision IAM users with default set of IAM Groups, passwords, and access keys.
+
+*   Manage a best practices set of IAM Groups for managing different permissions levels in your AWS Account.
+
+*   Provision IAM Groups that manage cross account IAM Role access to other accounts in your AWS Organization.
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+*   [iam-users module documentation](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-users): Underlying
+    module used to manage the IAM Users from this module.
+*   [iam-groups module documentation](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-groups): Underlying
+    module used to manage the IAM Groups from this module.
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing/landingzone): The
+    `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
+    experimenting, and testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -329,5 +412,5 @@ Convenient module to manage best practices set of IAM Groups for permissions man
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c70520b1c494d33e11eb78b9857f22e1"}
+{"sourcePlugin":"service-catalog-api","hash":"a98550e22338865ef9613b7d529bb3f6"}
 ##DOCS-SOURCER-END -->

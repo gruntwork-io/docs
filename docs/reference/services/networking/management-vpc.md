@@ -1,22 +1,97 @@
 ---
-title: Management VPC
+type: "service"
+name: "Management VPC"
+description: "Deploy a VPC on AWS for administrative and management functions."
+category: "networking"
+cloud: "aws"
+tags: ["vpc","ec2"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Management VPC"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Management VPC
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/vpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy a VPC  on AWS for administrative and management functions.
+## Overview
 
-### Reference
+This service contains code to deploy a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/) on AWS that can be
+used for administrative and management purposes, such as CI/CD services. The primary difference between this and the
+[application VPC](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc) is this one has two subnet tiers (public and private) while the application VPC has three
+(public, private, and persistence). In this management VPC, we assume that there are no data stores that need to be
+separated in to a dedicated persistence tier.
+
+![VPC architecture](/img/reference/services/networking/vpc-architecture.png)
+
+## Features
+
+*   The VPC itself.
+*   Subnets, which are isolated subdivisions within the VPC. There are 2 "tiers" of subnets, public and private, spanning
+    multiple availability zones.
+*   Route tables, which provide routing rules for the subnets.
+*   Internet Gateways to route traffic to the public Internet from public subnets.
+*   NATs to route traffic to the public Internet from private subnets.
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+To understand core concepts like what’s a VPC, how subnets are configured, how network ACLs work, and more, see the
+documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terraform-aws-vpc) repo.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized or direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+*   [How to deploy a production-grade VPC on AWS](https://docs.gruntwork.io/guides/build-it-yourself/vpc/)
+*   [How to configure a production-grade CI/CD workflow for application and infrastructure code](https://docs.gruntwork.io/guides/build-it-yourself/pipelines/):
+    step-by-step guide on how to configure CI / CD for your apps and infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -205,5 +280,5 @@ Deploy a VPC  on AWS for administrative and management functions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"26fd4690c4849e44746c7df069ac0e6e"}
+{"sourcePlugin":"service-catalog-api","hash":"655281835fea449c6ed1b6888e607159"}
 ##DOCS-SOURCER-END -->

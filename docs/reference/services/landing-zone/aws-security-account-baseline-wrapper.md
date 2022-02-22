@@ -1,22 +1,93 @@
 ---
-title: AWS Security Account baseline wrapper
+type: "service"
+name: "AWS Security Account baseline wrapper"
+description: "A security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM users and IAM groups are defined), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more."
+category: "landing-zone"
+cloud: "aws"
+tags: ["aws-landing-zone","logging","security"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Account Baseline for security account"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
-# AWS Security Account baseline wrapper
+# Account Baseline for security account
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/account-baseline-security" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-A security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM users and IAM groups are defined), including setting up AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
+## Overview
 
-### Reference
+A security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM users and IAM groups are defined), including setting up
+AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
+
+For large scale organizations that frequently onboard and offboard new users, consider taking a look at
+[the iam-users-and-groups module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups) for managing IAM Users and Groups.
+
+## Features
+
+Get a secure baseline for the security account of your AWS Organization that includes:
+
+*   [aws-config-multi-region](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/aws-config-multi-region)
+*   [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cloudtrail)
+*   [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/cross-account-iam-roles)
+*   [guardduty-multi-region](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/guardduty-multi-region)
+*   [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-groups)
+*   [iam-users](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-users)
+*   [iam-user-password-policy](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/iam-user-password-policy)
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+*   Learn more about each individual module, click the link in the [Features](#features) section.
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing/landingzone): The
+    `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
+    experimenting, and testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -165,6 +236,14 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 
 * [**`config_create_account_rules`**](#config_create_account_rules) &mdash; Set to true to create AWS Config rules directly in this account. Set false to not create any Config rules in this account (i.e., if you created the rules at the organization level already). We recommend setting this to true to use account-level rules because org-level rules create a chicken-and-egg problem with creating new accounts.
 
+<a name="config_delivery_channel_kms_key_arn" className="snap-top"></a>
+
+* [**`config_delivery_channel_kms_key_arn`**](#config_delivery_channel_kms_key_arn) &mdash; Optional KMS key to use for encrypting S3 objects on the AWS Config delivery channel for an externally managed S3 bucket. This must belong to the same region as the destination S3 bucket. If null, AWS Config will default to encrypting the delivered data with AES-256 encryption. Only used if [`should_create_s3_bucket`](#should_create_s3_bucket) is false - otherwise, [`kms_key_arn`](#kms_key_arn) is used.
+
+<a name="config_delivery_channel_kms_key_by_name" className="snap-top"></a>
+
+* [**`config_delivery_channel_kms_key_by_name`**](#config_delivery_channel_kms_key_by_name) &mdash; Same as [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn), except the value is a name of a KMS key configured with [`kms_customer_master_keys`](#kms_customer_master_keys). The module created KMS key for the delivery region (indexed by the name) will be used. Note that if both [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn) and [`config_delivery_channel_kms_key_by_name`](#config_delivery_channel_kms_key_by_name) are configured, the key in [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn) will always be used.
+
 <a name="config_force_destroy" className="snap-top"></a>
 
 * [**`config_force_destroy`**](#config_force_destroy) &mdash; If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
@@ -185,6 +264,14 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 
 * [**`config_opt_in_regions`**](#config_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable AWS Config in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
 
+<a name="config_s3_bucket_kms_key_arn" className="snap-top"></a>
+
+* [**`config_s3_bucket_kms_key_arn`**](#config_s3_bucket_kms_key_arn) &mdash; Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when the S3 bucket is created within this module [`(var.config_should_create_s3_bucket`](#(var.config_should_create_s3_bucket) is true). For encrypting S3 objects on delivery for an externally managed S3 bucket, refer to the [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn) input variable. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must permit the IAM role used by AWS Config. See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that the KMS key must reside in the global recorder region (as configured by [`aws_region`](#aws_region)).
+
+<a name="config_s3_bucket_kms_key_by_name" className="snap-top"></a>
+
+* [**`config_s3_bucket_kms_key_by_name`**](#config_s3_bucket_kms_key_by_name) &mdash; Same as [`config_s3_bucket_kms_key_arn`](#config_s3_bucket_kms_key_arn), except the value is a name of a KMS key configured with [`kms_customer_master_keys`](#kms_customer_master_keys). The module created KMS key for the global recorder region (indexed by the name) will be used. Note that if both [`config_s3_bucket_kms_key_arn`](#config_s3_bucket_kms_key_arn) and [`config_s3_bucket_kms_key_by_name`](#config_s3_bucket_kms_key_by_name) are configured, the key in [`config_s3_bucket_kms_key_arn`](#config_s3_bucket_kms_key_arn) will always be used.
+
 <a name="config_s3_bucket_name" className="snap-top"></a>
 
 * [**`config_s3_bucket_name`**](#config_s3_bucket_name) &mdash; The name of the S3 Bucket where CloudTrail logs will be stored. This could be a bucket in this AWS account or the name of a bucket in another AWS account where logs should be sent. We recommend setting this to the name of a bucket in a separate logs account.
@@ -201,6 +288,14 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 
 * [**`config_should_create_sns_topic`**](#config_should_create_sns_topic) &mdash; Set to true to create an SNS topic in this account for sending AWS Config notifications (e.g., if this is the logs account). Set to false to assume the topic specified in [`config_sns_topic_name`](#config_sns_topic_name) already exists in another AWS account (e.g., if this is the stage or prod account and [`config_sns_topic_name`](#config_sns_topic_name) is the name of an SNS topic in the logs account).
 
+<a name="config_sns_topic_kms_key_by_name_region_map" className="snap-top"></a>
+
+* [**`config_sns_topic_kms_key_by_name_region_map`**](#config_sns_topic_kms_key_by_name_region_map) &mdash; Same as [`config_sns_topic_kms_key_region_map`](#config_sns_topic_kms_key_region_map), except the value is a name of a KMS key configured with [`kms_customer_master_keys`](#kms_customer_master_keys). The module created KMS key for each region (indexed by the name) will be used. Note that if an entry exists for a region in both [`config_sns_topic_kms_key_region_map`](#config_sns_topic_kms_key_region_map) and [`config_sns_topic_kms_key_by_name_region_map`](#config_sns_topic_kms_key_by_name_region_map), then the key in [`config_sns_topic_kms_key_region_map`](#config_sns_topic_kms_key_region_map) will always be used.
+
+<a name="config_sns_topic_kms_key_region_map" className="snap-top"></a>
+
+* [**`config_sns_topic_kms_key_region_map`**](#config_sns_topic_kms_key_region_map) &mdash; Optional KMS key to use for each region for configuring default encryption for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS key). If null or the region key is missing, encryption will not be configured for the SNS topic in that region.
+
 <a name="config_sns_topic_name" className="snap-top"></a>
 
 * [**`config_sns_topic_name`**](#config_sns_topic_name) &mdash; The name of the SNS Topic in where AWS Config notifications will be sent. Can be in the same account or in another account.
@@ -216,6 +311,10 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 <a name="cross_account_access_all_group_name" className="snap-top"></a>
 
 * [**`cross_account_access_all_group_name`**](#cross_account_access_all_group_name) &mdash; The name of the IAM group that will grant access to all external AWS accounts in [`iam_groups_for_cross_account_access`](#iam_groups_for_cross_account_access).
+
+<a name="custom_cloudtrail_trail_name" className="snap-top"></a>
+
+* [**`custom_cloudtrail_trail_name`**](#custom_cloudtrail_trail_name) &mdash; A custom name to use for the Cloudtrail Trail. If null, defaults to the [`name_prefix`](#name_prefix) input variable.
 
 <a name="dev_permitted_services" className="snap-top"></a>
 
@@ -921,5 +1020,5 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b5b738964049f674cf11cacadab4a68a"}
+{"sourcePlugin":"service-catalog-api","hash":"5e6b87585f8a53a85ace464172286e89"}
 ##DOCS-SOURCER-END -->
