@@ -1,22 +1,76 @@
 ---
-title: SNS Topics
+type: "service"
+name: "SNS Topics"
+description: "Create Amazon Simple Notification Service topics."
+category: "networking"
+cloud: "aws"
+tags: ["sns","messaging","networking"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon Simple Notification Service"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
-# SNS Topics
+# Amazon Simple Notification Service
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/sns-topics" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Create Amazon Simple Notification Service topics
+## Overview
 
-### Reference
+This service contains code to create [Amazon SNS topics](https://aws.amazon.com/sns/).
+
+![SNS architecture](/img/reference/services/networking/sns-architecture.png)
+
+## Features
+
+*   Creates an SNS topic
+*   Attaches topic policies allowing publishing, subscribing, or both from given AWS accounts
+*   Optionally publishes notifications to Slack
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [SNS Documentation](https://docs.aws.amazon.com/sns/): Amazon’s docs for SNS that cover core concepts and configuration
+*   [How do SNS topics work?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics/core-concepts.md#how-do-sns-topics-work)
+*   [How do I get notified when a message is published to an SNS Topic?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/sns-topics/core-concepts.md#how-do-i-get-notified)
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -69,5 +123,5 @@ Create Amazon Simple Notification Service topics
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b1f67a76a625c0586dab9833cb9c9412"}
+{"sourcePlugin":"service-catalog-api","hash":"3f9e37ad5872b09dfa171e8bd154456e"}
 ##DOCS-SOURCER-END -->

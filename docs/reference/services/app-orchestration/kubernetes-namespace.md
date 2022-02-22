@@ -1,22 +1,94 @@
 ---
-title: Kubernetes Namespace
+type: "service"
+name: "Kubernetes Namespace"
+description: "Provision a best practices Kubernetes Namespace on any Kubernetes Cluster."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Kubernetes Namespace"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Kubernetes Namespace
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-namespace" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-namespace" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
+## Overview
 
-### Reference
+This service contains [Terraform](https://www.terraform.io) code to provision a best practices
+[Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
+
+## Features
+
+*   Target any Kubernetes cluster (e.g., EKS, GKE, minikube, etc)
+*   Provision a set of default best practices RBAC roles for managing access to the Namespace
+*   Optionally configure Fargate Profile to schedule all Pods on EKS Fargate
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-kubernetes-namespace](https://github.com/gruntwork-io/terraform-kubernetes-namespace) repo. If you are a
+subscriber and don’t have access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+*   [Official documentation on Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/):
+    learn about the basics of Kubernetes Namespaces including what they are, how to interact with Namespaces, how DNS
+    works, and when to use Namespaces.
+
+*   [Official documentation on RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/): learn about
+    Kubernetes RBAC including what they are, what resources are involved, how they work, how to bind roles to users, and
+    more.
+
+*   [Amazon’s documentation on Fargate](https://docs.aws.amazon.com/eks/latest/userguide/fargate.html): learn about AWS
+    EKS Fargate including what they are, how it works, limitations of Fargate, and more.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -77,5 +149,5 @@ Provision a best practices Kubernetes Namespace on any Kubernetes Cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f5d4952c26f4d7e088205d3f4df4dd6d"}
+{"sourcePlugin":"service-catalog-api","hash":"575c717e0b6337ca462fcd01d6b68dd1"}
 ##DOCS-SOURCER-END -->

@@ -1,22 +1,82 @@
 ---
-title: Auto Scaling Group (ASG)
+type: "service"
+name: "Auto Scaling Group (ASG)"
+description: "Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime, rolling deployment, load balancing, health checks, service discovery, and auto scaling."
+category: "services"
+cloud: "aws"
+tags: ["asg","ec2"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Auto Scaling Group"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
-# Auto Scaling Group (ASG)
+# Auto Scaling Group
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/asg-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime, rolling deployment, load balancing, health checks, service discovery, and auto scaling.
+## Overview
 
-### Reference
+This service contains code to deploy [Auto Scaling Groups](https://aws.amazon.com/ec2/autoscaling/) on AWS.
+
+![ASG architecture](/img/reference/services/app-orchestration/asg-architecture.png)
+
+## Features
+
+*   Load balancer (ELB) integration
+*   Listener Rules
+*   Health checks
+*   Zero-downtime rolling deployment
+*   Route53 record
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-asg](https://github.com/gruntwork-io/terraform-aws-asg) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+*   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
+    Amazon’s docs for ASG that cover core concepts such as launch templates, launch configuration and auto scaling groups.
+*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service/core-concepts.md)
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -289,5 +349,5 @@ Deploy an AMI across an Auto Scaling Group (ASG), with support for zero-downtime
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"731448dc0d493ab572b5ee3a39b545a4"}
+{"sourcePlugin":"service-catalog-api","hash":"95806555848b223a9794bcce96958f36"}
 ##DOCS-SOURCER-END -->

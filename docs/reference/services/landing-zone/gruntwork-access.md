@@ -1,22 +1,83 @@
 ---
-title: Gruntwork Access
+type: "service"
+name: "Gruntwork Access"
+description: "Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!"
+category: "remote-access"
+cloud: "aws"
+tags: ["reference-architecture","troubleshooting"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Gruntwork Access"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Gruntwork Access
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/gruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Grant the Gruntwork team access to one of your AWS accounts so we can deploy a Reference Architecture for you or help with troubleshooting!
+## Overview
 
-### Reference
+You can use this service to grant the Gruntwork team access to your AWS account to either:
+
+*   Deploying a [Reference Architecture](https://gruntwork.io/reference-architecture/)
+*   Helping your team with troubleshooting.
+
+Under the hood, this service creates an [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) in
+your AWS account that the Gruntwork team can assume. This allows the Gruntwork team to securely access your AWS accounts
+without having to create, share, or manage credentials.
+
+## Features
+
+*   Create an IAM role that grants Gruntwork access to your AWS accounts
+*   Choose the Managed IAM Policy to grant
+*   Require MFA for assuming the IAM role
+*   Grant access to your own security account (required for Reference Architecture deployments)
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+*   [What is the Gruntwork Reference Architecture?](https://gruntwork.io/reference-architecture/)
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
+    infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -65,5 +126,5 @@ Grant the Gruntwork team access to one of your AWS accounts so we can deploy a R
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f1592659a2e00848cd0bba1c4e67a1a4"}
+{"sourcePlugin":"service-catalog-api","hash":"2b3dbd81473dfd23ad87befa687e3f85"}
 ##DOCS-SOURCER-END -->

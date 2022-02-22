@@ -1,22 +1,113 @@
 ---
-title: Amazon EKS Workers
+type: "service"
+name: "Amazon EKS Workers"
+description: "Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, bash, python, go"
+title: "Amazon EKS Workers"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon EKS Workers
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-workers" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service (EKS)
+## Overview
 
-### Reference
+This service contains [Terraform](https://www.terraform.io) and [Packer](https://www.packer.io) code to deploy a
+production-grade EC2 server cluster as workers for
+[Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) on
+[AWS](https://aws.amazon.com).
+
+![EKS architecture](/img/reference/services/app-orchestration/eks-architecture.png)
+
+## Features
+
+*   Deploy self-managed worker nodes in an Auto Scaling Group
+*   Deploy managed workers nodes in a Managed Node Group
+*   Zero-downtime, rolling deployment for updating worker nodes
+*   Auto scaling and auto healing
+*   For Nodes:
+
+    *   Server-hardening with fail2ban, ip-lockdown, auto-update, and more
+    *   Manage SSH access via IAM groups via ssh-grunt
+    *   CloudWatch log aggregation
+    *   CloudWatch metrics and alerts
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+To understand core concepts like what is Kubernetes, the different worker types, how to authenticate to Kubernetes, and
+more, see the documentation in the [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to deploy a production-grade Kubernetes cluster on AWS](https://docs.gruntwork.io/guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites):
+    A step-by-step guide for deploying a production-grade EKS cluster on AWS using the code in this repo.
+
+## Manage
+
+For information on registering the worker IAM role to the EKS control plane, refer to the
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+
+For information on how to perform a blue-green deployment of the worker pools, refer to the
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+section of the documentation.
+
+For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
+to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -365,5 +456,5 @@ Deploy EC2 instances as Kubernetes workers for Amazon Elastic Kubernetes Service
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"75844374aec8c0e2efa34cb3e4eeb273"}
+{"sourcePlugin":"service-catalog-api","hash":"55d40bb829f7c86ee33aa6fab9eef89d"}
 ##DOCS-SOURCER-END -->

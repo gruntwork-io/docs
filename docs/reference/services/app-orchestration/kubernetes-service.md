@@ -1,22 +1,101 @@
 ---
-title: Kubernetes Service
+type: "service"
+name: "Kubernetes Service"
+description: "Deploy your application containers as a Kubernetes Service and Deployment following best practices."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, helm"
+title: "Kubernetes Service"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Kubernetes Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/k8s-service" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/k8s-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy your application containers as a Kubernetes Service and Deployment following best practices.
+## Overview
 
-### Reference
+This service contains [Terraform](https://www.terraform.io) code to deploy your web application containers using
+[the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
+[Kubernetes](https://kubernetes.io/) following best practices.
+
+![Kubernetes Service architecture](/img/reference/services/app-orchestration/k8s-service-architecture.png)
+
+## Features
+
+*   Deploy your application containers on to Kubernetes
+*   Zero-downtime rolling deployments
+*   Auto scaling and auto healing
+*   Configuration management and Secrets management
+*   Ingress and Service endpoints
+*   Service discovery with Kubernetes DNS
+*   Managed with Helm
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[helm-kubernetes-services](https://github.com/gruntwork-io/helm-kubernetes-services) repo. If you are a subscriber and
+don’t have access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+*   [Kubernetes core concepts](https://docs.gruntwork.io/guides/build-it-yourself/kubernetes-cluster/core-concepts/what-is-kubernetes):
+    learn about Kubernetes architecture (control plane, worker nodes), access control (authentication, authorization,
+    resources (pods, controllers, services, config, secrets), and more.
+
+*   [How do you run applications on Kubernetes?](https://github.com/gruntwork-io/helm-kubernetes-services/blob/master/core-concepts.md#how-do-you-run-applications-on-kubernetes)
+
+*   [What is Helm?](https://github.com/gruntwork-io/helm-kubernetes-services/blob/master/core-concepts.md#what-is-helm)
+
+*   *[Kubernetes in Action](https://www.manning.com/books/kubernetes-in-action)*: the best book we’ve found for getting up
+    and running with Kubernetes.
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -311,5 +390,5 @@ Deploy your application containers as a Kubernetes Service and Deployment follow
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bddcd1e36883b3f3ba4083adec77b4c8"}
+{"sourcePlugin":"service-catalog-api","hash":"12561c6148fb199e38ce5a1d7dcda102"}
 ##DOCS-SOURCER-END -->

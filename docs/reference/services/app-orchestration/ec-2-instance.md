@@ -1,22 +1,105 @@
 ---
-title: EC2 Instance
+type: "service"
+name: "EC2 Instance"
+description: "Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, and CloudWatch metrics, logs, and alerts."
+category: "services"
+cloud: "aws"
+tags: ["ec2","ssh","security"]
+license: "gruntwork"
+built-with: "terraform, bash, packer"
+title: "EC2 Instance"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # EC2 Instance
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/ec2-instance" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, and CloudWatch metrics, logs, and alerts.
+## Overview
 
-### Reference
+This service creates a single EC2 instance that includes server hardening, IAM role, EIP (optional), EBS Volume
+(optional), and CloudWatch metrics, logs, and alerts. Note that a single EC2 instance can be a single point of failure,
+so if you want to run multiple EC2 instances for high availability and scalability, see the
+[asg-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service).
+
+## Features
+
+*   Build an AMI to run on the EC2 instance
+*   Create EC2 instance for the host
+*   Allocate an optional Elastic IP Address (EIP) and an associated DNS record
+*   Create an IAM Role and IAM instance profile
+*   Create a security group to manage ingress and egress traffic on desired ports
+*   Harden the OS by installing `fail2ban`, `ntp`, `auto-update`, `ip-lockdown`, and more
+*   Send all logs and metrics to CloudWatch
+*   Configure alerts in CloudWatch for CPU, memory, and disk space usage
+*   Manage SSH access with IAM groups using `ssh-grunt`
+*   Create and mount optional EBS volumes
+*   Allow ingress traffic on desired ports
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+### Core concepts
+
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+
+### The EC2 Instance AMI
+
+The EC2 Instance AMI is defined using the [Packer](https://www.packer.io/) template at `ec2-instance.json`.
+This template configures the AMI to:
+
+1.  Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
+    that developers can upload their public SSH keys to IAM and use those SSH keys, along with their IAM user names,
+    toSSH to the EC2 instance.
+
+2.  Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
+    so that the EC2 instance installs security updates automatically.
+
+3.  Optionally run the
+    [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/syslog)
+    to automatically rotate and rate limit syslog so that the EC2 instance doesn’t run out of disk space from large
+    volumes of logs.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+    folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
+    production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
+    infrastructure.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -237,5 +320,5 @@ Deploy an EC2 Instance, including server hardening, IAM role, EIP, EBS Volume, a
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8ca8c95c6510d13a8ff5e3956263d51e"}
+{"sourcePlugin":"service-catalog-api","hash":"a3c9dbaacff31cd87d5e5f8ab5b4a247"}
 ##DOCS-SOURCER-END -->

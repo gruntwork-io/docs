@@ -1,22 +1,100 @@
 ---
-title: Amazon EKS Core Services
+type: "service"
+name: "Amazon EKS Core Services"
+description: "Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["docker","orchestration","kubernetes","containers"]
+license: "gruntwork"
+built-with: "terraform, helm"
+title: "Amazon EKS Core Services"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon EKS Core Services
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy core administrative applications on top of Amazon EC2 Kubernetes Service (EKS)
+## Overview
 
-### Reference
+This service contains [Terraform](https://www.terraform.io) and [Helm](https://helm.sh/) code to deploy core
+administrative services, such as FluentD and the ALB Ingress Controller, onto
+[Elastic Kubernetes Service(EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
+
+![EKS Core Services architecture](/img/reference/services/app-orchestration/eks-core-services-architecture.png)
+
+## Features
+
+*   Deploy FluentD DaemonSet to ship container logs to CloudWatch Logs
+*   Deploy ALB Ingress Controller to configure ALBs from within Kubernetes
+*   Deploy external-dns to manage Route 53 DNS records from within Kubernetes
+*   Deploy Kubernetes cluster-autoscaler to configure auto scaling of ASGs based on Pod demand
+*   Deploy AWS CloudWatch Agent to configure container and node level metrics from worker nodes
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+Under the hood, this is all implemented using Terraform modules from the Gruntwork
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo. If you are a subscriber and don’t have
+access to this repo, email <support@gruntwork.io>.
+
+### Core concepts
+
+For information on each of the core services deployed by this service, see the documentation in the
+[terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
+
+*   [FluentD DaemonSet](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-container-logs)
+*   [ALB Ingress Controller](https://github.com/gruntwork-io/terraform-aws-eks/blob/master/modules/eks-alb-ingress-controller)
+*   [external-dns](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns)
+*   [cluster-autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler)
+*   [EKS CloudWatch Agent](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent)
+
+### Repo organization
+
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to deploy a production-grade Kubernetes cluster on AWS](https://docs.gruntwork.io/guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites):
+    A step-by-step guide for deploying a production-grade EKS cluster on AWS using the code in this repo.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -41,6 +119,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 * [**`autoscaler_skip_nodes_with_local_storage`**](#autoscaler_skip_nodes_with_local_storage) &mdash; If true cluster autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath
 
+<a name="aws_cloudwatch_agent_image_repository" className="snap-top"></a>
+
+* [**`aws_cloudwatch_agent_image_repository`**](#aws_cloudwatch_agent_image_repository) &mdash; The Container repository to use for looking up the cloudwatch-agent Container image when deploying the pods. When null, uses the default repository set in the chart. Only applies to non-fargate workers.
+
 <a name="aws_cloudwatch_agent_pod_node_affinity" className="snap-top"></a>
 
 * [**`aws_cloudwatch_agent_pod_node_affinity`**](#aws_cloudwatch_agent_pod_node_affinity) &mdash; Configure affinity rules for the AWS CloudWatch Agent Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -52,6 +134,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 <a name="aws_cloudwatch_agent_pod_tolerations" className="snap-top"></a>
 
 * [**`aws_cloudwatch_agent_pod_tolerations`**](#aws_cloudwatch_agent_pod_tolerations) &mdash; Configure tolerations rules to allow the AWS CloudWatch Agent Pods to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
+
+<a name="aws_cloudwatch_agent_version" className="snap-top"></a>
+
+* [**`aws_cloudwatch_agent_version`**](#aws_cloudwatch_agent_version) &mdash; Which version of amazon/cloudwatch-agent to install. When null, uses the default version set in the chart. Only applies to non-fargate workers.
 
 <a name="aws_region" className="snap-top"></a>
 
@@ -177,6 +263,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 * [**`fluent_bit_extra_outputs`**](#fluent_bit_extra_outputs) &mdash; Additional output streams that fluent-bit should export logs to. This string should be formatted according to the Fluent-bit docs [`(https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output`](#(https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output)).
 
+<a name="fluent_bit_image_repository" className="snap-top"></a>
+
+* [**`fluent_bit_image_repository`**](#fluent_bit_image_repository) &mdash; The Container repository to use for looking up the aws-for-fluent-bit Container image when deploying the pods. When null, uses the default repository set in the chart. Only applies to non-fargate workers.
+
 <a name="fluent_bit_log_group_already_exists" className="snap-top"></a>
 
 * [**`fluent_bit_log_group_already_exists`**](#fluent_bit_log_group_already_exists) &mdash; If set to true, that means that the CloudWatch Log Group fluent-bit should use for streaming logs already exists and does not need to be created.
@@ -193,6 +283,14 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 * [**`fluent_bit_log_group_retention`**](#fluent_bit_log_group_retention) &mdash; number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0. Select 0 to never expire.
 
+<a name="fluent_bit_log_group_subscription_arn" className="snap-top"></a>
+
+* [**`fluent_bit_log_group_subscription_arn`**](#fluent_bit_log_group_subscription_arn) &mdash; ARN of the lambda function to trigger when events arrive at the fluent bit log group.
+
+<a name="fluent_bit_log_group_subscription_filter" className="snap-top"></a>
+
+* [**`fluent_bit_log_group_subscription_filter`**](#fluent_bit_log_group_subscription_filter) &mdash; Filter pattern for the CloudWatch subscription. Only used if [`fluent_bit_log_group_subscription_arn`](#fluent_bit_log_group_subscription_arn) is set.
+
 <a name="fluent_bit_log_stream_prefix" className="snap-top"></a>
 
 * [**`fluent_bit_log_stream_prefix`**](#fluent_bit_log_stream_prefix) &mdash; Prefix string to use for the CloudWatch Log Stream that gets created for each pod. When null (default), the prefix is set to 'fluentbit'.
@@ -204,6 +302,10 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 <a name="fluent_bit_pod_tolerations" className="snap-top"></a>
 
 * [**`fluent_bit_pod_tolerations`**](#fluent_bit_pod_tolerations) &mdash; Configure tolerations rules to allow the fluent-bit Pods to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
+
+<a name="fluent_bit_version" className="snap-top"></a>
+
+* [**`fluent_bit_version`**](#fluent_bit_version) &mdash; Which version of aws-for-fluent-bit to install. When null, uses the default version set in the chart. Only applies to non-fargate workers.
 
 <a name="pod_execution_iam_role_arn" className="snap-top"></a>
 
@@ -257,5 +359,5 @@ Deploy core administrative applications on top of Amazon EC2 Kubernetes Service 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ff9501d658d0a8266e8daf8188a6276b"}
+{"sourcePlugin":"service-catalog-api","hash":"a7475c363eac2092e8338840b52218bb"}
 ##DOCS-SOURCER-END -->

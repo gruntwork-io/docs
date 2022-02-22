@@ -1,22 +1,80 @@
 ---
-title: S3 Bucket
+type: "service"
+name: "S3 Bucket"
+description: "Deploy an S3 bucket for data storage, with support for access logging, versioning and replication."
+category: "data-store"
+cloud: "aws"
+tags: ["s3","data","storage"]
+license: "gruntwork"
+built-with: "terraform"
+title: "S3 Bucket"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # S3 Bucket
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/s3-bucket" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/s3-bucket" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Deploy an S3 bucket for data storage, with support for access logging, versioning and replication.
+## Overview
 
-### Reference
+This service contains code to deploy an [S3 bucket](https://aws.amazon.com/s3/) on AWS.
+
+![S3 bucket architecture](/img/reference/services/data-storage/s3-bucket-architecture.png)
+
+## Features
+
+*   Deploy a private, secure S3 bucket
+*   Configure access logging to another S3 bucket
+*   Configure object versioning
+*   Configure cross-region replication
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [Gruntwork private-s3-bucket module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket): The underlying module that implements the private S3 bucket functionality.
+
+*   [S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html): Amazon’s docs for S3 that
+    cover core concepts such as creating, accessing, copying and deleting buckets.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+*   [How to enable MFA Delete?](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket#how-do-you-enable-mfa-delete): step-by-step guide on enabling MFA delete for your S3 buckets.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -173,5 +231,5 @@ Deploy an S3 bucket for data storage, with support for access logging, versionin
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"cfa0e2c0bd5072fa66dd502ced2a8ede"}
+{"sourcePlugin":"service-catalog-api","hash":"c6b627bc392b2e2bc5acbbbbe02994cb"}
 ##DOCS-SOURCER-END -->

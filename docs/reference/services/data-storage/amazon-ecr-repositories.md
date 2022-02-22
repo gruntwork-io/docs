@@ -1,22 +1,78 @@
 ---
-title: Amazon ECR Repositories
+type: "service"
+name: "Amazon ECR Repositories"
+description: "Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images."
+category: "docker-orchestration"
+cloud: "aws"
+tags: ["data","database","container"]
+license: "gruntwork"
+built-with: "terraform"
+title: "Amazon ECR Repositories"
 hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import VersionBadge from "../../../../src/components/VersionBadge.tsx"
+import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.74.0"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon ECR Repositories
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" className="link-button">View Source</a>
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores/ecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
 
-Create and manage multiple Amazon Elastic Container Repository (ECR) Repositories that can be used to store your Docker images.
+## Overview
 
-### Reference
+This service contains code to create and manage multiple [Amazon Elastic Container Repository (ECR)](https://aws.amazon.com/ecr/)
+Repositories that can be used for storing and distributing container images.
+
+![ECR architecture](/img/reference/services/data-storage/ecr-architecture.png)
+
+## Features
+
+*   Create and manage multiple ECR repositories
+*   Store private Docker images for use in any Docker Orchestration system (e.g., Kubernetes, ECS, etc)
+*   Share repositories across accounts
+*   Fine grained access control
+*   Automatically scan Docker images for security vulnerabilities
+
+## Learn
+
+:::note
+
+This repo is a part of the [Gruntwork Service Catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/),
+a collection of reusable, battle-tested, production ready infrastructure code.
+If you’ve never used the Service Catalog before, make sure to read
+[How to use the Gruntwork Service Catalog](https://docs.gruntwork.io/reference/services/intro/overview)!
+
+:::
+
+*   [ECR documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html): Amazon’s docs for ECR
+    that cover core concepts such as repository URLs, image scanning, and access control.
+
+## Deploy
+
+### Non-production deployment (quick start for learning)
+
+If you just want to try this repo out for experimenting and learning, check out the following resources:
+
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+    `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
+    testing (but not direct production usage).
+
+### Production deployment
+
+If you want to deploy this repo in production, check out the following resources:
+
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+    optimized for direct usage in production. This is code from the
+    [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
+    end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
+
+## Reference
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -81,5 +137,5 @@ Create and manage multiple Amazon Elastic Container Repository (ECR) Repositorie
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9e95fe49e5ff4f0b6f1c3b87406102a2"}
+{"sourcePlugin":"service-catalog-api","hash":"495251c5c942aec0f0b6c88175a4bd27"}
 ##DOCS-SOURCER-END -->
