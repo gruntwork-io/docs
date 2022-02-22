@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Jenkins CI Server
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service contains code to deploy [Jenkins CI Server](https://jenkins.io/) on AWS.
 
-![Jenkins architecture](/img/reference/services/mgmt/jenkins-architecture.png)
+![Jenkins architecture](/img/reference/services/ci-cd-pipeline/jenkins-architecture.png)
 
 ## Features
 
@@ -393,5 +393,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"917b07ba29ab06325bab63e7ba468f60"}
+{"sourcePlugin":"service-catalog-api","hash":"e8d2405c665d8709807c06f4ed8439e2"}
 ##DOCS-SOURCER-END -->

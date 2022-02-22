@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon EKS Core Services
 
@@ -30,7 +30,7 @@ This service contains [Terraform](https://www.terraform.io) and [Helm](https://h
 administrative services, such as FluentD and the ALB Ingress Controller, onto
 [Elastic Kubernetes Service(EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
-![EKS Core Services architecture](/img/reference/services/services/eks-core-services-architecture.png)
+![EKS Core Services architecture](/img/reference/services/app-orchestration/eks-core-services-architecture.png)
 
 ## Features
 
@@ -359,5 +359,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"dded5beeb2963f6d950159c531010117"}
+{"sourcePlugin":"service-catalog-api","hash":"a7475c363eac2092e8338840b52218bb"}
 ##DOCS-SOURCER-END -->

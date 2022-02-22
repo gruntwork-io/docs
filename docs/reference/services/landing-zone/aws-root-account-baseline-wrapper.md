@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Account Baseline for root account
 
@@ -247,6 +247,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`config_create_account_rules`**](#config_create_account_rules) &mdash; Set to true to create account-level AWS Config rules directly in this account. Set false to create org-level rules that apply to this account and all child accounts. We recommend setting this to true to use account-level rules because org-level rules create a chicken-and-egg problem with creating new accounts (see this module's README for details).
 
+<a name="config_delivery_channel_kms_key_arn" className="snap-top"></a>
+
+* [**`config_delivery_channel_kms_key_arn`**](#config_delivery_channel_kms_key_arn) &mdash; Optional KMS key to use for encrypting S3 objects on the AWS Config delivery channel for an externally managed S3 bucket. This must belong to the same region as the destination S3 bucket. If null, AWS Config will default to encrypting the delivered data with AES-256 encryption. Only used if [`should_create_s3_bucket`](#should_create_s3_bucket) is false - otherwise, [`config_s3_bucket_kms_key_arn`](#config_s3_bucket_kms_key_arn) is used.
+
 <a name="config_force_destroy" className="snap-top"></a>
 
 * [**`config_force_destroy`**](#config_force_destroy) &mdash; If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
@@ -263,6 +267,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`config_opt_in_regions`**](#config_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable AWS Config in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
 
+<a name="config_s3_bucket_kms_key_arn" className="snap-top"></a>
+
+* [**`config_s3_bucket_kms_key_arn`**](#config_s3_bucket_kms_key_arn) &mdash; Optional KMS key (in logs account) to use for encrypting S3 objects on the AWS Config bucket, when the S3 bucket is created within this module [`(var.config_should_create_s3_bucket`](#(var.config_should_create_s3_bucket) is true). For encrypting S3 objects on delivery for an externally managed S3 bucket, refer to the [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn) input variable. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must permit the IAM role used by AWS Config. See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that the KMS key must reside in the global recorder region (as configured by [`aws_region`](#aws_region)).
+
 <a name="config_s3_bucket_name" className="snap-top"></a>
 
 * [**`config_s3_bucket_name`**](#config_s3_bucket_name) &mdash; The name of the S3 Bucket where Config items will be stored. This could be a bucket in this AWS account or the name of a bucket in another AWS account where Config items should be sent. If you set [`is_logs_account`](#is_logs_account) to true on one of the accounts in [`child_accounts`](#child_accounts), the S3 bucket will be created in that account (this is the recommended approach!).
@@ -278,6 +286,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="config_should_create_sns_topic" className="snap-top"></a>
 
 * [**`config_should_create_sns_topic`**](#config_should_create_sns_topic) &mdash; Set to true to create an SNS topic in this account for sending AWS Config notifications. Set to false to assume the topic specified in [`config_sns_topic_name`](#config_sns_topic_name) already exists in another AWS account (e.g the logs account).
+
+<a name="config_sns_topic_kms_key_region_map" className="snap-top"></a>
+
+* [**`config_sns_topic_kms_key_region_map`**](#config_sns_topic_kms_key_region_map) &mdash; Optional KMS key to use for each region for configuring default encryption for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS key). If null or the region key is missing, encryption will not be configured for the SNS topic in that region.
 
 <a name="config_sns_topic_name" className="snap-top"></a>
 
@@ -967,5 +979,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"173148be46204f4bbf6c739a7d9ed0af"}
+{"sourcePlugin":"service-catalog-api","hash":"5ebef4dd07a74ddecda7de774af4b456"}
 ##DOCS-SOURCER-END -->

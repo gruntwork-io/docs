@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Public Static Website
 
@@ -30,7 +30,7 @@ This service creates a public static website using [S3](https://docs.aws.amazon.
 [CloudFront](https://docs.aws.amazon.com/cloudfront/index.html) on [AWS](https://aws.amazon.com). The website can
 contain static HTML, CSS, JS, and images.
 
-![Static S3 Website](/img/reference/services/services/s3-architecture.png)
+![Static S3 Website](/img/reference/services/app-orchestration/s3-architecture.png)
 
 ## Features
 
@@ -203,5 +203,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d6049beb108a832fcb8350308f24e8e6"}
+{"sourcePlugin":"service-catalog-api","hash":"34508bc916c2ed6c366b532999ccd3d6"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # OpenVPN Server
 
@@ -349,5 +349,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d9b0e7f46b9a6dda3b6760a1e49efaa4"}
+{"sourcePlugin":"service-catalog-api","hash":"2895cda034f0d5d4675be2f43dc20919"}
 ##DOCS-SOURCER-END -->

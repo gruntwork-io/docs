@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Bastion Host
 
@@ -254,5 +254,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5e2307bfbe03d3757996c95e4889d65d"}
+{"sourcePlugin":"service-catalog-api","hash":"2d0e0febdabd2b171e77e4c0cfed5c29"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # S3 Bucket
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service contains code to deploy an [S3 bucket](https://aws.amazon.com/s3/) on AWS.
 
-![S3 bucket architecture](/img/reference/services/data-stores/s3-bucket-architecture.png)
+![S3 bucket architecture](/img/reference/services/data-storage/s3-bucket-architecture.png)
 
 ## Features
 
@@ -231,5 +231,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6267fc487c8248e84132cdec2a1402a3"}
+{"sourcePlugin":"service-catalog-api","hash":"c6b627bc392b2e2bc5acbbbbe02994cb"}
 ##DOCS-SOURCER-END -->

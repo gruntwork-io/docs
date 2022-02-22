@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon ECS Fargate Cluster
 
@@ -35,7 +35,7 @@ cluster on top of an Auto Scaling Group, refer to the [ecs-cluster module](https
 [EC2 vs Fargate Launch Types](https://github.com/gruntwork-io/terraform-aws-ecs/blob/master/core-concepts.md#ec2-vs-fargate-launch-types)
 for more information on the differences between the two flavors.
 
-![ECS architecture](/img/reference/services/services/ecs-architecture.png)
+![ECS architecture](/img/reference/services/app-orchestration/ecs-architecture.png)
 
 ## Features
 
@@ -125,5 +125,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5dd441dc7fe90f450b33944ca2799ff6"}
+{"sourcePlugin":"service-catalog-api","hash":"4f63af1e3a339d5c9b6180f373f0def9"}
 ##DOCS-SOURCER-END -->

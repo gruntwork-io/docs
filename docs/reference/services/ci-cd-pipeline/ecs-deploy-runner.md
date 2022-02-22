@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # ECS Deploy Runner
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service deploys ECS Deploy Runner, the central component of [Gruntwork Pipelines](https://gruntwork.io/pipelines).
 
-![Gruntwork Pipelines architecture](/img/reference/services/mgmt/pipelines-architecture.png)
+![Gruntwork Pipelines architecture](/img/reference/services/ci-cd-pipeline/pipelines-architecture.png)
 
 Gruntwork Pipelines is a code framework and approach that enables you to use your preferred CI tool to set up an
 end-to-end pipeline for infrastructure code (Terraform) and app code packaged in multiple formats, including container
@@ -251,5 +251,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0d35a529d1f2608144a8d414aadc8507"}
+{"sourcePlugin":"service-catalog-api","hash":"bc731ba09bc6695c86fb512e42ff5b58"}
 ##DOCS-SOURCER-END -->

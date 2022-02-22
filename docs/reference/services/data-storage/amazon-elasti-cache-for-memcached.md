@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon ElastiCache for Memcached
 
@@ -30,7 +30,7 @@ This service contains code to deploy a [Memcached](https://memcached.org/) Clust
 [Amazon ElastiCache](https://aws.amazon.com/elasticache/). The cluster is managed by AWS and automatically handles
 automatic node discovery, recovery from failures, patching, and the ability to scale to large clusters of nodes.
 
-![ElastiCache for Memcached architecture](/img/reference/services/data-stores/elasticache-memcached-architecture.png)
+![ElastiCache for Memcached architecture](/img/reference/services/data-storage/elasticache-memcached-architecture.png)
 
 ## Features
 
@@ -166,5 +166,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f08b7c683656358b8284d3efe9d20925"}
+{"sourcePlugin":"service-catalog-api","hash":"fb98628754be2f6929142966cdcfc59f"}
 ##DOCS-SOURCER-END -->

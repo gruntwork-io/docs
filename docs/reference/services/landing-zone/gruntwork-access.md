@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Gruntwork Access
 
@@ -126,5 +126,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9b8550b841b484c0e073a84c83e708b6"}
+{"sourcePlugin":"service-catalog-api","hash":"2b3dbd81473dfd23ad87befa687e3f85"}
 ##DOCS-SOURCER-END -->

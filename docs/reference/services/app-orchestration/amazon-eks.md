@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.77.1"/>
+<VersionBadge version="0.78.1"/>
 
 # Amazon EKS
 
@@ -30,7 +30,7 @@ This service contains [Terraform](https://www.terraform.io) and [Packer](https:/
 production-grade Kubernetes cluster on [AWS](https://aws.amazon.com) using
 [Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
-![EKS architecture](/img/reference/services/services/eks-architecture.png)
+![EKS architecture](/img/reference/services/app-orchestration/eks-architecture.png)
 
 ## Features
 
@@ -583,5 +583,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6fefe0b3816033e87617b943b1dc3219"}
+{"sourcePlugin":"service-catalog-api","hash":"ba8cab569c745c035f118df557a52df9"}
 ##DOCS-SOURCER-END -->
