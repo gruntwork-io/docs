@@ -330,5 +330,5 @@ echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"f468685e4e7a3c96e847d3353bb6c680"}
+{"sourcePlugin":"local-copier","hash":"defd1dc9d6c10d7c36b4bf207bfe074f"}
 ##DOCS-SOURCER-END -->
