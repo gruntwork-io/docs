@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon ECS
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains [Terraform](https://www.terraform.io) code to deploy a production-grade ECS service on
 [AWS](https://aws.amazon.com) using [Elastic Container Service(ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html).
 
-![ECS architecture](/img/modules/services/ecs-service/ecs-architecture.png)
+![ECS architecture](/img/reference/services/services/ecs-architecture.png)
 
 ## Features
 
@@ -568,5 +568,5 @@ For information on how to manage your ECS service, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0e7f1facf830436237eefe4fe987422e"}
+{"sourcePlugin":"service-catalog-api","hash":"11a2531428061d3998355361945e435a"}
 ##DOCS-SOURCER-END -->

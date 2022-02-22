@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # VPC
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains code to deploy a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc) on AWS that can be used
 for either production or non-production workloads.
 
-![VPC architecture](/img/modules/networking/vpc/vpc-subnets-diagram.png)
+![VPC architecture](/img/reference/services/networking/vpc-subnets-diagram.png)
 
 ## Features
 
@@ -460,5 +460,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8646b4fb76f63c846d418cfa999c9d6c"}
+{"sourcePlugin":"service-catalog-api","hash":"498053c34d8ad86600a3d7c02476e31e"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Lambda
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains code to deploy a [Lambda](https://aws.amazon.com/lambda) on AWS that can be used for either
 production or non-production workloads.
 
-![Lambda architecture](/img/modules/services/lambda/lambda-service-architecture.png)
+![Lambda architecture](/img/reference/services/services/lambda-service-architecture.png)
 
 ## Features
 
@@ -332,5 +332,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4a69435be244243a8183116076714588"}
+{"sourcePlugin":"service-catalog-api","hash":"965fb905ce42c20f853fb1d92efdd990"}
 ##DOCS-SOURCER-END -->

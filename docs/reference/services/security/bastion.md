@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Bastion Host
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service creates a single EC2 instance that is meant to serve as a [bastion host](https://en.wikipedia.org/wiki/Bastion_host).
 
-![Bastion architecture](/img/modules/mgmt/bastion-host/bastion-architecture.png)
+![Bastion architecture](/img/reference/services/security/bastion-architecture.png)
 
 A bastion host is a security practice where it is the **only** server exposed to the public. You must connect to it
 before you can connect to any of the other servers on your network. This way, you minimize the surface area you expose
@@ -254,5 +254,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"594c2136ed79b2e95ff229b4b35710d6"}
+{"sourcePlugin":"service-catalog-api","hash":"5e2307bfbe03d3757996c95e4889d65d"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon ECR Repositories
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains code to create and manage multiple [Amazon Elastic Container Repository (ECR)](https://aws.amazon.com/ecr/)
 Repositories that can be used for storing and distributing container images.
 
-![ECR architecture](/img/modules/data-stores/ecr-repos/ecr-architecture.png)
+![ECR architecture](/img/reference/services/data-stores/ecr-architecture.png)
 
 ## Features
 
@@ -137,5 +137,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"cf447046215b3a0305945386724039ff"}
+{"sourcePlugin":"service-catalog-api","hash":"451622600332d50cc41bcaa917c22a86"}
 ##DOCS-SOURCER-END -->

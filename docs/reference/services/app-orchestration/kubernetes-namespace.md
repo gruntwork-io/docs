@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Kubernetes Namespace
 
@@ -149,5 +149,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"33e037f9756d96d7c83147f1e2e75aa1"}
+{"sourcePlugin":"service-catalog-api","hash":"70277e00944395b993b9a3747f4ff4a5"}
 ##DOCS-SOURCER-END -->

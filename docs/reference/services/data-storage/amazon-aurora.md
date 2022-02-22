@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon Aurora
 
@@ -30,7 +30,7 @@ This service contains code to deploy an Amazon Relational Database Service (RDS)
 [Amazon Aurora](https://aws.amazon.com/rds/aurora/), Amazon’s cloud-native relational database. The cluster is managed
 by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
 
-![RDS architecture](/img/modules/data-stores/aurora/rds-architecture.png)
+![RDS architecture](/img/reference/services/data-stores/rds-architecture.png)
 
 ## Features
 
@@ -411,5 +411,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"68545e6c5befe6935fd315e9fde03538"}
+{"sourcePlugin":"service-catalog-api","hash":"f568af7619b0f53743eee42bd9d07bcc"}
 ##DOCS-SOURCER-END -->

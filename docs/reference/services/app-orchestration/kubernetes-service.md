@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Kubernetes Service
 
@@ -30,7 +30,7 @@ This service contains [Terraform](https://www.terraform.io) code to deploy your 
 [the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
 [Kubernetes](https://kubernetes.io/) following best practices.
 
-![Kubernetes Service architecture](/img/modules/services/k8s-service/k8s-service-architecture.png)
+![Kubernetes Service architecture](/img/reference/services/services/k8s-service-architecture.png)
 
 ## Features
 
@@ -390,5 +390,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1cab06cb9560ca258d614a7dceb0e204"}
+{"sourcePlugin":"service-catalog-api","hash":"bbd26cbd902a440ec1ca9f68057f2c91"}
 ##DOCS-SOURCER-END -->

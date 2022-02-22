@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon EKS Workers
 
@@ -31,7 +31,7 @@ production-grade EC2 server cluster as workers for
 [Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) on
 [AWS](https://aws.amazon.com).
 
-![EKS architecture](/img/modules/services/eks-workers/eks-architecture.png)
+![EKS architecture](/img/reference/services/services/eks-architecture.png)
 
 ## Features
 
@@ -456,5 +456,5 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d8698ec6b17ffe37c08df0f523c8b117"}
+{"sourcePlugin":"service-catalog-api","hash":"1fc6a9851e62fea4ce73afbe014c1622"}
 ##DOCS-SOURCER-END -->

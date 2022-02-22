@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon Simple Notification Service
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service contains code to create [Amazon SNS topics](https://aws.amazon.com/sns/).
 
-![SNS architecture](/img/modules/networking/sns-topics/sns-architecture.png)
+![SNS architecture](/img/reference/services/networking/sns-architecture.png)
 
 ## Features
 
@@ -123,5 +123,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e81e9c9ca8b852d3bdbf53085ccfa054"}
+{"sourcePlugin":"service-catalog-api","hash":"4eb5f05060ac0ba7acaf83f4db64958c"}
 ##DOCS-SOURCER-END -->

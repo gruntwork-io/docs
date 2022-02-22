@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # OpenVPN Server
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service deploys an [OpenVPN Server](https://openvpn.net/).
 
-![OpenVPN server architecture](/img/modules/mgmt/openvpn-server/openvpn-architecture.png)
+![OpenVPN server architecture](/img/reference/services/security/openvpn-architecture.png)
 
 This server acts as the entrypoint to the VPC in which it is deployed. You must connect to it with an OpenVPN client
 before you can connect to any of your other servers, which are in private subnets. This way, you minimize the surface
@@ -349,5 +349,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1da49198145bfa5ccfa664995b324110"}
+{"sourcePlugin":"service-catalog-api","hash":"d9b0e7f46b9a6dda3b6760a1e49efaa4"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Management VPC
 
@@ -32,7 +32,7 @@ used for administrative and management purposes, such as CI/CD services. The pri
 (public, private, and persistence). In this management VPC, we assume that there are no data stores that need to be
 separated in to a dedicated persistence tier.
 
-![VPC architecture](/img/modules/networking/vpc-mgmt/vpc-architecture.png)
+![VPC architecture](/img/reference/services/networking/vpc-architecture.png)
 
 ## Features
 
@@ -280,5 +280,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8f279d36f1c1c9d74d4f5d83685b36b6"}
+{"sourcePlugin":"service-catalog-api","hash":"39bcd7540b1e2ebbe4ea3d6bb5df2b69"}
 ##DOCS-SOURCER-END -->

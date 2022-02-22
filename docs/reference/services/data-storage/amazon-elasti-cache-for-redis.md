@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon ElastiCache for Redis
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains code to deploy a Redis Cluster using Amazon ElastiCache. The cluster is managed by AWS and
 automatically handles standby failover, read replicas, backups, patching, and encryption.
 
-![ElastiCache for Redis architecture](/img/modules/data-stores/redis/elasticache-redis-architecture.png)
+![ElastiCache for Redis architecture](/img/reference/services/data-stores/elasticache-redis-architecture.png)
 
 ## Features
 
@@ -209,5 +209,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f81a3118d144ab7b84249434c49b978c"}
+{"sourcePlugin":"service-catalog-api","hash":"35cfc24c0acd191c64a75450a315b26e"}
 ##DOCS-SOURCER-END -->

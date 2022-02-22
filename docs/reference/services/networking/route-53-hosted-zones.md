@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Route 53 Hosted Zones
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service contains code to deploy [Route 53 Hosted Zones](https://aws.amazon.com/route53/) and
 [AWS Cloud Map Namespaces](https://aws.amazon.com/cloud-map/) on AWS.
 
-![Route 53 architecture](/img/modules/networking/route53/route53-architecture.png)
+![Route 53 architecture](/img/reference/services/networking/route53-architecture.png)
 
 ## Features
 
@@ -143,5 +143,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"93887ca596f4174697998231c44963cc"}
+{"sourcePlugin":"service-catalog-api","hash":"7aeed29339cf5377afe25e0bbd7a8b77"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon EKS Core Services
 
@@ -30,7 +30,7 @@ This service contains [Terraform](https://www.terraform.io) and [Helm](https://h
 administrative services, such as FluentD and the ALB Ingress Controller, onto
 [Elastic Kubernetes Service(EKS)](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
-![EKS Core Services architecture](/img/modules/services/eks-core-services/eks-core-services-architecture.png)
+![EKS Core Services architecture](/img/reference/services/services/eks-core-services-architecture.png)
 
 ## Features
 
@@ -283,6 +283,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`fluent_bit_log_group_retention`**](#fluent_bit_log_group_retention) &mdash; number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0. Select 0 to never expire.
 
+<a name="fluent_bit_log_group_subscription_arn" className="snap-top"></a>
+
+* [**`fluent_bit_log_group_subscription_arn`**](#fluent_bit_log_group_subscription_arn) &mdash; ARN of the lambda function to trigger when events arrive at the fluent bit log group.
+
+<a name="fluent_bit_log_group_subscription_filter" className="snap-top"></a>
+
+* [**`fluent_bit_log_group_subscription_filter`**](#fluent_bit_log_group_subscription_filter) &mdash; Filter pattern for the CloudWatch subscription. Only used if [`fluent_bit_log_group_subscription_arn`](#fluent_bit_log_group_subscription_arn) is set.
+
 <a name="fluent_bit_log_stream_prefix" className="snap-top"></a>
 
 * [**`fluent_bit_log_stream_prefix`**](#fluent_bit_log_stream_prefix) &mdash; Prefix string to use for the CloudWatch Log Stream that gets created for each pod. When null (default), the prefix is set to 'fluentbit'.
@@ -351,5 +359,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3a86d9f31ab1ac9a21df5b013feebe64"}
+{"sourcePlugin":"service-catalog-api","hash":"dded5beeb2963f6d950159c531010117"}
 ##DOCS-SOURCER-END -->

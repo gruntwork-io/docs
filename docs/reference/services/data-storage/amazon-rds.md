@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Amazon Relational Database Service
 
@@ -30,7 +30,7 @@ This service contains code to deploy an Amazon Relational Database Service (RDS)
 SQL Server, Oracle, or MariaDB. The cluster is managed by AWS and automatically handles standby failover, read replicas,
 backups, patching, and encryption. For Aurora, use the [Aurora](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/aurora/) service.
 
-![RDS architecture](/img/modules/data-stores/rds/rds-architecture.png)
+![RDS architecture](/img/reference/services/data-stores/rds-architecture.png)
 
 ## Features
 
@@ -437,5 +437,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f6c95826fea22ccfeebcadc02dffc89a"}
+{"sourcePlugin":"service-catalog-api","hash":"b2cbea4427c5885fa01d62fb10473882"}
 ##DOCS-SOURCER-END -->

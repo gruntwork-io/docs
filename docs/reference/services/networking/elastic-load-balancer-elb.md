@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Application Load Balancer
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service contains code to deploy [Application Load Balancer](https://aws.amazon.com/elasticloadbalancing/) on AWS.
 
-![ALB architecture](/img/modules/networking/alb/alb-architecture.png)
+![ALB architecture](/img/reference/services/networking/alb-architecture.png)
 
 ## Features
 
@@ -244,5 +244,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e649fdf19f677637eb5e3ef315ff2bf3"}
+{"sourcePlugin":"service-catalog-api","hash":"f4f7d082ca0d348fbbee0c27ff216113"}
 ##DOCS-SOURCER-END -->

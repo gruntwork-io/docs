@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.76.0"/>
+<VersionBadge version="0.77.1"/>
 
 # Auto Scaling Group
 
@@ -28,7 +28,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
 This service contains code to deploy [Auto Scaling Groups](https://aws.amazon.com/ec2/autoscaling/) on AWS.
 
-![ASG architecture](/img/modules/services/asg-service/asg-architecture.png)
+![ASG architecture](/img/reference/services/services/asg-architecture.png)
 
 ## Features
 
@@ -349,5 +349,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"01730edf44e0568f663dbfcbd2b14434"}
+{"sourcePlugin":"service-catalog-api","hash":"32885d90d251e3ef76f693bbcc4ed33a"}
 ##DOCS-SOURCER-END -->
