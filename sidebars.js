@@ -20,6 +20,7 @@ const kubernetesSidebar = require("./sidebars/kubernetes-guide.js")
 const complianceSidebar = require("./sidebars/compliance-guide.js")
 const updateGuideSidebars = require("./sidebars/update-guides.js")
 const apiSidebars = require("./sidebars/api-reference.js")
+const faqSidebars = require("./sidebars/faq.js")
 
 // @ts-check
 
@@ -36,6 +37,7 @@ const sidebars = {
   complianceSidebar,
   ...updateGuideSidebars,
   ...apiSidebars,
+  faqSidebars,
 }
 
 module.exports = sidebars
