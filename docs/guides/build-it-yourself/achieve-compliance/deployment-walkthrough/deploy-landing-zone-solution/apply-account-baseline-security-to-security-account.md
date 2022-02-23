@@ -231,15 +231,8 @@ input = {
   security_hub_associate_to_master_account_id = local.accounts.root
 
   # Join this account to the root account's Amazon Macie
-
-  # Configure Amazon Macie
-  create_macie_bucket            = true
-  macie_bucket_name              = "<your-macie-bucket-name>-security-macie-results"
-  macie_create_kms_key           = true
-  macie_kms_key_name             = "<your-macie-kms-key-name>-macie"
-  macie_kms_key_users            = ["arn:aws:iam::${local.accounts.root}:root"]
-  macie_opt_in_regions           = local.opt_in_regions
   macie_administrator_account_id = local.accounts.root
+  macie_opt_in_regions           = local.opt_in_regions
 
   # The variable below for Amazon Macie needs to be manually maintained. Please ensure you change the defaults.
   macie_buckets_to_analyze = {
@@ -337,5 +330,5 @@ echo "<PASSWORD>" | base64 --decode | keybase pgp decrypt
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"f468685e4e7a3c96e847d3353bb6c680"}
+{"sourcePlugin":"local-copier","hash":"defd1dc9d6c10d7c36b4bf207bfe074f"}
 ##DOCS-SOURCER-END -->

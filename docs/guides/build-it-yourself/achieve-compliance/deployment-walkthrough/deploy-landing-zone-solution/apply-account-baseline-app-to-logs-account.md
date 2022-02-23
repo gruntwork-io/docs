@@ -190,15 +190,7 @@ inputs = {
 
   # Join this account to the root account's Amazon Macie
   macie_administrator_account_id = local.accounts.root
-
-  # Configure Amazon Macie
-  create_macie_bucket            = true
-  macie_bucket_name              = "<your-macie-bucket-name>-security-macie-results"
-  macie_create_kms_key           = true
-  macie_kms_key_name             = "<your-macie-kms-key-name>-macie"
-  macie_kms_key_users            = ["arn:aws:iam::${local.accounts.root}:root"]
   macie_opt_in_regions           = local.opt_in_regions
-  macie_administrator_account_id = local.accounts.root
 
   # The variable below for Amazon Macie needs to be manually maintained. Please ensure you change the defaults.
   macie_buckets_to_analyze = {
@@ -279,5 +271,5 @@ On some operating systems, such as MacOS, you may also need to increase your ope
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1e95d860557dc4159ade32bb1da1da32"}
+{"sourcePlugin":"local-copier","hash":"4b5387c63b27de9f1446fe439d6438af"}
 ##DOCS-SOURCER-END -->
