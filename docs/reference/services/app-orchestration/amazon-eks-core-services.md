@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.77.1"/>
 
 # Amazon EKS Core Services
 
@@ -359,5 +359,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"322bef6b52a88d671bfb391db9077bb6"}
+{"sourcePlugin":"service-catalog-api","hash":"99e89672da00e260c7de86dad529c7d4"}
 ##DOCS-SOURCER-END -->

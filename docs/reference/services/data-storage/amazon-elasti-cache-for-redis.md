@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.70.0"/>
 
 # Amazon ElastiCache for Redis
 
@@ -209,5 +209,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"11025f9313c6af51b4817b12c404d059"}
+{"sourcePlugin":"service-catalog-api","hash":"769f876cdcc41231e5aea112bc98c0c6"}
 ##DOCS-SOURCER-END -->
