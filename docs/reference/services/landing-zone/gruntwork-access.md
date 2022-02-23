@@ -15,14 +15,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/gruntwork-access" className="link-button">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone/gruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Fgruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -126,5 +126,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"2b3dbd81473dfd23ad87befa687e3f85"}
+{"sourcePlugin":"service-catalog-api","hash":"e112703ae098cbb24ef071bf76204fc3"}
 ##DOCS-SOURCER-END -->

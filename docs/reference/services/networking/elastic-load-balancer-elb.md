@@ -15,14 +15,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
 
 # Application Load Balancer
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/alb" className="link-button">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking/alb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -244,5 +244,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b1ef68a4cd4cf05d34aecea5e3272df8"}
+{"sourcePlugin":"service-catalog-api","hash":"72be3d3150ea6cdd1907c45cb5f32edb"}
 ##DOCS-SOURCER-END -->

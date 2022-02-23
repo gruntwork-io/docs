@@ -15,14 +15,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.77.1"/>
 
 # Amazon EKS Core Services
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-core-services" className="link-button">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -359,5 +359,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a7475c363eac2092e8338840b52218bb"}
+{"sourcePlugin":"service-catalog-api","hash":"99e89672da00e260c7de86dad529c7d4"}
 ##DOCS-SOURCER-END -->

@@ -15,14 +15,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
 
 # Amazon EKS
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/eks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -583,5 +583,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ba8cab569c745c035f118df557a52df9"}
+{"sourcePlugin":"service-catalog-api","hash":"e84b93ebc7a503b6960ab81e9a029cc8"}
 ##DOCS-SOURCER-END -->

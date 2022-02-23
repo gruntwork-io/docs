@@ -15,14 +15,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1"/>
+<VersionBadge version="0.78.1" lastModifiedVersion="0.65.4"/>
 
 # Public Static Website
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/public-static-website" className="link-button">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services/public-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Filtered Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -203,5 +203,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"34508bc916c2ed6c366b532999ccd3d6"}
+{"sourcePlugin":"service-catalog-api","hash":"54f316458c04fb7a7c945b94b592a9af"}
 ##DOCS-SOURCER-END -->

@@ -11,3 +11,8 @@ html[data-theme="dark"] .versionBadge {
   background-color: #666;
   color: black;
 }
+
+.lastModificationLabel {
+  color: #666;
+  margin-left: 1rem;
+}
