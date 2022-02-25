@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" />
+<VersionBadge version="0.80.2" />
 
 # TLS Scripts
 
@@ -99,5 +99,5 @@ If you’ve never used the Service Catalog before, make sure to read
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1d67673db39936ded4d53442c6981685"}
+{"sourcePlugin":"service-catalog-api","hash":"60d9ee265f9884b7fe5ceccd9113a723"}
 ##DOCS-SOURCER-END -->

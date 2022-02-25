@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.80.1"/>
 
 # Application Load Balancer
 
@@ -244,5 +244,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"72be3d3150ea6cdd1907c45cb5f32edb"}
+{"sourcePlugin":"service-catalog-api","hash":"7805adbf4f314d35adddc91dc014ac64"}
 ##DOCS-SOURCER-END -->

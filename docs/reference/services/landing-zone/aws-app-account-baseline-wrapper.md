@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.78.0"/>
 
 # Account Baseline for app accounts
 
@@ -755,5 +755,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"efb05ddf23cceb7100fa7b4e627f391f"}
+{"sourcePlugin":"service-catalog-api","hash":"8f3749a47cb686aa9b548878854a58fd"}
 ##DOCS-SOURCER-END -->

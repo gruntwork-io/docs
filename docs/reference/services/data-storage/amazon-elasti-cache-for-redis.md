@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.70.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.80.2"/>
 
 # Amazon ElastiCache for Redis
 
@@ -153,6 +153,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`replication_group_size`**](#replication_group_size) &mdash; The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica.
 
+<a name="snapshot_arn" className="snap-top"></a>
+
+* [**`snapshot_arn`**](#snapshot_arn) &mdash; The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use [`snapshot_name`](#snapshot_name).
+
+<a name="snapshot_name" className="snap-top"></a>
+
+* [**`snapshot_name`**](#snapshot_name) &mdash; The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use [`snapshot_arn`](#snapshot_arn).
+
 <a name="snapshot_retention_limit" className="snap-top"></a>
 
 * [**`snapshot_retention_limit`**](#snapshot_retention_limit) &mdash; The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots.
@@ -209,5 +217,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"769f876cdcc41231e5aea112bc98c0c6"}
+{"sourcePlugin":"service-catalog-api","hash":"12cb3a4ac8ae3de5028ed12987068d9e"}
 ##DOCS-SOURCER-END -->

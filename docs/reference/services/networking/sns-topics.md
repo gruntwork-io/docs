@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.44.0"/>
 
 # Amazon Simple Notification Service
 
@@ -123,5 +123,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"55e8810a65496be613b76399ebead365"}
+{"sourcePlugin":"service-catalog-api","hash":"e7f1a30a2c1665145faeae2da5e978aa"}
 ##DOCS-SOURCER-END -->

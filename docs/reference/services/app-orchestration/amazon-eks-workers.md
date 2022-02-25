@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.79.0"/>
 
 # Amazon EKS Workers
 
@@ -147,6 +147,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="asg_default_instance_type" className="snap-top"></a>
 
 * [**`asg_default_instance_type`**](#asg_default_instance_type) &mdash; Default value for the [`asg_instance_type`](#asg_instance_type) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_type`](#asg_instance_type) will use this value.
+
+<a name="asg_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`asg_default_max_pods_allowed`**](#asg_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="asg_default_max_size" className="snap-top"></a>
 
@@ -328,6 +332,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 * [**`node_group_default_labels`**](#node_group_default_labels) &mdash; Default value for labels field of [`managed_node_group_configurations`](#managed_node_group_configurations). Unlike [`common_labels`](#common_labels) which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
 
+<a name="node_group_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`node_group_default_max_pods_allowed`**](#node_group_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`managed_node_group_configurations`](#managed_node_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
+
 <a name="node_group_default_max_size" className="snap-top"></a>
 
 * [**`node_group_default_max_size`**](#node_group_default_max_size) &mdash; Default value for [`max_size`](#max_size) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
@@ -375,6 +383,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="use_kubergrunt_to_fetch_token" className="snap-top"></a>
 
 * [**`use_kubergrunt_to_fetch_token`**](#use_kubergrunt_to_fetch_token) &mdash; EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if [`use_exec_plugin_for_auth`](#use_exec_plugin_for_auth) is set to true.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="use_prefix_mode_to_calculate_max_pods" className="snap-top"></a>
 
@@ -456,5 +468,5 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8b399a0df7def5ea037cc555993015ba"}
+{"sourcePlugin":"service-catalog-api","hash":"86395ec2c5466735c9bbff55690a050b"}
 ##DOCS-SOURCER-END -->

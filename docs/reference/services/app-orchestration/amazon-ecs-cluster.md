@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.71.0"/>
 
 # Amazon ECS
 
@@ -416,5 +416,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"65b32f9df7bd69864c5786c011fd1674"}
+{"sourcePlugin":"service-catalog-api","hash":"bbc98b5de9a54ad9eebb1eef1491e774"}
 ##DOCS-SOURCER-END -->

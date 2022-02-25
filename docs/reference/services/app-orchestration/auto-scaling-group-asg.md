@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.80.1"/>
 
 # Auto Scaling Group
 
@@ -257,6 +257,26 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`redirect_listener_rules`**](#redirect_listener_rules) &mdash; Listener rules for a redirect action. See comments below for information about the parameters.
 
+<a name="route53_health_check_provider_external_id" className="snap-top"></a>
+
+* [**`route53_health_check_provider_external_id`**](#route53_health_check_provider_external_id) &mdash; The optional [`external_id`](#external_id) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_profile" className="snap-top"></a>
+
+* [**`route53_health_check_provider_profile`**](#route53_health_check_provider_profile) &mdash; The optional AWS profile to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_role_arn" className="snap-top"></a>
+
+* [**`route53_health_check_provider_role_arn`**](#route53_health_check_provider_role_arn) &mdash; The optional [`role_arn`](#role_arn) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_session_name" className="snap-top"></a>
+
+* [**`route53_health_check_provider_session_name`**](#route53_health_check_provider_session_name) &mdash; The optional [`session_name`](#session_name) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_shared_credentials_file" className="snap-top"></a>
+
+* [**`route53_health_check_provider_shared_credentials_file`**](#route53_health_check_provider_shared_credentials_file) &mdash; The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
 <a name="secrets_access" className="snap-top"></a>
 
 * [**`secrets_access`**](#secrets_access) &mdash; A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
@@ -349,5 +369,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"583f08a928ce446e507aebd4606b6f1a"}
+{"sourcePlugin":"service-catalog-api","hash":"d179ec525467d0d0b6ac6971359aa2ca"}
 ##DOCS-SOURCER-END -->

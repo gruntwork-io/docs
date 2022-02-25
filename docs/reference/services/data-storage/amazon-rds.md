@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.80.2"/>
 
 # Amazon Relational Database Service
 
@@ -437,5 +437,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"736458f6eec5e3a68826a8c031ac585d"}
+{"sourcePlugin":"service-catalog-api","hash":"40c8a1c85e49e9c553b1e7535f0adc46"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.68.8"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.68.8"/>
 
 # Amazon Aurora
 
@@ -411,5 +411,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3006cd2049d7f6e631e08dd0d52b4de0"}
+{"sourcePlugin":"service-catalog-api","hash":"a48477b52dc0f2c93c6ff14a4047523d"}
 ##DOCS-SOURCER-END -->
