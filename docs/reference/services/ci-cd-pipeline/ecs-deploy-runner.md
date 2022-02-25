@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.79.0"/>
 
 # ECS Deploy Runner
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/ecs-deploy-runner" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/mgmt/ecs-deploy-runner" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -85,7 +85,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -159,6 +159,22 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`iam_users`**](#iam_users) &mdash; List of AWS IAM usernames that should be given access to invoke the deploy runner.
 
+<a name="invoker_lambda_cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_kms_key_id`**](#invoker_lambda_cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data for the invoker lambda function.
+
+<a name="invoker_lambda_cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_retention_in_days`**](#invoker_lambda_cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group for the invoker lambda function. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="invoker_lambda_cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_tags`**](#invoker_lambda_cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group for the invoker lambda function, encoded as a map where the keys are tag keys and values are tag values.
+
+<a name="invoker_lambda_should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`invoker_lambda_should_create_cloudwatch_log_group`**](#invoker_lambda_should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the invoker lambda function execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS Lambda will automatically create a basic log group to use.
+
 <a name="kms_grant_opt_in_regions" className="snap-top"></a>
 
 * [**`kms_grant_opt_in_regions`**](#kms_grant_opt_in_regions) &mdash; Create multi-region resources in the specified regions. The best practice is to enable multi-region services in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
@@ -166,6 +182,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="name" className="snap-top"></a>
 
 * [**`name`**](#name) &mdash; Name of this instance of the deploy runner stack. Used to namespace all resources.
+
+<a name="outbound_security_group_name" className="snap-top"></a>
+
+* [**`outbound_security_group_name`**](#outbound_security_group_name) &mdash; When non-null, set the security group name of the ECS Deploy Runner ECS Task to this string. When null, a unique name will be generated by Terraform to avoid conflicts when deploying multiple instances of the ECS Deploy Runner.
 
 <a name="private_subnet_ids" className="snap-top"></a>
 
@@ -194,6 +214,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="terraform_planner_config" className="snap-top"></a>
 
 * [**`terraform_planner_config`**](#terraform_planner_config) &mdash; Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="vpc_id" className="snap-top"></a>
 
@@ -251,5 +275,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e6dfcdb6ce51b163d56fd060df85b834"}
+{"sourcePlugin":"service-catalog-api","hash":"bfe56ddfcaa99b5978a23af3e7689754"}
 ##DOCS-SOURCER-END -->
