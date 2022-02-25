@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.80.2" lastModifiedVersion="0.79.0"/>
 
 # Amazon EKS
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/eks-cluster" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ For information on how to manage your EKS cluster, including how to deploy Pods 
 to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
 
-To add and manage additional worker groups, refer to the [eks-workers module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers).
+To add and manage additional worker groups, refer to the [eks-workers module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/eks-workers).
 
 ## Reference
 
@@ -154,6 +154,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="asg_default_instance_type" className="snap-top"></a>
 
 * [**`asg_default_instance_type`**](#asg_default_instance_type) &mdash; Default value for the [`asg_instance_type`](#asg_instance_type) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_type`](#asg_instance_type) will use this value.
+
+<a name="asg_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`asg_default_max_pods_allowed`**](#asg_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="asg_default_max_size" className="snap-top"></a>
 
@@ -403,6 +407,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`node_group_default_labels`**](#node_group_default_labels) &mdash; Default value for labels field of [`managed_node_group_configurations`](#managed_node_group_configurations). Unlike [`common_labels`](#common_labels) which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
 
+<a name="node_group_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`node_group_default_max_pods_allowed`**](#node_group_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`managed_node_group_configurations`](#managed_node_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
+
 <a name="node_group_default_max_size" className="snap-top"></a>
 
 * [**`node_group_default_max_size`**](#node_group_default_max_size) &mdash; Default value for [`max_size`](#max_size) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
@@ -478,6 +486,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="use_kubergrunt_verification" className="snap-top"></a>
 
 * [**`use_kubergrunt_verification`**](#use_kubergrunt_verification) &mdash; When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="use_vpc_cni_customize_script" className="snap-top"></a>
 
@@ -583,5 +595,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e84b93ebc7a503b6960ab81e9a029cc8"}
+{"sourcePlugin":"service-catalog-api","hash":"7519c9c09a8555b2b665dd8a8d03e148"}
 ##DOCS-SOURCER-END -->
