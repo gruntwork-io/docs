@@ -34,6 +34,7 @@ The `examples/` directory contains small bits of code that launch the module. Yo
 The `modules/` directory contains the code for each of the modules. This is where the meat of the work is done.
 
 The `test/` directory contains all of our tests that go through our CI/CD pipeline for every commit. It uses our open source [Terratest](https://terratest.gruntwork.io/) Go library. The tests leverage the examples in the `examples/` directory.
+
 ### Services bring multiple modules together
 
 One level up from our modules is our [Service Catalog](https://docs.gruntwork.io/guides/production-framework/ingredients/service-catalog/). The Service Catalog brings modules that are often used together into their own module that you can instantiate.
