@@ -34,7 +34,7 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
     Deploy a Kubernetes Cluster to host all of your apps and services.
   </Card>
   <Card
-    title="Acheive Compliance"
+    title="Achieve Compliance"
     href="/guides/build-it-yourself/achieve-compliance"
   >
     Make your infrastructure compliant with the CIS AWS Foundations Benchmark.
