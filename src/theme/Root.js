@@ -65,7 +65,6 @@ const isPublicGruntworkRepo = (repoLink) => {
   const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(?=\/|$)`)
   // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
   const repoName = repoLink.match(pattern)[1]
-  console.log("repoName", repoName)
 
   // returns boolean
   return publicGruntworkRepoNames.includes(repoName)
