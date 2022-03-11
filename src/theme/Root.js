@@ -61,28 +61,14 @@ const publicGruntworkRepoNames = [
  * @return {boolean}
  */
 const isPublicGruntworkRepo = (repoLink) => {
-  // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs/intro`
-  const linkWithoutGruntworkOrgPrefix = repoLink.split(gruntworkGithubOrg)[1]
+  // Match a link prefixed by the gruntworkGithubOrg and capture the next path reference
+  const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(?=\/|$)`)
+  // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
+  const repoName = repoLink.match(pattern)[1]
+  console.log("repoName", repoName)
 
   // returns boolean
-  return publicGruntworkRepoNames.find((publicGruntworkRepoName) => {
-    /*
-     * Build the regular expression dynamically to check if a link:
-     * - references the home page of a known public repo OR
-     * - references a sub page of a known public repo
-     *
-     * Example: ("docs" is a known public repo) pattern will be -> ^(docs\/|docs$)
-     * MATCH - docs/intro
-     * MATCH - docs
-     * NO-MATCH - docss
-     */
-    const regExpPattern = new RegExp(
-      `^(${publicGruntworkRepoName}\/|${publicGruntworkRepoName}$)`
-    )
-    return regExpPattern.test(linkWithoutGruntworkOrgPrefix)
-  })
-    ? true
-    : false
+  return publicGruntworkRepoNames.includes(repoName)
 }
 
 export const DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY = "dontWarnGitHubLinks"
