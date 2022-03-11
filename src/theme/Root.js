@@ -62,7 +62,7 @@ const publicGruntworkRepoNames = [
  */
 const isPublicGruntworkRepo = (repoLink) => {
   // Match a link prefixed by the gruntworkGithubOrg and capture the next path reference
-  const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(?=\/|$)`)
+  const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(\/|$)`)
   // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
   const repoName = repoLink.match(pattern)[1]
 
