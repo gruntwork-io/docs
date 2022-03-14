@@ -5,8 +5,6 @@ import Grid from "/src/components/Grid"
 
 Get answers to frequently asked questions, organized by category.
 
-## Categories
-
 <Grid cols={2}>
   <Card
     title="Reference Architecture Pre-Deployment"

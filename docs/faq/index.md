@@ -5,8 +5,6 @@ import Grid from "/src/components/Grid"
 
 Get answers to frequently asked questions, organized by category.
 
-## Categories
-
 <Grid cols={2}>
   <Card
     title="Reference Architecture Pre-Deployment"
@@ -67,5 +65,5 @@ Get answers to frequently asked questions, organized by category.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"0b8f77571f8605ab889f2025e98bf11b"}
+{"sourcePlugin":"local-copier","hash":"3885b46059cdb4616ceddbe9b2c7c100"}
 ##DOCS-SOURCER-END -->
