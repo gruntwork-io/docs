@@ -2,8 +2,8 @@
 
 ## General questions
 
-- [Passing variables between Terragrunt and Terraform](https://github.com/gruntwork-io/knowledge-base/discussions/137)
-- [Mocking large sets of outputs with Terragrunt](https://github.com/gruntwork-io/knowledge-base/discussions/109)
+- [How do I pass variables between Terragrunt and Terraform?](https://github.com/gruntwork-io/knowledge-base/discussions/137)
+- [How do I mock large sets of outputs with Terragrunt?](https://github.com/gruntwork-io/knowledge-base/discussions/109)
 
 ## Versions
 
@@ -16,5 +16,5 @@
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"55235a63630ca8c14f555aba4f1213d6"}
+{"sourcePlugin":"local-copier","hash":"98df4b23885f621d3307a6112f2c6c9b"}
 ##DOCS-SOURCER-END -->

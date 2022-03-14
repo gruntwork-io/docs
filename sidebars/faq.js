@@ -1,5 +1,11 @@
 const sidebar = [
   {
+    label: "FAQ",
+    type: "link",
+    href: "/faq",
+    className: "back-button",
+  },
+  {
     label: "Ref Arch Pre-deployment",
     type: "doc",
     id: "faq/ref-arch-predeployment/index",
