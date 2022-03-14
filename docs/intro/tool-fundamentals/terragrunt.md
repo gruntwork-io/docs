@@ -17,6 +17,8 @@ remote_state {
 }
 ```
 
+FIX THIS DOC.
+
 Once you've created your `terragrunt.hcl` configuration, you can run all the usual Terraform commands, but with
 `terragrunt` as the binary: e.g., `terragrunt plan`, `terragrunt apply`, `terragrunt destroy`. Check out
 [Terragrunt: how to keep your Terraform code DRY and maintainable](https://blog.gruntwork.io/terragrunt-how-to-keep-your-terraform-code-dry-and-maintainable-f61ae06959d8)
