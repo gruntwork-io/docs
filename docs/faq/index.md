@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 import Card from "/src/components/Card"
 import Grid from "/src/components/Grid"
 
@@ -65,5 +69,5 @@ Get answers to frequently asked questions, organized by category.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"3885b46059cdb4616ceddbe9b2c7c100"}
+{"sourcePlugin":"local-copier","hash":"dbdf6417d65b463c42d8decdbed70717"}
 ##DOCS-SOURCER-END -->

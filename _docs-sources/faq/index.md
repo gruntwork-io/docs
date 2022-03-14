@@ -1,3 +1,7 @@
+---
+hide_table_of_contents: true
+---
+
 import Card from "/src/components/Card"
 import Grid from "/src/components/Grid"
 
