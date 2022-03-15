@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["docker","orchestration","ecs","containers"]
 license: "gruntwork"
 built-with: "terraform, bash, python, go"
-title: "Amazon ECS"
+title: "Amazon ECS Cluster"
 hide_title: true
 ---
 
@@ -15,9 +15,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
-# Amazon ECS
+# Amazon ECS Cluster
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
@@ -340,6 +340,10 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which the ECS cluster should be launched
@@ -416,5 +420,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"65b32f9df7bd69864c5786c011fd1674"}
+{"sourcePlugin":"service-catalog-api","hash":"c0cfd85f11224f97376d215ad4a592b6"}
 ##DOCS-SOURCER-END -->

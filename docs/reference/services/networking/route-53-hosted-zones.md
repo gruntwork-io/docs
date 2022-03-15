@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.65.5"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Route 53 Hosted Zones
 
@@ -143,5 +143,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ed4543c5ae802fbca682e8170dfc1c0f"}
+{"sourcePlugin":"service-catalog-api","hash":"6c00d1121dc5dd9c5c2b4171c73a5a98"}
 ##DOCS-SOURCER-END -->

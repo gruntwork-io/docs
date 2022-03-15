@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.73.1"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Management VPC
 
@@ -160,6 +160,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`enable_default_security_group`**](#enable_default_security_group) &mdash; If set to false, the default security groups will NOT be created.
 
+<a name="iam_role_permissions_boundary" className="snap-top"></a>
+
+* [**`iam_role_permissions_boundary`**](#iam_role_permissions_boundary) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
 <a name="kms_key_arn" className="snap-top"></a>
 
 * [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
@@ -211,6 +215,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="subnet_spacing" className="snap-top"></a>
 
 * [**`subnet_spacing`**](#subnet_spacing) &mdash; The amount of spacing between the different subnet types
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="vpc_name" className="snap-top"></a>
 
@@ -280,5 +288,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"11f3d95a97b1d480ea236acffe23b3ec"}
+{"sourcePlugin":"service-catalog-api","hash":"cc9f23798a355e46527afa3f2ef457e5"}
 ##DOCS-SOURCER-END -->

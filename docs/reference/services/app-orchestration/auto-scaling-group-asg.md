@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Auto Scaling Group
 
@@ -257,6 +257,26 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`redirect_listener_rules`**](#redirect_listener_rules) &mdash; Listener rules for a redirect action. See comments below for information about the parameters.
 
+<a name="route53_health_check_provider_external_id" className="snap-top"></a>
+
+* [**`route53_health_check_provider_external_id`**](#route53_health_check_provider_external_id) &mdash; The optional [`external_id`](#external_id) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_profile" className="snap-top"></a>
+
+* [**`route53_health_check_provider_profile`**](#route53_health_check_provider_profile) &mdash; The optional AWS profile to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_role_arn" className="snap-top"></a>
+
+* [**`route53_health_check_provider_role_arn`**](#route53_health_check_provider_role_arn) &mdash; The optional [`role_arn`](#role_arn) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_session_name" className="snap-top"></a>
+
+* [**`route53_health_check_provider_session_name`**](#route53_health_check_provider_session_name) &mdash; The optional [`session_name`](#session_name) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_shared_credentials_file" className="snap-top"></a>
+
+* [**`route53_health_check_provider_shared_credentials_file`**](#route53_health_check_provider_shared_credentials_file) &mdash; The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
 <a name="secrets_access" className="snap-top"></a>
 
 * [**`secrets_access`**](#secrets_access) &mdash; A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
@@ -296,6 +316,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="use_elb_health_checks" className="snap-top"></a>
 
 * [**`use_elb_health_checks`**](#use_elb_health_checks) &mdash; Whether or not ELB or ALB health checks should be enabled. If set to true, the [`load_balancers`](#load_balancers) or [`target_groups_arns`](#target_groups_arns) variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="vpc_id" className="snap-top"></a>
 
@@ -349,5 +373,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"583f08a928ce446e507aebd4606b6f1a"}
+{"sourcePlugin":"service-catalog-api","hash":"b3e0e1e9224481aa99272314757f7ef7"}
 ##DOCS-SOURCER-END -->

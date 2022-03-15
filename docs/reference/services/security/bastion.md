@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Bastion Host
 
@@ -158,6 +158,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`domain_name`**](#domain_name) &mdash; The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be [`name.var.domain_name`](#name.var.domain_name) (e.g., bastion.example.com). Only used if [`create_dns_record`](#create_dns_record) is true.
 
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
+
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
 * [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
@@ -218,6 +222,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the bastion.
@@ -254,5 +262,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8bc5effb94a3def0d7a90a92d404d59e"}
+{"sourcePlugin":"service-catalog-api","hash":"cc4716bd0ae2b3c1353d41370c7351a2"}
 ##DOCS-SOURCER-END -->

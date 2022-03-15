@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # EC2 Instance
 
@@ -176,6 +176,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`dns_zone_is_private`**](#dns_zone_is_private) &mdash; Specify whether we're selecting a private or public Route 53 DNS Zone
 
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
+
 <a name="ebs_volumes" className="snap-top"></a>
 
 * [**`ebs_volumes`**](#ebs_volumes) &mdash; The EBS volumes to attach to the instance. This must be a map of key/value pairs.
@@ -268,6 +272,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this instance. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the EC2 instance.
@@ -320,5 +328,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5dc43b683768d6967af4a7a45cfdf699"}
+{"sourcePlugin":"service-catalog-api","hash":"9fa9aefc704a81b6a57ad256d974a5f7"}
 ##DOCS-SOURCER-END -->

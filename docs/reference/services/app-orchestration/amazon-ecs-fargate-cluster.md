@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.66.0"/>
 
 # Amazon ECS Fargate Cluster
 
@@ -125,5 +125,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bd5542074ab190c286f2ee0a0b068520"}
+{"sourcePlugin":"service-catalog-api","hash":"44cd41cfe44cc6981af7847fb17d5efd"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.50.2"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.50.2"/>
 
 # IAM Users and IAM Groups
 
@@ -412,5 +412,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bd6c809de6c99ffbf8b6fe8bf70a612c"}
+{"sourcePlugin":"service-catalog-api","hash":"42861d806c5c108432a1ff2b74d3bd01"}
 ##DOCS-SOURCER-END -->

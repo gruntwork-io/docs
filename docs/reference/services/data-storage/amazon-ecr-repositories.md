@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.68.3"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.68.3"/>
 
 # Amazon ECR Repositories
 
@@ -137,5 +137,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f3818080e658fc5225d64be25490f8fd"}
+{"sourcePlugin":"service-catalog-api","hash":"25d77ead8e55b723e7223c3ff64dd03c"}
 ##DOCS-SOURCER-END -->

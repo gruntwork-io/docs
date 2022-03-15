@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.61.2"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.81.0"/>
 
 # Amazon Elasticsearch Service
 
@@ -271,5 +271,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5d0da2d5cea52b6666b5e951feff3796"}
+{"sourcePlugin":"service-catalog-api","hash":"2b533810f2f2b14b662497593b26a917"}
 ##DOCS-SOURCER-END -->

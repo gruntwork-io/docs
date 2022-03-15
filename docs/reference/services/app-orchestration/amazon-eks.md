@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.84.1"/>
 
 # Amazon EKS
 
@@ -139,13 +139,25 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`allow_private_api_access_from_security_groups`**](#allow_private_api_access_from_security_groups) &mdash; The list of security groups to allow inbound access to the private Kubernetes API endpoint (e.g. the endpoint within the VPC, not the public endpoint).
 
+<a name="asg_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`asg_default_enable_detailed_monitoring`**](#asg_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations).
+
 <a name="asg_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_encryption`**](#asg_default_instance_root_volume_encryption) &mdash; Default value for the [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) will use this value.
 
+<a name="asg_default_instance_root_volume_iops" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_iops`**](#asg_default_instance_root_volume_iops) &mdash; Default value for the [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) will use this value.
+
 <a name="asg_default_instance_root_volume_size" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_size`**](#asg_default_instance_root_volume_size) &mdash; Default value for the [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) will use this value.
+
+<a name="asg_default_instance_root_volume_throughput" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_throughput`**](#asg_default_instance_root_volume_throughput) &mdash; Default value for the [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) will use this value.
 
 <a name="asg_default_instance_root_volume_type" className="snap-top"></a>
 
@@ -154,6 +166,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="asg_default_instance_type" className="snap-top"></a>
 
 * [**`asg_default_instance_type`**](#asg_default_instance_type) &mdash; Default value for the [`asg_instance_type`](#asg_instance_type) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_type`](#asg_instance_type) will use this value.
+
+<a name="asg_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`asg_default_max_pods_allowed`**](#asg_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="asg_default_max_size" className="snap-top"></a>
 
@@ -383,6 +399,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`node_group_default_desired_size`**](#node_group_default_desired_size) &mdash; Default value for [`desired_size`](#desired_size) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
 
+<a name="node_group_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`node_group_default_enable_detailed_monitoring`**](#node_group_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
+
 <a name="node_group_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`node_group_default_instance_root_volume_encryption`**](#node_group_default_instance_root_volume_encryption) &mdash; Default value for the [`instance_root_volume_encryption`](#instance_root_volume_encryption) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
@@ -402,6 +422,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="node_group_default_labels" className="snap-top"></a>
 
 * [**`node_group_default_labels`**](#node_group_default_labels) &mdash; Default value for labels field of [`managed_node_group_configurations`](#managed_node_group_configurations). Unlike [`common_labels`](#common_labels) which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
+
+<a name="node_group_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`node_group_default_max_pods_allowed`**](#node_group_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`managed_node_group_configurations`](#managed_node_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="node_group_default_max_size" className="snap-top"></a>
 
@@ -478,6 +502,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="use_kubergrunt_verification" className="snap-top"></a>
 
 * [**`use_kubergrunt_verification`**](#use_kubergrunt_verification) &mdash; When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="use_vpc_cni_customize_script" className="snap-top"></a>
 
@@ -583,5 +611,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e84b93ebc7a503b6960ab81e9a029cc8"}
+{"sourcePlugin":"service-catalog-api","hash":"1cb43cffdfa96562a60d3b0e7f180067"}
 ##DOCS-SOURCER-END -->

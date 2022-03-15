@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Amazon Relational Database Service
 
@@ -301,6 +301,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`num_read_replicas`**](#num_read_replicas) &mdash; The number of read replicas to deploy
 
+<a name="performance_insights_enabled" className="snap-top"></a>
+
+* [**`performance_insights_enabled`**](#performance_insights_enabled) &mdash; Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
+
 <a name="port" className="snap-top"></a>
 
 * [**`port`**](#port) &mdash; The port the DB will listen on (e.g. 3306). Alternatively, this can be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
@@ -437,5 +441,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"736458f6eec5e3a68826a8c031ac585d"}
+{"sourcePlugin":"service-catalog-api","hash":"073350387b906874b95515cb21801b69"}
 ##DOCS-SOURCER-END -->

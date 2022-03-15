@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.84.0"/>
 
 # OpenVPN Server
 
@@ -177,6 +177,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`domain_name`**](#domain_name) &mdash; The domain name to use for the OpenVPN server. Only used if [`create_route53_entry`](#create_route53_entry) is true. If null, set to [`&lt;NAME>.&lt;BASE_DOMAIN_NAME`](#&lt;NAME>.&lt;BASE_DOMAIN_NAME)>.
 
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: [`https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances`](#https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances)
+
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
 * [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
@@ -260,6 +264,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="tenancy" className="snap-top"></a>
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="use_strong_prime" className="snap-top"></a>
 
@@ -349,5 +357,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3489febb60024d0662cbdfdafe065a71"}
+{"sourcePlugin":"service-catalog-api","hash":"bbe5c261f7d22d008a88bed3d56900d3"}
 ##DOCS-SOURCER-END -->

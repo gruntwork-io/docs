@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["docker","orchestration","ecs","containers"]
 license: "gruntwork"
 built-with: "terraform, bash, python, go"
-title: "Amazon ECS"
+title: "Amazon ECS Service"
 hide_title: true
 ---
 
@@ -15,9 +15,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
-# Amazon ECS
+# Amazon ECS Service
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-service" className="link-button">View Source</a>
@@ -432,6 +432,26 @@ For information on how to manage your ECS service, see the documentation in the
 
 * [**`route53_health_check_protocol`**](#route53_health_check_protocol) &mdash; The protocol to use for Route 53 health checks. Should be one of HTTP, HTTPS.
 
+<a name="route53_health_check_provider_external_id" className="snap-top"></a>
+
+* [**`route53_health_check_provider_external_id`**](#route53_health_check_provider_external_id) &mdash; The optional [`external_id`](#external_id) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_profile" className="snap-top"></a>
+
+* [**`route53_health_check_provider_profile`**](#route53_health_check_provider_profile) &mdash; The optional AWS profile to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_role_arn" className="snap-top"></a>
+
+* [**`route53_health_check_provider_role_arn`**](#route53_health_check_provider_role_arn) &mdash; The optional [`role_arn`](#role_arn) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_session_name" className="snap-top"></a>
+
+* [**`route53_health_check_provider_session_name`**](#route53_health_check_provider_session_name) &mdash; The optional [`session_name`](#session_name) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_shared_credentials_file" className="snap-top"></a>
+
+* [**`route53_health_check_provider_shared_credentials_file`**](#route53_health_check_provider_shared_credentials_file) &mdash; The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
 <a name="secrets_access" className="snap-top"></a>
 
 * [**`secrets_access`**](#secrets_access) &mdash; A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
@@ -568,5 +588,5 @@ For information on how to manage your ECS service, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4fc283d27498e535a25f187a7581bbde"}
+{"sourcePlugin":"service-catalog-api","hash":"ea75fee0e50051f47fbadbe081834ec0"}
 ##DOCS-SOURCER-END -->

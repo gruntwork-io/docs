@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.1"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.84.0"/>
 
 # Kubernetes Service
 
@@ -368,6 +368,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`termination_grace_period_seconds`**](#termination_grace_period_seconds) &mdash; Grace period in seconds that Kubernetes will wait before terminating the pod. The timeout happens in parallel to preStop hook and the SIGTERM signal, Kubernetes does not wait for preStop to finish before beginning the grace period.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="values_file_path" className="snap-top"></a>
 
 * [**`values_file_path`**](#values_file_path) &mdash; A local file path where the helm chart values will be emitted. Use to debug issues with the helm chart values. Set to null to prevent creation of the file.
@@ -390,5 +394,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c5b6f8456b1b2b69262e46a161319732"}
+{"sourcePlugin":"service-catalog-api","hash":"46cc60765fc1952102d5de50d3c2bdef"}
 ##DOCS-SOURCER-END -->

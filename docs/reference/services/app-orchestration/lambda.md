@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.69.1"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.84.2"/>
 
 # Lambda
 
@@ -99,6 +99,34 @@ If you want to deploy this repo in production, check out the following resources
 <a name="assume_role_policy" className="snap-top"></a>
 
 * [**`assume_role_policy`**](#assume_role_policy) &mdash; A custom assume role policy for the IAM role for this Lambda function. If not set, the default is a policy that allows the Lambda service to assume the IAM role, which is what most users will need. However, you can use this variable to override the policy for special cases, such as using a Lambda function to rotate AWS Secrets Manager secrets.
+
+<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="cloudwatch_log_group_subscription_destination_arn" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_subscription_destination_arn`**](#cloudwatch_log_group_subscription_destination_arn) &mdash; The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if [`should_create_cloudwatch_log_group`](#should_create_cloudwatch_log_group) is true.
+
+<a name="cloudwatch_log_group_subscription_distribution" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_subscription_distribution`**](#cloudwatch_log_group_subscription_distribution) &mdash; The method used to distribute log data to the destination. Only applicable when [`cloudwatch_log_group_subscription_destination_arn`](#cloudwatch_log_group_subscription_destination_arn) is a kinesis stream. Valid values are `Random` and `ByLogStream`.
+
+<a name="cloudwatch_log_group_subscription_filter_pattern" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_subscription_filter_pattern`**](#cloudwatch_log_group_subscription_filter_pattern) &mdash; A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
+
+<a name="cloudwatch_log_group_subscription_role_arn" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_subscription_role_arn`**](#cloudwatch_log_group_subscription_role_arn) &mdash; ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when [`cloudwatch_log_group_subscription_destination_arn`](#cloudwatch_log_group_subscription_destination_arn) is a kinesis stream.
+
+<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 <a name="command" className="snap-top"></a>
 
@@ -220,6 +248,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`schedule_expression`**](#schedule_expression) &mdash; An expression that defines the schedule for this lambda job. For example, cron(0 20 * * ? *) or rate(5 minutes). For more information visit https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html
 
+<a name="set_source_code_hash" className="snap-top"></a>
+
+* [**`set_source_code_hash`**](#set_source_code_hash) &mdash; If set to false, this function will no longer set the [`source_code_hash`](#source_code_hash) parameter, so this module will no longer detect and upload changes to the deployment package. This is primarily useful if you update the Lambda function from outside of this module (e.g., you have scripts that do it separately) and want to avoid a plan diff. Used only if [`source_path`](#source_path) is non-empty.
+
+<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the lambda function execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS Lambda will automatically create a basic log group to use.
+
 <a name="should_create_outbound_rule" className="snap-top"></a>
 
 * [**`should_create_outbound_rule`**](#should_create_outbound_rule) &mdash; If true, create an egress rule allowing all outbound traffic from Lambda function to the entire Internet (e.g. 0.0.0.0/0).
@@ -251,6 +287,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="timeout" className="snap-top"></a>
 
 * [**`timeout`**](#timeout) &mdash; The maximum amount of time, in seconds, your Lambda function will be allowed to run. Must be between 1 and 900 seconds.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="vpc_id" className="snap-top"></a>
 
@@ -332,5 +372,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c2c8d66d4269cc2c41a2ce05c44f2083"}
+{"sourcePlugin":"service-catalog-api","hash":"94a97953f751572de6fae1b949efda32"}
 ##DOCS-SOURCER-END -->

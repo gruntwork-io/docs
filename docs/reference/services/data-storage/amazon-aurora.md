@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.68.8"/>
+<VersionBadge version="0.84.3" lastModifiedVersion="0.83.0"/>
 
 # Amazon Aurora
 
@@ -118,6 +118,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="backup_retention_period" className="snap-top"></a>
 
 * [**`backup_retention_period`**](#backup_retention_period) &mdash; How many days to keep backup snapshots around before cleaning them up. Max: 35
+
+<a name="copy_tags_to_snapshot" className="snap-top"></a>
+
+* [**`copy_tags_to_snapshot`**](#copy_tags_to_snapshot) &mdash; Copy all the Aurora cluster tags to snapshots. Default is false.
 
 <a name="create_snapshot_cloudwatch_metric_namespace" className="snap-top"></a>
 
@@ -279,6 +283,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`publicly_accessible`**](#publicly_accessible) &mdash; If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure. This flag MUST be false for serverless mode.
 
+<a name="restore_source_cluster_identifier" className="snap-top"></a>
+
+* [**`restore_source_cluster_identifier`**](#restore_source_cluster_identifier) &mdash; If non-empty, the Aurora cluster will be restored from the given source cluster using the latest restorable time. Can only be used if [`snapshot_identifier`](#snapshot_identifier) is null. For more information see [`https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT`](#https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT).html
+
+<a name="restore_type" className="snap-top"></a>
+
+* [**`restore_type`**](#restore_type) &mdash; Only used if [`'restore_source_cluster_identifier`](#'restore_source_cluster_identifier)' is non-empty. Type of restore to be performed. Valid options are 'full-copy' and 'copy-on-write'. https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
+
 <a name="scaling_configuration_auto_pause" className="snap-top"></a>
 
 * [**`scaling_configuration_auto_pause`**](#scaling_configuration_auto_pause) &mdash; Whether to enable automatic pause. A DB cluster can be paused only when it's idle (it has no connections). If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. Only used when [`engine_mode`](#engine_mode) is set to serverless.
@@ -411,5 +423,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3006cd2049d7f6e631e08dd0d52b4de0"}
+{"sourcePlugin":"service-catalog-api","hash":"856d862ebcfa11e5c7cdb6df1fff4c4e"}
 ##DOCS-SOURCER-END -->
