@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.35.4"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
 # Kubernetes Namespace
 
@@ -93,6 +93,20 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; Name of the Namespace to create.
+
+
+<br/>
+
+
+### Optional
+
 <a name="annotations" className="snap-top"></a>
 
 * [**`annotations`**](#annotations) &mdash; Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
@@ -108,10 +122,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="labels" className="snap-top"></a>
 
 * [**`labels`**](#labels) &mdash; Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; Name of the Namespace to create.
 
 <a name="pod_execution_iam_role_arn" className="snap-top"></a>
 
@@ -132,6 +142,8 @@ If you want to deploy this repo in production, check out the following resources
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<br/>
+
 <a name="namespace_name" className="snap-top"></a>
 
 * [**`namespace_name`**](#namespace_name) &mdash; The name of the created namespace.
@@ -149,5 +161,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0ef36b92a18a099803af926bbf915726"}
+{"sourcePlugin":"service-catalog-api","hash":"bc5155a20e3d5247f320886c64be46ff"}
 ##DOCS-SOURCER-END -->

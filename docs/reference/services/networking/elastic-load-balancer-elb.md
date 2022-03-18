@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Application Load Balancer
 
@@ -80,6 +80,40 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="alb_name" className="snap-top"></a>
+
+* [**`alb_name`**](#alb_name) &mdash; The name of the ALB.
+
+<a name="is_internal_alb" className="snap-top"></a>
+
+* [**`is_internal_alb`**](#is_internal_alb) &mdash; If the ALB should only accept traffic from within the VPC, set this to true. If it should accept traffic from the public Internet, set it to false.
+
+<a name="num_days_after_which_archive_log_data" className="snap-top"></a>
+
+* [**`num_days_after_which_archive_log_data`**](#num_days_after_which_archive_log_data) &mdash; After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+
+<a name="num_days_after_which_delete_log_data" className="snap-top"></a>
+
+* [**`num_days_after_which_delete_log_data`**](#num_days_after_which_delete_log_data) &mdash; After this number of days, log files should be deleted from S3. Enter 0 to never delete log data.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the ALB will be deployed
+
+<a name="vpc_subnet_ids" className="snap-top"></a>
+
+* [**`vpc_subnet_ids`**](#vpc_subnet_ids) &mdash; The ids of the subnets that the ALB can use to source its IP
+
+
+<br/>
+
+
+### Optional
+
 <a name="access_logs_s3_bucket_name" className="snap-top"></a>
 
 * [**`access_logs_s3_bucket_name`**](#access_logs_s3_bucket_name) &mdash; The name to use for the S3 bucket where the ALB access logs will be stored. If you set this to null, a name will be generated automatically based on [`alb_name`](#alb_name).
@@ -91,10 +125,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="acm_cert_types" className="snap-top"></a>
 
 * [**`acm_cert_types`**](#acm_cert_types) &mdash; When looking up the ACM certs passed in via [`https_listener_ports_and_acm_ssl_certs`](#https_listener_ports_and_acm_ssl_certs), only match certs of the given types. Valid values are [`AMAZON_ISSUED`](#AMAZON_ISSUED) and IMPORTED.
-
-<a name="alb_name" className="snap-top"></a>
-
-* [**`alb_name`**](#alb_name) &mdash; The name of the ALB.
 
 <a name="allow_all_outbound" className="snap-top"></a>
 
@@ -164,18 +194,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`idle_timeout`**](#idle_timeout) &mdash; The time in seconds that the client TCP connection to the ALB is allowed to be idle before the ALB closes the TCP connection.
 
-<a name="is_internal_alb" className="snap-top"></a>
-
-* [**`is_internal_alb`**](#is_internal_alb) &mdash; If the ALB should only accept traffic from within the VPC, set this to true. If it should accept traffic from the public Internet, set it to false.
-
-<a name="num_days_after_which_archive_log_data" className="snap-top"></a>
-
-* [**`num_days_after_which_archive_log_data`**](#num_days_after_which_archive_log_data) &mdash; After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
-
-<a name="num_days_after_which_delete_log_data" className="snap-top"></a>
-
-* [**`num_days_after_which_delete_log_data`**](#num_days_after_which_delete_log_data) &mdash; After this number of days, log files should be deleted from S3. Enter 0 to never delete log data.
-
 <a name="should_create_access_logs_bucket" className="snap-top"></a>
 
 * [**`should_create_access_logs_bucket`**](#should_create_access_logs_bucket) &mdash; If true, create a new S3 bucket for access logs with the name in [`access_logs_s3_bucket_name`](#access_logs_s3_bucket_name). If false, assume the S3 bucket for access logs with the name in  [`access_logs_s3_bucket_name`](#access_logs_s3_bucket_name) already exists, and don't create a new one. Note that if you set this to false, it's up to you to ensure that the S3 bucket has a bucket policy that grants Elastic Load Balancing permission to write the access logs to your bucket.
@@ -184,16 +202,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ssl_policy`**](#ssl_policy) &mdash; The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
 
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the ALB will be deployed
-
-<a name="vpc_subnet_ids" className="snap-top"></a>
-
-* [**`vpc_subnet_ids`**](#vpc_subnet_ids) &mdash; The ids of the subnets that the ALB can use to source its IP
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="alb_access_logs_bucket" className="snap-top"></a>
 
@@ -244,5 +256,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"72be3d3150ea6cdd1907c45cb5f32edb"}
+{"sourcePlugin":"service-catalog-api","hash":"3f16a2828b6e7a5106fa3869934c36b8"}
 ##DOCS-SOURCER-END -->

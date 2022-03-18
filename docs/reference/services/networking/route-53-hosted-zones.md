@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.65.5"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
 # Route 53 Hosted Zones
 
@@ -79,6 +79,13 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+<br/>
+
+
+### Optional
+
 <a name="private_zones" className="snap-top"></a>
 
 * [**`private_zones`**](#private_zones) &mdash; A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
@@ -97,6 +104,8 @@ If you want to deploy this repo in production, check out the following resources
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="acm_tls_certificates" className="snap-top"></a>
 
@@ -143,5 +152,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ed4543c5ae802fbca682e8170dfc1c0f"}
+{"sourcePlugin":"service-catalog-api","hash":"d55f73a8df9c836b6bae35b4fdedd1e4"}
 ##DOCS-SOURCER-END -->

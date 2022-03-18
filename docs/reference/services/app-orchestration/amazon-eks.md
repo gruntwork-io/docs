@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon EKS
 
@@ -107,6 +107,32 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="allow_inbound_api_access_from_cidr_blocks" className="snap-top"></a>
+
+* [**`allow_inbound_api_access_from_cidr_blocks`**](#allow_inbound_api_access_from_cidr_blocks) &mdash; The list of CIDR blocks to allow inbound access to the Kubernetes API.
+
+<a name="cluster_name" className="snap-top"></a>
+
+* [**`cluster_name`**](#cluster_name) &mdash; The name of the EKS cluster
+
+<a name="control_plane_vpc_subnet_ids" className="snap-top"></a>
+
+* [**`control_plane_vpc_subnet_ids`**](#control_plane_vpc_subnet_ids) &mdash; List of IDs of the subnets that can be used for the EKS Control Plane.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the EKS resources will be deployed.
+
+
+<br/>
+
+
+### Optional
+
 <a name="additional_security_groups_for_control_plane" className="snap-top"></a>
 
 * [**`additional_security_groups_for_control_plane`**](#additional_security_groups_for_control_plane) &mdash; A list of additional security group IDs to attach to the control plane.
@@ -118,10 +144,6 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="alarms_sns_topic_arn" className="snap-top"></a>
 
 * [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
-
-<a name="allow_inbound_api_access_from_cidr_blocks" className="snap-top"></a>
-
-* [**`allow_inbound_api_access_from_cidr_blocks`**](#allow_inbound_api_access_from_cidr_blocks) &mdash; The list of CIDR blocks to allow inbound access to the Kubernetes API.
 
 <a name="allow_inbound_ssh_from_cidr_blocks" className="snap-top"></a>
 
@@ -139,13 +161,25 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`allow_private_api_access_from_security_groups`**](#allow_private_api_access_from_security_groups) &mdash; The list of security groups to allow inbound access to the private Kubernetes API endpoint (e.g. the endpoint within the VPC, not the public endpoint).
 
+<a name="asg_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`asg_default_enable_detailed_monitoring`**](#asg_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations).
+
 <a name="asg_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_encryption`**](#asg_default_instance_root_volume_encryption) &mdash; Default value for the [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) will use this value.
 
+<a name="asg_default_instance_root_volume_iops" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_iops`**](#asg_default_instance_root_volume_iops) &mdash; Default value for the [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) will use this value.
+
 <a name="asg_default_instance_root_volume_size" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_size`**](#asg_default_instance_root_volume_size) &mdash; Default value for the [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) will use this value.
+
+<a name="asg_default_instance_root_volume_throughput" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_throughput`**](#asg_default_instance_root_volume_throughput) &mdash; Default value for the [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) will use this value.
 
 <a name="asg_default_instance_root_volume_type" className="snap-top"></a>
 
@@ -154,6 +188,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="asg_default_instance_type" className="snap-top"></a>
 
 * [**`asg_default_instance_type`**](#asg_default_instance_type) &mdash; Default value for the [`asg_instance_type`](#asg_instance_type) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_type`](#asg_instance_type) will use this value.
+
+<a name="asg_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`asg_default_max_pods_allowed`**](#asg_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="asg_default_max_size" className="snap-top"></a>
 
@@ -259,10 +297,6 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`cluster_instance_keypair_name`**](#cluster_instance_keypair_name) &mdash; The name of the Key Pair that can be used to SSH to each instance in the EKS cluster
 
-<a name="cluster_name" className="snap-top"></a>
-
-* [**`cluster_name`**](#cluster_name) &mdash; The name of the EKS cluster
-
 <a name="control_plane_cloudwatch_log_group_kms_key_id" className="snap-top"></a>
 
 * [**`control_plane_cloudwatch_log_group_kms_key_id`**](#control_plane_cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -278,10 +312,6 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="control_plane_disallowed_availability_zones" className="snap-top"></a>
 
 * [**`control_plane_disallowed_availability_zones`**](#control_plane_disallowed_availability_zones) &mdash; A list of availability zones in the region that we CANNOT use to deploy the EKS control plane. You can use this to avoid availability zones that may not be able to provision the resources (e.g ran out of capacity). If empty, will allow all availability zones.
-
-<a name="control_plane_vpc_subnet_ids" className="snap-top"></a>
-
-* [**`control_plane_vpc_subnet_ids`**](#control_plane_vpc_subnet_ids) &mdash; List of IDs of the subnets that can be used for the EKS Control Plane.
 
 <a name="create_default_fargate_iam_role" className="snap-top"></a>
 
@@ -383,6 +413,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`node_group_default_desired_size`**](#node_group_default_desired_size) &mdash; Default value for [`desired_size`](#desired_size) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
 
+<a name="node_group_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`node_group_default_enable_detailed_monitoring`**](#node_group_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
+
 <a name="node_group_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`node_group_default_instance_root_volume_encryption`**](#node_group_default_instance_root_volume_encryption) &mdash; Default value for the [`instance_root_volume_encryption`](#instance_root_volume_encryption) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
@@ -402,6 +436,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 <a name="node_group_default_labels" className="snap-top"></a>
 
 * [**`node_group_default_labels`**](#node_group_default_labels) &mdash; Default value for labels field of [`managed_node_group_configurations`](#managed_node_group_configurations). Unlike [`common_labels`](#common_labels) which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
+
+<a name="node_group_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`node_group_default_max_pods_allowed`**](#node_group_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`managed_node_group_configurations`](#managed_node_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="node_group_default_max_size" className="snap-top"></a>
 
@@ -479,6 +517,10 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`use_kubergrunt_verification`**](#use_kubergrunt_verification) &mdash; When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="use_vpc_cni_customize_script" className="snap-top"></a>
 
 * [**`use_vpc_cni_customize_script`**](#use_vpc_cni_customize_script) &mdash; When set to true, this will enable management of the aws-vpc-cni configuration options using kubergrunt running as a local-exec provisioner. If you set this to false, the [`vpc_cni_`](#vpc_cni_)* variables will be ignored.
@@ -495,10 +537,6 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 * [**`vpc_cni_warm_ip_target`**](#vpc_cni_warm_ip_target) &mdash; The number of free IP addresses each node should maintain. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In prefix delegation mode, determines whether the node will preallocate another full prefix. For example, if this is set to 5 and a node is currently has 9 Pods scheduled, then the node will NOT preallocate a new prefix block of 16 IP addresses. On the other hand, if this was set to the default value, then the node will allocate a new block when the first pod is scheduled.
 
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the EKS resources will be deployed.
-
 <a name="worker_iam_role_arns_for_k8s_role_mapping" className="snap-top"></a>
 
 * [**`worker_iam_role_arns_for_k8s_role_mapping`**](#worker_iam_role_arns_for_k8s_role_mapping) &mdash; List of ARNs of AWS IAM roles corresponding to EC2 instances that should be mapped as Kubernetes Nodes.
@@ -513,6 +551,8 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="aws_auth_merger_namespace" className="snap-top"></a>
 
@@ -583,5 +623,5 @@ To add and manage additional worker groups, refer to the [eks-workers module](ht
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e84b93ebc7a503b6960ab81e9a029cc8"}
+{"sourcePlugin":"service-catalog-api","hash":"44cd96f9dc36aaf43d35d4778ac9e324"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Auto Scaling Group
 
@@ -81,6 +81,52 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="ami" className="snap-top"></a>
+
+* [**`ami`**](#ami) &mdash; The ID of the AMI to run on each instance in the ASG. The AMI needs to have `ec2-baseline` installed, since by default it will run [``start_ec2_baseline`](#`start_ec2_baseline)` on the User Data.
+
+<a name="ami_filters" className="snap-top"></a>
+
+* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+
+<a name="instance_type" className="snap-top"></a>
+
+* [**`instance_type`**](#instance_type) &mdash; The type of instance to run in the ASG (e.g. t3.medium)
+
+<a name="max_size" className="snap-top"></a>
+
+* [**`max_size`**](#max_size) &mdash; The maximum number of EC2 Instances to run in this ASG
+
+<a name="min_elb_capacity" className="snap-top"></a>
+
+* [**`min_elb_capacity`**](#min_elb_capacity) &mdash; Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
+
+<a name="min_size" className="snap-top"></a>
+
+* [**`min_size`**](#min_size) &mdash; The minimum number of EC2 Instances to run in this ASG
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name for the ASG and all other resources created by these templates.
+
+<a name="subnet_ids" className="snap-top"></a>
+
+* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy ASG. The list must only contain subnets in [`vpc_id`](#vpc_id).
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the Auto Scaling Group
+
+
+<br/>
+
+
+### Optional
+
 <a name="alarm_sns_topic_arns_us_east_1" className="snap-top"></a>
 
 * [**`alarm_sns_topic_arns_us_east_1`**](#alarm_sns_topic_arns_us_east_1) &mdash; A list of SNS topic ARNs to notify when the health check changes to ALARM, OK, or [`INSUFFICIENT_DATA`](#INSUFFICIENT_DATA) state. Note: these SNS topics MUST be in us-east-1! This is because Route 53 only sends CloudWatch metrics to us-east-1, so we must create the alarm in that region, and therefore, can only notify SNS topics in that region.
@@ -104,14 +150,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="allow_ssh_security_group_ids" className="snap-top"></a>
 
 * [**`allow_ssh_security_group_ids`**](#allow_ssh_security_group_ids) &mdash; The security group IDs from which to allow SSH access
-
-<a name="ami" className="snap-top"></a>
-
-* [**`ami`**](#ami) &mdash; The ID of the AMI to run on each instance in the ASG. The AMI needs to have `ec2-baseline` installed, since by default it will run [``start_ec2_baseline`](#`start_ec2_baseline)` on the User Data.
-
-<a name="ami_filters" className="snap-top"></a>
-
-* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
 
 <a name="cloud_init_parts" className="snap-top"></a>
 
@@ -205,10 +243,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`iam_policy`**](#iam_policy) &mdash; An object defining the policy to attach to [``iam_role_name`](#`iam_role_name)` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ("Allow" or "Deny") of the statement. Ignored if [``iam_role_arn`](#`iam_role_arn)` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
 
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The type of instance to run in the ASG (e.g. t3.medium)
-
 <a name="key_pair_name" className="snap-top"></a>
 
 * [**`key_pair_name`**](#key_pair_name) &mdash; The name of a Key Pair that can be used to SSH to the EC2 Instances in the ASG. Set to null if you don't want to enable Key Pair auth.
@@ -229,25 +263,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`load_balancers`**](#load_balancers) &mdash; A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see [`target_group_arns`](#target_group_arns).
 
-<a name="max_size" className="snap-top"></a>
-
-* [**`max_size`**](#max_size) &mdash; The maximum number of EC2 Instances to run in this ASG
-
 <a name="metadata_users" className="snap-top"></a>
 
 * [**`metadata_users`**](#metadata_users) &mdash; List of users on the ASG EC2 instances that should be permitted access to the EC2 metadata.
-
-<a name="min_elb_capacity" className="snap-top"></a>
-
-* [**`min_elb_capacity`**](#min_elb_capacity) &mdash; Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
-
-<a name="min_size" className="snap-top"></a>
-
-* [**`min_size`**](#min_size) &mdash; The minimum number of EC2 Instances to run in this ASG
-
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name for the ASG and all other resources created by these templates.
 
 <a name="original_lb_dns_name" className="snap-top"></a>
 
@@ -256,6 +274,26 @@ If you want to deploy this repo in production, check out the following resources
 <a name="redirect_listener_rules" className="snap-top"></a>
 
 * [**`redirect_listener_rules`**](#redirect_listener_rules) &mdash; Listener rules for a redirect action. See comments below for information about the parameters.
+
+<a name="route53_health_check_provider_external_id" className="snap-top"></a>
+
+* [**`route53_health_check_provider_external_id`**](#route53_health_check_provider_external_id) &mdash; The optional [`external_id`](#external_id) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_profile" className="snap-top"></a>
+
+* [**`route53_health_check_provider_profile`**](#route53_health_check_provider_profile) &mdash; The optional AWS profile to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_role_arn" className="snap-top"></a>
+
+* [**`route53_health_check_provider_role_arn`**](#route53_health_check_provider_role_arn) &mdash; The optional [`role_arn`](#role_arn) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_session_name" className="snap-top"></a>
+
+* [**`route53_health_check_provider_session_name`**](#route53_health_check_provider_session_name) &mdash; The optional [`session_name`](#session_name) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_shared_credentials_file" className="snap-top"></a>
+
+* [**`route53_health_check_provider_shared_credentials_file`**](#route53_health_check_provider_shared_credentials_file) &mdash; The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
 
 <a name="secrets_access" className="snap-top"></a>
 
@@ -281,10 +319,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ssh_port`**](#ssh_port) &mdash; The port at which SSH will be allowed from [`allow_ssh_from_cidr_blocks`](#allow_ssh_from_cidr_blocks) and [`allow_ssh_security_group_ids`](#allow_ssh_security_group_ids)
 
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy ASG. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
 <a name="tag_asg_id_key" className="snap-top"></a>
 
 * [**`tag_asg_id_key`**](#tag_asg_id_key) &mdash; The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
@@ -297,9 +331,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`use_elb_health_checks`**](#use_elb_health_checks) &mdash; Whether or not ELB or ALB health checks should be enabled. If set to true, the [`load_balancers`](#load_balancers) or [`target_groups_arns`](#target_groups_arns) variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the Auto Scaling Group
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="wait_for_capacity_timeout" className="snap-top"></a>
 
@@ -307,6 +341,8 @@ If you want to deploy this repo in production, check out the following resources
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="asg_name" className="snap-top"></a>
 
@@ -349,5 +385,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"583f08a928ce446e507aebd4606b6f1a"}
+{"sourcePlugin":"service-catalog-api","hash":"e15f19ffc8a6d7dd7b253946d6008414"}
 ##DOCS-SOURCER-END -->

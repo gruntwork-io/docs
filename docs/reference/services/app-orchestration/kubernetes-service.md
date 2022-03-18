@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.1"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Kubernetes Service
 
@@ -100,6 +100,36 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="application_name" className="snap-top"></a>
+
+* [**`application_name`**](#application_name) &mdash; The name of the application (e.g. my-service-stage). Used for labeling Kubernetes resources.
+
+<a name="container_image" className="snap-top"></a>
+
+* [**`container_image`**](#container_image) &mdash; The Docker image to run.
+
+<a name="container_port" className="snap-top"></a>
+
+* [**`container_port`**](#container_port) &mdash; The port number on which this service's Docker container accepts incoming traffic.
+
+<a name="desired_number_of_pods" className="snap-top"></a>
+
+* [**`desired_number_of_pods`**](#desired_number_of_pods) &mdash; The number of Pods to run on the Kubernetes cluster for this service.
+
+<a name="namespace" className="snap-top"></a>
+
+* [**`namespace`**](#namespace) &mdash; The Kubernetes Namespace to deploy the application into.
+
+
+<br/>
+
+
+### Optional
+
 <a name="alb_acm_certificate_arns" className="snap-top"></a>
 
 * [**`alb_acm_certificate_arns`**](#alb_acm_certificate_arns) &mdash; A list of ACM certificate ARNs to attach to the ALB. The first certificate in the list will be added as default certificate.
@@ -132,10 +162,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`alb_health_check_timeout`**](#alb_health_check_timeout) &mdash; The timeout, in seconds, during which no response from a target means a failed health check.
 
-<a name="application_name" className="snap-top"></a>
-
-* [**`application_name`**](#application_name) &mdash; The name of the application (e.g. my-service-stage). Used for labeling Kubernetes resources.
-
 <a name="canary_image" className="snap-top"></a>
 
 * [**`canary_image`**](#canary_image) &mdash; The Docker image to use for the canary. Required if [`desired_number_of_canary_pods`](#desired_number_of_canary_pods) is greater than 0.
@@ -148,14 +174,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`configmaps_as_volumes`**](#configmaps_as_volumes) &mdash; Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value representing a file path on the container to mount the ConfigMap to.
 
-<a name="container_image" className="snap-top"></a>
-
-* [**`container_image`**](#container_image) &mdash; The Docker image to run.
-
-<a name="container_port" className="snap-top"></a>
-
-* [**`container_port`**](#container_port) &mdash; The port number on which this service's Docker container accepts incoming traffic.
-
 <a name="container_protocol" className="snap-top"></a>
 
 * [**`container_protocol`**](#container_protocol) &mdash; The protocol on which this service's Docker container accepts traffic. Must be one of the supported protocols: https://kubernetes.io/docs/concepts/services-networking/service/#protocol-support.
@@ -167,10 +185,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="desired_number_of_canary_pods" className="snap-top"></a>
 
 * [**`desired_number_of_canary_pods`**](#desired_number_of_canary_pods) &mdash; The number of canary Pods to run on the Kubernetes cluster for this service. If greater than 0, you must provide [`canary_image`](#canary_image).
-
-<a name="desired_number_of_pods" className="snap-top"></a>
-
-* [**`desired_number_of_pods`**](#desired_number_of_pods) &mdash; The number of Pods to run on the Kubernetes cluster for this service.
 
 <a name="domain_name" className="snap-top"></a>
 
@@ -300,10 +314,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`min_number_of_pods_available`**](#min_number_of_pods_available) &mdash; The minimum number of pods that should be available at any given point in time. This is used to configure a PodDisruptionBudget for the service, allowing you to achieve a graceful rollout. See https://blog.gruntwork.io/avoiding-outages-in-your-kubernetes-cluster-using-poddisruptionbudgets-ef6a4baa5085 for an introduction to PodDisruptionBudgets.
 
-<a name="namespace" className="snap-top"></a>
-
-* [**`namespace`**](#namespace) &mdash; The Kubernetes Namespace to deploy the application into.
-
 <a name="num_days_after_which_archive_ingress_log_data" className="snap-top"></a>
 
 * [**`num_days_after_which_archive_ingress_log_data`**](#num_days_after_which_archive_ingress_log_data) &mdash; After this number of days, Ingress log files should be transitioned from S3 to Glacier. Set to 0 to never archive logs.
@@ -368,6 +378,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`termination_grace_period_seconds`**](#termination_grace_period_seconds) &mdash; Grace period in seconds that Kubernetes will wait before terminating the pod. The timeout happens in parallel to preStop hook and the SIGTERM signal, Kubernetes does not wait for preStop to finish before beginning the grace period.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="values_file_path" className="snap-top"></a>
 
 * [**`values_file_path`**](#values_file_path) &mdash; A local file path where the helm chart values will be emitted. Use to debug issues with the helm chart values. Set to null to prevent creation of the file.
@@ -383,6 +397,8 @@ If you want to deploy this repo in production, check out the following resources
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<br/>
+
 
 
 </TabItem>
@@ -390,5 +406,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c5b6f8456b1b2b69262e46a161319732"}
+{"sourcePlugin":"service-catalog-api","hash":"492a238b469d1ee6d0b9d3f09423fa33"}
 ##DOCS-SOURCER-END -->

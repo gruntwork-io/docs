@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # ECS Deploy Runner
 
@@ -95,9 +95,43 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
 <a name="ami_builder_config" className="snap-top"></a>
 
 * [**`ami_builder_config`**](#ami_builder_config) &mdash; Configuration options for the ami-builder container of the ECS deploy runner stack. This container will be used for building AMIs in the CI/CD pipeline using packer. Set to `null` to disable this container.
+
+<a name="docker_image_builder_config" className="snap-top"></a>
+
+* [**`docker_image_builder_config`**](#docker_image_builder_config) &mdash; Configuration options for the docker-image-builder container of the ECS deploy runner stack. This container will be used for building docker images in the CI/CD pipeline. Set to `null` to disable this container.
+
+<a name="private_subnet_ids" className="snap-top"></a>
+
+* [**`private_subnet_ids`**](#private_subnet_ids) &mdash; List of IDs of private subnets that can be used for running the ECS task and Lambda function.
+
+<a name="terraform_applier_config" className="snap-top"></a>
+
+* [**`terraform_applier_config`**](#terraform_applier_config) &mdash; Configuration options for the terraform-applier container of the ECS deploy runner stack. This container will be used for running infrastructure deployment actions (including automated variable updates) in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
+
+<a name="terraform_planner_config" className="snap-top"></a>
+
+* [**`terraform_planner_config`**](#terraform_planner_config) &mdash; Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the ECS task and Lambda function should run.
+
+
+<br/>
+
+
+### Optional
+
+<a name="additional_container_images" className="snap-top"></a>
+
+* [**`additional_container_images`**](#additional_container_images) &mdash; Container configurations that should be added to the ECS Deploy Runner that should be added in addition to the standard containers. This can be used to customize your deployment of the ECS Deploy Runner beyond the standard use cases.
 
 <a name="cloudwatch_log_group_for_ec2_kms_key_id" className="snap-top"></a>
 
@@ -131,10 +165,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`container_memory`**](#container_memory) &mdash; The default memory units for the instances that Fargate will spin up. The invoker allows users to override the memory at run time, but this value will be used if the user provides no value for memory. Options here: [`https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate`](#https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate).html#fargate-tasks-size.
 
-<a name="docker_image_builder_config" className="snap-top"></a>
-
-* [**`docker_image_builder_config`**](#docker_image_builder_config) &mdash; Configuration options for the docker-image-builder container of the ECS deploy runner stack. This container will be used for building docker images in the CI/CD pipeline. Set to `null` to disable this container.
-
 <a name="docker_image_builder_hardcoded_args" className="snap-top"></a>
 
 * [**`docker_image_builder_hardcoded_args`**](#docker_image_builder_hardcoded_args) &mdash; Unlike [`hardcoded_options`](#hardcoded_options), this is used for hardcoded positional args and will always be passed in at the end of the args list.
@@ -146,6 +176,42 @@ If you want to deploy this repo in production, check out the following resources
 <a name="ec2_worker_pool_configuration" className="snap-top"></a>
 
 * [**`ec2_worker_pool_configuration`**](#ec2_worker_pool_configuration) &mdash; Worker configuration of a EC2 worker pool for the ECS cluster. An EC2 worker pool supports caching of Docker images, so your builds may run faster, whereas Fargate is serverless, so you have no persistent EC2 instances to manage and pay for. If null, no EC2 worker pool will be allocated and the deploy runner will be in Fargate only mode. Note that when this variable is set, this example module will automatically lookup and use the base ECS optimized AMI that AWS provides.
+
+<a name="ecs_task_cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_kms_key_id`**](#ecs_task_cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+<a name="ecs_task_cloudwatch_log_group_name" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_name`**](#ecs_task_cloudwatch_log_group_name) &mdash; A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to /ecs/{var.name}.
+
+<a name="ecs_task_cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_retention_in_days`**](#ecs_task_cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="ecs_task_cloudwatch_log_group_subscription_destination_arn" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_subscription_destination_arn`**](#ecs_task_cloudwatch_log_group_subscription_destination_arn) &mdash; The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if [`ecs_task_should_create_cloudwatch_log_group`](#ecs_task_should_create_cloudwatch_log_group) is true, and [`container_images`](#container_images) is non-empty.
+
+<a name="ecs_task_cloudwatch_log_group_subscription_distribution" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_subscription_distribution`**](#ecs_task_cloudwatch_log_group_subscription_distribution) &mdash; The method used to distribute log data to the destination. Only applicable when [`ecs_task_cloudwatch_log_group_subscription_destination_arn`](#ecs_task_cloudwatch_log_group_subscription_destination_arn) is a kinesis stream. Valid values are `Random` and `ByLogStream`.
+
+<a name="ecs_task_cloudwatch_log_group_subscription_filter_pattern" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_subscription_filter_pattern`**](#ecs_task_cloudwatch_log_group_subscription_filter_pattern) &mdash; A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
+
+<a name="ecs_task_cloudwatch_log_group_subscription_role_arn" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_subscription_role_arn`**](#ecs_task_cloudwatch_log_group_subscription_role_arn) &mdash; ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when [`ecs_task_cloudwatch_log_group_subscription_destination_arn`](#ecs_task_cloudwatch_log_group_subscription_destination_arn) is a kinesis stream.
+
+<a name="ecs_task_cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`ecs_task_cloudwatch_log_group_tags`**](#ecs_task_cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
+<a name="ecs_task_should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`ecs_task_should_create_cloudwatch_log_group`**](#ecs_task_should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the ECS Task execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS ECS will automatically create a basic log group to use.
 
 <a name="iam_groups" className="snap-top"></a>
 
@@ -159,6 +225,26 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`iam_users`**](#iam_users) &mdash; List of AWS IAM usernames that should be given access to invoke the deploy runner.
 
+<a name="invoke_schedule" className="snap-top"></a>
+
+* [**`invoke_schedule`**](#invoke_schedule) &mdash; Configurations for invoking ECS Deploy Runner on a schedule. Use this to configure any periodic background jobs that you would like run through the ECS Deploy Runner (e.g., regularly running plan on your infrastructure to detect drift). Input is a map of unique schedule name to its settings.
+
+<a name="invoker_lambda_cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_kms_key_id`**](#invoker_lambda_cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data for the invoker lambda function.
+
+<a name="invoker_lambda_cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_retention_in_days`**](#invoker_lambda_cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group for the invoker lambda function. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+
+<a name="invoker_lambda_cloudwatch_log_group_tags" className="snap-top"></a>
+
+* [**`invoker_lambda_cloudwatch_log_group_tags`**](#invoker_lambda_cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group for the invoker lambda function, encoded as a map where the keys are tag keys and values are tag values.
+
+<a name="invoker_lambda_should_create_cloudwatch_log_group" className="snap-top"></a>
+
+* [**`invoker_lambda_should_create_cloudwatch_log_group`**](#invoker_lambda_should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the invoker lambda function execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS Lambda will automatically create a basic log group to use.
+
 <a name="kms_grant_opt_in_regions" className="snap-top"></a>
 
 * [**`kms_grant_opt_in_regions`**](#kms_grant_opt_in_regions) &mdash; Create multi-region resources in the specified regions. The best practice is to enable multi-region services in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
@@ -167,9 +253,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`name`**](#name) &mdash; Name of this instance of the deploy runner stack. Used to namespace all resources.
 
-<a name="private_subnet_ids" className="snap-top"></a>
+<a name="outbound_security_group_name" className="snap-top"></a>
 
-* [**`private_subnet_ids`**](#private_subnet_ids) &mdash; List of IDs of private subnets that can be used for running the ECS task and Lambda function.
+* [**`outbound_security_group_name`**](#outbound_security_group_name) &mdash; When non-null, set the security group name of the ECS Deploy Runner ECS Task to this string. When null, a unique name will be generated by Terraform to avoid conflicts when deploying multiple instances of the ECS Deploy Runner.
 
 <a name="shared_secrets_enabled" className="snap-top"></a>
 
@@ -187,20 +273,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`snapshot_encryption_kms_cmk_arns`**](#snapshot_encryption_kms_cmk_arns) &mdash; Map of names to ARNs of KMS CMKs that are used to encrypt snapshots (including AMIs). This module will create the necessary KMS key grants to allow the respective deploy containers access to utilize the keys for managing the encrypted snapshots. The keys are arbitrary names that are used to identify the key.
 
-<a name="terraform_applier_config" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`terraform_applier_config`**](#terraform_applier_config) &mdash; Configuration options for the terraform-applier container of the ECS deploy runner stack. This container will be used for running infrastructure deployment actions (including automated variable updates) in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
-
-<a name="terraform_planner_config" className="snap-top"></a>
-
-* [**`terraform_planner_config`**](#terraform_planner_config) &mdash; Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; ID of the VPC where the ECS task and Lambda function should run.
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="cloudwatch_log_group_name" className="snap-top"></a>
 
@@ -242,6 +322,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`invoker_function_arn`**](#invoker_function_arn) &mdash; AWS ARN of the invoker lambda function that can be used to invoke a deployment.
 
+<a name="invoker_function_name" className="snap-top"></a>
+
+* [**`invoker_function_name`**](#invoker_function_name) &mdash; Name of the invoker lambda function that can be used to invoke a deployment.
+
 <a name="security_group_allow_all_outbound_id" className="snap-top"></a>
 
 * [**`security_group_allow_all_outbound_id`**](#security_group_allow_all_outbound_id) &mdash; Security Group ID of the ECS task
@@ -251,5 +335,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e6dfcdb6ce51b163d56fd060df85b834"}
+{"sourcePlugin":"service-catalog-api","hash":"18fa75b4fd8b050fce76cb713dcd8aeb"}
 ##DOCS-SOURCER-END -->

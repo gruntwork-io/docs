@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.78.0"/>
 
 # S3 Bucket
 
@@ -78,6 +78,20 @@ If you want to deploy this repo in production, check out the following resources
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
+
+<br/>
+
+### Required
+
+<a name="primary_bucket" className="snap-top"></a>
+
+* [**`primary_bucket`**](#primary_bucket) &mdash; What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!
+
+
+<br/>
+
+
+### Optional
 
 <a name="access_logging_bucket" className="snap-top"></a>
 
@@ -147,10 +161,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`mfa_delete`**](#mfa_delete) &mdash; Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. Only used if [`enable_versioning`](#enable_versioning) is true. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module.
 
-<a name="primary_bucket" className="snap-top"></a>
-
-* [**`primary_bucket`**](#primary_bucket) &mdash; What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!
-
 <a name="replica_bucket" className="snap-top"></a>
 
 * [**`replica_bucket`**](#replica_bucket) &mdash; The S3 bucket that will be the replica of this bucket. Set to null to disable replication.
@@ -198,6 +208,8 @@ If you want to deploy this repo in production, check out the following resources
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<br/>
+
 <a name="access_logging_bucket_name" className="snap-top"></a>
 
 * [**`access_logging_bucket_name`**](#access_logging_bucket_name) &mdash; The name of the access logging S3 bucket.
@@ -231,5 +243,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f3ac951e0738c4d03c1e7799a89deef6"}
+{"sourcePlugin":"service-catalog-api","hash":"773698a2f7b9d46f8145c85878e2b399"}
 ##DOCS-SOURCER-END -->

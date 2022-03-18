@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.0"/>
 
 # VPC
 
@@ -96,6 +96,32 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="aws_region" className="snap-top"></a>
+
+* [**`aws_region`**](#aws_region) &mdash; The AWS region in which all resources will be created
+
+<a name="cidr_block" className="snap-top"></a>
+
+* [**`cidr_block`**](#cidr_block) &mdash; The IP address range of the VPC in CIDR notation. A prefix of /18 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/18', '10.200.0.0/18', etc.
+
+<a name="num_nat_gateways" className="snap-top"></a>
+
+* [**`num_nat_gateways`**](#num_nat_gateways) &mdash; The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT Gateway should be placed in each Availability Zone (so likely 3 total), whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will suffice.
+
+<a name="vpc_name" className="snap-top"></a>
+
+* [**`vpc_name`**](#vpc_name) &mdash; Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
+
+
+<br/>
+
+
+### Optional
+
 <a name="allow_private_persistence_internet_access" className="snap-top"></a>
 
 * [**`allow_private_persistence_internet_access`**](#allow_private_persistence_internet_access) &mdash; Should the private persistence subnet be allowed outbound access to the internet?
@@ -111,14 +137,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="availability_zone_exclude_names" className="snap-top"></a>
 
 * [**`availability_zone_exclude_names`**](#availability_zone_exclude_names) &mdash; Specific Availability Zones in which subnets SHOULD NOT be created. Useful for when features / support is missing from a given AZ.
-
-<a name="aws_region" className="snap-top"></a>
-
-* [**`aws_region`**](#aws_region) &mdash; The AWS region in which all resources will be created
-
-<a name="cidr_block" className="snap-top"></a>
-
-* [**`cidr_block`**](#cidr_block) &mdash; The IP address range of the VPC in CIDR notation. A prefix of /18 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/18', '10.200.0.0/18', etc.
 
 <a name="create_dns_forwarder" className="snap-top"></a>
 
@@ -212,6 +230,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`flow_logs_traffic_type`**](#flow_logs_traffic_type) &mdash; The type of traffic to capture in the VPC flow log. Valid values include ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if [`create_flow_logs`](#create_flow_logs) is true.
 
+<a name="iam_role_permissions_boundary" className="snap-top"></a>
+
+* [**`iam_role_permissions_boundary`**](#iam_role_permissions_boundary) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
 <a name="kms_key_arn" className="snap-top"></a>
 
 * [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
@@ -231,10 +253,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="num_availability_zones" className="snap-top"></a>
 
 * [**`num_availability_zones`**](#num_availability_zones) &mdash; How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to all AZs in a region.
-
-<a name="num_nat_gateways" className="snap-top"></a>
-
-* [**`num_nat_gateways`**](#num_nat_gateways) &mdash; The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT Gateway should be placed in each Availability Zone (so likely 3 total), whereas for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will suffice.
 
 <a name="origin_vpc_cidr_block" className="snap-top"></a>
 
@@ -340,16 +358,18 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The allowed tenancy of instances launched into the selected VPC. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_custom_tags" className="snap-top"></a>
 
 * [**`vpc_custom_tags`**](#vpc_custom_tags) &mdash; A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
 
-<a name="vpc_name" className="snap-top"></a>
-
-* [**`vpc_name`**](#vpc_name) &mdash; Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="availability_zones" className="snap-top"></a>
 
@@ -460,5 +480,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f2dc09e50e5f332defd605adb15267e5"}
+{"sourcePlugin":"service-catalog-api","hash":"ea8579d8b97cce3d857c654af0a8c6af"}
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Account Baseline for root account
 
@@ -95,9 +95,55 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="aws_account_id" className="snap-top"></a>
+
+* [**`aws_account_id`**](#aws_account_id) &mdash; The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
+
+<a name="aws_region" className="snap-top"></a>
+
+* [**`aws_region`**](#aws_region) &mdash; The AWS Region to use as the global config recorder and seed region for GuardDuty.
+
+<a name="child_accounts" className="snap-top"></a>
+
+* [**`child_accounts`**](#child_accounts) &mdash; Map of child accounts to create. The map key is the name of the account and the value is an object containing account configuration variables. See the comments below for what keys and values this object should contain.
+
+<a name="config_opt_in_regions" className="snap-top"></a>
+
+* [**`config_opt_in_regions`**](#config_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable AWS Config in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
+
+<a name="ebs_opt_in_regions" className="snap-top"></a>
+
+* [**`ebs_opt_in_regions`**](#ebs_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable EBS Encryption in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
+
+<a name="guardduty_opt_in_regions" className="snap-top"></a>
+
+* [**`guardduty_opt_in_regions`**](#guardduty_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable GuardDuty in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
+
+<a name="iam_access_analyzer_opt_in_regions" className="snap-top"></a>
+
+* [**`iam_access_analyzer_opt_in_regions`**](#iam_access_analyzer_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable IAM Access Analyzer in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
+
+<a name="name_prefix" className="snap-top"></a>
+
+* [**`name_prefix`**](#name_prefix) &mdash; The name used to prefix AWS Config and Cloudtrail resources, including the S3 bucket names and SNS topics used for each.
+
+
+<br/>
+
+
+### Optional
+
 <a name="additional_config_rules" className="snap-top"></a>
 
 * [**`additional_config_rules`**](#additional_config_rules) &mdash; Map of additional managed rules to add. The key is the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an object specifying the rule details
+
+<a name="allow_auto_deploy_from_github_actions_for_sources" className="snap-top"></a>
+
+* [**`allow_auto_deploy_from_github_actions_for_sources`**](#allow_auto_deploy_from_github_actions_for_sources) &mdash; Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with [`allow_auto_deploy_from_other_account_arns`](#allow_auto_deploy_from_other_account_arns). Only used if [`enable_github_actions_access`](#enable_github_actions_access) is true. 
 
 <a name="allow_auto_deploy_from_other_account_arns" className="snap-top"></a>
 
@@ -138,18 +184,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="auto_deploy_permissions" className="snap-top"></a>
 
 * [**`auto_deploy_permissions`**](#auto_deploy_permissions) &mdash; A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If [`should_create_iam_group_auto_deploy`](#should_create_iam_group_auto_deploy) is true, the list must have at least one element (e.g. '*').
-
-<a name="aws_account_id" className="snap-top"></a>
-
-* [**`aws_account_id`**](#aws_account_id) &mdash; The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
-
-<a name="aws_region" className="snap-top"></a>
-
-* [**`aws_region`**](#aws_region) &mdash; The AWS Region to use as the global config recorder and seed region for GuardDuty.
-
-<a name="child_accounts" className="snap-top"></a>
-
-* [**`child_accounts`**](#child_accounts) &mdash; Map of child accounts to create. The map key is the name of the account and the value is an object containing account configuration variables. See the comments below for what keys and values this object should contain.
 
 <a name="cloudtrail_allow_kms_describe_key_to_external_aws_accounts" className="snap-top"></a>
 
@@ -263,10 +297,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`config_num_days_after_which_delete_log_data`**](#config_num_days_after_which_delete_log_data) &mdash; After this number of days, log files should be deleted from S3. Enter 0 to never delete log data.
 
-<a name="config_opt_in_regions" className="snap-top"></a>
-
-* [**`config_opt_in_regions`**](#config_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable AWS Config in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
-
 <a name="config_s3_bucket_kms_key_arn" className="snap-top"></a>
 
 * [**`config_s3_bucket_kms_key_arn`**](#config_s3_bucket_kms_key_arn) &mdash; Optional KMS key (in logs account) to use for encrypting S3 objects on the AWS Config bucket, when the S3 bucket is created within this module [`(var.config_should_create_s3_bucket`](#(var.config_should_create_s3_bucket) is true). For encrypting S3 objects on delivery for an externally managed S3 bucket, refer to the [`config_delivery_channel_kms_key_arn`](#config_delivery_channel_kms_key_arn) input variable. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must permit the IAM role used by AWS Config. See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that the KMS key must reside in the global recorder region (as configured by [`aws_region`](#aws_region)).
@@ -327,10 +357,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ebs_kms_key_arns`**](#ebs_kms_key_arns) &mdash; Optional map of region names to KMS keys to use for EBS volume encryption when [`ebs_use_existing_kms_keys`](#ebs_use_existing_kms_keys) is enabled.
 
-<a name="ebs_opt_in_regions" className="snap-top"></a>
-
-* [**`ebs_opt_in_regions`**](#ebs_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable EBS Encryption in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
-
 <a name="ebs_use_existing_kms_keys" className="snap-top"></a>
 
 * [**`ebs_use_existing_kms_keys`**](#ebs_use_existing_kms_keys) &mdash; If set to true, the KMS Customer Managed Keys (CMK) specified in [`ebs_kms_key_arns`](#ebs_kms_key_arns) will be set as the default for EBS encryption. When false (default), the AWS-managed aws/ebs key will be used.
@@ -350,6 +376,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="enable_encrypted_volumes" className="snap-top"></a>
 
 * [**`enable_encrypted_volumes`**](#enable_encrypted_volumes) &mdash; Checks whether the EBS volumes that are in an attached state are encrypted.
+
+<a name="enable_github_actions_access" className="snap-top"></a>
+
+* [**`enable_github_actions_access`**](#enable_github_actions_access) &mdash; When true, create an Open ID Connect Provider that GitHub actions can use to assume IAM roles in the account. Refer to https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services for more information.
 
 <a name="enable_iam_access_analyzer" className="snap-top"></a>
 
@@ -395,6 +425,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`force_destroy_users`**](#force_destroy_users) &mdash; When destroying this user, destroy even if it has non-Terraform-managed IAM access keys, login profile, or MFA devices. Without [`force_destroy`](#force_destroy) a user with non-Terraform-managed access keys and login profile will fail to be destroyed.
 
+<a name="github_actions_openid_connect_provider_thumbprint_list" className="snap-top"></a>
+
+* [**`github_actions_openid_connect_provider_thumbprint_list`**](#github_actions_openid_connect_provider_thumbprint_list) &mdash; When set, use the statically provided hardcoded list of thumbprints rather than looking it up dynamically. This is useful if you want to trade reliability of the OpenID Connect Provider across certificate renewals with a static list that is obtained using a trustworthy mechanism, to mitigate potential damage from a domain hijacking attack on GitHub domains.
+
 <a name="guardduty_cloudwatch_event_rule_name" className="snap-top"></a>
 
 * [**`guardduty_cloudwatch_event_rule_name`**](#guardduty_cloudwatch_event_rule_name) &mdash; Name of the Cloudwatch event rules.
@@ -407,10 +441,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`guardduty_findings_sns_topic_name`**](#guardduty_findings_sns_topic_name) &mdash; Specifies a name for the created SNS topics where findings are published. [`publish_findings_to_sns`](#publish_findings_to_sns) must be set to true.
 
-<a name="guardduty_opt_in_regions" className="snap-top"></a>
-
-* [**`guardduty_opt_in_regions`**](#guardduty_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable GuardDuty in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
-
 <a name="guardduty_publish_findings_to_sns" className="snap-top"></a>
 
 * [**`guardduty_publish_findings_to_sns`**](#guardduty_publish_findings_to_sns) &mdash; Send GuardDuty findings to SNS topics specified by [`findings_sns_topic_name`](#findings_sns_topic_name).
@@ -418,10 +448,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="iam_access_analyzer_name" className="snap-top"></a>
 
 * [**`iam_access_analyzer_name`**](#iam_access_analyzer_name) &mdash; The name of the IAM Access Analyzer module
-
-<a name="iam_access_analyzer_opt_in_regions" className="snap-top"></a>
-
-* [**`iam_access_analyzer_opt_in_regions`**](#iam_access_analyzer_opt_in_regions) &mdash; Creates resources in the specified regions. The best practice is to enable IAM Access Analyzer in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for [`global_recorder_region`](#global_recorder_region) must be in this list.
 
 <a name="iam_access_analyzer_type" className="snap-top"></a>
 
@@ -494,10 +520,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="is_multi_region_trail" className="snap-top"></a>
 
 * [**`is_multi_region_trail`**](#is_multi_region_trail) &mdash; Specifies whether CloudTrail will log only API calls in the current region or in all regions. (true or false)
-
-<a name="name_prefix" className="snap-top"></a>
-
-* [**`name_prefix`**](#name_prefix) &mdash; The name used to prefix AWS Config and Cloudtrail resources, including the S3 bucket names and SNS topics used for each.
 
 <a name="organizations_aws_service_access_principals" className="snap-top"></a>
 
@@ -581,6 +603,8 @@ If you want to deploy this repo in production, check out the following resources
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="allow_auto_deploy_access_from_other_accounts_iam_role_arn" className="snap-top"></a>
 
@@ -979,5 +1003,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ce9da146afae06ded5d27ab85f80d2b4"}
+{"sourcePlugin":"service-catalog-api","hash":"2c05807dc5cc212f8f9b1fd208e047b4"}
 ##DOCS-SOURCER-END -->

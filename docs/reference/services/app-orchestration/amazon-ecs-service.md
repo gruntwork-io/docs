@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["docker","orchestration","ecs","containers"]
 license: "gruntwork"
 built-with: "terraform, bash, python, go"
-title: "Amazon ECS"
+title: "Amazon ECS Service"
 hide_title: true
 ---
 
@@ -15,9 +15,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
-# Amazon ECS
+# Amazon ECS Service
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-service" className="link-button">View Source</a>
@@ -96,6 +96,40 @@ For information on how to manage your ECS service, see the documentation in the
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
+<a name="container_definitions" className="snap-top"></a>
+
+* [**`container_definitions`**](#container_definitions) &mdash; List of container definitions to use for the ECS task. Each entry corresponds to a different ECS container definition.
+
+<a name="default_listener_arns" className="snap-top"></a>
+
+* [**`default_listener_arns`**](#default_listener_arns) &mdash; A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
+
+<a name="default_listener_ports" className="snap-top"></a>
+
+* [**`default_listener_ports`**](#default_listener_ports) &mdash; The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the [`listener_ports`](#listener_ports) parameter in each rule. The port numbers specified in this variable and the [`listener_ports`](#listener_ports) parameter must exist in [`listener_arns`](#listener_arns).
+
+<a name="ecs_cluster_arn" className="snap-top"></a>
+
+* [**`ecs_cluster_arn`**](#ecs_cluster_arn) &mdash; The ARN of the cluster to which the ecs service should be deployed.
+
+<a name="ecs_cluster_name" className="snap-top"></a>
+
+* [**`ecs_cluster_name`**](#ecs_cluster_name) &mdash; The name of the ecs cluster to deploy the ecs service onto.
+
+<a name="service_name" className="snap-top"></a>
+
+* [**`service_name`**](#service_name) &mdash; The name of the ECS service (e.g. my-service-stage)
+
+
+<br/>
+
+
+### Optional
+
 <a name="alarm_sns_topic_arns" className="snap-top"></a>
 
 * [**`alarm_sns_topic_arns`**](#alarm_sns_topic_arns) &mdash; A list of ARNs of the SNS topic(s) to write alarm events to
@@ -148,10 +182,6 @@ For information on how to manage your ECS service, see the documentation in the
 
 * [**`cloudwatch_log_group_retention`**](#cloudwatch_log_group_retention) &mdash; Number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0. Select 0 to never expire. Only used if [`create_cloudwatch_log_group`](#create_cloudwatch_log_group) is true.
 
-<a name="container_definitions" className="snap-top"></a>
-
-* [**`container_definitions`**](#container_definitions) &mdash; List of container definitions to use for the ECS task. Each entry corresponds to a different ECS container definition.
-
 <a name="cpu" className="snap-top"></a>
 
 * [**`cpu`**](#cpu) &mdash; The number of CPU units to allocate to the ECS Service.
@@ -183,14 +213,6 @@ For information on how to manage your ECS service, see the documentation in the
 <a name="custom_task_execution_iam_role_name_prefix" className="snap-top"></a>
 
 * [**`custom_task_execution_iam_role_name_prefix`**](#custom_task_execution_iam_role_name_prefix) &mdash; Prefix for name of task execution IAM role and policy that grants access to CloudWatch and ECR.
-
-<a name="default_listener_arns" className="snap-top"></a>
-
-* [**`default_listener_arns`**](#default_listener_arns) &mdash; A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
-
-<a name="default_listener_ports" className="snap-top"></a>
-
-* [**`default_listener_ports`**](#default_listener_ports) &mdash; The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the [`listener_ports`](#listener_ports) parameter in each rule. The port numbers specified in this variable and the [`listener_ports`](#listener_ports) parameter must exist in [`listener_arns`](#listener_arns).
 
 <a name="dependencies" className="snap-top"></a>
 
@@ -231,14 +253,6 @@ For information on how to manage your ECS service, see the documentation in the
 <a name="domain_name" className="snap-top"></a>
 
 * [**`domain_name`**](#domain_name) &mdash; The domain name to create a route 53 record for. This DNS record will point to the load balancer for the ECS service
-
-<a name="ecs_cluster_arn" className="snap-top"></a>
-
-* [**`ecs_cluster_arn`**](#ecs_cluster_arn) &mdash; The ARN of the cluster to which the ecs service should be deployed.
-
-<a name="ecs_cluster_name" className="snap-top"></a>
-
-* [**`ecs_cluster_name`**](#ecs_cluster_name) &mdash; The name of the ecs cluster to deploy the ecs service onto.
 
 <a name="ecs_instance_security_group_id" className="snap-top"></a>
 
@@ -432,6 +446,26 @@ For information on how to manage your ECS service, see the documentation in the
 
 * [**`route53_health_check_protocol`**](#route53_health_check_protocol) &mdash; The protocol to use for Route 53 health checks. Should be one of HTTP, HTTPS.
 
+<a name="route53_health_check_provider_external_id" className="snap-top"></a>
+
+* [**`route53_health_check_provider_external_id`**](#route53_health_check_provider_external_id) &mdash; The optional [`external_id`](#external_id) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_profile" className="snap-top"></a>
+
+* [**`route53_health_check_provider_profile`**](#route53_health_check_provider_profile) &mdash; The optional AWS profile to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_role_arn" className="snap-top"></a>
+
+* [**`route53_health_check_provider_role_arn`**](#route53_health_check_provider_role_arn) &mdash; The optional [`role_arn`](#role_arn) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_session_name" className="snap-top"></a>
+
+* [**`route53_health_check_provider_session_name`**](#route53_health_check_provider_session_name) &mdash; The optional [`session_name`](#session_name) to be used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
+<a name="route53_health_check_provider_shared_credentials_file" className="snap-top"></a>
+
+* [**`route53_health_check_provider_shared_credentials_file`**](#route53_health_check_provider_shared_credentials_file) &mdash; The optional path to a credentials file used in the us-east-1 provider block defined in the route53-health-check-alarms module.  This module configures its own AWS provider to ensure resources are created in us-east-1.
+
 <a name="secrets_access" className="snap-top"></a>
 
 * [**`secrets_access`**](#secrets_access) &mdash; A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
@@ -443,10 +477,6 @@ For information on how to manage your ECS service, see the documentation in the
 <a name="secrets_manager_kms_key_arn" className="snap-top"></a>
 
 * [**`secrets_manager_kms_key_arn`**](#secrets_manager_kms_key_arn) &mdash; The ARN of the kms key associated with secrets manager
-
-<a name="service_name" className="snap-top"></a>
-
-* [**`service_name`**](#service_name) &mdash; The name of the ECS service (e.g. my-service-stage)
 
 <a name="service_tags" className="snap-top"></a>
 
@@ -482,6 +512,8 @@ For information on how to manage your ECS service, see the documentation in the
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="all_metric_widgets" className="snap-top"></a>
 
@@ -568,5 +600,5 @@ For information on how to manage your ECS service, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4fc283d27498e535a25f187a7581bbde"}
+{"sourcePlugin":"service-catalog-api","hash":"a497663ae81bf20fe2ae70c12c8bdaac"}
 ##DOCS-SOURCER-END -->

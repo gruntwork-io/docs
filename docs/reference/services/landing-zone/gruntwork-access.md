@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.20.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
@@ -82,9 +82,23 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
 <a name="grant_security_account_access" className="snap-top"></a>
 
 * [**`grant_security_account_access`**](#grant_security_account_access) &mdash; Set to true to grant your security account, with the account ID specified in [`security_account_id`](#security_account_id), access to the IAM role. This is required for deploying a Reference Architecture.
+
+<a name="security_account_id" className="snap-top"></a>
+
+* [**`security_account_id`**](#security_account_id) &mdash; The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.
+
+
+<br/>
+
+
+### Optional
 
 <a name="gruntwork_aws_account_id" className="snap-top"></a>
 
@@ -102,16 +116,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`require_mfa`**](#require_mfa) &mdash; If set to true, require MFA to assume the IAM role from the Gruntwork account.
 
-<a name="security_account_id" className="snap-top"></a>
-
-* [**`security_account_id`**](#security_account_id) &mdash; The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.
-
 <a name="tags" className="snap-top"></a>
 
 * [**`tags`**](#tags) &mdash; Tags to apply to all resources created by this module
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="iam_role_arn" className="snap-top"></a>
 
@@ -126,5 +138,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e112703ae098cbb24ef071bf76204fc3"}
+{"sourcePlugin":"service-catalog-api","hash":"182e52ed16f2b38b8653d803bb3dc9e2"}
 ##DOCS-SOURCER-END -->

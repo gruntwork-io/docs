@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Jenkins CI Server
 
@@ -89,17 +89,59 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
 <a name="acm_ssl_certificate_domain" className="snap-top"></a>
 
 * [**`acm_ssl_certificate_domain`**](#acm_ssl_certificate_domain) &mdash; The domain name used for an SSL certificate issued by the Amazon Certificate Manager (ACM).
 
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
-
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
-
 <a name="alb_subnet_ids" className="snap-top"></a>
 
 * [**`alb_subnet_ids`**](#alb_subnet_ids) &mdash; The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in [`vpc_id`](#vpc_id).
+
+<a name="ami" className="snap-top"></a>
+
+* [**`ami`**](#ami) &mdash; The ID of the AMI to run on the Jenkins server. This should be the AMI build from the Packer template jenkins-ubuntu.json. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if looking up the ami with filters.
+
+<a name="ami_filters" className="snap-top"></a>
+
+* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+
+<a name="domain_name" className="snap-top"></a>
+
+* [**`domain_name`**](#domain_name) &mdash; The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by [`hosted_zone_id`](#hosted_zone_id).
+
+<a name="hosted_zone_id" className="snap-top"></a>
+
+* [**`hosted_zone_id`**](#hosted_zone_id) &mdash; The ID of the Route 53 Hosted Zone in which to create a DNS A record for Jenkins.
+
+<a name="instance_type" className="snap-top"></a>
+
+* [**`instance_type`**](#instance_type) &mdash; The instance type to use for the Jenkins server (e.g. t2.medium)
+
+<a name="jenkins_subnet_id" className="snap-top"></a>
+
+* [**`jenkins_subnet_id`**](#jenkins_subnet_id) &mdash; The ID of the subnet in which to deploy Jenkins. Must be a subnet in [`vpc_id`](#vpc_id).
+
+<a name="memory" className="snap-top"></a>
+
+* [**`memory`**](#memory) &mdash; The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy Jenkins
+
+
+<br/>
+
+
+### Optional
+
+<a name="alarms_sns_topic_arn" className="snap-top"></a>
+
+* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
 
 <a name="allow_incoming_http_from_cidr_blocks" className="snap-top"></a>
 
@@ -116,14 +158,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="allow_ssh_from_security_group_ids" className="snap-top"></a>
 
 * [**`allow_ssh_from_security_group_ids`**](#allow_ssh_from_security_group_ids) &mdash; The IDs of security groups from which to allow incoming SSH requests to Jenkins.
-
-<a name="ami" className="snap-top"></a>
-
-* [**`ami`**](#ami) &mdash; The ID of the AMI to run on the Jenkins server. This should be the AMI build from the Packer template jenkins-ubuntu.json. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if looking up the ami with filters.
-
-<a name="ami_filters" className="snap-top"></a>
-
-* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
 
 <a name="backup_job_alarm_period" className="snap-top"></a>
 
@@ -193,10 +227,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`dlm_backup_job_schedule_times`**](#dlm_backup_job_schedule_times) &mdash; A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1.
 
-<a name="domain_name" className="snap-top"></a>
-
-* [**`domain_name`**](#domain_name) &mdash; The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by [`hosted_zone_id`](#hosted_zone_id).
-
 <a name="ebs_kms_key_arn" className="snap-top"></a>
 
 * [**`ebs_kms_key_arn`**](#ebs_kms_key_arn) &mdash; The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key.
@@ -233,14 +263,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`external_account_ssh_grunt_role_arn`**](#external_account_ssh_grunt_role_arn) &mdash; If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
-<a name="hosted_zone_id" className="snap-top"></a>
-
-* [**`hosted_zone_id`**](#hosted_zone_id) &mdash; The ID of the Route 53 Hosted Zone in which to create a DNS A record for Jenkins.
-
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The instance type to use for the Jenkins server (e.g. t2.medium)
-
 <a name="is_internal_alb" className="snap-top"></a>
 
 * [**`is_internal_alb`**](#is_internal_alb) &mdash; Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from the public Internet. We strongly recommend setting this to true to keep Jenkins more secure.
@@ -252,10 +274,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="jenkins_mount_point" className="snap-top"></a>
 
 * [**`jenkins_mount_point`**](#jenkins_mount_point) &mdash; The OS path where the Jenkins EBS volume should be mounted
-
-<a name="jenkins_subnet_id" className="snap-top"></a>
-
-* [**`jenkins_subnet_id`**](#jenkins_subnet_id) &mdash; The ID of the subnet in which to deploy Jenkins. Must be a subnet in [`vpc_id`](#vpc_id).
 
 <a name="jenkins_user" className="snap-top"></a>
 
@@ -276,10 +294,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="keypair_name" className="snap-top"></a>
 
 * [**`keypair_name`**](#keypair_name) &mdash; The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blank if you don't want to enable Key Pair auth.
-
-<a name="memory" className="snap-top"></a>
-
-* [**`memory`**](#memory) &mdash; The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings.
 
 <a name="name" className="snap-top"></a>
 
@@ -313,12 +327,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy Jenkins
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="alb_arn" className="snap-top"></a>
 
@@ -393,5 +409,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1271cb347e02d9ac117ca954d738d8a9"}
+{"sourcePlugin":"service-catalog-api","hash":"a8dcaf2a9844f30ed57464c78e81de1a"}
 ##DOCS-SOURCER-END -->

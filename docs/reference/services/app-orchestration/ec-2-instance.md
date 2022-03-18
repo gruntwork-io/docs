@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
 # EC2 Instance
 
@@ -104,13 +104,9 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-<a name="additional_security_group_ids" className="snap-top"></a>
+<br/>
 
-* [**`additional_security_group_ids`**](#additional_security_group_ids) &mdash; A list of optional additional security group ids to assign to the EC2 instance.
-
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
-
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+### Required
 
 <a name="allow_port_from_cidr_blocks" className="snap-top"></a>
 
@@ -135,6 +131,52 @@ If you want to deploy this repo in production, check out the following resources
 <a name="ami_filters" className="snap-top"></a>
 
 * [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+
+<a name="dns_zone_is_private" className="snap-top"></a>
+
+* [**`dns_zone_is_private`**](#dns_zone_is_private) &mdash; Specify whether we're selecting a private or public Route 53 DNS Zone
+
+<a name="ebs_volumes" className="snap-top"></a>
+
+* [**`ebs_volumes`**](#ebs_volumes) &mdash; The EBS volumes to attach to the instance. This must be a map of key/value pairs.
+
+<a name="instance_type" className="snap-top"></a>
+
+* [**`instance_type`**](#instance_type) &mdash; The type of instance to run for the EC2 instance
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name of the EC2 instance and the other resources created by these templates
+
+<a name="route53_lookup_domain_name" className="snap-top"></a>
+
+* [**`route53_lookup_domain_name`**](#route53_lookup_domain_name) &mdash; The domain name to use to look up the Route 53 hosted zone. Will be a subset of [`fully_qualified_domain_name`](#fully_qualified_domain_name): e.g., my-company.com. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
+
+<a name="route53_zone_id" className="snap-top"></a>
+
+* [**`route53_zone_id`**](#route53_zone_id) &mdash; The ID of the hosted zone to use. Allows specifying the hosted zone directly instead of looking it up via domain name. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
+
+<a name="subnet_id" className="snap-top"></a>
+
+* [**`subnet_id`**](#subnet_id) &mdash; The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in [`vpc_id`](#vpc_id).
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the EC2 instance.
+
+
+<br/>
+
+
+### Optional
+
+<a name="additional_security_group_ids" className="snap-top"></a>
+
+* [**`additional_security_group_ids`**](#additional_security_group_ids) &mdash; A list of optional additional security group ids to assign to the EC2 instance.
+
+<a name="alarms_sns_topic_arn" className="snap-top"></a>
+
+* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 <a name="attach_eip" className="snap-top"></a>
 
@@ -172,13 +214,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`dns_ttl`**](#dns_ttl) &mdash; DNS Time To Live in seconds.
 
-<a name="dns_zone_is_private" className="snap-top"></a>
+<a name="ebs_optimized" className="snap-top"></a>
 
-* [**`dns_zone_is_private`**](#dns_zone_is_private) &mdash; Specify whether we're selecting a private or public Route 53 DNS Zone
-
-<a name="ebs_volumes" className="snap-top"></a>
-
-* [**`ebs_volumes`**](#ebs_volumes) &mdash; The EBS volumes to attach to the instance. This must be a map of key/value pairs.
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
 
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
@@ -212,17 +250,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`fully_qualified_domain_name`**](#fully_qualified_domain_name) &mdash; The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be [`name.var.fully_qualified_domain_name`](#name.var.fully_qualified_domain_name) (e.g., bastion.example.com). Only used if [`create_dns_record`](#create_dns_record) is true.
 
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The type of instance to run for the EC2 instance
-
 <a name="keypair_name" className="snap-top"></a>
 
 * [**`keypair_name`**](#keypair_name) &mdash; The name of a Key Pair that can be used to SSH to this instance. This instance may have ssh-grunt installed. The preferred way to do SSH access is with your own IAM user name and SSH key. This Key Pair is only as a fallback.
-
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name of the EC2 instance and the other resources created by these templates
 
 <a name="root_volume_delete_on_termination" className="snap-top"></a>
 
@@ -236,14 +266,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`root_volume_type`**](#root_volume_type) &mdash; The root volume type. Must be one of: standard, gp2, io1.
 
-<a name="route53_lookup_domain_name" className="snap-top"></a>
-
-* [**`route53_lookup_domain_name`**](#route53_lookup_domain_name) &mdash; The domain name to use to look up the Route 53 hosted zone. Will be a subset of [`fully_qualified_domain_name`](#fully_qualified_domain_name): e.g., my-company.com. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
-
-<a name="route53_zone_id" className="snap-top"></a>
-
-* [**`route53_zone_id`**](#route53_zone_id) &mdash; The ID of the hosted zone to use. Allows specifying the hosted zone directly instead of looking it up via domain name. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
-
 <a name="should_create_cloudwatch_log_group" className="snap-top"></a>
 
 * [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
@@ -256,10 +278,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ssh_grunt_iam_group_sudo`**](#ssh_grunt_iam_group_sudo) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
-<a name="subnet_id" className="snap-top"></a>
-
-* [**`subnet_id`**](#subnet_id) &mdash; The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in [`vpc_id`](#vpc_id).
-
 <a name="tags" className="snap-top"></a>
 
 * [**`tags`**](#tags) &mdash; A map of tags to apply to the EC2 instance and the S3 Buckets. The key is the tag name and the value is the tag value.
@@ -268,12 +286,14 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this instance. Must be one of: default, dedicated, or host.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the EC2 instance.
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="dns_name" className="snap-top"></a>
 
@@ -320,5 +340,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5dc43b683768d6967af4a7a45cfdf699"}
+{"sourcePlugin":"service-catalog-api","hash":"60fe36851142d372a2015fa9e0e4289e"}
 ##DOCS-SOURCER-END -->

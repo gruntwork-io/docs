@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.65.4"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
 # Public Static Website
 
@@ -107,9 +107,23 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+<br/>
+
+### Required
+
 <a name="acm_certificate_domain_name" className="snap-top"></a>
 
 * [**`acm_certificate_domain_name`**](#acm_certificate_domain_name) &mdash; The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only used if [`create_route53_entry`](#create_route53_entry) is true. Set to blank otherwise.
+
+<a name="website_domain_name" className="snap-top"></a>
+
+* [**`website_domain_name`**](#website_domain_name) &mdash; The name of the website and the S3 bucket to create (e.g. static.foo.com).
+
+
+<br/>
+
+
+### Optional
 
 <a name="base_domain_name" className="snap-top"></a>
 
@@ -171,12 +185,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`viewer_protocol_policy`**](#viewer_protocol_policy) &mdash; Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
 
-<a name="website_domain_name" className="snap-top"></a>
-
-* [**`website_domain_name`**](#website_domain_name) &mdash; The name of the website and the S3 bucket to create (e.g. static.foo.com).
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="cloudfront_access_logs_bucket_arn" className="snap-top"></a>
 
@@ -203,5 +215,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"54f316458c04fb7a7c945b94b592a9af"}
+{"sourcePlugin":"service-catalog-api","hash":"6e083918fe4c9bb114dd5909ec2e466f"}
 ##DOCS-SOURCER-END -->

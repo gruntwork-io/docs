@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
 # OpenVPN Server
 
@@ -93,21 +93,9 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
+<br/>
 
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
-
-<a name="allow_manage_key_permissions_with_iam" className="snap-top"></a>
-
-* [**`allow_manage_key_permissions_with_iam`**](#allow_manage_key_permissions_with_iam) &mdash; If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient.
-
-<a name="allow_ssh_from_cidr_list" className="snap-top"></a>
-
-* [**`allow_ssh_from_cidr_list`**](#allow_ssh_from_cidr_list) &mdash; The IP address ranges in CIDR format from which to allow incoming SSH requests to the OpenVPN server.
-
-<a name="allow_ssh_from_security_group_ids" className="snap-top"></a>
-
-* [**`allow_ssh_from_security_group_ids`**](#allow_ssh_from_security_group_ids) &mdash; The IDs of security groups from which to allow incoming SSH requests to the OpenVPN server.
+### Required
 
 <a name="allow_vpn_from_cidr_list" className="snap-top"></a>
 
@@ -125,6 +113,40 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`backup_bucket_name`**](#backup_bucket_name) &mdash; The name of the S3 bucket that will be used to backup PKI secrets. This is a required variable because bucket names must be globally unique across all AWS customers.
 
+<a name="ca_cert_fields" className="snap-top"></a>
+
+* [**`ca_cert_fields`**](#ca_cert_fields) &mdash; An object with fields for the country, state, locality, organization, organizational unit, and email address to use with the OpenVPN CA certificate.
+
+<a name="subnet_ids" className="snap-top"></a>
+
+* [**`subnet_ids`**](#subnet_ids) &mdash; The ids of the subnets where this server should be deployed.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the OpenVPN server.
+
+
+<br/>
+
+
+### Optional
+
+<a name="alarms_sns_topic_arn" className="snap-top"></a>
+
+* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+
+<a name="allow_manage_key_permissions_with_iam" className="snap-top"></a>
+
+* [**`allow_manage_key_permissions_with_iam`**](#allow_manage_key_permissions_with_iam) &mdash; If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient.
+
+<a name="allow_ssh_from_cidr_list" className="snap-top"></a>
+
+* [**`allow_ssh_from_cidr_list`**](#allow_ssh_from_cidr_list) &mdash; The IP address ranges in CIDR format from which to allow incoming SSH requests to the OpenVPN server.
+
+<a name="allow_ssh_from_security_group_ids" className="snap-top"></a>
+
+* [**`allow_ssh_from_security_group_ids`**](#allow_ssh_from_security_group_ids) &mdash; The IDs of security groups from which to allow incoming SSH requests to the OpenVPN server.
+
 <a name="base_domain_name" className="snap-top"></a>
 
 * [**`base_domain_name`**](#base_domain_name) &mdash; The base domain name to use for the OpenVPN server. Used to lookup the Hosted Zone ID to use for creating the Route 53 domain entry. Only used if [`create_route53_entry`](#create_route53_entry) is true.
@@ -132,10 +154,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="base_domain_name_tags" className="snap-top"></a>
 
 * [**`base_domain_name_tags`**](#base_domain_name_tags) &mdash; Tags to use to filter the Route 53 Hosted Zones that might match [`domain_name`](#domain_name).
-
-<a name="ca_cert_fields" className="snap-top"></a>
-
-* [**`ca_cert_fields`**](#ca_cert_fields) &mdash; An object with fields for the country, state, locality, organization, organizational unit, and email address to use with the OpenVPN CA certificate.
 
 <a name="cloud_init_parts" className="snap-top"></a>
 
@@ -176,6 +194,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="domain_name" className="snap-top"></a>
 
 * [**`domain_name`**](#domain_name) &mdash; The domain name to use for the OpenVPN server. Only used if [`create_route53_entry`](#create_route53_entry) is true. If null, set to [`&lt;NAME>.&lt;BASE_DOMAIN_NAME`](#&lt;NAME>.&lt;BASE_DOMAIN_NAME)>.
+
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: [`https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances`](#https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances)
 
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
@@ -253,21 +275,17 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ssh_grunt_iam_group_sudo`**](#ssh_grunt_iam_group_sudo) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server with sudo permissions. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
 
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The ids of the subnets where this server should be deployed.
-
 <a name="tenancy" className="snap-top"></a>
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="use_strong_prime" className="snap-top"></a>
 
 * [**`use_strong_prime`**](#use_strong_prime) &mdash; When true, generate Diffie-Hellman parameters using strong primes. Note that while stronger primes make the keys more cryptographically secure, the effective security gains are known to be insignificant in practice.
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the OpenVPN server.
 
 <a name="vpn_route_cidr_blocks" className="snap-top"></a>
 
@@ -283,6 +301,8 @@ If you want to deploy this repo in production, check out the following resources
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<br/>
 
 <a name="allow_certificate_requests_for_external_accounts_iam_role_arn" className="snap-top"></a>
 
@@ -349,5 +369,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3489febb60024d0662cbdfdafe065a71"}
+{"sourcePlugin":"service-catalog-api","hash":"37273780de4f61c07b95805d97b52c6f"}
 ##DOCS-SOURCER-END -->
