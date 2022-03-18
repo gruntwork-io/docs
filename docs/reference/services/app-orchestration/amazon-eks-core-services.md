@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.77.1"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.0"/>
 
 # Amazon EKS Core Services
 
@@ -99,6 +99,34 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="aws_region" className="snap-top"></a>
+
+* [**`aws_region`**](#aws_region) &mdash; The AWS region in which all resources will be created
+
+<a name="eks_cluster_name" className="snap-top"></a>
+
+* [**`eks_cluster_name`**](#eks_cluster_name) &mdash; The name of the EKS cluster where the core services will be deployed into.
+
+<a name="eks_iam_role_for_service_accounts_config" className="snap-top"></a>
+
+* [**`eks_iam_role_for_service_accounts_config`**](#eks_iam_role_for_service_accounts_config) &mdash; Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: [``openid_connect_provider_arn`](#`openid_connect_provider_arn)` and [``openid_connect_provider_url`](#`openid_connect_provider_url)`. The [``openid_connect_provider_arn`](#`openid_connect_provider_arn)` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while [``openid_connect_provider_url`](#`openid_connect_provider_url)` is the URL. Set to null if you do not wish to use IAM role with Service Accounts.
+
+<a name="pod_execution_iam_role_arn" className="snap-top"></a>
+
+* [**`pod_execution_iam_role_arn`**](#pod_execution_iam_role_arn) &mdash; ARN of IAM Role to use as the Pod execution role for Fargate. Required if any of the services are being scheduled on Fargate. Set to null if none of the Pods are being scheduled on Fargate.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC where the EKS cluster is deployed.
+
+<a name="worker_vpc_subnet_ids" className="snap-top"></a>
+
+* [**`worker_vpc_subnet_ids`**](#worker_vpc_subnet_ids) &mdash; The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. Required if any of the services are being scheduled on Fargate. Set to empty list if none of the Pods are being scheduled on Fargate.
+
+### Optional
+
 <a name="alb_ingress_controller_pod_node_affinity" className="snap-top"></a>
 
 * [**`alb_ingress_controller_pod_node_affinity`**](#alb_ingress_controller_pod_node_affinity) &mdash; Configure affinity rules for the ALB Ingress Controller Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -139,10 +167,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`aws_cloudwatch_agent_version`**](#aws_cloudwatch_agent_version) &mdash; Which version of amazon/cloudwatch-agent to install. When null, uses the default version set in the chart. Only applies to non-fargate workers.
 
-<a name="aws_region" className="snap-top"></a>
-
-* [**`aws_region`**](#aws_region) &mdash; The AWS region in which all resources will be created
-
 <a name="cluster_autoscaler_pod_annotations" className="snap-top"></a>
 
 * [**`cluster_autoscaler_pod_annotations`**](#cluster_autoscaler_pod_annotations) &mdash; Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
@@ -178,14 +202,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="cluster_autoscaler_version" className="snap-top"></a>
 
 * [**`cluster_autoscaler_version`**](#cluster_autoscaler_version) &mdash; Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
-
-<a name="eks_cluster_name" className="snap-top"></a>
-
-* [**`eks_cluster_name`**](#eks_cluster_name) &mdash; The name of the EKS cluster where the core services will be deployed into.
-
-<a name="eks_iam_role_for_service_accounts_config" className="snap-top"></a>
-
-* [**`eks_iam_role_for_service_accounts_config`**](#eks_iam_role_for_service_accounts_config) &mdash; Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: [``openid_connect_provider_arn`](#`openid_connect_provider_arn)` and [``openid_connect_provider_url`](#`openid_connect_provider_url)`. The [``openid_connect_provider_arn`](#`openid_connect_provider_arn)` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while [``openid_connect_provider_url`](#`openid_connect_provider_url)` is the URL. Set to null if you do not wish to use IAM role with Service Accounts.
 
 <a name="enable_alb_ingress_controller" className="snap-top"></a>
 
@@ -307,10 +323,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`fluent_bit_version`**](#fluent_bit_version) &mdash; Which version of aws-for-fluent-bit to install. When null, uses the default version set in the chart. Only applies to non-fargate workers.
 
-<a name="pod_execution_iam_role_arn" className="snap-top"></a>
-
-* [**`pod_execution_iam_role_arn`**](#pod_execution_iam_role_arn) &mdash; ARN of IAM Role to use as the Pod execution role for Fargate. Required if any of the services are being scheduled on Fargate. Set to null if none of the Pods are being scheduled on Fargate.
-
 <a name="route53_record_update_policy" className="snap-top"></a>
 
 * [**`route53_record_update_policy`**](#route53_record_update_policy) &mdash; Policy for how DNS records are sychronized between sources and providers (options: sync, upsert-only).
@@ -339,13 +351,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`use_kubergrunt_to_fetch_token`**](#use_kubergrunt_to_fetch_token) &mdash; EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if [`use_exec_plugin_for_auth`](#use_exec_plugin_for_auth) is set to true.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC where the EKS cluster is deployed.
-
-<a name="worker_vpc_subnet_ids" className="snap-top"></a>
-
-* [**`worker_vpc_subnet_ids`**](#worker_vpc_subnet_ids) &mdash; The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. Required if any of the services are being scheduled on Fargate. Set to empty list if none of the Pods are being scheduled on Fargate.
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -359,5 +367,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"99e89672da00e260c7de86dad529c7d4"}
+{"sourcePlugin":"service-catalog-api","hash":"0ed3f1a06b22a99cbb8786dd432dff34"}
 ##DOCS-SOURCER-END -->

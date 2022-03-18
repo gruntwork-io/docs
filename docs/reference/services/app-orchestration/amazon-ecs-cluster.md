@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["docker","orchestration","ecs","containers"]
 license: "gruntwork"
 built-with: "terraform, bash, python, go"
-title: "Amazon ECS"
+title: "Amazon ECS Cluster"
 hide_title: true
 ---
 
@@ -15,9 +15,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
-# Amazon ECS
+# Amazon ECS Cluster
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
@@ -144,6 +144,42 @@ For information on how to manage your ECS cluster, see the documentation in the
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="cluster_instance_ami" className="snap-top"></a>
+
+* [**`cluster_instance_ami`**](#cluster_instance_ami) &mdash; The AMI to run on each instance in the ECS cluster. You can build the AMI using the Packer template ecs-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required.
+
+<a name="cluster_instance_ami_filters" className="snap-top"></a>
+
+* [**`cluster_instance_ami_filters`**](#cluster_instance_ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with ECS workers. You can build the AMI using the Packer template ecs-node-al2.json. Only used if [`cluster_instance_ami`](#cluster_instance_ami) is null. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. Set to null if [`cluster_instance_ami`](#cluster_instance_ami) is set.
+
+<a name="cluster_instance_type" className="snap-top"></a>
+
+* [**`cluster_instance_type`**](#cluster_instance_type) &mdash; The type of instances to run in the ECS cluster (e.g. t2.medium)
+
+<a name="cluster_max_size" className="snap-top"></a>
+
+* [**`cluster_max_size`**](#cluster_max_size) &mdash; The maxiumum number of instances to run in the ECS cluster
+
+<a name="cluster_min_size" className="snap-top"></a>
+
+* [**`cluster_min_size`**](#cluster_min_size) &mdash; The minimum number of instances to run in the ECS cluster
+
+<a name="cluster_name" className="snap-top"></a>
+
+* [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which the ECS cluster should be launched
+
+<a name="vpc_subnet_ids" className="snap-top"></a>
+
+* [**`vpc_subnet_ids`**](#vpc_subnet_ids) &mdash; The IDs of the subnets in which to deploy the ECS cluster instances
+
+### Optional
+
 <a name="alarms_sns_topic_arn" className="snap-top"></a>
 
 * [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications
@@ -200,14 +236,6 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 * [**`cluster_access_from_sgs`**](#cluster_access_from_sgs) &mdash; Specify a list of Security Groups that will have access to the ECS cluster. Only used if [`enable_cluster_access_ports`](#enable_cluster_access_ports) is set to true
 
-<a name="cluster_instance_ami" className="snap-top"></a>
-
-* [**`cluster_instance_ami`**](#cluster_instance_ami) &mdash; The AMI to run on each instance in the ECS cluster. You can build the AMI using the Packer template ecs-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required.
-
-<a name="cluster_instance_ami_filters" className="snap-top"></a>
-
-* [**`cluster_instance_ami_filters`**](#cluster_instance_ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with ECS workers. You can build the AMI using the Packer template ecs-node-al2.json. Only used if [`cluster_instance_ami`](#cluster_instance_ami) is null. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. Set to null if [`cluster_instance_ami`](#cluster_instance_ami) is set.
-
 <a name="cluster_instance_associate_public_ip_address" className="snap-top"></a>
 
 * [**`cluster_instance_associate_public_ip_address`**](#cluster_instance_associate_public_ip_address) &mdash; Whether to associate a public IP address with an instance in a VPC
@@ -215,22 +243,6 @@ For information on how to manage your ECS cluster, see the documentation in the
 <a name="cluster_instance_keypair_name" className="snap-top"></a>
 
 * [**`cluster_instance_keypair_name`**](#cluster_instance_keypair_name) &mdash; The name of the Key Pair that can be used to SSH to each instance in the ECS cluster
-
-<a name="cluster_instance_type" className="snap-top"></a>
-
-* [**`cluster_instance_type`**](#cluster_instance_type) &mdash; The type of instances to run in the ECS cluster (e.g. t2.medium)
-
-<a name="cluster_max_size" className="snap-top"></a>
-
-* [**`cluster_max_size`**](#cluster_max_size) &mdash; The maxiumum number of instances to run in the ECS cluster
-
-<a name="cluster_min_size" className="snap-top"></a>
-
-* [**`cluster_min_size`**](#cluster_min_size) &mdash; The minimum number of instances to run in the ECS cluster
-
-<a name="cluster_name" className="snap-top"></a>
-
-* [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
 
 <a name="default_user" className="snap-top"></a>
 
@@ -340,13 +352,9 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which the ECS cluster should be launched
-
-<a name="vpc_subnet_ids" className="snap-top"></a>
-
-* [**`vpc_subnet_ids`**](#vpc_subnet_ids) &mdash; The IDs of the subnets in which to deploy the ECS cluster instances
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -416,5 +424,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"65b32f9df7bd69864c5786c011fd1674"}
+{"sourcePlugin":"service-catalog-api","hash":"ad5644b19bdade5d75af8d8de1dfc8ba"}
 ##DOCS-SOURCER-END -->

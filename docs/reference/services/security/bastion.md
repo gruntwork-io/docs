@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
 # Bastion Host
 
@@ -106,13 +106,7 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-<a name="additional_security_group_ids" className="snap-top"></a>
-
-* [**`additional_security_group_ids`**](#additional_security_group_ids) &mdash; A list of optional additional security group ids to assign to the bastion server.
-
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
-
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+### Required
 
 <a name="allow_ssh_from_cidr_list" className="snap-top"></a>
 
@@ -125,6 +119,24 @@ If you want to deploy this repo in production, check out the following resources
 <a name="ami_filters" className="snap-top"></a>
 
 * [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+
+<a name="subnet_id" className="snap-top"></a>
+
+* [**`subnet_id`**](#subnet_id) &mdash; The ID of the subnet in which to deploy the bastion. Must be a subnet in [`vpc_id`](#vpc_id).
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the bastion.
+
+### Optional
+
+<a name="additional_security_group_ids" className="snap-top"></a>
+
+* [**`additional_security_group_ids`**](#additional_security_group_ids) &mdash; A list of optional additional security group ids to assign to the bastion server.
+
+<a name="alarms_sns_topic_arn" className="snap-top"></a>
+
+* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 <a name="base_domain_name_tags" className="snap-top"></a>
 
@@ -157,6 +169,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="domain_name" className="snap-top"></a>
 
 * [**`domain_name`**](#domain_name) &mdash; The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be [`name.var.domain_name`](#name.var.domain_name) (e.g., bastion.example.com). Only used if [`create_dns_record`](#create_dns_record) is true.
+
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
 
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
@@ -210,17 +226,13 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`ssh_grunt_iam_group_sudo`**](#ssh_grunt_iam_group_sudo) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Bastion Host with sudo permissions. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
 
-<a name="subnet_id" className="snap-top"></a>
-
-* [**`subnet_id`**](#subnet_id) &mdash; The ID of the subnet in which to deploy the bastion. Must be a subnet in [`vpc_id`](#vpc_id).
-
 <a name="tenancy" className="snap-top"></a>
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
-<a name="vpc_id" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the bastion.
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -254,5 +266,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8bc5effb94a3def0d7a90a92d404d59e"}
+{"sourcePlugin":"service-catalog-api","hash":"3250b3fd97ef7d7e8738e0da6971736a"}
 ##DOCS-SOURCER-END -->

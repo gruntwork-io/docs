@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.68.8"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon Aurora
 
@@ -87,6 +87,22 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="aurora_subnet_ids" className="snap-top"></a>
+
+* [**`aurora_subnet_ids`**](#aurora_subnet_ids) &mdash; The list of IDs of the subnets in which to deploy Aurora. The list must only contain subnets in [`vpc_id`](#vpc_id).
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name used to namespace all the Aurora resources created by these templates, including the cluster and cluster instances (e.g. drupaldb). Must be unique in this region. Must be a lowercase string.
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy Aurora.
+
+### Optional
+
 <a name="alarms_sns_topic_arns" className="snap-top"></a>
 
 * [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
@@ -107,10 +123,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`apply_immediately`**](#apply_immediately) &mdash; Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Note that cluster modifications may cause degraded performance or downtime.
 
-<a name="aurora_subnet_ids" className="snap-top"></a>
-
-* [**`aurora_subnet_ids`**](#aurora_subnet_ids) &mdash; The list of IDs of the subnets in which to deploy Aurora. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
 <a name="backup_job_alarm_period" className="snap-top"></a>
 
 * [**`backup_job_alarm_period`**](#backup_job_alarm_period) &mdash; How often, in seconds, the backup job is expected to run. This is the same as [`schedule_expression`](#schedule_expression), but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the metric in [`create_snapshot_cloudwatch_metric_namespace`](#create_snapshot_cloudwatch_metric_namespace) isn't updated within this time period, as that indicates the backup failed to run.
@@ -118,6 +130,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="backup_retention_period" className="snap-top"></a>
 
 * [**`backup_retention_period`**](#backup_retention_period) &mdash; How many days to keep backup snapshots around before cleaning them up. Max: 35
+
+<a name="copy_tags_to_snapshot" className="snap-top"></a>
+
+* [**`copy_tags_to_snapshot`**](#copy_tags_to_snapshot) &mdash; Copy all the Aurora cluster tags to snapshots. Default is false.
 
 <a name="create_snapshot_cloudwatch_metric_namespace" className="snap-top"></a>
 
@@ -267,10 +283,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`master_username`**](#master_username) &mdash; The value to use for the master username of the database. This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id). A value here overrides the value in [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name used to namespace all the Aurora resources created by these templates, including the cluster and cluster instances (e.g. drupaldb). Must be unique in this region. Must be a lowercase string.
-
 <a name="port" className="snap-top"></a>
 
 * [**`port`**](#port) &mdash; The port the DB will listen on (e.g. 3306). This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id). A value here overrides the value in [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
@@ -278,6 +290,14 @@ If you want to deploy this repo in production, check out the following resources
 <a name="publicly_accessible" className="snap-top"></a>
 
 * [**`publicly_accessible`**](#publicly_accessible) &mdash; If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure. This flag MUST be false for serverless mode.
+
+<a name="restore_source_cluster_identifier" className="snap-top"></a>
+
+* [**`restore_source_cluster_identifier`**](#restore_source_cluster_identifier) &mdash; If non-empty, the Aurora cluster will be restored from the given source cluster using the latest restorable time. Can only be used if [`snapshot_identifier`](#snapshot_identifier) is null. For more information see [`https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT`](#https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT).html
+
+<a name="restore_type" className="snap-top"></a>
+
+* [**`restore_type`**](#restore_type) &mdash; Only used if [`'restore_source_cluster_identifier`](#'restore_source_cluster_identifier)' is non-empty. Type of restore to be performed. Valid options are 'full-copy' and 'copy-on-write'. https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
 
 <a name="scaling_configuration_auto_pause" className="snap-top"></a>
 
@@ -326,10 +346,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="too_many_db_connections_threshold" className="snap-top"></a>
 
 * [**`too_many_db_connections_threshold`**](#too_many_db_connections_threshold) &mdash; Trigger an alarm if the number of connections to the DB instance goes above this threshold.
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy Aurora.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -411,5 +427,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3006cd2049d7f6e631e08dd0d52b4de0"}
+{"sourcePlugin":"service-catalog-api","hash":"f5c0d2ebbed681c2ab8858138b24bd85"}
 ##DOCS-SOURCER-END -->

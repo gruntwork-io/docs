@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.73.1"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
 # Management VPC
 
@@ -96,6 +96,26 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="aws_region" className="snap-top"></a>
+
+* [**`aws_region`**](#aws_region) &mdash; The AWS region to deploy into
+
+<a name="cidr_block" className="snap-top"></a>
+
+* [**`cidr_block`**](#cidr_block) &mdash; The IP address range of the VPC in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/16', '10.200.0.0/16', etc.
+
+<a name="num_nat_gateways" className="snap-top"></a>
+
+* [**`num_nat_gateways`**](#num_nat_gateways) &mdash; The number of NAT Gateways to launch for this VPC. The management VPC defaults to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust this to add additional NAT Gateways.
+
+<a name="vpc_name" className="snap-top"></a>
+
+* [**`vpc_name`**](#vpc_name) &mdash; The name of the VPC. Defaults to mgmt.
+
+### Optional
+
 <a name="apply_default_nacl_rules" className="snap-top"></a>
 
 * [**`apply_default_nacl_rules`**](#apply_default_nacl_rules) &mdash; If true, will apply the default NACL rules in [`default_nacl_ingress_rules`](#default_nacl_ingress_rules) and [`default_nacl_egress_rules`](#default_nacl_egress_rules) on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
@@ -115,14 +135,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="availability_zone_state" className="snap-top"></a>
 
 * [**`availability_zone_state`**](#availability_zone_state) &mdash; Allows to filter list of Availability Zones based on their current state. Can be either "available", "information", "impaired" or "unavailable". By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
-
-<a name="aws_region" className="snap-top"></a>
-
-* [**`aws_region`**](#aws_region) &mdash; The AWS region to deploy into
-
-<a name="cidr_block" className="snap-top"></a>
-
-* [**`cidr_block`**](#cidr_block) &mdash; The IP address range of the VPC in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/16', '10.200.0.0/16', etc.
 
 <a name="create_flow_logs" className="snap-top"></a>
 
@@ -160,6 +172,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`enable_default_security_group`**](#enable_default_security_group) &mdash; If set to false, the default security groups will NOT be created.
 
+<a name="iam_role_permissions_boundary" className="snap-top"></a>
+
+* [**`iam_role_permissions_boundary`**](#iam_role_permissions_boundary) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
 <a name="kms_key_arn" className="snap-top"></a>
 
 * [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
@@ -179,10 +195,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="num_availability_zones" className="snap-top"></a>
 
 * [**`num_availability_zones`**](#num_availability_zones) &mdash; How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to 3.
-
-<a name="num_nat_gateways" className="snap-top"></a>
-
-* [**`num_nat_gateways`**](#num_nat_gateways) &mdash; The number of NAT Gateways to launch for this VPC. The management VPC defaults to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust this to add additional NAT Gateways.
 
 <a name="private_subnet_bits" className="snap-top"></a>
 
@@ -212,9 +224,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`subnet_spacing`**](#subnet_spacing) &mdash; The amount of spacing between the different subnet types
 
-<a name="vpc_name" className="snap-top"></a>
+<a name="use_managed_iam_policies" className="snap-top"></a>
 
-* [**`vpc_name`**](#vpc_name) &mdash; The name of the VPC. Defaults to mgmt.
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -280,5 +292,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"11f3d95a97b1d480ea236acffe23b3ec"}
+{"sourcePlugin":"service-catalog-api","hash":"38bd65ff068f7a723d608c49556b13ae"}
 ##DOCS-SOURCER-END -->

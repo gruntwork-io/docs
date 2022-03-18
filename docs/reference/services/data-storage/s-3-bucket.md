@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.78.0"/>
 
 # S3 Bucket
 
@@ -78,6 +78,14 @@ If you want to deploy this repo in production, check out the following resources
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
+
+### Required
+
+<a name="primary_bucket" className="snap-top"></a>
+
+* [**`primary_bucket`**](#primary_bucket) &mdash; What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!
+
+### Optional
 
 <a name="access_logging_bucket" className="snap-top"></a>
 
@@ -146,10 +154,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="mfa_delete" className="snap-top"></a>
 
 * [**`mfa_delete`**](#mfa_delete) &mdash; Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. Only used if [`enable_versioning`](#enable_versioning) is true. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module.
-
-<a name="primary_bucket" className="snap-top"></a>
-
-* [**`primary_bucket`**](#primary_bucket) &mdash; What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!
 
 <a name="replica_bucket" className="snap-top"></a>
 
@@ -231,5 +235,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f3ac951e0738c4d03c1e7799a89deef6"}
+{"sourcePlugin":"service-catalog-api","hash":"46c08e7b82b0aa404aba455fdc5faa13"}
 ##DOCS-SOURCER-END -->
