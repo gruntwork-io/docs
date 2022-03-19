@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -86,71 +87,62 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="private_zones" className="snap-top"></a>
+<HclListItem name="private_zones" requirement="optional" description="A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below." type="map" typeDetails="map(object({
+    # An optional, arbitrary comment to attach to the private Hosted Zone
+    comment = string
+    # The list of VPCs to associate with the private Hosted Zone. You must provide at least one VPC in this list.
+    vpcs = list(object({
+      # The ID of the VPC.
+      id = string
+      # The region of the VPC. If null, defaults to the region configured on the provider.
+      region = string
+    }))
+    # A mapping of tags to assign to the private Hosted Zone
+    tags = map(string)
+    # Whether to destroy all records (possibly managed ouside of Terraform) in the zone when destroying the zone
+    force_destroy = bool
+  }))" defaultValue="{}"/>
 
-* [**`private_zones`**](#private_zones) &mdash; A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
+<HclListItem name="public_zones" requirement="optional" description="A map of public Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below." type="any" defaultValue="{}"/>
 
-<a name="public_zones" className="snap-top"></a>
+<HclListItem name="service_discovery_private_namespaces" requirement="optional" description="A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map." type="map" typeDetails="map(object({
+    # The ID of the VPC where the private hosted zone is restricted to.
+    vpc_id = string
+    # A user friendly description for the namespace
+    description = string
+  }))" defaultValue="{}"/>
 
-* [**`public_zones`**](#public_zones) &mdash; A map of public Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
-
-<a name="service_discovery_private_namespaces" className="snap-top"></a>
-
-* [**`service_discovery_private_namespaces`**](#service_discovery_private_namespaces) &mdash; A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
-
-<a name="service_discovery_public_namespaces" className="snap-top"></a>
-
-* [**`service_discovery_public_namespaces`**](#service_discovery_public_namespaces) &mdash; A map of domain names to configurations for setting up a new public namespace in AWS Cloud Map. Note that the domain name must be registered with Route 53.
+<HclListItem name="service_discovery_public_namespaces" requirement="optional" description="A map of domain names to configurations for setting up a new public namespace in AWS Cloud Map. Note that the domain name must be registered with Route 53." type="any" defaultValue="{}"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="acm_tls_certificates" className="snap-top"></a>
+<HclListItem name="acm_tls_certificates" requirement="required" description="A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone."/>
 
-* [**`acm_tls_certificates`**](#acm_tls_certificates) &mdash; A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone.
+<HclListItem name="private_domain_names" requirement="required" description="The names of the internal-only Route 53 Hosted Zones"/>
 
-<a name="private_domain_names" className="snap-top"></a>
+<HclListItem name="private_zones_ids" requirement="required" description="The IDs of the internal-only Route 53 Hosted Zones"/>
 
-* [**`private_domain_names`**](#private_domain_names) &mdash; The names of the internal-only Route 53 Hosted Zones
+<HclListItem name="private_zones_name_servers" requirement="required" description="The name servers associated with the internal-only Route 53 Hosted Zones"/>
 
-<a name="private_zones_ids" className="snap-top"></a>
+<HclListItem name="public_domain_names" requirement="required" description="The names of the public Route 53 Hosted Zones"/>
 
-* [**`private_zones_ids`**](#private_zones_ids) &mdash; The IDs of the internal-only Route 53 Hosted Zones
+<HclListItem name="public_hosted_zone_map" requirement="required" description="A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs"/>
 
-<a name="private_zones_name_servers" className="snap-top"></a>
+<HclListItem name="public_hosted_zones_ids" requirement="required" description="The IDs of the public Route 53 Hosted Zones"/>
 
-* [**`private_zones_name_servers`**](#private_zones_name_servers) &mdash; The name servers associated with the internal-only Route 53 Hosted Zones
+<HclListItem name="public_hosted_zones_name_servers" requirement="required" description="The name servers associated with the public Route 53 Hosted Zones"/>
 
-<a name="public_domain_names" className="snap-top"></a>
+<HclListItem name="service_discovery_private_namespaces" requirement="required" description="A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces."/>
 
-* [**`public_domain_names`**](#public_domain_names) &mdash; The names of the public Route 53 Hosted Zones
-
-<a name="public_hosted_zone_map" className="snap-top"></a>
-
-* [**`public_hosted_zone_map`**](#public_hosted_zone_map) &mdash; A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs
-
-<a name="public_hosted_zones_ids" className="snap-top"></a>
-
-* [**`public_hosted_zones_ids`**](#public_hosted_zones_ids) &mdash; The IDs of the public Route 53 Hosted Zones
-
-<a name="public_hosted_zones_name_servers" className="snap-top"></a>
-
-* [**`public_hosted_zones_name_servers`**](#public_hosted_zones_name_servers) &mdash; The name servers associated with the public Route 53 Hosted Zones
-
-<a name="service_discovery_private_namespaces" className="snap-top"></a>
-
-* [**`service_discovery_private_namespaces`**](#service_discovery_private_namespaces) &mdash; A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces.
-
-<a name="service_discovery_public_namespaces" className="snap-top"></a>
-
-* [**`service_discovery_public_namespaces`**](#service_discovery_public_namespaces) &mdash; A map of domains to resource arns and hosted zones of the created Service Discovery Public Namespaces.
+<HclListItem name="service_discovery_public_namespaces" requirement="required" description="A map of domains to resource arns and hosted zones of the created Service Discovery Public Namespaces."/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d55f73a8df9c836b6bae35b4fdedd1e4"}
+{"sourcePlugin":"service-catalog-api","hash":"837f54603ed31a24a158900c545fc77a"}
 ##DOCS-SOURCER-END -->

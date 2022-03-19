@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.20.0"/>
 
@@ -86,13 +87,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="grant_security_account_access" className="snap-top"></a>
+<HclListItem name="grant_security_account_access" requirement="required" description="Set to true to grant your security account, with the account ID specified in <a href=#security_account_id><code>security_account_id</code></a>, access to the IAM role. This is required for deploying a Reference Architecture." type="bool"/>
 
-* [**`grant_security_account_access`**](#grant_security_account_access) &mdash; Set to true to grant your security account, with the account ID specified in [`security_account_id`](#security_account_id), access to the IAM role. This is required for deploying a Reference Architecture.
-
-<a name="security_account_id" className="snap-top"></a>
-
-* [**`security_account_id`**](#security_account_id) &mdash; The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.
+<HclListItem name="security_account_id" requirement="required" description="The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process." type="string"/>
 
 
 <br/>
@@ -100,43 +97,29 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="gruntwork_aws_account_id" className="snap-top"></a>
+<HclListItem name="gruntwork_aws_account_id" requirement="optional" description="The ID of the AWS account that will be allowed to assume the IAM role." type="string" defaultValue="583800379690"/>
 
-* [**`gruntwork_aws_account_id`**](#gruntwork_aws_account_id) &mdash; The ID of the AWS account that will be allowed to assume the IAM role.
+<HclListItem name="iam_role_name" requirement="optional" description="The name to use for the IAM role" type="string" defaultValue="GruntworkAccountAccessRole"/>
 
-<a name="iam_role_name" className="snap-top"></a>
+<HclListItem name="managed_policy_name" requirement="optional" description="The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default." type="string" defaultValue="AdministratorAccess"/>
 
-* [**`iam_role_name`**](#iam_role_name) &mdash; The name to use for the IAM role
+<HclListItem name="require_mfa" requirement="optional" description="If set to true, require MFA to assume the IAM role from the Gruntwork account." type="bool" defaultValue="true"/>
 
-<a name="managed_policy_name" className="snap-top"></a>
-
-* [**`managed_policy_name`**](#managed_policy_name) &mdash; The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default.
-
-<a name="require_mfa" className="snap-top"></a>
-
-* [**`require_mfa`**](#require_mfa) &mdash; If set to true, require MFA to assume the IAM role from the Gruntwork account.
-
-<a name="tags" className="snap-top"></a>
-
-* [**`tags`**](#tags) &mdash; Tags to apply to all resources created by this module
+<HclListItem name="tags" requirement="optional" description="Tags to apply to all resources created by this module" type="map" typeDetails="map(string)" defaultValue="{}"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="iam_role_arn" className="snap-top"></a>
+<HclListItem name="iam_role_arn" requirement="required" description="The ARN of the IAM role"/>
 
-* [**`iam_role_arn`**](#iam_role_arn) &mdash; The ARN of the IAM role
-
-<a name="iam_role_name" className="snap-top"></a>
-
-* [**`iam_role_name`**](#iam_role_name) &mdash; The name of the IAM role
+<HclListItem name="iam_role_name" requirement="required" description="The name of the IAM role"/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"182e52ed16f2b38b8653d803bb3dc9e2"}
+{"sourcePlugin":"service-catalog-api","hash":"f7069a1a130a85bd43fe82a3db7e5f39"}
 ##DOCS-SOURCER-END -->

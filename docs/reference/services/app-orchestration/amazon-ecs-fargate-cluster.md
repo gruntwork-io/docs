@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.66.0"/>
 
@@ -101,9 +102,7 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ### Required
 
-<a name="cluster_name" className="snap-top"></a>
-
-* [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
+<HclListItem name="cluster_name" requirement="required" description="The name of the ECS cluster" type="string"/>
 
 
 <br/>
@@ -111,31 +110,23 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ### Optional
 
-<a name="custom_tags" className="snap-top"></a>
+<HclListItem name="custom_tags" requirement="optional" description="A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
-
-<a name="enable_container_insights" className="snap-top"></a>
-
-* [**`enable_container_insights`**](#enable_container_insights) &mdash; Whether or not to enable container insights monitoring on the ECS cluster.
+<HclListItem name="enable_container_insights" requirement="optional" description="Whether or not to enable container insights monitoring on the ECS cluster." type="bool" defaultValue="true"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="arn" className="snap-top"></a>
+<HclListItem name="arn" requirement="required" description="ARN of the ECS cluster that was created."/>
 
-* [**`arn`**](#arn) &mdash; ARN of the ECS cluster that was created.
-
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name of the ECS cluster.
+<HclListItem name="name" requirement="required" description="The name of the ECS cluster."/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6d26ea1777a189330a86ad53521283ef"}
+{"sourcePlugin":"service-catalog-api","hash":"a8a9b65ccfef28deeec0169f2a542883"}
 ##DOCS-SOURCER-END -->

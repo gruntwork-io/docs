@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -89,33 +90,19 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="enable_automatic_failover" className="snap-top"></a>
+<HclListItem name="enable_automatic_failover" requirement="required" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for <a href=#replication_group_size><code>replication_group_size</code></a>." type="bool"/>
 
-* [**`enable_automatic_failover`**](#enable_automatic_failover) &mdash; Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for [`replication_group_size`](#replication_group_size).
+<HclListItem name="enable_multi_az" requirement="required" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for <a href=#replication_group_size><code>replication_group_size</code></a>." type="bool"/>
 
-<a name="enable_multi_az" className="snap-top"></a>
+<HclListItem name="instance_type" requirement="required" description="The compute and memory capacity of the nodes (e.g. cache.m4.large)." type="string"/>
 
-* [**`enable_multi_az`**](#enable_multi_az) &mdash; Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for [`replication_group_size`](#replication_group_size).
+<HclListItem name="name" requirement="required" description="The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string." type="string"/>
 
-<a name="instance_type" className="snap-top"></a>
+<HclListItem name="replication_group_size" requirement="required" description="The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica." type="number"/>
 
-* [**`instance_type`**](#instance_type) &mdash; The compute and memory capacity of the nodes (e.g. cache.m4.large).
+<HclListItem name="subnet_ids" requirement="required" description="The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." type="list" typeDetails="list(string)"/>
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string.
-
-<a name="replication_group_size" className="snap-top"></a>
-
-* [**`replication_group_size`**](#replication_group_size) &mdash; The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica.
-
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
+<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy RDS." type="string"/>
 
 
 <br/>
@@ -123,115 +110,68 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="alarms_sns_topic_arns" className="snap-top"></a>
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" description="The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="allow_connections_from_cidr_blocks" className="snap-top"></a>
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" description="The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`allow_connections_from_cidr_blocks`**](#allow_connections_from_cidr_blocks) &mdash; The list of network CIDR blocks to allow network access to ElastiCache from. One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the ElastiCache instances to be reachable.
+<HclListItem name="apply_immediately" requirement="optional" description="Specifies whether any modifications are applied immediately, or during the next maintenance window." type="bool" defaultValue="false"/>
 
-<a name="allow_connections_from_security_groups" className="snap-top"></a>
+<HclListItem name="auth_token" requirement="optional" description="The password used to access a password protected server. Can be specified only if <a href=#transit_encryption_enabled><code>transit_encryption_enabled</code></a> = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, <double-quotes>, and /)" type="string" defaultValue="null"/>
 
-* [**`allow_connections_from_security_groups`**](#allow_connections_from_security_groups) &mdash; The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by [`vpc_id`](#vpc_id), or a peered VPC with the VPC specified by [`vpc_id`](#vpc_id). One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the ElastiCache instances to be reachable.
+<HclListItem name="cluster_mode" requirement="optional" description="Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys '<a href=#num_node_groups><code>num_node_groups</code></a>' and '<a href=#replicas_per_node_group><code>replicas_per_node_group</code></a>' set to desired integer values." type="list" typeDetails="list(object({
+    num_node_groups         = number
+    replicas_per_node_group = number
+  }))" defaultValue="[]"/>
 
-<a name="apply_immediately" className="snap-top"></a>
+<HclListItem name="enable_at_rest_encryption" requirement="optional" description="Whether to enable encryption at rest." type="bool" defaultValue="true"/>
 
-* [**`apply_immediately`**](#apply_immediately) &mdash; Specifies whether any modifications are applied immediately, or during the next maintenance window.
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
 
-<a name="auth_token" className="snap-top"></a>
+<HclListItem name="enable_transit_encryption" requirement="optional" description="Whether to enable encryption in transit." type="bool" defaultValue="true"/>
 
-* [**`auth_token`**](#auth_token) &mdash; The password used to access a password protected server. Can be specified only if [`transit_encryption_enabled`](#transit_encryption_enabled) = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, &lt;double-quotes>, and /)
+<HclListItem name="maintenance_window" requirement="optional" description="Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period." type="string" defaultValue="sat:07:00-sat:08:00"/>
 
-<a name="cluster_mode" className="snap-top"></a>
+<HclListItem name="parameter_group_name" requirement="optional" description="Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster." type="string" defaultValue="null"/>
 
-* [**`cluster_mode`**](#cluster_mode) &mdash; Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys [`'num_node_groups`](#'num_node_groups)' and [`'replicas_per_node_group`](#'replicas_per_node_group)' set to desired integer values.
+<HclListItem name="port" requirement="optional" description="The port number on which each of the cache nodes will accept connections (e.g. 6379)." type="number" defaultValue="6379"/>
 
-<a name="enable_at_rest_encryption" className="snap-top"></a>
+<HclListItem name="redis_version" requirement="optional" description="Version number of redis to use (e.g. 5.0.6)." type="string" defaultValue="5.0.6"/>
 
-* [**`enable_at_rest_encryption`**](#enable_at_rest_encryption) &mdash; Whether to enable encryption at rest.
+<HclListItem name="snapshot_arn" requirement="optional" description="The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use <a href=#snapshot_name><code>snapshot_name</code></a>." type="string" defaultValue="null"/>
 
-<a name="enable_cloudwatch_alarms" className="snap-top"></a>
+<HclListItem name="snapshot_name" requirement="optional" description="The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use <a href=#snapshot_arn><code>snapshot_arn</code></a>." type="string" defaultValue="null"/>
 
-* [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
+<HclListItem name="snapshot_retention_limit" requirement="optional" description="The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots." type="number" defaultValue="15"/>
 
-<a name="enable_transit_encryption" className="snap-top"></a>
+<HclListItem name="snapshot_window" requirement="optional" description="The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots." type="string" defaultValue="06:00-07:00"/>
 
-* [**`enable_transit_encryption`**](#enable_transit_encryption) &mdash; Whether to enable encryption in transit.
+<HclListItem name="sns_topic_for_notifications" requirement="optional" description="The ARN of the SNS Topic to which notifications will be sent when a Replication Group event happens, such as an automatic failover (e.g. arn:aws:sns:*:123456789012:<a href=#my_sns_topic><code>my_sns_topic</code></a>). An empty string is a valid value if you do not wish to receive notifications via SNS." type="string" defaultValue=""/>
 
-<a name="maintenance_window" className="snap-top"></a>
-
-* [**`maintenance_window`**](#maintenance_window) &mdash; Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
-
-<a name="parameter_group_name" className="snap-top"></a>
-
-* [**`parameter_group_name`**](#parameter_group_name) &mdash; Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster.
-
-<a name="port" className="snap-top"></a>
-
-* [**`port`**](#port) &mdash; The port number on which each of the cache nodes will accept connections (e.g. 6379).
-
-<a name="redis_version" className="snap-top"></a>
-
-* [**`redis_version`**](#redis_version) &mdash; Version number of redis to use (e.g. 5.0.6).
-
-<a name="snapshot_arn" className="snap-top"></a>
-
-* [**`snapshot_arn`**](#snapshot_arn) &mdash; The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use [`snapshot_name`](#snapshot_name).
-
-<a name="snapshot_name" className="snap-top"></a>
-
-* [**`snapshot_name`**](#snapshot_name) &mdash; The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use [`snapshot_arn`](#snapshot_arn).
-
-<a name="snapshot_retention_limit" className="snap-top"></a>
-
-* [**`snapshot_retention_limit`**](#snapshot_retention_limit) &mdash; The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots.
-
-<a name="snapshot_window" className="snap-top"></a>
-
-* [**`snapshot_window`**](#snapshot_window) &mdash; The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots.
-
-<a name="sns_topic_for_notifications" className="snap-top"></a>
-
-* [**`sns_topic_for_notifications`**](#sns_topic_for_notifications) &mdash; The ARN of the SNS Topic to which notifications will be sent when a Replication Group event happens, such as an automatic failover (e.g. [`arn:aws:sns:*:123456789012:my_sns_topic`](#arn:aws:sns:*:123456789012:my_sns_topic)). An empty string is a valid value if you do not wish to receive notifications via SNS.
-
-<a name="tags" className="snap-top"></a>
-
-* [**`tags`**](#tags) &mdash; A set of tags to set for the ElastiCache Replication Group.
+<HclListItem name="tags" requirement="optional" description="A set of tags to set for the ElastiCache Replication Group." type="map" typeDetails="map(string)" defaultValue="{}"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="cache_cluster_ids" className="snap-top"></a>
+<HclListItem name="cache_cluster_ids" requirement="required" description="The list of AWS cache cluster ids where each one represents a Redis node."/>
 
-* [**`cache_cluster_ids`**](#cache_cluster_ids) &mdash; The list of AWS cache cluster ids where each one represents a Redis node.
+<HclListItem name="cache_node_id" requirement="required" description="The id of the ElastiCache node. Note: Each Redis cache cluster has only one node and its id is always 0001."/>
 
-<a name="cache_node_id" className="snap-top"></a>
+<HclListItem name="cache_port" requirement="required" description="The port number on which each of the cache nodes will accept connections (e.g. 6379)."/>
 
-* [**`cache_node_id`**](#cache_node_id) &mdash; The id of the ElastiCache node. Note: Each Redis cache cluster has only one node and its id is always 0001.
+<HclListItem name="configuration_endpoint" requirement="required" description="When cluster mode is enabled, use this endpoint for all operations. Redis will automatically determine which of the cluster's node to access."/>
 
-<a name="cache_port" className="snap-top"></a>
+<HclListItem name="primary_endpoint" requirement="required" description="The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster."/>
 
-* [**`cache_port`**](#cache_port) &mdash; The port number on which each of the cache nodes will accept connections (e.g. 6379).
-
-<a name="configuration_endpoint" className="snap-top"></a>
-
-* [**`configuration_endpoint`**](#configuration_endpoint) &mdash; When cluster mode is enabled, use this endpoint for all operations. Redis will automatically determine which of the cluster's node to access.
-
-<a name="primary_endpoint" className="snap-top"></a>
-
-* [**`primary_endpoint`**](#primary_endpoint) &mdash; The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster.
-
-<a name="reader_endpoint" className="snap-top"></a>
-
-* [**`reader_endpoint`**](#reader_endpoint) &mdash; When cluster mode is disabled, use this endpoint for all read operations.
+<HclListItem name="reader_endpoint" requirement="required" description="When cluster mode is disabled, use this endpoint for all read operations."/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0962a2150277c22a572d47a458fcd0b8"}
+{"sourcePlugin":"service-catalog-api","hash":"10417d02ad592a3fda23df6a0ae7f21b"}
 ##DOCS-SOURCER-END -->

@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -93,45 +94,35 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="acm_ssl_certificate_domain" className="snap-top"></a>
+<HclListItem name="acm_ssl_certificate_domain" requirement="required" description="The domain name used for an SSL certificate issued by the Amazon Certificate Manager (ACM)." type="string"/>
 
-* [**`acm_ssl_certificate_domain`**](#acm_ssl_certificate_domain) &mdash; The domain name used for an SSL certificate issued by the Amazon Certificate Manager (ACM).
+<HclListItem name="alb_subnet_ids" requirement="required" description="The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in <a href=#vpc_id><code>vpc_id</code></a>." type="list" typeDetails="list(string)"/>
 
-<a name="alb_subnet_ids" className="snap-top"></a>
+<HclListItem name="ami" requirement="required" description="The ID of the AMI to run on the Jenkins server. This should be the AMI build from the Packer template jenkins-ubuntu.json. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters." type="string"/>
 
-* [**`alb_subnet_ids`**](#alb_subnet_ids) &mdash; The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in [`vpc_id`](#vpc_id).
+<HclListItem name="ami_filters" requirement="required" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly." type="object" typeDetails="object({
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object({
+      name   = string
+      values = list(string)
+    }))
+  })"/>
 
-<a name="ami" className="snap-top"></a>
+<HclListItem name="domain_name" requirement="required" description="The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by <a href=#hosted_zone_id><code>hosted_zone_id</code></a>." type="string"/>
 
-* [**`ami`**](#ami) &mdash; The ID of the AMI to run on the Jenkins server. This should be the AMI build from the Packer template jenkins-ubuntu.json. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if looking up the ami with filters.
+<HclListItem name="hosted_zone_id" requirement="required" description="The ID of the Route 53 Hosted Zone in which to create a DNS A record for Jenkins." type="string"/>
 
-<a name="ami_filters" className="snap-top"></a>
+<HclListItem name="instance_type" requirement="required" description="The instance type to use for the Jenkins server (e.g. t2.medium)" type="string"/>
 
-* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+<HclListItem name="jenkins_subnet_id" requirement="required" description="The ID of the subnet in which to deploy Jenkins. Must be a subnet in <a href=#vpc_id><code>vpc_id</code></a>." type="string"/>
 
-<a name="domain_name" className="snap-top"></a>
+<HclListItem name="memory" requirement="required" description="The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings." type="string"/>
 
-* [**`domain_name`**](#domain_name) &mdash; The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by [`hosted_zone_id`](#hosted_zone_id).
-
-<a name="hosted_zone_id" className="snap-top"></a>
-
-* [**`hosted_zone_id`**](#hosted_zone_id) &mdash; The ID of the Route 53 Hosted Zone in which to create a DNS A record for Jenkins.
-
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The instance type to use for the Jenkins server (e.g. t2.medium)
-
-<a name="jenkins_subnet_id" className="snap-top"></a>
-
-* [**`jenkins_subnet_id`**](#jenkins_subnet_id) &mdash; The ID of the subnet in which to deploy Jenkins. Must be a subnet in [`vpc_id`](#vpc_id).
-
-<a name="memory" className="snap-top"></a>
-
-* [**`memory`**](#memory) &mdash; The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings.
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy Jenkins
+<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy Jenkins" type="string"/>
 
 
 <br/>
@@ -139,275 +130,149 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
+<HclListItem name="allow_incoming_http_from_cidr_blocks" requirement="optional" description="The IP address ranges in CIDR format from which to allow incoming HTTP requests to Jenkins." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="allow_incoming_http_from_cidr_blocks" className="snap-top"></a>
+<HclListItem name="allow_incoming_http_from_security_group_ids" requirement="optional" description="The IDs of security groups from which to allow incoming HTTP requests to Jenkins." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`allow_incoming_http_from_cidr_blocks`**](#allow_incoming_http_from_cidr_blocks) &mdash; The IP address ranges in CIDR format from which to allow incoming HTTP requests to Jenkins.
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" description="The IP address ranges in CIDR format from which to allow incoming SSH requests to Jenkins." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="allow_incoming_http_from_security_group_ids" className="snap-top"></a>
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" description="The IDs of security groups from which to allow incoming SSH requests to Jenkins." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`allow_incoming_http_from_security_group_ids`**](#allow_incoming_http_from_security_group_ids) &mdash; The IDs of security groups from which to allow incoming HTTP requests to Jenkins.
+<HclListItem name="backup_job_alarm_period" requirement="optional" description="How often, in seconds, the backup job is expected to run. This is the same as <a href=#backup_job_schedule_expression><code>backup_job_schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the value of <a href=#backup_job_metric_name><code>backup_job_metric_name</code></a> and <a href=#backup_job_metric_namespace><code>backup_job_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run." type="number" defaultValue="86400"/>
 
-<a name="allow_ssh_from_cidr_blocks" className="snap-top"></a>
+<HclListItem name="backup_job_metric_name" requirement="optional" description="The name for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully." type="string" defaultValue="jenkins-backup-job"/>
 
-* [**`allow_ssh_from_cidr_blocks`**](#allow_ssh_from_cidr_blocks) &mdash; The IP address ranges in CIDR format from which to allow incoming SSH requests to Jenkins.
+<HclListItem name="backup_job_metric_namespace" requirement="optional" description="The namespace for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully." type="string" defaultValue="Custom/Jenkins"/>
 
-<a name="allow_ssh_from_security_group_ids" className="snap-top"></a>
+<HclListItem name="backup_job_schedule_expression" requirement="optional" description="A cron or rate expression that specifies how often to take a snapshot of the Jenkins server for backup purposes. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for syntax details." type="string" defaultValue="rate(1 day)"/>
 
-* [**`allow_ssh_from_security_group_ids`**](#allow_ssh_from_security_group_ids) &mdash; The IDs of security groups from which to allow incoming SSH requests to Jenkins.
+<HclListItem name="backup_using_dlm" requirement="optional" description="Set to true to backup the Jenkins Server using AWS Data Lifecycle Management Policies." type="bool" defaultValue="true"/>
 
-<a name="backup_job_alarm_period" className="snap-top"></a>
+<HclListItem name="backup_using_lambda" requirement="optional" description="Set to true to backup the Jenkins Server using a Scheduled Lambda Function." type="bool" defaultValue="false"/>
 
-* [**`backup_job_alarm_period`**](#backup_job_alarm_period) &mdash; How often, in seconds, the backup job is expected to run. This is the same as [`backup_job_schedule_expression`](#backup_job_schedule_expression), but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the value of [`backup_job_metric_name`](#backup_job_metric_name) and [`backup_job_metric_namespace`](#backup_job_metric_namespace) isn't updated within this time period, as that indicates the backup failed to run.
+<HclListItem name="build_permission_actions" requirement="optional" description="The list of IAM actions this Jenkins server should be allowed to do: e.g., ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in this AWS account to run builds. These permissions will be added to the server's IAM role for all resources ('*')." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="backup_job_metric_name" className="snap-top"></a>
+<HclListItem name="cloud_init_parts" requirement="optional" description="Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/<a href=#cloudinit_config><code>cloudinit_config</code></a>.html for syntax." type="map" typeDetails="map(object({
+    filename     = string
+    content_type = string
+    content      = string
+  }))" defaultValue="{}"/>
 
-* [**`backup_job_metric_name`**](#backup_job_metric_name) &mdash; The name for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" description="The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data." type="string" defaultValue="null"/>
 
-<a name="backup_job_metric_namespace" className="snap-top"></a>
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" description="The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/<a href=#cloudwatch_log_group><code>cloudwatch_log_group</code></a>#<a href=#retention_in_days><code>retention_in_days</code></a> for all the valid values. When null, the log events are retained forever." type="number" defaultValue="null"/>
 
-* [**`backup_job_metric_namespace`**](#backup_job_metric_namespace) &mdash; The namespace for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" description="Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values." type="map" typeDetails="map(string)" defaultValue="null"/>
 
-<a name="backup_job_schedule_expression" className="snap-top"></a>
+<HclListItem name="custom_tags" requirement="optional" description="A list of custom tags to apply to Jenkins and all other resources." type="map" typeDetails="map(string)" defaultValue="{}"/>
 
-* [**`backup_job_schedule_expression`**](#backup_job_schedule_expression) &mdash; A cron or rate expression that specifies how often to take a snapshot of the Jenkins server for backup purposes. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for syntax details.
+<HclListItem name="default_user" requirement="optional" description="The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'." type="string" defaultValue="ubuntu"/>
 
-<a name="backup_using_dlm" className="snap-top"></a>
+<HclListItem name="dlm_backup_job_schedule_interval" requirement="optional" description="How often this lifecycle policy should be evaluated, in hours." type="number" defaultValue="24"/>
 
-* [**`backup_using_dlm`**](#backup_using_dlm) &mdash; Set to true to backup the Jenkins Server using AWS Data Lifecycle Management Policies.
+<HclListItem name="dlm_backup_job_schedule_name" requirement="optional" description="The name of the data lifecyle management schedule" type="string" defaultValue="daily-last-two-weeks"/>
 
-<a name="backup_using_lambda" className="snap-top"></a>
+<HclListItem name="dlm_backup_job_schedule_number_of_snapshots_to_retain" requirement="optional" description="How many snapshots to keep. Must be an integer between 1 and 1000." type="number" defaultValue="15"/>
 
-* [**`backup_using_lambda`**](#backup_using_lambda) &mdash; Set to true to backup the Jenkins Server using a Scheduled Lambda Function.
+<HclListItem name="dlm_backup_job_schedule_times" requirement="optional" description="A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1." type="list" typeDetails="list(string)" defaultValue="['03:00']"/>
 
-<a name="build_permission_actions" className="snap-top"></a>
+<HclListItem name="ebs_kms_key_arn" requirement="optional" description="The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key." type="string" defaultValue="null"/>
 
-* [**`build_permission_actions`**](#build_permission_actions) &mdash; The list of IAM actions this Jenkins server should be allowed to do: e.g., ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in this AWS account to run builds. These permissions will be added to the server's IAM role for all resources ('*').
+<HclListItem name="ebs_kms_key_arn_is_alias" requirement="optional" description="Whether or not the provide EBS KMS key ARN is a key alias. If providing the key ID, leave this set to false." type="bool" defaultValue="false"/>
 
-<a name="cloud_init_parts" className="snap-top"></a>
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
 
-* [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax.
+<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" description="Set to true to add AIM permissions to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch." type="bool" defaultValue="true"/>
 
-<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Jenkins server." type="bool" defaultValue="true"/>
 
-* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+<HclListItem name="enable_ip_lockdown" requirement="optional" description="Enable ip-lockdown to block access to the instance metadata. Defaults to true." type="bool" defaultValue="true"/>
 
-<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+<HclListItem name="enable_ssh_grunt" requirement="optional" description="Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups." type="bool" defaultValue="true"/>
 
-* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+<HclListItem name="external_account_auto_deploy_iam_role_arns" requirement="optional" description="A list of IAM role ARNs in other AWS accounts that Jenkins will be able to assume to do automated deployment in those accounts." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" description="If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." type="string" defaultValue=""/>
 
-* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+<HclListItem name="is_internal_alb" requirement="optional" description="Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from the public Internet. We strongly recommend setting this to true to keep Jenkins more secure." type="bool" defaultValue="true"/>
 
-<a name="custom_tags" className="snap-top"></a>
+<HclListItem name="jenkins_device_name" requirement="optional" description="The OS device name where the Jenkins EBS volume should be attached" type="string" defaultValue="xvdh"/>
 
-* [**`custom_tags`**](#custom_tags) &mdash; A list of custom tags to apply to Jenkins and all other resources.
+<HclListItem name="jenkins_mount_point" requirement="optional" description="The OS path where the Jenkins EBS volume should be mounted" type="string" defaultValue="/jenkins"/>
 
-<a name="default_user" className="snap-top"></a>
+<HclListItem name="jenkins_user" requirement="optional" description="The OS user that should be used to run Jenkins" type="string" defaultValue="jenkins"/>
 
-* [**`default_user`**](#default_user) &mdash; The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
+<HclListItem name="jenkins_volume_encrypted" requirement="optional" description="Set to true to encrypt the Jenkins EBS volume." type="bool" defaultValue="true"/>
 
-<a name="dlm_backup_job_schedule_interval" className="snap-top"></a>
+<HclListItem name="jenkins_volume_size" requirement="optional" description="The amount of disk space, in GB, to allocate for the EBS volume used by the Jenkins server." type="number" defaultValue="200"/>
 
-* [**`dlm_backup_job_schedule_interval`**](#dlm_backup_job_schedule_interval) &mdash; How often this lifecycle policy should be evaluated, in hours.
+<HclListItem name="jenkins_volume_type" requirement="optional" description="The type of volume to use for the EBS volume used by the Jenkins server. Must be one of: standard, gp2, io1, sc1, or st1." type="string" defaultValue="gp2"/>
 
-<a name="dlm_backup_job_schedule_name" className="snap-top"></a>
+<HclListItem name="keypair_name" requirement="optional" description="The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blank if you don't want to enable Key Pair auth." type="string" defaultValue="null"/>
 
-* [**`dlm_backup_job_schedule_name`**](#dlm_backup_job_schedule_name) &mdash; The name of the data lifecyle management schedule
+<HclListItem name="name" requirement="optional" description="Enter the name of the Jenkins server" type="string" defaultValue="jenkins"/>
 
-<a name="dlm_backup_job_schedule_number_of_snapshots_to_retain" className="snap-top"></a>
+<HclListItem name="root_block_device_volume_type" requirement="optional" description="The type of volume to use for the root disk for Jenkins. Must be one of: standard, gp2, io1, sc1, or st1." type="string" defaultValue="gp2"/>
 
-* [**`dlm_backup_job_schedule_number_of_snapshots_to_retain`**](#dlm_backup_job_schedule_number_of_snapshots_to_retain) &mdash; How many snapshots to keep. Must be an integer between 1 and 1000.
+<HclListItem name="root_volume_size" requirement="optional" description="The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see <a href=#jenkins_volume_size><code>jenkins_volume_size</code></a>), so this root volume is primarily used for the OS, temp folders, apps, etc." type="number" defaultValue="100"/>
 
-<a name="dlm_backup_job_schedule_times" className="snap-top"></a>
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" description="When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use." type="bool" defaultValue="true"/>
 
-* [**`dlm_backup_job_schedule_times`**](#dlm_backup_job_schedule_times) &mdash; A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1.
+<HclListItem name="skip_health_check" requirement="optional" description="If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway." type="bool" defaultValue="false"/>
 
-<a name="ebs_kms_key_arn" className="snap-top"></a>
+<HclListItem name="ssh_grunt_iam_group" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-users"/>
 
-* [**`ebs_kms_key_arn`**](#ebs_kms_key_arn) &mdash; The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key.
+<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server with sudo permissions. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-sudo-users"/>
 
-<a name="ebs_kms_key_arn_is_alias" className="snap-top"></a>
+<HclListItem name="tenancy" requirement="optional" description="The tenancy of this server. Must be one of: default, dedicated, or host." type="string" defaultValue="default"/>
 
-* [**`ebs_kms_key_arn_is_alias`**](#ebs_kms_key_arn_is_alias) &mdash; Whether or not the provide EBS KMS key ARN is a key alias. If providing the key ID, leave this set to false.
-
-<a name="enable_cloudwatch_alarms" className="snap-top"></a>
-
-* [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
-
-<a name="enable_cloudwatch_log_aggregation" className="snap-top"></a>
-
-* [**`enable_cloudwatch_log_aggregation`**](#enable_cloudwatch_log_aggregation) &mdash; Set to true to add AIM permissions to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
-
-<a name="enable_cloudwatch_metrics" className="snap-top"></a>
-
-* [**`enable_cloudwatch_metrics`**](#enable_cloudwatch_metrics) &mdash; Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Jenkins server.
-
-<a name="enable_ip_lockdown" className="snap-top"></a>
-
-* [**`enable_ip_lockdown`**](#enable_ip_lockdown) &mdash; Enable ip-lockdown to block access to the instance metadata. Defaults to true.
-
-<a name="enable_ssh_grunt" className="snap-top"></a>
-
-* [**`enable_ssh_grunt`**](#enable_ssh_grunt) &mdash; Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
-
-<a name="external_account_auto_deploy_iam_role_arns" className="snap-top"></a>
-
-* [**`external_account_auto_deploy_iam_role_arns`**](#external_account_auto_deploy_iam_role_arns) &mdash; A list of IAM role ARNs in other AWS accounts that Jenkins will be able to assume to do automated deployment in those accounts.
-
-<a name="external_account_ssh_grunt_role_arn" className="snap-top"></a>
-
-* [**`external_account_ssh_grunt_role_arn`**](#external_account_ssh_grunt_role_arn) &mdash; If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
-
-<a name="is_internal_alb" className="snap-top"></a>
-
-* [**`is_internal_alb`**](#is_internal_alb) &mdash; Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from the public Internet. We strongly recommend setting this to true to keep Jenkins more secure.
-
-<a name="jenkins_device_name" className="snap-top"></a>
-
-* [**`jenkins_device_name`**](#jenkins_device_name) &mdash; The OS device name where the Jenkins EBS volume should be attached
-
-<a name="jenkins_mount_point" className="snap-top"></a>
-
-* [**`jenkins_mount_point`**](#jenkins_mount_point) &mdash; The OS path where the Jenkins EBS volume should be mounted
-
-<a name="jenkins_user" className="snap-top"></a>
-
-* [**`jenkins_user`**](#jenkins_user) &mdash; The OS user that should be used to run Jenkins
-
-<a name="jenkins_volume_encrypted" className="snap-top"></a>
-
-* [**`jenkins_volume_encrypted`**](#jenkins_volume_encrypted) &mdash; Set to true to encrypt the Jenkins EBS volume.
-
-<a name="jenkins_volume_size" className="snap-top"></a>
-
-* [**`jenkins_volume_size`**](#jenkins_volume_size) &mdash; The amount of disk space, in GB, to allocate for the EBS volume used by the Jenkins server.
-
-<a name="jenkins_volume_type" className="snap-top"></a>
-
-* [**`jenkins_volume_type`**](#jenkins_volume_type) &mdash; The type of volume to use for the EBS volume used by the Jenkins server. Must be one of: standard, gp2, io1, sc1, or st1.
-
-<a name="keypair_name" className="snap-top"></a>
-
-* [**`keypair_name`**](#keypair_name) &mdash; The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blank if you don't want to enable Key Pair auth.
-
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; Enter the name of the Jenkins server
-
-<a name="root_block_device_volume_type" className="snap-top"></a>
-
-* [**`root_block_device_volume_type`**](#root_block_device_volume_type) &mdash; The type of volume to use for the root disk for Jenkins. Must be one of: standard, gp2, io1, sc1, or st1.
-
-<a name="root_volume_size" className="snap-top"></a>
-
-* [**`root_volume_size`**](#root_volume_size) &mdash; The amount of disk space, in GB, to allocate for the root volume of this server. Note that all of Jenkins' data is stored on a separate EBS Volume (see [`jenkins_volume_size`](#jenkins_volume_size)), so this root volume is primarily used for the OS, temp folders, apps, etc.
-
-<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
-
-* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
-
-<a name="skip_health_check" className="snap-top"></a>
-
-* [**`skip_health_check`**](#skip_health_check) &mdash; If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
-
-<a name="ssh_grunt_iam_group" className="snap-top"></a>
-
-* [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
-
-<a name="ssh_grunt_iam_group_sudo" className="snap-top"></a>
-
-* [**`ssh_grunt_iam_group_sudo`**](#ssh_grunt_iam_group_sudo) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server with sudo permissions. This value is only used if [`enable_ssh_grunt`](#enable_ssh_grunt)=true.
-
-<a name="tenancy" className="snap-top"></a>
-
-* [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
-
-<a name="use_managed_iam_policies" className="snap-top"></a>
-
-* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+<HclListItem name="use_managed_iam_policies" requirement="optional" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." type="bool" defaultValue="true"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="alb_arn" className="snap-top"></a>
+<HclListItem name="alb_arn" requirement="required" description="The ARN of the ALB deployed in front of Jenkins"/>
 
-* [**`alb_arn`**](#alb_arn) &mdash; The ARN of the ALB deployed in front of Jenkins
+<HclListItem name="alb_dns_name" requirement="required" description="The DNS name of the ALB deployed in front of Jenkins"/>
 
-<a name="alb_dns_name" className="snap-top"></a>
+<HclListItem name="alb_hosted_zone_id" requirement="required" description="The hosted zone ID of the ALB deployed in front of Jenkins"/>
 
-* [**`alb_dns_name`**](#alb_dns_name) &mdash; The DNS name of the ALB deployed in front of Jenkins
+<HclListItem name="alb_http_listener_arns" requirement="required" description="The ARNs of just the HTTP ALB listeners of the ALB deployed in front of Jenkins"/>
 
-<a name="alb_hosted_zone_id" className="snap-top"></a>
+<HclListItem name="alb_https_listener_acm_cert_arns" requirement="required" description="The ARNs of just the HTTPS ALB listeners that usse ACM certs of the ALB deployed in front of Jenkins"/>
 
-* [**`alb_hosted_zone_id`**](#alb_hosted_zone_id) &mdash; The hosted zone ID of the ALB deployed in front of Jenkins
+<HclListItem name="alb_https_listener_non_acm_cert_arns" requirement="required" description="The ARNs of just the HTTPS ALB listeners that use non-ACM certs of the ALB deployed in front of Jenkins"/>
 
-<a name="alb_http_listener_arns" className="snap-top"></a>
+<HclListItem name="alb_listener_arns" requirement="required" description="The ARNs of the ALB listeners of the ALB deployed in front of Jenkins"/>
 
-* [**`alb_http_listener_arns`**](#alb_http_listener_arns) &mdash; The ARNs of just the HTTP ALB listeners of the ALB deployed in front of Jenkins
+<HclListItem name="alb_name" requirement="required" description="The name of the ALB deployed in front of Jenkins"/>
 
-<a name="alb_https_listener_acm_cert_arns" className="snap-top"></a>
+<HclListItem name="alb_security_group_id" requirement="required" description="The ID of the security group attached to the ALB deployed in front of Jenkins"/>
 
-* [**`alb_https_listener_acm_cert_arns`**](#alb_https_listener_acm_cert_arns) &mdash; The ARNs of just the HTTPS ALB listeners that usse ACM certs of the ALB deployed in front of Jenkins
+<HclListItem name="backup_lambda_function_arn" requirement="required"/>
 
-<a name="alb_https_listener_non_acm_cert_arns" className="snap-top"></a>
+<HclListItem name="backup_lambda_function_name" requirement="required"/>
 
-* [**`alb_https_listener_non_acm_cert_arns`**](#alb_https_listener_non_acm_cert_arns) &mdash; The ARNs of just the HTTPS ALB listeners that use non-ACM certs of the ALB deployed in front of Jenkins
+<HclListItem name="jenkins_asg_name" requirement="required" description="The name of the Auto Scaling Group in which Jenkins is running"/>
 
-<a name="alb_listener_arns" className="snap-top"></a>
+<HclListItem name="jenkins_domain_name" requirement="required" description="The public domain name configured for Jenkins"/>
 
-* [**`alb_listener_arns`**](#alb_listener_arns) &mdash; The ARNs of the ALB listeners of the ALB deployed in front of Jenkins
+<HclListItem name="jenkins_ebs_volume_id" requirement="required" description="The ID of the EBS Volume that will store the <a href=#JENKINS_HOME><code>JENKINS_HOME</code></a> directory"/>
 
-<a name="alb_name" className="snap-top"></a>
+<HclListItem name="jenkins_iam_role_arn" requirement="required" description="The ARN of the IAM role attached to the Jenkins EC2 Instance"/>
 
-* [**`alb_name`**](#alb_name) &mdash; The name of the ALB deployed in front of Jenkins
+<HclListItem name="jenkins_iam_role_id" requirement="required" description="The ID of the IAM role attached to the Jenkins EC2 Instance"/>
 
-<a name="alb_security_group_id" className="snap-top"></a>
-
-* [**`alb_security_group_id`**](#alb_security_group_id) &mdash; The ID of the security group attached to the ALB deployed in front of Jenkins
-
-<a name="backup_lambda_function_arn" className="snap-top"></a>
-
-* [**`backup_lambda_function_arn`**](#backup_lambda_function_arn) &mdash; 
-
-<a name="backup_lambda_function_name" className="snap-top"></a>
-
-* [**`backup_lambda_function_name`**](#backup_lambda_function_name) &mdash; 
-
-<a name="jenkins_asg_name" className="snap-top"></a>
-
-* [**`jenkins_asg_name`**](#jenkins_asg_name) &mdash; The name of the Auto Scaling Group in which Jenkins is running
-
-<a name="jenkins_domain_name" className="snap-top"></a>
-
-* [**`jenkins_domain_name`**](#jenkins_domain_name) &mdash; The public domain name configured for Jenkins
-
-<a name="jenkins_ebs_volume_id" className="snap-top"></a>
-
-* [**`jenkins_ebs_volume_id`**](#jenkins_ebs_volume_id) &mdash; The ID of the EBS Volume that will store the [`JENKINS_HOME`](#JENKINS_HOME) directory
-
-<a name="jenkins_iam_role_arn" className="snap-top"></a>
-
-* [**`jenkins_iam_role_arn`**](#jenkins_iam_role_arn) &mdash; The ARN of the IAM role attached to the Jenkins EC2 Instance
-
-<a name="jenkins_iam_role_id" className="snap-top"></a>
-
-* [**`jenkins_iam_role_id`**](#jenkins_iam_role_id) &mdash; The ID of the IAM role attached to the Jenkins EC2 Instance
-
-<a name="jenkins_security_group_id" className="snap-top"></a>
-
-* [**`jenkins_security_group_id`**](#jenkins_security_group_id) &mdash; The ID of the Security Group attached to the Jenkins EC2 Instance
+<HclListItem name="jenkins_security_group_id" requirement="required" description="The ID of the Security Group attached to the Jenkins EC2 Instance"/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a8dcaf2a9844f30ed57464c78e81de1a"}
+{"sourcePlugin":"service-catalog-api","hash":"2afae11b6798a73668c66980bd09a4e4"}
 ##DOCS-SOURCER-END -->

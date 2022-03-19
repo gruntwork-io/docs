@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -93,25 +94,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="allocated_storage" className="snap-top"></a>
+<HclListItem name="allocated_storage" requirement="required" description="The amount of storage space the DB should use, in GB." type="number"/>
 
-* [**`allocated_storage`**](#allocated_storage) &mdash; The amount of storage space the DB should use, in GB.
+<HclListItem name="engine_version" requirement="required" description="The version of var.engine to use (e.g. 8.0.17 for mysql)." type="string"/>
 
-<a name="engine_version" className="snap-top"></a>
+<HclListItem name="name" requirement="required" description="The name used to namespace all the RDS resources created by these templates, including the cluster and cluster instances (e.g. mysql-stage). Must be unique in this region. Must be a lowercase string." type="string"/>
 
-* [**`engine_version`**](#engine_version) &mdash; The version of var.engine to use (e.g. 8.0.17 for mysql).
+<HclListItem name="subnet_ids" requirement="required" description="The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." type="list" typeDetails="list(string)"/>
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name used to namespace all the RDS resources created by these templates, including the cluster and cluster instances (e.g. mysql-stage). Must be unique in this region. Must be a lowercase string.
-
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
+<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy RDS." type="string"/>
 
 
 <br/>
@@ -119,339 +110,240 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="alarms_sns_topic_arns" className="snap-top"></a>
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails." type="list" typeDetails="list(string)" defaultValue="[]"/>
+
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" description="The list of network CIDR blocks to allow network access to RDS from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" description="The list of IDs or Security Groups to allow network access to RDS from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+
+<HclListItem name="allow_manage_key_permissions_with_iam" requirement="optional" description="If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient." type="bool" defaultValue="false"/>
+
+<HclListItem name="apply_immediately" requirement="optional" description="Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Note that cluster modifications may cause degraded performance or downtime." type="bool" defaultValue="false"/>
+
+<HclListItem name="backup_job_alarm_period" requirement="optional" description="How often, in seconds, the backup job is expected to run. This is the same as <a href=#schedule_expression><code>schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the metric in <a href=#create_snapshot_cloudwatch_metric_namespace><code>create_snapshot_cloudwatch_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run." type="number" defaultValue="3600"/>
+
+<HclListItem name="backup_retention_period" requirement="optional" description="How many days to keep backup snapshots around before cleaning them up. Must be 1 or greater to support read replicas." type="number" defaultValue="30"/>
+
+<HclListItem name="backup_window" requirement="optional" description="The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs." type="string" defaultValue="06:00-07:00"/>
+
+<HclListItem name="cmk_administrator_iam_arns" requirement="optional" description="A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this list is empty, and <a href=#kms_key_arn><code>kms_key_arn</code></a> is null, the ARN of the current user will be used." type="list" typeDetails="list(string)" defaultValue="[]"/>
+
+<HclListItem name="cmk_external_user_iam_arns" requirement="optional" description="A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::<aws-account-id>:root)." type="list" typeDetails="list(string)" defaultValue="[]"/>
+
+<HclListItem name="cmk_user_iam_arns" requirement="optional" description="A list of IAM ARNs for users who should be given permissions to use this CMK (e.g.  arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this list is empty, and <a href=#kms_key_arn><code>kms_key_arn</code></a> is null, the ARN of the current user will be used." type="list" typeDetails="list(object({
+    name = list(string)
+    conditions = list(object({
+      test     = string
+      variable = string
+      values   = list(string)
+    }))
+  }))" defaultValue="[]"/>
 
-* [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
+<HclListItem name="create_custom_kms_key" requirement="optional" description="If set to true, create a KMS CMK and use it to encrypt data on disk in the database. The permissions for this CMK will be assigned by the following variables: <a href=#cmk_administrator_iam_arns><code>cmk_administrator_iam_arns</code></a>, <a href=#cmk_user_iam_arns><code>cmk_user_iam_arns</code></a>, <a href=#cmk_external_user_iam_arns><code>cmk_external_user_iam_arns</code></a>, <a href=#allow_manage_key_permissions><code>allow_manage_key_permissions</code></a>." type="bool" defaultValue="false"/>
 
-<a name="allow_connections_from_cidr_blocks" className="snap-top"></a>
+<HclListItem name="create_snapshot_cloudwatch_metric_namespace" requirement="optional" description="The namespace to use for the CloudWatch metric we report every time a new RDS snapshot is created. We add a CloudWatch alarm on this metric to notify us if the backup job fails to run for any reason. Defaults to the cluster name." type="string" defaultValue="null"/>
 
-* [**`allow_connections_from_cidr_blocks`**](#allow_connections_from_cidr_blocks) &mdash; The list of network CIDR blocks to allow network access to RDS from. One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the database to be reachable.
+<HclListItem name="custom_parameter_group" requirement="optional" description="Configure a custom parameter group for the RDS DB. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group." type="object" typeDetails="object({
+    # Name of the parameter group to create
+    name = string
+    # The family of the DB parameter group.
+    family = string
+    # The parameters to configure on the created parameter group.
+    parameters = list(object({
+      # Parameter name to configure.
+      name = string
+      # Vaue to set the parameter.
+      value = string
+      # When to apply the parameter. 'immediate' or 'pending-reboot'.
+      apply_method = string
+    }))
+  })" defaultValue="null"/>
 
-<a name="allow_connections_from_security_groups" className="snap-top"></a>
+<HclListItem name="custom_tags" requirement="optional" description="A map of custom tags to apply to the RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
 
-* [**`allow_connections_from_security_groups`**](#allow_connections_from_security_groups) &mdash; The list of IDs or Security Groups to allow network access to RDS from. All security groups must either be in the VPC specified by [`vpc_id`](#vpc_id), or a peered VPC with the VPC specified by [`vpc_id`](#vpc_id). One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the database to be reachable.
+<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" description="Parameters for the cpu usage widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-<a name="allow_manage_key_permissions_with_iam" className="snap-top"></a>
+<HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" description="Parameters for the database connections widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-* [**`allow_manage_key_permissions_with_iam`**](#allow_manage_key_permissions_with_iam) &mdash; If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient.
+<HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" description="Parameters for the available disk space widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-<a name="apply_immediately" className="snap-top"></a>
+<HclListItem name="dashboard_memory_widget_parameters" requirement="optional" description="Parameters for the available memory widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-* [**`apply_immediately`**](#apply_immediately) &mdash; Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Note that cluster modifications may cause degraded performance or downtime.
+<HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-<a name="backup_job_alarm_period" className="snap-top"></a>
+<HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+    # The period in seconds for metrics to sample across.
+    period = number
+    # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+    # space.
+    width  = number
+    height = number
+  })" defaultValue="{'height':6,'period':60,'width':8}"/>
 
-* [**`backup_job_alarm_period`**](#backup_job_alarm_period) &mdash; How often, in seconds, the backup job is expected to run. This is the same as [`schedule_expression`](#schedule_expression), but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the metric in [`create_snapshot_cloudwatch_metric_namespace`](#create_snapshot_cloudwatch_metric_namespace) isn't updated within this time period, as that indicates the backup failed to run.
+<HclListItem name="db_config_secrets_manager_id" requirement="optional" description="The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as null, and use the <a href=#master_username><code>master_username</code></a>, <a href=#master_password><code>master_password</code></a>, <a href=#db_name><code>db_name</code></a>, engine, and port variables." type="string" defaultValue="null"/>
 
-<a name="backup_retention_period" className="snap-top"></a>
+<HclListItem name="db_name" requirement="optional" description="The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create an empty database on the RDS instance. This can also be provided via AWS Secrets Manager. See the description of <a href=#db_config_secrets_manager_id><code>db_config_secrets_manager_id</code></a>." type="string" defaultValue="null"/>
 
-* [**`backup_retention_period`**](#backup_retention_period) &mdash; How many days to keep backup snapshots around before cleaning them up. Must be 1 or greater to support read replicas.
+<HclListItem name="delete_automated_backups" requirement="optional" description="Specifies whether to remove automated backups immediately after the DB instance is deleted" type="bool" defaultValue="true"/>
 
-<a name="backup_window" className="snap-top"></a>
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
 
-* [**`backup_window`**](#backup_window) &mdash; The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" description="When true, enable CloudWatch metrics for the manual snapshots created for the purpose of sharing with another account." type="bool" defaultValue="true"/>
 
-<a name="cmk_administrator_iam_arns" className="snap-top"></a>
+<HclListItem name="enable_deletion_protection" requirement="optional" description="Enable deletion protection on the RDS instance. If this is enabled, the database cannot be deleted prior to disabling" type="bool" defaultValue="false"/>
 
-* [**`cmk_administrator_iam_arns`**](#cmk_administrator_iam_arns) &mdash; A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and [`kms_key_arn`](#kms_key_arn) is null, the ARN of the current user will be used.
+<HclListItem name="enable_perf_alarms" requirement="optional" description="Set to true to enable alarms related to performance, such as read and write latency alarms. Set to false to disable those alarms if you aren't sure what would be reasonable perf numbers for your RDS set up or if those numbers are too unpredictable." type="bool" defaultValue="true"/>
 
-<a name="cmk_external_user_iam_arns" className="snap-top"></a>
+<HclListItem name="enable_share_snapshot_cloudwatch_alarms" requirement="optional" description="When true, enable CloudWatch alarms for the manual snapshots created for the purpose of sharing with another account. Only used if <a href=#share_snapshot_with_another_account><code>share_snapshot_with_another_account</code></a> is true." type="bool" defaultValue="true"/>
 
-* [**`cmk_external_user_iam_arns`**](#cmk_external_user_iam_arns) &mdash; A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:root).
+<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" description="List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade (PostgreSQL)." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="cmk_user_iam_arns" className="snap-top"></a>
+<HclListItem name="engine" requirement="optional" description="The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Manager. See the description of <a href=#db_config_secrets_manager_id><code>db_config_secrets_manager_id</code></a>." type="string" defaultValue="null"/>
 
-* [**`cmk_user_iam_arns`**](#cmk_user_iam_arns) &mdash; A list of IAM ARNs for users who should be given permissions to use this CMK (e.g.  arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and [`kms_key_arn`](#kms_key_arn) is null, the ARN of the current user will be used.
+<HclListItem name="high_cpu_utilization_period" requirement="optional" description="The period, in seconds, over which to measure the CPU utilization percentage." type="number" defaultValue="60"/>
 
-<a name="create_custom_kms_key" className="snap-top"></a>
+<HclListItem name="high_cpu_utilization_threshold" requirement="optional" description="Trigger an alarm if the DB instance has a CPU utilization percentage above this threshold." type="number" defaultValue="90"/>
 
-* [**`create_custom_kms_key`**](#create_custom_kms_key) &mdash; If set to true, create a KMS CMK and use it to encrypt data on disk in the database. The permissions for this CMK will be assigned by the following variables: [`cmk_administrator_iam_arns`](#cmk_administrator_iam_arns), [`cmk_user_iam_arns`](#cmk_user_iam_arns), [`cmk_external_user_iam_arns`](#cmk_external_user_iam_arns), [`allow_manage_key_permissions`](#allow_manage_key_permissions).
+<HclListItem name="high_read_latency_period" requirement="optional" description="The period, in seconds, over which to measure the read latency." type="number" defaultValue="60"/>
 
-<a name="create_snapshot_cloudwatch_metric_namespace" className="snap-top"></a>
+<HclListItem name="high_read_latency_threshold" requirement="optional" description="Trigger an alarm if the DB instance read latency (average amount of time taken per disk I/O operation), in seconds, is above this threshold." type="number" defaultValue="5"/>
 
-* [**`create_snapshot_cloudwatch_metric_namespace`**](#create_snapshot_cloudwatch_metric_namespace) &mdash; The namespace to use for the CloudWatch metric we report every time a new RDS snapshot is created. We add a CloudWatch alarm on this metric to notify us if the backup job fails to run for any reason. Defaults to the cluster name.
+<HclListItem name="high_write_latency_period" requirement="optional" description="The period, in seconds, over which to measure the write latency." type="number" defaultValue="60"/>
 
-<a name="custom_parameter_group" className="snap-top"></a>
+<HclListItem name="high_write_latency_threshold" requirement="optional" description="Trigger an alarm if the DB instance write latency (average amount of time taken per disk I/O operation), in seconds, is above this threshold." type="number" defaultValue="5"/>
 
-* [**`custom_parameter_group`**](#custom_parameter_group) &mdash; Configure a custom parameter group for the RDS DB. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+<HclListItem name="iam_database_authentication_enabled" requirement="optional" description="Specifies whether mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled. Disabled by default." type="bool" defaultValue="false"/>
 
-<a name="custom_tags" className="snap-top"></a>
+<HclListItem name="instance_type" requirement="optional" description="The instance type to use for the db (e.g. db.t3.micro)" type="string" defaultValue="db.t3.micro"/>
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value.
+<HclListItem name="kms_key_arn" requirement="optional" description="The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that will be used to encrypt/decrypt backup files. If you leave this blank, the default RDS KMS key for the account will be used. If you set <a href=#create_custom_kms_key><code>create_custom_kms_key</code></a> to true, this value will be ignored and a custom key will be created and used instead." type="string" defaultValue="null"/>
 
-<a name="dashboard_cpu_usage_widget_parameters" className="snap-top"></a>
+<HclListItem name="license_model" requirement="optional" description="The license model to use for this DB. Check the docs for your RDS DB for available license models. Set to an empty string to use the default." type="string" defaultValue="null"/>
 
-* [**`dashboard_cpu_usage_widget_parameters`**](#dashboard_cpu_usage_widget_parameters) &mdash; Parameters for the cpu usage widget to output for use in a CloudWatch dashboard.
+<HclListItem name="low_disk_space_available_period" requirement="optional" description="The period, in seconds, over which to measure the available free disk space." type="number" defaultValue="60"/>
 
-<a name="dashboard_db_connections_widget_parameters" className="snap-top"></a>
+<HclListItem name="low_disk_space_available_threshold" requirement="optional" description="Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops below this threshold." type="number" defaultValue="1000000000"/>
 
-* [**`dashboard_db_connections_widget_parameters`**](#dashboard_db_connections_widget_parameters) &mdash; Parameters for the database connections widget to output for use in a CloudWatch dashboard.
+<HclListItem name="low_memory_available_period" requirement="optional" description="The period, in seconds, over which to measure the available free memory." type="number" defaultValue="60"/>
 
-<a name="dashboard_disk_space_widget_parameters" className="snap-top"></a>
+<HclListItem name="low_memory_available_threshold" requirement="optional" description="Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drops below this threshold." type="number" defaultValue="100000000"/>
 
-* [**`dashboard_disk_space_widget_parameters`**](#dashboard_disk_space_widget_parameters) &mdash; Parameters for the available disk space widget to output for use in a CloudWatch dashboard.
+<HclListItem name="master_password" requirement="optional" description="The value to use for the master password of the database. This can also be provided via AWS Secrets Manager. See the description of <a href=#db_config_secrets_manager_id><code>db_config_secrets_manager_id</code></a>." type="string" defaultValue="null"/>
 
-<a name="dashboard_memory_widget_parameters" className="snap-top"></a>
+<HclListItem name="master_username" requirement="optional" description="The value to use for the master username of the database. This can also be provided via AWS Secrets Manager. See the description of <a href=#db_config_secrets_manager_id><code>db_config_secrets_manager_id</code></a>." type="string" defaultValue="null"/>
 
-* [**`dashboard_memory_widget_parameters`**](#dashboard_memory_widget_parameters) &mdash; Parameters for the available memory widget to output for use in a CloudWatch dashboard.
+<HclListItem name="max_allocated_storage" requirement="optional" description="When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to <a href=#allocated_storage><code>allocated_storage</code></a>. Must be greater than or equal to <a href=#allocated_storage><code>allocated_storage</code></a> or 0 to disable Storage Autoscaling." type="number" defaultValue="0"/>
 
-<a name="dashboard_read_latency_widget_parameters" className="snap-top"></a>
+<HclListItem name="multi_az" requirement="optional" description="Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over." type="bool" defaultValue="false"/>
 
-* [**`dashboard_read_latency_widget_parameters`**](#dashboard_read_latency_widget_parameters) &mdash; Parameters for the read latency widget to output for use in a CloudWatch dashboard.
+<HclListItem name="num_read_replicas" requirement="optional" description="The number of read replicas to deploy" type="number" defaultValue="0"/>
 
-<a name="dashboard_write_latency_widget_parameters" className="snap-top"></a>
+<HclListItem name="performance_insights_enabled" requirement="optional" description="Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details." type="bool" defaultValue="false"/>
 
-* [**`dashboard_write_latency_widget_parameters`**](#dashboard_write_latency_widget_parameters) &mdash; Parameters for the read latency widget to output for use in a CloudWatch dashboard.
+<HclListItem name="port" requirement="optional" description="The port the DB will listen on (e.g. 3306). Alternatively, this can be provided via AWS Secrets Manager. See the description of <a href=#db_config_secrets_manager_id><code>db_config_secrets_manager_id</code></a>." type="number" defaultValue="null"/>
 
-<a name="db_config_secrets_manager_id" className="snap-top"></a>
+<HclListItem name="publicly_accessible" requirement="optional" description="If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure. This flag MUST be false for serverless mode." type="bool" defaultValue="false"/>
 
-* [**`db_config_secrets_manager_id`**](#db_config_secrets_manager_id) &mdash; The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as null, and use the [`master_username`](#master_username), [`master_password`](#master_password), [`db_name`](#db_name), engine, and port variables.
+<HclListItem name="replica_backup_retention_period" requirement="optional" description="How many days to keep backup snapshots around before cleaning them up on the read replicas. Must be 1 or greater to support read replicas. 0 means disable automated backups." type="number" defaultValue="0"/>
 
-<a name="db_name" className="snap-top"></a>
+<HclListItem name="share_snapshot_max_snapshots" requirement="optional" description="The maximum number of snapshots to keep around for the purpose of cross account sharing. Once this number is exceeded, a lambda function will delete the oldest snapshots. Only used if <a href=#share_snapshot_with_another_account><code>share_snapshot_with_another_account</code></a> is true." type="number" defaultValue="30"/>
 
-* [**`db_name`**](#db_name) &mdash; The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create an empty database on the RDS instance. This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
+<HclListItem name="share_snapshot_schedule_expression" requirement="optional" description="An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ? *) or rate(5 minutes). Required if <a href=#share_snapshot_with_another_account><code>share_snapshot_with_another_account</code></a> is true" type="string" defaultValue="null"/>
 
-<a name="delete_automated_backups" className="snap-top"></a>
+<HclListItem name="share_snapshot_with_account_id" requirement="optional" description="The ID of the AWS Account that the snapshot should be shared with. Required if <a href=#share_snapshot_with_another_account><code>share_snapshot_with_another_account</code></a> is true." type="string" defaultValue="null"/>
 
-* [**`delete_automated_backups`**](#delete_automated_backups) &mdash; Specifies whether to remove automated backups immediately after the DB instance is deleted
+<HclListItem name="share_snapshot_with_another_account" requirement="optional" description="If set to true, take periodic snapshots of the RDS DB that should be shared with another account." type="bool" defaultValue="false"/>
 
-<a name="enable_cloudwatch_alarms" className="snap-top"></a>
+<HclListItem name="skip_final_snapshot" requirement="optional" description="Determines whether a final DB snapshot is created before the DB instance is deleted. Be very careful setting this to true; if you do, and you delete this DB instance, you will not have any backups of the data! You almost never want to set this to true, unless you are doing automated or manual testing." type="bool" defaultValue="false"/>
 
-* [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
+<HclListItem name="snapshot_identifier" requirement="optional" description="If non-null, the RDS Instance will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the RDS console, e.g: rds:production-2015-06-26-06-05." type="string" defaultValue="null"/>
 
-<a name="enable_cloudwatch_metrics" className="snap-top"></a>
+<HclListItem name="storage_encrypted" requirement="optional" description="Specifies whether the DB instance is encrypted." type="bool" defaultValue="true"/>
 
-* [**`enable_cloudwatch_metrics`**](#enable_cloudwatch_metrics) &mdash; When true, enable CloudWatch metrics for the manual snapshots created for the purpose of sharing with another account.
-
-<a name="enable_deletion_protection" className="snap-top"></a>
-
-* [**`enable_deletion_protection`**](#enable_deletion_protection) &mdash; Enable deletion protection on the RDS instance. If this is enabled, the database cannot be deleted prior to disabling
-
-<a name="enable_perf_alarms" className="snap-top"></a>
-
-* [**`enable_perf_alarms`**](#enable_perf_alarms) &mdash; Set to true to enable alarms related to performance, such as read and write latency alarms. Set to false to disable those alarms if you aren't sure what would be reasonable perf numbers for your RDS set up or if those numbers are too unpredictable.
-
-<a name="enable_share_snapshot_cloudwatch_alarms" className="snap-top"></a>
-
-* [**`enable_share_snapshot_cloudwatch_alarms`**](#enable_share_snapshot_cloudwatch_alarms) &mdash; When true, enable CloudWatch alarms for the manual snapshots created for the purpose of sharing with another account. Only used if [`share_snapshot_with_another_account`](#share_snapshot_with_another_account) is true.
-
-<a name="enabled_cloudwatch_logs_exports" className="snap-top"></a>
-
-* [**`enabled_cloudwatch_logs_exports`**](#enabled_cloudwatch_logs_exports) &mdash; List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade (PostgreSQL).
-
-<a name="engine" className="snap-top"></a>
-
-* [**`engine`**](#engine) &mdash; The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
-
-<a name="high_cpu_utilization_period" className="snap-top"></a>
-
-* [**`high_cpu_utilization_period`**](#high_cpu_utilization_period) &mdash; The period, in seconds, over which to measure the CPU utilization percentage.
-
-<a name="high_cpu_utilization_threshold" className="snap-top"></a>
-
-* [**`high_cpu_utilization_threshold`**](#high_cpu_utilization_threshold) &mdash; Trigger an alarm if the DB instance has a CPU utilization percentage above this threshold.
-
-<a name="high_read_latency_period" className="snap-top"></a>
-
-* [**`high_read_latency_period`**](#high_read_latency_period) &mdash; The period, in seconds, over which to measure the read latency.
-
-<a name="high_read_latency_threshold" className="snap-top"></a>
-
-* [**`high_read_latency_threshold`**](#high_read_latency_threshold) &mdash; Trigger an alarm if the DB instance read latency (average amount of time taken per disk I/O operation), in seconds, is above this threshold.
-
-<a name="high_write_latency_period" className="snap-top"></a>
-
-* [**`high_write_latency_period`**](#high_write_latency_period) &mdash; The period, in seconds, over which to measure the write latency.
-
-<a name="high_write_latency_threshold" className="snap-top"></a>
-
-* [**`high_write_latency_threshold`**](#high_write_latency_threshold) &mdash; Trigger an alarm if the DB instance write latency (average amount of time taken per disk I/O operation), in seconds, is above this threshold.
-
-<a name="iam_database_authentication_enabled" className="snap-top"></a>
-
-* [**`iam_database_authentication_enabled`**](#iam_database_authentication_enabled) &mdash; Specifies whether mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled. Disabled by default.
-
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The instance type to use for the db (e.g. db.t3.micro)
-
-<a name="kms_key_arn" className="snap-top"></a>
-
-* [**`kms_key_arn`**](#kms_key_arn) &mdash; The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that will be used to encrypt/decrypt backup files. If you leave this blank, the default RDS KMS key for the account will be used. If you set [`create_custom_kms_key`](#create_custom_kms_key) to true, this value will be ignored and a custom key will be created and used instead.
-
-<a name="license_model" className="snap-top"></a>
-
-* [**`license_model`**](#license_model) &mdash; The license model to use for this DB. Check the docs for your RDS DB for available license models. Set to an empty string to use the default.
-
-<a name="low_disk_space_available_period" className="snap-top"></a>
-
-* [**`low_disk_space_available_period`**](#low_disk_space_available_period) &mdash; The period, in seconds, over which to measure the available free disk space.
-
-<a name="low_disk_space_available_threshold" className="snap-top"></a>
-
-* [**`low_disk_space_available_threshold`**](#low_disk_space_available_threshold) &mdash; Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops below this threshold.
-
-<a name="low_memory_available_period" className="snap-top"></a>
-
-* [**`low_memory_available_period`**](#low_memory_available_period) &mdash; The period, in seconds, over which to measure the available free memory.
-
-<a name="low_memory_available_threshold" className="snap-top"></a>
-
-* [**`low_memory_available_threshold`**](#low_memory_available_threshold) &mdash; Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drops below this threshold.
-
-<a name="master_password" className="snap-top"></a>
-
-* [**`master_password`**](#master_password) &mdash; The value to use for the master password of the database. This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
-
-<a name="master_username" className="snap-top"></a>
-
-* [**`master_username`**](#master_username) &mdash; The value to use for the master username of the database. This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
-
-<a name="max_allocated_storage" className="snap-top"></a>
-
-* [**`max_allocated_storage`**](#max_allocated_storage) &mdash; When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to [`allocated_storage`](#allocated_storage). Must be greater than or equal to [`allocated_storage`](#allocated_storage) or 0 to disable Storage Autoscaling.
-
-<a name="multi_az" className="snap-top"></a>
-
-* [**`multi_az`**](#multi_az) &mdash; Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over.
-
-<a name="num_read_replicas" className="snap-top"></a>
-
-* [**`num_read_replicas`**](#num_read_replicas) &mdash; The number of read replicas to deploy
-
-<a name="performance_insights_enabled" className="snap-top"></a>
-
-* [**`performance_insights_enabled`**](#performance_insights_enabled) &mdash; Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
-
-<a name="port" className="snap-top"></a>
-
-* [**`port`**](#port) &mdash; The port the DB will listen on (e.g. 3306). Alternatively, this can be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
-
-<a name="publicly_accessible" className="snap-top"></a>
-
-* [**`publicly_accessible`**](#publicly_accessible) &mdash; If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR REGULAR USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure. This flag MUST be false for serverless mode.
-
-<a name="replica_backup_retention_period" className="snap-top"></a>
-
-* [**`replica_backup_retention_period`**](#replica_backup_retention_period) &mdash; How many days to keep backup snapshots around before cleaning them up on the read replicas. Must be 1 or greater to support read replicas. 0 means disable automated backups.
-
-<a name="share_snapshot_max_snapshots" className="snap-top"></a>
-
-* [**`share_snapshot_max_snapshots`**](#share_snapshot_max_snapshots) &mdash; The maximum number of snapshots to keep around for the purpose of cross account sharing. Once this number is exceeded, a lambda function will delete the oldest snapshots. Only used if [`share_snapshot_with_another_account`](#share_snapshot_with_another_account) is true.
-
-<a name="share_snapshot_schedule_expression" className="snap-top"></a>
-
-* [**`share_snapshot_schedule_expression`**](#share_snapshot_schedule_expression) &mdash; An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ? *) or rate(5 minutes). Required if [`share_snapshot_with_another_account`](#share_snapshot_with_another_account) is true
-
-<a name="share_snapshot_with_account_id" className="snap-top"></a>
-
-* [**`share_snapshot_with_account_id`**](#share_snapshot_with_account_id) &mdash; The ID of the AWS Account that the snapshot should be shared with. Required if [`share_snapshot_with_another_account`](#share_snapshot_with_another_account) is true.
-
-<a name="share_snapshot_with_another_account" className="snap-top"></a>
-
-* [**`share_snapshot_with_another_account`**](#share_snapshot_with_another_account) &mdash; If set to true, take periodic snapshots of the RDS DB that should be shared with another account.
-
-<a name="skip_final_snapshot" className="snap-top"></a>
-
-* [**`skip_final_snapshot`**](#skip_final_snapshot) &mdash; Determines whether a final DB snapshot is created before the DB instance is deleted. Be very careful setting this to true; if you do, and you delete this DB instance, you will not have any backups of the data! You almost never want to set this to true, unless you are doing automated or manual testing.
-
-<a name="snapshot_identifier" className="snap-top"></a>
-
-* [**`snapshot_identifier`**](#snapshot_identifier) &mdash; If non-null, the RDS Instance will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the RDS console, e.g: rds:production-2015-06-26-06-05.
-
-<a name="storage_encrypted" className="snap-top"></a>
-
-* [**`storage_encrypted`**](#storage_encrypted) &mdash; Specifies whether the DB instance is encrypted.
-
-<a name="too_many_db_connections_threshold" className="snap-top"></a>
-
-* [**`too_many_db_connections_threshold`**](#too_many_db_connections_threshold) &mdash; Trigger an alarm if the number of connections to the DB instance goes above this threshold.
+<HclListItem name="too_many_db_connections_threshold" requirement="optional" description="Trigger an alarm if the number of connections to the DB instance goes above this threshold." type="number" defaultValue="null"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="all_metric_widgets" className="snap-top"></a>
+<HclListItem name="all_metric_widgets" requirement="required" description="A list of all the CloudWatch Dashboard metric widgets available in this module."/>
 
-* [**`all_metric_widgets`**](#all_metric_widgets) &mdash; A list of all the CloudWatch Dashboard metric widgets available in this module.
+<HclListItem name="db_name" requirement="required" description="The name of the empty database created on this RDS DB instance."/>
 
-<a name="db_name" className="snap-top"></a>
+<HclListItem name="metric_widget_rds_cpu_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs CPU usage (percentage) on the RDS DB instance."/>
 
-* [**`db_name`**](#db_name) &mdash; The name of the empty database created on this RDS DB instance.
+<HclListItem name="metric_widget_rds_db_connections" requirement="required" description="A CloudWatch Dashboard widget that graphs the number of active database connections on the RDS DB Instance."/>
 
-<a name="metric_widget_rds_cpu_usage" className="snap-top"></a>
+<HclListItem name="metric_widget_rds_disk_space" requirement="required" description="A CloudWatch Dashboard widget that graphs available disk space (in bytes) on the RDS DB instance."/>
 
-* [**`metric_widget_rds_cpu_usage`**](#metric_widget_rds_cpu_usage) &mdash; A CloudWatch Dashboard widget that graphs CPU usage (percentage) on the RDS DB instance.
+<HclListItem name="metric_widget_rds_memory" requirement="required" description="A CloudWatch Dashboard widget that graphs available memory (in bytes) on the RDS DB instance."/>
 
-<a name="metric_widget_rds_db_connections" className="snap-top"></a>
+<HclListItem name="metric_widget_rds_read_latency" requirement="required" description="A CloudWatch Dashboard widget that graphs the average amount of time taken per disk I/O operation on reads."/>
 
-* [**`metric_widget_rds_db_connections`**](#metric_widget_rds_db_connections) &mdash; A CloudWatch Dashboard widget that graphs the number of active database connections on the RDS DB Instance.
+<HclListItem name="metric_widget_rds_write_latency" requirement="required" description="A CloudWatch Dashboard widget that graphs the average amount of time taken per disk I/O operation on writes."/>
 
-<a name="metric_widget_rds_disk_space" className="snap-top"></a>
+<HclListItem name="name" requirement="required" description="The name of the RDS DB instance."/>
 
-* [**`metric_widget_rds_disk_space`**](#metric_widget_rds_disk_space) &mdash; A CloudWatch Dashboard widget that graphs available disk space (in bytes) on the RDS DB instance.
+<HclListItem name="num_read_replicas" requirement="required" description="The number of read replicas for the RDS DB instance."/>
 
-<a name="metric_widget_rds_memory" className="snap-top"></a>
+<HclListItem name="port" requirement="required" description="The port of the RDS DB instance."/>
 
-* [**`metric_widget_rds_memory`**](#metric_widget_rds_memory) &mdash; A CloudWatch Dashboard widget that graphs available memory (in bytes) on the RDS DB instance.
+<HclListItem name="primary_arn" requirement="required" description="The ARN of the RDS DB instance."/>
 
-<a name="metric_widget_rds_read_latency" className="snap-top"></a>
+<HclListItem name="primary_endpoint" requirement="required" description="The endpoint of the RDS DB instance that you can make requests to."/>
 
-* [**`metric_widget_rds_read_latency`**](#metric_widget_rds_read_latency) &mdash; A CloudWatch Dashboard widget that graphs the average amount of time taken per disk I/O operation on reads.
+<HclListItem name="primary_host" requirement="required" description="The host portion of the RDS DB instance endpoint. <a href=#primary_endpoint><code>primary_endpoint</code></a> is in the form '<host>:<port>', and this output returns just the host part."/>
 
-<a name="metric_widget_rds_write_latency" className="snap-top"></a>
+<HclListItem name="primary_id" requirement="required" description="The ID of the RDS DB instance."/>
 
-* [**`metric_widget_rds_write_latency`**](#metric_widget_rds_write_latency) &mdash; A CloudWatch Dashboard widget that graphs the average amount of time taken per disk I/O operation on writes.
+<HclListItem name="read_replica_arns" requirement="required" description="A list of ARNs of the RDS DB instance's read replicas."/>
 
-<a name="name" className="snap-top"></a>
+<HclListItem name="read_replica_endpoints" requirement="required" description="A list of endpoints of the RDS DB instance's read replicas."/>
 
-* [**`name`**](#name) &mdash; The name of the RDS DB instance.
+<HclListItem name="read_replica_ids" requirement="required" description="A list of IDs of the RDS DB instance's read replicas."/>
 
-<a name="num_read_replicas" className="snap-top"></a>
-
-* [**`num_read_replicas`**](#num_read_replicas) &mdash; The number of read replicas for the RDS DB instance.
-
-<a name="port" className="snap-top"></a>
-
-* [**`port`**](#port) &mdash; The port of the RDS DB instance.
-
-<a name="primary_arn" className="snap-top"></a>
-
-* [**`primary_arn`**](#primary_arn) &mdash; The ARN of the RDS DB instance.
-
-<a name="primary_endpoint" className="snap-top"></a>
-
-* [**`primary_endpoint`**](#primary_endpoint) &mdash; The endpoint of the RDS DB instance that you can make requests to.
-
-<a name="primary_host" className="snap-top"></a>
-
-* [**`primary_host`**](#primary_host) &mdash; The host portion of the RDS DB instance endpoint. [`primary_endpoint`](#primary_endpoint) is in the form '&lt;host>:&lt;port>', and this output returns just the host part.
-
-<a name="primary_id" className="snap-top"></a>
-
-* [**`primary_id`**](#primary_id) &mdash; The ID of the RDS DB instance.
-
-<a name="read_replica_arns" className="snap-top"></a>
-
-* [**`read_replica_arns`**](#read_replica_arns) &mdash; A list of ARNs of the RDS DB instance's read replicas.
-
-<a name="read_replica_endpoints" className="snap-top"></a>
-
-* [**`read_replica_endpoints`**](#read_replica_endpoints) &mdash; A list of endpoints of the RDS DB instance's read replicas.
-
-<a name="read_replica_ids" className="snap-top"></a>
-
-* [**`read_replica_ids`**](#read_replica_ids) &mdash; A list of IDs of the RDS DB instance's read replicas.
-
-<a name="security_group_id" className="snap-top"></a>
-
-* [**`security_group_id`**](#security_group_id) &mdash; The ID of the Security Group that controls access to the RDS DB instance.
+<HclListItem name="security_group_id" requirement="required" description="The ID of the Security Group that controls access to the RDS DB instance."/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1c3fc11396d0f57f47ad6ac818ca41a4"}
+{"sourcePlugin":"service-catalog-api","hash":"1b6088ca2346f44436c40fd8abf7c389"}
 ##DOCS-SOURCER-END -->

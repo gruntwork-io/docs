@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import HclListItem from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.50.2"/>
 
@@ -108,9 +109,7 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="aws_account_id" className="snap-top"></a>
-
-* [**`aws_account_id`**](#aws_account_id) &mdash; The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
+<HclListItem name="aws_account_id" requirement="required" description="The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables." type="string"/>
 
 
 <br/>
@@ -118,311 +117,166 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="auto_deploy_permissions" className="snap-top"></a>
+<HclListItem name="auto_deploy_permissions" requirement="optional" description="A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If <a href=#should_create_iam_group_auto_deploy><code>should_create_iam_group_auto_deploy</code></a> is true, the list must have at least one element (e.g. '*')." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-* [**`auto_deploy_permissions`**](#auto_deploy_permissions) &mdash; A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If [`should_create_iam_group_auto_deploy`](#should_create_iam_group_auto_deploy) is true, the list must have at least one element (e.g. '*').
+<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" description="The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group will include permissions to decrypt using this CMK." type="string" defaultValue="null"/>
 
-<a name="cloudtrail_kms_key_arn" className="snap-top"></a>
+<HclListItem name="cross_account_access_all_group_name" requirement="optional" description="The name of the IAM group that will grant access to all external AWS accounts in <a href=#iam_groups_for_cross_account_access><code>iam_groups_for_cross_account_access</code></a>." type="string" defaultValue="_all-accounts"/>
 
-* [**`cloudtrail_kms_key_arn`**](#cloudtrail_kms_key_arn) &mdash; The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group will include permissions to decrypt using this CMK.
+<HclListItem name="enable_iam_groups" requirement="optional" description="A feature flag to enable or disable the IAM Groups module." type="bool" defaultValue="true"/>
 
-<a name="cross_account_access_all_group_name" className="snap-top"></a>
+<HclListItem name="force_destroy_users" requirement="optional" description="When destroying this user, destroy even if it has non-Terraform-managed IAM access keys, login profile, or MFA devices. Without <a href=#force_destroy><code>force_destroy</code></a> a user with non-Terraform-managed access keys and login profile will fail to be destroyed." type="bool" defaultValue="false"/>
 
-* [**`cross_account_access_all_group_name`**](#cross_account_access_all_group_name) &mdash; The name of the IAM group that will grant access to all external AWS accounts in [`iam_groups_for_cross_account_access`](#iam_groups_for_cross_account_access).
+<HclListItem name="iam_group_developers_permitted_services" requirement="optional" description="A list of AWS services for which the developers IAM Group will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access. If you need to grant iam privileges, just grant the user Full Access." type="list" typeDetails="list(string)" defaultValue="[]"/>
 
-<a name="enable_iam_groups" className="snap-top"></a>
+<HclListItem name="iam_group_name_auto_deploy" requirement="optional" description="The name of the IAM Group that allows automated deployment by graning the permissions specified in <a href=#auto_deploy_permissions><code>auto_deploy_permissions</code></a>." type="string" defaultValue="_machine.ecs-auto-deploy"/>
 
-* [**`enable_iam_groups`**](#enable_iam_groups) &mdash; A feature flag to enable or disable the IAM Groups module.
+<HclListItem name="iam_group_name_billing" requirement="optional" description="The name to be used for the IAM Group that grants read/write access to all billing features in AWS." type="string" defaultValue="billing"/>
 
-<a name="force_destroy_users" className="snap-top"></a>
+<HclListItem name="iam_group_name_developers" requirement="optional" description="The name to be used for the IAM Group that grants IAM Users a reasonable set of permissions for developers." type="string" defaultValue="developers"/>
 
-* [**`force_destroy_users`**](#force_destroy_users) &mdash; When destroying this user, destroy even if it has non-Terraform-managed IAM access keys, login profile, or MFA devices. Without [`force_destroy`](#force_destroy) a user with non-Terraform-managed access keys and login profile will fail to be destroyed.
+<HclListItem name="iam_group_name_full_access" requirement="optional" description="The name to be used for the IAM Group that grants full access to all AWS resources." type="string" defaultValue="full-access"/>
 
-<a name="iam_group_developers_permitted_services" className="snap-top"></a>
+<HclListItem name="iam_group_name_houston_cli" requirement="optional" description="The name of the IAM Group that allows access to houston CLI." type="string" defaultValue="houston-cli-users"/>
 
-* [**`iam_group_developers_permitted_services`**](#iam_group_developers_permitted_services) &mdash; A list of AWS services for which the developers IAM Group will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will grant Developers de facto admin access. If you need to grant iam privileges, just grant the user Full Access.
+<HclListItem name="iam_group_name_iam_admin" requirement="optional" description="The name to be used for the IAM Group that grants IAM administrative access. Effectively grants administrator access." type="string" defaultValue="iam-admin"/>
 
-<a name="iam_group_name_auto_deploy" className="snap-top"></a>
+<HclListItem name="iam_group_name_iam_user_self_mgmt" requirement="optional" description="The name to be used for the IAM Group that grants IAM Users the permissions to manage their own IAM User account." type="string" defaultValue="iam-user-self-mgmt"/>
 
-* [**`iam_group_name_auto_deploy`**](#iam_group_name_auto_deploy) &mdash; The name of the IAM Group that allows automated deployment by graning the permissions specified in [`auto_deploy_permissions`](#auto_deploy_permissions).
+<HclListItem name="iam_group_name_logs" requirement="optional" description="The name to be used for the IAM Group that grants read access to CloudTrail, AWS Config, and CloudWatch in AWS." type="string" defaultValue="logs"/>
 
-<a name="iam_group_name_billing" className="snap-top"></a>
+<HclListItem name="iam_group_name_read_only" requirement="optional" description="The name to be used for the IAM Group that grants read-only access to all AWS resources." type="string" defaultValue="read-only"/>
 
-* [**`iam_group_name_billing`**](#iam_group_name_billing) &mdash; The name to be used for the IAM Group that grants read/write access to all billing features in AWS.
+<HclListItem name="iam_group_name_support" requirement="optional" description="The name of the IAM Group that allows access to AWS Support." type="string" defaultValue="support"/>
 
-<a name="iam_group_name_developers" className="snap-top"></a>
+<HclListItem name="iam_group_name_use_existing_iam_roles" requirement="optional" description="The name to be used for the IAM Group that grants IAM Users the permissions to use existing IAM Roles when launching AWS Resources. This does NOT grant the permission to create new IAM Roles." type="string" defaultValue="use-existing-iam-roles"/>
 
-* [**`iam_group_name_developers`**](#iam_group_name_developers) &mdash; The name to be used for the IAM Group that grants IAM Users a reasonable set of permissions for developers.
+<HclListItem name="iam_group_names_ssh_grunt_sudo_users" requirement="optional" description="The list of names to be used for the IAM Group that enables its members to SSH as a sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups." type="list" typeDetails="list(string)" defaultValue="['ssh-grunt-sudo-users']"/>
 
-<a name="iam_group_name_full_access" className="snap-top"></a>
+<HclListItem name="iam_group_names_ssh_grunt_users" requirement="optional" description="The name to be used for the IAM Group that enables its members to SSH as a non-sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups." type="list" typeDetails="list(string)" defaultValue="['ssh-grunt-users']"/>
 
-* [**`iam_group_name_full_access`**](#iam_group_name_full_access) &mdash; The name to be used for the IAM Group that grants full access to all AWS resources.
+<HclListItem name="iam_groups_for_cross_account_access" requirement="optional" description="This variable is used to create groups that allow IAM users to assume roles in your other AWS accounts. It should be a list of objects, where each object has the fields '<a href=#group_name><code>group_name</code></a>', which will be used as the name of the IAM group, and '<a href=#iam_role_arns><code>iam_role_arns</code></a>', which is a list of ARNs of IAM Roles that you can assume when part of that group. For each entry in the list of objects, we will create an IAM group that allows users to assume the given IAM role(s) in the other AWS account. This allows you to define all your IAM users in one account (e.g. the users account) and to grant them access to certain IAM roles in other accounts (e.g. the stage, prod, audit accounts)." type="list" typeDetails="list(object({
+    group_name    = string
+    iam_role_arns = list(string)
+  }))" defaultValue="[]"/>
 
-<a name="iam_group_name_houston_cli" className="snap-top"></a>
+<HclListItem name="iam_policy_iam_user_self_mgmt" requirement="optional" description="The name to be used for the IAM Policy that grants IAM Users the permissions to manage their own IAM User account." type="string" defaultValue="iam-user-self-mgmt"/>
 
-* [**`iam_group_name_houston_cli`**](#iam_group_name_houston_cli) &mdash; The name of the IAM Group that allows access to houston CLI.
+<HclListItem name="iam_role_tags" requirement="optional" description="The tags to apply to all the IAM role resources." type="map" typeDetails="map(string)" defaultValue="{}"/>
 
-<a name="iam_group_name_iam_admin" className="snap-top"></a>
+<HclListItem name="max_session_duration_human_users" requirement="optional" description="The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module. This variable applies to all IAM roles created by this module that are intended for people to use, such as allow-read-only-access-from-other-accounts. For IAM roles that are intended for machine users, such as allow-auto-deploy-from-other-accounts, see <a href=#max_session_duration_machine_users><code>max_session_duration_machine_users</code></a>." type="number" defaultValue="43200"/>
 
-* [**`iam_group_name_iam_admin`**](#iam_group_name_iam_admin) &mdash; The name to be used for the IAM Group that grants IAM administrative access. Effectively grants administrator access.
+<HclListItem name="max_session_duration_machine_users" requirement="optional" description="The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module. This variable  applies to all IAM roles created by this module that are intended for machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for human users, such as allow-read-only-access-from-other-accounts, see <a href=#max_session_duration_human_users><code>max_session_duration_human_users</code></a>." type="number" defaultValue="3600"/>
 
-<a name="iam_group_name_iam_user_self_mgmt" className="snap-top"></a>
+<HclListItem name="minimum_password_length" requirement="optional" description="Password minimum length." type="number" defaultValue="16"/>
 
-* [**`iam_group_name_iam_user_self_mgmt`**](#iam_group_name_iam_user_self_mgmt) &mdash; The name to be used for the IAM Group that grants IAM Users the permissions to manage their own IAM User account.
+<HclListItem name="password_reset_required" requirement="optional" description="Force the user to reset their password on initial login. Only used for users with <a href=#create_login_profile><code>create_login_profile</code></a> set to true." type="bool" defaultValue="true"/>
 
-<a name="iam_group_name_logs" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_auto_deploy" requirement="optional" description="Should we create the IAM Group for auto-deploy? Allows automated deployment by granting the permissions specified in <a href=#auto_deploy_permissions><code>auto_deploy_permissions</code></a>. (true or false)" type="bool" defaultValue="false"/>
 
-* [**`iam_group_name_logs`**](#iam_group_name_logs) &mdash; The name to be used for the IAM Group that grants read access to CloudTrail, AWS Config, and CloudWatch in AWS.
+<HclListItem name="should_create_iam_group_billing" requirement="optional" description="Should we create the IAM Group for billing? Allows read-write access to billing features only. (true or false)" type="bool" defaultValue="false"/>
 
-<a name="iam_group_name_read_only" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_cross_account_access_all" requirement="optional" description="Should we create the IAM Group for access to all external AWS accounts? " type="bool" defaultValue="true"/>
 
-* [**`iam_group_name_read_only`**](#iam_group_name_read_only) &mdash; The name to be used for the IAM Group that grants read-only access to all AWS resources.
+<HclListItem name="should_create_iam_group_developers" requirement="optional" description="Should we create the IAM Group for developers? The permissions of that group are specified via <a href=#iam_group_developers_permitted_services><code>iam_group_developers_permitted_services</code></a>. (true or false)" type="bool" defaultValue="false"/>
 
-<a name="iam_group_name_support" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_full_access" requirement="optional" description="Should we create the IAM Group for full access? Allows full access to all AWS resources. (true or false)" type="bool" defaultValue="true"/>
 
-* [**`iam_group_name_support`**](#iam_group_name_support) &mdash; The name of the IAM Group that allows access to AWS Support.
+<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" description="Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services." type="bool" defaultValue="false"/>
 
-<a name="iam_group_name_use_existing_iam_roles" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_iam_admin" requirement="optional" description="Should we create the IAM Group for IAM administrator access? Allows users to manage all IAM entities, effectively granting administrator access. (true or false)" type="bool" defaultValue="false"/>
 
-* [**`iam_group_name_use_existing_iam_roles`**](#iam_group_name_use_existing_iam_roles) &mdash; The name to be used for the IAM Group that grants IAM Users the permissions to use existing IAM Roles when launching AWS Resources. This does NOT grant the permission to create new IAM Roles.
+<HclListItem name="should_create_iam_group_logs" requirement="optional" description="Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS Config, and CloudWatch. If <a href=#cloudtrail_kms_key_arn><code>cloudtrail_kms_key_arn</code></a> is set, will also give decrypt access to a KMS CMK. (true or false)" type="bool" defaultValue="false"/>
 
-<a name="iam_group_names_ssh_grunt_sudo_users" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_read_only" requirement="optional" description="Should we create the IAM Group for read-only? Allows read-only access to all AWS resources. (true or false)" type="bool" defaultValue="false"/>
 
-* [**`iam_group_names_ssh_grunt_sudo_users`**](#iam_group_names_ssh_grunt_sudo_users) &mdash; The list of names to be used for the IAM Group that enables its members to SSH as a sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups.
+<HclListItem name="should_create_iam_group_support" requirement="optional" description="Should we create the IAM Group for support? Allows support access (AWSupportAccess). (true or false)" type="bool" defaultValue="false"/>
 
-<a name="iam_group_names_ssh_grunt_users" className="snap-top"></a>
+<HclListItem name="should_create_iam_group_use_existing_iam_roles" requirement="optional" description="Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS resources with existing IAM Roles, but no ability to create new IAM Roles. (true or false)" type="bool" defaultValue="false"/>
 
-* [**`iam_group_names_ssh_grunt_users`**](#iam_group_names_ssh_grunt_users) &mdash; The name to be used for the IAM Group that enables its members to SSH as a non-sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups.
+<HclListItem name="should_create_iam_group_user_self_mgmt" requirement="optional" description="Should we create the IAM Group for user self-management? Allows users to manage their own IAM user accounts, but not other IAM users. (true or false)" type="bool" defaultValue="true"/>
 
-<a name="iam_groups_for_cross_account_access" className="snap-top"></a>
+<HclListItem name="should_require_mfa" requirement="optional" description="Should we require that all IAM Users use Multi-Factor Authentication for both AWS API calls and the AWS Web Console? (true or false)" type="bool" defaultValue="true"/>
 
-* [**`iam_groups_for_cross_account_access`**](#iam_groups_for_cross_account_access) &mdash; This variable is used to create groups that allow IAM users to assume roles in your other AWS accounts. It should be a list of objects, where each object has the fields [`'group_name`](#'group_name)', which will be used as the name of the IAM group, and [`'iam_role_arns`](#'iam_role_arns)', which is a list of ARNs of IAM Roles that you can assume when part of that group. For each entry in the list of objects, we will create an IAM group that allows users to assume the given IAM role(s) in the other AWS account. This allows you to define all your IAM users in one account (e.g. the users account) and to grant them access to certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
-
-<a name="iam_policy_iam_user_self_mgmt" className="snap-top"></a>
-
-* [**`iam_policy_iam_user_self_mgmt`**](#iam_policy_iam_user_self_mgmt) &mdash; The name to be used for the IAM Policy that grants IAM Users the permissions to manage their own IAM User account.
-
-<a name="iam_role_tags" className="snap-top"></a>
-
-* [**`iam_role_tags`**](#iam_role_tags) &mdash; The tags to apply to all the IAM role resources.
-
-<a name="max_session_duration_human_users" className="snap-top"></a>
-
-* [**`max_session_duration_human_users`**](#max_session_duration_human_users) &mdash; The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module. This variable applies to all IAM roles created by this module that are intended for people to use, such as allow-read-only-access-from-other-accounts. For IAM roles that are intended for machine users, such as allow-auto-deploy-from-other-accounts, see [`max_session_duration_machine_users`](#max_session_duration_machine_users).
-
-<a name="max_session_duration_machine_users" className="snap-top"></a>
-
-* [**`max_session_duration_machine_users`**](#max_session_duration_machine_users) &mdash; The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module. This variable  applies to all IAM roles created by this module that are intended for machine users, such as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for human users, such as allow-read-only-access-from-other-accounts, see [`max_session_duration_human_users`](#max_session_duration_human_users).
-
-<a name="minimum_password_length" className="snap-top"></a>
-
-* [**`minimum_password_length`**](#minimum_password_length) &mdash; Password minimum length.
-
-<a name="password_reset_required" className="snap-top"></a>
-
-* [**`password_reset_required`**](#password_reset_required) &mdash; Force the user to reset their password on initial login. Only used for users with [`create_login_profile`](#create_login_profile) set to true.
-
-<a name="should_create_iam_group_auto_deploy" className="snap-top"></a>
-
-* [**`should_create_iam_group_auto_deploy`**](#should_create_iam_group_auto_deploy) &mdash; Should we create the IAM Group for auto-deploy? Allows automated deployment by granting the permissions specified in [`auto_deploy_permissions`](#auto_deploy_permissions). (true or false)
-
-<a name="should_create_iam_group_billing" className="snap-top"></a>
-
-* [**`should_create_iam_group_billing`**](#should_create_iam_group_billing) &mdash; Should we create the IAM Group for billing? Allows read-write access to billing features only. (true or false)
-
-<a name="should_create_iam_group_cross_account_access_all" className="snap-top"></a>
-
-* [**`should_create_iam_group_cross_account_access_all`**](#should_create_iam_group_cross_account_access_all) &mdash; Should we create the IAM Group for access to all external AWS accounts? 
-
-<a name="should_create_iam_group_developers" className="snap-top"></a>
-
-* [**`should_create_iam_group_developers`**](#should_create_iam_group_developers) &mdash; Should we create the IAM Group for developers? The permissions of that group are specified via [`iam_group_developers_permitted_services`](#iam_group_developers_permitted_services). (true or false)
-
-<a name="should_create_iam_group_full_access" className="snap-top"></a>
-
-* [**`should_create_iam_group_full_access`**](#should_create_iam_group_full_access) &mdash; Should we create the IAM Group for full access? Allows full access to all AWS resources. (true or false)
-
-<a name="should_create_iam_group_houston_cli_users" className="snap-top"></a>
-
-* [**`should_create_iam_group_houston_cli_users`**](#should_create_iam_group_houston_cli_users) &mdash; Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-<a name="should_create_iam_group_iam_admin" className="snap-top"></a>
-
-* [**`should_create_iam_group_iam_admin`**](#should_create_iam_group_iam_admin) &mdash; Should we create the IAM Group for IAM administrator access? Allows users to manage all IAM entities, effectively granting administrator access. (true or false)
-
-<a name="should_create_iam_group_logs" className="snap-top"></a>
-
-* [**`should_create_iam_group_logs`**](#should_create_iam_group_logs) &mdash; Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS Config, and CloudWatch. If [`cloudtrail_kms_key_arn`](#cloudtrail_kms_key_arn) is set, will also give decrypt access to a KMS CMK. (true or false)
-
-<a name="should_create_iam_group_read_only" className="snap-top"></a>
-
-* [**`should_create_iam_group_read_only`**](#should_create_iam_group_read_only) &mdash; Should we create the IAM Group for read-only? Allows read-only access to all AWS resources. (true or false)
-
-<a name="should_create_iam_group_support" className="snap-top"></a>
-
-* [**`should_create_iam_group_support`**](#should_create_iam_group_support) &mdash; Should we create the IAM Group for support? Allows support access (AWSupportAccess). (true or false)
-
-<a name="should_create_iam_group_use_existing_iam_roles" className="snap-top"></a>
-
-* [**`should_create_iam_group_use_existing_iam_roles`**](#should_create_iam_group_use_existing_iam_roles) &mdash; Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS resources with existing IAM Roles, but no ability to create new IAM Roles. (true or false)
-
-<a name="should_create_iam_group_user_self_mgmt" className="snap-top"></a>
-
-* [**`should_create_iam_group_user_self_mgmt`**](#should_create_iam_group_user_self_mgmt) &mdash; Should we create the IAM Group for user self-management? Allows users to manage their own IAM user accounts, but not other IAM users. (true or false)
-
-<a name="should_require_mfa" className="snap-top"></a>
-
-* [**`should_require_mfa`**](#should_require_mfa) &mdash; Should we require that all IAM Users use Multi-Factor Authentication for both AWS API calls and the AWS Web Console? (true or false)
-
-<a name="users" className="snap-top"></a>
-
-* [**`users`**](#users) &mdash; A map of users to create. The keys are the user names and the values are an object with the optional keys 'groups' (a list of IAM groups to add the user to), 'tags' (a map of tags to apply to the user), [`'pgp_key`](#'pgp_key)' (either a base-64 encoded PGP public key, or a keybase username in the form keybase:username, used to encrypt the user's credentials; required if [`create_login_profile`](#create_login_profile) or [`create_access_keys`](#create_access_keys) is true), [`'create_login_profile`](#'create_login_profile)' (if set to true, create a password to login to the AWS Web Console), [`'create_access_keys`](#'create_access_keys)' (if set to true, create access keys for the user), 'path' (the path), and [`'permissions_boundary`](#'permissions_boundary)' (the ARN of the policy that is used to set the permissions boundary for the user).
+<HclListItem name="users" requirement="optional" description="A map of users to create. The keys are the user names and the values are an object with the optional keys 'groups' (a list of IAM groups to add the user to), 'tags' (a map of tags to apply to the user), '<a href=#pgp_key><code>pgp_key</code></a>' (either a base-64 encoded PGP public key, or a keybase username in the form keybase:username, used to encrypt the user's credentials; required if <a href=#create_login_profile><code>create_login_profile</code></a> or <a href=#create_access_keys><code>create_access_keys</code></a> is true), '<a href=#create_login_profile><code>create_login_profile</code></a>' (if set to true, create a password to login to the AWS Web Console), '<a href=#create_access_keys><code>create_access_keys</code></a>' (if set to true, create access keys for the user), 'path' (the path), and '<a href=#permissions_boundary><code>permissions_boundary</code></a>' (the ARN of the policy that is used to set the permissions boundary for the user)." type="any" defaultValue="{}"/>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<a name="billing_iam_group_arn" className="snap-top"></a>
+<HclListItem name="billing_iam_group_arn" requirement="required"/>
 
-* [**`billing_iam_group_arn`**](#billing_iam_group_arn) &mdash; 
+<HclListItem name="billing_iam_group_name" requirement="required"/>
 
-<a name="billing_iam_group_name" className="snap-top"></a>
+<HclListItem name="cross_account_access_all_group_arn" requirement="required"/>
 
-* [**`billing_iam_group_name`**](#billing_iam_group_name) &mdash; 
+<HclListItem name="cross_account_access_all_group_name" requirement="required"/>
 
-<a name="cross_account_access_all_group_arn" className="snap-top"></a>
+<HclListItem name="cross_account_access_group_arns" requirement="required"/>
 
-* [**`cross_account_access_all_group_arn`**](#cross_account_access_all_group_arn) &mdash; 
+<HclListItem name="cross_account_access_group_names" requirement="required"/>
 
-<a name="cross_account_access_all_group_name" className="snap-top"></a>
+<HclListItem name="developers_iam_group_arn" requirement="required"/>
 
-* [**`cross_account_access_all_group_name`**](#cross_account_access_all_group_name) &mdash; 
+<HclListItem name="developers_iam_group_name" requirement="required"/>
 
-<a name="cross_account_access_group_arns" className="snap-top"></a>
+<HclListItem name="full_access_iam_group_arn" requirement="required"/>
 
-* [**`cross_account_access_group_arns`**](#cross_account_access_group_arns) &mdash; 
+<HclListItem name="full_access_iam_group_name" requirement="required"/>
 
-<a name="cross_account_access_group_names" className="snap-top"></a>
+<HclListItem name="houston_cli_users_iam_group_arn" requirement="required"/>
 
-* [**`cross_account_access_group_names`**](#cross_account_access_group_names) &mdash; 
+<HclListItem name="houston_cli_users_iam_group_name" requirement="required"/>
 
-<a name="developers_iam_group_arn" className="snap-top"></a>
+<HclListItem name="iam_admin_iam_group_arn" requirement="required"/>
 
-* [**`developers_iam_group_arn`**](#developers_iam_group_arn) &mdash; 
+<HclListItem name="iam_admin_iam_group_name" requirement="required"/>
 
-<a name="developers_iam_group_name" className="snap-top"></a>
+<HclListItem name="iam_admin_iam_policy_arn" requirement="required"/>
 
-* [**`developers_iam_group_name`**](#developers_iam_group_name) &mdash; 
+<HclListItem name="iam_self_mgmt_iam_group_arn" requirement="required"/>
 
-<a name="full_access_iam_group_arn" className="snap-top"></a>
+<HclListItem name="iam_self_mgmt_iam_group_name" requirement="required"/>
 
-* [**`full_access_iam_group_arn`**](#full_access_iam_group_arn) &mdash; 
+<HclListItem name="iam_self_mgmt_iam_policy_arn" requirement="required"/>
 
-<a name="full_access_iam_group_name" className="snap-top"></a>
+<HclListItem name="logs_iam_group_arn" requirement="required"/>
 
-* [**`full_access_iam_group_name`**](#full_access_iam_group_name) &mdash; 
+<HclListItem name="logs_iam_group_name" requirement="required"/>
 
-<a name="houston_cli_users_iam_group_arn" className="snap-top"></a>
+<HclListItem name="read_only_iam_group_arn" requirement="required"/>
 
-* [**`houston_cli_users_iam_group_arn`**](#houston_cli_users_iam_group_arn) &mdash; 
+<HclListItem name="read_only_iam_group_name" requirement="required"/>
 
-<a name="houston_cli_users_iam_group_name" className="snap-top"></a>
+<HclListItem name="require_mfa_policy" requirement="required"/>
 
-* [**`houston_cli_users_iam_group_name`**](#houston_cli_users_iam_group_name) &mdash; 
+<HclListItem name="ssh_grunt_sudo_users_group_arns" requirement="required"/>
 
-<a name="iam_admin_iam_group_arn" className="snap-top"></a>
+<HclListItem name="ssh_grunt_sudo_users_group_names" requirement="required"/>
 
-* [**`iam_admin_iam_group_arn`**](#iam_admin_iam_group_arn) &mdash; 
+<HclListItem name="ssh_grunt_users_group_arns" requirement="required"/>
 
-<a name="iam_admin_iam_group_name" className="snap-top"></a>
+<HclListItem name="ssh_grunt_users_group_names" requirement="required"/>
 
-* [**`iam_admin_iam_group_name`**](#iam_admin_iam_group_name) &mdash; 
+<HclListItem name="support_iam_group_arn" requirement="required"/>
 
-<a name="iam_admin_iam_policy_arn" className="snap-top"></a>
+<HclListItem name="support_iam_group_name" requirement="required"/>
 
-* [**`iam_admin_iam_policy_arn`**](#iam_admin_iam_policy_arn) &mdash; 
+<HclListItem name="use_existing_iam_roles_iam_group_arn" requirement="required"/>
 
-<a name="iam_self_mgmt_iam_group_arn" className="snap-top"></a>
+<HclListItem name="use_existing_iam_roles_iam_group_name" requirement="required"/>
 
-* [**`iam_self_mgmt_iam_group_arn`**](#iam_self_mgmt_iam_group_arn) &mdash; 
+<HclListItem name="user_access_keys" requirement="required" description="A map of usernames to that user's access keys (a map with keys <a href=#access_key_id><code>access_key_id</code></a> and <a href=#secret_access_key><code>secret_access_key</code></a>), with the <a href=#secret_access_key><code>secret_access_key</code></a> encrypted with that user's PGP key (only shows up for users with <a href=#create_access_keys><code>create_access_keys</code></a> = true). You can decrypt the <a href=#secret_access_key><code>secret_access_key</code></a> on the CLI: echo <<a href=#secret_access_key><code>secret_access_key</code></a>> | base64 --decode | keybase pgp decrypt"/>
 
-<a name="iam_self_mgmt_iam_group_name" className="snap-top"></a>
+<HclListItem name="user_arns" requirement="required" description="A map of usernames to the ARN for that IAM user."/>
 
-* [**`iam_self_mgmt_iam_group_name`**](#iam_self_mgmt_iam_group_name) &mdash; 
-
-<a name="iam_self_mgmt_iam_policy_arn" className="snap-top"></a>
-
-* [**`iam_self_mgmt_iam_policy_arn`**](#iam_self_mgmt_iam_policy_arn) &mdash; 
-
-<a name="logs_iam_group_arn" className="snap-top"></a>
-
-* [**`logs_iam_group_arn`**](#logs_iam_group_arn) &mdash; 
-
-<a name="logs_iam_group_name" className="snap-top"></a>
-
-* [**`logs_iam_group_name`**](#logs_iam_group_name) &mdash; 
-
-<a name="read_only_iam_group_arn" className="snap-top"></a>
-
-* [**`read_only_iam_group_arn`**](#read_only_iam_group_arn) &mdash; 
-
-<a name="read_only_iam_group_name" className="snap-top"></a>
-
-* [**`read_only_iam_group_name`**](#read_only_iam_group_name) &mdash; 
-
-<a name="require_mfa_policy" className="snap-top"></a>
-
-* [**`require_mfa_policy`**](#require_mfa_policy) &mdash; 
-
-<a name="ssh_grunt_sudo_users_group_arns" className="snap-top"></a>
-
-* [**`ssh_grunt_sudo_users_group_arns`**](#ssh_grunt_sudo_users_group_arns) &mdash; 
-
-<a name="ssh_grunt_sudo_users_group_names" className="snap-top"></a>
-
-* [**`ssh_grunt_sudo_users_group_names`**](#ssh_grunt_sudo_users_group_names) &mdash; 
-
-<a name="ssh_grunt_users_group_arns" className="snap-top"></a>
-
-* [**`ssh_grunt_users_group_arns`**](#ssh_grunt_users_group_arns) &mdash; 
-
-<a name="ssh_grunt_users_group_names" className="snap-top"></a>
-
-* [**`ssh_grunt_users_group_names`**](#ssh_grunt_users_group_names) &mdash; 
-
-<a name="support_iam_group_arn" className="snap-top"></a>
-
-* [**`support_iam_group_arn`**](#support_iam_group_arn) &mdash; 
-
-<a name="support_iam_group_name" className="snap-top"></a>
-
-* [**`support_iam_group_name`**](#support_iam_group_name) &mdash; 
-
-<a name="use_existing_iam_roles_iam_group_arn" className="snap-top"></a>
-
-* [**`use_existing_iam_roles_iam_group_arn`**](#use_existing_iam_roles_iam_group_arn) &mdash; 
-
-<a name="use_existing_iam_roles_iam_group_name" className="snap-top"></a>
-
-* [**`use_existing_iam_roles_iam_group_name`**](#use_existing_iam_roles_iam_group_name) &mdash; 
-
-<a name="user_access_keys" className="snap-top"></a>
-
-* [**`user_access_keys`**](#user_access_keys) &mdash; A map of usernames to that user's access keys (a map with keys [`access_key_id`](#access_key_id) and [`secret_access_key`](#secret_access_key)), with the [`secret_access_key`](#secret_access_key) encrypted with that user's PGP key (only shows up for users with [`create_access_keys`](#create_access_keys) = true). You can decrypt the [`secret_access_key`](#secret_access_key) on the CLI: echo [`&lt;secret_access_key`](#&lt;secret_access_key)> | base64 --decode | keybase pgp decrypt
-
-<a name="user_arns" className="snap-top"></a>
-
-* [**`user_arns`**](#user_arns) &mdash; A map of usernames to the ARN for that IAM user.
-
-<a name="user_passwords" className="snap-top"></a>
-
-* [**`user_passwords`**](#user_passwords) &mdash; A map of usernames to that user's AWS Web Console password, encrypted with that user's PGP key (only shows up for users with [`create_login_profile`](#create_login_profile) = true). You can decrypt the password on the CLI: echo &lt;password> | base64 --decode | keybase pgp decrypt
+<HclListItem name="user_passwords" requirement="required" description="A map of usernames to that user's AWS Web Console password, encrypted with that user's PGP key (only shows up for users with <a href=#create_login_profile><code>create_login_profile</code></a> = true). You can decrypt the password on the CLI: echo <password> | base64 --decode | keybase pgp decrypt"/>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"033e61432a895067da7ff0d5042af6f9"}
+{"sourcePlugin":"service-catalog-api","hash":"f45bd135831e81d7f23141a624cd4025"}
 ##DOCS-SOURCER-END -->
