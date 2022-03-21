@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -98,59 +98,114 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="name" requirement="required" description="Name of the Namespace to create." type="string"/>
-
-
-<br/>
-
+<HclListItem name="name" description="Name of the Namespace to create." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="annotations" requirement="optional" description="Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="annotations" description="Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="eks_cluster_name" requirement="optional" description="Name of the EKS cluster where the Namespace will be created. Required when <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is `true`." type="string" defaultValue="null"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="full_access_rbac_entities" requirement="optional" description="The list of RBAC entities that should have full access to the Namespace." type="list" typeDetails="list(object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_name" description="Name of the EKS cluster where the Namespace will be created. Required when <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is `true`." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="full_access_rbac_entities" description="The list of RBAC entities that should have full access to the Namespace." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
     # The type of entity. One of User, Group, or ServiceAccount
     kind = string
+
     # The name of the entity (e.g., the username or group name, depending on kind).
     name = string
+
     # The namespace where the entity is located. Only used for ServiceAccount.
     namespace = string
-  }))" defaultValue="[]"/>
+  }))
+```
 
-<HclListItem name="labels" requirement="optional" description="Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)." type="map" typeDetails="map(string)" defaultValue="{}"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="pod_execution_iam_role_arn" requirement="optional" description="ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is true." type="string" defaultValue="null"/>
+<HclListItem name="labels" description="Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="read_only_access_rbac_entities" requirement="optional" description="The list of RBAC entities that should have read only access to the Namespace." type="list" typeDetails="list(object({
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="pod_execution_iam_role_arn" description="ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_only_access_rbac_entities" description="The list of RBAC entities that should have read only access to the Namespace." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
     # The type of entity. One of User, Group, or ServiceAccount
     kind = string
+
     # The name of the entity (e.g., the username or group name, depending on kind).
     name = string
+
     # The namespace where the entity is located. Only used for ServiceAccount.
     namespace = string
-  }))" defaultValue="[]"/>
+  }))
+```
 
-<HclListItem name="schedule_pods_on_fargate" requirement="optional" description="When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if <a href=#kubeconfig_auth_type><code>kubeconfig_auth_type</code></a> is eks, as Fargate profiles can only be created against EKS clusters." type="bool" defaultValue="false"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="worker_vpc_subnet_ids" requirement="optional" description="The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is true." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="schedule_pods_on_fargate" description="When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if <a href=#kubeconfig_auth_type><code>kubeconfig_auth_type</code></a> is eks, as Fargate profiles can only be created against EKS clusters." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="worker_vpc_subnet_ids" description="The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href=#schedule_pods_on_fargate><code>schedule_pods_on_fargate</code></a> is true." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="namespace_name" requirement="required" description="The name of the created namespace."/>
+<HclListItem name="namespace_name" description="The name of the created namespace.">
+</HclListItem>
 
-<HclListItem name="namespace_rbac_access_all_role" requirement="required" description="The name of the rbac role that grants admin level permissions on the namespace."/>
+<HclListItem name="namespace_rbac_access_all_role" description="The name of the rbac role that grants admin level permissions on the namespace.">
+</HclListItem>
 
-<HclListItem name="namespace_rbac_access_read_only_role" requirement="required" description="The name of the rbac role that grants read only permissions on the namespace."/>
+<HclListItem name="namespace_rbac_access_read_only_role" description="The name of the rbac role that grants read only permissions on the namespace.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b8cb37deb1e31ad8b138371c83d9d5da"}
+{"sourcePlugin":"service-catalog-api","hash":"9cc89527e3bd6eeb8c8984e79b9c3298"}
 ##DOCS-SOURCER-END -->

@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -80,41 +80,89 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="name" requirement="required" description="The name of the SNS topic" type="string"/>
-
-
-<br/>
-
+<HclListItem name="name" description="The name of the SNS topic" requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="allow_publish_accounts" requirement="optional" description="A list of IAM ARNs that will be given the rights to publish to the SNS topic." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="allow_publish_accounts" description="A list of IAM ARNs that will be given the rights to publish to the SNS topic." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="allow_publish_services" requirement="optional" description="A list of AWS services that will be given the rights to publish to the SNS topic." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="allow_subscribe_accounts" requirement="optional" description="A list of IAM ARNs that will be given the rights to subscribe to the SNS topic." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="allow_subscribe_protocols" requirement="optional" description="A list of protocols that can be used to subscribe to the SNS topic." type="list" typeDetails="list(string)" defaultValue="['http','https','email','email-json','sms','sqs','application','lambda']"/>
+<HclListItem name="allow_publish_services" description="A list of AWS services that will be given the rights to publish to the SNS topic." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="create_resources" requirement="optional" description="Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not." type="bool" defaultValue="true"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="display_name" requirement="optional" description="The display name of the SNS topic" type="string" defaultValue=""/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="kms_master_key_id" requirement="optional" description="The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK" type="string" defaultValue="alias/aws/sns"/>
+<HclListItem name="allow_subscribe_accounts" description="A list of IAM ARNs that will be given the rights to subscribe to the SNS topic." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="slack_webhook_url" requirement="optional" description="Send topic notifications to this Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ)." type="string" defaultValue="null"/>
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_subscribe_protocols" description="A list of protocols that can be used to subscribe to the SNS topic." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+['http','https','email','email-json','sms','sqs','application','lambda']
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="create_resources" description="Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="display_name" description="The display name of the SNS topic" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="kms_master_key_id" description="The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="alias/aws/sns"/>
+</HclListItem>
+
+<HclListItem name="slack_webhook_url" description="Send topic notifications to this Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="topic_arn" requirement="required" description="The ARN of the SNS topic."/>
+<HclListItem name="topic_arn" description="The ARN of the SNS topic.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d5f23f7f17032f8a76ecba31e5951d40"}
+{"sourcePlugin":"service-catalog-api","hash":"6f7944147842a937f41789aec6e78f2b"}
 ##DOCS-SOURCER-END -->

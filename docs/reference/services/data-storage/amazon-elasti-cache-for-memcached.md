@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -87,59 +87,110 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="az_mode" requirement="required" description="Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, <a href=#num_cache_nodes><code>num_cache_nodes</code></a> must be greater than 1." type="string"/>
+<HclListItem name="az_mode" description="Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, num_cache_nodes must be greater than 1." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="instance_type" requirement="required" description="The compute and memory capacity of the nodes (e.g. cache.m4.large)." type="string"/>
+<HclListItem name="instance_type" description="The compute and memory capacity of the nodes (e.g. cache.m4.large)." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="name" requirement="required" description="The name used to namespace all resources created by these templates, including the ElastiCache cluster itself. Must be unique in this region. Must be a lowercase string." type="string"/>
+<HclListItem name="name" description="The name used to namespace all resources created by these templates, including the ElastiCache cluster itself. Must be unique in this region. Must be a lowercase string." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="num_cache_nodes" requirement="required" description="The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20." type="number"/>
+<HclListItem name="num_cache_nodes" description="The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20." requirement="required" type="number">
+</HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" description="The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." type="list" typeDetails="list(string)"/>
+<HclListItem name="subnet_ids" description="The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." requirement="required" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy RDS." type="string"/>
+```hcl
+list(string)
+```
 
+</HclListItemTypeDetails>
+</HclListItem>
 
-<br/>
-
+<HclListItem name="vpc_id" description="The ID of the VPC in which to deploy RDS." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="alarms_sns_topic_arns" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" description="The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" description="The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="apply_immediately" requirement="optional" description="Specifies whether any database modifications are applied immediately, or during the next maintenance window." type="bool" defaultValue="false"/>
+<HclListItem name="allow_connections_from_cidr_blocks" description="The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="maintenance_window" requirement="optional" description="Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period." type="string" defaultValue="sat:07:00-sat:08:00"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="memcached_version" requirement="optional" description="Version number of memcached to use (e.g. 1.5.16)." type="string" defaultValue="1.5.16"/>
+<HclListItem name="allow_connections_from_security_groups" description="The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="port" requirement="optional" description="The port number on which each of the cache nodes will accept connections (e.g. 11211)." type="number" defaultValue="11211"/>
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="apply_immediately" description="Specifies whether any database modifications are applied immediately, or during the next maintenance window." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="maintenance_window" description="Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="sat:07:00-sat:08:00"/>
+</HclListItem>
+
+<HclListItem name="memcached_version" description="Version number of memcached to use (e.g. 1.5.16)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="1.5.16"/>
+</HclListItem>
+
+<HclListItem name="port" description="The port number on which each of the cache nodes will accept connections (e.g. 11211)." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="11211"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="cache_addresses" requirement="required" description="The list of addresses of the Memcached nodes without the port appended."/>
+<HclListItem name="cache_addresses" description="The list of addresses of the Memcached nodes without the port appended.">
+</HclListItem>
 
-<HclListItem name="cache_cluster_id" requirement="required" description="The id of the ElastiCache Memcached cluster."/>
+<HclListItem name="cache_cluster_id" description="The id of the ElastiCache Memcached cluster.">
+</HclListItem>
 
-<HclListItem name="cache_node_ids" requirement="required" description="The list of the AWS cache cluster node ids where each one represents a Memcached node."/>
+<HclListItem name="cache_node_ids" description="The list of the AWS cache cluster node ids where each one represents a Memcached node.">
+</HclListItem>
 
-<HclListItem name="cache_port" requirement="required" description="The port number on which each of the cache nodes will accept connections (e.g. 11211)."/>
+<HclListItem name="cache_port" description="The port number on which each of the cache nodes will accept connections (e.g. 11211).">
+</HclListItem>
 
-<HclListItem name="configuration_endpoint" requirement="required" description="The configuration endpoint to allow host discovery."/>
+<HclListItem name="configuration_endpoint" description="The configuration endpoint to allow host discovery.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6fe2b485640b9e4ed66d95c7020a86d3"}
+{"sourcePlugin":"service-catalog-api","hash":"06bcf3a5058c49f90e1eab256fe39ea4"}
 ##DOCS-SOURCER-END -->

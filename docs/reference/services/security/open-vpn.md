@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
@@ -98,13 +98,27 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="allow_vpn_from_cidr_list" requirement="required" description="A list of IP address ranges in CIDR format from which VPN access will be permitted. Attempts to access the OpenVPN Server from all other IP addresses will be blocked." type="list" typeDetails="list(string)"/>
+<HclListItem name="allow_vpn_from_cidr_list" description="A list of IP address ranges in CIDR format from which VPN access will be permitted. Attempts to access the OpenVPN Server from all other IP addresses will be blocked." requirement="required" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="ami" requirement="required" description="The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server.json. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters." type="string"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="ami_filters" requirement="required" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server.json. Only used if var.ami is null. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly." type="object" typeDetails="object({
+</HclListItemTypeDetails>
+</HclListItem>
+
+<HclListItem name="ami" description="The AMI to run on the OpenVPN Server. This should be built from the Packer template under openvpn-server.json. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters." requirement="required" type="string">
+</HclListItem>
+
+<HclListItem name="ami_filters" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server.json. Only used if var.ami is null. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly." requirement="required" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
     owners = list(string)
+
     # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
     # documentation for describe-images in the AWS CLI reference
     # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
@@ -112,163 +126,364 @@ If you want to deploy this repo in production, check out the following resources
       name   = string
       values = list(string)
     }))
-  })"/>
+  })
+```
 
-<HclListItem name="backup_bucket_name" requirement="required" description="The name of the S3 bucket that will be used to backup PKI secrets. This is a required variable because bucket names must be globally unique across all AWS customers." type="string"/>
+</HclListItemTypeDetails>
+</HclListItem>
 
-<HclListItem name="ca_cert_fields" requirement="required" description="An object with fields for the country, state, locality, organization, organizational unit, and email address to use with the OpenVPN CA certificate." type="object" typeDetails="object({
+<HclListItem name="backup_bucket_name" description="The name of the S3 bucket that will be used to backup PKI secrets. This is a required variable because bucket names must be globally unique across all AWS customers." requirement="required" type="string">
+</HclListItem>
+
+<HclListItem name="ca_cert_fields" description="An object with fields for the country, state, locality, organization, organizational unit, and email address to use with the OpenVPN CA certificate." requirement="required" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     ca_country  = string
     ca_state    = string
     ca_locality = string
     ca_org      = string
     ca_org_unit = string
     ca_email    = string
-  })"/>
+  })
+```
 
-<HclListItem name="subnet_ids" requirement="required" description="The ids of the subnets where this server should be deployed." type="list" typeDetails="list(string)"/>
+</HclListItemTypeDetails>
+</HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy the OpenVPN server." type="string"/>
+<HclListItem name="subnet_ids" description="The ids of the subnets where this server should be deployed." requirement="required" type="list">
+<HclListItemTypeDetails>
 
+```hcl
+list(string)
+```
 
-<br/>
+</HclListItemTypeDetails>
+</HclListItem>
 
+<HclListItem name="vpc_id" description="The ID of the VPC in which to deploy the OpenVPN server." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="alarms_sns_topic_arn" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="allow_manage_key_permissions_with_iam" requirement="optional" description="If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient." type="bool" defaultValue="false"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="allow_ssh_from_cidr_list" requirement="optional" description="The IP address ranges in CIDR format from which to allow incoming SSH requests to the OpenVPN server." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" description="The IDs of security groups from which to allow incoming SSH requests to the OpenVPN server." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="allow_manage_key_permissions_with_iam" description="If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to grant permissions on the CMK. If false, only the CMK's Key Policy can be used to grant permissions on the CMK. False is more secure (and generally preferred), but true is more flexible and convenient." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="base_domain_name" requirement="optional" description="The base domain name to use for the OpenVPN server. Used to lookup the Hosted Zone ID to use for creating the Route 53 domain entry. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true." type="string" defaultValue="null"/>
+<HclListItem name="allow_ssh_from_cidr_list" description="The IP address ranges in CIDR format from which to allow incoming SSH requests to the OpenVPN server." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="base_domain_name_tags" requirement="optional" description="Tags to use to filter the Route 53 Hosted Zones that might match <a href=#domain_name><code>domain_name</code></a>." type="map" typeDetails="map(string)" defaultValue="{}"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="cloud_init_parts" requirement="optional" description="Cloud init scripts to run on the OpenVPN server while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/<a href=#cloudinit_config><code>cloudinit_config</code></a>.html for syntax." type="map" typeDetails="map(object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_security_group_ids" description="The IDs of security groups from which to allow incoming SSH requests to the OpenVPN server." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="base_domain_name" description="The base domain name to use for the OpenVPN server. Used to lookup the Hosted Zone ID to use for creating the Route 53 domain entry. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="base_domain_name_tags" description="Tags to use to filter the Route 53 Hosted Zones that might match <a href=#domain_name><code>domain_name</code></a>." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloud_init_parts" description="Cloud init scripts to run on the OpenVPN server while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
     filename     = string
     content_type = string
     content      = string
-  }))" defaultValue="{}"/>
+  }))
+```
 
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" description="The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data." type="string" defaultValue="null"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" description="The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/<a href=#cloudwatch_log_group><code>cloudwatch_log_group</code></a>#<a href=#retention_in_days><code>retention_in_days</code></a> for all the valid values. When null, the log events are retained forever." type="number" defaultValue="null"/>
+<HclListItem name="cloudwatch_log_group_kms_key_id" description="The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" description="Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values." type="map" typeDetails="map(string)" defaultValue="null"/>
+<HclListItem name="cloudwatch_log_group_retention_in_days" description="The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="cmk_administrator_iam_arns" requirement="optional" description="A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this list is empty, and <a href=#kms_key_arn><code>kms_key_arn</code></a> is null, the ARN of the current user will be used." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="cloudwatch_log_group_tags" description="Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="cmk_external_user_iam_arns" requirement="optional" description="A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::<aws-account-id>:root)." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="cmk_user_iam_arns" requirement="optional" description="A list of IAM ARNs for users who should be given permissions to use this KMS Master Key (e.g. arn:aws:iam::1234567890:user/foo)." type="list" typeDetails="list(object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cmk_administrator_iam_arns" description="A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). If this list is empty, and <a href=#kms_key_arn><code>kms_key_arn</code></a> is null, the ARN of the current user will be used." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cmk_external_user_iam_arns" description="A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::<aws-account-id>:root)." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cmk_user_iam_arns" description="A list of IAM ARNs for users who should be given permissions to use this KMS Master Key (e.g. arn:aws:iam::1234567890:user/foo)." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
     name = list(string)
     conditions = list(object({
       test     = string
       variable = string
       values   = list(string)
     }))
-  }))" defaultValue="[]"/>
+  }))
+```
 
-<HclListItem name="create_route53_entry" requirement="optional" description="Set to true to add <a href=#domain_name><code>domain_name</code></a> as a Route 53 DNS A record for the OpenVPN server" type="bool" defaultValue="false"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="default_user" requirement="optional" description="The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server.json uses, the default OS user is 'ubuntu'." type="string" defaultValue="ubuntu"/>
+<HclListItem name="create_route53_entry" description="Set to true to add <a href=#domain_name><code>domain_name</code></a> as a Route 53 DNS A record for the OpenVPN server" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="domain_name" requirement="optional" description="The domain name to use for the OpenVPN server. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true. If null, set to <NAME>.<<a href=#BASE_DOMAIN_NAME><code>BASE_DOMAIN_NAME</code></a>>." type="string" defaultValue="null"/>
+<HclListItem name="default_user" description="The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server.json uses, the default OS user is 'ubuntu'." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ubuntu"/>
+</HclListItem>
 
-<HclListItem name="ebs_optimized" requirement="optional" description="If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: https://aws.amazon.com/ec2/pricing/on-demand/#EBS-<a href=#Optimized_Instances><code>Optimized_Instances</code></a>" type="bool" defaultValue="true"/>
+<HclListItem name="domain_name" description="The domain name to use for the OpenVPN server. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true. If null, set to <NAME>.<BASE_DOMAIN_NAME>." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="ebs_optimized" description="If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" description="Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your OpenVPN server." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_log_aggregation" description="Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_fail2ban" requirement="optional" description="Enable fail2ban to block brute force log in attempts. Defaults to true." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_metrics" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your OpenVPN server." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_ip_lockdown" requirement="optional" description="Enable ip-lockdown to block access to the instance metadata. Defaults to true." type="bool" defaultValue="true"/>
+<HclListItem name="enable_fail2ban" description="Enable fail2ban to block brute force log in attempts. Defaults to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_ssh_grunt" requirement="optional" description="Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups." type="bool" defaultValue="true"/>
+<HclListItem name="enable_ip_lockdown" description="Enable ip-lockdown to block access to the instance metadata. Defaults to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="external_account_arns" requirement="optional" description="The ARNs of external AWS accounts where your IAM users are defined. This module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation SQS queues." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="enable_ssh_grunt" description="Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" description="Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account." type="string" defaultValue=""/>
+<HclListItem name="external_account_arns" description="The ARNs of external AWS accounts where your IAM users are defined. This module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation SQS queues." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="force_destroy" requirement="optional" description="When a terraform destroy is run, should the backup s3 bucket be destroyed even if it contains files. Should only be set to true for testing/development" type="bool" defaultValue="false"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="hosted_zone_id" requirement="optional" description="The ID of the Route 53 Hosted Zone in which the domain should be created. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true. If null, lookup the hosted zone ID using the <a href=#base_domain_name><code>base_domain_name</code></a>." type="string" defaultValue="null"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="instance_type" requirement="optional" description="The type of instance to run for the OpenVPN Server" type="string" defaultValue="t3.micro"/>
+<HclListItem name="external_account_ssh_grunt_role_arn" description="Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
-<HclListItem name="keypair_name" requirement="optional" description="The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth." type="string" defaultValue="null"/>
+<HclListItem name="force_destroy" description="When a terraform destroy is run, should the backup s3 bucket be destroyed even if it contains files. Should only be set to true for testing/development" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="kms_key_arn" requirement="optional" description="The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that will be used to encrypt/decrypt backup files. If null, a key will be created with permissions assigned by the following variables: <a href=#cmk_administrator_iam_arns><code>cmk_administrator_iam_arns</code></a>, <a href=#cmk_user_iam_arns><code>cmk_user_iam_arns</code></a>, <a href=#cmk_external_user_iam_arns><code>cmk_external_user_iam_arns</code></a>, <a href=#allow_manage_key_permissions><code>allow_manage_key_permissions</code></a>." type="string" defaultValue="null"/>
+<HclListItem name="hosted_zone_id" description="The ID of the Route 53 Hosted Zone in which the domain should be created. Only used if <a href=#create_route53_entry><code>create_route53_entry</code></a> is true. If null, lookup the hosted zone ID using the <a href=#base_domain_name><code>base_domain_name</code></a>." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="name" requirement="optional" description="The name of the OpenVPN Server and the other resources created by these templates" type="string" defaultValue="vpn"/>
+<HclListItem name="instance_type" description="The type of instance to run for the OpenVPN Server" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="t3.micro"/>
+</HclListItem>
 
-<HclListItem name="request_queue_name" requirement="optional" description="The name of the sqs queue that will be used to receive new certificate requests." type="string" defaultValue="queue"/>
+<HclListItem name="keypair_name" description="The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="revocation_queue_name" requirement="optional" description="The name of the sqs queue that will be used to receive certification revocation requests. Note that the queue name will be automatically prefixed with 'openvpn-requests-'." type="string" defaultValue="queue"/>
+<HclListItem name="kms_key_arn" description="The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that will be used to encrypt/decrypt backup files. If null, a key will be created with permissions assigned by the following variables: cmk_administrator_iam_arns, cmk_user_iam_arns, cmk_external_user_iam_arns, allow_manage_key_permissions." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" description="When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use." type="bool" defaultValue="true"/>
+<HclListItem name="name" description="The name of the OpenVPN Server and the other resources created by these templates" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="vpn"/>
+</HclListItem>
 
-<HclListItem name="ssh_grunt_iam_group" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-users"/>
+<HclListItem name="request_queue_name" description="The name of the sqs queue that will be used to receive new certificate requests." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="queue"/>
+</HclListItem>
 
-<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server with sudo permissions. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-sudo-users"/>
+<HclListItem name="revocation_queue_name" description="The name of the sqs queue that will be used to receive certification revocation requests. Note that the queue name will be automatically prefixed with 'openvpn-requests-'." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="queue"/>
+</HclListItem>
 
-<HclListItem name="tenancy" requirement="optional" description="The tenancy of this server. Must be one of: default, dedicated, or host." type="string" defaultValue="default"/>
+<HclListItem name="should_create_cloudwatch_log_group" description="When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." type="bool" defaultValue="true"/>
+<HclListItem name="ssh_grunt_iam_group" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server. This value is only used if enable_ssh_grunt=true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-users"/>
+</HclListItem>
 
-<HclListItem name="use_strong_prime" requirement="optional" description="When true, generate Diffie-Hellman parameters using strong primes. Note that while stronger primes make the keys more cryptographically secure, the effective security gains are known to be insignificant in practice." type="bool" defaultValue="false"/>
+<HclListItem name="ssh_grunt_iam_group_sudo" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server with sudo permissions. This value is only used if enable_ssh_grunt=true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+</HclListItem>
 
-<HclListItem name="vpn_route_cidr_blocks" requirement="optional" description="A list of CIDR ranges to be routed over the VPN." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="tenancy" description="The tenancy of this server. Must be one of: default, dedicated, or host." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="default"/>
+</HclListItem>
 
-<HclListItem name="vpn_search_domains" requirement="optional" description="A list of domains to push down to the client to resolve over VPN. This will configure the OpenVPN server to pass through domains that should be resolved over the VPN connection (as opposed to the locally configured resolver) to the client. Note that for each domain, all subdomains will be resolved as well. E.g., if you pass in 'mydomain.local', subdomains such as 'hello.world.mydomain.local' and 'example.mydomain.local' will also be forwarded to through the VPN server." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="use_managed_iam_policies" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="vpn_subnet" requirement="optional" description="The subnet IP and mask vpn clients will be assigned addresses from. For example, 172.16.1.0 255.255.255.0. This is a non-routed network that only exists between the VPN server and the client. Therefore, it should NOT overlap with VPC addressing, or the client won't be able to access any of the VPC IPs. In general, we recommend using internal, non-RFC 1918 IP addresses, such as 172.16.xx.yy." type="string" defaultValue="172.16.1.0 255.255.255.0"/>
+<HclListItem name="use_strong_prime" description="When true, generate Diffie-Hellman parameters using strong primes. Note that while stronger primes make the keys more cryptographically secure, the effective security gains are known to be insignificant in practice." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="vpn_route_cidr_blocks" description="A list of CIDR ranges to be routed over the VPN." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="vpn_search_domains" description="A list of domains to push down to the client to resolve over VPN. This will configure the OpenVPN server to pass through domains that should be resolved over the VPN connection (as opposed to the locally configured resolver) to the client. Note that for each domain, all subdomains will be resolved as well. E.g., if you pass in 'mydomain.local', subdomains such as 'hello.world.mydomain.local' and 'example.mydomain.local' will also be forwarded to through the VPN server." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="vpn_subnet" description="The subnet IP and mask vpn clients will be assigned addresses from. For example, 172.16.1.0 255.255.255.0. This is a non-routed network that only exists between the VPN server and the client. Therefore, it should NOT overlap with VPC addressing, or the client won't be able to access any of the VPC IPs. In general, we recommend using internal, non-RFC 1918 IP addresses, such as 172.16.xx.yy." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="172.16.1.0 255.255.255.0"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_arn" requirement="required" description="The ARN of the IAM role that can be assumed from external accounts to request certificates."/>
+<HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_arn" description="The ARN of the IAM role that can be assumed from external accounts to request certificates.">
+</HclListItem>
 
-<HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_id" requirement="required" description="The name of the IAM role that can be assumed from external accounts to request certificates."/>
+<HclListItem name="allow_certificate_requests_for_external_accounts_iam_role_id" description="The name of the IAM role that can be assumed from external accounts to request certificates.">
+</HclListItem>
 
-<HclListItem name="allow_certificate_revocations_for_external_accounts_iam_role_arn" requirement="required" description="The ARN of the IAM role that can be assumed from external accounts to revoke certificates."/>
+<HclListItem name="allow_certificate_revocations_for_external_accounts_iam_role_arn" description="The ARN of the IAM role that can be assumed from external accounts to revoke certificates.">
+</HclListItem>
 
-<HclListItem name="allow_certificate_revocations_for_external_accounts_iam_role_id" requirement="required" description="The name of the IAM role that can be assumed from external accounts to revoke certificates."/>
+<HclListItem name="allow_certificate_revocations_for_external_accounts_iam_role_id" description="The name of the IAM role that can be assumed from external accounts to revoke certificates.">
+</HclListItem>
 
-<HclListItem name="autoscaling_group_id" requirement="required" description="The AutoScaling Group ID of the OpenVPN server."/>
+<HclListItem name="autoscaling_group_id" description="The AutoScaling Group ID of the OpenVPN server.">
+</HclListItem>
 
-<HclListItem name="backup_bucket_name" requirement="required" description="The S3 bucket used for backing up the OpenVPN PKI."/>
+<HclListItem name="backup_bucket_name" description="The S3 bucket used for backing up the OpenVPN PKI.">
+</HclListItem>
 
-<HclListItem name="client_request_queue" requirement="required" description="The SQS queue used by the openvpn-admin tool for certificate requests."/>
+<HclListItem name="client_request_queue" description="The SQS queue used by the openvpn-admin tool for certificate requests.">
+</HclListItem>
 
-<HclListItem name="client_revocation_queue" requirement="required" description="The SQS queue used by the openvpn-admin tool for certificate revocations."/>
+<HclListItem name="client_revocation_queue" description="The SQS queue used by the openvpn-admin tool for certificate revocations.">
+</HclListItem>
 
-<HclListItem name="elastic_ip" requirement="required" description="The elastic IP address of the OpenVPN server."/>
+<HclListItem name="elastic_ip" description="The elastic IP address of the OpenVPN server.">
+</HclListItem>
 
-<HclListItem name="iam_role_id" requirement="required" description="The ID of the IAM role used by the OpenVPN server."/>
+<HclListItem name="iam_role_id" description="The ID of the IAM role used by the OpenVPN server.">
+</HclListItem>
 
-<HclListItem name="openvpn_admins_group_name" requirement="required" description="The name of the OpenVPN admins IAM group (to request and revoke certificates)."/>
+<HclListItem name="openvpn_admins_group_name" description="The name of the OpenVPN admins IAM group (to request and revoke certificates).">
+</HclListItem>
 
-<HclListItem name="openvpn_users_group_name" requirement="required" description="The name of the OpenVPN users IAM group (to request certificates)."/>
+<HclListItem name="openvpn_users_group_name" description="The name of the OpenVPN users IAM group (to request certificates).">
+</HclListItem>
 
-<HclListItem name="private_ip" requirement="required" description="The private IP address of the OpenVPN server."/>
+<HclListItem name="private_ip" description="The private IP address of the OpenVPN server.">
+</HclListItem>
 
-<HclListItem name="public_ip" requirement="required" description="The public IP address of the OpenVPN server."/>
+<HclListItem name="public_ip" description="The public IP address of the OpenVPN server.">
+</HclListItem>
 
-<HclListItem name="security_group_id" requirement="required" description="The security group ID of the OpenVPN server."/>
+<HclListItem name="security_group_id" description="The security group ID of the OpenVPN server.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"54f14797b593badd7fc74623a1b5131f"}
+{"sourcePlugin":"service-catalog-api","hash":"8a253dc764cac6d683d23f4a34cfb14c"}
 ##DOCS-SOURCER-END -->

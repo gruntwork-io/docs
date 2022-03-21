@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.68.3"/>
 
@@ -82,53 +82,105 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="repositories" requirement="required" description="A map of repo names to configurations for that repository." type="any"/>
-
-
-<br/>
-
+<HclListItem name="repositories" description="A map of repo names to configurations for that repository." requirement="required" type="any">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="default_automatic_image_scanning" requirement="optional" description="Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the <a href=#enable_automatic_image_scanning><code>enable_automatic_image_scanning</code></a> property in the repositories map." type="bool" defaultValue="true"/>
+<HclListItem name="default_automatic_image_scanning" description="Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the enable_automatic_image_scanning property in the repositories map." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="default_encryption_config" requirement="optional" description="The default encryption configuration to apply to the created ECR repository. When null, the images in the ECR repo will not be encrypted at rest. Can be overridden on a per repo basis by the <a href=#encryption_config><code>encryption_config</code></a> property in the repositories map." type="object" typeDetails="object({
+<HclListItem name="default_encryption_config" description="The default encryption configuration to apply to the created ECR repository. When null, the images in the ECR repo will not be encrypted at rest. Can be overridden on a per repo basis by the encryption_config property in the repositories map." requirement="optional" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # The encryption type to use for the repository. Must be AES256 or KMS.
     encryption_type = string
     # The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If not specified, defaults to
     # the default AWS managed key for ECR.
     kms_key = string
-  })" defaultValue="{'encryption_type':'AES256','kms_key':null}"/>
+  })
+```
 
-<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" description="The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the <a href=#external_account_ids_with_read_access><code>external_account_ids_with_read_access</code></a> property in the repositories map." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{'encryption_type':'AES256','kms_key':null}"/>
+</HclListItem>
 
-<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" description="The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the <a href=#external_account_ids_with_write_access><code>external_account_ids_with_write_access</code></a> property in the repositories map." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="default_external_account_ids_with_read_access" description="The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="default_image_tag_mutability" requirement="optional" description="The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTABLE. Can be overridden on a per repo basis by the <a href=#image_tag_mutability><code>image_tag_mutability</code></a> property in the repositories map." type="string" defaultValue="MUTABLE"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="default_lifecycle_policy_rules" requirement="optional" description="Add lifecycle policy to ECR repo." type="any" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="global_tags" requirement="optional" description="A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="default_external_account_ids_with_write_access" description="The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="replication_regions" requirement="optional" description="List of regions (e.g., us-east-1) to replicate the ECR repository to." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_image_tag_mutability" description="The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability property in the repositories map." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="MUTABLE"/>
+</HclListItem>
+
+<HclListItem name="default_lifecycle_policy_rules" description="Add lifecycle policy to ECR repo." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="global_tags" description="A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="replication_regions" description="List of regions (e.g., us-east-1) to replicate the ECR repository to." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="ecr_read_policy_actions" requirement="required" description="A list of IAM policy actions necessary for ECR read access."/>
+<HclListItem name="ecr_read_policy_actions" description="A list of IAM policy actions necessary for ECR read access.">
+</HclListItem>
 
-<HclListItem name="ecr_repo_arns" requirement="required" description="A map of repository name to its ECR ARN."/>
+<HclListItem name="ecr_repo_arns" description="A map of repository name to its ECR ARN.">
+</HclListItem>
 
-<HclListItem name="ecr_repo_urls" requirement="required" description="A map of repository name to its URL."/>
+<HclListItem name="ecr_repo_urls" description="A map of repository name to its URL.">
+</HclListItem>
 
-<HclListItem name="ecr_write_policy_actions" requirement="required" description="A list of IAM policy actions necessary for ECR write access."/>
+<HclListItem name="ecr_write_policy_actions" description="A list of IAM policy actions necessary for ECR write access.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"33106ee2185766c58fbc9c290b7404f0"}
+{"sourcePlugin":"service-catalog-api","hash":"b6f159f0de70eae905cf352c42d3d739"}
 ##DOCS-SOURCER-END -->

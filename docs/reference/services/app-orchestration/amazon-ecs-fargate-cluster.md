@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.66.0"/>
 
@@ -102,31 +102,41 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ### Required
 
-<HclListItem name="cluster_name" requirement="required" description="The name of the ECS cluster" type="string"/>
-
-
-<br/>
-
+<HclListItem name="cluster_name" description="The name of the ECS cluster" requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="custom_tags" requirement="optional" description="A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="custom_tags" description="A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="enable_container_insights" requirement="optional" description="Whether or not to enable container insights monitoring on the ECS cluster." type="bool" defaultValue="true"/>
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="enable_container_insights" description="Whether or not to enable container insights monitoring on the ECS cluster." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="arn" requirement="required" description="ARN of the ECS cluster that was created."/>
+<HclListItem name="arn" description="ARN of the ECS cluster that was created.">
+</HclListItem>
 
-<HclListItem name="name" requirement="required" description="The name of the ECS cluster."/>
+<HclListItem name="name" description="The name of the ECS cluster.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a8a9b65ccfef28deeec0169f2a542883"}
+{"sourcePlugin":"service-catalog-api","hash":"1a6a60f38a602bb5ee20b3acb0f5b82a"}
 ##DOCS-SOURCER-END -->

@@ -11,7 +11,7 @@
   margin-bottom: 0px;
 }
 
-.detailsContainer {
+.detail {
   padding-top: 10px;
 }
 
@@ -36,8 +36,14 @@
   padding-bottom: 12px;
 }
 
-.code,
-.pre {
+pre {
+  border: 1px solid #cbd5e0;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.code {
+  /* display: inline; */
   font-weight: 400 !important ;
   font-size: 14px !important;
   margin-bottom: 0px;

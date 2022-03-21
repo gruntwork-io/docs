@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.20.0"/>
 
@@ -87,39 +87,56 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="grant_security_account_access" requirement="required" description="Set to true to grant your security account, with the account ID specified in <a href=#security_account_id><code>security_account_id</code></a>, access to the IAM role. This is required for deploying a Reference Architecture." type="bool"/>
+<HclListItem name="grant_security_account_access" description="Set to true to grant your security account, with the account ID specified in <a href=#security_account_id><code>security_account_id</code></a>, access to the IAM role. This is required for deploying a Reference Architecture." requirement="required" type="bool">
+</HclListItem>
 
-<HclListItem name="security_account_id" requirement="required" description="The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process." type="string"/>
-
-
-<br/>
-
+<HclListItem name="security_account_id" description="The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="gruntwork_aws_account_id" requirement="optional" description="The ID of the AWS account that will be allowed to assume the IAM role." type="string" defaultValue="583800379690"/>
+<HclListItem name="gruntwork_aws_account_id" description="The ID of the AWS account that will be allowed to assume the IAM role." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="583800379690"/>
+</HclListItem>
 
-<HclListItem name="iam_role_name" requirement="optional" description="The name to use for the IAM role" type="string" defaultValue="GruntworkAccountAccessRole"/>
+<HclListItem name="iam_role_name" description="The name to use for the IAM role" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="GruntworkAccountAccessRole"/>
+</HclListItem>
 
-<HclListItem name="managed_policy_name" requirement="optional" description="The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default." type="string" defaultValue="AdministratorAccess"/>
+<HclListItem name="managed_policy_name" description="The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="AdministratorAccess"/>
+</HclListItem>
 
-<HclListItem name="require_mfa" requirement="optional" description="If set to true, require MFA to assume the IAM role from the Gruntwork account." type="bool" defaultValue="true"/>
+<HclListItem name="require_mfa" description="If set to true, require MFA to assume the IAM role from the Gruntwork account." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="tags" requirement="optional" description="Tags to apply to all resources created by this module" type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="tags" description="Tags to apply to all resources created by this module" requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="iam_role_arn" requirement="required" description="The ARN of the IAM role"/>
+<HclListItem name="iam_role_arn" description="The ARN of the IAM role">
+</HclListItem>
 
-<HclListItem name="iam_role_name" requirement="required" description="The name of the IAM role"/>
+<HclListItem name="iam_role_name" description="The name of the IAM role">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f7069a1a130a85bd43fe82a3db7e5f39"}
+{"sourcePlugin":"service-catalog-api","hash":"aa00e7336d9731c08dab393332440584"}
 ##DOCS-SOURCER-END -->

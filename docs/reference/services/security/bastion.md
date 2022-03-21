@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
@@ -111,13 +111,27 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="allow_ssh_from_cidr_list" requirement="required" description="A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked. This is only used if <a href=#allow_ssh_from_cidr><code>allow_ssh_from_cidr</code></a> is true." type="list" typeDetails="list(string)"/>
+<HclListItem name="allow_ssh_from_cidr_list" description="A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked. This is only used if <a href=#allow_ssh_from_cidr><code>allow_ssh_from_cidr</code></a> is true." requirement="required" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="ami" requirement="required" description="The AMI to run on the bastion host. This should be built from the Packer template under bastion-host.json. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters." type="string"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="ami_filters" requirement="required" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly." type="object" typeDetails="object({
+</HclListItemTypeDetails>
+</HclListItem>
+
+<HclListItem name="ami" description="The AMI to run on the bastion host. This should be built from the Packer template under bastion-host.json. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters." requirement="required" type="string">
+</HclListItem>
+
+<HclListItem name="ami_filters" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or <a href=#ami_filters><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly." requirement="required" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
     owners = list(string)
+
     # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
     # documentation for describe-images in the AWS CLI reference
     # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
@@ -125,95 +139,190 @@ If you want to deploy this repo in production, check out the following resources
       name   = string
       values = list(string)
     }))
-  })"/>
+  })
+```
 
-<HclListItem name="subnet_id" requirement="required" description="The ID of the subnet in which to deploy the bastion. Must be a subnet in <a href=#vpc_id><code>vpc_id</code></a>." type="string"/>
+</HclListItemTypeDetails>
+</HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy the bastion." type="string"/>
+<HclListItem name="subnet_id" description="The ID of the subnet in which to deploy the bastion. Must be a subnet in <a href=#vpc_id><code>vpc_id</code></a>." requirement="required" type="string">
+</HclListItem>
 
-
-<br/>
-
+<HclListItem name="vpc_id" description="The ID of the VPC in which to deploy the bastion." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="additional_security_group_ids" requirement="optional" description="A list of optional additional security group ids to assign to the bastion server." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="additional_security_group_ids" description="A list of optional additional security group ids to assign to the bastion server." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="base_domain_name_tags" requirement="optional" description="Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone's name (use if you have multiple public hosted zones with the same name)" type="map" typeDetails="map(string)" defaultValue="{}"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" description="Cloud init scripts to run on the bastion host while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/<a href=#cloudinit_config><code>cloudinit_config</code></a>.html for syntax." type="map" typeDetails="map(object({
+<HclListItem name="alarms_sns_topic_arn" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="base_domain_name_tags" description="Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone's name (use if you have multiple public hosted zones with the same name)" requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloud_init_parts" description="Cloud init scripts to run on the bastion host while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
     filename     = string
     content_type = string
     content      = string
-  }))" defaultValue="{}"/>
+  }))
+```
 
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" description="The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data." type="string" defaultValue="null"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" description="The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/<a href=#cloudwatch_log_group><code>cloudwatch_log_group</code></a>#<a href=#retention_in_days><code>retention_in_days</code></a> for all the valid values. When null, the log events are retained forever." type="number" defaultValue="null"/>
+<HclListItem name="cloudwatch_log_group_kms_key_id" description="The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" description="Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values." type="map" typeDetails="map(string)" defaultValue="null"/>
+<HclListItem name="cloudwatch_log_group_retention_in_days" description="The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="create_dns_record" requirement="optional" description="Set to true to create a DNS record in Route53 pointing to the bastion. If true, be sure to set <a href=#domain_name><code>domain_name</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="cloudwatch_log_group_tags" description="Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="default_user" requirement="optional" description="The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is what the Packer template in bastion-host.json uses, the default OS user is 'ubuntu'." type="string" defaultValue="ubuntu"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="domain_name" requirement="optional" description="The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be var.name.<a href=#domain_name><code>domain_name</code></a> (e.g., bastion.example.com). Only used if <a href=#create_dns_record><code>create_dns_record</code></a> is true." type="string" defaultValue=""/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="ebs_optimized" requirement="optional" description="If true, the launched EC2 Instance will be EBS-optimized." type="bool" defaultValue="true"/>
+<HclListItem name="create_dns_record" description="Set to true to create a DNS record in Route53 pointing to the bastion. If true, be sure to set <a href=#domain_name><code>domain_name</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="default_user" description="The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is what the Packer template in bastion-host.json uses, the default OS user is 'ubuntu'." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ubuntu"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" description="Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch." type="bool" defaultValue="true"/>
+<HclListItem name="domain_name" description="The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be var.name.<a href=#domain_name><code>domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host." type="bool" defaultValue="true"/>
+<HclListItem name="ebs_optimized" description="If true, the launched EC2 Instance will be EBS-optimized." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_fail2ban" requirement="optional" description="Enable fail2ban to block brute force log in attempts. Defaults to true." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_ip_lockdown" requirement="optional" description="Enable ip-lockdown to block access to the instance metadata. Defaults to true." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_log_aggregation" description="Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_ssh_grunt" requirement="optional" description="Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_metrics" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" description="If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." type="string" defaultValue=""/>
+<HclListItem name="enable_fail2ban" description="Enable fail2ban to block brute force log in attempts. Defaults to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="instance_type" requirement="optional" description="The type of instance to run for the bastion host" type="string" defaultValue="t3.micro"/>
+<HclListItem name="enable_ip_lockdown" description="Enable ip-lockdown to block access to the instance metadata. Defaults to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="keypair_name" requirement="optional" description="The name of a Key Pair that can be used to SSH to this instance." type="string" defaultValue="null"/>
+<HclListItem name="enable_ssh_grunt" description="Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="name" requirement="optional" description="The name of the bastion host and the other resources created by these templates" type="string" defaultValue="bastion-host"/>
+<HclListItem name="external_account_ssh_grunt_role_arn" description="If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" description="When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use." type="bool" defaultValue="true"/>
+<HclListItem name="instance_type" description="The type of instance to run for the bastion host" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="t3.micro"/>
+</HclListItem>
 
-<HclListItem name="ssh_grunt_iam_group" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Bastion Host. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-users"/>
+<HclListItem name="keypair_name" description="The name of a Key Pair that can be used to SSH to this instance." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Bastion Host with sudo permissions. This value is only used if <a href=#enable_ssh_grunt><code>enable_ssh_grunt</code></a>=true." type="string" defaultValue="ssh-grunt-sudo-users"/>
+<HclListItem name="name" description="The name of the bastion host and the other resources created by these templates" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="bastion-host"/>
+</HclListItem>
 
-<HclListItem name="tenancy" requirement="optional" description="The tenancy of this server. Must be one of: default, dedicated, or host." type="string" defaultValue="default"/>
+<HclListItem name="should_create_cloudwatch_log_group" description="When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." type="bool" defaultValue="true"/>
+<HclListItem name="ssh_grunt_iam_group" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Bastion Host. This value is only used if enable_ssh_grunt=true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-users"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group_sudo" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Bastion Host with sudo permissions. This value is only used if enable_ssh_grunt=true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+</HclListItem>
+
+<HclListItem name="tenancy" description="The tenancy of this server. Must be one of: default, dedicated, or host." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="default"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="bastion_host_iam_role_arn" requirement="required" description="The ARN of the bastion host's IAM role."/>
+<HclListItem name="bastion_host_iam_role_arn" description="The ARN of the bastion host's IAM role.">
+</HclListItem>
 
-<HclListItem name="bastion_host_instance_id" requirement="required" description="The EC2 instance ID of the bastion host."/>
+<HclListItem name="bastion_host_instance_id" description="The EC2 instance ID of the bastion host.">
+</HclListItem>
 
-<HclListItem name="bastion_host_private_ip" requirement="required" description="The private IP address of the bastion host."/>
+<HclListItem name="bastion_host_private_ip" description="The private IP address of the bastion host.">
+</HclListItem>
 
-<HclListItem name="bastion_host_public_ip" requirement="required" description="The public IP address of the bastion host."/>
+<HclListItem name="bastion_host_public_ip" description="The public IP address of the bastion host.">
+</HclListItem>
 
-<HclListItem name="bastion_host_security_group_id" requirement="required" description="The ID of the bastion hosts's security group."/>
+<HclListItem name="bastion_host_security_group_id" description="The ID of the bastion hosts's security group.">
+</HclListItem>
 
-<HclListItem name="dns_name" requirement="required" description="The fully qualified name of the bastion host."/>
+<HclListItem name="dns_name" description="The fully qualified name of the bastion host.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"58830318e8080ceeee455201e4998ab9"}
+{"sourcePlugin":"service-catalog-api","hash":"ff83c3c12bc32b469f49abbcf149caaa"}
 ##DOCS-SOURCER-END -->

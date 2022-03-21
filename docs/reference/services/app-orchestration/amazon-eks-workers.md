@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -117,13 +117,20 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 ### Required
 
-<HclListItem name="autoscaling_group_configurations" requirement="required" description="Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs." type="any"/>
+<HclListItem name="autoscaling_group_configurations" description="Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs." requirement="required" type="any">
+</HclListItem>
 
-<HclListItem name="cluster_instance_ami" requirement="required" description="The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of <a href=#cluster_instance_ami><code>cluster_instance_ami</code></a> or <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is null. Set to null if <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is set." type="string"/>
+<HclListItem name="cluster_instance_ami" description="The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of <a href=#cluster_instance_ami><code>cluster_instance_ami</code></a> or <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is null. Set to null if cluster_instance_ami_filters is set." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="cluster_instance_ami_filters" requirement="required" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of <a href=#cluster_instance_ami><code>cluster_instance_ami</code></a> or <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> will be used. Set to null if <a href=#cluster_instance_ami><code>cluster_instance_ami</code></a> is set." type="object" typeDetails="object({
+<HclListItem name="cluster_instance_ami_filters" description="Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of <a href=#cluster_instance_ami><code>cluster_instance_ami</code></a> or <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href=#cluster_instance_ami_filters><code>cluster_instance_ami_filters</code></a> will be used. Set to null if cluster_instance_ami is set." requirement="required" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
     owners = list(string)
+
     # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
     # documentation for describe-images in the AWS CLI reference
     # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
@@ -131,248 +138,540 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
       name   = string
       values = list(string)
     }))
-  })"/>
+  })
+```
 
-<HclListItem name="eks_cluster_name" requirement="required" description="The name of the EKS cluster. The cluster must exist/already be deployed." type="string"/>
+</HclListItemTypeDetails>
+</HclListItem>
 
-<HclListItem name="managed_node_group_configurations" requirement="required" description="Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups." type="any"/>
+<HclListItem name="eks_cluster_name" description="The name of the EKS cluster. The cluster must exist/already be deployed." requirement="required" type="string">
+</HclListItem>
 
-
-<br/>
-
+<HclListItem name="managed_node_group_configurations" description="Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups." requirement="required" type="any">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="additional_security_groups_for_workers" requirement="optional" description="A list of additional security group IDs to be attached on worker groups." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="additional_security_groups_for_workers" description="A list of additional security group IDs to be attached on worker groups." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="allow_inbound_ssh_from_cidr_blocks" requirement="optional" description="The list of CIDR blocks to allow inbound SSH access to the worker groups." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="allow_inbound_ssh_from_security_groups" requirement="optional" description="The list of security group IDs to allow inbound SSH access to the worker groups." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="alarms_sns_topic_arn" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="asg_custom_iam_role_name" requirement="optional" description="Custom name for the IAM role for the Self-managed workers. When null, a default name based on <a href=#worker_name_prefix><code>worker_name_prefix</code></a> will be used. One of <a href=#asg_custom_iam_role_name><code>asg_custom_iam_role_name</code></a> and <a href=#asg_iam_role_arn><code>asg_iam_role_arn</code></a> is required (must be non-null) if <a href=#asg_iam_role_already_exists><code>asg_iam_role_already_exists</code></a> is true." type="string" defaultValue="null"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" description="Default value for <a href=#enable_detailed_monitoring><code>enable_detailed_monitoring</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>." type="bool" defaultValue="true"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="asg_default_instance_root_volume_encryption" requirement="optional" description="Default value for the <a href=#asg_instance_root_volume_encryption><code>asg_instance_root_volume_encryption</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_root_volume_encryption><code>asg_instance_root_volume_encryption</code></a> will use this value." type="bool" defaultValue="true"/>
+<HclListItem name="allow_inbound_ssh_from_cidr_blocks" description="The list of CIDR blocks to allow inbound SSH access to the worker groups." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="asg_default_instance_root_volume_iops" requirement="optional" description="Default value for the <a href=#asg_instance_root_volume_iops><code>asg_instance_root_volume_iops</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_root_volume_iops><code>asg_instance_root_volume_iops</code></a> will use this value." type="number" defaultValue="null"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="asg_default_instance_root_volume_size" requirement="optional" description="Default value for the <a href=#asg_instance_root_volume_size><code>asg_instance_root_volume_size</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_root_volume_size><code>asg_instance_root_volume_size</code></a> will use this value." type="number" defaultValue="40"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="asg_default_instance_root_volume_throughput" requirement="optional" description="Default value for the <a href=#asg_instance_root_volume_throughput><code>asg_instance_root_volume_throughput</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_root_volume_throughput><code>asg_instance_root_volume_throughput</code></a> will use this value." type="number" defaultValue="null"/>
+<HclListItem name="allow_inbound_ssh_from_security_groups" description="The list of security group IDs to allow inbound SSH access to the worker groups." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="asg_default_instance_root_volume_type" requirement="optional" description="Default value for the <a href=#asg_instance_root_volume_type><code>asg_instance_root_volume_type</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_root_volume_type><code>asg_instance_root_volume_type</code></a> will use this value." type="string" defaultValue="standard"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="asg_default_instance_type" requirement="optional" description="Default value for the <a href=#asg_instance_type><code>asg_instance_type</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#asg_instance_type><code>asg_instance_type</code></a> will use this value." type="string" defaultValue="t3.medium"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="asg_default_max_pods_allowed" requirement="optional" description="Default value for the <a href=#max_pods_allowed><code>max_pods_allowed</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#max_pods_allowed><code>max_pods_allowed</code></a> will use this value." type="number" defaultValue="null"/>
+<HclListItem name="asg_custom_iam_role_name" description="Custom name for the IAM role for the Self-managed workers. When null, a default name based on worker_name_prefix will be used. One of asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null) if asg_iam_role_already_exists is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_default_max_size" requirement="optional" description="Default value for the <a href=#max_size><code>max_size</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#max_size><code>max_size</code></a> will use this value." type="number" defaultValue="2"/>
+<HclListItem name="asg_default_enable_detailed_monitoring" description="Default value for enable_detailed_monitoring field of autoscaling_group_configurations." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="asg_default_min_size" requirement="optional" description="Default value for the <a href=#min_size><code>min_size</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#min_size><code>min_size</code></a> will use this value." type="number" defaultValue="1"/>
+<HclListItem name="asg_default_instance_root_volume_encryption" description="Default value for the asg_instance_root_volume_encryption field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_encryption will use this value." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="asg_default_multi_instance_overrides" requirement="optional" description="Default value for the <a href=#multi_instance_overrides><code>multi_instance_overrides</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#multi_instance_overrides><code>multi_instance_overrides</code></a> will use this value." type="any" defaultValue="[]"/>
+<HclListItem name="asg_default_instance_root_volume_iops" description="Default value for the asg_instance_root_volume_iops field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_iops will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_default_on_demand_allocation_strategy" requirement="optional" description="Default value for the <a href=#on_demand_allocation_strategy><code>on_demand_allocation_strategy</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#on_demand_allocation_strategy><code>on_demand_allocation_strategy</code></a> will use this value." type="string" defaultValue="null"/>
+<HclListItem name="asg_default_instance_root_volume_size" description="Default value for the asg_instance_root_volume_size field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_size will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="40"/>
+</HclListItem>
 
-<HclListItem name="asg_default_on_demand_base_capacity" requirement="optional" description="Default value for the <a href=#on_demand_base_capacity><code>on_demand_base_capacity</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#on_demand_base_capacity><code>on_demand_base_capacity</code></a> will use this value." type="number" defaultValue="null"/>
+<HclListItem name="asg_default_instance_root_volume_throughput" description="Default value for the asg_instance_root_volume_throughput field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_throughput will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_default_on_demand_percentage_above_base_capacity" requirement="optional" description="Default value for the <a href=#on_demand_percentage_above_base_capacity><code>on_demand_percentage_above_base_capacity</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#on_demand_percentage_above_base_capacity><code>on_demand_percentage_above_base_capacity</code></a> will use this value." type="number" defaultValue="null"/>
+<HclListItem name="asg_default_instance_root_volume_type" description="Default value for the asg_instance_root_volume_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_type will use this value." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="standard"/>
+</HclListItem>
 
-<HclListItem name="asg_default_spot_allocation_strategy" requirement="optional" description="Default value for the <a href=#spot_allocation_strategy><code>spot_allocation_strategy</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#spot_allocation_strategy><code>spot_allocation_strategy</code></a> will use this value." type="string" defaultValue="null"/>
+<HclListItem name="asg_default_instance_type" description="Default value for the asg_instance_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_type will use this value." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="t3.medium"/>
+</HclListItem>
 
-<HclListItem name="asg_default_spot_instance_pools" requirement="optional" description="Default value for the <a href=#spot_instance_pools><code>spot_instance_pools</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#spot_instance_pools><code>spot_instance_pools</code></a> will use this value." type="number" defaultValue="null"/>
+<HclListItem name="asg_default_max_pods_allowed" description="Default value for the max_pods_allowed field of autoscaling_group_configurations. Any map entry that does not specify max_pods_allowed will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_default_spot_max_price" requirement="optional" description="Default value for the <a href=#spot_max_price><code>spot_max_price</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#spot_max_price><code>spot_max_price</code></a> will use this value. Set to empty string (default) to mean on-demand price." type="string" defaultValue="null"/>
+<HclListItem name="asg_default_max_size" description="Default value for the max_size field of autoscaling_group_configurations. Any map entry that does not specify max_size will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
 
-<HclListItem name="asg_default_tags" requirement="optional" description="Default value for the tags field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify tags will use this value." type="list" typeDetails="list(object({
+<HclListItem name="asg_default_min_size" description="Default value for the min_size field of autoscaling_group_configurations. Any map entry that does not specify min_size will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="asg_default_multi_instance_overrides" description="Default value for the multi_instance_overrides field of autoscaling_group_configurations. Any map entry that does not specify multi_instance_overrides will use this value." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="asg_default_on_demand_allocation_strategy" description="Default value for the on_demand_allocation_strategy field of autoscaling_group_configurations. Any map entry that does not specify on_demand_allocation_strategy will use this value." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_on_demand_base_capacity" description="Default value for the on_demand_base_capacity field of autoscaling_group_configurations. Any map entry that does not specify on_demand_base_capacity will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_on_demand_percentage_above_base_capacity" description="Default value for the on_demand_percentage_above_base_capacity field of autoscaling_group_configurations. Any map entry that does not specify on_demand_percentage_above_base_capacity will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_spot_allocation_strategy" description="Default value for the spot_allocation_strategy field of autoscaling_group_configurations. Any map entry that does not specify spot_allocation_strategy will use this value." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_spot_instance_pools" description="Default value for the spot_instance_pools field of autoscaling_group_configurations. Any map entry that does not specify spot_instance_pools will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_spot_max_price" description="Default value for the spot_max_price field of autoscaling_group_configurations. Any map entry that does not specify spot_max_price will use this value. Set to empty string (default) to mean on-demand price." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_tags" description="Default value for the tags field of autoscaling_group_configurations. Any map entry that does not specify tags will use this value." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
     key                 = string
     value               = string
     propagate_at_launch = bool
-  }))" defaultValue="[]"/>
+  }))
+```
 
-<HclListItem name="asg_default_use_multi_instances_policy" requirement="optional" description="Default value for the <a href=#use_multi_instances_policy><code>use_multi_instances_policy</code></a> field of <a href=#autoscaling_group_configurations><code>autoscaling_group_configurations</code></a>. Any map entry that does not specify <a href=#use_multi_instances_policy><code>use_multi_instances_policy</code></a> will use this value." type="bool" defaultValue="false"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="asg_iam_instance_profile_name" requirement="optional" description="Custom name for the IAM instance profile for the Self-managed workers. When null, the IAM role name will be used. If <a href=#asg_use_resource_name_prefix><code>asg_use_resource_name_prefix</code></a> is true, this will be used as a name prefix." type="string" defaultValue="null"/>
+<HclListItem name="asg_default_use_multi_instances_policy" description="Default value for the use_multi_instances_policy field of autoscaling_group_configurations. Any map entry that does not specify use_multi_instances_policy will use this value." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="asg_iam_role_already_exists" requirement="optional" description="Whether or not the IAM role used for the Self-managed workers already exists. When false, this module will create a new IAM role." type="bool" defaultValue="false"/>
+<HclListItem name="asg_iam_instance_profile_name" description="Custom name for the IAM instance profile for the Self-managed workers. When null, the IAM role name will be used. If <a href=#asg_use_resource_name_prefix><code>asg_use_resource_name_prefix</code></a> is true, this will be used as a name prefix." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_iam_role_arn" requirement="optional" description="ARN of the IAM role to use if <a href=#iam_role_already_exists><code>iam_role_already_exists</code></a> = true. When null, uses <a href=#asg_custom_iam_role_name><code>asg_custom_iam_role_name</code></a> to lookup the ARN. One of <a href=#asg_custom_iam_role_name><code>asg_custom_iam_role_name</code></a> and <a href=#asg_iam_role_arn><code>asg_iam_role_arn</code></a> is required (must be non-null) if <a href=#asg_iam_role_already_exists><code>asg_iam_role_already_exists</code></a> is true." type="string" defaultValue="null"/>
+<HclListItem name="asg_iam_role_already_exists" description="Whether or not the IAM role used for the Self-managed workers already exists. When false, this module will create a new IAM role." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="asg_security_group_tags" requirement="optional" description="A map of tags to apply to the Security Group of the ASG for the self managed worker pool. The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="asg_iam_role_arn" description="ARN of the IAM role to use if iam_role_already_exists = true. When null, uses asg_custom_iam_role_name to lookup the ARN. One of asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null) if asg_iam_role_already_exists is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="asg_use_resource_name_prefix" requirement="optional" description="When true, all the relevant resources for self managed workers will be set to use the <a href=#name_prefix><code>name_prefix</code></a> attribute so that unique names are generated for them. This allows those resources to support recreation through <a href=#create_before_destroy><code>create_before_destroy</code></a> lifecycle rules. Set to false if you were using any version before 0.65.0 and wish to avoid recreating the entire worker pool on your cluster." type="bool" defaultValue="true"/>
+<HclListItem name="asg_security_group_tags" description="A map of tags to apply to the Security Group of the ASG for the self managed worker pool. The key is the tag name and the value is the tag value." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="autoscaling_group_include_autoscaler_discovery_tags" requirement="optional" description="Adds additional tags to each ASG that allow a cluster autoscaler to auto-discover them. Only used for self-managed workers." type="bool" defaultValue="true"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="aws_auth_merger_namespace" requirement="optional" description="Namespace where the AWS Auth Merger is deployed. If configured, the worker IAM role will be mapped to the Kubernetes RBAC group for Nodes using a ConfigMap in the auth merger namespace." type="string" defaultValue="null"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" description="Cloud init scripts to run on the EKS worker nodes when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/<a href=#cloudinit_config><code>cloudinit_config</code></a>.html for syntax. To override the default boot script installed as part of the module, use the key `default`." type="map" typeDetails="map(object({
+<HclListItem name="asg_use_resource_name_prefix" description="When true, all the relevant resources for self managed workers will be set to use the name_prefix attribute so that unique names are generated for them. This allows those resources to support recreation through create_before_destroy lifecycle rules. Set to false if you were using any version before 0.65.0 and wish to avoid recreating the entire worker pool on your cluster." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_group_include_autoscaler_discovery_tags" description="Adds additional tags to each ASG that allow a cluster autoscaler to auto-discover them. Only used for self-managed workers." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="aws_auth_merger_namespace" description="Namespace where the AWS Auth Merger is deployed. If configured, the worker IAM role will be mapped to the Kubernetes RBAC group for Nodes using a ConfigMap in the auth merger namespace." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloud_init_parts" description="Cloud init scripts to run on the EKS worker nodes when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax. To override the default boot script installed as part of the module, use the key `default`." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
     # A filename to report in the header for the part. Should be unique across all cloud-init parts.
     filename = string
-    # A MIME-style content type to report in the header for the part. For example, use 'text/x-shellscript' for a shell
+
+    # A MIME-style content type to report in the header for the part. For example, use "text/x-shellscript" for a shell
     # script.
     content_type = string
+
     # The contents of the boot script to be called. This should be the full text of the script as a raw string.
     content = string
-  }))" defaultValue="{}"/>
+  }))
+```
 
-<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" description="Whether or not to associate a public IP address to the instances of the self managed ASGs. Will only work if the instances are launched in a public subnet." type="bool" defaultValue="false"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="cluster_instance_keypair_name" requirement="optional" description="The name of the Key Pair that can be used to SSH to each instance in the EKS cluster." type="string" defaultValue="null"/>
+<HclListItem name="cluster_instance_associate_public_ip_address" description="Whether or not to associate a public IP address to the instances of the self managed ASGs. Will only work if the instances are launched in a public subnet." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="custom_egress_security_group_rules" requirement="optional" description="A map of unique identifiers to egress security group rules to attach to the worker groups." type="map" typeDetails="map(object({
+<HclListItem name="cluster_instance_keypair_name" description="The name of the Key Pair that can be used to SSH to each instance in the EKS cluster." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_egress_security_group_rules" description="A map of unique identifiers to egress security group rules to attach to the worker groups." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
     # The network ports and protocol (tcp, udp, all) for which the security group rule applies to.
     from_port = number
     to_port   = number
     protocol  = string
+
     # The target of the traffic. Only one of the following can be defined; the others must be configured to null.
     target_security_group_id = string       # The ID of the security group to which the traffic goes to.
     cidr_blocks              = list(string) # The list of IP CIDR blocks to which the traffic goes to.
-  }))" defaultValue="{}"/>
+  }))
+```
 
-<HclListItem name="custom_ingress_security_group_rules" requirement="optional" description="A map of unique identifiers to ingress security group rules to attach to the worker groups." type="map" typeDetails="map(object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="custom_ingress_security_group_rules" description="A map of unique identifiers to ingress security group rules to attach to the worker groups." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
     # The network ports and protocol (tcp, udp, all) for which the security group rule applies to.
     from_port = number
     to_port   = number
     protocol  = string
+
     # The source of the traffic. Only one of the following can be defined; the others must be configured to null.
     source_security_group_id = string       # The ID of the security group from which the traffic originates from.
     cidr_blocks              = list(string) # The list of IP CIDR blocks from which the traffic originates from.
-  }))" defaultValue="{}"/>
+  }))
+```
 
-<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" description="Parameters for the worker cpu usage widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="dashboard_cpu_usage_widget_parameters" description="Parameters for the worker cpu usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # The period in seconds for metrics to sample across.
     period = number
+
     # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
     # space.
     width  = number
     height = number
-  })" defaultValue="{'height':6,'period':60,'width':8}"/>
+  })
+```
 
-<HclListItem name="dashboard_disk_usage_widget_parameters" requirement="optional" description="Parameters for the worker disk usage widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+</HclListItem>
+
+<HclListItem name="dashboard_disk_usage_widget_parameters" description="Parameters for the worker disk usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # The period in seconds for metrics to sample across.
     period = number
+
     # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
     # space.
     width  = number
     height = number
-  })" defaultValue="{'height':6,'period':60,'width':8}"/>
+  })
+```
 
-<HclListItem name="dashboard_memory_usage_widget_parameters" requirement="optional" description="Parameters for the worker memory usage widget to output for use in a CloudWatch dashboard." type="object" typeDetails="object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+</HclListItem>
+
+<HclListItem name="dashboard_memory_usage_widget_parameters" description="Parameters for the worker memory usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
+<HclListItemTypeDetails>
+
+```hcl
+object({
     # The period in seconds for metrics to sample across.
     period = number
+
     # The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
     # space.
     width  = number
     height = number
-  })" defaultValue="{'height':6,'period':60,'width':8}"/>
+  })
+```
 
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_fail2ban" requirement="optional" description="Enable fail2ban to block brute force log in attempts. Defaults to true." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_metrics" description="Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" description="If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." type="string" defaultValue=""/>
+<HclListItem name="enable_fail2ban" description="Enable fail2ban to block brute force log in attempts. Defaults to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="managed_node_group_custom_iam_role_name" requirement="optional" description="Custom name for the IAM role for the Managed Node Groups. When null, a default name based on <a href=#worker_name_prefix><code>worker_name_prefix</code></a> will be used. One of <a href=#managed_node_group_custom_iam_role_name><code>managed_node_group_custom_iam_role_name</code></a> and <a href=#managed_node_group_iam_role_arn><code>managed_node_group_iam_role_arn</code></a> is required (must be non-null) if <a href=#managed_node_group_iam_role_already_exists><code>managed_node_group_iam_role_already_exists</code></a> is true." type="string" defaultValue="null"/>
+<HclListItem name="external_account_ssh_grunt_role_arn" description="If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
-<HclListItem name="managed_node_group_iam_role_already_exists" requirement="optional" description="Whether or not the IAM role used for the Managed Node Group workers already exists. When false, this module will create a new IAM role." type="bool" defaultValue="false"/>
+<HclListItem name="managed_node_group_custom_iam_role_name" description="Custom name for the IAM role for the Managed Node Groups. When null, a default name based on worker_name_prefix will be used. One of managed_node_group_custom_iam_role_name and managed_node_group_iam_role_arn is required (must be non-null) if managed_node_group_iam_role_already_exists is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="managed_node_group_iam_role_arn" requirement="optional" description="ARN of the IAM role to use if <a href=#iam_role_already_exists><code>iam_role_already_exists</code></a> = true. When null, uses <a href=#managed_node_group_custom_iam_role_name><code>managed_node_group_custom_iam_role_name</code></a> to lookup the ARN. One of <a href=#managed_node_group_custom_iam_role_name><code>managed_node_group_custom_iam_role_name</code></a> and <a href=#managed_node_group_iam_role_arn><code>managed_node_group_iam_role_arn</code></a> is required (must be non-null) if <a href=#managed_node_group_iam_role_already_exists><code>managed_node_group_iam_role_already_exists</code></a> is true." type="string" defaultValue="null"/>
+<HclListItem name="managed_node_group_iam_role_already_exists" description="Whether or not the IAM role used for the Managed Node Group workers already exists. When false, this module will create a new IAM role." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_capacity_type" requirement="optional" description="Default value for <a href=#capacity_type><code>capacity_type</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="string" defaultValue="ON_DEMAND"/>
+<HclListItem name="managed_node_group_iam_role_arn" description="ARN of the IAM role to use if iam_role_already_exists = true. When null, uses managed_node_group_custom_iam_role_name to lookup the ARN. One of managed_node_group_custom_iam_role_name and managed_node_group_iam_role_arn is required (must be non-null) if managed_node_group_iam_role_already_exists is true." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_desired_size" requirement="optional" description="Default value for <a href=#desired_size><code>desired_size</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="number" defaultValue="1"/>
+<HclListItem name="node_group_default_capacity_type" description="Default value for capacity_type field of managed_node_group_configurations." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ON_DEMAND"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_enable_detailed_monitoring" requirement="optional" description="Default value for <a href=#enable_detailed_monitoring><code>enable_detailed_monitoring</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="node_group_default_desired_size" description="Default value for desired_size field of managed_node_group_configurations." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_instance_root_volume_encryption" requirement="optional" description="Default value for the <a href=#instance_root_volume_encryption><code>instance_root_volume_encryption</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="node_group_default_enable_detailed_monitoring" description="Default value for enable_detailed_monitoring field of managed_node_group_configurations." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_instance_root_volume_size" requirement="optional" description="Default value for the <a href=#instance_root_volume_size><code>instance_root_volume_size</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="number" defaultValue="40"/>
+<HclListItem name="node_group_default_instance_root_volume_encryption" description="Default value for the instance_root_volume_encryption field of managed_node_group_configurations." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_instance_root_volume_type" requirement="optional" description="Default value for the <a href=#instance_root_volume_type><code>instance_root_volume_type</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="string" defaultValue="gp3"/>
+<HclListItem name="node_group_default_instance_root_volume_size" description="Default value for the instance_root_volume_size field of managed_node_group_configurations." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="40"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_instance_types" requirement="optional" description="Default value for <a href=#instance_types><code>instance_types</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="list" typeDetails="list(string)" defaultValue="null"/>
+<HclListItem name="node_group_default_instance_root_volume_type" description="Default value for the instance_root_volume_type field of managed_node_group_configurations." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="gp3"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_labels" requirement="optional" description="Default value for labels field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>. Unlike <a href=#common_labels><code>common_labels</code></a> which will always be merged in, these labels are only used if the labels field is omitted from the configuration." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="node_group_default_instance_types" description="Default value for instance_types field of managed_node_group_configurations." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="node_group_default_max_pods_allowed" requirement="optional" description="Default value for the <a href=#max_pods_allowed><code>max_pods_allowed</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>. Any map entry that does not specify <a href=#max_pods_allowed><code>max_pods_allowed</code></a> will use this value." type="number" defaultValue="null"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="node_group_default_max_size" requirement="optional" description="Default value for <a href=#max_size><code>max_size</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="number" defaultValue="1"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="node_group_default_min_size" requirement="optional" description="Default value for <a href=#min_size><code>min_size</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="number" defaultValue="1"/>
+<HclListItem name="node_group_default_labels" description="Default value for labels field of managed_node_group_configurations. Unlike common_labels which will always be merged in, these labels are only used if the labels field is omitted from the configuration." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="node_group_default_subnet_ids" requirement="optional" description="Default value for <a href=#subnet_ids><code>subnet_ids</code></a> field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>." type="list" typeDetails="list(string)" defaultValue="null"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="node_group_default_tags" requirement="optional" description="Default value for tags field of <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a>. Unlike <a href=#common_tags><code>common_tags</code></a> which will always be merged in, these tags are only used if the tags field is omitted from the configuration." type="map" typeDetails="map(string)" defaultValue="{}"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="node_group_launch_template_instance_type" requirement="optional" description="The instance type to configure in the launch template. This value will be used when the <a href=#instance_types><code>instance_types</code></a> field is set to null (NOT omitted, in which case <a href=#node_group_default_instance_types><code>node_group_default_instance_types</code></a> will be used)." type="string" defaultValue="null"/>
+<HclListItem name="node_group_default_max_pods_allowed" description="Default value for the max_pods_allowed field of managed_node_group_configurations. Any map entry that does not specify max_pods_allowed will use this value." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="node_group_names" requirement="optional" description="The names of the node groups. When null, this value is automatically calculated from the <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a> map. This variable must be set if any of the values of the <a href=#managed_node_group_configurations><code>managed_node_group_configurations</code></a> map depends on a resource that is not available at plan time to work around terraform limitations with <a href=#for_each><code>for_each</code></a>." type="list" typeDetails="list(string)" defaultValue="null"/>
+<HclListItem name="node_group_default_max_size" description="Default value for max_size field of managed_node_group_configurations." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
 
-<HclListItem name="node_group_security_group_tags" requirement="optional" description="A map of tags to apply to the Security Group of the ASG for the managed node group pool. The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="node_group_default_min_size" description="Default value for min_size field of managed_node_group_configurations." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
 
-<HclListItem name="ssh_grunt_iam_group" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the EKS workers. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." type="string" defaultValue="ssh-grunt-users"/>
+<HclListItem name="node_group_default_subnet_ids" description="Default value for subnet_ids field of managed_node_group_configurations." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the EKS workers with sudo permissions. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." type="string" defaultValue="ssh-grunt-sudo-users"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="tenancy" requirement="optional" description="The tenancy of the servers in the self-managed worker ASG. Must be one of: default, dedicated, or host." type="string" defaultValue="default"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="use_exec_plugin_for_auth" requirement="optional" description="If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the <a href=#use_kubergrunt_to_fetch_token><code>use_kubergrunt_to_fetch_token</code></a> input variable to control whether kubergrunt or aws is used to fetch tokens." type="bool" defaultValue="true"/>
+<HclListItem name="node_group_default_tags" description="Default value for tags field of managed_node_group_configurations. Unlike common_tags which will always be merged in, these tags are only used if the tags field is omitted from the configuration." requirement="optional" type="map">
+<HclListItemTypeDetails>
 
-<HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" description="EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if <a href=#use_exec_plugin_for_auth><code>use_exec_plugin_for_auth</code></a> is set to true." type="bool" defaultValue="true"/>
+```hcl
+map(string)
+```
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." type="bool" defaultValue="true"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="use_prefix_mode_to_calculate_max_pods" requirement="optional" description="When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node." type="bool" defaultValue="false"/>
+<HclListItem name="node_group_launch_template_instance_type" description="The instance type to configure in the launch template. This value will be used when the instance_types field is set to null (NOT omitted, in which case <a href=#node_group_default_instance_types><code>node_group_default_instance_types</code></a> will be used)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="worker_k8s_role_mapping_name" requirement="optional" description="Name of the IAM role to Kubernetes RBAC group mapping ConfigMap. Only used if <a href=#aws_auth_merger_namespace><code>aws_auth_merger_namespace</code></a> is not null." type="string" defaultValue="eks-cluster-worker-iam-mapping"/>
+<HclListItem name="node_group_names" description="The names of the node groups. When null, this value is automatically calculated from the managed_node_group_configurations map. This variable must be set if any of the values of the managed_node_group_configurations map depends on a resource that is not available at plan time to work around terraform limitations with for_each." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="worker_name_prefix" requirement="optional" description="Prefix EKS worker resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources. Defaults to empty string so that resource names are not excessively long by default." type="string" defaultValue=""/>
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_security_group_tags" description="A map of tags to apply to the Security Group of the ASG for the managed node group pool. The key is the tag name and the value is the tag value." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the EKS workers. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-users"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group_sudo" description="If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the EKS workers with sudo permissions. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+</HclListItem>
+
+<HclListItem name="tenancy" description="The tenancy of the servers in the self-managed worker ASG. Must be one of: default, dedicated, or host." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="default"/>
+</HclListItem>
+
+<HclListItem name="use_exec_plugin_for_auth" description="If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token input variable to control whether kubergrunt or aws is used to fetch tokens." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_kubergrunt_to_fetch_token" description="EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if use_exec_plugin_for_auth is set to true." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" description="When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_prefix_mode_to_calculate_max_pods" description="When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="worker_k8s_role_mapping_name" description="Name of the IAM role to Kubernetes RBAC group mapping ConfigMap. Only used if aws_auth_merger_namespace is not null." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="eks-cluster-worker-iam-mapping"/>
+</HclListItem>
+
+<HclListItem name="worker_name_prefix" description="Prefix EKS worker resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources. Defaults to empty string so that resource names are not excessively long by default." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="managed_node_group_arns" requirement="required" description="Map of Node Group names to ARNs of the created EKS Node Groups."/>
+<HclListItem name="managed_node_group_arns" description="Map of Node Group names to ARNs of the created EKS Node Groups.">
+</HclListItem>
 
-<HclListItem name="managed_node_group_worker_iam_role_arn" requirement="required" description="The ARN of the IAM role associated with the Managed Node Group EKS workers."/>
+<HclListItem name="managed_node_group_worker_iam_role_arn" description="The ARN of the IAM role associated with the Managed Node Group EKS workers.">
+</HclListItem>
 
-<HclListItem name="managed_node_group_worker_iam_role_name" requirement="required" description="The name of the IAM role associated with the Managed Node Group EKS workers."/>
+<HclListItem name="managed_node_group_worker_iam_role_name" description="The name of the IAM role associated with the Managed Node Group EKS workers.">
+</HclListItem>
 
-<HclListItem name="managed_node_group_worker_security_group_ids" requirement="required" description="Map of Node Group names to Auto Scaling Group security group IDs. Empty if <a href=#cluster_instance_keypair_name><code>cluster_instance_keypair_name</code></a> is not set."/>
+<HclListItem name="managed_node_group_worker_security_group_ids" description="Map of Node Group names to Auto Scaling Group security group IDs. Empty if <a href=#cluster_instance_keypair_name><code>cluster_instance_keypair_name</code></a> is not set.">
+</HclListItem>
 
-<HclListItem name="managed_node_group_worker_shared_security_group_id" requirement="required" description="The ID of the common AWS Security Group associated with all the managed EKS workers."/>
+<HclListItem name="managed_node_group_worker_shared_security_group_id" description="The ID of the common AWS Security Group associated with all the managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_managed_node_group_worker_cpu_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs CPU usage (percentage) of the Managed Node Group EKS workers."/>
+<HclListItem name="metric_widget_managed_node_group_worker_cpu_usage" description="A CloudWatch Dashboard widget that graphs CPU usage (percentage) of the Managed Node Group EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_managed_node_group_worker_disk_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs disk usage (percentage) of the Managed Node Group EKS workers."/>
+<HclListItem name="metric_widget_managed_node_group_worker_disk_usage" description="A CloudWatch Dashboard widget that graphs disk usage (percentage) of the Managed Node Group EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_managed_node_group_worker_memory_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs memory usage (percentage) of the Managed Node Group EKS workers."/>
+<HclListItem name="metric_widget_managed_node_group_worker_memory_usage" description="A CloudWatch Dashboard widget that graphs memory usage (percentage) of the Managed Node Group EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_self_managed_worker_cpu_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs CPU usage (percentage) of the self-managed EKS workers."/>
+<HclListItem name="metric_widget_self_managed_worker_cpu_usage" description="A CloudWatch Dashboard widget that graphs CPU usage (percentage) of the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_self_managed_worker_disk_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs disk usage (percentage) of the self-managed EKS workers."/>
+<HclListItem name="metric_widget_self_managed_worker_disk_usage" description="A CloudWatch Dashboard widget that graphs disk usage (percentage) of the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="metric_widget_self_managed_worker_memory_usage" requirement="required" description="A CloudWatch Dashboard widget that graphs memory usage (percentage) of the self-managed EKS workers."/>
+<HclListItem name="metric_widget_self_managed_worker_memory_usage" description="A CloudWatch Dashboard widget that graphs memory usage (percentage) of the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="self_managed_worker_iam_role_arn" requirement="required" description="The ARN of the IAM role associated with the self-managed EKS workers."/>
+<HclListItem name="self_managed_worker_iam_role_arn" description="The ARN of the IAM role associated with the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="self_managed_worker_iam_role_name" requirement="required" description="The name of the IAM role associated with the self-managed EKS workers."/>
+<HclListItem name="self_managed_worker_iam_role_name" description="The name of the IAM role associated with the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="self_managed_worker_security_group_id" requirement="required" description="The ID of the AWS Security Group associated with the self-managed EKS workers."/>
+<HclListItem name="self_managed_worker_security_group_id" description="The ID of the AWS Security Group associated with the self-managed EKS workers.">
+</HclListItem>
 
-<HclListItem name="worker_asg_names" requirement="required" description="The list of names of the ASGs that were deployed to act as EKS workers."/>
+<HclListItem name="worker_asg_names" description="The list of names of the ASGs that were deployed to act as EKS workers.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"197e41131de255d862563ed3580bf4a1"}
+{"sourcePlugin":"service-catalog-api","hash":"1b9bb6fd5b69c9826769f079c4309563"}
 ##DOCS-SOURCER-END -->

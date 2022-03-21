@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.78.0"/>
 
@@ -84,93 +84,160 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="primary_bucket" requirement="required" description="What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!" type="string"/>
-
-
-<br/>
-
+<HclListItem name="primary_bucket" description="What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!" requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="access_logging_bucket" requirement="optional" description="The S3 bucket where access logs for this bucket should be stored. Set to null to disable access logging." type="string" defaultValue="null"/>
+<HclListItem name="access_logging_bucket" description="The S3 bucket where access logs for this bucket should be stored. Set to null to disable access logging." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="access_logging_bucket_lifecycle_rules" requirement="optional" description="The lifecycle rules for the access logs bucket. See <a href=#lifecycle_rules><code>lifecycle_rules</code></a> for details." type="any" defaultValue="{}"/>
+<HclListItem name="access_logging_bucket_lifecycle_rules" description="The lifecycle rules for the access logs bucket. See <a href=#lifecycle_rules><code>lifecycle_rules</code></a> for details." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="access_logging_bucket_ownership" requirement="optional" description="Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." type="string" defaultValue="null"/>
+<HclListItem name="access_logging_bucket_ownership" description="Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="access_logging_bucket_policy_statements" requirement="optional" description="The IAM policy to apply to the S3 bucket used to store access logs. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." type="any" defaultValue="{}"/>
+<HclListItem name="access_logging_bucket_policy_statements" description="The IAM policy to apply to the S3 bucket used to store access logs. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="access_logging_prefix" requirement="optional" description="A prefix (i.e., folder path) to use for all access logs stored in <a href=#access_logging_bucket><code>access_logging_bucket</code></a>. Only used if <a href=#access_logging_bucket><code>access_logging_bucket</code></a> is specified." type="string" defaultValue="null"/>
+<HclListItem name="access_logging_prefix" description="A prefix (i.e., folder path) to use for all access logs stored in access_logging_bucket. Only used if access_logging_bucket is specified." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="bucket_kms_key_arn" requirement="optional" description="Optional KMS key to use for encrypting data in the S3 bucket. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must allow whoever is writing to this bucket to use that key." type="string" defaultValue="null"/>
+<HclListItem name="bucket_kms_key_arn" description="Optional KMS key to use for encrypting data in the S3 bucket. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must allow whoever is writing to this bucket to use that key." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="bucket_ownership" requirement="optional" description="Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." type="string" defaultValue="null"/>
+<HclListItem name="bucket_ownership" description="Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="bucket_policy_statements" requirement="optional" description="The IAM policy to apply to this S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." type="any" defaultValue="{}"/>
+<HclListItem name="bucket_policy_statements" description="The IAM policy to apply to this S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="bucket_sse_algorithm" requirement="optional" description="The server-side encryption algorithm to use on the bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href=#enable_sse><code>enable_sse</code></a> to false." type="string" defaultValue="aws:kms"/>
+<HclListItem name="bucket_sse_algorithm" description="The server-side encryption algorithm to use on the bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href=#enable_sse><code>enable_sse</code></a> to false." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="aws:kms"/>
+</HclListItem>
 
-<HclListItem name="cors_rules" requirement="optional" description="CORS rules to set on this S3 bucket" type="any" defaultValue="[]"/>
+<HclListItem name="cors_rules" description="CORS rules to set on this S3 bucket" requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="enable_sse" requirement="optional" description="Set to true to enable server-side encryption for this bucket. You can control the algorithm using <a href=#sse_algorithm><code>sse_algorithm</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="enable_sse" description="Set to true to enable server-side encryption for this bucket. You can control the algorithm using <a href=#sse_algorithm><code>sse_algorithm</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_versioning" requirement="optional" description="Set to true to enable versioning for this bucket. If enabled, instead of overriding objects, the S3 bucket will always create a new version of each object, so all the old values are retained." type="bool" defaultValue="true"/>
+<HclListItem name="enable_versioning" description="Set to true to enable versioning for this bucket. If enabled, instead of overriding objects, the S3 bucket will always create a new version of each object, so all the old values are retained." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="force_destroy_logs" requirement="optional" description="If set to true, when you run 'terraform destroy', delete all objects from the logs bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" type="bool" defaultValue="false"/>
+<HclListItem name="force_destroy_logs" description="If set to true, when you run 'terraform destroy', delete all objects from the logs bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="force_destroy_primary" requirement="optional" description="If set to true, when you run 'terraform destroy', delete all objects from the primary bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" type="bool" defaultValue="false"/>
+<HclListItem name="force_destroy_primary" description="If set to true, when you run 'terraform destroy', delete all objects from the primary bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="force_destroy_replica" requirement="optional" description="If set to true, when you run 'terraform destroy', delete all objects from the replica bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" type="bool" defaultValue="false"/>
+<HclListItem name="force_destroy_replica" description="If set to true, when you run 'terraform destroy', delete all objects from the replica bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!" requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="lifecycle_rules" requirement="optional" description="The lifecycle rules for this S3 bucket. These can be used to change storage types or delete objects based on customizable rules. This should be a map, where each key is a unique ID for the lifecycle rule, and each value is an object that contains the parameters defined in the comment above." type="any" defaultValue="{}"/>
+<HclListItem name="lifecycle_rules" description="The lifecycle rules for this S3 bucket. These can be used to change storage types or delete objects based on customizable rules. This should be a map, where each key is a unique ID for the lifecycle rule, and each value is an object that contains the parameters defined in the comment above." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="mfa_delete" requirement="optional" description="Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. Only used if <a href=#enable_versioning><code>enable_versioning</code></a> is true. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module." type="bool" defaultValue="false"/>
+<HclListItem name="mfa_delete" description="Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. Only used if enable_versioning is true. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="replica_bucket" requirement="optional" description="The S3 bucket that will be the replica of this bucket. Set to null to disable replication." type="string" defaultValue="null"/>
+<HclListItem name="replica_bucket" description="The S3 bucket that will be the replica of this bucket. Set to null to disable replication." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="replica_bucket_already_exists" requirement="optional" description="If set to true, replica bucket will be expected to already exist." type="bool" defaultValue="false"/>
+<HclListItem name="replica_bucket_already_exists" description="If set to true, replica bucket will be expected to already exist." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<HclListItem name="replica_bucket_lifecycle_rules" requirement="optional" description="The lifecycle rules for the replica bucket. See <a href=#lifecycle_rules><code>lifecycle_rules</code></a> for details." type="any" defaultValue="{}"/>
+<HclListItem name="replica_bucket_lifecycle_rules" description="The lifecycle rules for the replica bucket. See <a href=#lifecycle_rules><code>lifecycle_rules</code></a> for details." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="replica_bucket_ownership" requirement="optional" description="Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." type="string" defaultValue="null"/>
+<HclListItem name="replica_bucket_ownership" description="Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="replica_bucket_policy_statements" requirement="optional" description="The IAM policy to apply to the replica S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." type="any" defaultValue="{}"/>
+<HclListItem name="replica_bucket_policy_statements" description="The IAM policy to apply to the replica S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="replica_enable_sse" requirement="optional" description="Set to true to enable server-side encryption for the replica bucket. You can control the algorithm using <a href=#replica_sse_algorithm><code>replica_sse_algorithm</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="replica_enable_sse" description="Set to true to enable server-side encryption for the replica bucket. You can control the algorithm using <a href=#replica_sse_algorithm><code>replica_sse_algorithm</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="replica_region" requirement="optional" description="The AWS region for the replica bucket." type="string" defaultValue="null"/>
+<HclListItem name="replica_region" description="The AWS region for the replica bucket." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="replica_sse_algorithm" requirement="optional" description="The server-side encryption algorithm to use on the replica bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href=#replica_enable_sse><code>replica_enable_sse</code></a> to false." type="string" defaultValue="aws:kms"/>
+<HclListItem name="replica_sse_algorithm" description="The server-side encryption algorithm to use on the replica bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href=#replica_enable_sse><code>replica_enable_sse</code></a> to false." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="aws:kms"/>
+</HclListItem>
 
-<HclListItem name="replication_role" requirement="optional" description="The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only used if <a href=#replication_bucket><code>replication_bucket</code></a> is specified." type="string" defaultValue="null"/>
+<HclListItem name="replication_role" description="The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only used if replication_bucket is specified." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="replication_rules" requirement="optional" description="The rules for managing replication. Only used if <a href=#replication_bucket><code>replication_bucket</code></a> is specified. This should be a map, where the key is a unique ID for each replication rule and the value is an object of the form explained in a comment above." type="any" defaultValue="{}"/>
+<HclListItem name="replication_rules" description="The rules for managing replication. Only used if replication_bucket is specified. This should be a map, where the key is a unique ID for each replication rule and the value is an object of the form explained in a comment above." requirement="optional" type="any">
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<HclListItem name="tags" requirement="optional" description="A map of tags to apply to the S3 Bucket. These tags will also be applied to the access logging and replica buckets (if any). The key is the tag name and the value is the tag value." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="tags" description="A map of tags to apply to the S3 Bucket. These tags will also be applied to the access logging and replica buckets (if any). The key is the tag name and the value is the tag value." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="access_logging_bucket_name" requirement="required" description="The name of the access logging S3 bucket."/>
+<HclListItem name="access_logging_bucket_name" description="The name of the access logging S3 bucket.">
+</HclListItem>
 
-<HclListItem name="hosted_zone_id" requirement="required" description="The Route 53 Hosted Zone ID for this bucket's region."/>
+<HclListItem name="hosted_zone_id" description="The Route 53 Hosted Zone ID for this bucket's region.">
+</HclListItem>
 
-<HclListItem name="primary_bucket_arn" requirement="required" description="The ARN of the S3 bucket."/>
+<HclListItem name="primary_bucket_arn" description="The ARN of the S3 bucket.">
+</HclListItem>
 
-<HclListItem name="primary_bucket_domain_name" requirement="required" description="The bucket domain name. Will be of format bucketname.s3.amazonaws.com."/>
+<HclListItem name="primary_bucket_domain_name" description="The bucket domain name. Will be of format bucketname.s3.amazonaws.com.">
+</HclListItem>
 
-<HclListItem name="primary_bucket_name" requirement="required" description="The name of the primary S3 bucket."/>
+<HclListItem name="primary_bucket_name" description="The name of the primary S3 bucket.">
+</HclListItem>
 
-<HclListItem name="primary_bucket_regional_domain_name" requirement="required" description="The bucket region-specific domain name. The bucket domain name including the region name, please refer here for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent redirect issues from CloudFront to S3 Origin URL."/>
+<HclListItem name="primary_bucket_regional_domain_name" description="The bucket region-specific domain name. The bucket domain name including the region name, please refer here for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent redirect issues from CloudFront to S3 Origin URL.">
+</HclListItem>
 
-<HclListItem name="replica_bucket_name" requirement="required" description="The name of the replica S3 bucket."/>
+<HclListItem name="replica_bucket_name" description="The name of the replica S3 bucket.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5c7d7e0dd86f2bbd36d3384836d9826c"}
+{"sourcePlugin":"service-catalog-api","hash":"bc0aab9168439c315f8885fc04286fae"}
 ##DOCS-SOURCER-END -->

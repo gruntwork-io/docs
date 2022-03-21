@@ -14,7 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import HclListItem from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -90,88 +90,177 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="enable_automatic_failover" requirement="required" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for <a href=#replication_group_size><code>replication_group_size</code></a>." type="bool"/>
+<HclListItem name="enable_automatic_failover" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for replication_group_size." requirement="required" type="bool">
+</HclListItem>
 
-<HclListItem name="enable_multi_az" requirement="required" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for <a href=#replication_group_size><code>replication_group_size</code></a>." type="bool"/>
+<HclListItem name="enable_multi_az" description="Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only replica is automatically promoted to a read-write primary cluster if the existing primary cluster fails. If you specify true, you must specify a value greater than 1 for replication_group_size." requirement="required" type="bool">
+</HclListItem>
 
-<HclListItem name="instance_type" requirement="required" description="The compute and memory capacity of the nodes (e.g. cache.m4.large)." type="string"/>
+<HclListItem name="instance_type" description="The compute and memory capacity of the nodes (e.g. cache.m4.large)." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="name" requirement="required" description="The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string." type="string"/>
+<HclListItem name="name" description="The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string." requirement="required" type="string">
+</HclListItem>
 
-<HclListItem name="replication_group_size" requirement="required" description="The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica." type="number"/>
+<HclListItem name="replication_group_size" description="The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica." requirement="required" type="number">
+</HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" description="The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." type="list" typeDetails="list(string)"/>
+<HclListItem name="subnet_ids" description="The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href=#vpc_id><code>vpc_id</code></a>." requirement="required" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="vpc_id" requirement="required" description="The ID of the VPC in which to deploy RDS." type="string"/>
+```hcl
+list(string)
+```
 
+</HclListItemTypeDetails>
+</HclListItem>
 
-<br/>
-
+<HclListItem name="vpc_id" description="The ID of the VPC in which to deploy RDS." requirement="required" type="string">
+</HclListItem>
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." type="list" typeDetails="list(string)" defaultValue="[]"/>
+<HclListItem name="alarms_sns_topic_arns" description="The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" description="The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" description="The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." type="list" typeDetails="list(string)" defaultValue="[]"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="apply_immediately" requirement="optional" description="Specifies whether any modifications are applied immediately, or during the next maintenance window." type="bool" defaultValue="false"/>
+<HclListItem name="allow_connections_from_cidr_blocks" description="The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." requirement="optional" type="list">
+<HclListItemTypeDetails>
 
-<HclListItem name="auth_token" requirement="optional" description="The password used to access a password protected server. Can be specified only if <a href=#transit_encryption_enabled><code>transit_encryption_enabled</code></a> = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, <double-quotes>, and /)" type="string" defaultValue="null"/>
+```hcl
+list(string)
+```
 
-<HclListItem name="cluster_mode" requirement="optional" description="Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys '<a href=#num_node_groups><code>num_node_groups</code></a>' and '<a href=#replicas_per_node_group><code>replicas_per_node_group</code></a>' set to desired integer values." type="list" typeDetails="list(object({
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_security_groups" description="The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href=#vpc_id><code>vpc_id</code></a>. One of <a href=#allow_connections_from_cidr_blocks><code>allow_connections_from_cidr_blocks</code></a> or <a href=#allow_connections_from_security_groups><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="apply_immediately" description="Specifies whether any modifications are applied immediately, or during the next maintenance window." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="auth_token" description="The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, <double-quotes>, and /)" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_mode" description="Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values." requirement="optional" type="list">
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
     num_node_groups         = number
     replicas_per_node_group = number
-  }))" defaultValue="[]"/>
+  }))
+```
 
-<HclListItem name="enable_at_rest_encryption" requirement="optional" description="Whether to enable encryption at rest." type="bool" defaultValue="true"/>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." type="bool" defaultValue="true"/>
+<HclListItem name="enable_at_rest_encryption" description="Whether to enable encryption at rest." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="enable_transit_encryption" requirement="optional" description="Whether to enable encryption in transit." type="bool" defaultValue="true"/>
+<HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="maintenance_window" requirement="optional" description="Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period." type="string" defaultValue="sat:07:00-sat:08:00"/>
+<HclListItem name="enable_transit_encryption" description="Whether to enable encryption in transit." requirement="optional" type="bool">
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<HclListItem name="parameter_group_name" requirement="optional" description="Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster." type="string" defaultValue="null"/>
+<HclListItem name="maintenance_window" description="Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="sat:07:00-sat:08:00"/>
+</HclListItem>
 
-<HclListItem name="port" requirement="optional" description="The port number on which each of the cache nodes will accept connections (e.g. 6379)." type="number" defaultValue="6379"/>
+<HclListItem name="parameter_group_name" description="Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="redis_version" requirement="optional" description="Version number of redis to use (e.g. 5.0.6)." type="string" defaultValue="5.0.6"/>
+<HclListItem name="port" description="The port number on which each of the cache nodes will accept connections (e.g. 6379)." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="6379"/>
+</HclListItem>
 
-<HclListItem name="snapshot_arn" requirement="optional" description="The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use <a href=#snapshot_name><code>snapshot_name</code></a>." type="string" defaultValue="null"/>
+<HclListItem name="redis_version" description="Version number of redis to use (e.g. 5.0.6)." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="5.0.6"/>
+</HclListItem>
 
-<HclListItem name="snapshot_name" requirement="optional" description="The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use <a href=#snapshot_arn><code>snapshot_arn</code></a>." type="string" defaultValue="null"/>
+<HclListItem name="snapshot_arn" description="The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use snapshot_name." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="snapshot_retention_limit" requirement="optional" description="The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots." type="number" defaultValue="15"/>
+<HclListItem name="snapshot_name" description="The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use snapshot_arn." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<HclListItem name="snapshot_window" requirement="optional" description="The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots." type="string" defaultValue="06:00-07:00"/>
+<HclListItem name="snapshot_retention_limit" description="The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots." requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="15"/>
+</HclListItem>
 
-<HclListItem name="sns_topic_for_notifications" requirement="optional" description="The ARN of the SNS Topic to which notifications will be sent when a Replication Group event happens, such as an automatic failover (e.g. arn:aws:sns:*:123456789012:<a href=#my_sns_topic><code>my_sns_topic</code></a>). An empty string is a valid value if you do not wish to receive notifications via SNS." type="string" defaultValue=""/>
+<HclListItem name="snapshot_window" description="The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="06:00-07:00"/>
+</HclListItem>
 
-<HclListItem name="tags" requirement="optional" description="A set of tags to set for the ElastiCache Replication Group." type="map" typeDetails="map(string)" defaultValue="{}"/>
+<HclListItem name="sns_topic_for_notifications" description="The ARN of the SNS Topic to which notifications will be sent when a Replication Group event happens, such as an automatic failover (e.g. arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if you do not wish to receive notifications via SNS." requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="tags" description="A set of tags to set for the ElastiCache Replication Group." requirement="optional" type="map">
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <br/>
 
-<HclListItem name="cache_cluster_ids" requirement="required" description="The list of AWS cache cluster ids where each one represents a Redis node."/>
+<HclListItem name="cache_cluster_ids" description="The list of AWS cache cluster ids where each one represents a Redis node.">
+</HclListItem>
 
-<HclListItem name="cache_node_id" requirement="required" description="The id of the ElastiCache node. Note: Each Redis cache cluster has only one node and its id is always 0001."/>
+<HclListItem name="cache_node_id" description="The id of the ElastiCache node. Note: Each Redis cache cluster has only one node and its id is always 0001.">
+</HclListItem>
 
-<HclListItem name="cache_port" requirement="required" description="The port number on which each of the cache nodes will accept connections (e.g. 6379)."/>
+<HclListItem name="cache_port" description="The port number on which each of the cache nodes will accept connections (e.g. 6379).">
+</HclListItem>
 
-<HclListItem name="configuration_endpoint" requirement="required" description="When cluster mode is enabled, use this endpoint for all operations. Redis will automatically determine which of the cluster's node to access."/>
+<HclListItem name="configuration_endpoint" description="When cluster mode is enabled, use this endpoint for all operations. Redis will automatically determine which of the cluster's node to access.">
+</HclListItem>
 
-<HclListItem name="primary_endpoint" requirement="required" description="The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster."/>
+<HclListItem name="primary_endpoint" description="The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster.">
+</HclListItem>
 
-<HclListItem name="reader_endpoint" requirement="required" description="When cluster mode is disabled, use this endpoint for all read operations."/>
+<HclListItem name="reader_endpoint" description="When cluster mode is disabled, use this endpoint for all read operations.">
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"10417d02ad592a3fda23df6a0ae7f21b"}
+{"sourcePlugin":"service-catalog-api","hash":"bc288548c4092eb117db2fb5cb93a622"}
 ##DOCS-SOURCER-END -->
