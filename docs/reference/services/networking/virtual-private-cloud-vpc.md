@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.0"/>
 
 # VPC
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/networking/vpc" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -211,6 +211,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="flow_logs_traffic_type" className="snap-top"></a>
 
 * [**`flow_logs_traffic_type`**](#flow_logs_traffic_type) &mdash; The type of traffic to capture in the VPC flow log. Valid values include ACCEPT, REJECT, or ALL. Defaults to REJECT. Only used if [`create_flow_logs`](#create_flow_logs) is true.
+
+<a name="iam_role_permissions_boundary" className="snap-top"></a>
+
+* [**`iam_role_permissions_boundary`**](#iam_role_permissions_boundary) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role.
 
 <a name="kms_key_arn" className="snap-top"></a>
 
@@ -340,6 +344,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The allowed tenancy of instances launched into the selected VPC. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_custom_tags" className="snap-top"></a>
 
 * [**`vpc_custom_tags`**](#vpc_custom_tags) &mdash; A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
@@ -460,5 +468,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f2dc09e50e5f332defd605adb15267e5"}
+{"sourcePlugin":"service-catalog-api","hash":"69b07cedef259f8af88282c45fa75193"}
 ##DOCS-SOURCER-END -->
