@@ -194,7 +194,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_db_connections_widget_parameters" description="Parameters for the database connections widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -213,7 +223,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_space_widget_parameters" description="Parameters for the available disk space widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -232,7 +252,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_widget_parameters" description="Parameters for the available memory widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -251,7 +281,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_read_latency_widget_parameters" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -270,7 +310,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_write_latency_widget_parameters" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -289,7 +339,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="db_cluster_custom_parameter_group" description="Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group." requirement="optional" type="object">
@@ -593,5 +653,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0d55b49c6dff3f74a92cc1e24b7ee1da"}
+{"sourcePlugin":"service-catalog-api","hash":"c4bc2bce1b71aed2c92c753581656358"}
 ##DOCS-SOURCER-END -->

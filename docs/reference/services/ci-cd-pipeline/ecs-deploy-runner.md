@@ -579,7 +579,9 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['--idempotent']"/>
+<HclListItemDefaultValue defaultValue="[
+  '--idempotent'
+]"/>
 </HclListItem>
 
 <HclListItem name="docker_image_builder_hardcoded_options" description="Which options and args to always pass in alongside the ones provided by the command. This is a map of option keys to args to pass in. Each arg in the list will be passed in as a separate option. This will be passed in first, before the args provided by the user in the event data." requirement="optional" type="map">
@@ -730,7 +732,24 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['eu-north-1','ap-south-1','eu-west-3','eu-west-2','eu-west-1','ap-northeast-2','ap-northeast-1','sa-east-1','ca-central-1','ap-southeast-1','ap-southeast-2','eu-central-1','us-east-1','us-east-2','us-west-1','us-west-2']
+[
+  'eu-north-1',
+  'ap-south-1',
+  'eu-west-3',
+  'eu-west-2',
+  'eu-west-1',
+  'ap-northeast-2',
+  'ap-northeast-1',
+  'sa-east-1',
+  'ca-central-1',
+  'ap-southeast-1',
+  'ap-southeast-2',
+  'eu-central-1',
+  'us-east-1',
+  'us-east-2',
+  'us-west-1',
+  'us-west-2'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -817,5 +836,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3de525c3daf725215ebc9f88f3f0fc37"}
+{"sourcePlugin":"service-catalog-api","hash":"8a2ed827d14c71b6f84ea491db82e9c8"}
 ##DOCS-SOURCER-END -->

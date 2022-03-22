@@ -105,7 +105,16 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'encryption_type':'AES256','kms_key':null}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  encryption_type = 'AES256',
+  kms_key = null
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="default_external_account_ids_with_read_access" description="The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map." requirement="optional" type="list">
@@ -182,5 +191,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b6f159f0de70eae905cf352c42d3d739"}
+{"sourcePlugin":"service-catalog-api","hash":"1396fba3302b401d205bc20c8c0ffc73"}
 ##DOCS-SOURCER-END -->

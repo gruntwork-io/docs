@@ -407,7 +407,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_usage_widget_parameters" description="Parameters for the worker disk usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -426,7 +436,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_usage_widget_parameters" description="Parameters for the worker memory usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -445,7 +465,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" description="Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href=#alarms_sns_topic_arn><code>alarms_sns_topic_arn</code></a>." requirement="optional" type="bool">
@@ -673,5 +703,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1b9bb6fd5b69c9826769f079c4309563"}
+{"sourcePlugin":"service-catalog-api","hash":"19fa923856244cb4905e731c2e7aba02"}
 ##DOCS-SOURCER-END -->

@@ -255,7 +255,22 @@ list(object({
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_pod_resources" description="Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information. This is most useful for configuring CPU+Memory availability for Fargate, which defaults to 0.25 vCPU and 256MB RAM." requirement="optional" type="any">
-<HclListItemDefaultValue defaultValue="{'limits':{'cpu':'250m','memory':'1024Mi'},'requests':{'cpu':'250m','memory':'1024Mi'}}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  limits = {
+    cpu = '250m',
+    memory = '1024Mi'
+  },
+  requests = {
+    cpu = '250m',
+    memory = '1024Mi'
+  }
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_pod_tolerations" description="Configure tolerations rules to allow the cluster-autoscaler Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule." requirement="optional" type="list">
@@ -379,7 +394,16 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['ingress','service']"/>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  'ingress',
+  'service'
+]
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_execution_iam_role_arns" description="List of ARNs of Fargate execution IAM Roles that should get permissions to ship logs using fluent-bit. This must be provided if enable_fargate_fluent_bit is true." requirement="optional" type="list">
@@ -416,7 +440,11 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['us-east-1d','us-east-1e','ca-central-1d']
+[
+  'us-east-1d',
+  'us-east-1e',
+  'ca-central-1d'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -553,5 +581,5 @@ map(object({
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9df3ad0ca7799fa6b67d472a9b28b06e"}
+{"sourcePlugin":"service-catalog-api","hash":"846fdcafce27218623666de2c4f2eeec"}
 ##DOCS-SOURCER-END -->

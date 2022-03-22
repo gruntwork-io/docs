@@ -211,7 +211,15 @@ map(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'EnvVarPlaceHolder':'Placeholder'}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  EnvVarPlaceHolder = 'Placeholder'
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="evaluation_periods" description="The number of periods over which data is compared to the specified threshold." requirement="optional" type="number">
@@ -418,5 +426,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"155acd03acef9d63af4106ca45c36566"}
+{"sourcePlugin":"service-catalog-api","hash":"de3c33228a02c08efe7e24068e236ddb"}
 ##DOCS-SOURCER-END -->

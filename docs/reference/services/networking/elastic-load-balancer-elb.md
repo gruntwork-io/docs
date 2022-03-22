@@ -124,7 +124,9 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['ISSUED']"/>
+<HclListItemDefaultValue defaultValue="[
+  'ISSUED'
+]"/>
 </HclListItem>
 
 <HclListItem name="acm_cert_types" description="When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs of the given types. Valid values are AMAZON_ISSUED and IMPORTED." requirement="optional" type="list">
@@ -138,7 +140,10 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['AMAZON_ISSUED','IMPORTED']
+[
+  'AMAZON_ISSUED',
+  'IMPORTED'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -318,5 +323,5 @@ list(object({
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e86680f9f4ace8a832a17e9459bffad6"}
+{"sourcePlugin":"service-catalog-api","hash":"46f7d9c020ab6c97d7eff4f49fc300c3"}
 ##DOCS-SOURCER-END -->

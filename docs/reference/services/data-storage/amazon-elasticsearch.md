@@ -225,7 +225,9 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['*']"/>
+<HclListItemDefaultValue defaultValue="[
+  '*'
+]"/>
 </HclListItem>
 
 <HclListItem name="internal_user_database_enabled" description="Whether the internal user database is enabled. Enable this to use master accounts. Only used if advanced_security_options is set to true." requirement="optional" type="bool">
@@ -303,5 +305,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b1d1d2b47eb4f10a34a415f2a8e21809"}
+{"sourcePlugin":"service-catalog-api","hash":"773d1d7497b861ba48dc4df4f4323265"}
 ##DOCS-SOURCER-END -->

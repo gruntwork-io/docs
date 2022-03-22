@@ -180,19 +180,80 @@ map(string)
 </HclListItem>
 
 <HclListItem name="default_nacl_egress_rules" description="The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl." requirement="optional" type="any">
-<HclListItemDefaultValue defaultValue="{'AllowAll':{'action':'allow','cidr_block':'0.0.0.0/0','from_port':0,'protocol':'-1','rule_no':100,'to_port':0}}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAll = {
+    action = 'allow',
+    cidr_block = '0.0.0.0/0',
+    from_port = 0,
+    protocol = '-1',
+    rule_no = 100,
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="default_nacl_ingress_rules" description="The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl." requirement="optional" type="any">
-<HclListItemDefaultValue defaultValue="{'AllowAll':{'action':'allow','cidr_block':'0.0.0.0/0','from_port':0,'protocol':'-1','rule_no':100,'to_port':0}}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAll = {
+    action = 'allow',
+    cidr_block = '0.0.0.0/0',
+    from_port = 0,
+    protocol = '-1',
+    rule_no = 100,
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="default_security_group_egress_rules" description="The egress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#egress-block." requirement="optional" type="any">
-<HclListItemDefaultValue defaultValue="{'AllowAllOutbound':{'cidr_blocks':['0.0.0.0/0'],'from_port':0,'ipv6_cidr_blocks':['::/0'],'protocol':'-1','to_port':0}}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAllOutbound = {
+    cidr_blocks = [
+      '0.0.0.0/0'
+    ],
+    from_port = 0,
+    ipv6_cidr_blocks = [
+      '::/0'
+    ],
+    protocol = '-1',
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="default_security_group_ingress_rules" description="The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block." requirement="optional" type="any">
-<HclListItemDefaultValue defaultValue="{'AllowAllFromSelf':{'from_port':0,'protocol':'-1','self':true,'to_port':0}}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAllFromSelf = {
+    from_port = 0,
+    protocol = '-1',
+    self = true,
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="enable_default_security_group" description="If set to false, the default security groups will NOT be created." requirement="optional" type="bool">
@@ -349,5 +410,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3f893fb988f418f3f6a51a7b82b7c61d"}
+{"sourcePlugin":"service-catalog-api","hash":"6173166f64905d24cf307b7218f5a7df"}
 ##DOCS-SOURCER-END -->

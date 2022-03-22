@@ -310,7 +310,9 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['03:00']"/>
+<HclListItemDefaultValue defaultValue="[
+  '03:00'
+]"/>
 </HclListItem>
 
 <HclListItem name="ebs_kms_key_arn" description="The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key." requirement="optional" type="string">
@@ -485,5 +487,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"58632587dc33109953d17f34063a0ebe"}
+{"sourcePlugin":"service-catalog-api","hash":"8c21a6396e8ba681907d3fa246f5ba9b"}
 ##DOCS-SOURCER-END -->

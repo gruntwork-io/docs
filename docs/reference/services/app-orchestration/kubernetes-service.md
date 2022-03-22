@@ -253,7 +253,16 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'openid_connect_provider_arn':'','openid_connect_provider_url':''}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  openid_connect_provider_arn = '',
+  openid_connect_provider_url = ''
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="enable_liveness_probe" description="Whether or not to enable liveness probe. Liveness checks indicate whether or not the container is alive. When these checks fail, the cluster will automatically rotate the Pod." requirement="optional" type="bool">
@@ -393,7 +402,16 @@ list(object({
 <HclListItemDefaultValue>
 
 ```hcl
-[{'port':80,'protocol':'HTTP'},{'port':443,'protocol':'HTTPS'}]
+[
+  {
+    port = 80,
+    protocol = 'HTTP'
+  },
+  {
+    port = 443,
+    protocol = 'HTTPS'
+  }
+]
 ```
 
 </HclListItemDefaultValue>
@@ -556,5 +574,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"c7ac1a473282daf3248f271dd7eeaf07"}
+{"sourcePlugin":"service-catalog-api","hash":"ee037a808e261e5ef296f1ceb6394cd1"}
 ##DOCS-SOURCER-END -->

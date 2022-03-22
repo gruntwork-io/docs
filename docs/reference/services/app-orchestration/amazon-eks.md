@@ -445,7 +445,9 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['us-east-1e']"/>
+<HclListItemDefaultValue defaultValue="[
+  'us-east-1e'
+]"/>
 </HclListItem>
 
 <HclListItem name="create_default_fargate_iam_role" description="When true, IAM role will be created and attached to Fargate control plane services." requirement="optional" type="bool">
@@ -512,7 +514,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_usage_widget_parameters" description="Parameters for the worker disk usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -531,7 +543,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_usage_widget_parameters" description="Parameters for the worker memory usage widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -550,7 +572,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="eks_cluster_security_group_tags" description="A map of custom tags to apply to the Security Group for the EKS Cluster Control Plane. The key is the tag name and the value is the tag value." requirement="optional" type="map">
@@ -606,7 +638,11 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['api','audit','authenticator']
+[
+  'api',
+  'audit',
+  'authenticator'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -642,7 +678,11 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['us-east-1d','us-east-1e','ca-central-1d']
+[
+  'us-east-1d',
+  'us-east-1e',
+  'ca-central-1d'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -929,5 +969,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"af8f17066e653539a8a94da6d0f9168c"}
+{"sourcePlugin":"service-catalog-api","hash":"9c71cd6d36ea6fc62f7f7f6a43e5a27f"}
 ##DOCS-SOURCER-END -->

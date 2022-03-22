@@ -275,7 +275,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_db_connections_widget_parameters" description="Parameters for the database connections widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -294,7 +304,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_space_widget_parameters" description="Parameters for the available disk space widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -313,7 +333,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_widget_parameters" description="Parameters for the available memory widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -332,7 +362,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_read_latency_widget_parameters" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -351,7 +391,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="dashboard_write_latency_widget_parameters" description="Parameters for the read latency widget to output for use in a CloudWatch dashboard." requirement="optional" type="object">
@@ -370,7 +420,17 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{'height':6,'period':60,'width':8}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  height = 6,
+  period = 60,
+  width = 8
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="db_config_secrets_manager_id" description="The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as null, and use the master_username, master_password, db_name, engine, and port variables." requirement="optional" type="string">
@@ -611,5 +671,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8f6ff08eb5a00b7a399224744cb48223"}
+{"sourcePlugin":"service-catalog-api","hash":"2d44d5c84db496fba0b60a4e2c359f3a"}
 ##DOCS-SOURCER-END -->

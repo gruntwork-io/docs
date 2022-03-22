@@ -204,7 +204,15 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['ssh-grunt-sudo-users']"/>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  'ssh-grunt-sudo-users'
+]
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="iam_group_names_ssh_grunt_users" description="The name to be used for the IAM Group that enables its members to SSH as a non-sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups." requirement="optional" type="list">
@@ -215,7 +223,15 @@ list(string)
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="['ssh-grunt-users']"/>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  'ssh-grunt-users'
+]
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="iam_groups_for_cross_account_access" description="This variable is used to create groups that allow IAM users to assume roles in your other AWS accounts. It should be a list of objects, where each object has the fields 'group_name', which will be used as the name of the IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when part of that group. For each entry in the list of objects, we will create an IAM group that allows users to assume the given IAM role(s) in the other AWS account. This allows you to define all your IAM users in one account (e.g. the users account) and to grant them access to certain IAM roles in other accounts (e.g. the stage, prod, audit accounts)." requirement="optional" type="list">
@@ -431,5 +447,5 @@ map(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1e2f22fab540e45e6ac2d7dbea3dd149"}
+{"sourcePlugin":"service-catalog-api","hash":"35e0fdfbcf90ef7362fbf6f59f08a3a2"}
 ##DOCS-SOURCER-END -->

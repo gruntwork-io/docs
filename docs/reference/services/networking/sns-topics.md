@@ -129,7 +129,16 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['http','https','email','email-json','sms','sqs','application','lambda']
+[
+  'http',
+  'https',
+  'email',
+  'email-json',
+  'sms',
+  'sqs',
+  'application',
+  'lambda'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -164,5 +173,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6f7944147842a937f41789aec6e78f2b"}
+{"sourcePlugin":"service-catalog-api","hash":"5e451de6d14e8ef15634778c4cb19e50"}
 ##DOCS-SOURCER-END -->

@@ -746,7 +746,12 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['cloudtrail.amazonaws.com','config-multiaccountsetup.amazonaws.com','config.amazonaws.com','access-analyzer.amazonaws.com']
+[
+  'cloudtrail.amazonaws.com',
+  'config-multiaccountsetup.amazonaws.com',
+  'config.amazonaws.com',
+  'access-analyzer.amazonaws.com'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -782,7 +787,9 @@ list(string)
 <HclListItemDefaultValue>
 
 ```hcl
-['SERVICE_CONTROL_POLICY']
+[
+  'SERVICE_CONTROL_POLICY'
+]
 ```
 
 </HclListItemDefaultValue>
@@ -1152,5 +1159,5 @@ list(string)
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"de074f565d0970c2d633e96e76925ef1"}
+{"sourcePlugin":"service-catalog-api","hash":"d1eee3643c3b648f48d4bccfdd788751"}
 ##DOCS-SOURCER-END -->
