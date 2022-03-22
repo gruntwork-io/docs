@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
 # EC2 Instance
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ec2-instance" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -29,7 +29,7 @@ import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 This service creates a single EC2 instance that includes server hardening, IAM role, EIP (optional), EBS Volume
 (optional), and CloudWatch metrics, logs, and alerts. Note that a single EC2 instance can be a single point of failure,
 so if you want to run multiple EC2 instances for high availability and scalability, see the
-[asg-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service).
+[asg-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/asg-service).
 
 ## Features
 
@@ -58,9 +58,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -85,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -93,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -175,6 +175,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="dns_zone_is_private" className="snap-top"></a>
 
 * [**`dns_zone_is_private`**](#dns_zone_is_private) &mdash; Specify whether we're selecting a private or public Route 53 DNS Zone
+
+<a name="ebs_optimized" className="snap-top"></a>
+
+* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
 
 <a name="ebs_volumes" className="snap-top"></a>
 
@@ -268,6 +272,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this instance. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the EC2 instance.
@@ -320,5 +328,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5dc43b683768d6967af4a7a45cfdf699"}
+{"sourcePlugin":"service-catalog-api","hash":"30aa5c4239b6c37b1216c6624f619494"}
 ##DOCS-SOURCER-END -->

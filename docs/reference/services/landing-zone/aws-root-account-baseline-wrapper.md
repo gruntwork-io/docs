@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Account Baseline for root account
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-root" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/landingzone/account-baseline-root" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -58,16 +58,16 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/core-concepts.md#creating-child-accounts)
-*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
-*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/core-concepts.md#how-to-use-multi-region-services)
+*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/core-concepts.md#creating-child-accounts)
+*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
+*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,6 +98,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="additional_config_rules" className="snap-top"></a>
 
 * [**`additional_config_rules`**](#additional_config_rules) &mdash; Map of additional managed rules to add. The key is the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an object specifying the rule details
+
+<a name="allow_auto_deploy_from_github_actions_for_sources" className="snap-top"></a>
+
+* [**`allow_auto_deploy_from_github_actions_for_sources`**](#allow_auto_deploy_from_github_actions_for_sources) &mdash; Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with [`allow_auto_deploy_from_other_account_arns`](#allow_auto_deploy_from_other_account_arns). Only used if [`enable_github_actions_access`](#enable_github_actions_access) is true. 
 
 <a name="allow_auto_deploy_from_other_account_arns" className="snap-top"></a>
 
@@ -351,6 +355,10 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`enable_encrypted_volumes`**](#enable_encrypted_volumes) &mdash; Checks whether the EBS volumes that are in an attached state are encrypted.
 
+<a name="enable_github_actions_access" className="snap-top"></a>
+
+* [**`enable_github_actions_access`**](#enable_github_actions_access) &mdash; When true, create an Open ID Connect Provider that GitHub actions can use to assume IAM roles in the account. Refer to https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services for more information.
+
 <a name="enable_iam_access_analyzer" className="snap-top"></a>
 
 * [**`enable_iam_access_analyzer`**](#enable_iam_access_analyzer) &mdash; A feature flag to enable or disable this module.
@@ -394,6 +402,10 @@ If you want to deploy this repo in production, check out the following resources
 <a name="force_destroy_users" className="snap-top"></a>
 
 * [**`force_destroy_users`**](#force_destroy_users) &mdash; When destroying this user, destroy even if it has non-Terraform-managed IAM access keys, login profile, or MFA devices. Without [`force_destroy`](#force_destroy) a user with non-Terraform-managed access keys and login profile will fail to be destroyed.
+
+<a name="github_actions_openid_connect_provider_thumbprint_list" className="snap-top"></a>
+
+* [**`github_actions_openid_connect_provider_thumbprint_list`**](#github_actions_openid_connect_provider_thumbprint_list) &mdash; When set, use the statically provided hardcoded list of thumbprints rather than looking it up dynamically. This is useful if you want to trade reliability of the OpenID Connect Provider across certificate renewals with a static list that is obtained using a trustworthy mechanism, to mitigate potential damage from a domain hijacking attack on GitHub domains.
 
 <a name="guardduty_cloudwatch_event_rule_name" className="snap-top"></a>
 
@@ -979,5 +991,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ce9da146afae06ded5d27ab85f80d2b4"}
+{"sourcePlugin":"service-catalog-api","hash":"ad0e37ea1bdc4887288dfcf7d5b54c7b"}
 ##DOCS-SOURCER-END -->

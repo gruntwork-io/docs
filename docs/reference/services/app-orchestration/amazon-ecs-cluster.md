@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["docker","orchestration","ecs","containers"]
 license: "gruntwork"
 built-with: "terraform, bash, python, go"
-title: "Amazon ECS"
+title: "Amazon ECS Cluster"
 hide_title: true
 ---
 
@@ -15,12 +15,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.71.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
-# Amazon ECS
+# Amazon ECS Cluster
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ecs-cluster" className="link-button">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -31,7 +31,7 @@ This service contains [Terraform](https://www.terraform.io) code to deploy a pro
 
 This service launches an ECS cluster on top of an Auto Scaling Group that you manage. If you wish to launch an ECS
 cluster on top of Fargate that is completely managed by AWS, refer to the
-[ecs-fargate-cluster module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster). Refer to the section
+[ecs-fargate-cluster module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules/services/ecs-fargate-cluster). Refer to the section
 [EC2 vs Fargate Launch Types](https://github.com/gruntwork-io/terraform-aws-ecs/blob/master/core-concepts.md#ec2-vs-fargate-launch-types)
 for more information on the differences between the two flavors.
 
@@ -108,9 +108,9 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -118,7 +118,7 @@ For info on finding your Docker container logs and custom metrics in CloudWatch,
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -126,7 +126,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/eak12913-patch-1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -340,6 +340,10 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 * [**`tenancy`**](#tenancy) &mdash; The tenancy of this server. Must be one of: default, dedicated, or host.
 
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which the ECS cluster should be launched
@@ -416,5 +420,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"65b32f9df7bd69864c5786c011fd1674"}
+{"sourcePlugin":"service-catalog-api","hash":"e7fbcc993bc79a4413e07f2663d05f82"}
 ##DOCS-SOURCER-END -->
