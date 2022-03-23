@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.61.2"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon Elasticsearch Service
 
@@ -87,6 +87,34 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="domain_name" className="snap-top"></a>
+
+* [**`domain_name`**](#domain_name) &mdash; The name of the Elasticsearch cluster. It must be unique to your account and region, start with a lowercase letter, contain between 3 and 28 characters, and contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
+
+<a name="instance_count" className="snap-top"></a>
+
+* [**`instance_count`**](#instance_count) &mdash; The number of instances to deploy in the Elasticsearch cluster. This must be an even number if [`zone_awareness_enabled`](#zone_awareness_enabled) is true.
+
+<a name="instance_type" className="snap-top"></a>
+
+* [**`instance_type`**](#instance_type) &mdash; The instance type to use for Elasticsearch data nodes (e.g., t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html.
+
+<a name="volume_size" className="snap-top"></a>
+
+* [**`volume_size`**](#volume_size) &mdash; The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512). For volume size limits see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limits.html.
+
+<a name="volume_type" className="snap-top"></a>
+
+* [**`volume_type`**](#volume_type) &mdash; The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+
+<a name="zone_awareness_enabled" className="snap-top"></a>
+
+* [**`zone_awareness_enabled`**](#zone_awareness_enabled) &mdash; Whether to deploy the Elasticsearch nodes across two Availability Zones instead of one. Note that if you enable this, the [`instance_count`](#instance_count) MUST be an even number.
+
+### Optional
+
 <a name="advanced_options" className="snap-top"></a>
 
 * [**`advanced_options`**](#advanced_options) &mdash; Key-value string pairs to specify advanced configuration options. Note that the values for these configuration options must be strings (wrapped in quotes).
@@ -147,10 +175,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`dedicated_master_type`**](#dedicated_master_type) &mdash; The instance type for the dedicated master nodes. These nodes can use a different instance type than the rest of the cluster. Only used if [`dedicated_master_enabled`](#dedicated_master_enabled) is true.
 
-<a name="domain_name" className="snap-top"></a>
-
-* [**`domain_name`**](#domain_name) &mdash; The name of the Elasticsearch cluster. It must be unique to your account and region, start with a lowercase letter, contain between 3 and 28 characters, and contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
-
 <a name="ebs_enabled" className="snap-top"></a>
 
 * [**`ebs_enabled`**](#ebs_enabled) &mdash; Set to false to disable EBS volumes. This is useful for nodes that have optimized instance storage, like hosts running the i3 instance type.
@@ -178,14 +202,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="iam_principal_arns" className="snap-top"></a>
 
 * [**`iam_principal_arns`**](#iam_principal_arns) &mdash; The ARNS of the IAM users and roles to which to allow full access to the Elasticsearch cluster. Setting this to a restricted list is useful when using a public access cluster.
-
-<a name="instance_count" className="snap-top"></a>
-
-* [**`instance_count`**](#instance_count) &mdash; The number of instances to deploy in the Elasticsearch cluster. This must be an even number if [`zone_awareness_enabled`](#zone_awareness_enabled) is true.
-
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The instance type to use for Elasticsearch data nodes (e.g., t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html.
 
 <a name="internal_user_database_enabled" className="snap-top"></a>
 
@@ -223,21 +239,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`update_timeout`**](#update_timeout) &mdash; How long to wait for updates to the ES cluster before timing out and reporting an error.
 
-<a name="volume_size" className="snap-top"></a>
-
-* [**`volume_size`**](#volume_size) &mdash; The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512). For volume size limits see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limits.html.
-
-<a name="volume_type" className="snap-top"></a>
-
-* [**`volume_type`**](#volume_type) &mdash; The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
-
 <a name="vpc_id" className="snap-top"></a>
 
 * [**`vpc_id`**](#vpc_id) &mdash; The id of the VPC to deploy into. It must be in the same region as the Elasticsearch domain and its tenancy must be set to Default. If [`zone_awareness_enabled`](#zone_awareness_enabled) is false, the Elasticsearch cluster will have an endpoint in one subnet of the VPC; otherwise it will have endpoints in two subnets.
-
-<a name="zone_awareness_enabled" className="snap-top"></a>
-
-* [**`zone_awareness_enabled`**](#zone_awareness_enabled) &mdash; Whether to deploy the Elasticsearch nodes across two Availability Zones instead of one. Note that if you enable this, the [`instance_count`](#instance_count) MUST be an even number.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -271,5 +275,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5d0da2d5cea52b6666b5e951feff3796"}
+{"sourcePlugin":"service-catalog-api","hash":"168a4d86a686827b07df052993eab5b5"}
 ##DOCS-SOURCER-END -->

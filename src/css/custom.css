@@ -102,6 +102,10 @@ p > img:not(.no-zoom) + em {
   margin: 1rem auto 2rem auto;
 }
 
+h3 {
+  margin-top: calc(var(--ifm-h3-vertical-rhythm-top) * var(--ifm-leading));
+}
+
 /* HOME PAGE */
 
 .hero--primary .button--lg {

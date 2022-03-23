@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon EKS Workers
 
@@ -112,6 +112,30 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="autoscaling_group_configurations" className="snap-top"></a>
+
+* [**`autoscaling_group_configurations`**](#autoscaling_group_configurations) &mdash; Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs.
+
+<a name="cluster_instance_ami" className="snap-top"></a>
+
+* [**`cluster_instance_ami`**](#cluster_instance_ami) &mdash; The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. Only used if [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is null. Set to null if [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is set.
+
+<a name="cluster_instance_ami_filters" className="snap-top"></a>
+
+* [**`cluster_instance_ami_filters`**](#cluster_instance_ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. If both are defined, [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) will be used. Set to null if [`cluster_instance_ami`](#cluster_instance_ami) is set.
+
+<a name="eks_cluster_name" className="snap-top"></a>
+
+* [**`eks_cluster_name`**](#eks_cluster_name) &mdash; The name of the EKS cluster. The cluster must exist/already be deployed.
+
+<a name="managed_node_group_configurations" className="snap-top"></a>
+
+* [**`managed_node_group_configurations`**](#managed_node_group_configurations) &mdash; Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
+
+### Optional
+
 <a name="additional_security_groups_for_workers" className="snap-top"></a>
 
 * [**`additional_security_groups_for_workers`**](#additional_security_groups_for_workers) &mdash; A list of additional security group IDs to be attached on worker groups.
@@ -132,13 +156,25 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 * [**`asg_custom_iam_role_name`**](#asg_custom_iam_role_name) &mdash; Custom name for the IAM role for the Self-managed workers. When null, a default name based on [`worker_name_prefix`](#worker_name_prefix) will be used. One of [`asg_custom_iam_role_name`](#asg_custom_iam_role_name) and [`asg_iam_role_arn`](#asg_iam_role_arn) is required (must be non-null) if [`asg_iam_role_already_exists`](#asg_iam_role_already_exists) is true.
 
+<a name="asg_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`asg_default_enable_detailed_monitoring`**](#asg_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations).
+
 <a name="asg_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_encryption`**](#asg_default_instance_root_volume_encryption) &mdash; Default value for the [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_encryption`](#asg_instance_root_volume_encryption) will use this value.
 
+<a name="asg_default_instance_root_volume_iops" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_iops`**](#asg_default_instance_root_volume_iops) &mdash; Default value for the [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_iops`](#asg_instance_root_volume_iops) will use this value.
+
 <a name="asg_default_instance_root_volume_size" className="snap-top"></a>
 
 * [**`asg_default_instance_root_volume_size`**](#asg_default_instance_root_volume_size) &mdash; Default value for the [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_size`](#asg_instance_root_volume_size) will use this value.
+
+<a name="asg_default_instance_root_volume_throughput" className="snap-top"></a>
+
+* [**`asg_default_instance_root_volume_throughput`**](#asg_default_instance_root_volume_throughput) &mdash; Default value for the [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_root_volume_throughput`](#asg_instance_root_volume_throughput) will use this value.
 
 <a name="asg_default_instance_root_volume_type" className="snap-top"></a>
 
@@ -147,6 +183,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="asg_default_instance_type" className="snap-top"></a>
 
 * [**`asg_default_instance_type`**](#asg_default_instance_type) &mdash; Default value for the [`asg_instance_type`](#asg_instance_type) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`asg_instance_type`](#asg_instance_type) will use this value.
+
+<a name="asg_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`asg_default_max_pods_allowed`**](#asg_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`autoscaling_group_configurations`](#autoscaling_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="asg_default_max_size" className="snap-top"></a>
 
@@ -212,10 +252,6 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 * [**`asg_use_resource_name_prefix`**](#asg_use_resource_name_prefix) &mdash; When true, all the relevant resources for self managed workers will be set to use the [`name_prefix`](#name_prefix) attribute so that unique names are generated for them. This allows those resources to support recreation through [`create_before_destroy`](#create_before_destroy) lifecycle rules. Set to false if you were using any version before 0.65.0 and wish to avoid recreating the entire worker pool on your cluster.
 
-<a name="autoscaling_group_configurations" className="snap-top"></a>
-
-* [**`autoscaling_group_configurations`**](#autoscaling_group_configurations) &mdash; Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure self-managed ASGs.
-
 <a name="autoscaling_group_include_autoscaler_discovery_tags" className="snap-top"></a>
 
 * [**`autoscaling_group_include_autoscaler_discovery_tags`**](#autoscaling_group_include_autoscaler_discovery_tags) &mdash; Adds additional tags to each ASG that allow a cluster autoscaler to auto-discover them. Only used for self-managed workers.
@@ -227,14 +263,6 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="cloud_init_parts" className="snap-top"></a>
 
 * [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the EKS worker nodes when it is booting. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax. To override the default boot script installed as part of the module, use the key `default`.
-
-<a name="cluster_instance_ami" className="snap-top"></a>
-
-* [**`cluster_instance_ami`**](#cluster_instance_ami) &mdash; The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. Only used if [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is null. Set to null if [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is set.
-
-<a name="cluster_instance_ami_filters" className="snap-top"></a>
-
-* [**`cluster_instance_ami_filters`**](#cluster_instance_ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of [`cluster_instance_ami`](#cluster_instance_ami) or [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) is required. If both are defined, [`cluster_instance_ami_filters`](#cluster_instance_ami_filters) will be used. Set to null if [`cluster_instance_ami`](#cluster_instance_ami) is set.
 
 <a name="cluster_instance_associate_public_ip_address" className="snap-top"></a>
 
@@ -264,10 +292,6 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 * [**`dashboard_memory_usage_widget_parameters`**](#dashboard_memory_usage_widget_parameters) &mdash; Parameters for the worker memory usage widget to output for use in a CloudWatch dashboard.
 
-<a name="eks_cluster_name" className="snap-top"></a>
-
-* [**`eks_cluster_name`**](#eks_cluster_name) &mdash; The name of the EKS cluster. The cluster must exist/already be deployed.
-
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
 * [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
@@ -283,10 +307,6 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="external_account_ssh_grunt_role_arn" className="snap-top"></a>
 
 * [**`external_account_ssh_grunt_role_arn`**](#external_account_ssh_grunt_role_arn) &mdash; If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
-
-<a name="managed_node_group_configurations" className="snap-top"></a>
-
-* [**`managed_node_group_configurations`**](#managed_node_group_configurations) &mdash; Configure one or more Node Groups to manage the EC2 instances in this cluster. Set to empty object ({}) if you do not wish to configure managed node groups.
 
 <a name="managed_node_group_custom_iam_role_name" className="snap-top"></a>
 
@@ -308,6 +328,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 * [**`node_group_default_desired_size`**](#node_group_default_desired_size) &mdash; Default value for [`desired_size`](#desired_size) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
 
+<a name="node_group_default_enable_detailed_monitoring" className="snap-top"></a>
+
+* [**`node_group_default_enable_detailed_monitoring`**](#node_group_default_enable_detailed_monitoring) &mdash; Default value for [`enable_detailed_monitoring`](#enable_detailed_monitoring) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
+
 <a name="node_group_default_instance_root_volume_encryption" className="snap-top"></a>
 
 * [**`node_group_default_instance_root_volume_encryption`**](#node_group_default_instance_root_volume_encryption) &mdash; Default value for the [`instance_root_volume_encryption`](#instance_root_volume_encryption) field of [`managed_node_group_configurations`](#managed_node_group_configurations).
@@ -327,6 +351,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="node_group_default_labels" className="snap-top"></a>
 
 * [**`node_group_default_labels`**](#node_group_default_labels) &mdash; Default value for labels field of [`managed_node_group_configurations`](#managed_node_group_configurations). Unlike [`common_labels`](#common_labels) which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
+
+<a name="node_group_default_max_pods_allowed" className="snap-top"></a>
+
+* [**`node_group_default_max_pods_allowed`**](#node_group_default_max_pods_allowed) &mdash; Default value for the [`max_pods_allowed`](#max_pods_allowed) field of [`managed_node_group_configurations`](#managed_node_group_configurations). Any map entry that does not specify [`max_pods_allowed`](#max_pods_allowed) will use this value.
 
 <a name="node_group_default_max_size" className="snap-top"></a>
 
@@ -375,6 +403,10 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 <a name="use_kubergrunt_to_fetch_token" className="snap-top"></a>
 
 * [**`use_kubergrunt_to_fetch_token`**](#use_kubergrunt_to_fetch_token) &mdash; EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if [`use_exec_plugin_for_auth`](#use_exec_plugin_for_auth) is set to true.
+
+<a name="use_managed_iam_policies" className="snap-top"></a>
+
+* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
 
 <a name="use_prefix_mode_to_calculate_max_pods" className="snap-top"></a>
 
@@ -456,5 +488,5 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8b399a0df7def5ea037cc555993015ba"}
+{"sourcePlugin":"service-catalog-api","hash":"9c7ed05a7218877b61c66873a051d1f2"}
 ##DOCS-SOURCER-END -->

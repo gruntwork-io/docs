@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon Relational Database Service
 
@@ -89,13 +89,33 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-<a name="alarms_sns_topic_arns" className="snap-top"></a>
-
-* [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
+### Required
 
 <a name="allocated_storage" className="snap-top"></a>
 
 * [**`allocated_storage`**](#allocated_storage) &mdash; The amount of storage space the DB should use, in GB.
+
+<a name="engine_version" className="snap-top"></a>
+
+* [**`engine_version`**](#engine_version) &mdash; The version of var.engine to use (e.g. 8.0.17 for mysql).
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name used to namespace all the RDS resources created by these templates, including the cluster and cluster instances (e.g. mysql-stage). Must be unique in this region. Must be a lowercase string.
+
+<a name="subnet_ids" className="snap-top"></a>
+
+* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in [`vpc_id`](#vpc_id).
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
+
+### Optional
+
+<a name="alarms_sns_topic_arns" className="snap-top"></a>
+
+* [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
 
 <a name="allow_connections_from_cidr_blocks" className="snap-top"></a>
 
@@ -217,10 +237,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`engine`**](#engine) &mdash; The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Manager. See the description of [`db_config_secrets_manager_id`](#db_config_secrets_manager_id).
 
-<a name="engine_version" className="snap-top"></a>
-
-* [**`engine_version`**](#engine_version) &mdash; The version of var.engine to use (e.g. 8.0.17 for mysql).
-
 <a name="high_cpu_utilization_period" className="snap-top"></a>
 
 * [**`high_cpu_utilization_period`**](#high_cpu_utilization_period) &mdash; The period, in seconds, over which to measure the CPU utilization percentage.
@@ -293,13 +309,13 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`multi_az`**](#multi_az) &mdash; Specifies if a standby instance should be deployed in another availability zone. If the primary fails, this instance will automatically take over.
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name used to namespace all the RDS resources created by these templates, including the cluster and cluster instances (e.g. mysql-stage). Must be unique in this region. Must be a lowercase string.
-
 <a name="num_read_replicas" className="snap-top"></a>
 
 * [**`num_read_replicas`**](#num_read_replicas) &mdash; The number of read replicas to deploy
+
+<a name="performance_insights_enabled" className="snap-top"></a>
+
+* [**`performance_insights_enabled`**](#performance_insights_enabled) &mdash; Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
 
 <a name="port" className="snap-top"></a>
 
@@ -341,17 +357,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`storage_encrypted`**](#storage_encrypted) &mdash; Specifies whether the DB instance is encrypted.
 
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
 <a name="too_many_db_connections_threshold" className="snap-top"></a>
 
 * [**`too_many_db_connections_threshold`**](#too_many_db_connections_threshold) &mdash; Trigger an alarm if the number of connections to the DB instance goes above this threshold.
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -437,5 +445,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"736458f6eec5e3a68826a8c031ac585d"}
+{"sourcePlugin":"service-catalog-api","hash":"229bf5de4be1ff70876c4e9facab0597"}
 ##DOCS-SOURCER-END -->

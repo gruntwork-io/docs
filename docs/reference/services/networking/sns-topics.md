@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon Simple Notification Service
 
@@ -75,6 +75,14 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name of the SNS topic
+
+### Optional
+
 <a name="allow_publish_accounts" className="snap-top"></a>
 
 * [**`allow_publish_accounts`**](#allow_publish_accounts) &mdash; A list of IAM ARNs that will be given the rights to publish to the SNS topic.
@@ -103,10 +111,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`kms_master_key_id`**](#kms_master_key_id) &mdash; The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name of the SNS topic
-
 <a name="slack_webhook_url" className="snap-top"></a>
 
 * [**`slack_webhook_url`**](#slack_webhook_url) &mdash; Send topic notifications to this Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ).
@@ -123,5 +127,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"55e8810a65496be613b76399ebead365"}
+{"sourcePlugin":"service-catalog-api","hash":"1c8dbd5c4670fad242c114ea4ecd4e36"}
 ##DOCS-SOURCER-END -->

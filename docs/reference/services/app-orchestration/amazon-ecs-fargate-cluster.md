@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.66.0"/>
 
 # Amazon ECS Fargate Cluster
 
@@ -97,9 +97,13 @@ For information on how to manage your ECS cluster, see the documentation in the
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
 <a name="cluster_name" className="snap-top"></a>
 
 * [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
+
+### Optional
 
 <a name="custom_tags" className="snap-top"></a>
 
@@ -125,5 +129,5 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bd5542074ab190c286f2ee0a0b068520"}
+{"sourcePlugin":"service-catalog-api","hash":"515d701940d60810a1823cfbc9ca0f87"}
 ##DOCS-SOURCER-END -->

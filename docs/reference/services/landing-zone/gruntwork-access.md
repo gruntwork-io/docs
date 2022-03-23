@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.20.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
@@ -82,9 +82,17 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
 <a name="grant_security_account_access" className="snap-top"></a>
 
 * [**`grant_security_account_access`**](#grant_security_account_access) &mdash; Set to true to grant your security account, with the account ID specified in [`security_account_id`](#security_account_id), access to the IAM role. This is required for deploying a Reference Architecture.
+
+<a name="security_account_id" className="snap-top"></a>
+
+* [**`security_account_id`**](#security_account_id) &mdash; The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.
+
+### Optional
 
 <a name="gruntwork_aws_account_id" className="snap-top"></a>
 
@@ -101,10 +109,6 @@ If you want to deploy this repo in production, check out the following resources
 <a name="require_mfa" className="snap-top"></a>
 
 * [**`require_mfa`**](#require_mfa) &mdash; If set to true, require MFA to assume the IAM role from the Gruntwork account.
-
-<a name="security_account_id" className="snap-top"></a>
-
-* [**`security_account_id`**](#security_account_id) &mdash; The ID of your security account (where IAM users are defined). Required for deploying a Reference Architecture, as the Gruntwork team deploys an EC2 instance in the security account, and that instance assumes this IAM role to get access to all the other child accounts and bootstrap the deployment process.
 
 <a name="tags" className="snap-top"></a>
 
@@ -126,5 +130,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e112703ae098cbb24ef071bf76204fc3"}
+{"sourcePlugin":"service-catalog-api","hash":"48de06e15a02df29884359d7c29e14e0"}
 ##DOCS-SOURCER-END -->

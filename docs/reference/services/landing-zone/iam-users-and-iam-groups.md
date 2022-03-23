@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.50.2"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.50.2"/>
 
 # IAM Users and IAM Groups
 
@@ -104,13 +104,17 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-<a name="auto_deploy_permissions" className="snap-top"></a>
-
-* [**`auto_deploy_permissions`**](#auto_deploy_permissions) &mdash; A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If [`should_create_iam_group_auto_deploy`](#should_create_iam_group_auto_deploy) is true, the list must have at least one element (e.g. '*').
+### Required
 
 <a name="aws_account_id" className="snap-top"></a>
 
 * [**`aws_account_id`**](#aws_account_id) &mdash; The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
+
+### Optional
+
+<a name="auto_deploy_permissions" className="snap-top"></a>
+
+* [**`auto_deploy_permissions`**](#auto_deploy_permissions) &mdash; A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If [`should_create_iam_group_auto_deploy`](#should_create_iam_group_auto_deploy) is true, the list must have at least one element (e.g. '*').
 
 <a name="cloudtrail_kms_key_arn" className="snap-top"></a>
 
@@ -412,5 +416,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bd6c809de6c99ffbf8b6fe8bf70a612c"}
+{"sourcePlugin":"service-catalog-api","hash":"bc53972de059447f61434b12d3866bc2"}
 ##DOCS-SOURCER-END -->

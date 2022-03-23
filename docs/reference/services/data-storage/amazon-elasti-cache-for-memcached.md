@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.44.0"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
 # Amazon ElastiCache for Memcached
 
@@ -82,6 +82,34 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="az_mode" className="snap-top"></a>
+
+* [**`az_mode`**](#az_mode) &mdash; Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, [`num_cache_nodes`](#num_cache_nodes) must be greater than 1.
+
+<a name="instance_type" className="snap-top"></a>
+
+* [**`instance_type`**](#instance_type) &mdash; The compute and memory capacity of the nodes (e.g. cache.m4.large).
+
+<a name="name" className="snap-top"></a>
+
+* [**`name`**](#name) &mdash; The name used to namespace all resources created by these templates, including the ElastiCache cluster itself. Must be unique in this region. Must be a lowercase string.
+
+<a name="num_cache_nodes" className="snap-top"></a>
+
+* [**`num_cache_nodes`**](#num_cache_nodes) &mdash; The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20.
+
+<a name="subnet_ids" className="snap-top"></a>
+
+* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in [`vpc_id`](#vpc_id).
+
+<a name="vpc_id" className="snap-top"></a>
+
+* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
+
+### Optional
+
 <a name="alarms_sns_topic_arns" className="snap-top"></a>
 
 * [**`alarms_sns_topic_arns`**](#alarms_sns_topic_arns) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
@@ -98,17 +126,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`apply_immediately`**](#apply_immediately) &mdash; Specifies whether any database modifications are applied immediately, or during the next maintenance window.
 
-<a name="az_mode" className="snap-top"></a>
-
-* [**`az_mode`**](#az_mode) &mdash; Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, [`num_cache_nodes`](#num_cache_nodes) must be greater than 1.
-
 <a name="enable_cloudwatch_alarms" className="snap-top"></a>
 
 * [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
-
-<a name="instance_type" className="snap-top"></a>
-
-* [**`instance_type`**](#instance_type) &mdash; The compute and memory capacity of the nodes (e.g. cache.m4.large).
 
 <a name="maintenance_window" className="snap-top"></a>
 
@@ -118,25 +138,9 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`memcached_version`**](#memcached_version) &mdash; Version number of memcached to use (e.g. 1.5.16).
 
-<a name="name" className="snap-top"></a>
-
-* [**`name`**](#name) &mdash; The name used to namespace all resources created by these templates, including the ElastiCache cluster itself. Must be unique in this region. Must be a lowercase string.
-
-<a name="num_cache_nodes" className="snap-top"></a>
-
-* [**`num_cache_nodes`**](#num_cache_nodes) &mdash; The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20.
-
 <a name="port" className="snap-top"></a>
 
 * [**`port`**](#port) &mdash; The port number on which each of the cache nodes will accept connections (e.g. 11211).
-
-<a name="subnet_ids" className="snap-top"></a>
-
-* [**`subnet_ids`**](#subnet_ids) &mdash; The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in [`vpc_id`](#vpc_id).
-
-<a name="vpc_id" className="snap-top"></a>
-
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy RDS.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
@@ -166,5 +170,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"579ed6ce06ac47102eb3f3a933874275"}
+{"sourcePlugin":"service-catalog-api","hash":"406ff8847a0204698f21bb80403a1697"}
 ##DOCS-SOURCER-END -->

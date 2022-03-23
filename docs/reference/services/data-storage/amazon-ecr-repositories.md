@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 
-<VersionBadge version="0.78.1" lastModifiedVersion="0.68.3"/>
+<VersionBadge version="0.85.0" lastModifiedVersion="0.68.3"/>
 
 # Amazon ECR Repositories
 
@@ -77,6 +77,14 @@ If you want to deploy this repo in production, check out the following resources
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
+### Required
+
+<a name="repositories" className="snap-top"></a>
+
+* [**`repositories`**](#repositories) &mdash; A map of repo names to configurations for that repository.
+
+### Optional
+
 <a name="default_automatic_image_scanning" className="snap-top"></a>
 
 * [**`default_automatic_image_scanning`**](#default_automatic_image_scanning) &mdash; Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the [`enable_automatic_image_scanning`](#enable_automatic_image_scanning) property in the repositories map.
@@ -109,10 +117,6 @@ If you want to deploy this repo in production, check out the following resources
 
 * [**`replication_regions`**](#replication_regions) &mdash; List of regions (e.g., us-east-1) to replicate the ECR repository to.
 
-<a name="repositories" className="snap-top"></a>
-
-* [**`repositories`**](#repositories) &mdash; A map of repo names to configurations for that repository.
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -137,5 +141,5 @@ If you want to deploy this repo in production, check out the following resources
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"f3818080e658fc5225d64be25490f8fd"}
+{"sourcePlugin":"service-catalog-api","hash":"b95ec45644e4ac48d54d49ad86b64a03"}
 ##DOCS-SOURCER-END -->
