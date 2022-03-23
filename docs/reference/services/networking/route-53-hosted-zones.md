@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -81,69 +82,163 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<a name="private_zones" className="snap-top"></a>
+<HclListItem name="private_zones" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`private_zones`**](#private_zones) &mdash; A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
+A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
 
-<a name="public_zones" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`public_zones`**](#public_zones) &mdash; A map of public Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
+```hcl
+map(object({
+    # An optional, arbitrary comment to attach to the private Hosted Zone
+    comment = string
+    # The list of VPCs to associate with the private Hosted Zone. You must provide at least one VPC in this list.
+    vpcs = list(object({
+      # The ID of the VPC.
+      id = string
+      # The region of the VPC. If null, defaults to the region configured on the provider.
+      region = string
+    }))
+    # A mapping of tags to assign to the private Hosted Zone
+    tags = map(string)
+    # Whether to destroy all records (possibly managed ouside of Terraform) in the zone when destroying the zone
+    force_destroy = bool
+  }))
+```
 
-<a name="service_discovery_private_namespaces" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-* [**`service_discovery_private_namespaces`**](#service_discovery_private_namespaces) &mdash; A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
+<HclListItem name="public_zones" requirement="optional" type="any">
+<HclListItemDescription>
 
-<a name="service_discovery_public_namespaces" className="snap-top"></a>
+A map of public Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
 
-* [**`service_discovery_public_namespaces`**](#service_discovery_public_namespaces) &mdash; A map of domain names to configurations for setting up a new public namespace in AWS Cloud Map. Note that the domain name must be registered with Route 53.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_discovery_private_namespaces" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    # The ID of the VPC where the private hosted zone is restricted to.
+    vpc_id = string
+
+    # A user friendly description for the namespace
+    description = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_discovery_public_namespaces" requirement="optional" type="any">
+<HclListItemDescription>
+
+A map of domain names to configurations for setting up a new public namespace in AWS Cloud Map. Note that the domain name must be registered with Route 53.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="acm_tls_certificates" className="snap-top"></a>
+<HclListItem name="acm_tls_certificates">
+<HclListItemDescription>
 
-* [**`acm_tls_certificates`**](#acm_tls_certificates) &mdash; A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone.
+A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone.
 
-<a name="private_domain_names" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`private_domain_names`**](#private_domain_names) &mdash; The names of the internal-only Route 53 Hosted Zones
+<HclListItem name="private_domain_names">
+<HclListItemDescription>
 
-<a name="private_zones_ids" className="snap-top"></a>
+The names of the internal-only Route 53 Hosted Zones
 
-* [**`private_zones_ids`**](#private_zones_ids) &mdash; The IDs of the internal-only Route 53 Hosted Zones
+</HclListItemDescription>
+</HclListItem>
 
-<a name="private_zones_name_servers" className="snap-top"></a>
+<HclListItem name="private_zones_ids">
+<HclListItemDescription>
 
-* [**`private_zones_name_servers`**](#private_zones_name_servers) &mdash; The name servers associated with the internal-only Route 53 Hosted Zones
+The IDs of the internal-only Route 53 Hosted Zones
 
-<a name="public_domain_names" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`public_domain_names`**](#public_domain_names) &mdash; The names of the public Route 53 Hosted Zones
+<HclListItem name="private_zones_name_servers">
+<HclListItemDescription>
 
-<a name="public_hosted_zone_map" className="snap-top"></a>
+The name servers associated with the internal-only Route 53 Hosted Zones
 
-* [**`public_hosted_zone_map`**](#public_hosted_zone_map) &mdash; A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs
+</HclListItemDescription>
+</HclListItem>
 
-<a name="public_hosted_zones_ids" className="snap-top"></a>
+<HclListItem name="public_domain_names">
+<HclListItemDescription>
 
-* [**`public_hosted_zones_ids`**](#public_hosted_zones_ids) &mdash; The IDs of the public Route 53 Hosted Zones
+The names of the public Route 53 Hosted Zones
 
-<a name="public_hosted_zones_name_servers" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`public_hosted_zones_name_servers`**](#public_hosted_zones_name_servers) &mdash; The name servers associated with the public Route 53 Hosted Zones
+<HclListItem name="public_hosted_zone_map">
+<HclListItemDescription>
 
-<a name="service_discovery_private_namespaces" className="snap-top"></a>
+A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs
 
-* [**`service_discovery_private_namespaces`**](#service_discovery_private_namespaces) &mdash; A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="service_discovery_public_namespaces" className="snap-top"></a>
+<HclListItem name="public_hosted_zones_ids">
+<HclListItemDescription>
 
-* [**`service_discovery_public_namespaces`**](#service_discovery_public_namespaces) &mdash; A map of domains to resource arns and hosted zones of the created Service Discovery Public Namespaces.
+The IDs of the public Route 53 Hosted Zones
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_hosted_zones_name_servers">
+<HclListItemDescription>
+
+The name servers associated with the public Route 53 Hosted Zones
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="service_discovery_private_namespaces">
+<HclListItemDescription>
+
+A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="service_discovery_public_namespaces">
+<HclListItemDescription>
+
+A map of domains to resource arns and hosted zones of the created Service Discovery Public Namespaces.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0bccfeeea7055844d0c979684dcd702b"}
+{"sourcePlugin":"service-catalog-api","hash":"916cfcac2e1777663cda67d740bfbcf4"}
 ##DOCS-SOURCER-END -->

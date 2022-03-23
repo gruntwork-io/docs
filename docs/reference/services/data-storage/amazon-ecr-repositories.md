@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.68.3"/>
 
@@ -79,67 +80,177 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="repositories" className="snap-top"></a>
+<HclListItem name="repositories" requirement="required" type="any">
+<HclListItemDescription>
 
-* [**`repositories`**](#repositories) &mdash; A map of repo names to configurations for that repository.
+A map of repo names to configurations for that repository.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="default_automatic_image_scanning" className="snap-top"></a>
+<HclListItem name="default_automatic_image_scanning" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`default_automatic_image_scanning`**](#default_automatic_image_scanning) &mdash; Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the [`enable_automatic_image_scanning`](#enable_automatic_image_scanning) property in the repositories map.
+Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the enable_automatic_image_scanning property in the repositories map.
 
-<a name="default_encryption_config" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`default_encryption_config`**](#default_encryption_config) &mdash; The default encryption configuration to apply to the created ECR repository. When null, the images in the ECR repo will not be encrypted at rest. Can be overridden on a per repo basis by the [`encryption_config`](#encryption_config) property in the repositories map.
+<HclListItem name="default_encryption_config" requirement="optional" type="object">
+<HclListItemDescription>
 
-<a name="default_external_account_ids_with_read_access" className="snap-top"></a>
+The default encryption configuration to apply to the created ECR repository. When null, the images in the ECR repo will not be encrypted at rest. Can be overridden on a per repo basis by the encryption_config property in the repositories map.
 
-* [**`default_external_account_ids_with_read_access`**](#default_external_account_ids_with_read_access) &mdash; The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the [`external_account_ids_with_read_access`](#external_account_ids_with_read_access) property in the repositories map.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="default_external_account_ids_with_write_access" className="snap-top"></a>
+```hcl
+object({
+    # The encryption type to use for the repository. Must be AES256 or KMS.
+    encryption_type = string
+    # The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If not specified, defaults to
+    # the default AWS managed key for ECR.
+    kms_key = string
+  })
+```
 
-* [**`default_external_account_ids_with_write_access`**](#default_external_account_ids_with_write_access) &mdash; The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the [`external_account_ids_with_write_access`](#external_account_ids_with_write_access) property in the repositories map.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
 
-<a name="default_image_tag_mutability" className="snap-top"></a>
+```hcl
+{
+  encryption_type = "AES256",
+  kms_key = null
+}
+```
 
-* [**`default_image_tag_mutability`**](#default_image_tag_mutability) &mdash; The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTABLE. Can be overridden on a per repo basis by the [`image_tag_mutability`](#image_tag_mutability) property in the repositories map.
+</HclListItemDefaultValue>
+</HclListItem>
 
-<a name="default_lifecycle_policy_rules" className="snap-top"></a>
+<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`default_lifecycle_policy_rules`**](#default_lifecycle_policy_rules) &mdash; Add lifecycle policy to ECR repo.
+The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map.
 
-<a name="global_tags" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`global_tags`**](#global_tags) &mdash; A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
+```hcl
+list(string)
+```
 
-<a name="replication_regions" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`replication_regions`**](#replication_regions) &mdash; List of regions (e.g., us-east-1) to replicate the ECR repository to.
+<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" type="list">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_image_tag_mutability" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="MUTABLE"/>
+</HclListItem>
+
+<HclListItem name="default_lifecycle_policy_rules" requirement="optional" type="any">
+<HclListItemDescription>
+
+Add lifecycle policy to ECR repo.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="global_tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="replication_regions" requirement="optional" type="list">
+<HclListItemDescription>
+
+List of regions (e.g., us-east-1) to replicate the ECR repository to.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="ecr_read_policy_actions" className="snap-top"></a>
+<HclListItem name="ecr_read_policy_actions">
+<HclListItemDescription>
 
-* [**`ecr_read_policy_actions`**](#ecr_read_policy_actions) &mdash; A list of IAM policy actions necessary for ECR read access.
+A list of IAM policy actions necessary for ECR read access.
 
-<a name="ecr_repo_arns" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`ecr_repo_arns`**](#ecr_repo_arns) &mdash; A map of repository name to its ECR ARN.
+<HclListItem name="ecr_repo_arns">
+<HclListItemDescription>
 
-<a name="ecr_repo_urls" className="snap-top"></a>
+A map of repository name to its ECR ARN.
 
-* [**`ecr_repo_urls`**](#ecr_repo_urls) &mdash; A map of repository name to its URL.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="ecr_write_policy_actions" className="snap-top"></a>
+<HclListItem name="ecr_repo_urls">
+<HclListItemDescription>
 
-* [**`ecr_write_policy_actions`**](#ecr_write_policy_actions) &mdash; A list of IAM policy actions necessary for ECR write access.
+A map of repository name to its URL.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecr_write_policy_actions">
+<HclListItemDescription>
+
+A list of IAM policy actions necessary for ECR write access.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b95ec45644e4ac48d54d49ad86b64a03"}
+{"sourcePlugin":"service-catalog-api","hash":"dea900e55d8be9e6806e7f35ce2ccdc7"}
 ##DOCS-SOURCER-END -->

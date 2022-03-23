@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -98,199 +99,542 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="aws_region" className="snap-top"></a>
+<HclListItem name="aws_region" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`aws_region`**](#aws_region) &mdash; The AWS region to deploy into
+The AWS region to deploy into
 
-<a name="cidr_block" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`cidr_block`**](#cidr_block) &mdash; The IP address range of the VPC in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/16', '10.200.0.0/16', etc.
+<HclListItem name="cidr_block" requirement="required" type="string">
+<HclListItemDescription>
 
-<a name="num_nat_gateways" className="snap-top"></a>
+The IP address range of the VPC in CIDR notation. A prefix of /16 is recommended. Do not use a prefix higher than /27. Examples include '10.100.0.0/16', '10.200.0.0/16', etc.
 
-* [**`num_nat_gateways`**](#num_nat_gateways) &mdash; The number of NAT Gateways to launch for this VPC. The management VPC defaults to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust this to add additional NAT Gateways.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="vpc_name" className="snap-top"></a>
+<HclListItem name="num_nat_gateways" requirement="required" type="number">
+<HclListItemDescription>
 
-* [**`vpc_name`**](#vpc_name) &mdash; The name of the VPC. Defaults to mgmt.
+The number of NAT Gateways to launch for this VPC. The management VPC defaults to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust this to add additional NAT Gateways.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC. Defaults to mgmt.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="apply_default_nacl_rules" className="snap-top"></a>
+<HclListItem name="apply_default_nacl_rules" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`apply_default_nacl_rules`**](#apply_default_nacl_rules) &mdash; If true, will apply the default NACL rules in [`default_nacl_ingress_rules`](#default_nacl_ingress_rules) and [`default_nacl_egress_rules`](#default_nacl_egress_rules) on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
+If true, will apply the default NACL rules in <a href="#default_nacl_ingress_rules"><code>default_nacl_ingress_rules</code></a> and <a href="#default_nacl_egress_rules"><code>default_nacl_egress_rules</code></a> on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
 
-<a name="associate_default_nacl_to_subnets" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-* [**`associate_default_nacl_to_subnets`**](#associate_default_nacl_to_subnets) &mdash; If true, will associate the default NACL to the public, private, and persistence subnets created by this module. Only used if [`apply_default_nacl_rules`](#apply_default_nacl_rules) is true. Note that this does not guarantee that the subnets are associated with the default NACL. Subnets can only be associated with a single NACL. The default NACL association will be dropped if the subnets are associated with a custom NACL later.
+<HclListItem name="associate_default_nacl_to_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="availability_zone_exclude_ids" className="snap-top"></a>
+If true, will associate the default NACL to the public, private, and persistence subnets created by this module. Only used if <a href="#apply_default_nacl_rules"><code>apply_default_nacl_rules</code></a> is true. Note that this does not guarantee that the subnets are associated with the default NACL. Subnets can only be associated with a single NACL. The default NACL association will be dropped if the subnets are associated with a custom NACL later.
 
-* [**`availability_zone_exclude_ids`**](#availability_zone_exclude_ids) &mdash; List of excluded Availability Zone IDs.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="availability_zone_exclude_names" className="snap-top"></a>
+<HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`availability_zone_exclude_names`**](#availability_zone_exclude_names) &mdash; List of excluded Availability Zone names.
+List of excluded Availability Zone IDs.
 
-<a name="availability_zone_state" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`availability_zone_state`**](#availability_zone_state) &mdash; Allows to filter list of Availability Zones based on their current state. Can be either "available", "information", "impaired" or "unavailable". By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
+```hcl
+list(string)
+```
 
-<a name="create_flow_logs" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`create_flow_logs`**](#create_flow_logs) &mdash; If you set this variable to false, this module will not create VPC Flow Logs resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+<HclListItem name="availability_zone_exclude_names" requirement="optional" type="list">
+<HclListItemDescription>
 
-<a name="create_network_acls" className="snap-top"></a>
+List of excluded Availability Zone names.
 
-* [**`create_network_acls`**](#create_network_acls) &mdash; If set to false, this module will NOT create Network ACLs. This is useful if you don't want to use Network ACLs or you want to provide your own Network ACLs outside of this module.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="custom_tags" className="snap-top"></a>
+```hcl
+list(string)
+```
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of tags to apply to the VPC, Subnets, Route Tables, and Internet Gateway. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<a name="custom_tags_vpc_only" className="snap-top"></a>
+<HclListItem name="availability_zone_state" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`custom_tags_vpc_only`**](#custom_tags_vpc_only) &mdash; A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
+Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
 
-<a name="default_nacl_egress_rules" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`default_nacl_egress_rules`**](#default_nacl_egress_rules) &mdash; The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the [`aws_default_network_acl`](#aws_default_network_acl) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl).
+<HclListItem name="create_flow_logs" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="default_nacl_ingress_rules" className="snap-top"></a>
+If you set this variable to false, this module will not create VPC Flow Logs resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
 
-* [**`default_nacl_ingress_rules`**](#default_nacl_ingress_rules) &mdash; The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the [`aws_default_network_acl`](#aws_default_network_acl) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="default_security_group_egress_rules" className="snap-top"></a>
+<HclListItem name="create_network_acls" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`default_security_group_egress_rules`**](#default_security_group_egress_rules) &mdash; The egress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the [`aws_default_security_group`](#aws_default_security_group) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group)#egress-block.
+If set to false, this module will NOT create Network ACLs. This is useful if you don't want to use Network ACLs or you want to provide your own Network ACLs outside of this module.
 
-<a name="default_security_group_ingress_rules" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`default_security_group_ingress_rules`**](#default_security_group_ingress_rules) &mdash; The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the [`aws_default_security_group`](#aws_default_security_group) resource: [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group)#ingress-block.
+<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="enable_default_security_group" className="snap-top"></a>
+A map of tags to apply to the VPC, Subnets, Route Tables, and Internet Gateway. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
 
-* [**`enable_default_security_group`**](#enable_default_security_group) &mdash; If set to false, the default security groups will NOT be created.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="iam_role_permissions_boundary" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`iam_role_permissions_boundary`**](#iam_role_permissions_boundary) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<a name="kms_key_arn" className="snap-top"></a>
+<HclListItem name="custom_tags_vpc_only" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`kms_key_arn`**](#kms_key_arn) &mdash; The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
+A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
-<a name="kms_key_deletion_window_in_days" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`kms_key_deletion_window_in_days`**](#kms_key_deletion_window_in_days) &mdash; The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
+```hcl
+map(string)
+```
 
-<a name="kms_key_user_iam_arns" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-* [**`kms_key_user_iam_arns`**](#kms_key_user_iam_arns) &mdash; VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
+<HclListItem name="default_nacl_egress_rules" requirement="optional" type="any">
+<HclListItemDescription>
 
-<a name="nat_gateway_custom_tags" className="snap-top"></a>
+The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
 
-* [**`nat_gateway_custom_tags`**](#nat_gateway_custom_tags) &mdash; A map of tags to apply to the NAT gateways, on top of the [`custom_tags`](#custom_tags). The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
+</HclListItemDescription>
+<HclListItemDefaultValue>
 
-<a name="num_availability_zones" className="snap-top"></a>
+```hcl
+{
+  AllowAll = {
+    action = "allow",
+    cidr_block = "0.0.0.0/0",
+    from_port = 0,
+    protocol = "-1",
+    rule_no = 100,
+    to_port = 0
+  }
+}
+```
 
-* [**`num_availability_zones`**](#num_availability_zones) &mdash; How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to 3.
+</HclListItemDefaultValue>
+</HclListItem>
 
-<a name="private_subnet_bits" className="snap-top"></a>
+<HclListItem name="default_nacl_ingress_rules" requirement="optional" type="any">
+<HclListItemDescription>
 
-* [**`private_subnet_bits`**](#private_subnet_bits) &mdash; Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
 
-<a name="private_subnet_cidr_blocks" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue>
 
-* [**`private_subnet_cidr_blocks`**](#private_subnet_cidr_blocks) &mdash; A map listing the specific CIDR blocks desired for each private subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+```hcl
+{
+  AllowAll = {
+    action = "allow",
+    cidr_block = "0.0.0.0/0",
+    from_port = 0,
+    protocol = "-1",
+    rule_no = 100,
+    to_port = 0
+  }
+}
+```
 
-<a name="private_subnet_custom_tags" className="snap-top"></a>
+</HclListItemDefaultValue>
+</HclListItem>
 
-* [**`private_subnet_custom_tags`**](#private_subnet_custom_tags) &mdash; A map of tags to apply to the private Subnet, on top of the [`custom_tags`](#custom_tags). The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
+<HclListItem name="default_security_group_egress_rules" requirement="optional" type="any">
+<HclListItemDescription>
 
-<a name="public_subnet_bits" className="snap-top"></a>
+The egress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#egress-block.
 
-* [**`public_subnet_bits`**](#public_subnet_bits) &mdash; Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+</HclListItemDescription>
+<HclListItemDefaultValue>
 
-<a name="public_subnet_cidr_blocks" className="snap-top"></a>
+```hcl
+{
+  AllowAllOutbound = {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ],
+    from_port = 0,
+    ipv6_cidr_blocks = [
+      "::/0"
+    ],
+    protocol = "-1",
+    to_port = 0
+  }
+}
+```
 
-* [**`public_subnet_cidr_blocks`**](#public_subnet_cidr_blocks) &mdash; A map listing the specific CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+</HclListItemDefaultValue>
+</HclListItem>
 
-<a name="public_subnet_custom_tags" className="snap-top"></a>
+<HclListItem name="default_security_group_ingress_rules" requirement="optional" type="any">
+<HclListItemDescription>
 
-* [**`public_subnet_custom_tags`**](#public_subnet_custom_tags) &mdash; A map of tags to apply to the public Subnet, on top of the [`custom_tags`](#custom_tags). The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as [`custom_tags`](#custom_tags) in case of conflict.
+The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
 
-<a name="subnet_spacing" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue>
 
-* [**`subnet_spacing`**](#subnet_spacing) &mdash; The amount of spacing between the different subnet types
+```hcl
+{
+  AllowAllFromSelf = {
+    from_port = 0,
+    protocol = "-1",
+    self = true,
+    to_port = 0
+  }
+}
+```
 
-<a name="use_managed_iam_policies" className="snap-top"></a>
+</HclListItemDefaultValue>
+</HclListItem>
 
-* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+<HclListItem name="enable_default_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, the default security groups will NOT be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list">
+<HclListItemDescription>
+
+VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags to apply to the NAT gateways, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="num_availability_zones" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to 3.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="4"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_cidr_blocks" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each private subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags to apply to the private Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="4"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_cidr_blocks" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags to apply to the public Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the different subnet types
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="nat_gateway_public_ips" className="snap-top"></a>
+<HclListItem name="nat_gateway_public_ips">
+<HclListItemDescription>
 
-* [**`nat_gateway_public_ips`**](#nat_gateway_public_ips) &mdash; The public IP address(es) of the NAT gateway(s) of the mgmt VPC.
+The public IP address(es) of the NAT gateway(s) of the mgmt VPC.
 
-<a name="num_availability_zones" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`num_availability_zones`**](#num_availability_zones) &mdash; The number of availability zones used by the mgmt VPC.
+<HclListItem name="num_availability_zones">
+<HclListItemDescription>
 
-<a name="private_subnet_arns" className="snap-top"></a>
+The number of availability zones used by the mgmt VPC.
 
-* [**`private_subnet_arns`**](#private_subnet_arns) &mdash; The private subnet ARNs of the mgmt VPC.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="private_subnet_cidr_blocks" className="snap-top"></a>
+<HclListItem name="private_subnet_arns">
+<HclListItemDescription>
 
-* [**`private_subnet_cidr_blocks`**](#private_subnet_cidr_blocks) &mdash; The private subnet CIDR blocks of the mgmt VPC.
+The private subnet ARNs of the mgmt VPC.
 
-<a name="private_subnet_ids" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`private_subnet_ids`**](#private_subnet_ids) &mdash; The private subnet IDs of the mgmt VPC.
+<HclListItem name="private_subnet_cidr_blocks">
+<HclListItemDescription>
 
-<a name="private_subnet_route_table_ids" className="snap-top"></a>
+The private subnet CIDR blocks of the mgmt VPC.
 
-* [**`private_subnet_route_table_ids`**](#private_subnet_route_table_ids) &mdash; The ID of the private subnet route table of the mgmt VPC.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="public_subnet_arns" className="snap-top"></a>
+<HclListItem name="private_subnet_ids">
+<HclListItemDescription>
 
-* [**`public_subnet_arns`**](#public_subnet_arns) &mdash; The public subnet ARNs of the mgmt VPC.
+The private subnet IDs of the mgmt VPC.
 
-<a name="public_subnet_cidr_blocks" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`public_subnet_cidr_blocks`**](#public_subnet_cidr_blocks) &mdash; The public subnet CIDR blocks of the mgmt VPC.
+<HclListItem name="private_subnet_route_table_ids">
+<HclListItemDescription>
 
-<a name="public_subnet_ids" className="snap-top"></a>
+The ID of the private subnet route table of the mgmt VPC.
 
-* [**`public_subnet_ids`**](#public_subnet_ids) &mdash; The public subnet IDs of the mgmt VPC.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="public_subnet_route_table_id" className="snap-top"></a>
+<HclListItem name="public_subnet_arns">
+<HclListItemDescription>
 
-* [**`public_subnet_route_table_id`**](#public_subnet_route_table_id) &mdash; The ID of the public subnet route table of the mgmt VPC.
+The public subnet ARNs of the mgmt VPC.
 
-<a name="vpc_cidr_block" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`vpc_cidr_block`**](#vpc_cidr_block) &mdash; The CIDR block of the mgmt VPC.
+<HclListItem name="public_subnet_cidr_blocks">
+<HclListItemDescription>
 
-<a name="vpc_id" className="snap-top"></a>
+The public subnet CIDR blocks of the mgmt VPC.
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the mgmt VPC.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="vpc_name" className="snap-top"></a>
+<HclListItem name="public_subnet_ids">
+<HclListItemDescription>
 
-* [**`vpc_name`**](#vpc_name) &mdash; The name of the mgmt VPC.
+The public subnet IDs of the mgmt VPC.
 
-<a name="vpc_ready" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`vpc_ready`**](#vpc_ready) &mdash; Indicates whether or not the VPC has finished creating
+<HclListItem name="public_subnet_route_table_id">
+<HclListItemDescription>
+
+The ID of the public subnet route table of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_cidr_block">
+<HclListItemDescription>
+
+The CIDR block of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id">
+<HclListItemDescription>
+
+The ID of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_name">
+<HclListItemDescription>
+
+The name of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_ready">
+<HclListItemDescription>
+
+Indicates whether or not the VPC has finished creating
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"38bd65ff068f7a723d608c49556b13ae"}
+{"sourcePlugin":"service-catalog-api","hash":"239b6fdab765e54b3f019128e1cbb930"}
 ##DOCS-SOURCER-END -->
