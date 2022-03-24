@@ -16,23 +16,23 @@ Once you have the email addresses, you'll need the passwords. Oddly, when you cr
 organization, AWS does _not_ allow you to set those passwords. So, to get the passwords, you will need to:
 
 1. Go to the [AWS Console](https://console.aws.amazon.com/console/home).
-1. If you are already signed in to some other AWS account, sign out, and return to the [AWS
+2. If you are already signed in to some other AWS account, sign out, and return to the [AWS
    Console](https://console.aws.amazon.com/console/home) again.
-1. If you had previously signed into some other AWS account as an IAM user, rather than a root user, click "Sign-in
+3. If you had previously signed into some other AWS account as an IAM user, rather than a root user, click "Sign-in
    using root account credentials."
-1. Enter the email address of the root user.
-1. Click "Forgot your password" to reset the password.
-1. Check the email address associated with the root user account for a link you can use to create a new password.
+4. Enter the email address of the root user.
+5. Click "Forgot your password" to reset the password.
+6. Check the email address associated with the root user account for a link you can use to create a new password.
 
 Please note that the root user account can do just about _anything_ in your AWS account, bypassing almost all security
 restrictions you put in place, so you need to take extra care with protecting this account. We **very strongly**
 recommend that when you reset the password for each account, you:
 
 1. **Use a strong password**: preferably 30+ characters, randomly generated, and stored in a secrets manager.
-1. **Enable Multi-Factor Auth (MFA)**: [Follow these instructions to enable
+2. **Enable Multi-Factor Auth (MFA)**: [Follow these instructions to enable
    MFA](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root)
    for the root user. It takes less than a minute and _dramatically_ improves your security posture.
-1. **Do not use the root user anymore**. After this initial set up, you should NOT use the root user account afterwords,
+3. **Do not use the root user anymore**. After this initial set up, you should NOT use the root user account afterwords,
    except in very rare circumstances. (e.g., if you get locked out of your IAM User account). For almost all day to day
    tasks, you should use an IAM user instead, as described in the next section.
 
@@ -63,11 +63,11 @@ Once you have access with the IAM user, be sure to do the following to finish co
    less than a minute and*dramatically* improves your security posture. Moreover, MFA is **required** by the Reference
    Architecture, and you won't be able to access any other accounts without it!
 
-1. **Logout and log back in**. After enabling MFA, you need to log out and then log back in, thereby forcing AWS to
+2. **Logout and log back in**. After enabling MFA, you need to log out and then log back in, thereby forcing AWS to
    prompt you for an MFA token. Until you don't do this, you will not be able to access anything else in the web
    console!
 
-1. **Create access keys**. [Follow these instructions to create access
+3. **Create access keys**. [Follow these instructions to create access
    keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for yourself. Store the
    access keys in a secrets manager. You will need these to authenticate to AWS from the command-line.
 
@@ -109,7 +109,6 @@ bob@acme.com:
   - ssh-grunt-sudo-users
   - iam-user-self-mgmt
   pgp_key: keybase:bob_on_keybase
-
 ```
 
 A few notes about the code above:
@@ -137,9 +136,6 @@ To deploy this new code and create the new IAM users, you will need to:
    members. Make sure to tell each team member to follow the [Configure your IAM user](#configure-your-iam-user)
    instructions to (a) login, (b) reset their password, and (c) enable MFA. **Enabling MFA is required in the
    Reference Architecture**. Without MFA, they will not be able to access anything!
-
-4. **Remove temporary login lines**. After a user logs in and has MFA setup, you are welcome to remove the 
-   `create_login_profile` lines for all users that are setup to clean up any lingering old initial passwords
 
 
 <!-- ##DOCS-SOURCER-START
