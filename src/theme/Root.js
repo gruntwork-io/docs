@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { SubscribersOnlyModal } from "/src/components/SubscribersOnlyModal.tsx"
-import { CISOnlyModal } from "/src/components/CISOnlyModal.tsx"
 
 const gruntworkGithubOrg = "https://github.com/gruntwork-io/"
 
@@ -108,7 +107,6 @@ function Root({ children }) {
 
   useEffect(() => {
     const listener = (event) => {
-      console.log(event.target.dataset)
       // Allow clicks on the external GitHub link FROM the modal notices to work normally
       if (event.target.dataset.modalExempt) {
         return
@@ -158,6 +156,7 @@ function Root({ children }) {
       <SubscribersOnlyModal
         showModal={displaySubscriberNotice}
         externalLink={subscriberNoticeLink}
+        localStorageKey={DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY}
         handleCancelRequest={() => {
           setDisplaySubscriberNotice(false)
           setSubscriberNoticeLink("")
@@ -166,9 +165,11 @@ function Root({ children }) {
           setDisplaySubscriberNotice(false)
         }}
       />
-      <CISOnlyModal
+      <SubscribersOnlyModal
         showModal={displayCisNotice}
         externalLink={cisNoticeLink}
+        localStorageKey={DONT_SHOW_CIS_GITHUB_WARNING_KEY}
+        subscriberType="CIS"
         handleCancelRequest={() => {
           setDisplayCisNotice(false)
           setCisNoticeLink("")

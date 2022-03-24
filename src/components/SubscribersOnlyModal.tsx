@@ -1,10 +1,11 @@
 import React from "react"
 import { Modal } from "./Modal"
-import { DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY } from "../theme/Root"
 import styles from "./Modal.module.css"
 
 interface SubscribersOnlyModalProps {
   externalLink: string
+  localStorageKey: string
+  subscriberType?: string
   showModal: boolean
   handleCancelRequest: () => void
   handleAcceptRequest?: () => void
@@ -12,6 +13,8 @@ interface SubscribersOnlyModalProps {
 
 export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
   externalLink,
+  localStorageKey,
+  subscriberType,
   showModal,
   handleCancelRequest,
   handleAcceptRequest,
@@ -19,8 +22,8 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
   const onRequestClose = (e) => {
     // If the user checked to never see this notice but subsequently cancels we will disregard their selection. We will
     // only stop showing this notice if they check the box and then proceed to GitHub
-    if (window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
-      window.localStorage.removeItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)
+    if (window.localStorage.getItem(localStorageKey)) {
+      window.localStorage.removeItem(localStorageKey)
     }
 
     handleCancelRequest()
@@ -34,14 +37,11 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
   )
 
   const setDontWarnMe = (event) => {
-    console.log(
-      `SUBSCRIBER DONT WARN KEY: ${DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY}`
-    )
     event.stopPropagation()
-    if (!window.localStorage.getItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)) {
-      window.localStorage.setItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY, "true")
+    if (!window.localStorage.getItem(localStorageKey)) {
+      window.localStorage.setItem(localStorageKey, "true")
     } else {
-      window.localStorage.removeItem(DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY)
+      window.localStorage.removeItem(localStorageKey)
     }
   }
 
@@ -54,7 +54,11 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
       handleCancelRequest={handleCancelRequest}
       handleAcceptRequest={handleAcceptRequest}
     >
-      <h2>For Subscribers Only</h2>
+      <h2>
+        {subscriberType
+          ? `For ${subscriberType} Subscribers Only`
+          : "For Subscribers Only"}
+      </h2>
       <p>
         This link leads to the private{" "}
         {gitHubRepoName && gitHubRepoName.length >= 1 && (
@@ -74,7 +78,6 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
           href={externalLink}
           target="_blank"
           data-modal-exempt={true}
-          data-local-storage-key={DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY}
           onClick={() => {
             handleAcceptRequest()
           }}
