@@ -74,46 +74,42 @@ Once you have access with the IAM user, be sure to do the following to finish co
 ### Configure other IAM users
 
 Now that your IAM user is all set up, you can configure IAM users for the rest of your team! All of the IAM users are
-managed as code in the security account, in the [account-baseline-app module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/6ca162dd1a8d8d6b7cf05e6a22bc4ac7bf01215f/examples/for-production/infrastructure-live/security/_global/account-baseline). If
+managed as code in the security account, in the [account-baseline-app module](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/633ae73172c86ac6e5e48985c529fd45cc06f67e/examples/for-production/infrastructure-live/security/_global/account-baseline/users.yml). If
 you open the `terragrunt.hcl` file in that repo, you should see the list of users, which will look something like:
 
-```hcl
-inputs = {
-   users = {
-      "jane@acme.com" = {
-         groups               = ["full-access"]
-         pgp_key              = "keybase:jane_on_keybase"
-         create_login_profile = true
-         create_access_keys   = false
-      }
-   }
-}
+```yml
+jane@acme.com:
+  create_access_keys: false
+  create_login_profile: true
+  groups:
+  - full-access
+  pgp_key: keybase:jane_on_keybase
 ```
 
 Here's how you could two other users, Alice and Bob, to this list:
 
-```hcl
-inputs = {
-   users = {
-      "jane@acme.com" = {
-         groups               = ["full-access"]
-         pgp_key              = "keybase:jane_on_keybase"
-         create_login_profile = true
-      }
+```yml
+jane@acme.com:
+  create_login_profile: true
+  groups:
+  - full-access
+  pgp_key: keybase:jane_on_keybase
+alice@acme.com:
+  create_login_profile: true
+  groups:
+  - _account.dev-full-access
+  - _account.stage-full-access
+  - _account.prod-full-access
+  - iam-user-self-mgmt
+  pgp_key: keybase:alice_on_keybase
+bob@acme.com:
+  create_login_profile: true
+  groups:
+  - _account.prod-read-only
+  - ssh-grunt-sudo-users
+  - iam-user-self-mgmt
+  pgp_key: keybase:bob_on_keybase
 
-      "alice@acme.com" = {
-         groups               = ["_account.dev-full-access", "_account.stage-full-access", "_account.prod-full-access"]
-         pgp_key              = "keybase:alice_on_keybase"
-         create_login_profile = true
-      }
-
-      "bob@acme.com" = {
-         groups               = ["_account.prod-read-only", "ssh-grunt-sudo-users"]
-         pgp_key              = "keybase:bob_on_keybase"
-         create_login_profile = true
-      }
-   }
-}
 ```
 
 A few notes about the code above:
@@ -135,12 +131,15 @@ To deploy this new code and create the new IAM users, you will need to:
 
 1. **Authenticate**. [Authenticate to AWS via the CLI](04-authenticate-to-aws-via-the-cli.md).
 
-1. **Apply your changes**. Run `terragrunt apply`.
+2. **Apply your changes**. Run `terragrunt apply`.
 
-1. **Send credentials**. Copy / paste the login URL, usernames, and (encrypted) credentials and email them to your team
+3. **Send credentials**. Copy / paste the login URL, usernames, and (encrypted) credentials and email them to your team
    members. Make sure to tell each team member to follow the [Configure your IAM user](#configure-your-iam-user)
    instructions to (a) login, (b) reset their password, and (c) enable MFA. **Enabling MFA is required in the
    Reference Architecture**. Without MFA, they will not be able to access anything!
+
+4. **Remove temporary login lines**. After a user logs in and has MFA setup, you are welcome to remove the 
+   `create_login_profile` lines for all users that are setup to clean up any lingering old initial passwords
 
 
 <!-- ##DOCS-SOURCER-START
