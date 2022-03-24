@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
 
 # Auto Scaling Group
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fasg-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -892,5 +892,5 @@ The ID of the Security Group that belongs to the ASG.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"6e0fe67e4011f23a7194fdcf2847ea68"}
+{"sourcePlugin":"service-catalog-api","hash":"ed918f42fef483fbbee6b6ebabd5942c"}
 ##DOCS-SOURCER-END -->

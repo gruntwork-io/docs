@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
 
 # Amazon EKS
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -1585,5 +1585,5 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"91dc3965d8d3289738189c21c478508e"}
+{"sourcePlugin":"service-catalog-api","hash":"d5adf775136815202f1c2f7945d59ba7"}
 ##DOCS-SOURCER-END -->

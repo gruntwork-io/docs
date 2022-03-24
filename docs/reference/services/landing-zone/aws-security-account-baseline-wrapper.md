@@ -16,14 +16,16 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
 
 # Account Baseline for security account
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-security" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
 
 ## Overview
 
@@ -2064,5 +2066,5 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9887c8f5545a901cbe49add9fe6061b9"}
+{"sourcePlugin":"service-catalog-api","hash":"1cd415f9c3d0809b514710ee946e9fae"}
 ##DOCS-SOURCER-END -->

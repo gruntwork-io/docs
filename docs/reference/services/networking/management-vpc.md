@@ -16,14 +16,16 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.1" lastModifiedVersion="0.83.0"/>
 
 # Management VPC
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
 
 ## Overview
 
@@ -636,5 +638,5 @@ Indicates whether or not the VPC has finished creating
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"239b6fdab765e54b3f019128e1cbb930"}
+{"sourcePlugin":"service-catalog-api","hash":"d921b67604960b462a74f1269b94a500"}
 ##DOCS-SOURCER-END -->
