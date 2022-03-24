@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.0" lastModifiedVersion="0.68.3"/>
+<VersionBadge version="0.85.1" lastModifiedVersion="0.85.1"/>
 
 # Amazon ECR Repositories
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" className="link-button">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -128,6 +128,22 @@ object({
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="default_external_account_ids_with_lambda_access" requirement="optional" type="list">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to create Lambda functions based on container images in these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_lambda_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list">
@@ -252,5 +268,5 @@ A list of IAM policy actions necessary for ECR write access.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"dea900e55d8be9e6806e7f35ce2ccdc7"}
+{"sourcePlugin":"service-catalog-api","hash":"25004f451b9489a0fd7ed75903f59008"}
 ##DOCS-SOURCER-END -->
