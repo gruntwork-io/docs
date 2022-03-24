@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.84.4"/>
 
@@ -106,231 +107,579 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="allow_port_from_cidr_blocks" className="snap-top"></a>
+<HclListItem name="allow_port_from_cidr_blocks" requirement="required" type="map">
+<HclListItemDescription>
 
-* [**`allow_port_from_cidr_blocks`**](#allow_port_from_cidr_blocks) &mdash; Accept inbound traffic on these port ranges from the specified CIDR blocks
+Accept inbound traffic on these port ranges from the specified CIDR blocks
 
-<a name="allow_port_from_security_group_ids" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`allow_port_from_security_group_ids`**](#allow_port_from_security_group_ids) &mdash; Accept inbound traffic on these port ranges from the specified security groups
+```hcl
+map(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+```
 
-<a name="allow_ssh_from_cidr_blocks" className="snap-top"></a>
+</HclListItemTypeDetails>
+</HclListItem>
 
-* [**`allow_ssh_from_cidr_blocks`**](#allow_ssh_from_cidr_blocks) &mdash; Accept inbound SSH from these CIDR blocks
+<HclListItem name="allow_port_from_security_group_ids" requirement="required" type="map">
+<HclListItemDescription>
 
-<a name="allow_ssh_from_security_group_ids" className="snap-top"></a>
+Accept inbound traffic on these port ranges from the specified security groups
 
-* [**`allow_ssh_from_security_group_ids`**](#allow_ssh_from_security_group_ids) &mdash; Accept inbound SSH from these security groups
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="ami" className="snap-top"></a>
+```hcl
+map(object({
+    from_port                = number
+    to_port                  = number
+    protocol                 = string
+    source_security_group_id = string
+  }))
+```
 
-* [**`ami`**](#ami) &mdash; The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if looking up the ami with filters.
+</HclListItemTypeDetails>
+</HclListItem>
 
-<a name="ami_filters" className="snap-top"></a>
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="required" type="list">
+<HclListItemDescription>
 
-* [**`ami_filters`**](#ami_filters) &mdash; Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or [`ami_filters`](#ami_filters) is required. Set to null if passing the ami ID directly.
+Accept inbound SSH from these CIDR blocks
 
-<a name="dns_zone_is_private" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`dns_zone_is_private`**](#dns_zone_is_private) &mdash; Specify whether we're selecting a private or public Route 53 DNS Zone
+```hcl
+list(string)
+```
 
-<a name="ebs_volumes" className="snap-top"></a>
+</HclListItemTypeDetails>
+</HclListItem>
 
-* [**`ebs_volumes`**](#ebs_volumes) &mdash; The EBS volumes to attach to the instance. This must be a map of key/value pairs.
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="required" type="list">
+<HclListItemDescription>
 
-<a name="instance_type" className="snap-top"></a>
+Accept inbound SSH from these security groups
 
-* [**`instance_type`**](#instance_type) &mdash; The type of instance to run for the EC2 instance
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="name" className="snap-top"></a>
+```hcl
+list(string)
+```
 
-* [**`name`**](#name) &mdash; The name of the EC2 instance and the other resources created by these templates
+</HclListItemTypeDetails>
+</HclListItem>
 
-<a name="route53_lookup_domain_name" className="snap-top"></a>
+<HclListItem name="ami" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`route53_lookup_domain_name`**](#route53_lookup_domain_name) &mdash; The domain name to use to look up the Route 53 hosted zone. Will be a subset of [`fully_qualified_domain_name`](#fully_qualified_domain_name): e.g., my-company.com. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
+The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
-<a name="route53_zone_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`route53_zone_id`**](#route53_zone_id) &mdash; The ID of the hosted zone to use. Allows specifying the hosted zone directly instead of looking it up via domain name. Only one of [`route53_lookup_domain_name`](#route53_lookup_domain_name) or [`route53_zone_id`](#route53_zone_id) should be used.
+<HclListItem name="ami_filters" requirement="required" type="object">
+<HclListItemDescription>
 
-<a name="subnet_id" className="snap-top"></a>
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
-* [**`subnet_id`**](#subnet_id) &mdash; The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in [`vpc_id`](#vpc_id).
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="vpc_id" className="snap-top"></a>
+```hcl
+object({
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC in which to deploy the EC2 instance.
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object({
+      name   = string
+      values = list(string)
+    }))
+  })
+```
+
+</HclListItemTypeDetails>
+</HclListItem>
+
+<HclListItem name="dns_zone_is_private" requirement="required" type="bool">
+<HclListItemDescription>
+
+Specify whether we're selecting a private or public Route 53 DNS Zone
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_volumes" requirement="required" type="any">
+<HclListItemDescription>
+
+The EBS volumes to attach to the instance. This must be a map of key/value pairs.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="instance_type" requirement="required" type="string">
+<HclListItemDescription>
+
+The type of instance to run for the EC2 instance
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the EC2 instance and the other resources created by these templates
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="route53_lookup_domain_name" requirement="required">
+<HclListItemDescription>
+
+The domain name to use to look up the Route 53 hosted zone. Will be a subset of fully_qualified_domain_name: e.g., my-company.com. Only one of route53_lookup_domain_name or route53_zone_id should be used.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="route53_zone_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the hosted zone to use. Allows specifying the hosted zone directly instead of looking it up via domain name. Only one of route53_lookup_domain_name or route53_zone_id should be used.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="subnet_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC in which to deploy the EC2 instance.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="additional_security_group_ids" className="snap-top"></a>
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`additional_security_group_ids`**](#additional_security_group_ids) &mdash; A list of optional additional security group ids to assign to the EC2 instance.
+A list of optional additional security group ids to assign to the EC2 instance.
 
-<a name="alarms_sns_topic_arn" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`alarms_sns_topic_arn`**](#alarms_sns_topic_arn) &mdash; The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+```hcl
+list(string)
+```
 
-<a name="attach_eip" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`attach_eip`**](#attach_eip) &mdash; Determines if an Elastic IP (EIP) will be created for this instance.
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list">
+<HclListItemDescription>
 
-<a name="base_domain_name_tags" className="snap-top"></a>
+The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
-* [**`base_domain_name_tags`**](#base_domain_name_tags) &mdash; Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone's name (use if you have multiple public hosted zones with the same name)
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="cloud_init_parts" className="snap-top"></a>
+```hcl
+list(string)
+```
 
-* [**`cloud_init_parts`**](#cloud_init_parts) &mdash; Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in [`https://www.terraform.io/docs/providers/template/d/cloudinit_config`](#https://www.terraform.io/docs/providers/template/d/cloudinit_config).html for syntax.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+<HclListItem name="attach_eip" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+Determines if an Elastic IP (EIP) will be created for this instance.
 
-<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone's name (use if you have multiple public hosted zones with the same name)
 
-* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="create_dns_record" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`create_dns_record`**](#create_dns_record) &mdash; Set to true to create a DNS record in Route53 pointing to the EC2 instance. If true, be sure to set [`fully_qualified_domain_name`](#fully_qualified_domain_name).
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<a name="default_user" className="snap-top"></a>
+<HclListItem name="cloud_init_parts" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`default_user`**](#default_user) &mdash; The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is what the Packer template in ec2-instance.json uses, the default OS user is 'ubuntu'.
+Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
 
-<a name="dns_ttl" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`dns_ttl`**](#dns_ttl) &mdash; DNS Time To Live in seconds.
+```hcl
+map(object({
+    filename     = string
+    content_type = string
+    content      = string
+  }))
+```
 
-<a name="ebs_optimized" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-* [**`ebs_optimized`**](#ebs_optimized) &mdash; If true, the launched EC2 Instance will be EBS-optimized.
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="enable_cloudwatch_alarms" className="snap-top"></a>
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
-* [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arn`](#alarms_sns_topic_arn).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="enable_cloudwatch_log_aggregation" className="snap-top"></a>
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`enable_cloudwatch_log_aggregation`**](#enable_cloudwatch_log_aggregation) &mdash; Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
 
-<a name="enable_cloudwatch_metrics" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`enable_cloudwatch_metrics`**](#enable_cloudwatch_metrics) &mdash; Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/metrics/cloudwatch-memory-disk-metrics-scripts to get memory and disk metrics in CloudWatch for your EC2 instance.
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="enable_fail2ban" className="snap-top"></a>
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
-* [**`enable_fail2ban`**](#enable_fail2ban) &mdash; Enable fail2ban to block brute force log in attempts. Defaults to true.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="enable_ip_lockdown" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`enable_ip_lockdown`**](#enable_ip_lockdown) &mdash; Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="enable_ssh_grunt" className="snap-top"></a>
+<HclListItem name="create_dns_record" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`enable_ssh_grunt`**](#enable_ssh_grunt) &mdash; Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+Set to true to create a DNS record in Route53 pointing to the EC2 instance. If true, be sure to set <a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a>.
 
-<a name="external_account_ssh_grunt_role_arn" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`external_account_ssh_grunt_role_arn`**](#external_account_ssh_grunt_role_arn) &mdash; If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+<HclListItem name="default_user" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="fully_qualified_domain_name" className="snap-top"></a>
+The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is what the Packer template in ec2-instance.json uses, the default OS user is 'ubuntu'.
 
-* [**`fully_qualified_domain_name`**](#fully_qualified_domain_name) &mdash; The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be [`name.var.fully_qualified_domain_name`](#name.var.fully_qualified_domain_name) (e.g., bastion.example.com). Only used if [`create_dns_record`](#create_dns_record) is true.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="ubuntu"/>
+</HclListItem>
 
-<a name="keypair_name" className="snap-top"></a>
+<HclListItem name="dns_ttl" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`keypair_name`**](#keypair_name) &mdash; The name of a Key Pair that can be used to SSH to this instance. This instance may have ssh-grunt installed. The preferred way to do SSH access is with your own IAM user name and SSH key. This Key Pair is only as a fallback.
+DNS Time To Live in seconds.
 
-<a name="root_volume_delete_on_termination" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
 
-* [**`root_volume_delete_on_termination`**](#root_volume_delete_on_termination) &mdash; If set to true, the root volume will be deleted when the Instance is terminated.
+<HclListItem name="ebs_optimized" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="root_volume_size" className="snap-top"></a>
+If true, the launched EC2 Instance will be EBS-optimized.
 
-* [**`root_volume_size`**](#root_volume_size) &mdash; The size of the root volume, in gigabytes.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="root_volume_type" className="snap-top"></a>
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`root_volume_type`**](#root_volume_type) &mdash; The root volume type. Must be one of: standard, gp2, io1.
+Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
 
-<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="ssh_grunt_iam_group" className="snap-top"></a>
+Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
 
-* [**`ssh_grunt_iam_group`**](#ssh_grunt_iam_group) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="ssh_grunt_iam_group_sudo" className="snap-top"></a>
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`ssh_grunt_iam_group_sudo`**](#ssh_grunt_iam_group_sudo) &mdash; If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/metrics/cloudwatch-memory-disk-metrics-scripts to get memory and disk metrics in CloudWatch for your EC2 instance.
 
-<a name="tags" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`tags`**](#tags) &mdash; A map of tags to apply to the EC2 instance and the S3 Buckets. The key is the tag name and the value is the tag value.
+<HclListItem name="enable_fail2ban" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="tenancy" className="snap-top"></a>
+Enable fail2ban to block brute force log in attempts. Defaults to true.
 
-* [**`tenancy`**](#tenancy) &mdash; The tenancy of this instance. Must be one of: default, dedicated, or host.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="use_managed_iam_policies" className="snap-top"></a>
+<HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="fully_qualified_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be var.name.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="keypair_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a Key Pair that can be used to SSH to this instance. This instance may have ssh-grunt installed. The preferred way to do SSH access is with your own IAM user name and SSH key. This Key Pair is only as a fallback.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be deleted when the Instance is terminated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size of the root volume, in gigabytes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The root volume type. Must be one of: standard, gp2, io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="standard"/>
+</HclListItem>
+
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags to apply to the EC2 instance and the S3 Buckets. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tenancy of this instance. Must be one of: default, dedicated, or host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="default"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="dns_name" className="snap-top"></a>
+<HclListItem name="dns_name">
+<HclListItemDescription>
 
-* [**`dns_name`**](#dns_name) &mdash; The fully qualified name of the EC2 server.
+The fully qualified name of the EC2 server.
 
-<a name="ec2_instance_iam_role_arn" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`ec2_instance_iam_role_arn`**](#ec2_instance_iam_role_arn) &mdash; The ARN of the EC2 server's IAM role.
+<HclListItem name="ec2_instance_iam_role_arn">
+<HclListItemDescription>
 
-<a name="ec2_instance_iam_role_id" className="snap-top"></a>
+The ARN of the EC2 server's IAM role.
 
-* [**`ec2_instance_iam_role_id`**](#ec2_instance_iam_role_id) &mdash; The ID of the EC2 server's IAM role.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="ec2_instance_iam_role_name" className="snap-top"></a>
+<HclListItem name="ec2_instance_iam_role_id">
+<HclListItemDescription>
 
-* [**`ec2_instance_iam_role_name`**](#ec2_instance_iam_role_name) &mdash; The name of the EC2 server's IAM role.
+The ID of the EC2 server's IAM role.
 
-<a name="ec2_instance_instance_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`ec2_instance_instance_id`**](#ec2_instance_instance_id) &mdash; The EC2 instance ID of the EC2 server.
+<HclListItem name="ec2_instance_iam_role_name">
+<HclListItemDescription>
 
-<a name="ec2_instance_private_ip" className="snap-top"></a>
+The name of the EC2 server's IAM role.
 
-* [**`ec2_instance_private_ip`**](#ec2_instance_private_ip) &mdash; The private IP address of the EC2 server.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="ec2_instance_public_ip" className="snap-top"></a>
+<HclListItem name="ec2_instance_instance_id">
+<HclListItemDescription>
 
-* [**`ec2_instance_public_ip`**](#ec2_instance_public_ip) &mdash; The public IP address of the EC2 server.
+The EC2 instance ID of the EC2 server.
 
-<a name="ec2_instance_security_group_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`ec2_instance_security_group_id`**](#ec2_instance_security_group_id) &mdash; The ID of the EC2 servers's security group.
+<HclListItem name="ec2_instance_private_ip">
+<HclListItemDescription>
 
-<a name="ec2_instance_volume_info" className="snap-top"></a>
+The private IP address of the EC2 server.
 
-* [**`ec2_instance_volume_info`**](#ec2_instance_volume_info) &mdash; Info about the created EBS volumes.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="ec2_instance_volume_parameters" className="snap-top"></a>
+<HclListItem name="ec2_instance_public_ip">
+<HclListItemDescription>
 
-* [**`ec2_instance_volume_parameters`**](#ec2_instance_volume_parameters) &mdash; The input parameters for the EBS volumes.
+The public IP address of the EC2 server.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2_instance_security_group_id">
+<HclListItemDescription>
+
+The ID of the EC2 servers's security group.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2_instance_volume_info">
+<HclListItemDescription>
+
+Info about the created EBS volumes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2_instance_volume_parameters">
+<HclListItemDescription>
+
+The input parameters for the EBS volumes.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a6efad463023687dc76b6c18ee1c571c"}
+{"sourcePlugin":"service-catalog-api","hash":"82cb1593fa3f63a7da97b27b3bc4eeca"}
 ##DOCS-SOURCER-END -->

@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -109,103 +110,227 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="acm_certificate_domain_name" className="snap-top"></a>
+<HclListItem name="acm_certificate_domain_name" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`acm_certificate_domain_name`**](#acm_certificate_domain_name) &mdash; The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only used if [`create_route53_entry`](#create_route53_entry) is true. Set to blank otherwise.
+The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true. Set to blank otherwise.
 
-<a name="website_domain_name" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`website_domain_name`**](#website_domain_name) &mdash; The name of the website and the S3 bucket to create (e.g. static.foo.com).
+<HclListItem name="website_domain_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the website and the S3 bucket to create (e.g. static.foo.com).
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="base_domain_name" className="snap-top"></a>
+<HclListItem name="base_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`base_domain_name`**](#base_domain_name) &mdash; The domain name associated with a hosted zone in Route 53. Usually the base domain name of [`website_domain_name`](#website_domain_name) (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If [`create_route53_entry`](#create_route53_entry) is true, one of [`base_domain_name`](#base_domain_name) or [`hosted_zone_id`](#hosted_zone_id) must be provided.
+The domain name associated with a hosted zone in Route 53. Usually the base domain name of <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
-<a name="base_domain_name_tags" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`base_domain_name_tags`**](#base_domain_name_tags) &mdash; The tags associated with [`base_domain_name`](#base_domain_name). If there are multiple hosted zones for the same [`base_domain_name`](#base_domain_name), this will help filter the hosted zones so that the correct hosted zone is found.
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="create_route53_entry" className="snap-top"></a>
+The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
 
-* [**`create_route53_entry`**](#create_route53_entry) &mdash; If set to true, create a DNS A Record in Route 53. If [`create_route53_entry`](#create_route53_entry) is true, one of [`base_domain_name`](#base_domain_name) or [`hosted_zone_id`](#hosted_zone_id) must be provided.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="custom_tags" className="snap-top"></a>
+```hcl
+map(any)
+```
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the S3 bucket containing the website and the CloudFront distribution created for it. The key is the tag name and the value is the tag value.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<a name="default_ttl" className="snap-top"></a>
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`default_ttl`**](#default_ttl) &mdash; The default amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an 'Cache-Control max-age' or 'Expires' header.
+If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
-<a name="error_document" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`error_document`**](#error_document) &mdash; The path to the error document in the S3 bucket (e.g. error.html).
+<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="force_destroy" className="snap-top"></a>
+A map of custom tags to apply to the S3 bucket containing the website and the CloudFront distribution created for it. The key is the tag name and the value is the tag value.
 
-* [**`force_destroy`**](#force_destroy) &mdash; If set to true, this will force the delete of the website, redirect, and access log S3 buckets when you run terraform destroy, even if there is still content in those buckets. This is only meant for testing and should not be used in production.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="geo_locations_list" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`geo_locations_list`**](#geo_locations_list) &mdash; The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute your content (if [`geo_restriction_type`](#geo_restriction_type) is whitelist) or not distribute your content (if [`geo_restriction_type`](#geo_restriction_type) is blacklist).
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<a name="geo_restriction_type" className="snap-top"></a>
+<HclListItem name="default_ttl" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`geo_restriction_type`**](#geo_restriction_type) &mdash; The method that you want to use to restrict distribution of your content by country: none, whitelist, or blacklist.
+The default amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an 'Cache-Control max-age' or 'Expires' header.
 
-<a name="hosted_zone_id" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
 
-* [**`hosted_zone_id`**](#hosted_zone_id) &mdash; The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in [`website_domain_name`](#website_domain_name). If [`create_route53_entry`](#create_route53_entry) is true, one of [`base_domain_name`](#base_domain_name) or [`hosted_zone_id`](#hosted_zone_id) must be provided.
+<HclListItem name="error_document" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="index_document" className="snap-top"></a>
+The path to the error document in the S3 bucket (e.g. error.html).
 
-* [**`index_document`**](#index_document) &mdash; The path to the index document in the S3 bucket (e.g. index.html).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="error.html"/>
+</HclListItem>
 
-<a name="max_ttl" className="snap-top"></a>
+<HclListItem name="force_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`max_ttl`**](#max_ttl) &mdash; The maximum amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request to your origin to determine whether the object has been updated. Only effective in the presence of 'Cache-Control max-age', 'Cache-Control s-maxage', and 'Expires' headers.
+If set to true, this will force the delete of the website, redirect, and access log S3 buckets when you run terraform destroy, even if there is still content in those buckets. This is only meant for testing and should not be used in production.
 
-<a name="min_ttl" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-* [**`min_ttl`**](#min_ttl) &mdash; The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront queries your origin to see whether the object has been updated.
+<HclListItem name="geo_locations_list" requirement="optional" type="list">
+<HclListItemDescription>
 
-<a name="routing_rules" className="snap-top"></a>
+The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is whitelist) or not distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is blacklist).
 
-* [**`routing_rules`**](#routing_rules) &mdash; A json array containing routing rules describing redirect behavior and when redirects are applied. For routing rule syntax, see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html. This will only be used if [`should_redirect_all_requests`](#should_redirect_all_requests) is false
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="viewer_protocol_policy" className="snap-top"></a>
+```hcl
+list(string)
+```
 
-* [**`viewer_protocol_policy`**](#viewer_protocol_policy) &mdash; Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="geo_restriction_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The method that you want to use to restrict distribution of your content by country: none, whitelist, or blacklist.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="none"/>
+</HclListItem>
+
+<HclListItem name="hosted_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#website_domain_name"><code>website_domain_name</code></a>. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="index_document" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to the index document in the S3 bucket (e.g. index.html).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="index.html"/>
+</HclListItem>
+
+<HclListItem name="max_ttl" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request to your origin to determine whether the object has been updated. Only effective in the presence of 'Cache-Control max-age', 'Cache-Control s-maxage', and 'Expires' headers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="min_ttl" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront queries your origin to see whether the object has been updated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="routing_rules" requirement="optional" type="string">
+<HclListItemDescription>
+
+A json array containing routing rules describing redirect behavior and when redirects are applied. For routing rule syntax, see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html. This will only be used if <a href="#should_redirect_all_requests"><code>should_redirect_all_requests</code></a> is false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="allow-all"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="cloudfront_access_logs_bucket_arn" className="snap-top"></a>
+<HclListItem name="cloudfront_access_logs_bucket_arn">
+<HclListItemDescription>
 
-* [**`cloudfront_access_logs_bucket_arn`**](#cloudfront_access_logs_bucket_arn) &mdash; The ARN of the created S3 bucket associated with the website's CloudFront access logs.
+The ARN of the created S3 bucket associated with the website's CloudFront access logs.
 
-<a name="cloudfront_domain_names" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`cloudfront_domain_names`**](#cloudfront_domain_names) &mdash; The domain names created for the CloudFront Distribution. Should be the same as the input [`website_domain_name`](#website_domain_name).
+<HclListItem name="cloudfront_domain_names">
+<HclListItemDescription>
 
-<a name="cloudfront_id" className="snap-top"></a>
+The domain names created for the CloudFront Distribution. Should be the same as the input <a href="#website_domain_name"><code>website_domain_name</code></a>.
 
-* [**`cloudfront_id`**](#cloudfront_id) &mdash; The CloudFront ID of the created CloudFront Distribution.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="website_access_logs_bucket_arn" className="snap-top"></a>
+<HclListItem name="cloudfront_id">
+<HclListItemDescription>
 
-* [**`website_access_logs_bucket_arn`**](#website_access_logs_bucket_arn) &mdash; The ARN of the created S3 bucket associated with the website access logs.
+The CloudFront ID of the created CloudFront Distribution.
 
-<a name="website_s3_bucket_arn" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`website_s3_bucket_arn`**](#website_s3_bucket_arn) &mdash; The ARN of the created S3 bucket associated with the website.
+<HclListItem name="website_access_logs_bucket_arn">
+<HclListItemDescription>
+
+The ARN of the created S3 bucket associated with the website access logs.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="website_s3_bucket_arn">
+<HclListItemDescription>
+
+The ARN of the created S3 bucket associated with the website.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"31a9cfc543f0ede3a8ff73ba6e6568fe"}
+{"sourcePlugin":"service-catalog-api","hash":"6bd75027a663f966af6140b2289c4408"}
 ##DOCS-SOURCER-END -->

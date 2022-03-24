@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.83.0"/>
 
@@ -95,63 +96,172 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="name" className="snap-top"></a>
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`name`**](#name) &mdash; Name of the Namespace to create.
+Name of the Namespace to create.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="annotations" className="snap-top"></a>
+<HclListItem name="annotations" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`annotations`**](#annotations) &mdash; Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 
-<a name="eks_cluster_name" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`eks_cluster_name`**](#eks_cluster_name) &mdash; Name of the EKS cluster where the Namespace will be created. Required when [`schedule_pods_on_fargate`](#schedule_pods_on_fargate) is `true`.
+```hcl
+map(string)
+```
 
-<a name="full_access_rbac_entities" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-* [**`full_access_rbac_entities`**](#full_access_rbac_entities) &mdash; The list of RBAC entities that should have full access to the Namespace.
+<HclListItem name="eks_cluster_name" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="labels" className="snap-top"></a>
+Name of the EKS cluster where the Namespace will be created. Required when <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is `true`.
 
-* [**`labels`**](#labels) &mdash; Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="pod_execution_iam_role_arn" className="snap-top"></a>
+<HclListItem name="full_access_rbac_entities" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`pod_execution_iam_role_arn`**](#pod_execution_iam_role_arn) &mdash; ARN of IAM Role to use as the Pod execution role for Fargate. Required if [`schedule_pods_on_fargate`](#schedule_pods_on_fargate) is true.
+The list of RBAC entities that should have full access to the Namespace.
 
-<a name="read_only_access_rbac_entities" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`read_only_access_rbac_entities`**](#read_only_access_rbac_entities) &mdash; The list of RBAC entities that should have read only access to the Namespace.
+```hcl
+list(object({
+    # The type of entity. One of User, Group, or ServiceAccount
+    kind = string
 
-<a name="schedule_pods_on_fargate" className="snap-top"></a>
+    # The name of the entity (e.g., the username or group name, depending on kind).
+    name = string
 
-* [**`schedule_pods_on_fargate`**](#schedule_pods_on_fargate) &mdash; When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if [`kubeconfig_auth_type`](#kubeconfig_auth_type) is eks, as Fargate profiles can only be created against EKS clusters.
+    # The namespace where the entity is located. Only used for ServiceAccount.
+    namespace = string
+  }))
+```
 
-<a name="worker_vpc_subnet_ids" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`worker_vpc_subnet_ids`**](#worker_vpc_subnet_ids) &mdash; The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if [`schedule_pods_on_fargate`](#schedule_pods_on_fargate) is true.
+<HclListItem name="labels" requirement="optional" type="map">
+<HclListItemDescription>
+
+Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="pod_execution_iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_only_access_rbac_entities" requirement="optional" type="list">
+<HclListItemDescription>
+
+The list of RBAC entities that should have read only access to the Namespace.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    # The type of entity. One of User, Group, or ServiceAccount
+    kind = string
+
+    # The name of the entity (e.g., the username or group name, depending on kind).
+    name = string
+
+    # The namespace where the entity is located. Only used for ServiceAccount.
+    namespace = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="schedule_pods_on_fargate" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if <a href="#kubeconfig_auth_type"><code>kubeconfig_auth_type</code></a> is eks, as Fargate profiles can only be created against EKS clusters.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="worker_vpc_subnet_ids" requirement="optional" type="list">
+<HclListItemDescription>
+
+The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="namespace_name" className="snap-top"></a>
+<HclListItem name="namespace_name">
+<HclListItemDescription>
 
-* [**`namespace_name`**](#namespace_name) &mdash; The name of the created namespace.
+The name of the created namespace.
 
-<a name="namespace_rbac_access_all_role" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`namespace_rbac_access_all_role`**](#namespace_rbac_access_all_role) &mdash; The name of the rbac role that grants admin level permissions on the namespace.
+<HclListItem name="namespace_rbac_access_all_role">
+<HclListItemDescription>
 
-<a name="namespace_rbac_access_read_only_role" className="snap-top"></a>
+The name of the rbac role that grants admin level permissions on the namespace.
 
-* [**`namespace_rbac_access_read_only_role`**](#namespace_rbac_access_read_only_role) &mdash; The name of the rbac role that grants read only permissions on the namespace.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="namespace_rbac_access_read_only_role">
+<HclListItemDescription>
+
+The name of the rbac role that grants read only permissions on the namespace.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0908ca4f3ea00d22017927435e6325e4"}
+{"sourcePlugin":"service-catalog-api","hash":"59292fa9e2371a98e1ce702c193d839a"}
 ##DOCS-SOURCER-END -->

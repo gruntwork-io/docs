@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.66.0"/>
 
@@ -99,35 +100,64 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ### Required
 
-<a name="cluster_name" className="snap-top"></a>
+<HclListItem name="cluster_name" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`cluster_name`**](#cluster_name) &mdash; The name of the ECS cluster
+The name of the ECS cluster
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="custom_tags" className="snap-top"></a>
+<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
+A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
 
-<a name="enable_container_insights" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`enable_container_insights`**](#enable_container_insights) &mdash; Whether or not to enable container insights monitoring on the ECS cluster.
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="enable_container_insights" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable container insights monitoring on the ECS cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="arn" className="snap-top"></a>
+<HclListItem name="arn">
+<HclListItemDescription>
 
-* [**`arn`**](#arn) &mdash; ARN of the ECS cluster that was created.
+ARN of the ECS cluster that was created.
 
-<a name="name" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`name`**](#name) &mdash; The name of the ECS cluster.
+<HclListItem name="name">
+<HclListItemDescription>
+
+The name of the ECS cluster.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"515d701940d60810a1823cfbc9ca0f87"}
+{"sourcePlugin":"service-catalog-api","hash":"9e62fb0f1f86b9023d6916a9ce211f84"}
 ##DOCS-SOURCER-END -->

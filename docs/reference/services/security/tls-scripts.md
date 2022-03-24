@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.77.0"/>
 
@@ -99,5 +100,5 @@ If you’ve never used the Service Catalog before, make sure to read
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"85fc6714edb956c53e4caf742adee1e4"}
+{"sourcePlugin":"service-catalog-api","hash":"01106166a8bf71fc37bb1ff2751bee26"}
 ##DOCS-SOURCER-END -->

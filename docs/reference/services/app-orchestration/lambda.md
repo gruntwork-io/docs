@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -94,287 +95,672 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="alarm_sns_topic_arns" className="snap-top"></a>
+<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list">
+<HclListItemDescription>
 
-* [**`alarm_sns_topic_arns`**](#alarm_sns_topic_arns) &mdash; A list of SNS topic ARNs to notify when the lambda alarms change to ALARM, OK, or [`INSUFFICIENT_DATA`](#INSUFFICIENT_DATA) state
+A list of SNS topic ARNs to notify when the lambda alarms change to ALARM, OK, or INSUFFICIENT_DATA state
 
-<a name="memory_size" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`memory_size`**](#memory_size) &mdash; The maximum amount of memory, in MB, your Lambda function will be able to use at runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the amount of CPU power given to a Lambda function is proportional to the amount of memory you request, so a Lambda function with 256MB of memory has twice as much CPU power as one with 128MB.
+```hcl
+list(string)
+```
 
-<a name="name" className="snap-top"></a>
+</HclListItemTypeDetails>
+</HclListItem>
 
-* [**`name`**](#name) &mdash; The name of the Lambda function. Used to namespace all resources created by this module.
+<HclListItem name="memory_size" requirement="required" type="number">
+<HclListItemDescription>
 
-<a name="timeout" className="snap-top"></a>
+The maximum amount of memory, in MB, your Lambda function will be able to use at runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the amount of CPU power given to a Lambda function is proportional to the amount of memory you request, so a Lambda function with 256MB of memory has twice as much CPU power as one with 128MB.
 
-* [**`timeout`**](#timeout) &mdash; The maximum amount of time, in seconds, your Lambda function will be allowed to run. Must be between 1 and 900 seconds.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the Lambda function. Used to namespace all resources created by this module.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="timeout" requirement="required" type="number">
+<HclListItemDescription>
+
+The maximum amount of time, in seconds, your Lambda function will be allowed to run. Must be between 1 and 900 seconds.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="assume_role_policy" className="snap-top"></a>
+<HclListItem name="assume_role_policy" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`assume_role_policy`**](#assume_role_policy) &mdash; A custom assume role policy for the IAM role for this Lambda function. If not set, the default is a policy that allows the Lambda service to assume the IAM role, which is what most users will need. However, you can use this variable to override the policy for special cases, such as using a Lambda function to rotate AWS Secrets Manager secrets.
+A custom assume role policy for the IAM role for this Lambda function. If not set, the default is a policy that allows the Lambda service to assume the IAM role, which is what most users will need. However, you can use this variable to override the policy for special cases, such as using a Lambda function to rotate AWS Secrets Manager secrets.
 
-<a name="cloudwatch_log_group_kms_key_id" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`cloudwatch_log_group_kms_key_id`**](#cloudwatch_log_group_kms_key_id) &mdash; The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="cloudwatch_log_group_retention_in_days" className="snap-top"></a>
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
-* [**`cloudwatch_log_group_retention_in_days`**](#cloudwatch_log_group_retention_in_days) &mdash; The number of days to retain log events in the log group. Refer to [`https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days`](#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days) for all the valid values. When null, the log events are retained forever.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="cloudwatch_log_group_subscription_destination_arn" className="snap-top"></a>
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`cloudwatch_log_group_subscription_destination_arn`**](#cloudwatch_log_group_subscription_destination_arn) &mdash; The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if [`should_create_cloudwatch_log_group`](#should_create_cloudwatch_log_group) is true.
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
 
-<a name="cloudwatch_log_group_subscription_distribution" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`cloudwatch_log_group_subscription_distribution`**](#cloudwatch_log_group_subscription_distribution) &mdash; The method used to distribute log data to the destination. Only applicable when [`cloudwatch_log_group_subscription_destination_arn`](#cloudwatch_log_group_subscription_destination_arn) is a kinesis stream. Valid values are `Random` and `ByLogStream`.
+<HclListItem name="cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="cloudwatch_log_group_subscription_filter_pattern" className="snap-top"></a>
+The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if <a href="#should_create_cloudwatch_log_group"><code>should_create_cloudwatch_log_group</code></a> is true.
 
-* [**`cloudwatch_log_group_subscription_filter_pattern`**](#cloudwatch_log_group_subscription_filter_pattern) &mdash; A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="cloudwatch_log_group_subscription_role_arn" className="snap-top"></a>
+<HclListItem name="cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`cloudwatch_log_group_subscription_role_arn`**](#cloudwatch_log_group_subscription_role_arn) &mdash; ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when [`cloudwatch_log_group_subscription_destination_arn`](#cloudwatch_log_group_subscription_destination_arn) is a kinesis stream.
+The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
 
-<a name="cloudwatch_log_group_tags" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`cloudwatch_log_group_tags`**](#cloudwatch_log_group_tags) &mdash; Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+<HclListItem name="cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="command" className="snap-top"></a>
+A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
 
-* [**`command`**](#command) &mdash; The CMD for the docker image. Only used if you specify a Docker image via [`image_uri`](#image_uri).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue=""/>
+</HclListItem>
 
-<a name="comparison_operator" className="snap-top"></a>
+<HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`comparison_operator`**](#comparison_operator) &mdash; The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
+ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
 
-<a name="create_resources" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`create_resources`**](#create_resources) &mdash; Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="datapoints_to_alarm" className="snap-top"></a>
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
-* [**`datapoints_to_alarm`**](#datapoints_to_alarm) &mdash; The number of datapoints that must be breaching to trigger the alarm.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="dead_letter_target_arn" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`dead_letter_target_arn`**](#dead_letter_target_arn) &mdash; The ARN of an SNS topic or an SQS queue to notify when invocation of a Lambda function fails. If this option is used, you must grant this function's IAM role (the ID is outputted as [`iam_role_id`](#iam_role_id)) access to write to the target object, which means allowing either the sns:Publish or sqs:SendMessage action on this ARN, depending on which service is targeted.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="description" className="snap-top"></a>
+<HclListItem name="command" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`description`**](#description) &mdash; A description of what the Lambda function does.
+The CMD for the docker image. Only used if you specify a Docker image via image_uri.
 
-<a name="enable_versioning" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`enable_versioning`**](#enable_versioning) &mdash; Set to true to enable versioning for this Lambda function. This allows you to use aliases to refer to execute different versions of the function in different environments. Note that an alternative way to run Lambda functions in multiple environments is to version your Terraform code.
+```hcl
+list(string)
+```
 
-<a name="entry_point" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`entry_point`**](#entry_point) &mdash; The ENTRYPOINT for the docker image. Only used if you specify a Docker image via [`image_uri`](#image_uri).
+<HclListItem name="comparison_operator" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="environment_variables" className="snap-top"></a>
+The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
 
-* [**`environment_variables`**](#environment_variables) &mdash; A map of environment variables to pass to the Lambda function. AWS will automatically encrypt these with KMS and decrypt them when running the function.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="GreaterThanThreshold"/>
+</HclListItem>
 
-<a name="evaluation_periods" className="snap-top"></a>
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`evaluation_periods`**](#evaluation_periods) &mdash; The number of periods over which data is compared to the specified threshold.
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
 
-<a name="file_system_access_point_arn" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`file_system_access_point_arn`**](#file_system_access_point_arn) &mdash; The ARN of an EFS access point to use to access the file system. Only used if [`mount_to_file_system`](#mount_to_file_system) is true.
+<HclListItem name="datapoints_to_alarm" requirement="optional" type="number">
+<HclListItemDescription>
 
-<a name="file_system_mount_path" className="snap-top"></a>
+The number of datapoints that must be breaching to trigger the alarm.
 
-* [**`file_system_mount_path`**](#file_system_mount_path) &mdash; The mount path where the lambda can access the file system. This path must begin with /mnt/. Only used if [`mount_to_file_system`](#mount_to_file_system) is true.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
 
-<a name="handler" className="snap-top"></a>
+<HclListItem name="dead_letter_target_arn" requirement="optional">
+<HclListItemDescription>
 
-* [**`handler`**](#handler) &mdash; The function entrypoint in your code. This is typically the name of a function or method in your code that AWS will execute when this Lambda function is triggered.
+The ARN of an SNS topic or an SQS queue to notify when invocation of a Lambda function fails. If this option is used, you must grant this function's IAM role (the ID is outputted as iam_role_id) access to write to the target object, which means allowing either the sns:Publish or sqs:SendMessage action on this ARN, depending on which service is targeted.
 
-<a name="image_uri" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`image_uri`**](#image_uri) &mdash; The ECR image URI containing the function's deployment package. Example: [`01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag`](#01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag)
+<HclListItem name="description" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="kms_key_arn" className="snap-top"></a>
+A description of what the Lambda function does.
 
-* [**`kms_key_arn`**](#kms_key_arn) &mdash; A custom KMS key to use to encrypt and decrypt Lambda function environment variables. Leave it blank to use the default KMS key provided in your AWS account.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="lambda_role_permissions_boundary_arn" className="snap-top"></a>
+<HclListItem name="enable_versioning" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`lambda_role_permissions_boundary_arn`**](#lambda_role_permissions_boundary_arn) &mdash; The ARN of the policy that is used to set the permissions boundary for the IAM role for the lambda
+Set to true to enable versioning for this Lambda function. This allows you to use aliases to refer to execute different versions of the function in different environments. Note that an alternative way to run Lambda functions in multiple environments is to version your Terraform code.
 
-<a name="layers" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-* [**`layers`**](#layers) &mdash; The list of Lambda Layer Version ARNs to attach to your Lambda Function. You can have a maximum of 5 Layers attached to each function.
+<HclListItem name="entry_point" requirement="optional" type="list">
+<HclListItemDescription>
 
-<a name="metric_name" className="snap-top"></a>
+The ENTRYPOINT for the docker image. Only used if you specify a Docker image via image_uri.
 
-* [**`metric_name`**](#metric_name) &mdash; The name for the alarm's associated metric.
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="mount_to_file_system" className="snap-top"></a>
+```hcl
+list(string)
+```
 
-* [**`mount_to_file_system`**](#mount_to_file_system) &mdash; Set to true to mount your Lambda function on an EFS. Note that the lambda must also be deployed inside a VPC [`(run_in_vpc`](#(run_in_vpc) must be set to true) for this config to have any effect.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<a name="namespace" className="snap-top"></a>
+<HclListItem name="environment_variables" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`namespace`**](#namespace) &mdash; The namespace to use for all resources created by this module. If not set, [`lambda_function_name`](#lambda_function_name), with '-scheduled' as a suffix, is used.
+A map of environment variables to pass to the Lambda function. AWS will automatically encrypt these with KMS and decrypt them when running the function.
 
-<a name="period" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`period`**](#period) &mdash; The period in seconds over which the specified `statistic` is applied.
+```hcl
+map(string)
+```
 
-<a name="reserved_concurrent_executions" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
 
-* [**`reserved_concurrent_executions`**](#reserved_concurrent_executions) &mdash; The amount of reserved concurrent executions for this lambda function or -1 if unreserved.
+```hcl
+{
+  EnvVarPlaceHolder = "Placeholder"
+}
+```
 
-<a name="run_in_vpc" className="snap-top"></a>
+</HclListItemDefaultValue>
+</HclListItem>
 
-* [**`run_in_vpc`**](#run_in_vpc) &mdash; Set to true to give your Lambda function access to resources within a VPC.
+<HclListItem name="evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
 
-<a name="runtime" className="snap-top"></a>
+The number of periods over which data is compared to the specified threshold.
 
-* [**`runtime`**](#runtime) &mdash; The runtime environment for the Lambda function (e.g. nodejs, python2.7, java8). See [`https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction`](#https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction).html#SSS-CreateFunction-request-Runtime for all possible values.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
 
-<a name="s3_bucket" className="snap-top"></a>
+<HclListItem name="file_system_access_point_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`s3_bucket`**](#s3_bucket) &mdash; An S3 bucket location containing the function's deployment package. Exactly one of [`source_path`](#source_path) or the [`s3_xxx`](#s3_xxx) variables must be specified.
+The ARN of an EFS access point to use to access the file system. Only used if <a href="#mount_to_file_system"><code>mount_to_file_system</code></a> is true.
 
-<a name="s3_key" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`s3_key`**](#s3_key) &mdash; The path within [`s3_bucket`](#s3_bucket) where the deployment package is located. Exactly one of [`source_path`](#source_path) or the [`s3_xxx`](#s3_xxx) variables must be specified.
+<HclListItem name="file_system_mount_path" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="s3_object_version" className="snap-top"></a>
+The mount path where the lambda can access the file system. This path must begin with /mnt/. Only used if <a href="#mount_to_file_system"><code>mount_to_file_system</code></a> is true.
 
-* [**`s3_object_version`**](#s3_object_version) &mdash; The version of the path in [`s3_key`](#s3_key) to use as the deployment package. Exactly one of [`source_path`](#source_path) or the [`s3_xxx`](#s3_xxx) variables must be specified.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="schedule_expression" className="snap-top"></a>
+<HclListItem name="handler" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`schedule_expression`**](#schedule_expression) &mdash; An expression that defines the schedule for this lambda job. For example, cron(0 20 * * ? *) or rate(5 minutes). For more information visit https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html
+The function entrypoint in your code. This is typically the name of a function or method in your code that AWS will execute when this Lambda function is triggered.
 
-<a name="set_source_code_hash" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`set_source_code_hash`**](#set_source_code_hash) &mdash; If set to false, this function will no longer set the [`source_code_hash`](#source_code_hash) parameter, so this module will no longer detect and upload changes to the deployment package. This is primarily useful if you update the Lambda function from outside of this module (e.g., you have scripts that do it separately) and want to avoid a plan diff. Used only if [`source_path`](#source_path) is non-empty.
+<HclListItem name="image_uri" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="should_create_cloudwatch_log_group" className="snap-top"></a>
+The ECR image URI containing the function's deployment package. Example: 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
 
-* [**`should_create_cloudwatch_log_group`**](#should_create_cloudwatch_log_group) &mdash; When true, precreate the CloudWatch Log Group to use for log aggregation from the lambda function execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS Lambda will automatically create a basic log group to use.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="should_create_outbound_rule" className="snap-top"></a>
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`should_create_outbound_rule`**](#should_create_outbound_rule) &mdash; If true, create an egress rule allowing all outbound traffic from Lambda function to the entire Internet (e.g. 0.0.0.0/0).
+A custom KMS key to use to encrypt and decrypt Lambda function environment variables. Leave it blank to use the default KMS key provided in your AWS account.
 
-<a name="skip_zip" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`skip_zip`**](#skip_zip) &mdash; Set to true to skip zip archive creation and assume that [`source_path`](#source_path) points to a pregenerated zip archive.
+<HclListItem name="lambda_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="source_path" className="snap-top"></a>
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the lambda
 
-* [**`source_path`**](#source_path) &mdash; The path to the directory that contains your Lambda function source code. This code will be zipped up and uploaded to Lambda as your deployment package. If [`skip_zip`](#skip_zip) is set to true, then this is assumed to be the path to an already-zipped file, and it will be uploaded directly to Lambda as a deployment package. Exactly one of [`source_path`](#source_path) or the [`s3_xxx`](#s3_xxx) variables must be specified.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="statistic" className="snap-top"></a>
+<HclListItem name="layers" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`statistic`**](#statistic) &mdash; The statistic to apply to the alarm's associated metric.
+The list of Lambda Layer Version ARNs to attach to your Lambda Function. You can have a maximum of 5 Layers attached to each function.
 
-<a name="subnet_ids" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`subnet_ids`**](#subnet_ids) &mdash; A list of subnet IDs the Lambda function should be able to access within your VPC. Only used if [`run_in_vpc`](#run_in_vpc) is true.
+```hcl
+list(string)
+```
 
-<a name="tags" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`tags`**](#tags) &mdash; A map of tags to apply to the Lambda function.
+<HclListItem name="metric_name" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="threshold" className="snap-top"></a>
+The name for the alarm's associated metric.
 
-* [**`threshold`**](#threshold) &mdash; The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="Errors"/>
+</HclListItem>
 
-<a name="use_managed_iam_policies" className="snap-top"></a>
+<HclListItem name="mount_to_file_system" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`use_managed_iam_policies`**](#use_managed_iam_policies) &mdash; When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+Set to true to mount your Lambda function on an EFS. Note that the lambda must also be deployed inside a VPC (run_in_vpc must be set to true) for this config to have any effect.
 
-<a name="vpc_id" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The ID of the VPC the Lambda function should be able to access. Only used if [`run_in_vpc`](#run_in_vpc) is true.
+<HclListItem name="namespace" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="working_directory" className="snap-top"></a>
+The namespace to use for all resources created by this module. If not set, <a href="#lambda_function_name"><code>lambda_function_name</code></a>, with '-scheduled' as a suffix, is used.
 
-* [**`working_directory`**](#working_directory) &mdash; The working directory for the docker image. Only used if you specify a Docker image via [`image_uri`](#image_uri).
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="zip_output_path" className="snap-top"></a>
+<HclListItem name="period" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`zip_output_path`**](#zip_output_path) &mdash; The path to store the output zip file of your source code. If empty, defaults to module path. This should be the full path to the zip file, not a directory.
+The period in seconds over which the specified `statistic` is applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of reserved concurrent executions for this lambda function or -1 if unreserved.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="run_in_vpc" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to give your Lambda function access to resources within a VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="runtime" requirement="optional" type="string">
+<HclListItemDescription>
+
+The runtime environment for the Lambda function (e.g. nodejs, python2.7, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_bucket" requirement="optional" type="string">
+<HclListItemDescription>
+
+An S3 bucket location containing the function's deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path within <a href="#s3_bucket"><code>s3_bucket</code></a> where the deployment package is located. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_object_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the path in <a href="#s3_key"><code>s3_key</code></a> to use as the deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="schedule_expression" requirement="optional" type="string">
+<HclListItemDescription>
+
+An expression that defines the schedule for this lambda job. For example, cron(0 20 * * ? *) or rate(5 minutes). For more information visit https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="set_source_code_hash" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this function will no longer set the source_code_hash parameter, so this module will no longer detect and upload changes to the deployment package. This is primarily useful if you update the Lambda function from outside of this module (e.g., you have scripts that do it separately) and want to avoid a plan diff. Used only if <a href="#source_path"><code>source_path</code></a> is non-empty.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, precreate the CloudWatch Log Group to use for log aggregation from the lambda function execution. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, AWS Lambda will automatically create a basic log group to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_outbound_rule" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, create an egress rule allowing all outbound traffic from Lambda function to the entire Internet (e.g. 0.0.0.0/0).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="skip_zip" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to skip zip archive creation and assume that <a href="#source_path"><code>source_path</code></a> points to a pregenerated zip archive.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="source_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to the directory that contains your Lambda function source code. This code will be zipped up and uploaded to Lambda as your deployment package. If <a href="#skip_zip"><code>skip_zip</code></a> is set to true, then this is assumed to be the path to an already-zipped file, and it will be uploaded directly to Lambda as a deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's associated metric.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="Sum"/>
+</HclListItem>
+
+<HclListItem name="subnet_ids" requirement="optional" type="list">
+<HclListItemDescription>
+
+A list of subnet IDs the Lambda function should be able to access within your VPC. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map">
+<HclListItemDescription>
+
+A map of tags to apply to the Lambda function.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the VPC the Lambda function should be able to access. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="working_directory" requirement="optional" type="string">
+<HclListItemDescription>
+
+The working directory for the docker image. Only used if you specify a Docker image via image_uri.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="zip_output_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to store the output zip file of your source code. If empty, defaults to module path. This should be the full path to the zip file, not a directory.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="alarm_actions" className="snap-top"></a>
+<HclListItem name="alarm_actions">
+<HclListItemDescription>
 
-* [**`alarm_actions`**](#alarm_actions) &mdash; The list of actions to execute when this alarm transitions into an ALARM state from any other state
+The list of actions to execute when this alarm transitions into an ALARM state from any other state
 
-<a name="alarm_arn" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`alarm_arn`**](#alarm_arn) &mdash; ARN of the Cloudwatch alarm
+<HclListItem name="alarm_arn">
+<HclListItemDescription>
 
-<a name="alarm_name" className="snap-top"></a>
+ARN of the Cloudwatch alarm
 
-* [**`alarm_name`**](#alarm_name) &mdash; Name of the Cloudwatch alarm
+</HclListItemDescription>
+</HclListItem>
 
-<a name="event_rule_arn" className="snap-top"></a>
+<HclListItem name="alarm_name">
+<HclListItemDescription>
 
-* [**`event_rule_arn`**](#event_rule_arn) &mdash; Cloudwatch Event Rule Arn
+Name of the Cloudwatch alarm
 
-<a name="event_rule_schedule" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`event_rule_schedule`**](#event_rule_schedule) &mdash; Cloudwatch Event Rule schedule expression
+<HclListItem name="event_rule_arn">
+<HclListItemDescription>
 
-<a name="function_arn" className="snap-top"></a>
+Cloudwatch Event Rule Arn
 
-* [**`function_arn`**](#function_arn) &mdash; Amazon Resource Name (ARN) identifying the Lambda Function
+</HclListItemDescription>
+</HclListItem>
 
-<a name="function_name" className="snap-top"></a>
+<HclListItem name="event_rule_schedule">
+<HclListItemDescription>
 
-* [**`function_name`**](#function_name) &mdash; Unique name for Lambda Function
+Cloudwatch Event Rule schedule expression
 
-<a name="iam_role_arn" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`iam_role_arn`**](#iam_role_arn) &mdash; Amazon Resource Name (ARN) of the AWS IAM Role created for the Lambda Function
+<HclListItem name="function_arn">
+<HclListItemDescription>
 
-<a name="iam_role_id" className="snap-top"></a>
+Amazon Resource Name (ARN) identifying the Lambda Function
 
-* [**`iam_role_id`**](#iam_role_id) &mdash; Name of the AWS IAM Role created for the Lambda Function
+</HclListItemDescription>
+</HclListItem>
 
-<a name="insufficient_data_actions" className="snap-top"></a>
+<HclListItem name="function_name">
+<HclListItemDescription>
 
-* [**`insufficient_data_actions`**](#insufficient_data_actions) &mdash; The list of actions to execute when this alarm transitions into an [`INSUFFICIENT_DATA`](#INSUFFICIENT_DATA) state from any other state
+Unique name for Lambda Function
 
-<a name="invoke_arn" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`invoke_arn`**](#invoke_arn) &mdash; Amazon Resource Name (ARN) to be used for invoking the Lambda Function
+<HclListItem name="iam_role_arn">
+<HclListItemDescription>
 
-<a name="ok_actions" className="snap-top"></a>
+Amazon Resource Name (ARN) of the AWS IAM Role created for the Lambda Function
 
-* [**`ok_actions`**](#ok_actions) &mdash; The list of actions to execute when this alarm transitions into an OK state from any other state
+</HclListItemDescription>
+</HclListItem>
 
-<a name="qualified_arn" className="snap-top"></a>
+<HclListItem name="iam_role_id">
+<HclListItemDescription>
 
-* [**`qualified_arn`**](#qualified_arn) &mdash; Amazon Resource Name (ARN) identifying your Lambda Function version
+Name of the AWS IAM Role created for the Lambda Function
 
-<a name="security_group_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`security_group_id`**](#security_group_id) &mdash; Security Group ID of the Security Group created for the Lambda Function
+<HclListItem name="insufficient_data_actions">
+<HclListItemDescription>
 
-<a name="version" className="snap-top"></a>
+The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state
 
-* [**`version`**](#version) &mdash; Latest published version of your Lambda Function
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="invoke_arn">
+<HclListItemDescription>
+
+Amazon Resource Name (ARN) to be used for invoking the Lambda Function
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ok_actions">
+<HclListItemDescription>
+
+The list of actions to execute when this alarm transitions into an OK state from any other state
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="qualified_arn">
+<HclListItemDescription>
+
+Amazon Resource Name (ARN) identifying your Lambda Function version
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="security_group_id">
+<HclListItemDescription>
+
+Security Group ID of the Security Group created for the Lambda Function
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="version">
+<HclListItemDescription>
+
+Latest published version of your Lambda Function
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b67c4aa10351512cb984e0d87aa4e441"}
+{"sourcePlugin":"service-catalog-api","hash":"c3091f9fb46ecb27b84c21fcaf82ca0f"}
 ##DOCS-SOURCER-END -->

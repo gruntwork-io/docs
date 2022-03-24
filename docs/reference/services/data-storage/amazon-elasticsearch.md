@@ -14,6 +14,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.85.0" lastModifiedVersion="0.85.0"/>
 
@@ -89,191 +90,436 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<a name="domain_name" className="snap-top"></a>
+<HclListItem name="domain_name" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`domain_name`**](#domain_name) &mdash; The name of the Elasticsearch cluster. It must be unique to your account and region, start with a lowercase letter, contain between 3 and 28 characters, and contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
+The name of the Elasticsearch cluster. It must be unique to your account and region, start with a lowercase letter, contain between 3 and 28 characters, and contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
 
-<a name="instance_count" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`instance_count`**](#instance_count) &mdash; The number of instances to deploy in the Elasticsearch cluster. This must be an even number if [`zone_awareness_enabled`](#zone_awareness_enabled) is true.
+<HclListItem name="instance_count" requirement="required" type="number">
+<HclListItemDescription>
 
-<a name="instance_type" className="snap-top"></a>
+The number of instances to deploy in the Elasticsearch cluster. This must be an even number if zone_awareness_enabled is true.
 
-* [**`instance_type`**](#instance_type) &mdash; The instance type to use for Elasticsearch data nodes (e.g., t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="volume_size" className="snap-top"></a>
+<HclListItem name="instance_type" requirement="required" type="string">
+<HclListItemDescription>
 
-* [**`volume_size`**](#volume_size) &mdash; The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512). For volume size limits see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limits.html.
+The instance type to use for Elasticsearch data nodes (e.g., t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html.
 
-<a name="volume_type" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`volume_type`**](#volume_type) &mdash; The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+<HclListItem name="volume_size" requirement="required" type="number">
+<HclListItemDescription>
 
-<a name="zone_awareness_enabled" className="snap-top"></a>
+The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512). For volume size limits see https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limits.html.
 
-* [**`zone_awareness_enabled`**](#zone_awareness_enabled) &mdash; Whether to deploy the Elasticsearch nodes across two Availability Zones instead of one. Note that if you enable this, the [`instance_count`](#instance_count) MUST be an even number.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="volume_type" requirement="required" type="string">
+<HclListItemDescription>
+
+The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="zone_awareness_enabled" requirement="required" type="bool">
+<HclListItemDescription>
+
+Whether to deploy the Elasticsearch nodes across two Availability Zones instead of one. Note that if you enable this, the instance_count MUST be an even number.
+
+</HclListItemDescription>
+</HclListItem>
 
 ### Optional
 
-<a name="advanced_options" className="snap-top"></a>
+<HclListItem name="advanced_options" requirement="optional" type="map">
+<HclListItemDescription>
 
-* [**`advanced_options`**](#advanced_options) &mdash; Key-value string pairs to specify advanced configuration options. Note that the values for these configuration options must be strings (wrapped in quotes).
+Key-value string pairs to specify advanced configuration options. Note that the values for these configuration options must be strings (wrapped in quotes).
 
-<a name="advanced_security_options" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`advanced_security_options`**](#advanced_security_options) &mdash; Enable fine grain access control
+```hcl
+map(any)
+```
 
-<a name="alarm_sns_topic_arns" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-* [**`alarm_sns_topic_arns`**](#alarm_sns_topic_arns) &mdash; ARNs of the SNS topics associated with the CloudWatch alarms for the Elasticsearch cluster.
+<HclListItem name="advanced_security_options" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="allow_connections_from_cidr_blocks" className="snap-top"></a>
+Enable fine grain access control
 
-* [**`allow_connections_from_cidr_blocks`**](#allow_connections_from_cidr_blocks) &mdash; The list of network CIDR blocks to allow network access to Aurora from. One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the database to be reachable.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<a name="allow_connections_from_security_groups" className="snap-top"></a>
+<HclListItem name="alarm_sns_topic_arns" requirement="optional" type="list">
+<HclListItemDescription>
 
-* [**`allow_connections_from_security_groups`**](#allow_connections_from_security_groups) &mdash; The list of IDs or Security Groups to allow network access to Aurora from. All security groups must either be in the VPC specified by [`vpc_id`](#vpc_id), or a peered VPC with the VPC specified by [`vpc_id`](#vpc_id). One of [`allow_connections_from_cidr_blocks`](#allow_connections_from_cidr_blocks) or [`allow_connections_from_security_groups`](#allow_connections_from_security_groups) must be specified for the database to be reachable.
+ARNs of the SNS topics associated with the CloudWatch alarms for the Elasticsearch cluster.
 
-<a name="automated_snapshot_start_hour" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-* [**`automated_snapshot_start_hour`**](#automated_snapshot_start_hour) &mdash; Hour during which the service takes an automated daily snapshot of the indices in the domain. This setting has no effect on Elasticsearch 5.3 and later.
+```hcl
+list(string)
+```
 
-<a name="availability_zone_count" className="snap-top"></a>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`availability_zone_count`**](#availability_zone_count) &mdash; Number of Availability Zones for the domain to use with [`zone_awareness_enabled`](#zone_awareness_enabled). Defaults to 2. Valid values: 2 or 3.
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="set">
+<HclListItemDescription>
 
-<a name="create_service_linked_role" className="snap-top"></a>
+The list of network CIDR blocks to allow network access to Aurora from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
-* [**`create_service_linked_role`**](#create_service_linked_role) &mdash; Whether or not the Service Linked Role for Elasticsearch should be created within this module. Normally the service linked role is created automatically by AWS when creating the Elasticsearch domain in the web console, but API does not implement this logic. You can either have AWS automatically manage this by creating a domain manually in the console, or manage it in terraform using the landing zone modules or this variable.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-<a name="custom_endpoint" className="snap-top"></a>
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="set">
+<HclListItemDescription>
 
-* [**`custom_endpoint`**](#custom_endpoint) &mdash; Fully qualified domain for your custom endpoint.
+The list of IDs or Security Groups to allow network access to Aurora from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
-<a name="custom_endpoint_certificate_arn" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
-* [**`custom_endpoint_certificate_arn`**](#custom_endpoint_certificate_arn) &mdash; ACM certificate ARN for your custom endpoint.
+<HclListItem name="automated_snapshot_start_hour" requirement="optional" type="number">
+<HclListItemDescription>
 
-<a name="custom_endpoint_enabled" className="snap-top"></a>
+Hour during which the service takes an automated daily snapshot of the indices in the domain. This setting has no effect on Elasticsearch 5.3 and later.
 
-* [**`custom_endpoint_enabled`**](#custom_endpoint_enabled) &mdash; Whether to enable custom endpoint for the Elasticsearch domain.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
 
-<a name="custom_tags" className="snap-top"></a>
+<HclListItem name="availability_zone_count" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`custom_tags`**](#custom_tags) &mdash; A map of custom tags to apply to the ElasticSearch Domain. The key is the tag name and the value is the tag value.
+Number of Availability Zones for the domain to use with <a href="#zone_awareness_enabled"><code>zone_awareness_enabled</code></a>. Defaults to 2. Valid values: 2 or 3.
 
-<a name="dedicated_master_count" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
 
-* [**`dedicated_master_count`**](#dedicated_master_count) &mdash; The number of dedicated master nodes to run. We recommend setting this to 3 for production deployments. Only used if [`dedicated_master_enabled`](#dedicated_master_enabled) is true.
+<HclListItem name="create_service_linked_role" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="dedicated_master_enabled" className="snap-top"></a>
+Whether or not the Service Linked Role for Elasticsearch should be created within this module. Normally the service linked role is created automatically by AWS when creating the Elasticsearch domain in the web console, but API does not implement this logic. You can either have AWS automatically manage this by creating a domain manually in the console, or manage it in terraform using the landing zone modules or this variable.
 
-* [**`dedicated_master_enabled`**](#dedicated_master_enabled) &mdash; Whether to deploy separate nodes specifically for performing cluster management tasks (e.g. tracking number of nodes, monitoring health, replicating changes). This increases the stability of large clusters and is required for clusters with more than 10 nodes.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<a name="dedicated_master_type" className="snap-top"></a>
+<HclListItem name="custom_endpoint" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`dedicated_master_type`**](#dedicated_master_type) &mdash; The instance type for the dedicated master nodes. These nodes can use a different instance type than the rest of the cluster. Only used if [`dedicated_master_enabled`](#dedicated_master_enabled) is true.
+Fully qualified domain for your custom endpoint.
 
-<a name="ebs_enabled" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`ebs_enabled`**](#ebs_enabled) &mdash; Set to false to disable EBS volumes. This is useful for nodes that have optimized instance storage, like hosts running the i3 instance type.
+<HclListItem name="custom_endpoint_certificate_arn" requirement="optional" type="string">
+<HclListItemDescription>
 
-<a name="elasticsearch_version" className="snap-top"></a>
+ACM certificate ARN for your custom endpoint.
 
-* [**`elasticsearch_version`**](#elasticsearch_version) &mdash; The version of Elasticsearch to deploy.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-<a name="enable_cloudwatch_alarms" className="snap-top"></a>
+<HclListItem name="custom_endpoint_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`enable_cloudwatch_alarms`**](#enable_cloudwatch_alarms) &mdash; Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using [`alarms_sns_topic_arns`](#alarms_sns_topic_arns).
+Whether to enable custom endpoint for the Elasticsearch domain.
 
-<a name="enable_encryption_at_rest" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-* [**`enable_encryption_at_rest`**](#enable_encryption_at_rest) &mdash; False by default because encryption at rest is not included in the free tier. When true, the Elasticsearch domain storage will be encrypted at rest using the KMS key described with [`encryption_kms_key_id`](#encryption_kms_key_id). We strongly recommend configuring a custom KMS key instead of using the shared service key for a better security posture when configuring encryption at rest.
+<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItemDescription>
 
-<a name="enable_node_to_node_encryption" className="snap-top"></a>
+A map of custom tags to apply to the ElasticSearch Domain. The key is the tag name and the value is the tag value.
 
-* [**`enable_node_to_node_encryption`**](#enable_node_to_node_encryption) &mdash; Whether to enable node-to-node encryption. 
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
-<a name="encryption_kms_key_id" className="snap-top"></a>
+```hcl
+map(string)
+```
 
-* [**`encryption_kms_key_id`**](#encryption_kms_key_id) &mdash; The ID of the KMS key to use to encrypt the Elasticsearch domain storage. Only used if [`enable_encryption_at_rest`](#enable_encryption_at_rest). When null, uses the aws/es service KMS key.
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-<a name="iam_principal_arns" className="snap-top"></a>
+<HclListItem name="dedicated_master_count" requirement="optional" type="number">
+<HclListItemDescription>
 
-* [**`iam_principal_arns`**](#iam_principal_arns) &mdash; The ARNS of the IAM users and roles to which to allow full access to the Elasticsearch cluster. Setting this to a restricted list is useful when using a public access cluster.
+The number of dedicated master nodes to run. We recommend setting this to 3 for production deployments. Only used if <a href="#dedicated_master_enabled"><code>dedicated_master_enabled</code></a> is true.
 
-<a name="internal_user_database_enabled" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`internal_user_database_enabled`**](#internal_user_database_enabled) &mdash; Whether the internal user database is enabled. Enable this to use master accounts. Only used if [`advanced_security_options`](#advanced_security_options) is set to true.
+<HclListItem name="dedicated_master_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="iops" className="snap-top"></a>
+Whether to deploy separate nodes specifically for performing cluster management tasks (e.g. tracking number of nodes, monitoring health, replicating changes). This increases the stability of large clusters and is required for clusters with more than 10 nodes.
 
-* [**`iops`**](#iops) &mdash; The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Must be between 1000 and 4000. Applicable only if [`volume_type`](#volume_type) is io1.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
-<a name="is_public" className="snap-top"></a>
+<HclListItem name="dedicated_master_type" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`is_public`**](#is_public) &mdash; Whether the cluster is publicly accessible.
+The instance type for the dedicated master nodes. These nodes can use a different instance type than the rest of the cluster. Only used if <a href="#dedicated_master_enabled"><code>dedicated_master_enabled</code></a> is true.
 
-<a name="master_user_arn" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-* [**`master_user_arn`**](#master_user_arn) &mdash; ARN of the master user. Only used if [`advanced_security_options`](#advanced_security_options) and [`internal_user_database_enabled`](#internal_user_database_enabled) are set to true.
+<HclListItem name="ebs_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="master_user_name" className="snap-top"></a>
+Set to false to disable EBS volumes. This is useful for nodes that have optimized instance storage, like hosts running the i3 instance type.
 
-* [**`master_user_name`**](#master_user_name) &mdash; Master account user name. Only used if [`advanced_security_options`](#advanced_security_options) and [`internal_user_database_enabled`](#internal_user_database_enabled) are set to true.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="master_user_password" className="snap-top"></a>
+<HclListItem name="elasticsearch_version" requirement="optional" type="string">
+<HclListItemDescription>
 
-* [**`master_user_password`**](#master_user_password) &mdash; Master account user password. Only used if [`advanced_security_options`](#advanced_security_options) and [`internal_user_database_enabled`](#internal_user_database_enabled) are set to true. WARNING: this password will be stored in Terraform state.
+The version of Elasticsearch to deploy.
 
-<a name="subnet_ids" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="7.7"/>
+</HclListItem>
 
-* [**`subnet_ids`**](#subnet_ids) &mdash;  List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in. If [`zone_awareness_enabled`](#zone_awareness_enabled) is true, the first 2 or 3 provided subnet ids are used, depending on [`availability_zone_count`](#availability_zone_count). Otherwise only the first one is used.
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
+<HclListItemDescription>
 
-<a name="tls_security_policy" className="snap-top"></a>
+Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arns"><code>alarms_sns_topic_arns</code></a>.
 
-* [**`tls_security_policy`**](#tls_security_policy) &mdash; The name of the TLS security policy that needs to be applied to the HTTPS endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07. Terraform performs drift detection if this is configured.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-<a name="update_timeout" className="snap-top"></a>
+<HclListItem name="enable_encryption_at_rest" requirement="optional" type="bool">
+<HclListItemDescription>
 
-* [**`update_timeout`**](#update_timeout) &mdash; How long to wait for updates to the ES cluster before timing out and reporting an error.
+False by default because encryption at rest is not included in the free tier. When true, the Elasticsearch domain storage will be encrypted at rest using the KMS key described with <a href="#encryption_kms_key_id"><code>encryption_kms_key_id</code></a>. We strongly recommend configuring a custom KMS key instead of using the shared service key for a better security posture when configuring encryption at rest.
 
-<a name="vpc_id" className="snap-top"></a>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
-* [**`vpc_id`**](#vpc_id) &mdash; The id of the VPC to deploy into. It must be in the same region as the Elasticsearch domain and its tenancy must be set to Default. If [`zone_awareness_enabled`](#zone_awareness_enabled) is false, the Elasticsearch cluster will have an endpoint in one subnet of the VPC; otherwise it will have endpoints in two subnets.
+<HclListItem name="enable_node_to_node_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable node-to-node encryption. 
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="encryption_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the KMS key to use to encrypt the Elasticsearch domain storage. Only used if enable_encryption_at_rest. When null, uses the aws/es service KMS key.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_principal_arns" requirement="optional" type="list">
+<HclListItemDescription>
+
+The ARNS of the IAM users and roles to which to allow full access to the Elasticsearch cluster. Setting this to a restricted list is useful when using a public access cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[
+  '*'
+]"/>
+</HclListItem>
+
+<HclListItem name="internal_user_database_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the internal user database is enabled. Enable this to use master accounts. Only used if advanced_security_options is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Must be between 1000 and 4000. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="is_public" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the cluster is publicly accessible.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="master_user_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the master user. Only used if advanced_security_options and internal_user_database_enabled are set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_user_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Master account user name. Only used if advanced_security_options and internal_user_database_enabled are set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_user_password" requirement="optional" type="string">
+<HclListItemDescription>
+
+Master account user password. Only used if advanced_security_options and internal_user_database_enabled are set to true. WARNING: this password will be stored in Terraform state.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="subnet_ids" requirement="optional" type="list">
+<HclListItemDescription>
+
+ List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in. If <a href="#zone_awareness_enabled"><code>zone_awareness_enabled</code></a> is true, the first 2 or 3 provided subnet ids are used, depending on <a href="#availability_zone_count"><code>availability_zone_count</code></a>. Otherwise only the first one is used.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(string)
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="tls_security_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the TLS security policy that needs to be applied to the HTTPS endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07. Terraform performs drift detection if this is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="Policy-Min-TLS-1-2-2019-07"/>
+</HclListItem>
+
+<HclListItem name="update_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+How long to wait for updates to the ES cluster before timing out and reporting an error.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90m"/>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of the VPC to deploy into. It must be in the same region as the Elasticsearch domain and its tenancy must be set to Default. If zone_awareness_enabled is false, the Elasticsearch cluster will have an endpoint in one subnet of the VPC; otherwise it will have endpoints in two subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<a name="cluster_arn" className="snap-top"></a>
+<HclListItem name="cluster_arn">
+<HclListItemDescription>
 
-* [**`cluster_arn`**](#cluster_arn) &mdash; The ARN of the Elasticsearch cluster created by this module.
+The ARN of the Elasticsearch cluster created by this module.
 
-<a name="cluster_domain_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`cluster_domain_id`**](#cluster_domain_id) &mdash; The domain ID of the Elasticsearch cluster created by this module.
+<HclListItem name="cluster_domain_id">
+<HclListItemDescription>
 
-<a name="cluster_domain_name" className="snap-top"></a>
+The domain ID of the Elasticsearch cluster created by this module.
 
-* [**`cluster_domain_name`**](#cluster_domain_name) &mdash; The name of the Elasticsearch domain.
+</HclListItemDescription>
+</HclListItem>
 
-<a name="cluster_endpoint" className="snap-top"></a>
+<HclListItem name="cluster_domain_name">
+<HclListItemDescription>
 
-* [**`cluster_endpoint`**](#cluster_endpoint) &mdash; The endpoint of the Elasticsearch cluster created by this module.
+The name of the Elasticsearch domain.
 
-<a name="cluster_security_group_id" className="snap-top"></a>
+</HclListItemDescription>
+</HclListItem>
 
-* [**`cluster_security_group_id`**](#cluster_security_group_id) &mdash; If the domain was created inside a VPC, the ID of the security group created by this module for securing the Elasticsearch cluster.
+<HclListItem name="cluster_endpoint">
+<HclListItemDescription>
 
-<a name="kibana_endpoint" className="snap-top"></a>
+The endpoint of the Elasticsearch cluster created by this module.
 
-* [**`kibana_endpoint`**](#kibana_endpoint) &mdash; Domain-specific endpoint for Kibana without https scheme.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_security_group_id">
+<HclListItemDescription>
+
+If the domain was created inside a VPC, the ID of the security group created by this module for securing the Elasticsearch cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kibana_endpoint">
+<HclListItemDescription>
+
+Domain-specific endpoint for Kibana without https scheme.
+
+</HclListItemDescription>
+</HclListItem>
 
 </TabItem>
 </Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"168a4d86a686827b07df052993eab5b5"}
+{"sourcePlugin":"service-catalog-api","hash":"5f7b80df5e6af6a75de318e85eb43500"}
 ##DOCS-SOURCER-END -->
