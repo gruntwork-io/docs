@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import {
-  SubscriptionNoticeModal,
-  idOfNoticeLink,
-} from "/src/components/Modal.tsx"
+import { SubscribersOnlyModal } from "/src/components/SubscribersOnlyModal.tsx"
+import { CISOnlyModal } from "/src/components/CisOnlyModal.tsx"
 
 const gruntworkGithubOrg = "https://github.com/gruntwork-io/"
+
+const gruntworkCisRepoName = "terraform-aws-cis-service-catalog"
 
 const publicGruntworkRepoNames = [
   "bash-commons",
@@ -55,50 +55,95 @@ const publicGruntworkRepoNames = [
 ]
 
 /**
- * Checks if a link is referencing a known public repo
+ * Checks if a link references a known public Gruntwork repo
  *
- * @param string repoLink
+ * @param string url
  * @return {boolean}
  */
-const isPublicGruntworkRepo = (repoLink) => {
+const isPublicGruntworkRepo = (url) => {
+  if (!url) {
+    return false
+  }
   // Match a link prefixed by the gruntworkGithubOrg and capture the next path reference
   const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(\/|$)`)
   // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
-  const repoName = repoLink.match(pattern)[1]
+  const repoName = url.match(pattern)[1]
 
   // returns boolean
   return publicGruntworkRepoNames.includes(repoName)
 }
 
+/**
+ * Checks if a link references a private Gruntwork repo
+ *
+ * @param string url
+ * @return {boolean}
+ */
+const isPrivateGruntworkRepo = (url) => {
+  return (
+    url && url.startsWith(gruntworkGithubOrg) && !isPublicGruntworkRepo(url)
+  )
+}
+
+/**
+ * Checks if a link references the Gruntwork CIS service catalog repo
+ *
+ * @param string url
+ * @return {boolean}
+ */
+
+const isGruntworkCisRepo = (url) => {
+  return url && url.startsWith(`${gruntworkGithubOrg}${gruntworkCisRepoName}`)
+}
+
 export const DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY = "dontWarnGitHubLinks"
+export const DONT_SHOW_CIS_GITHUB_WARNING_KEY = "dontWarnCISLinks"
 
 function Root({ children }) {
   const [displaySubscriberNotice, setDisplaySubscriberNotice] = useState(false)
-  const [externalLink, setExternalLink] = useState("")
+  const [subscriberNoticeLink, setSubscriberNoticeLink] = useState("")
+
+  const [displayCisNotice, setDisplayCisNotice] = useState(false)
+  const [cisNoticeLink, setCisNoticeLink] = useState("")
 
   useEffect(() => {
     const listener = (event) => {
-      if (event.target.id === idOfNoticeLink) {
-        setDisplaySubscriberNotice(false)
-        return
-      }
-      const dontWarn = window.localStorage.getItem(
-        DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
-      )
-
-      if (dontWarn) {
-        setDisplaySubscriberNotice(false)
+      console.log(event.target.dataset)
+      // Allow clicks on the external GitHub link FROM the modal notices to work normally
+      if (event.target.dataset.modalExempt) {
         return
       }
 
-      if (
-        event.target.href &&
-        event.target.href.startsWith(gruntworkGithubOrg) &&
-        !isPublicGruntworkRepo(event.target.href)
-      ) {
+      if (isGruntworkCisRepo(event.target.href)) {
+        const dontWarn = window.localStorage.getItem(
+          DONT_SHOW_CIS_GITHUB_WARNING_KEY
+        )
+
+        if (dontWarn) {
+          setDisplayCisNotice(false)
+          return
+        }
+
         event.preventDefault()
-        setExternalLink(event.target.href)
+        setCisNoticeLink(event.target.href)
+        setDisplayCisNotice(true)
+        return
+      }
+
+      if (isPrivateGruntworkRepo(event.target.href)) {
+        const dontWarn = window.localStorage.getItem(
+          DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
+        )
+
+        if (dontWarn) {
+          setDisplaySubscriberNotice(false)
+          return
+        }
+
+        event.preventDefault()
+        setSubscriberNoticeLink(event.target.href)
         setDisplaySubscriberNotice(true)
+        return
       }
     }
 
@@ -110,12 +155,26 @@ function Root({ children }) {
 
   return (
     <>
-      <SubscriptionNoticeModal
+      <SubscribersOnlyModal
         showModal={displaySubscriberNotice}
-        externalLink={externalLink}
+        externalLink={subscriberNoticeLink}
         handleCancelRequest={() => {
           setDisplaySubscriberNotice(false)
-          setExternalLink("")
+          setSubscriberNoticeLink("")
+        }}
+        handleAcceptRequest={() => {
+          setDisplaySubscriberNotice(false)
+        }}
+      />
+      <CISOnlyModal
+        showModal={displayCisNotice}
+        externalLink={cisNoticeLink}
+        handleCancelRequest={() => {
+          setDisplayCisNotice(false)
+          setCisNoticeLink("")
+        }}
+        handleAcceptRequest={() => {
+          setDisplayCisNotice(false)
         }}
       />
       {children}
