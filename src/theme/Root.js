@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { SubscribersOnlyModal } from "/src/components/SubscribersOnlyModal.tsx"
-import { CISOnlyModal } from "/src/components/CisOnlyModal.tsx"
+import { CISOnlyModal } from "/src/components/CISOnlyModal.tsx"
 
 const gruntworkGithubOrg = "https://github.com/gruntwork-io/"
 
