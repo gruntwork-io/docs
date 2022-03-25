@@ -24,5 +24,5 @@ TESTSTSTEETST
 MOAR testst
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"f12534ad33e84ba9b26cb91085b95a03"}
+{"sourcePlugin":"local-copier","hash":"1a3ac95385b83557bc8cdbd084280c7d"}
 ##DOCS-SOURCER-END -->
