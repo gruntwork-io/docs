@@ -34,11 +34,6 @@ describe("Script:generate-sidebar", () => {
       } catch (_e) {}
     })
 
-    test("Returns undefined for an empty directory", async () => {
-      const sidebar = await generateSidebar(sampleDataPath("empty"))
-      expect(sidebar).toBeUndefined()
-    })
-
     test("Returns undefined for a non-directory file", async () => {
       const sidebar = await generateSidebar(sampleDataPath("file.md"))
       expect(sidebar).toBeUndefined()
@@ -115,16 +110,6 @@ describe("Script:generate-sidebar", () => {
       ]
       const sidebars = await generateMultiSidebar(dirs)
       expect(Object.keys(sidebars).length).toBe(3)
-    })
-
-    test("Omits invalid input dirs without throwing", async () => {
-      const dirs = [
-        sampleDataPath("flat-list"),
-        sampleDataPath("more-types"),
-        sampleDataPath("empty"), // should be omitted
-      ]
-      const sidebars = await generateMultiSidebar(dirs)
-      expect(Object.keys(sidebars).length).toBe(2)
     })
 
     test("Adds a back button to each sidebar", async () => {
