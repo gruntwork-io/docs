@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon Elasticsearch Service
 
@@ -140,7 +140,7 @@ Whether to deploy the Elasticsearch nodes across two Availability Zones instead 
 
 ### Optional
 
-<HclListItem name="advanced_options" requirement="optional" type="map">
+<HclListItem name="advanced_options" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
 Key-value string pairs to specify advanced configuration options. Note that the values for these configuration options must be strings (wrapped in quotes).
@@ -149,7 +149,7 @@ Key-value string pairs to specify advanced configuration options. Note that the 
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -165,23 +165,16 @@ Enable fine grain access control
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="alarm_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarm_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 ARNs of the SNS topics associated with the CloudWatch alarms for the Elasticsearch cluster.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="set">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to Aurora from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
@@ -190,7 +183,7 @@ The list of network CIDR blocks to allow network access to Aurora from. One of <
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="set">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
 The list of IDs or Security Groups to allow network access to Aurora from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
@@ -253,19 +246,12 @@ Whether to enable custom endpoint for the Elasticsearch domain.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the ElasticSearch Domain. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -311,7 +297,7 @@ Set to false to disable EBS volumes. This is useful for nodes that have optimize
 The version of Elasticsearch to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="7.7"/>
+<HclListItemDefaultValue defaultValue="&quot;7.7&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -350,21 +336,14 @@ The ID of the KMS key to use to encrypt the Elasticsearch domain storage. Only u
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_principal_arns" requirement="optional" type="list">
+<HclListItem name="iam_principal_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNS of the IAM users and roles to which to allow full access to the Elasticsearch cluster. Setting this to a restricted list is useful when using a public access cluster.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[
-  '*'
+  &quot;*&quot;
 ]"/>
 </HclListItem>
 
@@ -422,19 +401,12 @@ Master account user password. Only used if advanced_security_options and interna
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="optional" type="list">
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
  List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in. If <a href="#zone_awareness_enabled"><code>zone_awareness_enabled</code></a> is true, the first 2 or 3 provided subnet ids are used, depending on <a href="#availability_zone_count"><code>availability_zone_count</code></a>. Otherwise only the first one is used.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -444,7 +416,7 @@ list(string)
 The name of the TLS security policy that needs to be applied to the HTTPS endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07. Terraform performs drift detection if this is configured.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="Policy-Min-TLS-1-2-2019-07"/>
+<HclListItemDefaultValue defaultValue="&quot;Policy-Min-TLS-1-2-2019-07&quot;"/>
 </HclListItem>
 
 <HclListItem name="update_timeout" requirement="optional" type="string">
@@ -453,7 +425,7 @@ The name of the TLS security policy that needs to be applied to the HTTPS endpoi
 How long to wait for updates to the ES cluster before timing out and reporting an error.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90m"/>
+<HclListItemDefaultValue defaultValue="&quot;90m&quot;"/>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="optional" type="string">
@@ -521,5 +493,5 @@ Domain-specific endpoint for Kibana without https scheme.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"eddfa49e1bc0a0226928335a901860df"}
+{"sourcePlugin":"service-catalog-api","hash":"277ac8abe2f23ae3c0430d1a6857bfb5"}
 ##DOCS-SOURCER-END -->

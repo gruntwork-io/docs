@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # ECS Deploy Runner
 
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="ami_builder_config" requirement="required" type="object">
+<HclListItem name="ami_builder_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Configuration options for the ami-builder container of the ECS deploy runner stack. This container will be used for building AMIs in the CI/CD pipeline using packer. Set to `null` to disable this container.
@@ -183,7 +183,7 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="docker_image_builder_config" requirement="required" type="object">
+<HclListItem name="docker_image_builder_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Configuration options for the docker-image-builder container of the ECS deploy runner stack. This container will be used for building docker images in the CI/CD pipeline. Set to `null` to disable this container.
@@ -272,22 +272,15 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="private_subnet_ids" requirement="required" type="list">
+<HclListItem name="private_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 List of IDs of private subnets that can be used for running the ECS task and Lambda function.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="terraform_applier_config" requirement="required" type="object">
+<HclListItem name="terraform_applier_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Configuration options for the terraform-applier container of the ECS deploy runner stack. This container will be used for running infrastructure deployment actions (including automated variable updates) in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
@@ -392,7 +385,7 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="terraform_planner_config" requirement="required" type="object">
+<HclListItem name="terraform_planner_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
@@ -490,7 +483,7 @@ ID of the VPC where the ECS task and Lambda function should run.
 
 ### Optional
 
-<HclListItem name="additional_container_images" requirement="optional" type="map">
+<HclListItem name="additional_container_images" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Container configurations that should be added to the ECS Deploy Runner that should be added in addition to the standard containers. This can be used to customize your deployment of the ECS Deploy Runner beyond the standard use cases.
@@ -583,19 +576,12 @@ The number of days to retain log events in the log group. Refer to https://regis
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_for_ec2_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_for_ec2_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -614,7 +600,7 @@ The default CPU units for the instances that Fargate will spin up. The invoker a
 The default launch type of the ECS deploy runner workers. This launch type will be used if it is not overridden during invocation of the lambda function. Must be FARGATE or EC2.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="FARGATE"/>
+<HclListItemDefaultValue defaultValue="&quot;FARGATE&quot;"/>
 </HclListItem>
 
 <HclListItem name="container_max_cpu" requirement="optional" type="number">
@@ -644,25 +630,18 @@ The default memory units for the instances that Fargate will spin up. The invoke
 <HclListItemDefaultValue defaultValue="2048"/>
 </HclListItem>
 
-<HclListItem name="docker_image_builder_hardcoded_args" requirement="optional" type="list">
+<HclListItem name="docker_image_builder_hardcoded_args" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 Unlike hardcoded_options, this is used for hardcoded positional args and will always be passed in at the end of the args list.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[
-  '--idempotent'
+  &quot;--idempotent&quot;
 ]"/>
 </HclListItem>
 
-<HclListItem name="docker_image_builder_hardcoded_options" requirement="optional" type="map">
+<HclListItem name="docker_image_builder_hardcoded_options" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
 Which options and args to always pass in alongside the ones provided by the command. This is a map of option keys to args to pass in. Each arg in the list will be passed in as a separate option. This will be passed in first, before the args provided by the user in the event data.
@@ -684,6 +663,13 @@ map(list(string))
 Worker configuration of a EC2 worker pool for the ECS cluster. An EC2 worker pool supports caching of Docker images, so your builds may run faster, whereas Fargate is serverless, so you have no persistent EC2 instances to manage and pay for. If null, no EC2 worker pool will be allocated and the deploy runner will be in Fargate only mode. Note that when this variable is set, this example module will automatically lookup and use the base ECS optimized AMI that AWS provides.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -738,7 +724,7 @@ The method used to distribute log data to the destination. Only applicable when 
 A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="ecs_task_cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
@@ -750,19 +736,12 @@ ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ing
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ecs_task_cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="ecs_task_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -775,55 +754,34 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="iam_groups" requirement="optional" type="list">
+<HclListItem name="iam_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of AWS IAM groups that should be given access to invoke the deploy runner.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="iam_roles" requirement="optional" type="list">
+<HclListItem name="iam_roles" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of AWS IAM roles that should be given access to invoke the deploy runner.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="iam_users" requirement="optional" type="list">
+<HclListItem name="iam_users" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of AWS IAM usernames that should be given access to invoke the deploy runner.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="invoke_schedule" requirement="optional" type="map">
+<HclListItem name="invoke_schedule" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Configurations for invoking ECS Deploy Runner on a schedule. Use this to configure any periodic background jobs that you would like run through the ECS Deploy Runner (e.g., regularly running plan on your infrastructure to detect drift). Input is a map of unique schedule name to its settings.
@@ -869,19 +827,12 @@ The number of days to retain log events in the log group for the invoker lambda 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="invoker_lambda_cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="invoker_lambda_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group for the invoker lambda function, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -894,19 +845,12 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="kms_grant_opt_in_regions" requirement="optional" type="list">
+<HclListItem name="kms_grant_opt_in_regions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 Create multi-region resources in the specified regions. The best practice is to enable multi-region services in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -939,7 +883,7 @@ list(string)
 Name of this instance of the deploy runner stack. Used to namespace all resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ecs-deploy-runner"/>
+<HclListItemDefaultValue defaultValue="&quot;ecs-deploy-runner&quot;"/>
 </HclListItem>
 
 <HclListItem name="outbound_security_group_name" requirement="optional" type="string">
@@ -978,19 +922,12 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="snapshot_encryption_kms_cmk_arns" requirement="optional" type="map">
+<HclListItem name="snapshot_encryption_kms_cmk_arns" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Map of names to ARNs of KMS CMKs that are used to encrypt snapshots (including AMIs). This module will create the necessary KMS key grants to allow the respective deploy containers access to utilize the keys for managing the encrypted snapshots. The keys are arbitrary names that are used to identify the key.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1107,5 +1044,5 @@ Security Group ID of the ECS task
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3038344db7fcee0a09110df54f042e23"}
+{"sourcePlugin":"service-catalog-api","hash":"144c18c60086f2e999bb1627930b4e64"}
 ##DOCS-SOURCER-END -->

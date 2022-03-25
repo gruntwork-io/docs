@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.83.0"/>
 
 # Route 53 Hosted Zones
 
@@ -82,7 +82,7 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<HclListItem name="private_zones" requirement="optional" type="map">
+<HclListItem name="private_zones" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
@@ -118,10 +118,17 @@ map(object({
 A map of public Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="service_discovery_private_namespaces" requirement="optional" type="map">
+<HclListItem name="service_discovery_private_namespaces" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
@@ -149,6 +156,13 @@ map(object({
 A map of domain names to configurations for setting up a new public namespace in AWS Cloud Map. Note that the domain name must be registered with Route 53.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -240,5 +254,5 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"47f18d60c3041d84728a54885c21942d"}
+{"sourcePlugin":"service-catalog-api","hash":"400a70bd6935f4d2b06c75e77fc47019"}
 ##DOCS-SOURCER-END -->

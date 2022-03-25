@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.83.0"/>
 
 # Public Static Website
 
@@ -137,7 +137,7 @@ The domain name associated with a hosted zone in Route 53. Usually the base doma
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="base_domain_name_tags" requirement="optional" type="map">
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
 The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
@@ -146,7 +146,7 @@ The tags associated with <a href="#base_domain_name"><code>base_domain_name</cod
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -162,19 +162,12 @@ If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_e
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the S3 bucket containing the website and the CloudFront distribution created for it. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -193,7 +186,7 @@ The default amount of time, in seconds, that an object is in a CloudFront cache 
 The path to the error document in the S3 bucket (e.g. error.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="error.html"/>
+<HclListItemDefaultValue defaultValue="&quot;error.html&quot;"/>
 </HclListItem>
 
 <HclListItem name="force_destroy" requirement="optional" type="bool">
@@ -205,19 +198,12 @@ If set to true, this will force the delete of the website, redirect, and access 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="geo_locations_list" requirement="optional" type="list">
+<HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is whitelist) or not distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is blacklist).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -227,7 +213,7 @@ list(string)
 The method that you want to use to restrict distribution of your content by country: none, whitelist, or blacklist.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="none"/>
+<HclListItemDefaultValue defaultValue="&quot;none&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -245,7 +231,7 @@ The ID of the Route 53 Hosted Zone in which to create the DNS A Records specifie
 The path to the index document in the S3 bucket (e.g. index.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="index.html"/>
+<HclListItemDefaultValue defaultValue="&quot;index.html&quot;"/>
 </HclListItem>
 
 <HclListItem name="max_ttl" requirement="optional" type="number">
@@ -281,7 +267,7 @@ A json array containing routing rules describing redirect behavior and when redi
 Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="allow-all"/>
+<HclListItemDefaultValue defaultValue="&quot;allow-all&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -332,5 +318,5 @@ The ARN of the created S3 bucket associated with the website.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a635ae7b0fc5b40276b30f0dc3772c23"}
+{"sourcePlugin":"service-catalog-api","hash":"6eafaefd5130c0c77525236357555210"}
 ##DOCS-SOURCER-END -->

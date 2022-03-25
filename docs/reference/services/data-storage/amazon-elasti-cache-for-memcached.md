@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon ElastiCache for Memcached
 
@@ -117,19 +117,12 @@ The initial number of cache nodes that the cache cluster will have. Must be betw
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -142,51 +135,30 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -214,7 +186,7 @@ Set to true to enable several basic CloudWatch alarms around CPU usage, memory u
 Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="sat:07:00-sat:08:00"/>
+<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="memcached_version" requirement="optional" type="string">
@@ -223,7 +195,7 @@ Specifies the weekly time range for when maintenance on the cache cluster is per
 Version number of memcached to use (e.g. 1.5.16).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1.5.16"/>
+<HclListItemDefaultValue defaultValue="&quot;1.5.16&quot;"/>
 </HclListItem>
 
 <HclListItem name="port" requirement="optional" type="number">
@@ -283,5 +255,5 @@ The configuration endpoint to allow host discovery.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"83d618e00bbd9e376c1fcbdb645e1948"}
+{"sourcePlugin":"service-catalog-api","hash":"e9a9ff7a5b76b55cfb0ab0ea03cc8eac"}
 ##DOCS-SOURCER-END -->

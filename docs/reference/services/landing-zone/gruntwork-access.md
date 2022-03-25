@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.20.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
@@ -109,7 +109,7 @@ The ID of your security account (where IAM users are defined). Required for depl
 The ID of the AWS account that will be allowed to assume the IAM role.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="583800379690"/>
+<HclListItemDefaultValue defaultValue="&quot;583800379690&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_role_name" requirement="optional" type="string">
@@ -118,7 +118,7 @@ The ID of the AWS account that will be allowed to assume the IAM role.
 The name to use for the IAM role
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="GruntworkAccountAccessRole"/>
+<HclListItemDefaultValue defaultValue="&quot;GruntworkAccountAccessRole&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_policy_name" requirement="optional" type="string">
@@ -127,7 +127,7 @@ The name to use for the IAM role
 The name of the AWS Managed Policy to attach to the IAM role. To deploy a Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is the default.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="AdministratorAccess"/>
+<HclListItemDefaultValue defaultValue="&quot;AdministratorAccess&quot;"/>
 </HclListItem>
 
 <HclListItem name="require_mfa" requirement="optional" type="bool">
@@ -139,19 +139,12 @@ If set to true, require MFA to assume the IAM role from the Gruntwork account.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply to all resources created by this module
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -179,5 +172,5 @@ The name of the IAM role
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"dc51af9ee13c51a7ba31d19e34e2b154"}
+{"sourcePlugin":"service-catalog-api","hash":"b287c914c67f25defe5f18341be60503"}
 ##DOCS-SOURCER-END -->

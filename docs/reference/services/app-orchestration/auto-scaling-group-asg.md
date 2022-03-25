@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Auto Scaling Group
 
@@ -92,7 +92,7 @@ The ID of the AMI to run on each instance in the ASG. The AMI needs to have `ec2
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ami_filters" requirement="required" type="object">
+<HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
@@ -158,19 +158,12 @@ The name for the ASG and all other resources created by these templates.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of the subnets in which to deploy ASG. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -183,103 +176,61 @@ The ID of the VPC in which to deploy the Auto Scaling Group
 
 ### Optional
 
-<HclListItem name="alarm_sns_topic_arns_us_east_1" requirement="optional" type="list">
+<HclListItem name="alarm_sns_topic_arns_us_east_1" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of SNS topic ARNs to notify when the health check changes to ALARM, OK, or INSUFFICIENT_DATA state. Note: these SNS topics MUST be in us-east-1! This is because Route 53 only sends CloudWatch metrics to us-east-1, so we must create the alarm in that region, and therefore, can only notify SNS topics in that region.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The CIDR blocks from which to allow access to the ports in <a href="#server_ports"><code>server_ports</code></a>
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The security group IDs from which to allow access to the ports in <a href="#server_ports"><code>server_ports</code></a>
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The CIDR blocks from which to allow SSH access
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_ssh_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The security group IDs from which to allow SSH access
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" type="map">
+<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Cloud init scripts to run on the ASG instances during boot. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax
@@ -317,19 +268,12 @@ The number of days to retain log events in the log group. Refer to https://regis
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -342,7 +286,7 @@ Set to true to create a DNS A record in Route 53 for this service.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="list">
+<HclListItem name="custom_tags" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of custom tags to apply to the EC2 Instances in this ASG. Each item in this list should be a map with the parameters key, value, and propagate_at_launch.
@@ -362,7 +306,7 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="default_forward_target_group_arns" requirement="optional" type="list">
+<HclListItem name="default_forward_target_group_arns" requirement="optional" type="list(any)">
 <HclListItemDescription>
 
 The ARN of the Target Group to which to route traffic.
@@ -371,7 +315,7 @@ The ARN of the Target Group to which to route traffic.
 <HclListItemTypeDetails>
 
 ```hcl
-list(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -384,7 +328,7 @@ list(any)
 The default OS user for the service AMI. For example, for AWS Ubuntu AMIs, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ubuntu"/>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
 </HclListItem>
 
 <HclListItem name="desired_capacity" requirement="optional" type="number">
@@ -459,19 +403,12 @@ If set to true, use Route 53 to perform health checks on <a href="#domain_name">
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="enabled_metrics" requirement="optional" type="list">
+<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -481,10 +418,10 @@ list(string)
 Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="fixed_response_listener_rules" requirement="optional" type="map">
+<HclListItem name="fixed_response_listener_rules" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
 Listener rules for a fixed-response action. See comments below for information about the parameters.
@@ -493,7 +430,7 @@ Listener rules for a fixed-response action. See comments below for information a
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -506,6 +443,13 @@ map(any)
 Listener rules for a forward action that distributes requests among one or more target groups. By default, sends traffic to the target groups created for the ports in <a href="#server_ports"><code>server_ports</code></a>. See comments below for information about the parameters.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -527,7 +471,7 @@ The ID of the Route 53 Hosted Zone in which to create a DNS A record for the Aut
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_policy" requirement="optional" type="map">
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 An object defining the policy to attach to `iam_role_name` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement. Ignored if `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
@@ -565,67 +509,39 @@ The ID of the Route 53 Hosted Zone in which to create a DNS A record for the Aut
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="listener_arns" requirement="optional" type="map">
+<HclListItem name="listener_arns" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="listener_ports" requirement="optional" type="list">
+<HclListItem name="listener_ports" requirement="optional" type="list(number)">
 <HclListItemDescription>
 
 The ports the ALB listens on for requests
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(number)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="load_balancers" requirement="optional" type="list">
+<HclListItem name="load_balancers" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see <a href="#target_group_arns"><code>target_group_arns</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="metadata_users" requirement="optional" type="list">
+<HclListItem name="metadata_users" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of users on the ASG EC2 instances that should be permitted access to the EC2 metadata.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -638,7 +554,7 @@ The DNS name that was assigned by AWS to the load balancer upon creation
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="redirect_listener_rules" requirement="optional" type="map">
+<HclListItem name="redirect_listener_rules" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
 Listener rules for a redirect action. See comments below for information about the parameters.
@@ -647,7 +563,7 @@ Listener rules for a redirect action. See comments below for information about t
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -699,19 +615,12 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="secrets_access" requirement="optional" type="list">
+<HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -721,6 +630,13 @@ list(string)
 The ports the EC2 instances listen on for requests. A Target Group will be created for each port and any rules specified in <a href="#forward_rules"><code>forward_rules</code></a> will forward traffic to these Target Groups.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -739,7 +655,7 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the instances. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
@@ -748,7 +664,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to the instances with sudo permissions. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="ssh_port" requirement="optional" type="string">
@@ -766,22 +682,15 @@ The port at which SSH will be allowed from <a href="#allow_ssh_from_cidr_blocks"
 The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="AsgId"/>
+<HclListItemDefaultValue defaultValue="&quot;AsgId&quot;"/>
 </HclListItem>
 
-<HclListItem name="termination_policies" requirement="optional" type="list">
+<HclListItem name="termination_policies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, Default.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -809,7 +718,7 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="10m"/>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -892,5 +801,5 @@ The ID of the Security Group that belongs to the ASG.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"ed918f42fef483fbbee6b6ebabd5942c"}
+{"sourcePlugin":"service-catalog-api","hash":"c7c1520d02270646839affd1e160f3f2"}
 ##DOCS-SOURCER-END -->

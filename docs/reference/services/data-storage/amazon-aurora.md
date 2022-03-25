@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon Aurora
 
@@ -90,19 +90,12 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="aurora_subnet_ids" requirement="required" type="list">
+<HclListItem name="aurora_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of the subnets in which to deploy Aurora. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="name" requirement="required" type="string">
@@ -123,51 +116,30 @@ The ID of the VPC in which to deploy Aurora.
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to Aurora from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs or Security Groups to allow network access to Aurora from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -225,23 +197,16 @@ The namespace to use for the CloudWatch metric we report every time a new RDS sn
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the RDS cluster and all associated resources created for it. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the cpu usage widget to output for use in a CloudWatch dashboard.
@@ -275,7 +240,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the database connections widget to output for use in a CloudWatch dashboard.
@@ -309,7 +274,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the available disk space widget to output for use in a CloudWatch dashboard.
@@ -343,7 +308,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the available memory widget to output for use in a CloudWatch dashboard.
@@ -377,7 +342,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the read latency widget to output for use in a CloudWatch dashboard.
@@ -411,7 +376,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the read latency widget to output for use in a CloudWatch dashboard.
@@ -445,7 +410,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object">
+<HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
@@ -488,7 +453,7 @@ The friendly name or ARN of an AWS Secrets Manager secret that contains database
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="db_instance_custom_parameter_group" requirement="optional" type="object">
+<HclListItem name="db_instance_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
@@ -576,19 +541,12 @@ When true, enable CloudWatch alarms for the manual snapshots created for the pur
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list">
+<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 If non-empty, the Aurora cluster will export the specified logs to Cloudwatch. Must be zero or more of: audit, error, general and slowquery
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -607,7 +565,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 The version of aurora to run - provisioned or serverless.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="provisioned"/>
+<HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
 </HclListItem>
 
 <HclListItem name="engine_version" requirement="optional" type="string">
@@ -697,7 +655,7 @@ The number of DB instances, including the primary, to run in the RDS cluster. On
 The instance type to use for the db (e.g. db.r3.large). Only used when <a href="#engine_mode"><code>engine_mode</code></a> is set to provisioned.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="db.t3.small"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -1059,5 +1017,5 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"28cfbb9874766f4f0cfa4e8a916ce4d3"}
+{"sourcePlugin":"service-catalog-api","hash":"529dc64e8c7e8f68ac3437b87fc81b6c"}
 ##DOCS-SOURCER-END -->

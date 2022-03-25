@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.84.4"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.84.4"/>
 
 # OpenVPN Server
 
@@ -96,19 +96,12 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="allow_vpn_from_cidr_list" requirement="required" type="list">
+<HclListItem name="allow_vpn_from_cidr_list" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 A list of IP address ranges in CIDR format from which VPN access will be permitted. Attempts to access the OpenVPN Server from all other IP addresses will be blocked.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="ami" requirement="required" type="string">
@@ -119,7 +112,7 @@ The AMI to run on the OpenVPN Server. This should be built from the Packer templ
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ami_filters" requirement="required" type="object">
+<HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Properties on the AMI that can be used to lookup a prebuilt AMI for use with the OpenVPN server. You can build the AMI using the Packer template openvpn-server.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
@@ -153,7 +146,7 @@ The name of the S3 bucket that will be used to backup PKI secrets. This is a req
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ca_cert_fields" requirement="required" type="object">
+<HclListItem name="ca_cert_fields" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 An object with fields for the country, state, locality, organization, organizational unit, and email address to use with the OpenVPN CA certificate.
@@ -175,19 +168,12 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The ids of the subnets where this server should be deployed.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -200,19 +186,12 @@ The ID of the VPC in which to deploy the OpenVPN server.
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -225,35 +204,21 @@ If true, both the CMK's Key Policy and IAM Policies (permissions) can be used to
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_cidr_list" requirement="optional" type="list">
+<HclListItem name="allow_ssh_from_cidr_list" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IP address ranges in CIDR format from which to allow incoming SSH requests to the OpenVPN server.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IDs of security groups from which to allow incoming SSH requests to the OpenVPN server.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -266,23 +231,16 @@ The base domain name to use for the OpenVPN server. Used to lookup the Hosted Zo
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="base_domain_name_tags" requirement="optional" type="map">
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to use to filter the Route 53 Hosted Zones that might match <a href="#domain_name"><code>domain_name</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" type="map">
+<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Cloud init scripts to run on the OpenVPN server while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
@@ -320,55 +278,34 @@ The number of days to retain log events in the log group. Refer to https://regis
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and <a href="#kms_key_arn"><code>kms_key_arn</code></a> is null, the ARN of the current user will be used.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cmk_external_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_external_user_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:root).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cmk_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_user_iam_arns" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of IAM ARNs for users who should be given permissions to use this KMS Master Key (e.g. arn:aws:iam::1234567890:user/foo).
@@ -406,7 +343,7 @@ Set to true to add <a href="#domain_name"><code>domain_name</code></a> as a Rout
 The default OS user for the OpenVPN AMI. For AWS Ubuntu AMIs, which is what the Packer template in openvpn-server.json uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ubuntu"/>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
 </HclListItem>
 
 <HclListItem name="domain_name" requirement="optional" type="string">
@@ -481,19 +418,12 @@ Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-i
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="external_account_arns" requirement="optional" type="list">
+<HclListItem name="external_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of external AWS accounts where your IAM users are defined. This module will create IAM roles that users in those accounts will be able to assume to get access to the request/revocation SQS queues.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -503,7 +433,7 @@ list(string)
 Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="force_destroy" requirement="optional" type="bool">
@@ -530,7 +460,7 @@ The ID of the Route 53 Hosted Zone in which the domain should be created. Only u
 The type of instance to run for the OpenVPN Server
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="t3.micro"/>
+<HclListItemDefaultValue defaultValue="&quot;t3.micro&quot;"/>
 </HclListItem>
 
 <HclListItem name="keypair_name" requirement="optional" type="string">
@@ -557,7 +487,7 @@ The Amazon Resource Name (ARN) of an existing KMS customer master key (CMK) that
 The name of the OpenVPN Server and the other resources created by these templates
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="vpn"/>
+<HclListItemDefaultValue defaultValue="&quot;vpn&quot;"/>
 </HclListItem>
 
 <HclListItem name="request_queue_name" requirement="optional" type="string">
@@ -566,7 +496,7 @@ The name of the OpenVPN Server and the other resources created by these template
 The name of the sqs queue that will be used to receive new certificate requests.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="queue"/>
+<HclListItemDefaultValue defaultValue="&quot;queue&quot;"/>
 </HclListItem>
 
 <HclListItem name="revocation_queue_name" requirement="optional" type="string">
@@ -575,7 +505,7 @@ The name of the sqs queue that will be used to receive new certificate requests.
 The name of the sqs queue that will be used to receive certification revocation requests. Note that the queue name will be automatically prefixed with 'openvpn-requests-'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="queue"/>
+<HclListItemDefaultValue defaultValue="&quot;queue&quot;"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -593,7 +523,7 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server. This value is only used if enable_ssh_grunt=true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
@@ -602,7 +532,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this OpenVPN server with sudo permissions. This value is only used if enable_ssh_grunt=true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="tenancy" requirement="optional" type="string">
@@ -611,7 +541,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="default"/>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -632,35 +562,21 @@ When true, generate Diffie-Hellman parameters using strong primes. Note that whi
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="vpn_route_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="vpn_route_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of CIDR ranges to be routed over the VPN.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="vpn_search_domains" requirement="optional" type="list">
+<HclListItem name="vpn_search_domains" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of domains to push down to the client to resolve over VPN. This will configure the OpenVPN server to pass through domains that should be resolved over the VPN connection (as opposed to the locally configured resolver) to the client. Note that for each domain, all subdomains will be resolved as well. E.g., if you pass in 'mydomain.local', subdomains such as 'hello.world.mydomain.local' and 'example.mydomain.local' will also be forwarded to through the VPN server.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -670,7 +586,7 @@ list(string)
 The subnet IP and mask vpn clients will be assigned addresses from. For example, 172.16.1.0 255.255.255.0. This is a non-routed network that only exists between the VPN server and the client. Therefore, it should NOT overlap with VPC addressing, or the client won't be able to access any of the VPC IPs. In general, we recommend using internal, non-RFC 1918 IP addresses, such as 172.16.xx.yy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="172.16.1.0 255.255.255.0"/>
+<HclListItemDefaultValue defaultValue="&quot;172.16.1.0 255.255.255.0&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -801,5 +717,5 @@ The security group ID of the OpenVPN server.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5c273b75d0a09e73025ff80511462e81"}
+{"sourcePlugin":"service-catalog-api","hash":"507d533a8744c7629b9ba20936cd408c"}
 ##DOCS-SOURCER-END -->

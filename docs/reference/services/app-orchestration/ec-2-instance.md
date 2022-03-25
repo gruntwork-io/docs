@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.84.4"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.84.4"/>
 
 # EC2 Instance
 
@@ -107,7 +107,7 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="allow_port_from_cidr_blocks" requirement="required" type="map">
+<HclListItem name="allow_port_from_cidr_blocks" requirement="required" type="map(object(…))">
 <HclListItemDescription>
 
 Accept inbound traffic on these port ranges from the specified CIDR blocks
@@ -127,7 +127,7 @@ map(object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="allow_port_from_security_group_ids" requirement="required" type="map">
+<HclListItem name="allow_port_from_security_group_ids" requirement="required" type="map(object(…))">
 <HclListItemDescription>
 
 Accept inbound traffic on these port ranges from the specified security groups
@@ -147,34 +147,20 @@ map(object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_cidr_blocks" requirement="required" type="list">
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Accept inbound SSH from these CIDR blocks
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="required" type="list">
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Accept inbound SSH from these security groups
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="ami" requirement="required" type="string">
@@ -185,7 +171,7 @@ The AMI to run on the EC2 instance. This should be built from the Packer templat
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ami_filters" requirement="required" type="object">
+<HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
@@ -225,6 +211,13 @@ Specify whether we're selecting a private or public Route 53 DNS Zone
 The EBS volumes to attach to the instance. This must be a map of key/value pairs.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="instance_type" requirement="required" type="string">
@@ -277,35 +270,21 @@ The ID of the VPC in which to deploy the EC2 instance.
 
 ### Optional
 
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list">
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of optional additional security group ids to assign to the EC2 instance.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -318,23 +297,16 @@ Determines if an Elastic IP (EIP) will be created for this instance.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="base_domain_name_tags" requirement="optional" type="map">
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone's name (use if you have multiple public hosted zones with the same name)
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" type="map">
+<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
@@ -372,19 +344,12 @@ The number of days to retain log events in the log group. Refer to https://regis
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -403,7 +368,7 @@ Set to true to create a DNS record in Route53 pointing to the EC2 instance. If t
 The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is what the Packer template in ec2-instance.json uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ubuntu"/>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
 </HclListItem>
 
 <HclListItem name="dns_ttl" requirement="optional" type="number">
@@ -484,7 +449,7 @@ Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-i
 If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fully_qualified_domain_name" requirement="optional" type="string">
@@ -493,7 +458,7 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be var.name.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="keypair_name" requirement="optional" type="string">
@@ -529,7 +494,7 @@ The size of the root volume, in gigabytes.
 The root volume type. Must be one of: standard, gp2, io1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="standard"/>
+<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -547,7 +512,7 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
@@ -556,22 +521,15 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this EC2 instance. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the EC2 instance and the S3 Buckets. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -581,7 +539,7 @@ map(string)
 The tenancy of this instance. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="default"/>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -681,5 +639,5 @@ The input parameters for the EBS volumes.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e213b1d2b53d679f78d15b17c0247e97"}
+{"sourcePlugin":"service-catalog-api","hash":"9db03aaec997d7f4b88af980f1734b75"}
 ##DOCS-SOURCER-END -->

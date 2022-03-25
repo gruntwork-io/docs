@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Kubernetes Service
 
@@ -111,7 +111,7 @@ The name of the application (e.g. my-service-stage). Used for labeling Kubernete
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="container_image" requirement="required" type="object">
+<HclListItem name="container_image" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 The Docker image to run.
@@ -159,19 +159,12 @@ The Kubernetes Namespace to deploy the application into.
 
 ### Optional
 
-<HclListItem name="alb_acm_certificate_arns" requirement="optional" type="list">
+<HclListItem name="alb_acm_certificate_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ACM certificate ARNs to attach to the ALB. The first certificate in the list will be added as default certificate.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -199,7 +192,7 @@ Interval between ALB health checks in seconds.
 URL path for the endpoint that the ALB health check should ping. Defaults to /.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="alb_health_check_port" requirement="optional" type="string">
@@ -208,7 +201,7 @@ URL path for the endpoint that the ALB health check should ping. Defaults to /.
 String value specifying the port that the ALB health check should probe. By default, this will be set to the traffic port (the NodePort or port where the service receives traffic). This can also be set to a Kubernetes named port, or direct integer value. See https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.3/guide/ingress/annotations/#healthcheck-port for more information.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="traffic-port"/>
+<HclListItemDefaultValue defaultValue="&quot;traffic-port&quot;"/>
 </HclListItem>
 
 <HclListItem name="alb_health_check_protocol" requirement="optional" type="string">
@@ -217,7 +210,7 @@ String value specifying the port that the ALB health check should probe. By defa
 Protocol (HTTP or HTTPS) that the ALB health check should use to connect to the application container.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="HTTP"/>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
 <HclListItem name="alb_health_check_success_codes" requirement="optional" type="string">
@@ -226,7 +219,7 @@ Protocol (HTTP or HTTPS) that the ALB health check should use to connect to the 
 The HTTP status code that should be expected when doing health checks against the specified health check path. Accepts a single value (200), multiple values (200,201), or a range of values (200-300).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="200"/>
+<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
 </HclListItem>
 
 <HclListItem name="alb_health_check_timeout" requirement="optional" type="number">
@@ -238,7 +231,7 @@ The timeout, in seconds, during which no response from a target means a failed h
 <HclListItemDefaultValue defaultValue="10"/>
 </HclListItem>
 
-<HclListItem name="canary_image" requirement="optional" type="object">
+<HclListItem name="canary_image" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 The Docker image to use for the canary. Required if desired_number_of_canary_pods is greater than 0.
@@ -261,7 +254,7 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="configmaps_as_env_vars" requirement="optional" type="map">
+<HclListItem name="configmaps_as_env_vars" requirement="optional" type="map(map(…))">
 <HclListItemDescription>
 
 Kubernetes ConfigMaps to be injected into the container. Each entry in the map represents a ConfigMap to be injected, with the key representing the name of the ConfigMap. The value is also a map, with each entry corresponding to an entry in the ConfigMap, with the key corresponding to the ConfigMap entry key and the value corresponding to the environment variable name.
@@ -277,19 +270,12 @@ map(map(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="configmaps_as_volumes" requirement="optional" type="map">
+<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value representing a file path on the container to mount the ConfigMap to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -299,22 +285,15 @@ map(string)
 The protocol on which this service's Docker container accepts traffic. Must be one of the supported protocols: https://kubernetes.io/docs/concepts/services-networking/service/#protocol-support.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="TCP"/>
+<HclListItemDefaultValue defaultValue="&quot;TCP&quot;"/>
 </HclListItem>
 
-<HclListItem name="custom_resources" requirement="optional" type="map">
+<HclListItem name="custom_resources" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 The map that lets you define Kubernetes resources you want installed and configured as part of the chart.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -345,7 +324,7 @@ The TTL value of the DNS A record that is bound to the Ingress resource. Only us
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object">
+<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
@@ -391,19 +370,12 @@ Whether or not to enable readiness probe. Readiness checks indicate whether or n
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="env_vars" requirement="optional" type="map">
+<HclListItem name="env_vars" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of environment variable name to environment variable value that should be made available to the Docker container.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -413,7 +385,7 @@ map(string)
 How the service will be exposed in the cluster. Must be one of `external` (accessible over the public Internet), `internal` (only accessible from within the same VPC as the cluster), `cluster-internal` (only accessible within the Kubernetes network).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="cluster-internal"/>
+<HclListItemDefaultValue defaultValue="&quot;cluster-internal&quot;"/>
 </HclListItem>
 
 <HclListItem name="force_destroy_ingress_access_logs" requirement="optional" type="bool">
@@ -431,10 +403,10 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="v0.2.12"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.12&quot;"/>
 </HclListItem>
 
-<HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object">
+<HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
@@ -461,7 +433,7 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_policy" requirement="optional" type="map">
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 An object defining the policy to attach to `iam_role_name` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement. Ignored if `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
@@ -496,7 +468,7 @@ Whether or not the IAM role passed in `iam_role_name` already exists. Set to tru
 The name of an IAM role that will be used by the pod to access the AWS API. If `iam_role_exists` is set to false, this role will be created. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="ingress_access_logs_s3_bucket_already_exists" requirement="optional" type="bool">
@@ -514,7 +486,7 @@ Set to true if the S3 bucket to store the Ingress access logs is managed externa
 The name to use for the S3 bucket where the Ingress access logs will be stored. If you leave this blank, a name will be generated automatically based on <a href="#application_name"><code>application_name</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="ingress_access_logs_s3_prefix" requirement="optional" type="string">
@@ -526,19 +498,12 @@ The prefix to use for ingress access logs associated with the ALB. All logs will
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ingress_annotations" requirement="optional" type="map">
+<HclListItem name="ingress_annotations" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A list of custom ingress annotations, such as health checks and TLS certificates, to add to the Helm chart. See: https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -548,7 +513,7 @@ map(string)
 The protocol used by the Ingress ALB resource to communicate with the Service. Must be one of HTTP or HTTPS.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="HTTP"/>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
 <HclListItem name="ingress_configure_ssl_redirect" requirement="optional" type="bool">
@@ -560,7 +525,7 @@ When true, HTTP requests will automatically be redirected to use SSL (HTTPS). Us
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="ingress_group" requirement="optional" type="object">
+<HclListItem name="ingress_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Assign the ingress resource to an IngressGroup. All Ingress rules of the group will be collapsed to a single ALB. The rules will be collapsed in priority order, with lower numbers being evaluated first.
@@ -581,7 +546,7 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ingress_listener_protocol_ports" requirement="optional" type="list">
+<HclListItem name="ingress_listener_protocol_ports" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of maps of protocols and ports that the ALB should listen on.
@@ -621,7 +586,7 @@ list(object({
 Path prefix that should be matched to route to the service. For Kubernetes Versions &lt;1.19, Use /* to match all paths. For Kubernetes Versions >=1.19, use / with ingress_path_type set to Prefix to match all paths.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="ingress_path_type" requirement="optional" type="string">
@@ -630,7 +595,7 @@ Path prefix that should be matched to route to the service. For Kubernetes Versi
 The path type to use for the ingress rule. Refer to https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types for more information.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="Prefix"/>
+<HclListItemDefaultValue defaultValue="&quot;Prefix&quot;"/>
 </HclListItem>
 
 <HclListItem name="ingress_ssl_redirect_rule_already_exists" requirement="optional" type="bool">
@@ -657,7 +622,7 @@ Whether or not the redirect rule requires setting path type. Set to true when de
 Controls how the ALB routes traffic to the Pods. Supports 'instance' mode (route traffic to NodePort and load balance across all worker nodes, relying on Kubernetes Service networking to route to the pods), or 'ip' mode (route traffic directly to the pod IP - only works with AWS VPC CNI). Must be set to 'ip' if using Fargate. Only used if expose_type is not cluster-internal.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="instance"/>
+<HclListItemDefaultValue defaultValue="&quot;instance&quot;"/>
 </HclListItem>
 
 <HclListItem name="liveness_probe_grace_period_seconds" requirement="optional" type="number">
@@ -684,7 +649,7 @@ The approximate amount of time, in seconds, between liveness checks of an indivi
 URL path for the endpoint that the liveness probe should ping.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="liveness_probe_port" requirement="optional" type="number">
@@ -702,7 +667,7 @@ Port that the liveness probe should use to connect to the application container.
 Protocol (HTTP or HTTPS) that the liveness probe should use to connect to the application container.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="HTTP"/>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
 <HclListItem name="min_number_of_pods_available" requirement="optional" type="number">
@@ -738,6 +703,13 @@ After this number of days, Ingress log files should be deleted from S3. Set to 0
 Override any computed chart inputs with this map. This map is shallow merged to the computed chart inputs prior to passing on to the Helm Release. This is provided as a workaround while the terraform module does not support a particular input value that is exposed in the underlying chart. Please always file a GitHub issue to request exposing additional underlying input values prior to using this variable.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -765,7 +737,7 @@ The approximate amount of time, in seconds, between liveness checks of an indivi
 URL path for the endpoint that the readiness probe should ping.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="readiness_probe_port" requirement="optional" type="number">
@@ -783,26 +755,19 @@ Port that the readiness probe should use to connect to the application container
 Protocol (HTTP or HTTPS) that the readiness probe should use to connect to the application container.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="HTTP"/>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
-<HclListItem name="scratch_paths" requirement="optional" type="map">
+<HclListItem name="scratch_paths" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Paths that should be allocated as tmpfs volumes in the Deployment container. Each entry in the map is a key value pair where the key is an arbitrary name to bind to the volume, and the value is the path in the container to mount the tmpfs volume.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="secrets_as_env_vars" requirement="optional" type="map">
+<HclListItem name="secrets_as_env_vars" requirement="optional" type="map(map(…))">
 <HclListItemDescription>
 
 Kubernetes Secrets to be injected into the container. Each entry in the map represents a Secret to be injected, with the key representing the name of the Secret. The value is also a map, with each entry corresponding to an entry in the Secret, with the key corresponding to the Secret entry key and the value corresponding to the environment variable name.
@@ -818,19 +783,12 @@ map(map(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="secrets_as_volumes" requirement="optional" type="map">
+<HclListItem name="secrets_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value representing a file path on the container to mount the Secret to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -849,7 +807,7 @@ When true, and service_account_name is not blank, lookup and assign an existing 
 The name of a service account to create for use with the Pods. This service account will be mapped to the IAM role defined in `<a href="#iam_role_name"><code>iam_role_name</code></a>` to give the pod permissions to access the AWS API. Must be unique in this namespace. Leave as an empty string if you do not wish to assign a Service Account to the Pods.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_port" requirement="optional" type="number">
@@ -867,6 +825,13 @@ The port to expose on the Service. This is most useful when addressing the Servi
 Map of keys to container definitions that allow you to manage additional side car containers that should be included in the Pod. Note that the values are injected directly into the container list for the Pod Spec.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -925,5 +890,5 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"7cf1f72106874d7645d701df03de2f3a"}
+{"sourcePlugin":"service-catalog-api","hash":"e3489e63b6e385f41332ce2a9565d4e7"}
 ##DOCS-SOURCER-END -->

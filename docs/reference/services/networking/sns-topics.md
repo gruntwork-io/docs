@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon Simple Notification Service
 
@@ -88,67 +88,39 @@ The name of the SNS topic
 
 ### Optional
 
-<HclListItem name="allow_publish_accounts" requirement="optional" type="list">
+<HclListItem name="allow_publish_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs that will be given the rights to publish to the SNS topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_publish_services" requirement="optional" type="list">
+<HclListItem name="allow_publish_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of AWS services that will be given the rights to publish to the SNS topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_subscribe_accounts" requirement="optional" type="list">
+<HclListItem name="allow_subscribe_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_subscribe_protocols" requirement="optional" type="list">
+<HclListItem name="allow_subscribe_protocols" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of protocols that can be used to subscribe to the SNS topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -182,7 +154,7 @@ Set to false to have this module create no resources. This weird parameter exist
 The display name of the SNS topic
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="kms_master_key_id" requirement="optional" type="string">
@@ -191,7 +163,7 @@ The display name of the SNS topic
 The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="alias/aws/sns"/>
+<HclListItemDefaultValue defaultValue="&quot;alias/aws/sns&quot;"/>
 </HclListItem>
 
 <HclListItem name="slack_webhook_url" requirement="optional" type="string">
@@ -219,5 +191,5 @@ The ARN of the SNS topic.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"72911176b8dd97a347c810f7ee096a2b"}
+{"sourcePlugin":"service-catalog-api","hash":"73c2a0549e3604c6dcfeab7280a8b70f"}
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Jenkins CI Server
 
@@ -100,19 +100,12 @@ The domain name used for an SSL certificate issued by the Amazon Certificate Man
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alb_subnet_ids" requirement="required" type="list">
+<HclListItem name="alb_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="ami" requirement="required" type="string">
@@ -123,7 +116,7 @@ The ID of the AMI to run on the Jenkins server. This should be the AMI build fro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ami_filters" requirement="required" type="object">
+<HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Properties on the AMI that can be used to lookup a prebuilt AMI for use with Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
@@ -199,83 +192,48 @@ The ID of the VPC in which to deploy Jenkins
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_incoming_http_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_incoming_http_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IP address ranges in CIDR format from which to allow incoming HTTP requests to Jenkins.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_incoming_http_from_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_incoming_http_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IDs of security groups from which to allow incoming HTTP requests to Jenkins.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IP address ranges in CIDR format from which to allow incoming SSH requests to Jenkins.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The IDs of security groups from which to allow incoming SSH requests to Jenkins.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -294,7 +252,7 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 The name for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="jenkins-backup-job"/>
+<HclListItemDefaultValue defaultValue="&quot;jenkins-backup-job&quot;"/>
 </HclListItem>
 
 <HclListItem name="backup_job_metric_namespace" requirement="optional" type="string">
@@ -303,7 +261,7 @@ The name for the CloudWatch Metric the AWS lambda backup job will increment ever
 The namespace for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="Custom/Jenkins"/>
+<HclListItemDefaultValue defaultValue="&quot;Custom/Jenkins&quot;"/>
 </HclListItem>
 
 <HclListItem name="backup_job_schedule_expression" requirement="optional" type="string">
@@ -312,7 +270,7 @@ The namespace for the CloudWatch Metric the AWS lambda backup job will increment
 A cron or rate expression that specifies how often to take a snapshot of the Jenkins server for backup purposes. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for syntax details.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="rate(1 day)"/>
+<HclListItemDefaultValue defaultValue="&quot;rate(1 day)&quot;"/>
 </HclListItem>
 
 <HclListItem name="backup_using_dlm" requirement="optional" type="bool">
@@ -333,23 +291,16 @@ Set to true to backup the Jenkins Server using a Scheduled Lambda Function.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="build_permission_actions" requirement="optional" type="list">
+<HclListItem name="build_permission_actions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IAM actions this Jenkins server should be allowed to do: e.g., ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in this AWS account to run builds. These permissions will be added to the server's IAM role for all resources ('*').
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cloud_init_parts" requirement="optional" type="map">
+<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
@@ -387,35 +338,21 @@ The number of days to retain log events in the log group. Refer to https://regis
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A list of custom tags to apply to Jenkins and all other resources.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -425,7 +362,7 @@ map(string)
 The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ubuntu"/>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
 </HclListItem>
 
 <HclListItem name="dlm_backup_job_schedule_interval" requirement="optional" type="number">
@@ -443,7 +380,7 @@ How often this lifecycle policy should be evaluated, in hours.
 The name of the data lifecyle management schedule
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="daily-last-two-weeks"/>
+<HclListItemDefaultValue defaultValue="&quot;daily-last-two-weeks&quot;"/>
 </HclListItem>
 
 <HclListItem name="dlm_backup_job_schedule_number_of_snapshots_to_retain" requirement="optional" type="number">
@@ -455,21 +392,14 @@ How many snapshots to keep. Must be an integer between 1 and 1000.
 <HclListItemDefaultValue defaultValue="15"/>
 </HclListItem>
 
-<HclListItem name="dlm_backup_job_schedule_times" requirement="optional" type="list">
+<HclListItem name="dlm_backup_job_schedule_times" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[
-  '03:00'
+  &quot;03:00&quot;
 ]"/>
 </HclListItem>
 
@@ -536,19 +466,12 @@ Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-i
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="external_account_auto_deploy_iam_role_arns" requirement="optional" type="list">
+<HclListItem name="external_account_auto_deploy_iam_role_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM role ARNs in other AWS accounts that Jenkins will be able to assume to do automated deployment in those accounts.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -558,7 +481,7 @@ list(string)
 If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="is_internal_alb" requirement="optional" type="bool">
@@ -576,7 +499,7 @@ Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from
 The OS device name where the Jenkins EBS volume should be attached
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="xvdh"/>
+<HclListItemDefaultValue defaultValue="&quot;xvdh&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_mount_point" requirement="optional" type="string">
@@ -585,7 +508,7 @@ The OS device name where the Jenkins EBS volume should be attached
 The OS path where the Jenkins EBS volume should be mounted
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/jenkins"/>
+<HclListItemDefaultValue defaultValue="&quot;/jenkins&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_user" requirement="optional" type="string">
@@ -594,7 +517,7 @@ The OS path where the Jenkins EBS volume should be mounted
 The OS user that should be used to run Jenkins
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="jenkins"/>
+<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
@@ -621,7 +544,7 @@ The amount of disk space, in GB, to allocate for the EBS volume used by the Jenk
 The type of volume to use for the EBS volume used by the Jenkins server. Must be one of: standard, gp2, io1, sc1, or st1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="gp2"/>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="keypair_name" requirement="optional" type="string">
@@ -639,7 +562,7 @@ The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blan
 Enter the name of the Jenkins server
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="jenkins"/>
+<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
 </HclListItem>
 
 <HclListItem name="root_block_device_volume_type" requirement="optional" type="string">
@@ -648,7 +571,7 @@ Enter the name of the Jenkins server
 The type of volume to use for the root disk for Jenkins. Must be one of: standard, gp2, io1, sc1, or st1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="gp2"/>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="root_volume_size" requirement="optional" type="number">
@@ -684,7 +607,7 @@ If set to true, skip the health check, and start a rolling deployment of Jenkins
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server. This value is only used if enable_ssh_grunt=true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
@@ -693,7 +616,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Jenkins server with sudo permissions. This value is only used if enable_ssh_grunt=true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ssh-grunt-sudo-users"/>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="tenancy" requirement="optional" type="string">
@@ -702,7 +625,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="default"/>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -848,5 +771,5 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e41872c31946588df431c65c6a167877"}
+{"sourcePlugin":"service-catalog-api","hash":"5da715e7bd34996f0eaa6378ae1c667f"}
 ##DOCS-SOURCER-END -->

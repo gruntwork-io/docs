@@ -19,7 +19,7 @@ export const HclListItem: React.FunctionComponent<
           </strong>
         </a>
         <em className={styles.meta}>{type}</em>
-        {!!requirement && <em className={styles.meta}>({requirement})</em>}
+        {!!requirement && <span className={styles.meta}>{requirement}</span>}
       </div>
 
       <div className={styles.body}>{!!children && children}</div>
@@ -57,7 +57,7 @@ export const HclListItemDefaultValue: React.FunctionComponent<
       ) : (
         <>
           <label className={styles.inlineLabel}>Default:</label>
-          <code>{defaultValue === "" ? `""` : defaultValue}</code>
+          <code>{defaultValue}</code>
         </>
       )}
     </div>

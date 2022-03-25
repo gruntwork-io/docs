@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.83.0"/>
 
 # Management VPC
 
@@ -153,35 +153,21 @@ If true, will associate the default NACL to the public, private, and persistence
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list">
+<HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of excluded Availability Zone IDs.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="availability_zone_exclude_names" requirement="optional" type="list">
+<HclListItem name="availability_zone_exclude_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of excluded Availability Zone names.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -212,35 +198,21 @@ If set to false, this module will NOT create Network ACLs. This is useful if you
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the VPC, Subnets, Route Tables, and Internet Gateway. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="custom_tags_vpc_only" requirement="optional" type="map">
+<HclListItem name="custom_tags_vpc_only" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply just to the VPC itself, but not any of the other resources. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -250,6 +222,13 @@ map(string)
 The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -274,6 +253,13 @@ The egress rules to apply to the default NACL in the VPC. This is the security g
 The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -298,6 +284,13 @@ The ingress rules to apply to the default NACL in the VPC. This is the NACL that
 The egress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#egress-block.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -325,6 +318,13 @@ The egress rules to apply to the default security group in the VPC. This is the 
 The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -377,35 +377,21 @@ The number of days to retain this KMS Key (a Customer Master Key) after it has b
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map">
+<HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the NAT gateways, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -427,35 +413,21 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 <HclListItemDefaultValue defaultValue="4"/>
 </HclListItem>
 
-<HclListItem name="private_subnet_cidr_blocks" requirement="optional" type="map">
+<HclListItem name="private_subnet_cidr_blocks" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map listing the specific CIDR blocks desired for each private subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="private_subnet_custom_tags" requirement="optional" type="map">
+<HclListItem name="private_subnet_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the private Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -468,35 +440,21 @@ Takes the CIDR prefix and adds these many bits to it for calculating subnet rang
 <HclListItemDefaultValue defaultValue="4"/>
 </HclListItem>
 
-<HclListItem name="public_subnet_cidr_blocks" requirement="optional" type="map">
+<HclListItem name="public_subnet_cidr_blocks" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map listing the specific CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="public_subnet_custom_tags" requirement="optional" type="map">
+<HclListItem name="public_subnet_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the public Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -638,5 +596,5 @@ Indicates whether or not the VPC has finished creating
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"d921b67604960b462a74f1269b94a500"}
+{"sourcePlugin":"service-catalog-api","hash":"4ff2f5cb9875d66f9905297ffe9684c0"}
 ##DOCS-SOURCER-END -->
