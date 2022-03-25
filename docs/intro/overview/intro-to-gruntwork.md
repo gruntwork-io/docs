@@ -22,5 +22,5 @@ Tetst!
 TESTSTSTEETST
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"56e99d5f5cfc820cbb0d97c4392212ec"}
+{"sourcePlugin":"local-copier","hash":"f12534ad33e84ba9b26cb91085b95a03"}
 ##DOCS-SOURCER-END -->
