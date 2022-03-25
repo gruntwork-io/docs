@@ -39,7 +39,7 @@ describe("Script:generate-sidebar", () => {
       expect(sidebar).toBeUndefined()
     })
 
-    test("Supports a flat list of files", async () => {
+    test.skip("Supports a flat list of files", async () => {
       const sidebar = await generateSidebar(sampleDataPath("flat-list"))
       expect(sidebar.length).toBe(3)
       expect(sidebar).toContain(docId("flat-list/foo"))
@@ -47,7 +47,7 @@ describe("Script:generate-sidebar", () => {
       expect(sidebar).toContain(docId("flat-list/baz"))
     })
 
-    test("Supports hierarchical sets of files", async () => {
+    test.skip("Supports hierarchical sets of files", async () => {
       const sidebar = await generateSidebar(sampleDataPath("hierarchy"))
       expect(sidebar.length).toBe(6)
       expect(sidebar).toContain(docId("hierarchy/foo"))
@@ -69,7 +69,7 @@ describe("Script:generate-sidebar", () => {
       expect(sidebar).not.toContain(docId("flat-list/_category_"))
     })
 
-    test("Applies the category index convention", async () => {
+    test.skip("Applies the category index convention", async () => {
       const sidebar = await generateSidebar(sampleDataPath("category-index"))
       expect(sidebar.length).toBe(1)
       const indexItem = sidebar[0]
@@ -80,7 +80,7 @@ describe("Script:generate-sidebar", () => {
       expect(indexItem.link.id).toBe(docId("category-index/index"))
     })
 
-    test("Can include a back button", async () => {
+    test.skip("Can include a back button", async () => {
       const sidebar = await generateSidebar(sampleDataPath("flat-list"), {
         backButton: "Back",
       })
@@ -112,7 +112,7 @@ describe("Script:generate-sidebar", () => {
       expect(Object.keys(sidebars).length).toBe(3)
     })
 
-    test("Adds a back button to each sidebar", async () => {
+    test.skip("Adds a back button to each sidebar", async () => {
       const dirs = [
         sampleDataPath("flat-list"),
         sampleDataPath("more-types"),
@@ -180,7 +180,7 @@ describe("Script:generate-sidebar", () => {
         expect(b).toBeFalsy()
       })
 
-      test("Returns false for directories (even if named index)", () => {
+      test.skip("Returns false for directories (even if named index)", () => {
         const b = isCategoryIndexFilePredicate(sampleDataPath("index"))
         expect(b).toBeFalsy()
       })
