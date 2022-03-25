@@ -33,6 +33,11 @@ references:
       name: build
       command: yarn --ignore-optional && yarn build
 
+  test_docs: &test_docs
+    run:
+      name: test
+      command: yarn && yarn test
+
   deploy_to_staging: &deploy-to-staging
     run:
       name: deploy to staging
@@ -108,6 +113,7 @@ jobs:
     steps:
       - checkout
       - *build_docs
+      - *test_docs
 
   deploy-to-stage:
     <<: *base_container
