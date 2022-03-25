@@ -38,9 +38,6 @@ provider "aws" {
   # The AWS region in which all resources will be created
   region = var.aws_region
 
-  # Require a 2.x version of the AWS provider
-  version = "~> 2.6"
-
   # Only these AWS Account IDs may be operated on by this template
   allowed_account_ids = [var.aws_account_id]
 }
@@ -54,11 +51,6 @@ This configures the AWS provider as follows:
 
 The AWS region is configured via the `aws_region` input variable (you’ll declare this shortly). This allows you to
 deploy this module in multiple regions.
-
-#### Pin the AWS provider version
-
-The code above ensures that you always get AWS provider version `2.x` and won’t accidentally get version `3.x` in the
-future, which would be backwards incompatible. We recommend pinning the versions for all providers you’re using.
 
 #### Pin AWS account IDs
 
@@ -95,7 +87,7 @@ terraform {
 
   # Only allow this Terraform version. Note that if you upgrade to a newer version, Terraform won't allow you to use an
   # older version, so when you upgrade, you should upgrade everyone on your team and your CI servers all at once.
-  required_version = "= 0.12.6"
+  required_version = "= 1.1.7"
 }
 ```
 
@@ -119,13 +111,11 @@ of the code. You’ll see an example of this soon.
 #### Pin the Terraform version
 
 The code above will ONLY allow you to run it with a specific Terraform version. This is a safety measure to ensure
-you don’t accidentally pick up a new version of Terraform until you’re ready. This is important because (a) Terraform
-is a pre 1.0.0 tool, so even patch version number bumps (e.g., `0.12.6` → `0.12.7`) are sometimes backwards
-incompatible or buggy and (b) once you’ve upgraded to a newer version, Terraform will no longer allow you to deploy
-that code with any older version. For example, if a single person on your team upgrades to `0.12.7` and runs `apply`,
-then you’ll no longer be able to use the state file with `0.12.6`, and you’ll be forced to upgrade everyone on your
-team and all your CI servers to `0.12.7`. It’s best to do this explicitly, rather than accidentally, so we recommend
-pinning Terraform versions.
+you don’t accidentally pick up a new version of Terraform until you’re ready. This is important because once you’ve
+upgraded to a newer version, Terraform will no longer allow you to deploy that code with any older version.
+For example, if a single person on your team upgrades to `1.1.8` and runs `apply`, then you’ll no longer be able to 
+use the state file with `1.1.7`, and you’ll be forced to upgrade everyone on your team and all your CI servers to
+`1.1.8`. It’s best to do this explicitly, rather than accidentally, so we recommend pinning Terraform versions.
 
 </div>
 
