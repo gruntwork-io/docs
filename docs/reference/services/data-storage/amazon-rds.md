@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.1"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.1"/>
 
 # Amazon Relational Database Service
 
@@ -116,19 +116,12 @@ The name used to namespace all the RDS resources created by these templates, inc
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of the subnets in which to deploy RDS. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -141,51 +134,30 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the share snapshot backup job fails.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs or Security Groups to allow network access to RDS from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -231,42 +203,28 @@ How many days to keep backup snapshots around before cleaning them up. Must be 1
 The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="06:00-07:00"/>
+<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
 </HclListItem>
 
-<HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_administrator_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs for users who should be given administrator access to this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and <a href="#kms_key_arn"><code>kms_key_arn</code></a> is null, the ARN of the current user will be used.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cmk_external_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_external_user_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs for users from external AWS accounts who should be given permissions to use this CMK (e.g. arn:aws:iam::&lt;aws-account-id>:root).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cmk_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="cmk_user_iam_arns" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of IAM ARNs for users who should be given permissions to use this CMK (e.g.  arn:aws:iam::&lt;aws-account-id>:user/&lt;iam-user-arn>). If this list is empty, and <a href="#kms_key_arn"><code>kms_key_arn</code></a> is null, the ARN of the current user will be used.
@@ -307,7 +265,7 @@ The namespace to use for the CloudWatch metric we report every time a new RDS sn
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_parameter_group" requirement="optional" type="object">
+<HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configure a custom parameter group for the RDS DB. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
@@ -341,23 +299,16 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the cpu usage widget to output for use in a CloudWatch dashboard.
@@ -391,7 +342,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the database connections widget to output for use in a CloudWatch dashboard.
@@ -425,7 +376,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the available disk space widget to output for use in a CloudWatch dashboard.
@@ -459,7 +410,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the available memory widget to output for use in a CloudWatch dashboard.
@@ -493,7 +444,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the read latency widget to output for use in a CloudWatch dashboard.
@@ -527,7 +478,7 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object">
+<HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Parameters for the read latency widget to output for use in a CloudWatch dashboard.
@@ -633,19 +584,12 @@ When true, enable CloudWatch alarms for the manual snapshots created for the pur
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list">
+<HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL) and upgrade (PostgreSQL).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -727,7 +671,7 @@ Specifies whether mappings of AWS Identity and Access Management (IAM) accounts 
 The instance type to use for the db (e.g. db.t3.micro)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="db.t3.micro"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.micro&quot;"/>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -1097,5 +1041,5 @@ The ID of the Security Group that controls access to the RDS DB instance.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"2038d957f7a09096ee7aaea34a2a55dd"}
+{"sourcePlugin":"service-catalog-api","hash":"1bb2fcf1663acae8e472cd34ab649c4e"}
 ##DOCS-SOURCER-END -->

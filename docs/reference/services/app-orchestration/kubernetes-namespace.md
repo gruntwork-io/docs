@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.83.0"/>
 
 # Kubernetes Namespace
 
@@ -106,19 +106,12 @@ Name of the Namespace to create.
 
 ### Optional
 
-<HclListItem name="annotations" requirement="optional" type="map">
+<HclListItem name="annotations" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -131,7 +124,7 @@ Name of the EKS cluster where the Namespace will be created. Required when <a hr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="full_access_rbac_entities" requirement="optional" type="list">
+<HclListItem name="full_access_rbac_entities" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 The list of RBAC entities that should have full access to the Namespace.
@@ -156,19 +149,12 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="labels" requirement="optional" type="map">
+<HclListItem name="labels" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -181,7 +167,7 @@ ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a hre
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="read_only_access_rbac_entities" requirement="optional" type="list">
+<HclListItem name="read_only_access_rbac_entities" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 The list of RBAC entities that should have read only access to the Namespace.
@@ -215,19 +201,12 @@ When true, will create a Fargate Profile that matches all Pods in the Namespace.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="worker_vpc_subnet_ids" requirement="optional" type="list">
+<HclListItem name="worker_vpc_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -263,5 +242,5 @@ The name of the rbac role that grants read only permissions on the namespace.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"41f809a48c8b79255cb879730763f7b4"}
+{"sourcePlugin":"service-catalog-api","hash":"6012d2f05a3cac510701bf20aaa0c8ed"}
 ##DOCS-SOURCER-END -->

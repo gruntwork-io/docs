@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon ECS Service
 
@@ -105,36 +105,29 @@ For information on how to manage your ECS service, see the documentation in the
 List of container definitions to use for the ECS task. Each entry corresponds to a different ECS container definition.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="default_listener_arns" requirement="required" type="map">
+<HclListItem name="default_listener_arns" requirement="required" type="map(string)">
 <HclListItemDescription>
 
 A map of all the listeners on the load balancer. The keys should be the port numbers and the values should be the ARN of the listener for that port.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="default_listener_ports" requirement="required" type="list">
+<HclListItem name="default_listener_ports" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The default port numbers on the load balancer to attach listener rules to. You can override this default on a rule-by-rule basis by setting the listener_ports parameter in each rule. The port numbers specified in this variable and the listener_ports parameter must exist in <a href="#listener_arns"><code>listener_arns</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="ecs_cluster_arn" requirement="required" type="string">
@@ -163,35 +156,21 @@ The name of the ECS service (e.g. my-service-stage)
 
 ### Optional
 
-<HclListItem name="alarm_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarm_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ARNs of the SNS topic(s) to write alarm events to
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="alarm_sns_topic_arns_us_east_1" requirement="optional" type="list">
+<HclListItem name="alarm_sns_topic_arns_us_east_1" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of SNS topic ARNs to notify when the route53 health check changes to ALARM, OK, or INSUFFICIENT_DATA state. Note: these SNS topics MUST be in us-east-1! This is because Route 53 only sends CloudWatch metrics to us-east-1, so we must create the alarm in that region, and therefore, can only notify SNS topics in that region
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -210,7 +189,7 @@ The time period, in seconds, during which requests from a client should be route
 The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible values. Only used if <a href="#elb_target_groups"><code>elb_target_groups</code></a> is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="lb_cookie"/>
+<HclListItemDefaultValue defaultValue="&quot;lb_cookie&quot;"/>
 </HclListItem>
 
 <HclListItem name="canary_container_definitions" requirement="optional" type="any">
@@ -219,6 +198,13 @@ The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible value
 List of container definitions to use for the canary ECS task. Each entry corresponds to a different ECS container definition.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -231,7 +217,7 @@ Which version of the ECS Service Docker container to deploy as a canary (e.g. 0.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="capacity_provider_strategy" requirement="optional" type="list">
+<HclListItem name="capacity_provider_strategy" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 The capacity provider strategy to use for the service. Note that the capacity providers have to be present on the ECS cluster before deploying the ECS service. When provided, <a href="#launch_type"><code>launch_type</code></a> is ignored.
@@ -377,19 +363,12 @@ Prefix for name of task execution IAM role and policy that grants access to Clou
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list">
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -399,7 +378,7 @@ list(string)
 Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="info"/>
+<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
 </HclListItem>
 
 <HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
@@ -483,23 +462,16 @@ The ID of the security group that should be applied to ecs service instances
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ecs_node_port_mappings" requirement="optional" type="map">
+<HclListItem name="ecs_node_port_mappings" requirement="optional" type="map(number)">
 <HclListItemDescription>
 
 A map of ports to be opened via security groups applied to the EC2 instances that back the ECS cluster, when not using fargate. The key should be the container port and the value should be what host port to map it to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(number)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="efs_volumes" requirement="optional" type="map">
+<HclListItem name="efs_volumes" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 (Optional) A map of EFS volumes that containers in your task may use. Each item in the list should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#efs-volume-configuration-arguments.
@@ -556,6 +528,13 @@ The ID of the VPC in which to create the target group. Only used if <a href="#el
 Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -604,11 +583,11 @@ Set this to true to allow the ecs service to be accessed by other ecs nodes
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="fixed_response_rules" requirement="optional" type="map">
+<HclListItem name="fixed_response_rules" requirement="optional" type="map(any)">
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -616,6 +595,13 @@ map(any)
 </HclListItem>
 
 <HclListItem name="forward_rules" requirement="optional" type="any">
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -661,7 +647,7 @@ The approximate amount of time, in seconds, between health checks of an individu
 The HTTP codes to use when checking for a successful response from a Target. You can specify multiple values (e.g. '200,202') or a range of values (e.g. '200-299'). Required when using ALBs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="200"/>
+<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
 </HclListItem>
 
 <HclListItem name="health_check_path" requirement="optional" type="string">
@@ -670,7 +656,7 @@ The HTTP codes to use when checking for a successful response from a Target. You
 The ping path that is the destination on the Targets for health checks. Required when using ALBs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="health_check_port" requirement="optional" type="string">
@@ -679,7 +665,7 @@ The ping path that is the destination on the Targets for health checks. Required
 The port the ELB uses when performing health checks on Targets. The default is to use the port on which each target receives traffic from the load balancer, indicated by the value 'traffic-port'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="traffic-port"/>
+<HclListItemDefaultValue defaultValue="&quot;traffic-port&quot;"/>
 </HclListItem>
 
 <HclListItem name="health_check_timeout" requirement="optional" type="number">
@@ -745,7 +731,7 @@ The ID of the Route 53 hosted zone into which the Route 53 DNS record should be 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_policy" requirement="optional" type="map">
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 An object defining the policy to attach to the ECS task. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement.
@@ -771,7 +757,7 @@ map(object({
 The launch type of the ECS service. Must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables <a href="#placement_strategy_type"><code>placement_strategy_type</code></a>, <a href="#placement_strategy_field"><code>placement_strategy_field</code></a>, <a href="#placement_constraint_type"><code>placement_constraint_type</code></a>, <a href="#placement_constraint_expression"><code>placement_constraint_expression</code></a>. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="EC2"/>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
 </HclListItem>
 
 <HclListItem name="lb_hosted_zone_id" requirement="optional" type="string">
@@ -810,7 +796,7 @@ The minimum number of instances of the ECS Service to run. Auto scaling will nev
 <HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
-<HclListItem name="network_configuration" requirement="optional" type="object">
+<HclListItem name="network_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 The configuration to use when setting up the VPC network mode. Required and only used if network_mode is awsvpc.
@@ -858,7 +844,7 @@ object({
 The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If the network_mode is set to awsvpc, you must configure <a href="#network_configuration"><code>network_configuration</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="bridge"/>
+<HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
 <HclListItem name="original_lb_dns_name" requirement="optional" type="string">
@@ -876,7 +862,7 @@ The DNS name that was assigned by AWS to the load balancer upon creation
 Cluster Query Language expression to apply to the constraint for matching. Does not need to be specified for the distinctInstance constraint type.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="attribute:ecs.ami-id != 'ami-fake'"/>
+<HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_constraint_type" requirement="optional" type="string">
@@ -885,7 +871,7 @@ Cluster Query Language expression to apply to the constraint for matching. Does 
 The type of constraint to apply for container instance placement. The only valid values at this time are memberOf and distinctInstance.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="memberOf"/>
+<HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_strategy_field" requirement="optional" type="string">
@@ -894,7 +880,7 @@ The type of constraint to apply for container instance placement. The only valid
 The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or host, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="cpu"/>
+<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
 </HclListItem>
 
 <HclListItem name="placement_strategy_type" requirement="optional" type="string">
@@ -903,7 +889,7 @@ The field to apply the placement strategy against. For the spread placement stra
 The strategy to use when placing ECS tasks on EC2 instances. Can be binpack (default), random, or spread.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="binpack"/>
+<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="propagate_tags" requirement="optional" type="string">
@@ -912,7 +898,7 @@ The strategy to use when placing ECS tasks on EC2 instances. Can be binpack (def
 Whether tags should be propogated to the tasks from the service or from the task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE. If set to null, no tags are created for tasks.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="SERVICE"/>
+<HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
 </HclListItem>
 
 <HclListItem name="proxy_configuration_container_name" requirement="optional" type="string">
@@ -924,27 +910,20 @@ Use the name of the Envoy proxy container from `container_definitions` as the co
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="proxy_configuration_properties" requirement="optional" type="map">
+<HclListItem name="proxy_configuration_properties" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of network configuration parameters to provide the Container Network Interface (CNI) plugin.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="redirect_rules" requirement="optional" type="map">
+<HclListItem name="redirect_rules" requirement="optional" type="map(any)">
 <HclListItemTypeDetails>
 
 ```hcl
-map(any)
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
@@ -957,7 +936,7 @@ map(any)
 The path, without any leading slash, that can be used as a health check (e.g. healthcheck) by Route 53. Should return a 200 OK when the service is up and running.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="/"/>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
 </HclListItem>
 
 <HclListItem name="route53_health_check_port" requirement="optional" type="number">
@@ -975,7 +954,7 @@ The port to use for Route 53 health checks. This should be the port for the serv
 The protocol to use for Route 53 health checks. Should be one of HTTP, HTTPS.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="HTTP"/>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
 <HclListItem name="route53_health_check_provider_external_id" requirement="optional" type="string">
@@ -1023,35 +1002,21 @@ The optional path to a credentials file used in the us-east-1 provider block def
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="secrets_access" requirement="optional" type="list">
+<HclListItem name="secrets_access" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ARNs of Secrets Manager secrets that the task should have permissions to read. The IAM role for the task will be granted `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be either the complete ARN, including the randomly generated suffix, or the ARN without the suffix. If the latter, the module will look up the full ARN automatically. This is helpful in cases where you don't yet know the randomly generated suffix because the rest of the ARN is a predictable value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="secrets_manager_arns" requirement="optional" type="list">
+<HclListItem name="secrets_manager_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ARNs for Secrets Manager secrets that the ECS execution IAM policy should be granted access to read. Note that this is different from the ECS task IAM policy. The execution policy is concerned with permissions required to run the ECS task.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -1064,19 +1029,12 @@ The ARN of the kms key associated with secrets manager
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="service_tags" requirement="optional" type="map">
+<HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1089,19 +1047,12 @@ The CPU units for the instances that Fargate will spin up. Options here: https:/
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="task_definition_tags" requirement="optional" type="map">
+<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1147,6 +1098,13 @@ Set this to true if you want to pass a custom docker run command. If you set thi
 (Optional) A map of volume blocks that containers in your task may use. The key should be the name of the volume and the value should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments, but not including the name parameter.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1318,5 +1276,5 @@ The names of the ECS service's load balancer's target groups
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"a2d359f3c099ae386aeb5f1ac2eee542"}
+{"sourcePlugin":"service-catalog-api","hash":"a27024f7cdaa1f54bb0825c6ac7b0456"}
 ##DOCS-SOURCER-END -->

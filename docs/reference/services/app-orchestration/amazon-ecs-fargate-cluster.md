@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.66.0"/>
 
 # Amazon ECS Fargate Cluster
 
@@ -110,19 +110,12 @@ The name of the ECS cluster
 
 ### Optional
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the ECS Cluster. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -159,5 +152,5 @@ The name of the ECS cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"901668771669b87221faec37cea88dea"}
+{"sourcePlugin":"service-catalog-api","hash":"56098242bc7773343ed88ab82e04abf4"}
 ##DOCS-SOURCER-END -->

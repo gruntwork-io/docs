@@ -5341,9 +5341,9 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
-"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.19":
+"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.20":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#40c1bd2d0422a7346549f53ca13ad5f255f616b5"
+  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#9ef5f566f7a85238053af15aecd4235a09025ac6"
   dependencies:
     "@octokit/auth-app" "^3.6.1"
     "@octokit/plugin-retry" "^3.0.9"

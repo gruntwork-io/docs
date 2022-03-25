@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.84.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.84.0"/>
 
 # Amazon EKS Core Services
 
@@ -118,7 +118,7 @@ The name of the EKS cluster where the core services will be deployed into.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="required" type="object">
+<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
 Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set to null if you do not wish to use IAM role with Service Accounts.
@@ -152,24 +152,17 @@ The ID of the VPC where the EKS cluster is deployed.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="worker_vpc_subnet_ids" requirement="required" type="list">
+<HclListItem name="worker_vpc_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. Required if any of the services are being scheduled on Fargate. Set to empty list if none of the Pods are being scheduled on Fargate.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="alb_ingress_controller_pod_node_affinity" requirement="optional" type="list">
+<HclListItem name="alb_ingress_controller_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Configure affinity rules for the ALB Ingress Controller Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -189,7 +182,7 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="alb_ingress_controller_pod_tolerations" requirement="optional" type="list">
+<HclListItem name="alb_ingress_controller_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
 Configure tolerations rules to allow the ALB Ingress Controller Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
@@ -211,7 +204,7 @@ list(map(any))
 Minimum time to wait after a scale up event before any node is considered for scale down.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="10m"/>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
 <HclListItem name="autoscaler_scale_down_unneeded_time" requirement="optional" type="string">
@@ -220,7 +213,7 @@ Minimum time to wait after a scale up event before any node is considered for sc
 Minimum time to wait since the node became unused before the node is considered for scale down by the autoscaler.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="10m"/>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
 <HclListItem name="autoscaler_skip_nodes_with_local_storage" requirement="optional" type="bool">
@@ -241,7 +234,7 @@ The Container repository to use for looking up the cloudwatch-agent Container im
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="aws_cloudwatch_agent_pod_node_affinity" requirement="optional" type="list">
+<HclListItem name="aws_cloudwatch_agent_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Configure affinity rules for the AWS CloudWatch Agent Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -267,10 +260,17 @@ list(object({
 Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="aws_cloudwatch_agent_pod_tolerations" requirement="optional" type="list">
+<HclListItem name="aws_cloudwatch_agent_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
 Configure tolerations rules to allow the AWS CloudWatch Agent Pods to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
@@ -295,39 +295,25 @@ Which version of amazon/cloudwatch-agent to install. When null, uses the default
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_autoscaler_pod_annotations" requirement="optional" type="map">
+<HclListItem name="cluster_autoscaler_pod_annotations" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cluster_autoscaler_pod_labels" requirement="optional" type="map">
+<HclListItem name="cluster_autoscaler_pod_labels" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Labels to apply to the cluster autoscaler pod(s), as key value pairs.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cluster_autoscaler_pod_node_affinity" requirement="optional" type="list">
+<HclListItem name="cluster_autoscaler_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Configure affinity rules for the cluster-autoscaler Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -353,6 +339,13 @@ list(object({
 Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ for more information. This is most useful for configuring CPU+Memory availability for Fargate, which defaults to 0.25 vCPU and 256MB RAM.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -371,7 +364,7 @@ Pod resource requests and limits to use. Refer to https://kubernetes.io/docs/con
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="cluster_autoscaler_pod_tolerations" requirement="optional" type="list">
+<HclListItem name="cluster_autoscaler_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
 Configure tolerations rules to allow the cluster-autoscaler Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
@@ -393,7 +386,7 @@ list(map(any))
 The name to use for the helm release for cluster-autoscaler. This is useful to force a redeployment of the cluster-autoscaler component.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="cluster-autoscaler"/>
+<HclListItemDefaultValue defaultValue="&quot;cluster-autoscaler&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_repository" requirement="optional" type="string">
@@ -402,7 +395,7 @@ The name to use for the helm release for cluster-autoscaler. This is useful to f
 Which docker repository to use to install the cluster autoscaler. Check the following link for valid repositories to use https://github.com/kubernetes/autoscaler/releases
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"/>
+<HclListItemDefaultValue defaultValue="&quot;us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_scaling_strategy" requirement="optional" type="string">
@@ -411,7 +404,7 @@ Which docker repository to use to install the cluster autoscaler. Check the foll
 Specifies an 'expander' for the cluster autoscaler. This helps determine which ASG to scale when additional resource capacity is needed.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="least-waste"/>
+<HclListItemDefaultValue defaultValue="&quot;least-waste&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_version" requirement="optional" type="string">
@@ -420,7 +413,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="v1.21.0"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.21.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -477,7 +470,7 @@ Whether or not to enable fluent-bit for log aggregation.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="external_dns_pod_node_affinity" requirement="optional" type="list">
+<HclListItem name="external_dns_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Configure affinity rules for the external-dns Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -497,7 +490,7 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="external_dns_pod_tolerations" requirement="optional" type="list">
+<HclListItem name="external_dns_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
 Configure tolerations rules to allow the external-dns Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
@@ -513,39 +506,25 @@ list(map(any))
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="external_dns_route53_hosted_zone_domain_filters" requirement="optional" type="list">
+<HclListItem name="external_dns_route53_hosted_zone_domain_filters" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 Only create records in hosted zones that match the provided domain names. Empty list (default) means match all zones. Zones must satisfy all three constraints (<a href="#external_dns_route53_hosted_zone_tag_filters"><code>external_dns_route53_hosted_zone_tag_filters</code></a>, <a href="#external_dns_route53_hosted_zone_id_filters"><code>external_dns_route53_hosted_zone_id_filters</code></a>, and <a href="#external_dns_route53_hosted_zone_domain_filters"><code>external_dns_route53_hosted_zone_domain_filters</code></a>).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="external_dns_route53_hosted_zone_id_filters" requirement="optional" type="list">
+<HclListItem name="external_dns_route53_hosted_zone_id_filters" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 Only create records in hosted zones that match the provided IDs. Empty list (default) means match all zones. Zones must satisfy all three constraints (<a href="#external_dns_route53_hosted_zone_tag_filters"><code>external_dns_route53_hosted_zone_tag_filters</code></a>, <a href="#external_dns_route53_hosted_zone_id_filters"><code>external_dns_route53_hosted_zone_id_filters</code></a>, and <a href="#external_dns_route53_hosted_zone_domain_filters"><code>external_dns_route53_hosted_zone_domain_filters</code></a>).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="external_dns_route53_hosted_zone_tag_filters" requirement="optional" type="list">
+<HclListItem name="external_dns_route53_hosted_zone_tag_filters" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Only create records in hosted zones that match the provided tags. Each item in the list should specify tag key and tag value as a map. Empty list (default) means match all zones. Zones must satisfy all three constraints (<a href="#external_dns_route53_hosted_zone_tag_filters"><code>external_dns_route53_hosted_zone_tag_filters</code></a>, <a href="#external_dns_route53_hosted_zone_id_filters"><code>external_dns_route53_hosted_zone_id_filters</code></a>, and <a href="#external_dns_route53_hosted_zone_domain_filters"><code>external_dns_route53_hosted_zone_domain_filters</code></a>).
@@ -564,19 +543,12 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="external_dns_sources" requirement="optional" type="list">
+<HclListItem name="external_dns_sources" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 K8s resources type to be observed for new DNS entries by ExternalDNS.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -589,19 +561,12 @@ list(string)
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="fargate_fluent_bit_execution_iam_role_arns" requirement="optional" type="list">
+<HclListItem name="fargate_fluent_bit_execution_iam_role_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of ARNs of Fargate execution IAM Roles that should get permissions to ship logs using fluent-bit. This must be provided if enable_fargate_fluent_bit is true.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -611,7 +576,7 @@ list(string)
 Additional filters that fluent-bit should apply to log output. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_filter).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_extra_parsers" requirement="optional" type="string">
@@ -620,7 +585,7 @@ Additional filters that fluent-bit should apply to log output. This string shoul
 Additional parsers that fluent-bit should export logs to. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_log_stream_prefix" requirement="optional" type="string">
@@ -629,22 +594,15 @@ Additional parsers that fluent-bit should export logs to. This string should be 
 Prefix string to use for the CloudWatch Log Stream that gets created for each Fargate pod.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="fargate"/>
+<HclListItemDefaultValue defaultValue="&quot;fargate&quot;"/>
 </HclListItem>
 
-<HclListItem name="fargate_worker_disallowed_availability_zones" requirement="optional" type="list">
+<HclListItem name="fargate_worker_disallowed_availability_zones" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of availability zones in the region that we CANNOT use to deploy the EKS Fargate workers. You can use this to avoid availability zones that may not be able to provision the resources (e.g ran out of capacity). If empty, will allow all availability zones.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -664,7 +622,7 @@ list(string)
 Additional filters that fluent-bit should apply to log output. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_filter).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fluent_bit_extra_outputs" requirement="optional" type="string">
@@ -673,7 +631,7 @@ Additional filters that fluent-bit should apply to log output. This string shoul
 Additional output streams that fluent-bit should export logs to. This string should be formatted according to the Fluent-bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configuration-file#config_output).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fluent_bit_image_repository" requirement="optional" type="string">
@@ -736,7 +694,7 @@ ARN of the lambda function to trigger when events arrive at the fluent bit log g
 Filter pattern for the CloudWatch subscription. Only used if <a href="#fluent_bit_log_group_subscription_arn"><code>fluent_bit_log_group_subscription_arn</code></a> is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="fluent_bit_log_stream_prefix" requirement="optional" type="string">
@@ -748,7 +706,7 @@ Prefix string to use for the CloudWatch Log Stream that gets created for each po
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="fluent_bit_pod_node_affinity" requirement="optional" type="list">
+<HclListItem name="fluent_bit_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Configure affinity rules for the fluent-bit Pods to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
@@ -768,7 +726,7 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="fluent_bit_pod_tolerations" requirement="optional" type="list">
+<HclListItem name="fluent_bit_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
 Configure tolerations rules to allow the fluent-bit Pods to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
@@ -799,7 +757,7 @@ Which version of aws-for-fluent-bit to install. When null, uses the default vers
 Policy for how DNS records are sychronized between sources and providers (options: sync, upsert-only).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="sync"/>
+<HclListItemDefaultValue defaultValue="&quot;sync&quot;"/>
 </HclListItem>
 
 <HclListItem name="schedule_alb_ingress_controller_on_fargate" requirement="optional" type="bool">
@@ -829,7 +787,7 @@ When true, the external-dns pods will be scheduled on Fargate.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="service_dns_mappings" requirement="optional" type="map">
+<HclListItem name="service_dns_mappings" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Configure Kubernetes Services to lookup external DNS records. This can be useful to bind friendly internal service names to domains (e.g. the RDS database endpoint).
@@ -897,5 +855,5 @@ Name of the CloudWatch Log Group used to store the container logs.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bb540d28afefb55027edc87bbf0a1986"}
+{"sourcePlugin":"service-catalog-api","hash":"7731a51699a009518591cecbc16afad9"}
 ##DOCS-SOURCER-END -->

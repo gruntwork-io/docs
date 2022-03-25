@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.77.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.77.0"/>
 
 # TLS Scripts
 
@@ -100,5 +100,5 @@ If you’ve never used the Service Catalog before, make sure to read
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"b682754ceae9a531266822ff3a928290"}
+{"sourcePlugin":"service-catalog-api","hash":"ce3ceb5e749e30412ea03f3ad81e0c33"}
 ##DOCS-SOURCER-END -->

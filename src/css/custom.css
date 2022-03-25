@@ -381,7 +381,7 @@ html[data-theme="dark"] .link-button:hover {
 }
 
 .snap-top {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 20px;
 }
 
 /* MOBILE */

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Amazon ElastiCache for Redis
 
@@ -128,19 +128,12 @@ The total number of nodes in the Redis Replication Group. E.g. 1 represents just
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="required" type="list">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -153,51 +146,30 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to ElastiCache from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs or Security Groups to allow network access to ElastiCache from. All security groups must either be in the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>, or a peered VPC with the VPC specified by <a href="#vpc_id"><code>vpc_id</code></a>. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the ElastiCache instances to be reachable.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -219,7 +191,7 @@ The password used to access a password protected server. Can be specified only i
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_mode" requirement="optional" type="list">
+<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
@@ -271,7 +243,7 @@ Whether to enable encryption in transit.
 Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="sat:07:00-sat:08:00"/>
+<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
@@ -298,7 +270,7 @@ The port number on which each of the cache nodes will accept connections (e.g. 6
 Version number of redis to use (e.g. 5.0.6).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5.0.6"/>
+<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
 </HclListItem>
 
 <HclListItem name="snapshot_arn" requirement="optional" type="string">
@@ -334,7 +306,7 @@ The number of days for which ElastiCache will retain automatic cache cluster sna
 The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="06:00-07:00"/>
+<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="sns_topic_for_notifications" requirement="optional" type="string">
@@ -343,22 +315,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 The ARN of the SNS Topic to which notifications will be sent when a Replication Group event happens, such as an automatic failover (e.g. arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if you do not wish to receive notifications via SNS.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A set of tags to set for the ElastiCache Replication Group.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -418,5 +383,5 @@ When cluster mode is disabled, use this endpoint for all read operations.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9c5bddb5a6b7bdb45b0e41f83e18be4b"}
+{"sourcePlugin":"service-catalog-api","hash":"c3a8577a7409f099ef40424495edef43"}
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Account Baseline for root account
 
@@ -122,66 +122,45 @@ The AWS Region to use as the global config recorder and seed region for GuardDut
 Map of child accounts to create. The map key is the name of the account and the value is an object containing account configuration variables. See the comments below for what keys and values this object should contain.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="config_opt_in_regions" requirement="required" type="list">
+<HclListItem name="config_opt_in_regions" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Creates resources in the specified regions. The best practice is to enable AWS Config in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="ebs_opt_in_regions" requirement="required" type="list">
+<HclListItem name="ebs_opt_in_regions" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Creates resources in the specified regions. The best practice is to enable EBS Encryption in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region must be in this list.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="guardduty_opt_in_regions" requirement="required" type="list">
+<HclListItem name="guardduty_opt_in_regions" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Creates resources in the specified regions. The best practice is to enable GuardDuty in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region must be in this list.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="iam_access_analyzer_opt_in_regions" requirement="required" type="list">
+<HclListItem name="iam_access_analyzer_opt_in_regions" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Creates resources in the specified regions. The best practice is to enable IAM Access Analyzer in all enabled regions in your AWS account. This variable must NOT be set to null or empty. Otherwise, we won't know which regions to use and authenticate to, and may use some not enabled in your AWS account (e.g., GovCloud, China, etc). To get the list of regions enabled in your AWS account, you can use the AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region must be in this list.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="name_prefix" requirement="required" type="string">
@@ -194,7 +173,7 @@ The name used to prefix AWS Config and Cloudtrail resources, including the S3 bu
 
 ### Optional
 
-<HclListItem name="additional_config_rules" requirement="optional" type="map">
+<HclListItem name="additional_config_rules" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 Map of additional managed rules to add. The key is the name of the rule (e.g. ´acm-certificate-expiration-check´) and the value is an object specifying the rule details
@@ -222,7 +201,7 @@ map(object({
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map">
+<HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
 Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy IAM role using an OpenID Connect Provider for the given repositories. Refer to the docs for github-actions-iam-role for more information. Note that this is mutually exclusive with <a href="#allow_auto_deploy_from_other_account_arns"><code>allow_auto_deploy_from_other_account_arns</code></a>. Only used if <a href="#enable_github_actions_access"><code>enable_github_actions_access</code></a> is true. 
@@ -238,35 +217,21 @@ map(list(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_auto_deploy_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed to assume the auto deploy IAM role that has the permissions in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_billing_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_billing_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed full (read and write) access to the billing info for this account.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -279,115 +244,66 @@ If true, an IAM Policy that grants access to CloudTrail will be honored. If fals
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="allow_dev_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_dev_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed full (read and write) access to the services in this account specified in <a href="#dev_permitted_services"><code>dev_permitted_services</code></a>.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_full_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_full_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed full (read and write) access to this account.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_logs_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_logs_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed read access to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If <a href="#cloudtrail_kms_key_arn"><code>cloudtrail_kms_key_arn</code></a> is specified, will also be given permissions to decrypt with the KMS CMK that is used to encrypt CloudTrail logs.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_read_only_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_read_only_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed read-only access to this account.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_ssh_grunt_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_ssh_grunt_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed read access to IAM groups and publish SSH keys. This is used for ssh-grunt.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_support_access_from_other_account_arns" requirement="optional" type="list">
+<HclListItem name="allow_support_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed access to AWS support for this account.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="auto_deploy_permissions" requirement="optional" type="list">
+<HclListItem name="auto_deploy_permissions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If <a href="#should_create_iam_group_auto_deploy"><code>should_create_iam_group_auto_deploy</code></a> is true, the list must have at least one element (e.g. '*').
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -406,7 +322,7 @@ Whether or not to allow kms:DescribeKey to external AWS accounts with write acce
 Specify the name of the CloudWatch Logs group to publish the CloudTrail logs to. This log group exists in the current account. Set this value to `null` to avoid publishing the trail logs to the logs group. The recommended configuration for CloudTrail is (a) for each child account to aggregate its logs in an S3 bucket in a single central account, such as a logs account and (b) to also store 14 days work of logs in CloudWatch in the child account itself for local debugging.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="cloudtrail-logs"/>
+<HclListItemDefaultValue defaultValue="&quot;cloudtrail-logs&quot;"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_data_logging_enabled" requirement="optional" type="bool">
@@ -433,10 +349,10 @@ Specify if you want your event selector to include management events for your tr
 Specify if you want your trail to log read-only events, write-only events, or all. Possible values are: ReadOnly, WriteOnly, All.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="All"/>
+<HclListItemDefaultValue defaultValue="&quot;All&quot;"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_data_logging_resources" requirement="optional" type="map">
+<HclListItem name="cloudtrail_data_logging_resources" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
 Data resources for which to log data events. This should be a map, where each key is a data resource type, and each value is a list of data resource values. Possible values for data resource types are: AWS::S3::Object, AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block within the 'event_selector' block of the 'aws_cloudtrail' resource for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
@@ -479,19 +395,12 @@ Specifies whether the trail is an AWS Organizations trail. Organization trails l
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_kms_key_administrator_iam_arns" requirement="optional" type="list">
+<HclListItem name="cloudtrail_kms_key_administrator_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have rights to change who can access this extended log data. Note that if you specify a logs account (by setting is_logs_account = true on one of the accounts in <a href="#child_accounts"><code>child_accounts</code></a>), the KMS CMK will be created in that account, and the root of that account will automatically be made an admin of the CMK.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -513,19 +422,12 @@ If the kms_key_arn provided is an alias or alias ARN, then this must be set to t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_kms_key_user_iam_arns" requirement="optional" type="list">
+<HclListItem name="cloudtrail_kms_key_user_iam_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have read-only access to this extended log data.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -592,19 +494,12 @@ If true, create an S3 bucket of name <a href="#cloudtrail_s3_bucket_name"><code>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_tags" requirement="optional" type="map">
+<HclListItem name="cloudtrail_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply to the CloudTrail resources.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -623,7 +518,7 @@ Set to true to send the AWS Config data to another account (e.g., a logs account
 If the S3 bucket and SNS topics used for AWS Config live in a different AWS account, set this variable to the ID of that account. If the S3 bucket and SNS topics live in this account, set this variable to an empty string. Note that if one of the accounts in <a href="#child_accounts"><code>child_accounts</code></a> has is_logs_account set to true (this is the approach we recommended!), that account's ID will be used automatically, and you can leave this variable null.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="config_create_account_rules" requirement="optional" type="bool">
@@ -716,19 +611,12 @@ Set to true to create an SNS topic in this account for sending AWS Config notifi
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="config_sns_topic_kms_key_region_map" requirement="optional" type="map">
+<HclListItem name="config_sns_topic_kms_key_region_map" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Optional KMS key to use for each region for configuring default encryption for the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS key). If null or the region key is missing, encryption will not be configured for the SNS topic in that region.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -738,38 +626,24 @@ map(string)
 The name of the SNS Topic in where AWS Config notifications will be sent. Can be in the same account or in another account.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ConfigTopic"/>
+<HclListItemDefaultValue defaultValue="&quot;ConfigTopic&quot;"/>
 </HclListItem>
 
-<HclListItem name="config_tags" requirement="optional" type="map">
+<HclListItem name="config_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the S3 Bucket. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="configrules_excluded_accounts" requirement="optional" type="list">
+<HclListItem name="configrules_excluded_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of AWS account identifiers to exclude from org-level Config rules. Only used if <a href="#config_create_account_rules"><code>config_create_account_rules</code></a> is false (not recommended).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -779,7 +653,7 @@ list(string)
 The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´ rules. See https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="TwentyFour_Hours"/>
+<HclListItemDefaultValue defaultValue="&quot;TwentyFour_Hours&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_organization" requirement="optional" type="bool">
@@ -797,22 +671,15 @@ Set to true to create/configure AWS Organizations for the first time in this acc
 The name of the IAM group that will grant access to all external AWS accounts in <a href="#iam_groups_for_cross_account_access"><code>iam_groups_for_cross_account_access</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="_all-accounts"/>
+<HclListItemDefaultValue defaultValue="&quot;_all-accounts&quot;"/>
 </HclListItem>
 
-<HclListItem name="dev_permitted_services" requirement="optional" type="list">
+<HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of AWS services for which the developers from the accounts in <a href="#allow_dev_access_from_other_account_arns"><code>allow_dev_access_from_other_account_arns</code></a> will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -825,19 +692,12 @@ If set to true (default), all new EBS volumes will have encryption enabled by de
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="ebs_kms_key_arns" requirement="optional" type="map">
+<HclListItem name="ebs_kms_key_arns" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Optional map of region names to KMS keys to use for EBS volume encryption when <a href="#ebs_use_existing_kms_keys"><code>ebs_use_existing_kms_keys</code></a> is enabled.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -994,19 +854,12 @@ When destroying this user, destroy even if it has non-Terraform-managed IAM acce
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="github_actions_openid_connect_provider_thumbprint_list" requirement="optional" type="list">
+<HclListItem name="github_actions_openid_connect_provider_thumbprint_list" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 When set, use the statically provided hardcoded list of thumbprints rather than looking it up dynamically. This is useful if you want to trade reliability of the OpenID Connect Provider across certificate renewals with a static list that is obtained using a trustworthy mechanism, to mitigate potential damage from a domain hijacking attack on GitHub domains.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -1016,7 +869,7 @@ list(string)
 Name of the Cloudwatch event rules.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="guardduty-finding-events"/>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
 </HclListItem>
 
 <HclListItem name="guardduty_finding_publishing_frequency" requirement="optional" type="string">
@@ -1034,7 +887,7 @@ Specifies the frequency of notifications sent for subsequent finding occurrences
 Specifies a name for the created SNS topics where findings are published. publish_findings_to_sns must be set to true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="guardduty-findings"/>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
 </HclListItem>
 
 <HclListItem name="guardduty_publish_findings_to_sns" requirement="optional" type="bool">
@@ -1052,7 +905,7 @@ Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
 The name of the IAM Access Analyzer module
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="baseline_root-iam_access_analyzer"/>
+<HclListItemDefaultValue defaultValue="&quot;baseline_root-iam_access_analyzer&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_access_analyzer_type" requirement="optional" type="string">
@@ -1061,58 +914,37 @@ The name of the IAM Access Analyzer module
 If set to ORGANIZATION, the analyzer will be scanning the current organization and any policies that refer to linked resources such as S3, IAM, Lambda and SQS policies.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ORGANIZATION"/>
+<HclListItemDefaultValue defaultValue="&quot;ORGANIZATION&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_developers_permitted_services" requirement="optional" type="list">
+<HclListItem name="iam_group_developers_permitted_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of AWS services for which the developers IAM Group will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access. If you need to grant iam privileges, just grant the user Full Access.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="iam_group_names_ssh_grunt_sudo_users" requirement="optional" type="list">
+<HclListItem name="iam_group_names_ssh_grunt_sudo_users" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of names to be used for the IAM Group that enables its members to SSH as a sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="iam_group_names_ssh_grunt_users" requirement="optional" type="list">
+<HclListItem name="iam_group_names_ssh_grunt_users" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The name to be used for the IAM Group that enables its members to SSH as a non-sudo user into any server configured with the ssh-grunt Gruntwork module. Pass in multiple to configure multiple different IAM groups to control different groupings of access at the server level. Pass in empty list to disable creation of the IAM groups.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="iam_groups_for_cross_account_access" requirement="optional" type="list">
+<HclListItem name="iam_groups_for_cross_account_access" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 This variable is used to create groups that allow IAM users to assume roles in your other AWS accounts. It should be a list of objects, where each object has the fields 'group_name', which will be used as the name of the IAM group, and 'iam_role_arns', which is a list of ARNs of IAM Roles that you can assume when part of that group. For each entry in the list of objects, we will create an IAM group that allows users to assume the given IAM role(s) in the other AWS account. This allows you to define all your IAM users in one account (e.g. the users account) and to grant them access to certain IAM roles in other accounts (e.g. the stage, prod, audit accounts).
@@ -1212,19 +1044,12 @@ Require at least one uppercase character in password.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="iam_role_tags" requirement="optional" type="map">
+<HclListItem name="iam_role_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 The tags to apply to all the IAM role resources.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1234,7 +1059,7 @@ map(string)
 Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are defined by a dash; for example, '443,1020-1025'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="443"/>
+<HclListItemDefaultValue defaultValue="&quot;443&quot;"/>
 </HclListItem>
 
 <HclListItem name="insecure_sg_rules_authorized_udp_ports" requirement="optional" type="string">
@@ -1255,19 +1080,12 @@ Specifies whether CloudTrail will log only API calls in the current region or in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="organizations_aws_service_access_principals" requirement="optional" type="list">
+<HclListItem name="organizations_aws_service_access_principals" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of AWS service principal names for which you want to enable integration with your organization. Must have `organizations_feature_set` set to ALL. See https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -1288,7 +1106,7 @@ list(string)
 If set to ALLOW, the new account enables IAM users to access account billing information if they have the required permissions. If set to DENY, then only the root user of the new account can access account billing information.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ALLOW"/>
+<HclListItemDefaultValue defaultValue="&quot;ALLOW&quot;"/>
 </HclListItem>
 
 <HclListItem name="organizations_default_role_name" requirement="optional" type="string">
@@ -1297,38 +1115,24 @@ If set to ALLOW, the new account enables IAM users to access account billing inf
 The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="OrganizationAccountAccessRole"/>
+<HclListItemDefaultValue defaultValue="&quot;OrganizationAccountAccessRole&quot;"/>
 </HclListItem>
 
-<HclListItem name="organizations_default_tags" requirement="optional" type="map">
+<HclListItem name="organizations_default_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Default tags to add to accounts. Will be appended to ´child_account.*.tags´
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="organizations_enabled_policy_types" requirement="optional" type="list">
+<HclListItem name="organizations_enabled_policy_types" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of Organizations policy types to enable in the Organization Root. See https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -1346,7 +1150,7 @@ list(string)
 Specify `ALL` or `CONSOLIDATED_BILLING`.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ALL"/>
+<HclListItemDefaultValue defaultValue="&quot;ALL&quot;"/>
 </HclListItem>
 
 <HclListItem name="password_reset_required" requirement="optional" type="bool">
@@ -1472,6 +1276,13 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 A map of users to create. The keys are the user names and the values are an object with the optional keys 'groups' (a list of IAM groups to add the user to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a base-64 encoded PGP public key, or a keybase username in the form keybase:username, used to encrypt the user's credentials; required if create_login_profile or create_access_keys is true), 'create_login_profile' (if set to true, create a password to login to the AWS Web Console), 'create_access_keys' (if set to true, create access keys for the user), 'path' (the path), and 'permissions_boundary' (the ARN of the policy that is used to set the permissions boundary for the user).
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1957,5 +1768,5 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"71380366ec67d287219e9fa3204ac572"}
+{"sourcePlugin":"service-catalog-api","hash":"2f71b4994e7a2de330d5d9a68d3e3f40"}
 ##DOCS-SOURCER-END -->

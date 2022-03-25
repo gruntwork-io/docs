@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
 # Application Load Balancer
 
@@ -123,19 +123,12 @@ ID of the VPC where the ALB will be deployed
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_subnet_ids" requirement="required" type="list">
+<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The ids of the subnets that the ALB can use to source its IP
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 ### Optional
@@ -149,37 +142,23 @@ The name to use for the S3 bucket where the ALB access logs will be stored. If y
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="acm_cert_statuses" requirement="optional" type="list">
+<HclListItem name="acm_cert_statuses" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs with the given statuses. Valid values are PENDING_VALIDATION, ISSUED, INACTIVE, EXPIRED, VALIDATION_TIMED_OUT, REVOKED and FAILED.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[
-  'ISSUED'
+  &quot;ISSUED&quot;
 ]"/>
 </HclListItem>
 
-<HclListItem name="acm_cert_types" requirement="optional" type="list">
+<HclListItem name="acm_cert_types" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs of the given types. Valid values are AMAZON_ISSUED and IMPORTED.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -201,35 +180,21 @@ Set to true to enable all outbound traffic on this ALB. If set to false, the ALB
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list">
+<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The CIDR-formatted IP Address range from which this ALB will allow incoming requests. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is false, use the default value. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is true, consider setting this to the VPC's CIDR Block, or something even more restrictive.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list">
+<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of IDs of security groups that should have access to the ALB
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -242,19 +207,12 @@ Set to true to create a Route 53 DNS A record for this ALB?
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of custom tags to apply to the ALB and its Security Group. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -273,7 +231,7 @@ If a request to the load balancer does not match any of your listener rules, the
 If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="text/plain"/>
+<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
 </HclListItem>
 
 <HclListItem name="default_action_status_code" requirement="optional" type="number">
@@ -285,19 +243,12 @@ If a request to the load balancer does not match any of your listener rules, the
 <HclListItemDefaultValue defaultValue="404"/>
 </HclListItem>
 
-<HclListItem name="domain_names" requirement="optional" type="list">
+<HclListItem name="domain_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of domain names for the DNS A record to add for the ALB (e.g. alb.foo.com). Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -337,23 +288,16 @@ The ID of the hosted zone for the DNS A record to add for the ALB. Only used if 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="http_listener_ports" requirement="optional" type="list">
+<HclListItem name="http_listener_ports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of ports for which an HTTP Listener should be created on the ALB. Tip: When you define Listener Rules for these Listeners, be sure that, for each Listener, at least one Listener Rule  uses the '*' path to ensure that every possible request path for that Listener is handled by a Listener Rule. Otherwise some requests won't route to any Target Group.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="https_listener_ports_and_acm_ssl_certs" requirement="optional" type="list">
+<HclListItem name="https_listener_ports_and_acm_ssl_certs" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of the ports for which an HTTPS Listener should be created on the ALB. Each item in the list should be a map with the keys 'port', the port number to listen on, and 'tls_domain_name', the domain name of an SSL/TLS certificate issued by the Amazon Certificate Manager (ACM) to associate with the Listener to be created. If your certificate isn't issued by ACM, specify <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a> instead. Tip: When you define Listener Rules for these Listeners, be sure that, for each Listener, at least one Listener Rule  uses the '*' path to ensure that every possible request path for that Listener is handled by a Listener Rule. Otherwise some requests won't route to any Target Group.
@@ -372,7 +316,7 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="https_listener_ports_and_ssl_certs" requirement="optional" type="list">
+<HclListItem name="https_listener_ports_and_ssl_certs" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
 A list of the ports for which an HTTPS Listener should be created on the ALB. Each item in the list should be a map with the keys 'port', the port number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS certificate to associate with the Listener to be created. If your certificate is issued by the Amazon Certificate Manager (ACM), specify <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a> instead. Tip: When you define Listener Rules for these Listeners, be sure that, for each Listener, at least one Listener Rule  uses the '*' path to ensure that every possible request path for that Listener is handled by a Listener Rule. Otherwise some requests won't route to any Target Group.
@@ -415,7 +359,7 @@ If true, create a new S3 bucket for access logs with the name in <a href="#acces
 The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="ELBSecurityPolicy-2016-08"/>
+<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-2016-08&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -514,5 +458,5 @@ The AWS-managed DNS name assigned to the ALB.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"63693a94f0a44ffb48bf9c57604222f2"}
+{"sourcePlugin":"service-catalog-api","hash":"d32d0d4682b6952756dd0a9ee3ba7bdb"}
 ##DOCS-SOURCER-END -->

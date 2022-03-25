@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.85.1"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.85.1"/>
 
 # Lambda
 
@@ -95,19 +95,12 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list">
+<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 A list of SNS topic ARNs to notify when the lambda alarms change to ALARM, OK, or INSUFFICIENT_DATA state
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 </HclListItem>
 
 <HclListItem name="memory_size" requirement="required" type="number">
@@ -187,7 +180,7 @@ The method used to distribute log data to the destination. Only applicable when 
 A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue=""/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
@@ -199,35 +192,21 @@ ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ing
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="command" requirement="optional" type="list">
+<HclListItem name="command" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The CMD for the docker image. Only used if you specify a Docker image via image_uri.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -237,7 +216,7 @@ list(string)
 The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="GreaterThanThreshold"/>
+<HclListItemDefaultValue defaultValue="&quot;GreaterThanThreshold&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
@@ -285,35 +264,21 @@ Set to true to enable versioning for this Lambda function. This allows you to us
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="entry_point" requirement="optional" type="list">
+<HclListItem name="entry_point" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The ENTRYPOINT for the docker image. Only used if you specify a Docker image via image_uri.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="environment_variables" requirement="optional" type="map">
+<HclListItem name="environment_variables" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of environment variables to pass to the Lambda function. AWS will automatically encrypt these with KMS and decrypt them when running the function.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -361,7 +326,7 @@ The function entrypoint in your code. This is typically the name of a function o
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_policy" requirement="optional" type="map">
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 An object defining the policy to attach to `iam_role_name` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement. Ignored if `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
@@ -408,19 +373,12 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="layers" requirement="optional" type="list">
+<HclListItem name="layers" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The list of Lambda Layer Version ARNs to attach to your Lambda Function. You can have a maximum of 5 Layers attached to each function.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -430,7 +388,7 @@ list(string)
 The name for the alarm's associated metric.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="Errors"/>
+<HclListItemDefaultValue defaultValue="&quot;Errors&quot;"/>
 </HclListItem>
 
 <HclListItem name="mount_to_file_system" requirement="optional" type="bool">
@@ -574,38 +532,24 @@ The path to the directory that contains your Lambda function source code. This c
 The statistic to apply to the alarm's associated metric.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="Sum"/>
+<HclListItemDefaultValue defaultValue="&quot;Sum&quot;"/>
 </HclListItem>
 
-<HclListItem name="subnet_ids" requirement="optional" type="list">
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of subnet IDs the Lambda function should be able to access within your VPC. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the Lambda function.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -782,5 +726,5 @@ Latest published version of your Lambda Function
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"40d26f388b45e61002d060c10a39d218"}
+{"sourcePlugin":"service-catalog-api","hash":"4ebb4e5d98fef0d1a0e89875116a3ceb"}
 ##DOCS-SOURCER-END -->

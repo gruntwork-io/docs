@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.1" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.2" lastModifiedVersion="0.78.0"/>
 
 # S3 Bucket
 
@@ -107,6 +107,13 @@ The S3 bucket where access logs for this bucket should be stored. Set to null to
 The lifecycle rules for the access logs bucket. See <a href="#lifecycle_rules"><code>lifecycle_rules</code></a> for details.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -125,6 +132,13 @@ Configure who will be the default owner of objects uploaded to the access logs S
 The IAM policy to apply to the S3 bucket used to store access logs. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -161,6 +175,13 @@ Configure who will be the default owner of objects uploaded to this S3 bucket: m
 The IAM policy to apply to this S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -170,7 +191,7 @@ The IAM policy to apply to this S3 bucket. You can use this to grant read/write 
 The server-side encryption algorithm to use on the bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href="#enable_sse"><code>enable_sse</code></a> to false.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="aws:kms"/>
+<HclListItemDefaultValue defaultValue="&quot;aws:kms&quot;"/>
 </HclListItem>
 
 <HclListItem name="cors_rules" requirement="optional" type="any">
@@ -179,6 +200,13 @@ The server-side encryption algorithm to use on the bucket. Valid values are AES2
 CORS rules to set on this S3 bucket
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -233,6 +261,13 @@ If set to true, when you run 'terraform destroy', delete all objects from the re
 The lifecycle rules for this S3 bucket. These can be used to change storage types or delete objects based on customizable rules. This should be a map, where each key is a unique ID for the lifecycle rule, and each value is an object that contains the parameters defined in the comment above.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -269,6 +304,13 @@ If set to true, replica bucket will be expected to already exist.
 The lifecycle rules for the replica bucket. See <a href="#lifecycle_rules"><code>lifecycle_rules</code></a> for details.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -287,6 +329,13 @@ Configure who will be the default owner of objects uploaded to the replica S3 bu
 The IAM policy to apply to the replica S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -314,7 +363,7 @@ The AWS region for the replica bucket.
 The server-side encryption algorithm to use on the replica bucket. Valid values are AES256 and aws:kms. To disable server-side encryption, set <a href="#replica_enable_sse"><code>replica_enable_sse</code></a> to false.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="aws:kms"/>
+<HclListItemDefaultValue defaultValue="&quot;aws:kms&quot;"/>
 </HclListItem>
 
 <HclListItem name="replication_role" requirement="optional" type="string">
@@ -332,22 +381,22 @@ The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only u
 The rules for managing replication. Only used if replication_bucket is specified. This should be a map, where the key is a unique ID for each replication rule and the value is an object of the form explained in a comment above.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
 A map of tags to apply to the S3 Bucket. These tags will also be applied to the access logging and replica buckets (if any). The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(string)
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -415,5 +464,5 @@ The name of the replica S3 bucket.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"0cafe7f4796c065300056651124f8e03"}
+{"sourcePlugin":"service-catalog-api","hash":"b468b047303699fd3cc15cf29bdba91b"}
 ##DOCS-SOURCER-END -->
