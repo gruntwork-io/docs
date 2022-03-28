@@ -95,7 +95,7 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/ebeneliason-patch-2/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) module is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/ebeneliason-patch-2/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
@@ -493,5 +493,5 @@ ID of the primary security group attached to the Tailscale relay server.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"387736d735bc0c56ce44a5eed7038fb3"}
+{"sourcePlugin":"service-catalog-api","hash":"556b699994f75cc11e8603816f552b20"}
 ##DOCS-SOURCER-END -->
