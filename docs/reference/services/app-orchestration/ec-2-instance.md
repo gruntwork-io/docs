@@ -166,7 +166,7 @@ Accept inbound SSH from these security groups
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -174,7 +174,7 @@ The AMI to run on the EC2 instance. This should be built from the Packer templat
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -455,7 +455,7 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItem name="fully_qualified_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be var.name.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
+The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be <a href="#name"><code>name</code></a>.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -639,5 +639,5 @@ The input parameters for the EBS volumes.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"9db03aaec997d7f4b88af980f1734b75"}
+{"sourcePlugin":"service-catalog-api","hash":"86e3540fbec24b6ef3109525f85eb1da"}
 ##DOCS-SOURCER-END -->
