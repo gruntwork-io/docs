@@ -31,7 +31,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This service contains code to deploy a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/) on AWS that can be
 used for administrative and management purposes, such as CI/CD services. The primary difference between this and the
-[application VPC](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc) is this one has two subnet tiers (public and private) while the application VPC has three
+[application VPC](/reference/services/networking/virtual-private-cloud-vpc) is this one has two subnet tiers (public and private) while the application VPC has three
 (public, private, and persistence). In this management VPC, we assume that there are no data stores that need to be
 separated in to a dedicated persistence tier.
 
@@ -596,5 +596,5 @@ Indicates whether or not the VPC has finished creating
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4ff2f5cb9875d66f9905297ffe9684c0"}
+{"sourcePlugin":"service-catalog-api","hash":"c072a323235e9714e08faa0712b54b8b"}
 ##DOCS-SOURCER-END -->

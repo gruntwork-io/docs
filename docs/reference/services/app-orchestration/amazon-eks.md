@@ -101,7 +101,7 @@ For information on how to manage your EKS cluster, including how to deploy Pods 
 to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repo.
 
-To add and manage additional worker groups, refer to the [eks-workers module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/eks-workers).
+To add and manage additional worker groups, refer to the [eks-workers module](/reference/services/app-orchestration/amazon-eks-workers).
 
 ## Reference
 
@@ -1438,5 +1438,5 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"8bf86cd915d022850f38c7ce21170e21"}
+{"sourcePlugin":"service-catalog-api","hash":"c529373e3c1b87e6ac5530af66aee8bc"}
 ##DOCS-SOURCER-END -->

@@ -33,7 +33,7 @@ A security baseline for AWS Landing Zone for configuring the security account (t
 AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
 
 For large scale organizations that frequently onboard and offboard new users, consider taking a look at
-[the iam-users-and-groups module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups) for managing IAM Users and Groups.
+[the iam-users-and-groups module](/reference/services/landing-zone/iam-users-and-iam-groups) for managing IAM Users and Groups.
 
 ## Features
 
@@ -1870,5 +1870,5 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"cca2b18780f82b83c8b9d34b3c519adb"}
+{"sourcePlugin":"service-catalog-api","hash":"423e122e2c045d6cbf16d8dca138a830"}
 ##DOCS-SOURCER-END -->

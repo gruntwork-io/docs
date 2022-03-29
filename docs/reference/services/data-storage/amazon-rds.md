@@ -29,7 +29,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This service contains code to deploy an Amazon Relational Database Service (RDS) cluster that can run MySQL, PostgreSQL,
 SQL Server, Oracle, or MariaDB. The cluster is managed by AWS and automatically handles standby failover, read replicas,
-backups, patching, and encryption. For Aurora, use the [Aurora](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/aurora/) service.
+backups, patching, and encryption. For Aurora, use the [Aurora](/reference/services/data-storage/amazon-aurora) service.
 
 ![RDS architecture](/img/reference/services/data-storage/rds-architecture.png)
 
@@ -1041,5 +1041,5 @@ The ID of the Security Group that controls access to the RDS DB instance.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1bb2fcf1663acae8e472cd34ab649c4e"}
+{"sourcePlugin":"service-catalog-api","hash":"816150262d7dafd23532eb8e620e443e"}
 ##DOCS-SOURCER-END -->
