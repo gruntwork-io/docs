@@ -5,7 +5,7 @@ toc_max_heading_level: 2
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 import Card from "/src/components/Card"
-import Grid from "/src/components/Grid"
+import CardGroup from "/src/components/CardGroup"
 
 # Need Help?
 
@@ -13,7 +13,7 @@ We’re here to assist when you get stuck. Basic support is included with every 
 
 ## Get Support
 
-<Grid cols={3}>
+<CardGroup cols={3}>
   <Card
     title="Ask a Question"
     icon="/img/support/question-icon.svg"
@@ -55,15 +55,11 @@ We’re here to assist when you get stuck. Basic support is included with every 
     Converse with Gruntwork engineers in your own <em>private</em> Slack
     channel.
   </Card>
-  <Card
-    title="Schedule a Call"
-    icon="/img/support/call-icon.svg"
-    href="mailto:support@gruntwork.io?subject=Live Call Request"
-    tags={["enterprise"]}
-  >
-    Speak with a Gruntwork engineer via phone or video chat for real-time help.
-    For details, contact <address>support@gruntwork.io</address>.
-  </Card>
+</CardGroup>
+
+## Share Feedback
+
+<CardGroup cols={3} commonCardProps={{ appearance: "flush" }}>
   <Card
     title="Request a Feature"
     icon="/img/support/bulb-icon.svg"
@@ -87,7 +83,7 @@ We’re here to assist when you get stuck. Basic support is included with every 
     We take security seriously. Please report any vulnerabilities to{" "}
     <address>security@gruntwork.io</address>
   </Card>
-</Grid>
+</CardGroup>
 
 ## Paid Support Tiers
 
@@ -141,10 +137,6 @@ We’re here to help you with:
 
 - **Bug fixes** — Raise concerns regarding any bugs you find. We’ll work with you to understand the impact to your team, and prioritize any bugs that interfere with getting your infrastructure into production.
 
-- **Design reviews** — Receive feedback on the design of your infrastructure from knowledgeable Gruntwork engineers. This can help identify opportunities for improvement, or provide insight on how to use Gruntwork to achieve your goals.
-
-- **Code reviews** — Get another pair of eyes on any changes you make to your infrastructure so you can have confidence taking them live.
-
 - **DevOps guidance** — While we don’t provide DevOps training beyond our [video training courses](/courses), we can help you understand how to apply general DevOps principles to devise the right infrastructure for your needs.
 
 ### How to reach us
@@ -178,5 +170,5 @@ Looking for more personalized assistance using a particular Gruntwork product? O
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"c0730cdc0a0bd008be10d785b0863bf9"}
+{"sourcePlugin":"local-copier","hash":"fa1adc802543e86ec1ece037062df95e"}
 ##DOCS-SOURCER-END -->
