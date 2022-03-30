@@ -144,7 +144,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the Tailscale subnet router. This should be built from the Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the Tailscale subnet router. This should be built from the Packer template under tailscale-subnet-router-ubuntu.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -152,7 +152,7 @@ The AMI to run on the Tailscale subnet router. This should be built from the Pac
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Tailscale subnet router. You can build the AMI using the Packer template tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Tailscale subnet router. You can build the AMI using the Packer template tailscale-subnet-router-ubuntu.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -430,7 +430,7 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 <HclListItem name="tailnet_hostname" requirement="optional" type="string">
 <HclListItemDescription>
 
-Advertised hostname of the server on the tailnet. If null, defaults to the var.name input value.
+Advertised hostname of the server on the tailnet. If null, defaults to the <a href="#name"><code>name</code></a> input value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -493,5 +493,5 @@ ID of the primary security group attached to the Tailscale relay server.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3ef866d3312e1716748261a2fb8e9963"}
+{"sourcePlugin":"service-catalog-api","hash":"67de4f538f2fedffbfe1220230c53faf"}
 ##DOCS-SOURCER-END -->

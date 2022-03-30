@@ -685,7 +685,7 @@ The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypt
 <HclListItem name="ecs_task_cloudwatch_log_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to /ecs/{var.name}.
+A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to /ecs/{<a href="#name"><code>name</code></a>}.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1044,5 +1044,5 @@ Security Group ID of the ECS task
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"144c18c60086f2e999bb1627930b4e64"}
+{"sourcePlugin":"service-catalog-api","hash":"5c289c2930d86edf05908f71fb705658"}
 ##DOCS-SOURCER-END -->

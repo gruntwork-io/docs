@@ -103,7 +103,7 @@ The amount of storage space the DB should use, in GB.
 <HclListItem name="engine_version" requirement="required" type="string">
 <HclListItemDescription>
 
-The version of var.engine to use (e.g. 8.0.17 for mysql).
+The version of <a href="#engine"><code>engine</code></a> to use (e.g. 8.0.17 for mysql).
 
 </HclListItemDescription>
 </HclListItem>
@@ -1041,5 +1041,5 @@ The ID of the Security Group that controls access to the RDS DB instance.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"1bb2fcf1663acae8e472cd34ab649c4e"}
+{"sourcePlugin":"service-catalog-api","hash":"3193b194a930cd3815e1fae77080a36e"}
 ##DOCS-SOURCER-END -->
