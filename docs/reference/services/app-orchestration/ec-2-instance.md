@@ -20,7 +20,6 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 # EC2 Instance
 
-
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
@@ -34,17 +33,17 @@ so if you want to run multiple EC2 instances for high availability and scalabili
 
 ## Features
 
-*   Build an AMI to run on the EC2 instance
-*   Create EC2 instance for the host
-*   Allocate an optional Elastic IP Address (EIP) and an associated DNS record
-*   Create an IAM Role and IAM instance profile
-*   Create a security group to manage ingress and egress traffic on desired ports
-*   Harden the OS by installing `fail2ban`, `ntp`, `auto-update`, `ip-lockdown`, and more
-*   Send all logs and metrics to CloudWatch
-*   Configure alerts in CloudWatch for CPU, memory, and disk space usage
-*   Manage SSH access with IAM groups using `ssh-grunt`
-*   Create and mount optional EBS volumes
-*   Allow ingress traffic on desired ports
+* Build an AMI to run on the EC2 instance
+* Create EC2 instance for the host
+* Allocate an optional Elastic IP Address (EIP) and an associated DNS record
+* Create an IAM Role and IAM instance profile
+* Create a security group to manage ingress and egress traffic on desired ports
+* Harden the OS by installing `fail2ban`, `ntp`, `auto-update`, `ip-lockdown`, and more
+* Send all logs and metrics to CloudWatch
+* Configure alerts in CloudWatch for CPU, memory, and disk space usage
+* Manage SSH access with IAM groups using `ssh-grunt`
+* Create and mount optional EBS volumes
+* Allow ingress traffic on desired ports
 
 ## Learn
 
@@ -59,23 +58,23 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+* [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+* [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+* [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
 The EC2 Instance AMI is defined using the [Packer](https://www.packer.io/) template at `ec2-instance.json`.
 This template configures the AMI to:
 
-1.  Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
+1. Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
     that developers can upload their public SSH keys to IAM and use those SSH keys, along with their IAM user names,
     toSSH to the EC2 instance.
 
-2.  Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
+2. Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
     so that the EC2 instance installs security updates automatically.
 
-3.  Optionally run the
+3. Optionally run the
     [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/syslog)
     to automatically rotate and rate limit syslog so that the EC2 instance doesn’t run out of disk space from large
     volumes of logs.
@@ -86,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+* [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -94,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+* [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -166,7 +165,7 @@ Accept inbound SSH from these security groups
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the EC2 instance. This should be built from the Packer template under ec2-instance.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -174,7 +173,7 @@ The AMI to run on the EC2 instance. This should be built from the Packer templat
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the EC2 instance. You can build the AMI using the Packer template ec2-instance.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -309,7 +308,7 @@ Tags to use to filter the Route 53 Hosted Zones that might match the hosted zone
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
-Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
+Cloud init scripts to run on the EC2 instance while it boots. See the part blocks in <https://www.terraform.io/docs/providers/template/d/cloudinit_config.html> for syntax.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -338,7 +337,7 @@ The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypt
 <HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+The number of days to retain log events in the log group. Refer to <https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days> for all the valid values. When null, the log events are retained forever.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -401,7 +400,7 @@ Set to true to enable several basic CloudWatch alarms around CPU usage, memory u
 <HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+Set to true to send logs to CloudWatch. This is useful in combination with <https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts> to do log aggregation in CloudWatch.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -410,7 +409,7 @@ Set to true to send logs to CloudWatch. This is useful in combination with https
 <HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/metrics/cloudwatch-memory-disk-metrics-scripts to get memory and disk metrics in CloudWatch for your EC2 instance.
+Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with <https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/metrics/cloudwatch-memory-disk-metrics-scripts> to get memory and disk metrics in CloudWatch for your EC2 instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -437,7 +436,7 @@ Enable ip-lockdown to block access to the instance metadata. Defaults to true.
 <HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+Set to true to add IAM permissions for ssh-grunt (<https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt>), which will allow you to manage SSH access via IAM groups.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -455,7 +454,7 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItem name="fully_qualified_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be var.name.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
+The apex domain of the hostname for the EC2 instance (e.g., example.com). The complete hostname for the EC2 instance will be <a href="#name"><code>name</code></a>.<a href="#fully_qualified_domain_name"><code>fully_qualified_domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -637,7 +636,6 @@ The input parameters for the EBS volumes.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"390eed36eaf023660dbda53bcb6a881d"}
+{"sourcePlugin":"service-catalog-api","hash":"86e3540fbec24b6ef3109525f85eb1da"}
 ##DOCS-SOURCER-END -->

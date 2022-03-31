@@ -120,7 +120,7 @@ A list of IP address ranges in CIDR format from which SSH access will be permitt
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on the bastion host. This should be built from the Packer template under bastion-host.json. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
+The AMI to run on the bastion host. This should be built from the Packer template under bastion-host.json. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if looking up the ami with filters.
 
 </HclListItemDescription>
 </HclListItem>
@@ -128,7 +128,7 @@ The AMI to run on the bastion host. This should be built from the Packer templat
 <HclListItem name="ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if var.ami is null. One of var.ami or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with the Bastion Host. You can build the AMI using the Packer template bastion-host.json. Only used if <a href="#ami"><code>ami</code></a> is null. One of <a href="#ami"><code>ami</code></a> or <a href="#ami_filters"><code>ami_filters</code></a> is required. Set to null if passing the ami ID directly.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -264,7 +264,7 @@ The default OS user for the Bastion Host AMI. For AWS Ubuntu AMIs, which is what
 <HclListItem name="domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be var.name.<a href="#domain_name"><code>domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
+The apex domain of the hostname for the bastion server (e.g., example.com). The complete hostname for the bastion server will be <a href="#name"><code>name</code></a>.<a href="#domain_name"><code>domain_name</code></a> (e.g., bastion.example.com). Only used if create_dns_record is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
@@ -470,5 +470,5 @@ The fully qualified name of the bastion host.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"dd365d7f7004d96a1f6d536791e841af"}
+{"sourcePlugin":"service-catalog-api","hash":"d19adb0308b0ab6089fa7efd079a1804"}
 ##DOCS-SOURCER-END -->
