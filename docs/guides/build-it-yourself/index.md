@@ -44,7 +44,7 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 ## Dig Into the Code
 
 <Grid cols={2}>
-  <Card title="Browse Services" href="/reference/services/intro">
+  <Card title="Browse Services" href="/reference/services/intro/overview">
     View the API reference for our entire service catalog to learn what’s
     available.
   </Card>
@@ -59,5 +59,5 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"2d26ab59dd60b0e8296e304bbc22f536"}
+{"sourcePlugin":"local-copier","hash":"5f0b3c2683be870a9d429ae2e390bbeb"}
 ##DOCS-SOURCER-END -->

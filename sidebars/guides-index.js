@@ -31,6 +31,7 @@ const sidebar = [
       "guides/working-with-code/versioning",
       "guides/working-with-code/contributing",
       "guides/working-with-code/forking",
+      "guides/working-with-code/tfc-integration",
     ],
   },
 ]
