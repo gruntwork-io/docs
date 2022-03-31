@@ -30,7 +30,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 This service creates a single EC2 instance that includes server hardening, IAM role, EIP (optional), EBS Volume
 (optional), and CloudWatch metrics, logs, and alerts. Note that a single EC2 instance can be a single point of failure,
 so if you want to run multiple EC2 instances for high availability and scalability, see the
-[asg-service](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/asg-service).
+[asg-service](/reference/services/app-orchestration/auto-scaling-group-asg).
 
 ## Features
 
@@ -639,5 +639,5 @@ The input parameters for the EBS volumes.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"86e3540fbec24b6ef3109525f85eb1da"}
+{"sourcePlugin":"service-catalog-api","hash":"c7124feb6d05a694840cdc4b749f4b5b"}
 ##DOCS-SOURCER-END -->

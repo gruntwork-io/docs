@@ -32,7 +32,7 @@ This service contains [Terraform](https://www.terraform.io) code to deploy a pro
 
 This service launches an ECS cluster on top of an Auto Scaling Group that you manage. If you wish to launch an ECS
 cluster on top of Fargate that is completely managed by AWS, refer to the
-[ecs-fargate-cluster module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-fargate-cluster). Refer to the section
+[ecs-fargate-cluster module](/reference/services/app-orchestration/amazon-ecs-fargate-cluster). Refer to the section
 [EC2 vs Fargate Launch Types](https://github.com/gruntwork-io/terraform-aws-ecs/blob/master/core-concepts.md#ec2-vs-fargate-launch-types)
 for more information on the differences between the two flavors.
 
@@ -780,5 +780,5 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"e56c802b2d2ef119bfede965deb4e98e"}
+{"sourcePlugin":"service-catalog-api","hash":"bc8a2eeab8efd0a6aa3907860931f455"}
 ##DOCS-SOURCER-END -->

@@ -25,8 +25,6 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/networking/vpc" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
-
 ## Overview
 
 This service contains code to deploy a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc) on AWS that can be used
@@ -979,5 +977,5 @@ Indicates whether or not the VPC has finished creating
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4b27289371c66e1413d774d354a046d0"}
+{"sourcePlugin":"service-catalog-api","hash":"b6550b91fcc422406c9b7e85c1e3268c"}
 ##DOCS-SOURCER-END -->

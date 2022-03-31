@@ -25,15 +25,13 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-security" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/landingzone/account-baseline-security" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
-
 ## Overview
 
 A security baseline for AWS Landing Zone for configuring the security account (the one where all your IAM users and IAM groups are defined), including setting up
 AWS Config, AWS CloudTrail, Amazon Guard Duty, IAM users, IAM groups, IAM password policy, and more.
 
 For large scale organizations that frequently onboard and offboard new users, consider taking a look at
-[the iam-users-and-groups module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/landingzone/iam-users-and-groups) for managing IAM Users and Groups.
+[the iam-users-and-groups module](/reference/services/landing-zone/iam-users-and-iam-groups) for managing IAM Users and Groups.
 
 ## Features
 
@@ -1870,5 +1868,5 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"cca2b18780f82b83c8b9d34b3c519adb"}
+{"sourcePlugin":"service-catalog-api","hash":"47af11a6a280f0571c7a7ee39653aaf9"}
 ##DOCS-SOURCER-END -->

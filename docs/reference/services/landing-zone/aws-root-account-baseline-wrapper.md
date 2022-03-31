@@ -25,8 +25,6 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/landingzone/account-baseline-root" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
-
 ## Overview
 
 A security baseline for AWS Landing Zone for configuring the root account (AKA master account) of an AWS Organization, including setting up
@@ -1768,5 +1766,5 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"2f71b4994e7a2de330d5d9a68d3e3f40"}
+{"sourcePlugin":"service-catalog-api","hash":"bcbd81891d481031a556f28f4c52e645"}
 ##DOCS-SOURCER-END -->

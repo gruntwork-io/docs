@@ -25,8 +25,6 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/landingzone/account-baseline-app" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
-
 ## Overview
 
 A security baseline for AWS Landing Zone for configuring the app accounts (dev, stage, prod, and other similar child
@@ -1431,5 +1429,5 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3f4e1924ad11773c973236bcf1eaf4bf"}
+{"sourcePlugin":"service-catalog-api","hash":"182d7de0ae378d03941c8cf25e6b29d3"}
 ##DOCS-SOURCER-END -->

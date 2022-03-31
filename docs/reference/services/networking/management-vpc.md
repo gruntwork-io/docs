@@ -25,13 +25,11 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/networking/vpc-mgmt" className="link-button" title="CIS subscribers may view documentation the compliant version of this module in GitHub.">Compliance Docs</a>
-
 ## Overview
 
 This service contains code to deploy a [Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/) on AWS that can be
 used for administrative and management purposes, such as CI/CD services. The primary difference between this and the
-[application VPC](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/networking/vpc) is this one has two subnet tiers (public and private) while the application VPC has three
+[application VPC](/reference/services/networking/virtual-private-cloud-vpc) is this one has two subnet tiers (public and private) while the application VPC has three
 (public, private, and persistence). In this management VPC, we assume that there are no data stores that need to be
 separated in to a dedicated persistence tier.
 
@@ -596,5 +594,5 @@ Indicates whether or not the VPC has finished creating
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"4ff2f5cb9875d66f9905297ffe9684c0"}
+{"sourcePlugin":"service-catalog-api","hash":"823a371fbc922ff2d6211df167cd7cf0"}
 ##DOCS-SOURCER-END -->

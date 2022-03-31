@@ -32,7 +32,7 @@ usage only on [AWS](https://aws.amazon.com) using
 [Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html).
 
 This service launches an ECS cluster on top of Fargate that is completely managed by AWS. If you wish to launch an ECS
-cluster on top of an Auto Scaling Group, refer to the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster). Refer to the section
+cluster on top of an Auto Scaling Group, refer to the [ecs-cluster module](/reference/services/app-orchestration/amazon-ecs-cluster). Refer to the section
 [EC2 vs Fargate Launch Types](https://github.com/gruntwork-io/terraform-aws-ecs/blob/master/core-concepts.md#ec2-vs-fargate-launch-types)
 for more information on the differences between the two flavors.
 
@@ -152,5 +152,5 @@ The name of the ECS cluster.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"56098242bc7773343ed88ab82e04abf4"}
+{"sourcePlugin":"service-catalog-api","hash":"08eed6f87e5f01770699a64084d80a1b"}
 ##DOCS-SOURCER-END -->
