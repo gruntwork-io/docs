@@ -5,7 +5,7 @@ toc_max_heading_level: 2
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 import Card from "/src/components/Card"
-import Grid from "/src/components/Grid"
+import CardGroup from "/src/components/CardGroup"
 
 # Need Help?
 
@@ -13,9 +13,9 @@ We’re here to assist when you get stuck. Basic support is included with every 
 
 ## Get Support
 
-<Grid cols={3}>
+<CardGroup cols={3}>
   <Card
-    title="Ask a Question"
+    title="Search Our Knowledge Base"
     icon="/img/support/question-icon.svg"
     href="https://github.com/gruntwork-io/knowledge-base/discussions"
   >
@@ -23,7 +23,7 @@ We’re here to assist when you get stuck. Basic support is included with every 
     your own.
   </Card>
   <Card
-    title="Chat With the Community"
+    title="Chat with the Community"
     icon="/img/support/chat-icon.svg"
     href="https://gruntwork-community.slack.com/archives/CHH9Y3Z62"
   >
@@ -33,43 +33,33 @@ We’re here to assist when you get stuck. Basic support is included with every 
     title="Email Us"
     icon="/img/support/email-icon.svg"
     href="mailto:support@gruntwork.io"
-    tags={["pro", "enterprise"]}
   >
     Contact <address>support@gruntwork.io</address> with any questions or
     concerns you may have.
   </Card>
-  {
-    //  We intend to add these cards in the near future, so we'll break
-    //  convention and just comment them out for now.
-    //
-    //  <Card
-    //    title="Email With Urgency"
-    //    icon="/img/support/email-urgent-icon.svg"
-    //    href="mailto:urgent-support@gruntwork.io"
-    //    tags={["pro", "enterprise"]}
-    //  >
-    //    Messages sent to <address>urgent-support@gruntwork.io</address> will
-    //    receive a response within 24 hours.
-    //  </Card>
-    //  <Card
-    //    title="Chat With Us"
-    //    icon="/img/support/chat-icon.svg"
-    //    href="#chat-with-us-in-slack"
-    //    tags={["pro", "enterprise"]}
-    //  >
-    //    Converse with Gruntwork engineers in your own <em>private</em> Slack
-    //    channel.
-    //  </Card>
-    //  <Card
-    //    title="Schedule a Call"
-    //    icon="/img/support/call-icon.svg"
-    //    href="http://calendly.com/gruntwork-live-support/one-hour"
-    //    tags={["enterprise"]}
-    //  >
-    //    Speak with a Gruntwork engineer via phone or video chat to get real-time
-    //    answers to your questions.
-    //  </Card>
-  }
+  <Card
+    title="Email with SLA Response"
+    icon="/img/support/email-urgent-icon.svg"
+    href="mailto:urgent-support@gruntwork.io"
+    tags={["pro", "enterprise"]}
+  >
+    Messages sent to <address>urgent-support@gruntwork.io</address> will receive
+    a response within your plan's Service Level Agreement.
+  </Card>
+  <Card
+    title="Chat with Gruntwork"
+    icon="/img/support/chat-icon.svg"
+    href="#chat-with-us-in-slack"
+    tags={["pro", "enterprise"]}
+  >
+    Converse with Gruntwork engineers in your own <em>private</em> Slack
+    channel, with SLA response times.
+  </Card>
+</CardGroup>
+
+## Share Feedback
+
+<CardGroup cols={3} commonCardProps={{ appearance: "flush" }}>
   <Card
     title="Request a Feature"
     icon="/img/support/bulb-icon.svg"
@@ -93,7 +83,7 @@ We’re here to assist when you get stuck. Basic support is included with every 
     We take security seriously. Please report any vulnerabilities to{" "}
     <address>security@gruntwork.io</address>
   </Card>
-</Grid>
+</CardGroup>
 
 ## Paid Support Tiers
 
@@ -147,10 +137,6 @@ We’re here to help you with:
 
 - **Bug fixes** — Raise concerns regarding any bugs you find. We’ll work with you to understand the impact to your team, and prioritize any bugs that interfere with getting your infrastructure into production.
 
-- **Design reviews** — Receive feedback on the design of your infrastructure from knowledgeable Gruntwork engineers. This can help identify opportunities for improvement, or provide insight on how to use Gruntwork to achieve your goals.
-
-- **Code reviews** — Get another pair of eyes on any changes you make to your infrastructure so you can have confidence taking them live.
-
 - **DevOps guidance** — While we don’t provide DevOps training beyond our [video training courses](/courses), we can help you understand how to apply general DevOps principles to devise the right infrastructure for your needs.
 
 ### How to reach us
@@ -184,5 +170,5 @@ Looking for more personalized assistance using a particular Gruntwork product? O
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"e1cbee1edc000586481ce97a59d2b8c0"}
+{"sourcePlugin":"local-copier","hash":"7b8f83075597afbd09ee1dc096293a12"}
 ##DOCS-SOURCER-END -->
