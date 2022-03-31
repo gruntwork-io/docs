@@ -20,6 +20,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 # Amazon Relational Database Service
 
+
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
@@ -34,16 +35,16 @@ backups, patching, and encryption. For Aurora, use the [Aurora](/reference/servi
 
 ## Features
 
-* Deploy a fully-managed native relational database
-* Supports, MySQL, PostgreSQL, SQL Server, Oracle, and MariaDB
-* Automatic failover to a standby in another availability zone
-* Read replicas
-* Automatic nightly snapshots
-* Automatic cross account snapshots
-* Automatic scaling of storage
-* CloudWatch Alarms for alerting when CPU, memory, and disk metrics exceed certain thresholds
-* CloudWatch dashboard widgets for RDS statistics
-* Integrate with Kubernetes Service Discovery
+*   Deploy a fully-managed native relational database
+*   Supports, MySQL, PostgreSQL, SQL Server, Oracle, and MariaDB
+*   Automatic failover to a standby in another availability zone
+*   Read replicas
+*   Automatic nightly snapshots
+*   Automatic cross account snapshots
+*   Automatic scaling of storage
+*   CloudWatch Alarms for alerting when CPU, memory, and disk metrics exceed certain thresholds
+*   CloudWatch dashboard widgets for RDS statistics
+*   Integrate with Kubernetes Service Discovery
 
 ## Learn
 
@@ -56,11 +57,11 @@ If you’ve never used the Service Catalog before, make sure to read
 
 :::
 
-* [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#what-is-amazon-rds)
-* [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#common-gotchas)
-* [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that
+*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#what-is-amazon-rds)
+*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/blob/master/modules/rds/core-concepts.md#common-gotchas)
+*   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that
     cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
-* *[Designing Data Intensive Applications](https://dataintensive.net)*: the best book we’ve found for understanding data
+*   *[Designing Data Intensive Applications](https://dataintensive.net)*: the best book we’ve found for understanding data
     systems, including relational databases, NoSQL, replication, sharding, consistency, and so on.
 
 ## Deploy
@@ -69,7 +70,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-* [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +78,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-* [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-* [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 ## Reference
 
@@ -514,7 +515,7 @@ object({
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: <https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html>. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: <https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1>. If you do not wish to use Secrets Manager, leave this as null, and use the master_username, master_password, db_name, engine, and port variables.
+The friendly name or ARN of an AWS Secrets Manager secret that contains database configuration information in the format outlined by this document: https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html. The engine, username, password, dbname, and port fields must be included in the JSON. Note that even with this precaution, this information will be stored in plaintext in the Terraform state file! See the following blog post for more details: https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1. If you do not wish to use Secrets Manager, leave this as null, and use the master_username, master_password, db_name, engine, and port variables.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -775,7 +776,7 @@ The number of read replicas to deploy
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See <https://aws.amazon.com/rds/performance-insights/> for more details.
+Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -820,7 +821,7 @@ The maximum number of snapshots to keep around for the purpose of cross account 
 <HclListItem name="share_snapshot_schedule_expression" requirement="optional" type="string">
 <HclListItemDescription>
 
-An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 ** ? *) or rate(5 minutes). Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true
+An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ? *) or rate(5 minutes). Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1038,6 +1039,7 @@ The ID of the Security Group that controls access to the RDS DB instance.
 </TabItem>
 </Tabs>
 
+
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"3193b194a930cd3815e1fae77080a36e"}
+{"sourcePlugin":"service-catalog-api","hash":"8e9af90281a8d557aad51a22b2cacb22"}
 ##DOCS-SOURCER-END -->
