@@ -14,7 +14,7 @@ You must be a <span class="js-subscribe-cta">Gruntwork subscriber</span> to acce
 :::
 
 You can use this module to deploy a production-grade VPC on AWS. For full background information on VPCs, check
-out [our guide for deploying a production-grade VPC](/guides/build-it-yourself/vpc).
+out [our guide for deploying a production-grade VPC](/guides/build-it-yourself/vpc/index.md).
 
 ## Create a wrapper module
 
@@ -70,7 +70,7 @@ The code above will only allow you to run it against the AWS account with ID pas
 variable (you’ll declare this shortly). This is an extra safety measure to ensure you don’t accidentally authenticate
 to the wrong AWS account while deploying this code—e.g., so you don’t accidentally deploy changes intended for
 staging to production (for more info on working with multiple AWS accounts, see our
-[Landing Zone guide](/guides/build-it-yourself/landing-zone)).
+[Landing Zone guide](/guides/build-it-yourself/landing-zone/index.md)).
 
 </div>
 
@@ -612,7 +612,7 @@ balancers, and so on. Each module is configured via a `terragrunt.hcl` file.
 </div>
 
 For example, if you were using AWS, with separate accounts for staging and production (see
-[How to Configure a Production Grade AWS Account Structure](/guides/foundations/how-to-configure-production-grade-aws-account-structure)),
+[our Landing Zone guide](/guides/build-it-yourself/landing-zone/index.md)),
 and you wanted to deploy the `vpc-app` module in the `us-east-2` region in
 each of these accounts, the folder structure would look like this:
 
@@ -768,5 +768,5 @@ Now that you have your Terraform module deployed, you can pull in updates as fol
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"92bd0b50100196078226f4079cfac251"}
+{"sourcePlugin":"local-copier","hash":"8ed85dcf6d65fd4041dde25f8fe6d468"}
 ##DOCS-SOURCER-END -->
