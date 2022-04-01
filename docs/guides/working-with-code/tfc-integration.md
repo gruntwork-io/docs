@@ -105,7 +105,7 @@ pattern in which multiple Terraform modules are contained in a hierarchy of dire
 
 :::note
 
-You must wrap Gruntwork modules _in your own repo_ in order to use them with the Terraform registry. This is because TFC creates a webhook in the repo to identify updates, which requires admin access. We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
+You must wrap Gruntwork modules _in your own repo_ in order to use them with the Terraform registry. This is because TFC creates a webhook in the repo to identify updates, which requires admin access. **We cannot grant customers admin access to Gruntwork’s repos**, which is why the modules you add to the TFC registry must be in your own repo (as wrapper modules or copies). We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
 
 Enterprise customers may inquire about our `repo-copier` tool, which can provide a complete clone of the Gruntwork IaC library in your own VCS system without the need to create wrapper modules.
 
@@ -470,5 +470,5 @@ Happy Terragrunting!
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ccff6cc86b8fed1f35cfb5bc3e84146e"}
+{"sourcePlugin":"local-copier","hash":"c824503b44b92e29d9c3c845da51ab5e"}
 ##DOCS-SOURCER-END -->

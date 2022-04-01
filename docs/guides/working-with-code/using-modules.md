@@ -423,12 +423,12 @@ The code uses ‘random.UniqueId()\` to generate unique identifiers for all the 
 multiple tests to run in parallel (e.g., on your computer, your teammates’ computers, CI servers) without running
 into conflicts (e.g., without conflicts over resources that require unique names, such as VPCs).
 
-#### Defer terraform destroy
+#### Defer Terraform destroy
 
 The test code uses `defer` to schedule `terraform.Destroy` to run at the end of the test, whether or not the test
 passes.
 
-#### terraform init and apply
+#### Run Terraform init and apply
 
 The test runs `terraform init` and `terraform apply` on the module. If this hits any errors, the test will fail.
 
@@ -768,5 +768,5 @@ Now that you have your Terraform module deployed, you can pull in updates as fol
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"8ed85dcf6d65fd4041dde25f8fe6d468"}
+{"sourcePlugin":"local-copier","hash":"51856e814c4a4bc50bdbcab6b0aaf2ce"}
 ##DOCS-SOURCER-END -->
