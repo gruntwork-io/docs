@@ -44,9 +44,13 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 ## Dig Into the Code
 
 <Grid cols={2}>
-  <Card title="Browse Services" href="/reference/services/intro/overview">
+  <Card title="Browse Gruntwork Services" href="/reference/services/intro/overview">
     View the API reference for our entire service catalog to learn what’s
-    available.
+    available out-of-the-box.
+  </Card>
+  <Card title="Create Your Own Services" href="/guides/working-with-code/using-modules">
+    Learn how to wrap one or more Gruntwork modules to create modules and
+    services that fit your needs.
   </Card>
   <Card
     title="View the Code in GitHub"
@@ -59,5 +63,5 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5f0b3c2683be870a9d429ae2e390bbeb"}
+{"sourcePlugin":"local-copier","hash":"9e81132b36c74657d6bce6895ca8e817"}
 ##DOCS-SOURCER-END -->

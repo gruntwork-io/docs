@@ -28,10 +28,11 @@ const sidebar = [
     label: "Working with our code",
     type: "category",
     items: [
+      "guides/working-with-code/using-modules",
+      "guides/working-with-code/tfc-integration",
       "guides/working-with-code/versioning",
       "guides/working-with-code/contributing",
       "guides/working-with-code/forking",
-      "guides/working-with-code/tfc-integration",
     ],
   },
 ]

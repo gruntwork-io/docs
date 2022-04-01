@@ -8,7 +8,7 @@ sidebar_label: Integrating with TFC/TFE
 
 This section will cover how to use Gruntwork in conjunction with two popular HashiCorp products: [Terraform Cloud (TFC)](https://www.terraform.io/docs/cloud/index.html) and [Terraform Enterprise (TFE)](https://www.terraform.io/docs/enterprise/index.html). Although the open source edition of Terraform is quite powerful and flexible as a standalone project, many organizations turn to TFC/TFE for the CLI/UI integration, approval-based workflow capabilities, Sentinel policy framework, and more. At its core, Terraform Enterprise is basically Terraform Cloud repackaged for a self-hosted environment. We’ll use "TFC" as short hand for both Terraform Cloud and Enterprise throughout this guide.
 
-In the sections above, we discussed how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your Terraform code that wraps the modules from Gruntwork Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
+In our guide on [using Gruntwork modules](guides/working-with-code/using-modules.md) we describe how to use Gruntwork with two VCS repositories: `infrastructure-modules`, containing your Terraform code that wraps the modules from Gruntwork Library, and `infrastructure-live`, containing Terragrunt configurations that enable you to manage Terraform easily across multiple accounts and environments. When using Gruntwork with TFC, you have two choices regarding these repositories:
 
 <div className="dlist">
 
@@ -99,11 +99,19 @@ data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.ht
 another workspace. In this manner, you can link multiple workspaces together to
 build an end-to-end infrastructure.
 
-In the [Using Terraform Modules](#using-terraform-modules) section, we discussed the wrapper module
+In our guide on [using Gruntwork modules](/guides/working-with-code/using-modules.md), we discuss the wrapper module
 pattern in which multiple Terraform modules are contained in a hierarchy of directories located under
 `infrastructure-modules/modules`. Using such a hierarchy, each workspace will use the same `infrastructure-modules` repository, but pointed at different subdirectories within the repository.
 
-We’ll demonstrate how to set up a workspace for a simple SQS module. To get started, create a new workspace and connect it to your VCS provider.
+:::note
+
+You must wrap Gruntwork modules _in your own repo_ in order to use them with the Terraform registry. This is because TFC creates a webhook in the repo to identify updates, which requires admin access. We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
+
+Enterprise customers may inquire about our `repo-copier` tool, which can provide a complete clone of the Gruntwork IaC library in your own VCS system without the need to create wrapper modules.
+
+:::
+
+We’ll demonstrate how to set up a workspace for a simple SQS module. To get started, create a new workspace and connect in to your VCS provider.
 
 ### Connect to a version control provider
 
