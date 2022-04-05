@@ -33,6 +33,6 @@ wrote [the book](https://www.terraformupandrunning.com) on it!
 
 :::note We're compatible with TFC/TFE
 
-The Gruntwork module library and open source tools are compatible with Terraform Cloud and Terraform Enterprise.
+The Gruntwork module library and open source tools are compatible with Terraform Cloud and Terraform Enterprise. [Learn how to configure your TFC/TFE integration.](/guides/working-with-code/tfc-integration.md)
 
 :::
