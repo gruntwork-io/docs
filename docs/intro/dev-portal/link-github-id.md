@@ -10,7 +10,7 @@ Gruntwork provides all code included in your subscription through GitHub. You’
 4. After being redirected back to the Gruntwork Developer Portal, click the **Accept My Invite** button. This will take you to GitHub again, where you can accept an invitation to join the Gruntwork organization. (You can ignore the corresponding invite email you receive from GitHub.)
 5. Click **Join Gruntwork** to accept the invitation and access the IaC Library.
 
-Once you’ve linked your account, the notice on the home page will disappear and you’ll find your GitHub ID recorded in your [Profile Settings](https://app.gruntwork.io/settings/profile). If you haven’t yet done so, we strongly recommend [adding an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent). An SSH key is required to access the Gruntwork IaC library without adding a password in your Terraform code. Going forward, you’ll have access to all private repositories included in your subscription.
+Once you’ve linked your account, the notice on the home page will disappear and you’ll find your GitHub ID recorded in your [Profile Settings](https://app.gruntwork.io/settings/profile). If you haven’t yet done so, we strongly recommend [adding an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to your GitHub account. Going forward, you’ll have access to all private repositories included in your subscription. An SSH key is required to access the Gruntwork IaC library without adding a password in your Terraform code. (TEST)
 
 ## Linking a new GitHub account
 
