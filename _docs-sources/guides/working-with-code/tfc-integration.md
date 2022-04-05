@@ -105,7 +105,7 @@ pattern in which multiple Terraform modules are contained in a hierarchy of dire
 
 :::note
 
-You must wrap Gruntwork modules _in your own repo_ in order to use them with the Terraform registry. This is because TFC creates a webhook in the repo to identify updates, which requires admin access. **We cannot grant customers admin access to Gruntwork’s repos**, which is why the modules you add to the TFC registry must be in your own repo (as wrapper modules or copies). We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
+**You must host Gruntwork modules _in your own repo_ (by wrapping our modules or copying them) in order to use them with the Terraform registry.** This is because TFC needs to create an webhook in that repo which requires admin access, and we cannot grant customers admin access to Gruntwork’s repos. We’re in touch with HashiCorp regarding this limitation, and have requested that they remove the admin requirement.
 
 Enterprise customers may inquire about our `repo-copier` tool, which can provide a complete clone of the Gruntwork IaC library in your own VCS system without the need to create wrapper modules.
 
@@ -155,15 +155,10 @@ commit to a file in the working directory that you set up when configuring works
 `/modules/networking/sqs`), or by manually triggering the run using the _Queue plan_ button in the TFC UI. The run will:
 
 - Clone your `infrastructure-modules` repository using the VCS connection
-
 - Download the AWS provider and set credentials using the environment variables
-
 - Download the Gruntwork SQS module using the SSH key
-
 - Run a `terraform plan`
-
 - Wait for confirmation
-
 - Once confirmed, run a `terraform apply`
 
 ![TFC run results](/img/guides/working-with-code/tfc/tfc-run.png)
@@ -201,11 +196,8 @@ the web UI (but not trigger it from the web UI) and see the history of all apply
 The steps involved to set all this up include:
 
 - Obtain an API token to permit Terraform to use TFC
-
 - Generate a `backend.tf` file to configure Terraform to point at TFC as a remote backend
-
 - Set up workspaces for each module managed by Terragrunt
-
 - Set input variables
 
 Before digging in, we’ll review an example Terragrunt configuration.
@@ -258,9 +250,7 @@ backend. In the Terragrunt configuration hierarchy defined above, each module (j
 Following [the advice from HashiCorp](https://www.terraform.io/docs/cloud/workspaces/naming.html), we’ll need:
 
 - The name of the component, such as _sqs_
-
 - The name of the environment, such as _dev_
-
 - The region, such as _us-east-1_
 
 The snippet below shows one technique for gathering the requisite information and generating the backend:
