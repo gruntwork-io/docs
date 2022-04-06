@@ -24,5 +24,5 @@ Another test
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"e4a74979df7a616ab9e0822a3da5e42f"}
+{"sourcePlugin":"local-copier","hash":"a1d0f1245e16dbce7de83a60de595910"}
 ##DOCS-SOURCER-END -->
