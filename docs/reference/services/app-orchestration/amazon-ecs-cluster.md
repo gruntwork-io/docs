@@ -18,7 +18,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <VersionBadge version="0.85.2" lastModifiedVersion="0.85.0"/>
 
-# Amazon ECS Cluster TEST
+# Amazon ECS Cluster
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
