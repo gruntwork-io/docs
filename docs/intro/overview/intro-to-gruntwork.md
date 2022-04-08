@@ -18,5 +18,8 @@ All Gruntwork products are built on and fully compatible with [open source Terra
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1b5fc69a4dbe2b64db10761645dece1b"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6d71cc149b9ae1264bf611b231ac02a5"
+}
 ##DOCS-SOURCER-END -->
