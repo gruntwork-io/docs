@@ -779,6 +779,4 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 </Tabs>
 
 
-<!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"bc8a2eeab8efd0a6aa3907860931f455"}
-##DOCS-SOURCER-END -->
+
