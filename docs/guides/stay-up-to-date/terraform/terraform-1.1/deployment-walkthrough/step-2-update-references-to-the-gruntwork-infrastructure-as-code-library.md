@@ -140,5 +140,8 @@ and the respective versions that are compatible with Terraform 1.1:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"2b2b98d7e75d84cb9b1df09cf54a734e"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "2b2b98d7e75d84cb9b1df09cf54a734e"
+}
 ##DOCS-SOURCER-END -->

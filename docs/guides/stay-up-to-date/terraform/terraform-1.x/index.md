@@ -29,5 +29,8 @@ tag is compatible with Terraform 1.x.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"b902a9ed1b8a8c7ee812f8b2588235fa"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "b902a9ed1b8a8c7ee812f8b2588235fa"
+}
 ##DOCS-SOURCER-END -->
