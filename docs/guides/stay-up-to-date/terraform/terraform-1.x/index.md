@@ -23,11 +23,14 @@ An overview of Terraform 1.x.
 The steps you need to take to update your code relying on the Gruntwork Infrastructure as Code library to work with
 Terraform 1.x. Includes a
 [version compatibility table](deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library.md#version-compatibility-table) you can use as a reference to know which Gruntwork Repo version
-tag is compatible with Terraform 0.15.
+tag is compatible with Terraform 1.x.
 
 </div>
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"bd6812d6e7489f951426bbbd3d228121"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "b902a9ed1b8a8c7ee812f8b2588235fa"
+}
 ##DOCS-SOURCER-END -->
