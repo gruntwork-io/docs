@@ -149,6 +149,26 @@ const sidebars = {
       ],
     },
   ],
+  terraform11: [
+    backLink,
+    {
+      "label": "Terraform 1.1",
+      "type": "category",
+      "link": {
+        "type": "doc",
+        "id": "guides/stay-up-to-date/terraform/terraform-1.1/index"
+      },
+      "items": [
+        "guides/stay-up-to-date/terraform/terraform-1.1/core-concepts",
+        {
+          "Deployment Walkthrough": [
+            "guides/stay-up-to-date/terraform/terraform-1.1/deployment-walkthrough/step-1-update-your-code-to-be-compatible-with-terraform-1-x",
+            "guides/stay-up-to-date/terraform/terraform-1.1/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library"
+          ]
+        }
+      ]
+    }
+  ],
   terraformServiceProviderV3: [
     backLink,
     {

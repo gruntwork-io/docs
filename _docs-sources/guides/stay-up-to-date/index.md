@@ -17,6 +17,10 @@ import CardGroup from "/src/components/CardGroup"
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
 <Card
+title="Update to version 1.1"
+href="/guides/stay-up-to-date/terraform/terraform-1.1"
+/>
+<Card
   title="Update to version 1.X"
   href="/guides/stay-up-to-date/terraform/terraform-1.x"
   />

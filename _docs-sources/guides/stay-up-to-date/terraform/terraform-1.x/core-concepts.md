@@ -2,7 +2,7 @@
 
 [Terraform 1.0.0 was released on June 08,
 2021](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-1-0-general-availability).
-Some of the major new features in 0.15 include:
+Some of the major new features in 1.0 include:
 
 - A more stable state file format that will be compatible with Terraform 0.14, 0.15, and, once it’s released, 1.0.
 
