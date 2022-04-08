@@ -21,7 +21,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # ECS Deploy Runner
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -78,7 +78,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -1044,5 +1044,13 @@ Security Group ID of the ECS task
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"service-catalog-api","hash":"5c289c2930d86edf05908f71fb705658"}
+{
+  "originalSources": [
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/modules%2Fmgmt%2Fecs-deploy-runner%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/modules%2Fmgmt%2Fecs-deploy-runner%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-lambda-0.x/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
+  ],
+  "sourcePlugin": "service-catalog-api",
+  "hash": "55a16b39d78c7e96e6afdb8dfa00b562"
+}
 ##DOCS-SOURCER-END -->
