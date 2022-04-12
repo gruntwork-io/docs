@@ -21,7 +21,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Gruntwork Access
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Fgruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -64,7 +64,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -72,7 +72,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -174,11 +174,11 @@ The name of the IAM role
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Flandingzone%2Fgruntwork-access%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Flandingzone%2Fgruntwork-access%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Flandingzone%2Fgruntwork-access%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Flandingzone%2Fgruntwork-access%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Flandingzone%2Fgruntwork-access%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Flandingzone%2Fgruntwork-access%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "43d29b27c958d82525122a91d040f3c3"
+  "hash": "bed34caab259d72d639dd56ba3f92a67"
 }
 ##DOCS-SOURCER-END -->

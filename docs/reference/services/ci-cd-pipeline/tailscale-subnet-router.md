@@ -21,7 +21,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Tailscale Subnet Router
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -78,7 +78,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -95,7 +95,7 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
@@ -495,11 +495,11 @@ ID of the primary security group attached to the Tailscale relay server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fmgmt%2Ftailscale-subnet-router%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fmgmt%2Ftailscale-subnet-router%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Fmgmt%2Ftailscale-subnet-router%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Fmgmt%2Ftailscale-subnet-router%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgruntwork-io-terratest-0.x/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6ea6e1f3b22b8a3612fa1591c6222791"
+  "hash": "84041a2dd9d1ba55b983ecc106714021"
 }
 ##DOCS-SOURCER-END -->
