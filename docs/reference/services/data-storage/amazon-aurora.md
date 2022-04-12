@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["data","database","sql","rds","aurora"]
 license: "gruntwork"
 built-with: "terraform"
-title: "Amazon Aurora"
+title: "Amazon Aurora Testing Doc Changes"
 hide_title: true
 ---
 
@@ -18,7 +18,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <VersionBadge version="0.85.4" lastModifiedVersion="0.85.0"/>
 
-# Amazon Aurora
+# Amazon Aurora Testing Doc Changes
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/data-stores/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
@@ -27,9 +27,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 ## Overview
 
-This service contains code to deploy an Amazon Relational Database Service (RDS) cluster that can run
-[Amazon Aurora](https://aws.amazon.com/rds/aurora/), Amazon’s cloud-native relational database. The cluster is managed
-by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
+Just Great!
 
 ![RDS architecture](/img/reference/services/data-storage/rds-architecture.png)
 
@@ -1024,6 +1022,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "64a9a11ab324298f68bfd0e90086df39"
+  "hash": "573810b1b90b0d29d0bb31ad9f381279"
 }
 ##DOCS-SOURCER-END -->
