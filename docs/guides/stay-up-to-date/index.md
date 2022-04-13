@@ -76,8 +76,5 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "6108197b36342bbac59c8d32d9e3dfbb"
-}
+{"sourcePlugin":"local-copier","hash":"6108197b36342bbac59c8d32d9e3dfbb"}
 ##DOCS-SOURCER-END -->
