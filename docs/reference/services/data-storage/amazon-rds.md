@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.4" lastModifiedVersion="0.85.1"/>
+<VersionBadge version="0.85.5" lastModifiedVersion="0.85.5"/>
 
 # Amazon Relational Database Service
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/data-stores/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules/data-stores/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -70,7 +70,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -78,12 +78,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 ## Reference
 
@@ -251,6 +251,15 @@ list(object({
 <HclListItemDescription>
 
 If set to true, create a KMS CMK and use it to encrypt data on disk in the database. The permissions for this CMK will be assigned by the following variables: cmk_administrator_iam_arns, cmk_user_iam_arns, cmk_external_user_iam_arns, allow_manage_key_permissions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want a DNS record automatically created and pointed at the RDS endpoints.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -656,6 +665,15 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
+<HclListItem name="hosted_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the Route 53 hosted zone into which the Route 53 DNS record should be written
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="iam_database_authentication_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -791,6 +809,15 @@ The port the DB will listen on (e.g. 3306). Alternatively, this can be provided 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="primary_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The domain name to create a route 53 record for the primary endpoint of the RDS database.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="publicly_accessible" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -807,6 +834,15 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="replica_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The domain name to create a route 53 record for the read replicas of the RDS database.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="share_snapshot_max_snapshots" requirement="optional" type="number">
@@ -1043,11 +1079,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fdata-stores%2Frds%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fdata-stores%2Frds%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.4/modules%2Fdata-stores%2Frds%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fdata-stores%2Frds%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fdata-stores%2Frds%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e5f3a7549bbd8ec774c089113340f761"
+  "hash": "7a19ec904539ce48a33890e3773c7896"
 }
 ##DOCS-SOURCER-END -->
