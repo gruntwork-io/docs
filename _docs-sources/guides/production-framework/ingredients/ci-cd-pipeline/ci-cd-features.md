@@ -30,7 +30,7 @@ Depending on what you're deploying, you'll want your tools to support different 
 
 ## Application and infrastructure code
 
-The CI / CD pipeline needs to work with both application code (e.g., a web service written in Java, Ruby, Go, or Python) and infrastructure code (e.g., Terraform, CloudFormation). These two types of pipelines have slightly different requirements. You'll see examples of this later in this guide.
+The CI / CD pipeline needs to work with both application code (e.g., a web service written in Java, Ruby, Go, or Python) and infrastructure code (e.g., Terraform, CloudFormation). These two types of pipelines have slightly different requirements. For a detailed side-by-side look at application and infrastructure pipelines, check out [How to Use Terraform as a Team](https://blog.gruntwork.io/how-to-use-terraform-as-a-team-251bc1104973).
 
 ## Example
 
