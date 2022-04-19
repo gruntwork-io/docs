@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.85.1"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.85.6"/>
 
 # Lambda
 
@@ -128,6 +128,15 @@ The maximum amount of time, in seconds, your Lambda function will be allowed to 
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Security Group IDs that should be attached to the Lambda function when running in a VPC. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 <HclListItem name="assume_role_policy" requirement="optional" type="string">
 <HclListItemDescription>
@@ -733,6 +742,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fservices%2Flambda%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d25865c826ce9f85109afe6580f5c4be"
+  "hash": "e73a2c0a05879df535b5ca7c2eb030a8"
 }
 ##DOCS-SOURCER-END -->

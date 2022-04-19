@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.84.4"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.84.4"/>
 
 # Bastion Host
 
@@ -477,6 +477,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9a28b02682829d7ca86366af7e87d294"
+  "hash": "46b7644d1e5dc22b68f44fcd7c77e551"
 }
 ##DOCS-SOURCER-END -->

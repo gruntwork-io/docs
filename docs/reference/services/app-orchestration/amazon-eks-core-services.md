@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.84.0"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.84.0"/>
 
 # Amazon EKS Core Services
 
@@ -862,6 +862,6 @@ Name of the CloudWatch Log Group used to store the container logs.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "274875c04a6fc2189fb01166b617306d"
+  "hash": "332a315992f12068269062f72e1e8626"
 }
 ##DOCS-SOURCER-END -->

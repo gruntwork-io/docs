@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.85.0"/>
 
 # Amazon Elasticsearch Service
 
@@ -500,6 +500,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fdata-stores%2Felasticsearch%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5da2fef49a3330d394c722d645742313"
+  "hash": "228932f6c15cb14bc20caf47fae8aac5"
 }
 ##DOCS-SOURCER-END -->

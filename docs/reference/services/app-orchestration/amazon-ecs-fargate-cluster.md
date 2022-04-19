@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.66.0"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.66.0"/>
 
 # Amazon ECS Fargate Cluster
 
@@ -159,6 +159,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fservices%2Fecs-fargate-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2c59b256fb50cae1015dd1273243cdba"
+  "hash": "240c9ff28930a9c9b058fc2a5bc7d8a7"
 }
 ##DOCS-SOURCER-END -->

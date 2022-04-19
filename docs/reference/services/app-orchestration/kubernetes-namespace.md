@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.83.0"/>
 
 # Kubernetes Namespace
 
@@ -249,6 +249,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fservices%2Fk8s-namespace%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "623b5c5f3b2403c05a07782fac21557a"
+  "hash": "12f623f0790fbf4344470944b0c8b2c9"
 }
 ##DOCS-SOURCER-END -->

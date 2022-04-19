@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.5" lastModifiedVersion="0.77.0"/>
+<VersionBadge version="0.85.6" lastModifiedVersion="0.77.0"/>
 
 # TLS Scripts
 
@@ -107,6 +107,6 @@ If you’ve never used the Service Catalog before, make sure to read
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Ftls-scripts%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b89199ed37b91dfec579771d8e99cec9"
+  "hash": "21c5613019e6197c0d7c3c15b8a8fa24"
 }
 ##DOCS-SOURCER-END -->
