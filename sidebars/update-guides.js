@@ -80,6 +80,7 @@ const sidebars = {
             "guides/stay-up-to-date/terraform/terraform-13/deployment-walkthrough/step-1-update-your-code-to-be-compatible-with-terraform-0-12",
             "guides/stay-up-to-date/terraform/terraform-13/deployment-walkthrough/step-2-update-your-code-to-be-compatible-with-terraform-0-13",
             "guides/stay-up-to-date/terraform/terraform-13/deployment-walkthrough/step-3-update-references-to-the-gruntwork-infrastructure-as-code-library",
+            "guides/stay-up-to-date/terraform/terraform-13/deployment-walkthrough/step-4-update-provider-sources",
             "guides/stay-up-to-date/terraform/terraform-13/deployment-walkthrough/updating-the-gruntwork-reference-architecture-to-terraform-0-13",
           ],
         },
