@@ -21,7 +21,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Jenkins CI Server
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules/mgmt/jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules/mgmt/jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,7 +77,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -773,11 +773,11 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fmgmt%2Fjenkins%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fmgmt%2Fjenkins%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.5/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fmgmt%2Fjenkins%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fmgmt%2Fjenkins%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/patcher%2Fgithub.com-gruntwork-io-terraform-aws-ci-0.x/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b27892f0d95c0b1d823df574a2f5c4e8"
+  "hash": "c45bbf0017c64774d538850f50d2b026"
 }
 ##DOCS-SOURCER-END -->
