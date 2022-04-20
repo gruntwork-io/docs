@@ -7,7 +7,7 @@ cloud: "aws"
 tags: ["data","database","container"]
 license: "gruntwork"
 built-with: "terraform"
-title: "Amazon ECR Repositories"
+title: "Amazon ECR Repositories test"
 hide_title: true
 ---
 
@@ -18,7 +18,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <VersionBadge version="0.85.6" lastModifiedVersion="0.85.1"/>
 
-# Amazon ECR Repositories
+# Amazon ECR Repositories test
 
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/oredavids-patch-1/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
@@ -254,6 +254,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/oredavids-patch-1/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ce9ac02ed970b73b9f9037eafe964958"
+  "hash": "7b81713f478f2676b65d80ca095d00c1"
 }
 ##DOCS-SOURCER-END -->
