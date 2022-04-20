@@ -25,14 +25,6 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-## Overview
-
-This service contains code to deploy an Amazon Relational Database Service (RDS) cluster that can run
-[Amazon Aurora](https://aws.amazon.com/rds/aurora/), Amazon’s cloud-native relational database. The cluster is managed
-by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
-
-![RDS architecture](/img/reference/services/data-storage/rds-architecture.png)
-
 ## Features
 
 *   Deploy a fully-managed, cloud-native relational database
@@ -1060,6 +1052,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/oredavids-patch-1/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d842dd1c886de07a7a1c82dad2f8e9a7"
+  "hash": "9d681734c5b9f38b4d4db9af05b2607c"
 }
 ##DOCS-SOURCER-END -->
