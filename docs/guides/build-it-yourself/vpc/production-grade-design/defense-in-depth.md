@@ -15,5 +15,8 @@ described in the next few sections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"241d7669f0872b5219798ddc187be0b9"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "241d7669f0872b5219798ddc187be0b9"
+}
 ##DOCS-SOURCER-END -->

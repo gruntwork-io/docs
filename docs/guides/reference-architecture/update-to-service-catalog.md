@@ -602,5 +602,8 @@ The following modules require a different version of the Service Catalog than `v
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"43a73701aef385b0281b0d77ec14dd2a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "43a73701aef385b0281b0d77ec14dd2a"
+}
 ##DOCS-SOURCER-END -->

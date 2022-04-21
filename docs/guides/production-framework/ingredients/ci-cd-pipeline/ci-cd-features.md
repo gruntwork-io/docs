@@ -30,7 +30,7 @@ Depending on what you're deploying, you'll want your tools to support different 
 
 ## Application and infrastructure code
 
-The CI / CD pipeline needs to work with both application code (e.g., a web service written in Java, Ruby, Go, or Python) and infrastructure code (e.g., Terraform, CloudFormation). These two types of pipelines have slightly different requirements. For a detailed side-by-side look at application and infrastructure pipelines, check out [How to Use Terraform as a Team](https://blog.gruntwork.io/how-to-use-terraform-as-a-team-251bc1104973).
+The CI / CD pipeline needs to work with both application code (e.g., a web service written in Java, Ruby, Go, or Python) and infrastructure code (e.g., Terraform, CloudFormation). These two types of pipelines have slightly different requirements. You'll see examples of this later in this guide.
 
 ## Example
 
@@ -41,6 +41,6 @@ AWS](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "52893974c9e95ad383ac61f7e2d718e5"
+  "hash": "be59b854b7665f188f7878b449f542e7"
 }
 ##DOCS-SOURCER-END -->

@@ -66,5 +66,8 @@ Once you confirm you have access to the new account from the `security` account,
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6b2971383476a10a88bcaa6c38599547"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6b2971383476a10a88bcaa6c38599547"
+}
 ##DOCS-SOURCER-END -->

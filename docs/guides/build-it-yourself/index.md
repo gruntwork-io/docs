@@ -63,5 +63,8 @@ The Gruntwork IaC library empowers you to construct your own bespoke architectur
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"9e81132b36c74657d6bce6895ca8e817"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "9e81132b36c74657d6bce6895ca8e817"
+}
 ##DOCS-SOURCER-END -->

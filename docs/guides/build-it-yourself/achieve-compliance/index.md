@@ -69,5 +69,8 @@ walkthrough.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ad41a4a60d33f97c8b859e17562bef13"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ad41a4a60d33f97c8b859e17562bef13"
+}
 ##DOCS-SOURCER-END -->

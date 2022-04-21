@@ -34,5 +34,8 @@ requires multiple steps, including manually copy/pasting credentials.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ce9789097213ecbf3283dc36a00de4c0"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ce9789097213ecbf3283dc36a00de4c0"
+}
 ##DOCS-SOURCER-END -->

@@ -69,5 +69,8 @@ Get answers to frequently asked questions, organized by category.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"dbdf6417d65b463c42d8decdbed70717"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "dbdf6417d65b463c42d8decdbed70717"
+}
 ##DOCS-SOURCER-END -->

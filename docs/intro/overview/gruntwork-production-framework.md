@@ -33,5 +33,8 @@ This is an overloaded term, so let's dive into the details of what we mean by a 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ebca2e605787776f91971e9c55972a74"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ebca2e605787776f91971e9c55972a74"
+}
 ##DOCS-SOURCER-END -->

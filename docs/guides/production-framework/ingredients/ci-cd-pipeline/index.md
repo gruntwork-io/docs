@@ -8,5 +8,8 @@ pipeline) to automate their build, test, and deployment processes.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ba6270b591efb22fbe6b9b5adb930269"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ba6270b591efb22fbe6b9b5adb930269"
+}
 ##DOCS-SOURCER-END -->

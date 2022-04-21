@@ -176,5 +176,8 @@ locals {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"35887123ab1bc3a011216db14a532073"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "35887123ab1bc3a011216db14a532073"
+}
 ##DOCS-SOURCER-END -->

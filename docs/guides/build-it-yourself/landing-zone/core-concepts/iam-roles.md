@@ -125,5 +125,8 @@ services permissions to access specific resources in your AWS account.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"4665d08042eeca71ae65dd366edfc6b6"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "4665d08042eeca71ae65dd366edfc6b6"
+}
 ##DOCS-SOURCER-END -->

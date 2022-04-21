@@ -94,5 +94,8 @@ Makes sure to ALWAYS read the release notes and migration instructions (if any) 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5eb1606803f10d39a682642586a222a0"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "5eb1606803f10d39a682642586a222a0"
+}
 ##DOCS-SOURCER-END -->

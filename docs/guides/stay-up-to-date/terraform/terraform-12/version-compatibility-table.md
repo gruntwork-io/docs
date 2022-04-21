@@ -41,5 +41,8 @@ The following lists our Terraform packages and their compatibility with Terrafor
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"3aac38d34fa5070df5bd4d9e0f13ca77"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "3aac38d34fa5070df5bd4d9e0f13ca77"
+}
 ##DOCS-SOURCER-END -->

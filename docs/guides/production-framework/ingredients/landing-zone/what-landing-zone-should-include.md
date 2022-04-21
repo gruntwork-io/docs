@@ -26,5 +26,8 @@ Zone](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"48f58cc321f48e30db0584fad30d84ed"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "48f58cc321f48e30db0584fad30d84ed"
+}
 ##DOCS-SOURCER-END -->

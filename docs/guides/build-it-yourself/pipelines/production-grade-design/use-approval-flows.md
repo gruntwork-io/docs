@@ -12,5 +12,8 @@ can approve the workflow.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"cb8b5eba89e7858826984e3f326a831c"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "cb8b5eba89e7858826984e3f326a831c"
+}
 ##DOCS-SOURCER-END -->

@@ -19,5 +19,8 @@ but you can also author your own [custom rules](https://docs.aws.amazon.com/conf
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"c0738bbc3e7e12844bba76062de1f2d3"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "c0738bbc3e7e12844bba76062de1f2d3"
+}
 ##DOCS-SOURCER-END -->

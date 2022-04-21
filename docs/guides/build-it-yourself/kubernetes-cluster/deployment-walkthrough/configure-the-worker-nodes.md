@@ -74,5 +74,8 @@ variable "cluster_instance_keypair_name" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5e5c32c3eb4bb045778d6baa48588f63"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "5e5c32c3eb4bb045778d6baa48588f63"
+}
 ##DOCS-SOURCER-END -->

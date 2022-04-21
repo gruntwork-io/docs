@@ -45,5 +45,8 @@ assume those roles.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ff384b3108de45dc98d77a4b652db03c"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ff384b3108de45dc98d77a4b652db03c"
+}
 ##DOCS-SOURCER-END -->

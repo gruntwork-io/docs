@@ -27,5 +27,8 @@ availability zone as the subnet itself).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"22caf29ab8296f42141d487cc067867e"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "22caf29ab8296f42141d487cc067867e"
+}
 ##DOCS-SOURCER-END -->

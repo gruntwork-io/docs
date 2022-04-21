@@ -18,5 +18,8 @@ the hood.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"b2f8907a2b4273753794fb96e9f89ffe"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "b2f8907a2b4273753794fb96e9f89ffe"
+}
 ##DOCS-SOURCER-END -->

@@ -54,5 +54,8 @@ over how to configure a VPC with the kind of security, scalability, and high ava
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6590a3524e17c9eb1805818e98c04514"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6590a3524e17c9eb1805818e98c04514"
+}
 ##DOCS-SOURCER-END -->

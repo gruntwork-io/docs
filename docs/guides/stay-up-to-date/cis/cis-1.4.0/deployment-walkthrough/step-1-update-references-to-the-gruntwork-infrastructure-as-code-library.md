@@ -82,5 +82,8 @@ compatible with CIS AWS v1.4.0:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"a05d8f4802daa27e86b50cb1724ac7e8"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a05d8f4802daa27e86b50cb1724ac7e8"
+}
 ##DOCS-SOURCER-END -->

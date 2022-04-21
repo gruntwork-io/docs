@@ -90,5 +90,8 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"3130cb825c605b438694546804a4f87c"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "3130cb825c605b438694546804a4f87c"
+}
 ##DOCS-SOURCER-END -->

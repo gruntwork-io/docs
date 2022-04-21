@@ -21,5 +21,8 @@ services that expose this variable (note, you may not have all of these in your 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ee44dc198c327e0255356257c89b1b77"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ee44dc198c327e0255356257c89b1b77"
+}
 ##DOCS-SOURCER-END -->

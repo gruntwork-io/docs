@@ -25,5 +25,8 @@ Learn how Gruntwork formats our READMEs and documentation.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"570c137a65cf9623f2e9e018df8121d1"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "570c137a65cf9623f2e9e018df8121d1"
+}
 ##DOCS-SOURCER-END -->
