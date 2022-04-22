@@ -11,5 +11,8 @@ on the AWS website for detailed instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"8f30fea3c56323b9c5c0ce3cd5fa1841"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "8f30fea3c56323b9c5c0ce3cd5fa1841"
+}
 ##DOCS-SOURCER-END -->

@@ -7,5 +7,8 @@ outbound access except for the minimum required (e.g, allow access to AWS APIs).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"31fee0a9bffad6966be2e1ab2870904e"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "31fee0a9bffad6966be2e1ab2870904e"
+}
 ##DOCS-SOURCER-END -->

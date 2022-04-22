@@ -25,5 +25,8 @@
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"86b46c82511aa42dadcb6a5f347ba164"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "86b46c82511aa42dadcb6a5f347ba164"
+}
 ##DOCS-SOURCER-END -->

@@ -22,5 +22,8 @@ We present a comprehensive model to help you establish a robust infrastructure p
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"e4a74979df7a616ab9e0822a3da5e42f"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "e4a74979df7a616ab9e0822a3da5e42f"
+}
 ##DOCS-SOURCER-END -->

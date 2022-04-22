@@ -21,5 +21,8 @@ Nomad that you can use to deploy and manage Docker images.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ac4aef92859a42de2010069751aa1766"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ac4aef92859a42de2010069751aa1766"
+}
 ##DOCS-SOURCER-END -->

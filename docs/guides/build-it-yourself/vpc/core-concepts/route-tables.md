@@ -34,5 +34,8 @@ will be automatically routed within the subnet by AWS. This table then adds a fa
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"d8ec27c10689e15775980056dfec5918"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "d8ec27c10689e15775980056dfec5918"
+}
 ##DOCS-SOURCER-END -->

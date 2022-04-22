@@ -6,5 +6,8 @@ accounts! Usually, the best starting point is to configure your network topology
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5b9f8101edad02a62a1b7fb5f75275e6"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "5b9f8101edad02a62a1b7fb5f75275e6"
+}
 ##DOCS-SOURCER-END -->

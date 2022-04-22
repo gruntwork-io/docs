@@ -32,5 +32,8 @@ To authenticate to any other account (e.g., dev, stage, prod), you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"979ec28e782e43d075a0a2ffc0e492c6"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "979ec28e782e43d075a0a2ffc0e492c6"
+}
 ##DOCS-SOURCER-END -->

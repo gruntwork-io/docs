@@ -33,5 +33,8 @@ environment.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6c6ba79465b3a5149489da3d2c535cf1"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6c6ba79465b3a5149489da3d2c535cf1"
+}
 ##DOCS-SOURCER-END -->

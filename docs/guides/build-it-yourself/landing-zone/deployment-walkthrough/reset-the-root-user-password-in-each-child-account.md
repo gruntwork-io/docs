@@ -13,5 +13,8 @@ Use this process to reset the password for the root user of each child account y
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"15ed745884720a8772c22f6a45107605"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "15ed745884720a8772c22f6a45107605"
+}
 ##DOCS-SOURCER-END -->

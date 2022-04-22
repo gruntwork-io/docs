@@ -12,5 +12,8 @@ Terraform resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6f13f1638eebe902e46fb2759688903f"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6f13f1638eebe902e46fb2759688903f"
+}
 ##DOCS-SOURCER-END -->

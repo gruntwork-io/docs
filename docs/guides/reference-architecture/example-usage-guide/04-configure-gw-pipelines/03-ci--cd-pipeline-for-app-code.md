@@ -64,5 +64,8 @@ Once the branch is merged, updates to the `main` branch will trigger a build job
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1c2c536bc8e48c128e3d338349e0f46a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "1c2c536bc8e48c128e3d338349e0f46a"
+}
 ##DOCS-SOURCER-END -->

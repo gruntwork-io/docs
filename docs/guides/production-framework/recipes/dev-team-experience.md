@@ -94,5 +94,8 @@ Let's imagine that you've started a team with two developers, Ann and Bob. The t
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6f688e879fc6b7981c52a0c651d4781a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6f688e879fc6b7981c52a0c651d4781a"
+}
 ##DOCS-SOURCER-END -->

@@ -30,5 +30,8 @@ sure that remote VPC DNS resolution is enabled on both accepter and requester si
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"13fa4dbe8f473c8e7d1a69075e8b8332"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "13fa4dbe8f473c8e7d1a69075e8b8332"
+}
 ##DOCS-SOURCER-END -->

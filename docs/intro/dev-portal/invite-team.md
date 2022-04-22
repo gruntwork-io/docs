@@ -42,5 +42,8 @@ The number of licenses available depends on the level of your subscription. You 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"702a33b934d092e229bc9c8d17e92387"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "702a33b934d092e229bc9c8d17e92387"
+}
 ##DOCS-SOURCER-END -->

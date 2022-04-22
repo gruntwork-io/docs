@@ -60,5 +60,8 @@ Packer, Docker, and Helm, each of which we’ll discuss in the next several sect
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"e29d1b09112e97f7f9908267a676c308"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "e29d1b09112e97f7f9908267a676c308"
+}
 ##DOCS-SOURCER-END -->

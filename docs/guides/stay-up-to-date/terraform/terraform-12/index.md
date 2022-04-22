@@ -34,5 +34,8 @@ This means that both the modules and the live config need to be updated in order
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"18301a838452f27f0c74540894001124"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "18301a838452f27f0c74540894001124"
+}
 ##DOCS-SOURCER-END -->

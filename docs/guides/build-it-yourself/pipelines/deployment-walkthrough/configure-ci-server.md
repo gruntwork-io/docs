@@ -39,5 +39,8 @@ events!
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"80db423fbd3342a56695e95ad0398426"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "80db423fbd3342a56695e95ad0398426"
+}
 ##DOCS-SOURCER-END -->

@@ -22,5 +22,8 @@ as starting points.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"b9de64a86c71d7442fc242dad729d910"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "b9de64a86c71d7442fc242dad729d910"
+}
 ##DOCS-SOURCER-END -->

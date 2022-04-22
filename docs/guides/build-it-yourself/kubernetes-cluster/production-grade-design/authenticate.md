@@ -71,5 +71,8 @@ this tool separately, so we are just recording this here for historical reasons.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5d6b9747b406cb6ddc44edd9134b8364"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "5d6b9747b406cb6ddc44edd9134b8364"
+}
 ##DOCS-SOURCER-END -->

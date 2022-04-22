@@ -9,5 +9,8 @@ accidentally shooting yourself in the foot.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"29615744ecd8587257bae2b0a7a24773"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "29615744ecd8587257bae2b0a7a24773"
+}
 ##DOCS-SOURCER-END -->

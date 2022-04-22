@@ -30,5 +30,8 @@ If you haven’t already, you need to:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"901f5f12726f3f8ebba1f5058c1e957a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "901f5f12726f3f8ebba1f5058c1e957a"
+}
 ##DOCS-SOURCER-END -->

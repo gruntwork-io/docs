@@ -13,5 +13,8 @@ we'll break it down piece by piece in the next few sections.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"cba12c0619ad568620c14ecef35e7318"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "cba12c0619ad568620c14ecef35e7318"
+}
 ##DOCS-SOURCER-END -->

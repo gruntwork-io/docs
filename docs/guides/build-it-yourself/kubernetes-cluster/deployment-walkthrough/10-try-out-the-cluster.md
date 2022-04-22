@@ -19,5 +19,8 @@ kubectl get nodes
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ce3e3dd28d904805638be7b3e6cf7bd9"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ce3e3dd28d904805638be7b3e6cf7bd9"
+}
 ##DOCS-SOURCER-END -->

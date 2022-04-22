@@ -28,5 +28,8 @@ builds on existing code, but they don’t get arbitrary admin access.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"9688f7f6bd80fec2188af6893093859e"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "9688f7f6bd80fec2188af6893093859e"
+}
 ##DOCS-SOURCER-END -->

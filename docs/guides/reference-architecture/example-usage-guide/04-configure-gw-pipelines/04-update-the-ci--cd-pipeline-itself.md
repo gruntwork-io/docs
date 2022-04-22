@@ -70,5 +70,8 @@ pull request as your changes to the `ecs-deploy-runner` module configuration.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6457637d554e50c34b0c4e2e1785d09b"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6457637d554e50c34b0c4e2e1785d09b"
+}
 ##DOCS-SOURCER-END -->

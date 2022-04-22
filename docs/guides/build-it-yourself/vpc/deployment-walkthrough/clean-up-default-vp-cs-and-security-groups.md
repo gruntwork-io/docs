@@ -9,5 +9,8 @@ cloud-nuke defaults-aws
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"f24a4c59eb7b0e53a6b225dd9c83ac9c"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "f24a4c59eb7b0e53a6b225dd9c83ac9c"
+}
 ##DOCS-SOURCER-END -->

@@ -138,5 +138,8 @@ explicit list of buckets per region, namely in the variable `buckets_to_analyze`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"a42545420e9759182b9a7727a91aab4a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a42545420e9759182b9a7727a91aab4a"
+}
 ##DOCS-SOURCER-END -->

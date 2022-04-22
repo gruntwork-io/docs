@@ -38,5 +38,8 @@ approve it to apply the updated cross account permissions.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"5bff1b351c15013c2c899f19817071e4"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "5bff1b351c15013c2c899f19817071e4"
+}
 ##DOCS-SOURCER-END -->

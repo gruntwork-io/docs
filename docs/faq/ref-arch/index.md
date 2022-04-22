@@ -32,5 +32,8 @@
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"613ecde6c13ca14adbc92aac692f90bf"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "613ecde6c13ca14adbc92aac692f90bf"
+}
 ##DOCS-SOURCER-END -->

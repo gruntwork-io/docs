@@ -12,5 +12,8 @@ IAM group that gives the finance team access to the billing details.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1121dc71681544ba526d79d51610b718"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "1121dc71681544ba526d79d51610b718"
+}
 ##DOCS-SOURCER-END -->
