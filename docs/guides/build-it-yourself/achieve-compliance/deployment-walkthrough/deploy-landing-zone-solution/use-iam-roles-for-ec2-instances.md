@@ -23,5 +23,8 @@ access to the AWS API. Using static API credentials should be avoided whenever p
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"af99b295cc0bfa675cbfdf671eb033a7"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "af99b295cc0bfa675cbfdf671eb033a7"
+}
 ##DOCS-SOURCER-END -->

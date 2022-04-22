@@ -14,5 +14,8 @@ the central place where you manage billing. You create this initial account manu
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"429cdfbcd62cd69e8a3eebd428aff6a6"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "429cdfbcd62cd69e8a3eebd428aff6a6"
+}
 ##DOCS-SOURCER-END -->

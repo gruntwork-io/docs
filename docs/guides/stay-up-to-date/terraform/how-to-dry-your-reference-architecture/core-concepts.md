@@ -44,5 +44,8 @@ documentation](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrun
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"29aa2eab851b8a4a259acf265a6c2315"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "29aa2eab851b8a4a259acf265a6c2315"
+}
 ##DOCS-SOURCER-END -->

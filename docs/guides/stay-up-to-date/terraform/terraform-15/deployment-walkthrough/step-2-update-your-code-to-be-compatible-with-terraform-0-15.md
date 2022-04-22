@@ -10,5 +10,8 @@ Upgrade Guide](https://www.terraform.io/upgrade-guides/0-15.html).
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"54113b1e4b9c28fa1060a88404ff7a2f"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "54113b1e4b9c28fa1060a88404ff7a2f"
+}
 ##DOCS-SOURCER-END -->

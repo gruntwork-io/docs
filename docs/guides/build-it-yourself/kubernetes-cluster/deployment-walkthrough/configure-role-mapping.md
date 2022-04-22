@@ -76,5 +76,8 @@ data "aws_eks_cluster_auth" "kubernetes_token" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"b38a1e8d5a91d55332bd4b3507773920"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "b38a1e8d5a91d55332bd4b3507773920"
+}
 ##DOCS-SOURCER-END -->

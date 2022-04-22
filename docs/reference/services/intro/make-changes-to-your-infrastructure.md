@@ -191,5 +191,8 @@ _(Documentation coming soon. If you need help with this ASAP, please contact [su
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1da75fa30f9ba0e374e7d4940d56e9a5"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "1da75fa30f9ba0e374e7d4940d56e9a5"
+}
 ##DOCS-SOURCER-END -->

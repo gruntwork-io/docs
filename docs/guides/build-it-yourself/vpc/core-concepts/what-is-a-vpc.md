@@ -31,5 +31,8 @@ your office and all the resources in your AWS account can access the same IPs an
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6c8bc96902491a81cc29d838b18a4226"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6c8bc96902491a81cc29d838b18a4226"
+}
 ##DOCS-SOURCER-END -->

@@ -12,5 +12,8 @@ to share it publicly on the Internet), and you will be logged into your new AWS 
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"a26a34b590ddc29e228b8a54169fe46f"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a26a34b590ddc29e228b8a54169fe46f"
+}
 ##DOCS-SOURCER-END -->

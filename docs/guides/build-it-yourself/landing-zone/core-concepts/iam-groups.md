@@ -13,5 +13,8 @@ and assign each IAM user to the appropriate IAM groups.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"6ed6987baac0556cbd72538586818a92"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "6ed6987baac0556cbd72538586818a92"
+}
 ##DOCS-SOURCER-END -->

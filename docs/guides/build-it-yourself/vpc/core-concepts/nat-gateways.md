@@ -37,5 +37,8 @@ the traffic for all other IPs, `0.0.0.0/0`, to a NAT Gateway with ID `nat-67890`
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"15d7ee1da61bdf479f662a44cee6c79a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "15d7ee1da61bdf479f662a44cee6c79a"
+}
 ##DOCS-SOURCER-END -->

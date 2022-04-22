@@ -29,5 +29,8 @@ which Gruntwork Repo version tag is compatible with AWS provider v3.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"d893235577f4c44c0b19f7f0eed0a15d"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "d893235577f4c44c0b19f7f0eed0a15d"
+}
 ##DOCS-SOURCER-END -->

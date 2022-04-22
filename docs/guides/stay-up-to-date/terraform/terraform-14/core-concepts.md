@@ -19,5 +19,8 @@ update to these new versions and make other changes to your code, as described i
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"742b88aaf1e35809a26ab436a9804eea"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "742b88aaf1e35809a26ab436a9804eea"
+}
 ##DOCS-SOURCER-END -->

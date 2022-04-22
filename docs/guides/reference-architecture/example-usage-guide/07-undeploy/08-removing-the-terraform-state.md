@@ -14,5 +14,8 @@ destroyed successfully**.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"9c3adf3f67ede26bb4c92a2567125676"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "9c3adf3f67ede26bb4c92a2567125676"
+}
 ##DOCS-SOURCER-END -->

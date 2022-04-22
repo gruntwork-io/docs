@@ -768,5 +768,8 @@ Now that you have your Terraform module deployed, you can pull in updates as fol
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"51856e814c4a4bc50bdbcab6b0aaf2ce"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "51856e814c4a4bc50bdbcab6b0aaf2ce"
+}
 ##DOCS-SOURCER-END -->

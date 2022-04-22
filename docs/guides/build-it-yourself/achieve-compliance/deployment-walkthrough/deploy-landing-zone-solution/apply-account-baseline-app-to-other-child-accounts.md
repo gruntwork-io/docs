@@ -309,5 +309,8 @@ the benchmark, v1.3.0; the AWS Security Hub does not support this version at the
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"33d01518a80c1b75e1bbe137ef4763ff"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "33d01518a80c1b75e1bbe137ef4763ff"
+}
 ##DOCS-SOURCER-END -->

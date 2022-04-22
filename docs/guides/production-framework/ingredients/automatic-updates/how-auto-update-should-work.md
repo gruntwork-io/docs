@@ -19,5 +19,8 @@ Once the update is merged, the CI / CD pipeline again kicks in, and automaticall
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"1d9283d627bcec9be8c17049eab3ad3a"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "1d9283d627bcec9be8c17049eab3ad3a"
+}
 ##DOCS-SOURCER-END -->

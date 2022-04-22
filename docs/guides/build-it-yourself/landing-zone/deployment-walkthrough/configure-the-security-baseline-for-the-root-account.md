@@ -173,5 +173,8 @@ and any other existing resources.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"30683ab11accc62e34aedda01ae175a3"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "30683ab11accc62e34aedda01ae175a3"
+}
 ##DOCS-SOURCER-END -->

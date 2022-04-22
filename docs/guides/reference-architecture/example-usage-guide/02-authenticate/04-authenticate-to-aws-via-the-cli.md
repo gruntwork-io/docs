@@ -100,5 +100,8 @@ Be sure to read [`USAGE.md`](https://github.com/99designs/aws-vault/blob/master/
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"18111d9a15431ff8db544e24d26c278d"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "18111d9a15431ff8db544e24d26c278d"
+}
 ##DOCS-SOURCER-END -->

@@ -13,5 +13,8 @@
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"a07af15175a16401cffba58d7eb21ef0"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a07af15175a16401cffba58d7eb21ef0"
+}
 ##DOCS-SOURCER-END -->

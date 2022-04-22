@@ -35,5 +35,8 @@ place.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"9b3c7722e10bbb324ab1ada41fea5587"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "9b3c7722e10bbb324ab1ada41fea5587"
+}
 ##DOCS-SOURCER-END -->

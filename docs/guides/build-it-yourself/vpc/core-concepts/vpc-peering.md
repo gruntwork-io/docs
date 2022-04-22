@@ -26,5 +26,8 @@ connections total) can quickly become impractical. In this case, you should look
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"29e8ed8c5281f7822258c6df63ce1abf"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "29e8ed8c5281f7822258c6df63ce1abf"
+}
 ##DOCS-SOURCER-END -->

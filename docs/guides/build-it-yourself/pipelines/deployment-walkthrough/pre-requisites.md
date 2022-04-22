@@ -67,5 +67,8 @@ on alternative options, such as how to
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"791cc3285e6008466de5d18f80dec125"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "791cc3285e6008466de5d18f80dec125"
+}
 ##DOCS-SOURCER-END -->

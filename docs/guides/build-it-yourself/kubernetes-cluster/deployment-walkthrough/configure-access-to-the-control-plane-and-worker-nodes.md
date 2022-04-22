@@ -103,5 +103,8 @@ resource "aws_iam_role_policy" "ssh_grunt_permissions" {
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"985bfb828a22c317d6b029d2afb50f13"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "985bfb828a22c317d6b029d2afb50f13"
+}
 ##DOCS-SOURCER-END -->

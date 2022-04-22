@@ -131,5 +131,8 @@ provides, as well as how they mitigate the threat model that we cover:
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"c728900868ee40f23042497e3d1c64f2"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "c728900868ee40f23042497e3d1c64f2"
+}
 ##DOCS-SOURCER-END -->

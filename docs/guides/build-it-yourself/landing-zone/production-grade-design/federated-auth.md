@@ -52,5 +52,8 @@ so if you want to require MFA, you need to do that in the IdP itself (i.e., in G
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"faac25bb0d3743a5cbbacf88bd4a50de"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "faac25bb0d3743a5cbbacf88bd4a50de"
+}
 ##DOCS-SOURCER-END -->

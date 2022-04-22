@@ -13,5 +13,8 @@ post](https://www.hashicorp.com/blog/terraform-1-1-improves-refactoring-and-the-
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"49defa1819542396936b1f0481640f93"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "49defa1819542396936b1f0481640f93"
+}
 ##DOCS-SOURCER-END -->

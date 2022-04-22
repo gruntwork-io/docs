@@ -177,5 +177,8 @@ Gruntwork to help you implement this framework.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"0f5e3c087339ab8a712c9fa33f909206"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "0f5e3c087339ab8a712c9fa33f909206"
+}
 ##DOCS-SOURCER-END -->

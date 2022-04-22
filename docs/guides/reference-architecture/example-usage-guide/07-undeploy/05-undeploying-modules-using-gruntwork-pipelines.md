@@ -35,5 +35,8 @@ modules that have no existing downstream dependencies.
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"8b72dc69092ed45097995a27428b543d"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "8b72dc69092ed45097995a27428b543d"
+}
 ##DOCS-SOURCER-END -->

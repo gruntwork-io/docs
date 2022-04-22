@@ -19,5 +19,8 @@ We conclude the IAM section with a few parting words of wisdom for maintaining c
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"eb60c65580aa8aea2e2209212c54e24f"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "eb60c65580aa8aea2e2209212c54e24f"
+}
 ##DOCS-SOURCER-END -->

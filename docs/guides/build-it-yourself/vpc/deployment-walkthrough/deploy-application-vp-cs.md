@@ -245,5 +245,8 @@ terragrunt apply
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"a324250d5ea77e813734245029fd8ea3"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "a324250d5ea77e813734245029fd8ea3"
+}
 ##DOCS-SOURCER-END -->
