@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.9" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.9" lastModifiedVersion="0.85.10"/>
 
 # Route 53 Hosted Zones
 
@@ -261,6 +261,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.9/modules%2Fnetworking%2Froute53%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8479cac02f59a9ea81023f769057bf25"
+  "hash": "6174dd2d3c2f4ad01990d2e2c3191dca"
 }
 ##DOCS-SOURCER-END -->

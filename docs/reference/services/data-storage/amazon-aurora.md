@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.9" lastModifiedVersion="0.85.5"/>
+<VersionBadge version="0.85.9" lastModifiedVersion="0.85.10"/>
 
 # Amazon Aurora
 
@@ -1060,6 +1060,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.9/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c21c18d785352e17b466b1fd28de865b"
+  "hash": "43c27ea953cf0459fca100cc58da6cd6"
 }
 ##DOCS-SOURCER-END -->
