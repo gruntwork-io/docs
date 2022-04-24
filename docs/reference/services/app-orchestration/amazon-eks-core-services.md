@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.9" lastModifiedVersion="0.85.7"/>
+<VersionBadge version="0.85.9" lastModifiedVersion="0.85.8"/>
 
 # Amazon EKS Core Services
 
@@ -899,6 +899,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.9/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2d8b369d6851022d8fd8968bfa9dde05"
+  "hash": "62e8f1357ae58e186079f06ac1a19188"
 }
 ##DOCS-SOURCER-END -->
