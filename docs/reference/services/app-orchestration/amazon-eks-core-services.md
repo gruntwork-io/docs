@@ -162,6 +162,33 @@ The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fa
 
 ### Optional
 
+<HclListItem name="alb_ingress_controller_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the aws-load-balancer-controller helmchart to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;1.4.1&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_docker_image_repo" requirement="optional" type="string">
+<HclListItemDescription>
+
+The repository of the aws-load-balancer-controller docker image that should be deployed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_docker_image_tag" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tag of the aws-load-balancer-controller docker image that should be deployed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;v2.4.1&quot;"/>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -422,7 +449,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.21.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.22.2&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -479,6 +506,33 @@ Whether or not to enable fluent-bit for log aggregation.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="external_dns_batch_change_interval" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the interval between making changes to Route 53 by external-dns. When null, use the default defined in the chart (1s).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="external_dns_batch_change_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum number of changes that should be applied in a batch by external-dns. When null, use the default defined in the chart (1000).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="external_dns_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the helm chart to use. Note that this is different from the app/container version.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;6.2.4&quot;"/>
+</HclListItem>
+
 <HclListItem name="external_dns_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -513,6 +567,15 @@ list(map(any))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="external_dns_poll_interval" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the polling interval for syncing the domains by external-dns. When null, use the default defined in the chart (1m).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="external_dns_route53_hosted_zone_domain_filters" requirement="optional" type="list(string)">
@@ -552,6 +615,15 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="external_dns_route53_zones_cache_duration" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the amount of time the Hosted Zones are cached in external-dns. When null, use the default defined in the chart (0 - no caching).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="external_dns_sources" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -568,6 +640,15 @@ K8s resources type to be observed for new DNS entries by ExternalDNS.
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="external_dns_trigger_loop_on_event" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When enabled, triggers external-dns run loop on create/update/delete events (optional, in addition of regular interval)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_execution_iam_role_arns" requirement="optional" type="list(string)">
@@ -899,6 +980,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3dbac4db4cf913f30b857b57e43d6f22"
+  "hash": "8bc213a10506f40a9e2fe091cd4fa15a"
 }
 ##DOCS-SOURCER-END -->

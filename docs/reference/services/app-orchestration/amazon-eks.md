@@ -959,7 +959,7 @@ map(list(string))
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.21&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.22&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -1445,6 +1445,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7be0b7961506acf5bef3a89bb94d4a27"
+  "hash": "16ad7cf0529b8bc14cdf0638cb96a29b"
 }
 ##DOCS-SOURCER-END -->
