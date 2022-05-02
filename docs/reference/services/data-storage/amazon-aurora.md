@@ -29,7 +29,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This service contains code to deploy an Amazon Relational Database Service (RDS) cluster that can run
 [Amazon Aurora](https://aws.amazon.com/rds/aurora/), Amazon’s cloud-native relational database. The cluster is managed
-by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption.
+by AWS and automatically handles standby failover, read replicas, backups, patching, and encryption and more...
 
 ![RDS architecture](/img/reference/services/data-storage/rds-architecture.png)
 
@@ -1069,6 +1069,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6f1a72dea33dff2933e8d6fb591fcc47"
+  "hash": "a394c640a450efc9fc0fb9e6e815a62b"
 }
 ##DOCS-SOURCER-END -->
