@@ -20,6 +20,12 @@ Learn Gruntwork's Go coding style.
   href="/guides/style/markdown-style-guide">
 Learn how Gruntwork formats our READMEs and documentation.
 </Card>
+<Card
+  title="Bash Style Guide"
+  href="https://google.github.io/styleguide/shellguide.html">
+Gruntwork follows Google's shell style guide for Bash scripts.
+</Card>
+  
 
 </CardGroup>
 
@@ -27,6 +33,6 @@ Learn how Gruntwork formats our READMEs and documentation.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "570c137a65cf9623f2e9e018df8121d1"
+  "hash": "a2e7a4dcf7d1eb2a24102927805a2a5d"
 }
 ##DOCS-SOURCER-END -->

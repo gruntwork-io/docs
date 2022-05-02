@@ -20,5 +20,11 @@ Learn Gruntwork's Go coding style.
   href="/guides/style/markdown-style-guide">
 Learn how Gruntwork formats our READMEs and documentation.
 </Card>
+<Card
+  title="Bash Style Guide"
+  href="https://google.github.io/styleguide/shellguide.html">
+Gruntwork follows Google's shell style guide for Bash scripts.
+</Card>
+  
 
 </CardGroup>
