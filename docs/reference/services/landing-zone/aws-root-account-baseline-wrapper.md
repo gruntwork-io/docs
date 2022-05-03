@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Account Baseline for root account
 
@@ -1268,6 +1268,15 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="users" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1773,6 +1782,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f55f4583ad36591ac238d7b54c9c9cd8"
+  "hash": "634997eadd49872a485ea4e03b2a4d1e"
 }
 ##DOCS-SOURCER-END -->

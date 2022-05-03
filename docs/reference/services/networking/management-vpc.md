@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Management VPC
 
@@ -601,6 +601,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fnetworking%2Fvpc-mgmt%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "df99d8364eb3540f755e0adeca3fc8fd"
+  "hash": "32773b4292fdd34ac7ac42b1821d4f37"
 }
 ##DOCS-SOURCER-END -->

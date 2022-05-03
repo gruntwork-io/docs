@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.10"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # ECS Deploy Runner
 
@@ -1051,6 +1051,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8440fa9ccbd47785c8f4458c1d770f0f"
+  "hash": "396b8ce7032396704963c73ea6d74b36"
 }
 ##DOCS-SOURCER-END -->

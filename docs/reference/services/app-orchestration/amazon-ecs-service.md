@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.10"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon ECS Service
 
@@ -769,6 +769,15 @@ The ID of the Route 53 Hosted Zone in which to create a DNS A record pointed to 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="lb_target_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the elb target group. Each item in this list should be a map with the parameters key and value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="max_number_of_tasks" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1283,6 +1292,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "32824a705284b4a8c9d2351f8423eb33"
+  "hash": "86e2f267d9943378d8007398a6307507"
 }
 ##DOCS-SOURCER-END -->

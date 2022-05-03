@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.78.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # S3 Bucket
 
@@ -471,6 +471,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a72a770c0a296139d695e73dc9287f3c"
+  "hash": "2ba7b4c508044bc6367adbf191964c1c"
 }
 ##DOCS-SOURCER-END -->

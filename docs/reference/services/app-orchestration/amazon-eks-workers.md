@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.3"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon EKS Workers
 
@@ -1105,6 +1105,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fservices%2Feks-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a4ef2aa3b7a32c71c9a2447656293cbc"
+  "hash": "4069a21f8e4f2e671d94219f2f19f9c5"
 }
 ##DOCS-SOURCER-END -->

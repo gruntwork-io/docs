@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Account Baseline for app accounts
 
@@ -1112,6 +1112,15 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1436,6 +1445,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "820b92100458047f7cb5ae15d38060c3"
+  "hash": "56077d497f4137dd4d89a07bc3834b34"
 }
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon ElastiCache for Memcached
 
@@ -262,6 +262,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fdata-stores%2Fmemcached%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "65370c056d62514409d6ef4c17c04abf"
+  "hash": "7c9b02ae2cba1c23a44e1dfd408586dd"
 }
 ##DOCS-SOURCER-END -->

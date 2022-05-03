@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.10"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # OpenVPN Server
 
@@ -733,6 +733,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fmgmt%2Fopenvpn-server%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3138150bc77fc262178005623c42568a"
+  "hash": "67746583a959c3586f99d6ec3c51f858"
 }
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon ECS Cluster
 
@@ -787,6 +787,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5c874ef87e7a6c69924c1790a976fbb6"
+  "hash": "7c93802fe16dce3a699e578a734a5267"
 }
 ##DOCS-SOURCER-END -->

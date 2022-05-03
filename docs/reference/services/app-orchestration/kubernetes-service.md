@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.4"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Kubernetes Service
 
@@ -916,6 +916,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "99dda9cf365f66dbe67b0ef5a47e245f"
+  "hash": "25942a8720a03e9b57162a5a2e58d119"
 }
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.50.2"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # IAM Users and IAM Groups
 
@@ -642,6 +642,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Flandingzone%2Fiam-users-and-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ce52c9f3a0628d0e6142a65dd91a9f60"
+  "hash": "f0b0cba00d95d9ded0fe33ab12aeb507"
 }
 ##DOCS-SOURCER-END -->

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon ElastiCache for Redis
 
@@ -390,6 +390,6 @@ When cluster mode is disabled, use this endpoint for all read operations.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fdata-stores%2Fredis%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9d376ddbdc3bfb2190509cf594a52b90"
+  "hash": "0628927df3af5b681bf61c6ba9af3fa6"
 }
 ##DOCS-SOURCER-END -->

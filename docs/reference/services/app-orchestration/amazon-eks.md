@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.11" lastModifiedVersion="0.85.0"/>
+<VersionBadge version="0.85.11" lastModifiedVersion="0.86.0"/>
 
 # Amazon EKS
 
@@ -1445,6 +1445,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.11/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a0cfb547a263d7ad88f31c213a3b7936"
+  "hash": "e56a3ebad1bc0e08ae6de81ebe4adbba"
 }
 ##DOCS-SOURCER-END -->
