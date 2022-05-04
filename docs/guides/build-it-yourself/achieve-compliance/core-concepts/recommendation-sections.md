@@ -34,7 +34,7 @@ several of them:
 
 AWS has several other logging related features that are not covered directly by the Benchmark. For example,
 the primary log ingestion and query service, [Amazon CloudWatch
-Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html), is integrated with many other AWS services. The Benchmark recommends that CloudTrail is integratd with CloudWatch Logs. Within the Gruntwork modules we’ve setup CloudWatch with all the integrated services such as AWS Config, CloudTrail and S3.
+Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html), is integrated with many other AWS services. The Benchmark recommends that CloudTrail is integrated with CloudWatch Logs. Within the Gruntwork modules we’ve setup CloudWatch with all the integrated services such as AWS Config, CloudTrail and S3.
 
 ## Monitoring
 
