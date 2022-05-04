@@ -618,15 +618,6 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="private_app_route_table_custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the private-app route table(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
 <HclListItem name="private_app_subnet_cidr_blocks" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -640,15 +631,6 @@ A map listing the specific CIDR blocks desired for each private-app subnet. The 
 <HclListItemDescription>
 
 A map of tags to apply to the private-app Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="private_persistence_route_table_custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the private-persistence route tables(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -706,15 +688,6 @@ A list of Virtual Private Gateways that will propagate routes to public subnets.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="public_route_table_custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the public route table(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="public_subnet_bits" requirement="optional" type="number">
@@ -1011,6 +984,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.86.1/modules%2Fnetworking%2Fvpc%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "37b048b449a77eea2503b73aa66369c0"
+  "hash": "b7593ad564a6ed06236d43574bf3acc2"
 }
 ##DOCS-SOURCER-END -->

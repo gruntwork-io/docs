@@ -252,20 +252,13 @@ The minimum amount of time that you want objects to stay in CloudFront caches be
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="routing_rule" requirement="optional" type="any">
+<HclListItem name="routing_rules" requirement="optional" type="string">
 <HclListItemDescription>
 
-A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied.
+A json array containing routing rules describing redirect behavior and when redirects are applied. For routing rule syntax, see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html. This will only be used if <a href="#should_redirect_all_requests"><code>should_redirect_all_requests</code></a> is false
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
@@ -332,6 +325,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.86.1/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "42f70d80dee927130c4b928d728f75ef"
+  "hash": "e081d822aaafdc41d0b6d22f651f7cff"
 }
 ##DOCS-SOURCER-END -->

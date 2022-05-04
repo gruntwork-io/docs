@@ -1112,15 +1112,6 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1445,6 +1436,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.86.1/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a67657673f89ad21f67c3411fd284917"
+  "hash": "d857b0551649abd9fd7163f57871dc79"
 }
 ##DOCS-SOURCER-END -->

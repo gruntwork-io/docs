@@ -189,7 +189,7 @@ The time period, in seconds, during which requests from a client should be route
 The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible values. Only used if <a href="#elb_target_groups"><code>elb_target_groups</code></a> is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;lb_cookie&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;source_ip&quot;"/>
 </HclListItem>
 
 <HclListItem name="canary_container_definitions" requirement="optional" type="any">
@@ -1292,6 +1292,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.86.1/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f11cf053c1a57d25404f61ecb899886b"
+  "hash": "34428478ac29a788192816030f819ec1"
 }
 ##DOCS-SOURCER-END -->

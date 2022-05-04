@@ -1418,15 +1418,6 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="users" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1884,6 +1875,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.86.1/modules%2Flandingzone%2Faccount-baseline-security%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3eac8430f465f53545021a92c584fce6"
+  "hash": "315e21e6bf611a7efe26b66d5893cf5b"
 }
 ##DOCS-SOURCER-END -->
