@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.85.10" lastModifiedVersion="0.85.8"/>
+<VersionBadge version="0.87.0" lastModifiedVersion="0.87.0"/>
 
 # Amazon EKS Core Services
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules/services/eks-core-services" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/modules/services/eks-core-services" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,9 +69,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -79,7 +79,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -87,7 +87,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -161,6 +161,33 @@ The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fa
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="alb_ingress_controller_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the aws-load-balancer-controller helmchart to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;1.4.1&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_docker_image_repo" requirement="optional" type="string">
+<HclListItemDescription>
+
+The repository of the aws-load-balancer-controller docker image that should be deployed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_docker_image_tag" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tag of the aws-load-balancer-controller docker image that should be deployed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;v2.4.1&quot;"/>
+</HclListItem>
 
 <HclListItem name="alb_ingress_controller_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
@@ -422,7 +449,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.21.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.22.2&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -479,6 +506,33 @@ Whether or not to enable fluent-bit for log aggregation.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="external_dns_batch_change_interval" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the interval between making changes to Route 53 by external-dns. When null, use the default defined in the chart (1s).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="external_dns_batch_change_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum number of changes that should be applied in a batch by external-dns. When null, use the default defined in the chart (1000).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="external_dns_chart_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the helm chart to use. Note that this is different from the app/container version.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;6.2.4&quot;"/>
+</HclListItem>
+
 <HclListItem name="external_dns_pod_node_affinity" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -513,6 +567,15 @@ list(map(any))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="external_dns_poll_interval" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the polling interval for syncing the domains by external-dns. When null, use the default defined in the chart (1m).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="external_dns_route53_hosted_zone_domain_filters" requirement="optional" type="list(string)">
@@ -552,6 +615,15 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="external_dns_route53_zones_cache_duration" requirement="optional" type="string">
+<HclListItemDescription>
+
+Duration string (e.g. 1m) indicating the amount of time the Hosted Zones are cached in external-dns. When null, use the default defined in the chart (0 - no caching).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="external_dns_sources" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -568,6 +640,15 @@ K8s resources type to be observed for new DNS entries by ExternalDNS.
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="external_dns_trigger_loop_on_event" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When enabled, triggers external-dns run loop on create/update/delete events (optional, in addition of regular interval)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_execution_iam_role_arns" requirement="optional" type="list(string)">
@@ -894,11 +975,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fservices%2Feks-core-services%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fservices%2Feks-core-services%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.85.10/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/modules%2Fservices%2Feks-core-services%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/modules%2Fservices%2Feks-core-services%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.87.0/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3dbac4db4cf913f30b857b57e43d6f22"
+  "hash": "15b6a9e0acfa699a4603a94660221788"
 }
 ##DOCS-SOURCER-END -->
