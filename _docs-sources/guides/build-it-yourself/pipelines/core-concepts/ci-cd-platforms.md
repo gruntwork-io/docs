@@ -75,7 +75,7 @@ provides, as well as how they mitigate the threat model that we cover:
 <tr className="odd">
 <td><p><strong>Provides static IP addresses for IP whitelisting</strong></p></td>
 <td><p>Yes</p></td>
-<td><p>No</p></td>
+<td><p>Yes</p></td>
 <td><p>Yes (for workers)</p></td>
 <td><p>Yes (self-hosted)</p></td>
 <td><p>Yes</p></td>
