@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.88.0" lastModifiedVersion="0.86.0"/>
+<VersionBadge version="0.88.0" lastModifiedVersion="0.88.1"/>
 
 # Amazon Relational Database Service
 
@@ -773,6 +773,42 @@ When configured, the upper limit to which Amazon RDS can automatically scale the
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. If monitoring_interval is greater than 0, but monitoring_role_arn is left as an empty string, a default IAM role that allows enhanced monitoring will be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="monitoring_role_arn_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optionally add a path to the IAM monitoring role. If left blank, it will default to just /.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
+</HclListItem>
+
+<HclListItem name="monitoring_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the enhanced_monitoring_role that is created. Defaults to <a href="#name"><code>name</code></a>-monitoring-role if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="multi_az" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1084,6 +1120,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.0/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4d1499656430214a2c343fb0553cdd93"
+  "hash": "1393b3ad8ca0b233cf0be483075be6a1"
 }
 ##DOCS-SOURCER-END -->
