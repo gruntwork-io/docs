@@ -482,7 +482,6 @@ A map of ports to be opened via security groups applied to the EC2 instances tha
 ```hcl
 map(object({
     file_system_id          = string # required
-    container_path          = string # required
     root_directory          = string
     transit_encryption      = string
     transit_encryption_port = number
