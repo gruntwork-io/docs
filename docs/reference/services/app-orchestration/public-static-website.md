@@ -189,12 +189,24 @@ The path to the error document in the S3 bucket (e.g. error.html).
 <HclListItemDefaultValue defaultValue="&quot;error.html&quot;"/>
 </HclListItem>
 
-<HclListItem name="error_responses" requirement="optional" type="map">
+<HclListItem name="error_responses" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
 The error responses you want CloudFront to return to the viewer.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+      response_code         = number
+      response_page_path    = string
+      error_caching_min_ttl = number
+    })
+  )
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue>
 
 ```hcl
@@ -358,6 +370,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2fae1b6f4b7581aa052d50d543805533"
+  "hash": "a2eefbc3c6aab319aeec39a21306be49"
 }
 ##DOCS-SOURCER-END -->
