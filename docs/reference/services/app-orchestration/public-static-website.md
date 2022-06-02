@@ -199,11 +199,10 @@ The error responses you want CloudFront to return to the viewer.
 
 ```hcl
 map(object({
-      response_code         = number
-      response_page_path    = string
-      error_caching_min_ttl = number
-    })
-  )
+    response_code         = number
+    response_page_path    = string
+    error_caching_min_ttl = number
+  }))
 ```
 
 </HclListItemTypeDetails>
@@ -370,6 +369,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a2eefbc3c6aab319aeec39a21306be49"
+  "hash": "4e8e1ed7dad81be0cbdb97f437a39ced"
 }
 ##DOCS-SOURCER-END -->
