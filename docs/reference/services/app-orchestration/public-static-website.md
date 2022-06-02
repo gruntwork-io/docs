@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.88.2" lastModifiedVersion="0.86.0"/>
+<VersionBadge version="0.88.2" lastModifiedVersion="0.88.3"/>
 
 # Public Static Website
 
@@ -189,6 +189,43 @@ The path to the error document in the S3 bucket (e.g. error.html).
 <HclListItemDefaultValue defaultValue="&quot;error.html&quot;"/>
 </HclListItem>
 
+<HclListItem name="error_responses" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+The error responses you want CloudFront to return to the viewer.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    response_code         = number
+    response_page_path    = string
+    error_caching_min_ttl = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  404 = {
+    error_caching_min_ttl = 0,
+    response_code = 404,
+    response_page_path = "404.html"
+  },
+  500 = {
+    error_caching_min_ttl = 0,
+    response_code = 500,
+    response_page_path = "500.html"
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="force_destroy" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -332,6 +369,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4eab43a4e7b1f33ec5aaa6069a22fb67"
+  "hash": "f92646c9e89dc2f87d70d9206acaa37a"
 }
 ##DOCS-SOURCER-END -->
