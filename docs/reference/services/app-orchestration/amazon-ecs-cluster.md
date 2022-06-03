@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.0" lastModifiedVersion="0.89.0"/>
+<VersionBadge version="0.89.0" lastModifiedVersion="0.89.1"/>
 
 # Amazon ECS Cluster
 
@@ -463,6 +463,15 @@ Enable fail2ban to block brute force log in attempts. Defaults to true
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_imds" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -580,6 +589,15 @@ Trigger an alarm if the ECS Cluster has a memory utilization percentage above th
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+The desired HTTP PUT response hop limit for instance metadata requests for the workers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="internal_alb_sg_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -641,6 +659,15 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -787,6 +814,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c695b076081b9c23fa64222cb83dfb57"
+  "hash": "65131d62e4a756573eefa46b978f7b94"
 }
 ##DOCS-SOURCER-END -->
