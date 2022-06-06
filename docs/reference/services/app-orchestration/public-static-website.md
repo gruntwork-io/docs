@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.0" lastModifiedVersion="0.89.0"/>
+<VersionBadge version="0.89.0" lastModifiedVersion="0.89.1"/>
 
 # Public Static Website
 
@@ -289,6 +289,15 @@ The minimum amount of time that you want objects to stay in CloudFront caches be
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="minimum_protocol_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#minimum_protocol_version for possible values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
+</HclListItem>
+
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -369,6 +378,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8e6a51c59e42fce50385a5fd7ef07f29"
+  "hash": "78af1b4a3726d4a60f27be77e4194e99"
 }
 ##DOCS-SOURCER-END -->
