@@ -558,6 +558,35 @@ map(object({
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="artifact_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configuration for storing artifacts from the underlying commands. When set, stdout, stderr, and interleaved output will be stored in the configured S3 bucket. Set to null if you do not wish for artifacts to be stored. Note that when null, the args for configuring storage of outputs will not be available.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # Whether to allow user to selectively decide when artifacts should be stored in S3. When true,
+    # users must provide `--store-outputs true` to the script args in the infrastructure-deployer call to store the
+    # outputs. When false, every run will be hardcoded to `--store-outputs true`.
+    allow_runtime_selection = bool
+
+    # S3 bucket and region (us-east-1) where the outputs will be stored.
+    bucket_name = string
+    region      = string
+
+    # Key prefix to use if lambda event does not specify. Outputs will be stored at PREFIX/stdout, PREFIX/stderr, and
+    # PREFIX/interleaved. Note that this will overwrite the output even if the key already exists.
+    default_key_prefix = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cloudwatch_log_group_for_ec2_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1051,6 +1080,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "71c700ddcc1afa155ce12a0f8e9d0468"
+  "hash": "458406bd0b860bfb9ef611591b691c33"
 }
 ##DOCS-SOURCER-END -->
