@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.0" lastModifiedVersion="0.89.0"/>
+<VersionBadge version="0.89.1" lastModifiedVersion="0.89.1"/>
 
 # ECS Deploy Runner
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -78,7 +78,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -556,6 +556,35 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="artifact_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configuration for storing artifacts from the underlying commands. When set, stdout, stderr, and interleaved output will be stored in the configured S3 bucket. Set to null if you do not wish for artifacts to be stored. Note that when null, the args for configuring storage of outputs will not be available.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # Whether to allow user to selectively decide when artifacts should be stored in S3. When true,
+    # users must provide `--store-outputs true` to the script args in the infrastructure-deployer call to store the
+    # outputs. When false, every run will be hardcoded to `--store-outputs true`.
+    allow_runtime_selection = bool
+
+    # S3 bucket and region (us-east-1) where the outputs will be stored.
+    bucket_name = string
+    region      = string
+
+    # Key prefix to use if lambda event does not specify. Outputs will be stored at PREFIX/stdout, PREFIX/stderr, and
+    # PREFIX/interleaved. Note that this will overwrite the output even if the key already exists.
+    default_key_prefix = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_for_ec2_kms_key_id" requirement="optional" type="string">
@@ -1046,11 +1075,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fmgmt%2Fecs-deploy-runner%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fmgmt%2Fecs-deploy-runner%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.0/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/modules%2Fmgmt%2Fecs-deploy-runner%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/modules%2Fmgmt%2Fecs-deploy-runner%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "71c700ddcc1afa155ce12a0f8e9d0468"
+  "hash": "f136404c42e6b3add405c1f58ec0a8d0"
 }
 ##DOCS-SOURCER-END -->
