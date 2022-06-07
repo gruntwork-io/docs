@@ -330,6 +330,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_arn_for_bucket_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+In older AWS accounts, you must set this variable to true to use the ARN of the CloudFront log delivery AWS account in the access log bucket policy. In newer AWS accounts, you must set this variable to false to use the CanonicalUser ID of the CloudFront log delivery account. If you pick the wrong value, you'll get a perpetual diff on the IAM policy. See https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for context.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -394,6 +403,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c0d28f07084ed24bf51ac19d72448bed"
+  "hash": "83479877a9e892de70940748388967c5"
 }
 ##DOCS-SOURCER-END -->
