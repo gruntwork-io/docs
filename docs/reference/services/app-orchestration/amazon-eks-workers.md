@@ -871,6 +871,15 @@ The instance type to configure in the launch template. This value will be used w
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="node_group_mirror_tags_to_asg" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Tags assigned to a node group are mirrored to the underlaying autoscaling group by default. If you want to disable this behaviour, set this flag to false. Note that this assumes that there is a one-to-one mappping between ASGs and Node Groups. If there is more than one ASG mapped to the Node Group, then this will only apply the tags on the first one. Due to a limitation in Terraform for_each where it can not depend on dynamic data, it is currently not possible in the module to map the tags to all ASGs. If you wish to apply the tags to all underlying ASGs, then it is recommended to call the aws_autoscaling_group_tag resource in a separate terraform state file outside of this module, or use a two-stage apply process.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="node_group_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1105,6 +1114,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.1/modules%2Fservices%2Feks-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6899ce71119b599c0678aec270ff0a10"
+  "hash": "b9668104c24fdb6429e74cb5551d673e"
 }
 ##DOCS-SOURCER-END -->
