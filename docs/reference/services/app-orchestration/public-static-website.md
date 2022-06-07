@@ -251,6 +251,15 @@ If set to true, this will force the delete of the website, redirect, and access 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="forward_headers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The headers you want CloudFront to forward to the origin. Set to * to forward all headers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -403,6 +412,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "83479877a9e892de70940748388967c5"
+  "hash": "e9a9c67549abd96611c3a6be53219f22"
 }
 ##DOCS-SOURCER-END -->
