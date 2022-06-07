@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.2" lastModifiedVersion="0.89.2"/>
+<VersionBadge version="0.89.2" lastModifiedVersion="0.89.3"/>
 
 # Public Static Website
 
@@ -251,6 +251,15 @@ If set to true, this will force the delete of the website, redirect, and access 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="forward_headers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The headers you want CloudFront to forward to the origin. Set to * to forward all headers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -330,6 +339,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_arn_for_bucket_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+In older AWS accounts, you must set this variable to true to use the ARN of the CloudFront log delivery AWS account in the access log bucket policy. In newer AWS accounts, you must set this variable to false to use the CanonicalUser ID of the CloudFront log delivery account. If you pick the wrong value, you'll get a perpetual diff on the IAM policy. See https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for context.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -394,6 +412,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c0d28f07084ed24bf51ac19d72448bed"
+  "hash": "a1dfa4ff1b3ca0940592a6d82718f66f"
 }
 ##DOCS-SOURCER-END -->
