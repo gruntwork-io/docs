@@ -187,6 +187,26 @@ A map of custom tags to apply to the S3 bucket containing the website and the Cl
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_lambda_associations" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+A list of existing Lambda@Edge functions to associate with CloudFront. Lambda version must be a published version and cannot be `$LATEST` (See https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association for available options).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    event_type   = string
+    lambda_arn   = string
+    include_body = bool
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="default_ttl" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -294,26 +314,6 @@ The path to the index document in the S3 bucket (e.g. index.html).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;index.html&quot;"/>
-</HclListItem>
-
-<HclListItem name="lambda_associations" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-A list of existing Lambda@Edge functions to associate with CloudFront. Lambda version must be a published version and cannot be `$LATEST` (See https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association for available options).
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    event_type   = string
-    lambda_arn   = string
-    include_body = bool
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="max_ttl" requirement="optional" type="number">
@@ -534,6 +534,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3ff90bb8f93c2f355ca57bb69437221f"
+  "hash": "c5c80f78aa3362fccf56496777e59723"
 }
 ##DOCS-SOURCER-END -->
