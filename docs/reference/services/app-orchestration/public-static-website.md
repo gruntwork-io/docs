@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.88.1" lastModifiedVersion="0.86.0"/>
+<VersionBadge version="0.89.4" lastModifiedVersion="0.89.3"/>
 
 # Public Static Website
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -61,7 +61,7 @@ If you’ve never used the Service Catalog before, make sure to read
 ### Core concepts
 
 This module deploys a public website, so the S3 bucket and objects with it are readable by the public. It also is
-hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules/services/public-static-website/variables.tf),
+hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules/services/public-static-website/variables.tf),
 or you may provide the `base_domain_name` associated with your Public Hosted Zone in Route 53, optionally along with
 any tags that must match that zone in `base_domain_name_tags`. If you do the latter, this module will find the hosted
 zone id for you.
@@ -72,17 +72,17 @@ website, and how to configure SSL, check out the documentation for the
 and [s3-cloudfront](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/master/modules/s3-cloudfront)
 modules.
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules/services/public-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules/services/public-static-website/core-concepts.md#quick-start)
 *   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
 *   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-handle-www—root-domains)
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -90,7 +90,7 @@ modules.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -98,7 +98,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/examples/for-learning-and-testing/services/public-static-website/example-website):
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/examples/for-learning-and-testing/services/public-static-website/example-website):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -153,6 +153,22 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="cors_rule" requirement="optional" type="any">
+<HclListItemDescription>
+
+A configuration for CORS on the S3 bucket. Default value comes from AWS. Can override for custom CORS by passing the object structure define in the documentation https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#using-cors.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -189,6 +205,43 @@ The path to the error document in the S3 bucket (e.g. error.html).
 <HclListItemDefaultValue defaultValue="&quot;error.html&quot;"/>
 </HclListItem>
 
+<HclListItem name="error_responses" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+The error responses you want CloudFront to return to the viewer.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    response_code         = number
+    response_page_path    = string
+    error_caching_min_ttl = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  404 = {
+    error_caching_min_ttl = 0,
+    response_code = 404,
+    response_page_path = "404.html"
+  },
+  500 = {
+    error_caching_min_ttl = 0,
+    response_code = 500,
+    response_page_path = "500.html"
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="force_destroy" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -196,6 +249,15 @@ If set to true, this will force the delete of the website, redirect, and access 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="forward_headers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The headers you want CloudFront to forward to the origin. Set to * to forward all headers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
@@ -252,6 +314,15 @@ The minimum amount of time that you want objects to stay in CloudFront caches be
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="minimum_protocol_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#minimum_protocol_version for possible values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
+</HclListItem>
+
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -266,6 +337,15 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="use_cloudfront_arn_for_bucket_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+In older AWS accounts, you must set this variable to true to use the ARN of the CloudFront log delivery AWS account in the access log bucket policy. In newer AWS accounts, you must set this variable to false to use the CanonicalUser ID of the CloudFront log delivery account. If you pick the wrong value, you'll get a perpetual diff on the IAM policy. See https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for context.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
@@ -327,11 +407,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f8e1cc42da898d7fda76e99c4799da01"
+  "hash": "d5482f2090e8aa05895e1f1f5799fae8"
 }
 ##DOCS-SOURCER-END -->

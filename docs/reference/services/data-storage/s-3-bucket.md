@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.88.1" lastModifiedVersion="0.86.0"/>
+<VersionBadge version="0.89.4" lastModifiedVersion="0.89.4"/>
 
 # S3 Bucket
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -68,7 +68,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -280,6 +280,51 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="object_lock_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days that you want to specify for the default retention period for Object Locking. Only one of object_lock_days or object_lock_years can be configured. Only used if object_lock_enabled and object_lock_default_retention_enabled are true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="object_lock_default_retention_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to configure a default retention period for object locks when Object Locking is enabled. When disabled, objects will not be protected with locking by default unless explicitly configured at object creation time. Only used if object_lock_enabled is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="object_lock_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable Object Locking. This prevents objects from being deleted for a customizable period of time. Note that this MUST be configured at bucket creation time - you cannot update an existing bucket to enable object locking unless you go through AWS support. Additionally, this is not reversible - once a bucket is created with object lock enabled, you cannot disable object locking even with this setting. Note that enabling object locking will automatically enable bucket versioning.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="object_lock_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default Object Lock retention mode you want to apply to new objects placed in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used if object_lock_enabled and object_lock_default_retention_enabled are true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="object_lock_years" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of years that you want to specify for the default retention period for Object Locking. Only one of object_lock_days or object_lock_years can be configured. Only used if object_lock_enabled and object_lock_default_retention_enabled are true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replica_bucket" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -466,11 +511,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fdata-stores%2Fs3-bucket%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fdata-stores%2Fs3-bucket%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.88.1/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fdata-stores%2Fs3-bucket%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fdata-stores%2Fs3-bucket%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1d34d49e042fca97081ccac1dd1772b3"
+  "hash": "22758057e09a244becf08ed1f16690bf"
 }
 ##DOCS-SOURCER-END -->
