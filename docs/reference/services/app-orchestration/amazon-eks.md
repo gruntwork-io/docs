@@ -856,6 +856,15 @@ Enable fail2ban to block brute force log in attempts. Defaults to true.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_worker_cloudwatch_log_aggregation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to send worker system logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch. Note that this is only recommended for aggregating system level logs from the server instances. Container logs should be managed through fluent-bit deployed with eks-core-services.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enabled_control_plane_log_types" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1275,6 +1284,42 @@ The number of free IP addresses each node should maintain. When null, defaults t
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="worker_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting worker system log data. Only used if <a href="#enable_worker_cloudwatch_log_aggregation"><code>enable_worker_cloudwatch_log_aggregation</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="worker_cloudwatch_log_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the CloudWatch Log Group where worker system logs are reported to. Only used if <a href="#enable_worker_cloudwatch_log_aggregation"><code>enable_worker_cloudwatch_log_aggregation</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="worker_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the worker system logs log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever. Only used if <a href="#enable_worker_cloudwatch_log_aggregation"><code>enable_worker_cloudwatch_log_aggregation</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="worker_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the worker system logs CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values. Only used if <a href="#enable_worker_cloudwatch_log_aggregation"><code>enable_worker_cloudwatch_log_aggregation</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="worker_iam_role_arns_for_k8s_role_mapping" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1445,6 +1490,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "477819644dc451a81b0ba3bd5dd1da43"
+  "hash": "bc792ad25a6c7837cdb26e8d96d095c6"
 }
 ##DOCS-SOURCER-END -->

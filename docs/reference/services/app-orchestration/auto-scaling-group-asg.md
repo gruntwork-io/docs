@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.4" lastModifiedVersion="0.89.0"/>
+<VersionBadge version="0.89.4" lastModifiedVersion="0.89.5"/>
 
 # Auto Scaling Group
 
@@ -808,6 +808,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fservices%2Fasg-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f1570a496ab297a47579641eef85bc95"
+  "hash": "5889cf471a7d11f0ca6dcb4bb61f26a9"
 }
 ##DOCS-SOURCER-END -->
