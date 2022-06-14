@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.3" lastModifiedVersion="0.89.1"/>
+<VersionBadge version="0.89.3" lastModifiedVersion="0.89.4"/>
 
 # Amazon Relational Database Service
 
@@ -1120,6 +1120,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5962f4deacd868aa43bc9ac233ad1031"
+  "hash": "d00d247581bb6d6f1c296875f98276b9"
 }
 ##DOCS-SOURCER-END -->
