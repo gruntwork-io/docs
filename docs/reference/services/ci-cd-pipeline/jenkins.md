@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.4" lastModifiedVersion="0.89.4"/>
+<VersionBadge version="0.89.4" lastModifiedVersion="0.89.5"/>
 
 # Jenkins CI Server
 
@@ -778,6 +778,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.4/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "638b0ee08100d84c0e96f235ad428d93"
+  "hash": "2352537f6590ba9be0c01a794cd47ec4"
 }
 ##DOCS-SOURCER-END -->
