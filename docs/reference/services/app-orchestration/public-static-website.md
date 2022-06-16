@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.3" lastModifiedVersion="0.89.3"/>
+<VersionBadge version="0.90.3" lastModifiedVersion="0.90.0"/>
 
 # Public Static Website
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -61,7 +61,7 @@ If you’ve never used the Service Catalog before, make sure to read
 ### Core concepts
 
 This module deploys a public website, so the S3 bucket and objects with it are readable by the public. It also is
-hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules/services/public-static-website/variables.tf),
+hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules/services/public-static-website/variables.tf),
 or you may provide the `base_domain_name` associated with your Public Hosted Zone in Route 53, optionally along with
 any tags that must match that zone in `base_domain_name_tags`. If you do the latter, this module will find the hosted
 zone id for you.
@@ -72,17 +72,17 @@ website, and how to configure SSL, check out the documentation for the
 and [s3-cloudfront](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/master/modules/s3-cloudfront)
 modules.
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules/services/public-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules/services/public-static-website/core-concepts.md#quick-start)
 *   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
 *   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-handle-www—root-domains)
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -90,7 +90,7 @@ modules.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -98,7 +98,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/examples/for-learning-and-testing/services/public-static-website/example-website):
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/examples/for-learning-and-testing/services/public-static-website/example-website):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -131,7 +131,7 @@ The name of the website and the S3 bucket to create (e.g. static.foo.com).
 <HclListItem name="base_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The domain name associated with a hosted zone in Route 53. Usually the base domain name of <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+The domain name associated with a hosted zone in Route 53. Usually the base domain name of <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -140,7 +140,7 @@ The domain name associated with a hosted zone in Route 53. Usually the base doma
 <HclListItem name="base_domain_name_tags" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
-The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
+The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same <a href="#base_domain_name"><code>base_domain_name</code></a>, this will help filter the hosted zones so that the correct hosted zone is found.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -172,7 +172,7 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -185,6 +185,26 @@ A map of custom tags to apply to the S3 bucket containing the website and the Cl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_lambda_associations" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+A list of existing Lambda@Edge functions to associate with CloudFront. Lambda version must be a published version and cannot be `$LATEST` (See https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambda_function_association for available options).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    event_type   = string
+    lambda_arn   = string
+    include_body = bool
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="default_ttl" requirement="optional" type="number">
@@ -281,7 +301,7 @@ The method that you want to use to restrict distribution of your content by coun
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#website_domain_name"><code>website_domain_name</code></a>. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#website_domain_name"><code>website_domain_name</code></a>. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -337,6 +357,108 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="security_header_content_security_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The policy directives and their values that CloudFront includes as values for the Content-Security-Policy HTTP response header. When null, the header is omitted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;default-src &apos;self&apos;; base-uri &apos;self&apos;; block-all-mixed-content; font-src &apos;self&apos; https: data:; form-action &apos;self&apos;; frame-ancestors &apos;self&apos;; img-src &apos;self&apos; data:; object-src &apos;none&apos;; script-src &apos;self&apos;; script-src-attr &apos;none&apos;; style-src &apos;self&apos; https: &apos;unsafe-inline&apos;; upgrade-insecure-requests&quot;"/>
+</HclListItem>
+
+<HclListItem name="security_header_enable_nosniff_content_type_options" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Determines whether CloudFront includes the X-Content-Type-Options HTTP response header with its value set to nosniff.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="security_header_frame_option" requirement="optional" type="string">
+<HclListItemDescription>
+
+Determines whether CloudFront includes the X-Frame-Options HTTP response header and the header’s value. When null, the header is omitted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;SAMEORIGIN&quot;"/>
+</HclListItem>
+
+<HclListItem name="security_header_hsts" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Determines whether CloudFront includes the Strict-Transport-Security HTTP response header and the header’s value. When null, the header is omitted.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The number of seconds browsers should remember to prefer HTTPS.
+    max_age = number
+    # Whether to include subdomains in the policy.
+    include_subdomains = bool
+    # Whether to add the HSTS policy to browsers.
+    preload = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  include_subdomains = true,
+  max_age = 15552000,
+  preload = false
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="security_header_referrer_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Determines whether CloudFront includes the Referrer-Policy HTTP response header and the header’s value. When null, the header is omitted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;no-referrer&quot;"/>
+</HclListItem>
+
+<HclListItem name="security_header_xss_protection" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Determine whether CloudFront includes the X-Xss-Protection HTTP response header and the header’s value. When null, the header is omitted.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # A Boolean value that determines whether CloudFront includes the mode=block directive in the X-XSS-Protection header.
+    mode_block = bool
+    # A Boolean value that determines the value of the X-Xss-Protection HTTP response header (true = 1, false = 0).
+    protection = bool
+    # A reporting URI, which CloudFront uses as the value of the report directive in the X-XSS-Protection header. You cannot specify a report_uri when mode_block is true.
+    report_uri = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  mode_block = false,
+  protection = false,
+  report_uri = null
+}
+```
+
+</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="use_cloudfront_arn_for_bucket_policy" requirement="optional" type="bool">
@@ -407,11 +529,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2eec5f3bb676d8e0119b680bd5d9164b"
+  "hash": "aaceeb1d852042950deced74751426bc"
 }
 ##DOCS-SOURCER-END -->

@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.89.3" lastModifiedVersion="0.87.0"/>
+<VersionBadge version="0.90.3" lastModifiedVersion="0.90.3"/>
 
 # Application Load Balancer
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules/networking/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules/networking/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -207,6 +207,15 @@ Set to true to create a Route 53 DNS A record for this ALB?
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="custom_alb_access_logs_s3_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB logs should be stored. Only used if <a href="#enable_custom_alb_access_logs_s3_prefix"><code>enable_custom_alb_access_logs_s3_prefix</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -256,6 +265,15 @@ The list of domain names for the DNS A record to add for the ALB (e.g. alb.foo.c
 <HclListItemDescription>
 
 If true, the ALB will drop invalid headers. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_custom_alb_access_logs_s3_prefix" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to use the value of alb_access_logs_s3_prefix for access logs prefix. If false, the alb_name will be used. This is useful if you wish to disable the S3 prefix. Only used if <a href="#enable_alb_access_logs"><code>enable_alb_access_logs</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -460,11 +478,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fnetworking%2Falb%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fnetworking%2Falb%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.89.3/modules%2Fnetworking%2Falb%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fnetworking%2Falb%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fnetworking%2Falb%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.3/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9874250790bc5d6c0095810a9392b87d"
+  "hash": "cb784f7b15cc2157355c08b13c51ddab"
 }
 ##DOCS-SOURCER-END -->
