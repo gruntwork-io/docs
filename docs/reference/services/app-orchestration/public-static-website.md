@@ -131,7 +131,7 @@ The name of the website and the S3 bucket to create (e.g. static.foo.com).
 <HclListItem name="base_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The domain name associated with a hosted zone in Route 53. Usually the base domain name of <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+The domain name associated with a hosted zone in Route 53. Usually the base domain name of <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -140,7 +140,7 @@ The domain name associated with a hosted zone in Route 53. Usually the base doma
 <HclListItem name="base_domain_name_tags" requirement="optional" type="map(any)">
 <HclListItemDescription>
 
-The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
+The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same <a href="#base_domain_name"><code>base_domain_name</code></a>, this will help filter the hosted zones so that the correct hosted zone is found.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -172,7 +172,7 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+If set to true, create a DNS A Record in Route 53. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -301,7 +301,7 @@ The method that you want to use to restrict distribution of your content by coun
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#website_domain_name"><code>website_domain_name</code></a>. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of base_domain_name or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
+The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#website_domain_name"><code>website_domain_name</code></a>. If <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true, one of <a href="#base_domain_name"><code>base_domain_name</code></a> or <a href="#hosted_zone_id"><code>hosted_zone_id</code></a> must be provided.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -534,6 +534,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.2/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b69cb1e561000beb2dc7abc6be1a24e9"
+  "hash": "a66a3253d4b4ea45232760b5bf98bc85"
 }
 ##DOCS-SOURCER-END -->
