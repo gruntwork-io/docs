@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.90.4" lastModifiedVersion="0.90.0"/>
+<VersionBadge version="0.90.4" lastModifiedVersion="0.90.4"/>
 
 # Amazon ECS Service
 
@@ -1292,6 +1292,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.4/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2ba4dbf9796c34f17e3d6da38bdeff24"
+  "hash": "54f35b4e89a34cad318585da990a784f"
 }
 ##DOCS-SOURCER-END -->
