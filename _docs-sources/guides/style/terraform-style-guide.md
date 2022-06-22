@@ -131,7 +131,7 @@ There is no standard on ordering the sections, but as a rule of thumb the follow
 - Provider blocks, if needed.
 - The main component of the module (e.g., the `aws_ecs_service` resource for the ECS service module).
 - All other sections.
-- Any `data` blocks (at the bottom).
+- `locals` and `data` blocks just before where they're used.
 
 #### Conditionals
 
