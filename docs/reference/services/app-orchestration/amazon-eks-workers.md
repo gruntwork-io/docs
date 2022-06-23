@@ -243,6 +243,15 @@ Default value for enable_detailed_monitoring field of autoscaling_group_configur
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="asg_default_instance_root_volume_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -817,6 +826,15 @@ Default value for enable_detailed_monitoring field of managed_node_group_configu
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for http_put_response_hop_limit field of managed_node_group_configurations. Any map entry that does not specify http_put_response_hop_limit will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_instance_root_volume_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -977,6 +995,15 @@ If this variable is set to true, then use an exec-based plugin to authenticate a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" type="bool">
@@ -1159,6 +1186,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.5/modules%2Fservices%2Feks-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1b13b3927fbaf57bd6ea948fb8b238ab"
+  "hash": "a5c36018be3b5ad06896463a89ae6816"
 }
 ##DOCS-SOURCER-END -->

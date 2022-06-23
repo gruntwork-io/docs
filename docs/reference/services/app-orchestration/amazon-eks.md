@@ -216,6 +216,15 @@ Default value for enable_detailed_monitoring field of autoscaling_group_configur
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="asg_default_instance_root_volume_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1039,6 +1048,15 @@ Default value for enable_detailed_monitoring field of managed_node_group_configu
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for http_put_response_hop_limit field of managed_node_group_configurations. Any map entry that does not specify http_put_response_hop_limit will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_instance_root_volume_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1244,6 +1262,15 @@ If this variable is set to true, then use an exec-based plugin to authenticate a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="use_kubergrunt_sync_components" requirement="optional" type="bool">
@@ -1524,6 +1551,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.5/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "20f0d57d1f0d582906eae1088f49661f"
+  "hash": "d39fe2fc7e0c9a02436e5ab44ceea764"
 }
 ##DOCS-SOURCER-END -->
