@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.90.5" lastModifiedVersion="0.90.0"/>
+<VersionBadge version="0.90.5" lastModifiedVersion="0.90.6"/>
 
 # Account Baseline for root account
 
@@ -418,6 +418,44 @@ If the kms_key_arn provided is an alias or alias ARN, then this must be set to t
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_kms_key_service_principals" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Additional service principals beyond CloudTrail that should have access to the KMS key used to encrypt the logs. This is useful for granting access to the logs for the purposes of constructing metric filters.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    # The name of the service principal (e.g.: s3.amazonaws.com).
+    name = string
+
+    # The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+    # "kms:GenerateDataKey"]).
+    actions = list(string)
+
+    # List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+    # permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+    conditions = list(object({
+      # Name of the IAM condition operator to evaluate.
+      test = string
+
+      # Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+      # starting with aws: or service-specific variables prefixed with the service name.
+      variable = string
+
+      # Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+      # of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+      values = list(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_kms_key_user_iam_arns" requirement="optional" type="list(string)">
@@ -1782,6 +1820,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.5/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2e16fe31300cd23c0b363ebc435917ce"
+  "hash": "5e5cfd983259393e684d957a9a488e1c"
 }
 ##DOCS-SOURCER-END -->
