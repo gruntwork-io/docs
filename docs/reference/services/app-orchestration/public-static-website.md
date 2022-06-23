@@ -265,7 +265,7 @@ map(object({
 <HclListItem name="force_destroy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, this will force the delete of the website, redirect, and access log S3 buckets when you run terraform destroy, even if there is still content in those buckets. This is only meant for testing and should not be used in production.
+If set to true, this will force the deletion of the website, redirect, and access log S3 buckets when you run terraform destroy, even if there is still content in those buckets. This is only meant for testing and should not be used in production.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -341,6 +341,15 @@ The minimum version of the SSL protocol that you want CloudFront to use for HTTP
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
+</HclListItem>
+
+<HclListItem name="restrict_bucket_access_to_cloudfront" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the S3 bucket will only be accessible via CloudFront, and not directly. NOTE: this is only known to work if the S3 Bucket is in us-east-1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="routing_rule" requirement="optional" type="any">
@@ -534,6 +543,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.6/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "82a00fb67550233dbb634a58671f4df7"
+  "hash": "f16f37ec12575522b43d1376b0a289e5"
 }
 ##DOCS-SOURCER-END -->
