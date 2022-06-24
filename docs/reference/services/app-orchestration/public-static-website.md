@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.90.6" lastModifiedVersion="0.90.4"/>
+<VersionBadge version="0.90.6" lastModifiedVersion="0.90.7"/>
 
 # Public Static Website
 
@@ -343,6 +343,15 @@ The minimum version of the SSL protocol that you want CloudFront to use for HTTP
 <HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
 </HclListItem>
 
+<HclListItem name="restrict_bucket_access_to_cloudfront" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the S3 bucket will only be accessible via CloudFront, and not directly. NOTE: this is only known to work if the S3 Bucket is in us-east-1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -534,6 +543,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.6/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "82a00fb67550233dbb634a58671f4df7"
+  "hash": "3f31342b535292762ba91d6a7094aea6"
 }
 ##DOCS-SOURCER-END -->
