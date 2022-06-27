@@ -171,6 +171,28 @@ When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_cer
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+List of additional SSL certs (non-ACM and ACM) to bind to the given listener port. Note that this must not overlap with the certificates defined in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a> and <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a>. The keys are the listener ports.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(object({
+    # Exactly one of the following must be set, with the other set to null.
+    # The domain name to use when looking up the ACM cert to associate.
+    tls_domain_name = string
+    # The ARN of the TLS cert to associate with the listener.
+    tls_arn = string
+  })))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="allow_all_outbound" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -483,6 +505,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.7/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b80d933690093c3373c38caca8802b5f"
+  "hash": "21fc55589dc3e13b32571228428a806c"
 }
 ##DOCS-SOURCER-END -->
