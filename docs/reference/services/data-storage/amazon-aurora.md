@@ -757,6 +757,15 @@ The port the DB will listen on (e.g. 3306). This can also be provided via AWS Se
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="preferred_backup_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
 <HclListItem name="primary_domain_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1069,6 +1078,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "609b9348d8de8ed8fe7eaa936cad0339"
+  "hash": "c5cb15c5c966301fe30949f707f1f706"
 }
 ##DOCS-SOURCER-END -->
