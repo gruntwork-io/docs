@@ -49,7 +49,7 @@
     "yargs": "^17.4.0"
   },
   "optionalDependencies": {
-    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.27"
+    "docs-sourcer": "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.0.29"
   },
   "browserslist": {
     "production": [
