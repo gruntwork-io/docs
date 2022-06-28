@@ -791,6 +791,15 @@ When true, create an Open ID Connect Provider that GitHub actions can use to ass
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_guardduty" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true (default) to enable GuardDuty in this app account. Set to false to disable GuardDuty (note: all other GuardDuty variables will be ignored). Note that if you have enabled organization level GuardDuty in the root (parent) account, you should set this to false; the organization GuardDuty will enable GuardDuty on child accounts by default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="enable_iam_access_analyzer" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1922,6 +1931,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.91.0/modules%2Flandingzone%2Faccount-baseline-security%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3ba9457fa7c0df35c23e7dc9731e1acb"
+  "hash": "9ee9e3daaa0f4ae9bfb4f93fe38e5c16"
 }
 ##DOCS-SOURCER-END -->
