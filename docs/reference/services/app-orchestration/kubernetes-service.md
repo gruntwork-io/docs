@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.91.0" lastModifiedVersion="0.91.0"/>
+<VersionBadge version="0.91.0" lastModifiedVersion="0.91.1"/>
 
 # Kubernetes Service
 
@@ -401,7 +401,7 @@ A map of environment variable name to environment variable value that should be 
 <HclListItem name="expose_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-How the service will be exposed in the cluster. Must be one of `external` (accessible over the public Internet), `internal` (only accessible from within the same VPC as the cluster), `cluster-internal` (only accessible within the Kubernetes network).
+How the service will be exposed in the cluster. Must be one of `external` (accessible over the public Internet), `internal` (only accessible from within the same VPC as the cluster), `cluster-internal` (only accessible within the Kubernetes network), `none` (deploys as a headless service with no service IP).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;cluster-internal&quot;"/>
@@ -422,7 +422,7 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.2.12&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.13&quot;"/>
 </HclListItem>
 
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
@@ -916,6 +916,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.91.0/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1aa5f347276d32d95de36dc164d96d51"
+  "hash": "480a35929f388c5bf287ab93329ce264"
 }
 ##DOCS-SOURCER-END -->
