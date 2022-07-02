@@ -76,8 +76,8 @@ we need to temporarily hard-code some of the `region` and `role_arn` parameters 
 
 ```bash
 terragrunt aws-provider-patch \
-  --terragrunt-override-attr region="eu-west-1" \
-  --terragrunt-override-attr assume_role.role_arn=""
+  --terragrunt-override-attr 'region="eu-west-1"' \
+  --terragrunt-override-attr 'assume_role.role_arn=""'
 ```
 
 _Note: You can use any region you want for the `region` parameter. It’s just temporary. However, `role_arn` must be set
