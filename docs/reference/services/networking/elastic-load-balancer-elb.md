@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.90.8" lastModifiedVersion="0.90.3"/>
+<VersionBadge version="0.93.0" lastModifiedVersion="0.92.0"/>
 
 # Application Load Balancer
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/modules/networking/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules/networking/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -169,6 +169,28 @@ When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_cer
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+List of additional SSL certs (non-ACM and ACM) to bind to the given listener port. Note that this must not overlap with the certificates defined in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a> and <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a>. The keys are the listener ports.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(object({
+    # Exactly one of the following must be set, with the other set to null.
+    # The domain name to use when looking up the ACM cert to associate.
+    tls_domain_name = string
+    # The ARN of the TLS cert to associate with the listener.
+    tls_arn = string
+  })))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="allow_all_outbound" requirement="optional" type="bool">
@@ -478,11 +500,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/modules%2Fnetworking%2Falb%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/modules%2Fnetworking%2Falb%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.90.8/modules%2Fnetworking%2Falb%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fnetworking%2Falb%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fnetworking%2Falb%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "02e6e5d37eb63dc92fce2460f10cfef2"
+  "hash": "a9ee1b126ac0fcbe4357c1ef89141eff"
 }
 ##DOCS-SOURCER-END -->
