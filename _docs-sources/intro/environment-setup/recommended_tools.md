@@ -28,38 +28,38 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y wget unzip curl git
 
 # Packer
-ARG PACKER_VERSION=1.7.3
+ARG PACKER_VERSION=1.8.2
 RUN wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && unzip packer_${PACKER_VERSION}_linux_amd64.zip && mv packer /usr/local/bin
 
 # Terraform
-ARG TERRAFORM_VERSION=1.0.10
+ARG TERRAFORM_VERSION=1.2.4
 RUN wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && mv terraform /usr/local/bin
 
 # Terragrunt
-ARG TERRAGRUNT_VERSION=0.31.0
+ARG TERRAGRUNT_VERSION=0.38.4
 RUN wget -q https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 && chmod 0755 terragrunt_linux_amd64 && mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
 # aws-vault
-ARG AWS_VAULT_VERSION=6.3.1
+ARG AWS_VAULT_VERSION=6.6.0
 RUN wget -q https://github.com/99designs/aws-vault/releases/download/v${AWS_VAULT_VERSION}/aws-vault-linux-amd64 && chmod 0755 aws-vault-linux-amd64 && mv aws-vault-linux-amd64 /usr/local/bin/aws-vault
 
 # AWS cli
 RUN curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o aws_cli.zip && unzip aws_cli.zip && ./aws/install
 
 # kubectl
-ARG KUBECTL_VERSION=1.22.3
+ARG KUBECTL_VERSION=1.24.2
 RUN curl -LO https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # Golang
-ARG GOLANG_VERSION=1.17.2
+ARG GOLANG_VERSION=1.18.3
 ARG GOPATH='/root/go'
 RUN curl -L -s https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz -o go.tar.gz && rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' >> /root/.profile
 RUN echo 'export GOPATH=/root/go' >> /root/.profile
 
 # Terratest
-ARG TERRATEST_VERSION=0.38.2
+ARG TERRATEST_VERSION=0.38.18
 RUN GOPATH=/root/go /usr/local/go/bin/go get github.com/gruntwork-io/terratest@v${TERRATEST_VERSION}
 ```
 
