@@ -50,6 +50,6 @@ Gruntwork products strike a balance between opinionatedness and configurability.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5e1666e99b474793677917da45890adc"
+  "hash": "ccd70a8cadb3be5f8e2501cd80a7482c"
 }
 ##DOCS-SOURCER-END -->
