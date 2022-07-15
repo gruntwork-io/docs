@@ -27,13 +27,6 @@ A battle-tested, production-grade _catalog_ of infrastructure code that contains
 
 An optional _catalog extension_ that contains building blocks that implement various compliance standards. Today we support CIS compliance; SOC 2 is coming soon, and we plan on adding additional standards in the future.
 
-### Professional Services
-
-A team of experienced Gruntwork engineers who help you achieve success using Gruntwork products:
-
-- **Learn.** Pair directly with Gruntwork engineers who will teach you the DevOps fundamentals you need to use Gruntwork products to set up reliable, secure, and scalable infrastructure.
-- **Customize.** Engage with Gruntwork subject matter experts to customize our products to suit your specific needs.
-
 ### Support
 
 Gruntwork offers basic and paid support options:
