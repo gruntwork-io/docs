@@ -1038,6 +1038,15 @@ The ARN of the kms key associated with secrets manager
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="service_security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_security_group that gets created if <a href="#network_mode"><code>network_mode</code></a> is awsvpc and custom rules are specified for the ECS Fargate worker via <a href="#network_configuration"><code>network_configuration</code></a>.security_group_rules. Defaults to <a href="#service_name"><code>service_name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1292,6 +1301,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b615c9c86aacfc098085f602e0c8ef37"
+  "hash": "7907e8df4ba1c7203e7afb8825ffc51a"
 }
 ##DOCS-SOURCER-END -->

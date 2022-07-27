@@ -179,6 +179,15 @@ Specifies whether any cluster modifications are applied immediately, or during t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_db_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_job_alarm_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1120,6 +1129,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e312e880cc532a360eb7cdbd989d713f"
+  "hash": "a44853e7086814cd075b85089877c1fc"
 }
 ##DOCS-SOURCER-END -->

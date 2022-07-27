@@ -925,6 +925,22 @@ Default value for tags field of managed_node_group_configurations. Unlike common
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_taints" requirement="optional" type="list(map(…))">
+<HclListItemDescription>
+
+Default value for taint field of node_group_configurations. These taints are only used if the taint field is omitted from the configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(map(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="node_group_launch_template_instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1186,6 +1202,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fservices%2Feks-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bee74ee99ef89d6c55cd1bb03c5767e8"
+  "hash": "3ca910216d469cf38ab1a4a2a8bee33e"
 }
 ##DOCS-SOURCER-END -->

@@ -1147,6 +1147,22 @@ Default value for tags field of managed_node_group_configurations. Unlike common
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_taints" requirement="optional" type="list(map(…))">
+<HclListItemDescription>
+
+Default value for taint field of node_group_configurations. These taints are only used if the taint field is omitted from the configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(map(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="node_group_iam_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1551,6 +1567,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.93.0/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ec40ef5a218349e617c16afe171ae065"
+  "hash": "b7be81ec011413deae7d448aa6a1d522"
 }
 ##DOCS-SOURCER-END -->
