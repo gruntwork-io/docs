@@ -17,7 +17,10 @@ concrete description of the cloud setup you should be aiming for—the "right wa
 If you prefer a video over reading a talk, check out this talk from Gruntwork Co-Founder Yevgeniy Brikman which 
 introduces each ingredient of the Gruntwork Production Framework:
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/sYzhlBayRpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- Embed 100% width, responsive video as per https://www.h3xed.com/web-development/how-to-make-a-responsive-100-width-youtube-iframe-embed -->
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+  <iframe width="560" height="315" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="//www.youtube.com/embed/sYzhlBayRpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Why you need a framework
 
