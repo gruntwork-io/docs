@@ -12,6 +12,13 @@ actionable content. Instead, you'll find a clear mental model of how to think ab
 concrete, opinionated set of steps you can follow to make better use of the cloud at your company. Think of this as a
 concrete description of the cloud setup you should be aiming for—the "right way" to do things.
 
+## Video overview
+
+If you prefer a video over reading a talk, check out this talk from Gruntwork Co-Founder Yevgeniy Brikman which 
+introduces each ingredient of the Gruntwork Production Framework:
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/sYzhlBayRpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Why you need a framework
 
 The cloud changes everything.
