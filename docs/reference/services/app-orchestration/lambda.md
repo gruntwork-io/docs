@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.0" lastModifiedVersion="0.93.1"/>
+<VersionBadge version="0.94.0" lastModifiedVersion="0.94.1"/>
 
 # Lambda
 
@@ -750,6 +750,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.0/modules%2Fservices%2Flambda%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ab8f15b9c77fc7d725a7328094316e06"
+  "hash": "f911ce5fcaa7ef7adfe431103f60d466"
 }
 ##DOCS-SOURCER-END -->
