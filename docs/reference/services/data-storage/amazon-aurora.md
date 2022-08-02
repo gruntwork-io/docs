@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.0" lastModifiedVersion="0.93.1"/>
+<VersionBadge version="0.94.0" lastModifiedVersion="0.94.1"/>
 
 # Amazon Aurora
 
@@ -1076,6 +1076,14 @@ A read-only endpoint for the Aurora cluster, automatically load-balanced across 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="security_group_id">
+<HclListItemDescription>
+
+ID of security group created by aurora module.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="share_snapshot_lambda_arn">
 <HclListItemDescription>
 
@@ -1096,6 +1104,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.0/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c6dc8368edda5a97d25a98cb728b1403"
+  "hash": "44d6285e83779d2617a731b6930f984f"
 }
 ##DOCS-SOURCER-END -->
