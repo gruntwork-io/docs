@@ -190,7 +190,7 @@ A map of custom tags to apply to the S3 bucket containing the website and the Cl
 <HclListItem name="default_function_associations" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-A list of existing CloudFront functions to associate with the default cached behavior. CloudFront functions are lightweight alternatives to Lambda for high-scale, latency sensitive CDN customizations
+A list of existing CloudFront functions to associate with the default cached behavior. CloudFront functions are lightweight alternatives to Lambda for high-scale, latency sensitive CDN customizations.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -238,7 +238,7 @@ The default amount of time, in seconds, that an object is in a CloudFront cache 
 <HclListItem name="enable_default_directory_index_function" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, a CloudFront function to implement default directory index (looking up index.html in a S3 directory when path ends in /) is deployed. Only relevant when <a href="#restrict_bucket_access_to_cloudfront"><code>restrict_bucket_access_to_cloudfront</code></a> is set to true.
+If set to true, a CloudFront function to implement default directory index (looking up index.html in an S3 directory when path ends in /) is deployed. Only relevant when <a href="#restrict_bucket_access_to_cloudfront"><code>restrict_bucket_access_to_cloudfront</code></a> is set to true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -571,6 +571,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "94dd4b7f8b1ab8ff7596132da45e102f"
+  "hash": "d7cc39c45f84cee3db0f371d15a862a6"
 }
 ##DOCS-SOURCER-END -->
