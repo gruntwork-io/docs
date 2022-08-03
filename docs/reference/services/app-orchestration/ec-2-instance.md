@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.2" lastModifiedVersion="0.93.0"/>
+<VersionBadge version="0.94.2" lastModifiedVersion="0.93.2"/>
 
 # EC2 Instance
 
@@ -646,6 +646,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.2/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "39b23765d51ce4855b75cd96c27497d3"
+  "hash": "f633a2bb42bf619fb469706b7799070f"
 }
 ##DOCS-SOURCER-END -->

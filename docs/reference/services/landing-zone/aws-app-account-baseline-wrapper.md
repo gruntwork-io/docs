@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.2" lastModifiedVersion="0.94.0"/>
+<VersionBadge version="0.94.2" lastModifiedVersion="0.94.2"/>
 
 # Account Baseline for app accounts
 
@@ -1564,6 +1564,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.2/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1ed5a297a6410efd7b3dfeb6b5d4419b"
+  "hash": "31689b41b2b2fff7bd29c85a33c74c4c"
 }
 ##DOCS-SOURCER-END -->
