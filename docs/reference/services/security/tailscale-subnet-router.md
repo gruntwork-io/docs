@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.2" lastModifiedVersion="0.93.0"/>
+<VersionBadge version="0.94.2" lastModifiedVersion="0.93.2"/>
 
 # Tailscale Subnet Router
 
@@ -509,6 +509,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.2/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c6e7f4cf3a3c762b7ba369efc9d236ce"
+  "hash": "9a16a283b4c07b5ba73379567d06617e"
 }
 ##DOCS-SOURCER-END -->
