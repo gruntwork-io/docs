@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.2" lastModifiedVersion="0.94.0"/>
+<VersionBadge version="0.94.2" lastModifiedVersion="0.94.2"/>
 
 # Account Baseline for root account
 
@@ -1892,6 +1892,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.2/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8142e45fd05b5a41d2a7dad488b095f1"
+  "hash": "9dfd767d17c866bff19fd3a08cc40179"
 }
 ##DOCS-SOURCER-END -->

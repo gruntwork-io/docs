@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.94.2" lastModifiedVersion="0.89.1"/>
+<VersionBadge version="0.94.2" lastModifiedVersion="0.93.2"/>
 
 # Amazon ECR Repositories
 
@@ -254,6 +254,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.94.2/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e84b68d2a077f0fff37509d04320ef65"
+  "hash": "4ff0bd8c05b207f76fcffe831691ebbe"
 }
 ##DOCS-SOURCER-END -->
