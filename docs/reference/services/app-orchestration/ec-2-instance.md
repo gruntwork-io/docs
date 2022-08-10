@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.95.1" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.95.0" lastModifiedVersion="0.95.1"/>
 
 # EC2 Instance
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules/services/ec2-instance" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules/services/ec2-instance" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -59,9 +59,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -86,7 +86,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -94,7 +94,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -641,11 +641,11 @@ The input parameters for the EBS volumes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules%2Fservices%2Fec2-instance%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules%2Fservices%2Fec2-instance%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.1/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fservices%2Fec2-instance%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fservices%2Fec2-instance%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "aab13b23329330d2b92ab021c007831c"
+  "hash": "4b5b9e69967860d166d50ccdec224bbd"
 }
 ##DOCS-SOURCER-END -->
