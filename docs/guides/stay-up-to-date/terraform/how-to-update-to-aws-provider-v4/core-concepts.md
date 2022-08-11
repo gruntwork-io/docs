@@ -9,11 +9,8 @@ to use any new resources or data sources that are released from this point
 onwards, you will need to be compatible with version 4 of the AWS provider to be
 able to pull those changes in.
 
-Since this is a major version change, there are a number of backwards
-incompatible changes that were introduced. In order to be able to use version 4,
-you need to update your code to be compatible when upgrading (specifically, the
-resource and data source blocks that have backwards incompatible changes).
-
+Originally v4 was a backward incompatible update, but since v4.9.0, it has become backward
+compatible. When bumping your versions, HashiCorp recommends using a version v4.9.0 or newer.
 For your own code, you can follow [the official
 guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/version-4-upgrade)
 on updating to AWS provider version 4. The rest of this guide will focus on

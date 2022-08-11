@@ -4,7 +4,7 @@ This guide will walk you through how to update the [Gruntwork Reference
 Architecture](https://gruntwork.io/reference-architecture/) and any code that depends on the
 [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) to version 4.x of the
 Terraform AWS provider. Following the release of v4.0.0, new features and bug fixes will only be available on version
-4.x, but it also has a number of backwards incompatibilities that have to be incorporated into your codebase.
+4.x, but it also has a number of backward incompatibilities that have to be incorporated into your codebase.
 
 ## What you’ll learn in this guide
 
