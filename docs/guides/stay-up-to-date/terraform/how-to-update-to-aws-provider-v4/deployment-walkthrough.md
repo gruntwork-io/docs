@@ -134,3 +134,11 @@ the `plan`. These should be safe to `apply`, but always double-check anything sl
 1. Then run `terraform apply` to bring Terraform state in sync with the provider changes. 
 
 If you run into any issues please reach out to Gruntwork Support at support@gruntwork.io.
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ab6bc780e5dab16724fdb9635ba78a15"
+}
+##DOCS-SOURCER-END -->

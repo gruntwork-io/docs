@@ -26,3 +26,11 @@ compatibility table](deployment-walkthrough.md#version-compatibility-table) you 
 which Gruntwork Repo version tag is compatible with AWS provider v4.
 
 </div>
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "ab6bc780e5dab16724fdb9635ba78a15"
+}
+##DOCS-SOURCER-END -->
