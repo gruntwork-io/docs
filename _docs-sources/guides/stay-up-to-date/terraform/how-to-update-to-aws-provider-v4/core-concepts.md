@@ -16,11 +16,3 @@ guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/
 on updating to AWS provider version 4. The rest of this guide will focus on
 updating references to Gruntwork modules and the Gruntwork Reference
 Architecture to be compatible with AWS provider version 4.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "d8edcac5096efe845cbba40fb30206e1"
-}
-##DOCS-SOURCER-END -->
