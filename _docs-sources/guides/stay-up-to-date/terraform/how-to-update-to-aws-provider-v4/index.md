@@ -14,14 +14,12 @@ This guide consists of three main sections:
 
 #### [Core Concepts](core-concepts.md)
 
-An overview of version 4 of the AWS provider and why it is important to update
-your code for compatibility.
+An overview of version 4 of the AWS provider and why it is important to update your code for compatibility.
 
 #### [Deployment walkthrough](deployment-walkthrough.md)
 
-The steps you need to take to update your code relying on the Gruntwork
-Infrastructure as Code library and your version of the Gruntwork Reference
-Architecture with compatibility with AWS provider v4. Includes a [version
+The steps you need to take to update your code relying on the Gruntwork Infrastructure as Code library and your 
+version of the Gruntwork Reference Architecture with compatibility with AWS provider v4. Includes a [version
 compatibility table](deployment-walkthrough.md#version-compatibility-table) you can use as a reference to know
 which Gruntwork Repo version tag is compatible with AWS provider v4.
 
