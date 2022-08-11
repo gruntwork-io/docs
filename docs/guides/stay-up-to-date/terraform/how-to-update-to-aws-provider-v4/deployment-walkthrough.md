@@ -120,14 +120,14 @@ compatible version of the Gruntwork Infrastructure as Code Library, as per
 To update your Reference Architecture:
 
 1. Update the underlying module source versions being referenced. 
-  - Use tools like `ripgrep`, `xargs`, and `sed` to accomplish this with ease. 
-  - E.g.: `rg v0.95.0 --files-with-matches | xargs sed -i '' "s|v0.95.0|v0.96.1|g"`. This command finds and replaces
-  all instances of `v0.95.0` with `v0.96.1` in your repo. After running this command, double-check all your changes
-  before committing them to version control.
-  - If you are pointing to a version several minors behind, please make sure to first follow the migration guide for
-  each minor version bump. Use the find-and-replace command to bump one minor version at a time.
-  - Update the underlying Service Catalog versions, and also any one-off library module version as well. You
-  can accomplish this by grepping for each of the repos in the table above.
+    - Use tools like `ripgrep`, `xargs`, and `sed` to accomplish this with ease. 
+    - E.g.: `rg v0.95.0 --files-with-matches | xargs sed -i '' "s|v0.95.0|v0.96.1|g"`. This command finds and replaces
+      all instances of `v0.95.0` with `v0.96.1` in your repo. After running this command, double-check all your changes
+      before committing them to version control.
+    - If you are pointing to a version several minors behind, please make sure to first follow the migration guide for
+      each minor version bump. Use the find-and-replace command to bump one minor version at a time.
+    - Update the underlying Service Catalog versions, and also any one-off library module version as well. You
+      can accomplish this by grepping for each of the repos in the table above.
 1. Run `terraform init -upgrade` to allow Terraform to pull in the new provider version. 
 1. Follow up with `terraform plan`. NOTE: The provider update creates and updates resources. You will see changes in 
 the `plan`. These should be safe to `apply`, but always double-check anything slated for destruction.
