@@ -48,7 +48,7 @@ necessary and will not incur downtime, such as `null_resources` that only existe
 something missing in the AWS API.
 
 We try to err on the side of caution. Sometimes we release an update as MINOR even if it is functionally backward 
-compatible. This is the case with the [AWS Provider v4 update](/../stay-up-to-date/terraform/how-to-update-to-aws-provider-v4/),
+compatible. This is the case with the [AWS Provider v4 update](/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4),
 which requires no configuration changes in Gruntwork module usage. It requires unlocking the provider version maintained
 in the `terraform.lock.hcl` file, which makes it somewhat backward incompatible. Additionally it may still require you 
 to update any infrastructure code which does not use Gruntwork modules. Because this upgrade requires some vigilance, 
