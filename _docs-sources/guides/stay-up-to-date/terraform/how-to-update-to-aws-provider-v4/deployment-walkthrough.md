@@ -137,5 +137,4 @@ To update your Reference Architecture:
    the `plan`. These should be safe to `apply`, but always double-check anything slated for destruction.
 1. Then run `terraform apply` to bring Terraform state in sync with the provider changes. 
 
-If you have any questions, we'd love to hear them. Please reach out to 
-<a href="mailto:support@gruntwork.io">Gruntwork Support</a>.
+If you have any questions, we'd love to hear them. Please reach out to <a href="mailto:support@gruntwork.io">Gruntwork Support</a>.
