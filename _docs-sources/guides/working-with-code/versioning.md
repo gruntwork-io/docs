@@ -29,32 +29,41 @@ However, much of the Gruntwork IaC Library is still pre-`1.0.0`. Most of the Gru
 1. MINOR version when you make backward incompatible API changes, and
 2. PATCH version when you add backward compatible functionality or bug fixes.
 
-### What changes are backward compatible?
+### What changes are backward incompatible?
 
-- Any update that requires some toil by the user. This is a moving target. At the moment, actions like bumping a
+In the world of DevOps, we've inherited our view of toil, and that continues to describe what DevOps engineers expect 
+as part of their daily grunt work. However with IaC, we can liberate ourselves from that thinking and automate more of 
+the toil than before, and as automation and infrastructure APIs improve, we can expect much more of DevOps grunt work 
+to become automated. What we think of as necessary toil is constantly evolving, so how we define our releases (i.e., 
+backward compatible or not) is also subject to this evolution.
+
+We (Gruntwork) currently consider the following types of updates backward incompatible:
+
+1. Any update that requires some toil by the user. This is a moving target. At the moment, actions like bumping a
 version number are not considered toil, but actions like running migration steps that modify Terraform state are
 considered toil. In the near future, bumping a version number could be toil, and we are working to remove the need
 for users to do that.
 
-- Any update that does not require configuration changes by the user is considered backward compatible. When we 
-release a new MINOR version in pre-`1.0.0`, we include a migration guide with explicit steps you can take to resolve
-the backward incompatibilities, such that the update becomes backward compatible for you. 
+2. Any update that requires configuration changes by the user. When we release a new MINOR version in pre-`1.0.0`, we 
+include a migration guide with explicit steps you can take to resolve the backward incompatibilities, such that the 
+update becomes backward compatible for you. 
 
-- Any update that does not incur downtime for you is also considered backward compatible. This excludes changes that 
-require recreating a resource that may be in use.
+3. Any update that incurs downtime for you. This includes changes that require recreating a resource that may be in 
+use. Even if the update attempts to first create the new resource and then destroy the existing resource, the order of
+apply may not be guaranteed, and there could still be downtime during the hand-off.
 
-- Most updates that do not destroy resources are also backward compatible. There are cases where destroying resources is
-necessary and will not incur downtime, such as `null_resources` that only existed previously as a stop-gap for 
-something missing in the AWS API.
+4. Most updates that destroy resources. There are some cases where destroying resources is necessary and will not incur 
+downtime, such as `null_resource`s that only exist as a stop-gap for something missing in the AWS API or the Terraform
+AWS provider API.
 
 We try to err on the side of caution. Sometimes we release an update as MINOR even if it is functionally backward 
-compatible. This is the case with the [AWS Provider v4 update](/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4),
-which requires no configuration changes in Gruntwork module usage. It requires unlocking the provider version maintained
-in the `terraform.lock.hcl` file, which makes it somewhat backward incompatible. Additionally it may still require you 
-to update any infrastructure code which does not use Gruntwork modules. Because this upgrade requires some vigilance, 
-we released it as a MINOR version increase to signal importance.
+compatible. For example, the [AWS Provider v4 update](/guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4)
+requires no configuration changes in Gruntwork module usage. It requires unlocking the provider version maintained in 
+the `terraform.lock.hcl` file, which makes it somewhat backward incompatible. Additionally it may still require you to 
+update any infrastructure code which does not use Gruntwork modules. Because this upgrade requires some vigilance, we 
+released it as a MINOR version increase to signal importance.
 
-We're working to provide automatic resolution with patches, i.e., scripts that you can run when bumping your versions, 
+We're working to provide automatic resolution with patches, i.e., scripts that you can run when bumping your versions,
 so that `terraform plan` and `terraform apply` result in clean updates. These releases would still be considered
 backward incompatible because they require running a patch, could cause downtime, or could change resources 
 significantly.
