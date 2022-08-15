@@ -12,7 +12,8 @@ versioned release, and announce it in the periodical
 
 When you use the code from the Gruntwork IaC Library, you pin yourself to a specific version of the code. That way 
 you are not accidentally affected by any subsequent changes in the Gruntwork IaC Library until you explicitly choose to
-pull those changes in. When you do want to pull the changes in, it’s just a matter of bumping the version number!
+pull those changes in. When you do want to pull the changes in, be sure to read through the release notes for any 
+migration steps you need to take and then bump the version number accordingly.
 
 ### Semantic Versioning
 
