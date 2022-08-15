@@ -8,7 +8,7 @@ Terraform AWS provider. Following the release of v4.0.0, new features and bug fi
 
 ## What you’ll learn in this guide
 
-This guide consists of three main sections:
+This guide consists of two main sections:
 
 <div className="dlist">
 
