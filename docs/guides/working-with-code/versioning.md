@@ -71,6 +71,15 @@ significantly.
 
 ## Updating to new versions
 
+:::caution
+
+In general, update one MINOR at a time, paying close attention to the release notes for migration steps. A MINOR 
+version number increase (e.g., `v0.18.0` → `v0.19.0`) signals a backward incompatible change, and the release 
+notes will contain a migration guide explaining what you need to do (e.g., update the configuration by adding, 
+removing, or changing variables you pass to the module).
+
+:::
+
 Follow the steps below to keep your code up to date:
 
 1.  Make sure you're following our [Gruntwork Newsletter](https://blog.gruntwork.io/tagged/gruntwork-newsletter)
@@ -100,15 +109,6 @@ Follow the steps below to keep your code up to date:
     One way you can do this quickly is by stringing together commands using `ripgrep`, `xargs`, and `sed`, or any other
     method that allows find-and-replace operations within a directory.
 
-:::caution
-
-In general, update one MINOR at a time, paying close attention to the release notes for migration steps. A MINOR 
-version number increase (e.g., `v0.18.0` → `v0.19.0`) signals a backward incompatible change, and the release 
-notes will contain a migration guide explaining what you need to do (e.g., update the configuration by adding, 
-removing, or changing variables you pass to the module).
-
-:::
-
 3.  Optionally, test your changes locally. Use the same process outlined in 
     [Manual tests for Terraform code](/intro/first-deployment/testing#manual-tests-for-terraform-code) and
     [Automated tests for Terraform code](/intro/first-deployment/testing#automated-tests-for-terraform-code).
@@ -120,6 +120,6 @@ removing, or changing variables you pass to the module).
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "70827f8af465f98b7a000ccc8fadb66b"
+  "hash": "8a86eb7154147aa684d33e5c55cc85a8"
 }
 ##DOCS-SOURCER-END -->
