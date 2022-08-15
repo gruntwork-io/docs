@@ -120,6 +120,6 @@ removing, or changing variables you pass to the module).
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8a86eb7154147aa684d33e5c55cc85a8"
+  "hash": "70827f8af465f98b7a000ccc8fadb66b"
 }
 ##DOCS-SOURCER-END -->
