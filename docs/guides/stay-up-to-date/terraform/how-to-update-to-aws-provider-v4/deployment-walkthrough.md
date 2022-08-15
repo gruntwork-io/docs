@@ -40,7 +40,7 @@ all backward incompatible updates in your upgrade path.
 </tr>
 <tr className="even">
 <td><p>terraform-aws-utilities</p></td>
-<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.1">v0.9.0</a></strong></p></td>
+<td><p><strong><a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.0">v0.9.0</a></strong></p></td>
 </tr>
 <tr className="odd">
 <td><p>terraform-aws-vpc</p></td>
@@ -122,22 +122,23 @@ compatible version of the Gruntwork Infrastructure as Code Library, as per
 To update your Reference Architecture:
 
 1. Update the underlying module source versions being referenced. 
-    - Use tools like `ripgrep`, `xargs`, and `sed` to accomplish this with ease. 
+    - We recommend using tools like `ripgrep`, `xargs`, and `sed` to accomplish this.
     - E.g.: `rg v0.95.0 --files-with-matches | xargs sed -i '' "s|v0.95.0|v0.96.1|g"`. This command finds and replaces
       all instances of `v0.95.0` with `v0.96.1` in your repo. Double-check all your changes before committing them to 
       version control.
-    - If you several minors behind, please make sure to first follow the migration guide for each minor version bump. 
-      Use the find-and-replace command to bump one minor version at a time.
+    - If you are several minors behind, please follow the migration guide for each minor version bump. Use the 
+      find-and-replace command to bump one minor version at a time.
     - Update the underlying Service Catalog versions, and also any one-off library module versions as well. You
       can accomplish this by grepping for each of the repos in the table above.
 1. Run `terraform init -upgrade` to allow Terraform to pull in the latest provider version. Without the `-upgrade` flag
    the `3.75.X` version of the provider will be used instead. The `-upgrade` flag allows unlocking the provider
-   restriction enforced in `terraform.lock.hcl`.
+   restriction enforced in `terraform.lock.hcl`, in the module folder.
 1. Follow up with `terraform plan`. NOTE: The provider update creates and updates resources. You will see changes in 
    the `plan`. These should be safe to `apply`, but always double-check anything slated for destruction.
 1. Then run `terraform apply` to bring Terraform state in sync with the provider changes. 
 
-If you have any questions, please reach out to <a href="mailto:support@gruntwork.io">Gruntwork Support</a>.
+If you have any questions, we'd love to hear them. Please reach out to 
+<a href="mailto:support@gruntwork.io">Gruntwork Support</a>.
 
 
 <!-- ##DOCS-SOURCER-START
