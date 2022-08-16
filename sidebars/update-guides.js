@@ -185,6 +185,21 @@ const sidebars = {
       ],
     },
   ],
+  terraformServiceProviderV4: [
+    backLink,
+    {
+      label: "Update to AWS Provider v4",
+      type: "category",
+      link: {
+        type: "doc",
+        id: "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4/index",
+      },
+      items: [
+        "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4/core-concepts",
+        "guides/stay-up-to-date/terraform/how-to-update-to-aws-provider-v4/deployment-walkthrough",
+      ],
+    },
+  ],
   dryRefArch: [
     backLink,
     {
