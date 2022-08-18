@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.96.1" lastModifiedVersion="0.93.0"/>
+<VersionBadge version="0.96.1" lastModifiedVersion="0.96.2"/>
 
 # Kubernetes Service
 
@@ -270,6 +270,15 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cleanup_on_fail" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Allow deletion of new resources created in this upgrade when upgrade fails.
+
+</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -916,6 +925,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.1/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1ad25cc6f81500df5d267d000431eaa3"
+  "hash": "e48b40f1e4263594de80fe29f8edd98c"
 }
 ##DOCS-SOURCER-END -->
