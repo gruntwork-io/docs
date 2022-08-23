@@ -347,6 +347,15 @@ Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are t
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to create a public DNS A record in Route53 for Jenkins.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -778,6 +787,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "46cc98e9989611f68a7270888532fa88"
+  "hash": "6611909ac813e6f9fb7e374987aa008a"
 }
 ##DOCS-SOURCER-END -->

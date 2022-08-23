@@ -368,6 +368,27 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cloudtrail_advanced_event_selectors" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of advanced event selector name to list of field selectors to apply for that event selector. Advanced event selectors allow for more fine grained data logging of events.
+
+Note that you can not configure basic data logging (<a href="#cloudtrail_data_logging_enabled"><code>cloudtrail_data_logging_enabled</code></a>) if advanced event logging is enabled.
+
+Refer to the AWS docs on data event selection for more details on the difference between basic data logging and advanced data logging.
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_allow_kms_describe_key_to_external_aws_accounts" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1892,6 +1913,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9faf74eeb53c241763e903f20f9cbfde"
+  "hash": "5c67c8365e8ea548bec0be011184fc3b"
 }
 ##DOCS-SOURCER-END -->

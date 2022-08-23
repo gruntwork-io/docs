@@ -836,6 +836,15 @@ The number of read replicas to deploy
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="option_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a DB option group to associate.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1129,6 +1138,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "51d3f83896f2f4f2d95f68eb184f7656"
+  "hash": "b929123b519b3815c50bd387960b99f1"
 }
 ##DOCS-SOURCER-END -->
