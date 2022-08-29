@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.95.0" lastModifiedVersion="0.95.0"/>
+<VersionBadge version="0.96.2" lastModifiedVersion="0.95.1"/>
 
 # Bastion Host
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules/mgmt/bastion-host" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules/mgmt/bastion-host" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 To understand core concepts like why you should use a bastion host, how to connect to the bastion host, how to use the
 bastion host as a "jump host" to connect to other instances, port forwarding, and more, see the
-[bastion-host documentation](https://github.com/gruntwork-io/terraform-aws-server/tree/master/examples/bastion-host)
+[bastion-host documentation](https://github.com/gruntwork-io/terraform-aws-server/tree/main/examples/bastion-host)
 documentation in the [terraform-aws-server](https://github.com/gruntwork-io/terraform-aws-server) repo.
 
 ### The bastion host AMI
@@ -70,15 +70,15 @@ documentation in the [terraform-aws-server](https://github.com/gruntwork-io/terr
 The bastion host AMI is defined using the [Packer](https://www.packer.io/) templates `bastion-host-ubuntu.json` (Packer
 < v1.7.0) and `bastion-host-ubuntu.pkr.hcl` (Packer >= v1.7.0). The template configures the AMI to:
 
-*   Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt) so
+*   Run the [ssh-grunt module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt) so
     that developers can upload their public SSH keys to IAM and use those SSH keys, along with their IAM user names, to
     SSH to the bastion host.
 
-*   Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/auto-update)
+*   Run the [auto-update module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/auto-update)
     so that the bastion host installs security updates automatically.
 
 *   Optionally run the
-    [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/syslog) to
+    [syslog module](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/syslog) to
     automatically rotate and rate limit syslog so that the bastion host doesn’t run out of disk space from large volumes
     of logs.
 
@@ -88,7 +88,7 @@ The bastion host AMI is defined using the [Packer](https://www.packer.io/) templ
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -96,7 +96,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -291,7 +291,7 @@ Set to true to enable several basic CloudWatch alarms around CPU usage, memory u
 <HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -300,7 +300,7 @@ Set to true to send logs to CloudWatch. This is useful in combination with https
 <HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host.
+Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Bastion host.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -327,7 +327,7 @@ Enable ip-lockdown to block access to the instance metadata. Defaults to true.
 <HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -472,11 +472,11 @@ The fully qualified name of the bastion host.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fmgmt%2Fbastion-host%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fmgmt%2Fbastion-host%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.95.0/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fmgmt%2Fbastion-host%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fmgmt%2Fbastion-host%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "674577dbadf77a8db9b2545e2a697dd9"
+  "hash": "28744817570cd8567f9d879c4fdd6f10"
 }
 ##DOCS-SOURCER-END -->
