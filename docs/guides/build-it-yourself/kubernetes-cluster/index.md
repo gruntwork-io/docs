@@ -23,7 +23,7 @@ This guide will walk you through the process of configuring a production-grade K
     href="/guides/build-it-yourself/kubernetes-cluster/core-concepts/why-kubernetes"
   >
     An overview of the core concepts you need to understand to use Kubernetes, including why you may want to use
-    ubernetes, Kubernetes architecture, the control plane, worker nodes, different ways to run Kubernetes, services,
+    kubernetes, Kubernetes architecture, the control plane, worker nodes, different ways to run Kubernetes, services,
     deployments, auto scaling, auto healing, RBAC, and more.
   </Card>
   <Card
@@ -52,6 +52,6 @@ This guide will walk you through the process of configuring a production-grade K
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2bc76558e0896d476267b38e9d6182a1"
+  "hash": "bf4519e28118b059be982de30131fc70"
 }
 ##DOCS-SOURCER-END -->
