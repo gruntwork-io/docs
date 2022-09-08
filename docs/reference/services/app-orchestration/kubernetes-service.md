@@ -437,7 +437,7 @@ The version of the k8s-service helm chart to deploy.
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
+Configure the Horizontal Pod Autoscaler (HPA) information for the associated Deployment. HPA is disabled when this variable is set to null. Note that to use an HPA, you must have a corresponding service deployed to your cluster that exports the metrics (e.g., metrics-server https://github.com/kubernetes-sigs/metrics-server).
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -925,6 +925,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "717db30e3660911bba3c541b192eb4d3"
+  "hash": "a2b8b9f0c4b14dcc2000cf7a77b0cafa"
 }
 ##DOCS-SOURCER-END -->
