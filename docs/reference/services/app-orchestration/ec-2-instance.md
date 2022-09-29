@@ -461,6 +461,87 @@ The apex domain of the hostname for the EC2 instance (e.g., example.com). The co
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_instance_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -646,6 +727,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "850b276bc09132f4f27110343165ac02"
+  "hash": "67d40cf52609822c5756ced134fb6881"
 }
 ##DOCS-SOURCER-END -->
