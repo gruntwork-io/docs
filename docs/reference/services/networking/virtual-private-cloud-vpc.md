@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.96.2" lastModifiedVersion="0.93.1"/>
+<VersionBadge version="0.96.2" lastModifiedVersion="0.96.3"/>
 
 # VPC
 
@@ -99,14 +99,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="aws_region" requirement="required" type="string">
-<HclListItemDescription>
-
-The AWS region in which all resources will be created
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="cidr_block" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -167,6 +159,15 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="aws_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer used and only kept around for backwards compatibility. We now automatically fetch the region using a data source.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -1011,6 +1012,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.2/modules%2Fnetworking%2Fvpc%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "842200cfb5b083a0887407ad8ec4bef0"
+  "hash": "160f654e9a9154ca062f7284bf08f4c3"
 }
 ##DOCS-SOURCER-END -->
