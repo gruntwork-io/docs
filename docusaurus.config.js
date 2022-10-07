@@ -106,6 +106,7 @@ const config = {
             label: "Service Catalog API",
             docId: "reference/services/intro/overview",
           },
+          { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
@@ -203,6 +204,14 @@ const config = {
               {
                 label: "DevOps Checklist",
                 href: "https://gruntwork.io/devops-checklist/",
+              },
+              {
+                label: "Terragrunt",
+                href: "https://terragrunt.gruntwork.io",
+              },
+              {
+                label: "Terratest",
+                href: "https://terratest.gruntwork.io",
               },
               {
                 label: "Support",

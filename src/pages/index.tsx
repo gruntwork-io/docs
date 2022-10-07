@@ -102,6 +102,28 @@ export default function Home(): JSX.Element {
               </Card>
             </CardGroup>
           </div>
+          <div className="container" style={{ margin: "6rem auto" }}>
+            <h2>Learn New Tools</h2>
+            <CardGroup commonCardProps={{ appearance: "invisible" }}>
+              <Card title="Terragrunt" href="https://terragrunt.gruntwork.io">
+                Terragrunt is a thin wrapper that provides extra tools for
+                keeping your Terraform configurations DRY, working with multiple
+                modules, and managing remote state.
+              </Card>
+              <Card title="Terratest" href="https://terratest.gruntwork.io">
+                Terratest is a Go library that provides patterns and helper
+                functions for testing infrastructure, with 1st-class support for
+                Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more.
+              </Card>
+              <Card
+                title="Gruntwork Installer"
+                href="https://github.com/gruntwork-io/gruntwork-installer"
+              >
+                The Gruntwork Installer provides conveniences for downloading
+                and installing Gruntwork modules.
+              </Card>
+            </CardGroup>
+          </div>
         </section>
       </main>
     </Layout>
