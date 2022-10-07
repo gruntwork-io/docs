@@ -1,5 +1,13 @@
+---
+hide_table_of_contents: true
+hide_title: true
+---
+
 import Card from "/src/components/Card"
 import CardGroup from "/src/components/CardGroup"
+import CenterLayout from "/src/components/CenterLayout"
+
+<CenterLayout>
 
 # Gruntwork Tools
 
@@ -8,9 +16,14 @@ Gruntwork provides several CLI tools to make working with Gruntwork and its IaC 
 <CardGroup cols={2}>
 
 <Card
+  title="Gruntwork CLI"
+  href="https://github.com/gruntwork-io/gruntwork">
+The Gruntwork CLI will help you set up your Reference Architecture including creating AWS accounts, registering domain names, and setting up VCS tokens in AWS Secrets Manager.
+</Card>
+<Card
   title="Gruntwork Installer"
   href="https://github.com/gruntwork-io/gruntwork-installer">
-The Gruntwork Installer provides utilities for setting up your dev environemnt and configuring your Reference Architecture.
+The Gruntwork Installer provides conveniences for downloading and installing Gruntwork modules.
 </Card>
 <Card
   title="Terragrunt"
@@ -20,7 +33,7 @@ Terragrunt is a thin wrapper that provides extra tools for keeping your configur
 <Card
   title="Terratest"
   href="https://terratest.gruntwork.io">
-Terratest is a Go library that provides patterns and helper functions for testing infrastructure, with 1st-class support for Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more
+Terratest is a Go library that provides patterns and helper functions for testing infrastructure, with 1st-class support for Terraform, Packer, Docker, Kubernetes, AWS, GCP, and more.
 </Card>
 <Card
 title="Repo Copier"
@@ -31,10 +44,12 @@ Repo Copier is a CLI tool to copy repository data (including code, issues, PRs, 
 
 </CardGroup>
 
+</CenterLayout>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "53f66a2ca74796be0acd18df9bdfffc7"
+  "hash": "56980d664309de35d3f20c783a07c0e7"
 }
 ##DOCS-SOURCER-END -->

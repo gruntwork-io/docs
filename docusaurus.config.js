@@ -101,30 +101,11 @@ const config = {
             activeBasePath: "docs/guides",
           },
           {
-            type: "dropdown",
-            label: "Reference",
-            position: "left",
-            items: [
-              {
-                type: "doc",
-                docId: "reference/services/intro/overview",
-                label: "Service Catalog API",
-              },
-              {
-                type: "doc",
-                docId: "reference/tools/stub",
-                label: "Tools",
-              },
-              // {
-              //   href: "https://terragrunt.gruntwork.io",
-              //   label: "Terragrunt",
-              // },
-              // {
-              //   href: "https://terratest.gruntwork.io",
-              //   label: "Terratest",
-              // },
-            ],
+            type: "doc",
+            docId: "reference/services/intro/overview",
+            label: "Service Catalog API",
           },
+          { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
           {
             href: "https://github.com/gruntwork-io/knowledge-base/discussions",
