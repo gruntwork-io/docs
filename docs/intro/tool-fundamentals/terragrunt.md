@@ -1,6 +1,6 @@
 # Terragrunt
 
-[Terragrunt](https://github.com/gruntwork-io/terragrunt) is a thin, open source wrapper for Terraform. It is designed to
+[Terragrunt](https://terragrunt.gruntwork.io) is a thin, open source wrapper for Terraform. It is designed to
 fill in some missing features in Terraform, such as allowing you to define your Terraform backend configuration in
 one `terragrunt.hcl` file, rather than having to copy/paste the same config over and over again:
 
@@ -22,7 +22,6 @@ Once you've created your `terragrunt.hcl` configuration, you can run all the usu
 [Terragrunt: how to keep your Terraform code DRY and maintainable](https://blog.gruntwork.io/terragrunt-how-to-keep-your-terraform-code-dry-and-maintainable-f61ae06959d8)
 for a thorough introduction.
 
-
 :::note
 
 While the Gruntwork Reference Architecture relies on Terragrunt as one of its opinionated tools, the
@@ -32,11 +31,9 @@ Infrastructure as Code Library with plain Terraform, Terraform Enterprise, Atlan
 :::
 
 
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e917fe5423fd33a6c7c528e404a75f40"
+  "hash": "66b4546e1b2cacd7b6bdb6db216d5bf9"
 }
 ##DOCS-SOURCER-END -->

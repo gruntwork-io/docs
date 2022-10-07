@@ -101,10 +101,29 @@ const config = {
             activeBasePath: "docs/guides",
           },
           {
-            type: "doc",
+            type: "dropdown",
+            label: "Reference",
             position: "left",
-            label: "Service Catalog API",
-            docId: "reference/services/intro/overview",
+            items: [
+              {
+                type: "doc",
+                docId: "reference/services/intro/overview",
+                label: "Service Catalog API",
+              },
+              {
+                type: "doc",
+                docId: "reference/tools/stub",
+                label: "Tools",
+              },
+              // {
+              //   href: "https://terragrunt.gruntwork.io",
+              //   label: "Terragrunt",
+              // },
+              // {
+              //   href: "https://terratest.gruntwork.io",
+              //   label: "Terratest",
+              // },
+            ],
           },
           { to: "/courses", label: "Courses", position: "left" },
           {
@@ -203,6 +222,14 @@ const config = {
               {
                 label: "DevOps Checklist",
                 href: "https://gruntwork.io/devops-checklist/",
+              },
+              {
+                label: "Terragrunt",
+                href: "https://terragrunt.gruntwork.io",
+              },
+              {
+                label: "Terratest",
+                href: "https://terratest.gruntwork.io",
               },
               {
                 label: "Support",
