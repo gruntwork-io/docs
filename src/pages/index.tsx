@@ -107,7 +107,7 @@ export default function Home(): JSX.Element {
             <CardGroup commonCardProps={{ appearance: "invisible" }}>
               <Card title="Terragrunt" href="https://terragrunt.gruntwork.io">
                 Terragrunt is a thin wrapper that provides extra tools for
-                keeping your configurations DRY, working with multiple Terraform
+                keeping your Terraform configurations DRY, working with multiple
                 modules, and managing remote state.
               </Card>
               <Card title="Terratest" href="https://terratest.gruntwork.io">
