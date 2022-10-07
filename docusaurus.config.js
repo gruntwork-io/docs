@@ -102,8 +102,9 @@ const config = {
           },
           {
             type: "doc",
-            docId: "reference/services/intro/overview",
+            position: "left",
             label: "Service Catalog API",
+            docId: "reference/services/intro/overview",
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
