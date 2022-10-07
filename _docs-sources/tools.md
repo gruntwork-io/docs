@@ -11,7 +11,7 @@ import CenterLayout from "/src/components/CenterLayout"
 
 # Gruntwork Tools
 
-Gruntwork provides several CLI tools to make working with Gruntwork and its IaC library modules easier. Documentation for our open source tools can be found on their microsites, and documentation for subscriber tools is located in their respective GitHub repos.
+Gruntwork provides a suite of CLI tools to make working with Gruntwork and its IaC library modules easier.
 
 <CardGroup cols={2}>
 
@@ -28,7 +28,7 @@ The Gruntwork Installer provides conveniences for downloading and installing Gru
 <Card
   title="Terragrunt"
   href="https://terragrunt.gruntwork.io">
-Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state.
+Terragrunt is a thin wrapper that provides extra tools for keeping your Terraform configurations DRY, working with multiple modules, and managing remote state.
 </Card>
 <Card
   title="Terratest"
