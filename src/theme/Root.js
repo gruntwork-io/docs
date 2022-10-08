@@ -107,12 +107,18 @@ function Root({ children }) {
 
   useEffect(() => {
     const listener = (event) => {
+      // Sometimes our links wrap components, such as Cards. In these cases, the event
+      // target is often a child element of the <a> we're attempting to extract the
+      // href data from, and so we search for the closest parent <a>. In the event that
+      // an <a> is clicked directly, that <a> itself will be returned.
+      const targetLink = event.target.closest("a")
+
       // Allow clicks on the external GitHub link FROM the modal notices to work normally
-      if (event.target.dataset.modalExempt) {
+      if (targetLink.dataset.modalExempt) {
         return
       }
 
-      if (isGruntworkCisRepo(event.target.href)) {
+      if (isGruntworkCisRepo(targetLink.href)) {
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_CIS_GITHUB_WARNING_KEY
         )
@@ -123,12 +129,12 @@ function Root({ children }) {
         }
 
         event.preventDefault()
-        setCisNoticeLink(event.target.href)
+        setCisNoticeLink(targetLink.href)
         setDisplayCisNotice(true)
         return
       }
 
-      if (isPrivateGruntworkRepo(event.target.href)) {
+      if (isPrivateGruntworkRepo(targetLink.href)) {
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
         )
@@ -139,7 +145,7 @@ function Root({ children }) {
         }
 
         event.preventDefault()
-        setSubscriberNoticeLink(event.target.href)
+        setSubscriberNoticeLink(targetLink.href)
         setDisplaySubscriberNotice(true)
         return
       }

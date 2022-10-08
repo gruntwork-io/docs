@@ -33,7 +33,7 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
   }
 
   const gitHubRepoName = externalLink.match(
-    /https:\/\/github.com\/gruntwork-io\/(.*?)\/.*/
+    /https:\/\/github.com\/gruntwork-io\/([^/]*)/
   )
 
   const setDontWarnMe = (event) => {
