@@ -24,9 +24,8 @@ Save following to a `Dockerfile`:
 ```dockerfile title="Dockerfile"
 FROM ubuntu:latest
 
-
-RUN apt-get update && apt-get install -y wget unzip curl git
-
+RUN apt-get update && \
+  apt-get install -y wget unzip curl git
 
 # Install gruntwork-installer, which is the preferred method for installing Gruntwork binaries and modules
 RUN curl -LsS https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/v0.0.38/bootstrap-gruntwork-installer.sh | bash /dev/stdin --version v0.0.38 --no-sudo true
