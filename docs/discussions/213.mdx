@@ -1,0 +1,23 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<CenterLayout>
+<span class="title">Knowledge Base</span>
+<h1>How do I share Secrets Manager secrets with Kubernetes Pods through Terragrunt/Terraform?</h1>
+<GitHub json={{"id":"D_kwDOF8slf84AO22V","number":213,"author":{"login":"yorinasub17"},"title":"How do I share Secrets Manager secrets with Kubernetes Pods through Terragrunt/Terraform?","body":"Can I retrieve the secrets in Terragrunt/Terraform and set it up as environment variables on the helm chart inputs/kubernetes manifests/provider resources?","bodyHTML":"<p dir=\"auto\">Can I retrieve the secrets in Terragrunt/Terraform and set it up as environment variables on the helm chart inputs/kubernetes manifests/provider resources?</p>","answer":{"body":"In general, it is recommended to manage secrets by pulling it in the containers, similar to how we do it in our [aws-sample-app](https://github.com/gruntwork-io/aws-sample-app) container.\r\n\r\nThis is to avoid leaking the raw, unencrypted secret into various places (e.g., if you pull the secrets in terragrunt, the raw unencrypted secret ends up in the Terraform state file AND the Deployment Kubernetes manifest such that if you `kubectl describe deployment`, you can read it in plain text).","bodyHTML":"<p dir=\"auto\">In general, it is recommended to manage secrets by pulling it in the containers, similar to how we do it in our <a href=\"https://github.com/gruntwork-io/aws-sample-app\">aws-sample-app</a> container.</p>\n<p dir=\"auto\">This is to avoid leaking the raw, unencrypted secret into various places (e.g., if you pull the secrets in terragrunt, the raw unencrypted secret ends up in the Terraform state file AND the Deployment Kubernetes manifest such that if you <code class=\"notranslate\">kubectl describe deployment</code>, you can read it in plain text).</p>"},"comments":{"edges":[{"node":{"author":{"login":"yorinasub17"},"body":"In general, it is recommended to manage secrets by pulling it in the containers, similar to how we do it in our [aws-sample-app](https://github.com/gruntwork-io/aws-sample-app) container.\r\n\r\nThis is to avoid leaking the raw, unencrypted secret into various places (e.g., if you pull the secrets in terragrunt, the raw unencrypted secret ends up in the Terraform state file AND the Deployment Kubernetes manifest such that if you `kubectl describe deployment`, you can read it in plain text)."}},{"node":{"author":{"login":"yorinasub17"},"body":"Note that there is a relatively new CSI (container storage interface) that is trying to address this very problem: [secrets-store-csi-driver](https://github.com/kubernetes-sigs/secrets-store-csi-driver)). This is relatively new and thus is still considered in beta, but recently cut a v1.0 release that is stable enough to explore usage as an alternative.\r\n\r\nThis approach relies on Kubernetes to mount a volume that stores the contents of the Secrets Manager entries directly into the Pod, avoiding the need for your Pod boot scripts to handle the secrets mounting."}}]}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "4f726f8377a60362bb3f9d977df3186d"
+}
+##DOCS-SOURCER-END -->

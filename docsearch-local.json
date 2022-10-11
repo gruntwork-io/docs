@@ -4,7 +4,7 @@
   "sitemap_alternate_links": true,
   "selectors": {
     "lvl0": {
-      "selector": "(//nav[contains(@class,'menu')]/ul/li/div/a[contains(@class, 'active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
+      "selector": "(//nav[contains(@class,'menu')]/ul/li/div/a[contains(@class, 'active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()] | //span[contains(@class, 'title')]",
       "type": "xpath",
       "global": true,
       "default_value": "Docs"

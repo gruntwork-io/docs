@@ -1,0 +1,23 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<CenterLayout>
+<span class="title">Knowledge Base</span>
+<h1>VPC error due to dependency on var.num_destination_vpc_route_tables</h1>
+<GitHub json={{"id":"D_kwDOF8slf84AO7XA","number":244,"author":{"login":"marinalimeira"},"title":"VPC error due to dependency on var.num_destination_vpc_route_tables","body":"r:terraform-aws-vpc\r\n```\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] ╷\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ Error: Invalid count argument\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   on .terraform/modules/vpc.vpc_peering_connection/modules/vpc-peering/main.tf line 74, in resource \"aws_route\" \"destination_to_origin\":\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   74:   count = var.create_resources ? var.num_destination_vpc_route_tables : 0\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ The \"count\" value depends on resource attributes that cannot be determined\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ until apply, so Terraform cannot predict how many instances will be\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ created. To work around this, use the -target argument to first apply only\r\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ the resources that the count depends on.\r\n```","bodyHTML":"<p dir=\"auto\">r:terraform-aws-vpc</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"[ecs-deploy-runner][2022-03-03T13:25:00+0000] ╷\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ Error: Invalid count argument\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   on .terraform/modules/vpc.vpc_peering_connection/modules/vpc-peering/main.tf line 74, in resource &quot;aws_route&quot; &quot;destination_to_origin&quot;:\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   74:   count = var.create_resources ? var.num_destination_vpc_route_tables : 0\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ The &quot;count&quot; value depends on resource attributes that cannot be determined\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ until apply, so Terraform cannot predict how many instances will be\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ created. To work around this, use the -target argument to first apply only\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ the resources that the count depends on.\"><pre class=\"notranslate\"><code>[ecs-deploy-runner][2022-03-03T13:25:00+0000] ╷\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ Error: Invalid count argument\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   on .terraform/modules/vpc.vpc_peering_connection/modules/vpc-peering/main.tf line 74, in resource \"aws_route\" \"destination_to_origin\":\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │   74:   count = var.create_resources ? var.num_destination_vpc_route_tables : 0\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ \n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ The \"count\" value depends on resource attributes that cannot be determined\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ until apply, so Terraform cannot predict how many instances will be\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ created. To work around this, use the -target argument to first apply only\n[ecs-deploy-runner][2022-03-03T13:25:00+0000] │ the resources that the count depends on.\n</code></pre></div>","answer":{"body":"> Thanks. I just solved by removing the pairing from common!\r\n\r\nIssue solved by the customer :) ","bodyHTML":"<blockquote>\n<p dir=\"auto\">Thanks. I just solved by removing the pairing from common!</p>\n</blockquote>\n<p dir=\"auto\">Issue solved by the customer :)</p>"},"comments":{"edges":[{"node":{"author":{"login":"marinalimeira"},"body":"Hello,\r\n\r\nWhat is the value of `num_destination_vpc_route_tables`? If it depends on another resource, than this error makes sense."}},{"node":{"author":{"login":"marinalimeira"},"body":"> Thanks. I just solved by removing the pairing from common!\r\n\r\nIssue solved by the customer :) "}}]}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "9c5a99a70e3fefce73bbfa4cc4a2b574"
+}
+##DOCS-SOURCER-END -->

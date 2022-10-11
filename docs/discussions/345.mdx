@@ -1,0 +1,23 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<CenterLayout>
+<span class="title">Knowledge Base</span>
+<h1>Is there a canonical way to use Terragrunt&apos;s dynamic backend ability to get a state file per instance of a module?</h1>
+<GitHub json={{"id":"D_kwDOF8slf84APPOk","number":345,"author":{"login":"rayterrill"},"title":"Is there a canonical way to use Terragrunt's dynamic backend ability to get a state file per instance of a module?","body":"We have a module that we call hundreds of times to build instances of a thing. Ideally, we want each instance to have its own state file because each one of these instances can have n resources.\r\n\r\n[r:terragrunt](https://github.com/gruntwork-io/terragrunt)","bodyHTML":"<p dir=\"auto\">We have a module that we call hundreds of times to build instances of a thing. Ideally, we want each instance to have its own state file because each one of these instances can have n resources.</p>\n<p dir=\"auto\"><a href=\"https://github.com/gruntwork-io/terragrunt\">r:terragrunt</a></p>","answer":{"body":"Hm, I don't think I quite understand how this is working just yet. Would it be possible for you to share some basic examples of how your current structure is working with the config files you referenced?","bodyHTML":"<p dir=\"auto\">Hm, I don't think I quite understand how this is working just yet. Would it be possible for you to share some basic examples of how your current structure is working with the config files you referenced?</p>"},"comments":{"edges":[{"node":{"author":{"login":"gcagle3"},"body":"Hi Ray! When you call the module, are you doing so from a specific folder structure or through CLI arguments? If using a specific folder structure, you might be able to leverage the [remote_state](https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/) key to differentiate between deployments in the parent terragrunt.hcl file. \r\n\r\nFirst, assume you have a folder structure something like this:\r\n\r\n```\r\n└── deployment_root\r\n    ├── module1\r\n    │   └── terragrunt.hcl\r\n    ├── module2\r\n    │   └── terragrunt.hcl\r\n    ├── module3\r\n    │   └── terragrunt.hcl\r\n    └── terragrunt.hcl\r\n```\r\n\r\nIn the `deployment_root` folder, there would be a terragrunt.hcl file with a remote_state configuration similar to the below:\r\n\r\n```\r\nremote_state {\r\n    backend = \"s3\"\r\n    config = {\r\n        bucket          = \"S3-BUCKET-FOR-STATE-STORAGE\"\r\n        key             = \"ROOT-FOLDER-NAME/${path_relative_to_include()}/terraform.tfstate\"\r\n        region          = \"REGION\"\r\n        dynamodb_table  = \"DYNAMODB-TABLE-FOR-TFLOCK\"\r\n    }\r\n}\r\n```\r\nThe key configuration with `${path_relative_to_include()}` will allow terragrunt to configure unique states for each module being deployed based on the local file path. From here, you would just need to configure each module's terragrunt.hcl file to reference the parent terragrunt.hcl file with a configuration similar to the below: \r\n\r\n```\r\nterraform {\r\n    source = \"MODULE-SOURCE-LINK-AND-VER\"\r\n}\r\n\r\ninclude \"root\" {\r\n    path = find_in_parent_folders()\r\n}\r\n```\r\n\r\nOnce you have this in place, deploying `deployment_root/module1` will result in a unique state file being saved to the S3 bucket at `deployment_root/module1/terraform.tfstate` and so on. \r\n\r\nDo you think a solution like this would work for your application? "}},{"node":{"author":{"login":"gcagle3"},"body":"Hm, I don't think I quite understand how this is working just yet. Would it be possible for you to share some basic examples of how your current structure is working with the config files you referenced?"}},{"node":{"author":{"login":"gcagle3"},"body":"Thank you for the explanation! I think I have a better understanding of the process now. Unfortunately I don't know of an immediate solution for this specific workflow, but let me do a little research (and check with colleagues) and I will get back to you!"}}]}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "1bbfefacc05934d1eafc37ca92813dc7"
+}
+##DOCS-SOURCER-END -->

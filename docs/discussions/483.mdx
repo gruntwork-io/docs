@@ -1,0 +1,23 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<CenterLayout>
+<span class="title">Knowledge Base</span>
+<h1>Guidance on getting existing non-IaC environments into a well-architected/RefArch state</h1>
+<GitHub json={{"id":"D_kwDOF8slf84AP5Fb","number":483,"author":{"login":"iangrunt"},"title":"Guidance on getting existing non-IaC environments into a well-architected/RefArch state","body":"\nDoes Gruntwork have guidance on getting my environments which were not done entirely as IaC into a well-architected environment? Do the Reference Architecture and infrastructure-live repo design help this in any way? \n\n---\n\n<ins datetime=\"2022-06-22T20:03:45Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/108819\">Tracked in ticket #108819</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Does Gruntwork have guidance on getting my environments which were not done entirely as IaC into a well-architected environment? Do the Reference Architecture and infrastructure-live repo design help this in any way?</p>\n<hr>\n<ins datetime=\"2022-06-22T20:03:45Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/108819\" rel=\"nofollow\">Tracked in ticket #108819</a></p>\n</ins>","answer":{"body":"We currently do not support importing existing infrastructure into IaC. We recommend deploying new accounts from scratch using the Reference Architecture and migrating your workloads on to the new platform, rather than adapting existing AWS Accounts.","bodyHTML":"<p dir=\"auto\">We currently do not support importing existing infrastructure into IaC. We recommend deploying new accounts from scratch using the Reference Architecture and migrating your workloads on to the new platform, rather than adapting existing AWS Accounts.</p>"},"comments":{"edges":[{"node":{"author":{"login":"yorinasub17"},"body":"We currently do not support importing existing infrastructure into IaC. We recommend deploying new accounts from scratch using the Reference Architecture and migrating your workloads on to the new platform, rather than adapting existing AWS Accounts."}}]}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "4a5f51404b526b3a452b05ced7eb4079"
+}
+##DOCS-SOURCER-END -->
