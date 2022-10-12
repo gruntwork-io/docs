@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from "react"
 
 type GitHubProps = {
-  discussion: {bodyHTML:string; number:number, answer: {bodyHTML:string}}
+  json: any
 }
 
-export const GitHub: React.FunctionComponent<GitHubProps> = ({ discussion }) => {
+export const PWithData: React.FunctionComponent<GitHubProps> = ({ json }) => {
+  return <p dangerouslySetInnerHTML={{ __html: json }} />
+}
 
-  const rawQuestion:string = discussion.bodyHTML;
-  const questionNoZenDeskLink = rawQuestion.replace(/<hr>\n<ins[\s\S]*<\/ins>/gim, "");
+
+const visuallyHidden:React.CSSProperties = {
+  overflow: "hidden",
+  position: "absolute",
+  clip: "rect(0 0 0 0)",
+  height: "1px",
+  width: "1px",
+  margin: "-1px",
+  padding: "0",
+  border: "0"
+}
+
+export const GitHub: React.FunctionComponent<GitHubProps> = ({ json }) => {
+  const [body, setBody] = useState("")
+  const [answerBody, setAnswerBody] = useState("")
+
+  useEffect(() => {
+    const rawAnswer:string = json.bodyHTML;
+    const answerNoZenDeskLink = rawAnswer.replace(/<hr>\n<ins[\s\S]*<\/ins>/gim, "");
+    
+    setBody(answerNoZenDeskLink)
+    setAnswerBody(json.answer?.bodyHTML)
+  }, [])
   return (
     <>
       <div>
         <a
-          href={`https://github.com/gruntwork-io/knowledge-base/discussions/${discussion.number}`}
+          href={`https://github.com/gruntwork-io/knowledge-base/discussions/${json.number}`}
           className="link-button">
           View complete discussion in GitHub
         </a>
       </div>
-
       <h4>Question:</h4>
-      <div dangerouslySetInnerHTML={{ __html: questionNoZenDeskLink  }} />
+      <PWithData json={body} />
 
       <hr />
 
       <h4>Answer:</h4>
-      <div dangerouslySetInnerHTML={{ __html: discussion.answer.bodyHTML }} />
+      <PWithData json={answerBody} />
+
+      <p style={visuallyHidden}>{json.body}</p>
+      <p style={visuallyHidden}>{json.answer?.body}</p>
     </>
   )
 }
