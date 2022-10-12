@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
+import Admonition from "@theme/Admonition"
 
 type GitHubProps = {
   json: any
 }
 
 export const PWithData: React.FunctionComponent<GitHubProps> = ({ json }) => {
-  return <p dangerouslySetInnerHTML={{ __html: json }} />
+  return <div dangerouslySetInnerHTML={{ __html: json }} />
 }
 
 
@@ -37,16 +38,19 @@ export const GitHub: React.FunctionComponent<GitHubProps> = ({ json }) => {
         <a
           href={`https://github.com/gruntwork-io/knowledge-base/discussions/${json.number}`}
           className="link-button">
-          View complete discussion in GitHub
+          View full discussion in GitHub
         </a>
       </div>
-      <h4>Question:</h4>
       <PWithData json={body} />
 
-      <hr />
 
-      <h4>Answer:</h4>
-      <PWithData json={answerBody} />
+      <div style={{marginTop: "2.5rem"}}>
+        <Admonition type="tip" title="Answer">
+          <PWithData json={answerBody} />
+        </Admonition>
+      </div>
+
+
 
       <p style={visuallyHidden}>{json.body}</p>
       <p style={visuallyHidden}>{json.answer?.body}</p>
