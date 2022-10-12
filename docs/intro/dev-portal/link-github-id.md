@@ -4,7 +4,7 @@ Gruntwork provides all code included in your subscription through GitHub. You’
 
 ## Linking your GitHub account
 
-1. First, sign in to the Gruntwork Developer Portal.
+1. First, sign in to the [Gruntwork Developer Portal](https://app.gruntwork.io).
 2. Click the **Link my GitHub Account** button in the notice at the top of the home page, or the corresponding button located in your [Profile Settings](https://app.gruntwork.io/settings/profile).
 3. Sign in to your GitHub account, then click the **Authorize** button to confirm the connection.
 4. After being redirected back to the Gruntwork Developer Portal, click the **Accept My Invite** button. This will take you to GitHub again, where you can accept an invitation to join the Gruntwork organization. (You can ignore the corresponding invite email you receive from GitHub.)
@@ -25,6 +25,6 @@ To link a new GitHub ID, you’ll first have to unlink the current one. Although
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d64721bb5ec4d76fd33e70913243146a"
+  "hash": "83dd05d2370300a2388662fd39dc39a8"
 }
 ##DOCS-SOURCER-END -->
