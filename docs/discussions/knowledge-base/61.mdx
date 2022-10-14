@@ -8,7 +8,7 @@ import CenterLayout from "/src/components/CenterLayout"
 import GitHub from "/src/components/GitHub"
 
 <CenterLayout>
-<span className="title">Knowledge Base</span>
+<span className="searchCategory">Knowledge Base</span>
 <h1>DNS: can we use subdomains for each account? Or do we need different domains?</h1>
 <GitHub discussion={{"id":"D_kwDOF8slf84AOB2C","number":61,"author":{"login":"zackproser"},"title":"DNS: can we use subdomains for each account? Or do we need different domains?","body":"A customer asked: \r\n> The domain organization recommended in the reference architecture allows to have a domain structure like api.dev.domain.com, api.staging.domain.com, api.domain.com. Will this work, or do we need to use separate domains for each account? \r\n\r\n\r\n","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">The domain organization recommended in the reference architecture allows to have a domain structure like api.dev.domain.com, api.staging.domain.com, api.domain.com. Will this work, or do we need to use separate domains for each account?</p>\n</blockquote>","answer":{"body":"Our Ref Arch supports both approaches: \r\n- You can use a single domain, and assign unique subdomains to each account, e.g.; dev.example.com, stage.example.com, prod.example.com\r\n- You can use a different domain for each account, if you so wish, e.g.; example.net, example.com, example.io\r\n\r\nWe have automated DNS checks built into our tooling that will ensure your DNS setup is resolving correctly prior to a deployment. ","bodyHTML":"<p dir=\"auto\">Our Ref Arch supports both approaches:</p>\n<ul dir=\"auto\">\n<li>You can use a single domain, and assign unique subdomains to each account, e.g.; dev.example.com, stage.example.com, prod.example.com</li>\n<li>You can use a different domain for each account, if you so wish, e.g.; example.net, example.com, example.io</li>\n</ul>\n<p dir=\"auto\">We have automated DNS checks built into our tooling that will ensure your DNS setup is resolving correctly prior to a deployment.</p>"}}} />
 
@@ -18,6 +18,6 @@ import GitHub from "/src/components/GitHub"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "f1161b0a311c5b041f1807cf9ae23219"
+  "hash": "efb1642c62782cc7bd9421a0fd3ff4fd"
 }
 ##DOCS-SOURCER-END -->

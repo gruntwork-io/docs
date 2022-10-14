@@ -8,7 +8,7 @@ import CenterLayout from "/src/components/CenterLayout"
 import GitHub from "/src/components/GitHub"
 
 <CenterLayout>
-<span className="title">Knowledge Base</span>
+<span className="searchCategory">Knowledge Base</span>
 <h1>How do I enable Fluentbit logs in a ECS Fargate container</h1>
 <GitHub discussion={{"id":"D_kwDOF8slf84APDje","number":304,"author":{"login":"fsanzdev"},"title":"How do I enable Fluentbit logs in a ECS Fargate container","body":"Hi, \r\n\r\nI'm looking to do something like this https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-example-taskdefs.html#firelens-example-forward in a Fargate service. I'm using the service example in the Ref Arch, but I can't find the proper way to add a new container to the task definition. \r\n\r\nThanks.","bodyHTML":"<p dir=\"auto\">Hi,</p>\n<p dir=\"auto\">I'm looking to do something like this <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-example-taskdefs.html#firelens-example-forward\" rel=\"nofollow\">https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-example-taskdefs.html#firelens-example-forward</a> in a Fargate service. I'm using the service example in the Ref Arch, but I can't find the proper way to add a new container to the task definition.</p>\n<p dir=\"auto\">Thanks.</p>","answer":{"body":"@fsanzdev please take a look, there should be an `ecs_task_container_definitions` variable that allows you to specify the container definition json","bodyHTML":"<p dir=\"auto\"><a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/fsanzdev/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/fsanzdev\">@fsanzdev</a> please take a look, there should be an <code class=\"notranslate\">ecs_task_container_definitions</code> variable that allows you to specify the container definition json</p>"}}} />
 
@@ -18,6 +18,6 @@ import GitHub from "/src/components/GitHub"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "0faa3c9f961d1b4192136e921a7f6c4e"
+  "hash": "3f3d624ada717115a16c6b220479acc2"
 }
 ##DOCS-SOURCER-END -->
