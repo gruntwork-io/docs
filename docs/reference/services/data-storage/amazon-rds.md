@@ -179,6 +179,15 @@ Specifies whether any cluster modifications are applied immediately, or during t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance.html#engine_version for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1183,6 +1192,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4a734c00fd9c6eb18f044914700d27a4"
+  "hash": "69bab93dde817116e98d965d62883538"
 }
 ##DOCS-SOURCER-END -->
