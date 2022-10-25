@@ -16,9 +16,9 @@ License requires that you pay for 50 Authorized Users.
 
 :::danger
 
- Forks of private repositories (such as IaC library modules included in the Gruntwork subscription) will be permanently deleted if the user who created the fork loses access to the source repository. For instance, this can happen when a user is removed from your team in the Gruntwork Developer Portal. Take caution when creating forks of any Gruntwork modules. We recommend creating pull requests to merge your changes upstream and avoid the need to maintain your fork, or creating a machine user to own any forks which will never be removed from your team.
+Forks of private repositories (such as IaC library modules included in the Gruntwork subscription) will be permanently deleted if the user who created the fork loses access to the source repository. For instance, this can happen when a user is removed from your team in the Gruntwork Developer Portal. Take caution when creating forks of any Gruntwork modules. We recommend creating pull requests to merge your changes upstream and avoid the need to maintain your fork, or creating a machine user to own any forks which will never be removed from your team.
 
- :::
+:::
 
 ## How to fork the code
 
