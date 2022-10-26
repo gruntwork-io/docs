@@ -189,7 +189,7 @@ YAML files are space-sensitive. As you edit the file, be sure to retain the corr
 
 If you’re unsure about how to answer any of the questions, email <support@gruntwork.io> and let us know!
 
-## Complete the set up process and open a pull request for Gruntwork
+## Complete the set up process and open a pull request to engage our GitHub Automations 
 
 1. Review your changes. If you notice any errors, correct them, and rerun:
 
@@ -205,7 +205,31 @@ If you’re unsure about how to answer any of the questions, email <support@grun
   git push origin ref-arch-form
   ```
 
-1. [Open a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). Gruntwork will review the pull request, resolve any open questions or issues, then merge and begin the deployment.
+1. [Open a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). 
+
+##  Use Preflight Checks to iterate on your form and fix any configuration issues 
+
+![Gruntwork Preflight Checks on GitHub](/img/guides/reference-architecture/configuration-guide/preflight-checks.png)
+
+Once your form is filled in and pushed to GitHub, our GitHub automations will take over. You'll notice a special GitHub check called _Preflight Checks_ that will run against your `reference-architecture-form.yml` file and flag any errors for you directly in your pull request, like so:
+
+![Gruntwork Preflight Checks](/img/guides/reference-architecture/configuration-guide/preflight-checks-preview.png)
+
+You can then locally iterate on your form by editing `reference-architecture-form.yml` on the `ref-arch-form` branch and pushing your changes up to GitHub. Each time you make a new commit and push it, the Gruntwork _Preflight Checks_ will be run against your form. 
+
+Keep iterating on your form and pushing new commits up until the Preflight Checks check passes and you see no more error annotations on your pull request.
+
+## Next Steps
+
+Once all your _Preflight Checks_ pass, you can merge your pull request, which will commence your Ref Arch deployment.
+
+Gruntwork engineers are automatically notified of each new Ref Arch deployment, so there's no need to reach out to support just to inform us that your deployment has commenced.
+
+Gruntwork engineers will monitor your deployment and receive notifications about failures and issues that may require intervention to resolve.
+
+Gruntwork engineers rotate through all active deployments to fix up issues preventing them from making forward progress. In general, deployments take "A few days", although there are plenty of variables outside of our control that can occasionally interfere with a deployment, and which may take longer to remediate.
+
+Gruntwork engineers will reach out to you to communicate a status update or next steps if your deployment requires additional intervention to complete.
 
 ## Appendix: How to create a secret for the VCS token in AWS Secrets Manager
 
