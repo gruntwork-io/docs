@@ -14,6 +14,12 @@ The definition of an _Authorized User_ from the Gruntwork Terms of Service does 
 code. That is, if you create internal forks and give 50 users access to those internal forks, then the Gruntwork
 License requires that you pay for 50 Authorized Users.
 
+:::danger
+
+Forks of private repositories (such as IaC library modules included in the Gruntwork subscription) will be permanently deleted if the user who created the fork loses access to the source repository. For instance, this can happen when a user is removed from your team in the Gruntwork Developer Portal. Take caution when creating forks of any Gruntwork modules. We recommend creating pull requests to merge your changes upstream and avoid the need to maintain your fork, or creating a machine user to own any forks which will never be removed from your team.
+
+:::
+
 ## How to fork the code
 
 Here is how you fork the code in the Gruntwork Infrastructure as Code Library:
