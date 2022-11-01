@@ -1,11 +1,11 @@
 ---
 sidebar_label: What you’ll learn in this guide
-pagination_label: Achieve Compliance With the CIS AWS Foundations Benchmark
+pagination_label: Achieve Compliance with the CIS AWS Foundations Benchmark
 ---
 
 import { CardList } from "/src/components/CardGroup"
 
-# Achieve Compliance With the CIS AWS Foundations Benchmark
+# Achieve Compliance with the CIS AWS Foundations Benchmark
 
 :::info
 
@@ -71,6 +71,6 @@ walkthrough.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ad41a4a60d33f97c8b859e17562bef13"
+  "hash": "62afd671cf06da950d577fe88796bfe0"
 }
 ##DOCS-SOURCER-END -->
