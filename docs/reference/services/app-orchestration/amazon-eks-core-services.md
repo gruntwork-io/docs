@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.96.9" lastModifiedVersion="0.91.0"/>
+<VersionBadge version="0.96.9" lastModifiedVersion="0.97.0"/>
 
 # Amazon EKS Core Services
 
@@ -449,7 +449,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.22.2&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.23.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -676,6 +676,15 @@ Additional parsers that fluent-bit should export logs to. This string should be 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="fargate_fluent_bit_include_kubernetes_metadata" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not Kubernetes metadata is added to the log files
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="fargate_fluent_bit_log_stream_prefix" requirement="optional" type="string">
@@ -980,6 +989,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.9/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "62be6a6f99f9ce882e2765468faf36f0"
+  "hash": "a44b945a45f4deb5efc82e792b7a8c50"
 }
 ##DOCS-SOURCER-END -->

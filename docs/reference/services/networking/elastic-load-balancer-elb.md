@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.96.9" lastModifiedVersion="0.96.1"/>
+<VersionBadge version="0.96.9" lastModifiedVersion="0.97.0"/>
 
 # Application Load Balancer
 
@@ -505,6 +505,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.9/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5e5e030cdb985f8143c7ab4a12c0dc26"
+  "hash": "5c08334d485c2f9cb5b75175c24c67c6"
 }
 ##DOCS-SOURCER-END -->
