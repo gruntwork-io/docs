@@ -678,6 +678,15 @@ Additional parsers that fluent-bit should export logs to. This string should be 
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="fargate_fluent_bit_include_kubernetes_metadata" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not Kubernetes metadata is added to the log files
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="fargate_fluent_bit_log_stream_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -980,6 +989,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.9/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "963c3ff84c6dd51bf331f2e46b9c52f6"
+  "hash": "e5437c7d12942ba494ccfe9ff64931ff"
 }
 ##DOCS-SOURCER-END -->
