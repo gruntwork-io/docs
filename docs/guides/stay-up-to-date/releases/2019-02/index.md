@@ -128,7 +128,7 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
 
 This release adds ability for the user to pass through custom JVM options for logstash.  Previously we were relying on default JVM options.
 
-Now - our installation will pass through a templated [jvm.options file](examples/elk-amis/logstash/config/jvm.options). The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm '<__XMS__>=4g'`)
+Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm '<__XMS__>=4g'`)
 
 https://github.com/gruntwork-io/package-elk/issues/70
 
@@ -407,6 +407,6 @@ Other changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a6a578a66cab0ee957a609b5e0207f9b"
+  "hash": "4ec1138a4b486f0aef71723416646b5d"
 }
 ##DOCS-SOURCER-END -->

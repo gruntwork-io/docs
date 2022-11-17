@@ -31,8 +31,8 @@ Here are the repos that were updated:
   - `boilerplateConfigDeps DEPENDENCY_NAME PROPERTY`: Return the value of the given property for the given Dependency
   - `boilerplateConfigVars VAR_NAME PROPERTY`: Return the value of the given property for the given Variable
 - NEW FEATURE: Boilerplate now exposes the following global template variables. See the [docs](https://github.com/gruntwork-io/boilerplate#global-template-variables) for more information on how to use them:
-  - `BoilerplateConfigVars`: A map of all [Variables](/variables/variables.go) defined in the root `boilerplate.yml`.
-  - `BoilerplateConfigDeps`: A map of all [Dependencies](/variables/dependencies.go) defined in the root `boilerplate.yml`.
+  - `BoilerplateConfigVars`: A map of all variables defined in the root `boilerplate.yml`.
+  - `BoilerplateConfigDeps`: A map of all dependencies defined in the root `boilerplate.yml`.
     - `This`: A map of the current `boilerplate.yml` being processed.
     - `This.Config`: A map of the Boilerplate configuration in use.
     - `This.Options`: A map of the Boilerplate options in use.
@@ -144,6 +144,6 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ea7e4134540870f04f909a9df998f96c"
+  "hash": "fbfd7d815eafae3e235473ad3623a270"
 }
 ##DOCS-SOURCER-END -->
