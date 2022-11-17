@@ -72,7 +72,7 @@ In https://github.com/gruntwork-io/module-asg/pull/5, we implemented a completel
 4. Supports integration with the ALB.
 
 All of this is good news. The bad news is that this change is completely backwards incompatible with the previous versions of our the ASG modules. Key things to note:
-1. Both `asg-rolling-deploy-static` and `asg-rolling-deploy-dynamic` modules have been deleted. You should now use `asg-rolling-deploy`. The parameters used by this new module are very similar to the previous ones, but not identical. See its [vars.tf](/modules/asg-rolling-deploy/vars.tf) and the [asg-rolling-deploy example](/examples/asg-rolling-deploy) to see what parameters you need to pass.
+1. Both `asg-rolling-deploy-static` and `asg-rolling-deploy-dynamic` modules have been deleted. You should now use `asg-rolling-deploy`. The parameters used by this new module are very similar to the previous ones, but not identical. See its `vars.tf` and the `asg-rolling-deploy example` to see what parameters you need to pass.
 
 
 
@@ -144,6 +144,6 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "fbfd7d815eafae3e235473ad3623a270"
+  "hash": "d45c3744f17838408f73a386970e9752"
 }
 ##DOCS-SOURCER-END -->
