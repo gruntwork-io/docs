@@ -8,7 +8,19 @@ import CardGroup from "/src/components/CardGroup"
 
 # Stay Up To Date
 
-<Grid cols={2} gap="4rem">
+<Grid cols={3} gap="4rem">
+
+<span>
+
+## Gruntwork releases
+
+<CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
+
+<!-- replaced-by-docs-sourcer-automatically-do-not-edit -->
+
+</CardGroup>
+
+</span>
 
 <span>
 
