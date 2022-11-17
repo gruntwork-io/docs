@@ -1,0 +1,673 @@
+
+# Gruntwork release 2020-10
+
+<p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2020-10</small></p>
+
+This page is lists all the updates to the [Gruntwork Infrastructure as Code 
+Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-10. For instructions 
+on how to use these updates in your code, check out the [updating 
+documentation](/guides/working-with-code/using-modules#updating).
+
+Here are the repos that were updated:
+
+- [boilerplate](#boilerplate)
+- [infrastructure-live-multi-account-acme](#infrastructure-live-multi-account-acme)
+- [infrastructure-modules-multi-account-acme](#infrastructure-modules-multi-account-acme)
+- [terraform-aws-beanstalk](#terraform-aws-beanstalk)
+- [terraform-aws-ci](#terraform-aws-ci)
+- [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-data-storage](#terraform-aws-data-storage)
+- [terraform-aws-eks](#terraform-aws-eks)
+- [terraform-aws-elk](#terraform-aws-elk)
+- [terraform-aws-lambda](#terraform-aws-lambda)
+- [terraform-aws-load-balancer](#terraform-aws-load-balancer)
+- [terraform-aws-monitoring](#terraform-aws-monitoring)
+- [terraform-aws-sam](#terraform-aws-sam)
+- [terraform-aws-security](#terraform-aws-security)
+- [terraform-aws-server](#terraform-aws-server)
+- [terraform-aws-service-catalog](#terraform-aws-service-catalog)
+- [terraform-aws-static-assets](#terraform-aws-static-assets)
+- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
+
+
+## boilerplate
+
+
+### [v0.3.2: Support rendering variable inputs to json](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.3.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/30/2020 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.3.2">Release notes</a></small>
+</p>
+
+This release fixes an issue with using [`toJson` and related sprig functions](https://masterminds.github.io/sprig/) within Boilerplate templates. It's now possible to read variable inputs from Boilerplate YML files and render those to JSON.
+
+See [related PR](https://github.com/gruntwork-io/boilerplate/pull/67).
+
+
+### [v0.3.1: Add partials feature](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/26/2020 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.3.1">Release notes</a></small>
+</p>
+
+Adds the new [`partials` feature](https://github.com/gruntwork-io/boilerplate#partials) for better template reuse.
+
+
+
+## infrastructure-live-multi-account-acme
+
+
+### [v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/releases/tag/v0.0.1-20201021)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/21/2020 | <a href="https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/releases/tag/v0.0.1-20201021">Release notes</a></small>
+</p>
+
+Since this repo is solely used for examples/demonstrations, and NOT meant for direct production use, we simply publish all changes at v0.0.1, with a date marker for when it was published.
+
+**NOTE: we switched the date format for releases to `v0.0.1-YYYYMMDD`. Previously, this was `v0.0.1-MMDDYYYY.`**
+
+
+All the modules have been updated to be compatible with:
+
+- Ubuntu 18.04
+- Packer 1.6
+- AWS Provider v3
+
+
+
+## infrastructure-modules-multi-account-acme
+
+
+### [v0.0.1-20201021](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/21/2020 | <a href="https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/releases/tag/v0.0.1-20201021">Release notes</a></small>
+</p>
+
+Since this repo is solely used for examples/demonstrations, and NOT meant for direct production use, we simply publish all changes at v0.0.1, with a date marker for when it was published.
+
+**NOTE: we switched the date format for releases to `v0.0.1-YYYYMMDD`. Previously, this was `v0.0.1-MMDDYYYY.`**
+
+
+All the modules have been updated to be compatible with:
+
+- Ubuntu 18.04
+- Packer 1.6
+- AWS Provider v3
+
+
+
+## terraform-aws-beanstalk
+
+
+### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.1.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/12/2020 | Modules affected: elasticbeanstalk-environment | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.1.1">Release notes</a></small>
+</p>
+
+
+
+- You can now specify the load balancer type to use in the `elasticbeanstalk-environment` module by using the new `load_balancer_type` input variable.
+
+
+
+
+## terraform-aws-ci
+
+
+### [v0.29.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.29.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/28/2020 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.29.1">Release notes</a></small>
+</p>
+
+
+
+You can now configure the ECS deploy runner with repository credentials for pulling down the images using the new `repository_credentials_secrets_manager_arn` input var.
+
+
+
+
+### [v0.29.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.29.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/2/2020 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.29.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+
+
+
+
+
+
+
+## terraform-aws-cis-service-catalog
+
+
+### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.9.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/27/2020 | Modules affected: aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.9.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+- The `aws-securityhub` module will no longer automatically clean up associations with master accounts when you run `destroy`. See the migration guide below for upgrade instructions.
+
+
+
+
+### [v0.8.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/22/2020 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.1">Release notes</a></small>
+</p>
+
+
+
+Updates the `custom-iam-entity` module to use the latest version in `module-security` which improves the MFA experience for custom IAM roles. See [the release notes for module-security v0.39.1](https://github.com/gruntwork-io/module-security/releases/tag/v0.39.1).
+
+
+
+
+
+
+### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/20/2020 | Modules affected: aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.0">Release notes</a></small>
+</p>
+
+
+
+- Switch from using a Python script to associate new member accounts in AWS Security Hub to using the new `aws_securityhub_member` resource. See the migration guide below for upgrade instructions.
+
+
+
+
+### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.7.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/15/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.7.1">Release notes</a></small>
+</p>
+
+
+
+Expose ability to specify an existing KMS key for encrypting cloudtrail logs.
+
+
+
+
+
+## terraform-aws-data-storage
+
+
+### [v0.16.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.16.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/16/2020 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.16.2">Release notes</a></small>
+</p>
+
+
+
+- You can now enable the HTTP endpoint for the Data API on Aurora Serverless using the new 'enable_http_endpoint' input variable.
+
+
+
+
+
+## terraform-aws-eks
+
+
+### [v0.27.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/30/2020 | Modules affected: eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.1">Release notes</a></small>
+</p>
+
+
+
+Gracefully handle `use_existing_cluster_config = false` and `use_cluster_security_group = true`.
+
+
+
+
+### [v0.27.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/28/2020 | Modules affected: eks-cluster-control-plane, eks-cloudwatch-container-logs, eks-container-logs, eks-aws-auth-merger | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.27.0">Release notes</a></small>
+</p>
+
+
+
+- The `fluentd` based log shipping module (`eks-cloudwatch-container-logs`) has been deprecated and replaced by a new module based on `fluent-bit`. This supports additional targets such as Firehose and Kinesis in addition to Cloudwatch, while also being more efficient in terms of underlying resource usage. Refer to the migration guide for information on how to update.
+
+- The default Kubernetes version used by the module has been updated to 1.18. Note that you will `kubergrunt` [v0.6.3](https://github.com/gruntwork-io/kubergrunt/releases/tag/v0.6.3) or newer if you wish to upgrade your existing EKS clusters to Kubernetes version 1.18.
+
+
+
+### [v0.26.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.26.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/27/2020 | Modules affected: eks-k8s-external-dns | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.26.1">Release notes</a></small>
+</p>
+
+
+
+- You can now configure the `triggerLoopOnEvent` setting on the `external-dns` service.
+- Update the documentation surrounding retrieving authentication tokens for EKS.
+
+
+
+
+### [v0.26.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.26.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/20/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.26.0">Release notes</a></small>
+</p>
+
+
+
+The automatic upgrade cluster feature now uses `kubergrunt eks sync-core-components` instead of an embedded script. This allows you to independently upgrade to newer EKS cluster versions as they are released without updating the module version.
+
+If you were relying on the automatic update script to sync the core components prior to this release, you will need to ensure that you have `kubergrunt` installed (minimum version [v0.6.2](https://github.com/gruntwork-io/kubergrunt/releases/tag/v0.6.2)) to continue using it.
+
+
+
+
+
+### [v0.25.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.25.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/2/2020 | Modules affected: eks-k8s-cluster-autoscaler | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.25.0">Release notes</a></small>
+</p>
+
+
+
+Switch to using the new location for the `cluster-autoscaler` helm chart so that the module continues to work after the `stable` and `incubator` repos are decommissioned in November.
+
+**NOTE**: This will redeploy the `cluster-autoscaler` pods, but all the data and variables are backwards compatible. We have marked this release as backwards incompatible due to the resulting downtime in the scaling functionality, but effectively, there will be no change to your cluster by redeploying the component (no downtime to your apps or EKS cluster).
+
+
+
+
+### [v0.24.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.24.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/1/2020 | Modules affected: eks-cluster-control-plane, eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.24.0">Release notes</a></small>
+</p>
+
+
+
+The following variables and outputs have been renamed:
+
+**eks-cluster-control-plane**
+
+- [variable] `vpc_master_subnet_ids` => `vpc_control_plane_subnet_ids`
+- [output] `eks_master_security_group_id` => `eks_control_plane_security_group_id`
+- [output] `eks_master_iam_role_arn` => `eks_control_plane_iam_role_arn`
+- [output] `eks_master_iam_role_name` => `eks_control_plane_iam_role_name`
+
+
+
+## terraform-aws-elk
+
+
+### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/20/2020 | Modules affected: install-filebeat, run-filebeat, elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+- Update `install-filebeat` to _disable_ filebeat from starting on boot. This is so that the `run-filebeat` script can properly configure filebeat—e.g., with auto-discovery settings—_before_ it tries to boot up.
+- Update `run-filebeat` to do auto-discovery (if enabled) before starting filebeat.
+
+
+
+
+
+## terraform-aws-lambda
+
+
+### [v0.9.2](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.9.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/15/2020 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.9.2">Release notes</a></small>
+</p>
+
+
+
+This release adds the option to create an outbound "allow all" rule in the Lambda security group that will allow it to communicate with external services. To enable this, set `should_create_outbound_rule=true` when calling the `lambda` module. Defaults to false.
+
+
+
+
+
+
+
+
+## terraform-aws-load-balancer
+
+
+### [v0.21.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.21.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/15/2020 | Modules affected: acm-tls-certificate, alb, lb-listener-rules | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.21.0">Release notes</a></small>
+</p>
+
+
+
+-  **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter. 
+
+
+
+
+
+
+
+## terraform-aws-monitoring
+
+
+### [v0.23.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.23.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/27/2020 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.23.2">Release notes</a></small>
+</p>
+
+
+
+- Fix a bug in the `alb-target-group-alarms` module, switching the module to use `"Seconds"` instead of `"Count"` as the proper unit for the `TargetResponseTime` alarm. 
+
+
+
+
+
+## terraform-aws-sam
+
+
+### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/7/2020 | Modules affected: gruntsam | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.3.1">Release notes</a></small>
+</p>
+
+
+
+- Added the `create_before_destroy = true` lifecycle setting to the `aws_api_gateway_deployment` resource to work around intermittent "BadRequestException: Active stages pointing to this deployment must be moved or deleted" errors.
+
+
+
+
+### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.3.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/2/2020 | Modules affected: api-gateway-account-settings, gruntsam | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.3.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+
+
+
+
+
+
+
+## terraform-aws-security
+
+
+### [v0.40.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.40.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/29/2020 | Modules affected: private-s3-bucket | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.40.1">Release notes</a></small>
+</p>
+
+
+
+- In `private-s3-bucket`, the server side encryption algorithm is now configurable through the newly exposed `sse_algorithm` variable
+
+
+
+
+### [v0.40.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.40.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/26/2020 | Modules affected: cloudtrail-bucket, cloudtrail, account-baseline-app, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.40.0">Release notes</a></small>
+</p>
+
+
+__This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!__
+
+- The `cloudtrail-bucket` module has been refactored to use the `private-s3-bucket` module under the hood to configure the cloudtrail S3 bucket.
+- The `cloudtrail-bucket` module will now configure the bucket to default to encrypting objects with the newly created KMS key, or the provided KMS key if it already exists.
+
+
+
+### [v0.39.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/22/2020 | Modules affected: private-s3-bucket | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.2">Release notes</a></small>
+</p>
+
+
+
+- Fix invocations of `for_each` to default to empty list instead of `null`. This bug in the `private-s3-bucket` module that made it impossible to configure bucket replication.
+
+
+
+### [v0.39.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/21/2020 | Modules affected: private-s3-bucket, custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.1">Release notes</a></small>
+</p>
+
+
+- In `private-s3-bucket`, the bucket ACL is now configurable through the newly exposed `acl` variable.
+- In `custom-iam-entity`, previously, IAM roles and groups were treated the same with regards to MFA. With this release, for roles, we no longer attach the `require_mfa_policy` from the `iam-policies` module. Instead, we apply MFA to the trust policy. This change allows for sessions longer than 1 hour in duration (which are otherwise imposed due to role chaining limitations).
+
+
+
+
+
+
+### [v0.39.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/14/2020 | Modules affected: account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.39.0">Release notes</a></small>
+</p>
+
+
+
+- Fix a bug where `account-baseline-root` did not work correctly if none of the accounts in `child_accounts` had `is_logs_account` set to `true`. 
+
+
+
+
+## terraform-aws-server
+
+
+### [v0.9.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.9.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/19/2020 | Modules affected: single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.9.1">Release notes</a></small>
+</p>
+
+
+
+- You can now specify the principals that will be allowed to assume the IAM role created by the `single-server` module. This can be useful, for example, to override the default from `["ec2.amazonaws.com"]` to `["ec2.amazonaws.com.cn"]` when using the AWS China region.
+
+
+
+
+
+## terraform-aws-service-catalog
+
+
+### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/27/2020 | Modules affected: base, data-stores, landingzone, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.2">Release notes</a></small>
+</p>
+
+
+
+- Bump all underlying module version numbers and require Terraform `0.12.26` _or above_, which means you can now use the Service Catalog with Terraform `0.13.x` as well! The only exception are the Kubernetes / EKS services, as the underlying modules do not support Terraform `0.13.x` yet; we are working on that now and will do a new release when that's ready.
+
+
+
+
+
+
+
+### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/23/2020 | Modules affected: data-stores/aurora | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.1">Release notes</a></small>
+</p>
+
+
+This release exposes the `cluster_resource_id` attribute as an output from the aurora module.
+
+
+
+
+
+
+### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/22/2020 | Modules affected: networking/route53, networking/alb, networking/vpc, services/eks-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.5.0">Release notes</a></small>
+</p>
+
+
+This release adds the following features to the catalog:
+
+- The route53 module now outputs the generated TLS cert ARNs
+- The alb module now allows you to pass an existing S3 bucket for ALB access logs. This is useful for sending ALB logs to a central log account
+- For EKS, you can now provide a list of CIDR ranges or security groups that are permitted to access the private EKS API endpoint.
+
+We've also caught up to the latest release of the [module-security](https://github.com/gruntwork-io/module-security/) and [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repositories.
+
+
+
+
+### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.4.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/20/2020 | Modules affected: data-stores/rds, services/package-static-assets, mgmt/bastion-host, base/ec2-baseline | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.4.0">Release notes</a></small>
+</p>
+
+- Incorporates latest releases from across the library
+- For `account-baseline-root`: Fixes a bug where `account-baseline-root` did not work correctly if none of the accounts in `child_accounts` had `is_logs_account` set to `true`. 
+
+
+
+### [v0.3.4](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.3.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/16/2020 | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.3.4">Release notes</a></small>
+</p>
+
+
+This release updates the following modules to the latest releases of their respective downstream modules:
+
+- `networking/vpc`
+- `networking/vpc-mgmt`
+- `services/eks-cluster`
+- `services/eks-core-services`
+- `services/k8s-service`
+- `mgmt/ecs-deploy-runner`
+- `mgmt/jenkins`
+
+
+
+## terraform-aws-static-assets
+
+
+### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.7.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/16/2020 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.7.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+
+
+
+
+
+
+
+## terraform-aws-zookeeper
+
+
+### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/28/2020 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1">Release notes</a></small>
+</p>
+
+
+
+- This release adds a new parameter `var.deployment_health_check_max_retries ` to the `zookeeper-cluster` module that allows you to override the maximum number of retries during a rolling upgrade.
+
+
+
+
+
+
+### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/16/2020 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.0">Release notes</a></small>
+</p>
+
+
+
+- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
+    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
+    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
+    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
+
+
+
+
+
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "releases",
+  "hash": "366da9ca002f0ae8216e8998461628a8"
+}
+##DOCS-SOURCER-END -->
