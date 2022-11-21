@@ -26,8 +26,12 @@ Here are the repos that were updated:
   <small>Published: 8/26/2016 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
-- Add support for a new option called `--missing-key-action` that defines what to do when a template looks up a variable that is not defined
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Add support for a new option called `--missing-key-action` that defines what to do when a template looks up a variable that is not defined
+
+
+</div>
 
 
 ### [v0.0.4](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.0.4)
@@ -36,8 +40,12 @@ Here are the repos that were updated:
   <small>Published: 8/22/2016 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
-- Update the `README.md` in the `_docs` folder rather than the auto-generated one in the root folder
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Update the `README.md` in the `_docs` folder rather than the auto-generated one in the root folder
+
+
+</div>
 
 
 ### [v0.0.3](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.0.3)
@@ -46,8 +54,12 @@ Here are the repos that were updated:
   <small>Published: 8/8/2016 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-- Add a bunch of new template helpers to make it easier to manipulate strings and numbers: `downcase`, `upcase`, `capitalize`, `replace`, `replaceAll`, `trim`, `round`, `ceil`, `floor`, `dasherize`, `snakeCase`, `camelCase`, `camelCaseLower`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Add a bunch of new template helpers to make it easier to manipulate strings and numbers: `downcase`, `upcase`, `capitalize`, `replace`, `replaceAll`, `trim`, `round`, `ceil`, `floor`, `dasherize`, `snakeCase`, `camelCase`, `camelCaseLower`.
+
+
+</div>
 
 
 
@@ -60,8 +72,12 @@ Here are the repos that were updated:
   <small>Published: 8/5/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.18">Release notes</a></small>
 </p>
 
-- The script `configure-environment-for-gruntwork-module` now optionally installs [Terragrunt](https://github.com/gruntwork-io/terragrunt). In addition, `terraform`, `terragrunt`, `packer`, and `glide` are now automatically placed in the system `PATH`. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - The script `configure-environment-for-gruntwork-module` now optionally installs [Terragrunt](https://github.com/gruntwork-io/terragrunt). In addition, `terraform`, `terragrunt`, `packer`, and `glide` are now automatically placed in the system `PATH`. 
+
+
+</div>
 
 
 
@@ -74,8 +90,12 @@ Here are the repos that were updated:
   <small>Published: 8/13/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
-- Add a syslog module that allows you to configure rate limiting and log rotation settings syslog.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Add a syslog module that allows you to configure rate limiting and log rotation settings syslog.
+
+
+</div>
 
 
 
@@ -88,8 +108,12 @@ Here are the repos that were updated:
   <small>Published: 8/23/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-- Add a new module called `ssh-iam` that allows your developers to upload their public SSH keys to IAM and use those to SSH to servers.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Add a new module called `ssh-iam` that allows your developers to upload their public SSH keys to IAM and use those to SSH to servers.
+
+
+</div>
 
 
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.2)
@@ -98,8 +122,12 @@ Here are the repos that were updated:
   <small>Published: 8/15/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
-- Add `auto-update` module to configure Amazon Linux or Ubuntu to automatically download and install the latest security updates.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  - Add `auto-update` module to configure Amazon Linux or Ubuntu to automatically download and install the latest security updates.
+
+
+</div>
 
 
 ### [v0.0.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.0)
@@ -108,8 +136,12 @@ Here are the repos that were updated:
   <small>Published: 8/11/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.0.0">Release notes</a></small>
 </p>
 
-This release is used for internal testing only! Do not use it in production!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  This release is used for internal testing only! Do not use it in production!
+
+
+</div>
 
 
 
@@ -122,7 +154,9 @@ This release is used for internal testing only! Do not use it in production!
   <small>Published: 8/31/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 BREAKING CHANGE: Upgrade module parameters to take advantage of the new data types introduced in Terraform 0.7.x: list and map. As a result of this change, this release is NOT backwards-compatible with Terraform 0.6.x. 
 
 - All VPC output variables that used to return comma-separated strings now return proper lists (e.g. `public_subnet_cidr_blocks`, `private_app_subnet_ids`, `private_persistence_route_table_ids`, etc).
@@ -132,6 +166,44 @@ BREAKING CHANGE: Upgrade module parameters to take advantage of the new data typ
 
 
 - `vars.tf`:
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-14c7cc73490c3d2d8347d14cb8a44729) and 
+  - Remove the `aws_availability_zones` variable. 
+  - Add a variable called `num_availability_zones`. This represents the number of availability zones usable by this AWS account for the current AWS region. Set its `default` value to 2, 3, or 4, depending on your region.
+- `main.tf`
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-8140c347465c3fb50113f34a03f9c0d1) (ignore the `user_data` stuff)
+  - Update the `ref` of the `vpc-mgmt` and `vpc-mgmt-network-acls` URLs to `0.1.0`.
+  - In the `mgmt_vpc` module, instead of setting `aws_availability_zones = "${var.aws_availability_zones}"`, set `num_availability_zones = "${var.num_availability_zones}"`.
+  - In the `mgmt_vpc_network_acls` module, instead of setting `num_subnets = "${length(split(",", var.aws_availability_zones))}"`, set `num_subnets = "${var.num_availability_zones}"`. 
+  - In the `mgmt_vpc_network_acls` module, if you don't have it already, set a new parameter: `vpc_ready = "${module.mgmt_vpc.vpc_ready}"`.
+- Deploy:
+  - Run `terragrunt get -update`
+  - Run `terragrunt plan`
+  - You may see a few Network ACLs being created and destroyed. That's OK.
+  - You should NOT see the VPC, any route tables, or any subnets being created or destroyed. If you do, let us know (support@gruntwork.io)!
+  - If everything looks OK, run `terragrunt apply`.
+
+
+These use the exact same upgrade process as the mgmt VPC, except there are some additional steps for the peering connection:
+- `main.tf`:
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-3c06616a9c2b49d630e46d8439b63a8c) (ignore the `user_data` stuff)
+  - Update the `ref` of the `vpc-peering` URL to `0.1.0`.
+  - Instead of manually concatenating values in a string for the `origin_vpc_route_table_ids` and `destination_vpc_route_table_ids` parameters, use the [concat](https://www.terraform.io/docs/configuration/interpolation.html#concat_list1_list2_) and [list](https://www.terraform.io/docs/configuration/interpolation.html#list_items_) functions. You should get something like `origin_vpc_route_table_ids = "${concat(data.terraform_remote_state.mgmt_vpc.private_subnet_route_table_ids, list(data.terraform_remote_state.mgmt_vpc.public_subnet_route_table_id))}"`. 
+  - Replace `length(split(",", var.aws_availability_zones))` in the calculation of the `num_origin_vpc_route_tables` and `num_destination_vpc_route_tables` parameters with `var.num_availability_zones`. The other parts of the calculation (e.g. the +1 and the *2) stay the same.
+- Deploy:
+  - Same process as the mgmt VPC above.
+  - Other than minor Network ACL changes, you should not see anything being destroyed. If you do, this could lead to outage, so please notify us (support@gruntwork.io)!
+
+
+You can update other variables and outputs to lists (e.g. `var.aws_account_ids`), get rid of unnecessary `split` and `join` usage, and upgrade `terraform_remote_state` usage to data sources. See the [Terraform 0.7 upgrade guide](https://www.terraform.io/upgrade-guides/0-7.html) for details.
+
+
+Finally, when using other modules that depend on outputs from your VPC, note that the outputs are now lists rather than strings, so you may want to update those other modules to the 0.7 versions (see their release notes) or you may need to add or remove some calls to `split` and `join`.
+
+
+ENHANCEMENT: `vpc-app` and `vpc-mgmt` now allow for specifying the exact CIDR blocks to be used for all subnets.
+
+
+</div>
 
 
 
@@ -139,6 +211,6 @@ BREAKING CHANGE: Upgrade module parameters to take advantage of the new data typ
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "06764630f13390690d470871c85fa54a"
+  "hash": "549d9e469fb60e2ba4bea5f59206fa65"
 }
 ##DOCS-SOURCER-END -->

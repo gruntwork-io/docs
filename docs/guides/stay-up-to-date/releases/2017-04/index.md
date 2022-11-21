@@ -26,7 +26,11 @@ Here are the repos that were updated:
   <small>Published: 4/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.12">Release notes</a></small>
 </p>
 
-- The `publish-ami` script in the `aws-helpers` module now accepts an argument for `--markdown-title-text` so that the output markdown file may include an optional customized title.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - The `publish-ami` script in the `aws-helpers` module now accepts an argument for `--markdown-title-text` so that the output markdown file may include an optional customized title.
+
+</div>
 
 
 ### [v0.3.11](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.11)
@@ -35,9 +39,13 @@ Here are the repos that were updated:
   <small>Published: 4/23/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.11">Release notes</a></small>
 </p>
 
-- NEW MODULE: We've added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - NEW MODULE: We've added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public. 
 
   We added this module because Gruntwork will soon be releasing open source modules for Vault, Nomad, and Consul and we needed a way to make AMIs built by those modules globally available and usable by anyone.
+
+</div>
 
 
 ### [v0.3.10](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.10)
@@ -46,7 +54,11 @@ Here are the repos that were updated:
   <small>Published: 4/11/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.10">Release notes</a></small>
 </p>
 
-- UPDATE: `build-go-binaries` now defaults to `CGO_ENABLED=0` to build completely static binaries that do not depend on a specific implementation of C. This was requested because an Alpine Linux user (using the musl C library) could not run one of our binaries. Note that a `--cgo-enabled` option has been added that defaults to `false` but can be set to `true` to revert to the original behavior.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: `build-go-binaries` now defaults to `CGO_ENABLED=0` to build completely static binaries that do not depend on a specific implementation of C. This was requested because an Alpine Linux user (using the musl C library) could not run one of our binaries. Note that a `--cgo-enabled` option has been added that defaults to `false` but can be set to `true` to revert to the original behavior.
+
+</div>
 
 
 ### [v0.3.9](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.9)
@@ -55,7 +67,11 @@ Here are the repos that were updated:
   <small>Published: 4/6/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.9">Release notes</a></small>
 </p>
 
-- UPDATE: HashiCorp changed the GitHub Packer repo from github.com/mitchellh/packer to github.com/hashicorp/packer. Because our `curl` commands didn't handle a redirect, this caused some of our scripts to fail. This update fixes that issue.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: HashiCorp changed the GitHub Packer repo from github.com/mitchellh/packer to github.com/hashicorp/packer. Because our `curl` commands didn't handle a redirect, this caused some of our scripts to fail. This update fixes that issue.
+
+</div>
 
 
 
@@ -68,7 +84,9 @@ Here are the repos that were updated:
   <small>Published: 4/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.5">Release notes</a></small>
 </p>
 
-POTENTIAL DOWNTIME
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  POTENTIAL DOWNTIME
 
 https://github.com/gruntwork-io/module-data-storage/pull/20: Fix a bug where the RDS and Aurora module would exit with an error if you set `storage_encrypted` to false. 
 
@@ -78,6 +96,35 @@ To avoid this, you will need to use the `terraform state mv` command.
 
 **Aurora**
 
+If you do not have encryption enabled:
+
+```
+terraform state mv module.database.aws_rds_cluster.cluster module.database.aws_rds_cluster.cluster_without_encryption
+```
+
+If you have encryption enabled:
+
+```
+terraform state mv module.database.aws_rds_cluster.cluster module.database.aws_rds_cluster.cluster_with_encryption
+```
+
+**RDS**
+
+If you do not have encryption enabled:
+
+```
+terraform state mv module.database.aws_db_instance.primary module.database.aws_db_instance.primary_without_encryption
+terraform state mv module.database.aws_db_instance.replicas module.database.aws_db_instance. replicas_without_encryption
+```
+
+If you have encryption enabled:
+
+```
+terraform state mv module.database.aws_db_instance.primary module.database.aws_db_instance.primary_with_encryption
+terraform state mv module.database.aws_db_instance.replicas module.database.aws_db_instance. replicas_with_encryption
+```
+
+</div>
 
 
 ### [v0.2.4](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.4)
@@ -86,7 +133,11 @@ To avoid this, you will need to use the `terraform state mv` command.
   <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/18: The lambda snapshot functions now all expose the ID of the lambda IAM role via the output variable `lambda_iam_role_id`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/18: The lambda snapshot functions now all expose the ID of the lambda IAM role via the output variable `lambda_iam_role_id`.
+
+</div>
 
 
 ### [v0.2.3](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.3)
@@ -95,7 +146,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/18: The lambda snapshot
   <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/17: Fix a bug in the `lambda-copy-shared-rds-snapshot` module where it didn't properly handle `DBSnapshotNotFound` errors.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/17: Fix a bug in the `lambda-copy-shared-rds-snapshot` module where it didn't properly handle `DBSnapshotNotFound` errors.
+
+</div>
 
 
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2)
@@ -104,7 +159,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/17: Fix a bug in the `l
   <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/16: The `copy-rds-shared-snapshot` module now allows you to specify a KMS key via the optional `kms_key_id` parameter. If specified, this key will be used to encrypt the RDS snapshot copy.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/16: The `copy-rds-shared-snapshot` module now allows you to specify a KMS key via the optional `kms_key_id` parameter. If specified, this key will be used to encrypt the RDS snapshot copy.
+
+</div>
 
 
 
@@ -117,7 +176,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/16: The `copy-rds-share
   <small>Published: 4/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/25, https://github.com/gruntwork-io/module-aws-monitoring/pull/26: Added a new module called [sns-to-slack](https://github.com/gruntwork-io/module-aws-monitoring/tree/master/modules/alarms/sns-to-slack) that makes it easy to send CloudWatch Alarms to Slack.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/25, https://github.com/gruntwork-io/module-aws-monitoring/pull/26: Added a new module called [sns-to-slack](https://github.com/gruntwork-io/module-aws-monitoring/tree/master/modules/alarms/sns-to-slack) that makes it easy to send CloudWatch Alarms to Slack.
+
+</div>
 
 
 
@@ -130,7 +193,11 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/25, https://github.co
   <small>Published: 4/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.16">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/31: Enable CGO to fix the `ssh-iam` build so that the `user.Current()` method works. Only build `ssh-iam` for Linux.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/31: Enable CGO to fix the `ssh-iam` build so that the `user.Current()` method works. Only build `ssh-iam` for Linux.
+
+</div>
 
 
 ### [v0.4.15](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.15)
@@ -139,7 +206,11 @@ https://github.com/gruntwork-io/module-security/pull/31: Enable CGO to fix the `
   <small>Published: 4/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.15">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/30: Build the `ssh-iam` binary with Go 1.8.1.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/30: Build the `ssh-iam` binary with Go 1.8.1.
+
+</div>
 
 
 ### [v0.4.14](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.14)
@@ -148,7 +219,11 @@ https://github.com/gruntwork-io/module-security/pull/30: Build the `ssh-iam` bin
   <small>Published: 4/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.14">Release notes</a></small>
 </p>
 
-- NEW MODULE: We've added a module, [iam-user-password-policy](https://github.com/gruntwork-io/module-security/tree/master/modules/iam-user-password-policy) that makes it easy to use Terragrunt to create a password policy for your IAM Users.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - NEW MODULE: We've added a module, [iam-user-password-policy](https://github.com/gruntwork-io/module-security/tree/master/modules/iam-user-password-policy) that makes it easy to use Terragrunt to create a password policy for your IAM Users.
+
+</div>
 
 
 ### [v0.4.13](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.13)
@@ -157,7 +232,11 @@ https://github.com/gruntwork-io/module-security/pull/30: Build the `ssh-iam` bin
   <small>Published: 4/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.13">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/27: Try to fix the `ssh-iam` build by upgrading to Go 1.8.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/27: Try to fix the `ssh-iam` build by upgrading to Go 1.8.
+
+</div>
 
 
 ### [v0.4.12](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.12)
@@ -166,7 +245,11 @@ https://github.com/gruntwork-io/module-security/pull/27: Try to fix the `ssh-iam
   <small>Published: 4/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.12">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/26: Ensure that `ssh-iam` always exits successfully when called from the `AuthorizedKeysCommand`, logs everything to `stderr`, and sends `stderr` to `syslog`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/26: Ensure that `ssh-iam` always exits successfully when called from the `AuthorizedKeysCommand`, logs everything to `stderr`, and sends `stderr` to `syslog`.
+
+</div>
 
 
 ### [v0.4.11](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.11)
@@ -175,7 +258,11 @@ https://github.com/gruntwork-io/module-security/pull/26: Ensure that `ssh-iam` a
   <small>Published: 4/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.11">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/24: Fix a bug in the auto-update module that would cause it to show an interactive prompt during install. This could cause automated builds to hang forever.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/24: Fix a bug in the auto-update module that would cause it to show an interactive prompt during install. This could cause automated builds to hang forever.
+
+</div>
 
 
 ### [v0.4.10](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.10)
@@ -184,7 +271,11 @@ https://github.com/gruntwork-io/module-security/pull/24: Fix a bug in the auto-u
   <small>Published: 4/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.10">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/23: Add support for cross-account CloudTrail.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/23: Add support for cross-account CloudTrail.
+
+</div>
 
 
 ### [v0.4.9](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9)
@@ -193,7 +284,11 @@ https://github.com/gruntwork-io/module-security/pull/23: Add support for cross-a
   <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/22: In the `kms-master-key` module, KMS key users now get the `CreateGrant` permission. This makes it possible to share RDS snapshots encrypted with this KMS key with another AWS account.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/22: In the `kms-master-key` module, KMS key users now get the `CreateGrant` permission. This makes it possible to share RDS snapshots encrypted with this KMS key with another AWS account.
+
+</div>
 
 
 
@@ -206,7 +301,11 @@ https://github.com/gruntwork-io/module-security/pull/22: In the `kms-master-key`
   <small>Published: 4/4/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
-First release!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  First release!
+
+</div>
 
 
 
@@ -214,6 +313,6 @@ First release!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "465c76f679d75f2da73cc89e7327ed78"
+  "hash": "e42a06253fde81a0bc4291d62a66b5f7"
 }
 ##DOCS-SOURCER-END -->

@@ -36,7 +36,11 @@ Here are the repos that were updated:
   <small>Published: 2/14/2019 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.8">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write errors to `stderr` instead of `stdout`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write errors to `stderr` instead of `stdout`.
+
+</div>
 
 
 
@@ -49,10 +53,14 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
   <small>Published: 2/21/2019 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.25">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fixes https://github.com/gruntwork-io/module-asg/issues/63, where ALB/ELB health checks were being skipped in the rolling deployment script for the server-group module when using python3.
 
+
+</div>
 
 
 
@@ -65,7 +73,9 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
   <small>Published: 2/24/2019 | Modules affected: terraform-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `terraform-helpers`
 
 
@@ -73,6 +83,8 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
 
 
 * https://github.com/gruntwork-io/module-ci/pull/88
+
+</div>
 
 
 
@@ -85,7 +97,9 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
   <small>Published: 2/20/2019 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-cluster`
 
 
@@ -94,6 +108,8 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
 
 * #118 
 
+</div>
+
 
 ### [v0.11.4](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.4)
 
@@ -101,7 +117,9 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
   <small>Published: 2/20/2019 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-cluster`
 
 
@@ -109,6 +127,8 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
 
 
 * https://github.com/gruntwork-io/module-ecs/pull/119
+
+</div>
 
 
 
@@ -121,16 +141,23 @@ https://github.com/gruntwork-io/gruntkms/pull/19: `gruntkms` will now write erro
   <small>Published: 2/12/2019 | Modules affected: run-logstash, install-logstash | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `run-logstash`
 - `install-logstash`
 
 
 This release adds ability for the user to pass through custom JVM options for logstash.  Previously we were relying on default JVM options.
 
-Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm '<__XMS__>=4g'`)
+Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm '&lt;__XMS__&gt;=4g'`)
 
 https://github.com/gruntwork-io/package-elk/issues/70
+https://github.com/gruntwork-io/package-elk/pull/69
+
+
+
+</div>
 
 
 
@@ -143,7 +170,9 @@ https://github.com/gruntwork-io/package-elk/issues/70
   <small>Published: 2/22/2019 | Modules affected: confluent-tools-cluster, kafka-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `confluent-tools-cluster`
 * `kafka-cluster`
 
@@ -153,6 +182,8 @@ https://github.com/gruntwork-io/package-elk/issues/70
 
 * https://github.com/gruntwork-io/package-kafka/pull/47
 
+
+</div>
 
 
 
@@ -165,7 +196,9 @@ https://github.com/gruntwork-io/package-elk/issues/70
   <small>Published: 2/20/2019 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `lambda`
 
 
@@ -175,6 +208,9 @@ https://github.com/gruntwork-io/package-elk/issues/70
 @josh-taylor for the contribution
 
 
+- https://github.com/gruntwork-io/package-lambda/pull/30
+
+</div>
 
 
 
@@ -187,7 +223,9 @@ https://github.com/gruntwork-io/package-elk/issues/70
   <small>Published: 2/22/2019 | Modules affected: alb | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.13.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `alb`
 
 
@@ -195,6 +233,8 @@ https://github.com/gruntwork-io/package-elk/issues/70
 
 
 * https://github.com/gruntwork-io/module-load-balancer/pull/48
+
+</div>
 
 
 
@@ -207,11 +247,15 @@ https://github.com/gruntwork-io/package-elk/issues/70
   <small>Published: 2/7/2019 | Modules affected: alb-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix errors in the new connection count and low request count alarms to remove the "client-tls-negotiation-error" portion that was accidentally copy/pasted into them.
 
 
+
+</div>
 
 
 ### [v0.11.1](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.11.1)
@@ -220,13 +264,17 @@ https://github.com/gruntwork-io/package-elk/issues/70
   <small>Published: 2/4/2019 | Modules affected: alarms/alb-alarms, alarms/alb-target-group-alarms, alarms/rds-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.11.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - The alarms in `alb-alarms`, `alb-target-group-alarms`, and `rds-alarms` now support directly setting the `datapoints_to_alarm` setting. You can read more about `datapoints_to_alarm` in [the official AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html).
 
 Special thanks to @ksemaev for these contributions.
 
 
+
+</div>
 
 
 
@@ -239,10 +287,14 @@ Special thanks to @ksemaev for these contributions.
   <small>Published: 2/20/2019 | Modules affected: gruntsam | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.10">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - This release adds support for lambda Layers in the `gruntsam` utility. Refer to [the README](https://github.com/gruntwork-io/package-sam/tree/master/modules/gruntsam) for more information.
 
+
+</div>
 
 
 
@@ -255,7 +307,9 @@ Special thanks to @ksemaev for these contributions.
   <small>Published: 2/18/2019 | Modules affected: fail2ban, os-hardening | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.16.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Update the `fail2ban` module so it works properly on Amazon Linux 2. We've also updated how we install it on Ubuntu (using `pip` to install `aws` instead of `apt`) and changed the jail files a bit to take advantage of fail2ban interpolation
 - Update the `ami-builder` in `os-hardening` to support a new `parallel_build` param that lets you control whether the builds run in parallel. It's set to true `true` by default, as before, but you may need to disable it for use with nvme.
@@ -264,6 +318,8 @@ Special thanks to @ksemaev for these contributions.
 
 
 
+</div>
+
 
 ### [v0.15.8](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.8)
 
@@ -271,11 +327,15 @@ Special thanks to @ksemaev for these contributions.
   <small>Published: 2/11/2019 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - `iam-groups` module now creates an additional IAM group that has the `iam-user-self-mgmt` IAM policy already attached to make it easier to associate the rules of that policy to an IAM user via the group.
 
 
+
+</div>
 
 
 
@@ -288,7 +348,9 @@ Special thanks to @ksemaev for these contributions.
   <small>Published: 2/20/2019 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `persistent-ebs-volume`
 
 
@@ -296,6 +358,8 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 
 * https://github.com/gruntwork-io/module-server/pull/44
+
+</div>
 
 
 
@@ -308,7 +372,9 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
   <small>Published: 2/12/2019 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `s3-cloudfront`
 
 
@@ -316,6 +382,8 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 
 * https://github.com/gruntwork-io/package-static-assets/pull/17
+
+</div>
 
 
 
@@ -328,7 +396,9 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
   <small>Published: 2/22/2019 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `zookeeper-cluster`
 
 
@@ -336,6 +406,8 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/41
+
+</div>
 
 
 
@@ -348,7 +420,9 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
   <small>Published: 2/6/2019 | Modules affected: k8s-service-account, k8s-namespace-roles | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - This release adds another set of permissions to the `rbac_tiller_resource_access` role that allows Tiller to manage `PodDisruptionBudgets`.
 - In the `k8s-tiller-minikube` example, sometimes the Tiller `undeploy` fails because it removes the service account role before `undeploy`, stripping the Tiller pod of its ability to nuke itself. This fixes that by adding a `depends_on` to the service account output so that we delete the role binding when all resources referencing the service acocunt is deleted.
@@ -357,6 +431,8 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 
 
+</div>
+
 
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.2)
 
@@ -364,11 +440,15 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
   <small>Published: 2/5/2019 | Modules affected: k8s-namespace, k8s-namespace-roles | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - We broke out the role creation pieces of `k8s-namespace` into its own submodule, `k8s-namespace-roles`. This allows you to create the same roles on a preexisting namespace (e.g `default` or `kube-system`).
 
 
+
+</div>
 
 
 ### [v0.2.1](https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.1)
@@ -377,7 +457,9 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
   <small>Published: 2/5/2019 | Modules affected: k8s-namespace | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This introduces an example terraform module that deploys Tiller using `kubergrunt`. This example shows how to setup a `Namespace` and `ServiceAccount` for Tiller as well. See [the example quickstart guide](https://github.com/gruntwork-io/terraform-kubernetes-helm/tree/master/examples/k8s-tiller-minikube) for an example of how you can combine the modules in this repo with `kubergrunt` to deploy a best practices Tiller instance.
 
@@ -387,6 +469,8 @@ Other changes:
 
 
 
+</div>
+
 
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.0)
 
@@ -394,12 +478,16 @@ Other changes:
   <small>Published: 2/2/2019 | Modules affected: k8s-namespace, k8s-service-account | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - `k8s-namespace` and `k8s-service-account` now implement the input variable `dependencies` that can be used to specify module dependencies.
 - `k8s-service-account` now also requires RBAC role namespaces to be included when binding rbac roles. This is to allow binding roles that are not in the same namespace as the created `ServiceAccount`. As a result, the `rbac_roles` input variable is now a list of maps containing the keys `name` and `namespace`.
 
 
+
+</div>
 
 
 
@@ -407,6 +495,6 @@ Other changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4ec1138a4b486f0aef71723416646b5d"
+  "hash": "925856cc94f71eb99a4b691de26c10a0"
 }
 ##DOCS-SOURCER-END -->

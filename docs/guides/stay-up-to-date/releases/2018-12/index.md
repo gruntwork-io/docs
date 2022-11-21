@@ -35,7 +35,9 @@ Here are the repos that were updated:
   <small>Published: 12/21/2018 | Modules affected: kubergrunt | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `kubergrunt`
 
 
@@ -47,13 +49,23 @@ The command will then:
 - detach and terminate the original nodes in your cluster, completing the roll out.
 
 
+- This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/31
+
+</div>
+
+
 ### [v0.1.2](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
   <small>Published: 12/21/2018 | Modules affected: eks-k8s-role-mapping, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-k8s-role-mapping`
 - `eks-cluster-control-plane`
 
@@ -63,6 +75,19 @@ The command will then:
 - Starting this release, this repository will include the following regions in the tests:
 ```
 eu-central-1
+ap-southeast-1
+ap-southeast-2
+ap-northeast-1
+```
+
+
+- This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/41
+- https://github.com/gruntwork-io/package-k8s/pull/42
+
+</div>
 
 
 ### [v0.1.1](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.1)
@@ -71,7 +96,9 @@ eu-central-1
   <small>Published: 12/19/2018 | Modules affected: eks-k8s-role-mapping, kubergrunt | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
-This release supports Windows Powershell.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release supports Windows Powershell.
 
 
 - `eks-k8s-role-mapping`
@@ -82,6 +109,13 @@ This release supports Windows Powershell.
 - `kubergrunt eks configure` will now create a new kubeconfig file if it does not exist
 
 
+- This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/37
+
+</div>
+
 
 ### [v0.1.1-1](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.1-1)
 
@@ -89,7 +123,11 @@ This release supports Windows Powershell.
   <small>Published: 12/19/2018 | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.1-1">Release notes</a></small>
 </p>
 
-There are no changes to modules in this release. This release is a test of the circleci config
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  There are no changes to modules in this release. This release is a test of the circleci config
+
+</div>
 
 
 ### [v0.1.0](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0)
@@ -98,7 +136,9 @@ There are no changes to modules in this release. This release is a test of the c
   <small>Published: 12/1/2018 | Modules affected: eks-k8s-role-mapping, kubergrunt, k8s-scripts, install-aws-iam-authenticator | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-k8s-role-mapping`
 - `kubergrunt` **[New]** 
 - `k8s-scripts` **[Breaking Change]** 
@@ -108,6 +148,21 @@ There are no changes to modules in this release. This release is a test of the c
 - `eks-k8s-role-mapping` scripts are no longer baked into the PEX binary and instead loaded via the `PYTHONPATH`.
 - **New**: This release introduces `kubergrunt`, an encompassing tool that supports the configuration and management of a Kubernetes cluster. This command replaces both `eks-configure-kubectl` and `aws-iam-authenticator` by embedding the functionalities of those commands under different subcommands in `kubergrunt`. By doing so, we cut out the dependency on the awscli and `aws-iam-authenticator`, and so you only need to install this tool.
 - **Breaking Change**: `k8s-scripts` has been completely rewritten. As a result, `eks-configure-kubectl` is no longer provided as a stand alone script. Instead, it has been embedded into the new `kubergrunt` CLI tool.
+- **Breaking Change**: `aws-iam-authenticator` will no longer be provided as a part of this repo. You can use `kubergrunt` instead, or install directly from the links in [the official AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html).
+
+
+To upgrade to this version, install `kubergrunt` by following [the installation instructions](https://github.com/gruntwork-io/package-k8s/tree/master/modules/kubergrunt).
+
+
+
+- This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+- This release is not tested with windows. Please file any bugs/issues you run into on [the issue tracker](https://github.com/gruntwork-io/package-k8s/issues).
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/29
+- https://github.com/gruntwork-io/package-k8s/pull/30
+
+</div>
 
 
 
@@ -120,7 +175,9 @@ There are no changes to modules in this release. This release is a test of the c
   <small>Published: 12/20/2018 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.22">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `server-group`
 
 
@@ -129,6 +186,8 @@ There are no changes to modules in this release. This release is a test of the c
 
 * https://github.com/gruntwork-io/module-asg/pull/54
 
+</div>
+
 
 ### [v0.6.21](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.21)
 
@@ -136,7 +195,9 @@ There are no changes to modules in this release. This release is a test of the c
   <small>Published: 12/18/2018 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.21">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `server-group`
 
 
@@ -145,6 +206,8 @@ There are no changes to modules in this release. This release is a test of the c
 
 * https://github.com/gruntwork-io/module-asg/pull/52
 
+</div>
+
 
 ### [v0.6.20](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.20)
 
@@ -152,7 +215,9 @@ There are no changes to modules in this release. This release is a test of the c
   <small>Published: 12/11/2018 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.20">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `server-group`
 
 
@@ -160,6 +225,8 @@ There are no changes to modules in this release. This release is a test of the c
 
 
 * https://github.com/gruntwork-io/module-asg/pull/49
+
+</div>
 
 
 
@@ -172,8 +239,12 @@ There are no changes to modules in this release. This release is a test of the c
   <small>Published: 12/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 Added extra retry logic to application_deployer
+
+</div>
 
 
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.3)
@@ -182,7 +253,11 @@ Added extra retry logic to application_deployer
   <small>Published: 12/14/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-Added the zipped boto3 library for use in the current python scripts. This will be replaced later by pex rather than relying on the zip files and python path munging.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Added the zipped boto3 library for use in the current python scripts. This will be replaced later by pex rather than relying on the zip files and python path munging.
+
+</div>
 
 
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.2)
@@ -191,12 +266,16 @@ Added the zipped boto3 library for use in the current python scripts. This will 
   <small>Published: 12/14/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 This is needed because:
 1. It is cleaner to package up the implementation behind a module
 1. It's not possible to refer to the actual python script with a relative path based of of `path.module` so we actually need this code to be wrapped
 
 Secondarily - change the bucket_id input to be a bucket_name input in the application version deployer. This will make it easier to use the module when something else is creating a bucket or if the bucket already exists as it will in the Houston self service template.
+
+</div>
 
 
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.1)
@@ -205,7 +284,9 @@ Secondarily - change the bucket_id input to be a bucket_name input in the applic
   <small>Published: 12/6/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
-This is a pre-release the introduces package-beanstalk: A series of modules to get apps up and running in elastic beanstalk.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This is a pre-release the introduces package-beanstalk: A series of modules to get apps up and running in elastic beanstalk.
 
 The main modules are:
 * [elasticbeanstalk-application](/modules/elasticbeanstalk-application): A module for creating an Elastic Beanstalk application
@@ -215,6 +296,10 @@ The supporting modules are:
 * [app-version](/modules/app-version): A module that contains scripts that help upload release artifacts to Beanstalk as well as to deploy them
 * [configuration-deployer](/modules/configuration-deployer): A script to help apply configuration templates to the Elastic Beanstalk deployed application
 * [iam-policies](/modules/iam-policies): A Terraform module to configure IAM permissions used by Elastic Beanstalk.
+
+See the main README for more information.
+
+</div>
 
 
 
@@ -227,7 +312,9 @@ The supporting modules are:
   <small>Published: 12/11/2018 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `jenkins-server`
 
 
@@ -236,6 +323,8 @@ The supporting modules are:
 
 * https://github.com/gruntwork-io/module-ci/pull/81
 
+</div>
+
 
 ### [v0.13.5](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.5)
 
@@ -243,7 +332,9 @@ The supporting modules are:
   <small>Published: 12/6/2018 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `jenkins-server`
 
 
@@ -251,6 +342,8 @@ The supporting modules are:
 
 
 * https://github.com/gruntwork-io/module-ci/pull/80
+
+</div>
 
 
 
@@ -263,7 +356,9 @@ The supporting modules are:
   <small>Published: 12/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
  * `rds`
 
 
@@ -273,6 +368,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 * #55 
 * #66
 
+</div>
+
 
 ### [v0.8.3](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.3)
 
@@ -280,7 +377,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/11/2018 | Modules affected: lambda-cleanup-snapshots, lambda-copy-shared-snapshot, lambda-create-snapshot, lambda-share-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `lambda-cleanup-snapshots`
 * `lambda-copy-shared-snapshot`
 * `lambda-create-snapshot`
@@ -290,6 +389,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 * All of the snapshot management modules have been upgraded to package-lambda v0.5.0. This resolves the perpetual diff in the `terraform plan` for the lambda functions.
 
 
+* https://github.com/gruntwork-io/module-data-storage/pull/68
+
+</div>
 
 
 ### [v0.8.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.2)
@@ -298,7 +400,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/6/2018 | Modules affected: lambda-cleanup-snapshots, lambda-copy-shared-snapshot, lambda-create-snapshot, lambda-share-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `lambda-cleanup-snapshots`
 * `lambda-copy-shared-snapshot`
 * `lambda-create-snapshot`
@@ -308,6 +412,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 * All of the snapshot management modules have been upgraded to package-lambda v0.4.0. This resolves the perpetual diff in the `terraform plan` for IAM roles and policies. There is still a perpetual diff in the lambda functions.
 
 
+* https://github.com/gruntwork-io/module-data-storage/pull/67
+
+</div>
 
 
 
@@ -320,7 +427,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/8/2018 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `ecs-cluster`
 
 
@@ -328,6 +437,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 
 - https://github.com/gruntwork-io/module-ecs/pull/102
+
+</div>
 
 
 
@@ -340,7 +451,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/10/2018 | Modules affected: install-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `install-kafka` 
 
 
@@ -348,6 +461,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 
 - https://github.com/gruntwork-io/package-kafka/pull/44
+
+</div>
 
 
 
@@ -360,7 +475,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/10/2018 | Modules affected: lambda, lambda_edge | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `lambda` **[Breaking Change]** 
 - `lambda_edge` **[Breaking Change]** 
 
@@ -371,6 +488,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 
 - https://github.com/gruntwork-io/package-lambda/pull/28
 
+</div>
+
 
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.4.0)
 
@@ -378,7 +497,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
   <small>Published: 12/6/2018 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `lambda` **[Breaking Change]** 
 
 
@@ -388,6 +509,9 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 To upgrade to this version, remove the `wait_for` input parameter in all calls to the `lambda` module.
 
 
+- https://github.com/gruntwork-io/package-lambda/pull/27
+
+</div>
 
 
 
@@ -400,7 +524,9 @@ To upgrade to this version, remove the `wait_for` input parameter in all calls t
   <small>Published: 12/20/2018 | Modules affected: sqs | <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.1.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `sqs`
 
 
@@ -411,6 +537,11 @@ The `sqs` module now exposes several new input parameters:
 * `kms_data_key_reuse_period_seconds`: The length of time for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again.
 
 
+* https://github.com/gruntwork-io/package-messaging/pull/11
+* https://github.com/gruntwork-io/package-messaging/pull/12
+
+</div>
+
 
 ### [v0.1.2](https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.1.2)
 
@@ -418,7 +549,9 @@ The `sqs` module now exposes several new input parameters:
   <small>Published: 12/19/2018 | Modules affected: sqs | <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.1.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `sqs`
 
 
@@ -426,6 +559,8 @@ The `sqs` module now exposes several new input parameters:
 
 
 * https://github.com/gruntwork-io/package-messaging/pull/10
+
+</div>
 
 
 
@@ -438,7 +573,9 @@ The `sqs` module now exposes several new input parameters:
   <small>Published: 12/11/2018 | Modules affected: install-mongodb | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `install-mongodb` **[Breaking Change]**
 
 
@@ -446,6 +583,8 @@ The `sqs` module now exposes several new input parameters:
 
 
 * https://github.com/gruntwork-io/package-mongodb/pull/27: 
+
+</div>
 
 
 
@@ -458,7 +597,9 @@ The `sqs` module now exposes several new input parameters:
   <small>Published: 12/17/2018 | Modules affected: cloudwatch-dashboard-metric-widget, cloudwatch-dashboard-text-widget | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `cloudwatch-dashboard-metric-widget`
 - `cloudwatch-dashboard-text-widget`
 
@@ -470,13 +611,23 @@ The `sqs` module now exposes several new input parameters:
 To upgrade to this version, simply bump the value of the `ref` parameter on your Terraform module `source` argument to `v0.10.2`
 
 
+- https://github.com/gruntwork-io/module-aws-monitoring/pull/58
+- https://github.com/gruntwork-io/module-aws-monitoring/commit/2a040b6e24928b820899f49bca6e34a676d8a673
+
+</div>
+
+
 ### [v0.10.1](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
   <small>Published: 12/4/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -489,7 +640,9 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
   <small>Published: 12/11/2018 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `cloudtrail`
 
 
@@ -497,6 +650,8 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 
 * https://github.com/gruntwork-io/module-security/pull/124
+
+</div>
 
 
 
@@ -509,7 +664,9 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
   <small>Published: 12/6/2018 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `persistent-ebs-volume`
 
 
@@ -518,6 +675,8 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 * https://github.com/gruntwork-io/module-server/pull/37
 
+</div>
+
 
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.1)
 
@@ -525,7 +684,9 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
   <small>Published: 12/3/2018 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `persistent-ebs-volume`
 
 
@@ -536,6 +697,8 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 * https://github.com/gruntwork-io/module-server/issues/35
 
+</div>
+
 
 
 ## terraform-aws-zookeeper
@@ -544,10 +707,12 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 ### [v0.4.10](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.10)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/20/2018 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.10">Release notes</a></small>
+  <small>Published: 12/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.10">Release notes</a></small>
 </p>
 
- ### Modules affected
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+   ### Modules affected
 
 * `zookeeper-cluster`
 
@@ -558,12 +723,14 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/36
 
+</div>
+
 
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cfb38eaad176028ebd3a8322d3a30c8c"
+  "hash": "f1cfa2ae37110c187a01b97d58081488"
 }
 ##DOCS-SOURCER-END -->

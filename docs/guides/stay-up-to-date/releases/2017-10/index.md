@@ -31,7 +31,11 @@ Here are the repos that were updated:
   <small>Published: 10/24/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.22">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/45: You can now use the `--disable-hooks` and `--disable-shell` arguments to disable hooks and shell commands, respectively. This is useful if you want to disable all “side effects” and solely have boilerplate generate code.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/45: You can now use the `--disable-hooks` and `--disable-shell` arguments to disable hooks and shell commands, respectively. This is useful if you want to disable all “side effects” and solely have boilerplate generate code.
+
+</div>
 
 
 ### [v0.2.21](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.21)
@@ -40,7 +44,11 @@ https://github.com/gruntwork-io/boilerplate/pull/45: You can now use the `--disa
   <small>Published: 10/21/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.21">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/44: Add support for JSON maps/lists as a more reliable way to get typed values in the `default` field.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/44: Add support for JSON maps/lists as a more reliable way to get typed values in the `default` field.
+
+</div>
 
 
 ### [v0.2.20](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.20)
@@ -49,7 +57,11 @@ https://github.com/gruntwork-io/boilerplate/pull/44: Add support for JSON maps/l
   <small>Published: 10/20/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.20">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/43: Boilerplate is now more lenient with whitespace when parsing lists/maps.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/43: Boilerplate is now more lenient with whitespace when parsing lists/maps.
+
+</div>
 
 
 ### [v0.2.19](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.19)
@@ -58,7 +70,11 @@ https://github.com/gruntwork-io/boilerplate/pull/43: Boilerplate is now more len
   <small>Published: 10/20/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.19">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/42: You can now define a `skip` parameter in `hooks` to conditionally enable/disable hooks.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/42: You can now define a `skip` parameter in `hooks` to conditionally enable/disable hooks.
+
+</div>
 
 
 ### [v0.2.18](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.18)
@@ -67,7 +83,11 @@ https://github.com/gruntwork-io/boilerplate/pull/42: You can now define a `skip`
   <small>Published: 10/20/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.18">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/41: boilerplate can now parse maps that have colon values in the key.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/41: boilerplate can now parse maps that have colon values in the key.
+
+</div>
 
 
 
@@ -80,7 +100,11 @@ https://github.com/gruntwork-io/boilerplate/pull/41: boilerplate can now parse m
   <small>Published: 10/23/2017 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntkms/pull/6: You can now tell gruntkms to assume an IAM role using the `--role-arn` parameter.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntkms/pull/6: You can now tell gruntkms to assume an IAM role using the `--role-arn` parameter.
+
+</div>
 
 
 
@@ -93,7 +117,11 @@ https://github.com/gruntwork-io/gruntkms/pull/6: You can now tell gruntkms to as
   <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-asg/pull/13: Update module-server version. Add DescribeSubnets permission. Fix concurrency issues.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-asg/pull/13: Update module-server version. Add DescribeSubnets permission. Fix concurrency issues.
+
+</div>
 
 
 ### [v0.6.2](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.2)
@@ -102,7 +130,11 @@ https://github.com/gruntwork-io/module-asg/pull/13: Update module-server version
   <small>Published: 10/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for boto3 before trying to extract into it again. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for boto3 before trying to extract into it again. 
+
+</div>
 
 
 
@@ -115,7 +147,11 @@ https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for 
   <small>Published: 10/4/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -128,7 +164,11 @@ https://github.com/gruntwork-io/module-asg/pull/12: Clean up the tmp folder for 
   <small>Published: 10/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/10: pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20, https://github.com/gruntwork-io/module-asg/pull/13, and https://github.com/gruntwork-io/package-zookeeper/pull/10.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/10: pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20, https://github.com/gruntwork-io/module-asg/pull/13, and https://github.com/gruntwork-io/package-zookeeper/pull/10.
+
+</div>
 
 
 ### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.8)
@@ -137,7 +177,11 @@ https://github.com/gruntwork-io/package-kafka/pull/10: pick up the ENI and concu
   <small>Published: 10/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.8">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/9: This picks up the fix from https://github.com/gruntwork-io/module-asg/pull/12 that cleans up the tmp-folder before trying to extract boto3 into it.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/9: This picks up the fix from https://github.com/gruntwork-io/module-asg/pull/12 that cleans up the tmp-folder before trying to extract boto3 into it.
+
+</div>
 
 
 
@@ -150,7 +194,11 @@ https://github.com/gruntwork-io/package-kafka/pull/9: This picks up the fix from
   <small>Published: 10/10/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-lambda/pull/7: Fix lambda module outputs.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-lambda/pull/7: Fix lambda module outputs.
+
+</div>
 
 
 
@@ -163,7 +211,11 @@ https://github.com/gruntwork-io/package-lambda/pull/7: Fix lambda module outputs
   <small>Published: 10/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/37: Fix a bug in the `run-cloudwatch-logs-agent.sh` script so that it gives each log file a unique log stream name.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/37: Fix a bug in the `run-cloudwatch-logs-agent.sh` script so that it gives each log file a unique log stream name.
+
+</div>
 
 
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.6.0)
@@ -172,7 +224,9 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/37: Fix a bug in the 
   <small>Published: 10/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/36:
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/36:
 
 BACKWARDS INCOMPATIBLE CHANGE
 
@@ -180,6 +234,8 @@ The `asg-xxx-alarms` modules now allow you to create alarms for a list of ASGs, 
 
 * `asg_names`: A list of ASG names.
 * `num_asg_names`: The number of ASG names in `asg_names`. We should be able to compute this automatically, but can't due to a Terraform limitation (https://github.com/hashicorp/terraform/issues/4149).
+
+</div>
 
 
 
@@ -192,7 +248,9 @@ The `asg-xxx-alarms` modules now allow you to create alarms for a list of ASGs, 
   <small>Published: 10/12/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-openvpn/pull/21
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-openvpn/pull/21
 
 BACKWARDS INCOMPATIBLE CHANGE
 
@@ -203,6 +261,8 @@ This change is backwards compatible from a code perspective, but it changes the 
 1. Build a new OpenVPN AMI with this version of the `install-openvpn` module.
 1. Deploy the new AMI with this version of the `openvpn-server` module. 
 
+</div>
+
 
 ### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.3.1)
 
@@ -210,7 +270,11 @@ This change is backwards compatible from a code perspective, but it changes the 
   <small>Published: 10/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.3.1">Release notes</a></small>
 </p>
 
-move logging to syslog, rather than to a separate file. This will allow log aggregation to CloudWatch and will prevent the volume from filling up
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  move logging to syslog, rather than to a separate file. This will allow log aggregation to CloudWatch and will prevent the volume from filling up
+
+</div>
 
 
 
@@ -223,7 +287,11 @@ move logging to syslog, rather than to a separate file. This will allow log aggr
   <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.2.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-server/pull/20: Fix a bug with the `attach-eni` script where it would incorrectly handle network interface names on Ubuntu on non-t2 instance types (e.g., m4.large). Also, the script should now be idempotent.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-server/pull/20: Fix a bug with the `attach-eni` script where it would incorrectly handle network interface names on Ubuntu on non-t2 instance types (e.g., m4.large). Also, the script should now be idempotent.
+
+</div>
 
 
 
@@ -236,7 +304,11 @@ https://github.com/gruntwork-io/module-server/pull/20: Fix a bug with the `attac
   <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.10">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/10: Pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20 and https://github.com/gruntwork-io/module-asg/pull/13.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/10: Pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20 and https://github.com/gruntwork-io/module-asg/pull/13.
+
+</div>
 
 
 ### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9)
@@ -245,7 +317,11 @@ https://github.com/gruntwork-io/package-zookeeper/pull/10: Pick up the ENI and c
   <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/9: Add execute permissions on run-exhibitor script, as they seem to get lost after a Packer build.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/9: Add execute permissions on run-exhibitor script, as they seem to get lost after a Packer build.
+
+</div>
 
 
 ### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.8)
@@ -254,7 +330,11 @@ https://github.com/gruntwork-io/package-zookeeper/pull/9: Add execute permission
   <small>Published: 10/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.8">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/8: This picks up the fix from gruntwork-io/module-asg#12 that cleans up the tmp-folder before trying to extract boto3 into it.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/8: This picks up the fix from gruntwork-io/module-asg#12 that cleans up the tmp-folder before trying to extract boto3 into it.
+
+</div>
 
 
 
@@ -262,6 +342,6 @@ https://github.com/gruntwork-io/package-zookeeper/pull/8: This picks up the fix 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4bd7433d7bc9a3781a3bc031fc9e7bb1"
+  "hash": "ab82012a30740afac66d9af2f1f2a6e7"
 }
 ##DOCS-SOURCER-END -->

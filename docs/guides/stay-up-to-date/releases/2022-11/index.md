@@ -10,6 +10,7 @@ documentation](/guides/working-with-code/using-modules#updating).
 
 Here are the repos that were updated:
 
+- [aws-sample-app](#aws-sample-app)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
@@ -17,6 +18,43 @@ Here are the repos that were updated:
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
+
+
+## aws-sample-app
+
+
+### [v0.0.6](https://github.com/gruntwork-io/aws-sample-app/releases/tag/v0.0.6)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/21/2022 | <a href="https://github.com/gruntwork-io/aws-sample-app/releases/tag/v0.0.6">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Fix unit tests by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/33
+* Bump redis from 3.0.2 to 3.1.1 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/27
+* Add GitHub PR & Issue Templates by @robmorgan in https://github.com/gruntwork-io/aws-sample-app/pull/32
+* [skip ci] Update codeowners to reflect current owners by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/35
+* Update deprecated circleci images to latest by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/36
+* Data source: use aws_subnets over aws_subnet_ids by @rhoboat in https://github.com/gruntwork-io/aws-sample-app/pull/39
+* Update PR Template by @rhoboat in https://github.com/gruntwork-io/aws-sample-app/pull/41
+* Update PR Template by @rhoboat in https://github.com/gruntwork-io/aws-sample-app/pull/40
+* Update CODEOWNERS by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/49
+* Bump engine.io and socket.io by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/47
+* Bump @azure/ms-rest-nodeauth from 2.0.2 to 3.1.1 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/45
+* Bump yargs-parser from 16.1.0 to 18.1.3 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/46
+* Bump jsdom and jest by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/50
+* Bump axios from 0.19.2 to 0.21.4 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/48
+* Bump json-schema and jsprim by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/51
+* Use BuildKit pattern for passing secrets by @hongil0316 in https://github.com/gruntwork-io/aws-sample-app/pull/53
+
+* @rhoboat made their first contribution in https://github.com/gruntwork-io/aws-sample-app/pull/39
+* @hongil0316 made their first contribution in https://github.com/gruntwork-io/aws-sample-app/pull/53
+
+**Full Changelog**: https://github.com/gruntwork-io/aws-sample-app/compare/v0.0.5...v0.0.6
+
+</div>
+
 
 
 ## terraform-aws-ci
@@ -28,12 +66,16 @@ Here are the repos that were updated:
   <small>Published: 11/10/2022 | Modules affected: aws-helpers, build-helpers, check-url, circleci-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Update Centos 7 image used in examples
 - Replace 'local readonly' with 'local -r' in bash scripts
 
 
+
+</div>
 
 
 ### [v0.50.10](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.10)
@@ -42,7 +84,9 @@ Here are the repos that were updated:
   <small>Published: 11/4/2022 | Modules affected: build-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.10">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Improved error handling during cloning of git repositories in `build-packer-artifact`
 
@@ -50,6 +94,8 @@ Here are the repos that were updated:
 
 
 
+
+</div>
 
 
 
@@ -62,7 +108,9 @@ Here are the repos that were updated:
   <small>Published: 11/11/2022 | Modules affected: ecs-deploy, ecs-service, ecs-task-scheduler | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.34.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 -  Support ECS Task Scheduling
 - Update default branch references (backward compatible)
@@ -70,6 +118,8 @@ Here are the repos that were updated:
 - Update CODEOWNERS
 
 
+
+</div>
 
 
 
@@ -82,14 +132,33 @@ Here are the repos that were updated:
   <small>Published: 11/11/2022 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix prefix delegation environment variable
 
 
+</div>
+
 
 
 ## terraform-aws-lambda
+
+
+### [v0.21.2](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/21/2022 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- Updates the Lambda function resource dependency tree to wait until the policy with the necessary permissions is attached to the IAM role before the function is created.
+
+
+</div>
 
 
 ### [v0.21.1](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.1)
@@ -98,12 +167,16 @@ Here are the repos that were updated:
   <small>Published: 11/11/2022 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Adds a fix through the variable `enable_eni_cleanup` for an intermittent bug where the security group could not be destroyed due to lingering ENIs when the Lambda Function is running in a VPC.
 
 
 
+
+</div>
 
 
 
@@ -116,12 +189,16 @@ Here are the repos that were updated:
   <small>Published: 11/17/2022 | Modules affected: codegen/generator, aws-config-multi-region, ebs-encryption-multi-region, guardduty-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - Added support for new AWS region (`me-central-1` UAE) to multi-region modules. As a result, you will need to add this region to your list of region providers.
 - Changed the `codegen` behavior to use the new Gruntwork Supported AWS Regions whitelist.
 
 
 
+
+</div>
 
 
 ### [v0.65.10](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10)
@@ -130,13 +207,17 @@ Here are the repos that were updated:
   <small>Published: 11/4/2022 | Modules affected: iam-users | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.10">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Updated IAM user login profiles to include lifecycle rules for importing login profiles without password information
 
 Note: Previously, importing aws_iam_user_login_profiles would trigger a password reset and IAM resource recreation. Now, the password and PGP fields will be ignored when importing.
 
 
+
+</div>
 
 
 
@@ -149,7 +230,9 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
   <small>Published: 11/16/2022 | Modules affected: services/eks-cluster, services/eks-workers, services/eks-core-services, services/k8s-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.97.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Added support for Kubernetes 1.23.
 - Bump `helm-kubernetes-services` to `v0.2.16`.
@@ -159,6 +242,8 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
  
 
 
+</div>
+
 
 ### [v0.96.9](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.9)
 
@@ -166,10 +251,14 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
   <small>Published: 11/4/2022 | Modules affected: services/helm-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - New Helm chart wrapper module that allows you to deploy arbitrary Helm charts using Terraform.
 
+
+</div>
 
 
 ### [v0.96.8](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.8)
@@ -178,11 +267,15 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
   <small>Published: 11/1/2022 | Modules affected: networking | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Allow public subnets in VPCs to auto-assign public IPs, if desired
 
 
+
+</div>
 
 
 
@@ -195,11 +288,15 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
   <small>Published: 11/11/2022 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.15.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Add optional ordered_cache_behavior to modules/s3-cloudfront
 
 
+
+</div>
 
 
 
@@ -207,6 +304,6 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "71a32e7cb4a898195cebd7be78c321ec"
+  "hash": "05cefa2c63465cfaec8554b9ec2c3e4e"
 }
 ##DOCS-SOURCER-END -->

@@ -28,7 +28,9 @@ Here are the repos that were updated:
   <small>Published: 3/27/2019 | Modules affected: ec2-backup | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.11">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ec2-backup`
 
 
@@ -37,6 +39,8 @@ Here are the repos that were updated:
 
 * https://github.com/gruntwork-io/module-ci/pull/90
 
+</div>
+
 
 ### [v0.13.10](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.10)
 
@@ -44,7 +48,9 @@ Here are the repos that were updated:
   <small>Published: 3/15/2019 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.10">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `jenkins-server`
 
 
@@ -52,6 +58,8 @@ Here are the repos that were updated:
 
 
 * https://github.com/gruntwork-io/module-ci/pull/89
+
+</div>
 
 
 
@@ -64,7 +72,9 @@ Here are the repos that were updated:
   <small>Published: 3/18/2019 | Modules affected: ecs-service, ecs-service-with-alb | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.12.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-service` [**BREAKING**]
 * `ecs-service-with-alb` [**BREAKING**]
 
@@ -74,6 +84,19 @@ This release introduces support for AWS provider version 2.X:
 * Fix deprecated usage of `placement_strategy` and replace with `ordered_placement_strategy`.
 
 
+This change is backwards incompatible on certain versions of the AWS provider. Specifically:
+
+- `ecs-service` and `ecs-service-with-alb` is no longer compatible with AWS provider version `&lt;1.17.0`.
+- `ecs-service` and `ecs-service-with-alb` will recreate the `ecs_service` resource (delete + create) on AWS provider version `&lt;2.1.0`.
+
+
+Special thanks to @fieldawarepiotr for contributions to help implement the changes in this release.
+
+
+* https://github.com/gruntwork-io/module-ecs/pull/122
+* https://github.com/gruntwork-io/module-ecs/pull/126
+
+</div>
 
 
 
@@ -86,7 +109,9 @@ This release introduces support for AWS provider version 2.X:
   <small>Published: 3/29/2019 | Modules affected: eks-cluster-workers, eks-scripts, eks-k8s-role-mapping | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This release introduces `eks-scripts`, a new module that contains helper scripts for working with EKS. The release ships with the script `map-ec2-tags-to-node-labels`, a python script that can run on the EC2 instance acting as an EKS worker to pull in the tags associated with the EC2 instance and map it to kubernetes node labels. You can then take the output to pass to the bootstrap script to set the labels in kubernetes.
 
@@ -98,13 +123,18 @@ Additionally, this release introduces a few bug fixes for working with multiple 
 - `eks-k8s-role-mapping` previously assumed there was only one worker IAM role, but when there are multiple worker pools, you can have multiple worker IAM roles. This release fixes that by expecting a list now for the worker IAM role name input.
 
 
+</div>
+
+
 ### [v0.1.5](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.1.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
   <small>Published: 3/5/2019 | Modules affected: eks-k8s-role-mapping, eks-cluster-workers, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.1.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This release does not introduce any changes to the underlying module features. Instead, this release focuses on documentation, examples, and test stability:
 
@@ -114,6 +144,9 @@ This release does not introduce any changes to the underlying module features. I
 - Includes python code formatting for `eks-k8s-role-mapping`.
 
 
+
+
+</div>
 
 
 
@@ -126,7 +159,9 @@ This release does not introduce any changes to the underlying module features. I
   <small>Published: 3/29/2019 | Modules affected: install-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `install-kafka`
 
 
@@ -136,6 +171,8 @@ This release does not introduce any changes to the underlying module features. I
 * https://github.com/gruntwork-io/package-kafka/pull/56
 
 
+</div>
+
 
 ### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.2)
 
@@ -143,7 +180,9 @@ This release does not introduce any changes to the underlying module features. I
   <small>Published: 3/21/2019 | Modules affected: run-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `run-kafka`
 
 
@@ -152,6 +191,8 @@ This release does not introduce any changes to the underlying module features. I
 
 * #55 
 
+
+</div>
 
 
 
@@ -164,7 +205,9 @@ This release does not introduce any changes to the underlying module features. I
   <small>Published: 3/6/2019 | Modules affected: kinesis | <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.1.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `kinesis`
 
 
@@ -173,6 +216,8 @@ The `kinesis` module now supports server-side encryption.
 
 * #16 
 
+
+</div>
 
 
 
@@ -185,7 +230,9 @@ The `kinesis` module now supports server-side encryption.
   <small>Published: 3/8/2019 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `s3-cloudfront`
 
 
@@ -193,6 +240,8 @@ The `kinesis` module now supports server-side encryption.
 
 
 * #19 
+
+</div>
 
 
 
@@ -205,7 +254,9 @@ The `kinesis` module now supports server-side encryption.
   <small>Published: 3/19/2019 | Modules affected: vpc-app, vpc-peering | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `vpc-app`
 * `vpc-peering`
 
@@ -215,6 +266,12 @@ The `kinesis` module now supports server-side encryption.
 * You can now configure the VPC peering connection using the new `allow_remote_vpc_dns_resolution`, `allow_classic_link_to_remote_vpc`, and `allow_vpc_to_remote_classic_link` input variables in the `vpc-peering` module.
 
 
+* https://github.com/gruntwork-io/module-vpc/pull/56
+* https://github.com/gruntwork-io/module-vpc/pull/58
+* https://github.com/gruntwork-io/module-vpc/pull/59
+* https://github.com/gruntwork-io/module-vpc/pull/61
+
+</div>
 
 
 
@@ -222,6 +279,6 @@ The `kinesis` module now supports server-side encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e6b5040ca404114ca850d509f5bced02"
+  "hash": "61163ab82821640f8c815266920df348"
 }
 ##DOCS-SOURCER-END -->

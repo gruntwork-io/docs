@@ -35,7 +35,11 @@ Here are the repos that were updated:
   <small>Published: 1/18/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.16">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/21: `gruntwork` now checks that you're logged in as an IAM user and not a root user.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/21: `gruntwork` now checks that you're logged in as an IAM user and not a root user.
+
+</div>
 
 
 ### [v0.0.15](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.15)
@@ -44,7 +48,11 @@ https://github.com/gruntwork-io/gruntwork/pull/21: `gruntwork` now checks that y
   <small>Published: 1/17/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.15">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/19: Check that the account you're logged into is the root of your AWS Organization, as that's the only account that can create child accounts.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/19: Check that the account you're logged into is the root of your AWS Organization, as that's the only account that can create child accounts.
+
+</div>
 
 
 
@@ -57,7 +65,11 @@ https://github.com/gruntwork-io/gruntwork/pull/19: Check that the account you're
   <small>Published: 1/8/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.6">Release notes</a></small>
 </p>
 
-Support for Terraform 11
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Support for Terraform 11
+
+</div>
 
 
 ### [v0.6.5](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.5)
@@ -66,7 +78,11 @@ Support for Terraform 11
   <small>Published: 1/6/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.5">Release notes</a></small>
 </p>
 
-- **ENHANCEMENT: module/server-group.** Optionally allow users to specify their own list of names to be used when creating DNS records. Optionally create an Elastic IP Address for each Elastic Network Interface so that servers in the Server Group are accessible via the public Internet. This is especially handy for automated tests, but most production deployments should reside within the private VPC only. (#18, #19, #20, #21)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - **ENHANCEMENT: module/server-group.** Optionally allow users to specify their own list of names to be used when creating DNS records. Optionally create an Elastic IP Address for each Elastic Network Interface so that servers in the Server Group are accessible via the public Internet. This is especially handy for automated tests, but most production deployments should reside within the private VPC only. (#18, #19, #20, #21)
+
+</div>
 
 
 
@@ -79,7 +95,11 @@ Support for Terraform 11
   <small>Published: 1/8/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
-Support for Terraform 11
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Support for Terraform 11
+
+</div>
 
 
 
@@ -92,7 +112,11 @@ Support for Terraform 11
   <small>Published: 1/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module now exposes a `db_cluster_parameter_group_name` parameter you can use to set a custom parameter group name.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module now exposes a `db_cluster_parameter_group_name` parameter you can use to set a custom parameter group name.
+
+</div>
 
 
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.0)
@@ -101,7 +125,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module
   <small>Published: 1/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -114,11 +142,15 @@ https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module
   <small>Published: 1/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
-* #49: The `roll-out-ecs-cluster-update.py` script will now display better error messages if it can't find your ECS cluster for some reason (e.g., you specified the wrong region).
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * #49: The `roll-out-ecs-cluster-update.py` script will now display better error messages if it can't find your ECS cluster for some reason (e.g., you specified the wrong region).
 
 * #50: The package now supports [placement_strategy](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#placement_strategy-1) and [placement_constraints](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#placement_constraints-1)
 
 * This package is now compatible with Terraform 11
+
+</div>
 
 
 
@@ -131,7 +163,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module
   <small>Published: 1/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -144,7 +180,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module
   <small>Published: 1/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.8.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.8.2)
@@ -153,7 +193,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/35: The `aurora` module
   <small>Published: 1/4/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.8.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/41: The `ecs-service-alarms` module now exposes `ecs_service_high_memory_utilization_treat_missing_data` and `ecs_service_high_cpu_utilization_treat_missing_data` input variables that you can use to configure what the alarms should do if no data is being emitted (default is `missing`). 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/41: The `ecs-service-alarms` module now exposes `ecs_service_high_memory_utilization_treat_missing_data` and `ecs_service_high_cpu_utilization_treat_missing_data` input variables that you can use to configure what the alarms should do if no data is being emitted (default is `missing`). 
+
+</div>
 
 
 
@@ -166,7 +210,11 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/41: The `ecs-service-
   <small>Published: 1/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-openvpn/pull/36: The root volume IOPS is now also configurable for `io1` volume types.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-openvpn/pull/36: The root volume IOPS is now also configurable for `io1` volume types.
+
+</div>
 
 
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.5.1)
@@ -175,7 +223,11 @@ https://github.com/gruntwork-io/package-openvpn/pull/36: The root volume IOPS is
   <small>Published: 1/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size and type of the `openvpn-server` module are now configurable.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size and type of the `openvpn-server` module are now configurable.
+
+</div>
 
 
 
@@ -188,7 +240,11 @@ https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size an
   <small>Published: 1/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -201,7 +257,11 @@ https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size an
   <small>Published: 1/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -214,7 +274,11 @@ https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size an
   <small>Published: 1/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -227,7 +291,11 @@ https://github.com/gruntwork-io/package-openvpn/pull/35: The root volume size an
   <small>Published: 1/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don't want to enable gzip compression, you'll need to set `compress = false`. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don't want to enable gzip compression, you'll need to set `compress = false`. 
+
+</div>
 
 
 
@@ -240,7 +308,11 @@ https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` m
   <small>Published: 1/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-vpc/pull/37: You can now set different tags for each of the different types of subnets (public subnets, private app subnets, etc).
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-vpc/pull/37: You can now set different tags for each of the different types of subnets (public subnets, private app subnets, etc).
+
+</div>
 
 
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.4.0)
@@ -249,9 +321,13 @@ https://github.com/gruntwork-io/module-vpc/pull/37: You can now set different ta
   <small>Published: 1/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-bump tests and circleci config for terraform 11 testing
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  bump tests and circleci config for terraform 11 testing
 add support for num_nat_gateways=0
 add new tests for num_nat_gateways=0
+
+</div>
 
 
 
@@ -264,7 +340,11 @@ add new tests for num_nat_gateways=0
   <small>Published: 1/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous release, we tried to move away from the webupd8 JDK installer for Ubuntu, which stopped working for the latest version of JDK8, to a custom one, but it turns out the webupd8 had a huge amount of custom code (e.g., creating symlinks, configuring fonts, setting up env vars, etc) that we were missing. In this release, we've gone back to the webupd8, but with a patch that makes it work again with the latest JDK8. That means that we are back to the `--version` flag for Ubuntu installs and `--download-url` and `--checksum` for Amazon Linux / CentOS.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous release, we tried to move away from the webupd8 JDK installer for Ubuntu, which stopped working for the latest version of JDK8, to a custom one, but it turns out the webupd8 had a huge amount of custom code (e.g., creating symlinks, configuring fonts, setting up env vars, etc) that we were missing. In this release, we've gone back to the webupd8, but with a patch that makes it work again with the latest JDK8. That means that we are back to the `--version` flag for Ubuntu installs and `--download-url` and `--checksum` for Amazon Linux / CentOS.
+
+</div>
 
 
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0)
@@ -273,9 +353,13 @@ https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous relea
   <small>Published: 1/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
-- BREAKING CHANGE: The `install-oracle-jdk` module now installs Oracle JDK directly from Oracle for Debian and Ubuntu Linux. We also updated the default Oracle Java version to the latest JDK8 as of January 16, 2018. (#14 )
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - BREAKING CHANGE: The `install-oracle-jdk` module now installs Oracle JDK directly from Oracle for Debian and Ubuntu Linux. We also updated the default Oracle Java version to the latest JDK8 as of January 16, 2018. (#14 )
 
    This is barely a breaking change, but it still qualified as breaking. Previously, `install-oracle-jdk` accepted a `--version` argument used to install a particular major version of the JDK (e.g. `8`). Now, if you wish to specify a version of the JDK other than our default, you can pass in custom values for `--download-url` and `--checksum` for both Debian/Ubuntu and RHEL/CentOS/Amazon Linux.
+
+</div>
 
 
 
@@ -283,6 +367,6 @@ https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous relea
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "53a18740c2b09d42d062ef7bf698cc89"
+  "hash": "a1b9c2767ee48c4662a1f657a5da479a"
 }
 ##DOCS-SOURCER-END -->

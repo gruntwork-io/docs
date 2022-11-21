@@ -31,7 +31,11 @@ Here are the repos that were updated:
   <small>Published: 11/28/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.8">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/8: Show better instructions after TLS certs have been requested.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/8: Show better instructions after TLS certs have been requested.
+
+</div>
 
 
 ### [v0.0.7](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.7)
@@ -40,7 +44,11 @@ https://github.com/gruntwork-io/gruntwork/pull/8: Show better instructions after
   <small>Published: 11/28/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.7">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/7: You can now use `gruntwork` to request free TLS certs from ACM for your domain names.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/7: You can now use `gruntwork` to request free TLS certs from ACM for your domain names.
+
+</div>
 
 
 ### [v0.0.6](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.6)
@@ -49,7 +57,11 @@ https://github.com/gruntwork-io/gruntwork/pull/7: You can now use `gruntwork` to
   <small>Published: 11/27/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/6: The `gruntwork` CLI can now register domain names for use with the Reference Architecture.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/6: The `gruntwork` CLI can now register domain names for use with the Reference Architecture.
+
+</div>
 
 
 ### [v0.0.5](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.5)
@@ -58,7 +70,11 @@ https://github.com/gruntwork-io/gruntwork/pull/6: The `gruntwork` CLI can now re
   <small>Published: 11/24/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/5: When looking up accounts by name, `gruntwork` will now detect if multiple accounts have the same name and prompt the user to pick one.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/5: When looking up accounts by name, `gruntwork` will now detect if multiple accounts have the same name and prompt the user to pick one.
+
+</div>
 
 
 ### [v0.0.4](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.4)
@@ -67,7 +83,11 @@ https://github.com/gruntwork-io/gruntwork/pull/5: When looking up accounts by na
   <small>Published: 11/22/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/4: Update the docs and CLI to indicate BitBucket and GitLab are not yet supported.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/4: Update the docs and CLI to indicate BitBucket and GitLab are not yet supported.
+
+</div>
 
 
 ### [v0.0.3](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.3)
@@ -76,7 +96,11 @@ https://github.com/gruntwork-io/gruntwork/pull/4: Update the docs and CLI to ind
   <small>Published: 11/21/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/3: Switch to managed policies instead of custom ones.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/3: Switch to managed policies instead of custom ones.
+
+</div>
 
 
 ### [v0.0.2](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.2)
@@ -85,7 +109,11 @@ https://github.com/gruntwork-io/gruntwork/pull/3: Switch to managed policies ins
   <small>Published: 11/21/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/2: Users can now choose to give Gruntwork employees either admin or read-only access. MFA is now required for Gruntwork employees. Fix a bug with revoking access.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/2: Users can now choose to give Gruntwork employees either admin or read-only access. MFA is now required for Gruntwork employees. Fix a bug with revoking access.
+
+</div>
 
 
 ### [v0.0.1](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.1)
@@ -94,7 +122,11 @@ https://github.com/gruntwork-io/gruntwork/pull/2: Users can now choose to give G
   <small>Published: 11/17/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/1: First release!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/1: First release!
+
+</div>
 
 
 
@@ -107,7 +139,11 @@ https://github.com/gruntwork-io/gruntwork/pull/1: First release!
   <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.3.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-cache/pull/12: You can now specify custom tags for your Redis and cluster and security group.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-cache/pull/12: You can now specify custom tags for your Redis and cluster and security group.
+
+</div>
 
 
 ### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.3.1)
@@ -116,7 +152,11 @@ https://github.com/gruntwork-io/module-cache/pull/12: You can now specify custom
   <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.3.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-cache/pull/14: Put in a workaround for a bug in Terraform (https://github.com/terraform-providers/terraform-provider-aws/issues/2468) related to `parameter_group_name` always showing a diff when you run `plan` and causing errors when you run `apply`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-cache/pull/14: Put in a workaround for a bug in Terraform (https://github.com/terraform-providers/terraform-provider-aws/issues/2468) related to `parameter_group_name` always showing a diff when you run `plan` and causing errors when you run `apply`.
+
+</div>
 
 
 
@@ -129,7 +169,11 @@ https://github.com/gruntwork-io/module-cache/pull/14: Put in a workaround for a 
   <small>Published: 11/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.4.1)
@@ -138,7 +182,11 @@ https://github.com/gruntwork-io/module-cache/pull/14: Put in a workaround for a 
   <small>Published: 11/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.4.0)
@@ -147,7 +195,11 @@ https://github.com/gruntwork-io/module-cache/pull/14: Put in a workaround for a 
   <small>Published: 11/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ci/pull/43: The `gruntwork-module-circleci-helpers` now support using [dep](https://github.com/golang/dep) instead of Glide for Go dependency management. You can enable this by passing the `--use-go-dep` flag to `configure-environment-for-gruntwork-module`. These changes should be backwards compatible, but we now install Go 1.9.2 by default, so marking this release as v0.4.0 just in case.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ci/pull/43: The `gruntwork-module-circleci-helpers` now support using [dep](https://github.com/golang/dep) instead of Glide for Go dependency management. You can enable this by passing the `--use-go-dep` flag to `configure-environment-for-gruntwork-module`. These changes should be backwards compatible, but we now install Go 1.9.2 by default, so marking this release as v0.4.0 just in case.
+
+</div>
 
 
 
@@ -160,7 +212,11 @@ https://github.com/gruntwork-io/module-ci/pull/43: The `gruntwork-module-circlec
   <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/30: The `rds` module now sets a default `license_model` to work around https://github.com/terraform-providers/terraform-provider-aws/issues/2468. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/30: The `rds` module now sets a default `license_model` to work around https://github.com/terraform-providers/terraform-provider-aws/issues/2468. 
+
+</div>
 
 
 ### [v0.3.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.3.2)
@@ -169,7 +225,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/30: The `rds` module no
   <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.3.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/29: Put in a workaround for a bug in Terraform (https://github.com/terraform-providers/terraform-provider-aws/issues/2468) related to `parameter_group_name` always showing a diff when you run `plan` and causing errors when you run `apply`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/29: Put in a workaround for a bug in Terraform (https://github.com/terraform-providers/terraform-provider-aws/issues/2468) related to `parameter_group_name` always showing a diff when you run `plan` and causing errors when you run `apply`.
+
+</div>
 
 
 ### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.3.1)
@@ -178,7 +238,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/29: Put in a workaround
   <small>Published: 11/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.3.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/28: The `aurora` module now exposes `engine` and `engine_version` parameters so you have more control over what type of Aurora engine you're running (e.g., you can use the Postgres-compatible one).
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/28: The `aurora` module now exposes `engine` and `engine_version` parameters so you have more control over what type of Aurora engine you're running (e.g., you can use the Postgres-compatible one).
+
+</div>
 
 
 
@@ -191,7 +255,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/28: The `aurora` module
   <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/11: Update to the latest package-zookeeper.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/11: Update to the latest package-zookeeper.
+
+</div>
 
 
 
@@ -204,7 +272,9 @@ https://github.com/gruntwork-io/package-kafka/pull/11: Update to the latest pack
   <small>Published: 11/20/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-load-balancer/pull/20: We've converted the `https_listener_ports_and_ssl_certs` and `https_listener_ports_and_acm_ssl_certs` input variables on the `alb` module from maps to lists of maps. The problem with using maps is that in Go—which Terraform uses under the hood—the iteration order for maps is (intentionally) randomized, so with multiple ports and certs in these variables, you would get spurious diffs in the `plan` command as Terraform would swap their order and assume listeners had to created/destroyed. By using lists, we can make the sort order consistent.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-load-balancer/pull/20: We've converted the `https_listener_ports_and_ssl_certs` and `https_listener_ports_and_acm_ssl_certs` input variables on the `alb` module from maps to lists of maps. The problem with using maps is that in Go—which Terraform uses under the hood—the iteration order for maps is (intentionally) randomized, so with multiple ports and certs in these variables, you would get spurious diffs in the `plan` command as Terraform would swap their order and assume listeners had to created/destroyed. By using lists, we can make the sort order consistent.
 
 **Upgrade instructions for https_listener_ports_and_ssl_certs**
 
@@ -214,6 +284,41 @@ Old `https_listener_ports_and_ssl_certs` format:
 https_listener_ports_and_ssl_certs = {
   "443" = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
 }
+```
+
+New `https_listener_ports_and_ssl_certs` format:
+
+```hcl
+https_listener_ports_and_ssl_certs = [
+  {
+    port = 443
+    tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
+  }
+]
+```
+
+**Upgrade instructions for https_listener_ports_and_acm_ssl_certs**
+
+Old `https_listener_ports_and_acm_ssl_certs` format:
+
+```hcl
+https_listener_ports_and_acm_ssl_certs = {
+  "443" = "*.foo.com"
+}
+```
+
+New `https_listener_ports_and_acm_ssl_certs` format:
+
+```hcl
+https_listener_ports_and_acm_ssl_certs = [
+  {
+    port = 443
+    tls_domain_name = "*.foo.com"
+  }
+]
+```
+
+</div>
 
 
 
@@ -226,7 +331,11 @@ https_listener_ports_and_ssl_certs = {
   <small>Published: 11/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.5">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-mongodb/pull/24: If you set the `cluster_size` param of the  `mongodb-cluster` module to 0, it will now create no resources whatsoever. Since Terraform doesn't allow you to use `count` with `module` directly, this provides a convenient way to disable the `mongodb-cluster` module in certain environments (e.g., disable the backup jobs in pre-prod environments).
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-mongodb/pull/24: If you set the `cluster_size` param of the  `mongodb-cluster` module to 0, it will now create no resources whatsoever. Since Terraform doesn't allow you to use `count` with `module` directly, this provides a convenient way to disable the `mongodb-cluster` module in certain environments (e.g., disable the backup jobs in pre-prod environments).
+
+</div>
 
 
 ### [v0.2.4](https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.4)
@@ -235,7 +344,11 @@ https://github.com/gruntwork-io/package-mongodb/pull/24: If you set the `cluster
   <small>Published: 11/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-mongodb/pull/23: Undo `pip` workaround so that Packer builds pass again.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-mongodb/pull/23: Undo `pip` workaround so that Packer builds pass again.
+
+</div>
 
 
 
@@ -248,7 +361,11 @@ https://github.com/gruntwork-io/package-mongodb/pull/23: Undo `pip` workaround s
   <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.6.5](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.5)
@@ -257,7 +374,11 @@ https://github.com/gruntwork-io/package-mongodb/pull/23: Undo `pip` workaround s
   <small>Published: 11/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.5">Release notes</a></small>
 </p>
 
-- #60: The `aws-auth` tool will now work correctly, even if a local user has configured AWS CLI commands to output in tables instead of JSON.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - #60: The `aws-auth` tool will now work correctly, even if a local user has configured AWS CLI commands to output in tables instead of JSON.
+
+</div>
 
 
 ### [v0.6.4](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.4)
@@ -266,7 +387,11 @@ https://github.com/gruntwork-io/package-mongodb/pull/23: Undo `pip` workaround s
   <small>Published: 11/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/59: `ssh-iam` will now do a better job of reporting error messages if it reads an OS user that is missing the "comment field", which ssh-iam uses for storing the IAM user name.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/59: `ssh-iam` will now do a better job of reporting error messages if it reads an OS user that is missing the "comment field", which ssh-iam uses for storing the IAM user name.
+
+</div>
 
 
 ### [v0.6.3](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.3)
@@ -275,11 +400,15 @@ https://github.com/gruntwork-io/module-security/pull/59: `ssh-iam` will now do a
   <small>Published: 11/6/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.6.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/52: 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/52: 
 
 1. You can now disable the full-access IAM group in the `iam-groups` module using the `should_create_iam_group_full_access` parameter.
 
 1. The `iam-groups` module  now outputs the ARNs and names of the ssh-iam groups.
+
+</div>
 
 
 
@@ -292,7 +421,11 @@ https://github.com/gruntwork-io/module-security/pull/52:
   <small>Published: 11/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.3.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-vpc/pull/33: Add output for private persistence subnet with proper naming convention.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-vpc/pull/33: Add output for private persistence subnet with proper naming convention.
+
+</div>
 
 
 ### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.3.1)
@@ -301,7 +434,11 @@ https://github.com/gruntwork-io/module-vpc/pull/33: Add output for private persi
   <small>Published: 11/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.3.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-vpc/pull/30: Added VPC endpoints for DynamoDB, so all your DynamoDB calls now stay within the VPC rather than going over the public Internet.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-vpc/pull/30: Added VPC endpoints for DynamoDB, so all your DynamoDB calls now stay within the VPC rather than going over the public Internet.
+
+</div>
 
 
 
@@ -314,7 +451,11 @@ https://github.com/gruntwork-io/module-vpc/pull/30: Added VPC endpoints for Dyna
   <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
-- #12: Update to the latest version of Exhibitor.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - #12: Update to the latest version of Exhibitor.
+
+</div>
 
 
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.0)
@@ -323,7 +464,11 @@ https://github.com/gruntwork-io/module-vpc/pull/30: Added VPC endpoints for Dyna
   <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/11: Update to ZooKeeper 3.4.11, as 3.4.9 was mysteriously deleted. Update to Oracle JDK 8u152, as 8u144 was mysteriously deleted. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/11: Update to ZooKeeper 3.4.11, as 3.4.9 was mysteriously deleted. Update to Oracle JDK 8u152, as 8u144 was mysteriously deleted. 
+
+</div>
 
 
 
@@ -331,6 +476,6 @@ https://github.com/gruntwork-io/package-zookeeper/pull/11: Update to ZooKeeper 3
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c7b0f7cab3d8385f94ba80ceb85638c4"
+  "hash": "31a4f6aabd9dca89f36c64fd4a86b86a"
 }
 ##DOCS-SOURCER-END -->

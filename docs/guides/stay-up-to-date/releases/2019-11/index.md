@@ -29,16 +29,44 @@ Here are the repos that were updated:
   <small>Published: 11/27/2019 | Modules affected: redis | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `redis` **[BREAKING CHANGES]**
 
 
 - Simplify permutations In the `redis` module. As the resource names change within the module, this is a backwards incompatible change.
 
 
-This release is backwards incompatible and to update an existing Redis cluster, use `terraform state mv <old_address> <new_address>` to ensure that your cluster isn't deleted when you run `terraform apply`.
+This release is backwards incompatible and to update an existing Redis cluster, use `terraform state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn't deleted when you run `terraform apply`.
 
 Depending on your configuration, your current resource name is one of
+- `redis_with_snapshotting_without_auth_token_without_cluster_mode`
+- `redis_with_snapshotting_without_auth_token_with_cluster_mode`
+- `redis_with_snapshotting_with_auth_token_without_cluster_mode`
+- `redis_with_snapshotting_with_auth_token_with_cluster_mode`
+- `redis_without_snapshotting_without_auth_token_without_cluster_mode`
+- `redis_without_snapshotting_without_auth_token_with_cluster_mode`
+- `redis_without_snapshotting_with_auth_token_without_cluster_mode`
+- `redis_without_snapshotting_with_auth_token_with_cluster_mode`
+
+To find out which one it is, run `terraform state list`. 
+
+For example, if your current resource name is `module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]`, you can migrate the resource by running: 
+
+```bash
+terraform state mv "module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]" module.redis.aws_elasticache_replication_group.redis
+```
+Note that you will have to use the quotes around the indexed resource to avoid `terraform` error `no matches found: module.redis....`
+
+
+* Thanks to @brianbordini for the PR!
+
+
+- #40 
+
+
+</div>
 
 
 ### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.8.0)
@@ -47,10 +75,14 @@ Depending on your configuration, your current resource name is one of
   <small>Published: 11/7/2019 | Modules affected: redis, memcached | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.8.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - In the `memcached` and `redis` modules, we removed the `bastion_host_security_group_id` variable and added an `allow_connections_from_security_groups` variable, so you can now pass in a list of security group IDs that can connect to your cache, rather than just one. 
 
+
+</div>
 
 
 
@@ -63,11 +95,15 @@ Depending on your configuration, your current resource name is one of
   <small>Published: 11/21/2019 | Modules affected: iam-password-policy, cloudwatch-logs-metric-filters, saml-iam-roles, iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations Benchmark. 
 
 
+
+</div>
 
 
 
@@ -80,7 +116,9 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
   <small>Published: 11/22/2019 | Modules affected: rds, lambda-create-snapshot, aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.10.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - The `aurora` module now supports custom names for db subnets and security groups.
 - Updated the README format as per the new design for the Service Catalog.
@@ -89,6 +127,8 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
 
 
+
+</div>
 
 
 
@@ -101,11 +141,15 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
   <small>Published: 11/22/2019 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fixed a bug where ECS Auto Scaling was only working for "scale out" but not "scale in."
 
 
+
+</div>
 
 
 ### [v0.16.1](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.1)
@@ -114,13 +158,17 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
   <small>Published: 11/4/2019 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix bug where ECS service IAM role outputs were incorrectly conditional on `var.is_associated_with_elb`, ignoring the condition about `awsvpc` (which is accounted for in `local.need_ecs_iam_role_for_elb`)
 - `ecs-service` now outputs `service_app_autoscaling_target_resource_id` which can be used for creating auto scaling policies.
 
 
 
+
+</div>
 
 
 
@@ -133,16 +181,33 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
   <small>Published: 11/22/2019 | Modules affected: eks-alb-ingress-controller | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.10.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-alb-ingress-controller` **[BACKWARDS INCOMPATIBLE]**
 
 
 - `eks-alb-ingress-controller`:
-  - Update Helm chart version: 0.1.6 -> 0.1.11
+  - Update Helm chart version: 0.1.6 -&gt; 0.1.11
   - Add support for setting Pod priorityClass
   - Add support for enabling and configuring livenessProbe
   - Add support for enabling and configuring readinessProbe
   - Rename `resource_name_prefix` to `eks_cluster_name`
+
+
+`eks-alb-ingress-controller`:
+- Rename `resource_name_prefix` to `eks_cluster_name`
+- If you are currently setting `enable_aws_api_debug_logs`, update its value to `bool` instead of `string`
+
+
+Special thanks to @alanbrent for the contribution!
+
+
+- https://github.com/gruntwork-io/terraform-aws-eks/pull/87
+- https://github.com/gruntwork-io/terraform-aws-eks/pull/88
+
+
+</div>
 
 
 
@@ -155,11 +220,15 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
   <small>Published: 11/12/2019 | Modules affected: lambda, lambda-edge | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This consolidates the lambda resources in `modules/lambda` and `modules/lambda-edge`, taking advantage of the TF12 features that allow it. This allows for better maintainability of the modules.
 
 
+
+</div>
 
 
 
@@ -172,7 +241,9 @@ This consolidates the lambda resources in `modules/lambda` and `modules/lambda-e
   <small>Published: 11/12/2019 | Modules affected: alb | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.16.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `alb` [**BREAKING CHANGES**]
 
 
@@ -182,6 +253,26 @@ The two ALB resources used to switch on access logs have now been merged down to
 - `additional_security_group_ids` was only being used on alb with logs
 
 
+This renames the `aws_alb` resources as a part of consolidating the two versions down to one. As such, you will need to move the resources in the state file in order to avoid downtime.
+
+NOTE: If you are using `terragrunt`, the `state mv` calls should be done using `terragrunt` instead of `terraform`.
+
+If you had `var.enable_alb_access_logs = true`:
+```
+ export MODULE_ADDRESS=module.alb # This should be the address of the module block used to call `alb`
+terraform state mv "$MODULE_ADDRESS.aws_alb.alb_with_logs[0]" "$MODULE_ADDRESS.aws_alb.alb"
+```
+
+Otherwise:
+``` 
+export MODULE_ADDRESS=module.alb # This should be the address of the module block used to call `alb`
+terraform state mv "$MODULE_ADDRESS.aws_alb.alb_without_logs[0]" "$MODULE_ADDRESS.aws_alb.alb"
+```
+
+
+* https://github.com/gruntwork-io/module-load-balancer/pull/66
+
+</div>
 
 
 
@@ -194,10 +285,14 @@ The two ALB resources used to switch on access logs have now been merged down to
   <small>Published: 11/28/2019 | Modules affected: vpc-mgmt, vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.7.7">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - You can now filter which Availability Zones (AZs) are used by the `vpc-app` and `vpc-mgmt` modules using the new input variables `availability_zone_blacklisted_names`, `availability_zone_blacklisted_ids`, and `availability_zone_state`. 
 
+
+</div>
 
 
 
@@ -205,6 +300,6 @@ The two ALB resources used to switch on access logs have now been merged down to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "90216dc0174b844241f01204606fe6b8"
+  "hash": "b41d41b10a77eee593e6a4cc056f2c08"
 }
 ##DOCS-SOURCER-END -->

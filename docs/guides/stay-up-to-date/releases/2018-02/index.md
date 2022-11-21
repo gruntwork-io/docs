@@ -29,7 +29,11 @@ Here are the repos that were updated:
   <small>Published: 2/27/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.3.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-cache/pull/17: You can now enable encryption at rest and in transit for Redis using the new parameters `enable_at_rest_encryption` and `enable_transit_encryption`. Note that if you already have Redis deployed without encryption, you cannot enable encryption for it; you must create a new Redis cluster that has encryption enabled and migrate to that.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-cache/pull/17: You can now enable encryption at rest and in transit for Redis using the new parameters `enable_at_rest_encryption` and `enable_transit_encryption`. Note that if you already have Redis deployed without encryption, you cannot enable encryption for it; you must create a new Redis cluster that has encryption enabled and migrate to that.
+
+</div>
 
 
 
@@ -42,7 +46,11 @@ https://github.com/gruntwork-io/module-cache/pull/17: You can now enable encrypt
   <small>Published: 2/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ci/pull/53: The `install-jenkins` module now supports CentOS.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ci/pull/53: The `install-jenkins` module now supports CentOS.
+
+</div>
 
 
 ### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.7.0)
@@ -51,7 +59,9 @@ https://github.com/gruntwork-io/module-ci/pull/53: The `install-jenkins` module 
   <small>Published: 2/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ci/pull/52: 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ci/pull/52: 
 
 Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lambda-job`.
 
@@ -61,6 +71,9 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 * Update this repo to use CircleCI 2.0 with the machine executor.
 * Add a new `--circle-ci-2-machine-executor` flag to `configure-environment-for-gruntwork-module` so you can use the script with CircleCI 2.0's machine executor.
 * Add an example for how to create "unit tests" for modules that run locally and relatively quickly using Docker and Docker Compose. See `jenkins_test.go`.
+* Add an example for how to create "integration tests" out of multiple "stages," where any one of the stages can be skipped to speed up local iterative development.  See `jenkins_test.go`.
+
+</div>
 
 
 
@@ -73,7 +86,11 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
   <small>Published: 2/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.6.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a health check grace period for your ECS services using the new `health_check_grace_period_seconds` parameter! Also, we've added another `depends_on` clause for the ALB Target Group in the `ecs-service-with-alb` module, which should help work around https://github.com/hashicorp/terraform/issues/12634.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a health check grace period for your ECS services using the new `health_check_grace_period_seconds` parameter! Also, we've added another `depends_on` clause for the ALB Target Group in the `ecs-service-with-alb` module, which should help work around https://github.com/hashicorp/terraform/issues/12634.
+
+</div>
 
 
 
@@ -86,7 +103,11 @@ https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a heal
   <small>Published: 2/6/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -99,7 +120,11 @@ https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a heal
   <small>Published: 2/27/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.5.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -112,7 +137,11 @@ https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a heal
   <small>Published: 2/14/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-remove the terraform block from the generated terraform module
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  remove the terraform block from the generated terraform module
+
+</div>
 
 
 
@@ -125,7 +154,11 @@ remove the terraform block from the generated terraform module
   <small>Published: 2/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/73: Use a more reliable way to look up the path to the `ssh-iam` binary during the install process.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/73: Use a more reliable way to look up the path to the `ssh-iam` binary during the install process.
+
+</div>
 
 
 
@@ -138,7 +171,11 @@ https://github.com/gruntwork-io/module-security/pull/73: Use a more reliable way
   <small>Published: 2/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.0)
@@ -147,7 +184,9 @@ https://github.com/gruntwork-io/module-security/pull/73: Use a more reliable way
   <small>Published: 2/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-server/pull/26:
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-server/pull/26:
 
 Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server` module. Read on for more info
 
@@ -157,6 +196,10 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 
 1. The `aws_security_group` in now uses `name_prefix` instead of `name` and sets `create_before_destroy` to `true`. This should fix the `DependencyViolation: resource sg-XXX has a dependent object` error described in https://github.com/terraform-providers/terraform-provider-aws/issues/1671. However, this will result in the Security Group being renamed and therefore, recreated. To update to this new version of `single-server`, which is used in the bastion host, OpenVPN server, Jenkins, and elsewhere, you'll need to:
     1. Find all resources that depend on this security group and remove that dependency. It is OK to do this in the AWS UI.
+    1. Run `apply` with this new `single-server` version to create the new security group.
+    1. Run `apply` in each module from step 1 to recreate the dependency.
+
+</div>
 
 
 
@@ -164,6 +207,6 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b8cda582e58f961c2f487f94e7b3c6e5"
+  "hash": "eff1f0d48ffa60842a06c1c976d0d9d7"
 }
 ##DOCS-SOURCER-END -->

@@ -34,7 +34,11 @@ Here are the repos that were updated:
   <small>Published: 8/20/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.17">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/40: boilerplate should now check types *after* rendering variables, which allows you to use interpolations in non-string variables without getting a type error.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/40: boilerplate should now check types *after* rendering variables, which allows you to use interpolations in non-string variables without getting a type error.
+
+</div>
 
 
 ### [v0.2.16](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.16)
@@ -43,7 +47,11 @@ https://github.com/gruntwork-io/boilerplate/pull/40: boilerplate should now chec
   <small>Published: 8/13/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.16">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/39: You can now use nested maps and nested lists in boilerplate variables.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/39: You can now use nested maps and nested lists in boilerplate variables.
+
+</div>
 
 
 
@@ -56,7 +64,11 @@ https://github.com/gruntwork-io/boilerplate/pull/39: You can now use nested maps
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-asg/pull/9: The `server-group` module now applies the tags you pass in via `custom_tags` to all resources that support tags: the security group, the ENIs, and the EBS volumes. Note that this is a backwards incompatible change, as the `custom_tags` parameter is now a plain map rather than a list of maps. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-asg/pull/9: The `server-group` module now applies the tags you pass in via `custom_tags` to all resources that support tags: the security group, the ENIs, and the EBS volumes. Note that this is a backwards incompatible change, as the `custom_tags` parameter is now a plain map rather than a list of maps. 
+
+</div>
 
 
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.4.0)
@@ -65,7 +77,11 @@ https://github.com/gruntwork-io/module-asg/pull/9: The `server-group` module now
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-asg/pull/8: Added a new `server-group` module that you can use to run a fixed-size cluster of servers that can automatically attach EBS Volumes and ENIs, do zero-downtime rolling deployment, and automatically replace failed servers. Check out the [server-group module docs](https://github.com/gruntwork-io/module-asg/tree/master/modules/server-group) for more details.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-asg/pull/8: Added a new `server-group` module that you can use to run a fixed-size cluster of servers that can automatically attach EBS Volumes and ENIs, do zero-downtime rolling deployment, and automatically replace failed servers. Check out the [server-group module docs](https://github.com/gruntwork-io/module-asg/tree/master/modules/server-group) for more details.
+
+</div>
 
 
 
@@ -78,7 +94,11 @@ https://github.com/gruntwork-io/module-asg/pull/8: Added a new `server-group` mo
   <small>Published: 8/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.10">Release notes</a></small>
 </p>
 
-- BUG FIX: Release v0.2.9 had a bug where `var.snapshot_identifier` did not work for Aurora instances that used encryption. That is now fixed.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - BUG FIX: Release v0.2.9 had a bug where `var.snapshot_identifier` did not work for Aurora instances that used encryption. That is now fixed.
+
+</div>
 
 
 ### [v0.2.9](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.9)
@@ -87,9 +107,13 @@ https://github.com/gruntwork-io/module-asg/pull/8: Added a new `server-group` mo
   <small>Published: 8/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.9">Release notes</a></small>
 </p>
 
-- UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you'd like to launch a new Aurora cluster. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you'd like to launch a new Aurora cluster. 
 
 NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.2.10) instead.
+
+</div>
 
 
 
@@ -102,11 +126,15 @@ NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwor
   <small>Published: 8/10/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
-- NEW FEATURE/BREAKING CHANGE: The `ecs-service-with-alb` module now supports host-based routing! In addition, we used this opportunity to simplify the interface to the module. The major change is that you now specify ALB Listener Rules using Terraform code in the same Terraform file that calls the `ecs-service-with-alb` module, giving users total flexibility on routing rules. (#37)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - NEW FEATURE/BREAKING CHANGE: The `ecs-service-with-alb` module now supports host-based routing! In addition, we used this opportunity to simplify the interface to the module. The major change is that you now specify ALB Listener Rules using Terraform code in the same Terraform file that calls the `ecs-service-with-alb` module, giving users total flexibility on routing rules. (#37)
 
 NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That's because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default. 
 
 Therefore, be sure to also upgrade to [v0.6.0 or higher of module alb](https://github.com/gruntwork-io/module-load-balancer/releases) when using this release!
+
+</div>
 
 
 
@@ -119,13 +147,17 @@ Therefore, be sure to also upgrade to [v0.6.0 or higher of module alb](https://g
   <small>Published: 8/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/5: First official release!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/5: First official release!
 
 The changes include:
 
 1. Expose several new important settings via the `run-kafka` script around replication and availability.
 1. Increase the file descriptors limit for Kafka. Kafka uses a lot of file descriptors and the default of 1024 is way too low.
 1. Switch the Key Store generator module to use RSA for the private key. Otherwise, SSL does not work with the golang Kafka client.
+
+</div>
 
 
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4)
@@ -134,7 +166,11 @@ The changes include:
   <small>Published: 8/17/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/4: Add documentation. Move `run-kafka` into a separate module.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/4: Add documentation. Move `run-kafka` into a separate module.
+
+</div>
 
 
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3)
@@ -143,7 +179,11 @@ https://github.com/gruntwork-io/package-kafka/pull/4: Add documentation. Move `r
   <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/3: Add SSL support.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/3: Add SSL support.
+
+</div>
 
 
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.2)
@@ -152,7 +192,11 @@ https://github.com/gruntwork-io/package-kafka/pull/3: Add SSL support.
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/2: The `custom_tags` parameter is now a map and gets applied to all resources.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/2: The `custom_tags` parameter is now a map and gets applied to all resources.
+
+</div>
 
 
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1)
@@ -161,7 +205,11 @@ https://github.com/gruntwork-io/package-kafka/pull/2: The `custom_tags` paramete
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-kafka/pull/1: First release!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-kafka/pull/1: First release!
+
+</div>
 
 
 
@@ -174,7 +222,11 @@ https://github.com/gruntwork-io/package-kafka/pull/1: First release!
   <small>Published: 8/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
-- UPDATE: The `alb` module adds a new output value, `listener_arns`, that merges the maps in the output values `http_listener_arns`, `https_listener_non_acm_cert_arns `, and `https_listener_acm_cert_arns ` (#17).
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: The `alb` module adds a new output value, `listener_arns`, that merges the maps in the output values `http_listener_arns`, `https_listener_non_acm_cert_arns `, and `https_listener_acm_cert_arns ` (#17).
+
+</div>
 
 
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.6.0)
@@ -183,7 +235,9 @@ https://github.com/gruntwork-io/package-kafka/pull/1: First release!
   <small>Published: 8/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
-- BREAKING CHANGE: The module `alb` now opens all outbound ports by default. You can preserve the previous default behavior of opening no outbound ports by default by explicitly setting `var.allow_all_outbound = false` when calling this module. Although the previous default was slightly more secure, several users didn't realize the additional steps they needed to take to correctly use the ALB, so we feel this new default behavior is a better balance between security and convenience. (#16)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - BREAKING CHANGE: The module `alb` now opens all outbound ports by default. You can preserve the previous default behavior of opening no outbound ports by default by explicitly setting `var.allow_all_outbound = false` when calling this module. Although the previous default was slightly more secure, several users didn't realize the additional steps they needed to take to correctly use the ALB, so we feel this new default behavior is a better balance between security and convenience. (#16)
 
 _**Additional Background**_
 
@@ -192,6 +246,8 @@ _Previously, when you created an ALB, by default, its Security Group blocked all
 _But this proved to be confusing to people and didn't give us much security benefit anyway, so with this release, we change the default behavior of the ALB module to allow all outbound connections by default. At the same time, we [updated the ECS Cluster module](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.6.0) to no longer modify the ALB's Security Group to allow outbound connections from the ALB to the ECS Cluster since the ALB now allows all outbound traffic by default._
 
 _Therefore, if you use this release or higher with an ECS Cluster, be sure to use [v0.6.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.6.0) or higher of that module as well!_
+
+</div>
 
 
 
@@ -204,7 +260,11 @@ _Therefore, if you use this release or higher with an ECS Cluster, be sure to us
   <small>Published: 8/10/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -217,7 +277,9 @@ _Therefore, if you use this release or higher with an ECS Cluster, be sure to us
   <small>Published: 8/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
-- BREAKING CHANGE: Due to a recent Amazon API change, the `load-balancer-logs` module no longer worked correctly. This release fixes that, however if you upgrade simply by bumping the version, Terraform will prompt you to destroy and re-create your existing S3 Bucket, which will destroy all existing logs! To avoid this, use `terraform state mv <SOURCE> <DESTINATION>` *before* running `terraform apply` with this module version.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - BREAKING CHANGE: Due to a recent Amazon API change, the `load-balancer-logs` module no longer worked correctly. This release fixes that, however if you upgrade simply by bumping the version, Terraform will prompt you to destroy and re-create your existing S3 Bucket, which will destroy all existing logs! To avoid this, use `terraform state mv &lt;SOURCE&gt; &lt;DESTINATION&gt;` *before* running `terraform apply` with this module version.
 
 For example:
 
@@ -227,6 +289,9 @@ terraform state mv module.alb_access_logs_bucket.aws_s3_bucket.access_logs_with_
 
 You can run `terraform plan` before the above to know the new destination to move the source to. Also, ensure that you don't change any variables that'll force a new ALB creation.
 
+For assistance, please contact Gruntwork support. (#33)
+
+</div>
 
 
 
@@ -239,11 +304,15 @@ You can run `terraform plan` before the above to know the new destination to mov
   <small>Published: 8/31/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
-This release fixes an issue where previous versions of OpenVPN did not setup permissions correctly for the `openvpn-server-Users` IAM Group. Now, a user with zero privileges in an AWS account can get all the permissions they need to create an OpenVPN user profile solely by their IAM User account being a member of the `openvpn-server-Users` IAM Group. (#18)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  This release fixes an issue where previous versions of OpenVPN did not setup permissions correctly for the `openvpn-server-Users` IAM Group. Now, a user with zero privileges in an AWS account can get all the permissions they need to create an OpenVPN user profile solely by their IAM User account being a member of the `openvpn-server-Users` IAM Group. (#18)
 
 **Upgrade Instructions:**
 - Add the variables `aws_region` and `aws_account_id` when calling the openvpn-server module in your Terraform code.
 - Run `terragrunt apply` to upgrade.
+
+</div>
 
 
 ### [v0.2.3](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.2.3)
@@ -252,13 +321,17 @@ This release fixes an issue where previous versions of OpenVPN did not setup per
   <small>Published: 8/20/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.2.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-openvpn/pull/17
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-openvpn/pull/17
 
 Fix several issues:
 
 1. Fix the apt repo URL for installing OpenVPN. It's not clear what happened to the old URL, but when you ran `install-openvpn`, you would get the error `404  Not Found [IP: 104.20.194.50 80]`.
 1. The `push route` configuration in `server.conf` had a syntactic issue where the word `route` was outside of double quotes.
 1. Reduce logging verbosity for OpenVPN to production levels.
+
+</div>
 
 
 
@@ -271,7 +344,11 @@ Fix several issues:
   <small>Published: 8/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.5.4">Release notes</a></small>
 </p>
 
-- UPDATE: The `os-hardening` module is now updated to support Terraform 0.10.x.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: The `os-hardening` module is now updated to support Terraform 0.10.x.
+
+</div>
 
 
 
@@ -284,7 +361,11 @@ Fix several issues:
   <small>Published: 8/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.12">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-server/pull/16: Remove unnecessary `depends_on` clause from the single-server module. This clause caused a `reference: aws_instance.instance` error for some users.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-server/pull/16: Remove unnecessary `depends_on` clause from the single-server module. This clause caused a `reference: aws_instance.instance` error for some users.
+
+</div>
 
 
 ### [v0.1.11](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.11)
@@ -293,7 +374,11 @@ https://github.com/gruntwork-io/module-server/pull/16: Remove unnecessary `depen
   <small>Published: 8/13/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.11">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-server/pull/15: The single-server module now exposes parameters to configure the size and type of the root volume.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-server/pull/15: The single-server module now exposes parameters to configure the size and type of the root volume.
+
+</div>
 
 
 ### [v0.1.10](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.10)
@@ -302,10 +387,14 @@ https://github.com/gruntwork-io/module-server/pull/15: The single-server module 
   <small>Published: 8/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.10">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-server/pull/14: 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-server/pull/14: 
 
 * Added a new `attach-eni` script which can be used to attach an ENI to an EC2 Instance. 
 * Updated the `mount-ebs-volume` script so it can automatically find an attach an EBS Volume that has the same tag as the EC2 Instance. This is handy when you create EBS Volumes and Instances in matching "pairs."
+
+</div>
 
 
 
@@ -318,7 +407,9 @@ https://github.com/gruntwork-io/module-server/pull/14:
   <small>Published: 8/20/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-vpc/pull/27, https://github.com/gruntwork-io/module-vpc/pull/28. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-vpc/pull/27, https://github.com/gruntwork-io/module-vpc/pull/28. 
 
 THIS IS A BACKWARDS INCOMPATIBLE RELEASE. READ ON FOR INSTRUCTIONS.
 
@@ -328,6 +419,8 @@ This release fixes two bugs:
 
 1. Release v0.2.1 of module-vpc made specifying the `num_availability_zones` parameter optional. Unfortunately, due to a bug, if you omitted this parameter, instead of creating subnets in every available AZ, the `vpc-app` and `vpc-mgmt` modules only created subnets in a single AZ. This has now been fixed.
 
+</div>
+
 
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.2)
 
@@ -335,9 +428,13 @@ This release fixes two bugs:
   <small>Published: 8/20/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
-**UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  **UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
 
 https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_availability_zones` output variable would report the wrong value (-1) if you didn't set the optional `num_availability_zones` input variable.
+
+</div>
 
 
 ### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.1)
@@ -346,9 +443,13 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
   <small>Published: 8/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.1">Release notes</a></small>
 </p>
 
-**UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  **UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
 
 - UPDATE: The modules `vpc-app` and `vpc-mgmt` now make `var.num_availability_zones` optional. If it's non-empty, the created VPC will only use the specified number of Availability Zones, not *all* Availability Zones. Otherwise, the VPC will be created to use all Availability Zones. As an example, `us-east-1` now has 6 Availability Zones, but users may wish to utilize just 3 of them. This release if fully backwards-compatible. (#22)
+
+</div>
 
 
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.0)
@@ -357,7 +458,11 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
   <small>Published: 8/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.1.9](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.9)
@@ -366,7 +471,11 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
   <small>Published: 8/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -379,7 +488,11 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
   <small>Published: 8/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
-First official release!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  First official release!
+
+</div>
 
 
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.4)
@@ -388,7 +501,11 @@ First official release!
   <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/4: Add documentation. Move `run-exhibitor` into its own module.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/4: Add documentation. Move `run-exhibitor` into its own module.
+
+</div>
 
 
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.3)
@@ -397,7 +514,11 @@ https://github.com/gruntwork-io/package-zookeeper/pull/4: Add documentation. Mov
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/3: The `custom_tags` parameter is now a map and gets applied to all resources.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/3: The `custom_tags` parameter is now a map and gets applied to all resources.
+
+</div>
 
 
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2)
@@ -406,7 +527,11 @@ https://github.com/gruntwork-io/package-zookeeper/pull/3: The `custom_tags` para
   <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-zookeeper/pull/2: The zookeeper-cluster module now runs on top of the server-group module.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-zookeeper/pull/2: The zookeeper-cluster module now runs on top of the server-group module.
+
+</div>
 
 
 
@@ -414,6 +539,6 @@ https://github.com/gruntwork-io/package-zookeeper/pull/2: The zookeeper-cluster 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a9d8c8b6cce64e6fdec6abd60436b7f6"
+  "hash": "2c1bb27c940ead4ec47e04e845a0bb80"
 }
 ##DOCS-SOURCER-END -->

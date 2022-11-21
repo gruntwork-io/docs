@@ -39,7 +39,11 @@ Here are the repos that were updated:
   <small>Published: 7/8/2019 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.25">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/boilerplate/pull/52 and https://github.com/gruntwork-io/boilerplate/pull/53: Apply `README.md` updates for `v0.2.24`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/boilerplate/pull/52 and https://github.com/gruntwork-io/boilerplate/pull/53: Apply `README.md` updates for `v0.2.24`.
+
+</div>
 
 
 
@@ -52,11 +56,15 @@ https://github.com/gruntwork-io/boilerplate/pull/52 and https://github.com/grunt
   <small>Published: 7/11/2019 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.8.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - There is a timing bug with IAM role and instance profile creation that causes the initial `terraform apply` to fail for code using the `server-group` module. This release addresses that by adding a sleep to wait for IAM resource propagation after creation.
 
 
+
+</div>
 
 
 ### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.8.0)
@@ -65,13 +73,17 @@ https://github.com/gruntwork-io/boilerplate/pull/52 and https://github.com/grunt
   <small>Published: 7/2/2019 | Modules affected: server-group, asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.8.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
+
+</div>
 
 
 
@@ -84,7 +96,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/3/2019 | Modules affected: app-version, configuration-deployer, elasticbeanstalk-application, elasticbeanstalk-environment | <a href="https://github.com/gruntwork-io/terraform-aws-beanstalk/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -93,6 +107,8 @@ All the module variables have been updated to use concrete types based on the ne
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
+
+</div>
 
 
 
@@ -105,7 +121,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/27/2019 | Modules affected: terraform-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.15.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 This release updates `terraform-helpers/terraform-update-variable` for better terraform 0.12 and terragrunt 0.19 compatibility. Here are the changes:
 
@@ -115,6 +133,8 @@ This release updates `terraform-helpers/terraform-update-variable` for better te
 - The resulting file will now be passed through `terraform fmt` so that it is formatted.
 
 
+</div>
+
 
 ### [v0.14.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.2)
 
@@ -122,11 +142,15 @@ This release updates `terraform-helpers/terraform-update-variable` for better te
   <small>Published: 7/27/2019 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not creating the required security group rules due to a regression from upgrading module-load-balancer/alb, which required explicitly specifying the number of security group IDs being passed in.
 
 
+
+</div>
 
 
 ### [v0.14.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.1)
@@ -135,13 +159,17 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
   <small>Published: 7/11/2019 | Modules affected: kubernetes-circleci-helpers, jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - This release fixes a regression in the `setup-minikube` script in the `kubernetes-circleci-helpers` module, caused by the removal of the specific docker version we depended on from the ubuntu apt caches.
 - The `install-jenkins` module is now verified to work with Ubuntu 18.04.
 - The `jenkins-server` module is now using `v0.8.1` of `module-asg/modules/server-group`, which includes a fix for IAM timing issues.
 
 
+
+</div>
 
 
 
@@ -154,11 +182,15 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
   <small>Published: 7/25/2019 | Modules affected: rds | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.9.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - If the `allow_connections_from_cidr_blocks` argument of the `rds` module is empty, no security group rule will be created at all now. This makes CIDR based rules completely optional.
 
 
+
+</div>
 
 
 
@@ -171,10 +203,14 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
   <small>Published: 7/18/2019 | Modules affected: ecs-fargate | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.14.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fixes a bug where the `health_check_timeout` variable was not used for setting the timeout to LB target group health check.
 
+
+</div>
 
 
 
@@ -187,7 +223,9 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
   <small>Published: 7/1/2019 | Modules affected: eks-vpc-tags, eks-k8s-role-mapping, eks-k8s-external-dns, eks-k8s-external-dns-iam-policy | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -196,6 +234,8 @@ All the module variables have been updated to use concrete types based on the ne
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
+
+</div>
 
 
 
@@ -208,7 +248,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/2/2019 | Modules affected: logstash-security-group-rules, logstash-iam-policies, logstash-cluster, load-balancer-alb-target-group | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -217,6 +259,8 @@ All the module variables have been updated to use concrete types based on the ne
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
+
+</div>
 
 
 
@@ -229,7 +273,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/6/2019 | Modules affected: kafka-security-group-rules, confluent-tools-cluster, kafka-cluster, kafka-iam-permissions | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `kafka-security-group-rules` [**BACKWARDS INCOMPATIBLE**]
 * `confluent-tools-cluster` [**BACKWARDS INCOMPATIBLE**]
 * `kafka-cluster` [**BACKWARDS INCOMPATIBLE**]
@@ -239,6 +285,15 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
+
+All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
+
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
+
+
+* https://github.com/gruntwork-io/package-kafka/pull/59
+
+</div>
 
 
 
@@ -251,7 +306,9 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/2/2019 | Modules affected: mongodb-cluster, mongodb-backup | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 **All the modules are now terraform 0.12.0 compatible**. Note that this means the modules are **no longer compatible with terraform 0.11 and under**. Starting this release, you must use terraform 0.12.0 or greater to use this module.
 
@@ -260,6 +317,8 @@ All the module variables have been updated to use concrete types based on the ne
 Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
+
+</div>
 
 
 
@@ -272,10 +331,14 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/9/2019 | Modules affected: alarms/elasticsearch-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.13.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - You can now disable yellow cluster status alarms for Elasticsearch by setting `var.disable_status_yellow_alarm` to `true`.
 
+
+</div>
 
 
 ### [v0.12.8](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.8)
@@ -284,10 +347,14 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/9/2019 | Modules affected: alarms/elasticsearch-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - You can now disable yellow cluster status alarms for Elasticsearch by setting `var.disable_status_yellow_alarm` to `true`.
 
+
+</div>
 
 
 
@@ -300,11 +367,15 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/26/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Make GP2 the default root volume type to match what is created in the console 
 
 
+
+</div>
 
 
 
@@ -317,11 +388,15 @@ Note that as part of this, we switched to using `null` to indicate unset values 
   <small>Published: 7/6/2019 | Modules affected: **No changes to underlying modules.** | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.17.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 Starting this release, all the modules are tested and verified to work with Ubuntu 18.04.
 
 
+
+</div>
 
 
 
@@ -334,10 +409,14 @@ Starting this release, all the modules are tested and verified to work with Ubun
   <small>Published: 7/11/2019 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix `mount-ebs-volume` so it works properly on Amazon Linux.
 
+
+</div>
 
 
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.1)
@@ -346,11 +425,15 @@ Starting this release, all the modules are tested and verified to work with Ubun
   <small>Published: 7/3/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 Starting this release, all the scripts are now tested and verified to work with Ubuntu 18.04. No change has been made to the scripts themselves.
 
 
+
+</div>
 
 
 
@@ -363,11 +446,15 @@ Starting this release, all the scripts are now tested and verified to work with 
   <small>Published: 7/24/2019 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Add support for Lambda @ Edge by allowing you to associate lambda functions to the cloudfront distribution. This can be done by passing in the new `var.default_lambda_associations` list.
 
 
+
+</div>
 
 
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.5.1)
@@ -376,12 +463,16 @@ Starting this release, all the scripts are now tested and verified to work with 
   <small>Published: 7/17/2019 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fixes a bug where the IAM certs were not being properly used in `s3-cloudfront`.
 - Fixes a perpetual diff caused when specifying both IAM or ACM certs and default certs.
 
 
+
+</div>
 
 
 ### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.4)
@@ -390,7 +481,9 @@ Starting this release, all the scripts are now tested and verified to work with 
   <small>Published: 7/12/2019 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 * `s3-cloudfront`
 
@@ -400,6 +493,8 @@ Starting this release, all the scripts are now tested and verified to work with 
 
 * #22 
 
+</div>
+
 
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.5.0)
 
@@ -407,7 +502,9 @@ Starting this release, all the scripts are now tested and verified to work with 
   <small>Published: 7/8/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
-**Modules affected**
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  **Modules affected**
 
 s3-static-website [**BACKWARDS INCOMPATIBLE**]
 s3-cloud front [**BACKWARDS INCOMPATIBLE**]
@@ -417,6 +514,11 @@ s3-cloud front [**BACKWARDS INCOMPATIBLE**]
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+
+**Related links**
+
+</div>
 
 
 
@@ -429,10 +531,14 @@ All the module variables have been updated to use concrete types based on the ne
   <small>Published: 7/22/2019 | Modules affected: vpc-mgmt, vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix a bug where the `availability_zones` outputs of `vpc-app` and `vpc-mgmt` had an extra layer of nesting, so you ended up with a list of lists, rather than a single, flat list.
 
+
+</div>
 
 
 
@@ -445,11 +551,15 @@ All the module variables have been updated to use concrete types based on the ne
   <small>Published: 7/12/2019 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Resolves an IAM timing fix in the `zookeeper-cluster` module that can happen occasionally.
 
 
+
+</div>
 
 
 ### [v0.6.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.1)
@@ -458,11 +568,15 @@ All the module variables have been updated to use concrete types based on the ne
   <small>Published: 7/10/2019 | Modules affected: **No changes to underlying modules.** | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 Starting this release, all the modules are tested and verified to work with Ubuntu 18.04.
 
 
+
+</div>
 
 
 
@@ -475,12 +589,16 @@ Starting this release, all the modules are tested and verified to work with Ubun
   <small>Published: 7/26/2019 | Modules affected: **No changes to underlying modules** | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Improve testing: test latest version of `kubergrunt` and update `setup-minikube` script for CI.
 - Fix typo in root example where the helm client TLS public certificate was not being returned.
 
 
+
+</div>
 
 
 
@@ -488,6 +606,6 @@ Starting this release, all the modules are tested and verified to work with Ubun
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "729097080c139c7ac20f5efd833dd3d3"
+  "hash": "5de5dc1eff2feff3a6503810908b6b48"
 }
 ##DOCS-SOURCER-END -->

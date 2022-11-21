@@ -27,7 +27,11 @@ Here are the repos that were updated:
   <small>Published: 5/31/2017 | <a href="https://github.com/gruntwork-io/sample-app-frontend-acme/releases/tag/release-v0.0.1">Release notes</a></small>
 </p>
 
-(no release notes found)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  (no release notes found)
+
+</div>
 
 
 
@@ -40,7 +44,11 @@ Here are the repos that were updated:
   <small>Published: 5/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.16">Release notes</a></small>
 </p>
 
-- UPDATE: The `build-packer-artifact` script now accepts zero or more arguments of the form `--var key=value` so that key-val pairs can be passed as variables to a Packer build. (#36, #37)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: The `build-packer-artifact` script now accepts zero or more arguments of the form `--var key=value` so that key-val pairs can be passed as variables to a Packer build. (#36, #37)
+
+</div>
 
 
 ### [v0.3.15](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.15)
@@ -49,7 +57,11 @@ Here are the repos that were updated:
   <small>Published: 5/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.15">Release notes</a></small>
 </p>
 
-- UPDATE: The `git-add-commit-push` command now does a `git pull` before it does a `git push`. In addition, the `git push` command now has configurable behavior for [push.default](https://git-scm.com/docs/git-config#git-config-pushdefault) and now defaults to `simple` instead of `matching`. (#32)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: The `git-add-commit-push` command now does a `git pull` before it does a `git push`. In addition, the `git push` command now has configurable behavior for [push.default](https://git-scm.com/docs/git-config#git-config-pushdefault) and now defaults to `simple` instead of `matching`. (#32)
+
+</div>
 
 
 ### [v0.3.14](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.14)
@@ -58,7 +70,11 @@ Here are the repos that were updated:
   <small>Published: 5/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.14">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ci/pull/34: The `build-docker-image` script will now pass any args the script isn’t explicitly expecting (e.g. `--docker-image-name`) directly to the `docker build` command.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ci/pull/34: The `build-docker-image` script will now pass any args the script isn’t explicitly expecting (e.g. `--docker-image-name`) directly to the `docker build` command.
+
+</div>
 
 
 ### [v0.3.13](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.13)
@@ -67,7 +83,11 @@ https://github.com/gruntwork-io/module-ci/pull/34: The `build-docker-image` scri
   <small>Published: 5/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.13">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-ci/pull/30: The `build-docker-image` and `build-packer-artifact` scripts now allow you to customize the key in the output properties file.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-ci/pull/30: The `build-docker-image` and `build-packer-artifact` scripts now allow you to customize the key in the output properties file.
+
+</div>
 
 
 
@@ -80,7 +100,11 @@ https://github.com/gruntwork-io/module-ci/pull/30: The `build-docker-image` and 
   <small>Published: 5/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.6">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/21: The RDS module now exposes a `license_model` parameter that you can use to set the license model for your DB. This is required for some of the DBs supported by RDS, such as SQL Server and Oracle.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/21: The RDS module now exposes a `license_model` parameter that you can use to set the license model for your DB. This is required for some of the DBs supported by RDS, such as SQL Server and Oracle.
+
+</div>
 
 
 
@@ -93,7 +117,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/21: The RDS module now 
   <small>Published: 5/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.5">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the `alb-target-group-alarms` where there was a typo in the `comparison_operator` of the `tg_low_healthy_host_count` alarm. 
+
+</div>
 
 
 ### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.4)
@@ -102,7 +130,11 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/30: Fix a bug in the 
   <small>Published: 5/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-aws-monitoring/pull/28: The scripts in this repo should now work on CentOS / RHEL.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/28: The scripts in this repo should now work on CentOS / RHEL.
+
+</div>
 
 
 
@@ -115,7 +147,11 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/28: The scripts in th
   <small>Published: 5/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 ### [v0.4.20](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.20)
@@ -124,7 +160,11 @@ https://github.com/gruntwork-io/module-aws-monitoring/pull/28: The scripts in th
   <small>Published: 5/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.20">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/25: We've added a new module called [fail2ban](https://github.com/gruntwork-io/module-security/tree/master/modules/fail2ban) that you can use to install fail2ban on your servers and automatically have it ban malicious looking traffic (e.g. someone hammering SSH). The module includes integration with CloudWatch, so you can trigger CloudWatch alarms any time someone is banned.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/25: We've added a new module called [fail2ban](https://github.com/gruntwork-io/module-security/tree/master/modules/fail2ban) that you can use to install fail2ban on your servers and automatically have it ban malicious looking traffic (e.g. someone hammering SSH). The module includes integration with CloudWatch, so you can trigger CloudWatch alarms any time someone is banned.
+
+</div>
 
 
 ### [v0.4.19](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.19)
@@ -133,7 +173,11 @@ https://github.com/gruntwork-io/module-security/pull/25: We've added a new modul
   <small>Published: 5/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.19">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/34: The `cross-account-iam-roles` module can now create an auto deploy IAM role that allows a CI server (e.g. Jenkins) in another AWS account assume the role to do automated deployments in the current AWS account.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/34: The `cross-account-iam-roles` module can now create an auto deploy IAM role that allows a CI server (e.g. Jenkins) in another AWS account assume the role to do automated deployments in the current AWS account.
+
+</div>
 
 
 ### [v0.4.18](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.18)
@@ -142,7 +186,11 @@ https://github.com/gruntwork-io/module-security/pull/34: The `cross-account-iam-
   <small>Published: 5/6/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.18">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`. 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module now creates an IAM group that grants access to all external AWS accounts in `var.iam_groups_for_cross_account_access`. 
+
+</div>
 
 
 ### [v0.4.17](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.17)
@@ -151,7 +199,11 @@ https://github.com/gruntwork-io/module-security/pull/33: The `iam-groups` module
   <small>Published: 5/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.17">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/32: The `aws-cli-mfa` script can now also assume an IAM role for you. This is particularly useful if you have multiple AWS accounts and want to authenticate to account A with MFA and then assume a role in account B. Now you can do it all with a one-liner!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/32: The `aws-cli-mfa` script can now also assume an IAM role for you. This is particularly useful if you have multiple AWS accounts and want to authenticate to account A with MFA and then assume a role in account B. Now you can do it all with a one-liner!
+
+</div>
 
 
 
@@ -164,7 +216,11 @@ https://github.com/gruntwork-io/module-security/pull/32: The `aws-cli-mfa` scrip
   <small>Published: 5/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.8">Release notes</a></small>
 </p>
 
-- UPDATE: Updated `module-server` to use the non-deprecated property `role` instead of the deprecated `roles` as part of the `aws_iam_instance_profile` resource. (#11)
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - UPDATE: Updated `module-server` to use the non-deprecated property `role` instead of the deprecated `roles` as part of the `aws_iam_instance_profile` resource. (#11)
+
+</div>
 
 
 
@@ -172,6 +228,6 @@ https://github.com/gruntwork-io/module-security/pull/32: The `aws-cli-mfa` scrip
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0b58e87bb0185f7e20843e99dd7f3646"
+  "hash": "3f5a0dc6b9856f39587cbf569738d12e"
 }
 ##DOCS-SOURCER-END -->

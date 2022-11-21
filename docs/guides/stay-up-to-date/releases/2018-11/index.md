@@ -30,7 +30,11 @@ Here are the repos that were updated:
   <small>Published: 11/10/2018 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.7">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntkms/pull/16: Update all dependency versions, including updating to the latest AWS Go SDK. This should ensure `gruntkms` works with the latest AWS metadata endpoints, including the ECS Task metadata endpoints.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntkms/pull/16: Update all dependency versions, including updating to the latest AWS Go SDK. This should ensure `gruntkms` works with the latest AWS metadata endpoints, including the ECS Task metadata endpoints.
+
+</div>
 
 
 
@@ -43,7 +47,11 @@ https://github.com/gruntwork-io/gruntkms/pull/16: Update all dependency versions
   <small>Published: 11/6/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.25">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/36: Update AWS account we use to access other accounts.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/36: Update AWS account we use to access other accounts.
+
+</div>
 
 
 ### [v0.0.24](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.24)
@@ -52,7 +60,11 @@ https://github.com/gruntwork-io/gruntwork/pull/36: Update AWS account we use to 
   <small>Published: 11/6/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.24">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/gruntwork/pull/35: Update list of GitHub users on Gruntwork team.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/gruntwork/pull/35: Update list of GitHub users on Gruntwork team.
+
+</div>
 
 
 
@@ -65,7 +77,9 @@ https://github.com/gruntwork-io/gruntwork/pull/35: Update list of GitHub users o
   <small>Published: 11/26/2018 | Modules affected: eks-vpc-tags | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-vpc-tags`
 
 
@@ -75,6 +89,12 @@ This release contains implementations for the following modules:
 
 
 - This release is not intended to be used in production, as core features of a production grade infrastructure is still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+- This release is not tested with windows. Please file any bugs/issues you run into on [the issue tracker](https://github.com/gruntwork-io/package-k8s/issues).
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/28
+
+</div>
 
 
 ### [v0.0.1: Development Grade EKS Cluster](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.0.1)
@@ -83,7 +103,9 @@ This release contains implementations for the following modules:
   <small>Published: 11/23/2018 | Modules affected: eks-cluster-control-plane, eks-cluster-workers, eks-k8s-role-mapping, install-eks-aws-iam-authenticator | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-cluster-control-plane`
 - `eks-cluster-workers`
 - `eks-k8s-role-mapping`
@@ -93,6 +115,20 @@ This release contains implementations for the following modules:
 
 This initial release contains implementations for the following modules:
 
+- `eks-cluster-control-plane`: Provision an EKS cluster resource with recommended IAM policies and security groups that can be extended.
+- `eks-cluster-workers`: Provision a set of EC2 instances that EKS can use as worker nodes.
+- `eks-k8s-role-mapping`: Map AWS IAM roles to Kubernetes RBAC roles to allow authentication and authorization to Kubernetes via AWS credentials.
+- `install-eks-aws-iam-authenticator`: Prebuilt binaries for the [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) that can be installed without a working golang environment. This binary is used to support authenticating to EKS by providing IAM roles to the EKS cluster's Kubernetes API.
+- `k8s-scripts`: Helper scripts to configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/) and [`helm`](https://helm.sh/) on the various flavors of Kubernetes clusters.
+
+
+- This initial release is not intended to be used in production, as core features of a production grade infrastructure is still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+- This initial release is not tested with windows. Please file any bugs/issues you run into on [the issue tracker](https://github.com/gruntwork-io/package-k8s/issues).
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/11
+
+</div>
 
 
 
@@ -105,12 +141,16 @@ This initial release contains implementations for the following modules:
   <small>Published: 11/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 ```
 Some commit message. [go-test-args=-run SomeTestFunc]
 ```
 
 The above commit message will only run `SomeTestFunc` test function in the CI server after a push
+
+</div>
 
 
 
@@ -123,7 +163,9 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
   <small>Published: 11/22/2018 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `aurora`
 
 
@@ -132,6 +174,8 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 
 * https://github.com/gruntwork-io/module-data-storage/pull/63
 
+</div>
+
 
 ### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.0)
 
@@ -139,13 +183,17 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
   <small>Published: 11/15/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 To update your existing encryption enabled RDS cluster (which most likely uses serverless engine mode, else you'd have run into an error), simply run:
 
 ```
-terragrunt state mv module.<module-name>.aws_rds_cluster.cluster_with_encryption module.<module-name>.aws_rds_cluster.cluster_with_encryption_serverless
+terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encryption module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encryption_serverless
 ```
+
+</div>
 
 
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.7.1)
@@ -154,11 +202,15 @@ terragrunt state mv module.<module-name>.aws_rds_cluster.cluster_with_encryption
   <small>Published: 11/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/gruntwork-io/module-data-storage/pull/60, https://github.com/gruntwork-io/module-data-storage/pull/61: New features in the `aurora` module!
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/gruntwork-io/module-data-storage/pull/60, https://github.com/gruntwork-io/module-data-storage/pull/61: New features in the `aurora` module!
 
 * *Add support for Aurora serverless*: You can now set the `engine_mode` parameter to `provisioned` or `serverless`. You can also set scaling configuration settings using the `scaling_configuration_xxx` parameters.
 
 * *Add support for deletion protection*: You can set `deletion_protection` to `true` to prevent a database from being deleted by accident.
+
+</div>
 
 
 
@@ -171,7 +223,9 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
   <small>Published: 11/28/2018 | Modules affected: ecs-deploy-check-binaries | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `ecs-deploy-check-binaries`
 
 
@@ -180,6 +234,8 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
 
 - https://github.com/gruntwork-io/module-ecs/pull/99
 
+</div>
+
 
 ### [v0.10.1](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.1)
 
@@ -187,7 +243,9 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
   <small>Published: 11/23/2018 | Modules affected: ecs-deploy-check-binaries | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `ecs-deploy-check-binaries`
 
 
@@ -195,6 +253,8 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
 
 
 - https://github.com/gruntwork-io/module-ecs/pull/97
+
+</div>
 
 
 
@@ -207,7 +267,9 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
   <small>Published: 11/28/2018 | Modules affected: cross-account-iam-roles, iam-groups, iam-policies | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `cross-account-iam-roles`
 * `iam-groups`
 * `iam-policies`
@@ -218,6 +280,10 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
 * The `iam-policies` module now exposes an output called `houston_cli_permissions` that creates the permissions necessary to call the CLI endpoints in Gruntwork Houston.
 
 
+* https://github.com/gruntwork-io/module-security/pull/121
+
+</div>
+
 
 ### [v0.15.4](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.4)
 
@@ -225,7 +291,11 @@ https://github.com/gruntwork-io/module-data-storage/pull/59, https://github.com/
   <small>Published: 11/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.4">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/module-security/pull/119: The `cloudtrail` module now exposes a `force_destroy` flag you can use to forcibly delete all the contents of the CloudTrail S3 bucket when you run `destroy`.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/119: The `cloudtrail` module now exposes a `force_destroy` flag you can use to forcibly delete all the contents of the CloudTrail S3 bucket when you run `destroy`.
+
+</div>
 
 
 
@@ -238,7 +308,9 @@ https://github.com/gruntwork-io/module-security/pull/119: The `cloudtrail` modul
   <small>Published: 11/29/2018 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `s3-cloudfront`
 
 
@@ -247,6 +319,8 @@ https://github.com/gruntwork-io/module-security/pull/119: The `cloudtrail` modul
 
 * https://github.com/gruntwork-io/package-static-assets/pull/16
 
+</div>
+
 
 ### [v0.3.4](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.4)
 
@@ -254,7 +328,9 @@ https://github.com/gruntwork-io/module-security/pull/119: The `cloudtrail` modul
   <small>Published: 11/21/2018 | Modules affected: s3-static-website, s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `s3-static-website`
 * `s3-cloudfront`
 
@@ -264,6 +340,8 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 
 * https://github.com/gruntwork-io/package-static-assets/pull/14
 
+</div>
+
 
 ### [v0.3.3](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3)
 
@@ -271,7 +349,11 @@ You can now specify custom tags for all S3 buckets created by these modules usin
   <small>Published: 11/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3">Release notes</a></small>
 </p>
 
-https://github.com/gruntwork-io/package-static-assets/pull/13: Expose `force_destroy_website` and `force_destroy_redirect` flags in the `s3-static-website` module. You can use these flags to force the module S3 buckets in the module to be destroyed, even if they still have content in them.
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-static-assets/pull/13: Expose `force_destroy_website` and `force_destroy_redirect` flags in the `s3-static-website` module. You can use these flags to force the module S3 buckets in the module to be destroyed, even if they still have content in them.
+
+</div>
 
 
 
@@ -284,7 +366,11 @@ https://github.com/gruntwork-io/package-static-assets/pull/13: Expose `force_des
   <small>Published: 11/5/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -292,6 +378,6 @@ https://github.com/gruntwork-io/package-static-assets/pull/13: Expose `force_des
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "aa03777bc64a693ddf6843da61cfeaf0"
+  "hash": "762cb1013260625d4e99d9e30f9782a4"
 }
 ##DOCS-SOURCER-END -->

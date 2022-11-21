@@ -38,7 +38,9 @@ Here are the repos that were updated:
   <small>Published: 1/9/2019 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-cluster-control-plane`
 
 
@@ -48,6 +50,9 @@ Here are the repos that were updated:
 - This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
 
 
+- https://github.com/gruntwork-io/package-k8s/pull/43
+
+</div>
 
 
 
@@ -60,7 +65,9 @@ Here are the repos that were updated:
   <small>Published: 1/26/2019 | Modules affected: asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.24">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `asg-rolling-deploy`
 
 
@@ -70,6 +77,8 @@ Here are the repos that were updated:
 * https://github.com/gruntwork-io/module-asg/pull/59
 * https://github.com/gruntwork-io/module-asg/pull/61
 
+</div>
+
 
 ### [v0.6.23](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.23)
 
@@ -77,7 +86,9 @@ Here are the repos that were updated:
   <small>Published: 1/21/2019 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.23">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `server-group`
 
 
@@ -86,6 +97,8 @@ Here are the repos that were updated:
 
 * https://github.com/gruntwork-io/module-asg/pull/57
 * https://github.com/gruntwork-io/module-asg/pull/58
+
+</div>
 
 
 
@@ -98,16 +111,27 @@ Here are the repos that were updated:
   <small>Published: 1/17/2019 | Modules affected: redis | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `redis` (BACKWARDS INCOMPATIBLE)
 
 
 - `redis`: Adds 4 new `aws_replication_group` permutations to the Redis module, to workaround the inability to use interpolations in `ignore_changes` field in a `lifecycle` block (hashicorp/terraform#3116) which will have been the ideal solution to ignoring the `number_cache_cluster` field when in `cluster_mode` to prevent `terraform plan` diffs due to cluster resizing.
 
 
-This release is backwards incompatible and to update an existing Redis cluster, use `terragrunt state mv <old_address> <new_address>` to ensure that your cluster isn't deleted when you run `terraform apply`.
+This release is backwards incompatible and to update an existing Redis cluster, use `terragrunt state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn't deleted when you run `terraform apply`.
 
 For example, to migrate a cluster mode Redis cluster deployed via the `aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token` resource, you'd simply run:
+
+```bash
+terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token_with_cluster_mode 
+```
+
+
+- https://github.com/gruntwork-io/module-cache/pull/28
+
+</div>
 
 
 
@@ -120,7 +144,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/14/2019 | Modules affected: install-jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `install-jenkins`
 
 
@@ -129,6 +155,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-ci/pull/83
 
+</div>
+
 
 ### [v0.13.7](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.7)
 
@@ -136,7 +164,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/7/2019 | Modules affected: git-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.7">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `git-helpers`
 
 
@@ -144,6 +174,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 
 * https://github.com/gruntwork-io/module-ci/pull/82
+
+</div>
 
 
 
@@ -156,7 +188,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/30/2019 | Modules affected: rds | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.7">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `rds`
 
 
@@ -165,6 +199,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-data-storage/pull/71
 
+</div>
+
 
 ### [v0.8.6](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.6)
 
@@ -172,7 +208,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/28/2019 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `aurora`
 
 
@@ -181,6 +219,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-data-storage/pull/75
 
+</div>
+
 
 ### [v0.8.5](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.5)
 
@@ -188,7 +228,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/3/2019 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `aurora`
 
 
@@ -196,6 +238,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 
 * https://github.com/gruntwork-io/module-data-storage/pull/69
+
+</div>
 
 
 
@@ -208,7 +252,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/23/2019 | Modules affected: ecs-daemon-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-daemon-service`
 
 
@@ -217,6 +263,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-ecs/pull/113
 
+</div>
+
 
 ### [v0.11.2](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.2)
 
@@ -224,7 +272,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/16/2019 | Modules affected: ecs-daemon-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-daemon-service`
 
 
@@ -233,6 +283,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-ecs/pull/111
 
+</div>
+
 
 ### [v0.11.1](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.1)
 
@@ -240,7 +292,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/16/2019 | Modules affected: ecs-service-with-discovery | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-service-with-discovery`
 
 
@@ -249,6 +303,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-ecs/pull/110
 
+</div>
+
 
 ### [v0.11.0](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.0)
 
@@ -256,7 +312,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/10/2019 | Modules affected: ecs-service-with-discovery | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.11.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `ecs-service-with-discovery` **[Breaking Change]**
 
 
@@ -265,6 +323,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 * https://github.com/gruntwork-io/module-ecs/pull/108
 * https://github.com/gruntwork-io/module-ecs/pull/109
+
+</div>
 
 
 
@@ -277,7 +337,9 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
   <small>Published: 1/14/2019 | Modules affected: eks-cluster-control-plane, eks-cluster-workers, eks-k8s-role-mapping, eks-vpc-tags | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.1.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `eks-cluster-control-plane`
 - `eks-cluster-workers`
 - `eks-k8s-role-mapping`
@@ -285,6 +347,8 @@ For example, to migrate a cluster mode Redis cluster deployed via the `aws_elast
 
 
 This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.4).
+
+</div>
 
 
 
@@ -294,10 +358,12 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/23/2019 | Modules affected: confluent-tools-cluster, confluent-tools-security-group-rules, kafka-cluster, kafka-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 1/23/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
- ### Modules affected
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+   ### Modules affected
 
 * `confluent-tools-cluster`
 * `confluent-tools-security-group-rules`
@@ -307,6 +373,21 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
 
 *  Upgrade ZooKeeper dependency to v0.5.0 with improved health checking
 *  Add support for num_xxx variables for Security Groups
+*  Update examples and tests to reflect the changes
+
+
+You can find examples of how to do this upgrade in [this commit](https://github.com/gruntwork-io/infrastructure-modules-acme/commit/c06c70c0cfbae967723438b2cd8a390179b736d3) and [this commit](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/commit/b37ef00e8e36deba3990455d08b618abb1f00d8b).
+ 
+*  Add `num_*` variables for security-group rules to avoid `terraform` issues with `length` -function in all affected modules.
+
+
+* https://github.com/gruntwork-io/package-kafka/pull/45
+* https://github.com/gruntwork-io/package-kafka/issues/40
+* https://github.com/gruntwork-io/package-zookeeper/releases/tag/v0.5.0
+
+
+
+</div>
 
 
 ### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.4)
@@ -315,7 +396,9 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
   <small>Published: 1/9/2019 | Modules affected: server-group, kafka-cluster, run-kafka, confluent-tools-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `server-group`
 * `kafka-cluster`
 * `run-kafka`
@@ -325,6 +408,13 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
 
 
 * This release includes big improvements in testing. Tests are upgraded to `terratest v0.13.20` and tests are now test executed using 3 different Linux distributions: `Ubuntu`, `AmazonLinux` and `CentOS`. 
+* Also, a number of module dependencies were updated to more recent versions.
+
+
+* #43 
+
+
+</div>
 
 
 
@@ -337,7 +427,9 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
   <small>Published: 1/31/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.13.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `alb` **[BREAKING CHANGE]**
 
 
@@ -347,6 +439,12 @@ This is a compatible release of `terraform-aws-eks` with [`package-k8s` v0.1.4](
 For most teams, the new 404 behavior is better, so no code changes will be necessary. However, if you wish to override this 404 behavior, you have two options:
 
 1. You can override the default fixed response via the `default_action_content_type`, `default_action_body`, `default_action_status_code` parameters.
+1. You can add an ALB Listener Rule that catches ALL requests (i.e., `*`) and have that rule forward to a custom Target Group so your own apps can respond in any way you wish.  
+
+
+* https://github.com/gruntwork-io/module-load-balancer/pull/46
+
+</div>
 
 
 
@@ -359,7 +457,9 @@ For most teams, the new 404 behavior is better, so no code changes will be neces
   <small>Published: 1/31/2019 | Modules affected: cloudwatch-dashboard-metric-widget, cloudwatch-dashboard | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.11.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `cloudwatch-dashboard-metric-widget` (BACKWARDS INCOMPATIBLE)
 - `cloudwatch-dashboard`
 
@@ -371,13 +471,20 @@ For most teams, the new 404 behavior is better, so no code changes will be neces
 This release is backwards incompatible and to update an existing metric widget, simply remove the surrounding quotes on the boolean value supplied.
 
 
+- https://github.com/gruntwork-io/module-aws-monitoring/pull/68
+
+</div>
+
+
 ### [v0.10.3](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
   <small>Published: 1/22/2019 | Modules affected: alarms/alb-target-group-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `alarms/alb-target-group-alarms`
 
 
@@ -385,6 +492,8 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 
 - https://github.com/gruntwork-io/module-aws-monitoring/pull/59
+
+</div>
 
 
 
@@ -397,11 +506,15 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/30/2019 | Modules affected: gruntsam | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.9">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 
 - Fix https://github.com/gruntwork-io/package-sam/issues/25: Add `depends_on` to daisy chain resources that frequently encounter `ConflictException`.
 
 
+
+</div>
 
 
 ### [v0.1.8](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.8)
@@ -410,7 +523,11 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/24/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.8">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
+
+</div>
 
 
 
@@ -423,7 +540,9 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/21/2019 | Modules affected: fail2ban | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.15.7">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `fail2ban`
 
 
@@ -431,6 +550,8 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 
 * https://github.com/gruntwork-io/module-security/pull/125
+
+</div>
 
 
 
@@ -443,7 +564,9 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/23/2019 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `persistent-ebs-volume` **[BREAKING CHANGE]**
 
 
@@ -452,6 +575,8 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 * https://github.com/gruntwork-io/module-server/pull/41
 
+</div>
+
 
 ### [v0.5.4](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.4)
 
@@ -459,7 +584,9 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/9/2019 | Modules affected: persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `persistent-ebs-volume`
 
 
@@ -468,6 +595,8 @@ This release is backwards incompatible and to update an existing metric widget, 
 
 * https://github.com/gruntwork-io/module-server/pull/38
 
+</div>
+
 
 ### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.3)
 
@@ -475,7 +604,9 @@ This release is backwards incompatible and to update an existing metric widget, 
   <small>Published: 1/8/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.5.3">Release notes</a></small>
 </p>
 
-`single-server`
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  `single-server`
 
 Some users may have requirements for tighter security group rules on instances, but the single-server module currently has a hard coded rule to allow all outbound traffic.
 
@@ -483,6 +614,8 @@ What we changed:
 * Added an allow_all_outbound_traffic variable to the single-server module and implemented it so the allow_outbound_all security group rule can be toggled on/off by end-users.
 * The variable defaults to true so existing users will be unaffected.
 
+
+</div>
 
 
 
@@ -495,7 +628,9 @@ What we changed:
   <small>Published: 1/9/2019 | Modules affected: **[NEW]**, **[NEW]** | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - **[NEW]** `run-pex-as-data-source`
 - **[NEW]** `run-pex-as-resource`
 
@@ -506,6 +641,10 @@ This release introduces modules that support running python PEX files in Terrafo
 - `run-pex-as-resource` can be used to run python pex files as a local-exec provisioner on a null_resource.
 
 
+- https://github.com/gruntwork-io/package-terraform-utilities/pull/9
+
+</div>
+
 
 ### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.5)
 
@@ -513,7 +652,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/9/2019 | Modules affected: require-executable | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `require-executable`
 
 
@@ -522,6 +663,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 - https://github.com/gruntwork-io/package-terraform-utilities/pull/10
 
+</div>
+
 
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.4)
 
@@ -529,7 +672,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/8/2019 | Modules affected: **[NEW]** | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - **[NEW]** `require-executable`
 
 
@@ -537,6 +682,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 
 - https://github.com/gruntwork-io/package-terraform-utilities/pull/8
+
+</div>
 
 
 
@@ -549,7 +696,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/29/2019 | Modules affected: vpc-app, vpc-mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.5">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `vpc-app`
 * `vpc-mgmt`
 
@@ -560,6 +709,8 @@ This release introduces modules that support running python PEX files in Terrafo
 * https://github.com/gruntwork-io/module-vpc/pull/50
 * https://github.com/terraform-providers/terraform-provider-aws/issues/338
 
+</div>
+
 
 ### [v0.5.4](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.4)
 
@@ -567,7 +718,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/14/2019 | Modules affected: vpc-app-network-acls | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.4">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `vpc-app-network-acls`
 
 
@@ -578,6 +731,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 
 
+</div>
+
 
 ### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.3)
 
@@ -585,7 +740,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/9/2019 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.3">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `vpc-app`
 
 
@@ -594,6 +751,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 * https://github.com/gruntwork-io/module-vpc/pull/48
 
+</div>
+
 
 ### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.2)
 
@@ -601,7 +760,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/4/2019 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `vpc-app`
 
 
@@ -609,6 +770,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 
 * https://github.com/gruntwork-io/module-vpc/pull/46
+
+</div>
 
 
 
@@ -621,7 +784,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/29/2019 | Modules affected: zookeeper-cluster, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `zookeeper-cluster`
 * `zookeeper-security-group-rules`
 
@@ -631,6 +796,8 @@ This release introduces modules that support running python PEX files in Terrafo
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/39
 
+</div>
+
 
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1)
 
@@ -638,7 +805,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/29/2019 | Modules affected: run-health-checker | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 * `run-health-checker`
 
 
@@ -647,14 +816,18 @@ This release introduces modules that support running python PEX files in Terrafo
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/38
 
+</div>
+
 
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/17/2019 | Modules affected: run-health-checker, zookeeper-cluster, install-oracle-jdk, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 1/17/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
- ### Modules affected
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+   ### Modules affected
 
 * `run-health-checker` (new)
 * `zookeeper-cluster`
@@ -664,6 +837,18 @@ This release introduces modules that support running python PEX files in Terrafo
 
 *  Improved ZooKeeper health checking by not only monitoring availability of the ZK client port, but actually checking the cluster status of the node with a `stat` command using a custom `health-checker` script target. 
 *  Upgrade Oracle JDK installer to `8u202`.
+
+
+You can find examples of how to do this upgrade in [this commit](https://github.com/gruntwork-io/infrastructure-modules-acme/commit/ef86d71dfb2336b743289a60a0ff9bcc8c529136) and [this commit](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/commit/cf2cef34327ebb5ae41af8e3be65103078479fe1).
+
+*  Configuration options for health checker - inbound rules, port in `zookeeper-security-group-rules` and `zookeeper-cluster`. 
+*  Add `num_*` variables for security-group rules to avoid `terraform` issues with `length` -function in `zookeeper-security-group-rules` and `zookeeper-cluster`.
+
+
+* https://github.com/gruntwork-io/package-zookeeper/pull/37
+* https://github.com/gruntwork-io/health-checker/releases/tag/v0.0.3
+
+</div>
 
 
 
@@ -676,7 +861,9 @@ This release introduces modules that support running python PEX files in Terrafo
   <small>Published: 1/18/2019 | Modules affected: k8s-namespace, k8s-service-account | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `k8s-namespace` [**BACKWARDS INCOMPATIBLE**] 
 - `k8s-service-account` [**BACKWARDS INCOMPATIBLE**] 
 
@@ -687,6 +874,10 @@ This release introduces modules that support running python PEX files in Terrafo
 This is a backwards incompatible change. Specifically, the modules no longer need to specify a `kubectl_config_context_name` and `kubectl_config_path`. Additionally, we now require the number of rbac roles to be passed in as a variable to work around a terraform limitation with looping interpolated lists.
 
 
+- https://github.com/gruntwork-io/terraform-kubernetes-helm/pull/7
+
+</div>
+
 
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.0.1)
 
@@ -694,7 +885,9 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
   <small>Published: 1/14/2019 | Modules affected: k8s-namespace, k8s-service-account | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
+  
 - `k8s-namespace`
 - `k8s-service-account`
 
@@ -702,12 +895,14 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 - Introduces `k8s-namespace` terraform module, which will create a namespace and RBAC roles for admin access and read only access restricted to the namespace.
 - Introduces `k8s-service-account` terraform module, which will create a service account. This module also supports binding RBAC roles to the service account.
 
+</div>
+
 
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dad4fb1e3a98c03d28f396bbfd11271c"
+  "hash": "dd899d78c485aff364599ddcd36a7902"
 }
 ##DOCS-SOURCER-END -->
