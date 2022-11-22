@@ -289,13 +289,13 @@ Secondarily - change the bucket_id input to be a bucket_name input in the applic
   This is a pre-release the introduces package-beanstalk: A series of modules to get apps up and running in elastic beanstalk.
 
 The main modules are:
-* [elasticbeanstalk-application](/modules/elasticbeanstalk-application): A module for creating an Elastic Beanstalk application
-* [elasticbeanstalk-environment](/modules/elasticbeanstalk-environment): A module for setting up the Elastic Beanstalk environment
+* `elasticbeanstalk-application`: A module for creating an Elastic Beanstalk application
+* `elasticbeanstalk-environment`: A module for setting up the Elastic Beanstalk environment
 
 The supporting modules are:
-* [app-version](/modules/app-version): A module that contains scripts that help upload release artifacts to Beanstalk as well as to deploy them
-* [configuration-deployer](/modules/configuration-deployer): A script to help apply configuration templates to the Elastic Beanstalk deployed application
-* [iam-policies](/modules/iam-policies): A Terraform module to configure IAM permissions used by Elastic Beanstalk.
+* `app-version`: A module that contains scripts that help upload release artifacts to Beanstalk as well as to deploy them
+* `configuration-deployer`: A script to help apply configuration templates to the Elastic Beanstalk deployed application
+* `iam-policies`: A Terraform module to configure IAM permissions used by Elastic Beanstalk.
 
 See the main README for more information.
 
@@ -731,6 +731,6 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f1cfa2ae37110c187a01b97d58081488"
+  "hash": "38d7a6b66fb257bfb84e605065ed13b9"
 }
 ##DOCS-SOURCER-END -->

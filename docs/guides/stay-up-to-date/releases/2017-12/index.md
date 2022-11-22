@@ -204,9 +204,9 @@ Here are the repos that were updated:
 * backup pki on an hourly basis via cron
 * update docs
 
-When upgrading to this version, it is important to make sure you install the new [`backup-openvpn-pki`](modules/backup-openvpn-pki) module in your packer templates. For an example, please see the [packer example](examples/packer/openvpn-server-ubuntu1604.json#L59).
+When upgrading to this version, it is important to make sure you install the new `backup-openvpn-pki` module in your packer templates. For an example, please see the packer example in the `examples` folder.
 
-We also suggest explicitly providing values for the `--request-url` parameter to the `run-process-requests` script and the `--revoke-url` parameter to the `run-process-revokes` script. For a working example, see the [user-data](examples/openvpn-host/user-data/user-data.sh#L48) from the openvpn-host example.
+We also suggest explicitly providing values for the `--request-url` parameter to the `run-process-requests` script and the `--revoke-url` parameter to the `run-process-revokes` script. For a working example, see the `user-data.sh` script from the `openvpn-host` example.
 
 </div>
 
@@ -250,6 +250,6 @@ We also suggest explicitly providing values for the `--request-url` parameter to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8d76cb732e2527bdcee43bb0fc8210f9"
+  "hash": "4a730d17952dd1207b4f4dbf95d42298"
 }
 ##DOCS-SOURCER-END -->

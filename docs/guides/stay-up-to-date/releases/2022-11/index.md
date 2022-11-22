@@ -224,6 +224,25 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 ## terraform-aws-service-catalog
 
 
+### [v0.98.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/22/2022 | Modules affected: base/ec2-baseline, data-stores/rds, data-stores/s3-bucket, landingzone/account-baseline-app | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Added support for new AWS region (`me-central-1` UAE) to multiregion modules.
+- Updated `terraform-aws-security` versions to `v0.66.0`.
+- Use BuildKit pattern for passing secrets.
+
+
+
+</div>
+
+
 ### [v0.97.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.97.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -304,6 +323,6 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "05cefa2c63465cfaec8554b9ec2c3e4e"
+  "hash": "62d11e8a16c238815561a4f6348aa902"
 }
 ##DOCS-SOURCER-END -->
