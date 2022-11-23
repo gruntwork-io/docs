@@ -8,7 +8,34 @@ import CardGroup from "/src/components/CardGroup"
 
 # Stay Up To Date
 
-<Grid cols={2} gap="4rem">
+<Grid cols={3} gap="4rem">
+
+<span>
+
+## Gruntwork releases
+
+<CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
+
+<Card title="Update to 2022-11" href="/guides/stay-up-to-date/releases/2022-11" />
+<Card title="Update to 2022-10" href="/guides/stay-up-to-date/releases/2022-10" />
+<Card title="Update to 2022-09" href="/guides/stay-up-to-date/releases/2022-09" />
+<Card title="Update to 2022-08" href="/guides/stay-up-to-date/releases/2022-08" />
+<Card title="Update to 2022-07" href="/guides/stay-up-to-date/releases/2022-07" />
+<Card title="Update to 2022-06" href="/guides/stay-up-to-date/releases/2022-06" />
+<Card title="Update to 2022-05" href="/guides/stay-up-to-date/releases/2022-05" />
+<Card title="Update to 2022-04" href="/guides/stay-up-to-date/releases/2022-04" />
+<Card title="Update to 2022-03" href="/guides/stay-up-to-date/releases/2022-03" />
+<Card title="Update to 2022-02" href="/guides/stay-up-to-date/releases/2022-02" />
+<Card title="Update to 2022-01" href="/guides/stay-up-to-date/releases/2022-01" />
+<Card title="Update to 2021-12" href="/guides/stay-up-to-date/releases/2021-12" />
+<Card title="Update to 2021-11" href="/guides/stay-up-to-date/releases/2021-11" />
+<Card title="Update to 2021-10" href="/guides/stay-up-to-date/releases/2021-10" />
+<Card title="Update to 2021-09" href="/guides/stay-up-to-date/releases/2021-09" />
+<Card title="See older releases" href="/guides/stay-up-to-date/releases" />
+
+</CardGroup>
+
+</span>
 
 <span>
 
@@ -81,7 +108,7 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "local-copier",
-  "hash": "fcfce8df9f087e34a129afd5575e6df1"
+  "sourcePlugin": "releases",
+  "hash": "4d610b850fafd7a51ed2aa721262f707"
 }
 ##DOCS-SOURCER-END -->
