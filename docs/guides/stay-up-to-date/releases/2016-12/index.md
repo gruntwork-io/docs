@@ -164,7 +164,7 @@ Here are the repos that were updated:
 ### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.1">Release notes</a></small>
+  <small>Published: 12/7/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -238,7 +238,7 @@ This change is fully backwards-compatible in terms of the vars and outputs, but 
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/13/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 12/12/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -290,6 +290,6 @@ This change is fully backwards-compatible in terms of the vars and outputs, but 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6d2bda544f403c788e62d0d717b3bccd"
+  "hash": "75a03d272fc656941a13cd2044703ce7"
 }
 ##DOCS-SOURCER-END -->

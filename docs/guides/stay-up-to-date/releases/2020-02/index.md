@@ -196,7 +196,7 @@ incompatibilities.
 ### [02062020](https://github.com/gruntwork-io/terraform-aws-ci-pipeline-example/releases/tag/02062020)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/7/2020 | <a href="https://github.com/gruntwork-io/terraform-aws-ci-pipeline-example/releases/tag/02062020">Release notes</a></small>
+  <small>Published: 2/6/2020 | <a href="https://github.com/gruntwork-io/terraform-aws-ci-pipeline-example/releases/tag/02062020">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -213,7 +213,7 @@ incompatibilities.
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/4/2020 | Modules affected: aws-securityhub, aws-config | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 2/3/2020 | Modules affected: aws-securityhub, aws-config | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -360,7 +360,7 @@ The `ecs-service` module now exposes `task_role_permissions_boundary_arn` and `t
 ### [v0.15.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.15.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/22/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.15.1">Release notes</a></small>
+  <small>Published: 2/21/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.15.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -734,6 +734,6 @@ Now it's possible to fully deactivate the `vpc-flow-logs` module passing the var
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "40c77e94be5140f9148ca9ac73747ebf"
+  "hash": "9cf9a1afe08db979fbb9d51b13edfe86"
 }
 ##DOCS-SOURCER-END -->

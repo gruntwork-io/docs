@@ -520,7 +520,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 ### [v0.1.8](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/24/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.8">Release notes</a></small>
+  <small>Published: 1/23/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -649,7 +649,7 @@ This release introduces modules that support running python PEX files in Terrafo
 ### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/9/2019 | Modules affected: require-executable | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.5">Release notes</a></small>
+  <small>Published: 1/8/2019 | Modules affected: require-executable | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -693,7 +693,7 @@ This release introduces modules that support running python PEX files in Terrafo
 ### [v0.5.5](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2019 | Modules affected: vpc-app, vpc-mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.5">Release notes</a></small>
+  <small>Published: 1/28/2019 | Modules affected: vpc-app, vpc-mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -757,7 +757,7 @@ This release introduces modules that support running python PEX files in Terrafo
 ### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/4/2019 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.2">Release notes</a></small>
+  <small>Published: 1/3/2019 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -781,7 +781,7 @@ This release introduces modules that support running python PEX files in Terrafo
 ### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2019 | Modules affected: zookeeper-cluster, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2">Release notes</a></small>
+  <small>Published: 1/28/2019 | Modules affected: zookeeper-cluster, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -802,7 +802,7 @@ This release introduces modules that support running python PEX files in Terrafo
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2019 | Modules affected: run-health-checker | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1">Release notes</a></small>
+  <small>Published: 1/28/2019 | Modules affected: run-health-checker | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -903,6 +903,6 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dd899d78c485aff364599ddcd36a7902"
+  "hash": "87a70a6176fb63e2a10776a88fa9a41a"
 }
 ##DOCS-SOURCER-END -->

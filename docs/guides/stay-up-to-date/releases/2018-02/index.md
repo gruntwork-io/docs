@@ -10,6 +10,7 @@ documentation](/guides/working-with-code/using-modules#updating).
 
 Here are the repos that were updated:
 
+- [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
@@ -18,6 +19,24 @@ Here are the repos that were updated:
 - [terraform-aws-sam](#terraform-aws-sam)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
+- [terraform-aws-utilities](#terraform-aws-utilities)
+
+
+## terraform-aws-asg
+
+
+### [v0.6.7](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-asg/pull/23: Fix rolling deployment script path on Windows.
+
+</div>
+
 
 
 ## terraform-aws-cache
@@ -148,6 +167,19 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 ## terraform-aws-security
 
 
+### [v0.7.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/74: Add a new module called `ssh-iam-selinux-policy`. If you are using `ssh-iam` on CentOS, you should install this module so that SELinux doesn't prevent `ssh-iam` from working!
+
+</div>
+
+
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -168,7 +200,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 2/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -203,10 +235,33 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 
 
 
+## terraform-aws-utilities
+
+
+### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/package-terraform-utilities/pull/3: Added two new modules:
+
+1. `operating-system`: This can be used to detect the operating system on which Terraform is currently running.
+
+1. `join-path`: This can be used to join multiple path parts (folders, files) into a single path, using the proper separator for the current OS.
+
+The primary use case is so we can format paths properly on Windows vs Linux.
+
+</div>
+
+
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "eff1f0d48ffa60842a06c1c976d0d9d7"
+  "hash": "4c2256518f8d43f8bfec9e1f720d3f15"
 }
 ##DOCS-SOURCER-END -->

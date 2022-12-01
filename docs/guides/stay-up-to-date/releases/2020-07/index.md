@@ -373,7 +373,7 @@ You can now conditionally shut off the `ecs-cluster` module using the `create_re
 ### [v0.20.8](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/18/2020 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.8">Release notes</a></small>
+  <small>Published: 7/17/2020 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -424,7 +424,7 @@ The `roll-out-ecs-cluster-update.py` script will now directly detach the old ins
 ### [v0.20.5](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/9/2020 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.5">Release notes</a></small>
+  <small>Published: 7/8/2020 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -441,7 +441,7 @@ Fix bug where `ecs-cluster` errors out on the `aws_autoscaling_group` resource i
 ### [v0.20.4](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/2/2020 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.4">Release notes</a></small>
+  <small>Published: 7/1/2020 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.20.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -783,6 +783,28 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 ## terraform-aws-server
 
 
+### [v0.8.5](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/31/2020 | Modules affected: ec2-backup, single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+This release includes a fix for the `ec2-backup` module, making its tag configurations more flexible. It also fixes a few links in the `module-server` documentation.
+
+
+
+
+
+
+
+
+</div>
+
+
 ### [v0.8.4](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -933,7 +955,7 @@ This release adds subnet ARNs to the outputs for `vpc-app` and `vpc-mgmt`.
 ### [v0.8.12](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/2/2020 | Modules affected: vpc-interface-endpoint | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12">Release notes</a></small>
+  <small>Published: 7/1/2020 | Modules affected: vpc-interface-endpoint | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -968,6 +990,6 @@ add glue support to vpc-interface-endpoint
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "548b7ea5ff7c73609623a5abfcb9c7d5"
+  "hash": "d655e56b1a877360422a4a3c560e0ed4"
 }
 ##DOCS-SOURCER-END -->

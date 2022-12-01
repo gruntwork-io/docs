@@ -192,7 +192,7 @@ Each of the manual scheduled snapshot Lambda function modules now expose an inpu
 ### [v0.12.7](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.12.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/7/2020 | Modules affected: lambda-create-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.12.7">Release notes</a></small>
+  <small>Published: 3/6/2020 | Modules affected: lambda-create-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.12.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -305,7 +305,7 @@ The EKS cluster creation timeout is now 60 minutes.
 ### [v0.19.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/28/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.0">Release notes</a></small>
+  <small>Published: 3/27/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -413,7 +413,7 @@ Fix an issue with the helm provider where the `stable` helm repository does not 
 ### [v0.16.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.16.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/19/2020 | Modules affected: eks-k8s-external-dns, eks-k8s-cluster-autoscaler, eks-cloudwatch-container-logs, eks-alb-ingress-controller | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.16.0">Release notes</a></small>
+  <small>Published: 3/18/2020 | Modules affected: eks-k8s-external-dns, eks-k8s-cluster-autoscaler, eks-cloudwatch-container-logs, eks-alb-ingress-controller | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.16.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -635,7 +635,7 @@ The `openvpn-server` module now accepts base64-encoded user data in the `user_da
 ### [v0.9.10](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.10)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/6/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.10">Release notes</a></small>
+  <small>Published: 3/5/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.10">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -653,10 +653,27 @@ You can now restrict the CIDR blocks that are allowed to access the OpenVPN port
 ## terraform-aws-security
 
 
+### [v0.28.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2020 | Modules affected: iam-policies, iam-groups, account-baseline-security, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Account baseline modules now support managing KMS Customer Master Keys.
+- You can now specify multiple IAM roles for managing cross account access IAM groups.
+
+
+</div>
+
+
 ### [v0.27.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.27.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/31/2020 | Modules affected: kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.27.2">Release notes</a></small>
+  <small>Published: 3/30/2020 | Modules affected: kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.27.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -727,7 +744,7 @@ This release introduces support for managing more than one KMS Customer Master K
 ### [v0.26.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.26.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/6/2020 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.26.0">Release notes</a></small>
+  <small>Published: 3/5/2020 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.26.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -848,7 +865,7 @@ Fix a bug in `s3-static-website` module with versions of terraform &gt;0.12.11, 
 ### [v0.8.5: Outbound NACLs between private subnets](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/27/2020 | Modules affected: vpc-app-network-acls | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.5">Release notes</a></small>
+  <small>Published: 3/26/2020 | Modules affected: vpc-app-network-acls | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -867,7 +884,7 @@ Thanks to @scottclk for this contribution.
 ### [v0.8.4: More control over subnet spacing](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/3/2020 | Modules affected: vpc-mgmt, vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.4">Release notes</a></small>
+  <small>Published: 3/2/2020 | Modules affected: vpc-mgmt, vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -892,6 +909,6 @@ Thanks to @mmiranda for his contribution, and to @marinalimeira for her suggesti
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "692ae5c85a2e57b8d1ba25b2375499d4"
+  "hash": "3d54c2a88005f6cc300a66913e1bb83a"
 }
 ##DOCS-SOURCER-END -->

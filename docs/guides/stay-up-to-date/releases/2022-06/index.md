@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.1.0](https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/2/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 6/1/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -305,6 +305,22 @@ This release is functionally equivalent and backward compatible with the previou
 ## terraform-aws-cis-service-catalog
 
 
+### [v0.35.4](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/30/2022 | Modules affected: landingzone/account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Exposed the ability to configure `max_password_age` and password `hard_expiry` for the IAM Password Policy from `account-baseline-security`.
+
+
+</div>
+
+
 ### [v0.35.3](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -498,7 +514,7 @@ NOTE: Many dependencies were updated across backward incompatible versions, but 
 ### [v0.19.2](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.19.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2022 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.19.2">Release notes</a></small>
+  <small>Published: 6/9/2022 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.19.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -833,7 +849,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 ### [v0.91.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.91.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/28/2022 | Modules affected: services/eks-cluster, services/eks-workers, services/eks-core-services, services/k8s-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.91.0">Release notes</a></small>
+  <small>Published: 6/27/2022 | Modules affected: services/eks-cluster, services/eks-workers, services/eks-core-services, services/k8s-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.91.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -924,7 +940,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 ### [v0.90.4](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/17/2022 | Modules affected: services/ecs-cluster, services/ecs-service, services/eks-cluster, services/public-static-website | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.4">Release notes</a></small>
+  <small>Published: 6/16/2022 | Modules affected: services/ecs-cluster, services/ecs-service, services/eks-cluster, services/public-static-website | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -963,7 +979,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 ### [v0.90.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/16/2022 | Modules affected: networking/vpc, services/eks-cluster, services/eks-core-services, services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2">Release notes</a></small>
+  <small>Published: 6/15/2022 | Modules affected: networking/vpc, services/eks-cluster, services/eks-core-services, services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1083,7 +1099,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 ### [v0.89.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.89.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/7/2022 | Modules affected: services/ecs-cluster, services/public-static-website, mgmt/openvpn-server, data-stores/ecr-repos | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.89.1">Release notes</a></small>
+  <small>Published: 6/6/2022 | Modules affected: services/ecs-cluster, services/public-static-website, mgmt/openvpn-server, data-stores/ecr-repos | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.89.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1295,6 +1311,6 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3ae6c5850bd9d48811eb1eb51a1225a3"
+  "hash": "a9b1999ecdb051e3b0e133d22afbfb9a"
 }
 ##DOCS-SOURCER-END -->

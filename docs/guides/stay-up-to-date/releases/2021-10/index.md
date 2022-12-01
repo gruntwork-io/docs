@@ -695,7 +695,7 @@ With this release, we are improving the documentation around how to best use thi
 ### [v0.63.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.63.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/13/2021 | Modules affected: base, data-stores, mgmt, networking | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.63.1">Release notes</a></small>
+  <small>Published: 10/12/2021 | Modules affected: base, data-stores, mgmt, networking | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.63.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -882,6 +882,6 @@ With this release, we are improving the documentation around how to best use thi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "89c8462dcee2d37b21f2e400a8385b37"
+  "hash": "973bdc08c02da359c84a47e480cefff1"
 }
 ##DOCS-SOURCER-END -->

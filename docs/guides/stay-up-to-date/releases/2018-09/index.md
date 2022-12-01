@@ -74,7 +74,7 @@ Here are the repos that were updated:
 ### [v0.6.8](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.8">Release notes</a></small>
+  <small>Published: 9/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -341,6 +341,6 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1dc417805641cd37020784adaf77ee5c"
+  "hash": "ad6819ab1c971b67df9c3e24674e0409"
 }
 ##DOCS-SOURCER-END -->

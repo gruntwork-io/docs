@@ -25,7 +25,7 @@ Here are the repos that were updated:
 ### [v0.6.1](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.1">Release notes</a></small>
+  <small>Published: 9/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -38,7 +38,7 @@ Here are the repos that were updated:
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.0">Release notes</a></small>
+  <small>Published: 9/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -241,7 +241,7 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 ### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.7">Release notes</a></small>
+  <small>Published: 9/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -269,6 +269,6 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "427fd0260ae9bd9d9a4374f1a64ef548"
+  "hash": "86ae4f3d9a83d76e0e99bb883eae26b9"
 }
 ##DOCS-SOURCER-END -->

@@ -375,7 +375,7 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 ### [v0.56.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.56.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/16/2021 | Modules affected: private-s3-bucket, iam-access-analyzer-multi-region, iam-users | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.56.0">Release notes</a></small>
+  <small>Published: 12/15/2021 | Modules affected: private-s3-bucket, iam-access-analyzer-multi-region, iam-users | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.56.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -652,6 +652,6 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6badfa9eda217cb3b4b83bc3e01c873f"
+  "hash": "568d84bcaab7c6e3722cca21b2d577a4"
 }
 ##DOCS-SOURCER-END -->

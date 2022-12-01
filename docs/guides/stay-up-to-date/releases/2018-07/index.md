@@ -84,7 +84,7 @@ Here are the repos that were updated:
 ### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/31/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.8">Release notes</a></small>
+  <small>Published: 7/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -156,7 +156,7 @@ PRs #25 #29
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/3/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 7/2/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -209,6 +209,6 @@ PRs #25 #29
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6fd88d7c66da46d25f0d766e59cc4a64"
+  "hash": "c6824372a5349d68cd78b41bc7c677a7"
 }
 ##DOCS-SOURCER-END -->

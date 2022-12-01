@@ -87,7 +87,7 @@ Here are the repos that were updated:
 ### [v0.22.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.22.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/29/2020 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.22.1">Release notes</a></small>
+  <small>Published: 5/28/2020 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.22.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -125,7 +125,7 @@ The `jenkins-server` module no longer takes the `aws_account_id` variable. To up
 ### [v0.21.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.21.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/27/2020 | Modules affected: infrastructure-deployer, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.21.0">Release notes</a></small>
+  <small>Published: 5/26/2020 | Modules affected: infrastructure-deployer, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.21.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -194,7 +194,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 ### [v0.19.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.19.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/7/2020 | Modules affected: infrastructure-deployer, infrastructure-deploy-script, install-jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.19.0">Release notes</a></small>
+  <small>Published: 5/6/2020 | Modules affected: infrastructure-deployer, infrastructure-deploy-script, install-jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.19.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -219,7 +219,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/8/2020 | Modules affected: aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 5/7/2020 | Modules affected: aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -345,7 +345,7 @@ You can now provide an existing DB subnet group to use with the RDS clusters ins
 ### [v0.19.1](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.19.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/9/2020 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.19.1">Release notes</a></small>
+  <small>Published: 5/8/2020 | Modules affected: ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.19.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -447,7 +447,7 @@ This release also includes several documentation fixes to READMEs of various mod
 ### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.8.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/7/2020 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.8.0">Release notes</a></small>
+  <small>Published: 5/6/2020 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.8.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -490,7 +490,7 @@ Note that previously this module output `null` for all the outputs when `create_
 ### [v0.21.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/29/2020 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2">Release notes</a></small>
+  <small>Published: 5/28/2020 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -584,7 +584,7 @@ Note that as part of this change, the `aws_account_id` variable was removed from
 ### [v0.30.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/19/2020 | Modules affected: iam-policies, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0">Release notes</a></small>
+  <small>Published: 5/18/2020 | Modules affected: iam-policies, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -699,7 +699,7 @@ For `account-baseline-app`:
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/8/2020 | Modules affected: enabled-aws-regions | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 5/7/2020 | Modules affected: enabled-aws-regions | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -776,6 +776,6 @@ Special thanks to @jdhornsby for the fix!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "197bc29d17eb39bf8795163db4f7bc03"
+  "hash": "37d4245b3804b8ae19a4a5a83dd9f66a"
 }
 ##DOCS-SOURCER-END -->

@@ -921,7 +921,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 ### [v0.45.6](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.45.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/24/2021 | Modules affected: account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.45.6">Release notes</a></small>
+  <small>Published: 3/23/2021 | Modules affected: account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.45.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1212,7 +1212,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 ### [v0.22.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.22.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/12/2021 | Modules affected: mgmt/jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.22.0">Release notes</a></small>
+  <small>Published: 3/11/2021 | Modules affected: mgmt/jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.22.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1489,7 +1489,7 @@ Support for optional resource creation via the `create_resources` parameter was 
 ### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.9.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/25/2021 | Modules affected: exhibitor-shared-config, zookeeper-cluster, zookeeper-iam-permissions, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.9.0">Release notes</a></small>
+  <small>Published: 3/24/2021 | Modules affected: exhibitor-shared-config, zookeeper-cluster, zookeeper-iam-permissions, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1513,6 +1513,6 @@ Support for optional resource creation via the `create_resources` parameter was 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3e33c11671eb0d1713b0858144d3dcb2"
+  "hash": "ed45ccee4e9c3e53e09e45d03088c7b8"
 }
 ##DOCS-SOURCER-END -->

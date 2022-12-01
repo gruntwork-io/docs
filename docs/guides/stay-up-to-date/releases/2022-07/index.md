@@ -148,7 +148,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 ### [v0.50.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/6/2022 | Modules affected: ecs-deploy-runner-standard-configuration, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2">Release notes</a></small>
+  <small>Published: 7/5/2022 | Modules affected: ecs-deploy-runner-standard-configuration, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -435,22 +435,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 - Added the ability to disable private SSH and RDP access at the NACL level, using the new `enable_administrative_remote_access_private_subnets_from_self` (for mgmt VPC), `enable_administrative_remote_access_private_app_subnets_from_self` and `enable_administrative_remote_access_private_persistence_subnets_from_self` (for app VPC) variables.
 - Added the ability to configure the remote administrative ports for the NACLs from the VPC layer using the new `remote_administrative_ports` variable.
 
-
-
-</div>
-
-
-### [v0.35.4](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/1/2022 | Modules affected: landingzone/account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Exposed the ability to configure `max_password_age` and password `hard_expiry` for the IAM Password Policy from `account-baseline-security`.
 
 
 </div>
@@ -869,6 +853,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e4268e3180c0dc1da599faee0b1f1658"
+  "hash": "3d64f8dbb2c4e9cd929fda4f590db618"
 }
 ##DOCS-SOURCER-END -->

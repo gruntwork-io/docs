@@ -71,7 +71,7 @@ Here are the repos that were updated:
 ### [v0.12.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.12.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.12.2">Release notes</a></small>
+  <small>Published: 8/6/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.12.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -119,7 +119,7 @@ Special thanks to @natefaerber for the contribution!
 ### [v0.8.3](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.8.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.8.3">Release notes</a></small>
+  <small>Published: 8/29/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.8.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -198,7 +198,7 @@ Currently our module supports public or private hostnames, examples are provided
 ### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.7.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/8/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.7.0">Release notes</a></small>
+  <small>Published: 8/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -282,7 +282,7 @@ The only reason for changing the behavior in the module is to address the issue 
 ### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.10.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/6/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.10.0">Release notes</a></small>
+  <small>Published: 8/5/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.10.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -373,6 +373,6 @@ Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8cdf3a491d4ad10403c14b2497f9f815"
+  "hash": "41477db3b490ac088a84566260dec957"
 }
 ##DOCS-SOURCER-END -->

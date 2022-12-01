@@ -13,7 +13,6 @@ Here are the repos that were updated:
 - [boilerplate](#boilerplate)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
 
@@ -86,24 +85,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-security
-
-
-### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - NEW MODULE: In this release, we introduce the `cloudtrail` module, a streamlined way to setup [AWS CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)!
-
-
-</div>
-
-
-
 ## terraform-aws-vpc
 
 
@@ -126,6 +107,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b2a664fd844b6eea562b74440b58acd0"
+  "hash": "60e0ff41c0d465f029d2785b95b96935"
 }
 ##DOCS-SOURCER-END -->

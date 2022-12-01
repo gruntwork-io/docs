@@ -33,7 +33,7 @@ Here are the repos that were updated:
 ### [v0.0.17](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/27/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17">Release notes</a></small>
+  <small>Published: 3/26/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -69,19 +69,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   https://github.com/gruntwork-io/module-asg/pull/24: Update to latest `package-terraform-utilities` to fix a bug where the `join-path` module doesn’t work with newer versions of Python.
-
-</div>
-
-
-### [v0.6.7](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/module-asg/pull/23: Fix rolling deployment script path on Windows.
 
 </div>
 
@@ -296,7 +283,7 @@ Going forward, we will immediately be investing in a new approach to writing mod
 ### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1">Release notes</a></small>
+  <small>Published: 3/21/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -309,7 +296,7 @@ Going forward, we will immediately be investing in a new approach to writing mod
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/21/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 3/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -352,19 +339,6 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 </div>
 
 
-### [v0.7.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/module-security/pull/74: Add a new module called `ssh-iam-selinux-policy`. If you are using `ssh-iam` on CentOS, you should install this module so that SELinux doesn't prevent `ssh-iam` from working!
-
-</div>
-
-
 
 ## terraform-aws-server
 
@@ -372,7 +346,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 ### [v0.4.2](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2">Release notes</a></small>
+  <small>Published: 3/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -415,7 +389,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/14/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 3/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -446,25 +420,6 @@ The `s3-static-website` module now enables server-side encryption by default. Th
 </div>
 
 
-### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-terraform-utilities/pull/3: Added two new modules:
-
-1. `operating-system`: This can be used to detect the operating system on which Terraform is currently running.
-
-1. `join-path`: This can be used to join multiple path parts (folders, files) into a single path, using the proper separator for the current OS.
-
-The primary use case is so we can format paths properly on Windows vs Linux.
-
-</div>
-
-
 
 ## terraform-aws-zookeeper
 
@@ -472,7 +427,7 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 3/29/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -485,7 +440,7 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 3/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -536,6 +491,6 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "aa44892194431d08d7da4ea149998348"
+  "hash": "272765537f4bff1dded237cc94f090b2"
 }
 ##DOCS-SOURCER-END -->

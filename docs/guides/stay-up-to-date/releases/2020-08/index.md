@@ -25,7 +25,6 @@ Here are the repos that were updated:
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
-- [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
@@ -87,7 +86,7 @@ Here are the repos that were updated:
 ### [v0.0.1-08112020](https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/12/2020 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
+  <small>Published: 8/11/2020 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -114,7 +113,7 @@ Updates in this version:
 ### [v0.0.1-08112020](https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/12/2020 | <a href="https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
+  <small>Published: 8/11/2020 | <a href="https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -619,7 +618,7 @@ Resolve `shellcheck` issues in `aws-auth`.
 ### [v0.36.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/25/2020 | Modules affected: account-baseline-app, account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2">Release notes</a></small>
+  <small>Published: 8/24/2020 | Modules affected: account-baseline-app, account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -636,7 +635,7 @@ You can now set the max session duration for human and machine cross account IAM
 ### [v0.36.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/22/2020 | Modules affected: kms-grant-multi-region, account-baseline-app, account-baseline-security, kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1">Release notes</a></small>
+  <small>Published: 8/21/2020 | Modules affected: kms-grant-multi-region, account-baseline-app, account-baseline-security, kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -750,7 +749,7 @@ This release adds read only permissions to the `read_only` IAM policy for the [P
 ### [v0.34.3](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/12/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3">Release notes</a></small>
+  <small>Published: 8/11/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -759,32 +758,6 @@ This release adds read only permissions to the `read_only` IAM policy for the [P
 
 
 Allows an empty list of users and admins in cloudtrail-created KMS keys. Previously, the `kms_key_user_iam_arns` and `kms_key_administrator_iam_arns` variables were required. They are now optional and default to an empty list. If they are left as empty, then `allow_cloudtrail_access_with_iam` must be `true`.
-
-
-
-</div>
-
-
-
-## terraform-aws-server
-
-
-### [v0.8.5](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/1/2020 | Modules affected: ec2-backup, single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-This release includes a fix for the `ec2-backup` module, making its tag configurations more flexible. It also fixes a few links in the `module-server` documentation.
-
-
-
-
-
 
 
 
@@ -833,7 +806,7 @@ All packer templates now support using a custom KMS CMK for encrypting the snaps
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/19/2020 | Modules affected: networking, tls-scripts, base, landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 8/18/2020 | Modules affected: networking, tls-scripts, base, landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -955,6 +928,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "783de82cbcfde233ca8c2218b2c087f0"
+  "hash": "be122a1d476901be784eca3b6282fae5"
 }
 ##DOCS-SOURCER-END -->

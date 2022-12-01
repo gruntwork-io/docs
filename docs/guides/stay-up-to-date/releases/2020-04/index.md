@@ -49,7 +49,7 @@ Here are the repos that were updated:
 ### [v0.18.5](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.18.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/8/2020 | Modules affected: infrastructure-deployer, infrastructure-deploy-script, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.18.5">Release notes</a></small>
+  <small>Published: 4/7/2020 | Modules affected: infrastructure-deployer, infrastructure-deploy-script, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.18.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -91,7 +91,7 @@ This release adds support for specifying multiple target groups with the ECS ser
 ### [v0.19.6](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/11/2020 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.6">Release notes</a></small>
+  <small>Published: 4/10/2020 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -129,7 +129,7 @@ NOTE: This release will cause a redeploy of the `cluster-autoscaler`, but since 
 ### [v0.19.4](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/10/2020 | Modules affected: eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4">Release notes</a></small>
+  <small>Published: 4/9/2020 | Modules affected: eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -246,7 +246,7 @@ See [the vars.tf file](https://github.com/gruntwork-io/module-load-balancer/blob
 ### [v0.19.1](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.19.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/2/2020 | Modules affected: alb | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.19.1">Release notes</a></small>
+  <small>Published: 4/1/2020 | Modules affected: alb | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.19.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -373,7 +373,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 ### [v0.9.12](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/3/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12">Release notes</a></small>
+  <small>Published: 4/2/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -524,23 +524,6 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 </div>
 
 
-### [v0.28.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/1/2020 | Modules affected: iam-policies, iam-groups, account-baseline-security, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Account baseline modules now support managing KMS Customer Master Keys.
-- You can now specify multiple IAM roles for managing cross account access IAM groups.
-
-
-</div>
-
-
 
 ## terraform-aws-server
 
@@ -634,6 +617,6 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "db9c18dd3d2fff32e2b226222b483056"
+  "hash": "801072e1b1a09f273254b633a1a3e2ce"
 }
 ##DOCS-SOURCER-END -->

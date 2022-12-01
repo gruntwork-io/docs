@@ -39,7 +39,7 @@ Here are the repos that were updated:
 ### [v0.0.13](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.13)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/18/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.13">Release notes</a></small>
+  <small>Published: 12/17/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.13">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -142,7 +142,7 @@ Here are the repos that were updated:
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 12/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -250,6 +250,6 @@ We also suggest explicitly providing values for the `--request-url` parameter to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4a730d17952dd1207b4f4dbf95d42298"
+  "hash": "85c52a35510044fbbcafb9ad935b7f19"
 }
 ##DOCS-SOURCER-END -->

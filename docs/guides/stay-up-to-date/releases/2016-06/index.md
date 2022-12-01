@@ -214,7 +214,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/7/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 6/6/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -246,7 +246,7 @@ Here are the repos that were updated:
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/16/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 6/15/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -287,6 +287,21 @@ Here are the repos that were updated:
 
 
 ## terraform-aws-ecs
+
+
+### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 6/30/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - For `ecs-cluster` and `ecs-server` modules, terraform output values containing a value like `iam_role_name` now output a human-friendly name, not a globally unique string ID as before.
+- Due to [Terraform Bug #3888](https://github.com/hashicorp/terraform/issues/3888), a bug was introduced in an earlier release when using the `ecs-cluster` module from a terraform template that is in turn called by another terraform template. This release fixes that bug by adding an explicit var `allow_ssh` to indicate whether SSH from a specific security group will be allowed. This is redundant but resolves the issue until the Terraform bug is resolved.
+
+
+</div>
 
 
 ### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.5)
@@ -368,7 +383,7 @@ Here are the repos that were updated:
 ### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/30/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.6">Release notes</a></small>
+  <small>Published: 6/29/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -382,7 +397,7 @@ Here are the repos that were updated:
 ### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/28/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.5">Release notes</a></small>
+  <small>Published: 6/27/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -427,7 +442,7 @@ Here are the repos that were updated:
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/24/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.2">Release notes</a></small>
+  <small>Published: 6/23/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -473,7 +488,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/7/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 6/6/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -491,7 +506,7 @@ Here are the repos that were updated:
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/24/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4">Release notes</a></small>
+  <small>Published: 6/23/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -534,7 +549,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 6/7/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -550,6 +565,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ecc40463cba924db1547732711126d2f"
+  "hash": "3b1e50f01e5e04333dbf49c1c2c67f8a"
 }
 ##DOCS-SOURCER-END -->

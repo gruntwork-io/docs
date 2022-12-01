@@ -196,7 +196,7 @@ Added `delete_automated_backups` variable and respective handling to rds module.
 ### [v0.46.4](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.46.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/13/2021 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.46.4">Release notes</a></small>
+  <small>Published: 11/12/2021 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.46.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -568,6 +568,6 @@ This release also updates versions of underlying dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6e5189f31ad7478e3ae66ffc2a891369"
+  "hash": "5b0e7d2ceba90fbbd97f90f00369d7b4"
 }
 ##DOCS-SOURCER-END -->

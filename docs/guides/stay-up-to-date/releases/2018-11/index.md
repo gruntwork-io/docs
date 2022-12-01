@@ -71,6 +71,41 @@ Here are the repos that were updated:
 ## package-k8s
 
 
+### [v0.1.0](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/30/2018 | Modules affected: eks-k8s-role-mapping, kubergrunt, k8s-scripts, install-aws-iam-authenticator | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- `eks-k8s-role-mapping`
+- `kubergrunt` **[New]** 
+- `k8s-scripts` **[Breaking Change]** 
+- `install-aws-iam-authenticator` **[Breaking Change]** 
+
+
+- `eks-k8s-role-mapping` scripts are no longer baked into the PEX binary and instead loaded via the `PYTHONPATH`.
+- **New**: This release introduces `kubergrunt`, an encompassing tool that supports the configuration and management of a Kubernetes cluster. This command replaces both `eks-configure-kubectl` and `aws-iam-authenticator` by embedding the functionalities of those commands under different subcommands in `kubergrunt`. By doing so, we cut out the dependency on the awscli and `aws-iam-authenticator`, and so you only need to install this tool.
+- **Breaking Change**: `k8s-scripts` has been completely rewritten. As a result, `eks-configure-kubectl` is no longer provided as a stand alone script. Instead, it has been embedded into the new `kubergrunt` CLI tool.
+- **Breaking Change**: `aws-iam-authenticator` will no longer be provided as a part of this repo. You can use `kubergrunt` instead, or install directly from the links in [the official AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html).
+
+
+To upgrade to this version, install `kubergrunt` by following [the installation instructions](https://github.com/gruntwork-io/package-k8s/tree/master/modules/kubergrunt).
+
+
+
+- This release is not intended to be used in production, as core features of a production grade infrastructure are still missing. This is currently intended to be used for development and learning purposes so that you can plan out a migration to Gruntwork modules for managing EKS.
+- This release is not tested with windows. Please file any bugs/issues you run into on [the issue tracker](https://github.com/gruntwork-io/package-k8s/issues).
+
+
+- https://github.com/gruntwork-io/package-k8s/pull/29
+- https://github.com/gruntwork-io/package-k8s/pull/30
+
+</div>
+
+
 ### [v0.0.2](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -160,7 +195,7 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 ### [v0.8.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/22/2018 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1">Release notes</a></small>
+  <small>Published: 11/21/2018 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -305,7 +340,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/29/2018 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 11/28/2018 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -346,7 +381,7 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 ### [v0.3.3](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3">Release notes</a></small>
+  <small>Published: 11/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -378,6 +413,6 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "762cb1013260625d4e99d9e30f9782a4"
+  "hash": "4235ac4f560b81944da62b1fa21b8b60"
 }
 ##DOCS-SOURCER-END -->

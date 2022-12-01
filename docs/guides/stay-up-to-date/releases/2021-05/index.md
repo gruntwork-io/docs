@@ -556,7 +556,7 @@ You can now customize the helm release name and the service account annotations 
 ### [v0.11.1](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.11.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/20/2021 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.11.1">Release notes</a></small>
+  <small>Published: 5/19/2021 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.11.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1158,6 +1158,6 @@ Add support for exposing client access directly in the nacls for the private app
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a3de521495fe7e198fd28b9520bb5002"
+  "hash": "5475133ccddf329da38707c0bdca528a"
 }
 ##DOCS-SOURCER-END -->

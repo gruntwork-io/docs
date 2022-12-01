@@ -106,7 +106,7 @@ This release adds a module for [AWS Config](https://aws.amazon.com/config/). The
 ### [v0.18.4: Updates to the CloudTrail module](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/29/2019 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.4">Release notes</a></small>
+  <small>Published: 8/28/2019 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -158,7 +158,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 ### [v0.18.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/14/2019 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1">Release notes</a></small>
+  <small>Published: 8/13/2019 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -175,7 +175,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 ### [v0.18.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/9/2019 | Modules affected: ssh-grunt, iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0">Release notes</a></small>
+  <small>Published: 8/8/2019 | Modules affected: ssh-grunt, iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -333,6 +333,6 @@ The module has support for the following features:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a5c00770d9e0a5f4ecadbe659ad512dd"
+  "hash": "e35c8371f9372095fcb9b8a0a3c0f6da"
 }
 ##DOCS-SOURCER-END -->

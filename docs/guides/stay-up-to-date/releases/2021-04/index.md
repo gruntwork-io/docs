@@ -269,7 +269,7 @@ Fix regression bug where we no longer can download golang from the old location 
 ### [v0.33.1: Upgrade ecs runner terraform to 0.13.6](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.33.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/14/2021 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.33.1">Release notes</a></small>
+  <small>Published: 4/13/2021 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.33.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1461,7 +1461,7 @@ public_zones = {
 ### [v0.30.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.30.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/14/2021 | Modules affected: mgmt/jenkins, mgmt/openvpn-server, data-stores, services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.30.0">Release notes</a></small>
+  <small>Published: 4/13/2021 | Modules affected: mgmt/jenkins, mgmt/openvpn-server, data-stores, services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.30.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1800,6 +1800,6 @@ adds a number of conditional variables to the App Account Baseline in order to o
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "698621c183a6e83cd809ed09851e6938"
+  "hash": "37a8489720d3a7c3f5cd350cbe9110e7"
 }
 ##DOCS-SOURCER-END -->

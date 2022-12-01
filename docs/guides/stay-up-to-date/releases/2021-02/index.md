@@ -34,7 +34,7 @@ Here are the repos that were updated:
 ### [v0.0.3](https://github.com/gruntwork-io/aws-sample-app/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/9/2021 | <a href="https://github.com/gruntwork-io/aws-sample-app/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 2/8/2021 | <a href="https://github.com/gruntwork-io/aws-sample-app/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -722,7 +722,7 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 ### [v0.18.4](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.18.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/12/2021 | Modules affected: mgmt/jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.18.4">Release notes</a></small>
+  <small>Published: 2/11/2021 | Modules affected: mgmt/jenkins | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.18.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -920,6 +920,6 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "394e768013c3288ce631aa50fb6bc5e8"
+  "hash": "8c4ba49fd75078ae28bf2c623c83f2ce"
 }
 ##DOCS-SOURCER-END -->

@@ -153,7 +153,7 @@ Here are the repos that were updated:
 ### [v0.1.3](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/9/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.3">Release notes</a></small>
+  <small>Published: 9/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -168,7 +168,7 @@ Here are the repos that were updated:
 ### [v0.1.2](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/9/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.2">Release notes</a></small>
+  <small>Published: 9/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -182,7 +182,7 @@ Here are the repos that were updated:
 ### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/9/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.1">Release notes</a></small>
+  <small>Published: 9/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -459,7 +459,7 @@ In `modules/ecs-cluster`:
 ### [v0.1.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.1.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/3/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.1.2">Release notes</a></small>
+  <small>Published: 9/2/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.1.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -503,10 +503,24 @@ In `modules/ecs-cluster`:
 ## terraform-aws-security
 
 
+### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 9/30/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  - NEW MODULE: In this release, we introduce the `cloudtrail` module, a streamlined way to setup [AWS CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)!
+
+
+</div>
+
+
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 9/28/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -600,7 +614,7 @@ In `modules/ecs-cluster`:
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/2/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 9/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -619,7 +633,7 @@ In `modules/ecs-cluster`:
 ### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.1">Release notes</a></small>
+  <small>Published: 9/28/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -635,6 +649,6 @@ In `modules/ecs-cluster`:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8a7d37bbbd407cd6e7cc963b6e2cf4bd"
+  "hash": "46e770aa7bb623e6ca6df83d04092d87"
 }
 ##DOCS-SOURCER-END -->

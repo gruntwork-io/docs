@@ -417,7 +417,7 @@ __This release contains backwards incompatible changes. Make sure to follow the 
 ### [v0.42.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.42.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/24/2020 | Modules affected: ebs-encryption-multi-region, ebs-encryption | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.42.0">Release notes</a></small>
+  <small>Published: 11/23/2020 | Modules affected: ebs-encryption-multi-region, ebs-encryption | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.42.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -554,7 +554,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 ### [v0.9.2](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.9.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/5/2020 | Modules affected: attach-eni | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.9.2">Release notes</a></small>
+  <small>Published: 11/4/2020 | Modules affected: attach-eni | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.9.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -615,7 +615,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 ### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.10.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/24/2020 | Modules affected: services/terraform-aws-eks, networking, base, data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.10.0">Release notes</a></small>
+  <small>Published: 11/23/2020 | Modules affected: services/terraform-aws-eks, networking, base, data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.10.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -882,6 +882,6 @@ This release updates the default names set for the VPC DNS resolvers. The names 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e0a9792eeac901a50030cf2fb40f4d29"
+  "hash": "f4c31fd0bcaa3b3e42fc22bf3d0e66f3"
 }
 ##DOCS-SOURCER-END -->

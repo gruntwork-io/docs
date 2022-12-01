@@ -137,7 +137,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 ### [v0.0.1](https://github.com/gruntwork-io/repo-copier/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/16/2021 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 1/15/2021 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -418,7 +418,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 ### [v0.32.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/29/2021 | Modules affected: eks-cluster-control-plane, eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.2">Release notes</a></small>
+  <small>Published: 1/28/2021 | Modules affected: eks-cluster-control-plane, eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -493,7 +493,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/27/2021 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 1/26/2021 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -881,6 +881,6 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8b1b908417a369c8b041b96d3d5c8973"
+  "hash": "3399a0f38f6ed606a57d5f6ee5a789ad"
 }
 ##DOCS-SOURCER-END -->

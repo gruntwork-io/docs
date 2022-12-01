@@ -122,7 +122,7 @@ This is a maintenance release that exports some test helper functions for the ec
 ### [v0.28.4](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.28.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/25/2020 | Modules affected: infrastructure-deploy-script | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.28.4">Release notes</a></small>
+  <small>Published: 9/24/2020 | Modules affected: infrastructure-deploy-script | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.28.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -774,7 +774,7 @@ This updates `install-cloudwatch-monitoring-scripts.sh` to set cache removal on 
 ### [v0.38.3](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.38.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/25/2020 | Modules affected: fail2ban | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.38.3">Release notes</a></small>
+  <small>Published: 9/24/2020 | Modules affected: fail2ban | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.38.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1081,7 +1081,7 @@ replace ssm role with new best practice
 ### [v0.3.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.3.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/30/2020 | Modules affected: data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.3.2">Release notes</a></small>
+  <small>Published: 9/29/2020 | Modules affected: data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.3.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1152,7 +1152,7 @@ You can now configure the `--search-domain` option on the OpenVPN server. Note t
 ### [v0.2.8](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/25/2020 | Modules affected: services/k8s-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.8">Release notes</a></small>
+  <small>Published: 9/24/2020 | Modules affected: services/k8s-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1285,7 +1285,7 @@ Updated documentation and tests:
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/9/2020 | Modules affected: base, data-stores, landingzone, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 9/8/2020 | Modules affected: base, data-stores, landingzone, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1524,6 +1524,6 @@ This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "015880c0de9494eb14d146a96a4873d8"
+  "hash": "12b8390bf21f6098b8f69113f800a8fd"
 }
 ##DOCS-SOURCER-END -->

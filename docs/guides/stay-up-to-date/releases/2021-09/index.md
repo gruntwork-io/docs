@@ -655,7 +655,7 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 ### [v0.62.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/26/2021 | Modules affected: services/eks-core-services, services/ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.1">Release notes</a></small>
+  <small>Published: 9/25/2021 | Modules affected: services/eks-core-services, services/ecs-service | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -674,7 +674,7 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 ### [v0.62.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/18/2021 | Modules affected: services/eks-core-services, mgmt, networking | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.0">Release notes</a></small>
+  <small>Published: 9/17/2021 | Modules affected: services/eks-core-services, mgmt, networking | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.62.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -867,6 +867,6 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "01cdfc06c685bb16b3133720fcdefb42"
+  "hash": "0149359cd0470a435a527712c8e9f574"
 }
 ##DOCS-SOURCER-END -->
