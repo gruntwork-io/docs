@@ -37,7 +37,7 @@ Here are the repos that were updated:
 ### [v0.2.26](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.26)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/16/2019 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.26">Release notes</a></small>
+  <small>Published: 12/17/2019 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.26">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/10/2019 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 12/11/2019 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -71,7 +71,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/10/2019 | <a href="https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 12/11/2019 | <a href="https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -122,7 +122,7 @@ Here are the repos that were updated:
 ### [v0.16.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/13/2019 | Modules affected: ec2-backup | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.2">Release notes</a></small>
+  <small>Published: 12/14/2019 | Modules affected: ec2-backup | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -138,7 +138,7 @@ Here are the repos that were updated:
 ### [v0.16.1](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/11/2019 | Modules affected: terraform-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.1">Release notes</a></small>
+  <small>Published: 12/12/2019 | Modules affected: terraform-helpers | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.16.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -163,7 +163,7 @@ This release fixes two bugs with `terraform-update-variable`:
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/19/2019 | Modules affected: cloudtrail, cloudwatch-logs-metric-filters, aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 12/20/2019 | Modules affected: cloudtrail, cloudwatch-logs-metric-filters, aws-securityhub | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -194,7 +194,7 @@ This release fixes two bugs with `terraform-update-variable`:
 ### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.2.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/17/2019 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.2.1">Release notes</a></small>
+  <small>Published: 12/18/2019 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.2.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -322,7 +322,7 @@ You can now provide lifecycle hooks to the `eks-alb-ingress-controller` module t
 ### [v0.11.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.11.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/3/2019 | Modules affected: eks-vpc-tags | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.11.0">Release notes</a></small>
+  <small>Published: 12/4/2019 | Modules affected: eks-vpc-tags | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.11.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -342,7 +342,7 @@ The VPC subnet tags generated for EKS by `eks-vpc-tags` now supports multiple EK
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/5/2019 | Modules affected: lambda, lambda-edge | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 12/6/2019 | Modules affected: lambda, lambda-edge | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -433,7 +433,7 @@ Special thanks to @scottclk for the contribution!
 ### [v0.15.0](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.15.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/19/2019 | Modules affected: logs/cloudwatch-logs-metric-filters | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.15.0">Release notes</a></small>
+  <small>Published: 12/20/2019 | Modules affected: logs/cloudwatch-logs-metric-filters | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.15.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -454,7 +454,7 @@ The `cloudwatch-logs-metric-filters` module no longer configures an aws provider
 ### [v0.22.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.22.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/19/2019 | Modules affected: cloudtrail, ssh-grunt, aws-organizations, aws-organizations-config-rules | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.22.0">Release notes</a></small>
+  <small>Published: 12/20/2019 | Modules affected: cloudtrail, ssh-grunt, aws-organizations, aws-organizations-config-rules | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.22.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -531,7 +531,7 @@ The `cloudtrail` module will no longer attempt to create the server access loggi
 ### [v0.21.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.21.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/10/2019 | Modules affected: aws-organizations | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.21.1">Release notes</a></small>
+  <small>Published: 12/11/2019 | Modules affected: aws-organizations | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.21.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -725,6 +725,6 @@ Bump maven version to install exhibitor since 3.6.1 is no longer available
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "84b15cb160c3f71d3968cc3c16c4106d"
+  "hash": "de5c9c10ed1ad22081bb40e78838b466"
 }
 ##DOCS-SOURCER-END -->

@@ -10,8 +10,39 @@ documentation](/guides/working-with-code/using-modules#updating).
 
 Here are the repos that were updated:
 
+- [repo-copier](#repo-copier)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
+
+
+## repo-copier
+
+
+### [v0.1.1](https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/1/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+* Create CODEOWNERS by @rhoboat in https://github.com/gruntwork-io/repo-copier/pull/120
+* Use terratest_log_parser to summarize test results in circleci by @yorinasub17 in https://github.com/gruntwork-io/repo-copier/pull/119
+* Update CODEOWNERS by @yorinasub17 in https://github.com/gruntwork-io/repo-copier/pull/121
+* Use BuildKit pattern for passing secrets by @hongil0316 in https://github.com/gruntwork-io/repo-copier/pull/122
+* Update Golang version. Fix tests. by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/126
+* Fix stack overflow error by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/127
+* Configure visibility for repositories by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/130
+* Fix stack overflow error (merge to master) by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/129
+* Configure visibility for repositories, additional option "internal" by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/132
+* Add --repo-name-prefix option by @edgeb1-roche in https://github.com/gruntwork-io/repo-copier/pull/128
+* Fix build failure by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/136
+
+**Full Changelog**: https://github.com/gruntwork-io/repo-copier/compare/v0.1.0...v0.1.1
+
+</div>
+
 
 
 ## terraform-aws-ci
@@ -65,6 +96,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e60e8ecf9e0395256fb8b57a7e33624b"
+  "hash": "c5a14153ef69ad85ccd99fd2d495b553"
 }
 ##DOCS-SOURCER-END -->

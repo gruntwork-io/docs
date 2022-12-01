@@ -33,7 +33,7 @@ Here are the repos that were updated:
 ### [v0.0.17](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/26/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17">Release notes</a></small>
+  <small>Published: 3/27/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.17">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -283,7 +283,7 @@ Going forward, we will immediately be investing in a new approach to writing mod
 ### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/21/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1">Release notes</a></small>
+  <small>Published: 3/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -296,7 +296,7 @@ Going forward, we will immediately be investing in a new approach to writing mod
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 3/21/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-sam/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -346,7 +346,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 ### [v0.4.2](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2">Release notes</a></small>
+  <small>Published: 3/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -389,7 +389,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 3/14/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -440,7 +440,7 @@ The `s3-static-website` module now enables server-side encryption by default. Th
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 3/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -491,6 +491,6 @@ The `s3-static-website` module now enables server-side encryption by default. Th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "272765537f4bff1dded237cc94f090b2"
+  "hash": "167b543b46cc6c1e9aea096dd670f512"
 }
 ##DOCS-SOURCER-END -->

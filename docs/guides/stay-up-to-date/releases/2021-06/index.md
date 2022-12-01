@@ -34,7 +34,7 @@ Here are the repos that were updated:
 ### [v0.2.2](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/11/2021 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 6/12/2021 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -768,7 +768,7 @@ Adds a new feature to the `custom-iam-entity` module to make it easier to create
 ### [v0.44.7](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.44.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/29/2021 | Modules affected: services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.44.7">Release notes</a></small>
+  <small>Published: 6/30/2021 | Modules affected: services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.44.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1242,6 +1242,6 @@ Adds support for tags to the redis module.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b5412da56adb17e470e4ce0255e73d48"
+  "hash": "0aa2a6bf8021abbc9bff10e1736514ca"
 }
 ##DOCS-SOURCER-END -->

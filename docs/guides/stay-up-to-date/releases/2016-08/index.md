@@ -87,7 +87,7 @@ Here are the repos that were updated:
 ### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/12/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.9">Release notes</a></small>
+  <small>Published: 8/13/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -211,6 +211,6 @@ ENHANCEMENT: `vpc-app` and `vpc-mgmt` now allow for specifying the exact CIDR bl
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0358b1b6118a163b231ad737f91eea1e"
+  "hash": "549d9e469fb60e2ba4bea5f59206fa65"
 }
 ##DOCS-SOURCER-END -->

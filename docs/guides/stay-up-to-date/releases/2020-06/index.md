@@ -503,7 +503,7 @@ You can now bind different containers and ports to each target group created for
 ### [v0.20.3](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/16/2020 | Modules affected: eks-k8s-external-dns, eks-alb-ingress-controller | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.3">Release notes</a></small>
+  <small>Published: 6/17/2020 | Modules affected: eks-k8s-external-dns, eks-alb-ingress-controller | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -522,7 +522,7 @@ You can now bind different containers and ports to each target group created for
 ### [v0.20.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.2">Release notes</a></small>
+  <small>Published: 6/11/2020 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -538,7 +538,7 @@ The control plane Python PEX binaries now support long path names on Windows. Pr
 ### [v0.20.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/1/2020 | Modules affected: eks-cloudwatch-container-logs, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.1">Release notes</a></small>
+  <small>Published: 6/2/2020 | Modules affected: eks-cloudwatch-container-logs, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.20.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -738,6 +738,6 @@ This release adds the ability to create `tags` with the modules mentioned above.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "47b9e38062f13269320bc1d75d36f8f5"
+  "hash": "e34bf0493f1adf894ca7e5cc754313e8"
 }
 ##DOCS-SOURCER-END -->

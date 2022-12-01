@@ -39,7 +39,7 @@ Here are the repos that were updated:
 ### [v0.6.12](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/4/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.12">Release notes</a></small>
+  <small>Published: 6/5/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -103,7 +103,7 @@ Here are the repos that were updated:
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/9/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 6/10/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -299,6 +299,6 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1509fa1bc51118a3da9b1d37ee6151ca"
+  "hash": "d39531ce0c85815913734a9a7452cb28"
 }
 ##DOCS-SOURCER-END -->

@@ -618,7 +618,7 @@ Resolve `shellcheck` issues in `aws-auth`.
 ### [v0.36.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/24/2020 | Modules affected: account-baseline-app, account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2">Release notes</a></small>
+  <small>Published: 8/25/2020 | Modules affected: account-baseline-app, account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -635,7 +635,7 @@ You can now set the max session duration for human and machine cross account IAM
 ### [v0.36.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/21/2020 | Modules affected: kms-grant-multi-region, account-baseline-app, account-baseline-security, kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1">Release notes</a></small>
+  <small>Published: 8/22/2020 | Modules affected: kms-grant-multi-region, account-baseline-app, account-baseline-security, kms-master-key-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.36.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -749,7 +749,7 @@ This release adds read only permissions to the `read_only` IAM policy for the [P
 ### [v0.34.3](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/11/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3">Release notes</a></small>
+  <small>Published: 8/12/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.34.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -806,7 +806,7 @@ All packer templates now support using a custom KMS CMK for encrypting the snaps
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/18/2020 | Modules affected: networking, tls-scripts, base, landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 8/19/2020 | Modules affected: networking, tls-scripts, base, landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -928,6 +928,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "be122a1d476901be784eca3b6282fae5"
+  "hash": "b0c35156790c804b550108bb1c6f4a1a"
 }
 ##DOCS-SOURCER-END -->

@@ -28,7 +28,7 @@ Here are the repos that were updated:
 ### [v0.6.7](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7">Release notes</a></small>
+  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -170,7 +170,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 ### [v0.7.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2">Release notes</a></small>
+  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.7.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -200,7 +200,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/22/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 2/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -241,7 +241,7 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/28/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2">Release notes</a></small>
+  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -262,6 +262,6 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4c2256518f8d43f8bfec9e1f720d3f15"
+  "hash": "6bde12561481b749707c50008c24b9ed"
 }
 ##DOCS-SOURCER-END -->

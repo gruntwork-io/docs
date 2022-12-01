@@ -45,7 +45,7 @@ Here are the repos that were updated:
 ### [v0.2.14](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.14)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/13/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.14">Release notes</a></small>
+  <small>Published: 7/14/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.14">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -230,7 +230,7 @@ Here are the repos that were updated:
 ### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.5.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/13/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.5.1">Release notes</a></small>
+  <small>Published: 7/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.5.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -409,7 +409,7 @@ Here are the repos that were updated:
 ### [v0.1.8](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.8">Release notes</a></small>
+  <small>Published: 7/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -422,7 +422,7 @@ Here are the repos that were updated:
 ### [v0.1.7](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.7">Release notes</a></small>
+  <small>Published: 7/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -482,6 +482,6 @@ The basic implementation and example code is in place, but docs and tests are st
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3d71e341b458835441a8b7002970feab"
+  "hash": "4d115e08e6f995e89d33664c173ec164"
 }
 ##DOCS-SOURCER-END -->

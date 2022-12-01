@@ -37,7 +37,7 @@ Here are the repos that were updated:
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/19/2019 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 6/20/2019 | Modules affected: server-group | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: server-group, asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: server-group, asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -95,7 +95,7 @@ This release fixes a bug where the module errors on the output if you set both `
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.6.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: redis, memcached | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.6.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: redis, memcached | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -307,7 +307,7 @@ This release fixes a bug in the install scripts where for some base AMIs, the in
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/18/2019 | Modules affected: elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 6/19/2019 | Modules affected: elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -376,7 +376,7 @@ Fixes a bug that arises when using terraform &gt;=0.12.2 with the `nlb` module. 
 ### [v0.14.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.14.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: alb, nlb, acm-tls-certificate | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.14.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: alb, nlb, acm-tls-certificate | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.14.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -436,7 +436,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.13.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.13.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/26/2019 | Modules affected: cloudwatch-dashboard-metric-widget | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.13.2">Release notes</a></small>
+  <small>Published: 6/27/2019 | Modules affected: cloudwatch-dashboard-metric-widget | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.13.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -491,7 +491,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.12.7](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/19/2019 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.7">Release notes</a></small>
+  <small>Published: 6/20/2019 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.12.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -551,7 +551,7 @@ Thanks to @bendavies for the PR!
 ### [v0.9.1](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/19/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.1">Release notes</a></small>
+  <small>Published: 6/20/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -727,7 +727,7 @@ This release introduces a new module `ssm-healthchecks-iam-permissions` which pr
 ### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -790,7 +790,7 @@ This fixes a bug that was introduced in upgrading to terraform 0.12, where `prep
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/5/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 6/6/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -827,7 +827,7 @@ Additionally, we have deprecated and removed the `intermediate-variable` module 
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.6.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: vpc-peering, vpc-peering-external, vpc-mgmt, vpc-mgmt-network-acls | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.6.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: vpc-peering, vpc-peering-external, vpc-mgmt, vpc-mgmt-network-acls | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -900,7 +900,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2019 | Modules affected: k8s-tiller, k8s-tiller-tls-certs, k8s-service-account, k8s-namespace | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 6/11/2019 | Modules affected: k8s-tiller, k8s-tiller-tls-certs, k8s-service-account, k8s-namespace | <a href="https://github.com/gruntwork-io/terraform-kubernetes-helm/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -926,6 +926,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "17625460266689baf0987b7d5df93796"
+  "hash": "0047f6c2e2cf33fe1a599f598f8c4f53"
 }
 ##DOCS-SOURCER-END -->

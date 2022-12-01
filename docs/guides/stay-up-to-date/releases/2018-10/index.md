@@ -92,7 +92,7 @@ module "b" {
 ### [v0.6.18](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.18)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/15/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.18">Release notes</a></small>
+  <small>Published: 10/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.6.18">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -109,7 +109,7 @@ module "b" {
 ### [v0.13.3](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.3">Release notes</a></small>
+  <small>Published: 10/18/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.13.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -297,7 +297,7 @@ The `scheduled-lambda-job` module now namespaces all of its resources with the f
 ### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/15/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.0">Release notes</a></small>
+  <small>Published: 10/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.10.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -402,7 +402,7 @@ A special thanks to @jeckhart for contributing all of these PRs!
 ### [v0.4.8](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.8)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.8">Release notes</a></small>
+  <small>Published: 10/18/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.8">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -417,6 +417,6 @@ A special thanks to @jeckhart for contributing all of these PRs!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9a9bbb0b3cec2a952e7b8b668272d957"
+  "hash": "a0fdc730782cfaf0cdc5cee68157b086"
 }
 ##DOCS-SOURCER-END -->

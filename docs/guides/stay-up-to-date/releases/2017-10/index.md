@@ -161,7 +161,7 @@ Here are the repos that were updated:
 ### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9">Release notes</a></small>
+  <small>Published: 10/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -314,7 +314,7 @@ This change is backwards compatible from a code perspective, but it changes the 
 ### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9">Release notes</a></small>
+  <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -342,6 +342,6 @@ This change is backwards compatible from a code perspective, but it changes the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "812cd4e503b2aae87da0805def73aac9"
+  "hash": "42fbc767427f9b39f1b764a22797d616"
 }
 ##DOCS-SOURCER-END -->

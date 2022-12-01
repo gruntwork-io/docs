@@ -69,7 +69,7 @@ Here are the repos that were updated:
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 2/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -117,7 +117,7 @@ To upgrade without downtime, we recommend the following approach:
 ### [v0.3.5](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.5">Release notes</a></small>
+  <small>Published: 2/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -161,7 +161,7 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/7/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 2/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -181,6 +181,6 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0c77439561deb990d57d510e4461949f"
+  "hash": "a5b5a2bce7055f762ff7ebc0fc9f5cf9"
 }
 ##DOCS-SOURCER-END -->

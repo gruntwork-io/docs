@@ -233,7 +233,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/29/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.2">Release notes</a></small>
+  <small>Published: 5/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -477,6 +477,6 @@ BACKWARDS INCOMPATIBLE CHANGES
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2967d19d30589272b3dcb2578e3f3cad"
+  "hash": "1ed8dc47ed090725370906f449fee56d"
 }
 ##DOCS-SOURCER-END -->

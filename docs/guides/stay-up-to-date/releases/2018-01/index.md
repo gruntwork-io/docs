@@ -32,7 +32,7 @@ Here are the repos that were updated:
 ### [v0.0.16](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.16)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/17/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.16">Release notes</a></small>
+  <small>Published: 1/18/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.16">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -122,7 +122,7 @@ Here are the repos that were updated:
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 1/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -160,7 +160,7 @@ Here are the repos that were updated:
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 1/13/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -350,7 +350,7 @@ add new tests for num_nat_gateways=0
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 1/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -367,6 +367,6 @@ add new tests for num_nat_gateways=0
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "725a724f156903d2a4006a0499c72561"
+  "hash": "a1b9c2767ee48c4662a1f657a5da479a"
 }
 ##DOCS-SOURCER-END -->

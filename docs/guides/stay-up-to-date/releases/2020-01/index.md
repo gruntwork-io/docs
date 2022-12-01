@@ -500,7 +500,7 @@ The `eks-cluster-control-plane` now supports specifying a CIDR block to restrict
 ### [v0.13.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.13.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/13/2020 | Modules affected: eks-cluster-control-plane, eks-cluster-workers, eks-k8s-role-mapping, eks-k8s-external-dns | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.13.0">Release notes</a></small>
+  <small>Published: 1/14/2020 | Modules affected: eks-cluster-control-plane, eks-cluster-workers, eks-k8s-role-mapping, eks-k8s-external-dns | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.13.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -526,7 +526,7 @@ This release also includes a number of minor bug fixes:
 ### [v0.12.2: [BACKWARDS INCOMPATIBLE] Fargate](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/8/2020 | Modules affected: eks-k8s-role-mapping, eks-k8s-external-dns, eks-k8s-external-dns-iam-policy, eks-k8s-cluster-autoscaler | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.2">Release notes</a></small>
+  <small>Published: 1/9/2020 | Modules affected: eks-k8s-role-mapping, eks-k8s-external-dns, eks-k8s-external-dns-iam-policy, eks-k8s-cluster-autoscaler | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -551,7 +551,7 @@ Starting this release, the modules in this repo have official support for Fargat
 ### [v0.12.1: Managed Node Groups](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/6/2020 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.1">Release notes</a></small>
+  <small>Published: 1/7/2020 | Modules affected: eks-cluster-managed-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.12.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -805,7 +805,7 @@ The codegen generator go library has been updated to allow rendering explicit bl
 ### [v0.23.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.23.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/24/2020 | Modules affected: guardduty-single-region, guardduty-multi-region, aws-config, aws-config-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.23.0">Release notes</a></small>
+  <small>Published: 1/25/2020 | Modules affected: guardduty-single-region, guardduty-multi-region, aws-config, aws-config-multi-region | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.23.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -996,6 +996,6 @@ Now `vpc-app` and `vpc-mgmt` will create a single VPC endpoint for all tiers. Pr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7481723e61e1fc72200348c00a64ee82"
+  "hash": "8e8b6ebef302f0c3a936ba4fc89013c4"
 }
 ##DOCS-SOURCER-END -->

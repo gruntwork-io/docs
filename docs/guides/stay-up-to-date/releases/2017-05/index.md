@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.3.15](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.15)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.15">Release notes</a></small>
+  <small>Published: 5/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.15">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -144,7 +144,7 @@ Here are the repos that were updated:
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/23/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 5/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -196,7 +196,7 @@ Here are the repos that were updated:
 ### [v0.4.17](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.17)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.17">Release notes</a></small>
+  <small>Published: 5/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.17">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -228,6 +228,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "13cedb477ecf7011b6896a1b428f3748"
+  "hash": "3f5a0dc6b9856f39587cbf569738d12e"
 }
 ##DOCS-SOURCER-END -->

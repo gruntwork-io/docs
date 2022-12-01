@@ -74,7 +74,7 @@ Here are the repos that were updated:
 ### [v0.1.0](https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/30/2018 | Modules affected: eks-k8s-role-mapping, kubergrunt, k8s-scripts, install-aws-iam-authenticator | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 12/1/2018 | Modules affected: eks-k8s-role-mapping, kubergrunt, k8s-scripts, install-aws-iam-authenticator | <a href="https://github.com/gruntwork-io/package-k8s/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -195,7 +195,7 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 ### [v0.8.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/21/2018 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1">Release notes</a></small>
+  <small>Published: 11/22/2018 | Modules affected: aurora | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -340,7 +340,7 @@ terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encr
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/28/2018 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 11/29/2018 | Modules affected: s3-cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -381,7 +381,7 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 ### [v0.3.3](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/11/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3">Release notes</a></small>
+  <small>Published: 11/12/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.3.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -413,6 +413,6 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4235ac4f560b81944da62b1fa21b8b60"
+  "hash": "f7827ef5042d83cd103915cb3838f7c7"
 }
 ##DOCS-SOURCER-END -->

@@ -178,7 +178,7 @@ Please note that this is a backwards incompatible release:
 ### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.1">Release notes</a></small>
+  <small>Published: 6/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -191,7 +191,7 @@ Please note that this is a backwards incompatible release:
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 6/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-mongodb/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -238,7 +238,7 @@ Please note that this is a backwards incompatible release:
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/27/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 6/28/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -311,6 +311,6 @@ Please note that this is a backwards incompatible release:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f236f7230ff4940bf73d79551502b5ba"
+  "hash": "437a4d3e57ee48da52e84b8c88902884"
 }
 ##DOCS-SOURCER-END -->

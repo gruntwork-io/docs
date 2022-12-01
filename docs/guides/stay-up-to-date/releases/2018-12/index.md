@@ -339,7 +339,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 ### [v0.8.3](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/10/2018 | Modules affected: lambda-cleanup-snapshots, lambda-copy-shared-snapshot, lambda-create-snapshot, lambda-share-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.3">Release notes</a></small>
+  <small>Published: 12/11/2018 | Modules affected: lambda-cleanup-snapshots, lambda-copy-shared-snapshot, lambda-create-snapshot, lambda-share-snapshot | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.8.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -389,7 +389,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 ### [v0.10.3](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/7/2018 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.3">Release notes</a></small>
+  <small>Published: 12/8/2018 | Modules affected: ecs-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.10.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -696,6 +696,6 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8aa4d00a14d134d76516518aa87913a8"
+  "hash": "d4167b35cebcdcaaf33f374745f62af6"
 }
 ##DOCS-SOURCER-END -->

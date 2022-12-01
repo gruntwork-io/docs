@@ -71,7 +71,7 @@ Here are the repos that were updated:
 ### [v0.3.7](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.7">Release notes</a></small>
+  <small>Published: 3/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -90,7 +90,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/31/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -129,7 +129,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 ### [v0.1.5](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/5/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.5">Release notes</a></small>
+  <small>Published: 3/6/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.1.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -167,7 +167,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 ### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.4.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.4.4">Release notes</a></small>
+  <small>Published: 3/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.4.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -211,7 +211,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 ### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.3.0">Release notes</a></small>
+  <small>Published: 3/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.3.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -268,7 +268,7 @@ Two bug fixes:
 ### [v0.4.9](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/31/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9">Release notes</a></small>
+  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -333,7 +333,7 @@ Two bug fixes:
 ### [v0.4.4](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.4">Release notes</a></small>
+  <small>Published: 3/2/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -464,6 +464,6 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0f0ff326ef41ea94e5e28e3f72516b29"
+  "hash": "bcca61444b6fa01965cb4edf3dafb76a"
 }
 ##DOCS-SOURCER-END -->

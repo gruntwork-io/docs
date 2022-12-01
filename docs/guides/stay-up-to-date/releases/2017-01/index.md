@@ -26,7 +26,7 @@ Here are the repos that were updated:
 ### [v0.2.6](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/17/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.6">Release notes</a></small>
+  <small>Published: 1/18/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.2.4](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/13/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.4">Release notes</a></small>
+  <small>Published: 1/14/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -68,7 +68,7 @@ Here are the repos that were updated:
 ### [v0.2.3](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/10/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.3">Release notes</a></small>
+  <small>Published: 1/11/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -82,7 +82,7 @@ Here are the repos that were updated:
 ### [v0.2.2](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/10/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 1/11/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -150,7 +150,7 @@ Here are the repos that were updated:
 ### [v0.3.3](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.3">Release notes</a></small>
+  <small>Published: 1/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -212,7 +212,7 @@ Here are the repos that were updated:
 ### [v0.3.5](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.3.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.3.5">Release notes</a></small>
+  <small>Published: 1/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.3.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -278,7 +278,7 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 ### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 1/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -310,7 +310,7 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 1/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -348,7 +348,7 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 ### [v0.1.3](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.3">Release notes</a></small>
+  <small>Published: 1/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.1.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -364,6 +364,6 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c3651933092c528f979bc801de0614bb"
+  "hash": "6bf3b98cb3839a4d3adba8b7711093e6"
 }
 ##DOCS-SOURCER-END -->

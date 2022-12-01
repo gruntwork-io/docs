@@ -21,7 +21,7 @@ Here are the repos that were updated:
 ### [v0.0.4](https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/3/2016 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.4">Release notes</a></small>
+  <small>Published: 11/4/2016 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -39,7 +39,7 @@ Here are the repos that were updated:
 ### [v0.0.25](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.25)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/14/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.25">Release notes</a></small>
+  <small>Published: 11/15/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.25">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -76,6 +76,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "38a87e559905e7c93a7f7584d2b3ebd5"
+  "hash": "64e448041eb7d3b5f05ee5193b1d9228"
 }
 ##DOCS-SOURCER-END -->

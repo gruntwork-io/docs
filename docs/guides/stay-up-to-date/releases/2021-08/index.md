@@ -229,7 +229,7 @@ Here are the repos that were updated:
 ### [v0.38.6](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/19/2021 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.6">Release notes</a></small>
+  <small>Published: 8/20/2021 | Modules affected: ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1265,7 +1265,7 @@ Optionally create service-linked roles for security account using `var.service_l
 ### [v0.56.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.56.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/11/2021 | Modules affected: services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.56.2">Release notes</a></small>
+  <small>Published: 8/12/2021 | Modules affected: services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.56.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1486,6 +1486,6 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1f46b9e1cbc8e615148df7de172f3caf"
+  "hash": "3ecf526a244356ae08e56efd82ff077b"
 }
 ##DOCS-SOURCER-END -->

@@ -315,7 +315,7 @@ Updates the `custom-iam-entity` module to use the latest version in `module-secu
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/14/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 10/15/2020 | Modules affected: cloudtrail | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -806,7 +806,7 @@ This release bumps the `terraform-aws-eks` module up to the latest version, incl
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/19/2020 | Modules affected: data-stores/rds, services/package-static-assets, mgmt/bastion-host, base/ec2-baseline | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 10/20/2020 | Modules affected: data-stores/rds, services/package-static-assets, mgmt/bastion-host, base/ec2-baseline | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -882,7 +882,7 @@ This release updates the following modules to the latest releases of their respe
 ### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/27/2020 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1">Release notes</a></small>
+  <small>Published: 10/28/2020 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.7.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -924,6 +924,6 @@ This release updates the following modules to the latest releases of their respe
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5a5d8cc04d26be8b536485e7a87ed27b"
+  "hash": "58d4b04963a9d98f486738227f651054"
 }
 ##DOCS-SOURCER-END -->

@@ -368,7 +368,7 @@ The main motivation for locking down EC2 metadata is as follows:
 ### [v0.4.3](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.3">Release notes</a></small>
+  <small>Published: 4/26/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -396,6 +396,6 @@ The main motivation for locking down EC2 metadata is as follows:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "12eb772ba238756a2bb027f2f7daaa28"
+  "hash": "663afa12cc91701ee6680fe83d1f300b"
 }
 ##DOCS-SOURCER-END -->

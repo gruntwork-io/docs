@@ -483,7 +483,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 ### [v0.65.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/19/2022 | Modules affected: aws-config-bucket, aws-config-multi-region, aws-config-rules, aws-config | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0">Release notes</a></small>
+  <small>Published: 5/20/2022 | Modules affected: aws-config-bucket, aws-config-multi-region, aws-config-rules, aws-config | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -576,7 +576,7 @@ The modules list above makes it look like a scary update; however, this should b
 ### [v0.88.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.88.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/17/2022 | Modules affected: mgmt/tailscale-subnet-router | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.88.0">Release notes</a></small>
+  <small>Published: 5/18/2022 | Modules affected: mgmt/tailscale-subnet-router | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.88.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -670,7 +670,7 @@ The modules list above makes it look like a scary update; however, this should b
 ### [v0.85.11](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.11)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/2/2022 | Modules affected: mgmt/tailscale-subnet-router | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.11">Release notes</a></small>
+  <small>Published: 5/3/2022 | Modules affected: mgmt/tailscale-subnet-router | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.11">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -731,6 +731,6 @@ Support for python2 has been dropped. All modules that depend on python now requ
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "908b356b6757102f67ea2cdfe2d60dc8"
+  "hash": "bc20357fa261490cd533fc0f16b375a3"
 }
 ##DOCS-SOURCER-END -->

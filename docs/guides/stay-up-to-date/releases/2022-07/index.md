@@ -148,7 +148,7 @@ If you were relying on either of these behaviors, please file a GitHub issue wit
 ### [v0.50.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/5/2022 | Modules affected: ecs-deploy-runner-standard-configuration, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2">Release notes</a></small>
+  <small>Published: 7/6/2022 | Modules affected: ecs-deploy-runner-standard-configuration, ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -853,6 +853,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3d64f8dbb2c4e9cd929fda4f590db618"
+  "hash": "5cdccd08c3250654aa536f4b47d7bbf8"
 }
 ##DOCS-SOURCER-END -->

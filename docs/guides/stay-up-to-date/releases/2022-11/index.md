@@ -11,7 +11,6 @@ documentation](/guides/working-with-code/using-modules#updating).
 Here are the repos that were updated:
 
 - [aws-sample-app](#aws-sample-app)
-- [repo-copier](#repo-copier)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-ecs](#terraform-aws-ecs)
@@ -55,29 +54,6 @@ Here are the repos that were updated:
 * @hongil0316 made their first contribution in https://github.com/gruntwork-io/aws-sample-app/pull/53
 
 **Full Changelog**: https://github.com/gruntwork-io/aws-sample-app/compare/v0.0.5...v0.0.6
-
-</div>
-
-
-
-## repo-copier
-
-
-### [v0.1.1](https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/25/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* Update Golang version. Fix tests. by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/126
-* Fix stack overflow error by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/127
-* Configure visibility for repositories by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/130
-* Fix stack overflow error (merge to master) by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/129
-
-**Full Changelog**: https://github.com/gruntwork-io/repo-copier/compare/v0.1.0...v0.1.1
 
 </div>
 
@@ -371,7 +347,7 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 ### [v0.98.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/21/2022 | Modules affected: base/ec2-baseline, data-stores/rds, data-stores/s3-bucket, landingzone/account-baseline-app | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0">Release notes</a></small>
+  <small>Published: 11/22/2022 | Modules affected: base/ec2-baseline, data-stores/rds, data-stores/s3-bucket, landingzone/account-baseline-app | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -467,6 +443,6 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "82905f1ddc2422d4a7c924072db4fb9c"
+  "hash": "f180324c01695c6099bd5f2dac3e8da3"
 }
 ##DOCS-SOURCER-END -->

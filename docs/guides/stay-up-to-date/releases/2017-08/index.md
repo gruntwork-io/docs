@@ -74,7 +74,7 @@ Here are the repos that were updated:
 ### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.4.0">Release notes</a></small>
+  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.4.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -104,7 +104,7 @@ Here are the repos that were updated:
 ### [v0.2.9](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.9)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/25/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.9">Release notes</a></small>
+  <small>Published: 8/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.9">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -163,7 +163,7 @@ The changes include:
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4">Release notes</a></small>
+  <small>Published: 8/17/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -176,7 +176,7 @@ The changes include:
 ### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3">Release notes</a></small>
+  <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -202,7 +202,7 @@ The changes include:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -524,7 +524,7 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 ### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2">Release notes</a></small>
+  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -539,6 +539,6 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "07915c9251ed8402f146e42e8ad26aa6"
+  "hash": "2c1bb27c940ead4ec47e04e845a0bb80"
 }
 ##DOCS-SOURCER-END -->

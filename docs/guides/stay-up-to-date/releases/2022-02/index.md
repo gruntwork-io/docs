@@ -752,7 +752,7 @@ Default value is still `true`.
 ### [v0.17.2](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.17.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/24/2022 | Modules affected: lambda-edge, lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.17.2">Release notes</a></small>
+  <small>Published: 2/25/2022 | Modules affected: lambda-edge, lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.17.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1562,7 +1562,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 ### [v0.75.3](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.75.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/15/2022 | Modules affected: landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.75.3">Release notes</a></small>
+  <small>Published: 2/16/2022 | Modules affected: landingzone | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.75.3">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1718,7 +1718,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 ### [v0.72.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.72.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/2/2022 | Modules affected: networking/vpc | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.72.1">Release notes</a></small>
+  <small>Published: 2/3/2022 | Modules affected: networking/vpc | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.72.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1948,6 +1948,6 @@ Exposed `icmp_type` and `icmp_code` in `var.private_app_allow_inbound_ports_from
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dfcaa1a0b5ef2e76c98c70d1426030d2"
+  "hash": "77cb3f5554c41881172c1529bdab66b1"
 }
 ##DOCS-SOURCER-END -->

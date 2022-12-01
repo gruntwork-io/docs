@@ -333,7 +333,7 @@ You can now enable container insights on the ECS cluster deployed with the `ecs-
 ### [v0.31.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.31.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/14/2020 | Modules affected: eks-cluster-control-plane, eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.31.0">Release notes</a></small>
+  <small>Published: 12/15/2020 | Modules affected: eks-cluster-control-plane, eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.31.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -968,6 +968,6 @@ The `exhibitor-shared-config` module has been refactored to use the `private-s3-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "731ea0c1f30dddfa81dcda6d72f8a9a3"
+  "hash": "bc97a2bb4736f83c0947197982f4f041"
 }
 ##DOCS-SOURCER-END -->

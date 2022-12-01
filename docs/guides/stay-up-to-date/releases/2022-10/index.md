@@ -164,7 +164,7 @@ Here are the repos that were updated:
 ### [v0.41.2](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.41.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/27/2022 | Modules affected: data-stores/rds | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.41.2">Release notes</a></small>
+  <small>Published: 10/28/2022 | Modules affected: data-stores/rds | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.41.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -440,6 +440,6 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "07566d7466aad7d2dae156899c60387a"
+  "hash": "ee6c07901f6235f9070ed9a618818996"
 }
 ##DOCS-SOURCER-END -->

@@ -41,7 +41,7 @@ Here are the repos that were updated:
 ### [v0.0.7](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/27/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.7">Release notes</a></small>
+  <small>Published: 11/28/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -106,7 +106,7 @@ Here are the repos that were updated:
 ### [v0.0.2](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/20/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.2">Release notes</a></small>
+  <small>Published: 11/21/2017 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -166,7 +166,7 @@ Here are the repos that were updated:
 ### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.5.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.5.0">Release notes</a></small>
+  <small>Published: 11/30/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.5.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -476,6 +476,6 @@ https_listener_ports_and_acm_ssl_certs = [
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f10bb538ce48f8fd45885ba254d0dfb7"
+  "hash": "31a4f6aabd9dca89f36c64fd4a86b86a"
 }
 ##DOCS-SOURCER-END -->

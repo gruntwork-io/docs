@@ -875,7 +875,7 @@ Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provide
 ### [v0.21.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.21.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/16/2022 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.21.1">Release notes</a></small>
+  <small>Published: 4/17/2022 | Modules affected: vpc-app | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.21.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -894,6 +894,6 @@ Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provide
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "27ef98ef9e7a3196b2cecfaff750c18e"
+  "hash": "9e1cfb0a82aed52c39deff47a15b5f3e"
 }
 ##DOCS-SOURCER-END -->

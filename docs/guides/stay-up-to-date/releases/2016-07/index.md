@@ -88,7 +88,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/11/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 7/12/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -106,7 +106,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/29/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 7/30/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -195,7 +195,7 @@ Here are the repos that were updated:
 ### [v0.0.12](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/11/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.12">Release notes</a></small>
+  <small>Published: 7/12/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.0.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -377,7 +377,7 @@ Here are the repos that were updated:
 ### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/2/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.7">Release notes</a></small>
+  <small>Published: 7/3/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -553,6 +553,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2d6962d09a73b54c35c36d45a35502b8"
+  "hash": "7a4738c91d4af9cfa8b111587f84915c"
 }
 ##DOCS-SOURCER-END -->

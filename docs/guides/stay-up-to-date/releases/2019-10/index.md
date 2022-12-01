@@ -235,7 +235,7 @@ Check out [the updated README](https://github.com/gruntwork-io/terraform-aws-eks
 ### [v0.9.6](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2019 | Modules affected: eks-k8s-role-mapping, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.6">Release notes</a></small>
+  <small>Published: 10/18/2019 | Modules affected: eks-k8s-role-mapping, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -374,7 +374,7 @@ Add support for multiple ASGs in `eks-cluster-workers` so that you can manage on
 ### [v0.14.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.14.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/25/2019 | Modules affected: alarms/elasticsearch-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.14.2">Release notes</a></small>
+  <small>Published: 10/26/2019 | Modules affected: alarms/elasticsearch-alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.14.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -419,7 +419,7 @@ The alarms are defaulted to use the values that AWS recommend.
 ### [v0.9.7](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.7">Release notes</a></small>
+  <small>Published: 10/18/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.7">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -722,6 +722,6 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a1337b4949629c9fa90246095c7b0816"
+  "hash": "6f40d91c3b67354316336c93254eb124"
 }
 ##DOCS-SOURCER-END -->

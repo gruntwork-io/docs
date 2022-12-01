@@ -97,7 +97,7 @@ required_version: "~&gt; 0.4.3"
 ### [v0.0.28](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.28)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/4/2022 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.28">Release notes</a></small>
+  <small>Published: 3/5/2022 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.28">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -483,7 +483,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 ### [v0.50.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.50.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/22/2022 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.50.2">Release notes</a></small>
+  <small>Published: 3/23/2022 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.50.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -619,7 +619,7 @@ Updated the `macie` module to allow configuring and managing the Macie CloudWatc
 ### [v0.32.1](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.32.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/10/2022 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.32.1">Release notes</a></small>
+  <small>Published: 3/11/2022 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.32.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -708,7 +708,7 @@ The `openvpn-server` module has been updated to support the recently changed `pr
 ### [v0.63.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.63.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/23/2022 | Modules affected: private-s3-bucket, aws-config-bucket, aws-config-multi-region, aws-config-rules | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.63.0">Release notes</a></small>
+  <small>Published: 3/24/2022 | Modules affected: private-s3-bucket, aws-config-bucket, aws-config-multi-region, aws-config-rules | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.63.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -822,7 +822,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 ### [v0.85.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/23/2022 | Modules affected: services/lambda, data-stores/ecr-repos | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.1">Release notes</a></small>
+  <small>Published: 3/24/2022 | Modules affected: services/lambda, data-stores/ecr-repos | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.85.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -898,7 +898,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 ### [v0.84.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/9/2022 | Modules affected: services/lambda | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.2">Release notes</a></small>
+  <small>Published: 3/10/2022 | Modules affected: services/lambda | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -933,7 +933,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 ### [v0.84.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/8/2022 | Modules affected: services/lambda, mgmt/openvpn-server, services/eks-workers, services/eks-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.0">Release notes</a></small>
+  <small>Published: 3/9/2022 | Modules affected: services/lambda, mgmt/openvpn-server, services/eks-workers, services/eks-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.84.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -963,7 +963,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 ### [v0.83.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.83.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/4/2022 | Modules affected: mgmt/bastion-host, services/ec2-instance, base/ec2-baseline, mgmt/ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.83.0">Release notes</a></small>
+  <small>Published: 3/5/2022 | Modules affected: mgmt/bastion-host, services/ec2-instance, base/ec2-baseline, mgmt/ecs-deploy-runner | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.83.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1186,6 +1186,6 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "efe3374aba8a58999c19e85d4cf8ead7"
+  "hash": "fa84adb2a036b360286e0ea2ed481d5d"
 }
 ##DOCS-SOURCER-END -->
