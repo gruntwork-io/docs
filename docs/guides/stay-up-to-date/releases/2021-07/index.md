@@ -629,7 +629,7 @@ The `apply_immediately` flag now propagates to the replica instances for the `rd
 
   
 
-- Fix RBAC permissions for `aws-auth-merger` so that it can create a new `aws-auth` ConfigMap when it doesn't exist.
+- Fix RBAC permissions for `aws-auth-merger` so that it can create a new `aws-auth` ConfigMap when it doesn&apos;t exist.
 
 
 
@@ -651,29 +651,29 @@ Fix undocumented variable `multi_instance_overrides` so you can also set `weight
 Note that this introduces a format change - if you were using `multi_instance_overrides` before, you will need to update your code to use the new format. If you had:
 
 ```hcl
-  autoscaling_group_configurations = {
-    asg = {
+  autoscaling_group_configurations = &#x7B;
+    asg = &#x7B;
       use_multi_instances_policy = true
-      spot_allocation_strategy   = "capacity-optimized"
-      multi_instance_overrides   = ["t3.micro", "t2.micro"]
+      spot_allocation_strategy   = &quot;capacity-optimized&quot;
+      multi_instance_overrides   = [&quot;t3.micro&quot;, &quot;t2.micro&quot;]
 
       # other fields omitted for brevity
-    }
-  }
+    &#x7D;
+  &#x7D;
 ```
 
 Update the `multi_instance_overrides` field to:
 
 ```hcl
-  autoscaling_group_configurations = {
-    asg = {
+  autoscaling_group_configurations = &#x7B;
+    asg = &#x7B;
       use_multi_instances_policy = true
-      spot_allocation_strategy   = "capacity-optimized"
-      multi_instance_overrides   = [{ instance_type = "t3.micro" }, { instance_type = "t2.micro" }]
+      spot_allocation_strategy   = &quot;capacity-optimized&quot;
+      multi_instance_overrides   = [&#x7B; instance_type = &quot;t3.micro&quot; &#x7D;, &#x7B; instance_type = &quot;t2.micro&quot; &#x7D;]
 
       # other fields omitted for brevity
-    }
-  }
+    &#x7D;
+  &#x7D;
 ```
 
 
@@ -1230,7 +1230,7 @@ Refer to the [module docs](https://github.com/gruntwork-io/terraform-aws-lambda/
 
 - We have refactored all our multi-region modules (the ones that have `-multi-region` in the name) to no longer create nested `provider` blocks. Instead, providers must be passed in now via the `providers` map. This reduces the number of providers that Terraform must instantiate, making the multi-region modules much faster and more stable to use. It also gives you full control over how to authenticate to your various AWS accounts. However, **this is a backwards incompatible change**, so make sure to [read the migration guide below](#migration-guide-for-multi-region-modules).
 - To update the multi-region modules, we updated the Golang `generator` code too. It no longer creates nested `provider` blocks or the `local.all_regions` variable and no longer supports a `SeedRegion` param. However, it does support new params to configure Terraform and AWS provider version constraints. **These changes are also backwards incompatible**, so make sure to [read the migration guide below](#migration-guide-for-the-golang-generator-code).
-- We've fixed small bugs in the `aws-config`, `aws-config-bucket`, and `kms-master-key` modules so they no longer create `data` sources when `create_resources` is set to `false`.
+- We&apos;ve fixed small bugs in the `aws-config`, `aws-config-bucket`, and `kms-master-key` modules so they no longer create `data` sources when `create_resources` is set to `false`.
 
 
 </div>
@@ -1497,7 +1497,7 @@ Exposes the ability to pass through volumes (including EFS volumes) to the wrapp
   
 
 - We made it easier to pass in EC2 instance type for the ECS packer template.
-- We lightly refactored test_helpers.go, so that changes to test_helpers.go doesn't trigger so many full-suite test runs in the future.
+- We lightly refactored test_helpers.go, so that changes to test_helpers.go doesn&apos;t trigger so many full-suite test runs in the future.
 - In the modules/data-stores/elasticsearch, we added support for custom endpoints.
 
 
@@ -1914,6 +1914,6 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "097f7a79a08f976498607f461d3b55da"
+  "hash": "64e45c6da093f5a15734b5765be2b41f"
 }
 ##DOCS-SOURCER-END -->

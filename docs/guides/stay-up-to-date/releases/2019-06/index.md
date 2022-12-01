@@ -109,7 +109,7 @@ This release fixes a bug where the module errors on the output if you set both `
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 - https://github.com/gruntwork-io/module-cache/pull/31
@@ -135,7 +135,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -197,7 +197,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -238,7 +238,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -342,7 +342,7 @@ This release fixes a bug where AWS region of the s3 bucket was hardcoded to `us-
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -391,7 +391,7 @@ Fixes a bug that arises when using terraform &gt;=0.12.2 with the `nlb` module. 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 * https://github.com/gruntwork-io/module-load-balancer/pull/58
@@ -421,7 +421,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 * https://github.com/gruntwork-io/package-messaging/pull/22
@@ -481,7 +481,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -517,7 +517,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 * `alarms/sqs-alarms`
 
 
-* Fix the `period` setting for the SQS alarm to use a minimum of 5 minutes rather than 1 minute, as SQS metrics are only collected once every 5 minutes, so trying to alert more often doesn't work.
+* Fix the `period` setting for the SQS alarm to use a minimum of 5 minutes rather than 1 minute, as SQS metrics are only collected once every 5 minutes, so trying to alert more often doesn&apos;t work.
 
 
 Thanks to @bendavies for the PR!
@@ -579,7 +579,7 @@ Thanks to @bendavies for the PR!
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -639,7 +639,7 @@ This release introduces the ability to set an expiration lifecycle on the object
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -680,7 +680,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -738,7 +738,7 @@ This release introduces a new module `ssm-healthchecks-iam-permissions` which pr
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -810,7 +810,7 @@ This fixes a bug that was introduced in upgrading to terraform 0.12, where `prep
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 Additionally, we have deprecated and removed the `intermediate-variable` module in this release. This module has been superseded by [terraform local values](https://www.terraform.io/docs/configuration/locals.html). To upgrade, switch usage of `intermediate-variable` with `locals`.
 
@@ -838,7 +838,7 @@ Additionally, we have deprecated and removed the `intermediate-variable` module 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -885,7 +885,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/45
@@ -911,7 +911,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 **Note:** there is one major interface change due to the upgrade. For the TLS modules, we no longer cannot pass through the subject info of the TLS cert as an inline block due to type issues. The main issue here is with the street_address attribute, which is of type `list(string)`. To support the types, the `street_address` must be provided as newline delimited `string`, which will be later converted to `list(string)`.
 
@@ -926,6 +926,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "92e5e55fa54353033c0a42565852258e"
+  "hash": "32778004facafcb944ab1e3d80c772ea"
 }
 ##DOCS-SOURCER-END -->

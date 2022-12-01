@@ -121,9 +121,9 @@ Here are the repos that were updated:
 
   - BREAKING CHANGE: AWS made a backwards-incompatible change to their API where, if the [snapshot_retention_limit](https://www.terraform.io/docs/providers/aws/r/elasticache_replication_group.html#snapshot_retention_limit) property of the `aws_elasticache_replication_group` Terraform resource is set to `0`, you must not pass the [snapshot_window](https://www.terraform.io/docs/providers/aws/r/elasticache_replication_group.html#snapshot_window) property. Previously, the snapshot_window property was simply ignored if not needed.
   
-  Note that if you update to this new version of the redis module, it will delete your original ElastiCache cluster and replace it with a new one. Therefore, it's essential that you have all your data backed up and can take a downtime before you do the upgrade.
+  Note that if you update to this new version of the redis module, it will delete your original ElastiCache cluster and replace it with a new one. Therefore, it&apos;s essential that you have all your data backed up and can take a downtime before you do the upgrade.
   
-  Alternatively, it's possible to update without downtime by using `terraform state` commands. If you'd like assistance with this contact support@gruntwork.io.
+  Alternatively, it&apos;s possible to update without downtime by using `terraform state` commands. If you&apos;d like assistance with this contact support@gruntwork.io.
 
 
 </div>
@@ -189,7 +189,7 @@ Here are the repos that were updated:
 
   - ENHANCEMENT: Per #27, the `ecs-cluster` module now accepts the optional parameters `var.alb_security_group_ids` and `var.num_alb_security_group_ids`. 
   
-  Whereas previously, an ALB was connected to an ECS Cluster by passing the ECS Cluster's Security Group ID to the `alb` module (located in the the [Load Balancer Package](https://github.com/gruntwork-io/module-load-balancer)), now the `alb` module is unaware of an ECS Cluster or Auto Scaling Group connected to it, and that responsibility has been shifted to the `ecs-cluster` module.
+  Whereas previously, an ALB was connected to an ECS Cluster by passing the ECS Cluster&apos;s Security Group ID to the `alb` module (located in the the [Load Balancer Package](https://github.com/gruntwork-io/module-load-balancer)), now the `alb` module is unaware of an ECS Cluster or Auto Scaling Group connected to it, and that responsibility has been shifted to the `ecs-cluster` module.
 
 
 </div>
@@ -265,11 +265,11 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - "DISRUPTIVE" CHANGE: Previously, the `alb` module was rather opinionated about how it would name the ALB. It assumed you wanted the ALB name to be of the form `&lt;var.alb_name&gt;-&lt;var.environment_name&gt;`. But this proved to be unnecessarily opinionated, so this update changes the ALB name to be exactly the value of the `var.alb_name`. 
+  - &quot;DISRUPTIVE&quot; CHANGE: Previously, the `alb` module was rather opinionated about how it would name the ALB. It assumed you wanted the ALB name to be of the form `&lt;var.alb_name&gt;-&lt;var.environment_name&gt;`. But this proved to be unnecessarily opinionated, so this update changes the ALB name to be exactly the value of the `var.alb_name`. 
   
-  Note that the `alb` module API did not change and this is therefore not a "breaking" change, however Terraform will attempt to destroy and re-create your ALB, making this a "disruptive" change. To avoid such disruption, consider using `terraform state` commands. Due to the relative newsness (1 - 2 weeks), only a handful of Gruntwork customers are currently using the `alb` module. Therefore, we did not create documentation on migrating from the previous ALB version.
+  Note that the `alb` module API did not change and this is therefore not a &quot;breaking&quot; change, however Terraform will attempt to destroy and re-create your ALB, making this a &quot;disruptive&quot; change. To avoid such disruption, consider using `terraform state` commands. Due to the relative newsness (1 - 2 weeks), only a handful of Gruntwork customers are currently using the `alb` module. Therefore, we did not create documentation on migrating from the previous ALB version.
   
-  As always, contact us at support@gruntwork.io if you'd like help migrating this!
+  As always, contact us at support@gruntwork.io if you&apos;d like help migrating this!
 
 
 </div>
@@ -283,7 +283,7 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - BREAKING CHANGE: Previously the ALB depended on a previously existing ECS Cluster or Auto Scaling Group by exposing the parameters `var.ecs_cluster_security_group_ids` and `var.auto_scaling_group_security_group_ids`. But this dependency was problematic for reasons explained in #5. Now, the ALB depends on no external resources, and any resource like an ECS Cluster that wants to use the ALB can implement its own "hook" into the ALB by reading the new output `alb_security_group_id`. 
+  - BREAKING CHANGE: Previously the ALB depended on a previously existing ECS Cluster or Auto Scaling Group by exposing the parameters `var.ecs_cluster_security_group_ids` and `var.auto_scaling_group_security_group_ids`. But this dependency was problematic for reasons explained in #5. Now, the ALB depends on no external resources, and any resource like an ECS Cluster that wants to use the ALB can implement its own &quot;hook&quot; into the ALB by reading the new output `alb_security_group_id`. 
 
 
 </div>
@@ -364,6 +364,6 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6bf3b98cb3839a4d3adba8b7711093e6"
+  "hash": "6a01ad47fd5ff4cc2c21ffcfb2b485c7"
 }
 ##DOCS-SOURCER-END -->

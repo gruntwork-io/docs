@@ -157,7 +157,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Output docs-generator binaries to a different folder during the build so they don't get pushed to the module-ci-public repo
+  - Output docs-generator binaries to a different folder during the build so they don&apos;t get pushed to the module-ci-public repo
 
 
 </div>
@@ -309,7 +309,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - BREAKING CHANGE: `ecs-service` params are renamed to more cleanly separate ELB resources from non-ELB resources by namespacing vars as either `elb_` or not.
-- Rolls back #16 since this can be put in clients' infrastructure-modules repo instead.
+- Rolls back #16 since this can be put in clients&apos; infrastructure-modules repo instead.
 
 
 </div>
@@ -367,7 +367,7 @@ Here are the repos that were updated:
 
   - `ecs-service`: BREAKING CHANGE. The `name` property has been renamed to `service_name`.
 - `ecs-service`: BREAKING CHANGE. The `associate_with_elb` property has been renamed to `is_associated_with_elb` to better indicate this property accepts boolean values.
-- `ecs-service`: BREAKING CHANGE. The `ecs_cluster_vpc_name` property has been added so that the ECS Service's IAM Role is named uniquely per the environment in which it's deployed.
+- `ecs-service`: BREAKING CHANGE. The `ecs_cluster_vpc_name` property has been added so that the ECS Service&apos;s IAM Role is named uniquely per the environment in which it&apos;s deployed.
 - Tests updated to use latest gruntwork-installer.
 
 
@@ -480,7 +480,7 @@ Here are the repos that were updated:
 
   Add two new modules: 
 - `persistent-ebs-volume`: Scripts for mounting and unmounting EBS Volumes on your EC2 Instances for Volumes that need to persist between redeploys of the Instance.
-- `route53-helpers`: Scripts for working with Amazon's DNS Service, Route 53, including a script to add a DNS A record pointing to the instance's IP address.
+- `route53-helpers`: Scripts for working with Amazon&apos;s DNS Service, Route 53, including a script to add a DNS A record pointing to the instance&apos;s IP address.
 
 
 </div>
@@ -553,6 +553,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7a4738c91d4af9cfa8b111587f84915c"
+  "hash": "02d759351302a389627c753ab5d95818"
 }
 ##DOCS-SOURCER-END -->

@@ -34,7 +34,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   BACKWARDS INCOMPATIBLE CHANGES
-- Boilerplate now supports types for variables. Each variable in the `boilerplate.yml` file can define a `type` field set to string, int, float, bool, list, map, or enum (enum variables can also include a list of `options`). This allows for some basic error checking of the variable values and, even more importantly, allows you to use the corresponding Go template syntax for those types. For example, if-statements work as you would expect with booleans (no more having to check `if eq .Foo "true"`), you can loop over lists and maps using the `range` keyword, and you can do basic arithmetic on ints and floats.
+- Boilerplate now supports types for variables. Each variable in the `boilerplate.yml` file can define a `type` field set to string, int, float, bool, list, map, or enum (enum variables can also include a list of `options`). This allows for some basic error checking of the variable values and, even more importantly, allows you to use the corresponding Go template syntax for those types. For example, if-statements work as you would expect with booleans (no more having to check `if eq .Foo &quot;true&quot;`), you can loop over lists and maps using the `range` keyword, and you can do basic arithmetic on ints and floats.
 - The `prompt` field in `boilerplate.yml` has been renamed to `description`.
 
 
@@ -49,7 +49,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - `boilerplate` now has a `--missing-config-action` flag that controls its behavior when run against a template folder that doesn't have a `boilerplate.yml` file. The default behavior is now to exit with an error.
+  - `boilerplate` now has a `--missing-config-action` flag that controls its behavior when run against a template folder that doesn&apos;t have a `boilerplate.yml` file. The default behavior is now to exit with an error.
 
 
 </div>
@@ -143,8 +143,8 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - BREAKING CHANGE: We switched the redis module's implementation from CloudFormation over to Terraform now that Terraform supports Redis replication groups. Note that if you update to this new version of the redis module, **it will delete you original ElastiCache cluster and replace it with a new one**. Therefore, it's essential that you have all your data backed up and can take a downtime before you do the upgrade.
-- Fix bugs in the outputs of both the memcached and redis module. It turns out that the Terraform (and in many cases, CloudFormation)  outputs are either missing or broken (see https://github.com/hashicorp/terraform/issues/8794 and https://github.com/hashicorp/terraform/issues/8788). We've added hacky workarounds that should do the trick for now, but we will be watching the progress of those bugs closely in the hope of getting a more reliable solution.
+  - BREAKING CHANGE: We switched the redis module&apos;s implementation from CloudFormation over to Terraform now that Terraform supports Redis replication groups. Note that if you update to this new version of the redis module, **it will delete you original ElastiCache cluster and replace it with a new one**. Therefore, it&apos;s essential that you have all your data backed up and can take a downtime before you do the upgrade.
+- Fix bugs in the outputs of both the memcached and redis module. It turns out that the Terraform (and in many cases, CloudFormation)  outputs are either missing or broken (see https://github.com/hashicorp/terraform/issues/8794 and https://github.com/hashicorp/terraform/issues/8788). We&apos;ve added hacky workarounds that should do the trick for now, but we will be watching the progress of those bugs closely in the hope of getting a more reliable solution.
 
 
 </div>
@@ -242,7 +242,7 @@ Changes in `modules/memcached`:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - Added a new `scheduled-lambda-job` module that can be used to run AWS Lambda on a periodic basis. This is useful for background jobs, such as taking snapshots of servers.
-- BUGFIX: The `configure-environment-for-gruntwork-module` now properly overwrites previous installs of Terraform, Packer, and Glide and doesn't get stuck asking for a user prompt.
+- BUGFIX: The `configure-environment-for-gruntwork-module` now properly overwrites previous installs of Terraform, Packer, and Glide and doesn&apos;t get stuck asking for a user prompt.
 
 
 </div>
@@ -350,7 +350,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - In the elasticsearch-alarms module, we've increased the default `low_cpu_credit_balance_period` value to 15 minutes. That metric is reported only roughly once every 5 minutes, and with the original setting, if the metric took too long, the alarm would keep flipping between OK and INSUFFICIENT_DATA. This new value should fix that issue.
+  - In the elasticsearch-alarms module, we&apos;ve increased the default `low_cpu_credit_balance_period` value to 15 minutes. That metric is reported only roughly once every 5 minutes, and with the original setting, if the metric took too long, the alarm would keep flipping between OK and INSUFFICIENT_DATA. This new value should fix that issue.
 
 
 </div>
@@ -408,7 +408,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - The rds-alarms module now accepts an `is_aurora` parameter. Set it to true if you're using the module with Aurora so that the module doesn't create unnecessary disk space alarms (since Aurora automatically expands available disk space)
+  - The rds-alarms module now accepts an `is_aurora` parameter. Set it to true if you&apos;re using the module with Aurora so that the module doesn&apos;t create unnecessary disk space alarms (since Aurora automatically expands available disk space)
 
 
 </div>
@@ -436,7 +436,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Fix a bug in the ec2-disk-alarms module where it wouldn't allow you to create multiple alarms for the same EC2 Instance. The module now gives a unique name to each alarm so that you can have an alarm for multiple volumes on the same instance.
+  - Fix a bug in the ec2-disk-alarms module where it wouldn&apos;t allow you to create multiple alarms for the same EC2 Instance. The module now gives a unique name to each alarm so that you can have an alarm for multiple volumes on the same instance.
 
 
 </div>
@@ -478,7 +478,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Fix how the ELB access logs module sets the S3 bucket policy so that you don't get a diff every time you run `terraform plan`
+  - Fix how the ELB access logs module sets the S3 bucket policy so that you don&apos;t get a diff every time you run `terraform plan`
 
 
 </div>
@@ -526,7 +526,7 @@ In `modules/ecs-cluster`:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - BREAKING CHANGE: We updated the `kms-master-key` module with a few changes:
-  - Previously, terraform would unnecessarily update the Key Policy on every `terraform apply`. This didn't break anything, but it confusingly reported 1 resource as being modified when in fact nothing was changed. This has now been fixed using the new [data.aws_iam_policy_document](https://www.terraform.io/docs/providers/aws/d/iam_policy_document.html).
+  - Previously, terraform would unnecessarily update the Key Policy on every `terraform apply`. This didn&apos;t break anything, but it confusingly reported 1 resource as being modified when in fact nothing was changed. This has now been fixed using the new [data.aws_iam_policy_document](https://www.terraform.io/docs/providers/aws/d/iam_policy_document.html).
   - The var `key_root_user_iam_arns` has been replaced with  `var.allow_manage_key_permissions_with_iam` (accepts true/false) to better reflect the significance of setting this value. Note that the var `aws_account_id` is also now required.
   - The vars `key_administrator_iam_arns` and `key_user_iam_arns` have been renamed to `cmk_administrator_iam_arns` and `cmk_user_iam_arns` to more accurately reflect that these vars grant access to a Customer Master Key (CMK).
   - There is a new required input variable called `aws_account_id`.
@@ -543,7 +543,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - We've added a new module, `iam-groups` that configures a best-practices set of IAM Groups and corresponding IAM Policies (permissions) you can use to better manage the security of your AWS account.
+  - We&apos;ve added a new module, `iam-groups` that configures a best-practices set of IAM Groups and corresponding IAM Policies (permissions) you can use to better manage the security of your AWS account.
 
 
 </div>
@@ -557,7 +557,7 @@ In `modules/ecs-cluster`:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - On boot, `ssh-iam` now waits 90 seconds before executing to try to give other services (e.g. the EC2 metadata service) a chance to start. This should hopefully ensure that `ssh-iam` doesn't hit any errors when it configures SSH access on boot and you don't have to wait for the next cron job to run (by default, they run every 30m) before SSH access works.
+  - On boot, `ssh-iam` now waits 90 seconds before executing to try to give other services (e.g. the EC2 metadata service) a chance to start. This should hopefully ensure that `ssh-iam` doesn&apos;t hit any errors when it configures SSH access on boot and you don&apos;t have to wait for the next cron job to run (by default, they run every 30m) before SSH access works.
 
 
 </div>
@@ -649,6 +649,6 @@ In `modules/ecs-cluster`:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8cdd869e602710719e877614de20f6a0"
+  "hash": "84c0d33a3388044e5020d21737a51165"
 }
 ##DOCS-SOURCER-END -->

@@ -90,7 +90,7 @@ In addition, there are many other bug fixes and updates, including:
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - Many other bug fixes and improvements, including:
     - Bump to latest Service Catalog version
-    - Enable encryption by default in a few places where it wasn't enabled already
+    - Enable encryption by default in a few places where it wasn&apos;t enabled already
     - A number of CI / CD and Jenkins fixes
     - Switch to `main` branch from `master`
     - Update internal references to the new repo naming scheme
@@ -334,7 +334,7 @@ This releases enable encryption by default for the Jenkins EBS volume. Previousl
 
   
 
-- Use account's name as key for for_each instead of account_id in SecurityHub **[BACKWARDS INCOMPATIBLE]**
+- Use account&apos;s name as key for for_each instead of account_id in SecurityHub **[BACKWARDS INCOMPATIBLE]**
 
 
 </div>
@@ -477,7 +477,7 @@ This release updates versions of several underlying modules, including several b
   
 
 - You can now enable Amazon ECS Exec for your Tasks by setting the new `enable_execute_command` input variable to `true`.
-- Fixed a couple "interpolation only" warnings.
+- Fixed a couple &quot;interpolation only&quot; warnings.
 
 
 
@@ -494,7 +494,7 @@ This release updates versions of several underlying modules, including several b
 
   
 
-- Fixes an "interpolation-only expressions" deprecation warning in `ecs-service`.
+- Fixes an &quot;interpolation-only expressions&quot; deprecation warning in `ecs-service`.
 
 
 
@@ -533,7 +533,7 @@ This release updates versions of several underlying modules, including several b
 
   
 
-- Fix health check and timeout settings for the target groups created by `ecs-service`. Depending on the protocol you're using (e.g., TCP, UDP, TLS, etc), only certain values are permitted. The AWS docs are unclear on this, but we've done our best to implement the required rules.
+- Fix health check and timeout settings for the target groups created by `ecs-service`. Depending on the protocol you&apos;re using (e.g., TCP, UDP, TLS, etc), only certain values are permitted. The AWS docs are unclear on this, but we&apos;ve done our best to implement the required rules.
 
 
 
@@ -811,7 +811,7 @@ Refer to the migration guide to avoid recreating the IAM roles when updating to 
   
 
 - You can now use Docker images with the `lambda` module by specifying the new input variables `image_uri`, `entry_point`, `command`, and `working_directory`.
-- We renamed all our repos to use HashiCorp's naming convention (`terraform-&lt;cloud&gt;-&lt;name&gt;`, e.g., `terraform-aws-vpc`), so we went through each repo and updated all the internal references. This should not affect functionality.
+- We renamed all our repos to use HashiCorp&apos;s naming convention (`terraform-&lt;cloud&gt;-&lt;name&gt;`, e.g., `terraform-aws-vpc`), so we went through each repo and updated all the internal references. This should not affect functionality.
 
 
 
@@ -1003,7 +1003,7 @@ You can now customize the `mssfix` value used in the openvpn config that is down
     - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
     - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-- Add `gox` to the test's README.md
+- Add `gox` to the test&apos;s README.md
 - Add note for partial Ubuntu20 support 
 
 
@@ -1142,8 +1142,8 @@ The `dev_permitted_services` variable in the `iam-policies` module now allows fi
 
 ```
 dev_permitted_services = [
-    "sns",
-    "s3:PutObject"
+    &quot;sns&quot;,
+    &quot;s3:PutObject&quot;
 ]
 ```
 
@@ -1350,7 +1350,7 @@ This change is backward compatible, but you will notice a new `sid` for the poli
 
   
 
-- Fix a bug in the output variables of the `route53` module that, depending on the inputs you passed in, could lead to an "Inconsistent conditional result types" error.
+- Fix a bug in the output variables of the `route53` module that, depending on the inputs you passed in, could lead to an &quot;Inconsistent conditional result types&quot; error.
 
 
 
@@ -1394,20 +1394,20 @@ This change is backward compatible, but you will notice a new `sid` for the poli
 Allows wildcard domains to be passed in the `subject_alternative_names`, making it easier to request a single ACM certificate that protects both the apex domain (`example.com`) AND the first level of subdomains (`*.example.com`). To achieve this, request `example.com` in the key of your `var.public_zones` map and pass `*.example.com` in the `subject_alternative_names` list for the same entry: 
 
 ```
-public_zones = {
-       "example.com" = {
-           comment = "You can add arbitrary text here"
-           tags = {
-              Foo = "bar"
-           }
+public_zones = &#x7B;
+       &quot;example.com&quot; = &#x7B;
+           comment = &quot;You can add arbitrary text here&quot;
+           tags = &#x7B;
+              Foo = &quot;bar&quot;
+           &#x7D;
            force_destroy = true
-           subject_alternative_names = ["*.example.com"]
+           subject_alternative_names = [&quot;*.example.com&quot;]
            created_outside_terraform = true
-           base_domain_name_tags = {
+           base_domain_name_tags = &#x7B;
                original = true
-           }
-       }
-  }
+           &#x7D;
+       &#x7D;
+  &#x7D;
 ```
 
 **NOTE**: Starting this release, it is no longer possible to disable the creation of ACM certificates on the domains that are managed by the module. We introduced back the ability to disable ACM certificate creation in [v0.44.5](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.44.5). It is advised to upgrade to at least that version if you want to avoid managing ACM certificates in this module.
@@ -1800,6 +1800,6 @@ adds a number of conditional variables to the App Account Baseline in order to o
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "698621c183a6e83cd809ed09851e6938"
+  "hash": "fa00d39328dadb09ae6251671dbe48c0"
 }
 ##DOCS-SOURCER-END -->

@@ -109,7 +109,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you'd like to launch a new Aurora cluster. 
+  - UPDATE/#24: Previously, it was not possible to launch an Aurora cluster from a snapshot. The `aurora` module now accepts a new var, `snapshot_identifier`, which is the Snapshot ID from which you&apos;d like to launch a new Aurora cluster. 
 
 NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwork-io/module-data-storage/releases/tag/v0.2.10) instead.
 
@@ -130,7 +130,7 @@ NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwor
 
   - NEW FEATURE/BREAKING CHANGE: The `ecs-service-with-alb` module now supports host-based routing! In addition, we used this opportunity to simplify the interface to the module. The major change is that you now specify ALB Listener Rules using Terraform code in the same Terraform file that calls the `ecs-service-with-alb` module, giving users total flexibility on routing rules. (#37)
 
-NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That's because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default. 
+NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That&apos;s because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default. 
 
 Therefore, be sure to also upgrade to [v0.6.0 or higher of module alb](https://github.com/gruntwork-io/module-load-balancer/releases) when using this release!
 
@@ -237,13 +237,13 @@ The changes include:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - BREAKING CHANGE: The module `alb` now opens all outbound ports by default. You can preserve the previous default behavior of opening no outbound ports by default by explicitly setting `var.allow_all_outbound = false` when calling this module. Although the previous default was slightly more secure, several users didn't realize the additional steps they needed to take to correctly use the ALB, so we feel this new default behavior is a better balance between security and convenience. (#16)
+  - BREAKING CHANGE: The module `alb` now opens all outbound ports by default. You can preserve the previous default behavior of opening no outbound ports by default by explicitly setting `var.allow_all_outbound = false` when calling this module. Although the previous default was slightly more secure, several users didn&apos;t realize the additional steps they needed to take to correctly use the ALB, so we feel this new default behavior is a better balance between security and convenience. (#16)
 
 _**Additional Background**_
 
-_Previously, when you created an ALB, by default, its Security Group blocked all outbound traffic. When you added an ALB to an ECS Cluster, the ECS Cluster module updated the ALB's Security Group to allow outbound traffic only to the specific ECS Cluster being created._
+_Previously, when you created an ALB, by default, its Security Group blocked all outbound traffic. When you added an ALB to an ECS Cluster, the ECS Cluster module updated the ALB&apos;s Security Group to allow outbound traffic only to the specific ECS Cluster being created._
 
-_But this proved to be confusing to people and didn't give us much security benefit anyway, so with this release, we change the default behavior of the ALB module to allow all outbound connections by default. At the same time, we [updated the ECS Cluster module](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.6.0) to no longer modify the ALB's Security Group to allow outbound connections from the ALB to the ECS Cluster since the ALB now allows all outbound traffic by default._
+_But this proved to be confusing to people and didn&apos;t give us much security benefit anyway, so with this release, we change the default behavior of the ALB module to allow all outbound connections by default. At the same time, we [updated the ECS Cluster module](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.6.0) to no longer modify the ALB&apos;s Security Group to allow outbound connections from the ALB to the ECS Cluster since the ALB now allows all outbound traffic by default._
 
 _Therefore, if you use this release or higher with an ECS Cluster, be sure to use [v0.6.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.6.0) or higher of that module as well!_
 
@@ -287,7 +287,7 @@ For example:
 terraform state mv module.alb_access_logs_bucket.aws_s3_bucket.access_logs_with_logs_archived module.alb_access_logs_bucket.aws_s3_bucket.access_logs_with_logs_archived_and_deleted
 ```
 
-You can run `terraform plan` before the above to know the new destination to move the source to. Also, ensure that you don't change any variables that'll force a new ALB creation.
+You can run `terraform plan` before the above to know the new destination to move the source to. Also, ensure that you don&apos;t change any variables that&apos;ll force a new ALB creation.
 
 For assistance, please contact Gruntwork support. (#33)
 
@@ -327,7 +327,7 @@ For assistance, please contact Gruntwork support. (#33)
 
 Fix several issues:
 
-1. Fix the apt repo URL for installing OpenVPN. It's not clear what happened to the old URL, but when you ran `install-openvpn`, you would get the error `404  Not Found [IP: 104.20.194.50 80]`.
+1. Fix the apt repo URL for installing OpenVPN. It&apos;s not clear what happened to the old URL, but when you ran `install-openvpn`, you would get the error `404  Not Found [IP: 104.20.194.50 80]`.
 1. The `push route` configuration in `server.conf` had a syntactic issue where the word `route` was outside of double quotes.
 1. Reduce logging verbosity for OpenVPN to production levels.
 
@@ -392,7 +392,7 @@ Fix several issues:
   https://github.com/gruntwork-io/module-server/pull/14: 
 
 * Added a new `attach-eni` script which can be used to attach an ENI to an EC2 Instance. 
-* Updated the `mount-ebs-volume` script so it can automatically find an attach an EBS Volume that has the same tag as the EC2 Instance. This is handy when you create EBS Volumes and Instances in matching "pairs."
+* Updated the `mount-ebs-volume` script so it can automatically find an attach an EBS Volume that has the same tag as the EC2 Instance. This is handy when you create EBS Volumes and Instances in matching &quot;pairs.&quot;
 
 </div>
 
@@ -432,7 +432,7 @@ This release fixes two bugs:
 
   **UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
 
-https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_availability_zones` output variable would report the wrong value (-1) if you didn't set the optional `num_availability_zones` input variable.
+https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_availability_zones` output variable would report the wrong value (-1) if you didn&apos;t set the optional `num_availability_zones` input variable.
 
 </div>
 
@@ -447,7 +447,7 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
   **UPDATE: DO NOT USE THIS RELEASE. IT CONTAINS A BAD BUG. SEE #27 FOR DETAILS.**
 
-- UPDATE: The modules `vpc-app` and `vpc-mgmt` now make `var.num_availability_zones` optional. If it's non-empty, the created VPC will only use the specified number of Availability Zones, not *all* Availability Zones. Otherwise, the VPC will be created to use all Availability Zones. As an example, `us-east-1` now has 6 Availability Zones, but users may wish to utilize just 3 of them. This release if fully backwards-compatible. (#22)
+- UPDATE: The modules `vpc-app` and `vpc-mgmt` now make `var.num_availability_zones` optional. If it&apos;s non-empty, the created VPC will only use the specified number of Availability Zones, not *all* Availability Zones. Otherwise, the VPC will be created to use all Availability Zones. As an example, `us-east-1` now has 6 Availability Zones, but users may wish to utilize just 3 of them. This release if fully backwards-compatible. (#22)
 
 </div>
 
@@ -539,6 +539,6 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2c1bb27c940ead4ec47e04e845a0bb80"
+  "hash": "a9944f9fcfdcd0016eb96f4f66f788ee"
 }
 ##DOCS-SOURCER-END -->

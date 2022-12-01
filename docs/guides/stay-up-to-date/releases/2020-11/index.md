@@ -253,7 +253,7 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
   
 
-- You can now configure a custom assume role policy for the IAM role in the `lambda` module using the new `assume_role_policy` input variable. This is useful in a few special cases when the default assume role policy won't work, such as using Lambda functions to rotate secrets in AWS Secrets Manager.
+- You can now configure a custom assume role policy for the IAM role in the `lambda` module using the new `assume_role_policy` input variable. This is useful in a few special cases when the default assume role policy won&apos;t work, such as using Lambda functions to rotate secrets in AWS Secrets Manager.
 
 
 
@@ -363,8 +363,8 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
        - Code execution or elevation of privilege via NTP command line stack-based buffer overflow
    - [CVE-2019-7306  - 20.04 is not affected](https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-7306.html)
        - Byobu Apport uploads .screenrc with diagnostics
-- We're using `easy-rsa v2.x` on Ubuntu 20.04 - allows for continuity between the Ubuntu 16.04, 18.04, or 20.04 implementations of `package-openvpn`. There's an issue raised to follow up on this and upgrade to using `easy-rsa v3.x` 
-- By adding support for Ubuntu 20.04, we're ensuring:
+- We&apos;re using `easy-rsa v2.x` on Ubuntu 20.04 - allows for continuity between the Ubuntu 16.04, 18.04, or 20.04 implementations of `package-openvpn`. There&apos;s an issue raised to follow up on this and upgrade to using `easy-rsa v3.x` 
+- By adding support for Ubuntu 20.04, we&apos;re ensuring:
     - this package can work on the latest LTS distro and has been tested with it
     - users can use a more secure implementation of openVPN
     - users can reuse the `/examples/packer/build.json` to build an AMI with Ubuntu 20.04.
@@ -481,7 +481,7 @@ New module: `secrets-manager-resource-policies`. This module manages the [resour
 
   
 
-Fix bug where the default value for `ebs_kms_key_name` must be `""`, not `null` for the `account-baseline-security` module.
+Fix bug where the default value for `ebs_kms_key_name` must be `&quot;&quot;`, not `null` for the `account-baseline-security` module.
 
 
 
@@ -586,7 +586,7 @@ This release adds a new module, `ebs-encryption`, which allows you to control wh
 
 - EKS cluster now supports the aws-auth-merger functionality introduced in [terraform-aws-eks v0.23.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.23.0).
 - Sets default values for the ssh-grunt group name in the ECS cluster
-- Updates Aurora & RDS modules to restore-from-snapshot using the snapshot's identifier
+- Updates Aurora &amp; RDS modules to restore-from-snapshot using the snapshot&apos;s identifier
 
 
 
@@ -882,6 +882,6 @@ This release updates the default names set for the VPC DNS resolvers. The names 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e0a9792eeac901a50030cf2fb40f4d29"
+  "hash": "bdbd05cd5b13ffc17f8924425bedf087"
 }
 ##DOCS-SOURCER-END -->

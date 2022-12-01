@@ -261,7 +261,7 @@ The `kinesis` module now supports server-side encryption.
 * `vpc-peering`
 
 
-* You can now customize the CIDR block calculations for each "tier" of subnet in the `vpc-app` module using the `public_subnet_bits`, `private_subnet_bits`, and `persistence_subnet_bits` input variables, each of which specifies the number of bits to add to the CIDR prefix when calculating subnet ranges.
+* You can now customize the CIDR block calculations for each &quot;tier&quot; of subnet in the `vpc-app` module using the `public_subnet_bits`, `private_subnet_bits`, and `persistence_subnet_bits` input variables, each of which specifies the number of bits to add to the CIDR prefix when calculating subnet ranges.
 * You can now enable public IPs to be enabled by default on public subnets in the `vpc-app` module by setting the `map_public_ip_on_launch` input variable to `true`.
 * You can now configure the VPC peering connection using the new `allow_remote_vpc_dns_resolution`, `allow_classic_link_to_remote_vpc`, and `allow_vpc_to_remote_classic_link` input variables in the `vpc-peering` module.
 
@@ -279,6 +279,6 @@ The `kinesis` module now supports server-side encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "61163ab82821640f8c815266920df348"
+  "hash": "88dbf9bda48a4f76f4362342a54d41c8"
 }
 ##DOCS-SOURCER-END -->

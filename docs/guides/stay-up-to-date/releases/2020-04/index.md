@@ -310,7 +310,7 @@ The `cloudwatch-dashboard` module now supports managing multiple dashboards in o
 
   
 
-- Added datapoints_to_alarm variable to ecs-service-alarms module:  Addresses the module 'ecs-service-alarms' didn't pass through customizations to the variable 'datapoints_to_alarm'.
+- Added datapoints_to_alarm variable to ecs-service-alarms module:  Addresses the module &apos;ecs-service-alarms&apos; didn&apos;t pass through customizations to the variable &apos;datapoints_to_alarm&apos;.
 
 
 
@@ -344,7 +344,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 
   
 
-- Fix a bug in the `alb-alarms` module where for "low" thresholds (e.g., low request count) it was using `GreaterThanThreshold` instead of `LessThanThreshold`.
+- Fix a bug in the `alb-alarms` module where for &quot;low&quot; thresholds (e.g., low request count) it was using `GreaterThanThreshold` instead of `LessThanThreshold`.
 
 
 </div>
@@ -468,7 +468,7 @@ The behavior has changed such that processing will now continue for all other IA
 
   
 
-- You can now grant Service Principals (e.g., "s3.amazonaws.com") access to your KMS CMKs by setting the `cmk_service_principals` parameter and specifying the actions those Service Principals will be allowed to do via a new `service_principal_actions` input variable.
+- You can now grant Service Principals (e.g., &quot;s3.amazonaws.com&quot;) access to your KMS CMKs by setting the `cmk_service_principals` parameter and specifying the actions those Service Principals will be allowed to do via a new `service_principal_actions` input variable.
 
 
 </div>
@@ -634,6 +634,6 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "db9c18dd3d2fff32e2b226222b483056"
+  "hash": "04eadc25781212497ca19cb55c6750c8"
 }
 ##DOCS-SOURCER-END -->

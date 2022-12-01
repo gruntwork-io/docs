@@ -51,7 +51,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/gruntwork/pull/40: Fix a bug in how we picked the name of the "security" account so it works correctly when granting access to `__current__`.
+  https://github.com/gruntwork-io/gruntwork/pull/40: Fix a bug in how we picked the name of the &quot;security&quot; account so it works correctly when granting access to `__current__`.
 
 </div>
 
@@ -415,7 +415,7 @@ This release introduces the `eks-cloudwatch-container-logs` module, which instal
 * `alb`
 
 
-* This release fixes an issue with multiple duplicate ACM certs - e.g. you're rotating to a new cert and still have systems using the old cert - where previously it errored out if multiple ACM certs matched the domain. Instead, we will now pick the newer one.
+* This release fixes an issue with multiple duplicate ACM certs - e.g. you&apos;re rotating to a new cert and still have systems using the old cert - where previously it errored out if multiple ACM certs matched the domain. Instead, we will now pick the newer one.
 
 
 Special thanks to @jasonmcintosh for the contribution!
@@ -690,6 +690,6 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9332ff27c5ee2dfb56015c3686d4b43b"
+  "hash": "71020b8e360eaa97bb8043c922e21447"
 }
 ##DOCS-SOURCER-END -->

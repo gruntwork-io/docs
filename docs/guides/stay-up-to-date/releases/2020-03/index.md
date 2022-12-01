@@ -758,7 +758,7 @@ See [this blog post](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-st
 
   
 
-This release exposes the [`user_data_base64`](https://www.terraform.io/docs/providers/aws/d/instance.html#user_data_base64) attribute when launching a server. We've also added [an example of using base64 user data with cloud-init](https://github.com/gruntwork-io/module-server/blob/master/examples/bastion-host/main.tf#L49).
+This release exposes the [`user_data_base64`](https://www.terraform.io/docs/providers/aws/d/instance.html#user_data_base64) attribute when launching a server. We&apos;ve also added [an example of using base64 user data with cloud-init](https://github.com/gruntwork-io/module-server/blob/master/examples/bastion-host/main.tf#L49).
 
 
 
@@ -781,7 +781,7 @@ This release exposes the [`user_data_base64`](https://www.terraform.io/docs/prov
     - `allow_ssh_from_security_group_id` has been renamed to `allow_ssh_from_security_group_ids` and is now a list of security group IDs (instead of just one) from which SSH access will be allowed.
     - `allow_rdp_from_cidr_list`: A new input variable that is a list of CIDR blocks from which RDP access will be allowed.
     - `allow_rdp_from_security_group_ids`: A new input variable that is a list of security group IDs from which RDP access will be allowed.
-- The `source_ami_filter` we were using to find the latest CentOS AMI in Packer templates started to pick up the wrong AMI, probably due to some change in the AWS Marketplace. We've updated our filter to fix this as described below.
+- The `source_ami_filter` we were using to find the latest CentOS AMI in Packer templates started to pick up the wrong AMI, probably due to some change in the AWS Marketplace. We&apos;ve updated our filter to fix this as described below.
 
 
 </div>
@@ -892,6 +892,6 @@ Thanks to @mmiranda for his contribution, and to @marinalimeira for her suggesti
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "692ae5c85a2e57b8d1ba25b2375499d4"
+  "hash": "61c40242845ce91503c8a93e071ba31e"
 }
 ##DOCS-SOURCER-END -->

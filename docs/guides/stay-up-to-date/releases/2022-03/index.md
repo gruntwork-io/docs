@@ -45,7 +45,7 @@ Here are the repos that were updated:
 E.g.:
 
 ```
-required_version: "~&gt; 0.4.3"
+required_version: &quot;~&gt; 0.4.3&quot;
 ```
 
 </div>
@@ -166,7 +166,7 @@ required_version: "~&gt; 0.4.3"
 
   
 
-- Allows attaching permission boundaries to the role attached to the server's group role.
+- Allows attaching permission boundaries to the role attached to the server&apos;s group role.
 
 
 
@@ -313,7 +313,7 @@ required_version: "~&gt; 0.4.3"
 
   
 
-- Updated the `ecs-deploy-runner-standard-configuration` module to not define a `required_providers` block, since it doesn't have any provider resources.
+- Updated the `ecs-deploy-runner-standard-configuration` module to not define a `required_providers` block, since it doesn&apos;t have any provider resources.
 - Updated the standard configuration of `ecs-deploy-runner` to allow calling `--help` without option args on scripts within EDR
 - Added the ability to pass through additional flags to go test command when using `run-go-tests`
 
@@ -749,7 +749,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
   
 
-- Fixed bug where setting `replica_regions = ["*"]` in a conditional did not have the intended effect.
+- Fixed bug where setting `replica_regions = [&quot;*&quot;]` in a conditional did not have the intended effect.
 
 
 
@@ -870,7 +870,7 @@ This release updates the `private-s3-bucket` module and other modules in this re
 
   
 
-- Exposed the 'auth_token' parameter in `redis` module to allow configuring password protected redis instances.
+- Exposed the &apos;auth_token&apos; parameter in `redis` module to allow configuring password protected redis instances.
 - Update dependency `terraform-aws-server` to `v0.14.2`
 
 
@@ -1114,7 +1114,7 @@ This is a **functionally backward compatible upgrade**, verified with partially 
 - No configuration changes are required.
 - The AWS provider version must be bumped to at least `3.75.0`.
 
-You can bump the provider by running `terraform init` with the `-upgrade` flag, as in `terraform init -upgrade`. See [HashiCorp's guide on upgrading providers](https://www.terraform.io/language/files/dependency-lock#new-version-of-an-existing-provider) for more details.
+You can bump the provider by running `terraform init` with the `-upgrade` flag, as in `terraform init -upgrade`. See [HashiCorp&apos;s guide on upgrading providers](https://www.terraform.io/language/files/dependency-lock#new-version-of-an-existing-provider) for more details.
 
 
 - https://github.com/gruntwork-io/terraform-aws-vpc/pull/264
@@ -1186,6 +1186,6 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "fa84adb2a036b360286e0ea2ed481d5d"
+  "hash": "5c124e1abac09a77fc8c94ffc449fca7"
 }
 ##DOCS-SOURCER-END -->

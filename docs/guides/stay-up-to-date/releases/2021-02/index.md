@@ -62,7 +62,7 @@ Here are the repos that were updated:
 Updated all module versions to the latest. Most of these were backwards compatible changes, except for the EKS / Helm updates, as we have switched to Helm provider v2.  Refer to the Migration Guide down below for details.
 
 
-Most modules solely require a version number bump. The one exception is that if you're using EKS and Helm, Helm provider version 2 has come out, and some minor code changes are required to use it. See the [`terraform-aws-eks` v0.32.0 release notes](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.0) for instructions.
+Most modules solely require a version number bump. The one exception is that if you&apos;re using EKS and Helm, Helm provider version 2 has come out, and some minor code changes are required to use it. See the [`terraform-aws-eks` v0.32.0 release notes](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.32.0) for instructions.
 
 
 * https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/pull/51
@@ -129,7 +129,7 @@ https://github.com/gruntwork-io/repo-copier/pull/71: Add more unit tests.
 
   https://github.com/gruntwork-io/repo-copier/pull/64: Fix bug with how assets were packaged that caused an error when running `repo-copier`.
 
-https://github.com/gruntwork-io/repo-copier/pull/60: Add support for a GitHub connector, which allows you to copy code directly from GitHub, so you don't need S3 as an intermediary.
+https://github.com/gruntwork-io/repo-copier/pull/60: Add support for a GitHub connector, which allows you to copy code directly from GitHub, so you don&apos;t need S3 as an intermediary.
 
 https://github.com/gruntwork-io/repo-copier/pull/65: Add support for specifying proxies for each connector via `--proxy-url` params.
 
@@ -150,7 +150,7 @@ https://github.com/gruntwork-io/repo-copier/pull/65: Add support for specifying 
 
   
 
-- AWS ElastiCache, and the Terraform AWS provider, have changed how reader endpoints work ([context](https://aws.amazon.com/about-aws/whats-new/2019/06/amazon-elasticache-launches-reader-endpoint-for-redis/)), which broke the `read_endpoints` output variable in the `redis` module. In this release, we've fixed this issue, and updated to use the new terminology and type from AWS / Terraform: the output variable is now called `reader_endpoint` and is a single value instead of a list. 
+- AWS ElastiCache, and the Terraform AWS provider, have changed how reader endpoints work ([context](https://aws.amazon.com/about-aws/whats-new/2019/06/amazon-elasticache-launches-reader-endpoint-for-redis/)), which broke the `read_endpoints` output variable in the `redis` module. In this release, we&apos;ve fixed this issue, and updated to use the new terminology and type from AWS / Terraform: the output variable is now called `reader_endpoint` and is a single value instead of a list. 
 
 
 </div>
@@ -166,7 +166,7 @@ https://github.com/gruntwork-io/repo-copier/pull/65: Add support for specifying 
 
   
 
-- Several months ago, AWS made a backward-incompatible change related to the Elasticache Replication Group Multi-AZ behavior, introducing a new [`MultiAZEnabled` toggle](https://awsapichanges.info/archive/changes/db86f9-elasticache.html#CreateReplicationGroup). This means that, the last several months, if you deployed Redis with with `enable_automatic_failover` set to `true`, but did not have this `MultiAZEnabled` flag—which wasn't exposed in Terraform's AWS provider—Redis would be deployed into only a single AZ. This issue was fixed in [AWS provider 3.26](https://github.com/hashicorp/terraform-provider-aws/pull/17320), and in this release, we now expose a new `enable_multi_az` variable in the `redis` module so that you can configure this property. This is a backwards incompatible change, so please see the migration guide below.
+- Several months ago, AWS made a backward-incompatible change related to the Elasticache Replication Group Multi-AZ behavior, introducing a new [`MultiAZEnabled` toggle](https://awsapichanges.info/archive/changes/db86f9-elasticache.html#CreateReplicationGroup). This means that, the last several months, if you deployed Redis with with `enable_automatic_failover` set to `true`, but did not have this `MultiAZEnabled` flag—which wasn&apos;t exposed in Terraform&apos;s AWS provider—Redis would be deployed into only a single AZ. This issue was fixed in [AWS provider 3.26](https://github.com/hashicorp/terraform-provider-aws/pull/17320), and in this release, we now expose a new `enable_multi_az` variable in the `redis` module so that you can configure this property. This is a backwards incompatible change, so please see the migration guide below.
 
 
 </div>
@@ -225,7 +225,7 @@ The default version of tools installed in the deploy runner has been updated:
 
   
 
-- You can now configure IOPS for the Jenkins EBS volume by setting the new `ebs_volume_iops`  input parameter. Note that you'll also need to set the `ebs_volume_type` input parameter (which existed before) to `io1`.
+- You can now configure IOPS for the Jenkins EBS volume by setting the new `ebs_volume_iops`  input parameter. Note that you&apos;ll also need to set the `ebs_volume_type` input parameter (which existed before) to `io1`.
 
 
 
@@ -280,7 +280,7 @@ The default version of tools installed in the deploy runner has been updated:
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 - Update the default `Dockerfile` in `ecs-deploy-runner` to use Kubergrunt `v0.6.9`.
 
 
@@ -380,7 +380,7 @@ This release removes the `service_autoscaling_iam_role_arn` output from the `ecs
 
   
 
-Bump default k8s version to 1.19. If you wish to use Kubernetes version 1.19 with EKS, you must update `kubergrunt` to version `0.6.10` or newer. Note that If you were using the default (that is, you were not passing in `kubernetes_version`), you will need to explicitly pass in `kubernetes_version = "1.18"` to avoid inadvertently upgrading the EKS cluster.
+Bump default k8s version to 1.19. If you wish to use Kubernetes version 1.19 with EKS, you must update `kubergrunt` to version `0.6.10` or newer. Note that If you were using the default (that is, you were not passing in `kubernetes_version`), you will need to explicitly pass in `kubernetes_version = &quot;1.18&quot;` to avoid inadvertently upgrading the EKS cluster.
 
 
 
@@ -503,7 +503,7 @@ Bump default k8s version to 1.19. If you wish to use Kubernetes version 1.19 wit
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -817,7 +817,7 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  All nested module dependencies have been updated to the latest upstream versions. We've also resolved warnings related to deprecated variable interpolation syntax.
+  All nested module dependencies have been updated to the latest upstream versions. We&apos;ve also resolved warnings related to deprecated variable interpolation syntax.
 
 
 - Updated dependency gruntwork-io/terraform-aws-vpc to v0.13.0
@@ -864,7 +864,7 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
     - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 - Remove docker key from machine config
 - Add placeholder.tf for TFC/TFE/PMR
-- Lock PIP's version to be smaller than 21.0
+- Lock PIP&apos;s version to be smaller than 21.0
 
 
 
@@ -920,6 +920,6 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "394e768013c3288ce631aa50fb6bc5e8"
+  "hash": "0b0199fc7090073fe4850f30768bd8df"
 }
 ##DOCS-SOURCER-END -->

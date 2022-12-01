@@ -561,7 +561,7 @@ The `cloudtrail` module will no longer attempt to create the server access loggi
 
 `aws-config` module now supports conditional logic to turn off all resources in the module. When you set the `create_resources` input variable to `false`, no resources will be created by the module. This is useful to conditionally turn off the module call in your code.
 
-Additionally, this fixes a bug where the AWS provider was being configured within the `aws-config` module. This makes the module less flexible for use since you can't override the provider configuration. As a result, the `aws-config` module no longer needs the `aws_region` parameter to be passed in.
+Additionally, this fixes a bug where the AWS provider was being configured within the `aws-config` module. This makes the module less flexible for use since you can&apos;t override the provider configuration. As a result, the `aws-config` module no longer needs the `aws_region` parameter to be passed in.
 
 
 </div>
@@ -627,7 +627,7 @@ Additionally, this fixes a bug where the AWS provider was being configured withi
 
   
 
-- Due to a change in AWS, the `s3-cloudfront` module was not able to send CloudFront access logs to the S3 bucket. This has now been fixed by updating the policy on that S3 bucket. Note that due to a Terraform or AWS bug, you need to set `use_cloudfront_arn_for_bucket_policy` to `true` in old AWS accounts and `use_cloudfront_arn_for_bucket_policy` to `false` in old accounts, or you'll get a perpetual diff from the `plan` output. 
+- Due to a change in AWS, the `s3-cloudfront` module was not able to send CloudFront access logs to the S3 bucket. This has now been fixed by updating the policy on that S3 bucket. Note that due to a Terraform or AWS bug, you need to set `use_cloudfront_arn_for_bucket_policy` to `true` in old AWS accounts and `use_cloudfront_arn_for_bucket_policy` to `false` in old accounts, or you&apos;ll get a perpetual diff from the `plan` output. 
 
 
 
@@ -725,6 +725,6 @@ Bump maven version to install exhibitor since 3.6.1 is no longer available
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "de5c9c10ed1ad22081bb40e78838b466"
+  "hash": "dda7bc4e1720eede9484ffe8d7bc5edf"
 }
 ##DOCS-SOURCER-END -->

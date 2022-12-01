@@ -506,8 +506,8 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
   
 
 - **Unlock AWS provider v4. Require minimum 3.75.1.** This update includes a few tests that make sure upgrading to this module from the last release is easy. However, you may need to bump your AWS provider version. See the migration guide notes below for more.
-    - Fixed a perpetual diff problem in `examples/rds-mysql-with-cross-region-replica`. If you've used this example, you've probably already noticed this in your own code when re-running apply. We've updated the example to include the `var.storage_encrypted` setting in all example code that references the `modules/rds` module.
-    - Uncovered an undocumented (as of this release) backward incompatibility in the AWS Provider v4 upgrade from v3.75. We've handled this within the `modules/rds` logic so you don't have to update your code.
+    - Fixed a perpetual diff problem in `examples/rds-mysql-with-cross-region-replica`. If you&apos;ve used this example, you&apos;ve probably already noticed this in your own code when re-running apply. We&apos;ve updated the example to include the `var.storage_encrypted` setting in all example code that references the `modules/rds` module.
+    - Uncovered an undocumented (as of this release) backward incompatibility in the AWS Provider v4 upgrade from v3.75. We&apos;ve handled this within the `modules/rds` logic so you don&apos;t have to update your code.
 
 
 </div>
@@ -869,6 +869,6 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e4268e3180c0dc1da599faee0b1f1658"
+  "hash": "888f9d7e007d5303918d161d10651e02"
 }
 ##DOCS-SOURCER-END -->

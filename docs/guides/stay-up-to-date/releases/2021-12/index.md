@@ -54,7 +54,7 @@ Here are the repos that were updated:
 
   https://github.com/gruntwork-io/repo-copier/pull/111: 
 
-* Fix "no commit found for SHA" error that would come up in certain cases when copying repos.
+* Fix &quot;no commit found for SHA&quot; error that would come up in certain cases when copying repos.
 * The default behavior of `--force-overwrite` is now to overwrite Git history in the existing repo instead of deleting the repo entirely and recreating it. If you wish to delete and recreate, you now also need to pass `--force-recreate`.
 
 </div>
@@ -68,7 +68,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/repo-copier/pull/108: Remove `--copy-deps` flag, as it had performance issues and bugs, and with little-to-no usage, wasn't worth fixing.
+  https://github.com/gruntwork-io/repo-copier/pull/108: Remove `--copy-deps` flag, as it had performance issues and bugs, and with little-to-no usage, wasn&apos;t worth fixing.
 
 </div>
 
@@ -87,7 +87,7 @@ Here are the repos that were updated:
 
   
 
-- We've updated the version of the boto library used in the `asg-rolling-deploy` module from 1.7.10 to 1.20.24 to fix a compatibility issue with python 3.10 (while still maintaining backwards compatibility with older python 3.7+ releases). However, this new version of boto **DOES NOT WORK WITH PYTHON 2**. Python 2 was sunsetted on January 1, 2020, so hopefully, you've already migrated off of it, but if you haven't, you will now need to to use this version of the `asg-rolling-deploy` module.
+- We&apos;ve updated the version of the boto library used in the `asg-rolling-deploy` module from 1.7.10 to 1.20.24 to fix a compatibility issue with python 3.10 (while still maintaining backwards compatibility with older python 3.7+ releases). However, this new version of boto **DOES NOT WORK WITH PYTHON 2**. Python 2 was sunsetted on January 1, 2020, so hopefully, you&apos;ve already migrated off of it, but if you haven&apos;t, you will now need to to use this version of the `asg-rolling-deploy` module.
 
 
 
@@ -354,14 +354,14 @@ Add the following to your `providers.tf` for terraform:
 
 ```hcl
 
-provider "aws" {
-  region = "ap-southeast-3"
-  alias  = "ap_southeast_3"
+provider &quot;aws&quot; &#x7B;
+  region = &quot;ap-southeast-3&quot;
+  alias  = &quot;ap_southeast_3&quot;
 
   # Skip credential validation and account ID retrieval for disabled or restricted regions
-  skip_credentials_validation = contains(coalesce(var.opt_in_regions, []), "ap-southeast-3") ? false : true
-  skip_requesting_account_id  = contains(coalesce(var.opt_in_regions, []), "ap-southeast-3") ? false : true
-}
+  skip_credentials_validation = contains(coalesce(var.opt_in_regions, []), &quot;ap-southeast-3&quot;) ? false : true
+  skip_requesting_account_id  = contains(coalesce(var.opt_in_regions, []), &quot;ap-southeast-3&quot;) ? false : true
+&#x7D;
 ```
 
 For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
@@ -652,6 +652,6 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6badfa9eda217cb3b4b83bc3e01c873f"
+  "hash": "fb45763298a06bf36916cd308d505fd4"
 }
 ##DOCS-SOURCER-END -->

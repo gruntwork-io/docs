@@ -184,9 +184,9 @@ Also added proper plumbing for `allow_ssh_from_security_group_ids` to be specifi
 All other cluster outputs (elastalert, elasticsearch, kibana) have an iam_role_id output but logstash-cluster was missing this variable:
 
 ```Hcl
-output "iam_role_id" {
-  value = "${module.logstash_cluster.iam_role_id}"
-}
+output &quot;iam_role_id&quot; &#x7B;
+  value = &quot;$&#x7B;module.logstash_cluster.iam_role_id&#x7D;&quot;
+&#x7D;
 ```
 
 This variable is useful for adding ssh-grunt IAM policies to this ASG. Thank you to @Merlz for pointing out the oversight.
@@ -208,17 +208,17 @@ This variable is useful for adding ssh-grunt IAM policies to this ASG. Thank you
 1. Replaces the usage of an NLB with an ALB instead
 1. Adds an auto discovery script to the Filebeat deployment to bypass the need for a load balancer between the application server and Logstash cluster.
 
-Here's why we removed the NLB:
+Here&apos;s why we removed the NLB:
 
-* The NLB can't [route back requests to the same node that initiated the request](https://forums.aws.amazon.com/thread.jspa?threadID=265344).
-* An internal NLB in a private subnet can't be accessed from a peered VPC. In a production environment (especially the one deployed with our reference architecture), this makes it impossible to access the NLB.
+* The NLB can&apos;t [route back requests to the same node that initiated the request](https://forums.aws.amazon.com/thread.jspa?threadID=265344).
+* An internal NLB in a private subnet can&apos;t be accessed from a peered VPC. In a production environment (especially the one deployed with our reference architecture), this makes it impossible to access the NLB.
 
 This release is backwards incompatible with previous releases. To upgrade you need to follow the following steps:
 
 1. Remove your use of the `nlb` module and replace with an `alb`. See example here: https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L436
 1. Replace your use of the `load-balancer-target-group` module with `load-balancer-alb-target-group`. See example of using the new module https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L71
 1. Finally update the various `target_group_arns` arguments passed to the cluster modules. https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L40
-1. If you're using SSL with the ALB, you'll need to take note of the upgrade notes here: https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.12.0
+1. If you&apos;re using SSL with the ALB, you&apos;ll need to take note of the upgrade notes here: https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.12.0
 
 </div>
 
@@ -232,7 +232,7 @@ This release is backwards incompatible with previous releases. To upgrade you ne
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-Going forward, the ALB will be our "front facing" load balancer that will be how users access apps like Kibana. The ultimate goal will be to remove the NLB entirely rather than having to run both kinds of load balancers. We should be able to achieve this goal with #43 
+Going forward, the ALB will be our &quot;front facing&quot; load balancer that will be how users access apps like Kibana. The ultimate goal will be to remove the NLB entirely rather than having to run both kinds of load balancers. We should be able to achieve this goal with #43 
 
 </div>
 
@@ -271,7 +271,7 @@ Going forward, the ALB will be our "front facing" load balancer that will be how
 
 This helps bypass the Terraform bug where the contents of those variables depend on dynamic resources hashicorp/terraform#11482.
 
-This release is **BACKWARD INCOMPATIBLE** with previous releases only if you were using SSL certs. To upgrade you'll need to specify the newly added variables and run `terraform apply`.
+This release is **BACKWARD INCOMPATIBLE** with previous releases only if you were using SSL certs. To upgrade you&apos;ll need to specify the newly added variables and run `terraform apply`.
 
 </div>
 
@@ -341,6 +341,6 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1dc417805641cd37020784adaf77ee5c"
+  "hash": "2ea7257d7ea11dfc2b8f1834ceee76e6"
 }
 ##DOCS-SOURCER-END -->

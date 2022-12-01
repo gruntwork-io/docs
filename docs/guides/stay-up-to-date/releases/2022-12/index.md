@@ -35,7 +35,7 @@ Here are the repos that were updated:
 * Fix stack overflow error by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/127
 * Configure visibility for repositories by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/130
 * Fix stack overflow error (merge to master) by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/129
-* Configure visibility for repositories, additional option "internal" by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/132
+* Configure visibility for repositories, additional option &quot;internal&quot; by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/132
 * Add --repo-name-prefix option by @edgeb1-roche in https://github.com/gruntwork-io/repo-copier/pull/128
 * Fix build failure by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/136
 
@@ -96,6 +96,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c5a14153ef69ad85ccd99fd2d495b553"
+  "hash": "79a2d68965faabae13c415c6c06264b7"
 }
 ##DOCS-SOURCER-END -->

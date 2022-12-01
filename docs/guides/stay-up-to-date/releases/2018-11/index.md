@@ -118,7 +118,7 @@ This initial release contains implementations for the following modules:
 - `eks-cluster-control-plane`: Provision an EKS cluster resource with recommended IAM policies and security groups that can be extended.
 - `eks-cluster-workers`: Provision a set of EC2 instances that EKS can use as worker nodes.
 - `eks-k8s-role-mapping`: Map AWS IAM roles to Kubernetes RBAC roles to allow authentication and authorization to Kubernetes via AWS credentials.
-- `install-eks-aws-iam-authenticator`: Prebuilt binaries for the [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) that can be installed without a working golang environment. This binary is used to support authenticating to EKS by providing IAM roles to the EKS cluster's Kubernetes API.
+- `install-eks-aws-iam-authenticator`: Prebuilt binaries for the [AWS IAM Authenticator for Kubernetes](https://github.com/kubernetes-sigs/aws-iam-authenticator) that can be installed without a working golang environment. This binary is used to support authenticating to EKS by providing IAM roles to the EKS cluster&apos;s Kubernetes API.
 - `k8s-scripts`: Helper scripts to configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/) and [`helm`](https://helm.sh/) on the various flavors of Kubernetes clusters.
 
 
@@ -187,7 +187,7 @@ The above commit message will only run `SomeTestFunc` test function in the CI se
 
   
 
-To update your existing encryption enabled RDS cluster (which most likely uses serverless engine mode, else you'd have run into an error), simply run:
+To update your existing encryption enabled RDS cluster (which most likely uses serverless engine mode, else you&apos;d have run into an error), simply run:
 
 ```
 terragrunt state mv module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encryption module.&lt;module-name&gt;.aws_rds_cluster.cluster_with_encryption_serverless
@@ -378,6 +378,6 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "762cb1013260625d4e99d9e30f9782a4"
+  "hash": "5d1eeca96c0b2e3eac47c85853a8fa90"
 }
 ##DOCS-SOURCER-END -->

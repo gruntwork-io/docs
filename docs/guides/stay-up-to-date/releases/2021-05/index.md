@@ -147,7 +147,7 @@ Since this repo is solely used for examples/demonstrations, and NOT meant for di
     - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
     - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
     - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-- Note that as part of the Terraform 0.15 upgrade, we've updated the `Dockerfile` for the `ecs-deploy-runner` to install Terraform 0.15.1 and Terragrunt v0.29.0 by default. **This is a backwards incompatible change**. See the migration guide below for upgrade instructions.
+- Note that as part of the Terraform 0.15 upgrade, we&apos;ve updated the `Dockerfile` for the `ecs-deploy-runner` to install Terraform 0.15.1 and Terragrunt v0.29.0 by default. **This is a backwards incompatible change**. See the migration guide below for upgrade instructions.
 
 
 </div>
@@ -263,7 +263,7 @@ Update the underlying versions of the following modules:
 
   
 
-- Update example `landingzone` READMEs to mention parallelism when running applying with `terraform apply` (see [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-app/README.md) & [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-security/README.md))
+- Update example `landingzone` READMEs to mention parallelism when running applying with `terraform apply` (see [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-app/README.md) &amp; [here](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/a5b42067f853bb6bc8657ba4772c76bbbc418f45/examples/for-learning-and-testing/landingzone/account-baseline-security/README.md))
 - Update `account-baseline-security` and `account-baseline-app` to expose and name the variables consistently across submodules
 
 
@@ -918,7 +918,7 @@ The `account-baseline-app`, `account-baseline-security`, and `account-baseline-r
   
 
 - Add Lambda README
-- Make route53 ACM certificate validation optional. It is now possible to request ACM certificates without having DNS verification records created for them or having them pass AWS's programmatic validation process. You can request certs that will not require verification by setting the variables: 
+- Make route53 ACM certificate validation optional. It is now possible to request ACM certificates without having DNS verification records created for them or having them pass AWS&apos;s programmatic validation process. You can request certs that will not require verification by setting the variables: 
 
   * `create_verification_record`
   * `verify_certificate` 
@@ -1158,6 +1158,6 @@ Add support for exposing client access directly in the nacls for the private app
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a3de521495fe7e198fd28b9520bb5002"
+  "hash": "2e6f91939cce0767cf9b43d22e92f8ec"
 }
 ##DOCS-SOURCER-END -->

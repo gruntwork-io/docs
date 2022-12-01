@@ -131,7 +131,7 @@ This release adds a module for [AWS Config](https://aws.amazon.com/config/). The
 
   
 
-- We've added a new module called `iam-users` that you can use to create and manage IAM users as code. The module can create IAM users, add them to IAM groups, and generate console passwords and access keys for them, encrypting each with PGP so they don't end up in plaintext in Terraform state.
+- We&apos;ve added a new module called `iam-users` that you can use to create and manage IAM users as code. The module can create IAM users, add them to IAM groups, and generate console passwords and access keys for them, encrypting each with PGP so they don&apos;t end up in plaintext in Terraform state.
 
 
 
@@ -165,7 +165,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 
   
 
-- Fix bug where when upgrading the `iam-groups` module to tf12 with existing resources, `terraform` gets into a state where you can't `apply`, `plan`, or `destroy`.
+- Fix bug where when upgrading the `iam-groups` module to tf12 with existing resources, `terraform` gets into a state where you can&apos;t `apply`, `plan`, or `destroy`.
 
 
 
@@ -301,7 +301,7 @@ The module has support for the following features:
 
   
 
-- The `vpc-app-network-acls` module now sets `allow_access_from_mgmt_vpc` to `false` by default. This is a more sane default because (a) it's more secure and (b) `mgmt_vpc_cidr_block` is `null` by default, so if you left all parameters at their defaults, it doesn't actually work. If you are upgrading to this new version and you want to allow access to an app VPC from a mgmt VPC via VPC peering, you must now explicitly set `allow_access_from_mgmt_vpc` to true.
+- The `vpc-app-network-acls` module now sets `allow_access_from_mgmt_vpc` to `false` by default. This is a more sane default because (a) it&apos;s more secure and (b) `mgmt_vpc_cidr_block` is `null` by default, so if you left all parameters at their defaults, it doesn&apos;t actually work. If you are upgrading to this new version and you want to allow access to an app VPC from a mgmt VPC via VPC peering, you must now explicitly set `allow_access_from_mgmt_vpc` to true.
 
 
 
@@ -333,6 +333,6 @@ The module has support for the following features:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a5c00770d9e0a5f4ecadbe659ad512dd"
+  "hash": "a1f56f71ba6cfb43db1dcdca38b687ac"
 }
 ##DOCS-SOURCER-END -->

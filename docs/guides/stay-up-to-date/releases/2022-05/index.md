@@ -96,7 +96,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  This release updates the `boilerplate` references for the special branch we're using for the updated Gruntwork wizard experience
+  This release updates the `boilerplate` references for the special branch we&apos;re using for the updated Gruntwork wizard experience
 
 
 
@@ -177,7 +177,7 @@ Note that IAM users in the Gruntwork AWS Account are required to have MFA to ass
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-Minor update, all related to testing module upgrades to make our builds more stable across Gruntwork's IaC library.
+Minor update, all related to testing module upgrades to make our builds more stable across Gruntwork&apos;s IaC library.
 
 - Remove dead code from upgrade test.
 - Update PR Template
@@ -276,7 +276,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
   
 - Updated `vpc`, `vpc-mgmt` modules to support tagging of route tables.
-    - If you'd like to configure tagging, set `public_route_table_custom_tags`, `private_app_route_table_custom_tags`, and `private_persistence_route_table_custom_tags`.
+    - If you&apos;d like to configure tagging, set `public_route_table_custom_tags`, `private_app_route_table_custom_tags`, and `private_persistence_route_table_custom_tags`.
 - These dependencies were updated:
     - `terraform-aws-service-catalog` `v0.85.2` =&gt; `v0.86.1`.
         - [`v0.86.0`](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.86.0) requires minimum AWS provider version 3.75.0 for several modules.
@@ -392,7 +392,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
   
 
 - Added a new module (`lambda-http-api-gateway`) for configuring an AWS HTTP (V2) API Gateway hooked up to different Lambda functions. Unlike `api-gateway-proxy`, this allows you to configure various HTTP requests to invoke different lambda functions (e.g., `GET` request on `/hello` can invoke the `foo` lambda function, while `POST` request on `/hello` can invoke the `bar` lambda function. Refer to [the module documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/master/modules/lambda-http-api-gateway) for more information.
-- Added a new module (`run-lambda-entrypoint`) that can be used as an entrypoint for container image based Lambda function to expose AWS Secrets Manager secrets as environment variables to the Lambda function. This is useful if you don't want to leak the Secrets Manager entries into the Lambda function metadata which most traditional integrations will do as they rely on standard Lambda settings like Environment Variables. Refer to [the module documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/master/modules/run-lambda-entrypoint) for more information.
+- Added a new module (`run-lambda-entrypoint`) that can be used as an entrypoint for container image based Lambda function to expose AWS Secrets Manager secrets as environment variables to the Lambda function. This is useful if you don&apos;t want to leak the Secrets Manager entries into the Lambda function metadata which most traditional integrations will do as they rely on standard Lambda settings like Environment Variables. Refer to [the module documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/master/modules/run-lambda-entrypoint) for more information.
 
 
 
@@ -473,7 +473,7 @@ Updated the default version of Steampipe that is installed in the `steampipe-run
 
   
 
-- **Ignore changes to various S3 configuration**: A bug was introduced in our `v0.63.0` release of this repo. When upgrading the `private-s3-bucket` module, a race condition in the plan could leave your S3 bucket in a state where configurations were actually removed. The plan would show in-place updates, but depending on execution order and completion of the AWS API calls, the update to remove the configuration could happen last, thereby removing the configuration on the bucket. While not ideal, you could work around this issue by running `apply` a second time, picking up the discrepancy and adding the configurations back to the bucket, but this update makes it so you don't have to run `apply` a second time. When upgrading your modules, including making them AWS Provider v4 compatible, we recommend using this `v0.65.1` version. See the PR and associated issue for more details.
+- **Ignore changes to various S3 configuration**: A bug was introduced in our `v0.63.0` release of this repo. When upgrading the `private-s3-bucket` module, a race condition in the plan could leave your S3 bucket in a state where configurations were actually removed. The plan would show in-place updates, but depending on execution order and completion of the AWS API calls, the update to remove the configuration could happen last, thereby removing the configuration on the bucket. While not ideal, you could work around this issue by running `apply` a second time, picking up the discrepancy and adding the configurations back to the bucket, but this update makes it so you don&apos;t have to run `apply` a second time. When upgrading your modules, including making them AWS Provider v4 compatible, we recommend using this `v0.65.1` version. See the PR and associated issue for more details.
 
 
 
@@ -731,6 +731,6 @@ Support for python2 has been dropped. All modules that depend on python now requ
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "bc20357fa261490cd533fc0f16b375a3"
+  "hash": "27e625ae6ff0126d6d5fb054b94a3ca4"
 }
 ##DOCS-SOURCER-END -->

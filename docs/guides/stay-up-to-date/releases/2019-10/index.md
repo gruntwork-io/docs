@@ -54,8 +54,8 @@ Here are the repos that were updated:
 
   
 
-- The `memcached` version now sets the default version to `1.5.16`. We were using `1.4.24` before, but that's no longer supported. If you wish to use a different version, use the `memcached_version` input variable.
-- The `redis` module now sets the default version to `5.0.5`. We were using `2.8.24` before, but that's now quite out of date. If you wish to use a different version, use the `redis_version` input variable.
+- The `memcached` version now sets the default version to `1.5.16`. We were using `1.4.24` before, but that&apos;s no longer supported. If you wish to use a different version, use the `memcached_version` input variable.
+- The `redis` module now sets the default version to `5.0.5`. We were using `2.8.24` before, but that&apos;s now quite out of date. If you wish to use a different version, use the `redis_version` input variable.
 
 
 
@@ -461,7 +461,7 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  This alpha release bumps the version of Go used with `ssh-grunt` from `1.11` to `1.13.3` to address an issue with long delays under certain (mysterious) conditions. We'll confirm the fix before releasing `v0.20.1`.
+  This alpha release bumps the version of Go used with `ssh-grunt` from `1.11` to `1.13.3` to address an issue with long delays under certain (mysterious) conditions. We&apos;ll confirm the fix before releasing `v0.20.1`.
 
 </div>
 
@@ -496,10 +496,10 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 - The recently-created `custom-iam-group` module has been renamed to `custom-iam-entity`. The new module has support for creating roles in addition to groups.
 - The `saml-iam-roles` and `cross-account-iam-roles` modules now support tags. Use a map of tags to create tagged roles. For example:
 ```
-    tags = {
-        Department = "IT"
-        Environment = "Production"
-    }
+    tags = &#x7B;
+        Department = &quot;IT&quot;
+        Environment = &quot;Production&quot;
+    &#x7D;
 ```
 
 
@@ -722,6 +722,6 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "93c800b3734cf2ce3d9530c750d50245"
+  "hash": "931ea36a7936ff7577f48de7b011ad5a"
 }
 ##DOCS-SOURCER-END -->

@@ -168,7 +168,7 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/574
 
   
 
-- Housekeeping: Updated CODEOWNERS, Added GitHub PR & Issue Templates, and whitespace changes.
+- Housekeeping: Updated CODEOWNERS, Added GitHub PR &amp; Issue Templates, and whitespace changes.
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
 
@@ -559,7 +559,7 @@ Default value is still `true`.
 
   
 
-- Updated provider versioning to restrict to `&lt; 4.0`. AWS Provider 4.x series introduced a number of backward incompatible changes and these modules haven't been updated to work with them yet.
+- Updated provider versioning to restrict to `&lt; 4.0`. AWS Provider 4.x series introduced a number of backward incompatible changes and these modules haven&apos;t been updated to work with them yet.
 - Exposed the ability to configure copy-on-write cloning for Aurora DB cluster.
 
 
@@ -1030,7 +1030,7 @@ Default value is still `true`.
   
 
 - Rename vars.tf to more canonical variables.tf
-- Install CloudWatch Script: Whether you're using amd64 or am64, the cloudwatch agent download script will download the architecture-specific agent.
+- Install CloudWatch Script: Whether you&apos;re using amd64 or am64, the cloudwatch agent download script will download the architecture-specific agent.
 
 
 
@@ -1683,7 +1683,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
   
 
-- Updated default EKS disallowed availability zones list to include a new AZ for `ca-central-1` that doesn't support EKS Fargate
+- Updated default EKS disallowed availability zones list to include a new AZ for `ca-central-1` that doesn&apos;t support EKS Fargate
 - Updated dependency `terraform-aws-vpc` to v0.18.12
 - Exposed the following new functionality in the `vpc` module:
     - Added support for making Internet Gateway creation optional.
@@ -1767,7 +1767,7 @@ Hard expiry requires an administrator to reset the password, which greatly degra
 
   
 
-- Add GitHub PR & Issue Templates
+- Add GitHub PR &amp; Issue Templates
 - Add gruntwork-io/maintenance-tier-3-orion to CODEOWNERS
 - Restricted provider version to &lt; 4.0 due to breaking changes in new provider
 
@@ -1948,6 +1948,6 @@ Exposed `icmp_type` and `icmp_code` in `var.private_app_allow_inbound_ports_from
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "77cb3f5554c41881172c1529bdab66b1"
+  "hash": "e29b127072e5f605a52fd793d0437a77"
 }
 ##DOCS-SOURCER-END -->

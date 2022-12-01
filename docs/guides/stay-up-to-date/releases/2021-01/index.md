@@ -184,7 +184,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -224,7 +224,7 @@ https://github.com/gruntwork-io/repo-copier/pull/45: Optimize Go module processi
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -344,7 +344,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -367,7 +367,7 @@ We are publishing soon a migration guide from CIS 1.2.0 to 1.3.0!
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -546,7 +546,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -570,7 +570,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
   
 
 - We have added support for Ubuntu 20.04 in testing and dropped support for Ubuntu 16.04
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -633,7 +633,7 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
   
 
-- Fixes broken links on the website's repo browser by using root-relative links for README & LICENSE file references.
+- Fixes broken links on the website&apos;s repo browser by using root-relative links for README &amp; LICENSE file references.
 
 
 </div>
@@ -696,7 +696,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -718,7 +718,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 
 - You can now configure the update timeout for the `elasticsearch` module using the new `update_timeout` input variable. The default timeout has been increased from 60m to 90m, as we were seeing some intermittent timeouts on creation.
 - Bumped the `terraform-aws-ci` version number in the `mgmt` modules. This is mainly to pick up a fix for the `jenkins` module related to the default `snapshot_id` value.
-- Removed a `depends_on` clause from the `ecs-cluster` module which was causing recent Terraform versions to exit with an error. This `depends_on` wasn't necessary in the first place.
+- Removed a `depends_on` clause from the `ecs-cluster` module which was causing recent Terraform versions to exit with an error. This `depends_on` wasn&apos;t necessary in the first place.
 - Updated the `eks-core-services` module to the 2.x version of the Helm provider. This is a backwards incompatible change. See the migration guide below.
 - Updated the `required_version` constraint on the `k8s-namepsace` to `&gt;= 0.12.26`. This was missed during the Terraform 0.13 upgrade.
 
@@ -765,7 +765,7 @@ NOTE: Starting this release, the `attach-eni` module no longer works with Ubuntu
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-- Updated the `landingzone/account-baseline-root` & `landingzone/account-baseline-security` modules to include the new `iam-access-analyzer` module in order to be compliant with CIS 1.3.0. The additional `iam-access-analyzer` module is disabled by default to aid consistency and backwards compatibility between versions of the `landingzone`. 
+- Updated the `landingzone/account-baseline-root` &amp; `landingzone/account-baseline-security` modules to include the new `iam-access-analyzer` module in order to be compliant with CIS 1.3.0. The additional `iam-access-analyzer` module is disabled by default to aid consistency and backwards compatibility between versions of the `landingzone`. 
 - Updated the related examples to showcase how the `landingzone` module could use the `iam-access-analyzer` module. To enable the use of this feature, users will need to set `enable_iam_access_analyzer` to true in the variables.tf for each of these modules or examples.
 - Once all our libraries are upgraded and tested to be compatible with CIS 1.3.0 we’ll publish a migration guide to help you update.
 
@@ -866,7 +866,7 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 
   
 
-- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we've updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
+- We recently renamed most of our repos to follow the Terraform Registry convention of `terraform-&lt;cloud&gt;-&lt;name&gt;` (e.g., `terraform-aws-vpc`. In this release, we&apos;ve updated all cross-references and links from the old names to the new names. There should be no change in behavior, and GitHub redirects old names to new names anyway, but using the up-to-date names will help reduce confusion.
 
 
 
@@ -881,6 +881,6 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8b1b908417a369c8b041b96d3d5c8973"
+  "hash": "b09f779d4b4e1150132a9f1bc715d68c"
 }
 ##DOCS-SOURCER-END -->

@@ -78,7 +78,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - The `ecs-service` module now supports [canary deployment](http://martinfowler.com/bliki/CanaryRelease.html)! To use it, set the `canary_task_arn`  and `desired_number_of_canary_tasks_to_run` parameters. See [How do I do a canary deployment?](https://github.com/gruntwork-io/module-ecs/tree/master/modules/ecs-service#how-do-i-do-a-canary-deployment) and the [docker-service-with-canary-deployment example](https://github.com/gruntwork-io/module-ecs/tree/master/examples/docker-service-with-canary-deployment) for details.
-- The `ecs-service` module's `service_with_elb_arn` and `service_without_elb_arn` output variables have been removed. Instead, use the `service_arn` and `canary_service_arn` outputs.
+- The `ecs-service` module&apos;s `service_with_elb_arn` and `service_without_elb_arn` output variables have been removed. Instead, use the `service_arn` and `canary_service_arn` outputs.
 
 
 </div>
@@ -107,6 +107,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "60e0ff41c0d465f029d2785b95b96935"
+  "hash": "2751fc58bc5f89373f2b923bc2c1b8cb"
 }
 ##DOCS-SOURCER-END -->

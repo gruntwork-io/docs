@@ -41,7 +41,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We've added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public. 
+  - NEW MODULE: We&apos;ve added a new module [publish-ami](https://github.com/gruntwork-io/module-ci/tree/e0cbe8ee0a7c6b60a6ff59d6cc198082e7baa5c5/modules/aws-helpers) that will copy the given AMI to the desired AWS regions (or all AWS regions) and make it public. 
 
   We added this module because Gruntwork will soon be releasing open source modules for Vault, Nomad, and Consul and we needed a way to make AMIs built by those modules globally available and usable by anyone.
 
@@ -69,7 +69,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - UPDATE: HashiCorp changed the GitHub Packer repo from github.com/mitchellh/packer to github.com/hashicorp/packer. Because our `curl` commands didn't handle a redirect, this caused some of our scripts to fail. This update fixes that issue.
+  - UPDATE: HashiCorp changed the GitHub Packer repo from github.com/mitchellh/packer to github.com/hashicorp/packer. Because our `curl` commands didn&apos;t handle a redirect, this caused some of our scripts to fail. This update fixes that issue.
 
 </div>
 
@@ -90,7 +90,7 @@ Here are the repos that were updated:
 
 https://github.com/gruntwork-io/module-data-storage/pull/20: Fix a bug where the RDS and Aurora module would exit with an error if you set `storage_encrypted` to false. 
 
-**Note**: that if you update to this new version of `module-data-storage` and run `apply`, it will undeploy your old DB and deploy a new one to replace it. That's because fixing this bug required renaming the DB resources, which Terraform sees as a delete + create. 
+**Note**: that if you update to this new version of `module-data-storage` and run `apply`, it will undeploy your old DB and deploy a new one to replace it. That&apos;s because fixing this bug required renaming the DB resources, which Terraform sees as a delete + create. 
 
 To avoid this, you will need to use the `terraform state mv` command. 
 
@@ -148,7 +148,7 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/17: Fix a bug in the `lambda-copy-shared-rds-snapshot` module where it didn't properly handle `DBSnapshotNotFound` errors.
+  https://github.com/gruntwork-io/module-data-storage/pull/17: Fix a bug in the `lambda-copy-shared-rds-snapshot` module where it didn&apos;t properly handle `DBSnapshotNotFound` errors.
 
 </div>
 
@@ -221,7 +221,7 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We've added a module, [iam-user-password-policy](https://github.com/gruntwork-io/module-security/tree/master/modules/iam-user-password-policy) that makes it easy to use Terragrunt to create a password policy for your IAM Users.
+  - NEW MODULE: We&apos;ve added a module, [iam-user-password-policy](https://github.com/gruntwork-io/module-security/tree/master/modules/iam-user-password-policy) that makes it easy to use Terragrunt to create a password policy for your IAM Users.
 
 </div>
 
@@ -313,6 +313,6 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e42a06253fde81a0bc4291d62a66b5f7"
+  "hash": "1469ab4d7aaf97c0ac6b6ca733e93e8f"
 }
 ##DOCS-SOURCER-END -->

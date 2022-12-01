@@ -237,7 +237,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - All data stores now support a `bastion_host_security_group_id` parameter that can be used to allow the bastion host (or more likely, you using the bastion host via SSH tunneling) to connect to the data store. For security reasons, the default for the `bastion_host_security_group_id` parameter is empty string, which means it's disabled.
+  - All data stores now support a `bastion_host_security_group_id` parameter that can be used to allow the bastion host (or more likely, you using the bastion host via SSH tunneling) to connect to the data store. For security reasons, the default for the `bastion_host_security_group_id` parameter is empty string, which means it&apos;s disabled.
 
 
 </div>
@@ -402,7 +402,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - The `route53-health-check` module now enforces that the CloudWatch Alarm and SNS Topic for the Route 53 Health Check are both in `us-east-1`, as that's the only place where Route 53 sends CloudWatch metrics.
+  - The `route53-health-check` module now enforces that the CloudWatch Alarm and SNS Topic for the Route 53 Health Check are both in `us-east-1`, as that&apos;s the only place where Route 53 sends CloudWatch metrics.
 
 
 </div>
@@ -416,7 +416,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Don't trigger alarms when ELB request latency switches to `INSUFFICIENT_DATA` state, as that indicates no requests are going through the ELB, which might not be an error condition, and if it is, should be caught by the `elb_low_request_count` alarm instead.
+  - Don&apos;t trigger alarms when ELB request latency switches to `INSUFFICIENT_DATA` state, as that indicates no requests are going through the ELB, which might not be an error condition, and if it is, should be caught by the `elb_low_request_count` alarm instead.
 - Only create the `elb_low_request_count` alarm if `var.elb_low_request_count_threshold` is greater than 0.
 
 
@@ -565,6 +565,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "30eb153691339a07e58323f0cf9f594d"
+  "hash": "a6f6259935c91cca53f2c398ff2e1825"
 }
 ##DOCS-SOURCER-END -->

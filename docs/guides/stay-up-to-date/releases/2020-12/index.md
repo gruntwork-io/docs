@@ -377,56 +377,56 @@ We can no longer dynamically configure destroy provisioners starting with Terraf
 
 
 
-We no longer allow `kubergrunt_install_dir` to be configurable. Kubergrunt is primarily used for helping us clean up leftover resources, which are otherwise not cleaned up, when running terraform destroy to destroy the EKS cluster and any other related resources, using this module. Because Terraform &gt;= `0.13.0` can no longer reference any variables in destroy provisioners, we must hardcode kubergrunt's `install_dir` so that this module can reliably call it from a known location to clean up leftover resources.
+We no longer allow `kubergrunt_install_dir` to be configurable. Kubergrunt is primarily used for helping us clean up leftover resources, which are otherwise not cleaned up, when running terraform destroy to destroy the EKS cluster and any other related resources, using this module. Because Terraform &gt;= `0.13.0` can no longer reference any variables in destroy provisioners, we must hardcode kubergrunt&apos;s `install_dir` so that this module can reliably call it from a known location to clean up leftover resources.
 
 - **var.kubergrunt_install_dir** 
 
 - These steps assume you have a running EKS cluster that was deployed using an earlier version of terraform-aws-eks and using terraform `0.12.x`. The following steps have been verified using terraform `0.12.26`, so if you have an older version of terraform, you may run into some unforeseen issues. You may first want to upgrade your terraform to at least `0.12.26` (but still not `0.13.x`) before proceeding.
 - :tada: Terraform `0.12.29` handles the changes to state much better than previous versions of `0.12`. This means you can probably skip steps 5-7 below!
-- If you're using a version of `terraform-aws-eks` older than `v0.29.x`, you should address all backward-incompatible changes from your current version to `v0.29.x`. That means going through every `v0.X.0` release.
-- Make particular note of changes in `v0.28.0`: if you're using a version older than this, you can follow the instructions in the [release notes for v0.28.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.28.0) to ensure your Load Balancer resources are compatible with AWS Load Balancer Controller version 2. Otherwise, you may end up with Load Balancer resources, such as Security Groups, left behind when destroying the EKS cluster using the current (`v0.30.0`) version.
+- If you&apos;re using a version of `terraform-aws-eks` older than `v0.29.x`, you should address all backward-incompatible changes from your current version to `v0.29.x`. That means going through every `v0.X.0` release.
+- Make particular note of changes in `v0.28.0`: if you&apos;re using a version older than this, you can follow the instructions in the [release notes for v0.28.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.28.0) to ensure your Load Balancer resources are compatible with AWS Load Balancer Controller version 2. Otherwise, you may end up with Load Balancer resources, such as Security Groups, left behind when destroying the EKS cluster using the current (`v0.30.0`) version.
 
 1. **Make sure your state files are up to date.** Before making changes to upgrade the module code, make sure your state is in sync with the current version of the code by running `terraform apply`.
 1. **Upgrade.** Update the module blocks referencing `terraform-aws-eks` to version `v0.30.0`.
 1. **Update providers.** Run `terraform init`. This will update the providers and make no changes to your state.
 1. **Run plan to see errors.** Run `terraform plan`. If you see errors for provider configuration, the next steps help you fix these issues. If you do not see errors, **skip to step 8**.
-    First, some background on how state changes. We've removed `data` and `null_resources` in this release, so in order to upgrade, you also need to remove these resources from state. It is safe to remove these resources because `null_resource`s are virtual resources in terraform with no cloud resources backing them. In the next step, we've offered an example of the `state rm` command you need to run, but the prefix for each state address may be different for you. The prefix of each address is the module label you assigned to the block for the `eks-cluster-control-plane` module. So if you had:
+    First, some background on how state changes. We&apos;ve removed `data` and `null_resources` in this release, so in order to upgrade, you also need to remove these resources from state. It is safe to remove these resources because `null_resource`s are virtual resources in terraform with no cloud resources backing them. In the next step, we&apos;ve offered an example of the `state rm` command you need to run, but the prefix for each state address may be different for you. The prefix of each address is the module label you assigned to the block for the `eks-cluster-control-plane` module. So if you had:
     ```hcl
-    module "eks_cluster" {
-      source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.29.1"
+    module &quot;eks_cluster&quot; &#x7B;
+      source = &quot;git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.29.1&quot;
       ...
-    }
+    &#x7D;
     ````
-    the prefix will be `module.eks_cluster`. If you had labeled the module block as `my_cluster` (e.g., `module "my_cluster" {}`), the prefix will be `module.my_cluster`. Reliable ways to figure out the full address:
+    the prefix will be `module.eks_cluster`. If you had labeled the module block as `my_cluster` (e.g., `module &quot;my_cluster&quot; &#x7B;&#x7D;`), the prefix will be `module.my_cluster`. Reliable ways to figure out the full address:
     - Use `terraform state list`.
     - Look at the errors you get from running `terraform plan`.
-1. **Dry-run state changes.** The following is an example of the state change you'll have to make. Run it in `-dry-run` mode first, and use `-backup`. Look at the list of modules it will remove and compare to the errors in the previous step. As we remove these resources, the errors will go away.
+1. **Dry-run state changes.** The following is an example of the state change you&apos;ll have to make. Run it in `-dry-run` mode first, and use `-backup`. Look at the list of modules it will remove and compare to the errors in the previous step. As we remove these resources, the errors will go away.
     ```bash
     # Replace the following MODULE_PREFIX with the prefix that you identified in the previous step.
-    MODULE_PREFIX='module.eks_cluster'
+    MODULE_PREFIX=&apos;module.eks_cluster&apos;
     terraform state rm -dry-run -backup=tfstate.backup \
-      "$MODULE_PREFIX".null_resource.cleanup_eks_cluster_resources_script_hook \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.null_resource.run_pex \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.module.pex_env \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.module.pex_env.module.os \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.module.pex_env.module.pex_module_path.module.os \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.module.pex_env.module.python2_pex_path.module.os \
-      "$MODULE_PREFIX".module.cleanup_eks_cluster_resources.module.pex_env.module.python3_pex_path.module.os \
-      "$MODULE_PREFIX".null_resource.local_kubectl
+      &quot;$MODULE_PREFIX&quot;.null_resource.cleanup_eks_cluster_resources_script_hook \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.null_resource.run_pex \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.module.pex_env \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.module.pex_env.module.os \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.module.pex_env.module.pex_module_path.module.os \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.module.pex_env.module.python2_pex_path.module.os \
+      &quot;$MODULE_PREFIX&quot;.module.cleanup_eks_cluster_resources.module.pex_env.module.python3_pex_path.module.os \
+      &quot;$MODULE_PREFIX&quot;.null_resource.local_kubectl
     ```
  1. **State change.** Once all the resources to be removed match the errors you saw, you are ready to run the command without the `-dry-run` flag to remove those resources from state.
  1. **Re-run `terraform plan`.** You should no longer see those errors. You should not see any changes to add or destroy. You may see some resources that will be updated in place depending on your configuration.
- 1. **Run `terraform apply`** to apply any changes and save everything to state. Even if you don't see changes, run `apply` anyway.
+ 1. **Run `terraform apply`** to apply any changes and save everything to state. Even if you don&apos;t see changes, run `apply` anyway.
 
 From this point onward, you should be able to make changes to the module as normal.
 
-When you want to destroy the EKS cluster, you can run `terraform destroy`, which should not only destroy the resources created by the module, but also it should remove extraneous resources that otherwise wouldn't get cleaned up, such as Security Groups managed by AWS, and CoreDNS changes.
+When you want to destroy the EKS cluster, you can run `terraform destroy`, which should not only destroy the resources created by the module, but also it should remove extraneous resources that otherwise wouldn&apos;t get cleaned up, such as Security Groups managed by AWS, and CoreDNS changes.
 
 Note: At this point terraform 0.14.x has been released, but be aware that these modules have not been tested with it.
 
-These steps assume you've upgraded the modules separately using terraform 0.12.x, preferably 0.12.26 or later, as described in the previous step.
+These steps assume you&apos;ve upgraded the modules separately using terraform 0.12.x, preferably 0.12.26 or later, as described in the previous step.
 
-1. Upgrade your local terraform to `0.13.x`. We've tested with `0.13.4`, but later versions should work.
+1. Upgrade your local terraform to `0.13.x`. We&apos;ve tested with `0.13.4`, but later versions should work.
 1. Run `terraform plan`.
 1. If there are any minor changes, go ahead and run `terraform apply`.
 - Note: If in any of the previous commands you get a provider-related error, you may need to run `terraform init` first.
@@ -435,9 +435,9 @@ From this point onward, you should be all good to continue using terraform 0.13.
 
 We made big changes to how we clean up leftover resources when running `terraform destroy` in these modules. While most of the time things will work smoothly, there is a known case with an issue:
 
-If you start with a running cluster using the old version (prior to this release) of the modules, that you created with terraform 0.12.x, then upgrade to the new module and terraform 0.13.x as we describe above, and then try to destroy, this destruction step might not go as planned. If you're spinning up and down a lot of EKS clusters programmatically, it can be a headache to try to resolve errors and timeouts during destroy. Therefore, for these situations, we recommend switching to the new modules along with terraform 0.13.x exclusively once you're ready to do so. Destroying a cluster that was deployed using this version of the modules applied with terraform 0.13.x works much more smoothly.
+If you start with a running cluster using the old version (prior to this release) of the modules, that you created with terraform 0.12.x, then upgrade to the new module and terraform 0.13.x as we describe above, and then try to destroy, this destruction step might not go as planned. If you&apos;re spinning up and down a lot of EKS clusters programmatically, it can be a headache to try to resolve errors and timeouts during destroy. Therefore, for these situations, we recommend switching to the new modules along with terraform 0.13.x exclusively once you&apos;re ready to do so. Destroying a cluster that was deployed using this version of the modules applied with terraform 0.13.x works much more smoothly.
 
-We've documented specific known issues regarding the destroy below.
+We&apos;ve documented specific known issues regarding the destroy below.
 
 The destroy step depends on Kubergrunt version ~0.6.7. Normally if you use the `eks-cluster-control-plane` module with default values for `var.auto_install_kubergrunt` and `var.use_kubergrunt_verification`, the right version of kubergrunt will be installed during `terraform plan`. If you change these values to avoid that install, or if you have installed an older version of kubergrunt, you will get an error when running `terraform destroy` that advises you to install it. For installation instructions, [look here](https://github.com/gruntwork-io/kubergrunt/blob/master/README.md#installation).
 
@@ -547,8 +547,8 @@ The `openvpn-server` module has been refactored to use the `private-s3-bucket` m
 As part of upgrading module to align with [CIS 1.3.0](https://www.cisecurity.org/benchmark/amazon_web_services/) compliance, as is recommended, the IAM Access Analyzer needs to be enabled across all used AWS regions. 
 
 In this release:
-* We've added a new module wrapper `iam-access-analyzer-multi-region` for the IAM Access Analyzer service for multiple AWS regions and a related example.
-* We've updated `account-baseline-root` and `account-baseline-security` and their respective code examples to showcase using the new module. 
+* We&apos;ve added a new module wrapper `iam-access-analyzer-multi-region` for the IAM Access Analyzer service for multiple AWS regions and a related example.
+* We&apos;ve updated `account-baseline-root` and `account-baseline-security` and their respective code examples to showcase using the new module. 
 
 The `iam-access-analyzer-multi-region` has been added, but is disabled at the level of the _Landing Zone_ product (`account-baseline-*` modules) for backward compatibility. To enable the use of this feature, users will need to `enable_iam_access_analyzer` to `true` in the `variables.tf` for each of these modules or examples.
 
@@ -897,7 +897,7 @@ This fixes a perpetual diff issue with `cloudtrail` module when `kms_key_arn` is
 
 - The `vpc-app` module now allows you to disable any of the three tiers of subnets (public, private-app, private-persistence) by setting the new input variables `create_public_subnets`, `create_private_app_subnets`, or `create_private_persistence_subnets` to `false`. This is convenient, for example, if you want to create a VPC with no public subnets because you get all public Internet access through some other mechanism (e.g., Direct Connect, VPC peering, etc). 
 - **IMPORTANT NOTE: as of this release, `vpc-mgmt` is now deprecated**: The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app` had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of 
-this release, since `vpc-app` allows you to disable any of the subnet tiers, it can now support 1, 2, or 3 tiers of subnets, as needed. Therefore, we recommend using `vpc-app` for all your VPCs in the future. If you're already using `vpc-mgmt`, we will continue to maintain it for a little while longer, but please be aware that, in a future release, once we feel the new functionality in `vpc-app` is fully baked, we will remove `vpc-mgmt` entirely.
+this release, since `vpc-app` allows you to disable any of the subnet tiers, it can now support 1, 2, or 3 tiers of subnets, as needed. Therefore, we recommend using `vpc-app` for all your VPCs in the future. If you&apos;re already using `vpc-mgmt`, we will continue to maintain it for a little while longer, but please be aware that, in a future release, once we feel the new functionality in `vpc-app` is fully baked, we will remove `vpc-mgmt` entirely.
  
 
 
@@ -968,6 +968,6 @@ The `exhibitor-shared-config` module has been refactored to use the `private-s3-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "bc97a2bb4736f83c0947197982f4f041"
+  "hash": "08b0a982262c281316a8648cee931537"
 }
 ##DOCS-SOURCER-END -->

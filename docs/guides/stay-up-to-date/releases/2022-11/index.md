@@ -35,7 +35,7 @@ Here are the repos that were updated:
 
   * Fix unit tests by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/33
 * Bump redis from 3.0.2 to 3.1.1 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/27
-* Add GitHub PR & Issue Templates by @robmorgan in https://github.com/gruntwork-io/aws-sample-app/pull/32
+* Add GitHub PR &amp; Issue Templates by @robmorgan in https://github.com/gruntwork-io/aws-sample-app/pull/32
 * [skip ci] Update codeowners to reflect current owners by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/35
 * Update deprecated circleci images to latest by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/36
 * Data source: use aws_subnets over aws_subnet_ids by @rhoboat in https://github.com/gruntwork-io/aws-sample-app/pull/39
@@ -73,7 +73,7 @@ Here are the repos that were updated:
   
 
 - Update Centos 7 image used in examples
-- Replace 'local readonly' with 'local -r' in bash scripts
+- Replace &apos;local readonly&apos; with &apos;local -r&apos; in bash scripts
 
 
 
@@ -443,6 +443,6 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f180324c01695c6099bd5f2dac3e8da3"
+  "hash": "97210b9a047d414110644d4b90d86433"
 }
 ##DOCS-SOURCER-END -->

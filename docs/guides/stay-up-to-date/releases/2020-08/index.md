@@ -228,7 +228,7 @@ See [the updated docs](https://github.com/gruntwork-io/module-ci/tree/master/mod
 
   
 
-- Update `install-jenkins` to the latest Jenkins version (`2.235.5`), switch to `https` URLs for the APT sources, and add `DEBIAN_FRONTEND=noninteractive` to all `apt-get` calls to ensure the installs don't show interactive prompts.
+- Update `install-jenkins` to the latest Jenkins version (`2.235.5`), switch to `https` URLs for the APT sources, and add `DEBIAN_FRONTEND=noninteractive` to all `apt-get` calls to ensure the installs don&apos;t show interactive prompts.
 
 
 
@@ -408,7 +408,7 @@ Add prefix to the ECS capacity providers to support ECS cluster names that begin
 
   
 
-*Update: when doing this upgrade, we accidentally missed updating the `ecs-daemon-service` module, so it's still pinned to AWS Provider 2.x. If you're using that module, please update to release [v0.22.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.22.0) instead.*
+*Update: when doing this upgrade, we accidentally missed updating the `ecs-daemon-service` module, so it&apos;s still pinned to AWS Provider 2.x. If you&apos;re using that module, please update to release [v0.22.0](https://github.com/gruntwork-io/module-ecs/releases/tag/v0.22.0) instead.*
 
 Starting this release, tests are run against v3.x series of the AWS provider. Note that this release is backwards compatible with v2.x of the AWS provider. However, there is no guarantee that backwards compatibility with v2.x of the AWS provider will be maintained going forward.
 
@@ -662,22 +662,22 @@ This release introduces a new module `kms-grant-multi-region` that allows you to
 
 **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
 
-* Refactored the `account-baseline-xxx` modules to work around several chicken-and-egg problems related to AWS Config / CloudTrail. The initial deployment, as well as adding subsequent child accounts, can now be done in a single `apply` per account, rather than the previous process, which required lots of back-and-forth and multiple `apply` calls. Here's an overview of the changes:
+* Refactored the `account-baseline-xxx` modules to work around several chicken-and-egg problems related to AWS Config / CloudTrail. The initial deployment, as well as adding subsequent child accounts, can now be done in a single `apply` per account, rather than the previous process, which required lots of back-and-forth and multiple `apply` calls. Here&apos;s an overview of the changes:
 
-    * Add first-class support for marking one of the child accounts as a "logs account" that should be used for aggregating AWS Config and CloudTrail data from all accounts. The `account-baseline-root` module can now automatically create the logs account, authenticate to it, create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail in that account, and then configure the root account to send all AWS Config and CloudTrail data to those S3 buckets. In the past, you had to disable AWS Config and CloudTrail on the very initial deployment, as the logs account did not exist, but with this release, you can leave it enabled, run `apply` once, 
-    and everything will "just work."
+    * Add first-class support for marking one of the child accounts as a &quot;logs account&quot; that should be used for aggregating AWS Config and CloudTrail data from all accounts. The `account-baseline-root` module can now automatically create the logs account, authenticate to it, create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail in that account, and then configure the root account to send all AWS Config and CloudTrail data to those S3 buckets. In the past, you had to disable AWS Config and CloudTrail on the very initial deployment, as the logs account did not exist, but with this release, you can leave it enabled, run `apply` once, 
+    and everything will &quot;just work.&quot;
 
     * Switch from org-level AWS Config Rules to account-level AWS Config Rules. The Rules are exactly the same, but are now managed within each account, rather than solely at the root account. This is slightly less convenient / secure, but it works around a major chicken-and-egg problem when creating new child accounts. Org-level rules require every single child account to have a Config Recorder or deployment fails, so in the past, you had to initially disable Config Rules whenever you added a new child account, then create a Config Recorder in that account, and then re-enable the Rules. This process has now been reduced to a single `apply` per account.
 
 * Updated the `cloudtrail` module to: 
     * Use the `kms-master-key` module to create and manage the KMS CMK rather than custom code. This makes the code more DRY and maintainable.
-    * Properly support sharing a KMS CMK across multiple accounts. In the past, the `cloudtrail` module didn't have this ability and the `account-baseline-xxx` modules were backfilling the missing permissions, but now it's all consolidated into the `cloudtrail` module.
+    * Properly support sharing a KMS CMK across multiple accounts. In the past, the `cloudtrail` module didn&apos;t have this ability and the `account-baseline-xxx` modules were backfilling the missing permissions, but now it&apos;s all consolidated into the `cloudtrail` module.
 
 * Extracted the S3 bucket creation logic from the `aws-config` module into an `aws-config-bucket` module so it can be reused elsewhere (namely, in `account-baseline-root`).
 
 * Extracted the S3 bucket and KMS CMK creation logic from the `cloudtrail` module into an `cloudtrail-bucket` module so it can be reused elsewhere (namely, in `account-baseline-root`).
 
-* The `aws-config` and `aws-config-multi-region` modules now expose a new, required `aggregate_config_data_in_external_account` parameter that must be set to `true` if you're aggregating AWS Config data in an external account (i.e., if setting the `central_account_id` param). This redundant parameter is unfortunately necessary to work around a Terraform limitation.
+* The `aws-config` and `aws-config-multi-region` modules now expose a new, required `aggregate_config_data_in_external_account` parameter that must be set to `true` if you&apos;re aggregating AWS Config data in an external account (i.e., if setting the `central_account_id` param). This redundant parameter is unfortunately necessary to work around a Terraform limitation.
 
 * Fixed a bug in the `aws-config` module where it was not setting `s3_key_prefix` on `aws_config_delivery_channel`.
 
@@ -939,7 +939,7 @@ Service Management (`services`)
 
 This release introduces two changes:
 
-1. In the `vpc-peering-external` module, it's now possible to disable the network ACL DENY rules by setting `enable_blanket_deny=false`. This can be useful when you need to add your own ACLs and you're bumping up against the 20 rule limit.
+1. In the `vpc-peering-external` module, it&apos;s now possible to disable the network ACL DENY rules by setting `enable_blanket_deny=false`. This can be useful when you need to add your own ACLs and you&apos;re bumping up against the 20 rule limit.
 1. As outlined in the [Terraform AWS provider v3 upgrade guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/version-3-upgrade#resource-aws_cloudwatch_log_group), CloudWatch Logs group ARNs no longer include the `:*` at the end, which caused a problem in the `vpc-flow-logs` module. This is now resolved.
 
 
@@ -955,6 +955,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "783de82cbcfde233ca8c2218b2c087f0"
+  "hash": "3cbc0c600a4e5e7a759d3b293afc4e97"
 }
 ##DOCS-SOURCER-END -->

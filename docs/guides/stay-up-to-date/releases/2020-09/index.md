@@ -167,7 +167,7 @@ This is a maintenance release that exports some test helper functions for the ec
 
 Adds a new flag, `--idempotent`, to the [`build-docker-image` tool](https://github.com/gruntwork-io/module-ci/blob/6af8f6928af612b04c816ac84016d2b7fd689067/modules/ecs-deploy-runner/docker/kaniko/build_docker_image.go) in the Kaniko image of the ecs-deploy-runner. Invoking the build-docker-image tool with the flag will cause it to check for the existence of an image before building and pushing.
 
-Also adds an optional `route53_tags` to the Jenkins example code, making the example more portable and less specific to Gruntwork's testing processes.
+Also adds an optional `route53_tags` to the Jenkins example code, making the example more portable and less specific to Gruntwork&apos;s testing processes.
 
 
 
@@ -221,7 +221,7 @@ You can now specify repo restrictions as regex using `allowed_repos_regex` and `
 
   
 
-Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restored DB clusters won't get destroyed during updates.
+Add `lifecycle` block to ignore changes to `snapshot_identifier` so that restored DB clusters won&apos;t get destroyed during updates.
 
 
 
@@ -1411,7 +1411,7 @@ Fix OS permissions that are set on the downloaded binary from the `executable-de
 
   
 
-- Add DynamoDB VPC endpoints to the `vpc-mgmt` module. We already had these endpoints in `vpc-app`, but somehow must've forgotten to add them to `vpc-mgmt`. 
+- Add DynamoDB VPC endpoints to the `vpc-mgmt` module. We already had these endpoints in `vpc-app`, but somehow must&apos;ve forgotten to add them to `vpc-mgmt`. 
 - Propagate the tags from the `custom_tags` input variable in `vpc-app` and `vpc-mgmt` to all VPC endpoints. This ensures more consistent tagging for all resources created by these modules.
 
 
@@ -1524,6 +1524,6 @@ This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "015880c0de9494eb14d146a96a4873d8"
+  "hash": "1645f4c6570831c580d6b2f105f9a8dc"
 }
 ##DOCS-SOURCER-END -->

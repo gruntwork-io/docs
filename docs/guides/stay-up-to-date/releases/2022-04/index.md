@@ -64,7 +64,7 @@ Here are the repos that were updated:
 * Run go mod tidy to ensure go.sum is correct for linux by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/592
 * Make sure account_id is included in account-baseline-security by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/595
 * 12.5 rolled off available RDS versions list so bump to latest by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/597
-* 14.1 is too new and our sample app doesn't support it by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/598
+* 14.1 is too new and our sample app doesn&apos;t support it by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/598
 * Implement preflight check for GitHub PAT validity by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/596
 * Implement preflight check for repo URLs validity by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/600
 * Update deprecated circleci images to latest by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/601
@@ -80,7 +80,7 @@ Here are the repos that were updated:
 * Swap Ref Arch docs 03 and 04 position per customer feedback by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/633
 * Update CI base images to ubuntu:20.04 by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/632
 * Update quick start to point to knowledge base by @brikis98 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/617
-* Write machine user's public SSH key to infra live by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/634
+* Write machine user&apos;s public SSH key to infra live by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/634
 * Always write Admin IAM user credentials to a password file committed to VCS by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/636
 * Harmonize QUICK_START footer with service catalog by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/640
 * Use InfraLiveRepoURL in favor of get_git_origin_url. Deprecate latter by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/641
@@ -804,52 +804,52 @@ When you run `terraform apply` there should be no destroyed or recreated resourc
 For example, you are currently passing in a JSON string such as:
 ```hcl
 routing_rules = &lt;&lt;EOF
-[{
-    "Condition": {
-        "KeyPrefixEquals": "docs/"
-    },
-    "Redirect": {
-        "ReplaceKeyPrefixWith": "documents/"
-    }
-}]
+[&#x7B;
+    &quot;Condition&quot;: &#x7B;
+        &quot;KeyPrefixEquals&quot;: &quot;docs/&quot;
+    &#x7D;,
+    &quot;Redirect&quot;: &#x7B;
+        &quot;ReplaceKeyPrefixWith&quot;: &quot;documents/&quot;
+    &#x7D;
+&#x7D;]
 EOF
 ```
 
 You may be able to use [json2hcl](https://github.com/kvz/json2hcl) to convert this into a map. Then you should also convert the CamelCase to snake_case.
 ```bash
-$ echo '{
-    "Condition": {
-        "KeyPrefixEquals": "docs/"
-    },
-    "Redirect": {
-        "ReplaceKeyPrefixWith": "documents/"
-    }
-}' | json2hcl
+$ echo &apos;&#x7B;
+    &quot;Condition&quot;: &#x7B;
+        &quot;KeyPrefixEquals&quot;: &quot;docs/&quot;
+    &#x7D;,
+    &quot;Redirect&quot;: &#x7B;
+        &quot;ReplaceKeyPrefixWith&quot;: &quot;documents/&quot;
+    &#x7D;
+&#x7D;&apos; | json2hcl
 
-"Condition" = {
-  "KeyPrefixEquals" = "docs/"
-}
+&quot;Condition&quot; = &#x7B;
+  &quot;KeyPrefixEquals&quot; = &quot;docs/&quot;
+&#x7D;
 
-"Redirect" = {
-  "ReplaceKeyPrefixWith" = "documents/"
-}
+&quot;Redirect&quot; = &#x7B;
+  &quot;ReplaceKeyPrefixWith&quot; = &quot;documents/&quot;
+&#x7D;
 ```
 
 Finally:
 ```hcl
-routing_rule = {
-  condition = {
-    key_prefix_equals = "docs/"
-  }
-  redirect = {
-    replace_key_prefix_with = "documents/"
-  }
-}
+routing_rule = &#x7B;
+  condition = &#x7B;
+    key_prefix_equals = &quot;docs/&quot;
+  &#x7D;
+  redirect = &#x7B;
+    replace_key_prefix_with = &quot;documents/&quot;
+  &#x7D;
+&#x7D;
 ```
 
 Please note: The AWS provider only supports one (1) rule in the `routing_rule`.
 
-Alas we had no choice but to drop support for the AWS Provider 3.x style of `routing_rules` for an S3 bucket's website configuration. The AWS Provider 4.x style is called `routing_rule` and has a different format. Previously you could pass in a JSON string which would get interpreted by the provider. Now, you must pass in a map to this `s3-static-website` module, which will appropriately funnel values from that map into the block format expected by the provider. See the [variable definition](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/135ce97b6334248bf12a393ccf36c662504674ea/modules/s3-static-website/variables.tf#L62-L114) for more.
+Alas we had no choice but to drop support for the AWS Provider 3.x style of `routing_rules` for an S3 bucket&apos;s website configuration. The AWS Provider 4.x style is called `routing_rule` and has a different format. Previously you could pass in a JSON string which would get interpreted by the provider. Now, you must pass in a map to this `s3-static-website` module, which will appropriately funnel values from that map into the block format expected by the provider. See the [variable definition](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/135ce97b6334248bf12a393ccf36c662504674ea/modules/s3-static-website/variables.tf#L62-L114) for more.
 
 
 If you are not using routing rules, you have no backward incompatibilities with this upgrade. In this case, it is a **functionally backward compatible upgrade**, verified with partially automated upgrade testing. Upgrade testing was done to ensure that running init/plan/apply on pre-existing resources created by `s3-static-website` will not run into issues when you upgrade to this version of the module. 
@@ -859,7 +859,7 @@ If you are not using routing rules, you have no backward incompatibilities with 
  - However, you do need to bump the provider when upgrading. Read on.
 
 
-Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provider to at least 3.75.0 (`&gt;= 3.75.0`). You will need to rerun `apply` to add the new S3 bucket resources created by the AWS 4.x provider. Note that because `s3-static-website` and `s3-cloudfront` now require a minimum AWS provider version of `3.75.0`, you will need to run `terraform init` with `-upgrade` to pull the new provider version. See [HashiCorp's guide on upgrading providers](https://www.terraform.io/language/files/dependency-lock#new-version-of-an-existing-provider) for more details. 
+Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provider to at least 3.75.0 (`&gt;= 3.75.0`). You will need to rerun `apply` to add the new S3 bucket resources created by the AWS 4.x provider. Note that because `s3-static-website` and `s3-cloudfront` now require a minimum AWS provider version of `3.75.0`, you will need to run `terraform init` with `-upgrade` to pull the new provider version. See [HashiCorp&apos;s guide on upgrading providers](https://www.terraform.io/language/files/dependency-lock#new-version-of-an-existing-provider) for more details. 
 
 
 - [Bump dependency terraform-aws-security to v0.63.1](https://github.com/gruntwork-io/terraform-aws-static-assets/pull/94)
@@ -894,6 +894,6 @@ Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provide
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9e1cfb0a82aed52c39deff47a15b5f3e"
+  "hash": "151d9185b36b61ef7bce88d2eeb5e056"
 }
 ##DOCS-SOURCER-END -->

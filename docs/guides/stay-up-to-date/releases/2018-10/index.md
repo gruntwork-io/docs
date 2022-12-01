@@ -50,7 +50,7 @@ This also adds additional logging that shows you which github user you are authe
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/gruntwork/pull/32: This PR updates the IAM role the gruntwork CLI creates in each of the customer's AWS accounts so that it can be assumed not only from Gruntwork's master account (so we can deploy the Ref Arch), but also so it can be assumed from the customer's own security account (or, in a single-account deployment, that same account). The reason to add this is that we now deploy the Reference Architecture by launching an EC2 Instance in the customer's security account and letting it do the deployment. This includes assuming an IAM Role to get access to each of the customer's other accounts.
+  https://github.com/gruntwork-io/gruntwork/pull/32: This PR updates the IAM role the gruntwork CLI creates in each of the customer&apos;s AWS accounts so that it can be assumed not only from Gruntwork&apos;s master account (so we can deploy the Ref Arch), but also so it can be assumed from the customer&apos;s own security account (or, in a single-account deployment, that same account). The reason to add this is that we now deploy the Reference Architecture by launching an EC2 Instance in the customer&apos;s security account and letting it do the deployment. This includes assuming an IAM Role to get access to each of the customer&apos;s other accounts.
 
 </div>
 
@@ -68,22 +68,22 @@ This also adds additional logging that shows you which github user you are authe
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-Here's an example of how to first launch Module A and then launch Module B:
+Here&apos;s an example of how to first launch Module A and then launch Module B:
 
 ```hcl
-module "a" {
+module &quot;a&quot; &#x7B;
   # Be sure to update to the latest version of this module
-  source = "git::git@github.com:gruntwork-io/module-asg.git//modules/server-group?ref=v0.6.19"
+  source = &quot;git::git@github.com:gruntwork-io/module-asg.git//modules/server-group?ref=v0.6.19&quot;
   ...
-}
+&#x7D;
 
-module "b" {
-  source = "git::git@github.com:gruntwork-io/module-asg.git//modules/server-group?ref=v0.6.19"
+module &quot;b&quot; &#x7B;
+  source = &quot;git::git@github.com:gruntwork-io/module-asg.git//modules/server-group?ref=v0.6.19&quot;
 
-  # It's important that you use the "rolling_deployment_done" output of module A, not just any output
-  wait_for = "${module.a.rolling_deployment_done}"
+  # It&apos;s important that you use the &quot;rolling_deployment_done&quot; output of module A, not just any output
+  wait_for = &quot;$&#x7B;module.a.rolling_deployment_done&#x7D;&quot;
   ...
-}
+&#x7D;
 ```
 
 </div>
@@ -143,12 +143,12 @@ Changes to the `lambda-cleanup-snapshots`, `lambda-copy-shared-snapshot`, `lambd
 
 1. The `aws_region` data source no longer uses the `current` parameter, which is deprecated.
 
-If you're already using these lambda modules and update, all the old lambda functions and schedule resources will be deleted and new ones created to replace them. Since these are just scheduled background jobs, this should not cause any problems, but just be aware that there will be lots of "delete and recreate" in your Terraform plan.
+If you&apos;re already using these lambda modules and update, all the old lambda functions and schedule resources will be deleted and new ones created to replace them. Since these are just scheduled background jobs, this should not cause any problems, but just be aware that there will be lots of &quot;delete and recreate&quot; in your Terraform plan.
 
 
 Changes to the `rds` module:
 
-1. Added a `depends_on` clause for the `aws_subnet_group` resource so that `terraform destroy` happens in the right order and doesn't intermittently hit errors.
+1. Added a `depends_on` clause for the `aws_subnet_group` resource so that `terraform destroy` happens in the right order and doesn&apos;t intermittently hit errors.
 
 </div>
 
@@ -285,7 +285,7 @@ The `run-kafka` script now allows you to configure the ZooKeeper chroot and enab
 
 BACKWARDS INCOMPATIBLE CHANGE
 
-The `scheduled-lambda-job` module now namespaces all of its resources with the format `"${var.lambda_function_name}-scheduled"` instead of `"${var.lambda_function_name}-scheduled-lambda-job"`. This makes names shorter and less likely to exceed AWS name length limits. If you `apply` this new version, your CloudWatch events, targets, and permissions will be destroyed and recreated, which is typically harmless. If you wish to override the namespacing behavior, you now set a new input variable called `namespace`. 
+The `scheduled-lambda-job` module now namespaces all of its resources with the format `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled&quot;` instead of `&quot;$&#x7B;var.lambda_function_name&#x7D;-scheduled-lambda-job&quot;`. This makes names shorter and less likely to exceed AWS name length limits. If you `apply` this new version, your CloudWatch events, targets, and permissions will be destroyed and recreated, which is typically harmless. If you wish to override the namespacing behavior, you now set a new input variable called `namespace`. 
 
 </div>
 
@@ -352,7 +352,7 @@ The `scheduled-lambda-job` module now namespaces all of its resources with the f
 `package-openvpn` now uses [bash-commons](https://github.com/gruntwork-io/bash-commons/) under the hood. The behavior is identical, but you must now install `bash-commons` *before* installing any of the `package-openvpn` modules. For example, in your OpenVPN packer template, you should add `bash-commons` as one of the very first items:
 
 ```json
-gruntwork-install --module-name 'bash-commons' --repo 'https://github.com/gruntwork-io/bash-commons' --tag 'v0.0.6'
+gruntwork-install --module-name &apos;bash-commons&apos; --repo &apos;https://github.com/gruntwork-io/bash-commons&apos; --tag &apos;v0.0.6&apos;
 ```
 
 </div>
@@ -417,6 +417,6 @@ A special thanks to @jeckhart for contributing all of these PRs!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "27878e6c232272ca1b9bb794a882d95d"
+  "hash": "cf9de13c26ce9312f8f44a3702ed7ae6"
 }
 ##DOCS-SOURCER-END -->

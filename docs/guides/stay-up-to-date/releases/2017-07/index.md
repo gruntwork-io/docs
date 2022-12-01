@@ -255,7 +255,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-lambda/pull/6: BACKWARDS INCOMPATIBLE CHANGE. We've renamed the `source_dir` parameter to `source_path` to better reflect that the variable may point to a directory *or* a single zip file.
+  https://github.com/gruntwork-io/package-lambda/pull/6: BACKWARDS INCOMPATIBLE CHANGE. We&apos;ve renamed the `source_dir` parameter to `source_path` to better reflect that the variable may point to a directory *or* a single zip file.
 
 </div>
 
@@ -380,7 +380,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - ENHANCEMENT/#41: The `iam-groups` modules now lets you optionally add an IAM Group specially for granting the permissions necessary for automated deployment.
-- BUG FIX/#40: IAM Users with the "self-management" IAM Policy can now delete an SSH Key they've uploaded.
+- BUG FIX/#40: IAM Users with the &quot;self-management&quot; IAM Policy can now delete an SSH Key they&apos;ve uploaded.
 
 </div>
 
@@ -472,7 +472,7 @@ Here are the repos that were updated:
 
   First release! 
 
-The basic implementation and example code is in place, but docs and tests are still a TODO, so I'm marking this as a pre-release.
+The basic implementation and example code is in place, but docs and tests are still a TODO, so I&apos;m marking this as a pre-release.
 
 </div>
 
@@ -482,6 +482,6 @@ The basic implementation and example code is in place, but docs and tests are st
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2fa7bacd48c5bdd410242e29d1e5da34"
+  "hash": "089d1458b000318e102abf570b28a344"
 }
 ##DOCS-SOURCER-END -->

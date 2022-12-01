@@ -152,7 +152,7 @@ Replaces `bastion_host_security_group_id` with `allow_connections_from_security_
 **NOTE**: due to a bug in Terraform, if you update an existing cluster with a spot price, you might see an error like this when you run `apply`:
 
 ```
-* module.ecs_cluster.aws_launch_configuration.ecs: aws_launch_configuration.ecs: diffs didn't match during apply. This is a bug with Terraform and should be reported as a GitHub Issue.
+* module.ecs_cluster.aws_launch_configuration.ecs: aws_launch_configuration.ecs: diffs didn&apos;t match during apply. This is a bug with Terraform and should be reported as a GitHub Issue.
 ```
 
 Running `apply` a second time seems to complete without errors.
@@ -201,11 +201,11 @@ Please note that this is a **pre-release**.  See [v0.2.0](https://github.com/gru
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  We've updated the Kafka module to include support for Confluent Schema Registry, REST Proxy, and Kafka Connect! These services also include support for SSL. We've also introduced a new, simpler configuration file approach where you can specify any number of well-defined "replacement variables" that will automatically be updated when you call the appropriate `run-xxx` script at boot in user data (e.g. `run-schema-registry`).
+  We&apos;ve updated the Kafka module to include support for Confluent Schema Registry, REST Proxy, and Kafka Connect! These services also include support for SSL. We&apos;ve also introduced a new, simpler configuration file approach where you can specify any number of well-defined &quot;replacement variables&quot; that will automatically be updated when you call the appropriate `run-xxx` script at boot in user data (e.g. `run-schema-registry`).
 
 Unfortunately, our automated tests consistently fail for Amazon Linux only, and we encountered what appear to be several bugs with Schema Registry itself in how forwarding is handled. Diagnosing these issues has proven to be very trying because after we make a fix, it takes another 45 minutes for a full build to complete, leading to an incredibly long feedback loop.
 
-As a result, we're marking this as **pre-release**. That means that you are free to begin using this code, but you should know that, until our automated tests pass, you may encounter subtle issues, especially around forwarding from non-master nodes.
+As a result, we&apos;re marking this as **pre-release**. That means that you are free to begin using this code, but you should know that, until our automated tests pass, you may encounter subtle issues, especially around forwarding from non-master nodes.
 
 Going forward, we will immediately be investing in a new approach to writing modules that makes our cycle time about 10x faster. In particular, we intend to run the Confluent Stack using Docker Compose for local testing so that we can restart it multiple times without having to wait either for Packer to build a new AMI or for AWS to launch a whole cluster of EC2 Instances. Stay tuned!
 
@@ -271,7 +271,7 @@ Going forward, we will immediately be investing in a new approach to writing mod
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/47: Fix `run-cloudwatch-logs-agent.sh` so for Amazon Linux and CentOS so instead of sending `/var/log/auth.log`, which doesn't exist, it sends `/var/log/secure` to CloudWatch Logs. 
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/47: Fix `run-cloudwatch-logs-agent.sh` so for Amazon Linux and CentOS so instead of sending `/var/log/auth.log`, which doesn&apos;t exist, it sends `/var/log/secure` to CloudWatch Logs. 
 
 </div>
 
@@ -360,7 +360,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/74: Add a new module called `ssh-iam-selinux-policy`. If you are using `ssh-iam` on CentOS, you should install this module so that SELinux doesn't prevent `ssh-iam` from working!
+  https://github.com/gruntwork-io/module-security/pull/74: Add a new module called `ssh-iam-selinux-policy`. If you are using `ssh-iam` on CentOS, you should install this module so that SELinux doesn&apos;t prevent `ssh-iam` from working!
 
 </div>
 
@@ -424,7 +424,7 @@ THIS VERSION IS NOT BACKWARDS COMPATIBLE AND ANY CODE REFERENCING AUTO-GENERATED
 
 BACKWARDS INCOMPATIBLE CHANGE
 
-The `s3-static-website` module now enables server-side encryption by default. The encryption settings can be configured by a new input variable called `server_side_encryption_configuration`. If you'd like to disable server-side encryption, set `server_side_encryption_configuration = []`.
+The `s3-static-website` module now enables server-side encryption by default. The encryption settings can be configured by a new input variable called `server_side_encryption_configuration`. If you&apos;d like to disable server-side encryption, set `server_side_encryption_configuration = []`.
 
 </div>
 
@@ -490,14 +490,14 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - #22: This repo now has its own standalone "bash commons" module.
+  - #22: This repo now has its own standalone &quot;bash commons&quot; module.
 
-   Recently, we've begun introducing Docker containers into our repos to enable a much faster cycle time when building the module. As part of this effort, we've consolidated all our generic bash functions into a "bash commons" library that can be shared among multiple modules in this repo.
+   Recently, we&apos;ve begun introducing Docker containers into our repos to enable a much faster cycle time when building the module. As part of this effort, we&apos;ve consolidated all our generic bash functions into a &quot;bash commons&quot; library that can be shared among multiple modules in this repo.
 
    With this update we place the bash-commons libraries into their own module. Although the interface to all the script modules in this repo remains unchanged, you now have to `gruntwork-install` the bash-commons module in order for many of the modules to work. You can install the bash-commons module like this:
 
    ```
-   gruntwork-install --module-name 'bash-commons' --tag '~&gt;0.4.0' --repo https://github.com/gruntwork-io/package-zookeeper
+   gruntwork-install --module-name &apos;bash-commons&apos; --tag &apos;~&gt;0.4.0&apos; --repo https://github.com/gruntwork-io/package-zookeeper
    ```
 
 </div>
@@ -536,6 +536,6 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "aa44892194431d08d7da4ea149998348"
+  "hash": "8a43269a02939f4430d666805617cbeb"
 }
 ##DOCS-SOURCER-END -->

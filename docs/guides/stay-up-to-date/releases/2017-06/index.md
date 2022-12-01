@@ -76,7 +76,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - #38: Update the `publish-ami` bash script to support an argument `--markdown-description-text` that allows adding arbitrary description text to the markdown text that's output as part of the AMIs that are found.
+  - #38: Update the `publish-ami` bash script to support an argument `--markdown-description-text` that allows adding arbitrary description text to the markdown text that&apos;s output as part of the AMIs that are found.
 
 </div>
 
@@ -311,6 +311,6 @@ Please note that this is a backwards incompatible release:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "437a4d3e57ee48da52e84b8c88902884"
+  "hash": "02d85bddd42c3bcba7755dab222a7aba"
 }
 ##DOCS-SOURCER-END -->

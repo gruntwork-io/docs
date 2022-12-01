@@ -41,7 +41,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  This release fixes an issue with using [`toJson` and related sprig functions](https://masterminds.github.io/sprig/) within Boilerplate templates. It's now possible to read variable inputs from Boilerplate YML files and render those to JSON.
+  This release fixes an issue with using [`toJson` and related sprig functions](https://masterminds.github.io/sprig/) within Boilerplate templates. It&apos;s now possible to read variable inputs from Boilerplate YML files and render those to JSON.
 
 See [related PR](https://github.com/gruntwork-io/boilerplate/pull/67).
 
@@ -343,7 +343,7 @@ Expose ability to specify an existing KMS key for encrypting cloudtrail logs.
 
   
 
-- You can now enable the HTTP endpoint for the Data API on Aurora Serverless using the new 'enable_http_endpoint' input variable.
+- You can now enable the HTTP endpoint for the Data API on Aurora Serverless using the new &apos;enable_http_endpoint&apos; input variable.
 
 
 
@@ -519,7 +519,7 @@ All other functionality is preserved. To update to this version, replace usage o
 
   
 
-This release adds the option to create an outbound "allow all" rule in the Lambda security group that will allow it to communicate with external services. To enable this, set `should_create_outbound_rule=true` when calling the `lambda` module. Defaults to false.
+This release adds the option to create an outbound &quot;allow all&quot; rule in the Lambda security group that will allow it to communicate with external services. To enable this, set `should_create_outbound_rule=true` when calling the `lambda` module. Defaults to false.
 
 
 
@@ -569,7 +569,7 @@ This release adds the option to create an outbound "allow all" rule in the Lambd
 
   
 
-- Fix a bug in the `alb-target-group-alarms` module, switching the module to use `"Seconds"` instead of `"Count"` as the proper unit for the `TargetResponseTime` alarm. 
+- Fix a bug in the `alb-target-group-alarms` module, switching the module to use `&quot;Seconds&quot;` instead of `&quot;Count&quot;` as the proper unit for the `TargetResponseTime` alarm. 
 
 
 
@@ -590,7 +590,7 @@ This release adds the option to create an outbound "allow all" rule in the Lambd
 
   
 
-- Added the `create_before_destroy = true` lifecycle setting to the `aws_api_gateway_deployment` resource to work around intermittent "BadRequestException: Active stages pointing to this deployment must be moved or deleted" errors.
+- Added the `create_before_destroy = true` lifecycle setting to the `aws_api_gateway_deployment` resource to work around intermittent &quot;BadRequestException: Active stages pointing to this deployment must be moved or deleted&quot; errors.
 
 
 
@@ -723,7 +723,7 @@ __This release contains backwards incompatible changes. Make sure to follow the 
 
   
 
-- You can now specify the principals that will be allowed to assume the IAM role created by the `single-server` module. This can be useful, for example, to override the default from `["ec2.amazonaws.com"]` to `["ec2.amazonaws.com.cn"]` when using the AWS China region.
+- You can now specify the principals that will be allowed to assume the IAM role created by the `single-server` module. This can be useful, for example, to override the default from `[&quot;ec2.amazonaws.com&quot;]` to `[&quot;ec2.amazonaws.com.cn&quot;]` when using the AWS China region.
 
 
 
@@ -744,7 +744,7 @@ __This release contains backwards incompatible changes. Make sure to follow the 
 
   
 
-- Bump all underlying module version numbers and require Terraform `0.12.26` _or above_, which means you can now use the Service Catalog with Terraform `0.13.x` as well! The only exception are the Kubernetes / EKS services, as the underlying modules do not support Terraform `0.13.x` yet; we are working on that now and will do a new release when that's ready.
+- Bump all underlying module version numbers and require Terraform `0.12.26` _or above_, which means you can now use the Service Catalog with Terraform `0.13.x` as well! The only exception are the Kubernetes / EKS services, as the underlying modules do not support Terraform `0.13.x` yet; we are working on that now and will do a new release when that&apos;s ready.
 
 
 
@@ -787,7 +787,7 @@ This release adds the following features to the catalog:
 - The alb module now allows you to pass an existing S3 bucket for ALB access logs. This is useful for sending ALB logs to a central log account
 - For EKS, you can now provide a list of CIDR ranges or security groups that are permitted to access the private EKS API endpoint.
 
-We've also caught up to the latest release of the [module-security](https://github.com/gruntwork-io/module-security/) and [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repositories.
+We&apos;ve also caught up to the latest release of the [module-security](https://github.com/gruntwork-io/module-security/) and [terraform-aws-eks](https://github.com/gruntwork-io/terraform-aws-eks) repositories.
 
 
 **Migration guide for eks-cluster**
@@ -924,6 +924,6 @@ This release updates the following modules to the latest releases of their respe
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e4a76fcaf53091beddcc267aa6ff7b63"
+  "hash": "6870feea7aeadd599a8b69392a32ae68"
 }
 ##DOCS-SOURCER-END -->

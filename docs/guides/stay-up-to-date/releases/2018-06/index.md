@@ -61,7 +61,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/66: The `terraform-update-variable` script used to require setting `--skip-git "true"`, which is a non-idiomatic way to do flags in bash, and the parsing for it could fail silently. The script has now been updated so you just specify `--skip-git` to disable Git, without any need to say "true". Note that if you were using the `--skip-git` param before, this is a backwards incompatible change!
+  https://github.com/gruntwork-io/module-ci/pull/66: The `terraform-update-variable` script used to require setting `--skip-git &quot;true&quot;`, which is a non-idiomatic way to do flags in bash, and the parsing for it could fail silently. The script has now been updated so you just specify `--skip-git` to disable Git, without any need to say &quot;true&quot;. Note that if you were using the `--skip-git` param before, this is a backwards incompatible change!
 
 </div>
 
@@ -74,7 +74,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/62: The `git-add-commit-push` script will now detect "Updates were rejected because the remote contains work that you do not have locally" errors and automatically `git pull --rebase` and `git push` in a retry loop (up to a max number of retries). This allows the script to work properly even if someone else happened to push some code to the same branch at the exact same time.
+  https://github.com/gruntwork-io/module-ci/pull/62: The `git-add-commit-push` script will now detect &quot;Updates were rejected because the remote contains work that you do not have locally&quot; errors and automatically `git pull --rebase` and `git push` in a retry loop (up to a max number of retries). This allows the script to work properly even if someone else happened to push some code to the same branch at the exact same time.
 
 </div>
 
@@ -159,7 +159,7 @@ This is another pre-release as these modules are still very green and require ad
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-openvpn/pull/45: The `supervisor` install has been moved from the `run-process-requests` and `run-process-revokes` scripts to the `install-openvpn` script where it belongs. You'll need to build a new OpenVPN AMI to take advantage of this change.
+  https://github.com/gruntwork-io/package-openvpn/pull/45: The `supervisor` install has been moved from the `run-process-requests` and `run-process-revokes` scripts to the `install-openvpn` script where it belongs. You&apos;ll need to build a new OpenVPN AMI to take advantage of this change.
 
 </div>
 
@@ -192,7 +192,7 @@ This is another pre-release as these modules are still very green and require ad
   https://github.com/gruntwork-io/module-security/pull/99
 
 
-This release includes MAJOR changes to `ssh-iam` that are backwards incompatible. These changes make it possible to add powerful new features to `ssh-iam` (more on that soon!), but if you're an existing user of `ssh-iam`, you will need to read these instructions carefully and do some work to upgrade without losing SSH access!
+This release includes MAJOR changes to `ssh-iam` that are backwards incompatible. These changes make it possible to add powerful new features to `ssh-iam` (more on that soon!), but if you&apos;re an existing user of `ssh-iam`, you will need to read these instructions carefully and do some work to upgrade without losing SSH access!
 
 
 1. `ssh-iam` has been renamed to `ssh-grunt`. This is because we are updating it to support Identity Providers (IdPs) other than just IAM!
@@ -205,24 +205,24 @@ This release includes MAJOR changes to `ssh-iam` that are backwards incompatible
 
 1. All `ssh-iam` commands now use the form `ssh-grunt &lt;idp&gt; &lt;command&gt;`. For example, `ssh-iam install` is now `ssh-grunt iam install` and `ssh-iam print-keys` is now `ssh-grunt iam print-keys`. This allows us to add other IdPs in the future.
 
-1. When a user is removed from an `ssh-grunt` managed IdP group (e.g., a user is removed from an IAM group), `ssh-grunt` will delete the synced OS user from your server, but it will no longer delete that user's home directory. You can enable the old behavior with `--force-user-deletion`. 
+1. When a user is removed from an `ssh-grunt` managed IdP group (e.g., a user is removed from an IAM group), `ssh-grunt` will delete the synced OS user from your server, but it will no longer delete that user&apos;s home directory. You can enable the old behavior with `--force-user-deletion`. 
 
 
-If you're already using `ssh-iam`, here is how to upgrade to `ssh-grunt`:
+If you&apos;re already using `ssh-iam`, here is how to upgrade to `ssh-grunt`:
 
 1. Update your Packer templates:
 
     1. Change the `--binary-name` param from `ssh-iam` to `ssh-grunt`. 
-    1. If you're using SELinux (e.g., you're on CentOS), update `ssh-iam-selinux-policy` to `ssh-grunt-selinux-policy` in your Packer template too. 
+    1. If you&apos;re using SELinux (e.g., you&apos;re on CentOS), update `ssh-iam-selinux-policy` to `ssh-grunt-selinux-policy` in your Packer template too. 
     1. Change `ssh-iam install` to `ssh-grunt iam install` (all other params remain the same).
     1. Build a new AMI and update your Terraform code to deploy it. 
 
 1. If you update to the new `cross-account-iam-roles`, `iam-groups`, or `saml-iam-roles` modules, you will need to:
-    1. Rename any parameters you're passing as inputs to these modules, and any variables you're reading as outputs from these modules, form the form `xxx_ssh_iam_xxx` to the form `xxx_ssh_grunt_xxx`. For example, `allow_ssh_iam_access_from_other_account_arns` is now `allow_ssh_grunt_access_from_other_account_arns`. 
+    1. Rename any parameters you&apos;re passing as inputs to these modules, and any variables you&apos;re reading as outputs from these modules, form the form `xxx_ssh_iam_xxx` to the form `xxx_ssh_grunt_xxx`. For example, `allow_ssh_iam_access_from_other_account_arns` is now `allow_ssh_grunt_access_from_other_account_arns`. 
     1. Explicitly set the names of any `ssh-iam` / `ssh-grunt` IAM roles and groups created by these modules so you retain the old names you had before. The output of the `plan` command will tell if you any are being renamed and what the old names were.
 
 
-Here are the updates we've done to the Acme sample Reference Architectures that show the type of changes you'll need to make:
+Here are the updates we&apos;ve done to the Acme sample Reference Architectures that show the type of changes you&apos;ll need to make:
 
 [infrastructure-modules changes](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/commit/922aa698b5f035e3af83c6ffd78804aed0192d01)
 [infrastructure-live changes](https://github.com/gruntwork-io/infrastructure-live-multi-account-acme/commit/98204b60e1fed47cbaaf041772c67eaeb3d3f2ba)
@@ -299,6 +299,6 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "828ba11ef410c7ae530b6ee814d786b9"
+  "hash": "1703257e06be0434d794daeb7deeecc5"
 }
 ##DOCS-SOURCER-END -->

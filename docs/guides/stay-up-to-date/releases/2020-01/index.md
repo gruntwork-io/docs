@@ -230,7 +230,7 @@ Here are the repos that were updated:
 
   
 
-- The modules under `iam-policies` now allow you to set the `create_resources` parameter to `false` to have the module not create any resources. This is a workaround for Terraform not supporting the `count` parameter on `module { ... }` blocks.
+- The modules under `iam-policies` now allow you to set the `create_resources` parameter to `false` to have the module not create any resources. This is a workaround for Terraform not supporting the `count` parameter on `module &#x7B; ... &#x7D;` blocks.
 
 
 </div>
@@ -288,7 +288,7 @@ Here are the repos that were updated:
   
 
 - Fixes a missing image in the documentation
-- Adds the Gruntwork License. Previously, the repository was unlicensed, thus subject to the ["all rights reserved" style default license](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#choosing-the-right-license) which we don't want.
+- Adds the Gruntwork License. Previously, the repository was unlicensed, thus subject to the [&quot;all rights reserved&quot; style default license](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#choosing-the-right-license) which we don&apos;t want.
 
 
 
@@ -376,7 +376,7 @@ You can now define custom metric filters in addition to the default filters requ
 
   
 
-This release exposes the [`ca_cert_identifier`](https://www.terraform.io/docs/providers/aws/r/db_instance.html#ca_cert_identifier) argument for `aws_db_instance`. This argument configures which CA certificate bundle is used by RDS. The expiration of the previous CA bundle is March 5, 2020, at which point TLS connections that haven't been updated will break. Refer to the [AWS documentation on this](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html).
+This release exposes the [`ca_cert_identifier`](https://www.terraform.io/docs/providers/aws/r/db_instance.html#ca_cert_identifier) argument for `aws_db_instance`. This argument configures which CA certificate bundle is used by RDS. The expiration of the previous CA bundle is March 5, 2020, at which point TLS connections that haven&apos;t been updated will break. Refer to the [AWS documentation on this](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html).
 
 The argument defaults to `rds-ca-2019`. Once you run `terraform apply` with this update, it will update the instance, but the change will not take effect until the next DB modification window. You can use `apply_immediately=true` to restart the instance. Until the instance is restarted, the Terraform plan will result in a perpetual diff.
 
@@ -401,14 +401,14 @@ The argument defaults to `rds-ca-2019`. Once you run `terraform apply` with this
 
 This update adds tags for ECS services and task definitions. To add a tag to a service, provide a map with the `service_tags` variable. Similar, to tag task definitions, provide a map with the `task_definition_tags` variable. For example:
 ```
-service_tags = {
-    foo = "bar"
-}
+service_tags = &#x7B;
+    foo = &quot;bar&quot;
+&#x7D;
 ```
-Use the `propagate_tags` variable to propagate tags to ECS tasks. If you set `propagate_tags` to `SERVICE`, the tags from `service_tags` will be set on tasks. If you want to propagate tags from task definitions, set `propagate_tags="TASK_DEFINITION"`. If you set `propagate_tags=null`, tasks will be created with no tags. The default is `SERVICE`.
+Use the `propagate_tags` variable to propagate tags to ECS tasks. If you set `propagate_tags` to `SERVICE`, the tags from `service_tags` will be set on tasks. If you want to propagate tags from task definitions, set `propagate_tags=&quot;TASK_DEFINITION&quot;`. If you set `propagate_tags=null`, tasks will be created with no tags. The default is `SERVICE`.
 
 **Compatibility note**
-Tag propagation requires that you adopt the [new ARN and resource ID format](https://aws.amazon.com/blogs/compute/migrating-your-amazon-ecs-deployment-to-the-new-arn-and-resource-id-format-2/). If you don't do this, you may encounter the following error:
+Tag propagation requires that you adopt the [new ARN and resource ID format](https://aws.amazon.com/blogs/compute/migrating-your-amazon-ecs-deployment-to-the-new-arn-and-resource-id-format-2/). If you don&apos;t do this, you may encounter the following error:
 
 ```
 InvalidParameterException: The new ARN and resource ID format must be enabled to propagate tags. Opt in to the new format and try again.
@@ -424,7 +424,7 @@ $ aws ecs put-account-setting-default --name serviceLongArnFormat --value enable
 
 This will set the account default, but note that the setting is per-user, per-region. The commands above should be executed within each region that uses ECS.
 
-Furthermore, you may also need to run the commands for IAM users that already exist in the account but haven't opted in to the new format. To do so, authenticate as the IAM user who will be running Terraform (such as a CI machine user), and use the `put-account-setting` variant of the command within the appropriate regions. For example:
+Furthermore, you may also need to run the commands for IAM users that already exist in the account but haven&apos;t opted in to the new format. To do so, authenticate as the IAM user who will be running Terraform (such as a CI machine user), and use the `put-account-setting` variant of the command within the appropriate regions. For example:
 
 ```
 
@@ -646,7 +646,7 @@ Bump package-zookeeper version to fix tests and fix broken links
 * **No changes to underlying modules.**
 
 
-Fix broken links in README's
+Fix broken links in README&apos;s
 
 
 
@@ -668,7 +668,7 @@ Fix broken links in README's
 
   
 
-- Fix broken links in readme's
+- Fix broken links in readme&apos;s
 - Fix wrong syntax on event metric filter pattern
 
 
@@ -897,7 +897,7 @@ The following additional fixes are also included in this release:
 
   
 
-- Fix a few broken links in README's
+- Fix a few broken links in README&apos;s
 - Update CODEOWNERS
 
 
@@ -943,7 +943,7 @@ The following additional fixes are also included in this release:
 
   
 
-- Fix broken links in README's
+- Fix broken links in README&apos;s
 
 
 
@@ -996,6 +996,6 @@ Now `vpc-app` and `vpc-mgmt` will create a single VPC endpoint for all tiers. Pr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8e8b6ebef302f0c3a936ba4fc89013c4"
+  "hash": "3e2e79f16f795251585d7d3e8ec72a18"
 }
 ##DOCS-SOURCER-END -->

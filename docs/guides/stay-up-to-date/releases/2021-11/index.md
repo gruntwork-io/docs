@@ -384,7 +384,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
   
 
-- RDS: Added support for  "backup_window" variable to specify when backups should run
+- RDS: Added support for  &quot;backup_window&quot; variable to specify when backups should run
 
 
 
@@ -470,7 +470,7 @@ Added support to AWS Managed Node Groups to pass in taints. This adds the variab
 
   
 
-- Updated `ingress_group` input to support setting `priority = null`, so that you can have ingress resources with no group order. This is useful in situations where you have dynamic environments where the priority doesn't matter, as you can only have one ingress per group order.
+- Updated `ingress_group` input to support setting `priority = null`, so that you can have ingress resources with no group order. This is useful in situations where you have dynamic environments where the priority doesn&apos;t matter, as you can only have one ingress per group order.
 
 
 
@@ -568,6 +568,6 @@ This release also updates versions of underlying dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6e5189f31ad7478e3ae66ffc2a891369"
+  "hash": "08a10060aa40085424487e42bf8038f1"
 }
 ##DOCS-SOURCER-END -->

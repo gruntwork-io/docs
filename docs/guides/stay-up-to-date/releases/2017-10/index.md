@@ -233,7 +233,7 @@ BACKWARDS INCOMPATIBLE CHANGE
 The `asg-xxx-alarms` modules now allow you to create alarms for a list of ASGs, rather than just one. This is necessary to use the alarms with, for example, the [server-group](https://github.com/gruntwork-io/module-asg/tree/master/modules/server-group) module. To support this, instead of taking in a single `asg_name` parameter, these modules now take in two parameters:
 
 * `asg_names`: A list of ASG names.
-* `num_asg_names`: The number of ASG names in `asg_names`. We should be able to compute this automatically, but can't due to a Terraform limitation (https://github.com/hashicorp/terraform/issues/4149).
+* `num_asg_names`: The number of ASG names in `asg_names`. We should be able to compute this automatically, but can&apos;t due to a Terraform limitation (https://github.com/hashicorp/terraform/issues/4149).
 
 </div>
 
@@ -342,6 +342,6 @@ This change is backwards compatible from a code perspective, but it changes the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ab82012a30740afac66d9af2f1f2a6e7"
+  "hash": "f71d5fc40322ebcc98b1229774280099"
 }
 ##DOCS-SOURCER-END -->
