@@ -279,7 +279,7 @@ You can now configure the ECS deploy runner with repository credentials for pull
 ### [v0.8.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/21/2020 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.1">Release notes</a></small>
+  <small>Published: 10/22/2020 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.8.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -924,6 +924,6 @@ This release updates the following modules to the latest releases of their respe
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "58d4b04963a9d98f486738227f651054"
+  "hash": "e4a76fcaf53091beddcc267aa6ff7b63"
 }
 ##DOCS-SOURCER-END -->

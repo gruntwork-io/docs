@@ -43,7 +43,7 @@ Here are the repos that were updated:
 ### [v0.0.18](https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.18)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/8/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.18">Release notes</a></small>
+  <small>Published: 5/9/2018 | <a href="https://github.com/gruntwork-io/gruntwork/releases/tag/v0.0.18">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -108,7 +108,7 @@ Here are the repos that were updated:
 ### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.9.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.9.0">Release notes</a></small>
+  <small>Published: 5/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -160,7 +160,7 @@ All the pre-commit hooks that were in `modules/pre-commit` are now in their own 
 ### [v0.6.5](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.5)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.5">Release notes</a></small>
+  <small>Published: 5/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.6.5">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -477,6 +477,6 @@ BACKWARDS INCOMPATIBLE CHANGES
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1ed8dc47ed090725370906f449fee56d"
+  "hash": "be750d798971a76d4304fb57d1d5f7f7"
 }
 ##DOCS-SOURCER-END -->

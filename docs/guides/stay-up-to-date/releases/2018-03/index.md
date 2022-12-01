@@ -427,7 +427,7 @@ The `s3-static-website` module now enables server-side encryption by default. Th
 ### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/29/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1">Release notes</a></small>
+  <small>Published: 3/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -491,6 +491,6 @@ The `s3-static-website` module now enables server-side encryption by default. Th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "167b543b46cc6c1e9aea096dd670f512"
+  "hash": "c111a7d2fc37c926167bfa0159eb5268"
 }
 ##DOCS-SOURCER-END -->

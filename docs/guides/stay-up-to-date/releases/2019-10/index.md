@@ -148,7 +148,7 @@ This release consolidates `ecs-service-with-alb`, `ecs-service-with-discovery`, 
 ### [v0.15.2](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.15.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/25/2019 | Modules affected: ecs-fargate | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.15.2">Release notes</a></small>
+  <small>Published: 10/26/2019 | Modules affected: ecs-fargate | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.15.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -321,7 +321,7 @@ This fixes a bug with `eks-cloudwatch-container-logs`, where `fluentd` was redep
 ### [v0.9.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/8/2019 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.1">Release notes</a></small>
+  <small>Published: 10/9/2019 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -338,7 +338,7 @@ This release exposes the ability to tag the EKS cluster using the `custom_tags_e
 ### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/8/2019 | Modules affected: eks-vpc-tags, eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.0">Release notes</a></small>
+  <small>Published: 10/9/2019 | Modules affected: eks-vpc-tags, eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -547,7 +547,7 @@ Fix regression bug introduced in `v0.7.4` with `attach-eni`, where some error me
 ### [v0.7.4](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/17/2019 | Modules affected: attach-eni | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.4">Release notes</a></small>
+  <small>Published: 10/18/2019 | Modules affected: attach-eni | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.7.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -722,6 +722,6 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6f40d91c3b67354316336c93254eb124"
+  "hash": "93c800b3734cf2ce3d9530c750d50245"
 }
 ##DOCS-SOURCER-END -->

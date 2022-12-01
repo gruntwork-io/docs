@@ -1285,7 +1285,7 @@ Updated documentation and tests:
 ### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/8/2020 | Modules affected: base, data-stores, landingzone, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2">Release notes</a></small>
+  <small>Published: 9/9/2020 | Modules affected: base, data-stores, landingzone, mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.2.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1524,6 +1524,6 @@ This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "08f3383985e1c3e34966b11ac5acd257"
+  "hash": "015880c0de9494eb14d146a96a4873d8"
 }
 ##DOCS-SOURCER-END -->

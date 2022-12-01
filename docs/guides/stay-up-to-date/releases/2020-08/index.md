@@ -86,7 +86,7 @@ Here are the repos that were updated:
 ### [v0.0.1-08112020](https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/11/2020 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
+  <small>Published: 8/12/2020 | <a href="https://github.com/gruntwork-io/infrastructure-live-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -113,7 +113,7 @@ Updates in this version:
 ### [v0.0.1-08112020](https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/11/2020 | <a href="https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
+  <small>Published: 8/12/2020 | <a href="https://github.com/gruntwork-io/infrastructure-modules-acme/releases/tag/v0.0.1-08112020">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -928,6 +928,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b0c35156790c804b550108bb1c6f4a1a"
+  "hash": "32e51d1d0bf79941f7f1474028e6eb6b"
 }
 ##DOCS-SOURCER-END -->

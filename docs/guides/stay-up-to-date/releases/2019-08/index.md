@@ -158,7 +158,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 ### [v0.18.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/13/2019 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1">Release notes</a></small>
+  <small>Published: 8/14/2019 | Modules affected: iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -175,7 +175,7 @@ The cloudtrail and kms-master-key modules each create KMS key resources. Previou
 ### [v0.18.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/8/2019 | Modules affected: ssh-grunt, iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0">Release notes</a></small>
+  <small>Published: 8/9/2019 | Modules affected: ssh-grunt, iam-groups | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.18.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -333,6 +333,6 @@ The module has support for the following features:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9066e63e0eca66cf3d684b1dfde3fee5"
+  "hash": "a5c00770d9e0a5f4ecadbe659ad512dd"
 }
 ##DOCS-SOURCER-END -->

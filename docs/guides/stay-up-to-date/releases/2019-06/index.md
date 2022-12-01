@@ -124,7 +124,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.14.0](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/21/2019 | Modules affected: jenkins-server, iam-policies, ec2-backup | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.0">Release notes</a></small>
+  <small>Published: 6/22/2019 | Modules affected: jenkins-server, iam-policies, ec2-backup | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -589,7 +589,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.8.2](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/17/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.2">Release notes</a></small>
+  <small>Published: 6/18/2019 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -926,6 +926,6 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0047f6c2e2cf33fe1a599f598f8c4f53"
+  "hash": "92e5e55fa54353033c0a42565852258e"
 }
 ##DOCS-SOURCER-END -->

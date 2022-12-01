@@ -23,7 +23,7 @@ Here are the repos that were updated:
 ### [v0.3.12](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/23/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.12">Release notes</a></small>
+  <small>Published: 4/24/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.3.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -287,6 +287,6 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2daadcc796962c21c590f6ffd19f075f"
+  "hash": "49e9f67b9b028227d08cb604397adbd1"
 }
 ##DOCS-SOURCER-END -->

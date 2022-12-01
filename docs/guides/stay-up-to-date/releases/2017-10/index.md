@@ -41,7 +41,7 @@ Here are the repos that were updated:
 ### [v0.2.21](https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.21)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/20/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.21">Release notes</a></small>
+  <small>Published: 10/21/2017 | <a href="https://github.com/gruntwork-io/boilerplate/releases/tag/v0.2.21">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -97,7 +97,7 @@ Here are the repos that were updated:
 ### [v0.0.6](https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/22/2017 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.6">Release notes</a></small>
+  <small>Published: 10/23/2017 | <a href="https://github.com/gruntwork-io/gruntkms/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -208,7 +208,7 @@ Here are the repos that were updated:
 ### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.7.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.7.0">Release notes</a></small>
+  <small>Published: 10/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.7.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -342,6 +342,6 @@ This change is backwards compatible from a code perspective, but it changes the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "42fbc767427f9b39f1b764a22797d616"
+  "hash": "ab82012a30740afac66d9af2f1f2a6e7"
 }
 ##DOCS-SOURCER-END -->

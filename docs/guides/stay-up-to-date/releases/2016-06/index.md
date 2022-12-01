@@ -292,7 +292,7 @@ Here are the repos that were updated:
 ### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/30/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6">Release notes</a></small>
+  <small>Published: 7/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -506,7 +506,7 @@ Here are the repos that were updated:
 ### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/23/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4">Release notes</a></small>
+  <small>Published: 6/24/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -549,7 +549,7 @@ Here are the repos that were updated:
 ### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/7/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1">Release notes</a></small>
+  <small>Published: 6/8/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.0.1">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -565,6 +565,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "466659fe5bccb1f447e4157077897140"
+  "hash": "30eb153691339a07e58323f0cf9f594d"
 }
 ##DOCS-SOURCER-END -->

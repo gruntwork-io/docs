@@ -139,7 +139,7 @@ This release updates `terraform-helpers/terraform-update-variable` for better te
 ### [v0.14.2](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/26/2019 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.2">Release notes</a></small>
+  <small>Published: 7/27/2019 | Modules affected: jenkins-server | <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.14.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -270,7 +270,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 ### [v0.6.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/5/2019 | Modules affected: kafka-security-group-rules, confluent-tools-cluster, kafka-cluster, kafka-iam-permissions | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0">Release notes</a></small>
+  <small>Published: 7/6/2019 | Modules affected: kafka-security-group-rules, confluent-tools-cluster, kafka-cluster, kafka-iam-permissions | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -606,6 +606,6 @@ Starting this release, all the modules are tested and verified to work with Ubun
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a3d3ebe5634e28747ca9d5271b7b48e2"
+  "hash": "5de5dc1eff2feff3a6503810908b6b48"
 }
 ##DOCS-SOURCER-END -->

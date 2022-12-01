@@ -54,7 +54,7 @@ Here are the repos that were updated:
 ### [v0.1.0](https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/1/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0">Release notes</a></small>
+  <small>Published: 6/2/2022 | <a href="https://github.com/gruntwork-io/repo-copier/releases/tag/v0.1.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -979,7 +979,7 @@ Updated release pipeline to build and publish `run-lambda-entrypoint`.
 ### [v0.90.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/15/2022 | Modules affected: networking/vpc, services/eks-cluster, services/eks-core-services, services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2">Release notes</a></small>
+  <small>Published: 6/16/2022 | Modules affected: networking/vpc, services/eks-cluster, services/eks-core-services, services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.90.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -1311,6 +1311,6 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "61ee5f34f8fe30eeeae79148197be474"
+  "hash": "2e29752e6c3ae0a3fd0ca7da4afbb931"
 }
 ##DOCS-SOURCER-END -->

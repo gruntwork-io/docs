@@ -490,7 +490,7 @@ Note that previously this module output `null` for all the outputs when `create_
 ### [v0.21.2](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/28/2020 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2">Release notes</a></small>
+  <small>Published: 5/29/2020 | Modules affected: alarms | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.21.2">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -584,7 +584,7 @@ Note that as part of this change, the `aws_account_id` variable was removed from
 ### [v0.30.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/18/2020 | Modules affected: iam-policies, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0">Release notes</a></small>
+  <small>Published: 5/19/2020 | Modules affected: iam-policies, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.30.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -699,7 +699,7 @@ For `account-baseline-app`:
 ### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/7/2020 | Modules affected: enabled-aws-regions | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0">Release notes</a></small>
+  <small>Published: 5/8/2020 | Modules affected: enabled-aws-regions | <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.2.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -776,6 +776,6 @@ Special thanks to @jdhornsby for the fix!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c19c41682faaf836c75e3f6a3b9cebd3"
+  "hash": "197bc29d17eb39bf8795163db4f7bc03"
 }
 ##DOCS-SOURCER-END -->

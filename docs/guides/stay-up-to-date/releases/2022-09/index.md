@@ -137,7 +137,7 @@ Here are the repos that were updated:
 ### [v0.35.6](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.35.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/23/2022 | Modules affected: alarms, logs | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.35.6">Release notes</a></small>
+  <small>Published: 9/24/2022 | Modules affected: alarms, logs | <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.35.6">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -156,6 +156,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "27bc407e76fe27be2664d4694b4dc678"
+  "hash": "fbd624f17c5844ab9adc5d3615a3f1c6"
 }
 ##DOCS-SOURCER-END -->

@@ -955,7 +955,7 @@ This release adds subnet ARNs to the outputs for `vpc-app` and `vpc-mgmt`.
 ### [v0.8.12](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/1/2020 | Modules affected: vpc-interface-endpoint | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12">Release notes</a></small>
+  <small>Published: 7/2/2020 | Modules affected: vpc-interface-endpoint | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.8.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -990,6 +990,6 @@ add glue support to vpc-interface-endpoint
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5a70d332c93c8fe81adec7f1ad34e9a0"
+  "hash": "81415dd50dd863d037f3c5959019d0c5"
 }
 ##DOCS-SOURCER-END -->

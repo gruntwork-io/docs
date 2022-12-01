@@ -129,7 +129,7 @@ NOTE: This release will cause a redeploy of the `cluster-autoscaler`, but since 
 ### [v0.19.4](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/9/2020 | Modules affected: eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4">Release notes</a></small>
+  <small>Published: 4/10/2020 | Modules affected: eks-cluster-workers | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.19.4">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -373,7 +373,7 @@ In the `sns-to-slack` module, resources can now be optionally created using the 
 ### [v0.9.12](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/2/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12">Release notes</a></small>
+  <small>Published: 4/3/2020 | Modules affected: openvpn-server | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.9.12">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -617,6 +617,6 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f9e9300782b8b2e728905877ca97378a"
+  "hash": "ee0a65db1c25155ae63dd40ff060cfed"
 }
 ##DOCS-SOURCER-END -->

@@ -184,7 +184,7 @@ The binary will automatically be triggered with each deploy when you update to `
 ### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.9.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.9.0">Release notes</a></small>
+  <small>Published: 10/20/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.9.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -340,7 +340,7 @@ The `scheduled-lambda-job` module now namespaces all of its resources with the f
 ### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/9/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.0">Release notes</a></small>
+  <small>Published: 10/10/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.8.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -417,6 +417,6 @@ A special thanks to @jeckhart for contributing all of these PRs!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a0fdc730782cfaf0cdc5cee68157b086"
+  "hash": "27878e6c232272ca1b9bb794a882d95d"
 }
 ##DOCS-SOURCER-END -->
