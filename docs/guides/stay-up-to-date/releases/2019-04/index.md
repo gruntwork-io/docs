@@ -227,23 +227,6 @@ This release introduces scripts that help with setting up a Kubernetes testing e
 ## terraform-aws-eks
 
 
-### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.5.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/1/2019 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.5.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-This release confirms that `external-dns` and ALB ingress controller support ACM certificates. Additionally, this release extends the timeout for EKS cluster creation as some regions take longer than 15 minutes to provision the EKS cluster.
-
-
-
-</div>
-
-
 ### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.5.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -707,6 +690,6 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "581c10df16280a8e7ae855b4289ff43a"
+  "hash": "9332ff27c5ee2dfb56015c3686d4b43b"
 }
 ##DOCS-SOURCER-END -->

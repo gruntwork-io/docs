@@ -87,19 +87,6 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 ## terraform-aws-data-storage
 
 
-### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/module-data-storage/pull/16: The `copy-rds-shared-snapshot` module now allows you to specify a KMS key via the optional `kms_key_id` parameter. If specified, this key will be used to encrypt the RDS snapshot copy.
-
-</div>
-
-
 ### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -263,19 +250,6 @@ Two bug fixes:
 
 
 ## terraform-aws-security
-
-
-### [v0.4.9](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/module-security/pull/22: In the `kms-master-key` module, KMS key users now get the `CreateGrant` permission. This makes it possible to share RDS snapshots encrypted with this KMS key with another AWS account.
-
-</div>
 
 
 ### [v0.4.8](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.8)
@@ -464,6 +438,6 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "bcca61444b6fa01965cb4edf3dafb76a"
+  "hash": "160f0db075d051bfc8065d7d07c60599"
 }
 ##DOCS-SOURCER-END -->

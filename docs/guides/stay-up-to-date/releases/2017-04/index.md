@@ -153,6 +153,19 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 </div>
 
 
+### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.2.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-data-storage/pull/16: The `copy-rds-shared-snapshot` module now allows you to specify a KMS key via the optional `kms_key_id` parameter. If specified, this key will be used to encrypt the RDS snapshot copy.
+
+</div>
+
+
 
 ## terraform-aws-monitoring
 
@@ -265,6 +278,19 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 </div>
 
 
+### [v0.4.9](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/1/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.4.9">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  https://github.com/gruntwork-io/module-security/pull/22: In the `kms-master-key` module, KMS key users now get the `CreateGrant` permission. This makes it possible to share RDS snapshots encrypted with this KMS key with another AWS account.
+
+</div>
+
+
 
 ## terraform-aws-static-assets
 
@@ -287,6 +313,6 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "49e9f67b9b028227d08cb604397adbd1"
+  "hash": "e42a06253fde81a0bc4291d62a66b5f7"
 }
 ##DOCS-SOURCER-END -->

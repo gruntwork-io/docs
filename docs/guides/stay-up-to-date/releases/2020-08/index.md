@@ -25,6 +25,7 @@ Here are the repos that were updated:
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
+- [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
@@ -765,6 +766,32 @@ Allows an empty list of users and admins in cloudtrail-created KMS keys. Previou
 
 
 
+## terraform-aws-server
+
+
+### [v0.8.5](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 8/1/2020 | Modules affected: ec2-backup, single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+This release includes a fix for the `ec2-backup` module, making its tag configurations more flexible. It also fixes a few links in the `module-server` documentation.
+
+
+
+
+
+
+
+
+</div>
+
+
+
 ## terraform-aws-service-catalog
 
 
@@ -928,6 +955,6 @@ This release introduces two changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "32e51d1d0bf79941f7f1474028e6eb6b"
+  "hash": "783de82cbcfde233ca8c2218b2c087f0"
 }
 ##DOCS-SOURCER-END -->

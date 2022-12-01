@@ -305,22 +305,6 @@ This release is functionally equivalent and backward compatible with the previou
 ## terraform-aws-cis-service-catalog
 
 
-### [v0.35.4](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/1/2022 | Modules affected: landingzone/account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Exposed the ability to configure `max_password_age` and password `hard_expiry` for the IAM Password Policy from `account-baseline-security`.
-
-
-</div>
-
-
 ### [v0.35.3](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.35.3)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1311,6 +1295,6 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2e29752e6c3ae0a3fd0ca7da4afbb931"
+  "hash": "3ae6c5850bd9d48811eb1eb51a1225a3"
 }
 ##DOCS-SOURCER-END -->

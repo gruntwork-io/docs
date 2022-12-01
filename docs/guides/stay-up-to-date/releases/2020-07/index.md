@@ -783,28 +783,6 @@ When creating a CMK using the `kms-master-key` module, you can now provide IAM c
 ## terraform-aws-server
 
 
-### [v0.8.5](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/1/2020 | Modules affected: ec2-backup, single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-This release includes a fix for the `ec2-backup` module, making its tag configurations more flexible. It also fixes a few links in the `module-server` documentation.
-
-
-
-
-
-
-
-
-</div>
-
-
 ### [v0.8.4](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.8.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -990,6 +968,6 @@ add glue support to vpc-interface-endpoint
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "81415dd50dd863d037f3c5959019d0c5"
+  "hash": "548b7ea5ff7c73609623a5abfcb9c7d5"
 }
 ##DOCS-SOURCER-END -->

@@ -653,23 +653,6 @@ You can now restrict the CIDR blocks that are allowed to access the OpenVPN port
 ## terraform-aws-security
 
 
-### [v0.28.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/1/2020 | Modules affected: iam-policies, iam-groups, account-baseline-security, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Account baseline modules now support managing KMS Customer Master Keys.
-- You can now specify multiple IAM roles for managing cross account access IAM groups.
-
-
-</div>
-
-
 ### [v0.27.2](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.27.2)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -909,6 +892,6 @@ Thanks to @mmiranda for his contribution, and to @marinalimeira for her suggesti
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4b135c9487294a4fb55b4ed13356e9ca"
+  "hash": "692ae5c85a2e57b8d1ba25b2375499d4"
 }
 ##DOCS-SOURCER-END -->

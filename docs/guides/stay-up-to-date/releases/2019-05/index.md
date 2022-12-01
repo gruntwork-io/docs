@@ -192,6 +192,23 @@ to using the new naming scheme, as they will be updated to use the sprig version
 </div>
 
 
+### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.5.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 5/1/2019 | Modules affected: eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.5.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+This release confirms that `external-dns` and ALB ingress controller support ACM certificates. Additionally, this release extends the timeout for EKS cluster creation as some regions take longer than 15 minutes to provision the EKS cluster.
+
+
+
+</div>
+
+
 
 ## terraform-aws-elk
 
@@ -454,6 +471,6 @@ The other modules have backwards compatible minor changes in the way dependencie
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "10f05cb3dba32a5da9ab03fb80ef77d7"
+  "hash": "81a6b8a8adbbd70ff61aea8c428b3ada"
 }
 ##DOCS-SOURCER-END -->

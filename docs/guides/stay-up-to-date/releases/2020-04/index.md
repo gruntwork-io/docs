@@ -524,6 +524,23 @@ Since AWS provider 2.0, setting `num_days_after_which_delete_log_data = 0` no lo
 </div>
 
 
+### [v0.28.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/1/2020 | Modules affected: iam-policies, iam-groups, account-baseline-security, account-baseline-root | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.28.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Account baseline modules now support managing KMS Customer Master Keys.
+- You can now specify multiple IAM roles for managing cross account access IAM groups.
+
+
+</div>
+
+
 
 ## terraform-aws-server
 
@@ -617,6 +634,6 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ee0a65db1c25155ae63dd40ff060cfed"
+  "hash": "db9c18dd3d2fff32e2b226222b483056"
 }
 ##DOCS-SOURCER-END -->
