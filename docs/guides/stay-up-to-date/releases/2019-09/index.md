@@ -56,7 +56,7 @@ Here are the repos that were updated:
 
   
 
-- This release adds a wrapper module for the [`cloudwatch-logs-metric-filters' module](https://github.com/gruntwork-io/module-aws-monitoring/blob/master/modules/logs/cloudwatch-logs-metric-filters/README.md). The wrapper creates metric filters as required by the CIS Foundations Benchmark.
+- This release adds a wrapper module for the [`cloudwatch-logs-metric-filters&apos; module](https://github.com/gruntwork-io/module-aws-monitoring/blob/master/modules/logs/cloudwatch-logs-metric-filters/README.md). The wrapper creates metric filters as required by the CIS Foundations Benchmark.
 
 
 
@@ -304,7 +304,7 @@ This release updates the modules and examples to ensure that they are compatible
 Note that in order to use the modules with Ubuntu 18.04, you need to:
 
 - Install OpenJDK 11 using the [install-open-jdk module](https://github.com/gruntwork-io/package-zookeeper/tree/master/modules/install-open-jdk)
-- Use version `5.7.2` of `collectd` (`gruntwork-install --module-name 'install-collectd' --repo 'https://github.com/gruntwork-io/package-elk' --tag 'v0.5.0' --module-param 'apt-version=5.7.2'"`)
+- Use version `5.7.2` of `collectd` (`gruntwork-install --module-name &apos;install-collectd&apos; --repo &apos;https://github.com/gruntwork-io/package-elk&apos; --tag &apos;v0.5.0&apos; --module-param &apos;apt-version=5.7.2&apos;&quot;`)
 - Use an ELK version that is compatible with Ubuntu 18.04. The following versions are known to be compatible:
     - 6.7.2
     - 6.8.3
@@ -379,7 +379,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
   
 
-- The `cloudwatch-logs-metric-filters` module uses syntax that wasn't available prior to Terraform version `0.12.6`. This version is now required by the module.
+- The `cloudwatch-logs-metric-filters` module uses syntax that wasn&apos;t available prior to Terraform version `0.12.6`. This version is now required by the module.
 
 
 
@@ -487,7 +487,7 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
 
   
 
-- A new variable, `sns_topic_already_exists`, is now required for the `aws-config` module. This addresses an issue with using `sns_topic_arn`. If the SNS topic was created in Terraform and the ARN was passed in via interpolation, the module would crash because Terraform can't resolve the count at plan time. We work around this limitation by instead using a boolean value which can be hard coded to `true` or `false` and thus does not hit this limitation.
+- A new variable, `sns_topic_already_exists`, is now required for the `aws-config` module. This addresses an issue with using `sns_topic_arn`. If the SNS topic was created in Terraform and the ARN was passed in via interpolation, the module would crash because Terraform can&apos;t resolve the count at plan time. We work around this limitation by instead using a boolean value which can be hard coded to `true` or `false` and thus does not hit this limitation.
 - Updated the IAM role in `aws-config` to account for a policy change made by AWS.
 - Updated the `iam-admin` group test to use a unique name to avoid conflicts
 
@@ -506,9 +506,9 @@ Refer to the provided [migration guide](https://github.com/gruntwork-io/module-l
   
 
 
-- Added some new policies to the `iam-policies` module: an "IAM admin" policy that permits `iam:*` (with MFA) but nothing else, and a new "require MFA" policy. It denies access to all actions except MFA self-management unless an MFA device is already enabled. You can attach this policy to users, groups, or roles alongside other policies that do not have an MFA condition of their own to ensure that an MFA device is be required for any of the combined actions to be allowed. For example, the AWS managed policies do not have an MFA condition, but if you attach this alongside them, MFA will be required.
+- Added some new policies to the `iam-policies` module: an &quot;IAM admin&quot; policy that permits `iam:*` (with MFA) but nothing else, and a new &quot;require MFA&quot; policy. It denies access to all actions except MFA self-management unless an MFA device is already enabled. You can attach this policy to users, groups, or roles alongside other policies that do not have an MFA condition of their own to ensure that an MFA device is be required for any of the combined actions to be allowed. For example, the AWS managed policies do not have an MFA condition, but if you attach this alongside them, MFA will be required.
 - Updated `iam-groups` to optionally create an `iam-admin` group that uses the policy mentioned above, and also optionally a `support` group with access to interact with AWS support (and nothing else).
-- Added new `custom-iam-group` module. This module can create a new IAM group and attach a set of policies by ARN or name. It can also ensure that the entire group requires MFA by attaching the "require MFA" policy mentioned above.
+- Added new `custom-iam-group` module. This module can create a new IAM group and attach a set of policies by ARN or name. It can also ensure that the entire group requires MFA by attaching the &quot;require MFA&quot; policy mentioned above.
 - Updated the `cloudtrail` module to optionally have separate names for the CloudWatch Logs Group and IAM role. Previously, the name of the role was based on the log group name.
 
 
@@ -628,6 +628,6 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ba4f25164ed554367e1b9c7bb80ee022"
+  "hash": "b773d9817618d974c357085319d84767"
 }
 ##DOCS-SOURCER-END -->

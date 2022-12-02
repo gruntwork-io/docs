@@ -205,7 +205,7 @@ The `infrastructure-deploy-script` now supports running `destroy`. Note that the
 
 - The `infrastructure-deploy-script` no longer supports passing in the private SSH key via CLI args. You must pass it in with the environment variable `DEPLOY_SCRIPT_SSH_PRIVATE_KEY`.
 
-- `install-jenkins` will automatically disable jenkins so that it won't start on boot. This ensures that jenkins will not be started unless it has been successfully configured with `run-jenkins`. To get the previous behavior, pass in `--module-param "run-on-boot=true"`.
+- `install-jenkins` will automatically disable jenkins so that it won&apos;t start on boot. This ensures that jenkins will not be started unless it has been successfully configured with `run-jenkins`. To get the previous behavior, pass in `--module-param &quot;run-on-boot=true&quot;`.
 
 
 
@@ -379,7 +379,7 @@ This release introduces first class support for using [the EKS cluster security 
 
 - The `eks-cluster-workers` module now appends the cluster security group to the node instead of rolling out its own group by default. Note that it still creates its own group to make it easier to append rules that are only specific to the self-managed workers.
 
-This release also fixes a bug with the `eks-k8s-role-mapping` module, where previously it did not support including the Fargate execution role. If you don't include the Fargate execution role in the mapping, terraform may delete the configuration rules that enable Fargate to communicate with the Kubernetes API as workers.
+This release also fixes a bug with the `eks-k8s-role-mapping` module, where previously it did not support including the Fargate execution role. If you don&apos;t include the Fargate execution role in the mapping, terraform may delete the configuration rules that enable Fargate to communicate with the Kubernetes API as workers.
 
 
 
@@ -454,9 +454,9 @@ This release also includes several documentation fixes to READMEs of various mod
 
   
 
-The `lambda` module is now more robust to partial failures in the module. Previously you could end up in a state where you couldn't `apply` or `destroy` the module if it only partially applied the resources due to output errors. This release addresses that by changing the output logic.
+The `lambda` module is now more robust to partial failures in the module. Previously you could end up in a state where you couldn&apos;t `apply` or `destroy` the module if it only partially applied the resources due to output errors. This release addresses that by changing the output logic.
 
-Note that previously this module output `null` for all the outputs when `create_resources` was `false`. However, with this release the output is converted to `""`. If you depended on behavior of `null` outputs, you will need to adjust your code to convert `null` checks to `""`.
+Note that previously this module output `null` for all the outputs when `create_resources` was `false`. However, with this release the output is converted to `&quot;&quot;`. If you depended on behavior of `null` outputs, you will need to adjust your code to convert `null` checks to `&quot;&quot;`.
 
 
 </div>
@@ -532,7 +532,7 @@ Note that previously this module output `null` for all the outputs when `create_
 
   
 
-- The `install.sh` scripts for the `cloudwatch-log-aggregation-scripts`, `syslog`, and `cloudwatch-memory-disk-metrics-scripts` modules were unnecessarily using `eval` to execute scripts used in the install steps. This led to unexpected behavior, such as `--module-param` arguments being shell expanded. We've removed the calls to `eval` and replaced with a straight call to the underlying scripts. 
+- The `install.sh` scripts for the `cloudwatch-log-aggregation-scripts`, `syslog`, and `cloudwatch-memory-disk-metrics-scripts` modules were unnecessarily using `eval` to execute scripts used in the install steps. This led to unexpected behavior, such as `--module-param` arguments being shell expanded. We&apos;ve removed the calls to `eval` and replaced with a straight call to the underlying scripts. 
 
 _This release is marked as backwards incompatible, but this only applies if you were (intentionally or otherwise) relying on the `eval` behavior (which is not likely or recommended!)._
 
@@ -649,11 +649,11 @@ In this configuration, the central account will be configured with an S3 Bucket 
 
 **Migration guide**
 
-First, remove the now-unused regional AWS Config buckets from the terraform state so that the data remains intact. If you don't need the data, you can remove the buckets after removing them from the Terraform state. If you're using `bash`, the following loop should do the trick
+First, remove the now-unused regional AWS Config buckets from the terraform state so that the data remains intact. If you don&apos;t need the data, you can remove the buckets after removing them from the Terraform state. If you&apos;re using `bash`, the following loop should do the trick
 
 ```bash
 for region in eu_north_1 eu_west_3 ap_southeast_2 ap_southeast_1 eu_west_1 us_east_2 sa_east_1 ap_northeast_2 ca_central_1 ap_south_1 eu_central_1 ap_northeast_1 us_east_1 eu_west_2 us_west_2 us_west_1; do
-    terraform state rm "module.config.module.aws_config_${region}.aws_s3_bucket.config_bucket[0]"
+    terraform state rm &quot;module.config.module.aws_config_$&#x7B;region&#x7D;.aws_s3_bucket.config_bucket[0]&quot;
 done
 ```
 
@@ -677,14 +677,14 @@ For `aws-config-multi-region`:
 For `account-baseline-security`:
 
 * If a list of account IDs is provided in `config_linked_accounts`, those accounts will be granted access to the S3 bucket and SNS topic in the security account.
-* If the `config_s3_bucket_name` variable is provided, the S3 bucket will be created with that name. If no name is provided, the bucket will have the default name of `${var.name_prefix}-config`.
+* If the `config_s3_bucket_name` variable is provided, the S3 bucket will be created with that name. If no name is provided, the bucket will have the default name of `$&#x7B;var.name_prefix&#x7D;-config`.
 
 
 For `account-baseline-app`:
 
 * The `config_central_account_id` variable should be configured with the ID of the account that contains the S3 bucket and SNS topic. This will typically be the account that is configured with `account-baseline-security`. 
 
-* If the `config_s3_bucket_name` variable is provided, AWS Config will be configured to use that name (but the bucket will not be created within the account). If no name is provided, AWS Config will be configured to use a default name of `${var.name_prefix}-config`. This bucket must already exist and should have appropriate permissions to allow access from this account. To set up permissions, provide this account ID in the `config_linked_accounts` of the `account-baseline-security` modules.
+* If the `config_s3_bucket_name` variable is provided, AWS Config will be configured to use that name (but the bucket will not be created within the account). If no name is provided, AWS Config will be configured to use a default name of `$&#x7B;var.name_prefix&#x7D;-config`. This bucket must already exist and should have appropriate permissions to allow access from this account. To set up permissions, provide this account ID in the `config_linked_accounts` of the `account-baseline-security` modules.
 
 
 
@@ -723,7 +723,7 @@ For `account-baseline-app`:
 
   
 
-- Added a new module called `executable-dependency` that can be used to install an executable if it's not installed already. This is useful if your Terraform code depends on external dependencies, such as `terraform-aws-eks`, which depends on `kubergrunt`.
+- Added a new module called `executable-dependency` that can be used to install an executable if it&apos;s not installed already. This is useful if your Terraform code depends on external dependencies, such as `terraform-aws-eks`, which depends on `kubergrunt`.
 
 
 
@@ -776,6 +776,6 @@ Special thanks to @jdhornsby for the fix!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "197bc29d17eb39bf8795163db4f7bc03"
+  "hash": "07bc0e05728789516b491da89191ecdc"
 }
 ##DOCS-SOURCER-END -->

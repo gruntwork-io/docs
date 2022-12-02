@@ -49,7 +49,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/75: The `git-add-commit-push` script will now retry on "cannot lock ref" errors that seem to come up if two `git push` calls happen simultaneously.
+  https://github.com/gruntwork-io/module-ci/pull/75: The `git-add-commit-push` script will now retry on &quot;cannot lock ref&quot; errors that seem to come up if two `git push` calls happen simultaneously.
 
 </div>
 
@@ -271,7 +271,7 @@ Unfortunately, this does constitute a breaking change for the `ecs-service` modu
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-**Important:** If you are using `var.allow_inbound_from_security_group_ids` you will now **need** to set `var.allow_inbound_from_security_group_ids_num` because the default is `0`. If your code was already working correctly with the old approach, there is no reason why you can't just set `var.allow_inbound_from_security_group_ids_num` to be `length(var.allow_inbound_from_security_group_ids)`. 
+**Important:** If you are using `var.allow_inbound_from_security_group_ids` you will now **need** to set `var.allow_inbound_from_security_group_ids_num` because the default is `0`. If your code was already working correctly with the old approach, there is no reason why you can&apos;t just set `var.allow_inbound_from_security_group_ids_num` to be `length(var.allow_inbound_from_security_group_ids)`. 
 
 The only reason for changing the behavior in the module is to address the issue when someone has dynamic resources in the `var.allow_inbound_from_security_group_ids` array (For example, you specify an array with exactly one thing in it, the security group id that is an _output_ variable from another module).
 
@@ -327,7 +327,7 @@ The only reason for changing the behavior in the module is to address the issue 
 This PR contains a BACKWARDS INCOMPATIBLE CHANGE to the `iam-policies` module. Instead of a `should_require_mfa` parameter, it now takes in two parameters:
 
 1. `trust_policy_should_require_mfa`: Set to true to require MFA in Trust Policies. You should typically set this to true to make sure your IAM Roles can only be assumed by users with an MFA token.
-1. `iam_policy_should_require_mfa`: Set to true to require MFA in all other IAM Policies. You should typically set this to false on IAM Roles, as the MFA requirement is already handled by `trust_policy_should_require_mfa`, and it turns out that requiring MFA in both places doesn't work with `aws sts assume-role`. However, you should set this to true on other IAM policies that don't involve IAM Roles (e.g., in IAM Group policies).
+1. `iam_policy_should_require_mfa`: Set to true to require MFA in all other IAM Policies. You should typically set this to false on IAM Roles, as the MFA requirement is already handled by `trust_policy_should_require_mfa`, and it turns out that requiring MFA in both places doesn&apos;t work with `aws sts assume-role`. However, you should set this to true on other IAM policies that don&apos;t involve IAM Roles (e.g., in IAM Group policies).
 
 
 Per the above, the `cross-account-iam-policy` module now sets `trust_policy_should_require_mfa` based on the specified `should_require_mfa` input and always sets `iam_policy_should_require_mfa` to false.
@@ -373,6 +373,6 @@ Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8cdf3a491d4ad10403c14b2497f9f815"
+  "hash": "d5553f3752b51e277ca4989f2b7e51b0"
 }
 ##DOCS-SOURCER-END -->

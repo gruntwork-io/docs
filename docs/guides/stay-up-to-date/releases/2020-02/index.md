@@ -59,7 +59,7 @@ Here are the repos that were updated:
 
 - Update CircleCi Packer from 1.3.3 to 1.5.4 
 
-The Packer template used to generate machine images now uses the `clean_resource_name` function when generating the artifact's image name (changed from `clean_ami_name`). Note that the `clean_ami_name` function was deprecated in Packer's [1.5.0 release](https://github.com/hashicorp/packer/blob/master/CHANGELOG.md#150-december-18-2019).
+The Packer template used to generate machine images now uses the `clean_resource_name` function when generating the artifact&apos;s image name (changed from `clean_ami_name`). Note that the `clean_ami_name` function was deprecated in Packer&apos;s [1.5.0 release](https://github.com/hashicorp/packer/blob/master/CHANGELOG.md#150-december-18-2019).
 
 
 
@@ -138,7 +138,7 @@ Made several updates to the `jenkins-server` module:
 
 - Expose a new `user_data_base64` input variable that allows you to pass in Base64-encoded User Data (e.g., such as a gzipped cloud-init script).
 - Fixed deprecation warnings with the ALB listener rules.
-- Updated the version of the `alb` module used under the hood. This new version no longer sets the `Environment` tag on the load balancer. Therefore, the `jenkins-server` module no longer takes an `environment_name` variable as an input variable, so if you're upgrading, you'll need to remove this variable. 
+- Updated the version of the `alb` module used under the hood. This new version no longer sets the `Environment` tag on the load balancer. Therefore, the `jenkins-server` module no longer takes an `environment_name` variable as an input variable, so if you&apos;re upgrading, you&apos;ll need to remove this variable. 
 
 
 
@@ -384,7 +384,7 @@ The `clean_up_cluster_resources` script now cleans up residual security groups f
 
   
 
-The IAM Role for Service Accounts (IRSA) input variables for the application modules (`eks-k8s-external-dns`, `eks-k8s-cluster-autoscaler`, `eks-cloudwatch-container-logs`, and `eks-alb-ingress-controller`) are now required. Previously, we defaulted `use_iam_role_for_service_accounts` to true, but this meant that you needed to provide two required variables `eks_openid_connect_provider_arn` and `eks_openid_connect_provider_url`. However, these had defaults of empty string and do not cause an error in the terraform config, which means that you would have a successful deployment even if they weren't set. This can be confusing because each of these services will silently fail since they will not have access to the AWS resources they need to manage. Starting this release the IRSA input variables have been consolidated to a single required variable `iam_role_for_service_accounts_config`.
+The IAM Role for Service Accounts (IRSA) input variables for the application modules (`eks-k8s-external-dns`, `eks-k8s-cluster-autoscaler`, `eks-cloudwatch-container-logs`, and `eks-alb-ingress-controller`) are now required. Previously, we defaulted `use_iam_role_for_service_accounts` to true, but this meant that you needed to provide two required variables `eks_openid_connect_provider_arn` and `eks_openid_connect_provider_url`. However, these had defaults of empty string and do not cause an error in the terraform config, which means that you would have a successful deployment even if they weren&apos;t set. This can be confusing because each of these services will silently fail since they will not have access to the AWS resources they need to manage. Starting this release the IRSA input variables have been consolidated to a single required variable `iam_role_for_service_accounts_config`.
 
 
 
@@ -446,9 +446,9 @@ You can now set the permissions boundary on the IAM role created for the lambda 
 - The `alb` module no longer exposes an `environment_name` input variable. This variable was solely used to set an `Environment` tag on the load balancer. To upgrade to this version, you will need to remove the `environment_name` parameter from your code. If you wish to maintain the tag for backwards compatibility, set it in the `custom_tags` parameter as follows:
 
     ```hcl
-    custom_tags = {
-      Environment = "whatever value you were setting for environment_name before"
-    } 
+    custom_tags = &#x7B;
+      Environment = &quot;whatever value you were setting for environment_name before&quot;
+    &#x7D; 
     ```
 
 
@@ -582,7 +582,7 @@ The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS use
 
   
 
-- All the modules under `alarms` now expose a `create_resources` parameter that you can set to `false` to disable the module so it creates no resources. This is a workaround for Terraform not supporting `count` or `for_each` on `module`. Note that this change is backwards incompatible solely because the `route53-health-check-alarms` module already exposed an identical `enabled` parameter, but for consistency with all our other modules and repos, we've renamed it to `create_resources`. If you were using this `enabled` parameter on the `route53-health-check-alarms` module, please rename it to `create_resources` now.
+- All the modules under `alarms` now expose a `create_resources` parameter that you can set to `false` to disable the module so it creates no resources. This is a workaround for Terraform not supporting `count` or `for_each` on `module`. Note that this change is backwards incompatible solely because the `route53-health-check-alarms` module already exposed an identical `enabled` parameter, but for consistency with all our other modules and repos, we&apos;ve renamed it to `create_resources`. If you were using this `enabled` parameter on the `route53-health-check-alarms` module, please rename it to `create_resources` now.
 
 
 
@@ -599,7 +599,7 @@ The `cloudwatch-memory-disk-metrics` module now creates and sets up a new OS use
 
   
 
-- The `run-cloudwatch-logs-agent.sh` no longer takes in a `--vpc-name` parameter, which was only used to set a log group name if `--log-group-name` was not passed in. The `--log-group-name` is now required, which is simpler and makes the intent clearer. If you wish to preserve backwards compatibility with the log group name you were using before, set `--log-group-name` to `${vpc_name}-ec2-syslog`. 
+- The `run-cloudwatch-logs-agent.sh` no longer takes in a `--vpc-name` parameter, which was only used to set a log group name if `--log-group-name` was not passed in. The `--log-group-name` is now required, which is simpler and makes the intent clearer. If you wish to preserve backwards compatibility with the log group name you were using before, set `--log-group-name` to `$&#x7B;vpc_name&#x7D;-ec2-syslog`. 
 
 
 
@@ -673,7 +673,7 @@ Previously, CloudWatch did not have the necessary permissions to deliver notific
 
   
 
-- The `kms-master-key` module now exposes a `customer_master_key_spec` variable that allows you to specify whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports. The module now also grants `kms:GetPublicKey` permissions, which is why this release was marked as "backwards incompatible."
+- The `kms-master-key` module now exposes a `customer_master_key_spec` variable that allows you to specify whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports. The module now also grants `kms:GetPublicKey` permissions, which is why this release was marked as &quot;backwards incompatible.&quot;
 
 
 </div>
@@ -722,7 +722,7 @@ This update changes the endpoint route table associates to the [`aws_vpc_endpoin
 
 - Allow not to create any resource on vpc-flow-logs
 
-Now it's possible to fully deactivate the `vpc-flow-logs` module passing the variable `create_resources = false`
+Now it&apos;s possible to fully deactivate the `vpc-flow-logs` module passing the variable `create_resources = false`
 
 
 
@@ -734,6 +734,6 @@ Now it's possible to fully deactivate the `vpc-flow-logs` module passing the var
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "40c77e94be5140f9148ca9ac73747ebf"
+  "hash": "98cc01cf8656a345dcb8c44e226cf991"
 }
 ##DOCS-SOURCER-END -->

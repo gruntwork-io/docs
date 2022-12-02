@@ -145,7 +145,7 @@ Updates in this version:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-The variable `aws_region` was removed from the module, it's value will be retrieved from the region on the provider. When updating to this new version, make sure to remove the `aws_region` parameter to the module.
+The variable `aws_region` was removed from the module, it&apos;s value will be retrieved from the region on the provider. When updating to this new version, make sure to remove the `aws_region` parameter to the module.
 
 
 </div>
@@ -248,13 +248,13 @@ The variable `aws_region` was removed from the module, it's value will be retrie
 - The `rds` and `aurora` modules have been updated to remove redundant/duplicate resources by taking advantage of Terraform 0.12 syntax (i.e., `for_each`, `null` defaults, and `dynamic` blocks). This greatly simplifies the code and makes it more maintainable, but because many resources were renamed, this is a **backwards incompatible change**, so make sure to follow the migration guide below when upgrading!
 
 
-All input and output variables are the same, so you will not need to do any code changes. There are no changes in functionality either, so there shouldn't be anything new to `apply` (i.e., when you finish the migration, the `plan` migration should show no changes). The only thing that changed in this upgrade is that several resources were renamed in the Terraform code, so you'll need to update your Terraform state so it knows about these new names. You do this using the [state mv](https://www.terraform.io/docs/commands/state/mv.html) command (**Note**: If you're using Terragrunt, replace `terraform` with `terragrunt` in all the commands in this migration guide):
+All input and output variables are the same, so you will not need to do any code changes. There are no changes in functionality either, so there shouldn&apos;t be anything new to `apply` (i.e., when you finish the migration, the `plan` migration should show no changes). The only thing that changed in this upgrade is that several resources were renamed in the Terraform code, so you&apos;ll need to update your Terraform state so it knows about these new names. You do this using the [state mv](https://www.terraform.io/docs/commands/state/mv.html) command (**Note**: If you&apos;re using Terragrunt, replace `terraform` with `terragrunt` in all the commands in this migration guide):
 
 ```bash
 terraform state mv OLD_ADDRESS NEW_ADDRESS
 ```
 
-Where `OLD_ADDRESS` is the [resource address](https://www.terraform.io/docs/internals/resource-addressing.html) with the old resource name and `NEW_ADDRESS` is the resource address with the new name. The easiest way to get the old and new address is to upgrade to the new version of this module and run `terraform plan`. When you do so, you'll see output like this:
+Where `OLD_ADDRESS` is the [resource address](https://www.terraform.io/docs/internals/resource-addressing.html) with the old resource name and `NEW_ADDRESS` is the resource address with the new name. The easiest way to get the old and new address is to upgrade to the new version of this module and run `terraform plan`. When you do so, you&apos;ll see output like this:
 
 ```
 $ terraform plan
@@ -262,46 +262,46 @@ $ terraform plan
 [...]
 
   # module.aurora_serverless.aws_rds_cluster.cluster will be created
-  + resource "aws_rds_cluster" "cluster" {
+  + resource &quot;aws_rds_cluster&quot; &quot;cluster&quot; &#x7B;
       + apply_immediately                   = false
       + arn                                 = (known after apply)
       + availability_zones                  = (known after apply)
       + backup_retention_period             = 21
-      + cluster_identifier                  = "aurora-serverless-example"
+      + cluster_identifier                  = &quot;aurora-serverless-example&quot;
       + cluster_identifier_prefix           = (known after apply)
       + cluster_members                     = (known after apply)
 
 [...]
 
   # module.aurora_serverless.aws_rds_cluster.cluster_with_encryption_serverless[0] will be destroyed
-  - resource "aws_rds_cluster" "cluster_with_encryption_serverless" {
+  - resource &quot;aws_rds_cluster&quot; &quot;cluster_with_encryption_serverless&quot; &#x7B;
       - apply_immediately                   = false -&gt; null
-      - arn                                 = "arn:aws:rds:us-east-1:087285199408:cluster:aurora-serverless-example" -&gt; null
+      - arn                                 = &quot;arn:aws:rds:us-east-1:087285199408:cluster:aurora-serverless-example&quot; -&gt; null
       - availability_zones                  = [
-          - "us-east-1a",
-          - "us-east-1b",
-          - "us-east-1e",
+          - &quot;us-east-1a&quot;,
+          - &quot;us-east-1b&quot;,
+          - &quot;us-east-1e&quot;,
         ] -&gt; null
       - backtrack_window                    = 0 -&gt; null
       - backup_retention_period             = 21 -&gt; null
-      - cluster_identifier                  = "aurora-serverless-example" -&gt; null
+      - cluster_identifier                  = &quot;aurora-serverless-example&quot; -&gt; null
 ```
 
 The lines that show you resources being removed (with a `-` in front of them) show the old addresses in a comment above the resource:
 
 ```
   # module.aurora_serverless.aws_rds_cluster.cluster_with_encryption_serverless[0] will be destroyed
-  - resource "aws_rds_cluster" "cluster_with_encryption_serverless" {
+  - resource &quot;aws_rds_cluster&quot; &quot;cluster_with_encryption_serverless&quot; &#x7B;
 ```
 
 And the lines that show the very same resources being added (with a `+` in front of them) show the new addresses in a comment above the resource:
 
 ```
   # module.aurora_serverless.aws_rds_cluster.cluster will be created
-  + resource "aws_rds_cluster" "cluster" {
+  + resource &quot;aws_rds_cluster&quot; &quot;cluster&quot; &#x7B;
 ```
 
-You'll want to run `terraform state mv` (or `terragrunt state mv`) on each pair of these resources:
+You&apos;ll want to run `terraform state mv` (or `terragrunt state mv`) on each pair of these resources:
 
 ```
 terraform state mv \
@@ -323,7 +323,7 @@ Here are the renames that have happened:
 | `aws_db_instance.replicas_with_encryption`                 | `aws_db_instance.replicas` |
 | `aws_db_instance.replicas_without_encryption`              | `aws_db_instance.replicas` |
 
-When you've run `terraform state mv` on all the pairs of resources, you know you've done it correctly if you can run `terraform plan` and see no changes:
+When you&apos;ve run `terraform state mv` on all the pairs of resources, you know you&apos;ve done it correctly if you can run `terraform plan` and see no changes:
 
 ```
 $ terraform plan
@@ -414,7 +414,7 @@ No changes. Infrastructure is up-to-date.
 
   
 
-- Fix issue where restoring from snapshot wasn't setting `master_password`
+- Fix issue where restoring from snapshot wasn&apos;t setting `master_password`
 
 
 
@@ -452,7 +452,7 @@ No changes. Infrastructure is up-to-date.
 
   
 
-- The `ecs-cluster` module now attaches the `ecs:UpdateContainerInstancesState` permission to the ECS Cluster's IAM role. This is required for automated ECS instance draining (e.g., when receiving a spot instance termination notice).
+- The `ecs-cluster` module now attaches the `ecs:UpdateContainerInstancesState` permission to the ECS Cluster&apos;s IAM role. This is required for automated ECS instance draining (e.g., when receiving a spot instance termination notice).
 
 
 
@@ -738,6 +738,6 @@ This release adds the ability to create `tags` with the modules mentioned above.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e34bf0493f1adf894ca7e5cc754313e8"
+  "hash": "b67c1962b15120a17e012cf2b816f233"
 }
 ##DOCS-SOURCER-END -->

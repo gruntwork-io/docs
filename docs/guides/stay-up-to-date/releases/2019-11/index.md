@@ -38,7 +38,7 @@ Here are the repos that were updated:
 - Simplify permutations In the `redis` module. As the resource names change within the module, this is a backwards incompatible change.
 
 
-This release is backwards incompatible and to update an existing Redis cluster, use `terraform state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn't deleted when you run `terraform apply`.
+This release is backwards incompatible and to update an existing Redis cluster, use `terraform state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn&apos;t deleted when you run `terraform apply`.
 
 Depending on your configuration, your current resource name is one of
 - `redis_with_snapshotting_without_auth_token_without_cluster_mode`
@@ -55,7 +55,7 @@ To find out which one it is, run `terraform state list`.
 For example, if your current resource name is `module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]`, you can migrate the resource by running: 
 
 ```bash
-terraform state mv "module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]" module.redis.aws_elasticache_replication_group.redis
+terraform state mv &quot;module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token_with_cluster_mode[0]&quot; module.redis.aws_elasticache_replication_group.redis
 ```
 Note that you will have to use the quotes around the indexed resource to avoid `terraform` error `no matches found: module.redis....`
 
@@ -145,7 +145,7 @@ This is the initial release of wrapper modules for v1.2.0 of the AWS Foundations
 
   
 
-- Fixed a bug where ECS Auto Scaling was only working for "scale out" but not "scale in."
+- Fixed a bug where ECS Auto Scaling was only working for &quot;scale out&quot; but not &quot;scale in.&quot;
 
 
 
@@ -260,13 +260,13 @@ NOTE: If you are using `terragrunt`, the `state mv` calls should be done using `
 If you had `var.enable_alb_access_logs = true`:
 ```
  export MODULE_ADDRESS=module.alb # This should be the address of the module block used to call `alb`
-terraform state mv "$MODULE_ADDRESS.aws_alb.alb_with_logs[0]" "$MODULE_ADDRESS.aws_alb.alb"
+terraform state mv &quot;$MODULE_ADDRESS.aws_alb.alb_with_logs[0]&quot; &quot;$MODULE_ADDRESS.aws_alb.alb&quot;
 ```
 
 Otherwise:
 ``` 
 export MODULE_ADDRESS=module.alb # This should be the address of the module block used to call `alb`
-terraform state mv "$MODULE_ADDRESS.aws_alb.alb_without_logs[0]" "$MODULE_ADDRESS.aws_alb.alb"
+terraform state mv &quot;$MODULE_ADDRESS.aws_alb.alb_without_logs[0]&quot; &quot;$MODULE_ADDRESS.aws_alb.alb&quot;
 ```
 
 
@@ -300,6 +300,6 @@ terraform state mv "$MODULE_ADDRESS.aws_alb.alb_without_logs[0]" "$MODULE_ADDRES
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b41d41b10a77eee593e6a4cc056f2c08"
+  "hash": "2f81ced76025981db3031d283a8397e4"
 }
 ##DOCS-SOURCER-END -->

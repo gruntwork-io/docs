@@ -108,7 +108,7 @@ To upgrade without downtime, we recommend the following approach:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: Added a new `check-url` script that can be used to repeatedly test a URL until either it returns an expected response, and the script exits successfully, or the max number of retries is exceeded, and the script exits with an error. The driving use case for this is verifying automated ECS deployments. You can add this script to the end of your CI build to check if the new version of your ECS service actually deployed and to fail the build if it didn't.
+  - NEW MODULE: Added a new `check-url` script that can be used to repeatedly test a URL until either it returns an expected response, and the script exits successfully, or the max number of retries is exceeded, and the script exits with an error. The driving use case for this is verifying automated ECS deployments. You can add this script to the end of your CI build to check if the new version of your ECS service actually deployed and to fail the build if it didn&apos;t.
 
 
 </div>
@@ -148,7 +148,7 @@ To upgrade without downtime, we recommend the following approach:
 - `aws_appautoscaling_target`: the `scalable_dimension` and `service_namespace` parameters are now required. The `name` parameter has been removed.
 - `aws_appautoscaling_policy`. the `scalable_dimension` and `service_namespace` parameters are now required.
 
-We've updated the `ecs-service-with-alb` module and example code accordingly. Note that this included adding some `depends_on` clauses to make sure resources were created in the right order. See https://github.com/gruntwork-io/module-ecs/pull/28 for details.
+We&apos;ve updated the `ecs-service-with-alb` module and example code accordingly. Note that this included adding some `depends_on` clauses to make sure resources were created in the right order. See https://github.com/gruntwork-io/module-ecs/pull/28 for details.
 
 
 </div>
@@ -166,7 +166,7 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - NEW MODULE: We're introducing the `tls-cert-private` module, which allows you to generate customized TLS certificate key pairs simply by updating a `docker-compose.yml` file and running `docker-compose up`. 
+  - NEW MODULE: We&apos;re introducing the `tls-cert-private` module, which allows you to generate customized TLS certificate key pairs simply by updating a `docker-compose.yml` file and running `docker-compose up`. 
   
   The module works by running a Docker container which downloads the latest version of OpenSSL and runs a series of commands to generate your certificates using RSA 4,096 bit encryption. The outputted files are then available on your local machine, where you may optionally encrypt the TLS private key.
   
@@ -181,6 +181,6 @@ We've updated the `ecs-service-with-alb` module and example code accordingly. No
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a5b5a2bce7055f762ff7ebc0fc9f5cf9"
+  "hash": "642c7ace1a255d48f193946c994bea96"
 }
 ##DOCS-SOURCER-END -->

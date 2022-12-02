@@ -208,7 +208,7 @@ You can now set the `backend-config` option on the `init` call in the `ecs-deplo
 
   
 
-`infrastructure-deployer` and `infrastructure-deploy-script` now supports deploying the repo root path using `""` for `--deploy-path`. This is now the default for `--deploy-path` when it is omitted from the CLI args.
+`infrastructure-deployer` and `infrastructure-deploy-script` now supports deploying the repo root path using `&quot;&quot;` for `--deploy-path`. This is now the default for `--deploy-path` when it is omitted from the CLI args.
 
 
 </div>
@@ -658,24 +658,24 @@ This release adds a role with permissions only to access support, as required by
   
 - Updated `account-baseline-root` to allow you to turn off AWS Config and CloudTrail entirely. This is necessary 
   if you want to aggregate AWS Config and CloudTrail data in a child account (e.g., a dedicated logs account), but
-  that child account doesn't initially exist and doesn't contain S3 buckets / KMS CMKs when you first run `apply`.
+  that child account doesn&apos;t initially exist and doesn&apos;t contain S3 buckets / KMS CMKs when you first run `apply`.
   Now you can run `apply` initially with AWS Config and CloudTrail disabled, create all the child accounts, apply a
   security baseline to each child account (including creating the necessary S3 buckets and KMS CMKs), turn AWS Config
   and CloudTrail back on in the root account, and run `apply` again. Also, fixed a bug where this module will now
   use the KMS key specified via the `cloudtrail_kms_key_arn` input parameter rather than creating its own KMS master 
   key for encrypting CloudTrail data. See the Deployment Guide for the recommended configuration if deploying from 
-  scratch. See the Migration Guide if you're updating an existing deployment.
+  scratch. See the Migration Guide if you&apos;re updating an existing deployment.
 
 - Updated `account-baseline-app` so that, depending on the settings you pass in, it can either store AWS Config and
   CloudTrail data locally (e.g., if this is a dedicated account for aggregating logs) or send that data to a separate
   account (e.g., if this is an app account such a dev, stage, or prod). See the Deployment Guide for the recommended
-  configuration if deploying from scratch. See the Migration Guide if you're updating an existing deployment.
+  configuration if deploying from scratch. See the Migration Guide if you&apos;re updating an existing deployment.
 
 - Updated `account-baseline-security` to allow configuring it to send AWS Config and CloudTrail data to an external
-  account (e.g., a separate logs account). Also, fixed a bug where it wasn't setting the `config_linked_accounts`
+  account (e.g., a separate logs account). Also, fixed a bug where it wasn&apos;t setting the `config_linked_accounts`
   parameter correctly, which made AWS Config data not work correctly if trying to use the security account itself for
   aggregation.  See the Deployment Guide for the recommended configuration if deploying from scratch. See the Migration 
-  Guide if you're updating an existing deployment.
+  Guide if you&apos;re updating an existing deployment.
 
 - Updated all `account-baseline-xxx` modules to, by default, send CloudTrail data not only to an S3 bucket (e.g., for 
   aggregation in a logs account) but also CloudWatch Logs in the current account (for easy debugging).
@@ -698,7 +698,7 @@ This release adds a role with permissions only to access support, as required by
 
   
 
-Adds the `sts:TagSession` permission to the `allow_access_to_other_accounts` IAM policy. This will allow [session tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html). As an example, this is used with the ["Configure AWS Credentials" GitHub action](https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions).
+Adds the `sts:TagSession` permission to the `allow_access_to_other_accounts` IAM policy. This will allow [session tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html). As an example, this is used with the [&quot;Configure AWS Credentials&quot; GitHub action](https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions).
 
 
 
@@ -968,6 +968,6 @@ add glue support to vpc-interface-endpoint
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "548b7ea5ff7c73609623a5abfcb9c7d5"
+  "hash": "ac789ee1936e9507828a61a3f5c7f1ae"
 }
 ##DOCS-SOURCER-END -->

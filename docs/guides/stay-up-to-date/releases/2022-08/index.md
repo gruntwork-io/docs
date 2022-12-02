@@ -152,7 +152,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 * Send deployment finished email by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/686
 * Cleanup more preflight checks by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/687
 * Commit code after generating by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/692
-* New error: PrimaryRegion and secret ARN region don't match by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/694
+* New error: PrimaryRegion and secret ARN region don&apos;t match by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/694
 * If on AWS hardware, hardcode the mssfix value to use by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/693
 * Add skip_get_ec2_platforms by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/700
 * Add a link to the deployer infra documentation by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/701
@@ -167,7 +167,7 @@ These commands are intended to be used in conjunction with the `gruntwork vault 
 * Fix bug where the wrong repo was linked to ami build scripts by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/716
 * Make sure to set desired_capacity when min_size is adjusted by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/717
 * Return all preflight errors instead of err directly by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/718
-* Grant GW Ref Arch deployer's CIDR access to shared VPC mgmt by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/719
+* Grant GW Ref Arch deployer&apos;s CIDR access to shared VPC mgmt by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/719
 * Enhance preflight access errors with remediation info by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/721
 * Update PR Template by @rhoboat in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/722
 * Catch CACertFields whose length exceeds 40 by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/734
@@ -355,7 +355,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 - **Unlocked AWS provider v4. Require minimum 3.75.1.**
     - In [v0.39.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.39.0), we missed several module updates in the underlying `terraform-aws-service-catalog` dependency of this repo. 
     - That has been remedied in [gruntwork-io/terraform-aws-service-catalog@v0.96.1 (release)](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.96.1). 
-    - Now we've updated all references in `terraform-aws-cis-service-catalog` to point to the latest, AWS Provider v4 unlocked, version of `terraform-aws-service-catalog`. 
+    - Now we&apos;ve updated all references in `terraform-aws-cis-service-catalog` to point to the latest, AWS Provider v4 unlocked, version of `terraform-aws-service-catalog`. 
     - No configuration changes are required by you. Please see the migration guide below.
 
 
@@ -594,7 +594,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
   
 
-- `modules/logs` updated to only install logrotate from source if the RPM isn't already installed
+- `modules/logs` updated to only install logrotate from source if the RPM isn&apos;t already installed
 
 
 
@@ -733,7 +733,7 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/31
 
   
 
-- Exposed the `cleanup_on_fail` parameter in `k8s-service` module's `helm_release` resource.
+- Exposed the `cleanup_on_fail` parameter in `k8s-service` module&apos;s `helm_release` resource.
 - Updated `landingzone/account-baseline-root` to expose `advanced_event_selectors` for Cloudtrail as `cloudtrail_advanced_event_selectors`.
 - Updated `rds` module to make the `option_group_name` parameter configurable.
 - Updated `jenkins` to allow configuring without a Route53 entry.
@@ -894,6 +894,6 @@ Special thanks to @lorelei-rupp-imprivata for catching this issue!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6406670d9f995af1b0ba7b13fd3d254f"
+  "hash": "39e9aa4d181dc140eeca0b4bc3eaa487"
 }
 ##DOCS-SOURCER-END -->

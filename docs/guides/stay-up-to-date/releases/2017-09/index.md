@@ -43,7 +43,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-asg/pull/10: The `server-group` module now assigns EBS permissions based on the `ServerGroupName` tag instead of the `Name` tag, as the latter is too brittle. This change is backwards incompatible, so we're bumping the patch version number, but unless you are doing something weird and overriding `ServerGroupName` (very unlikely!), you shouldn't have to do anything to make this work with your code.
+  https://github.com/gruntwork-io/module-asg/pull/10: The `server-group` module now assigns EBS permissions based on the `ServerGroupName` tag instead of the `Name` tag, as the latter is too brittle. This change is backwards incompatible, so we&apos;re bumping the patch version number, but unless you are doing something weird and overriding `ServerGroupName` (very unlikely!), you shouldn&apos;t have to do anything to make this work with your code.
 
 </div>
 
@@ -155,24 +155,24 @@ The `iam_groups_for_cross_account_access` input parameter of the `iam-groups` mo
 To use the new version of the `iam-groups` module, instead of specifying a map:
 
 ```hcl
-iam_groups_for_cross_account_access  = {
-  "stage-full-access": "arn:aws:iam::123445678910:role/mgmt-full-access",
-  "prod-read-only-access": "arn:aws:iam::9876543210:role/prod-read-only-access"
-}
+iam_groups_for_cross_account_access  = &#x7B;
+  &quot;stage-full-access&quot;: &quot;arn:aws:iam::123445678910:role/mgmt-full-access&quot;,
+  &quot;prod-read-only-access&quot;: &quot;arn:aws:iam::9876543210:role/prod-read-only-access&quot;
+&#x7D;
 ```
 
 You need to specify a list of maps:
 
 ```hcl
 iam_groups_for_cross_account_access = [
-  {
-    group_name   = "stage-full-access"
-    iam_role_arn = "arn:aws:iam::123445678910:role/mgmt-full-access"
-  },
-  {
-    group_name   = "prod-read-only-access"
-    iam_role_arn = "arn:aws:iam::9876543210:role/prod-read-only-access"
-  }
+  &#x7B;
+    group_name   = &quot;stage-full-access&quot;
+    iam_role_arn = &quot;arn:aws:iam::123445678910:role/mgmt-full-access&quot;
+  &#x7D;,
+  &#x7B;
+    group_name   = &quot;prod-read-only-access&quot;
+    iam_role_arn = &quot;arn:aws:iam::9876543210:role/prod-read-only-access&quot;
+  &#x7D;
 ]
 ```
 
@@ -191,7 +191,7 @@ iam_groups_for_cross_account_access = [
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-server/pull/18: The `attach-eni` script will now automatically configure route tables on Debian servers. This should allow ENIs to work "automagically" just like they do on Amazon Linux. This release is backwards compatible from an API perspective, but we've bumped the minor version number to indicate that it's a fairly large change in terms of behavior.
+  https://github.com/gruntwork-io/module-server/pull/18: The `attach-eni` script will now automatically configure route tables on Debian servers. This should allow ENIs to work &quot;automagically&quot; just like they do on Amazon Linux. This release is backwards compatible from an API perspective, but we&apos;ve bumped the minor version number to indicate that it&apos;s a fairly large change in terms of behavior.
 
 </div>
 
@@ -269,6 +269,6 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "427fd0260ae9bd9d9a4374f1a64ef548"
+  "hash": "8a6374d2defa5976b21ea46fa6fdc485"
 }
 ##DOCS-SOURCER-END -->

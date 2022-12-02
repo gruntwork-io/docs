@@ -170,7 +170,7 @@ Bumped the default versions of various tools in ECS Deploy Runner. The following
 - Kubergrunt: `v0.7.7` =&gt; `v0.7.10`
 - `terraform-aws-ci`: `v0.38.4` =&gt; `v0.38.14`
 
-If you wish to keep the old version, pass in the respective variables as build args when building the container. E.g., to revert to the older terraform version, pass in `--build-arg 'terraform_version=0.15.5` to the `docker build` command.
+If you wish to keep the old version, pass in the respective variables as build args when building the container. E.g., to revert to the older terraform version, pass in `--build-arg &apos;terraform_version=0.15.5` to the `docker build` command.
 
 
 
@@ -437,11 +437,11 @@ This release also updates the following dependency version:
 - Fix line break in middle of paragraph
 - Fix typo: lamda -&gt; lambda **[BACKWARD INCOMPATIBLE].** 
 
-This release fixes a typo in the aws_iam_role_policy resource, changing the name from "network_interfaces_for_lamda" to "network_interfaces_for_lambda". This is a backward incompatible change, requiring re-creation of the aws_iam_role_policy.
+This release fixes a typo in the aws_iam_role_policy resource, changing the name from &quot;network_interfaces_for_lamda&quot; to &quot;network_interfaces_for_lambda&quot;. This is a backward incompatible change, requiring re-creation of the aws_iam_role_policy.
 
 However, the downtime incurred by this operation should be so brief as to be negligible, because the policy will be removed and immediately added back at apply time.
 
-If you wish to avoid this brief downtime, you can use the terraform state mv operation to move your aws_iam_role_policy resource's state via the following command:
+If you wish to avoid this brief downtime, you can use the terraform state mv operation to move your aws_iam_role_policy resource&apos;s state via the following command:
 
 `terraform state mv aws_iam_role_policy.network_interfaces_for_lamda aws_iam_role_policy.network_interfaces_for_lambda`
 
@@ -882,6 +882,6 @@ With this release, we are improving the documentation around how to best use thi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "89c8462dcee2d37b21f2e400a8385b37"
+  "hash": "644c6935c91d12a12769a213f4ed8e94"
 }
 ##DOCS-SOURCER-END -->

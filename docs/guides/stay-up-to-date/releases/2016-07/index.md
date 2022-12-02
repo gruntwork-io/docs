@@ -157,7 +157,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  - Output docs-generator binaries to a different folder during the build so they don't get pushed to the module-ci-public repo
+  - Output docs-generator binaries to a different folder during the build so they don&apos;t get pushed to the module-ci-public repo
 
 
 </div>
@@ -309,7 +309,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - BREAKING CHANGE: `ecs-service` params are renamed to more cleanly separate ELB resources from non-ELB resources by namespacing vars as either `elb_` or not.
-- Rolls back #16 since this can be put in clients' infrastructure-modules repo instead.
+- Rolls back #16 since this can be put in clients&apos; infrastructure-modules repo instead.
 
 
 </div>
@@ -367,7 +367,7 @@ Here are the repos that were updated:
 
   - `ecs-service`: BREAKING CHANGE. The `name` property has been renamed to `service_name`.
 - `ecs-service`: BREAKING CHANGE. The `associate_with_elb` property has been renamed to `is_associated_with_elb` to better indicate this property accepts boolean values.
-- `ecs-service`: BREAKING CHANGE. The `ecs_cluster_vpc_name` property has been added so that the ECS Service's IAM Role is named uniquely per the environment in which it's deployed.
+- `ecs-service`: BREAKING CHANGE. The `ecs_cluster_vpc_name` property has been added so that the ECS Service&apos;s IAM Role is named uniquely per the environment in which it&apos;s deployed.
 - Tests updated to use latest gruntwork-installer.
 
 
@@ -383,21 +383,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - `ecs-cluster` and `ecs-servce` now output `ecs_cluster_arn` instead of `ecs_cluster_id`. This was done to improve clarity about what this var represents.
-
-
-</div>
-
-
-### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.0.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - For `ecs-cluster` and `ecs-server` modules, terraform output values containing a value like `iam_role_name` now output a human-friendly name, not a globally unique string ID as before.
-- Due to [Terraform Bug #3888](https://github.com/hashicorp/terraform/issues/3888), a bug was introduced in an earlier release when using the `ecs-cluster` module from a terraform template that is in turn called by another terraform template. This release fixes that bug by adding an explicit var `allow_ssh` to indicate whether SSH from a specific security group will be allowed. This is redundant but resolves the issue until the Terraform bug is resolved.
 
 
 </div>
@@ -495,7 +480,7 @@ Here are the repos that were updated:
 
   Add two new modules: 
 - `persistent-ebs-volume`: Scripts for mounting and unmounting EBS Volumes on your EC2 Instances for Volumes that need to persist between redeploys of the Instance.
-- `route53-helpers`: Scripts for working with Amazon's DNS Service, Route 53, including a script to add a DNS A record pointing to the instance's IP address.
+- `route53-helpers`: Scripts for working with Amazon&apos;s DNS Service, Route 53, including a script to add a DNS A record pointing to the instance&apos;s IP address.
 
 
 </div>
@@ -568,6 +553,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0f92765d9b29fb4ea65b946448f39c67"
+  "hash": "02d759351302a389627c753ab5d95818"
 }
 ##DOCS-SOURCER-END -->

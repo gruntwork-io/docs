@@ -370,7 +370,7 @@ Update underlying dependencies:
 
 - Adds a locking mechanism to Securityhub tests, to prevent a race condition that happened during concurrent runs of these tests. 
 - Adds `for-production` examples.
-- Updates variable description for the Security Hub's email.
+- Updates variable description for the Security Hub&apos;s email.
 - Cleans up unused variables in `account-baseline-root`.
 - Updates log filters to meet CIS 1.4 recommendations.
 - Updates version references from v1.3 to v1.4 throughout the codebase.
@@ -1168,7 +1168,7 @@ Adds support for tags to the redis module.
   
 
 - You can now configure whether image tags are mutable or not in the `ecr-repos` module using the new `image_tag_mutability` field in the `repositories` input variable.
-- Fix a bug in the `rds` module where it would create a new KMS key, but wasn't actually using it, and was using the default RDS key instead. The API has changed now: to create and use a custom KMS key, set `create_custom_kms_key` to `true`; to use an existing KMS key, set `create_custom_kms_key` to `false` and pass in the KMS key to use via `kms_key_arn`. If `create_custom_kms_key` is `false` and you don't pass in a custom KMS key, the module will use the default RDS key.
+- Fix a bug in the `rds` module where it would create a new KMS key, but wasn&apos;t actually using it, and was using the default RDS key instead. The API has changed now: to create and use a custom KMS key, set `create_custom_kms_key` to `true`; to use an existing KMS key, set `create_custom_kms_key` to `false` and pass in the KMS key to use via `kms_key_arn`. If `create_custom_kms_key` is `false` and you don&apos;t pass in a custom KMS key, the module will use the default RDS key.
 
 
 
@@ -1242,6 +1242,6 @@ Adds support for tags to the redis module.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0aa2a6bf8021abbc9bff10e1736514ca"
+  "hash": "03ee6480a406606590c61d24560b244e"
 }
 ##DOCS-SOURCER-END -->

@@ -53,11 +53,11 @@ Here are the repos that were updated:
 * redis_without_snapshotting_without_auth_token
 * redis_without_snapshotting_with_auth_token
 
-To update your existing Redis cluster ensure you use `terragrunt state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn't deleted when you run `terraform apply`
+To update your existing Redis cluster ensure you use `terragrunt state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn&apos;t deleted when you run `terraform apply`
 
 For example:
 
-To update a Redis cluster that was deployed using the `redis_without_snapshotting` resource to one of the new resources, you'll simply run:
+To update a Redis cluster that was deployed using the `redis_without_snapshotting` resource to one of the new resources, you&apos;ll simply run:
 
 ```
 terragrunt state mv module.redis.aws_elasticache_replication_group.redis_without_snapshotting module.redis.aws_elasticache_replication_group.redis_without_snapshotting_without_auth_token
@@ -98,7 +98,7 @@ terragrunt state mv module.redis.aws_elasticache_replication_group.redis_without
   https://github.com/gruntwork-io/module-data-storage/pull/40, https://github.com/gruntwork-io/module-data-storage/pull/41: The `aurora` module now exposes two new input variables:
 
 * `monitoring_role_arn`: specify an IAM role to associate with the Aurora DB.
-* `monitoring_interval`: enable enhanced monitoring. Note that enhanced monitoring requires IAM permissions. If you don't specify `monitoring_role_arn` yourself, the `aurora` module will add the appropriate permissions automatically. If you do specify a custom `monitoring_role_arn`, make sure it has the IAM permissions required for enhanced monitoring.
+* `monitoring_interval`: enable enhanced monitoring. Note that enhanced monitoring requires IAM permissions. If you don&apos;t specify `monitoring_role_arn` yourself, the `aurora` module will add the appropriate permissions automatically. If you do specify a custom `monitoring_role_arn`, make sure it has the IAM permissions required for enhanced monitoring.
 
 This release also fixes a bug in v0.6.1 where the `monitoring_role_arn` param was not properly used in the `rds` module.
 
@@ -116,7 +116,7 @@ This release also fixes a bug in v0.6.1 where the `monitoring_role_arn` param wa
   https://github.com/gruntwork-io/module-data-storage/pull/39: The `rds` module now exposes two new input variables:
 
 * `monitoring_role_arn`: specify an IAM role to associate with the RDS DB.
-* `monitoring_interval`: enable enhanced monitoring. Note that enhanced monitoring requires IAM permissions. If you don't specify `monitoring_role_arn` yourself, the `rds` module will add the appropriate permissions automatically. If you do specify a custom `monitoring_role_arn`, make sure it has the IAM permissions required for enhanced monitoring.
+* `monitoring_interval`: enable enhanced monitoring. Note that enhanced monitoring requires IAM permissions. If you don&apos;t specify `monitoring_role_arn` yourself, the `rds` module will add the appropriate permissions automatically. If you do specify a custom `monitoring_role_arn`, make sure it has the IAM permissions required for enhanced monitoring.
 
 
 </div>
@@ -155,9 +155,9 @@ Please note that this is a **pre-release**. See [v0.3.0](https://github.com/grun
 - Update Kafka to work with CentOS.
 - You can now assign DNS names to the ENIs used by Kafka, and optionally make ENIs public (though we strongly advise keeping ENIs private for all production deployments)
 - We now bundle the running of [kafka-health-check](https://github.com/andreas-schroeder/kafka-health-check) directly with `run-kafka`. This is because a  more sophisticated health check tool is needed by Kafka in order for Kafka to accurately report its health status to the Elastic Load Balancer. Unfortunately, this required a backwards-incompatible change to the `run-kafka` interface.
-- The configuration files are now easier to customize by using a "variable substitution" paradigm (See the [run-kafka config README](https://github.com/gruntwork-io/package-kafka/tree/master/modules/run-kafka/config) for additional details).
-- We've introduced a `bash-commons` module that consolidates all the common bash functions we use into a single module. This makes all bash scripts shorter and gives us higher-quality more reusable bash functions. Just be sure to `gruntwork-install` the `bash-commons` module! See below for details.
-- For developers of this module, we introduced a number of improved patterns for building and testing the module including running the Kafka cluster in Docker and being able to selectively disable some stages of the automated tests from running (e.g. don't rebuild the AMI every time, just reuse the previous AMI).
+- The configuration files are now easier to customize by using a &quot;variable substitution&quot; paradigm (See the [run-kafka config README](https://github.com/gruntwork-io/package-kafka/tree/master/modules/run-kafka/config) for additional details).
+- We&apos;ve introduced a `bash-commons` module that consolidates all the common bash functions we use into a single module. This makes all bash scripts shorter and gives us higher-quality more reusable bash functions. Just be sure to `gruntwork-install` the `bash-commons` module! See below for details.
+- For developers of this module, we introduced a number of improved patterns for building and testing the module including running the Kafka cluster in Docker and being able to selectively disable some stages of the automated tests from running (e.g. don&apos;t rebuild the AMI every time, just reuse the previous AMI).
 
 Related PRs: #27, #28, #29, #30 
 
@@ -177,7 +177,7 @@ All tests are passing for Kafka, and the following Kafka modules are all product
   
   - One important change is that we now bundle [kafka-health-check](https://github.com/andreas-schroeder/kafka-health-check) directly with `run-kafka`. Previously, this script did not install any health check tool. Kafka-health-check runs locally on a Kafka broker and exposes an HTTP interface (by default, port 8000) that will return an HTTP 200 response when the broker is healthy. 
     
-    Technically, this isn't a backwards-incompatible change because you can still query the Kafka listener directly on port 9092, but we want to make sure you're aware that there is now a better way to check the health status of Kafka.
+    Technically, this isn&apos;t a backwards-incompatible change because you can still query the Kafka listener directly on port 9092, but we want to make sure you&apos;re aware that there is now a better way to check the health status of Kafka.
 
    - In order to accommodate the kafka-health-check tool, we needed to define three separate listeners for Kafka in the [listeners](https://github.com/gruntwork-io/package-kafka/blob/master/modules/run-kafka/config/kafka/server-4.0.x.properties#L45) and [advertised.listeners](https://github.com/gruntwork-io/package-kafka/blob/master/modules/run-kafka/config/kafka/server-4.0.x.properties#L50) properties of the Kafka configuration file:
 
@@ -185,7 +185,7 @@ All tests are passing for Kafka, and the following Kafka modules are all product
      - `INTERNAL`: Accepts traffic from fellow Kafka brokers.
      - `HEALTHCHECK`: Only accepts traffic from `127.0.0.1` and intended for use with kafka-health-check
 
-      We need multiple listeners so that external Kafka clients, fellow Kafka brokers, and the kafka-health-check tool each receive the appropriate "advertised listener" property when connecting to Kafka. This was especially useful for supporting Kafka in a local Docker environment as well.
+      We need multiple listeners so that external Kafka clients, fellow Kafka brokers, and the kafka-health-check tool each receive the appropriate &quot;advertised listener&quot; property when connecting to Kafka. This was especially useful for supporting Kafka in a local Docker environment as well.
 
      #### Example
 
@@ -201,11 +201,11 @@ All tests are passing for Kafka, and the following Kafka modules are all product
       inter.broker.listener.name=INTERNAL
       ```
    
-      This indicates that Kafka will accept connections from any IP address on ports 9092 and 9093, and only from `127.0.0.1` on port 9094. Suppose Kafka were to receive a connection on port 9093. It would then return an "advertised listener" value to the client of `172.21.0.3:9093`, the advertised listener value that corresponds to the `INTERNAL` listener. The idea here is that a Kafka client may have used any IP address that reaches the Kafka broker to connect initially, but going forward the client should specifically use `172.21.0.3:9093` to connect.
+      This indicates that Kafka will accept connections from any IP address on ports 9092 and 9093, and only from `127.0.0.1` on port 9094. Suppose Kafka were to receive a connection on port 9093. It would then return an &quot;advertised listener&quot; value to the client of `172.21.0.3:9093`, the advertised listener value that corresponds to the `INTERNAL` listener. The idea here is that a Kafka client may have used any IP address that reaches the Kafka broker to connect initially, but going forward the client should specifically use `172.21.0.3:9093` to connect.
 
    - Finally, the interface to `run-kafka` has changed. It now requires the following arguments:
-      - `--config-path "/path/to/kafka.properties"` 
-      - `--log4j-config-path "/path/to/log4j.properties"`
+      - `--config-path &quot;/path/to/kafka.properties&quot;` 
+      - `--log4j-config-path &quot;/path/to/log4j.properties&quot;`
 
       In addition, there are a some new arguments. See the [updated run-kafka docs](https://github.com/gruntwork-io/package-kafka/blob/master/modules/run-kafka/bin/run-kafka#L84)
 
@@ -217,21 +217,21 @@ All tests are passing for Kafka, and the following Kafka modules are all product
 
    - `kafka-iam-permissions`: We fixed and issue where Kafka brokers did not have the appropriate IAM permissions to discover the Elastic Network Interfaces (ENIs) of themselves or other Kafka brokers.
 
-   - `kafka-cluster`: We added the ability to assign a DNS name and public IP to each Elastic Network Interface. Note that we NOT recommend exposing Kafka on public IPs for production usage. Note also that Kafka does not listen over HTTPS, so DNS names are a convenient way to address a Kafka cluster, but you'll still need to use TCP-based Kafka clients to connect. We'll soon be releasing REST Proxy, which does expose an HTTPS interface to Kafka.
+   - `kafka-cluster`: We added the ability to assign a DNS name and public IP to each Elastic Network Interface. Note that we NOT recommend exposing Kafka on public IPs for production usage. Note also that Kafka does not listen over HTTPS, so DNS names are a convenient way to address a Kafka cluster, but you&apos;ll still need to use TCP-based Kafka clients to connect. We&apos;ll soon be releasing REST Proxy, which does expose an HTTPS interface to Kafka.
        - If you wish to assign a DNS name to each Kafka broker, set the `var.dns_name_common_portion` or `var.dns_names` variables, and also the `var.route53_hosted_zone_id` variable.
-       - To expose Kafka's ENIs publicly, set `var.enable_elastic_ips` to `true`. (WARNING: Do not do this in a production setting!)
+       - To expose Kafka&apos;s ENIs publicly, set `var.enable_elastic_ips` to `true`. (WARNING: Do not do this in a production setting!)
 
 1. For your Packer template, make the following updates:
  
-   - You'll now need to install the `bash-commons` module from this repo. That's because almost all bash scripts in this repo now use the common bash functions in bash-commons rather than duplicating the same bash functions each time.
+   - You&apos;ll now need to install the `bash-commons` module from this repo. That&apos;s because almost all bash scripts in this repo now use the common bash functions in bash-commons rather than duplicating the same bash functions each time.
 
    To install this, add the following line to your Packer template above all the other `gruntwork-install` calls for `package-kafka`:
 
    ```bash
-    gruntwork-install --module-name 'bash-commons' --tag 'v0.3.0' --repo https://github.com/gruntwork-io/package-kafka
+    gruntwork-install --module-name &apos;bash-commons&apos; --tag &apos;v0.3.0&apos; --repo https://github.com/gruntwork-io/package-kafka
    ```
 
-   - You'll need to do the same when installing Zookeeper. See the [zookeeper-ami example](https://github.com/gruntwork-io/package-kafka/blob/master/examples/zookeeper-ami/configure-zookeeper-server.sh#L8)
+   - You&apos;ll need to do the same when installing Zookeeper. See the [zookeeper-ami example](https://github.com/gruntwork-io/package-kafka/blob/master/examples/zookeeper-ami/configure-zookeeper-server.sh#L8)
 
    - Upgrade to the newest `install-kafka` script, which now downloads Kafka v1.0.0 and validates the downloaded binary with the Apacha Kafka GPG key.
 
@@ -239,9 +239,9 @@ All tests are passing for Kafka, and the following Kafka modules are all product
 
 1. Next, update the user data for your Kafka brokers by making sure your arguments to `run-kafka` match the new `run-kafka` interface. 
 
-   Note that the default values for `run-kafka` will "just work", however if you previously added optional arguments, you may need to update the argument values or argument names you pass in. See the [kafka user data example](https://github.com/gruntwork-io/package-kafka/blob/master/examples/kafka-zookeeper-standalone-clusters/user-data/kafka-user-data.sh#L39-L59) for a good reference, as well as the [updated run-kafka docs](https://github.com/gruntwork-io/package-kafka/blob/master/modules/run-kafka/bin/run-kafka#L84).
+   Note that the default values for `run-kafka` will &quot;just work&quot;, however if you previously added optional arguments, you may need to update the argument values or argument names you pass in. See the [kafka user data example](https://github.com/gruntwork-io/package-kafka/blob/master/examples/kafka-zookeeper-standalone-clusters/user-data/kafka-user-data.sh#L39-L59) for a good reference, as well as the [updated run-kafka docs](https://github.com/gruntwork-io/package-kafka/blob/master/modules/run-kafka/bin/run-kafka#L84).
 
-1. Finally, we've updated the way that configuration files are customized for Kafka. See the new [run-kafka config README](https://github.com/gruntwork-io/package-kafka/tree/master/modules/run-kafka/config) for additional details.
+1. Finally, we&apos;ve updated the way that configuration files are customized for Kafka. See the new [run-kafka config README](https://github.com/gruntwork-io/package-kafka/tree/master/modules/run-kafka/config) for additional details.
 
 </div>
 
@@ -396,6 +396,6 @@ The main motivation for locking down EC2 metadata is as follows:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6649cb31f081d2307e950c928bae22dd"
+  "hash": "0e05e70d5b1cd9e6f7ce27c4137b2719"
 }
 ##DOCS-SOURCER-END -->

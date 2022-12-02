@@ -120,9 +120,9 @@ Here are the repos that were updated:
 - `redis`: Adds 4 new `aws_replication_group` permutations to the Redis module, to workaround the inability to use interpolations in `ignore_changes` field in a `lifecycle` block (hashicorp/terraform#3116) which will have been the ideal solution to ignoring the `number_cache_cluster` field when in `cluster_mode` to prevent `terraform plan` diffs due to cluster resizing.
 
 
-This release is backwards incompatible and to update an existing Redis cluster, use `terragrunt state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn't deleted when you run `terraform apply`.
+This release is backwards incompatible and to update an existing Redis cluster, use `terragrunt state mv &lt;old_address&gt; &lt;new_address&gt;` to ensure that your cluster isn&apos;t deleted when you run `terraform apply`.
 
-For example, to migrate a cluster mode Redis cluster deployed via the `aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token` resource, you'd simply run:
+For example, to migrate a cluster mode Redis cluster deployed via the `aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token` resource, you&apos;d simply run:
 
 ```bash
 terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token module.&lt;your-module-name&gt;.aws_elasticache_replication_group.redis_with_snapshotting_without_auth_token_with_cluster_mode 
@@ -170,7 +170,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 * `git-helpers`
 
 
-* The `git-add-commit-push` script will now retry on the "failed to update ref" error, which seems to come up occasionally.
+* The `git-add-commit-push` script will now retry on the &quot;failed to update ref&quot; error, which seems to come up occasionally.
 
 
 * https://github.com/gruntwork-io/module-ci/pull/82
@@ -278,7 +278,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 * `ecs-daemon-service`
 
 
-* The `ecs-daemon-service` module now exposes a `deployment_minimum_healthy_percent` parameter you can use to set the lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment.
+* The `ecs-daemon-service` module now exposes a `deployment_minimum_healthy_percent` parameter you can use to set the lower limit (as a percentage of the service&apos;s desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment.
 
 
 * https://github.com/gruntwork-io/module-ecs/pull/111
@@ -318,7 +318,7 @@ terraform state mv module.&lt;your-module-name&gt;.aws_elasticache_replication_g
 * `ecs-service-with-discovery` **[Breaking Change]**
 
 
-* The `ecs-service-with-discovery` module now sets the default family name for the ECS Task Definition to `${var.service_name}` rather than `"${var.service_name}-task-definition"` to be consistent with the other ECS modules. If you wish to retain the old naming convention, you can now explicitly set the family name using the new `task_definition_family_name` parameter.
+* The `ecs-service-with-discovery` module now sets the default family name for the ECS Task Definition to `$&#x7B;var.service_name&#x7D;` rather than `&quot;$&#x7B;var.service_name&#x7D;-task-definition&quot;` to be consistent with the other ECS modules. If you wish to retain the old naming convention, you can now explicitly set the family name using the new `task_definition_family_name` parameter.
 
 
 * https://github.com/gruntwork-io/module-ecs/pull/108
@@ -433,7 +433,7 @@ You can find examples of how to do this upgrade in [this commit](https://github.
 * `alb` **[BREAKING CHANGE]**
 
 
-* The ALB requires all listeners to have a "default action" that defines what to do for a request that doesn't match any listener rule. In the past, the only supported action was to forward requests to a target group, so we used to forward to an empty "black hole" target group, resulting in a 503. The ALB now supports fixed responses, so we've updated the default action of the `alb` module to return a blank 404 page, which is a more appropriate status code. 
+* The ALB requires all listeners to have a &quot;default action&quot; that defines what to do for a request that doesn&apos;t match any listener rule. In the past, the only supported action was to forward requests to a target group, so we used to forward to an empty &quot;black hole&quot; target group, resulting in a 503. The ALB now supports fixed responses, so we&apos;ve updated the default action of the `alb` module to return a blank 404 page, which is a more appropriate status code. 
 
 
 For most teams, the new 404 behavior is better, so no code changes will be necessary. However, if you wish to override this 404 behavior, you have two options:
@@ -546,7 +546,7 @@ This release is backwards incompatible and to update an existing metric widget, 
 * `fail2ban`
 
 
-* Add `DEBIAN_FRONTEND=noninteractive` to calls to `apt-get` so that the install doesn't hang during automated builds. Use `systemctl` instead of `update-rc.d` to boot `fail2ban` on Ubuntu.
+* Add `DEBIAN_FRONTEND=noninteractive` to calls to `apt-get` so that the install doesn&apos;t hang during automated builds. Use `systemctl` instead of `update-rc.d` to boot `fail2ban` on Ubuntu.
 
 
 * https://github.com/gruntwork-io/module-security/pull/125
@@ -811,7 +811,7 @@ This release introduces modules that support running python PEX files in Terrafo
 * `run-health-checker`
 
 
-* The `run-health-checker` module will now properly pass healthchecks for single-node ZooKeeper clusters running in "standalone" mode (e.g., in pre-prod environments).
+* The `run-health-checker` module will now properly pass healthchecks for single-node ZooKeeper clusters running in &quot;standalone&quot; mode (e.g., in pre-prod environments).
 
 
 * https://github.com/gruntwork-io/package-zookeeper/pull/38
@@ -903,6 +903,6 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dd899d78c485aff364599ddcd36a7902"
+  "hash": "d2ddc44546d039c7caefd791a9c0e757"
 }
 ##DOCS-SOURCER-END -->

@@ -240,7 +240,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/28: The `aurora` module now exposes `engine` and `engine_version` parameters so you have more control over what type of Aurora engine you're running (e.g., you can use the Postgres-compatible one).
+  https://github.com/gruntwork-io/module-data-storage/pull/28: The `aurora` module now exposes `engine` and `engine_version` parameters so you have more control over what type of Aurora engine you&apos;re running (e.g., you can use the Postgres-compatible one).
 
 </div>
 
@@ -274,26 +274,26 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-load-balancer/pull/20: We've converted the `https_listener_ports_and_ssl_certs` and `https_listener_ports_and_acm_ssl_certs` input variables on the `alb` module from maps to lists of maps. The problem with using maps is that in Go—which Terraform uses under the hood—the iteration order for maps is (intentionally) randomized, so with multiple ports and certs in these variables, you would get spurious diffs in the `plan` command as Terraform would swap their order and assume listeners had to created/destroyed. By using lists, we can make the sort order consistent.
+  https://github.com/gruntwork-io/module-load-balancer/pull/20: We&apos;ve converted the `https_listener_ports_and_ssl_certs` and `https_listener_ports_and_acm_ssl_certs` input variables on the `alb` module from maps to lists of maps. The problem with using maps is that in Go—which Terraform uses under the hood—the iteration order for maps is (intentionally) randomized, so with multiple ports and certs in these variables, you would get spurious diffs in the `plan` command as Terraform would swap their order and assume listeners had to created/destroyed. By using lists, we can make the sort order consistent.
 
 **Upgrade instructions for https_listener_ports_and_ssl_certs**
 
 Old `https_listener_ports_and_ssl_certs` format:
 
 ```hcl
-https_listener_ports_and_ssl_certs = {
-  "443" = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
-}
+https_listener_ports_and_ssl_certs = &#x7B;
+  &quot;443&quot; = &quot;arn:aws:iam::123456789012:server-certificate/ProdServerCert&quot;
+&#x7D;
 ```
 
 New `https_listener_ports_and_ssl_certs` format:
 
 ```hcl
 https_listener_ports_and_ssl_certs = [
-  {
+  &#x7B;
     port = 443
-    tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
-  }
+    tls_arn = &quot;arn:aws:iam::123456789012:server-certificate/ProdServerCert&quot;
+  &#x7D;
 ]
 ```
 
@@ -302,19 +302,19 @@ https_listener_ports_and_ssl_certs = [
 Old `https_listener_ports_and_acm_ssl_certs` format:
 
 ```hcl
-https_listener_ports_and_acm_ssl_certs = {
-  "443" = "*.foo.com"
-}
+https_listener_ports_and_acm_ssl_certs = &#x7B;
+  &quot;443&quot; = &quot;*.foo.com&quot;
+&#x7D;
 ```
 
 New `https_listener_ports_and_acm_ssl_certs` format:
 
 ```hcl
 https_listener_ports_and_acm_ssl_certs = [
-  {
+  &#x7B;
     port = 443
-    tls_domain_name = "*.foo.com"
-  }
+    tls_domain_name = &quot;*.foo.com&quot;
+  &#x7D;
 ]
 ```
 
@@ -333,7 +333,7 @@ https_listener_ports_and_acm_ssl_certs = [
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-mongodb/pull/24: If you set the `cluster_size` param of the  `mongodb-cluster` module to 0, it will now create no resources whatsoever. Since Terraform doesn't allow you to use `count` with `module` directly, this provides a convenient way to disable the `mongodb-cluster` module in certain environments (e.g., disable the backup jobs in pre-prod environments).
+  https://github.com/gruntwork-io/package-mongodb/pull/24: If you set the `cluster_size` param of the  `mongodb-cluster` module to 0, it will now create no resources whatsoever. Since Terraform doesn&apos;t allow you to use `count` with `module` directly, this provides a convenient way to disable the `mongodb-cluster` module in certain environments (e.g., disable the backup jobs in pre-prod environments).
 
 </div>
 
@@ -389,7 +389,7 @@ https_listener_ports_and_acm_ssl_certs = [
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/59: `ssh-iam` will now do a better job of reporting error messages if it reads an OS user that is missing the "comment field", which ssh-iam uses for storing the IAM user name.
+  https://github.com/gruntwork-io/module-security/pull/59: `ssh-iam` will now do a better job of reporting error messages if it reads an OS user that is missing the &quot;comment field&quot;, which ssh-iam uses for storing the IAM user name.
 
 </div>
 
@@ -476,6 +476,6 @@ https_listener_ports_and_acm_ssl_certs = [
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "31a4f6aabd9dca89f36c64fd4a86b86a"
+  "hash": "80306ca869ea0df18de235753d5520e8"
 }
 ##DOCS-SOURCER-END -->

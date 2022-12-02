@@ -12,10 +12,12 @@ Here are the repos that were updated:
 
 - [aws-sample-app](#aws-sample-app)
 - [terraform-aws-ci](#terraform-aws-ci)
+- [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-security](#terraform-aws-security)
+- [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 
@@ -33,7 +35,7 @@ Here are the repos that were updated:
 
   * Fix unit tests by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/33
 * Bump redis from 3.0.2 to 3.1.1 by @dependabot in https://github.com/gruntwork-io/aws-sample-app/pull/27
-* Add GitHub PR & Issue Templates by @robmorgan in https://github.com/gruntwork-io/aws-sample-app/pull/32
+* Add GitHub PR &amp; Issue Templates by @robmorgan in https://github.com/gruntwork-io/aws-sample-app/pull/32
 * [skip ci] Update codeowners to reflect current owners by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/35
 * Update deprecated circleci images to latest by @yorinasub17 in https://github.com/gruntwork-io/aws-sample-app/pull/36
 * Data source: use aws_subnets over aws_subnet_ids by @rhoboat in https://github.com/gruntwork-io/aws-sample-app/pull/39
@@ -71,7 +73,7 @@ Here are the repos that were updated:
   
 
 - Update Centos 7 image used in examples
-- Replace 'local readonly' with 'local -r' in bash scripts
+- Replace &apos;local readonly&apos; with &apos;local -r&apos; in bash scripts
 
 
 
@@ -90,6 +92,35 @@ Here are the repos that were updated:
 
 - Improved error handling during cloning of git repositories in `build-packer-artifact`
 
+
+
+
+
+
+</div>
+
+
+
+## terraform-aws-cis-service-catalog
+
+
+### [v0.42.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/24/2022 | Modules affected: data-stores/rds, landingzone/account-baseline-app, landingzone/account-baseline-root, landingzone/account-baseline-security | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Update References to CIS v1.5
+- Added support for new AWS region (`me-central-1` UAE) to multiregion modules
+- Updated `terraform-aws-security` versions to `v0.66.0`
+- Updated `terraform-aws-service-catalog` versions to `v0.98.0`
+- Use BuildKit pattern for passing secrets
+- Make changes to deprecate set-output command in Github action
+- Update dependencies to the latest versions.
 
 
 
@@ -124,6 +155,22 @@ Here are the repos that were updated:
 
 
 ## terraform-aws-eks
+
+
+### [v0.55.2](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/23/2022 | Modules affected: eks-scripts | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Install Python libraries as part of install process in `eks-scripts`
+
+
+</div>
 
 
 ### [v0.55.1](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.1)
@@ -183,6 +230,21 @@ Here are the repos that were updated:
 ## terraform-aws-security
 
 
+### [v0.67.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/29/2022 | Modules affected: ntp | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- Switching NTP to chrony and configuring
+
+
+</div>
+
+
 ### [v0.66.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -221,7 +283,65 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 
 
 
+## terraform-aws-server
+
+
+### [v0.15.3](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/28/2022 | Modules affected: attach-eni, persistent-ebs-volume | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Converted Packer examples from json to hcl
+
+
+
+
+</div>
+
+
+### [v0.15.2](https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/23/2022 | Modules affected: single-server | <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Added `user_data_replace_on_change` var to allow for enabling or disabling the EC2 auto-replace when a change is made to user-data
+
+
+
+</div>
+
+
+
 ## terraform-aws-service-catalog
+
+
+### [v0.99.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 11/24/2022 | Modules affected: services/k8s-service, services/eks-cluster, services/eks-core-services, services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add subPath processing for ConfigMaps and Secrets
+- Update `terraform-aws-eks` to `v0.55.2` - fix Python dependency issue with new AWS EKS optimized AMIs
+- Add patch for CIS RDS module
+
+
+
+</div>
 
 
 ### [v0.98.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.98.0)
@@ -323,6 +443,6 @@ Note: Previously, importing aws_iam_user_login_profiles would trigger a password
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "62d11e8a16c238815561a4f6348aa902"
+  "hash": "97210b9a047d414110644d4b90d86433"
 }
 ##DOCS-SOURCER-END -->

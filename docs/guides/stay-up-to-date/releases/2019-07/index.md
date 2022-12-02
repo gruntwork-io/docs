@@ -79,7 +79,7 @@ Here are the repos that were updated:
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -104,7 +104,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -129,7 +129,7 @@ This release updates `terraform-helpers/terraform-update-variable` for better te
 
 - The vars file that it searches for by default is now `terragrunt.hcl` instead of `terraform.tfvars`.
 - The vars file argument is now `--vars-path`, as opposed to `--tfvars-file`.
-- The quoting rules have changed to support more complex types. Now, instead of auto injecting quotes, it will inject the value literally. E.g if you pass in `terraform-update-variable --name "foo" --value "9"`, this will inject the string `foo = 9` instead of `foo = "9"`. If you want the old behavior, you will need to pass in the value quoted: `terraform-update-variable --name "foo" --value "\"9\""`
+- The quoting rules have changed to support more complex types. Now, instead of auto injecting quotes, it will inject the value literally. E.g if you pass in `terraform-update-variable --name &quot;foo&quot; --value &quot;9&quot;`, this will inject the string `foo = 9` instead of `foo = &quot;9&quot;`. If you want the old behavior, you will need to pass in the value quoted: `terraform-update-variable --name &quot;foo&quot; --value &quot;\&quot;9\&quot;&quot;`
 - The resulting file will now be passed through `terraform fmt` so that it is formatted.
 
 
@@ -231,7 +231,7 @@ Fixes a bug where `var.allow_incoming_http_from_security_group_ids` was not crea
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -256,7 +256,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -288,7 +288,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 * https://github.com/gruntwork-io/package-kafka/pull/59
@@ -314,7 +314,7 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `vars.tf` file to double check if the 0 value has been converted to a `null`.
 
 
 
@@ -514,7 +514,7 @@ s3-cloud front [**BACKWARDS INCOMPATIBLE**]
 
 All the module variables have been updated to use concrete types based on the new type system introduced in terraform 0.12.0. You can learn more about the types in [the official documentation](https://www.terraform.io/docs/configuration/types.html).
 
-Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`""` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
+Note that as part of this, we switched to using `null` to indicate unset values when passing them through to resources. If you were previously using a 0 value (`&quot;&quot;` for strings and `0` for numbers), review the module `variables.tf` file to double check if the 0 value has been converted to a `null`.
 
 **Related links**
 
@@ -606,6 +606,6 @@ Starting this release, all the modules are tested and verified to work with Ubun
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5de5dc1eff2feff3a6503810908b6b48"
+  "hash": "e8a622ecc024f396e52fcdcfc03e5925"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,6 @@ Here are the repos that were updated:
 - [boilerplate](#boilerplate)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-vpc](#terraform-aws-vpc)
 
 
@@ -79,25 +78,7 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   - The `ecs-service` module now supports [canary deployment](http://martinfowler.com/bliki/CanaryRelease.html)! To use it, set the `canary_task_arn`  and `desired_number_of_canary_tasks_to_run` parameters. See [How do I do a canary deployment?](https://github.com/gruntwork-io/module-ecs/tree/master/modules/ecs-service#how-do-i-do-a-canary-deployment) and the [docker-service-with-canary-deployment example](https://github.com/gruntwork-io/module-ecs/tree/master/examples/docker-service-with-canary-deployment) for details.
-- The `ecs-service` module's `service_with_elb_arn` and `service_without_elb_arn` output variables have been removed. Instead, use the `service_arn` and `canary_service_arn` outputs.
-
-
-</div>
-
-
-
-## terraform-aws-security
-
-
-### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/1/2016 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.2.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - NEW MODULE: In this release, we introduce the `cloudtrail` module, a streamlined way to setup [AWS CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)!
+- The `ecs-service` module&apos;s `service_with_elb_arn` and `service_without_elb_arn` output variables have been removed. Instead, use the `service_arn` and `canary_service_arn` outputs.
 
 
 </div>
@@ -126,6 +107,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b2a664fd844b6eea562b74440b58acd0"
+  "hash": "2751fc58bc5f89373f2b923bc2c1b8cb"
 }
 ##DOCS-SOURCER-END -->

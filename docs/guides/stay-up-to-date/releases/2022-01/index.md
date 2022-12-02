@@ -40,7 +40,7 @@ Here are the repos that were updated:
 
   https://github.com/gruntwork-io/repo-copier/pull/112: 
 
-* You can now have `repo-copier` append a suffix to the name of each copied repo using the new `--repo-name-suffix` parameter. This is useful to ensure each repo name is unique and doesn't conflict with any repos you already have.
+* You can now have `repo-copier` append a suffix to the name of each copied repo using the new `--repo-name-suffix` parameter. This is useful to ensure each repo name is unique and doesn&apos;t conflict with any repos you already have.
 * Improve error handling on GitLab repos to make it clearer you must specify a group in the URL, not a repo or user.
 
 </div>
@@ -58,7 +58,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  What's Changed
+  What&apos;s Changed
 ====================
 - f73b8cb Documentation for tfenv and upgrading terraform. (#555)
 
@@ -87,7 +87,7 @@ Here are the repos that were updated:
 * Update python circleci docker image to nextgen by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/506
 * Update QUICK_START.md by @bwhaley in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/509
 * Allow generating code as part of parseform command by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/510
-* Add GitHub PR & Issue Templates by @robmorgan in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/493
+* Add GitHub PR &amp; Issue Templates by @robmorgan in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/493
 * Add ed25519 and ecdsa ssh key to known hosts for testing by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/512
 * Clarify docs in 06-adding-a-new-account.md by @rhoboat in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/515
 * [FEATURE BRANCH] Multiple include based DRY Terragrunt by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/438
@@ -104,14 +104,14 @@ Here are the repos that were updated:
 * Configure allow_ssh_from_security_group_ids in eks cluster module by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/526
 * Give EDR permissions to manage itself by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/530
 * Fix to handle data files in _envcommon folder by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/532
-* Fix bug where envcommon detector doesn't handle nochange well by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/533
+* Fix bug where envcommon detector doesn&apos;t handle nochange well by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/533
 * Fix the infrastructure live repo URL to use https when using gitlab or github actions for CI by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/534
 * macie2:Describe* is necessary for CIS by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/544
 * Enable cloudwatch logs exports and deletion protection by @zackproser in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/548
 * Avoid ECR repo name collisions during tests by @bwhaley in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/547
 * Access logging on the Terraform state bucket by @bwhaley in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/546
 * [skip ci] Update codeowners to reflect current owners by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/550
-* Replace 'renovate.json' with 'patcher' in comments by @infraredgirl in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/549
+* Replace &apos;renovate.json&apos; with &apos;patcher&apos; in comments by @infraredgirl in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/549
 * Combine renovate bot updates by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/551
 * Plumb through custom VCS endpoints for GitLab by @bwhaley in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/462
 * More renovatebot PRs by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/552
@@ -185,7 +185,7 @@ Added `permissions_boundary` to `ecs-deploy-runner` ECS Task IAM role and ECS Ta
     - This also necessitated a change to `gruntwork-module-circieci-helpers` module in the script `configure-environment-for-gruntwork-module`, which configures the CI build environment for typical Gruntwork modules. It now installs `tfenv` and includes a new configuration option `--tfenv-version`, which is enabled by default. If also configured to install `terraform`, this script will use `tfenv` to install and manage that `terraform` version. Because this change is backard incompatible, please see the migration guide below.
 
 
-Most users will not be affected by the change to `configure-environment-for-gruntwork-module`. If you do not need terraform installed in your environment you would pass in `--terraform-version NONE`, and now you also must pass in `--tfenv-version NONE`. If you don't pass in `--tfenv-version NONE`, it will install the latest version of `tfenv`. Note: if you want to install terraform without tfenv, you would only set `--tfenv-version NONE`, and it will still install terraform as usual.
+Most users will not be affected by the change to `configure-environment-for-gruntwork-module`. If you do not need terraform installed in your environment you would pass in `--terraform-version NONE`, and now you also must pass in `--tfenv-version NONE`. If you don&apos;t pass in `--tfenv-version NONE`, it will install the latest version of `tfenv`. Note: if you want to install terraform without tfenv, you would only set `--tfenv-version NONE`, and it will still install terraform as usual.
 
 
 - https://github.com/gruntwork-io/terraform-aws-ci/pull/386
@@ -349,7 +349,7 @@ Updated dependency `gruntwork-io/terraform-aws-service-catalog` to `v0.70.1`. As
 
   
 
-- Updated `aws` provider version constraints to ensure Terraform doesn't use one with a bug around launch templates.
+- Updated `aws` provider version constraints to ensure Terraform doesn&apos;t use one with a bug around launch templates.
 - Added support for configuring prefix delegation mode on AWS VPC CNI. Prefix delegation mode increases the number of secondary IPs that can be provisioned to an EC2 instance, greatly expanding the number of Pods that can be scheduled on a node. Refer to [the updated documentation](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane#how-do-i-increase-the-number-of-pods-for-my-worker-nodes) for more details.
 
 Note that this change is functionally backward compatible, but due to complexities around Kubernetes versioning, some of the settings may not be available across all Kubernetes versions, and therefore this release is marked as backward incompatible out of caution. If you run into errors, or have issues with the AWS VPC CNI as a result of upgrading to this release, you can disable the prefix delegation management in the module by setting `var.use_vpc_cni_customize_script` input variable to `false`.
@@ -492,7 +492,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
   
 
-- `cloudwatch-custom-metrics-iam-policy`: Added comment explaining why "ec2:DescribeTags" is needed
+- `cloudwatch-custom-metrics-iam-policy`: Added comment explaining why &quot;ec2:DescribeTags&quot; is needed
 - Updated `sns-to-slack` module to use python 3.7 instead of 2.7.
 
 
@@ -514,7 +514,7 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
   
 
-- openvpn-admin: Fixes a bug that was causing `openvpn-admin` to return the instance's private IPv4 address. `openvpn-admin` now correctly returns the instance's public IPv4 address.
+- openvpn-admin: Fixes a bug that was causing `openvpn-admin` to return the instance&apos;s private IPv4 address. `openvpn-admin` now correctly returns the instance&apos;s public IPv4 address.
 
 
 
@@ -533,11 +533,11 @@ Note that this is **a backward incompatible change**: a naive update to this ver
 
   
 
-- Require IMDSv2 in aws_launch_configuration. This release allows you to configure the AWS Instance Metadata Service's (IMDS) state (enabled or disabled) and which versions of this endpoint to allow the use of via Terraform and these new variables: 
+- Require IMDSv2 in aws_launch_configuration. This release allows you to configure the AWS Instance Metadata Service&apos;s (IMDS) state (enabled or disabled) and which versions of this endpoint to allow the use of via Terraform and these new variables: 
 - `var.enable_imds`
 - `var.use_imdsv1`
 
-In addition, `var.use_imdsv1` defaults to `false` to enforce use of the preferred IMDSv2 endpoint. If you don't need to also use IMDSv1, we recommend leaving this variable set to `false`, and updating your `start-openvpn-admin` script to this release tag. 
+In addition, `var.use_imdsv1` defaults to `false` to enforce use of the preferred IMDSv2 endpoint. If you don&apos;t need to also use IMDSv1, we recommend leaving this variable set to `false`, and updating your `start-openvpn-admin` script to this release tag. 
 
 Note that if you: 
 1. are upgrading to this tag 
@@ -669,7 +669,7 @@ Updated to generate DSA-like Diffie-Hellman parameters (uses weak prime). The we
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-**NOTE: This release is functionally backward compatible, but requires an updated aws provider version to work (&gt;= 3.64.0). For most users, this won't be an issue and Terraform will automatically update to the required provider version, but if you have wrapper modules that depend on an older aws provider version, you will need to update your wrapper module to be compatible with the newer provider before you can bump to this version.**
+**NOTE: This release is functionally backward compatible, but requires an updated aws provider version to work (&gt;= 3.64.0). For most users, this won&apos;t be an issue and Terraform will automatically update to the required provider version, but if you have wrapper modules that depend on an older aws provider version, you will need to update your wrapper module to be compatible with the newer provider before you can bump to this version.**
 
 
 - Added support for replicating a key cross region. Refer to [the updated documentation](https://github.com/gruntwork-io/terraform-aws-security/blob/master/modules/kms-master-key-multi-region/core-concepts.md#what-is-the-difference-between-creating-one-key-in-all-regions-and-creating-a-single-all-region-key) of `kms-master-key-multi-region` for more information.
@@ -992,7 +992,7 @@ Update various dependencies.
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   
-- Now the creation of the Internet Gateway is optional. We can have public subnets and still disable the IGW by setting the variable `enable_igw` to `false` (it's `true` by default). This fixes #150.
+- Now the creation of the Internet Gateway is optional. We can have public subnets and still disable the IGW by setting the variable `enable_igw` to `false` (it&apos;s `true` by default). This fixes #150.
 
 
 
@@ -1032,6 +1032,6 @@ route_table_deletion_timeout
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5863697853b2f2adac6487d5ba309ecb"
+  "hash": "be0b72d65e49a2b027c8ed65afa16089"
 }
 ##DOCS-SOURCER-END -->

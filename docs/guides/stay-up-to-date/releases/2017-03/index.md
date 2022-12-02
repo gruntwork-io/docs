@@ -76,9 +76,9 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ci/pull/22: The `scheduled-lambda-job` module now makes running in a VPC optional. It exposes a new input variable called `run_in_vpc` which, if set to true, will give the lambda function access to a VPC you specify via the `vpc_id` and `subnet_ids` input variables. However, by default, it's set to false, and you can omit `vpc_id` and `subnet_ids`. 
+  https://github.com/gruntwork-io/module-ci/pull/22: The `scheduled-lambda-job` module now makes running in a VPC optional. It exposes a new input variable called `run_in_vpc` which, if set to true, will give the lambda function access to a VPC you specify via the `vpc_id` and `subnet_ids` input variables. However, by default, it&apos;s set to false, and you can omit `vpc_id` and `subnet_ids`. 
 
-This is useful for lambda functions that use the AWS APIs and don't need direct access to a VPC anyway. Moreover, a recent [bug in Terraform](https://github.com/hashicorp/terraform/issues/10272) causes issues when you try to delete a lambda function that was deployed into a VPC.
+This is useful for lambda functions that use the AWS APIs and don&apos;t need direct access to a VPC anyway. Moreover, a recent [bug in Terraform](https://github.com/hashicorp/terraform/issues/10272) causes issues when you try to delete a lambda function that was deployed into a VPC.
 
 </div>
 
@@ -108,7 +108,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/14: To allow the bastion host to talk to RDS or Aurora, you now have to explicitly set the `allow_connections_from_bastion_host` input variable to true. Before, we only exposed the `bastion_host_security_group_id` input variable, but if you fed dynamic data into that variable (e.g. from a `terraform_remote_state` data source), you'd get an error. This is now fixed.
+  https://github.com/gruntwork-io/module-data-storage/pull/14: To allow the bastion host to talk to RDS or Aurora, you now have to explicitly set the `allow_connections_from_bastion_host` input variable to true. Before, we only exposed the `bastion_host_security_group_id` input variable, but if you fed dynamic data into that variable (e.g. from a `terraform_remote_state` data source), you&apos;d get an error. This is now fixed.
 
 </div>
 
@@ -121,7 +121,7 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/13: The aurora module no longer specifies availability zones when creating an Aurora cluster. This is a workaround for a [strange issue](https://forums.aws.amazon.com/thread.jspa?messageID=771183&#771183) where you get the error along the lines of "Availability zone ‘us-east-1c’ is unavailable in this region, please choose another zone set."
+  https://github.com/gruntwork-io/module-data-storage/pull/13: The aurora module no longer specifies availability zones when creating an Aurora cluster. This is a workaround for a [strange issue](https://forums.aws.amazon.com/thread.jspa?messageID=771183&amp;#771183) where you get the error along the lines of &quot;Availability zone ‘us-east-1c’ is unavailable in this region, please choose another zone set.&quot;
 
 </div>
 
@@ -134,13 +134,13 @@ This is useful for lambda functions that use the AWS APIs and don't need direct 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-data-storage/pull/12: We've added four new modules:
+  https://github.com/gruntwork-io/module-data-storage/pull/12: We&apos;ve added four new modules:
 
-1. [lambda-create-snapshot](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-create-snapshot): A lambda function that runs on a scheduled basis to take snapshots of an RDS DB. Useful if the once-nightly snapshots aren't enough and, even more importantly, this is the first step if you want to backup your snapshots to another AWS account.
+1. [lambda-create-snapshot](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-create-snapshot): A lambda function that runs on a scheduled basis to take snapshots of an RDS DB. Useful if the once-nightly snapshots aren&apos;t enough and, even more importantly, this is the first step if you want to backup your snapshots to another AWS account.
 
 1. [lambda-share-snapshot](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-share-snapshot): A lambda function that can share an RDS snapshot with another AWS account. This is the second step in backing up your snapshots to another AWS account.
 
-1. [lambda-copy-snapshot](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-copy-shared-snapshot): A lambda function that runs on a scheduled basis to make a local copies of RDS snapshots shared from an external AWS account. This is the third step and it needs to run in the AWS account you're using to backup your snapshots.
+1. [lambda-copy-snapshot](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-copy-shared-snapshot): A lambda function that runs on a scheduled basis to make a local copies of RDS snapshots shared from an external AWS account. This is the third step and it needs to run in the AWS account you&apos;re using to backup your snapshots.
 
 1. [lambda-cleanup-snapshots](https://github.com/gruntwork-io/module-data-storage/tree/master/modules/lambda-cleanup-snapshots): A lambda function that runs on a scheduled basis to delete old RDS snapshots. You configure it with a maximum number of snapshots to keep, and once that number is exceeded, it deletes the oldest snapshots. This is useful to keep the number of snapshots from step 1 and 3 above from getting out of hand.
 
@@ -226,7 +226,7 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-load-balancer/pull/8: To add an HTTPS listener, the ALB module originally had you pass in the `https_listener_ports_and_ssl_certs` input variable, which was a map of HTTPS ports to the ARNs of TLS certs (e.g. `443 = "arn:aws:acm:us-east-1:123456789012:certificate/12345678"`. The module now exposes a new input variable called `https_listener_ports_and_acm_ssl_certs` which is a more user-friendly map of HTTPS ports to the domain name of a TLS cert issues by the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) (e.g. `443 = *.foo.com`). 
+  https://github.com/gruntwork-io/module-load-balancer/pull/8: To add an HTTPS listener, the ALB module originally had you pass in the `https_listener_ports_and_ssl_certs` input variable, which was a map of HTTPS ports to the ARNs of TLS certs (e.g. `443 = &quot;arn:aws:acm:us-east-1:123456789012:certificate/12345678&quot;`. The module now exposes a new input variable called `https_listener_ports_and_acm_ssl_certs` which is a more user-friendly map of HTTPS ports to the domain name of a TLS cert issues by the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) (e.g. `443 = *.foo.com`). 
 
 </div>
 
@@ -273,7 +273,7 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/20: Fix a bug in the `aws-cli-mfa` script where it didn't properly clear the previous session token before fetching a new one.
+  https://github.com/gruntwork-io/module-security/pull/20: Fix a bug in the `aws-cli-mfa` script where it didn&apos;t properly clear the previous session token before fetching a new one.
 
 </div>
 
@@ -286,7 +286,7 @@ Two bug fixes:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/19: We've added a new script called `aws-cli-mfa` that makes it much easier to use the AWS CLI with MFA enabled. The script can fetch temporary STS credentials and set them as environment variables in a single command. Check out [the docs](https://github.com/gruntwork-io/module-security/tree/master/modules/aws-cli-mfa) for usage instructions.
+  https://github.com/gruntwork-io/module-security/pull/19: We&apos;ve added a new script called `aws-cli-mfa` that makes it much easier to use the AWS CLI with MFA enabled. The script can fetch temporary STS credentials and set them as environment variables in a single command. Check out [the docs](https://github.com/gruntwork-io/module-security/tree/master/modules/aws-cli-mfa) for usage instructions.
 
 </div>
 
@@ -330,7 +330,7 @@ Two bug fixes:
   
   This module is our first step in providing a path to using a hardened OS Image based on the [Center for Internet Security Benchmarks](https://benchmarks.cisecurity.org/). These Benchmarks are freely downloadable and specific to a technology, which makes them straightforward to reference.
   
-  At present, we support only a hardened OS for Amazon Linux, though we are open to adding support for additional OS's if customers request it. The primary OS hardening implemented in this release is the ability to create multiple disk partitions on the root volume in a Packer build, and mount each disk partition to a file system path with unique mount options. 
+  At present, we support only a hardened OS for Amazon Linux, though we are open to adding support for additional OS&apos;s if customers request it. The primary OS hardening implemented in this release is the ability to create multiple disk partitions on the root volume in a Packer build, and mount each disk partition to a file system path with unique mount options. 
   
   For example, we can now mount `/tmp` to its own disk partition so that a runaway program that fills up all of `/tmp` will not affect disk space available on other paths like `/var/log` where logs are stored. In addition, we can mount `/tmp` with the `nosuid`, `nodev`, and `noexec` options, which say that no file in `/tmp` should be allowed to assume the permissions of its file owner (a security risk), no external devices (like a block device) can be attached to `/tmp` and no files in `/tmp` can be executed, respectively.
 
@@ -411,7 +411,7 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-terraform-utilities/pull/1: First release! We've created an intermediate-variable module.
+  https://github.com/gruntwork-io/package-terraform-utilities/pull/1: First release! We&apos;ve created an intermediate-variable module.
 
 </div>
 
@@ -438,6 +438,6 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "160f0db075d051bfc8065d7d07c60599"
+  "hash": "7cd71f432a22de3a090ebd508fcce00b"
 }
 ##DOCS-SOURCER-END -->

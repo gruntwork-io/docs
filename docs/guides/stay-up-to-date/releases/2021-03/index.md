@@ -51,7 +51,7 @@ Here are the repos that were updated:
 - Drop support for creating GitHub repos (this is now handled in the gruntwork-clients org)
 - Adds support for creating secrets for the VCS tokens
 
-Also undergoes a sort of rebranding of a "generic gruntwork CLI tool" to being specific to the ref arch. The README is updated with all the details.
+Also undergoes a sort of rebranding of a &quot;generic gruntwork CLI tool&quot; to being specific to the ref arch. The README is updated with all the details.
 
 </div>
 
@@ -81,7 +81,7 @@ Also undergoes a sort of rebranding of a "generic gruntwork CLI tool" to being s
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/repo-copier/pull/88: Fix a bug where the `--disable-pull-request-protection` and `--disable-fast-forward-protection` arguments didn't work properly if BitBucket was configured with a custom context path.
+  https://github.com/gruntwork-io/repo-copier/pull/88: Fix a bug where the `--disable-pull-request-protection` and `--disable-fast-forward-protection` arguments didn&apos;t work properly if BitBucket was configured with a custom context path.
 
 </div>
 
@@ -274,7 +274,7 @@ Also undergoes a sort of rebranding of a "generic gruntwork CLI tool" to being s
 From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
 **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs).
 
-Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website.
+Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website.
 
 
 
@@ -496,7 +496,7 @@ From this release onward, this repo will be running tests with Terraform 0.14.x,
 
 **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs)
 
-Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website
+Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website
 
 
 
@@ -728,7 +728,7 @@ From this release onward, this repo will be running tests with Terraform 0.14.x,
 
 **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs).
 
-Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website.
+Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website.
 
 
 
@@ -791,7 +791,7 @@ Releasing a new minor version for this repo to mark **forward-only compatibility
 From release `v0.24.2`, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
 **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs).
 
-Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website.
+Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website.
 
 For more details, please refer to the release notes from Terraform 0.14 [release](https://github.com/gruntwork-io/terraform-aws-monitoring/releases/tag/v0.24.2)
 
@@ -814,7 +814,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
     **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs).
 
-    Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website.
+    Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website.
 
 - SNS topics can now be encrypted in `cloudwatch-logs-metric-filters` by providing a `sns_topic_kms_master_key_id` variable.
 
@@ -894,7 +894,7 @@ For more details, please refer to the release notes from Terraform 0.14 [release
 
   
 
-- Update the billing IAM policy to use the AWS-managed billing policy under the hood (so it's always up to date), but still layer the MFA requirement on top. This will also affect the modules that use this policy under the hood, including the billing IAM group in the `iam-groups` module and the billing IAM role in the `cross-account-iam-roles` module.
+- Update the billing IAM policy to use the AWS-managed billing policy under the hood (so it&apos;s always up to date), but still layer the MFA requirement on top. This will also affect the modules that use this policy under the hood, including the billing IAM group in the `iam-groups` module and the billing IAM role in the `cross-account-iam-roles` module.
 - - **NOTE: Using `account-baseline-root` with this release results in insufficient permissions on the CloudTrail S3 bucket. Use [v0.48.1](https://github.com/gruntwork-io/terraform-aws-security/releases/v0.48.1) or later instead.** The `cloudtrail-bucket`, `cloudtrail`, and `account-baseline-root` modules now all expose a new `cloudtrail_organization_id` input variable that you can use to configure an organization-wide CloudTrail.
 
 
@@ -1115,7 +1115,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
   
 
-- The `s3-bucket` now sets the `access_logging_bucket` param to `null` by default. This makes it easier to use the module with Terragrunt. This is a backwards incompatible change because, if you don't set `access_logging_bucket` any more, this module will no longer create an access logging bucket by default.
+- The `s3-bucket` now sets the `access_logging_bucket` param to `null` by default. This makes it easier to use the module with Terragrunt. This is a backwards incompatible change because, if you don&apos;t set `access_logging_bucket` any more, this module will no longer create an access logging bucket by default.
 
 
 
@@ -1199,7 +1199,7 @@ Variables affected: `aws_region`, `vpc_name`, `cidr_block`, `num_nat_gateways`.
 
   
 
-- Update dependency gruntwork-io/terraform-aws-cache to v0.11.0. Several months ago, AWS made a backward-incompatible change related to the Elasticache Replication Group Multi-AZ behavior, introducing a new `MultiAZEnabled` toggle. This means that, the last several months, if you deployed Redis with with `enable_automatic_failover` set to true, but did not have this `MultiAZEnabled` flag—which wasn't exposed in Terraform's AWS provider—Redis would be deployed into only a single AZ. This issue was fixed in AWS provider 3.26, and in this release, we now expose a new `enable_multi_az` variable in the redis module so that you can configure this property. This change is **backwards incompatible**: you must pass in `enable_multi_az`. To avoid a rebuild of your cluster, you can set it to `null`.
+- Update dependency gruntwork-io/terraform-aws-cache to v0.11.0. Several months ago, AWS made a backward-incompatible change related to the Elasticache Replication Group Multi-AZ behavior, introducing a new `MultiAZEnabled` toggle. This means that, the last several months, if you deployed Redis with with `enable_automatic_failover` set to true, but did not have this `MultiAZEnabled` flag—which wasn&apos;t exposed in Terraform&apos;s AWS provider—Redis would be deployed into only a single AZ. This issue was fixed in AWS provider 3.26, and in this release, we now expose a new `enable_multi_az` variable in the redis module so that you can configure this property. This change is **backwards incompatible**: you must pass in `enable_multi_az`. To avoid a rebuild of your cluster, you can set it to `null`.
 - Creation of network ACLs is now optional in both `vpc` and `vpc-mgmt` services.
 - Update dependency gruntwork-io/terraform-aws-load-balancer to v0.22.0
 - Update default version of  gruntwork-io/terragrunt installed on CI servers to v0.28.11
@@ -1349,7 +1349,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 - Allow specifying custom tags with RDS and Aurora.
 - Allow specifying custom database parameters for RDS and Aurora.
 - Add ability to manage service linked role for elasticsearch in the module
-- Disable 'data' when not using config or cloudtrail in `account-baseline-root`
+- Disable &apos;data&apos; when not using config or cloudtrail in `account-baseline-root`
 - Add ability to configure encryption at rest and custom tags on elasticsearch
 
 
@@ -1376,7 +1376,7 @@ You can now configure multiple domain names to route to the ALB. This is useful 
 From this release onward, this repo will be running tests with Terraform 0.14.x, so **we recommend updating to 0.14.x soon**!
 **All modules still support Terraform 0.12.26** and above (by using features like `required_providers` and `source` URLs).
 
-Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter & a migration guide will be published on our website.
+Once all Gruntwork repositories have been updated to support Terraform 0.14.x, a newsletter announcement will be published via the Gruntwork Newsletter &amp; a migration guide will be published on our website.
 
 
 
@@ -1416,7 +1416,7 @@ If `create_resources` was set to `false` in the `vpc-mgmt-network-acls` module, 
 
   
 
-* Older versions of Terraform could not use lists with ternary syntax, so we had to use `split` and `join` to work around it. This should not be a problem in current Terraform versions, so we've removed the workaround in this release. There should be no change in behavior, other than, as a nice side effect, `plan` output should work better now for NAT Gateways.
+* Older versions of Terraform could not use lists with ternary syntax, so we had to use `split` and `join` to work around it. This should not be a problem in current Terraform versions, so we&apos;ve removed the workaround in this release. There should be no change in behavior, other than, as a nice side effect, `plan` output should work better now for NAT Gateways.
 
 
 
@@ -1513,6 +1513,6 @@ Support for optional resource creation via the `create_resources` parameter was 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3e33c11671eb0d1713b0858144d3dcb2"
+  "hash": "7a91989eff5fb7a59c7982051e14a066"
 }
 ##DOCS-SOURCER-END -->

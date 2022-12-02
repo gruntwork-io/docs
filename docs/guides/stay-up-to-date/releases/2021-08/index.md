@@ -483,7 +483,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
   
 
-- Override renovate.json ignorePaths so that it won't ignore examples or tests
+- Override renovate.json ignorePaths so that it won&apos;t ignore examples or tests
 - vpc: Expose default security group ID in outputs
 
 
@@ -580,7 +580,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
   
 
-- You can now enable the ECS "circuit breaker" feature via the new `deployment_circuit_breaker` input variable.
+- You can now enable the ECS &quot;circuit breaker&quot; feature via the new `deployment_circuit_breaker` input variable.
 
 
 
@@ -730,7 +730,7 @@ This release also configures the RenovateBot not to update this repo itself, as 
 
   
 
-- You can now have the `lambda` module use an existing IAM role, rather than creating a new one, by passing in the IAM role's ARN via the new `existing_role_arn` input variable.
+- You can now have the `lambda` module use an existing IAM role, rather than creating a new one, by passing in the IAM role&apos;s ARN via the new `existing_role_arn` input variable.
 
 
 
@@ -1486,6 +1486,6 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "618b30b9d83f409d35cf579c7a56ade2"
+  "hash": "73b93bf8f641160f37dfca1f64ab310a"
 }
 ##DOCS-SOURCER-END -->

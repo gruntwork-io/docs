@@ -325,13 +325,13 @@ This release introduces a change to the CI / CD pipeline (Gruntwork Pipelines) t
 To update your existing Gruntwork Reference Architecture to have this new support, make the following changes:
 
 
-The destroy feature was added in [`terraform-aws-ci v0.38.5`](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.5). So as long as you update your Ref Arch to point to this version or newer, you're good. In the steps below, we'll be using **`v0.38.9`**, but you can use the latest version as well.
+The destroy feature was added in [`terraform-aws-ci v0.38.5`](https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.38.5). So as long as you update your Ref Arch to point to this version or newer, you&apos;re good. In the steps below, we&apos;ll be using **`v0.38.9`**, but you can use the latest version as well.
 
 1. Update your `infrastructure-live` repo:
     - Pull in changes to:
         - `.circleci/config.yml` (if using CircleCI) from [example config](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/e9ec3c7d4a126afb41fba551b1b0af4a3c2fef6f/examples/for-production/infrastructure-live/.circleci/config.yml). View the [diff](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/238/files#diff-d4e24a34d392c9288702b33b1ebf2127786e91650e59ed5652583313aaec1215).
         - `_ci/scripts/deploy-infra.sh` from [example deploy-infra.sh](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/e9ec3c7d4a126afb41fba551b1b0af4a3c2fef6f/examples/for-production/infrastructure-live/_ci/scripts/deploy-infra.sh). View the [diff](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/238/files#diff-4ac1abb2a2d4274b92a12b1ed02aefc3d87e4344a2718eaea6d7834bdb0a1a34).
-            - NOTE: Line 120 is wrong and should be: `command_args="$([[ "$command" == "destroy" ]] && echo "" || echo "-destroy")"`
+            - NOTE: Line 120 is wrong and should be: `command_args=&quot;$([[ &quot;$command&quot; == &quot;destroy&quot; ]] &amp;&amp; echo &quot;&quot; || echo &quot;-destroy&quot;)&quot;`
     - Modify the 2 container image files:
         - Bump `DOCKERFILE_REPO_REF` to point to &gt;= `v0.38.9` of `terraform-aws-ci` in `shared/&lt;AWS_REGION&gt;/_regional/container_images/build_deploy_runner_image.sh`. View the [diff](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/238/files#diff-b276e6dcf0807843c5d4bab2e59b02810c02da29fec1aaa3574ebc71aa889d66).
         - Bump `DOCKERFILE_REPO_REF` to point to &gt;= `v0.38.9` of `terraform-aws-ci` in `shared/&lt;AWS_REGION&gt;/_regional/container_images/build_kaniko_image.sh`. View the [diff](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/238/files#diff-65a8e9beccac1053c7d2767edc27d520820cd77d354d4bfe1c270a9b153dd077).
@@ -701,7 +701,7 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
   
 
 - Update dependency gruntwork-io/terraform-aws-vpc to v0.17.5
-- Extend Elasticsearch to support Multi AZ & Master Accounts
+- Extend Elasticsearch to support Multi AZ &amp; Master Accounts
 - Expose `security_group_tags` for App  VPCs.
 
 
@@ -816,7 +816,7 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 
   
 
-- You can now disable access logging in the `s3-cloudfront` module using the new `disable_logging` input variable. This is useful in regions where CloudFront access logging isn't supported.
+- You can now disable access logging in the `s3-cloudfront` module using the new `disable_logging` input variable. This is useful in regions where CloudFront access logging isn&apos;t supported.
 
 
 
@@ -867,6 +867,6 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "01cdfc06c685bb16b3133720fcdefb42"
+  "hash": "54ca2160fab8397467fb075a03477ed4"
 }
 ##DOCS-SOURCER-END -->

@@ -69,9 +69,9 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 * Add a module for running a Lambda function on a scheduled basis to take snapshots of your servers: `ec2-backup`.
 * Delete the `scheduled-lambda-job` module. Please migrate to [package-lambda](https://github.com/gruntwork-io/package-lambda) instead. You can create the Lambda functions with the [lambda module](https://github.com/gruntwork-io/package-lambda/tree/master/modules/lambda) and run them on a scheduled basis using the [scheduled-lambda-job module](https://github.com/gruntwork-io/package-lambda/tree/master/modules/scheduled-lambda-job) in that repo.
 * Update this repo to use CircleCI 2.0 with the machine executor.
-* Add a new `--circle-ci-2-machine-executor` flag to `configure-environment-for-gruntwork-module` so you can use the script with CircleCI 2.0's machine executor.
-* Add an example for how to create "unit tests" for modules that run locally and relatively quickly using Docker and Docker Compose. See `jenkins_test.go`.
-* Add an example for how to create "integration tests" out of multiple "stages," where any one of the stages can be skipped to speed up local iterative development.  See `jenkins_test.go`.
+* Add a new `--circle-ci-2-machine-executor` flag to `configure-environment-for-gruntwork-module` so you can use the script with CircleCI 2.0&apos;s machine executor.
+* Add an example for how to create &quot;unit tests&quot; for modules that run locally and relatively quickly using Docker and Docker Compose. See `jenkins_test.go`.
+* Add an example for how to create &quot;integration tests&quot; out of multiple &quot;stages,&quot; where any one of the stages can be skipped to speed up local iterative development.  See `jenkins_test.go`.
 
 </div>
 
@@ -88,7 +88,7 @@ Warning: this release contains BACKWARDS INCOMPATIBLE CHANGES to `scheduled-lamb
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a health check grace period for your ECS services using the new `health_check_grace_period_seconds` parameter! Also, we've added another `depends_on` clause for the ALB Target Group in the `ecs-service-with-alb` module, which should help work around https://github.com/hashicorp/terraform/issues/12634.
+  https://github.com/gruntwork-io/module-ecs/pull/54: You can now configure a health check grace period for your ECS services using the new `health_check_grace_period_seconds` parameter! Also, we&apos;ve added another `depends_on` clause for the ALB Target Group in the `ecs-service-with-alb` module, which should help work around https://github.com/hashicorp/terraform/issues/12634.
 
 </div>
 
@@ -194,7 +194,7 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 
 1. Fixed a number of minor bugs in the `persistent-ebs-volume` module. All AWS API calls in `mount-ebs-volume` are now done with retries, as there are transient reasons why they might fail (e.g., IAM permissions taking a while to propagate). Fix a syntax error in `unmount-ebs-volume`.
 
-1. The `aws_security_group` in now uses `name_prefix` instead of `name` and sets `create_before_destroy` to `true`. This should fix the `DependencyViolation: resource sg-XXX has a dependent object` error described in https://github.com/terraform-providers/terraform-provider-aws/issues/1671. However, this will result in the Security Group being renamed and therefore, recreated. To update to this new version of `single-server`, which is used in the bastion host, OpenVPN server, Jenkins, and elsewhere, you'll need to:
+1. The `aws_security_group` in now uses `name_prefix` instead of `name` and sets `create_before_destroy` to `true`. This should fix the `DependencyViolation: resource sg-XXX has a dependent object` error described in https://github.com/terraform-providers/terraform-provider-aws/issues/1671. However, this will result in the Security Group being renamed and therefore, recreated. To update to this new version of `single-server`, which is used in the bastion host, OpenVPN server, Jenkins, and elsewhere, you&apos;ll need to:
     1. Find all resources that depend on this security group and remove that dependency. It is OK to do this in the AWS UI.
     1. Run `apply` with this new `single-server` version to create the new security group.
     1. Run `apply` in each module from step 1 to recreate the dependency.
@@ -207,6 +207,6 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "eff1f0d48ffa60842a06c1c976d0d9d7"
+  "hash": "81f0ec519aced1abf80d1b739c4471f4"
 }
 ##DOCS-SOURCER-END -->

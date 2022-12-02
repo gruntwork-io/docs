@@ -177,7 +177,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-aws-monitoring/pull/38: Fig `logrotate` settings to use `copytruncate` (so files are rotated properly even if a process maintains the old file handle) and `maxsize` instead of `size` (as `size` conflicts with `daily`). To use `maxsize`, we also had to install a newer version of `logrotate` on Amazon Linux distros, which, by default, run a version that's more than 7 years old. 
+  https://github.com/gruntwork-io/module-aws-monitoring/pull/38: Fig `logrotate` settings to use `copytruncate` (so files are rotated properly even if a process maintains the old file handle) and `maxsize` instead of `size` (as `size` conflicts with `daily`). To use `maxsize`, we also had to install a newer version of `logrotate` on Amazon Linux distros, which, by default, run a version that&apos;s more than 7 years old. 
 
 </div>
 
@@ -250,6 +250,6 @@ We also suggest explicitly providing values for the `--request-url` parameter to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "4a730d17952dd1207b4f4dbf95d42298"
+  "hash": "5e3e9b626b86adeb24d45ec58c421053"
 }
 ##DOCS-SOURCER-END -->

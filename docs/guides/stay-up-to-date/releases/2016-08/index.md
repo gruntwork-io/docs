@@ -166,29 +166,29 @@ BREAKING CHANGE: Upgrade module parameters to take advantage of the new data typ
 
 
 - `vars.tf`:
-  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-14c7cc73490c3d2d8347d14cb8a44729) and 
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&amp;name=master#diff-14c7cc73490c3d2d8347d14cb8a44729) and 
   - Remove the `aws_availability_zones` variable. 
   - Add a variable called `num_availability_zones`. This represents the number of availability zones usable by this AWS account for the current AWS region. Set its `default` value to 2, 3, or 4, depending on your region.
 - `main.tf`
-  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-8140c347465c3fb50113f34a03f9c0d1) (ignore the `user_data` stuff)
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&amp;name=master#diff-8140c347465c3fb50113f34a03f9c0d1) (ignore the `user_data` stuff)
   - Update the `ref` of the `vpc-mgmt` and `vpc-mgmt-network-acls` URLs to `0.1.0`.
-  - In the `mgmt_vpc` module, instead of setting `aws_availability_zones = "${var.aws_availability_zones}"`, set `num_availability_zones = "${var.num_availability_zones}"`.
-  - In the `mgmt_vpc_network_acls` module, instead of setting `num_subnets = "${length(split(",", var.aws_availability_zones))}"`, set `num_subnets = "${var.num_availability_zones}"`. 
-  - In the `mgmt_vpc_network_acls` module, if you don't have it already, set a new parameter: `vpc_ready = "${module.mgmt_vpc.vpc_ready}"`.
+  - In the `mgmt_vpc` module, instead of setting `aws_availability_zones = &quot;$&#x7B;var.aws_availability_zones&#x7D;&quot;`, set `num_availability_zones = &quot;$&#x7B;var.num_availability_zones&#x7D;&quot;`.
+  - In the `mgmt_vpc_network_acls` module, instead of setting `num_subnets = &quot;$&#x7B;length(split(&quot;,&quot;, var.aws_availability_zones))&#x7D;&quot;`, set `num_subnets = &quot;$&#x7B;var.num_availability_zones&#x7D;&quot;`. 
+  - In the `mgmt_vpc_network_acls` module, if you don&apos;t have it already, set a new parameter: `vpc_ready = &quot;$&#x7B;module.mgmt_vpc.vpc_ready&#x7D;&quot;`.
 - Deploy:
   - Run `terragrunt get -update`
   - Run `terragrunt plan`
-  - You may see a few Network ACLs being created and destroyed. That's OK.
+  - You may see a few Network ACLs being created and destroyed. That&apos;s OK.
   - You should NOT see the VPC, any route tables, or any subnets being created or destroyed. If you do, let us know (support@gruntwork.io)!
   - If everything looks OK, run `terragrunt apply`.
 
 
 These use the exact same upgrade process as the mgmt VPC, except there are some additional steps for the peering connection:
 - `main.tf`:
-  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&name=master#diff-3c06616a9c2b49d630e46d8439b63a8c) (ignore the `user_data` stuff)
+  - [Example diff](https://github.com/gruntwork-io/module-vpc/compare/c83c30f998f8486537e7308dcdfbcd5cdf34bffa...master?diff=unified&amp;name=master#diff-3c06616a9c2b49d630e46d8439b63a8c) (ignore the `user_data` stuff)
   - Update the `ref` of the `vpc-peering` URL to `0.1.0`.
-  - Instead of manually concatenating values in a string for the `origin_vpc_route_table_ids` and `destination_vpc_route_table_ids` parameters, use the [concat](https://www.terraform.io/docs/configuration/interpolation.html#concat_list1_list2_) and [list](https://www.terraform.io/docs/configuration/interpolation.html#list_items_) functions. You should get something like `origin_vpc_route_table_ids = "${concat(data.terraform_remote_state.mgmt_vpc.private_subnet_route_table_ids, list(data.terraform_remote_state.mgmt_vpc.public_subnet_route_table_id))}"`. 
-  - Replace `length(split(",", var.aws_availability_zones))` in the calculation of the `num_origin_vpc_route_tables` and `num_destination_vpc_route_tables` parameters with `var.num_availability_zones`. The other parts of the calculation (e.g. the +1 and the *2) stay the same.
+  - Instead of manually concatenating values in a string for the `origin_vpc_route_table_ids` and `destination_vpc_route_table_ids` parameters, use the [concat](https://www.terraform.io/docs/configuration/interpolation.html#concat_list1_list2_) and [list](https://www.terraform.io/docs/configuration/interpolation.html#list_items_) functions. You should get something like `origin_vpc_route_table_ids = &quot;$&#x7B;concat(data.terraform_remote_state.mgmt_vpc.private_subnet_route_table_ids, list(data.terraform_remote_state.mgmt_vpc.public_subnet_route_table_id))&#x7D;&quot;`. 
+  - Replace `length(split(&quot;,&quot;, var.aws_availability_zones))` in the calculation of the `num_origin_vpc_route_tables` and `num_destination_vpc_route_tables` parameters with `var.num_availability_zones`. The other parts of the calculation (e.g. the +1 and the *2) stay the same.
 - Deploy:
   - Same process as the mgmt VPC above.
   - Other than minor Network ACL changes, you should not see anything being destroyed. If you do, this could lead to outage, so please notify us (support@gruntwork.io)!
@@ -211,6 +211,6 @@ ENHANCEMENT: `vpc-app` and `vpc-mgmt` now allow for specifying the exact CIDR bl
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "549d9e469fb60e2ba4bea5f59206fa65"
+  "hash": "e847c67485b1fca089c81d3e3211211d"
 }
 ##DOCS-SOURCER-END -->

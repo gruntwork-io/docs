@@ -37,7 +37,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/gruntwork/pull/21: `gruntwork` now checks that you're logged in as an IAM user and not a root user.
+  https://github.com/gruntwork-io/gruntwork/pull/21: `gruntwork` now checks that you&apos;re logged in as an IAM user and not a root user.
 
 </div>
 
@@ -50,7 +50,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/gruntwork/pull/19: Check that the account you're logged into is the root of your AWS Organization, as that's the only account that can create child accounts.
+  https://github.com/gruntwork-io/gruntwork/pull/19: Check that the account you&apos;re logged into is the root of your AWS Organization, as that&apos;s the only account that can create child accounts.
 
 </div>
 
@@ -144,7 +144,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * #49: The `roll-out-ecs-cluster-update.py` script will now display better error messages if it can't find your ECS cluster for some reason (e.g., you specified the wrong region).
+  * #49: The `roll-out-ecs-cluster-update.py` script will now display better error messages if it can&apos;t find your ECS cluster for some reason (e.g., you specified the wrong region).
 
 * #50: The package now supports [placement_strategy](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#placement_strategy-1) and [placement_constraints](https://www.terraform.io/docs/providers/aws/r/ecs_service.html#placement_constraints-1)
 
@@ -293,7 +293,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don't want to enable gzip compression, you'll need to set `compress = false`. 
+  https://github.com/gruntwork-io/package-static-assets/pull/4: The `cloudfront` module now enables gzip compression by default. This is a backwards incompatible change, so if for some reason you don&apos;t want to enable gzip compression, you&apos;ll need to set `compress = false`. 
 
 </div>
 
@@ -342,7 +342,7 @@ add new tests for num_nat_gateways=0
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous release, we tried to move away from the webupd8 JDK installer for Ubuntu, which stopped working for the latest version of JDK8, to a custom one, but it turns out the webupd8 had a huge amount of custom code (e.g., creating symlinks, configuring fonts, setting up env vars, etc) that we were missing. In this release, we've gone back to the webupd8, but with a patch that makes it work again with the latest JDK8. That means that we are back to the `--version` flag for Ubuntu installs and `--download-url` and `--checksum` for Amazon Linux / CentOS.
+  https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous release, we tried to move away from the webupd8 JDK installer for Ubuntu, which stopped working for the latest version of JDK8, to a custom one, but it turns out the webupd8 had a huge amount of custom code (e.g., creating symlinks, configuring fonts, setting up env vars, etc) that we were missing. In this release, we&apos;ve gone back to the webupd8, but with a patch that makes it work again with the latest JDK8. That means that we are back to the `--version` flag for Ubuntu installs and `--download-url` and `--checksum` for Amazon Linux / CentOS.
 
 </div>
 
@@ -367,6 +367,6 @@ add new tests for num_nat_gateways=0
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a1b9c2767ee48c4662a1f657a5da479a"
+  "hash": "01a260348b1816c0f90927cc89485eb7"
 }
 ##DOCS-SOURCER-END -->

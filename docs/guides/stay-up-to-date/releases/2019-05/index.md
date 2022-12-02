@@ -49,14 +49,14 @@ The following functions overlap with sprig, but have different functionality. Th
 above under a different name. These point to the boilerplate implementations for backwards compatibility. Please migrate
 to using the new naming scheme, as they will be updated to use the sprig versions in future versions of boilerplate.
 
-* `round`: In boilerplate, `round` returns the integer form as opposed to float. E.g `{{ round 123.5555 }}` will return
+* `round`: In boilerplate, `round` returns the integer form as opposed to float. E.g `&#x7B;&#x7B; round 123.5555 &#x7D;&#x7D;` will return
   `124`. The following supported alternative functions are available:
     - `roundFloat`: The sprig version of [round](http://masterminds.github.io/sprig/math.html#round), which supports
-      arbitrary decimal rounding. E.g `{{ round 123.5555 3 }}` returns `123.556`. Note that `{{ round 123.5555 0 }}`
+      arbitrary decimal rounding. E.g `&#x7B;&#x7B; round 123.5555 3 &#x7D;&#x7D;` returns `123.556`. Note that `&#x7B;&#x7B; round 123.5555 0 &#x7D;&#x7D;`
       returns `124.0`.
     - `roundInt`: Another name for the boilerplate version of `round`. Use this if you would like to keep old behavior.
-* `ceil` and `floor`: In boilerplate, `ceil` and `floor` return integer forms as opposed to floats. E.g `{{ ceil 1.1
-  }}` returns `2`, as opposed to `2.0` in the sprig version. The following supported alternative functions are
+* `ceil` and `floor`: In boilerplate, `ceil` and `floor` return integer forms as opposed to floats. E.g `&#x7B;&#x7B; ceil 1.1
+  &#x7D;&#x7D;` returns `2`, as opposed to `2.0` in the sprig version. The following supported alternative functions are
   available:
     - `ceilFloat` and `floorFloat`: The sprig version of [ceil](http://masterminds.github.io/sprig/math.html#ceil) and
       [floor](http://masterminds.github.io/sprig/math.html#floor).
@@ -78,17 +78,17 @@ to using the new naming scheme, as they will be updated to use the sprig version
     - `replaceAll`: The sprig version of [replace](http://masterminds.github.io/sprig/strings.html#replace).
     - `replaceOne`: Another name for the boilerplate version of `replace`. Use this if you would like to keep old
       behavior.
-* `slice`: In boilerplate, `slice` returns a list of numbers in the provided range. E.g `{{ slice 1 5 1 }}` returns
+* `slice`: In boilerplate, `slice` returns a list of numbers in the provided range. E.g `&#x7B;&#x7B; slice 1 5 1 &#x7D;&#x7D;` returns
   the list `[1, 2, 3, 4]`. The following supported alternative functions are available:
     - `sliceList`: The sprig version of [slice](http://masterminds.github.io/sprig/lists.html#slice), which returns the
-      slice of the given list. E.g `{{ slice list n m }}` returns `list[n:m]`.
+      slice of the given list. E.g `&#x7B;&#x7B; slice list n m &#x7D;&#x7D;` returns `list[n:m]`.
     - `numRange`: Another name for the boilerplate version of `slice`. Use this if you would like to keep old
       behavior.
 * `trimPrefix` and `trimSuffix`: In boilerplate, `trimPrefix` and `trimSuffix` takes the base string first. E.g
-  `{{ trimPrefix hello-world hello }}` returns `-world`. The following supported alternative functions are available:
+  `&#x7B;&#x7B; trimPrefix hello-world hello &#x7D;&#x7D;` returns `-world`. The following supported alternative functions are available:
     - `trimPrefixSprig` and `trimSuffixSprig`: The sprig version of
       [trimPrefix](http://masterminds.github.io/sprig/strings.html#trimPrefix) and
-      [trimSuffix](http://masterminds.github.io/sprig/strings.html#trimSuffix). Unlike the boilerplate version, this takes the trim text first so that you can pipeline the trimming. E.g `{{ "hello-world" | trimPrefix "hello" }}` returns `{{ -world }}`.
+      [trimSuffix](http://masterminds.github.io/sprig/strings.html#trimSuffix). Unlike the boilerplate version, this takes the trim text first so that you can pipeline the trimming. E.g `&#x7B;&#x7B; &quot;hello-world&quot; | trimPrefix &quot;hello&quot; &#x7D;&#x7D;` returns `&#x7B;&#x7B; -world &#x7D;&#x7D;`.
     - `trimPrefixBoilerplate` and `trimSuffixBoilerplate`: Another name for the boilerplate versions of `trimPrefix`
       and `trimSuffix`. Use this if you would like to keep old behavior.
 
@@ -165,7 +165,7 @@ to using the new naming scheme, as they will be updated to use the sprig version
 
   
 
-- This release fixes a bug where the `fargate_without_lb` resource incorrectly set a `health_check_grace_period_seconds`. From [the terraform documentation](https://www.terraform.io/docs/providers/aws/r/ecs_service.html), "Health check grace period is only valid for services configured to use load balancers".
+- This release fixes a bug where the `fargate_without_lb` resource incorrectly set a `health_check_grace_period_seconds`. From [the terraform documentation](https://www.terraform.io/docs/providers/aws/r/ecs_service.html), &quot;Health check grace period is only valid for services configured to use load balancers&quot;.
 
 
 </div>
@@ -348,7 +348,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
   
 
-- You can now tell the `iam-groups` module to not create the "access-all" group by setting the new input variable `should_create_iam_group_cross_account_access_all` to false. This can help work around an AWS limitation where we exceed the max IAM policy length.
+- You can now tell the `iam-groups` module to not create the &quot;access-all&quot; group by setting the new input variable `should_create_iam_group_cross_account_access_all` to false. This can help work around an AWS limitation where we exceed the max IAM policy length.
 
 
 </div>
@@ -366,7 +366,7 @@ A huge thanks to @burtino for spotting this and providing a fix.
 
 This release fixes https://github.com/gruntwork-io/module-security/issues/89, where `fail2ban` was not correctly working on non-ubuntu instances. Specifically:
 
-- For CentOS and Amazon Linux 2, `fail2ban` installed `firewalld`. `firewalld` by default disallows all inbound access except for SSH, which leads to frustrating UX where you have to explicitly enable your web services running on the instance. Additionally, this behavior doesn't play well with docker clusters like ECS and EKS, where the service ports are dynamic. This release fixes this behavior by updating `firewalld` to default to trust all traffic. See https://github.com/gruntwork-io/module-security/blob/master/modules/fail2ban/README.md#default-zone-for-firewalld-amazon-linux-2-and-centos for more info.
+- For CentOS and Amazon Linux 2, `fail2ban` installed `firewalld`. `firewalld` by default disallows all inbound access except for SSH, which leads to frustrating UX where you have to explicitly enable your web services running on the instance. Additionally, this behavior doesn&apos;t play well with docker clusters like ECS and EKS, where the service ports are dynamic. This release fixes this behavior by updating `firewalld` to default to trust all traffic. See https://github.com/gruntwork-io/module-security/blob/master/modules/fail2ban/README.md#default-zone-for-firewalld-amazon-linux-2-and-centos for more info.
 - For Amazon Linux 1, the `fail2ban` configuration had a bug where it was not starting up correctly. This release fixes that so that `fail2ban` starts correctly.
 - For Amazon Linux 1, the default regex for searching for failed SSH attempts was incorrect for the messages actually emitted by sshd on the platform. This release installs updated regex rules that properly detect the failing messages.
 - For CentOS and RHEL, the `configure-fail2ban-cloudwatch.sh` script had a bug preventing execution. This release fixes that.
@@ -394,7 +394,7 @@ This brings in TLS generation into the `k8s-tiller` module. In particular, `k8s-
 
 - `kubergrunt`: Use the [kubergrunt utility](https://github.com/gruntwork-io/kubergrunt) to generate the TLS certificates and upload as a Kubernetes `Secret` resource.
 - `provider`: Use the [tls Terraform provider](https://www.terraform.io/docs/providers/tls/index.html) to generate the TLS certs, and then use the [kubernetes provider](https://www.terraform.io/docs/providers/kubernetes/index.html) to upload them as a Kubernetes `Secret` resource.
-- `none`: Don't generate any TLS certs and look them up based on the input variable `tiller_tls_secret_name`.
+- `none`: Don&apos;t generate any TLS certs and look them up based on the input variable `tiller_tls_secret_name`.
 
 The characteristics of the three approaches are summarized in the table below. You can refer to the [module README](https://github.com/gruntwork-io/terraform-kubernetes-helm/tree/master/modules/k8s-tiller) for more details.
 
@@ -471,6 +471,6 @@ The other modules have backwards compatible minor changes in the way dependencie
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "81a6b8a8adbbd70ff61aea8c428b3ada"
+  "hash": "3569b5b8aa1b42051d948aff9d3c4cc7"
 }
 ##DOCS-SOURCER-END -->

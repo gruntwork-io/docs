@@ -79,7 +79,7 @@ Here are the repos that were updated:
 * `terraform-helpers`
 
 
-* The `update-terraform-variable` script now uses pipes (`|`) instead of slashes (`/`) in a `sed` call so that you don't get errors if the `--value` parameter contains a slash.
+* The `update-terraform-variable` script now uses pipes (`|`) instead of slashes (`/`) in a `sed` call so that you don&apos;t get errors if the `--value` parameter contains a slash.
 
 
 * https://github.com/gruntwork-io/module-ci/pull/88
@@ -103,7 +103,7 @@ Here are the repos that were updated:
 * `ecs-cluster`
 
 
-* Fix bug in `roll-out-ecs-cluster-update.py` where it wouldn't do the proper rollout for clusters bigger than 10 instances. 
+* Fix bug in `roll-out-ecs-cluster-update.py` where it wouldn&apos;t do the proper rollout for clusters bigger than 10 instances. 
 
 
 * #118 
@@ -150,7 +150,7 @@ Here are the repos that were updated:
 
 This release adds ability for the user to pass through custom JVM options for logstash.  Previously we were relying on default JVM options.
 
-Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm '&lt;__XMS__&gt;=4g'`)
+Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm &apos;&lt;__XMS__&gt;=4g&apos;`)
 
 https://github.com/gruntwork-io/package-elk/issues/70
 https://github.com/gruntwork-io/package-elk/pull/69
@@ -251,7 +251,7 @@ https://github.com/gruntwork-io/package-elk/pull/69
 
   
 
-- Fix errors in the new connection count and low request count alarms to remove the "client-tls-negotiation-error" portion that was accidentally copy/pasted into them.
+- Fix errors in the new connection count and low request count alarms to remove the &quot;client-tls-negotiation-error&quot; portion that was accidentally copy/pasted into them.
 
 
 
@@ -311,8 +311,8 @@ Special thanks to @ksemaev for these contributions.
 
   
 
-- Update the `fail2ban` module so it works properly on Amazon Linux 2. We've also updated how we install it on Ubuntu (using `pip` to install `aws` instead of `apt`) and changed the jail files a bit to take advantage of fail2ban interpolation
-- Update the `ami-builder` in `os-hardening` to support a new `parallel_build` param that lets you control whether the builds run in parallel. It's set to true `true` by default, as before, but you may need to disable it for use with nvme.
+- Update the `fail2ban` module so it works properly on Amazon Linux 2. We&apos;ve also updated how we install it on Ubuntu (using `pip` to install `aws` instead of `apt`) and changed the jail files a bit to take advantage of fail2ban interpolation
+- Update the `ami-builder` in `os-hardening` to support a new `parallel_build` param that lets you control whether the builds run in parallel. It&apos;s set to true `true` by default, as before, but you may need to disable it for use with nvme.
 - Call `udevadm settle` in the `partition-volume` script to ensure all symlinks are in place before going on to subsequent steps (e.g., formatting).
 
 
@@ -495,6 +495,6 @@ Other changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "925856cc94f71eb99a4b691de26c10a0"
+  "hash": "c4beb2d3e2605faf2048c11762158a4e"
 }
 ##DOCS-SOURCER-END -->

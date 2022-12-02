@@ -162,7 +162,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  https://github.com/gruntwork-io/module-security/pull/25: We've added a new module called [fail2ban](https://github.com/gruntwork-io/module-security/tree/master/modules/fail2ban) that you can use to install fail2ban on your servers and automatically have it ban malicious looking traffic (e.g. someone hammering SSH). The module includes integration with CloudWatch, so you can trigger CloudWatch alarms any time someone is banned.
+  https://github.com/gruntwork-io/module-security/pull/25: We&apos;ve added a new module called [fail2ban](https://github.com/gruntwork-io/module-security/tree/master/modules/fail2ban) that you can use to install fail2ban on your servers and automatically have it ban malicious looking traffic (e.g. someone hammering SSH). The module includes integration with CloudWatch, so you can trigger CloudWatch alarms any time someone is banned.
 
 </div>
 
@@ -228,6 +228,6 @@ Here are the repos that were updated:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3f5a0dc6b9856f39587cbf569738d12e"
+  "hash": "4112ccf9d597769aa8ff56b54189b6c0"
 }
 ##DOCS-SOURCER-END -->

@@ -181,7 +181,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 * `server-group`
 
 
-* Fix a bug where you'd get an error if you passed more than one CIDR block into the `allow_ssh_from_cidr_blocks` parameter.
+* Fix a bug where you&apos;d get an error if you passed more than one CIDR block into the `allow_ssh_from_cidr_blocks` parameter.
 
 
 * https://github.com/gruntwork-io/module-asg/pull/54
@@ -201,7 +201,7 @@ To upgrade to this version, install `kubergrunt` by following [the installation 
 * `server-group`
 
 
-* Fix an issue where destroying a `server-group` would cause the error `Resource 'data.template_file.rolling_deployment' does not have attribute 'rendered' for variable 'data.template_file.rolling_deployment.rendered'`.
+* Fix an issue where destroying a `server-group` would cause the error `Resource &apos;data.template_file.rolling_deployment&apos; does not have attribute &apos;rendered&apos; for variable &apos;data.template_file.rolling_deployment.rendered&apos;`.
 
 
 * https://github.com/gruntwork-io/module-asg/pull/52
@@ -271,7 +271,7 @@ Added extra retry logic to application_deployer
   
 This is needed because:
 1. It is cleaner to package up the implementation behind a module
-1. It's not possible to refer to the actual python script with a relative path based of of `path.module` so we actually need this code to be wrapped
+1. It&apos;s not possible to refer to the actual python script with a relative path based of of `path.module` so we actually need this code to be wrapped
 
 Secondarily - change the bucket_id input to be a bucket_name input in the application version deployer. This will make it easier to use the module when something else is creating a bucket or if the bucket already exists as it will in the Houston self service template.
 
@@ -482,8 +482,8 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 - `lambda_edge` **[Breaking Change]** 
 
 
-- **Breaking Change**: the `lambda` and `lambda_edge` modules no longer export the zip file to the `source_dir`, but rather to the module path under the name `${var.name}-lambda.zip`. This is customizable using the `zip_output_path`. You can set this to variable to `${var.source_dir}/lambda.zip` to get the old behavior.
-- This release fixes a bug where you could end up with a perpetual diff in the terraform plan, caused by zipping up the previous runs' archive file.
+- **Breaking Change**: the `lambda` and `lambda_edge` modules no longer export the zip file to the `source_dir`, but rather to the module path under the name `$&#x7B;var.name&#x7D;-lambda.zip`. This is customizable using the `zip_output_path`. You can set this to variable to `$&#x7B;var.source_dir&#x7D;/lambda.zip` to get the old behavior.
+- This release fixes a bug where you could end up with a perpetual diff in the terraform plan, caused by zipping up the previous runs&apos; archive file.
 
 
 - https://github.com/gruntwork-io/package-lambda/pull/28
@@ -503,7 +503,7 @@ Postgres 10 on RDS uses a slightly different format for the default parameter gr
 - `lambda` **[Breaking Change]** 
 
 
-- **Breaking Change**: the `lambda` module removes the `wait_for` variable as it was not working as intended due to a limitation in terraform's use of `depends_on` with data sources. Additionally, the implementation of `wait_for` introduced a perpetual diff issue where the `plan` would always detect a change. The removal of `wait_for` fixes that.
+- **Breaking Change**: the `lambda` module removes the `wait_for` variable as it was not working as intended due to a limitation in terraform&apos;s use of `depends_on` with data sources. Additionally, the implementation of `wait_for` introduced a perpetual diff issue where the `plan` would always detect a change. The removal of `wait_for` fixes that.
 
 
 To upgrade to this version, remove the `wait_for` input parameter in all calls to the `lambda` module.
@@ -731,6 +731,6 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "38d7a6b66fb257bfb84e605065ed13b9"
+  "hash": "75a6878b62a9d40866921da46353c162"
 }
 ##DOCS-SOURCER-END -->

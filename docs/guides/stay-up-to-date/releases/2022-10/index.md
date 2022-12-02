@@ -152,7 +152,7 @@ Here are the repos that were updated:
 - Organize upgrade tests better. (https://github.com/gruntwork-io/terraform-aws-ci/pull/480)
 - Update additional refs to main (https://github.com/gruntwork-io/terraform-aws-ci/pull/482)
 - Update CODEOWNERS (https://github.com/gruntwork-io/terraform-aws-ci/pull/485)
-- Fix the issue where --skip-fmt didn't actually do anything. (https://github.com/gruntwork-io/terraform-aws-ci/pull/487)
+- Fix the issue where --skip-fmt didn&apos;t actually do anything. (https://github.com/gruntwork-io/terraform-aws-ci/pull/487)
 
 </div>
 
@@ -237,9 +237,9 @@ The default version of Kubernetes installed by the module has been updated to 1.
 Due to the Cluster Autoscaler version bump, additional IAM Permissions have been added to `eks-k8s-cluster-autoscaler-iam-policy`:
 
 ```
-        "ec2:DescribeImages",
-        "ec2:GetInstanceTypesFromInstanceRequirements",
-        "eks:DescribeNodegroup"
+        &quot;ec2:DescribeImages&quot;,
+        &quot;ec2:GetInstanceTypesFromInstanceRequirements&quot;,
+        &quot;eks:DescribeNodegroup&quot;
 ```
 
 
@@ -440,6 +440,6 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ee6c07901f6235f9070ed9a618818996"
+  "hash": "3536807f086094723c6cc5acd2f7709f"
 }
 ##DOCS-SOURCER-END -->
