@@ -1,6 +1,8 @@
 # Reference Architecture Prerequisites Guide
 
-Gruntwork accelerates your infrastructure with our [Reference Architecture](https://gruntwork.io/reference-architecture/). This acceleration allows you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. The Reference Architecture requires skills to maintain it and customize it to your needs over time. Here's what we think you should bring to the table.
+Gruntwork accelerates your infrastructure with our [Reference Architecture](https://gruntwork.io/reference-architecture/). This framework allows you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. The Reference Architecture requires a variety of skills to maintain it and customize it to your needs over time.
+
+Here's what your team will need so you can succeed with the Gruntwork Reference Architecture:
 
 <details>
 
@@ -85,6 +87,6 @@ Gruntwork accelerates you down the road towards having your entire AWS cloud inf
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "309ccb6e82e90aa929aac6cb8604af98"
+  "hash": "7b610a770e16d34aaddb3760cbfc5639"
 }
 ##DOCS-SOURCER-END -->
