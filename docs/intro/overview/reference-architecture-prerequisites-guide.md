@@ -1,5 +1,7 @@
 # Reference Architecture Prerequisites Guide
 
+Gruntwork accelerates your infrastructure with our [Reference Architecture](https://gruntwork.io/reference-architecture/). This acceleration allows you to treat your infrastructure like you do your application: as code, complete with pull requests and peer reviews. The Reference Architecture requires skills to maintain it and customize it to your needs over time. Here's what we think you should bring to the table.
+
 <details>
 
   <summary>Knowledge of Terraform</summary>
@@ -83,6 +85,6 @@ Gruntwork accelerates you down the road towards having your entire AWS cloud inf
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c283d6678c264a94037c022b44ca1367"
+  "hash": "309ccb6e82e90aa929aac6cb8604af98"
 }
 ##DOCS-SOURCER-END -->
