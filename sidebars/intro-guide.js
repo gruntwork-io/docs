@@ -3,6 +3,7 @@ const sidebar = [
     Overview: [
       "intro/overview/intro-to-gruntwork",
       "intro/overview/how-it-works",
+      "intro/overview/reference-architecture-prerequisites-guide",
       // Temporarily hiding the unfinished sections from the sidebar We'll put
       // them back shortly and don't want to delete the pages as we know we're
       // going to have these sections within a few days.
