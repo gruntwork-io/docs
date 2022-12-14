@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.99.0" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.99.1" lastModifiedVersion="0.98.0"/>
 
 # OpenVPN Server
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/modules/mgmt/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules/mgmt/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fopenvpn-server" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -75,7 +75,7 @@ documentation in the [package-openvpn](https://github.com/gruntwork-io/terraform
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -643,6 +643,15 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -818,11 +827,11 @@ The security group ID of the OpenVPN server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/modules%2Fmgmt%2Fopenvpn-server%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/modules%2Fmgmt%2Fopenvpn-server%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.0/modules%2Fmgmt%2Fopenvpn-server%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fmgmt%2Fopenvpn-server%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fmgmt%2Fopenvpn-server%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fmgmt%2Fopenvpn-server%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d234949f70258b40c091fb0d3e9141fe"
+  "hash": "b9fb1888ab4141d0cbb9db58bc235c48"
 }
 ##DOCS-SOURCER-END -->
