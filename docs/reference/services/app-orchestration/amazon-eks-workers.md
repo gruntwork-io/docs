@@ -16,12 +16,12 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.96.3" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.99.1" lastModifiedVersion="0.99.1"/>
 
 # Amazon EKS Workers
 
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules/services/eks-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules/services/eks-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,9 +69,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -79,7 +79,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -87,7 +87,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,10 +98,10 @@ If you want to deploy this repo in production, check out the following resources
 ## Manage
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -925,6 +925,15 @@ Default value for the instance_root_volume_encryption field of managed_node_grou
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_instance_root_volume_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default voume name for the instance_root_volume_name field in managed_node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/xvda&quot;"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_instance_root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1278,11 +1287,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules%2Fservices%2Feks-workers%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules%2Fservices%2Feks-workers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.96.3/modules%2Fservices%2Feks-workers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fservices%2Feks-workers%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fservices%2Feks-workers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.1/modules%2Fservices%2Feks-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9cc087882eeaf0ee6534b8111a12c637"
+  "hash": "b06b7ae8376e69be53f9dfb432b9be5e"
 }
 ##DOCS-SOURCER-END -->
