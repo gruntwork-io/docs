@@ -449,7 +449,7 @@ Specifies an 'expander' for the cluster autoscaler. This helps determine which A
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.23.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.24.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_alb_ingress_controller" requirement="optional" type="bool">
@@ -841,6 +841,15 @@ list(map(any))
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="fluent_bit_use_cri_parser_conf" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Optionally use a cri parser instead of the default Docker parser. This should be used for EKS v1.24 and later.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="fluent_bit_version" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -989,6 +998,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.99.2/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1d154d272fb25fc97593d1b6a7d13718"
+  "hash": "123399ce47715ac8270b61ae865c7441"
 }
 ##DOCS-SOURCER-END -->
