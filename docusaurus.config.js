@@ -243,11 +243,6 @@ const config = {
         defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: false,
-        /* we clear these icons out and use CSS to swap in our own images instead */
-        switchConfig: {
-          darkIcon: " ",
-          lightIcon: " ",
-        },
       },
       prism: {
         theme: lightCodeTheme,
