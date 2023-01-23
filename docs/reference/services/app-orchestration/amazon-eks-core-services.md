@@ -524,6 +524,24 @@ The maximum number of changes that should be applied in a batch by external-dns.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="external_dns_chart_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the Helm chart for external-dns. This should usually be 'external-dns' but may differ in the case of overriding the repository URL.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;external-dns&quot;"/>
+</HclListItem>
+
+<HclListItem name="external_dns_chart_repository_url" requirement="optional" type="string">
+<HclListItemDescription>
+
+Helm chart repository URL to obtain the external-dns chart from. Useful when using Bitnami charts that are older than 6 months due to Bitnami's lifecycle policy which removes older chart from the main index.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;https://charts.bitnami.com/bitnami&quot;"/>
+</HclListItem>
+
 <HclListItem name="external_dns_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -998,6 +1016,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.0/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "11012efc19f199d5b729b540f7da8fed"
+  "hash": "437cec40ec567734ee2c687cd27752e2"
 }
 ##DOCS-SOURCER-END -->

@@ -737,6 +737,15 @@ The instance type to use for the db (e.g. db.t3.micro)
 <HclListItemDefaultValue defaultValue="&quot;db.t3.micro&quot;"/>
 </HclListItem>
 
+<HclListItem name="iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1'. Can only be set when storage_type is 'gp3' or 'io1'. Set to 0 to disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1025,6 +1034,15 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1210,6 +1228,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.0/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c064ef8a541be89f0c6b12b8c3473157"
+  "hash": "7be0b11402f7f5c090cd434b948c2a24"
 }
 ##DOCS-SOURCER-END -->
