@@ -76,7 +76,7 @@ export default function Home(): JSX.Element {
                 title="Create an Infra CI/CD Pipeline"
                 href="/guides/build-it-yourself/pipelines"
               >
-                Use your preferred CI tool to set up an end‑to‑end pipeline for
+                Use your preferred CI tool to set up an end-to-end pipeline for
                 your infrastructure code.
               </Card>
               <Card
