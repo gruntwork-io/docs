@@ -1,0 +1,27 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<head>
+  <link rel="canonical" href="https://github.com/gruntwork-io/knowledge-base/discussions/642" />
+</head>
+
+<CenterLayout>
+<span className="searchCategory">Knowledge Base</span>
+<h1>How do I ensure a GitHub Personal Acccess token (PAT) is valid?</h1>
+<GitHub discussion={{"id":"D_kwDOF8slf84ASQYz","number":642,"author":{"login":"zackproser"},"title":"How do I ensure a GitHub Personal Acccess token (PAT) is valid?","body":"A customer asked: \r\n> How can I ensure a given GitHub Personal Access Token (PAT) is still valid?","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">How can I ensure a given GitHub Personal Access Token (PAT) is still valid?</p>\n</blockquote>","answer":{"body":"# Step 1. Install GitHub's official `gh` command line tool\r\n[Official installation instructions](https://github.com/cli/cli#installation)\r\n\r\n# Step 2. Export the token to test as `GH_TOKEN`\r\n`export GH_TOKEN=<the-github-pat>`\r\n\r\n# Step 3. Run `gh auth status`\r\n\r\n`gh auth status`\r\n\r\n","bodyHTML":"<h1 dir=\"auto\">Step 1. Install GitHub's official <code class=\"notranslate\">gh</code> command line tool</h1>\n<p dir=\"auto\"><a href=\"https://github.com/cli/cli#installation\">Official installation instructions</a></p>\n<h1 dir=\"auto\">Step 2. Export the token to test as <code class=\"notranslate\">GH_TOKEN</code></h1>\n<p dir=\"auto\"><code class=\"notranslate\">export GH_TOKEN=&lt;the-github-pat&gt;</code></p>\n<h1 dir=\"auto\">Step 3. Run <code class=\"notranslate\">gh auth status</code></h1>\n<p dir=\"auto\"><code class=\"notranslate\">gh auth status</code></p>"}}} />
+
+</CenterLayout>
+  
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "48f17202523dc9ae8d448909732705c9"
+}
+##DOCS-SOURCER-END -->
