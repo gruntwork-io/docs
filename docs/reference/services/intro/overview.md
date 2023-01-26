@@ -63,7 +63,11 @@ The code in the `terraform-aws-service-catalog` repo is organized into three pri
       integrated tech stack on top of the Gruntwork Service Catalog. To keep the code DRY and manage dependencies
       between modules, the code is deployed using [Terragrunt](https://terragrunt.gruntwork.io/). However, Terragrunt
       is NOT required to use the Gruntwork Service Catalog: you can alternatively use vanilla Terraform or Terraform
-      Cloud / Enterprise, as described later in these docs.
+      Cloud / Enterprise, as described [here](https://docs.gruntwork.io/reference/services/intro/deploy-new-infrastructure#how-to-deploy-terraform-code-from-the-service-catalog).
+
+    1. Not all modules have a `for-production` example, but you can still create a production-grade configuration by 
+       using the template provided in this discussion question, [How do I use the modules in terraform-aws-service-catalog
+       if there is no example?](https://github.com/gruntwork-io/knowledge-base/discussions/360#discussioncomment-25705480).
 
 1. `test`: Automated tests for the code in `modules` and `examples`.
 
@@ -96,6 +100,6 @@ Makes sure to ALWAYS read the release notes and migration instructions (if any) 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5eb1606803f10d39a682642586a222a0"
+  "hash": "750a36ba2c3ba2455d2eba763802109d"
 }
 ##DOCS-SOURCER-END -->
