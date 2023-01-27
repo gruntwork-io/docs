@@ -15,6 +15,11 @@ If you've purchased a Reference Architecture, these guides will help guide you t
 Learn how to configure your Reference Architecture so Gruntwork can deliver it directly into your repo.
 </Card>
 <Card
+  title="Manual steps"
+  href="/guides/reference-architecture/manual-steps">
+  What to do first with a new Reference Architecture
+</Card>
+<Card
   title="Example Usage Guide"
   href="/guides/reference-architecture/example-usage-guide">
 See a preview of how to use your customized Reference Architecture once we've delivered it in your repo.
@@ -31,6 +36,6 @@ Modernize your legacy Reference Architecture to use our new Service Catalog patt
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "675db72e2d75cc00ff5d3ec1a5407f0a"
+  "hash": "90355bb3987987fc66cbf8f435eab1d8"
 }
 ##DOCS-SOURCER-END -->

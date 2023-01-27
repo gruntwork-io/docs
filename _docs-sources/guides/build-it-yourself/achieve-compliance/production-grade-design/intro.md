@@ -13,5 +13,5 @@ Instead, we advise using [Terraform](https://www.terraform.io) (or similar tools
 resources programmatically. This section will cover the Terraform resources you can use to implement each of the
 recommendations. We assume that you're familiar with the basics of Terraform. If you aren't, read our
 [Introduction to Terraform blog post](https://blog.gruntwork.io/an-introduction-to-terraform-f17df9c6d180), or pick
-up the [2nd
-edition of Terraform Up & Running](https://blog.gruntwork.io/terraform-up-running-2nd-edition-early-release-is-now-available-b104fc29783f).
+up the [3rd
+edition of Terraform Up & Running](https://medium.com/gruntwork/terraform-up-running-3rd-edition-is-now-published-4b99804d922a).

@@ -6,7 +6,7 @@ _Number of recommendations: 21_
 
 The recommendations in this section involve the use of identity, accounts, authentication, and authorization.
 On AWS, most identity and access control related concerns are managed using the
-[eponymous IAM service](https://aws.amazon.com/iam/). Hence, most (but not all) of the recommendations in
+[IAM service](https://aws.amazon.com/iam/). Hence, most (but not all) of the recommendations in
 this section discuss particular IAM configurations, such as the configuration of the password policy, the use
 of various groups and roles, and the configuration of multi-factor authentication (MFA) devices.
 
@@ -60,6 +60,6 @@ suggest limiting routing for VPC peering connections based on [the principle of 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c271368b6936a74cee9b2a67874b8181"
+  "hash": "9c5ed024400994bf3693d1340382dfbf"
 }
 ##DOCS-SOURCER-END -->
