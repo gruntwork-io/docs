@@ -56,10 +56,9 @@ For each account (shared, security, dev, prod etc), run the following command:
 cloud-nuke defaults-aws
 ```
 
+### 4. Subscribe to `BenchmarkAlarmTopic` Alarms
 
-### 4. Subscribe to Alarms
-
-The Config alerts and CloudWatch Metric Alarms all go to an SNS topic. Unfortunately, there is no way to automate
+The Config alerts and CloudWatch Metric Alarms all go to the SNS topic `BenchmarkAlarmTopic`. Unfortunately, there is no way to automate
 subscribing to the SNS topic as each of the steps require validating the delivery target. For each deployed account, follow the steps outlined in
 the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) to be notified by Email, Phone,
 or SMS for each of the alerts.
@@ -68,10 +67,11 @@ You can also configure an automated system integration if you have a third party
 Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
-
 ### 5. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
 
-To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically, you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
+To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
+you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
+all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
 need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. Please read the
 [documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
 for this variable in order to understand how to structure the list of buckets per region. Once the underlying issue in the
@@ -88,12 +88,16 @@ We do not recommend having active AWS access keys for the root user, so remember
 
 :::
 
-In order to enable MFA Delete, you need to:
+Enabling MFA Delete in your bucket adds another layer of security by requiring MFA in any request to delete a version or change the versioning state of the bucket.
 
-- [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key)
-- [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa)
-- Create a bucket with `mfa_delete=false`.
-- Using the root user, call the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag.
+The attribute `mfa_delete` is only used by Terraform to [reflect the current state of the bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete). It is not possible to create a bucket if the `mfa_delete` is `true`, because it needs to be activated [using AWS CLI or the API](https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html).
+
+To make this change [**you need to use the root user of the account**](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root) that owns the bucket, and MFA needs to be enabled.
+
+1. [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa), which you did before in this guide.
+2. [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key).
+
+Authenticated with the root user, use the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag.
 
 ```bash
 aws s3api put-bucket-versioning --region <REGION> \
@@ -104,31 +108,22 @@ aws s3api put-bucket-versioning --region <REGION> \
 
 We also created a [script](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/private-s3-bucket#how-do-you-enable-mfa-delete) to help you enable MFA Delete in all buckets from a single account at once.
 
-If you want to enable MFA Delete to _all_ your buckets at once, you can use the script at [terraform-aws-security/private-s3-bucket/mfa-delete-script](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket). You need to use the access keys for the root user and the root MFA code.
-
- Usage:
+Usage:
 
  ```bash
  aws-vault exec <PROFILE> --no-session -- ./mfa-delete.sh --account-id <ACCOUNT ID>
  ```
 
- Example:
+Example:
 
  ```bash
  aws-vault exec root-prod -- ./mfa-delete.sh --account-id 226486542153
  ```
 
-Enabling MFA Delete in your bucket adds another layer of security by requiring MFA in any request to delete a version or change the versioning state of the bucket.
-
-The attribute `mfa_delete` is only used by Terraform to [reflect the current state of the bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete). It is not possible to create a bucket if the `mfa_delete` is `true`, because it needs to be activated [using AWS CLI or the API](https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html).
-
-To make this change [**you need to use the root user of the account**](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root) that owns the bucket, and MFA needs to be enabled.
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8453908e63e319d3a76f52f87cfb7045"
+  "hash": "b17480440ffadef0005a24a6e638116d"
 }
 ##DOCS-SOURCER-END -->
