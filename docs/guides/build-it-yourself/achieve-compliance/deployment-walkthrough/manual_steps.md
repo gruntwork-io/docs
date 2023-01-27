@@ -26,23 +26,10 @@ To revoke Gruntwork's access from the "current" account—the one you are authen
 
 **Important**: Never use the `AdministratorAccess` AWS managed policy with any users, groups, or roles. It gives full access to all resources. Instead, use a policy that allows full IAM privileges (e.g. `iam:*`) on all resources. Our Landing Zone solution created a `iam-admin` group in the Security account.
 
+## AA
+The following steps should be performed on each deployed account.
 
-## Delete default VPCs and rules from default security groups
-
-Use [cloud-nuke](https://github.com/gruntwork-io/cloud-nuke) to remove the rules from the default VPC and the default ingress/egress rules from the default security groups. Note that it isn’t possible to actually delete the default security group, so instead the command deletes the rules, eliminating the risk of something being mistakenly exposed.
-
-For each account (shared, security, dev, prod etc), run the following command:
-
-```
-cloud-nuke defaults-aws
-```
-
-## Answer security questions and complete contact details
-
-When setting up a new account, AWS asks for contact information and security questions. Unfortunately, there is no API or automation available for this functionality. In the AWS console, visit the [Account settings](https://console.aws.amazon.com/billing/home?#/account) page and complete the _Alternate Contacts_ and _Configure Security Challenge Questions_ questions.
-
-
-## Enable MFA for the root account
+### 1. Enable MFA for the root user
 
 Securing the "root" user, or the first user that is created when you set up an AWS account, is one of the
 first actions you should take in any new account. It is highly recommended that the user of this account be avoided for everyday tasks. Unfortunately, there is no API or automation available for configuring an MFA device for the
@@ -54,7 +41,23 @@ Configure a hardware MFA device, as suggested by recommendation 1.6. We suggest 
 factors. Refer to
 [the documentation for more information on using a hardware device with the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html#enable-hw-mfa-for-root).
 
-## Subscribe to Alarms
+### 2. Answer security questions and complete contact details
+
+When setting up a new account, AWS asks for contact information and security questions. Unfortunately, there is no API or automation available for this functionality. In the AWS console, visit the [Account settings](https://console.aws.amazon.com/billing/home?#/account) page and complete the _Alternate Contacts_ and _Configure Security Challenge Questions_ questions.
+
+
+### 3. Delete default VPCs and rules from default security groups
+
+Use [cloud-nuke](https://github.com/gruntwork-io/cloud-nuke) to remove the rules from the default VPC and the default ingress/egress rules from the default security groups. Note that it isn’t possible to actually delete the default security group, so instead the command deletes the rules, eliminating the risk of something being mistakenly exposed.
+
+For each account (shared, security, dev, prod etc), run the following command:
+
+```
+cloud-nuke defaults-aws
+```
+
+
+### 4. Subscribe to Alarms
 
 The Config alerts and CloudWatch Metric Alarms all go to an SNS topic. Unfortunately, there is no way to automate
 subscribing to the SNS topic as each of the steps require validating the delivery target. For each deployed account, follow the steps outlined in
@@ -66,7 +69,7 @@ Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
 
-## Manually maintain buckets to analyze in the `buckets_to_analyze` variable
+### 5. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
 
 To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically, you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
 need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. Please read the
@@ -77,7 +80,7 @@ Terraform AWS provider has been resolved, we will
 to add support for specifying all buckets in a region.
 
 
-## Enable MFA Delete for all S3 buckets
+### 6. Enable MFA Delete for all S3 buckets
 
 :::caution
 
@@ -126,6 +129,6 @@ To make this change [**you need to use the root user of the account**](https://d
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "71e3ea79011fb20084992708012aefaf"
+  "hash": "8453908e63e319d3a76f52f87cfb7045"
 }
 ##DOCS-SOURCER-END -->
