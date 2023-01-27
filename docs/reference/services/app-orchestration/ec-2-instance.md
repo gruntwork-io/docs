@@ -362,6 +362,24 @@ Set to true to create a DNS record in Route53 pointing to the EC2 instance. If t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create a new IAM role to bind to the EC2 instance. Set to false if you wish to use a preexisting IAM role. By default, this module will create an instance profile to pass this IAM role to the EC2 instance. Preexisting IAM roles created through the AWS console instead of programatically (e.g. withTerraform) will automatically create an instance profile with the same name. In that case, set create_instance_profile to false to avoid errors during Terraform apply.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_instance_profile" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create an instance profile to pass the IAM role, either the one created by this module or one passed externally, to the EC2 instance. Set to false if you wish to use a preexisting instance profile. For more information see https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -540,6 +558,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the bastion host's IAM role and instance profile. If set to an empty string, will use <a href="#name"><code>name</code></a>. Required when create_iam_role is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="keypair_name" requirement="optional" type="string">
@@ -727,6 +754,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.0/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f65a608d1b990c8f6bd1eaff95c81408"
+  "hash": "34d8144c0af8eac72a882ada458dd153"
 }
 ##DOCS-SOURCER-END -->
