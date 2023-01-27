@@ -124,6 +124,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b17480440ffadef0005a24a6e638116d"
+  "hash": "1eb81d942e9a1bd13e278a106a261ff9"
 }
 ##DOCS-SOURCER-END -->
