@@ -40,12 +40,12 @@ Configure a hardware MFA device, as suggested by recommendation 1.6. We suggest 
 factors. Refer to
 [the documentation for more information on using a hardware device with the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html#enable-hw-mfa-for-root).
 
-### 3. Answer security questions and complete contact details
+## 3. Answer security questions and complete contact details
 
 When setting up a new account, AWS asks for contact information and security questions. Unfortunately, there is no API or automation available for this functionality. In the AWS console, visit the [Account settings](https://console.aws.amazon.com/billing/home?#/account) page and complete the _Alternate Contacts_ and _Configure Security Challenge Questions_ questions.
 
 
-### 4. Delete default VPCs and rules from default security groups
+## 4. Delete default VPCs and rules from default security groups
 
 Use [cloud-nuke](https://github.com/gruntwork-io/cloud-nuke) to remove the rules from the default VPC and the default ingress/egress rules from the default security groups. Note that it isn’t possible to actually delete the default security group, so instead the command deletes the rules, eliminating the risk of something being mistakenly exposed.
 
@@ -61,7 +61,7 @@ Example:
 aws-vault exec dev -- cloud-nuke defaults-aws
 ```
 
-### 5. Subscribe to `BenchmarkAlarmTopic` Alarms
+## 5. Subscribe to `BenchmarkAlarmTopic` Alarms
 
 The Config alerts and CloudWatch Metric Alarms all go to the SNS topic `BenchmarkAlarmTopic`. Unfortunately, there is no way to automate
 subscribing to the SNS topic as each of the steps require validating the delivery target. For each deployed account, follow the steps outlined in
@@ -72,7 +72,7 @@ You can also configure an automated system integration if you have a third party
 Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
-### 6. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
+## 6. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
 
 To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
 you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
@@ -81,7 +81,7 @@ need to maintain an explicit list of buckets per region, namely in the variable 
 [documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
 for this variable in order to understand how to structure the list of buckets per region. 
 
-### 7. Enable MFA Delete for all S3 buckets
+## 7. Enable MFA Delete for all S3 buckets
 
 :::caution
 
@@ -125,6 +125,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d9578907ce2ca88ed3eba023881fddba"
+  "hash": "3cccd061289b64e7750829d0b6123117"
 }
 ##DOCS-SOURCER-END -->
