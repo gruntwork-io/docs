@@ -8,7 +8,7 @@ Now that your infrastructure is up and running, there are some manual steps nece
 
 ## 1. Revoke Gruntwork's access
 
-Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. Use the `gruntwork` CLI to revoke the access, [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
+Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through the `GruntworkAccessRole` in each of the accounts. Use the `gruntwork` CLI to revoke the access, it will delete the role in each the account, [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
 
 ```bash
 gruntwork aws revoke \
@@ -24,9 +24,9 @@ To revoke Gruntwork's access from the "current" account—the one you are authen
 `__current__` (i.e., `--account "__current__"`).
 
 
-**Important**: Never use the `AdministratorAccess` AWS managed policy with any users, groups, or roles. It gives full access to all resources. Instead, use a policy that allows full IAM privileges (e.g. `iam:*`) on all resources. Our Landing Zone solution created a `iam-admin` group in the Security account.
+**Important**: Never use the `AdministratorAccess` AWS managed policy with any users, groups, or roles. It gives full access to all resources. Instead, to give access to administrators, use a policy that allows full IAM privileges (e.g. `iam:*`) on all resources. Our Landing Zone solution created a `iam-admin` group in the Security account. [More information about the existing groups in the `iam-groups` module.](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups)
 
-The steps belo should be performed on each deployed account.
+The steps below should be performed on each deployed account.
 
 ## 2. Enable MFA for the root user
 
@@ -49,14 +49,15 @@ When setting up a new account, AWS asks for contact information and security que
 
 Use [cloud-nuke](https://github.com/gruntwork-io/cloud-nuke) to remove the rules from the default VPC and the default ingress/egress rules from the default security groups. Note that it isn’t possible to actually delete the default security group, so instead the command deletes the rules, eliminating the risk of something being mistakenly exposed.
 
-Authenticate on each account (shared, security, dev, prod etc), run the following command:
+Authenticate on each account (shared, security, dev, prod etc), and then run the following command:
 
-```
+Usage:
+```bash
 cloud-nuke defaults-aws
 ```
 
-e.g.
-```
+Example:
+```bash
 aws-vault exec dev -- cloud-nuke defaults-aws
 ```
 
@@ -101,10 +102,10 @@ To make this change [**you need to use the root user of the account**](https://d
 1. [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa), which you did before in this guide.
 2. [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key).
 
-Authenticated with the root user, use the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag.
+Authenticated with the root user, use the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag. [More information about the `--no-session` flag in our Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions/647).
 
 ```bash
-aws s3api put-bucket-versioning --region <REGION> \
+aws-vault exec <PROFILE> --no-session -- aws s3api put-bucket-versioning --region <REGION> \
       --bucket <BUCKET NAME> \
       --versioning-configuration Status=Enabled,MFADelete=Enabled \
       --mfa "arn:aws:iam::<ACCOUNT ID>:mfa/root-account-mfa-device <MFA CODE>"
@@ -121,5 +122,5 @@ Usage:
 Example:
 
  ```bash
- aws-vault exec root-prod -- ./mfa-delete.sh --account-id 226486542153
+ aws-vault exec root-prod --no-session -- ./mfa-delete.sh --account-id 226486542153
  ```
