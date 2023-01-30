@@ -79,11 +79,7 @@ you’ll want it to analyze all the buckets in the region. However, the terrafor
 all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
 need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. Please read the
 [documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
-for this variable in order to understand how to structure the list of buckets per region. Once the underlying issue in the
-Terraform AWS provider has been resolved, we will
-[update the Gruntwork Macie module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/issues/204)
-to add support for specifying all buckets in a region.
-
+for this variable in order to understand how to structure the list of buckets per region. 
 
 ### 7. Enable MFA Delete for all S3 buckets
 
@@ -129,6 +125,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "29cee056225dcb37f9e57ae13624a821"
+  "hash": "d9578907ce2ca88ed3eba023881fddba"
 }
 ##DOCS-SOURCER-END -->
