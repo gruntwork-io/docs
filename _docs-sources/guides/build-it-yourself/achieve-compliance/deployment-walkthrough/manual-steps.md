@@ -8,7 +8,7 @@ Now that your infrastructure is up and running, there are some manual steps nece
 
 ## 1. Revoke Gruntwork's access
 
-Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through an IAM role called `GruntworkAccessRole` in each of the accounts through the `AdministratorAccess` policy. Use the `gruntwork` CLI to delete the IAM role and revoke access in each account by [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
+Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through an IAM role called `GruntworkAccountAccessRole` in each of the accounts through the `AdministratorAccess` policy. Use the `gruntwork` CLI to delete the IAM role and revoke access in each account by [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
 
 ```bash
 gruntwork aws revoke \
