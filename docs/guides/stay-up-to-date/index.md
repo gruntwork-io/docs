@@ -108,7 +108,7 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "local-copier",
+  "sourcePlugin": "releases",
   "hash": "8fac172fc52b3b2e79b022f7d48c6325"
 }
 ##DOCS-SOURCER-END -->
