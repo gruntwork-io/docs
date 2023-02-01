@@ -12,7 +12,12 @@ Here are the repos that were updated:
 
 - [repo-copier](#repo-copier)
 - [terraform-aws-ci](#terraform-aws-ci)
+- [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
+- [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
+- [terraform-aws-security](#terraform-aws-security)
+- [terraform-aws-service-catalog](#terraform-aws-service-catalog)
+- [terraform-aws-vpc](#terraform-aws-vpc)
 
 
 ## repo-copier
@@ -71,6 +76,134 @@ Here are the repos that were updated:
 
 
 
+## terraform-aws-cis-service-catalog
+
+
+### [v0.42.5](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.5)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/14/2022 | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.5">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Move the generated `.tflint.hcl` by the `tflint` patch to be at the root level, instead of at the module directory level.
+
+
+
+</div>
+
+
+### [v0.42.4](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/14/2022 | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Fix tflint patch to add block for including the parent TG config
+
+
+</div>
+
+
+### [v0.42.3](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/14/2022 | Modules affected: N.A. | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- Add patch for tflint hook setup for CIS RefArch users
+
+
+
+
+
+
+</div>
+
+
+### [v0.42.2](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/9/2022 | Modules affected: tflint-ruleset-aws-cis | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Fix project&apos;s name on goreleaser. Also added docs for the CIDR block rule.
+
+
+
+</div>
+
+
+### [v0.42.1](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/9/2022 | Modules affected: tflint-ruleset-aws-cis | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- New golang module: `tflint-ruleset-aws-cis`. It will be used to validate CIDR blocks.
+
+
+
+</div>
+
+
+
+## terraform-aws-lambda
+
+
+### [v0.21.4](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/15/2022 | Modules affected: lambda-edge, lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Fixes perpetual diff issue on `terragrunt plan` when using relative paths for the Lambda function&apos;s source path, and adds the option to configure the files to exclude when zipping the Lambda&apos;s code
+
+
+
+</div>
+
+
+### [v0.21.3](https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.3)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/2/2022 | Modules affected: lambda | <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.3">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Fixes permissions for Lambda&apos;s ENI management when running in VPC.
+
+
+
+</div>
+
+
+
 ## terraform-aws-load-balancer
 
 
@@ -92,10 +225,114 @@ Here are the repos that were updated:
 
 
 
+## terraform-aws-security
+
+
+### [v0.67.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/14/2022 | Modules affected: ntp, private-s3-bucket | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- `ntp`
+- `private-s3-bucket`
+
+
+- Add explanation of why Chrony in a module called NTP
+- Adding bucket_key_enabled option to S3 module
+
+
+Special thanks to the following user for their contribution!
+
+- @nniehoff
+
+
+
+- https://github.com/gruntwork-io/terraform-aws-security/pull/733
+- https://github.com/gruntwork-io/terraform-aws-security/pull/734
+
+
+
+</div>
+
+
+
+## terraform-aws-service-catalog
+
+
+### [v0.99.2](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/16/2022 | Modules affected: mgmt | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- Update the CIS RDS Patch to include state migrations
+- IMDSv1 passthru variable for ASG launch configurations
+
+
+
+</div>
+
+
+### [v0.99.1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/8/2022 | Modules affected: services/eks-workers | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.99.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Add `Name` tag (cluster name) for managed EKS workers
+
+
+
+</div>
+
+
+
+## terraform-aws-vpc
+
+
+### [v0.22.4](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.4)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 12/9/2022 | Modules affected: vpc-flow-logs | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.4">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Updating terraform-aws-security to latest version: When the flow-logs module was instantiate, and an S3 bucket was created, a warning about a deprecated attribute was thrown. Updating the version of the upstream code.
+```
+│ Warning: Argument is deprecated
+│ 
+│   with module.vpc_flow_log.module.s3_bucket.aws_s3_bucket.bucket,
+│   on .terraform/modules/vpc_flow_log.s3_bucket/modules/private-s3-bucket/main.tf line 19, in resource &quot;aws_s3_bucket&quot; &quot;bucket&quot;:
+│   19: resource &quot;aws_s3_bucket&quot; &quot;bucket&quot; &#x7B;
+│ 
+│ Use the top-level parameter object_lock_enabled and the
+│ aws_s3_bucket_object_lock_configuration resource instead
+```
+
+
+
+</div>
+
+
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "79a2d68965faabae13c415c6c06264b7"
+  "hash": "a706bd3f50c96d92249a79cbafd157eb"
 }
 ##DOCS-SOURCER-END -->

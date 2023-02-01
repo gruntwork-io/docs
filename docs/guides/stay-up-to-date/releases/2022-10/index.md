@@ -174,10 +174,6 @@ Here are the repos that were updated:
 - [CIS v1.5] New RDS compliant module
 
 
-
-
-
-
 </div>
 
 
@@ -440,6 +436,6 @@ Due to the Cluster Autoscaler version bump, additional IAM Permissions have been
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3536807f086094723c6cc5acd2f7709f"
+  "hash": "938a32fa34028975342d181683edc000"
 }
 ##DOCS-SOURCER-END -->
