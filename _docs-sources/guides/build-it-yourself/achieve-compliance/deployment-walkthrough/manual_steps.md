@@ -8,7 +8,7 @@ Now that your infrastructure is up and running, there are some manual steps nece
 
 ## 1. Revoke Gruntwork's access
 
-Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through the `GruntworkAccessRole` in each of the accounts. Use the `gruntwork` CLI to revoke the access, it will delete the role in each the account, [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
+Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through an IAM role called `GruntworkAccessRole` in each of the accounts through the `AdministratorAccess` policy. Use the `gruntwork` CLI to delete the IAM role and revoke access in each account by [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
 
 ```bash
 gruntwork aws revoke \
@@ -32,13 +32,14 @@ The steps below should be performed on each deployed account.
 
 Securing the "root" user, or the first user that is created when you set up an AWS account, is one of the
 first actions you should take in any new account. It is highly recommended that you avoid using this root user for everyday tasks. Unfortunately, there is no API or automation available for configuring an MFA device for the
-root user. Follow the manual steps outlined in the
-[AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa). Configuring a virtual MFA device will achieve recommendation 1.5. You can also refer to the [production-grade AWS account structure guide.](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
+root user. Follow the manual steps outlined in the [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa) for configuring a MFA device.
 
-Configure a hardware MFA device, as suggested by recommendation 1.6. We suggest using a
+- (Recommended) Configure a hardware MFA device. We suggest using a
 [Yubikey](https://www.yubico.com/) due to its strong security characteristics and multitude of form
 factors. Refer to
-[the documentation for more information on using a hardware device with the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html#enable-hw-mfa-for-root).
+[the AWS documentation for more information on using a hardware device with the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html#enable-hw-mfa-for-root). If you're targeting the CIS AWS Foundations Benchmark, this is part of recommendation 1.6.
+
+- Alternatively, if you don't have access to a hardware MFA device, configure a virtual MFA device. This is still vastly more secure than no MFA device at all!
 
 ## 3. Answer security questions and complete contact details
 
@@ -49,7 +50,7 @@ When setting up a new account, AWS asks for contact information and security que
 
 Use [cloud-nuke](https://github.com/gruntwork-io/cloud-nuke) to remove the rules from the default VPC and the default ingress/egress rules from the default security groups. Note that it isn’t possible to actually delete the default security group, so instead the command deletes the rules, eliminating the risk of something being mistakenly exposed.
 
-Authenticate on each account (shared, security, dev, prod etc), and then run the following command:
+Authenticate to each account (shared, security, dev, prod etc), and then run the following command:
 
 Usage:
 ```bash
@@ -63,7 +64,7 @@ aws-vault exec dev -- cloud-nuke defaults-aws
 
 ## 5. Subscribe to `BenchmarkAlarmTopic` Alarms
 
-The Config alerts and CloudWatch Metric Alarms all go to the SNS topic `BenchmarkAlarmTopic`. Unfortunately, there is no way to automate
+The AWS Config alerts and CloudWatch Metric Alarms all go to the SNS topic `BenchmarkAlarmTopic`. Unfortunately, there is no way to automate
 subscribing to the SNS topic as each of the steps require validating the delivery target. For each deployed account, follow the steps outlined in
 the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) to be notified by Email, Phone,
 or SMS for each of the alerts.
@@ -77,9 +78,23 @@ docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subsc
 To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
 you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
 all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
-need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. Please read the
+need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. This list of buckets needs to be maintained in the future as new buckets are created in the account. Please read the
 [documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
-for this variable in order to understand how to structure the list of buckets per region. 
+for this variable in order to understand how to structure the list of buckets per region.
+
+On each account, you can get a full list of existing S3 buckets using the AWS CLI:
+
+```
+aws s3api list-buckets
+```
+
+For each bucket, the region can also be retrieved using the AWS CLI:
+
+
+```
+aws s3api get-bucket-location --bucket <BUCKET_NAME>
+```
+
 
 ## 7. Enable MFA Delete for all S3 buckets
 
@@ -98,7 +113,7 @@ To make this change [**you need to use the root user of the account**](https://d
 1. [Configure MFA for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa), which you did before in this guide.
 2. [Create access keys for the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key).
 
-Authenticated with the root user, use the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag. [More information about the `--no-session` flag in our Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions/647).
+Authenticate as the root user and use the AWS CLI to enable MFA Delete. If you are using `aws-vault`, it is necessary to use the `--no-session` flag. [More information about the `--no-session` flag in our Knowledge Base](https://github.com/gruntwork-io/knowledge-base/discussions/647).
 
 ```bash
 aws-vault exec <PROFILE> --no-session -- aws s3api put-bucket-versioning --region <REGION> \
