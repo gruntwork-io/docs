@@ -322,21 +322,10 @@ first actions you should take in any new account. It is highly recommended that 
 root user. Follow the manual steps outlined in the
 [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa). Configuring a virtual MFA device will achieve recommendation 1.5. You can also refer to the [production-grade AWS account structure guide.](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
-For the paranoid: configure a hardware MFA device, as suggested by recommendation 1.6. We suggest using a
+Configure an MFA device, as suggested by recommendation 1.6. We suggest using a
 [Yubikey](https://www.yubico.com/) due to its reputation for strong security characteristics and multitude of form
 factors. Refer to
 [the documentation for more information on using a hardware device with the root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_physical.html#enable-hw-mfa-for-root).
-
-#### Subscribe to SNS topic
-
-The Config alerts and CloudWatch Metric Alarms all go to an SNS topic. Unfortunately, there is no way to automate
-subscribing to the SNS topic as each of the steps require validating the delivery target. Follow the steps outlined in
-the [AWS docs](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) to be notified by Email, Phone,
-or SMS for each of the alerts.
-
-You can also configure an automated system integration if you have a third party alerting system or central dashboard.
-Follow the steps in the [AWS
-docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
 #### Answer security questions and complete contact details
 
@@ -349,6 +338,6 @@ For further detail, follow the manual steps outlined in the CIS Benchmark docume
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d8bfa6313c4037ed79aa14ac13940728"
+  "hash": "0cbf46af308ab524cdd1f839d41ad6fb"
 }
 ##DOCS-SOURCER-END -->

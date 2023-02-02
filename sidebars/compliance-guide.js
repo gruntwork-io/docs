@@ -53,6 +53,7 @@ const sidebar = [
             ],
           },
           "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/create-vpc-flow-logs",
+          "guides/build-it-yourself/achieve-compliance/deployment-walkthrough/manual-steps",
         ],
       },
       "guides/build-it-yourself/achieve-compliance/traceability-matrix",

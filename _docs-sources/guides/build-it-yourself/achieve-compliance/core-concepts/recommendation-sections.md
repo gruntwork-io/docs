@@ -6,7 +6,7 @@ _Number of recommendations: 21_
 
 The recommendations in this section involve the use of identity, accounts, authentication, and authorization.
 On AWS, most identity and access control related concerns are managed using the
-[eponymous IAM service](https://aws.amazon.com/iam/). Hence, most (but not all) of the recommendations in
+[IAM service](https://aws.amazon.com/iam/). Hence, most (but not all) of the recommendations in
 this section discuss particular IAM configurations, such as the configuration of the password policy, the use
 of various groups and roles, and the configuration of multi-factor authentication (MFA) devices.
 
