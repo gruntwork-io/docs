@@ -30,6 +30,7 @@ import CardGroup from "/src/components/CardGroup"
 <Card title="Update to 2022-02" href="/guides/stay-up-to-date/releases/2022-02" />
 <Card title="Update to 2022-01" href="/guides/stay-up-to-date/releases/2022-01" />
 <Card title="Update to 2021-12" href="/guides/stay-up-to-date/releases/2021-12" />
+<Card title="Update to 2021-11" href="/guides/stay-up-to-date/releases/2021-11" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 
 </CardGroup>
@@ -108,6 +109,6 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f2e45f8aad70f0d722e709c4477cebda"
+  "hash": "7ea35831433ed92507132ae0bae19621"
 }
 ##DOCS-SOURCER-END -->

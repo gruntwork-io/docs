@@ -82,24 +82,6 @@ This release switches `repo-copier` to using your locally installed `git` instan
 ## terraform-aws-cis-service-catalog
 
 
-### [v0.42.7](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/31/2023 | Modules affected: data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Update tflint patch to latest docker and remove include root
-- Plumb `maintenance_window` variable from CIS RDS module through to base RDS module
-
-
-
-</div>
-
-
 ### [v0.42.6](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.6)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -390,6 +372,6 @@ If you wish to maintain backward compatibility with your existing setup of the E
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "589730717ead92ca7d2fadc61f2ec25b"
+  "hash": "ee236b0fb3bc36dbd51cfac665fdc64a"
 }
 ##DOCS-SOURCER-END -->

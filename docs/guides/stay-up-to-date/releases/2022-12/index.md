@@ -63,7 +63,7 @@ Here are the repos that were updated:
 
   
 
-- Use BuildKit pattern for passing secrets in the CircleCI build
+- Use BuildKit pattern for passing secrets in the CircleCI build **[BACKWARD INCOMPATIBLE]**
 - Fix intermittent test failure
 - Use main branch in deploy-runner docker image
 - Fix installing `gox` in Go 1.17 and newer
@@ -333,6 +333,6 @@ Special thanks to the following user for their contribution!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a706bd3f50c96d92249a79cbafd157eb"
+  "hash": "0c7197b91e0e2863b023e9bb72a0c949"
 }
 ##DOCS-SOURCER-END -->
