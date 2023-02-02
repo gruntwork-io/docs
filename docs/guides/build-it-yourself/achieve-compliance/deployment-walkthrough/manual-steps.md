@@ -4,11 +4,11 @@ pagination_label: Deployment Walkthrough
 
 # Manual steps
 
-Now that your infrastructure is up and running, there are some manual steps necessary before the resources meet the CIS AWS Benchmark recommendations.
+Now that your infrastructure is up and running, some manual steps are necessary before the resources meet the CIS AWS Benchmark recommendations.
 
 ## 1. Revoke Gruntwork's access
 
-Now that your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through an IAM role called `GruntworkAccessRole` in each of the accounts through the `AdministratorAccess` policy. Use the `gruntwork` CLI to delete the IAM role and revoke access in each account by [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
+As your infrastructure is deployed, Gruntwork doesn't need access to it anymore. The access is given through an IAM role called `GruntworkAccountAccessRole` in each of the accounts through the `AdministratorAccess` policy. Use the `gruntwork` CLI to delete the IAM role and revoke access in each account by [following these steps](https://github.com/gruntwork-io/gruntwork#revoking-access-to-aws):
 
 ```bash
 gruntwork aws revoke \
@@ -24,7 +24,7 @@ To revoke Gruntwork's access from the "current" account—the one you are authen
 `__current__` (i.e., `--account "__current__"`).
 
 
-**Important**: Never use the `AdministratorAccess` AWS managed policy with any users, groups, or roles. It gives full access to all resources. Instead, to give access to administrators, use a policy that allows full IAM privileges (e.g. `iam:*`) on all resources. Our Landing Zone solution created a `iam-admin` group in the Security account. [More information about the existing groups in the `iam-groups` module.](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups)
+**Important**: The CIS AWS Benchmark recommends that policies with full `*:*` administrative privileges are not attached. `AdministratorAccess` is an AWS managed policy that gives full administrative privileges, but you should avoid using it with any users, groups, or roles. Instead, to give access to administrators, you should use the `iam-admin` policy that lives in the Security account. The `iam-admin` policy allows full IAM privileges (e.g. `iam:*`) on all resources. [More information about the existing groups in the `iam-groups` module.](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups)
 
 The steps below should be performed on each deployed account.
 
@@ -75,7 +75,8 @@ docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subsc
 
 ## 6. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
 
-To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
+Macie is a new AWS service that uses machine learning (ML) and pattern matching to discover and help protect your sensitive
+data. To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
 you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
 all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
 need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. This list of buckets needs to be maintained in the future as new buckets are created in the account. Please read the
@@ -85,7 +86,7 @@ for this variable in order to understand how to structure the list of buckets pe
 On each account, you can get a full list of existing S3 buckets using the AWS CLI:
 
 ```
-aws s3api list-buckets
+aws s3 ls
 ```
 
 For each bucket, the region can also be retrieved using the AWS CLI:
@@ -140,6 +141,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bd0e72dfbf720f5650e7cac602402ebd"
+  "hash": "402d73f62a8fa3b89d18d1decb3ebeba"
 }
 ##DOCS-SOURCER-END -->
