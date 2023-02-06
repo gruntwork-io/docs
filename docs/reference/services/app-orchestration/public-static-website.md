@@ -238,7 +238,7 @@ The default amount of time, in seconds, that an object is in a CloudFront cache 
 <HclListItem name="disable_cloudfront_logging" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Option to disable cloudfront log delivery to s3.  This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
+Option to disable cloudfront log delivery to s3. This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -580,6 +580,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "705d481d0be14ac13a9d2990dd5e718a"
+  "hash": "1e1d01186705a0d52d80568cc72895ca"
 }
 ##DOCS-SOURCER-END -->
