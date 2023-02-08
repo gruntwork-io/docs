@@ -733,6 +733,15 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="fluent_bit_additional_inputs" requirement="optional" type="string">
+<HclListItemDescription>
+
+Can be used to add more inputs. This string should be formatted according to Fluent Bit docs (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/configuration-file#config_input).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="fluent_bit_extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1016,6 +1025,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Feks-core-services%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "aca99f1b627a65d30e3ea07876fc394f"
+  "hash": "acd129923cf840ec2bfc395e7c394eeb"
 }
 ##DOCS-SOURCER-END -->
