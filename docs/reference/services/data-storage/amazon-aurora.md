@@ -179,15 +179,6 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 <HclListItemDefaultValue defaultValue="3600"/>
 </HclListItem>
 
-<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -622,15 +613,6 @@ Trigger an alarm if the DB instance has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_read_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -649,15 +631,6 @@ Trigger an alarm if the DB instance read latency (average amount of time taken p
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
-<HclListItem name="high_read_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -674,15 +647,6 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="high_write_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -748,15 +712,6 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 <HclListItemDefaultValue defaultValue="1000000000"/>
 </HclListItem>
 
-<HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="low_memory_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -773,15 +728,6 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
-</HclListItem>
-
-<HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="master_password" requirement="optional" type="string">
@@ -836,15 +782,6 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="preferred_maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The weekly day and time range during which cluster maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="primary_domain_name" requirement="optional" type="string">
@@ -1167,6 +1104,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "819ea041a4427f34b65d40f8f7cf8040"
+  "hash": "822c858c1928455418a93b0ae4bf77ad"
 }
 ##DOCS-SOURCER-END -->

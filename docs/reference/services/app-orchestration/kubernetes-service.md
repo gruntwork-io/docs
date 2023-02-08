@@ -31,8 +31,6 @@ This service contains [Terraform](https://www.terraform.io) code to deploy your 
 [the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
 [Kubernetes](https://kubernetes.io/) following best practices.
 
-If you want to deploy third-party applications already packaged as Helm Charts, such as those available in [bitnami](https://bitnami.com/stacks/helm), see the [`helm-service`](/reference/services/app-orchestration/helm-service) module.
-
 ![Kubernetes Service architecture](/img/reference/services/app-orchestration/k8s-service-architecture.png)
 
 ## Features
@@ -300,19 +298,12 @@ map(map(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(any)">
+<HclListItem name="configmaps_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value as a map containing required mountPath (file path on the container to mount the ConfigMap to) and optional subPath (sub-path inside the referenced volume).
+Kubernetes ConfigMaps to be injected into the container as volume mounts. Each entry in the map represents a ConfigMap to be mounted, with the key representing the name of the ConfigMap and the value representing a file path on the container to mount the ConfigMap to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -440,13 +431,13 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.2.16&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.13&quot;"/>
 </HclListItem>
 
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure the Horizontal Pod Autoscaler (HPA) information for the associated Deployment. HPA is disabled when this variable is set to null. Note that to use an HPA, you must have a corresponding service deployed to your cluster that exports the metrics (e.g., metrics-server https://github.com/kubernetes-sigs/metrics-server).
+Configure the Horizontal Pod Autoscaler information for the associated Deployment. HPA is disabled when this variable is set to null.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -820,19 +811,12 @@ map(map(string))
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="secrets_as_volumes" requirement="optional" type="map(any)">
+<HclListItem name="secrets_as_volumes" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value as a map containing required mountPath (file path on the container to mount the Secret to) and optional subPath (sub-path inside the referenced volume).
+Kubernetes Secrets to be injected into the container as volume mounts. Each entry in the map represents a Secret to be mounted, with the key representing the name of the Secret and the value representing a file path on the container to mount the Secret to.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -941,6 +925,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f187058300a4858c6cfedd72e7bd0690"
+  "hash": "c1c32ecaaa9edad60525130420bc8a7a"
 }
 ##DOCS-SOURCER-END -->

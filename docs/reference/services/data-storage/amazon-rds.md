@@ -179,15 +179,6 @@ Specifies whether any cluster modifications are applied immediately, or during t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance.html#engine_version for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -204,15 +195,6 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
-</HclListItem>
-
-<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
@@ -272,15 +254,6 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Copy all the RDS instance tags to snapshots. Default is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_custom_kms_key" requirement="optional" type="bool">
@@ -665,15 +638,6 @@ Trigger an alarm if the DB instance has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_read_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -737,15 +701,6 @@ The instance type to use for the db (e.g. db.t3.micro)
 <HclListItemDefaultValue defaultValue="&quot;db.t3.micro&quot;"/>
 </HclListItem>
 
-<HclListItem name="iops" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1'. Can only be set when storage_type is 'gp3' or 'io1'. Set to 0 to disable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -782,15 +737,6 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 <HclListItemDefaultValue defaultValue="1000000000"/>
 </HclListItem>
 
-<HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="low_memory_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -807,24 +753,6 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
-</HclListItem>
-
-<HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="master_password" requirement="optional" type="string">
@@ -1034,15 +962,6 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="storage_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
-</HclListItem>
-
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1050,15 +969,6 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="too_many_db_connections_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -1228,6 +1138,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "da675a4f9ac963d5c9f686475072abab"
+  "hash": "1dfc52f7eaa8e869b1c7fc4a0770ce77"
 }
 ##DOCS-SOURCER-END -->

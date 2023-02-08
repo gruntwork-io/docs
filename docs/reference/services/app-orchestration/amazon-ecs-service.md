@@ -704,15 +704,6 @@ Trigger an alarm if the ECS Service has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -729,15 +720,6 @@ Trigger an alarm if the ECS Service has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -1319,6 +1301,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "09b01ba86276bd0bfe7364e1587a4788"
+  "hash": "6a906873f33be66f605c5c46363474d1"
 }
 ##DOCS-SOURCER-END -->

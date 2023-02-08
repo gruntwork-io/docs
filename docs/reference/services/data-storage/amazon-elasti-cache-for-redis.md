@@ -146,15 +146,6 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -387,14 +378,6 @@ When cluster mode is disabled, use this endpoint for all read operations.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="security_group_id">
-<HclListItemDescription>
-
-Security Group ID used for redis cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -407,6 +390,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fdata-stores%2Fredis%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bd1f65cd5311bfdc8055ae37379fb32a"
+  "hash": "a7d348bfa49fdb5991a5580b0817b31a"
 }
 ##DOCS-SOURCER-END -->

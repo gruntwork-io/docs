@@ -135,15 +135,6 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -271,6 +262,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fdata-stores%2Fmemcached%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eaf83dd7a05355d26a04041f6cd90e59"
+  "hash": "94ef41c788be4c76ebc766a78bb4380a"
 }
 ##DOCS-SOURCER-END -->

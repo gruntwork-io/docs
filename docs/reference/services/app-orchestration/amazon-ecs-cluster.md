@@ -562,13 +562,22 @@ Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItem name="high_disk_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+The period, in seconds, over which to measure the disk utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="high_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instances in the ECS Cluster have a disk utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
 <HclListItem name="high_memory_utilization_evaluation_periods" requirement="optional" type="number">
@@ -605,15 +614,6 @@ Trigger an alarm if the ECS Cluster has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
@@ -841,6 +841,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a0be28022a658e1bdc2670d3354a6ca8"
+  "hash": "f50d438f110236299c5d58e67bb3c754"
 }
 ##DOCS-SOURCER-END -->
