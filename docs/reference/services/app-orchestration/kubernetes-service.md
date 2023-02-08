@@ -440,7 +440,7 @@ A boolean that indicates whether the access logs bucket should be destroyed, eve
 The version of the k8s-service helm chart to deploy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.2.16&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.2.18&quot;"/>
 </HclListItem>
 
 <HclListItem name="horizontal_pod_autoscaler" requirement="optional" type="object(…)">
@@ -941,6 +941,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.100.3/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f187058300a4858c6cfedd72e7bd0690"
+  "hash": "f4788a28660bd9f84e8597b67cc9c407"
 }
 ##DOCS-SOURCER-END -->
