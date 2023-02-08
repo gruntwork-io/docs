@@ -16,6 +16,7 @@ import CardGroup from "/src/components/CardGroup"
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
+<Card title="Update to 2023-01" href="/guides/stay-up-to-date/releases/2023-01" />
 <Card title="Update to 2022-12" href="/guides/stay-up-to-date/releases/2022-12" />
 <Card title="Update to 2022-11" href="/guides/stay-up-to-date/releases/2022-11" />
 <Card title="Update to 2022-10" href="/guides/stay-up-to-date/releases/2022-10" />
@@ -30,7 +31,6 @@ import CardGroup from "/src/components/CardGroup"
 <Card title="Update to 2022-01" href="/guides/stay-up-to-date/releases/2022-01" />
 <Card title="Update to 2021-12" href="/guides/stay-up-to-date/releases/2021-12" />
 <Card title="Update to 2021-11" href="/guides/stay-up-to-date/releases/2021-11" />
-<Card title="Update to 2021-10" href="/guides/stay-up-to-date/releases/2021-10" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 
 </CardGroup>
@@ -109,6 +109,6 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8fac172fc52b3b2e79b022f7d48c6325"
+  "hash": "7ea35831433ed92507132ae0bae19621"
 }
 ##DOCS-SOURCER-END -->
