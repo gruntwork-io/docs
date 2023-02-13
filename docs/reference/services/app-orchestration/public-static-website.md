@@ -392,7 +392,7 @@ If set to true, the S3 bucket will only be accessible via CloudFront, and not di
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rules. Use routing_rules if rules contain empty String values.
+A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -403,15 +403,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="routing_rules" requirement="optional" type="string">
-<HclListItemDescription>
-
-A json string array containing routing rules for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rule. Use this when routing rules contain empty String values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="security_header_content_security_policy" requirement="optional" type="string">
@@ -598,6 +589,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "46222322f24c6fefdb69e8b6979b1891"
+  "hash": "5f0a0fd24d5ca766e649e179b0bd1846"
 }
 ##DOCS-SOURCER-END -->
