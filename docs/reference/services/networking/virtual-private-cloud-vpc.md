@@ -99,6 +99,14 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
+<HclListItem name="aws_region" requirement="required" type="string">
+<HclListItemDescription>
+
+The AWS region in which all resources will be created
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="cidr_block" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -159,15 +167,6 @@ Specific Availability Zones in which subnets SHOULD NOT be created. Useful for w
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="aws_region" requirement="optional" type="string">
-<HclListItemDescription>
-
-DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer used and only kept around for backwards compatibility. We now automatically fetch the region using a data source.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_dns_forwarder" requirement="optional" type="bool">
@@ -500,15 +499,6 @@ VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="map_public_ip_on_launch" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specify true to indicate that instances launched into the public subnet should be assigned a public IP address (versus a private IP address)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
@@ -1021,6 +1011,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fvpc%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "334ea782abd7410ca05b5ab86e82595d"
+  "hash": "878a2ad13a870830dc0329efb8c667aa"
 }
 ##DOCS-SOURCER-END -->

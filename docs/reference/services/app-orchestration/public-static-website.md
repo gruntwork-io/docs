@@ -235,15 +235,6 @@ The default amount of time, in seconds, that an object is in a CloudFront cache 
 <HclListItemDefaultValue defaultValue="30"/>
 </HclListItem>
 
-<HclListItem name="disable_cloudfront_logging" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Option to disable cloudfront log delivery to s3. This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="enable_default_directory_index_function" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -251,6 +242,15 @@ If set to true, a CloudFront function to implement default directory index (look
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_versioning" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable versioning. This means the bucket will retain all old versions of all files. This is useful for backup purposes (e.g. you can rollback to an older version), but it may mean your bucket uses more storage.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="error_document" requirement="optional" type="string">
@@ -392,7 +392,7 @@ If set to true, the S3 bucket will only be accessible via CloudFront, and not di
 <HclListItem name="routing_rule" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rules. Use routing_rules if rules contain empty String values.
+A map describing the routing_rule for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -403,15 +403,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="routing_rules" requirement="optional" type="string">
-<HclListItemDescription>
-
-A json string array containing routing rules for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rule. Use this when routing rules contain empty String values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="security_header_content_security_policy" requirement="optional" type="string">
@@ -534,15 +525,6 @@ Use this element to specify the protocol that users can use to access the files 
 <HclListItemDefaultValue defaultValue="&quot;allow-all&quot;"/>
 </HclListItem>
 
-<HclListItem name="web_acl_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web ACL that is associated with the distribution. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#web_acl_id for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -598,6 +580,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "46222322f24c6fefdb69e8b6979b1891"
+  "hash": "0644f67b40323a2e974edb09db9c2ff0"
 }
 ##DOCS-SOURCER-END -->
