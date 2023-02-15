@@ -13,4 +13,6 @@ export CONFIG_POSTHOG_API_KEY="phc_zJYg43ctbPl1BzsnODjop1op9KSsctiGm6DNNt3zHZT"
 
 yarn --ignore-optional && yarn build
 
+aws s3 rm s3://docs.gruntwork.io --recursive # This is how we ensure deleted files get removed from the bucket
+
 aws s3 cp --recursive build/ s3://docs.gruntwork.io
