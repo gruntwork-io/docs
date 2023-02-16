@@ -11,4 +11,4 @@ export ALGOLIA_API_KEY="8487ee2b8a8d59dfd7597854d562a38b" # This is a search onl
 
 yarn --ignore-optional && yarn build
 
-aws s3 cp --recursive build/ s3://docs.dogfood-stage.com
+aws s3 sync build/ s3://docs.dogfood-stage.com --delete # Delete option ensures deleted files get removed from the bucket
