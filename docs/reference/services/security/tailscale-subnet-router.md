@@ -529,7 +529,7 @@ Advertised hostname of the server on the tailnet. If null, defaults to the <a hr
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -590,6 +590,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c406a8de36c7cee9629e5ffceecc3c87"
+  "hash": "0a78c25f8d75365e54c1d4d81d46f16b"
 }
 ##DOCS-SOURCER-END -->

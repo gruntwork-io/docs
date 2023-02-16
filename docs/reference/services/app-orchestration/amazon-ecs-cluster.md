@@ -691,7 +691,7 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -749,10 +749,10 @@ For configurations with multiple capacity providers, this contains a list of all
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_cluster_launch_configuration_id">
+<HclListItem name="ecs_cluster_launch_template_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used by the ECS cluster's auto scaling group (ASG)
+The ID of the launch template used by the ECS cluster's auto scaling group (ASG)
 
 </HclListItemDescription>
 </HclListItem>
@@ -841,6 +841,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "745eb8301c69403755600477ef1a7403"
+  "hash": "bb3fb1694ec918524d943b3dd6a5d28a"
 }
 ##DOCS-SOURCER-END -->

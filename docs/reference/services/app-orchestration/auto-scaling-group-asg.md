@@ -55,7 +55,7 @@ Under the hood, this is all implemented using Terraform modules from the Gruntwo
 access to this repo, email <support@gruntwork.io>.
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
-    Amazon’s docs for ASG that cover core concepts such as launch templates, launch configuration and auto scaling groups.
+    Amazon’s docs for ASG that cover core concepts such as launch templates, launch template and auto scaling groups.
 *   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
@@ -829,18 +829,18 @@ The Fully Qualified Domain Name built using the zone domain and name.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_configuration_id">
+<HclListItem name="launch_template_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used for the ASG.
+The ID of the launch template used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_configuration_name">
+<HclListItem name="launch_template_name">
 <HclListItemDescription>
 
-The name of the launch configuration used for the ASG.
+The name of the launch template used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
@@ -889,6 +889,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fasg-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "aed85419f5f83b4361b46baab31491f2"
+  "hash": "196b51c308891957422e8f6d2eb83ef8"
 }
 ##DOCS-SOURCER-END -->
