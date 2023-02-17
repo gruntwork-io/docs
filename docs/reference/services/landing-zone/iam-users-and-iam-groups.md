@@ -207,15 +207,6 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -422,15 +413,6 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -543,12 +525,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="full_access_iam_group_name">
 </HclListItem>
 
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -642,6 +618,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Fiam-users-and-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "db38b3ff92824892a19dc977da369740"
+  "hash": "a65adbaee8b79e909de67674bd92fb4b"
 }
 ##DOCS-SOURCER-END -->

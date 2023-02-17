@@ -1276,12 +1276,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1316,15 +1310,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -1564,6 +1549,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bee7ff0e2a9bf1c7460cfbdf20910267"
+  "hash": "e09727e9cbbdbe8dd2188cb94eee82ac"
 }
 ##DOCS-SOURCER-END -->
