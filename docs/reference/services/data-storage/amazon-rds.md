@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.101.0"/>
+<VersionBadge version="0.101.0" lastModifiedVersion="0.101.1"/>
 
 # Amazon Relational Database Service
 
@@ -1034,6 +1034,15 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_throughput" requirement="optional" type="string">
+<HclListItemDescription>
+
+The storage throughput value for the DB instance. Can only be set when <a href="#storage_type"><code>storage_type</code></a> is 'gp3'. Cannot be specified if the allocated_storage value is below a per-engine threshold. See the RDS User Guide: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;0&quot;"/>
+</HclListItem>
+
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1228,6 +1237,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0ea4a3747af96e54cba2e79980ec6154"
+  "hash": "666165067c3231efd0030c5d292f458c"
 }
 ##DOCS-SOURCER-END -->
