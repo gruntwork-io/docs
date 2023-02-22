@@ -7,114 +7,88 @@ sidebar_label: Update the Account Baseline modules
 Next, you will need to update the account baseline (landing zone) modules to the version compatible
 with v1.5.0 of the CIS AWS Foundations Benchmark. 
 
-@@ FIX ME - text below is from CIS v1.4 guide
+We strongly recommend upgrading straight to at least [v0.42.9](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.9), instead of each minor version incrementally.
 
-We strongly recommend upgrading straight to at least v0.27.0,
-instead of each minor version incrementally. This saves a lot of time due to the performance enhancements in
-recent versions of the account baseline modules and you can still complete the required migration steps before
-running Terraform/Terragrunt `apply`.
+If you are using Patcher, then it will upgrade to the latest available version.
 
-This guide assumes you are using at least v0.22.0 of the CIS Service Catalog repo.
+This guide assumes you are using at least [v0.40.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0) of the CIS Service Catalog repo, which was released in August 2022.
 
-The account baseline modules had three breaking changes between versions v0.22.0 and v0.27.0. We must manually run
-these migration steps before updating the module versions.
+The account baseline modules had one breaking change between versions v0.40.0 and v0.42.9. We must manually run
+the migration steps before updating the module versions.
 
-- [v0.23.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.23.0): Refactored the
-  SecurityHub module to remove a Python script that managed invitations between the AWS accounts. It’s necessary to run a
-  state migration to manage the invitations with Terraform.
+- [v0.42.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.0): Added support for new AWS region (me-central-1 UAE) to multiregion modules.
 
-- [v0.24.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.24.0): This release introduces MFA Delete. You will need to follow the migration guide to ensure all S3 buckets are properly secured. Note: It is unlikely you will need to perform this step on the AWS root account as they typically don’t contain S3 buckets. Please ensure you migrate all other AWS accounts.
+### Step 3.1 Add `me-central-1` to your `providers.tf`
 
-- [v0.25.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.25.0): Update the codebase
-  to a new multi-region approach. In [v0.51.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.51.0) of
-  `terraform-aws-security`, we refactored how we build multi-region modules—that
-  is, those modules that deploy resources across every single AWS region, such as `aws-config-multi-region`—to no longer
-  create nested provider blocks, and instead, have users pass in providers via the providers map.
-
-Additionally, earlier versions of the account baseline modules did not set the following variables, so please ensure
-that they exist. Here is [an example](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/v0.27.0/examples/for-production/infrastructure-live/logs/_global/account-baseline/terragrunt.hcl#L281) of what you might set the values to for the prod account.
-
-- `var.config_central_account_id`
-- `var.security_hub_associate_to_master_account_id`
-- `var.config_opt_in_regions`
-- `var.guardduty_opt_in_regions`
-- `var.kms_cmk_opt_in_regions`
-- `var.iam_access_analyzer_opt_in_regions`
-- `var.ebs_opt_in_regions`
-- `var.security_hub_opt_in_regions`
-- `var.macie_opt_in_regions`
-
-Once you have completed the above migration steps, it is time to update each baseline module to at least version [v0.27.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.27.0) and run Terraform/Terragrunt apply. Typically this is done using the `source` parameter:
+Add the following to your providers.tf for terraform:
 
 ```hcl title=infrastructure-live/root/_global/account-baseline/terragrunt.hcl
-git::git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.27.0
-```
+provider "aws" {
+  region = "me-central-1"
+  alias  = "me_central_1"
 
-Now execute Terraform/Terragrunt `apply`. It should take approximately ~30 minutes to apply the account baseline
-modules. If you encounter any issues then please check out the [Known Issues](step-3-manual-steps.md#known-issues) section.
-
-:::info
-
-Be sure to do this for each AWS account and account baseline module.
-
-:::
-
-In addition to the above breaking changes, you’ll need to configure the account baseline modules to include the newly
-created module for [Amazon Macie](https://aws.amazon.com/macie/). Amazon Macie satisfies the new 2.1.4 benchmark recommendation that requires all data
-in Amazon S3 be discovered, classified and secured. We have created a dedicated
-[`macie` module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/security/macie)
-in our CIS service catalog.
-
-:::info
-
-Manual steps required! After updating the account baseline modules as described below, make sure you perform the manual steps
-outlined in the [Configure Amazon Macie (recommendation 2.1.4)](step-3-manual-steps.md#configure-amazon-macie-recommendation-214) section.
-
-:::
-
-To configure account baseline modules to include Amazon Macie, add the following configuration to the respective account
-baseline module configurations:
-
-```hcl title=infrastructure-live/root/_global/account-baseline/terragrunt.hcl
-inputs {
-  # ... previous inputs ...
-
-  # Configures Amazon Macie
-  create_macie_bucket      = true
-  macie_bucket_name        = "<your-macie-bucket-name>"
-  macie_create_kms_key     = true
-  macie_kms_key_name       = "<your-macie-kms-key-name>"
-  macie_kms_key_users      = ["arn:aws:iam::${local.accounts[local.account_name]}:root"]
-  macie_opt_in_regions     = local.opt_in_regions
-
-  # The variable below for Amazon Macie needs to be manually maintained. Please ensure you change the defaults.
-  macie_buckets_to_analyze = {
-    "us-east-1": ["<FILL_IN_BUCKET_1_NAME>", "<FILL_IN_BUCKET_2_NAME>"],
-    "<another-region>": ["<FILL_IN_BUCKET_3_NAME>", "<FILL_IN_BUCKET_4_NAME>"]
-  }
+  # Skip credential validation and account ID retrieval for disabled or restricted regions
+  skip_credentials_validation = contains(coalesce(var.opt_in_regions, []), "me-central-1") ? false : true
+  skip_requesting_account_id  = contains(coalesce(var.opt_in_regions, []), "me-central-1") ? false : true
+  skip_get_ec2_platforms      = contains(coalesce(var.opt_in_regions, []), "af-south-1") ? false : true
 }
 ```
 
-```hcl title=infrastructure-live/security/_global/account-baseline/terragrunt.hcl
-inputs {
-  # ... previous inputs ...
+### Step 3.2 Pass the provider in the `providers` map
 
-  # Configures Amazon Macie
-  create_macie_bucket      = true
-  macie_bucket_name        = "<your-macie-bucket-name>"
-  macie_create_kms_key     = true
-  macie_kms_key_name       = "<your-macie-kms-key-name>"
-  macie_kms_key_users      = ["arn:aws:iam::${local.accounts[local.account_name]}:root"]
-  macie_opt_in_regions     = local.opt_in_regions
-  macie_administrator_account_id = local.accounts.root
+Then, make sure to pass through the provider in the providers map for the module call. For example:
 
-  # The variable below for Amazon Macie needs to be manually maintained. Please ensure you change the defaults.
-  macie_buckets_to_analyze = {
-    "us-east-1": ["<FILL_IN_BUCKET_1_NAME>", "<FILL_IN_BUCKET_2_NAME>"],
-    "<another-region>": ["<FILL_IN_BUCKET_3_NAME>", "<FILL_IN_BUCKET_4_NAME>"]
+```hcl title=infrastructure-live/root/_global/account-baseline/terragrunt.hcl
+module "root_baseline" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cis-service-catalog.git//modules/landingzone/account-baseline-root?ref=v1.0.8"
+
+  # You MUST create a provider block for EVERY AWS region (see providers.tf) and pass all those providers in here via
+  # this providers map. However, you should use var.opt_in_regions to tell Terraform to only use and authenticate to
+  # regions that are enabled in your AWS account.
+  providers = {
+    aws                = aws.default
+    aws.af_south_1     = aws.af_south_1
+    aws.ap_east_1      = aws.ap_east_1
+    aws.ap_northeast_1 = aws.ap_northeast_1
+    aws.ap_northeast_2 = aws.ap_northeast_2
+    aws.ap_northeast_3 = aws.ap_northeast_3
+    aws.ap_south_1     = aws.ap_south_1
+    aws.ap_southeast_1 = aws.ap_southeast_1
+    aws.ap_southeast_2 = aws.ap_southeast_2
+    aws.ap_southeast_3 = aws.ap_southeast_3
+    aws.ca_central_1   = aws.ca_central_1
+    aws.cn_north_1     = aws.cn_north_1
+    aws.cn_northwest_1 = aws.cn_northwest_1
+    aws.eu_central_1   = aws.eu_central_1
+    aws.eu_north_1     = aws.eu_north_1
+    aws.eu_south_1     = aws.eu_south_1
+    aws.eu_west_1      = aws.eu_west_1
+    aws.eu_west_2      = aws.eu_west_2
+    aws.eu_west_3      = aws.eu_west_3
+    aws.me_central_1   = aws.me_central_1
+    aws.me_south_1     = aws.me_south_1
+    aws.sa_east_1      = aws.sa_east_1
+    aws.us_east_1      = aws.us_east_1
+    aws.us_east_2      = aws.us_east_2
+    aws.us_gov_east_1  = aws.us_gov_east_1
+    aws.us_gov_west_1  = aws.us_gov_west_1
+    aws.us_west_1      = aws.us_west_1
+    aws.us_west_2      = aws.us_west_2
   }
+
+  # ... other args omitted for brevity ...
 }
 ```
 
-All the other child accounts (logs, stage, prod, etc) need the same configuration change as the security account above. Ensure you make that change in all the child accounts.
+@@ FIX ME - the titles on the code snippets are wrong
+
+### Next step
+
+:::caution
+
+We strongly recommeded that you verify the changes that have been made before executing Terraform/Terragrunt `apply`
+
+:::
+
+If you have successfully completed steps 3.1 and 3.2, then you should now move to [step 4](deployment-walkthrough/step-4-verify-the-code-changes.md) in order to verify the changes that have been made.
 

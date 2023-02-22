@@ -25,11 +25,11 @@ compatible with CIS AWS v1.5.0:
       </td>
       <td>
         <p>
-          <strong>Minimum version with CIS AWS v1.4.0 support</strong>
+          <strong>Minimum version with CIS AWS v1.5.0 support</strong>
         </p>
       </td>
       <td>
-        <p>Corresponding CIS AWS v1.4.0 recommendations</p>
+        <p>Corresponding CIS AWS v1.5.0 recommendations</p>
       </td>
     </tr>
     <tr className="even">
@@ -69,7 +69,7 @@ compatible with CIS AWS v1.5.0:
   </tbody>
 </table>
 
-## Updating with Patcher
+## 2A Updating with Patcher
 
 Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct versions of the Gruntwork library using a tool we call Patcher.
 
@@ -79,15 +79,15 @@ Included in those more than 200 updates are 4 (@@CHECK NEEDED) breaking changes 
 
 The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0 to remote server administration ports", Patcher also includes a patch that configures terragrunt to scan your infrastructure and enforce this requirement.
 
-### 2.1 Installing Patcher
+### 2A.1 Installing Patcher
 
 @@ FIX ME
 
-### 2.2 Running Patcher
+### 2A.2 Running Patcher
 
-:::caution
+:::info
 
-Patcher only chnages the files on your local machine. You must complete steps 2.1 to 2.4 plus step 3 @@ CHECK NEEDED
+Patcher only changes the files on your local machine. You must complete steps 2A.1 to 2A.3 plus step 3 @@ CHECK NEEDED
 
 :::
 
@@ -95,7 +95,7 @@ Patcher only chnages the files on your local machine. You must complete steps 2.
 
 @@ FIX ME
 
-### 2.3 Running the migration scripts
+### 2A.3 Running the migration scripts
 
 :::caution
 
@@ -107,13 +107,13 @@ When Patcher completes successfully it provides a list migration scripts that ne
 
 @@ FIX ME
 
-### 2.4 Verify the local changes
+### Next Steps
+
 
 @@ FIX ME - moved to step 4 (recommended for all customers not just patcher)
 
 
-
-## Updating Manually
+## 2B Updating Manually
 
 Refer to our ["Updating to new versions"](/guides/working-with-code/versioning#updating-to-new-versions) guide for instructions on how to update the versions in your code.
 
