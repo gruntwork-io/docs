@@ -80,11 +80,9 @@ currently running.
 
 ### Generating sidebars for guides
 
-We utilitize explicit sidebar definitions for most of our docs content. Doing
-so enables authors to easily provide explicit titles for all category labels,
-as well as define the relative ordering of pages in a maintainable way.
-Long-form docs with many sections receive a dedicated sidebar to provide a
-focused reading experience (e.g. /guides/build-it-yourself/\*).
+We utilize explicit sidebar definitions for most of our docs content. Doing so enables authors to easily provide titles
+for all category labels, as well as define the relative ordering of pages in a maintainable way. Long-form docs with
+many sections receive a dedicated sidebar to provide a focused reading experience (e.g. /guides/build-it-yourself/\*).
 
 A tool is provided to automatically generate sidebars for any new guide. To
 run it, specify the path to the directory you wish to create a sidebar for in

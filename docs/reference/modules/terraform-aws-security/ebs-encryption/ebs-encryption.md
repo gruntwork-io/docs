@@ -1,0 +1,108 @@
+---
+title: "Elastic Block Storage Encryption"
+hide_title: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Febs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+
+# Elastic Block Storage Encryption
+
+This module configures EC2 Elastic Block Storage encryption defaults, allowing encryption to be enabled for all new EBS
+volumes and selection of a KMS Customer Managed Key to use by default.
+
+This module is not meant to be used directly. Instead, it's used under the hood in the [account-baseline-\*](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules)
+modules. Please see those modules for more information.
+
+## Background Information
+
+*   [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) including how default keys
+    and the encryption-by-default settings work.
+*   [AWS blog: Opt-in to Default Encryption for New EBS Volumes](https://aws.amazon.com/blogs/aws/new-opt-in-to-default-encryption-for-new-ebs-volumes/)
+
+
+
+
+## Reference
+
+<Tabs>
+<TabItem value="inputs" label="Inputs" default>
+
+### Optional
+
+<HclListItem name="enable_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, all new EBS volumes will have encryption enabled by default
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional KMS key ARN used for EBS volume encryption when <a href="#use_existing_kms_key"><code>use_existing_kms_key</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="use_existing_kms_key" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to use the existing key specified in <a href="#kms_key_arn"><code>kms_key_arn</code></a>. We need this weird parameter because `count` must be a known value at plan time, so we cannot calculate whether or not to use the key dynamically.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources in this module should be created or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+<HclListItem name="aws_ebs_encryption_by_default_enabled">
+<HclListItemDescription>
+
+Whether or not EBS volume encryption is enabled by default.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="aws_ebs_encryption_default_kms_key">
+<HclListItemDescription>
+
+The default KMS key used for EBS encryption.
+
+</HclListItemDescription>
+</HclListItem>
+
+</TabItem>
+</Tabs>
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "originalSources": [
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+  ],
+  "sourcePlugin": "module-catalog-api",
+  "hash": "4232c0f3e5f8037aee2d9a1e6ac265cc"
+}
+##DOCS-SOURCER-END -->
