@@ -18,7 +18,7 @@ the migration steps before updating the module versions.
 
 - [v0.42.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.0): Added support for new AWS region (me-central-1 UAE) to multiregion modules.
 
-### Step 3.1 Add `me-central-1` to your `providers.tf`
+## Step 3.1 Add `me-central-1` to your `providers.tf`
 
 Add the following to your providers.tf for terraform:
 
@@ -34,7 +34,7 @@ provider "aws" {
 }
 ```
 
-### Step 3.2 Pass the provider in the `providers` map
+## Step 3.2 Pass the provider in the `providers` map
 
 Then, make sure to pass through the provider in the providers map for the module call. For example:
 
@@ -82,7 +82,7 @@ module "root_baseline" {
 
 @@ FIX ME - the titles on the code snippets are wrong
 
-### Next step
+## Next step
 
 :::caution
 
