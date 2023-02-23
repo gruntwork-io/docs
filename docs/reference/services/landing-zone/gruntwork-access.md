@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Fgruntwork-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Fgruntwork-access" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -103,15 +102,6 @@ The ID of your security account (where IAM users are defined). Required for depl
 
 ### Optional
 
-<HclListItem name="gruntwork_aws_account_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the AWS account that will be allowed to assume the IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;583800379690&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -128,6 +118,15 @@ The name of the AWS Managed Policy to attach to the IAM role. To deploy a Refere
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;AdministratorAccess&quot;"/>
+</HclListItem>
+
+<HclListItem name="gruntwork_aws_account_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the AWS account that will be allowed to assume the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;583800379690&quot;"/>
 </HclListItem>
 
 <HclListItem name="require_mfa" requirement="optional" type="bool">
@@ -179,6 +178,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Fgruntwork-access%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6da46d4821e8e1b2028cdc1001678fd2"
+  "hash": "6670d630196c8b6c1116c39397eaad5c"
 }
 ##DOCS-SOURCER-END -->

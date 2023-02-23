@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECS Cluster
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/services/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fecs-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -147,6 +146,38 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ### Required
 
+<HclListItem name="cluster_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the ECS cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_min_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The minimum number of instances to run in the ECS cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_max_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The maxiumum number of instances to run in the ECS cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_instance_type" requirement="required" type="string">
+<HclListItemDescription>
+
+The type of instances to run in the ECS cluster (e.g. t2.medium)
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="cluster_instance_ami" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -179,38 +210,20 @@ object({
 ```
 
 </HclListItemTypeDetails>
-</HclListItem>
+<HclGeneralListItem title="More details">
+<details>
 
-<HclListItem name="cluster_instance_type" requirement="required" type="string">
-<HclListItemDescription>
 
-The type of instances to run in the ECS cluster (e.g. t2.medium)
+```hcl
 
-</HclListItemDescription>
-</HclListItem>
+     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+     documentation for describe-images in the AWS CLI reference
+     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
 
-<HclListItem name="cluster_max_size" requirement="required" type="number">
-<HclListItemDescription>
+```
+</details>
 
-The maxiumum number of instances to run in the ECS cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cluster_min_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The minimum number of instances to run in the ECS cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cluster_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the ECS cluster
-
-</HclListItemDescription>
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -231,76 +244,13 @@ The IDs of the subnets in which to deploy the ECS cluster instances
 
 ### Optional
 
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
+<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IP address ranges in CIDR format from which to allow incoming SSH requests to the ECS instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of security groups from which to allow incoming SSH requests to the ECS instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Protect EC2 instances running ECS tasks from being terminated due to scale in (spot instances do not support lifecycle modifications). Note that the behavior of termination protection differs between clusters with capacity providers and clusters without. When capacity providers is turned on and this flag is true, only instances that have 0 ECS tasks running will be scaled in, regardless of capacity_provider_target. If capacity providers is turned off and this flag is true, this will prevent ANY instances from being scaled in.
+Whether to associate a public IP address with an instance in a VPC
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="capacity_provider_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable a capacity provider to autoscale the EC2 ASG created for this ECS cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="capacity_provider_max_scale_step" requirement="optional" type="number">
-<HclListItemDescription>
-
-Maximum step adjustment size to the ASG's desired instance count. A number between 1 and 10000.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="capacity_provider_min_scale_step" requirement="optional" type="number">
-<HclListItemDescription>
-
-Minimum step adjustment size to the ASG's desired instance count. A number between 1 and 10000.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="capacity_provider_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-Target cluster utilization for the ASG capacity provider; a number from 1 to 100. This number influences when scale out happens, and when instances should be scaled in. For example, a setting of 90 means that new instances will be provisioned when all instances are at 90% utilization, while instances that are only 10% utilized (CPU and Memory usage from tasks = 10%) will be scaled in.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
@@ -323,65 +273,22 @@ map(object({
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItem name="public_alb_sg_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+The Security Group ID for the public ALB
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the log group to create in CloudWatch. Defaults to `<a href="#cluster_name"><code>cluster_name</code></a>-logs`.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_access_from_sgs" requirement="optional" type="list(any)">
-<HclListItemDescription>
-
-Specify a list of Security Groups that will have access to the ECS cluster. Only used if <a href="#enable_cluster_access_ports"><code>enable_cluster_access_ports</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
+<HclListItem name="internal_alb_sg_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Whether to associate a public IP address with an instance in a VPC
+The Security Group ID for the internal ALB
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_keypair_name" requirement="optional" type="string">
@@ -393,51 +300,6 @@ The name of the Key Pair that can be used to SSH to each instance in the ECS clu
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
-<HclListItemDescription>
-
-A list of custom tags to apply to the EC2 Instances in this ASG. Each item in this list should be a map with the parameters key, value, and propagate_at_launch.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="custom_tags_ecs_cluster" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Custom tags to apply to the ECS cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to the Security Group for this ECS Cluster. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="default_user" requirement="optional" type="string">
-<HclListItemDescription>
-
-The default OS user for the ECS worker AMI. For AWS Amazon Linux AMIs, which is what the Packer template in ecs-node-al2.json uses, the default OS user is 'ec2-user'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ec2-user&quot;"/>
-</HclListItem>
-
-<HclListItem name="disallowed_availability_zones" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of availability zones in the region that should be skipped when deploying ECS. You can use this to avoid availability zones that may not be able to provision the resources (e.g instance type does not exist). If empty, allows all availability zones.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -447,53 +309,37 @@ Set to true to enable Cloudwatch log aggregation for the ECS cluster
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
+<HclListItem name="tenancy" requirement="optional" type="string">
 <HclListItemDescription>
 
-Set to true to enable Cloudwatch metrics collection for the ECS cluster
+The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
-<HclListItem name="enable_cluster_access_ports" requirement="optional" type="list(any)">
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Specify a list of ECS Cluster ports which should be accessible from the security groups given in cluster_access_from_sgs
+The IP address ranges in CIDR format from which to allow incoming SSH requests to the ECS instances.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="enable_ecs_cloudwatch_alarms" requirement="optional">
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Set to true to enable several basic Cloudwatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>
+The IDs of security groups from which to allow incoming SSH requests to the ECS instances.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="enable_fail2ban" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Enable fail2ban to block brute force log in attempts. Defaults to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_imds" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -508,130 +354,13 @@ Enable ip-lockdown to block access to the instance metadata. Defaults to true
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
+<HclListItem name="capacity_provider_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+Enable a capacity provider to autoscale the EC2 ASG created for this ECS cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_cpu_utilization_evaluation_periods" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of periods over which data is compared to the specified threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="high_cpu_utilization_statistic" requirement="optional" type="string">
-<HclListItemDescription>
-
-The statistic to apply to the alarm's high CPU metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_evaluation_periods" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of periods over which data is compared to the specified threshold
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the memory utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_statistic" requirement="optional" type="string">
-<HclListItemDescription>
-
-The statistic to apply to the alarm's high CPU metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ECS Cluster has a memory utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
-<HclListItemDescription>
-
-The desired HTTP PUT response hop limit for instance metadata requests for the workers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="internal_alb_sg_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The Security Group ID for the internal ALB
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="multi_az_capacity_provider" requirement="optional" type="bool">
@@ -643,19 +372,100 @@ Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this E
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="public_alb_sg_ids" requirement="optional" type="list(string)">
+<HclListItem name="capacity_provider_target" requirement="optional" type="number">
 <HclListItemDescription>
 
-The Security Group ID for the public ALB
+Target cluster utilization for the ASG capacity provider; a number from 1 to 100. This number influences when scale out happens, and when instances should be scaled in. For example, a setting of 90 means that new instances will be provisioned when all instances are at 90% utilization, while instances that are only 10% utilized (CPU and Memory usage from tasks = 10%) will be scaled in.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="capacity_provider_max_scale_step" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum step adjustment size to the ASG's desired instance count. A number between 1 and 10000.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="capacity_provider_min_scale_step" requirement="optional" type="number">
+<HclListItemDescription>
+
+Minimum step adjustment size to the ASG's desired instance count. A number between 1 and 10000.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Protect EC2 instances running ECS tasks from being terminated due to scale in (spot instances do not support lifecycle modifications). Note that the behavior of termination protection differs between clusters with capacity providers and clusters without. When capacity providers is turned on and this flag is true, only instances that have 0 ECS tasks running will be scaled in, regardless of capacity_provider_target. If capacity providers is turned off and this flag is true, this will prevent ANY instances from being scaled in.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_imds" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+The desired HTTP PUT response hop limit for instance metadata requests for the workers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_ecs_cluster" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Custom tags to apply to the ECS cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
+<HclListItemDescription>
+
+A list of custom tags to apply to the EC2 Instances in this ASG. Each item in this list should be a map with the parameters key, value, and propagate_at_launch.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+A map of custom tags to apply to the Security Group for this ECS Cluster. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -679,22 +489,225 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 <HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
-<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The tenancy of this server. Must be one of: default, dedicated, or host.
+Since our IAM users are defined in a separate AWS account, this variable is used to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group and public SSH key info from that account.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItem name="enable_cluster_access_ports" requirement="optional" type="list(any)">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Specify a list of ECS Cluster ports which should be accessible from the security groups given in cluster_access_from_sgs
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_access_from_sgs" requirement="optional" type="list(any)">
+<HclListItemDescription>
+
+Specify a list of Security Groups that will have access to the ECS cluster. Only used if <a href="#enable_cluster_access_ports"><code>enable_cluster_access_ports</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_cloudwatch_alarms" requirement="optional">
+<HclListItemDescription>
+
+Set to true to enable several basic Cloudwatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable Cloudwatch metrics collection for the ECS cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's high CPU metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ECS Cluster has a memory utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the memory utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's high CPU metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="default_user" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default OS user for the ECS worker AMI. For AWS Amazon Linux AMIs, which is what the Packer template in ecs-node-al2.json uses, the default OS user is 'ec2-user'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ec2-user&quot;"/>
+</HclListItem>
+
+<HclListItem name="disallowed_availability_zones" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of availability zones in the region that should be skipped when deploying ECS. You can use this to avoid availability zones that may not be able to provision the resources (e.g instance type does not exist). If empty, allows all availability zones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the log group to create in CloudWatch. Defaults to `<a href="#cluster_name"><code>cluster_name</code></a>-logs`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -709,18 +722,26 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="all_metric_widgets">
-<HclListItemDescription>
-
-A list of all the CloudWatch Dashboard metric widgets available in this module.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="ecs_cluster_arn">
 <HclListItemDescription>
 
 The ID of the ECS cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_cluster_launch_configuration_id">
+<HclListItemDescription>
+
+The ID of the launch configuration used by the ECS cluster's auto scaling group (ASG)
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_cluster_name">
+<HclListItemDescription>
+
+The name of the ECS cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -749,18 +770,34 @@ For configurations with multiple capacity providers, this contains a list of all
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_cluster_launch_configuration_id">
+<HclListItem name="ecs_instance_security_group_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used by the ECS cluster's auto scaling group (ASG)
+The ID of the security group applied to ECS instances
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_cluster_name">
+<HclListItem name="ecs_instance_iam_role_id">
 <HclListItemDescription>
 
-The name of the ECS cluster
+The ID of the IAM role applied to ECS instances
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_instance_iam_role_arn">
+<HclListItemDescription>
+
+The ARN of the IAM role applied to ECS instances
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_instance_iam_role_name">
+<HclListItemDescription>
+
+The name of the IAM role applied to ECS instances
 
 </HclListItemDescription>
 </HclListItem>
@@ -781,34 +818,10 @@ The VPC subnet IDs into which the ECS cluster can launch resources into
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_instance_iam_role_arn">
+<HclListItem name="all_metric_widgets">
 <HclListItemDescription>
 
-The ARN of the IAM role applied to ECS instances
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_instance_iam_role_id">
-<HclListItemDescription>
-
-The ID of the IAM role applied to ECS instances
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_instance_iam_role_name">
-<HclListItemDescription>
-
-The name of the IAM role applied to ECS instances
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_instance_security_group_id">
-<HclListItemDescription>
-
-The ID of the security group applied to ECS instances
+A list of all the CloudWatch Dashboard metric widgets available in this module.
 
 </HclListItemDescription>
 </HclListItem>
@@ -841,6 +854,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "745eb8301c69403755600477ef1a7403"
+  "hash": "6572bddf54d263e45dc9859a7be7cc40"
 }
 ##DOCS-SOURCER-END -->

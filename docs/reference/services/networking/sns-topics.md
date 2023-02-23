@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.96.1"/>
 
 # Amazon Simple Notification Service
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/networking/sns-topics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fsns-topics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fsns-topics" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -88,6 +87,15 @@ The name of the SNS topic
 
 ### Optional
 
+<HclListItem name="display_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The display name of the SNS topic
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="allow_publish_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -139,6 +147,15 @@ A list of protocols that can be used to subscribe to the SNS topic.
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="slack_webhook_url_secrets_manager_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a Secrets Manager entry that contains the Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are sent to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -148,15 +165,6 @@ Set to false to have this module create no resources. This weird parameter exist
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="display_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The display name of the SNS topic
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
 <HclListItem name="kms_master_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -164,15 +172,6 @@ The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CM
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;alias/aws/sns&quot;"/>
-</HclListItem>
-
-<HclListItem name="slack_webhook_url_secrets_manager_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a Secrets Manager entry that contains the Slack Webhook URL (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are sent to.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -198,6 +197,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fsns-topics%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "779f50e2c29a4b223652c7e98d5ef5c6"
+  "hash": "9b3463386455b72d12e521a5e5b2e2dc"
 }
 ##DOCS-SOURCER-END -->

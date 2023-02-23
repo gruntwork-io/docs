@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.96.1"/>
 
 # Amazon ElastiCache for Memcached
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/data-stores/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fmemcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fmemcached" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -85,42 +84,10 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="az_mode" requirement="required" type="string">
-<HclListItemDescription>
-
-Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, num_cache_nodes must be greater than 1.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-The compute and memory capacity of the nodes (e.g. cache.m4.large).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
 The name used to namespace all resources created by these templates, including the ElastiCache cluster itself. Must be unique in this region. Must be a lowercase string.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="num_cache_nodes" requirement="required" type="number">
-<HclListItemDescription>
-
-The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -133,24 +100,74 @@ The ID of the VPC in which to deploy RDS.
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+The list of IDs of the subnets in which to deploy the ElasticCache instances. The list must only contain subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
+<HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+The compute and memory capacity of the nodes (e.g. cache.m4.large).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="num_cache_nodes" requirement="required" type="number">
+<HclListItemDescription>
+
+The initial number of cache nodes that the cache cluster will have. Must be between 1 and 20.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="az_mode" requirement="required" type="string">
+<HclListItemDescription>
+
+Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are single-az or cross-az. If you want to choose cross-az, num_cache_nodes must be greater than 1.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="memcached_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Version number of memcached to use (e.g. 1.5.16).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;1.5.16&quot;"/>
+</HclListItem>
+
+<HclListItem name="port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port number on which each of the cache nodes will accept connections (e.g. 11211).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="11211"/>
+</HclListItem>
+
+<HclListItem name="maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="apply_immediately" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether any database modifications are applied immediately, or during the next maintenance window.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
@@ -171,15 +188,6 @@ The list of IDs or Security Groups to allow network access to ElastiCache from. 
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="apply_immediately" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether any database modifications are applied immediately, or during the next maintenance window.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -189,31 +197,22 @@ Set to true to enable several basic CloudWatch alarms around CPU usage, memory u
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="maintenance_window" requirement="optional" type="string">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
+The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="memcached_version" requirement="optional" type="string">
+<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version number of memcached to use (e.g. 1.5.16).
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.5.16&quot;"/>
-</HclListItem>
-
-<HclListItem name="port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port number on which each of the cache nodes will accept connections (e.g. 11211).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="11211"/>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -243,18 +242,18 @@ The list of the AWS cache cluster node ids where each one represents a Memcached
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cache_port">
-<HclListItemDescription>
-
-The port number on which each of the cache nodes will accept connections (e.g. 11211).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="configuration_endpoint">
 <HclListItemDescription>
 
 The configuration endpoint to allow host discovery.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cache_port">
+<HclListItemDescription>
+
+The port number on which each of the cache nodes will accept connections (e.g. 11211).
 
 </HclListItemDescription>
 </HclListItem>
@@ -271,6 +270,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fmemcached%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2b99c2ed3e3f09812da85dd021f3af1d"
+  "hash": "e3e52adcb4fbf376ba1ce98f6d150bae"
 }
 ##DOCS-SOURCER-END -->

@@ -13,14 +13,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.100.0"/>
 
 # Helm Service
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/services/helm-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fhelm-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -102,10 +101,10 @@ The name of the application (e.g. my-service-stage). Used for labeling Kubernete
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="helm_chart" requirement="required" type="string">
+<HclListItem name="namespace" requirement="required" type="string">
 <HclListItemDescription>
 
-Chart name to be installed. The chart name can be local path, a URL to a chart, or the name of the chart if repository is specified. It is also possible to use the &lt;repository>/&lt;chart> format here if you are running Terraform on a system that the repository has been added to with helm repo add but this is not recommended.
+The Kubernetes Namespace to deploy the helm chart into.
 
 </HclListItemDescription>
 </HclListItem>
@@ -118,32 +117,22 @@ Repository URL where to locate the requested chart.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="namespace" requirement="required" type="string">
+<HclListItem name="helm_chart" requirement="required" type="string">
 <HclListItemDescription>
 
-The Kubernetes Namespace to deploy the helm chart into.
+Chart name to be installed. The chart name can be local path, a URL to a chart, or the name of the chart if repository is specified. It is also possible to use the &lt;repository>/&lt;chart> format here if you are running Terraform on a system that the repository has been added to with helm repo add but this is not recommended.
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
+<HclListItem name="helm_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
+Specify the exact chart version to install. If this is not specified, the latest version is installed.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    openid_connect_provider_arn = string
-    openid_connect_provider_url = string
-  })
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -161,35 +150,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="helm_chart_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specify the exact chart version to install. If this is not specified, the latest version is installed.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-An object defining the policy to attach to `iam_role_name` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement. Ignored if `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    resources = list(string)
-    actions   = list(string)
-    effect    = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="iam_role_exists" requirement="optional" type="bool">
@@ -219,13 +179,68 @@ The name of a service account to create for use with the Pods. This service acco
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="sleep_for_resource_culling" requirement="optional" type="bool">
+<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Sleep for 30 seconds to allow Kubernetes time to remove associated AWS resources.
+Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    openid_connect_provider_arn = string
+    openid_connect_provider_url = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+An object defining the policy to attach to `iam_role_name` if the IAM role is going to be created. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object fields are the resources, actions, and the effect ('Allow' or 'Deny') of the statement. Ignored if `iam_role_arn` is provided. Leave as null if you do not wish to use IAM role with Service Accounts.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    resources = list(string)
+    actions   = list(string)
+    effect    = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   iam_policy = {
+     S3Access = {
+       actions = ["s3:*"]
+       resources = ["arn:aws:s3:::mybucket"]
+       effect = "Allow"
+     },
+     SecretsManagerAccess = {
+       actions = ["secretsmanager:GetSecretValue"],
+       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
+       effect = "Allow"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="wait" requirement="optional" type="bool">
@@ -246,6 +261,15 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="sleep_for_resource_culling" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Sleep for 30 seconds to allow Kubernetes time to remove associated AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -263,6 +287,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "522399c8b056b5116611f121767539cf"
+  "hash": "ef187e8cd3371abb347c3f8bc7db730f"
 }
 ##DOCS-SOURCER-END -->

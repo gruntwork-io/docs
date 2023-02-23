@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECR Repositories
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -93,9 +92,93 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Each entry in the map supports the following attributes:
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - external_account_ids_with_read_access   list(string)             : List of account IDs that should have read
+                                                                        access on the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_read_access.
+   - external_account_ids_with_write_access  list(string)             : List of account IDs that should have write
+                                                                        access on the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_write_access.
+   - external_account_ids_with_lambda_access list(string)             : List of account IDs that should have
+                                                                        access to create lambda functions with
+                                                                        container images in the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_lambda_access.
+   - enable_automatic_image_scanning         bool                     : Whether or not to enable image scanning. If
+                                                                        omitted use var.default_automatic_image_scanning.
+   - encryption_config                       object[EncryptionConfig] : Whether or not to enable encryption at rest for
+                                                                        the container images, and how to encrypt. If
+                                                                        omitted, use var.default_encryption_config. See
+                                                                        below for the type schema.
+   - image_tag_mutability                    string                   : The tag mutability setting for the repo. If
+                                                                        omitted use var.default_image_tag_mutability.
+   - tags                                    map(string)              : Map of tags (where the key and value correspond
+                                                                        to tag keys and values) that should be assigned
+                                                                        to the ECR repository. Merged with
+                                                                        var.global_tags.
+   - lifecycle_policy_rules                  list(object[LifecycleRule]) : List of lifecycle rules to apply to the ECR
+                                                                           repository. See below for the schema of the
+                                                                           lifecycle rule.
+  
+   Structure of EncryptionConfig object:
+   - encryption_type  string  : The encryption type to use for the repository. Must be AES256 or KMS.
+   - kms_key          string  : The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If
+                                not specified, defaults to the default AWS managed key for ECR.
+  
+  
+   Structure of LifecycleRule object:
+     Refer to the AWS documentation on supported policy parameters:
+     https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.htmllifecycle_policy_parameters
+  
+   Example:
+  
+   repositories = {
+     myapp1 = {
+       external_account_ids_with_read_access = ["11111111"]
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_external_account_ids_with_lambda_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to create Lambda functions based on container images in these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_lambda_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 <HclListItem name="default_automatic_image_scanning" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -137,33 +220,6 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="default_external_account_ids_with_lambda_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to create Lambda functions based on container images in these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_lambda_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="default_image_tag_mutability" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -171,6 +227,15 @@ The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTAB
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;MUTABLE&quot;"/>
+</HclListItem>
+
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="default_lifecycle_policy_rules" requirement="optional" type="any">
@@ -189,15 +254,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
 <HclListItem name="replication_regions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -209,14 +265,6 @@ List of regions (e.g., us-east-1) to replicate the ECR repository to.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="ecr_read_policy_actions">
-<HclListItemDescription>
-
-A list of IAM policy actions necessary for ECR read access.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="ecr_repo_arns">
 <HclListItemDescription>
@@ -230,6 +278,14 @@ A map of repository name to its ECR ARN.
 <HclListItemDescription>
 
 A map of repository name to its URL.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecr_read_policy_actions">
+<HclListItemDescription>
+
+A list of IAM policy actions necessary for ECR read access.
 
 </HclListItemDescription>
 </HclListItem>
@@ -254,6 +310,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d4259a57216178118059c40dc5730c3a"
+  "hash": "0eb7d4b7bea336e76ec1712f79c441af"
 }
 ##DOCS-SOURCER-END -->

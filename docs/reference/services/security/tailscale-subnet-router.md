@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.95.1"/>
 
 # Tailscale Subnet Router
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Ftailscale-subnet-router" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -141,6 +140,30 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 ### Required
 
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the server. This will be used to namespace all resources created by this module.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC where this server should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+The ids of the subnets where this server should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -173,6 +196,20 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+     documentation for describe-images in the AWS CLI reference
+     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="auth_key_secrets_manager_arn" requirement="required" type="string">
@@ -183,31 +220,70 @@ The ARN of a Secrets Manager entry containing the Tailscale auth key to use for 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the server. This will be used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The ids of the subnets where this server should be deployed.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The id of the VPC where this server should be deployed.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
+
+<HclListItem name="routes" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of CIDR blocks to expose as routes on the tailnet through this server. If null, defaults to the entire VPC CIDR block.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tailnet_hostname" requirement="optional" type="string">
+<HclListItemDescription>
+
+Advertised hostname of the server on the tailnet. If null, defaults to the <a href="#name"><code>name</code></a> input value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_tailscale_dns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to configure DNS to Tailscale on the EC2 instance. By default we disable the tailnet DNS as it is generally best to let Amazon handle the DNS configuration on EC2 instances. This is most useful when the subnet router needs to communicate with other services on your tailnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ebs_optimized" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="instance_warmup" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of seconds until a newly launched instance is configured and ready to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of EC2 instance to run (e.g. t2.micro)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;t3.nano&quot;"/>
+</HclListItem>
+
+<HclListItem name="keypair_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 <HclListItem name="additional_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -216,6 +292,105 @@ List of IDs of AWS Security Groups that should be attached to the tailscale rela
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enable_imds" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_fail2ban" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable fail2ban to block brute force log in attempts. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Tailscale subnet router. This value is only used if enable_ssh_grunt=true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-users&quot;"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Tailscale subnet router with sudo permissions. This value is only used if enable_ssh_grunt=true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Tailscale subnet router.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
@@ -247,19 +422,37 @@ map(object({
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+The default OS user for the Tailscale subnet router AMI. For AWS Ubuntu AMIs, which is what the Packer template in tailscale-subnet-router-ubuntu.json uses, the default OS user is 'ubuntu'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
+</HclListItem>
+
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
 The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -274,103 +467,13 @@ Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are t
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="default_user" requirement="optional" type="string">
+<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
-The default OS user for the Tailscale subnet router AMI. For AWS Ubuntu AMIs, which is what the Packer template in tailscale-subnet-router-ubuntu.json uses, the default OS user is 'ubuntu'.
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
-</HclListItem>
-
-<HclListItem name="ebs_optimized" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launched EC2 instance will be EBS-optimized. Note that for most instance types, EBS optimization does not incur additional cost, and that many newer EC2 instance types have EBS optimization enabled by default. However, if you are running previous generation instances, there may be an additional cost per hour to run your instances with EBS optimization enabled. Please see: https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Tailscale subnet router.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_fail2ban" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable fail2ban to block brute force log in attempts. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_imds" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable ip-lockdown to block access to the instance metadata. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_tailscale_dns" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to configure DNS to Tailscale on the EC2 instance. By default we disable the tailnet DNS as it is generally best to let Amazon handle the DNS configuration on EC2 instances. This is most useful when the subnet router needs to communicate with other services on your tailnet.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+<HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
 <HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
@@ -382,15 +485,6 @@ The period, in seconds, over which to measure the CPU utilization percentage for
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
 <HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -398,42 +492,6 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
 <HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
@@ -445,6 +503,15 @@ Trigger an alarm if the ASG has an average cluster Memory utilization percentage
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
+<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
 <HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -454,97 +521,35 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
-<HclListItem name="instance_type" requirement="optional" type="string">
+<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
-The type of EC2 instance to run (e.g. t2.micro)
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;t3.nano&quot;"/>
+<HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="instance_warmup" requirement="optional" type="number">
+<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-The number of seconds until a newly launched instance is configured and ready to use.
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
-<HclListItem name="keypair_name" requirement="optional" type="string">
+<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth.
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="routes" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of CIDR blocks to expose as routes on the tailnet through this server. If null, defaults to the entire VPC CIDR block.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ssh_grunt_iam_group" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Tailscale subnet router. This value is only used if enable_ssh_grunt=true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-users&quot;"/>
-</HclListItem>
-
-<HclListItem name="ssh_grunt_iam_group_sudo" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you are using ssh-grunt, this is the name of the IAM group from which users will be allowed to SSH to this Tailscale subnet router with sudo permissions. This value is only used if enable_ssh_grunt=true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
-</HclListItem>
-
-<HclListItem name="tailnet_hostname" requirement="optional" type="string">
-<HclListItemDescription>
-
-Advertised hostname of the server on the tailnet. If null, defaults to the <a href="#name"><code>name</code></a> input value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="autoscaling_group_arn">
-<HclListItemDescription>
-
-The ARN of the ASG managing the Tailscale relay server.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="autoscaling_group_name">
 <HclListItemDescription>
@@ -554,10 +559,18 @@ The name of the ASG managing the Tailscale relay server.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="iam_role_arn">
+<HclListItem name="autoscaling_group_arn">
 <HclListItemDescription>
 
-ARN of the IAM role attached to the Tailscale relay server.
+The ARN of the ASG managing the Tailscale relay server.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="security_group_id">
+<HclListItemDescription>
+
+ID of the primary security group attached to the Tailscale relay server.
 
 </HclListItemDescription>
 </HclListItem>
@@ -570,10 +583,10 @@ ID of the IAM role attached to the Tailscale relay server.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="security_group_id">
+<HclListItem name="iam_role_arn">
 <HclListItemDescription>
 
-ID of the primary security group attached to the Tailscale relay server.
+ARN of the IAM role attached to the Tailscale relay server.
 
 </HclListItemDescription>
 </HclListItem>
@@ -590,6 +603,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c406a8de36c7cee9629e5ffceecc3c87"
+  "hash": "347cfbd77f9cde0835fb1b4902c2923c"
 }
 ##DOCS-SOURCER-END -->

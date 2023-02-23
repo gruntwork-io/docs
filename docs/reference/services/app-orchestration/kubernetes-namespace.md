@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.101.0" lastModifiedVersion="0.83.0"/>
 
 # Kubernetes Namespace
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/services/k8s-namespace" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fk8s-namespace" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-namespace" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -106,13 +105,13 @@ Name of the Namespace to create.
 
 ### Optional
 
-<HclListItem name="annotations" requirement="optional" type="map(string)">
+<HclListItem name="schedule_pods_on_fargate" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if <a href="#kubeconfig_auth_type"><code>kubeconfig_auth_type</code></a> is eks, as Fargate profiles can only be created against EKS clusters.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="eks_cluster_name" requirement="optional" type="string">
@@ -122,6 +121,42 @@ Name of the EKS cluster where the Namespace will be created. Required when <a hr
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="pod_execution_iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="worker_vpc_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Map of string key default pairs that can be used to store arbitrary metadata on the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="full_access_rbac_entities" requirement="optional" type="list(object(…))">
@@ -147,24 +182,28 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
+<HclGeneralListItem title="More details">
+<details>
 
-<HclListItem name="labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
 
-Map of string key value pairs that can be used to organize and categorize the namespace and roles. See the Kubernetes Reference for more info (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
+     The name of the entity (e.g., the username or group name, depending on kind).
 
-<HclListItem name="pod_execution_iam_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
+```
+</details>
 
-ARN of IAM Role to use as the Pod execution role for Fargate. Required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+<details>
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+
+```hcl
+
+     The namespace where the entity is located. Only used for ServiceAccount.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="read_only_access_rbac_entities" requirement="optional" type="list(object(…))">
@@ -190,24 +229,28 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
+<HclGeneralListItem title="More details">
+<details>
 
-<HclListItem name="schedule_pods_on_fargate" requirement="optional" type="bool">
-<HclListItemDescription>
 
-When true, will create a Fargate Profile that matches all Pods in the Namespace. This means that all Pods in the Namespace will be scheduled on Fargate. Note that this value is only used if <a href="#kubeconfig_auth_type"><code>kubeconfig_auth_type</code></a> is eks, as Fargate profiles can only be created against EKS clusters.
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
+     The name of the entity (e.g., the username or group name, depending on kind).
 
-<HclListItem name="worker_vpc_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
+```
+</details>
 
-The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fargate. At least 1 subnet is required if <a href="#schedule_pods_on_fargate"><code>schedule_pods_on_fargate</code></a> is true.
+<details>
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+
+```hcl
+
+     The namespace where the entity is located. Only used for ServiceAccount.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -249,6 +292,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fk8s-namespace%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bbde10440dd9f30d056acb8ba2cc1327"
+  "hash": "b481c2ee03fa1856003e93dc562a2fe6"
 }
 ##DOCS-SOURCER-END -->
