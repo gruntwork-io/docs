@@ -28,9 +28,6 @@ compatible with CIS AWS v1.5.0:
           <strong>Minimum version with CIS AWS v1.5.0 support</strong>
         </p>
       </td>
-      <td>
-        <p>Corresponding CIS AWS v1.5.0 recommendations</p>
-      </td>
     </tr>
     <tr className="even">
       <td>
@@ -44,9 +41,6 @@ compatible with CIS AWS v1.5.0:
             </a>
           </strong>
         </p>
-      </td>
-      <td>
-        <p>1.12, 2.1.3, 2.1.5 @@CHECK NEEDED</p>
       </td>
     </tr>
     <tr className="odd">
@@ -62,9 +56,6 @@ compatible with CIS AWS v1.5.0:
           </strong>
         </p>
       </td>
-      <td>
-        <p>2.1.4, 4.1 @@CHECK NEEDED</p>
-      </td>
     </tr>
   </tbody>
 </table>
@@ -72,6 +63,79 @@ compatible with CIS AWS v1.5.0:
 ## 2A Updating with Patcher
 
 Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct versions of the Gruntwork library using a tool we call Patcher.
+
+<a id="patcher-compatibility-table" class="snap-top"></a>
+
+<table id="patcher-compatibility-table">
+  <colgroup>
+    <col />
+    <col />
+    <col />
+  </colgroup>
+  <tbody>
+    <tr className="odd">
+      <td>
+        <p>Gruntwork Repo</p>
+      </td>
+      <td>
+        <p>
+          <strong>Minimum version with CIS AWS v1.4.0 support</strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>Minimum version to use Patcher</strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="even">
+      <td>
+        <p>terraform-aws-security</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2">
+              v0.54.0
+            </a>
+          </strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2">
+              v0.65.0
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="odd">
+      <td>
+        <p>terraform-aws-cis-service-catalog</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.9">
+              v0.27.0
+            </a>
+          </strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0">
+              v0.40.0
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
 
@@ -87,13 +151,33 @@ The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no se
 
 :::info
 
-Patcher only changes the files on your local machine. You must complete steps 2A.1 to 2A.3 plus step 3 @@ CHECK NEEDED
+Patcher only changes the files on your local machine.
 
 :::
 
 `patcher upgrade cis`
 
-@@ FIX ME
+@@ FIX ME - add instructions on which folder to run patcher in
+
+#### Analysis of module usage
+
+The CIS upgrade analyses your module usage and then displays a list of the modules that need to be updated along with the version that is currently being used and the latest available version for each module.
+
+@@ FIX ME - add screenshot of module list
+
+#### View the changelog for each module
+
+Before upgrading you can view the changelogs for each module.
+
+@@ FIX ME - add description and screenshot
+
+#### Start the upgrade
+
+Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
+
+If you agree to the upgrade, Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a patch to your infrastructure code.
+
+@@ FIX ME - add description of a patch and a screenshot of patcher output
 
 ### 2A.3 Running the migration scripts
 
@@ -103,14 +187,19 @@ You must run the migration scripts. Failing to do so will result in data loss.
 
 :::
 
-When Patcher completes successfully it provides a list migration scripts that need to be run before proceeding
+When Patcher completes successfully it provides a list migration scripts that need to be run before proceeding.
 
-@@ FIX ME
+@@ FIX ME - add screenshot of the summary screen showing list of scripts
 
 ### Next Steps
 
+:::caution
 
-@@ FIX ME - moved to step 4 (recommended for all customers not just patcher)
+Before continuing check that you have completed step 2A.3. Failing to do so will result in data loss.
+
+:::
+
+If you have successfully completed steps 2A.1 thru 2A.3 then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the account baseline modules.
 
 
 ## 2B Updating Manually
@@ -154,5 +243,14 @@ The example below is from the changelog for the new [CIS RDS module](https://git
 - No changes, safe to bump
 ````
 
+### Next Steps
+
+:::caution
+
+Before continuing check that you have followed all the necessary migration guides. Failing to do so will result in data loss.
+
+:::
+
+If you have successfully completed manually updating the modules to the minimum version with CIS AWS v1.5.0 support then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the account baseline modules.
 
 
