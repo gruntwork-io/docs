@@ -87,7 +87,7 @@ If you used Patcher to do the upgrade then start by checking that you completed 
 
 ### If you are updating the modules manually
 
-If you updated the modules manually then check that you completed all the steps in the migration guide for [v0.41.2](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.41.2).
+If you updated the modules manually then check that you completed all the steps in the migration guide for [v0.41.2](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/data-stores/rds/CHANGELOG.md#v0412---2022-10-28).
 
 ## Next step
 

@@ -117,7 +117,42 @@ When Patcher completes successfully it provides a list migration scripts that ne
 
 Refer to our ["Updating to new versions"](/guides/working-with-code/versioning#updating-to-new-versions) guide for instructions on how to update the versions in your code.
 
-Gruntwork follows [semantic versioning](/guides/working-with-code/versioning#semantic-versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward incompatible releases for any version updates before the 1.0.0 release. 
+Gruntwork follows [semantic versioning](/guides/working-with-code/versioning#semantic-versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0, v0.7.0, v0.8.0, and v0.9.0 to get the full list of backward incompatible updates).
 
-Make sure to read the release notes for the relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each minor version that is updated (e.g., if you are going from v0.54.0 to v0.67.2, you will want to read the release notes for v0.55.0, v0.56.0, and all the intermediate notes up to and including v0.66.0, and v0.67.0 to get the full list of backward incompatible updates).
+### Module change logs
+
+To make this process easier we have added change logs for each module. The changelog clearly states when you can safely bump the module version. If there is a breaking change the changelog includes the migration guide.
+
+The example below is from the changelog for the new [CIS RDS module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/data-stores/rds).
+
+````md title=terraform-aws-cis-service-catalog/modules/data-stores/rds/CHANGELOG.md
+## [v0.42.8](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.8) - 2023-02-01
+
+### Changed
+- No breaking changes, safe to bump
+
+### Description
+- Updated upstream `rds` module to v0.100.1
+
+### Related Links
+- https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/523
+
+## [v0.42.7](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7) - 2023-01-31
+
+### Changed
+- No breaking changes, safe to bump
+
+### Description
+- Added `maintenance_window` variable to CIS RDS module
+
+### Related Links
+- https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/522
+
+## [v0.42.6](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.6) - 2023-01-18
+
+### Changed
+- No changes, safe to bump
+````
+
+
 
