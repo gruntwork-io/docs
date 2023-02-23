@@ -139,8 +139,5 @@ Example:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "402d73f62a8fa3b89d18d1decb3ebeba"
-}
+{"sourcePlugin":"local-copier","hash":"402d73f62a8fa3b89d18d1decb3ebeba"}
 ##DOCS-SOURCER-END -->

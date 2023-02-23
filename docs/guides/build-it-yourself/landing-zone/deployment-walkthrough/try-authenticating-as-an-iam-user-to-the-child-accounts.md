@@ -25,8 +25,5 @@ authenticating:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "35cbebd2ff2edeb050efe3fdeb75a877"
-}
+{"sourcePlugin":"local-copier","hash":"35cbebd2ff2edeb050efe3fdeb75a877"}
 ##DOCS-SOURCER-END -->

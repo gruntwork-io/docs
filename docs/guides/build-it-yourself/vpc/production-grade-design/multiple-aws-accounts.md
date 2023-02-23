@@ -16,8 +16,5 @@ guide for instructions.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "c17c05c07c1d9b5d5a89d0d4b54bee60"
-}
+{"sourcePlugin":"local-copier","hash":"c17c05c07c1d9b5d5a89d0d4b54bee60"}
 ##DOCS-SOURCER-END -->

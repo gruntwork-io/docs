@@ -23,8 +23,5 @@ code](https://gruntwork.io/guides/automations/how-to-configure-a-production-grad
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "ebe11d1c8039bdcaf654a54e2a779a21"
-}
+{"sourcePlugin":"local-copier","hash":"ebe11d1c8039bdcaf654a54e2a779a21"}
 ##DOCS-SOURCER-END -->

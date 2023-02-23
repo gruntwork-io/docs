@@ -52,8 +52,5 @@ code and release a new version.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "14f13b5f634ced6a221c0a69fd2fe79d"
-}
+{"sourcePlugin":"local-copier","hash":"14f13b5f634ced6a221c0a69fd2fe79d"}
 ##DOCS-SOURCER-END -->

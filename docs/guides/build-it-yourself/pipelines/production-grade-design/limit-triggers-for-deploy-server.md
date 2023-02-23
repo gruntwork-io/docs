@@ -19,8 +19,5 @@ You can find similar mechanisms for limiting deployments in the various deploy s
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "e9c3158c4440a350fd13f6bcee185874"
-}
+{"sourcePlugin":"local-copier","hash":"e9c3158c4440a350fd13f6bcee185874"}
 ##DOCS-SOURCER-END -->

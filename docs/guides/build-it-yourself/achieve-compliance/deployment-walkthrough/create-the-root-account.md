@@ -9,8 +9,5 @@ The first step is to create your root account. This account will be the parent o
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "1a99aa01895f6501a3b02d3c2c087c59"
-}
+{"sourcePlugin":"local-copier","hash":"1a99aa01895f6501a3b02d3c2c087c59"}
 ##DOCS-SOURCER-END -->

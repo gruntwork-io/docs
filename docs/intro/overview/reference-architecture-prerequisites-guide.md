@@ -85,8 +85,5 @@ Gruntwork accelerates you down the road towards having your entire AWS cloud inf
 </details>
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7b610a770e16d34aaddb3760cbfc5639"
-}
+{"sourcePlugin":"local-copier","hash":"7b610a770e16d34aaddb3760cbfc5639"}
 ##DOCS-SOURCER-END -->

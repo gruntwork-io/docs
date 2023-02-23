@@ -105,8 +105,5 @@ data "template_file" "user_data" {
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "f6e4c30ad255804535b49152c8f38011"
-}
+{"sourcePlugin":"local-copier","hash":"f6e4c30ad255804535b49152c8f38011"}
 ##DOCS-SOURCER-END -->

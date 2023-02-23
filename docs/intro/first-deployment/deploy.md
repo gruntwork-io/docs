@@ -261,8 +261,5 @@ terragrunt apply-all
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7203857858fed888b41d453b81b3e12b"
-}
+{"sourcePlugin":"local-copier","hash":"7203857858fed888b41d453b81b3e12b"}
 ##DOCS-SOURCER-END -->

@@ -50,8 +50,5 @@ This guide will walk you through the process of configuring a production-grade K
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5403ac4c228d55992995c2be7039a52f"
-}
+{"sourcePlugin":"local-copier","hash":"5403ac4c228d55992995c2be7039a52f"}
 ##DOCS-SOURCER-END -->

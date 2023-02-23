@@ -153,8 +153,5 @@ On some operating systems, such as MacOS, you may also need to increase your ope
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5897f14941f18912553be9b56c315a44"
-}
+{"sourcePlugin":"local-copier","hash":"5897f14941f18912553be9b56c315a44"}
 ##DOCS-SOURCER-END -->

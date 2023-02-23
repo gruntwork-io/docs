@@ -20,8 +20,5 @@ this section, we'll walk you through how to undeploy parts or all of the Referen
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "827378c8b6b828091bb9ce0adf1f8588"
-}
+{"sourcePlugin":"local-copier","hash":"827378c8b6b828091bb9ce0adf1f8588"}
 ##DOCS-SOURCER-END -->

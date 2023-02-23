@@ -9,8 +9,5 @@ We’ve previously described exactly how to prepare your repository in the
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "b8d57689504020947c3b27c055920715"
-}
+{"sourcePlugin":"local-copier","hash":"b8d57689504020947c3b27c055920715"}
 ##DOCS-SOURCER-END -->

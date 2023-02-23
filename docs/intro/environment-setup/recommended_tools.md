@@ -90,8 +90,5 @@ docker run -it -v $(pwd):/work gruntwork /bin/bash
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7f188f772b0e347ce8651e40270ce141"
-}
+{"sourcePlugin":"local-copier","hash":"7f188f772b0e347ce8651e40270ce141"}
 ##DOCS-SOURCER-END -->

@@ -473,8 +473,5 @@ jobs:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5e170f18736a77f9cef786d57bde6f1e"
-}
+{"sourcePlugin":"local-copier","hash":"5e170f18736a77f9cef786d57bde6f1e"}
 ##DOCS-SOURCER-END -->

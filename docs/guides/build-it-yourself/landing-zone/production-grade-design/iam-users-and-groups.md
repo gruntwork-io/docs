@@ -45,8 +45,5 @@ You must be a <span className="js-subscribe-cta">Gruntwork subscriber</span> to 
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "99eaa2fe1ef9ded6186b0122c1e886b1"
-}
+{"sourcePlugin":"local-copier","hash":"99eaa2fe1ef9ded6186b0122c1e886b1"}
 ##DOCS-SOURCER-END -->

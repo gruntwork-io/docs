@@ -18,8 +18,5 @@ happening in the account. We typically recommend that you aggregate these logs i
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "4ef96ebe041d1549530790269f1c7dff"
-}
+{"sourcePlugin":"local-copier","hash":"4ef96ebe041d1549530790269f1c7dff"}
 ##DOCS-SOURCER-END -->

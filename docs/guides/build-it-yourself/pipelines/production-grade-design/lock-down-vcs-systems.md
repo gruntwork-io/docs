@@ -38,8 +38,5 @@ internal environment variables or show infrastructure secrets using external dat
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "cd626b695d8951028daebd4a888f0a6b"
-}
+{"sourcePlugin":"local-copier","hash":"cd626b695d8951028daebd4a888f0a6b"}
 ##DOCS-SOURCER-END -->

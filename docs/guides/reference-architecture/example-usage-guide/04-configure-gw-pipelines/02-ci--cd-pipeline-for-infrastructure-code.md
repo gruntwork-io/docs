@@ -99,8 +99,5 @@ For instructions on how to destroy infrastructure, see the [Undeploy guide](../0
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "b214054a49f7368da435d1d80d42ab81"
-}
+{"sourcePlugin":"local-copier","hash":"b214054a49f7368da435d1d80d42ab81"}
 ##DOCS-SOURCER-END -->

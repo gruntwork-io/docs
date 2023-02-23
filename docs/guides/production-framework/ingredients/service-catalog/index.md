@@ -23,8 +23,5 @@ mean by "Service Catalog" in this guide, and what a modern Service Catalog looks
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "9724455defe23434547b2c1433c89445"
-}
+{"sourcePlugin":"local-copier","hash":"9724455defe23434547b2c1433c89445"}
 ##DOCS-SOURCER-END -->

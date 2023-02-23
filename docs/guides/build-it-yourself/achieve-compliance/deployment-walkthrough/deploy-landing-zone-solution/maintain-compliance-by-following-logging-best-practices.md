@@ -4,8 +4,5 @@ The logging section of the Benchmark includes configurations for CloudTrail, AWS
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "39456528af509fa05ddd582fa6983d8f"
-}
+{"sourcePlugin":"local-copier","hash":"39456528af509fa05ddd582fa6983d8f"}
 ##DOCS-SOURCER-END -->

@@ -13,8 +13,5 @@ harder than setting up the proper controls in the first place.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "638abda85660525852f391f9d2e1a759"
-}
+{"sourcePlugin":"local-copier","hash":"638abda85660525852f391f9d2e1a759"}
 ##DOCS-SOURCER-END -->

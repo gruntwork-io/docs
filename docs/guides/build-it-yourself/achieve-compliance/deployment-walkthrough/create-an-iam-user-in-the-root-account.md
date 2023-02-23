@@ -14,8 +14,5 @@ IAM user manually by
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "4d6487d6c1c3be7d2da2e166f24c93e0"
-}
+{"sourcePlugin":"local-copier","hash":"4d6487d6c1c3be7d2da2e166f24c93e0"}
 ##DOCS-SOURCER-END -->

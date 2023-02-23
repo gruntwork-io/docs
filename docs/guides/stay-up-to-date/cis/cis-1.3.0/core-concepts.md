@@ -52,8 +52,5 @@ configure the newly created modules.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "43e5a48a98d74f7993a9e6a02c7570df"
-}
+{"sourcePlugin":"local-copier","hash":"43e5a48a98d74f7993a9e6a02c7570df"}
 ##DOCS-SOURCER-END -->

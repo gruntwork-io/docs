@@ -37,8 +37,5 @@ infrastructure-live
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "717d3f161c59cb4de6dce9c9af8d5f46"
-}
+{"sourcePlugin":"local-copier","hash":"717d3f161c59cb4de6dce9c9af8d5f46"}
 ##DOCS-SOURCER-END -->

@@ -9,8 +9,5 @@ which has more access to the environments.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "a4cd5ed3be343c5f6bce08340047756b"
-}
+{"sourcePlugin":"local-copier","hash":"a4cd5ed3be343c5f6bce08340047756b"}
 ##DOCS-SOURCER-END -->

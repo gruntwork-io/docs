@@ -65,8 +65,5 @@ Some things to note when writing up your `Dockerfile` and building your app:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "2d6fc8ba4c4927f850bd052ab8189738"
-}
+{"sourcePlugin":"local-copier","hash":"2d6fc8ba4c4927f850bd052ab8189738"}
 ##DOCS-SOURCER-END -->

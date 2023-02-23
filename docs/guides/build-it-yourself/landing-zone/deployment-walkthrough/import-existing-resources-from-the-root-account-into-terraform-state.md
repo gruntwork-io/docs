@@ -145,8 +145,5 @@ rm -rf .terragrunt-cache
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "d9f7dfdde4944b7cc694380b1de97f3b"
-}
+{"sourcePlugin":"local-copier","hash":"d9f7dfdde4944b7cc694380b1de97f3b"}
 ##DOCS-SOURCER-END -->

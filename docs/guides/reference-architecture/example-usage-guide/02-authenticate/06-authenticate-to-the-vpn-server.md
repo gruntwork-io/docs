@@ -62,8 +62,5 @@ network (e.g., SSH to EC2 instances in private subnets) as if you were "in" the 
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "9701399b662535fea1aae6071601c987"
-}
+{"sourcePlugin":"local-copier","hash":"9701399b662535fea1aae6071601c987"}
 ##DOCS-SOURCER-END -->

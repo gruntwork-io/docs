@@ -257,8 +257,5 @@ In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "3cfd9930ece7baaa5154d8565fcb6ae4"
-}
+{"sourcePlugin":"local-copier","hash":"3cfd9930ece7baaa5154d8565fcb6ae4"}
 ##DOCS-SOURCER-END -->

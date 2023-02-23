@@ -106,8 +106,5 @@ used for Service Discovery within Kubernetes, a topic we’ll discuss later.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "42caae9827cb7b64f4c5e0b6e9d7c00d"
-}
+{"sourcePlugin":"local-copier","hash":"42caae9827cb7b64f4c5e0b6e9d7c00d"}
 ##DOCS-SOURCER-END -->

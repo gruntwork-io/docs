@@ -823,8 +823,5 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "3b3cc134306552881bc83ebc8cbe9531"
-}
+{"sourcePlugin":"local-copier","hash":"3b3cc134306552881bc83ebc8cbe9531"}
 ##DOCS-SOURCER-END -->

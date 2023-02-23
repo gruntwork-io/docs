@@ -9,8 +9,5 @@ Now that you have a CI/CD pipeline for your infrastructure code, test it out by 
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "e60b6909a25e315724ca19125d51f4d4"
-}
+{"sourcePlugin":"local-copier","hash":"e60b6909a25e315724ca19125d51f4d4"}
 ##DOCS-SOURCER-END -->

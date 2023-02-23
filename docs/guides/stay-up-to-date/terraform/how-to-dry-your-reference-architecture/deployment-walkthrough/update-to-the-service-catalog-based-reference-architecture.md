@@ -28,8 +28,5 @@ fully supported by Gruntwork.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "0375aad45a4e44290040bdf324035ce2"
-}
+{"sourcePlugin":"local-copier","hash":"0375aad45a4e44290040bdf324035ce2"}
 ##DOCS-SOURCER-END -->

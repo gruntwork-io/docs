@@ -29,8 +29,5 @@ Modernize your legacy Reference Architecture to use our new Service Catalog patt
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "675db72e2d75cc00ff5d3ec1a5407f0a"
-}
+{"sourcePlugin":"local-copier","hash":"675db72e2d75cc00ff5d3ec1a5407f0a"}
 ##DOCS-SOURCER-END -->

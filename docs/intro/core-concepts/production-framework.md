@@ -16,8 +16,5 @@ Guide](/guides/production-framework) for the full details.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "4dda35c027cc8ed707d9bf946d096d9a"
-}
+{"sourcePlugin":"local-copier","hash":"4dda35c027cc8ed707d9bf946d096d9a"}
 ##DOCS-SOURCER-END -->

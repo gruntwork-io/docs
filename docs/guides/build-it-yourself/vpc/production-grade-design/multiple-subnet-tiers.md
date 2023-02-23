@@ -37,8 +37,5 @@ discussed in the next section.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "82d0988a700d0886134f55402940d47a"
-}
+{"sourcePlugin":"local-copier","hash":"82d0988a700d0886134f55402940d47a"}
 ##DOCS-SOURCER-END -->

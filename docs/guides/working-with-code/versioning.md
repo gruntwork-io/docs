@@ -118,8 +118,5 @@ Follow the steps below to keep your code up to date:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "e6b205742fd86b90d4b9c4d01efb2853"
-}
+{"sourcePlugin":"local-copier","hash":"e6b205742fd86b90d4b9c4d01efb2853"}
 ##DOCS-SOURCER-END -->

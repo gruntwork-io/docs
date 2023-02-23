@@ -45,8 +45,5 @@ your credentials) or for the
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7a79f34d25438e5b383ac8ba0284b60f"
-}
+{"sourcePlugin":"local-copier","hash":"7a79f34d25438e5b383ac8ba0284b60f"}
 ##DOCS-SOURCER-END -->

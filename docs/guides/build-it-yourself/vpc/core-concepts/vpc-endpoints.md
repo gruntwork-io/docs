@@ -33,8 +33,5 @@ a paid service, and includes support for CloudTrail, Secrets Manager, EC2, SNS, 
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "6ce6ec81a6a21c99701e06df1b1aa301"
-}
+{"sourcePlugin":"local-copier","hash":"6ce6ec81a6a21c99701e06df1b1aa301"}
 ##DOCS-SOURCER-END -->

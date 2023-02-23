@@ -15,8 +15,5 @@ with the most useful metrics for your services and have that open on a big scree
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5f2fa1a102144ef3da979c801ded2487"
-}
+{"sourcePlugin":"local-copier","hash":"5f2fa1a102144ef3da979c801ded2487"}
 ##DOCS-SOURCER-END -->

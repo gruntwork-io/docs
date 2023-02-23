@@ -36,8 +36,5 @@ still fairly new, so some functionality is missing or more complicated to use th
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "014ad817a0f78576ebd997277ebec6a2"
-}
+{"sourcePlugin":"local-copier","hash":"014ad817a0f78576ebd997277ebec6a2"}
 ##DOCS-SOURCER-END -->

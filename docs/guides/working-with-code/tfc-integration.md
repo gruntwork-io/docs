@@ -460,8 +460,5 @@ Happy Terragrunting!
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "5b20d6a539da0fdb344d84384fccbe9c"
-}
+{"sourcePlugin":"local-copier","hash":"5b20d6a539da0fdb344d84384fccbe9c"}
 ##DOCS-SOURCER-END -->

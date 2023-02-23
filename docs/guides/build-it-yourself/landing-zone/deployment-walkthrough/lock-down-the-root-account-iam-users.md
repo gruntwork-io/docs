@@ -35,8 +35,5 @@ so using a virtual or hardware MFA device is preferable; that said, MFA with SMS
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "32a5dce3ef592eceb9dde972c55c3488"
-}
+{"sourcePlugin":"local-copier","hash":"32a5dce3ef592eceb9dde972c55c3488"}
 ##DOCS-SOURCER-END -->

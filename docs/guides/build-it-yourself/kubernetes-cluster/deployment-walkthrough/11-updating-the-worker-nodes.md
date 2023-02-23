@@ -41,8 +41,5 @@ kubergrunt eks deploy --region <AWS_REGION> --asg-name <AUTO_SCALING_GROUP_NAME>
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "7e4f6f3320632a138f9f4eb9d05b2385"
-}
+{"sourcePlugin":"local-copier","hash":"7e4f6f3320632a138f9f4eb9d05b2385"}
 ##DOCS-SOURCER-END -->

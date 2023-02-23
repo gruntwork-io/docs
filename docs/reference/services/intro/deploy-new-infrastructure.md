@@ -396,8 +396,5 @@ most commonly used filters will be:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "d9f703f17d3e41684bef2ab8f2fae2a1"
-}
+{"sourcePlugin":"local-copier","hash":"d9f703f17d3e41684bef2ab8f2fae2a1"}
 ##DOCS-SOURCER-END -->

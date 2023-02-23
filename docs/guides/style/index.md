@@ -31,8 +31,5 @@ Gruntwork follows Google's shell style guide for Bash scripts.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "a2e7a4dcf7d1eb2a24102927805a2a5d"
-}
+{"sourcePlugin":"local-copier","hash":"a2e7a4dcf7d1eb2a24102927805a2a5d"}
 ##DOCS-SOURCER-END -->

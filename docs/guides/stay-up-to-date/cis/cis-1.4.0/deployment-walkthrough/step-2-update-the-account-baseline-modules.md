@@ -116,8 +116,5 @@ All the other child accounts (logs, stage, prod, etc) need the same configuratio
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "cb0578642a724e3749d66a16916e7194"
-}
+{"sourcePlugin":"local-copier","hash":"cb0578642a724e3749d66a16916e7194"}
 ##DOCS-SOURCER-END -->

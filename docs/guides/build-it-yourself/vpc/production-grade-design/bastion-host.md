@@ -20,8 +20,5 @@ allow you to manage and connect to EC2 Instances via a custom protocol managed b
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "ced5f0444b037cc4e6f71ffacb6f4fdb"
-}
+{"sourcePlugin":"local-copier","hash":"ced5f0444b037cc4e6f71ffacb6f4fdb"}
 ##DOCS-SOURCER-END -->

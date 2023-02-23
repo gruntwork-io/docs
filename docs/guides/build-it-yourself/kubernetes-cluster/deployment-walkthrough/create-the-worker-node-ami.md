@@ -137,8 +137,5 @@ guide.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "e5f9d652cc31940ba66f4a28616a859c"
-}
+{"sourcePlugin":"local-copier","hash":"e5f9d652cc31940ba66f4a28616a859c"}
 ##DOCS-SOURCER-END -->

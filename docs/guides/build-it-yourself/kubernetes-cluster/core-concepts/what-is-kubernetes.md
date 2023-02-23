@@ -41,8 +41,5 @@ Provide containers with environment-specific configuration data and secrets.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "90e5f0b5e2067db1b348484f5df12685"
-}
+{"sourcePlugin":"local-copier","hash":"90e5f0b5e2067db1b348484f5df12685"}
 ##DOCS-SOURCER-END -->

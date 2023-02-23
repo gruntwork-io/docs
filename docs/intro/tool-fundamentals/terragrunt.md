@@ -32,8 +32,5 @@ Infrastructure as Code Library with plain Terraform, Terraform Enterprise, Atlan
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "66b4546e1b2cacd7b6bdb6db216d5bf9"
-}
+{"sourcePlugin":"local-copier","hash":"66b4546e1b2cacd7b6bdb6db216d5bf9"}
 ##DOCS-SOURCER-END -->

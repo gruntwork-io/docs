@@ -33,8 +33,5 @@ If you are the admin for your organization, you'll be prompted to confirm detail
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "01375ec9b14d989af4af205eba101d88"
-}
+{"sourcePlugin":"local-copier","hash":"01375ec9b14d989af4af205eba101d88"}
 ##DOCS-SOURCER-END -->

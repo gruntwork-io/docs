@@ -19,8 +19,5 @@ Many Ops teams get nervous with the idea of self-service: what if the developers
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "77f527c693abd32b67e88ea9a77fe6f4"
-}
+{"sourcePlugin":"local-copier","hash":"77f527c693abd32b67e88ea9a77fe6f4"}
 ##DOCS-SOURCER-END -->

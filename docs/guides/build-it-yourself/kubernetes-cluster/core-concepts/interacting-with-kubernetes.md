@@ -59,8 +59,5 @@ Terraform code anyway (e.g., execute a script).
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "ede0867c6736ce962649a05fe05c141f"
-}
+{"sourcePlugin":"local-copier","hash":"ede0867c6736ce962649a05fe05c141f"}
 ##DOCS-SOURCER-END -->

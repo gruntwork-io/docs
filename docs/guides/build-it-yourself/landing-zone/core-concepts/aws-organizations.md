@@ -47,8 +47,5 @@ those regions or services do not meet your company’s compliance requirements (
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "82ac4c70419f79af31d32ad9d227017f"
-}
+{"sourcePlugin":"local-copier","hash":"82ac4c70419f79af31d32ad9d227017f"}
 ##DOCS-SOURCER-END -->

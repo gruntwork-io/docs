@@ -11,8 +11,5 @@ the VPC.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "d47dde0089191a4a4707e0f5c050d2dd"
-}
+{"sourcePlugin":"local-copier","hash":"d47dde0089191a4a4707e0f5c050d2dd"}
 ##DOCS-SOURCER-END -->

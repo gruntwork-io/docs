@@ -38,8 +38,5 @@ cover it, the design is compatible with using Terraform Enterprise as the deploy
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "b9eefadd3f55d13a074ac0ef37224cbf"
-}
+{"sourcePlugin":"local-copier","hash":"b9eefadd3f55d13a074ac0ef37224cbf"}
 ##DOCS-SOURCER-END -->

@@ -10,8 +10,5 @@ infrastructure those apps depend on.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "0d1779ee5564dd35f8deaa3ae48d81ec"
-}
+{"sourcePlugin":"local-copier","hash":"0d1779ee5564dd35f8deaa3ae48d81ec"}
 ##DOCS-SOURCER-END -->

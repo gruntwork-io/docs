@@ -141,8 +141,5 @@ If you have any questions, we'd love to hear them. Please reach out to <a href="
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "6c00387c2495618b8e214128440b9ab8"
-}
+{"sourcePlugin":"local-copier","hash":"6c00387c2495618b8e214128440b9ab8"}
 ##DOCS-SOURCER-END -->

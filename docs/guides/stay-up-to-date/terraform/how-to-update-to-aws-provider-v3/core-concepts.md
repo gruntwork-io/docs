@@ -22,8 +22,5 @@ Architecture to be compatible with AWS provider version 3.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "56d01e92f2d0efef79e79bee9f272d89"
-}
+{"sourcePlugin":"local-copier","hash":"56d01e92f2d0efef79e79bee9f272d89"}
 ##DOCS-SOURCER-END -->

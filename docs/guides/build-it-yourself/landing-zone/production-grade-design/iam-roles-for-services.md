@@ -136,8 +136,5 @@ sensitive machine user access keys.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "6a6f172c3ecdc65911aeb1e7770e05e6"
-}
+{"sourcePlugin":"local-copier","hash":"6a6f172c3ecdc65911aeb1e7770e05e6"}
 ##DOCS-SOURCER-END -->

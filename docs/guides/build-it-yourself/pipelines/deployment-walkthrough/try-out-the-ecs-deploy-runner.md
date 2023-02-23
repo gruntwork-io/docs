@@ -50,8 +50,5 @@ Running this command will provide output similar to below:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "dd6544d11642b0f43fdddbeea03cb5ba"
-}
+{"sourcePlugin":"local-copier","hash":"dd6544d11642b0f43fdddbeea03cb5ba"}
 ##DOCS-SOURCER-END -->

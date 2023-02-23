@@ -58,8 +58,5 @@ suggest limiting routing for VPC peering connections based on [the principle of 
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "9c5ed024400994bf3693d1340382dfbf"
-}
+{"sourcePlugin":"local-copier","hash":"9c5ed024400994bf3693d1340382dfbf"}
 ##DOCS-SOURCER-END -->

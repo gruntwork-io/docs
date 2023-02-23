@@ -68,8 +68,5 @@ for large organizations to have dozens or even hundreds of AWS accounts.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "3e830de18a177052333745fb4918957c"
-}
+{"sourcePlugin":"local-copier","hash":"3e830de18a177052333745fb4918957c"}
 ##DOCS-SOURCER-END -->

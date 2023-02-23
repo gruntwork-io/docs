@@ -7,8 +7,5 @@ certain compliance requirements may force you to use a specific password policy)
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "a73f3b1d9fcf38b8631f4cf2f9b054e6"
-}
+{"sourcePlugin":"local-copier","hash":"a73f3b1d9fcf38b8631f4cf2f9b054e6"}
 ##DOCS-SOURCER-END -->

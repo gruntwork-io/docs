@@ -21,8 +21,5 @@ You can check the module dependency tree with `graph-dependencies` and GraphViz:
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "9157fe8a4406021c41bd8b94cb73d04b"
-}
+{"sourcePlugin":"local-copier","hash":"9157fe8a4406021c41bd8b94cb73d04b"}
 ##DOCS-SOURCER-END -->

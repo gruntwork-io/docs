@@ -60,8 +60,5 @@ more limited permissions, and then you’ll likely never touch the root user acc
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "0ea3d2d2cf61de3dc23190489c4ec9d5"
-}
+{"sourcePlugin":"local-copier","hash":"0ea3d2d2cf61de3dc23190489c4ec9d5"}
 ##DOCS-SOURCER-END -->

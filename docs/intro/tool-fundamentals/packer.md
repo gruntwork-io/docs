@@ -52,8 +52,5 @@ its opinionated tools.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "1d077cb69e254937c2472634a22eff5d"
-}
+{"sourcePlugin":"local-copier","hash":"1d077cb69e254937c2472634a22eff5d"}
 ##DOCS-SOURCER-END -->

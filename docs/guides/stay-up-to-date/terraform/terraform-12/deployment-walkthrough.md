@@ -430,8 +430,5 @@ At the end of this, you should be able to run `terragrunt plan` cleanly.
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "1133a6f06da0e83fa0be975301931929"
-}
+{"sourcePlugin":"local-copier","hash":"1133a6f06da0e83fa0be975301931929"}
 ##DOCS-SOURCER-END -->

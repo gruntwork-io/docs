@@ -34,8 +34,5 @@ terraform state replace-provider -- -/aws registry.terraform.io/hashicorp/aws
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "0c5aa574c82b473c254f163ea660dffa"
-}
+{"sourcePlugin":"local-copier","hash":"0c5aa574c82b473c254f163ea660dffa"}
 ##DOCS-SOURCER-END -->
