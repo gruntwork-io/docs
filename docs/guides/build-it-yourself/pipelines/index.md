@@ -7,24 +7,23 @@ import { CardList } from "/src/components/CardGroup"
 
 # Set Up an Infrastructure CI/CD Pipeline
 
-:::caution
+:::info
 
-This guide hasn’t been updated in the past 6 months. If you find any inaccuracies, please share with us at feedback@gruntwork.io.
+This document is an excellent resource for understanding the problem space of CI/CD and the design choices that Gruntwork Pipelines makes.  
+
+If you are looking to get hands-on with Gruntwork Pipelines and deploy it yourself, see [the official examples in our service catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/gruntwork-pipelines)
 
 :::
 
 ## Overview
 
-This is a comprehensive guide of how to design, configure, and implement a Continuous Integration and Continuous
-Delivery pipeline for your infrastructure code. This guide will walk you through the steps to set up a secure CI/CD
-pipeline for your favorite infrastructure as code tools (e.g., Terraform) using your favorite CI/CD platform (e.g.,
-Jenkins, Circle, GitLab, etc).
-
-TLDR: If you follow this guide, you’ll be able to set up a pipeline that works like this:
-
-![For an extended version with audio commentary, see <https://youtu.be/iYXghJK7YdU>](/img/guides/build-it-yourself/pipelines/walkthrough.gif)
+This is a comprehensive guide explaining the problem space of CI/CD, its threat vectors, and the design decisions that Gruntwork Pipelines 
+makes in order to keep your sensitive credentials secure. 
 
 ## What this guide will not cover
+
+This guide is not hands-on! If you're looking to explore and play around with Gruntwork Pipelines, you should instead view and deploy [our official 
+examples in our service catalog](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/examples/for-production/gruntwork-pipelines).
 
 CI/CD for infrastructure code is a large topic and a single guide cannot cover everything. There
 are several items that this guide will not cover, including:
@@ -52,6 +51,7 @@ testing for Terraform, Docker, Packer, Kubernetes, and More](https://blog.gruntw
 [Agility requires safety](https://www.ybrikman.com/writing/2016/02/14/agility-requires-safety/).
 
 </div>
+
 
 ## Sections
 
@@ -90,8 +90,5 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "3130cb825c605b438694546804a4f87c"
-}
+{"sourcePlugin":"local-copier","hash":"ce61548221a65c5a711904397d890781"}
 ##DOCS-SOURCER-END -->
