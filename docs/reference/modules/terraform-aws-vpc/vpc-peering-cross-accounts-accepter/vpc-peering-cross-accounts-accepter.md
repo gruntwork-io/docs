@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-peering-cross-accounts-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -72,10 +72,10 @@ No modules.
 
 ### Required
 
-<HclListItem name="vpc_peering_connection_id" requirement="required" type="string">
+<HclListItem name="requester_vpc_cidr" requirement="required" type="string">
 <HclListItemDescription>
 
-The VPC Peering Connection ID to manage.
+The VPC CIDR of the requester VPC.
 
 </HclListItemDescription>
 </HclListItem>
@@ -88,10 +88,10 @@ List of route tables to add routes to.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="requester_vpc_cidr" requirement="required" type="string">
+<HclListItem name="vpc_peering_connection_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The VPC CIDR of the requester VPC.
+The VPC Peering Connection ID to manage.
 
 </HclListItemDescription>
 </HclListItem>
@@ -125,19 +125,19 @@ Allow a local VPC to communicate with a linked EC2-Classic instance in a peer VP
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to assign to created resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
 <HclListItem name="route_creation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
 The timeout for the creation of the Route Tables. It defines how long to wait for a route table to be created before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="route_deletion_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+The timeout for the deletion of the Route Tables. It defines how long to wait for a route table to be deleted before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
@@ -152,30 +152,30 @@ The timeout for the update of the Route Tables. It defines how long to wait for 
 <HclListItemDefaultValue defaultValue="&quot;2m&quot;"/>
 </HclListItem>
 
-<HclListItem name="route_deletion_timeout" requirement="optional" type="string">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-The timeout for the deletion of the Route Tables. It defines how long to wait for a route table to be deleted before considering the operation failed. Ref: https://www.terraform.io/language/resources/syntax#operation-timeouts
+A map of tags to assign to created resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="vpc_peering_connection_id">
-<HclListItemDescription>
-
-Peering connection ID.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="vpc_peering_accept_status">
 <HclListItemDescription>
 
 The status of the VPC Peering Connection request.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_peering_connection_id">
+<HclListItemDescription>
+
+Peering connection ID.
 
 </HclListItemDescription>
 </HclListItem>
@@ -192,6 +192,6 @@ The status of the VPC Peering Connection request.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c03632ff23a567ce98ac159b62a2a89"
+  "hash": "d7345a45996fd2157540188d52204929"
 }
 ##DOCS-SOURCER-END -->

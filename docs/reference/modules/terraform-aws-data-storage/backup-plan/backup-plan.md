@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fbackup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -124,14 +124,6 @@ The name to use for the backup service role that is created and attached to back
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="backup_service_role_arn">
-<HclListItemDescription>
-
-The ARN of the IAM service role used by Backup plans
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="backup_plan_arns">
 <HclListItemDescription>
 
@@ -164,6 +156,14 @@ A list of IDs for any Backup selections configured
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="backup_service_role_arn">
+<HclListItemDescription>
+
+The ARN of the IAM service role used by Backup plans
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -176,6 +176,6 @@ A list of IDs for any Backup selections configured
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3013f93e76cc34906ce93408c726ca58"
+  "hash": "f9d86639c9f7b1854790d04741f76bed"
 }
 ##DOCS-SOURCER-END -->

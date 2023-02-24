@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fattach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -73,6 +73,6 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6bc697909ff513b8cbcdd6f488f8f0a"
+  "hash": "96ae8fc57d7739c570b019b6cbe407aa"
 }
 ##DOCS-SOURCER-END -->

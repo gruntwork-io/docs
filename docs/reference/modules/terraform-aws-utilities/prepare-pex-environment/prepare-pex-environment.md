@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Fprepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -106,14 +106,6 @@ can use as a template.
 
 ### Required
 
-<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="pex_module_path_parts" requirement="required" type="list(string)">
 <HclListItemDescription>
 
@@ -122,8 +114,24 @@ Parts of the path (folders and file names) to the python package directory housi
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="entrypoint_path">
+<HclListItemDescription>
+
+The path to the entrypoint script that should be used to call the module code.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="pex_path">
 <HclListItemDescription>
@@ -141,14 +149,6 @@ The python path that should be used for running PEX file. This should be set as 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="entrypoint_path">
-<HclListItemDescription>
-
-The path to the entrypoint script that should be used to call the module code.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -161,6 +161,6 @@ The path to the entrypoint script that should be used to call the module code.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e070c1ea17e5c911fb6922524ef85280"
+  "hash": "5686f299a83b719aa445fed38248a607"
 }
 ##DOCS-SOURCER-END -->

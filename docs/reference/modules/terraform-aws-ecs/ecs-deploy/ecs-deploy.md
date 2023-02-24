@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -98,6 +98,6 @@ container instead of the command configured in the Task Definition.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "93846db7a69a6ba6a5e7e224a8b84e21"
+  "hash": "49a2a2a318291123a35c5514a5387ef5"
 }
 ##DOCS-SOURCER-END -->

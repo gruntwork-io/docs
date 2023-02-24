@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -26,6 +26,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97eff883c1388f1fee14a21c0843957a"
+  "hash": "1624a498c0edb98ed61bece1cf2226ea"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-logstash" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -45,6 +45,6 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f06b607132ce3832273a0dd1b4358c6"
+  "hash": "9fd53864f40f6681c339cb1f3e7638ad"
 }
 ##DOCS-SOURCER-END -->

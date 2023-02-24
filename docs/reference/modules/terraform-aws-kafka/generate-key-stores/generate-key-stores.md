@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fgenerate-key-stores" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -146,6 +146,6 @@ Additional Info:
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dafcc325f5a65b2a6f37077c2d255470"
+  "hash": "f2a1f100120f6ffd30bcec62bed71b3c"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fbackup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -102,6 +102,15 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
+<HclListItem name="default_changeable_for_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The cooling-off-period during which you can still delete the lock placed on your vault. The AWS default is 3 days. After this period expires, YOUR LOCK CANNOT BE DELETED
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="7"/>
+</HclListItem>
+
 <HclListItem name="default_max_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -120,17 +129,24 @@ The minimum number of retention days that can be configured via a backup plan fo
 <HclListItemDefaultValue defaultValue="7"/>
 </HclListItem>
 
-<HclListItem name="default_changeable_for_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The cooling-off-period during which you can still delete the lock placed on your vault. The AWS default is 3 days. After this period expires, YOUR LOCK CANNOT BE DELETED
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="7"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="count_of_vault_locks">
+<HclListItemDescription>
+
+A sanity check count of the number of aws_backup_vault_lock_configurations that were applied to vaults
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="count_of_vault_notifications">
+<HclListItemDescription>
+
+A sanity check count of the number of SNS topics that were created to support Backup vault notifications
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="vault_arns">
 <HclListItemDescription>
@@ -156,14 +172,6 @@ The count of recovery points stored in each vault
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vault_tags_all">
-<HclListItemDescription>
-
-A map of tags assigned to the vault resources, including those inherited from the provider's default_tags block
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="vault_sns_topic_arns">
 <HclListItemDescription>
 
@@ -172,18 +180,10 @@ A list of the ARNs for any SNS topics that may have been created to support Back
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="count_of_vault_locks">
+<HclListItem name="vault_tags_all">
 <HclListItemDescription>
 
-A sanity check count of the number of aws_backup_vault_lock_configurations that were applied to vaults
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="count_of_vault_notifications">
-<HclListItemDescription>
-
-A sanity check count of the number of SNS topics that were created to support Backup vault notifications
+A map of tags assigned to the vault resources, including those inherited from the provider's default_tags block
 
 </HclListItemDescription>
 </HclListItem>
@@ -200,6 +200,6 @@ A sanity check count of the number of SNS topics that were created to support Ba
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf2661b5ee8b1c47d4f99c8765a783b1"
+  "hash": "ffcf32f71b44d94af7c9531f57dc9f4d"
 }
 ##DOCS-SOURCER-END -->

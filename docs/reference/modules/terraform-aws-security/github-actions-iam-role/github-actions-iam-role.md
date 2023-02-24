@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fgithub-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -176,22 +176,6 @@ jobs:
 
 ### Required
 
-<HclListItem name="github_actions_openid_connect_provider_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_url" requirement="required" type="string">
-<HclListItemDescription>
-
-URL of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="allowed_sources" requirement="required" type="map(list(…))">
 <HclListItemDescription>
 
@@ -207,7 +191,20 @@ map(list(string))
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="undefined" requirement="required">
+<HclListItem name="github_actions_openid_connect_provider_arn" requirement="required" type="string">
+<HclListItemDescription>
+
+ARN of the OpenID Connect Provider provisioned for GitHub Actions.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="github_actions_openid_connect_provider_url" requirement="required" type="string">
+<HclListItemDescription>
+
+URL of the OpenID Connect Provider provisioned for GitHub Actions.
+
+</HclListItemDescription>
 </HclListItem>
 
 ### Optional
@@ -230,19 +227,19 @@ Whether to create the IAM role and attach permissions for GitHub Actions to assu
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of an IAM role to create. Required when <a href="#create_iam_role"><code>create_iam_role</code></a> is true.
+The name to use for the custom inline IAM policy that is attached to the Role/Group when <a href="#iam_policy"><code>iam_policy</code></a> is configured.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_policy_arns" requirement="optional" type="list(string)">
+<HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of policies (by ARN) to attach to this group.
+A list of IAM AWS Managed Policy names to attach to the group.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -257,31 +254,22 @@ A list of IAM AWS Customer Managed policy names to attach to the group.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
+<HclListItem name="iam_policy_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of IAM AWS Managed Policy names to attach to the group.
+A list of policies (by ARN) to attach to this group.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="permitted_full_access_services" requirement="optional" type="list(string)">
+<HclListItem name="iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-A list of AWS services for which the IAM role will receive full permissions. See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html to find the service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning'].
+The name of an IAM role to create. Required when <a href="#create_iam_role"><code>create_iam_role</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the custom inline IAM policy that is attached to the Role/Group when <a href="#iam_policy"><code>iam_policy</code></a> is configured.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="max_session_duration" requirement="optional" type="number">
@@ -291,6 +279,15 @@ The maximum allowable session duration, in seconds, for the credentials you get 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="43200"/>
+</HclListItem>
+
+<HclListItem name="permitted_full_access_services" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of AWS services for which the IAM role will receive full permissions. See https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html to find the service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning'].
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 </TabItem>
@@ -304,18 +301,18 @@ JSON value for IAM Role Assume Role Policy that allows GitHub Actions to inherit
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="iam_role_name">
-<HclListItemDescription>
-
-The name of the IAM role.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="iam_role_arn">
 <HclListItemDescription>
 
 The ARN of the IAM role.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="iam_role_name">
+<HclListItemDescription>
+
+The name of the IAM role.
 
 </HclListItemDescription>
 </HclListItem>
@@ -332,6 +329,6 @@ The ARN of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0ad21a2fbf7c1f42e63798514cf6983b"
+  "hash": "1c974e69c668f33a47e8b5a437a03661"
 }
 ##DOCS-SOURCER-END -->

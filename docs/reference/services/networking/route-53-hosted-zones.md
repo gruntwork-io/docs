@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.96.1"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.96.1"/>
 
 # Route 53 Hosted Zones
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Froute53" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Froute53" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Froute53" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -49,7 +49,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 :::
 
-*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
+*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
 *   [AWS Cloud Map Documentation](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html): Amazon’s docs
     for AWS Cloud Map that cover core concepts and configuration.
 *   [Route 53 Documentation](https://docs.aws.amazon.com/route53/): Amazon’s docs for Route 53 that cover core concepts
@@ -61,7 +61,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -69,7 +69,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -274,6 +274,50 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="service_discovery_private_namespaces" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    # The ID of the VPC where the private hosted zone is restricted to.
+    vpc_id = string
+
+    # A user friendly description for the namespace
+    description = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     A user friendly description for the namespace
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Default to empty map so that private namespaces are only created when requested.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="service_discovery_public_namespaces" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -320,52 +364,16 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="service_discovery_private_namespaces" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-A map of domain names to configurations for setting up a new private namespace in AWS Cloud Map.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    # The ID of the VPC where the private hosted zone is restricted to.
-    vpc_id = string
-
-    # A user friendly description for the namespace
-    description = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     A user friendly description for the namespace
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Default to empty map so that private namespaces are only created when requested.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="acm_tls_certificates">
+<HclListItemDescription>
+
+A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="private_domain_names">
 <HclListItemDescription>
@@ -399,6 +407,14 @@ The names of the public Route 53 Hosted Zones
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="public_hosted_zone_map">
+<HclListItemDescription>
+
+A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="public_hosted_zones_ids">
 <HclListItemDescription>
 
@@ -415,18 +431,10 @@ The name servers associated with the public Route 53 Hosted Zones
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="public_hosted_zone_map">
+<HclListItem name="service_discovery_private_namespaces">
 <HclListItemDescription>
 
-A map of domains to their zone IDs. IDs are user inputs, when supplied, and otherwise resource IDs
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="acm_tls_certificates">
-<HclListItemDescription>
-
-A list of ARNs of the wildcard and service discovery certificates that were provisioned along with the Route 53 zone.
+A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces.
 
 </HclListItemDescription>
 </HclListItem>
@@ -439,14 +447,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="service_discovery_private_namespaces">
-<HclListItemDescription>
-
-A map of domains to resource arns and hosted zones of the created Service Discovery Private Namespaces.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -454,11 +454,11 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Froute53%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Froute53%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Froute53%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Froute53%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Froute53%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Froute53%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8b835adf1302d12802c6c59d2a5fa78e"
+  "hash": "a9b88a49d275f6ba5f2744cf50ee5b8a"
 }
 ##DOCS-SOURCER-END -->

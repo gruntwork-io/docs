@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Flist-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -52,10 +52,10 @@ See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-util
 
 ### Required
 
-<HclListItem name="original_list" requirement="required" type="list(any)">
+<HclListItem name="items_to_remove" requirement="required" type="list(any)">
 <HclListItemDescription>
 
-The list of items where you want to remove items from.
+The list of items that you want to remove from the original list.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -67,10 +67,10 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="items_to_remove" requirement="required" type="list(any)">
+<HclListItem name="original_list" requirement="required" type="list(any)">
 <HclListItemDescription>
 
-The list of items that you want to remove from the original list.
+The list of items where you want to remove items from.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -100,6 +100,6 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81cf2de792ae0a556d3dd01b8aa43fc0"
+  "hash": "49f371dbe136f095b373f7f6e134aa7a"
 }
 ##DOCS-SOURCER-END -->

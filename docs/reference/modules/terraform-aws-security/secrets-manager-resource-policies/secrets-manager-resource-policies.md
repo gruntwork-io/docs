@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fsecrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -110,6 +110,6 @@ map(object({
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c62fd2369621ec6afb062d09fcf2e169"
+  "hash": "e3263f0cc3322e036015499dcabe0648"
 }
 ##DOCS-SOURCER-END -->

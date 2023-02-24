@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -37,6 +37,6 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "285f7311a0bbd7a33295d0d2ee040f2f"
+  "hash": "623afcaab494ae21b99cc4c4c0af2524"
 }
 ##DOCS-SOURCER-END -->

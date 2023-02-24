@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules%2Fasg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -91,18 +91,10 @@ The name of the ASG.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
+<HclListItem name="desired_capacity" requirement="required" type="number">
 <HclListItemDescription>
 
-A list of subnet ids in the VPC were the EC2 Instances should be deployed
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="min_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The minimum number of EC2 Instances to run in the ASG
+The desired number of EC2 Instances to run in the ASG initially. Note that auto scaling policies may change this value. If you're using auto scaling policies to dynamically resize the cluster, you should actually leave this value as null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -115,43 +107,23 @@ The maximum number of EC2 Instances to run in the ASG
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="desired_capacity" requirement="required" type="number">
+<HclListItem name="min_size" requirement="required" type="number">
 <HclListItemDescription>
 
-The desired number of EC2 Instances to run in the ASG initially. Note that auto scaling policies may change this value. If you're using auto scaling policies to dynamically resize the cluster, you should actually leave this value as null.
+The minimum number of EC2 Instances to run in the ASG
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids in the VPC were the EC2 Instances should be deployed
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
-
-<HclListItem name="launch_configuration_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-This is DEPRECATED and will be removed on Dec 31st 2023. Please switch to using Launch Template below. The name of the Launch Configuration to use for each EC2 Instance in this ASG. This value MUST be an output of the Launch Configuration resource itself. This ensures a new ASG is created every time the Launch Configuration changes, rolling out your changes automatically. One of <a href="#launch_configuration_name"><code>launch_configuration_name</code></a> or <a href="#launch_template"><code>launch_template</code></a> must be set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="launch_template" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-The ID and version of the Launch Template to use for each EC2 instance in this ASG. The version value MUST be an output of the Launch Template resource itself. This ensures that a new ASG is created every time a new Launch Template version is created. One of <a href="#launch_configuration_name"><code>launch_configuration_name</code></a> or <a href="#launch_template"><code>launch_template</code></a> must be set.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    id      = string
-    version = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
 
 <HclListItem name="checkpoint_delay" requirement="optional" type="number">
 <HclListItemDescription>
@@ -176,137 +148,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="instance_warmup" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of seconds until a newly launched instance is configured and ready to use.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="min_healthy_percentage" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of capacity in the Auto Scaling group that must remain healthy during an instance refresh to allow the operation to continue, as a percentage of the desired capacity
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="triggers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Set of additional property names that will trigger an Instance Refresh. A refresh will always be triggered by a change in any of launch_configuration, launch_template, or mixed_instances_policy.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="termination_policies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, Default.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="load_balancers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see <a href="#target_group_arns"><code>target_group_arns</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Application Load Balancer (ALB) target group ARNs to associate with this ASG. If you're using the Elastic Load Balancer (ELB), see <a href="#load_balancers"><code>load_balancers</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="min_elb_capacity" requirement="optional" type="number">
-<HclListItemDescription>
-
-Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="use_elb_health_checks" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not ELB or ALB health checks should be enabled. If set to true, the load_balancers or target_groups_arns variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="health_check_grace_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-Time, in seconds, after an EC2 Instance comes into service before checking health.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
-</HclListItem>
-
-<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   enabled_metrics = [
-      "GroupDesiredCapacity",
-      "GroupInServiceInstances",
-      "GroupMaxSize",
-      "GroupMinSize",
-      "GroupPendingInstances",
-      "GroupStandbyInstances",
-      "GroupTerminatingInstances",
-      "GroupTotalInstances"
-    ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="tag_asg_id_key" requirement="optional" type="string">
-<HclListItemDescription>
-
-The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AsgId&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="list(object(…))">
@@ -363,13 +204,172 @@ Timeout value for deletion operations on autoscale groups.
 <HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
+<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   enabled_metrics = [
+      "GroupDesiredCapacity",
+      "GroupInServiceInstances",
+      "GroupMaxSize",
+      "GroupMinSize",
+      "GroupPendingInstances",
+      "GroupStandbyInstances",
+      "GroupTerminatingInstances",
+      "GroupTotalInstances"
+    ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="health_check_grace_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Time, in seconds, after an EC2 Instance comes into service before checking health.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="instance_warmup" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of seconds until a newly launched instance is configured and ready to use.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="launch_configuration_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+This is DEPRECATED and will be removed on Dec 31st 2023. Please switch to using Launch Template below. The name of the Launch Configuration to use for each EC2 Instance in this ASG. This value MUST be an output of the Launch Configuration resource itself. This ensures a new ASG is created every time the Launch Configuration changes, rolling out your changes automatically. One of <a href="#launch_configuration_name"><code>launch_configuration_name</code></a> or <a href="#launch_template"><code>launch_template</code></a> must be set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="launch_template" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The ID and version of the Launch Template to use for each EC2 instance in this ASG. The version value MUST be an output of the Launch Template resource itself. This ensures that a new ASG is created every time a new Launch Template version is created. One of <a href="#launch_configuration_name"><code>launch_configuration_name</code></a> or <a href="#launch_template"><code>launch_template</code></a> must be set.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    id      = string
+    version = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="load_balancers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see <a href="#target_group_arns"><code>target_group_arns</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="min_elb_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="min_healthy_percentage" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of capacity in the Auto Scaling group that must remain healthy during an instance refresh to allow the operation to continue, as a percentage of the desired capacity
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tag_asg_id_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AsgId&quot;"/>
+</HclListItem>
+
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Application Load Balancer (ALB) target group ARNs to associate with this ASG. If you're using the Elastic Load Balancer (ELB), see <a href="#load_balancers"><code>load_balancers</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="termination_policies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, Default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="triggers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Set of additional property names that will trigger an Instance Refresh. A refresh will always be triggered by a change in any of launch_configuration, launch_template, or mixed_instances_policy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="use_elb_health_checks" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not ELB or ALB health checks should be enabled. If set to true, the load_balancers or target_groups_arns variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="asg_name">
+<HclListItem name="asg_arn">
 </HclListItem>
 
-<HclListItem name="asg_arn">
+<HclListItem name="asg_name">
 </HclListItem>
 
 <HclListItem name="asg_unique_id">
@@ -387,6 +387,6 @@ Timeout value for deletion operations on autoscale groups.
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3e887b4072b49416f86b3c0f5029505c"
+  "hash": "475a91d3f6fd1444c1c8a1c8b716a4bb"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -67,34 +67,10 @@ No modules.
 
 ### Required
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The VPC ID.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="route_tables" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of route tables to add routes to.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="accepter_owner_id" requirement="required" type="string">
 <HclListItemDescription>
 
 The account ID of the accepter VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="accepter_vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the accepter VPC.
 
 </HclListItemDescription>
 </HclListItem>
@@ -115,15 +91,39 @@ The VPC CIDR of the accepter VPC.
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItem name="accepter_vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-A map of tags to assign to resources.
+The ID of the accepter VPC.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="route_tables" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+List of route tables to add routes to.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The VPC ID.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="allow_remote_vpc_dns_resolution" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Allow a local VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="route_creation_timeout" requirement="optional" type="string">
@@ -144,13 +144,13 @@ How long to wait for a route to be deleted before considering the operation fail
 <HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
 </HclListItem>
 
-<HclListItem name="allow_remote_vpc_dns_resolution" requirement="optional" type="bool">
+<HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Allow a local VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.
+A map of tags to assign to resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -176,6 +176,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "260396a78ff6ced4af8d0a7e1f0c3f04"
+  "hash": "e8e2ae0be62f744d260c680cd8a22f92"
 }
 ##DOCS-SOURCER-END -->

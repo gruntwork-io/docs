@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fterraform-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -343,6 +343,6 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f8998cd5c724b324069f21790ed9e4b"
+  "hash": "9ea19c2138402f46b1b44e84c3380a99"
 }
 ##DOCS-SOURCER-END -->

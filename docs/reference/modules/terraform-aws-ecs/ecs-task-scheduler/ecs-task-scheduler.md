@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -189,14 +189,6 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/v
 
 ### Required
 
-<HclListItem name="ecs_target_task_definition_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The task definition ARN for cloudwatch schedule to run.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="ecs_target_cluster_arn" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -205,34 +197,15 @@ The arn of the ECS cluster to use.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="ecs_target_task_definition_arn" requirement="required" type="string">
+<HclListItemDescription>
+
+The task definition ARN for cloudwatch schedule to run.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
-
-<HclListItem name="task_event_pattern" requirement="optional" type="string">
-<HclListItemDescription>
-
-The event pattern to use. See README for usage examples. Leave null if using task_schedule_expression.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="task_schedule_expression" requirement="optional" type="string">
-<HclListItemDescription>
-
-The scheduling expression to use (rate or cron - see README for usage examples). Leave null if using task_event_pattern.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="is_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable the rule and false to disable
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
 
 <HclListItem name="create_iam_role" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -243,10 +216,19 @@ Creation of the Eventbridge IAM role within the module. If omitted IAM role ARN 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="ecs_task_iam_role" requirement="optional" type="string">
+<HclListItem name="ecs_target_container_overrides" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN of IAM role for eventbridge to use. Only use if create_iam_role is set to true
+String of JSON that defines container overrides that are passed to the task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_target_enable_execute_command" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable the execute command functionality for the containers in this task.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -265,51 +247,6 @@ Specifies an ECS task group for the task.
 <HclListItemDescription>
 
 Specifies the launch type on which your task is running.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_target_platform_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies the platform version for the task.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_target_task_count" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of tasks to create based on the TaskDefinition.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="ecs_target_propagate_tags" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies whether to propagate the tags from the task definition to the task.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_target_enable_execute_command" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the execute command functionality for the containers in this task.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_managed_tags" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether to enable Amazon ECS managed tags for the task.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -340,10 +277,73 @@ list(map(string))
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="ecs_target_container_overrides" requirement="optional" type="string">
+<HclListItem name="ecs_target_platform_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-String of JSON that defines container overrides that are passed to the task.
+Specifies the platform version for the task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_target_propagate_tags" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies whether to propagate the tags from the task definition to the task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_target_task_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of tasks to create based on the TaskDefinition.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="ecs_task_iam_role" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of IAM role for eventbridge to use. Only use if create_iam_role is set to true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_managed_tags" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether to enable Amazon ECS managed tags for the task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="is_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable the rule and false to disable
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="task_event_pattern" requirement="optional" type="string">
+<HclListItemDescription>
+
+The event pattern to use. See README for usage examples. Leave null if using task_schedule_expression.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="task_schedule_expression" requirement="optional" type="string">
+<HclListItemDescription>
+
+The scheduling expression to use (rate or cron - see README for usage examples). Leave null if using task_event_pattern.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -352,16 +352,16 @@ String of JSON that defines container overrides that are passed to the task.
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="ecs_schedule_task_rule_arn">
-</HclListItem>
-
-<HclListItem name="ecs_schedule_task_rule_name">
-</HclListItem>
-
 <HclListItem name="ecs_events_iam_role_arn">
 </HclListItem>
 
 <HclListItem name="ecs_events_iam_role_name">
+</HclListItem>
+
+<HclListItem name="ecs_schedule_task_rule_arn">
+</HclListItem>
+
+<HclListItem name="ecs_schedule_task_rule_name">
 </HclListItem>
 
 </TabItem>
@@ -376,6 +376,6 @@ String of JSON that defines container overrides that are passed to the task.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "344c73f423d689855cde7f2cfba3d304"
+  "hash": "cc5cca98e30055080abee40839d1d29f"
 }
 ##DOCS-SOURCER-END -->

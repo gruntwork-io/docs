@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -80,10 +80,10 @@ If you set this variable to false, this module will not create any resources. Th
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="alb_ingress_controller_policy_name">
+<HclListItem name="alb_ingress_controller_policy_arn">
 <HclListItemDescription>
 
-The name of the IAM policy created with the permissions for the ALB ingress controller.
+The ARN of the IAM policy created with the permissions for the ALB ingress controller.
 
 </HclListItemDescription>
 </HclListItem>
@@ -96,10 +96,10 @@ The AWS ID of the IAM policy created with the permissions for the ALB ingress co
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alb_ingress_controller_policy_arn">
+<HclListItem name="alb_ingress_controller_policy_name">
 <HclListItemDescription>
 
-The ARN of the IAM policy created with the permissions for the ALB ingress controller.
+The name of the IAM policy created with the permissions for the ALB ingress controller.
 
 </HclListItemDescription>
 </HclListItem>
@@ -116,6 +116,6 @@ The ARN of the IAM policy created with the permissions for the ALB ingress contr
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d0227c58bea9b037078cd19db5364f41"
+  "hash": "bf6da515b28fa120a010b4bed46f7c1d"
 }
 ##DOCS-SOURCER-END -->

@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.93.1"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.93.1"/>
 
 # Management VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fvpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc-mgmt" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized or direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -106,14 +106,6 @@ The AWS region to deploy into
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the VPC. Defaults to mgmt.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="cidr_block" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -130,30 +122,47 @@ The number of NAT Gateways to launch for this VPC. The management VPC defaults t
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="num_availability_zones" requirement="optional" type="number">
+<HclListItem name="vpc_name" requirement="required" type="string">
 <HclListItemDescription>
 
-How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to 3.
+The name of the VPC. Defaults to mgmt.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="availability_zone_exclude_names" requirement="optional" type="list(string)">
+### Optional
+
+<HclListItem name="apply_default_nacl_rules" requirement="optional" type="bool">
 <HclListItemDescription>
 
-List of excluded Availability Zone names.
+If true, will apply the default NACL rules in <a href="#default_nacl_ingress_rules"><code>default_nacl_ingress_rules</code></a> and <a href="#default_nacl_egress_rules"><code>default_nacl_egress_rules</code></a> on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="associate_default_nacl_to_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, will associate the default NACL to the public, private, and persistence subnets created by this module. Only used if <a href="#apply_default_nacl_rules"><code>apply_default_nacl_rules</code></a> is true. Note that this does not guarantee that the subnets are associated with the default NACL. Subnets can only be associated with a single NACL. The default NACL association will be dropped if the subnets are associated with a custom NACL later.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="availability_zone_exclude_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 List of excluded Availability Zone IDs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_exclude_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of excluded Availability Zone names.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -168,49 +177,22 @@ Allows to filter list of Availability Zones based on their current state. Can be
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="public_subnet_bits" requirement="optional" type="number">
+<HclListItem name="create_flow_logs" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+If you set this variable to false, this module will not create VPC Flow Logs resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="4"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="private_subnet_bits" requirement="optional" type="number">
+<HclListItem name="create_network_acls" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+If set to false, this module will NOT create Network ACLs. This is useful if you don't want to use Network ACLs or you want to provide your own Network ACLs outside of this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="4"/>
-</HclListItem>
-
-<HclListItem name="subnet_spacing" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of spacing between the different subnet types
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8"/>
-</HclListItem>
-
-<HclListItem name="public_subnet_cidr_blocks" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map listing the specific CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="private_subnet_cidr_blocks" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map listing the specific CIDR blocks desired for each private subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -231,91 +213,10 @@ A map of tags to apply just to the VPC itself, but not any of the other resource
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="public_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItem name="default_nacl_egress_rules" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map of tags to apply to the public Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="private_subnet_custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the private Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the NAT gateways, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="create_flow_logs" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you set this variable to false, this module will not create VPC Flow Logs resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_network_acls" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to false, this module will NOT create Network ACLs. This is useful if you don't want to use Network ACLs or you want to provide your own Network ACLs outside of this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_default_security_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to false, the default security groups will NOT be created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="default_security_group_ingress_rules" requirement="optional" type="any">
-<HclListItemDescription>
-
-The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
+The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -329,10 +230,43 @@ Any types represent complex values of variable type. For details, please consult
 
 ```hcl
 {
-  AllowAllFromSelf = {
+  AllowAll = {
+    action = "allow",
+    cidr_block = "0.0.0.0/0",
     from_port = 0,
     protocol = "-1",
-    self = true,
+    rule_no = 100,
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="default_nacl_ingress_rules" requirement="optional" type="any">
+<HclListItemDescription>
+
+The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAll = {
+    action = "allow",
+    cidr_block = "0.0.0.0/0",
+    from_port = 0,
+    protocol = "-1",
+    rule_no = 100,
     to_port = 0
   }
 }
@@ -375,84 +309,42 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="apply_default_nacl_rules" requirement="optional" type="bool">
+<HclListItem name="default_security_group_ingress_rules" requirement="optional" type="any">
 <HclListItemDescription>
 
-If true, will apply the default NACL rules in <a href="#default_nacl_ingress_rules"><code>default_nacl_ingress_rules</code></a> and <a href="#default_nacl_egress_rules"><code>default_nacl_egress_rules</code></a> on the default NACL of the VPC. Note that every VPC must have a default NACL - when this is false, the original default NACL rules managed by AWS will be used.
+The ingress rules to apply to the default security group in the VPC. This is the security group that is used by any resource that doesn't have its own security group attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_security_group resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  AllowAllFromSelf = {
+    from_port = 0,
+    protocol = "-1",
+    self = true,
+    to_port = 0
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="enable_default_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="associate_default_nacl_to_subnets" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, will associate the default NACL to the public, private, and persistence subnets created by this module. Only used if <a href="#apply_default_nacl_rules"><code>apply_default_nacl_rules</code></a> is true. Note that this does not guarantee that the subnets are associated with the default NACL. Subnets can only be associated with a single NACL. The default NACL association will be dropped if the subnets are associated with a custom NACL later.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="default_nacl_ingress_rules" requirement="optional" type="any">
-<HclListItemDescription>
-
-The ingress rules to apply to the default NACL in the VPC. This is the NACL that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the ingress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-{
-  AllowAll = {
-    action = "allow",
-    cidr_block = "0.0.0.0/0",
-    from_port = 0,
-    protocol = "-1",
-    rule_no = 100,
-    to_port = 0
-  }
-}
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="default_nacl_egress_rules" requirement="optional" type="any">
-<HclListItemDescription>
-
-The egress rules to apply to the default NACL in the VPC. This is the security group that is used by any subnet that doesn't have its own NACL attached. The value for this variable must be a map where the keys are a unique name for each rule and the values are objects with the same fields as the egress block in the aws_default_network_acl resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_network_acl.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-{
-  AllowAll = {
-    action = "allow",
-    cidr_block = "0.0.0.0/0",
-    from_port = 0,
-    protocol = "-1",
-    rule_no = 100,
-    to_port = 0
-  }
-}
-```
-
-</HclListItemDefaultValue>
 </HclListItem>
 
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
@@ -462,6 +354,114 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain this KMS Key (a Customer Master Key) after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have access to this key.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="nat_gateway_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the NAT gateways, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="num_availability_zones" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many AWS Availability Zones (AZs) to use. One subnet of each type (public, private app) will be created in each AZ. Note that this must be less than or equal to the total number of AZs in a region. A value of null means all AZs should be used. For example, if you specify 3 in a region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. Defaults to 3.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="4"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each private subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the private Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges.  MAKE SURE if you change this you also change the CIDR spacing or you may hit errors.  See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="4"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each public subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="public_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the public Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the different subnet types
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -476,94 +476,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="vpc_id">
-<HclListItemDescription>
-
-The ID of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_name">
-<HclListItemDescription>
-
-The name of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_cidr_block">
-<HclListItemDescription>
-
-The CIDR block of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="public_subnet_cidr_blocks">
-<HclListItemDescription>
-
-The public subnet CIDR blocks of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="private_subnet_cidr_blocks">
-<HclListItemDescription>
-
-The private subnet CIDR blocks of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="public_subnet_ids">
-<HclListItemDescription>
-
-The public subnet IDs of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="private_subnet_ids">
-<HclListItemDescription>
-
-The private subnet IDs of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="public_subnet_arns">
-<HclListItemDescription>
-
-The public subnet ARNs of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="private_subnet_arns">
-<HclListItemDescription>
-
-The private subnet ARNs of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="public_subnet_route_table_id">
-<HclListItemDescription>
-
-The ID of the public subnet route table of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="private_subnet_route_table_ids">
-<HclListItemDescription>
-
-The ID of the private subnet route table of the mgmt VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="nat_gateway_public_ips">
 <HclListItemDescription>
 
@@ -576,6 +488,94 @@ The public IP address(es) of the NAT gateway(s) of the mgmt VPC.
 <HclListItemDescription>
 
 The number of availability zones used by the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_subnet_arns">
+<HclListItemDescription>
+
+The private subnet ARNs of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_subnet_cidr_blocks">
+<HclListItemDescription>
+
+The private subnet CIDR blocks of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_subnet_ids">
+<HclListItemDescription>
+
+The private subnet IDs of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_subnet_route_table_ids">
+<HclListItemDescription>
+
+The ID of the private subnet route table of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_arns">
+<HclListItemDescription>
+
+The public subnet ARNs of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_cidr_blocks">
+<HclListItemDescription>
+
+The public subnet CIDR blocks of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_ids">
+<HclListItemDescription>
+
+The public subnet IDs of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="public_subnet_route_table_id">
+<HclListItemDescription>
+
+The ID of the public subnet route table of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_cidr_block">
+<HclListItemDescription>
+
+The CIDR block of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id">
+<HclListItemDescription>
+
+The ID of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_name">
+<HclListItemDescription>
+
+The name of the mgmt VPC.
 
 </HclListItemDescription>
 </HclListItem>
@@ -595,11 +595,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fvpc-mgmt%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fvpc-mgmt%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Fvpc-mgmt%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6a536819828336cbbd514131202aa6a4"
+  "hash": "1f86381f8a2f530095ac3ac962762e97"
 }
 ##DOCS-SOURCER-END -->

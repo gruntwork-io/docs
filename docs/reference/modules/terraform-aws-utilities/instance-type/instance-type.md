@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Finstance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -100,6 +100,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3c49a031e56c3edb093956df6e8caa2"
+  "hash": "55c8a6a71f5149f4c54052b8daf8d5b6"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -339,6 +339,15 @@ List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
 
 ### Optional
 
+<HclListItem name="config_map_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Map of string keys and values that can be used to tag the ConfigMap resource that holds the mapping information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="eks_fargate_profile_executor_iam_role_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -377,15 +386,6 @@ map(list(string))
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="config_map_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Map of string keys and values that can be used to tag the ConfigMap resource that holds the mapping information.
-
-</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -430,6 +430,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3171751e6615ab3ee4ca12f7d95294ec"
+  "hash": "077dc356674cf84875b1376186123d7c"
 }
 ##DOCS-SOURCER-END -->

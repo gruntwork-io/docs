@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Frun-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -77,6 +77,6 @@ The `run-kibana` script:
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "020daee5f75d277fa524c32e81d31dcd"
+  "hash": "fa98df0c2261ee6c3269a7fc8ea48cb4"
 }
 ##DOCS-SOURCER-END -->

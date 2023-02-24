@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -76,14 +76,6 @@ EOF
 
 ### Required
 
-<HclListItem name="service_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the service. This is used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="ecs_cluster_arn" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -100,24 +92,23 @@ The JSON text of the ECS Task Container Definitions. This portion of the ECS Tas
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
+<HclListItem name="service_name" requirement="required" type="string">
 <HclListItemDescription>
 
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
+The name of the service. This is used to namespace all resources created by this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="launch_type" requirement="optional" type="string">
+### Optional
+
+<HclListItem name="additional_task_assume_role_policy_principals" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The launch type on which to run your service. The valid values are EC2 and FARGATE. Defaults to EC2
+A list of additional principals who can assume the task and task execution roles
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
@@ -129,10 +120,55 @@ Prefix for name of the IAM role used by the ECS task. If not provide, will be se
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to all resources created by this module. Each item in this list should be a map with the parameters key and value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="custom_task_execution_name_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
 Prefix for name of iam role and policy that allows cloudwatch and ecr access
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
+</HclListItem>
+
+<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
+</HclListItem>
+
+<HclListItem name="deployment_controller" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_minimum_healthy_percent" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -154,6 +190,77 @@ The process namespace to use for the containers in the task. The valid values ar
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;task&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="launch_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The launch type on which to run your service. The valid values are EC2 and FARGATE. Defaults to EC2
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_constraint_expression" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_constraint_type" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
+</HclListItem>
+
+<HclListItem name="propagate_tags" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether tags should be propogated to the tasks from the service or from the task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE. If set to null, no tags are created for tasks.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task execution.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="task_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="volumes" requirement="optional" type="any">
@@ -199,141 +306,34 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="deployment_minimum_healthy_percent" requirement="optional" type="number">
+<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
 <HclListItemDescription>
 
-(Optional) The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment
+If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to all resources created by this module. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="propagate_tags" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether tags should be propogated to the tasks from the service or from the task definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE. If set to null, no tags are created for tasks.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_controller" requirement="optional" type="string">
-<HclListItemDescription>
-
-Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="additional_task_assume_role_policy_principals" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of additional principals who can assume the task and task execution roles
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="placement_constraint_type" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_constraint_expression" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
-</HclListItem>
-
-<HclListItem name="task_role_permissions_boundary_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task execution.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="service_arn">
-</HclListItem>
-
-<HclListItem name="ecs_task_iam_role_name">
-</HclListItem>
-
-<HclListItem name="ecs_task_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="ecs_task_execution_iam_role_name">
+<HclListItem name="aws_ecs_task_definition_arn">
 </HclListItem>
 
 <HclListItem name="ecs_task_execution_iam_role_arn">
 </HclListItem>
 
-<HclListItem name="aws_ecs_task_definition_arn">
+<HclListItem name="ecs_task_execution_iam_role_name">
+</HclListItem>
+
+<HclListItem name="ecs_task_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="ecs_task_iam_role_name">
+</HclListItem>
+
+<HclListItem name="service_arn">
 </HclListItem>
 
 </TabItem>
@@ -348,6 +348,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2638b177850b3c96ea022e6658c0ef7a"
+  "hash": "7f4bfa47a66aad3ad92123056694db5c"
 }
 ##DOCS-SOURCER-END -->

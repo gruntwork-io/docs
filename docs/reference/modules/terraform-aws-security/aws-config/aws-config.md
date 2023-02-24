@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -92,139 +92,22 @@ The name of the S3 Bucket where Config items will be stored. Can be in the same 
 
 ### Optional
 
-<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
+<HclListItem name="access_logging_bucket" requirement="optional" type="string">
 <HclListItemDescription>
 
-If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of an IAM role for Config service to assume. Must be unique within the AWS account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AWS_ConfigRole&quot;"/>
-</HclListItem>
-
-<HclListItem name="aws_config_iam_role_permissions_boundary" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role.
+The S3 bucket where access logs for this bucket should be stored. Only used if access_logging_enabled is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="should_attach_sns_policy" requirement="optional" type="bool">
+<HclListItem name="access_logging_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-If set to true, attach an IAM policy, to the AWS Config IAM role that allows the role to publish messages to the SNS topic defined by either `sns_topic_name` or `sns_topic_arn`. Set to false if an SNS topic is not used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="should_create_s3_bucket" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, create an S3 bucket for delivering Config objectts. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="num_days_after_which_archive_log_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="365"/>
-</HclListItem>
-
-<HclListItem name="num_days_after_which_delete_log_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, log files should be deleted from S3. If null, never delete.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="730"/>
-</HclListItem>
-
-<HclListItem name="s3_object_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-A prefix to use when storing Config objects in S3. This will be the beginning of the path in the S3 object. For example: &lt;s3 bucket name>:/&lt;prefix>/AWSLogs/&lt;account ID>/Config/*. If this variable is null (the default), the path will not include any prefix: e.g., it'll be &lt;s3 bucket name>:/AWSLogs/&lt;account ID>/Config/*.
+A prefix (i.e., folder path) to use for all access logs stored in access_logging_bucket. Only used if access_logging_enabled is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_mfa_delete" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This setting only applies to the bucket used to storage AWS Config data. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. For instructions on how to enable MFA Delete, check out the README from the private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do not wish to be CIS-compliant, you can set it to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="force_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the S3 Bucket. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="sns_topic_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-If set, creates an SNS topic to which Config notifications will be delivered. To provide an existing topic, set sns_topic_arn. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. This module does not support creating AWS Config without an SNS topic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="sns_topic_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of an existing SNS topic. Can be in the same account or another account. To create a new topic, set sns_topic_name. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. This module does not support creating AWS Config without an SNS topic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="delivery_frequency" requirement="optional" type="string">
-<HclListItemDescription>
-
-The frequency with which AWS Config delivers configuration snapshots. When null, defaults to the maximum execution frequency of each rule. Valid values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="linked_accounts" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-For multi-account deployments, provide a list of AWS account IDs that should have permissions to write to the S3 bucket and publish to the SNS topic. Use this in conjunction with <a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> and <a href="#sns_topic_name"><code>sns_topic_name</code></a>. If this is a child account, leave this list empty.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="aggregate_config_data_in_external_account" requirement="optional" type="bool">
@@ -236,6 +119,15 @@ Set to true to send the AWS Config data to another account (e.g., a logs account
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="aws_config_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="central_account_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -243,33 +135,6 @@ For multi-account deployments, set this to the account ID of the central account
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="global_recorder_region" requirement="optional" type="string">
-<HclListItemDescription>
-
-The region in which to create the global recorder for configuration of global resources such as IAM users, groups, roles, and policies.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;us-east-1&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_all_regions_for_config_aggregator" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable the AWS Config Configuration Aggregator on all regions regardless of what is passed into <a href="#opt_in_regions"><code>opt_in_regions</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="opt_in_regions" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Enables config aggregation in only the provided regions. If this list is empty, config aggregation will be enabled in all regions.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="config_name" requirement="optional" type="string">
@@ -281,31 +146,13 @@ A name for the configuration recorder and delivery channel. If not provided, the
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="delivery_channel_kms_key_arn" requirement="optional" type="string">
+<HclListItem name="create_config_aggregator" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Optional KMS key to use for encrypting S3 objects on the AWS Config delivery channel for an externally managed S3 bucket. This must belong to the same region as the destination S3 bucket. If null, AWS Config will default to encrypting the delivered data with AES-256 encryption. Only used if <a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> is false - otherwise, <a href="#kms_key_arn"><code>kms_key_arn</code></a> is used.
+Set to true to create config aggregator, typically in the global recorder region of the security/central account. The variable is needed due to Terraform limitations, creating the aggregator conditionally based on AWS region might fail as 'aws_region' datasource might be deferred if the module has 'depend_on' on other resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_bucket_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when the S3 bucket is created within this module (<a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> is true). For encrypting S3 objects on delivery for an externally managed S3 bucket, refer to the <a href="#delivery_channel_kms_key_arn"><code>delivery_channel_kms_key_arn</code></a> input variable. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must permit the IAM role used by AWS Config. See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="sns_topic_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optional KMS key to use for encrypting the SNS topic (<a href="#sns_topic_name"><code>sns_topic_name</code></a> is non-null). When null, the SNS topic will not be encrypted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
@@ -326,10 +173,28 @@ The ID of the current AWS account. Normally, we can fetch this automatically usi
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="create_config_aggregator" requirement="optional" type="bool">
+<HclListItem name="delivery_channel_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-Set to true to create config aggregator, typically in the global recorder region of the security/central account. The variable is needed due to Terraform limitations, creating the aggregator conditionally based on AWS region might fail as 'aws_region' datasource might be deferred if the module has 'depend_on' on other resources.
+Optional KMS key to use for encrypting S3 objects on the AWS Config delivery channel for an externally managed S3 bucket. This must belong to the same region as the destination S3 bucket. If null, AWS Config will default to encrypting the delivered data with AES-256 encryption. Only used if <a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> is false - otherwise, <a href="#kms_key_arn"><code>kms_key_arn</code></a> is used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="delivery_frequency" requirement="optional" type="string">
+<HclListItemDescription>
+
+The frequency with which AWS Config delivers configuration snapshots. When null, defaults to the maximum execution frequency of each rule. Valid values: One_Hour | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_all_regions_for_config_aggregator" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the AWS Config Configuration Aggregator on all regions regardless of what is passed into <a href="#opt_in_regions"><code>opt_in_regions</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -344,22 +209,76 @@ Enables S3 server access logging which sends detailed records for the requests t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="access_logging_bucket" requirement="optional" type="string">
+<HclListItem name="force_destroy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The S3 bucket where access logs for this bucket should be stored. Only used if access_logging_enabled is true.
+If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="global_recorder_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+The region in which to create the global recorder for configuration of global resources such as IAM users, groups, roles, and policies.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;us-east-1&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an IAM role for Config service to assume. Must be unique within the AWS account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AWS_ConfigRole&quot;"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional KMS key to use for encrypting S3 objects AND the SNS topic. This is a backward compatible interface for configuring a single KMS key for both S3 objects and the SNS topic. When null, falls back to using <a href="#s3_bucket_kms_key_arn"><code>s3_bucket_kms_key_arn</code></a> S3 buckets and <a href="#sns_topic_kms_key_arn"><code>sns_topic_kms_key_arn</code></a> for SNS topics.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="access_logging_prefix" requirement="optional" type="string">
+<HclListItem name="linked_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A prefix (i.e., folder path) to use for all access logs stored in access_logging_bucket. Only used if access_logging_enabled is true.
+For multi-account deployments, provide a list of AWS account IDs that should have permissions to write to the S3 bucket and publish to the SNS topic. Use this in conjunction with <a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> and <a href="#sns_topic_name"><code>sns_topic_name</code></a>. If this is a child account, leave this list empty.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="num_days_after_which_archive_log_data" requirement="optional" type="number">
+<HclListItemDescription>
+
+After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="365"/>
+</HclListItem>
+
+<HclListItem name="num_days_after_which_delete_log_data" requirement="optional" type="number">
+<HclListItemDescription>
+
+After this number of days, log files should be deleted from S3. If null, never delete.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="730"/>
+</HclListItem>
+
+<HclListItem name="opt_in_regions" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Enables config aggregation in only the provided regions. If this list is empty, config aggregation will be enabled in all regions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="replication_enabled" requirement="optional" type="bool">
@@ -433,6 +352,96 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="s3_bucket_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when the S3 bucket is created within this module (<a href="#should_create_s3_bucket"><code>should_create_s3_bucket</code></a> is true). For encrypting S3 objects on delivery for an externally managed S3 bucket, refer to the <a href="#delivery_channel_kms_key_arn"><code>delivery_channel_kms_key_arn</code></a> input variable. If null, data in S3 will be encrypted using the default aws/s3 key. If provided, the key policy of the provided key must permit the IAM role used by AWS Config. See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_mfa_delete" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This setting only applies to the bucket used to storage AWS Config data. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. For instructions on how to enable MFA Delete, check out the README from the private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do not wish to be CIS-compliant, you can set it to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="s3_object_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+A prefix to use when storing Config objects in S3. This will be the beginning of the path in the S3 object. For example: &lt;s3 bucket name>:/&lt;prefix>/AWSLogs/&lt;account ID>/Config/*. If this variable is null (the default), the path will not include any prefix: e.g., it'll be &lt;s3 bucket name>:/AWSLogs/&lt;account ID>/Config/*.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="should_attach_sns_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, attach an IAM policy, to the AWS Config IAM role that allows the role to publish messages to the SNS topic defined by either `sns_topic_name` or `sns_topic_arn`. Set to false if an SNS topic is not used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_s3_bucket" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create an S3 bucket for delivering Config objectts. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sns_topic_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of an existing SNS topic. Can be in the same account or another account. To create a new topic, set sns_topic_name. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. This module does not support creating AWS Config without an SNS topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sns_topic_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional KMS key to use for encrypting the SNS topic (<a href="#sns_topic_name"><code>sns_topic_name</code></a> is non-null). When null, the SNS topic will not be encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sns_topic_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+If set, creates an SNS topic to which Config notifications will be delivered. To provide an existing topic, set sns_topic_arn. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. One of <a href="#sns_topic_arn"><code>sns_topic_arn</code></a> or <a href="#sns_topic_name"><code>sns_topic_name</code></a> are required. This module does not support creating AWS Config without an SNS topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the S3 Bucket. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -442,38 +451,13 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optional KMS key to use for encrypting S3 objects AND the SNS topic. This is a backward compatible interface for configuring a single KMS key for both S3 objects and the SNS topic. When null, falls back to using <a href="#s3_bucket_kms_key_arn"><code>s3_bucket_kms_key_arn</code></a> S3 buckets and <a href="#sns_topic_kms_key_arn"><code>sns_topic_kms_key_arn</code></a> for SNS topics.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="s3_bucket_name">
+<HclListItem name="config_recorder_name">
 <HclListItemDescription>
 
-The name of the S3 bucket used by AWS Config to store configuration items.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="s3_bucket_arn">
-<HclListItemDescription>
-
-The ARN of the S3 bucket used by AWS Config to store configuration items.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="sns_topic_arn">
-<HclListItemDescription>
-
-The ARN of the SNS topic to which Config delivers notifications.
+The name of the configuration recorder.
 
 </HclListItemDescription>
 </HclListItem>
@@ -494,10 +478,26 @@ The name of the IAM role used by the config recorder.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="config_recorder_name">
+<HclListItem name="s3_bucket_arn">
 <HclListItemDescription>
 
-The name of the configuration recorder.
+The ARN of the S3 bucket used by AWS Config to store configuration items.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="s3_bucket_name">
+<HclListItemDescription>
+
+The name of the S3 bucket used by AWS Config to store configuration items.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sns_topic_arn">
+<HclListItemDescription>
+
+The ARN of the SNS topic to which Config delivers notifications.
 
 </HclListItemDescription>
 </HclListItem>
@@ -514,6 +514,6 @@ The name of the configuration recorder.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e61ab6d5c3cfb3ae34031f5a784272b9"
+  "hash": "b9464bdd322b3d2e8c6b7e43b195c758"
 }
 ##DOCS-SOURCER-END -->

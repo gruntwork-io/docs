@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frequest-quota-increase" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -174,6 +174,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "effb992fe1215060d8b1122e8851de97"
+  "hash": "c3da68c2cce56a1ed6c5694c78b56043"
 }
 ##DOCS-SOURCER-END -->

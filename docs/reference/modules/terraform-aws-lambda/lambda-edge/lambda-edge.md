@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Flambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -88,26 +88,10 @@ triggers:
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the Lambda function. Used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="handler" requirement="required" type="string">
 <HclListItemDescription>
 
 The function entrypoint in your code. This is typically the name of a function or method in your code that AWS will execute when this Lambda function is triggered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="timeout" requirement="required" type="number">
-<HclListItemDescription>
-
-The maximum amount of time, in seconds, your Lambda function will be allowed to run. Must be between 1 and 30 seconds.
 
 </HclListItemDescription>
 </HclListItem>
@@ -120,69 +104,130 @@ The maximum amount of memory, in MB, your Lambda function will be able to use at
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the Lambda function. Used to namespace all resources created by this module.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="timeout" requirement="required" type="number">
+<HclListItemDescription>
+
+The maximum amount of time, in seconds, your Lambda function will be allowed to run. Must be between 1 and 30 seconds.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="source_path" requirement="optional" type="string">
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The path to the directory that contains your Lambda function source code. This code will be zipped up and uploaded to Lambda as your deployment package. If <a href="#skip_zip"><code>skip_zip</code></a> is set to true, then this is assumed to be the path to an already-zipped file, and it will be uploaded directly to Lambda as a deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="zip_output_path" requirement="optional" type="string">
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
-The path to store the output zip file of your source code. If empty, defaults to module path. This should be the full path to the zip file, not a directory.
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="zip_exclude_files" requirement="optional" type="list(string)">
+<HclListItem name="cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-Files in <a href="#source_path"><code>source_path</code></a> to ignore when zipping the directory in addition to .terragrunt-source-manifest.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="s3_bucket" requirement="optional" type="string">
-<HclListItemDescription>
-
-An S3 bucket location containing the function's deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if <a href="#log_regions"><code>log_regions</code></a> is not empty.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="s3_key" requirement="optional" type="string">
+<HclListItem name="cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
 <HclListItemDescription>
 
-The path within <a href="#s3_bucket"><code>s3_bucket</code></a> where the deployment package is located. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="s3_object_version" requirement="optional" type="string">
+<HclListItem name="cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
 <HclListItemDescription>
 
-The version of the path in <a href="#s3_key"><code>s3_key</code></a> to use as the deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="set_source_code_hash" requirement="optional" type="bool">
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-If set to false, this function will no longer set the source_code_hash parameter, so this module will no longer detect and upload changes to the deployment package. This is primarily useful if you update the Lambda function from outside of this module (e.g., you have scripts that do it separately) and want to avoid a plan diff. Used only if <a href="#source_path"><code>source_path</code></a> is non-empty.
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="dead_letter_target_arn" requirement="optional">
+<HclListItemDescription>
+
+The ARN of an SNS topic or an SQS queue to notify when invocation of a Lambda function fails. If this option is used, you must grant this function's IAM role (the ID is outputted as iam_role_id) access to write to the target object, which means allowing either the sns:Publish or sqs:SendMessage action on this ARN, depending on which service is targeted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="description" requirement="optional" type="string">
+<HclListItemDescription>
+
+A description of what the Lambda function does.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_versioning" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable versioning for this Lambda function. This allows you to use aliases to refer to execute different versions of the function in different environments. Note that an alternative way to run Lambda functions in multiple environments is to version your Terraform code. Only versioned lambdas can be the target of a CloudFront event trigger.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+A custom KMS key to use to encrypt and decrypt Lambda function environment variables. Leave it blank to use the default KMS key provided in your AWS account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="lambda_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the Lambda function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="log_regions" requirement="optional" type="list(any)">
@@ -234,10 +279,10 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="description" requirement="optional" type="string">
+<HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
 <HclListItemDescription>
 
-A description of what the Lambda function does.
+The amount of reserved concurrent executions for this lambda function or -1 if unreserved.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -252,22 +297,40 @@ The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8).
 <HclListItemDefaultValue defaultValue="&quot;nodejs10.x&quot;"/>
 </HclListItem>
 
-<HclListItem name="enable_versioning" requirement="optional" type="bool">
+<HclListItem name="s3_bucket" requirement="optional" type="string">
 <HclListItemDescription>
 
-Set to true to enable versioning for this Lambda function. This allows you to use aliases to refer to execute different versions of the function in different environments. Note that an alternative way to run Lambda functions in multiple environments is to version your Terraform code. Only versioned lambdas can be the target of a CloudFront event trigger.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-A custom KMS key to use to encrypt and decrypt Lambda function environment variables. Leave it blank to use the default KMS key provided in your AWS account.
+An S3 bucket location containing the function's deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path within <a href="#s3_bucket"><code>s3_bucket</code></a> where the deployment package is located. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_object_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of the path in <a href="#s3_key"><code>s3_key</code></a> to use as the deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="set_source_code_hash" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this function will no longer set the source_code_hash parameter, so this module will no longer detect and upload changes to the deployment package. This is primarily useful if you update the Lambda function from outside of this module (e.g., you have scripts that do it separately) and want to avoid a plan diff. Used only if <a href="#source_path"><code>source_path</code></a> is non-empty.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="skip_zip" requirement="optional" type="bool">
@@ -279,6 +342,15 @@ Set to true to skip zip archive creation and assume that <a href="#source_path">
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="source_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to the directory that contains your Lambda function source code. This code will be zipped up and uploaded to Lambda as your deployment package. If <a href="#skip_zip"><code>skip_zip</code></a> is set to true, then this is assumed to be the path to an already-zipped file, and it will be uploaded directly to Lambda as a deployment package. Exactly one of <a href="#source_path"><code>source_path</code></a> or the <a href="#s3_xxx"><code>s3_xxx</code></a> variables must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -286,96 +358,6 @@ A map of tags to apply to the Lambda function.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="lambda_role_permissions_boundary_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the Lambda function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="dead_letter_target_arn" requirement="optional">
-<HclListItemDescription>
-
-The ARN of an SNS topic or an SQS queue to notify when invocation of a Lambda function fails. If this option is used, you must grant this function's IAM role (the ID is outputted as iam_role_id) access to write to the target object, which means allowing either the sns:Publish or sqs:SendMessage action on this ARN, depending on which service is targeted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="reserved_concurrent_executions" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of reserved concurrent executions for this lambda function or -1 if unreserved.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if <a href="#log_regions"><code>log_regions</code></a> is not empty.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
-<HclListItemDescription>
-
-A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
-<HclListItemDescription>
-
-The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -387,19 +369,45 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="zip_exclude_files" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Files in <a href="#source_path"><code>source_path</code></a> to ignore when zipping the directory in addition to .terragrunt-source-manifest.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="zip_output_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to store the output zip file of your source code. If empty, defaults to module path. This should be the full path to the zip file, not a directory.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="function_name">
+<HclListItem name="cloudwatch_log_group_names">
+<HclListItemDescription>
+
+Name of the (optionally) created CloudWatch log groups for the lambda function.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="function_arn">
 </HclListItem>
 
-<HclListItem name="iam_role_id">
+<HclListItem name="function_name">
 </HclListItem>
 
 <HclListItem name="iam_role_arn">
+</HclListItem>
+
+<HclListItem name="iam_role_id">
 </HclListItem>
 
 <HclListItem name="invoke_arn">
@@ -409,14 +417,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </HclListItem>
 
 <HclListItem name="version">
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_names">
-<HclListItemDescription>
-
-Name of the (optionally) created CloudWatch log groups for the lambda function.
-
-</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -431,6 +431,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5f6d1fe513546ea01c2323958de1e96b"
+  "hash": "76f0093d4cfadf64ec388fe0fc70da13"
 }
 ##DOCS-SOURCER-END -->

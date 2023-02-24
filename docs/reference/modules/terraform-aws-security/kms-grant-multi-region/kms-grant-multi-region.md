@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -166,6 +166,6 @@ Create a dependency between the resources in this module to the interpolated val
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-grant-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2afc243d001b5daebfdc42594885d6ce"
+  "hash": "1bf4bb5f781d3b43e430486f8745d188"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fsqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -26,18 +26,18 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 ### Required
 
-<HclListItem name="sqs_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The arn of the queue.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="lambda_arn" requirement="required" type="string">
 <HclListItemDescription>
 
 The arn of the lambda.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sqs_arn" requirement="required" type="string">
+<HclListItemDescription>
+
+The arn of the queue.
 
 </HclListItemDescription>
 </HclListItem>
@@ -71,6 +71,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9d11785de0765d9ab65821a0aa6dcb26"
+  "hash": "ec53366ba547b2bce67a72dbc73ae044"
 }
 ##DOCS-SOURCER-END -->

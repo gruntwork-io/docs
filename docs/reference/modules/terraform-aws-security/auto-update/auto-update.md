@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fauto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -75,6 +75,6 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fauto-update%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c491eebff5bbc01e5b50f9bbe4b9d8fa"
+  "hash": "a5d3da3d13bb00935d3165f32d12317a"
 }
 ##DOCS-SOURCER-END -->

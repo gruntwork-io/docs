@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Flambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -156,10 +156,109 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
-<HclListItem name="description" requirement="optional" type="string">
+<HclListItem name="access_log_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The description of the API.
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the CloudWatch Log Group where API Gateway access logs should be stored. When null, access logs will be disabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
+<HclListItemDescription>
+
+The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
+<HclListItemDescription>
+
+A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="access_log_format_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The format of the access logs as they are logged by API Gateway. Refer to https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats for how each format appears. When set to CUSTOM, the format specified in <a href="#custom_access_log_format"><code>custom_access_log_format</code></a> will be used. Valid values are CLF, JSON, and CUSTOM. Only used when <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;JSON&quot;"/>
+</HclListItem>
+
+<HclListItem name="api_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to assign to the API.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="api_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+A version identifier for the API.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="certificate_domain" requirement="optional" type="string">
+<HclListItemDescription>
+
+The domain to use when looking up the ACM certificate. This is useful for looking up wild card certificates that will match the given domain name. When null (default), <a href="#domain_name"><code>domain_name</code></a> will be used to look up the certificate.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -218,49 +317,13 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="api_tags" requirement="optional" type="map(string)">
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A map of tags to assign to the API.
+Set to true if you want a DNS record automatically created and pointed at the API Gateway endpoint.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="stage_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to assign to the API Gateway stage.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="api_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-A version identifier for the API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the CloudWatch Log Group where API Gateway access logs should be stored. When null, access logs will be disabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_format_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The format of the access logs as they are logged by API Gateway. Refer to https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats for how each format appears. When set to CUSTOM, the format specified in <a href="#custom_access_log_format"><code>custom_access_log_format</code></a> will be used. Valid values are CLF, JSON, and CUSTOM. Only used when <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;JSON&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="custom_access_log_format" requirement="optional" type="string">
@@ -272,76 +335,13 @@ A single line format of the access logs of data, as specified by selected $conte
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="access_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItem name="description" requirement="optional" type="string">
 <HclListItemDescription>
 
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
+The description of the API.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
-<HclListItemDescription>
-
-A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events. Only used if <a href="#access_log_cloudwatch_log_group_name"><code>access_log_cloudwatch_log_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_log_cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
-<HclListItemDescription>
-
-The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_route53_entry" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want a DNS record automatically created and pointed at the API Gateway endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="domain_name" requirement="optional" type="string">
@@ -362,13 +362,13 @@ The ID of the Route 53 hosted zone into which the Route 53 DNS record should be 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="certificate_domain" requirement="optional" type="string">
+<HclListItem name="stage_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-The domain to use when looking up the ACM certificate. This is useful for looking up wild card certificates that will match the given domain name. When null (default), <a href="#domain_name"><code>domain_name</code></a> will be used to look up the certificate.
+A map of tags to assign to the API Gateway stage.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -426,6 +426,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8dda2d5366036ff6da79ce440d0ba03d"
+  "hash": "ab420dcdde6bfe3dcd72ff1536844faf"
 }
 ##DOCS-SOURCER-END -->

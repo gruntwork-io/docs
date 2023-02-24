@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fbash-commons" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -51,6 +51,6 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3389d5cfcf9a8a561f2d8712dee557e"
+  "hash": "7f9a8b44f8b8d5d30c6cfbdcf2d1453e"
 }
 ##DOCS-SOURCER-END -->

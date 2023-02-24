@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fkeep-warm" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -54,14 +54,6 @@ level](#concurrency) for your functions.
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name for this Lambda function. Also used to namespace the other resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="function_to_event_map" requirement="required" type="any">
 <HclListItemDescription>
 
@@ -99,6 +91,14 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name for this Lambda function. Also used to namespace the other resources created by this module.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="schedule_expression" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -109,28 +109,19 @@ An expression that defines how often to invoke the functions in <a href="#functi
 
 ### Optional
 
-<HclListItem name="concurrency" requirement="optional" type="number">
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-How many concurrent requests to send to each Lambda function in <a href="#function_to_event_map"><code>function_to_event_map</code></a>. With Lambda, each concurrent requests to the same function spins up a new container that must be kept warm, so you'll want to set this number to roughly the expected concurrency you see in real-world usage.
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
 The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -143,6 +134,15 @@ Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are t
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="concurrency" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many concurrent requests to send to each Lambda function in <a href="#function_to_event_map"><code>function_to_event_map</code></a>. With Lambda, each concurrent requests to the same function spins up a new container that must be kept warm, so you'll want to set this number to roughly the expected concurrency you see in real-world usage.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -166,16 +166,16 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="function_name">
-</HclListItem>
-
 <HclListItem name="function_arn">
 </HclListItem>
 
-<HclListItem name="iam_role_id">
+<HclListItem name="function_name">
 </HclListItem>
 
 <HclListItem name="iam_role_arn">
+</HclListItem>
+
+<HclListItem name="iam_role_id">
 </HclListItem>
 
 </TabItem>
@@ -190,6 +190,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "93192eab3a1232d22746971bb58e0156"
+  "hash": "59b9e532c4d6b0625cc84063dd5c0518"
 }
 ##DOCS-SOURCER-END -->

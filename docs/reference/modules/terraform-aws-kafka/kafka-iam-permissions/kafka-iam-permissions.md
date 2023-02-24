@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fkafka-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -31,6 +31,6 @@ include this module to handle the IAM permission details for you.
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7db5779dd8ec38c81745583fa5e4c56e"
+  "hash": "0227da871f98b899ced91be195894d20"
 }
 ##DOCS-SOURCER-END -->

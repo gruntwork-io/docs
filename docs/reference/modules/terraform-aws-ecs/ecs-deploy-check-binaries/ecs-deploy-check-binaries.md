@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -110,6 +110,6 @@ pyenv shell 3.5.2 3.6.6 3.7.0
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d864699e47b029cf501765b144e92150"
+  "hash": "3bb28fdc14033303bf6f846ad549baa3"
 }
 ##DOCS-SOURCER-END -->

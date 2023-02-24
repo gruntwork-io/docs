@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -219,34 +219,18 @@ for more information on the script.
 
 ### Required
 
-<HclListItem name="cluster_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the resources created by these templates.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cluster_min_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for auto-scaling limits.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cluster_max_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The maximum number of EC2 Instances that must be running for this ECS Cluster. We recommend making this twice <a href="#cluster_min_size"><code>cluster_min_size</code></a>, even if you don't plan on scaling the cluster up and down, as the extra capacity will be used to deploy udpates to the cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="cluster_instance_ami" requirement="required" type="string">
 <HclListItemDescription>
 
 The AMI to run on each of the ECS Cluster's EC2 Instances.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_instance_keypair_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The EC2 Keypair name used to SSH into the ECS Cluster's EC2 Instances.
 
 </HclListItemDescription>
 </HclListItem>
@@ -259,10 +243,26 @@ The type of EC2 instance to run for each of the ECS Cluster's EC2 Instances (e.g
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cluster_instance_keypair_name" requirement="required" type="string">
+<HclListItem name="cluster_max_size" requirement="required" type="number">
 <HclListItemDescription>
 
-The EC2 Keypair name used to SSH into the ECS Cluster's EC2 Instances.
+The maximum number of EC2 Instances that must be running for this ECS Cluster. We recommend making this twice <a href="#cluster_min_size"><code>cluster_min_size</code></a>, even if you don't plan on scaling the cluster up and down, as the extra capacity will be used to deploy udpates to the cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_min_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for auto-scaling limits.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the resources created by these templates.
 
 </HclListItemDescription>
 </HclListItem>
@@ -285,112 +285,13 @@ A list of the subnets into which the ECS Cluster's EC2 Instances will be launche
 
 ### Optional
 
-<HclListItem name="cluster_instance_root_volume_size" requirement="optional" type="number">
+<HclListItem name="alb_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
+A list of Security Group IDs of the ALBs which will send traffic to this ECS Cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="40"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be standard, gp2, or io1
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_root_volume_encrypted" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to encrypt the root block devices for the ECS cluster's EC2 instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_request_spot_instances" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to request spot instances. Set cluster_instance_spot_price variable to set a maximum spot price limit.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
-<HclListItemDescription>
-
-Value is the maximum bid price for the instance on the EC2 Spot Market.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_detailed_monitoring" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables/disables detailed CloudWatch monitoring for EC2 instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Passthrough to aws_launch_template resource.  Associate a public ip address with EC2 instances in cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_optimized" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launched EC2 instance will be EBS-optimized
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="custom_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-When set, name the IAM role for the ECS cluster using this variable. When null, the IAM role name will be derived from <a href="#cluster_name"><code>cluster_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_user_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-The User Data script to run on each of the ECS Cluster's EC2 Instances on their first boot.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_user_data_base64" requirement="optional" type="string">
-<HclListItemDescription>
-
-The base64-encoded User Data script to run on the server when it is booting. This can be used to pass binary User Data, such as a gzipped cloud-init script. If you wish to pass in plain text (e.g., typical Bash script) for User Data, use <a href="#cluster_instance_user_data"><code>cluster_instance_user_data</code></a> instead.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ssh_port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port to use for SSH access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="22"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
@@ -411,95 +312,6 @@ The IDs of security groups from which to allow incoming SSH requests to the ECS 
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="alb_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Security Group IDs of the ALBs which will send traffic to this ECS Cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="tenancy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The tenancy of the servers in this cluster. Must be one of: default, dedicated, or host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_imds" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_imdsv1" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
-<HclListItemDescription>
-
-The desired HTTP PUT response hop limit for instance metadata requests.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="custom_tags_ecs_cluster" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Custom tags to apply to the ECS cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
-<HclListItemDescription>
-
-A list of custom tags to apply to the EC2 Instances in this ASG. Each item in this list should be a map with the parameters key, value, and propagate_at_launch.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to the Security Group for this ECS Cluster. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="termination_policies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, OldestLaunchTemplate, AllocationStrategy, Default. If you specify more than one policy, the ASG will try each one in turn, use it to select the instance(s) to terminate, and if more than one instance matches the criteria, then use the next policy to try to break the tie. E.g., If you use ['OldestInstance', 'ClosestToNextInstanceHour'] and and there were two instances with exactly the same launch time, then the ASG would try the next policy, which is to terminate the one closest to the next instance hour in billing.
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  "OldestInstance"
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
 <HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -516,24 +328,6 @@ Enable a capacity provider to autoscale the EC2 ASG created for this ECS cluster
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="multi_az_capacity_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this ECS cluster, only if capacity_provider_enabled = true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="capacity_provider_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-Target cluster utilization for the capacity provider; a number from 1 to 100.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="75"/>
 </HclListItem>
 
 <HclListItem name="capacity_provider_max_scale_step" requirement="optional" type="number">
@@ -554,6 +348,15 @@ Minimum step adjustment size to the ASG's desired instance count
 <HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
+<HclListItem name="capacity_provider_target" requirement="optional" type="number">
+<HclListItemDescription>
+
+Target cluster utilization for the capacity provider; a number from 1 to 100.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="75"/>
+</HclListItem>
+
 <HclListItem name="cluster_asg_metrics_enabled" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -563,46 +366,118 @@ A list of metrics to collect. The allowed values are GroupDesiredCapacity, Group
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="enable_cluster_container_insights" requirement="optional" type="bool">
+<HclListItem name="cluster_detailed_monitoring" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to enable Container Insights on the ECS cluster. Refer to https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html for more information on ECS Container Insights.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   We intentionally default this to false. While Container Insights provides useful metrics, the costs can add up
-   depending on how large your clusters are. Specifically, Container Insights will add:
-   - 8 custom metrics per ECS cluster
-   - 6 custom metrics per ECS task
-   - 11 custom metrics per ECS service
-   Each metric costs $0.30 per month up to 10,000 metrics, at which point the costs start to drop. Refer to
-   https://aws.amazon.com/cloudwatch/pricing/ for more details.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+Enables/disables detailed CloudWatch monitoring for EC2 instances
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the cluster instances.
+Passthrough to aws_launch_template resource.  Associate a public ip address with EC2 instances in cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_block_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the device to mount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the volume should be destroyed on instance termination. Defaults to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_iops" requirement="optional" type="string">
+<HclListItemDescription>
+
+The amount of provisioned IOPS. This must be set with a volume_type of io1/io2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. The variable cluster_instance_root_volume_encrypted must be set to true when this is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_optimized" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launched EC2 instance will be EBS-optimized
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_snapshot_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Snapshot ID to mount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_ebs_throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_market_block_duration_minutes" requirement="optional" type="number">
+<HclListItemDescription>
+
+The required duration in minutes. This value must be a multiple of 60.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_market_instance_interruption_behavior" requirement="optional" type="string">
+<HclListItemDescription>
+
+The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or terminate. (Default: terminate).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;terminate&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_market_spot_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Spot Instance request type. Can be one-time, or persistent.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_market_valid_until" requirement="optional" type="string">
+<HclListItemDescription>
+
+The end date of the request.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -653,106 +528,225 @@ The number of the partition the instance should launch in. Valid only if the pla
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_market_block_duration_minutes" requirement="optional" type="number">
+<HclListItem name="cluster_instance_request_spot_instances" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The required duration in minutes. This value must be a multiple of 60.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_instance_interruption_behavior" requirement="optional" type="string">
-<HclListItemDescription>
-
-The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or terminate. (Default: terminate).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;terminate&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_spot_instance_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Spot Instance request type. Can be one-time, or persistent.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_market_valid_until" requirement="optional" type="string">
-<HclListItemDescription>
-
-The end date of the request.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_block_device_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the device to mount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvdcz&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_ebs_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the volume should be destroyed on instance termination. Defaults to false
+Set to true to request spot instances. Set cluster_instance_spot_price variable to set a maximum spot price limit.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_ebs_iops" requirement="optional" type="string">
+<HclListItem name="cluster_instance_role_permissions_boundary_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The amount of provisioned IOPS. This must be set with a volume_type of io1/io2.
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the cluster instances.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_ebs_kms_key_id" requirement="optional" type="string">
+<HclListItem name="cluster_instance_root_volume_encrypted" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. The variable cluster_instance_root_volume_encrypted must be set to true when this is set.
+Set to true to encrypt the root block devices for the ECS cluster's EC2 instances
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size in GB of the root volume for each of the ECS Cluster's EC2 Instances
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="40"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be standard, gp2, or io1
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
+<HclListItemDescription>
+
+Value is the maximum bid price for the instance on the EC2 Spot Market.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_ebs_snapshot_id" requirement="optional" type="string">
+<HclListItem name="cluster_instance_user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-The Snapshot ID to mount.
+The User Data script to run on each of the ECS Cluster's EC2 Instances on their first boot.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_instance_ebs_throughput" requirement="optional" type="number">
+<HclListItem name="cluster_instance_user_data_base64" requirement="optional" type="string">
 <HclListItemDescription>
 
-The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
+The base64-encoded User Data script to run on the server when it is booting. This can be used to pass binary User Data, such as a gzipped cloud-init script. If you wish to pass in plain text (e.g., typical Bash script) for User Data, use <a href="#cluster_instance_user_data"><code>cluster_instance_user_data</code></a> instead.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+When set, name the IAM role for the ECS cluster using this variable. When null, the IAM role name will be derived from <a href="#cluster_name"><code>cluster_name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
+<HclListItemDescription>
+
+A list of custom tags to apply to the EC2 Instances in this ASG. Each item in this list should be a map with the parameters key, value, and propagate_at_launch.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_ecs_cluster" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Custom tags to apply to the ECS cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Security Group for this ECS Cluster. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="enable_cluster_container_insights" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable Container Insights on the ECS cluster. Refer to https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html for more information on ECS Container Insights.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   We intentionally default this to false. While Container Insights provides useful metrics, the costs can add up
+   depending on how large your clusters are. Specifically, Container Insights will add:
+   - 8 custom metrics per ECS cluster
+   - 6 custom metrics per ECS task
+   - 11 custom metrics per ECS service
+   Each metric costs $0.30 per month up to 10,000 metrics, at which point the costs start to drop. Refer to
+   https://aws.amazon.com/cloudwatch/pricing/ for more details.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="enable_imds" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the Instance Metadata Service (IMDS) endpoint, which is used to fetch information such as user-data scripts, instance IP address and region, etc. Set this variable to false if you do not want the IMDS endpoint enabled for instances launched into the Auto Scaling Group for the workers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+The desired HTTP PUT response hop limit for instance metadata requests.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="multi_az_capacity_provider" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this ECS cluster, only if capacity_provider_enabled = true
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ssh_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port to use for SSH access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="22"/>
+</HclListItem>
+
+<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tenancy of the servers in this cluster. Must be one of: default, dedicated, or host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
+
+<HclListItem name="termination_policies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, OldestLaunchTemplate, AllocationStrategy, Default. If you specify more than one policy, the ASG will try each one in turn, use it to select the instance(s) to terminate, and if more than one instance matches the criteria, then use the next policy to try to break the tie. E.g., If you use ['OldestInstance', 'ClosestToNextInstanceHour'] and and there were two instances with exactly the same launch time, then the ASG would try the next policy, which is to terminate the one closest to the next instance hour in billing.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  "OldestInstance"
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="ecs_cluster_arn">
-</HclListItem>
-
-<HclListItem name="ecs_cluster_launch_template_id">
-</HclListItem>
-
-<HclListItem name="ecs_cluster_name">
 </HclListItem>
 
 <HclListItem name="ecs_cluster_asg_name">
@@ -764,16 +758,22 @@ The throughput to provision for a gp3 volume in MiB/s (specified as an integer, 
 <HclListItem name="ecs_cluster_capacity_provider_names">
 </HclListItem>
 
-<HclListItem name="ecs_instance_security_group_id">
+<HclListItem name="ecs_cluster_launch_template_id">
 </HclListItem>
 
-<HclListItem name="ecs_instance_iam_role_id">
+<HclListItem name="ecs_cluster_name">
 </HclListItem>
 
 <HclListItem name="ecs_instance_iam_role_arn">
 </HclListItem>
 
+<HclListItem name="ecs_instance_iam_role_id">
+</HclListItem>
+
 <HclListItem name="ecs_instance_iam_role_name">
+</HclListItem>
+
+<HclListItem name="ecs_instance_security_group_id">
 </HclListItem>
 
 </TabItem>
@@ -788,6 +788,6 @@ The throughput to provision for a gp3 volume in MiB/s (specified as an integer, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a3bf1f57e5231de2b2f80fad82fdbe99"
+  "hash": "f33f36556198cfab344d06352b54e93d"
 }
 ##DOCS-SOURCER-END -->

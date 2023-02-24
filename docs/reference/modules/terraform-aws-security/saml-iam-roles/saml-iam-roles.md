@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fsaml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -82,28 +82,19 @@ The ID of the AWS Account.
 
 ### Optional
 
-<HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
+<HclListItem name="allow_auto_deploy_access_from_saml_provider" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A list of AWS services for which the developers from the accounts in <a href="#allow_dev_access_from_other_account_arns"><code>allow_dev_access_from_other_account_arns</code></a> will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_read_only_access_from_saml_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A flag to indicate if read only access will be delegated to SAML providers.
+A flag to indicate if auto deploy access will be delegated to SAML providers.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="allow_read_only_access_from_saml_provider_arns" requirement="optional" type="list(string)">
+<HclListItem name="allow_auto_deploy_from_saml_provider_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of IAM ARNs of Identity Providers that will be delegated read-only access to this account.
+A list of IAM ARNs of Identity Providers that will be delegated the auto deploy IAM role that has the permissions in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -116,7 +107,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read-only access
 
    Example:
    default = [
-     "arn:aws:iam::123445678910:root"
+     "arn:aws:iam::123445678910:role/jenkins"
    ]
 
 ```
@@ -138,108 +129,6 @@ A flag to indicate if billing access will be delegated to SAML providers.
 <HclListItemDescription>
 
 A list of IAM ARNs of Identity Providers that will be delegated full (read and write) access to the billing info for this account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   default = [
-     "arn:aws:iam::123445678910:root"
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="allow_support_access_from_saml_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A flag to indicate if AWS support access will be delegated to SAML providers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="allow_support_access_from_saml_provider_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM ARNs of Identity Providers that will be delegated AWS support access for this account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   default = [
-     "arn:aws:iam::123445678910:root"
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="allow_logs_access_from_saml_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A flag to indicate if logs access will be delegated to SAML providers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="allow_logs_access_from_saml_provider_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM ARNs of Identity Providers that will be delegated read access to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If <a href="#cloudtrail_kms_key_arn"><code>cloudtrail_kms_key_arn</code></a> is set, the users will also be delegated access to decrypt using this KMS CMK.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   default = [
-     "arn:aws:iam::123445678910:root"
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_access_from_saml_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A flag to indicate if ssh-grunt access will be delegated to SAML providers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_access_from_saml_provider_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM ARNs of Identity Providers that will be delegated read access to IAM groups and publish SSH keys. This is used for ssh-grunt.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -363,19 +252,19 @@ A list of IAM ARNs of Identity Providers that will be delegated IAM admin access
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_access_from_saml_provider" requirement="optional" type="bool">
+<HclListItem name="allow_logs_access_from_saml_provider" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A flag to indicate if auto deploy access will be delegated to SAML providers.
+A flag to indicate if logs access will be delegated to SAML providers.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_from_saml_provider_arns" requirement="optional" type="list(string)">
+<HclListItem name="allow_logs_access_from_saml_provider_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of IAM ARNs of Identity Providers that will be delegated the auto deploy IAM role that has the permissions in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>.
+A list of IAM ARNs of Identity Providers that will be delegated read access to the logs in CloudTrail, AWS Config, and CloudWatch for this account. If <a href="#cloudtrail_kms_key_arn"><code>cloudtrail_kms_key_arn</code></a> is set, the users will also be delegated access to decrypt using this KMS CMK.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -388,13 +277,124 @@ A list of IAM ARNs of Identity Providers that will be delegated the auto deploy 
 
    Example:
    default = [
-     "arn:aws:iam::123445678910:role/jenkins"
+     "arn:aws:iam::123445678910:root"
    ]
 
 ```
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="allow_read_only_access_from_saml_provider" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A flag to indicate if read only access will be delegated to SAML providers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_read_only_access_from_saml_provider_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM ARNs of Identity Providers that will be delegated read-only access to this account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   default = [
+     "arn:aws:iam::123445678910:root"
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_access_from_saml_provider" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A flag to indicate if ssh-grunt access will be delegated to SAML providers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_access_from_saml_provider_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM ARNs of Identity Providers that will be delegated read access to IAM groups and publish SSH keys. This is used for ssh-grunt.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   default = [
+     "arn:aws:iam::123445678910:root"
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="allow_support_access_from_saml_provider" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A flag to indicate if AWS support access will be delegated to SAML providers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_support_access_from_saml_provider_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM ARNs of Identity Providers that will be delegated AWS support access for this account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   default = [
+     "arn:aws:iam::123445678910:root"
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="auto_deploy_access_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+What to name the auto deploy IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-auto-deploy-from-saml&quot;"/>
 </HclListItem>
 
 <HclListItem name="auto_deploy_permissions" requirement="optional" type="list(string)">
@@ -406,15 +406,6 @@ A list of IAM permissions (e.g. ec2:*) which will be granted for automated deplo
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="read_only_access_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-What to name the read-only access IAM role
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-read-only-access-from-saml&quot;"/>
-</HclListItem>
-
 <HclListItem name="billing_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -424,31 +415,13 @@ What to name the billing access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-billing-only-access-from-saml&quot;"/>
 </HclListItem>
 
-<HclListItem name="support_access_iam_role_name" requirement="optional" type="string">
+<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-What to name the support access IAM role
+The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM roles will include permissions to decrypt using this CMK.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-support-access-from-saml&quot;"/>
-</HclListItem>
-
-<HclListItem name="logs_access_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-What to name the logs access IAM role
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-logs-access-from-saml&quot;"/>
-</HclListItem>
-
-<HclListItem name="ssh_grunt_access_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-What to name the ssh-grunt access IAM role
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-ssh-grunt-access-from-saml&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="dev_access_iam_role_name" requirement="optional" type="string">
@@ -458,6 +431,15 @@ What to name the dev access IAM role
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;allow-dev-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of AWS services for which the developers from the accounts in <a href="#allow_dev_access_from_other_account_arns"><code>allow_dev_access_from_other_account_arns</code></a> will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="full_access_iam_role_name" requirement="optional" type="string">
@@ -478,13 +460,13 @@ What to name the IAM admin access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-iam-admin-access-from-saml&quot;"/>
 </HclListItem>
 
-<HclListItem name="auto_deploy_access_iam_role_name" requirement="optional" type="string">
+<HclListItem name="logs_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-What to name the auto deploy IAM role
+What to name the logs access IAM role
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-auto-deploy-from-saml&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;allow-logs-access-from-saml&quot;"/>
 </HclListItem>
 
 <HclListItem name="max_session_duration_human_users" requirement="optional" type="number">
@@ -505,6 +487,33 @@ The maximum allowable session duration, in seconds, for the credentials you get 
 <HclListItemDefaultValue defaultValue="3600"/>
 </HclListItem>
 
+<HclListItem name="read_only_access_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+What to name the read-only access IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-read-only-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="ssh_grunt_access_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+What to name the ssh-grunt access IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-ssh-grunt-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="support_access_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+What to name the support access IAM role
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-support-access-from-saml&quot;"/>
+</HclListItem>
+
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -514,67 +523,58 @@ A map of tags to apply to the IAM roles.
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM roles will include permissions to decrypt using this CMK.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="allow_read_only_access_from_saml_iam_role_arn">
+<HclListItem name="allow_auto_deploy_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_auto_deploy_access_from_saml_iam_role_id">
 </HclListItem>
 
 <HclListItem name="allow_billing_access_from_saml_iam_role_arn">
 </HclListItem>
 
-<HclListItem name="allow_support_access_from_saml_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_logs_access_from_saml_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_access_from_saml_iam_role_arn">
+<HclListItem name="allow_billing_access_from_saml_iam_role_id">
 </HclListItem>
 
 <HclListItem name="allow_dev_access_from_saml_iam_role_arn">
 </HclListItem>
 
-<HclListItem name="allow_full_access_from_saml_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_iam_admin_access_from_saml_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_auto_deploy_access_from_saml_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_read_only_access_from_saml_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_billing_access_from_saml_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_support_access_from_saml_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_logs_access_from_saml_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_access_from_saml_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_dev_access_from_saml_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_full_access_from_saml_iam_role_arn">
 </HclListItem>
 
 <HclListItem name="allow_full_access_from_saml_iam_role_id">
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_access_from_saml_iam_role_id">
+<HclListItem name="allow_iam_admin_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_logs_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_logs_access_from_saml_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_read_only_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_read_only_access_from_saml_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_access_from_saml_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_support_access_from_saml_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_support_access_from_saml_iam_role_id">
 </HclListItem>
 
 </TabItem>
@@ -589,6 +589,6 @@ The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM roles
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0bb89b4db2b2b831887b9d5757f6022d"
+  "hash": "28b5f68eb6ccb97d47e1b680ac11d0c9"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -86,14 +86,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="namespace" requirement="required" type="string">
-<HclListItemDescription>
-
-Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="aws_auth_merger_image" requirement="required" type="object(…)">
 <HclListItemDescription>
 
@@ -114,16 +106,15 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="configmap_label_selector" requirement="optional" type="string">
+<HclListItem name="namespace" requirement="required" type="string">
 <HclListItemDescription>
 
-A Kubernetes Label Selector for the Namespace to look for ConfigMaps that should be merged into the main aws-auth ConfigMap.
+Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
+
+### Optional
 
 <HclListItem name="autocreate_labels" requirement="optional" type="map(string)">
 <HclListItemDescription>
@@ -134,139 +125,22 @@ Labels to apply to ConfigMaps that are created automatically by the aws-auth-mer
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="refresh_interval" requirement="optional" type="string">
+<HclListItem name="configmap_label_selector" requirement="optional" type="string">
 <HclListItemDescription>
 
-Interval to poll the Namespace for aws-auth ConfigMaps to merge as a duration string (e.g. 5m10s for 5 minutes 10 seconds).
+A Kubernetes Label Selector for the Namespace to look for ConfigMaps that should be merged into the main aws-auth ConfigMap.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="deployment_name" requirement="optional" type="string">
+<HclListItem name="create_fargate_profile" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Name to apply to the Deployment for the aws-auth-merger app.
+If true, create a Fargate Profile so that the aws-auth-merger app runs on Fargate.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
-</HclListItem>
-
-<HclListItem name="deployment_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as labels on the Deployment.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="deployment_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as annotations on the Deployment.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="pod_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as labels on the Pod.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="pod_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as annotations on the Pod.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name to apply to the ServiceAccount for the aws-auth-merger app.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_account_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as labels on the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as annotations on the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name to apply to the RBAC Role for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as labels on the RBAC Role for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as annotations on the RBAC Role for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_binding_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name to apply to the RBAC Role Binding for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_binding_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as labels on the RBAC Role Binding for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="service_account_role_binding_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Key value pairs of strings to apply as annotations on the RBAC Role Binding for the ServiceAccount.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_namespace" requirement="optional" type="bool">
@@ -278,13 +152,40 @@ When true this will inform the module to create the Namespace.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="create_fargate_profile" requirement="optional" type="bool">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If true, create a Fargate Profile so that the aws-auth-merger app runs on Fargate.
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="deployment_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as annotations on the Deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="deployment_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as labels on the Deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="deployment_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name to apply to the Deployment for the aws-auth-merger app.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
 </HclListItem>
 
 <HclListItem name="fargate_profile" requirement="optional" type="object(…)">
@@ -349,15 +250,6 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="log_level" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -365,6 +257,114 @@ Logging verbosity level. Must be one of (in order of most verbose to least): tra
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
+</HclListItem>
+
+<HclListItem name="pod_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as annotations on the Pod.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="pod_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as labels on the Pod.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="refresh_interval" requirement="optional" type="string">
+<HclListItemDescription>
+
+Interval to poll the Namespace for aws-auth ConfigMaps to merge as a duration string (e.g. 5m10s for 5 minutes 10 seconds).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_account_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as annotations on the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as labels on the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name to apply to the ServiceAccount for the aws-auth-merger app.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as annotations on the RBAC Role for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_binding_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as annotations on the RBAC Role Binding for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_binding_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as labels on the RBAC Role Binding for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_binding_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name to apply to the RBAC Role Binding for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Key value pairs of strings to apply as labels on the RBAC Role for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="service_account_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name to apply to the RBAC Role for the ServiceAccount.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -390,6 +390,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-aws-auth-merger%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f604c643f46943468ee83d982a8b47b4"
+  "hash": "fcda51136b1ac0c710eb01ec04e43866"
 }
 ##DOCS-SOURCER-END -->

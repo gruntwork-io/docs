@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.96.6"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.96.6"/>
 
 # Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fredis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fredis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fredis" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -67,7 +67,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -75,7 +75,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -86,30 +86,6 @@ If you want to deploy this repo in production, check out the following resources
 <TabItem value="inputs" label="Inputs" default>
 
 ### Required
-
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-The compute and memory capacity of the nodes (e.g. cache.m4.large).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="replication_group_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="enable_automatic_failover" requirement="required" type="bool">
 <HclListItemDescription>
@@ -127,10 +103,26 @@ Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only rep
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the VPC in which to deploy RDS.
+The compute and memory capacity of the nodes (e.g. cache.m4.large).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name used to namespace all resources created by these templates, including the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region. Must be a lowercase string.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="replication_group_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The total number of nodes in the Redis Replication Group. E.g. 1 represents just the primary node, 2 represents the primary plus a single Read Replica.
 
 </HclListItemDescription>
 </HclListItem>
@@ -143,114 +135,31 @@ The list of IDs of the subnets in which to deploy the ElasticCache instances. Th
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC in which to deploy RDS.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="redis_version" requirement="optional" type="string">
+<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version number of redis to use (e.g. 5.0.6).
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
-<HclListItem name="port" requirement="optional" type="number">
+<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The port number on which each of the cache nodes will accept connections (e.g. 6379).
+The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="6379"/>
-</HclListItem>
-
-<HclListItem name="enable_at_rest_encryption" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to enable encryption at rest.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_transit_encryption" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to enable encryption in transit.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="auth_token" requirement="optional" type="string">
-<HclListItemDescription>
-
-The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, &lt;double-quotes>, and /)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="snapshot_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="snapshot_retention_limit" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="15"/>
-</HclListItem>
-
-<HclListItem name="maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="parameter_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="apply_immediately" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether any modifications are applied immediately, or during the next maintenance window.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    num_node_groups         = number
-    replicas_per_node_group = number
-  }))
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -272,22 +181,50 @@ The list of IDs or Security Groups to allow network access to ElastiCache from. 
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="snapshot_name" requirement="optional" type="string">
+<HclListItem name="apply_immediately" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use snapshot_arn.
+Specifies whether any modifications are applied immediately, or during the next maintenance window.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="auth_token" requirement="optional" type="string">
+<HclListItemDescription>
+
+The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, &lt;double-quotes>, and /)
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="snapshot_arn" requirement="optional" type="string">
+<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use snapshot_name.
+Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    num_node_groups         = number
+    replicas_per_node_group = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enable_at_rest_encryption" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable encryption at rest.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -299,13 +236,85 @@ Set to true to enable several basic CloudWatch alarms around CPU usage, memory u
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
+<HclListItem name="enable_transit_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+Whether to enable encryption in transit.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies the weekly time range for when maintenance on the cache cluster is performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the parameter group to associate with this cache cluster. This can be used to configure custom settings for the cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port number on which each of the cache nodes will accept connections (e.g. 6379).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="6379"/>
+</HclListItem>
+
+<HclListItem name="redis_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Version number of redis to use (e.g. 5.0.6).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
+</HclListItem>
+
+<HclListItem name="snapshot_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3. You can use this parameter to restore from an externally created snapshot. If you have an ElastiCache snapshot, use snapshot_name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="snapshot_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a snapshot from which to restore the Redis cluster. You can use this to restore from an ElastiCache snapshot. If you have an externally created snapshot, use snapshot_arn.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="snapshot_retention_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. Set to 0 to disable snapshots.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="15"/>
+</HclListItem>
+
+<HclListItem name="snapshot_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs. Set to empty string to disable snapshots.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="sns_topic_for_notifications" requirement="optional" type="string">
@@ -315,15 +324,6 @@ The ARN of the SNS Topic to which notifications will be sent when a Replication 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -337,14 +337,6 @@ A set of tags to set for the ElastiCache Replication Group.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="cache_port">
-<HclListItemDescription>
-
-The port number on which each of the cache nodes will accept connections (e.g. 6379).
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="cache_cluster_ids">
 <HclListItemDescription>
@@ -362,10 +354,10 @@ The id of the ElastiCache node. Note: Each Redis cache cluster has only one node
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="primary_endpoint">
+<HclListItem name="cache_port">
 <HclListItemDescription>
 
-The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster.
+The port number on which each of the cache nodes will accept connections (e.g. 6379).
 
 </HclListItemDescription>
 </HclListItem>
@@ -374,6 +366,14 @@ The primary endpoint is a DNS name that always resolves to the primary node in t
 <HclListItemDescription>
 
 When cluster mode is enabled, use this endpoint for all operations. Redis will automatically determine which of the cluster's node to access.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="primary_endpoint">
+<HclListItemDescription>
+
+The primary endpoint is a DNS name that always resolves to the primary node in the Redis cluster.
 
 </HclListItemDescription>
 </HclListItem>
@@ -401,11 +401,11 @@ Security Group ID used for redis cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fredis%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fredis%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fredis%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fredis%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fredis%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fredis%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6f356a360edbb87b2ab45bf471467b50"
+  "hash": "3166f122c16c53ce84f9c893db3909dd"
 }
 ##DOCS-SOURCER-END -->

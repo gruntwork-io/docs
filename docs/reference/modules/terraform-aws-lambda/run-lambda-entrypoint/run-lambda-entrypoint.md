@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Frun-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -186,6 +186,6 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "031ece1f54442004c597fdb88e24c351"
+  "hash": "412875d2f93ba5a84651b3f0084a0f7d"
 }
 ##DOCS-SOURCER-END -->

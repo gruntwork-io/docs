@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -91,15 +91,6 @@ A feature flag to enable or disable this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="iam_access_analyzer_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If set to ACCOUNT, the analyzer will only be scanning the current AWS account it's in. If set to ORGANIZATION - will scan the organization AWS account and the child accounts.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ACCOUNT&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_access_analyzer_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -107,6 +98,15 @@ The name of the IAM Access Analyzer module
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;iam-access-analyzer&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_access_analyzer_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+If set to ACCOUNT, the analyzer will only be scanning the current AWS account it's in. If set to ORGANIZATION - will scan the organization AWS account and the child accounts.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ACCOUNT&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -126,6 +126,6 @@ The name of the IAM Access Analyzer module
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-access-analyzer-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "027b943725f2c974427c7f2d61c820e3"
+  "hash": "8dccf773a4785444a2d74bc95b3ee38c"
 }
 ##DOCS-SOURCER-END -->

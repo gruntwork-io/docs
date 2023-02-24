@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felastalert" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -46,14 +46,6 @@ The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the VPC in which to deploy the kibana cluster
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
@@ -70,15 +62,41 @@ A User Data script to execute while the server is booting.
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="name_prefix" requirement="optional" type="string">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The module's name that will be used to prefix various AWS resource names.
+The ID of the VPC in which to deploy the kibana cluster
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;elastalert-&quot;"/>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of security groups from which SSH connections will be allowed. If you update this variable, make sure to update <a href="#num_ssh_security_group_ids"><code>num_ssh_security_group_ids</code></a> too!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="associate_public_ip_address" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, associate a public IP address with each EC2 Instance in the cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="instance_profile_path" requirement="optional" type="string">
@@ -99,13 +117,22 @@ Wait for this number of EC2 Instances to show up healthy in the load balancer on
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItem name="name_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
+The module's name that will be used to prefix various AWS resource names.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;elastalert-&quot;"/>
+</HclListItem>
+
+<HclListItem name="num_ssh_security_group_ids" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of security group IDs in <a href="#allow_ssh_from_security_group_ids"><code>allow_ssh_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_ssh_from_security_group_ids"><code>allow_ssh_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="ssh_key_name" requirement="optional" type="string">
@@ -124,51 +151,6 @@ The port used for SSH connections
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="22"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of security groups from which SSH connections will be allowed. If you update this variable, make sure to update <a href="#num_ssh_security_group_ids"><code>num_ssh_security_group_ids</code></a> too!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="num_ssh_security_group_ids" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of security group IDs in <a href="#allow_ssh_from_security_group_ids"><code>allow_ssh_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_ssh_from_security_group_ids"><code>allow_ssh_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="associate_public_ip_address" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, associate a public IP address with each EC2 Instance in the cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of target group ARNs to associate with the Kibana cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="list(object(…))">
@@ -212,13 +194,31 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of target group ARNs to associate with the Kibana cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="elastalert_security_group_id">
+<HclListItem name="elastalert_asg_name">
 </HclListItem>
 
-<HclListItem name="elastalert_asg_name">
+<HclListItem name="elastalert_security_group_id">
 </HclListItem>
 
 <HclListItem name="iam_role_arn">
@@ -239,6 +239,6 @@ list(object({
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "34aafbf12c7a80cb1a6316559ea86774"
+  "hash": "a59941c84675a73ff832b061d249c3ce"
 }
 ##DOCS-SOURCER-END -->

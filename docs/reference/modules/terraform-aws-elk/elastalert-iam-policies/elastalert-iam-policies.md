@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felastalert-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -67,6 +67,6 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7643d32403779f10da7509a92deafd6d"
+  "hash": "5e2587c16c41bb36433269c83bcc18c6"
 }
 ##DOCS-SOURCER-END -->

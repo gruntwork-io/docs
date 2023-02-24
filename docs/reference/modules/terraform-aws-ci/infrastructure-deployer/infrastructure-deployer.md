@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Finfrastructure-deployer" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -83,6 +83,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finfrastructure-deployer%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7938e8ebe700713019a7bb3769cec8b8"
+  "hash": "16839d3bea898a135a238ad886e18906"
 }
 ##DOCS-SOURCER-END -->

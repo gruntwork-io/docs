@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Finstall-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -27,6 +27,6 @@ package.
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed2154b23dfb792d484cbef8f8f93ca1"
+  "hash": "b8d5004da99a7271cf2798551deb5967"
 }
 ##DOCS-SOURCER-END -->

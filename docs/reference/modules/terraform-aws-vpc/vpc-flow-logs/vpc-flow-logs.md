@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -79,186 +79,6 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 <TabItem value="inputs" label="Inputs" default>
 
 ### Optional
-
-<HclListItem name="vpc_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The id of a VPC. The flow log will be associated with all network interfaces in the VPC. Exactly one of vpc_id, subnet_id, or eni_id is required.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="subnet_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The id of VPC subnet. The flow log will be associated with all network interfaces in the subnet. Exactly one of vpc_id, subnet_id, or eni_id is required.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="eni_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The id of an ENI. The flow log will be associated with a single elastic network interface. Exactly one of vpc_id, subnet_id, or eni_id is required.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to any resources created which accept them. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="log_destination_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The destination for the flow log. Valid values are cloud-watch-logs or s3. Defaults to cloud-watch-logs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;cloud-watch-logs&quot;"/>
-</HclListItem>
-
-<HclListItem name="traffic_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The type of traffic to capture in this VPC flow log. Valid values include ACCEPT, REJECT, or ALL. Defaults to REJECT.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;REJECT&quot;"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to keep this KMS Key (a Customer Master Key) around after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_key_users" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM user ARNs with access to the KMS key used with the VPC flow logs. Required if kms_key_arn is not defined.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="log_format" requirement="optional" type="string">
-<HclListItemDescription>
-
-The fields to include in the flow log record, in the order in which they should appear. See https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/ for more information including the list of allowed fields.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the flow log IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the CloudWatch Log group.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_retention" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain logs in the log group. Valid values: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="731"/>
-</HclListItem>
-
-<HclListItem name="s3_bucket_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the S3 bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_subfolder" requirement="optional" type="string">
-<HclListItemDescription>
-
-if log_destination_type is s3, optionally specify a subfolder for log delivery.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="force_destroy_bucket" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Boolean to determine whether flow logs should be deleted if the S3 bucket is removed by terraform. Defaults to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="s3_infrequent_access_transition" requirement="optional" type="number">
-<HclListItemDescription>
-
-For s3 log destinations, the number of days after which to transition the flow log objects to infrequent access. Defaults to 30.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="s3_glacier_transition" requirement="optional" type="number">
-<HclListItemDescription>
-
-For s3 log destinations, the number of days after which to transition the flow log objects to glacier. Defaults to 180.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="180"/>
-</HclListItem>
-
-<HclListItem name="s3_expiration_transition" requirement="optional" type="number">
-<HclListItemDescription>
-
-For s3 log destinations, the number of days after which to expire (permanently delete) flow logs. Defaults to 365.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="365"/>
-</HclListItem>
 
 <HclListItem name="additional_s3_bucket_policy_statements" requirement="optional" type="any">
 <HclListItemDescription>
@@ -362,13 +182,67 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItem name="cloudwatch_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+The name to use for the flow log IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the CloudWatch Log group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_retention" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain logs in the log group. Valid values: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="731"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to any resources created which accept them. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eni_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of an ENI. The flow log will be associated with a single elastic network interface. Exactly one of vpc_id, subnet_id, or eni_id is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="force_destroy_bucket" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Boolean to determine whether flow logs should be deleted if the S3 bucket is removed by terraform. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
@@ -380,8 +254,158 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will be created if this is not supplied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to keep this KMS Key (a Customer Master Key) around after it has been marked for deletion. Setting to null defaults to the provider default, which is the maximum possible value (30 days).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_users" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM user ARNs with access to the KMS key used with the VPC flow logs. Required if kms_key_arn is not defined.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="log_destination_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The destination for the flow log. Valid values are cloud-watch-logs or s3. Defaults to cloud-watch-logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;cloud-watch-logs&quot;"/>
+</HclListItem>
+
+<HclListItem name="log_format" requirement="optional" type="string">
+<HclListItemDescription>
+
+The fields to include in the flow log record, in the order in which they should appear. See https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-meta-data/ for more information including the list of allowed fields.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the S3 bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_expiration_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to expire (permanently delete) flow logs. Defaults to 365.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="365"/>
+</HclListItem>
+
+<HclListItem name="s3_glacier_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to transition the flow log objects to glacier. Defaults to 180.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="180"/>
+</HclListItem>
+
+<HclListItem name="s3_infrequent_access_transition" requirement="optional" type="number">
+<HclListItemDescription>
+
+For s3 log destinations, the number of days after which to transition the flow log objects to infrequent access. Defaults to 30.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="s3_subfolder" requirement="optional" type="string">
+<HclListItemDescription>
+
+if log_destination_type is s3, optionally specify a subfolder for log delivery.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="subnet_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of VPC subnet. The flow log will be associated with all network interfaces in the subnet. Exactly one of vpc_id, subnet_id, or eni_id is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="traffic_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of traffic to capture in this VPC flow log. Valid values include ACCEPT, REJECT, or ALL. Defaults to REJECT.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;REJECT&quot;"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of a VPC. The flow log will be associated with all network interfaces in the VPC. Exactly one of vpc_id, subnet_id, or eni_id is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="cloud_watch_kms_key_arn">
+<HclListItemDescription>
+
+The name of the KMS key used to encrypt flow logs
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloud_watch_logs_group_arn">
+<HclListItemDescription>
+
+The ARN of the CloudWatch Logs group where flow logs are published.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloud_watch_logs_group_name">
+<HclListItemDescription>
+
+The name of the CloudWatch Logs group where flow logs are published.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="flow_log_id">
 <HclListItemDescription>
@@ -407,30 +431,6 @@ The name of the S3 bucket where flow logs are published.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cloud_watch_logs_group_arn">
-<HclListItemDescription>
-
-The ARN of the CloudWatch Logs group where flow logs are published.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloud_watch_logs_group_name">
-<HclListItemDescription>
-
-The name of the CloudWatch Logs group where flow logs are published.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloud_watch_kms_key_arn">
-<HclListItemDescription>
-
-The name of the KMS key used to encrypt flow logs
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -443,6 +443,6 @@ The name of the KMS key used to encrypt flow logs
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0c286289375f1b677b380bd0519feaa"
+  "hash": "ecf86bb09a5c71feb43512dc47e98140"
 }
 ##DOCS-SOURCER-END -->

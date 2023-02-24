@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.100.0"/>
 
 # Jenkins CI Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Fjenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fjenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -68,7 +68,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -91,10 +91,18 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="instance_type" requirement="required" type="string">
+<HclListItem name="acm_ssl_certificate_domain" requirement="required" type="string">
 <HclListItemDescription>
 
-The instance type to use for the Jenkins server (e.g. t2.medium)
+The domain name used for an SSL certificate issued by the Amazon Certificate Manager (ACM).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="alb_subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -147,34 +155,10 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="domain_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the VPC in which to deploy Jenkins
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="jenkins_subnet_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the subnet in which to deploy Jenkins. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="alb_subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins. Must be subnets in <a href="#vpc_id"><code>vpc_id</code></a>.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="memory" requirement="required" type="string">
-<HclListItemDescription>
-
-The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings.
+The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by <a href="#hosted_zone_id"><code>hosted_zone_id</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -187,254 +171,47 @@ The ID of the Route 53 Hosted Zone in which to create a DNS A record for Jenkins
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="domain_name" requirement="required" type="string">
+<HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com). Must be in the domain managed by <a href="#hosted_zone_id"><code>hosted_zone_id</code></a>.
+The instance type to use for the Jenkins server (e.g. t2.medium)
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="acm_ssl_certificate_domain" requirement="required" type="string">
+<HclListItem name="jenkins_subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The domain name used for an SSL certificate issued by the Amazon Certificate Manager (ACM).
+The ID of the subnet in which to deploy Jenkins. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="memory" requirement="required" type="string">
+<HclListItemDescription>
+
+The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and -Xmx settings.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC in which to deploy Jenkins
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Set to true to create a public DNS A record in Route53 for Jenkins.
+The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Enter the name of the Jenkins server
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
-</HclListItem>
-
-<HclListItem name="keypair_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blank if you don't want to enable Key Pair auth.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="tenancy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The tenancy of this server. Must be one of: default, dedicated, or host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to encrypt the Jenkins EBS volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ebs_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ebs_kms_key_arn_is_alias" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not the provide EBS KMS key ARN is a key alias. If providing the key ID, leave this set to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="jenkins_device_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The OS device name where the Jenkins EBS volume should be attached
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;xvdh&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_mount_point" requirement="optional" type="string">
-<HclListItemDescription>
-
-The OS path where the Jenkins EBS volume should be mounted
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/jenkins&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_user" requirement="optional" type="string">
-<HclListItemDescription>
-
-The OS user that should be used to run Jenkins
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
-</HclListItem>
-
-<HclListItem name="backup_using_lambda" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to backup the Jenkins Server using a Scheduled Lambda Function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="backup_job_metric_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-The namespace for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;Custom/Jenkins&quot;"/>
-</HclListItem>
-
-<HclListItem name="backup_job_metric_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;jenkins-backup-job&quot;"/>
-</HclListItem>
-
-<HclListItem name="backup_job_schedule_expression" requirement="optional" type="string">
-<HclListItemDescription>
-
-A cron or rate expression that specifies how often to take a snapshot of the Jenkins server for backup purposes. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for syntax details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;rate(1 day)&quot;"/>
-</HclListItem>
-
-<HclListItem name="backup_job_alarm_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-How often, in seconds, the backup job is expected to run. This is the same as <a href="#backup_job_schedule_expression"><code>backup_job_schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the value of <a href="#backup_job_metric_name"><code>backup_job_metric_name</code></a> and <a href="#backup_job_metric_namespace"><code>backup_job_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="86400"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   One day in seconds
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="backup_using_dlm" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to backup the Jenkins Server using AWS Data Lifecycle Management Policies.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="dlm_backup_job_schedule_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the data lifecyle management schedule
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;daily-last-two-weeks&quot;"/>
-</HclListItem>
-
-<HclListItem name="dlm_backup_job_schedule_interval" requirement="optional" type="number">
-<HclListItemDescription>
-
-How often this lifecycle policy should be evaluated, in hours.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="24"/>
-</HclListItem>
-
-<HclListItem name="dlm_backup_job_schedule_times" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;03:00&quot;
-]"/>
-</HclListItem>
-
-<HclListItem name="dlm_backup_job_schedule_number_of_snapshots_to_retain" requirement="optional" type="number">
-<HclListItemDescription>
-
-How many snapshots to keep. Must be an integer between 1 and 1000.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="15"/>
-</HclListItem>
-
-<HclListItem name="skip_health_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    filename     = string
-    content_type = string
-    content      = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="is_internal_alb" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from the public Internet. We strongly recommend setting this to true to keep Jenkins more secure.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_incoming_http_from_cidr_blocks" requirement="optional" type="list(string)">
@@ -473,6 +250,445 @@ The IDs of security groups from which to allow incoming SSH requests to Jenkins.
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="backup_job_alarm_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+How often, in seconds, the backup job is expected to run. This is the same as <a href="#backup_job_schedule_expression"><code>backup_job_schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the value of <a href="#backup_job_metric_name"><code>backup_job_metric_name</code></a> and <a href="#backup_job_metric_namespace"><code>backup_job_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="86400"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   One day in seconds
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="backup_job_metric_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;jenkins-backup-job&quot;"/>
+</HclListItem>
+
+<HclListItem name="backup_job_metric_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace for the CloudWatch Metric the AWS lambda backup job will increment every time the job completes successfully.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Custom/Jenkins&quot;"/>
+</HclListItem>
+
+<HclListItem name="backup_job_schedule_expression" requirement="optional" type="string">
+<HclListItemDescription>
+
+A cron or rate expression that specifies how often to take a snapshot of the Jenkins server for backup purposes. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html for syntax details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;rate(1 day)&quot;"/>
+</HclListItem>
+
+<HclListItem name="backup_using_dlm" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to backup the Jenkins Server using AWS Data Lifecycle Management Policies.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="backup_using_lambda" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to backup the Jenkins Server using a Scheduled Lambda Function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="build_permission_actions" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of IAM actions this Jenkins server should be allowed to do: e.g., ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in this AWS account to run builds. These permissions will be added to the server's IAM role for all resources ('*').
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Cloud init scripts to run on the Jenkins server when it is booting. See the part blocks in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for syntax.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    filename     = string
+    content_type = string
+    content      = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to create a public DNS A record in Route53 for Jenkins.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A list of custom tags to apply to Jenkins and all other resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_user" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
+</HclListItem>
+
+<HclListItem name="dlm_backup_job_schedule_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+How often this lifecycle policy should be evaluated, in hours.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="24"/>
+</HclListItem>
+
+<HclListItem name="dlm_backup_job_schedule_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the data lifecyle management schedule
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;daily-last-two-weeks&quot;"/>
+</HclListItem>
+
+<HclListItem name="dlm_backup_job_schedule_number_of_snapshots_to_retain" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many snapshots to keep. Must be an integer between 1 and 1000.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="15"/>
+</HclListItem>
+
+<HclListItem name="dlm_backup_job_schedule_times" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of times in 24 hour clock format that sets when the lifecyle policy should be evaluated. Max of 1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;03:00&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="ebs_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the KMS key used for encrypting the Jenkins EBS volume. The module will grant Jenkins permission to use this key.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_kms_key_arn_is_alias" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not the provide EBS KMS key ARN is a key alias. If providing the key ID, leave this set to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add AIM permissions to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Jenkins server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="external_account_auto_deploy_iam_role_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM role ARNs in other AWS accounts that Jenkins will be able to assume to do automated deployment in those accounts.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="is_internal_alb" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to make the Jenkins ALB an internal ALB that cannot be accessed from the public Internet. We strongly recommend setting this to true to keep Jenkins more secure.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="jenkins_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The OS device name where the Jenkins EBS volume should be attached
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;xvdh&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_mount_point" requirement="optional" type="string">
+<HclListItemDescription>
+
+The OS path where the Jenkins EBS volume should be mounted
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/jenkins&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_user" requirement="optional" type="string">
+<HclListItemDescription>
+
+The OS user that should be used to run Jenkins
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to encrypt the Jenkins EBS volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of disk space, in GB, to allocate for the EBS volume used by the Jenkins server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="200"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of volume to use for the EBS volume used by the Jenkins server. Must be one of: standard, gp2, io1, sc1, or st1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="keypair_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a Key Pair that can be used to SSH to the Jenkins server. Leave blank if you don't want to enable Key Pair auth.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Enter the name of the Jenkins server
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
+</HclListItem>
+
 <HclListItem name="root_block_device_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -491,40 +707,22 @@ The amount of disk space, in GB, to allocate for the root volume of this server.
 <HclListItemDefaultValue defaultValue="100"/>
 </HclListItem>
 
-<HclListItem name="jenkins_volume_type" requirement="optional" type="string">
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The type of volume to use for the EBS volume used by the Jenkins server. Must be one of: standard, gp2, io1, sc1, or st1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of disk space, in GB, to allocate for the EBS volume used by the Jenkins server.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="200"/>
-</HclListItem>
-
-<HclListItem name="enable_ssh_grunt" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to add IAM permissions for ssh-grunt (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-grunt), which will allow you to manage SSH access via IAM groups.
+When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_ip_lockdown" requirement="optional" type="bool">
+<HclListItem name="skip_health_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+If set to true, skip the health check, and start a rolling deployment of Jenkins without waiting for it to initially be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="ssh_grunt_iam_group" requirement="optional" type="string">
@@ -545,211 +743,13 @@ If you are using ssh-grunt, this is the name of the IAM group from which users w
 <HclListItemDefaultValue defaultValue="&quot;ssh-grunt-sudo-users&quot;"/>
 </HclListItem>
 
-<HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
+<HclListItem name="tenancy" requirement="optional" type="string">
 <HclListItemDescription>
 
-If you are using ssh-grunt and your IAM users / groups are defined in a separate AWS account, you can use this variable to specify the ARN of an IAM role that ssh-grunt can assume to retrieve IAM group and public SSH key info from that account. To omit this variable, set it to an empty string (do NOT use null, or Terraform will complain).
+The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to add IAM permissions to send custom metrics to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Jenkins server.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="alarms_sns_topic_arn" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications. Also used for the alarms if the Jenkins backup job fails.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_log_aggregation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to add AIM permissions to send logs to CloudWatch. This is useful in combination with https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="build_permission_actions" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IAM actions this Jenkins server should be allowed to do: e.g., ec2:*, s3:*, etc. This should be the list of IAM permissions Jenkins needs in this AWS account to run builds. These permissions will be added to the server's IAM role for all resources ('*').
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="external_account_auto_deploy_iam_role_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM role ARNs in other AWS accounts that Jenkins will be able to assume to do automated deployment in those accounts.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="default_user" requirement="optional" type="string">
-<HclListItemDescription>
-
-The default OS user for the Jenkins AMI. For AWS Ubuntu AMIs, which is what the Packer template in jenkins-ubunutu.json uses, the default OS user is 'ubuntu'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A list of custom tags to apply to Jenkins and all other resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, precreate the CloudWatch Log Group to use for log aggregation from the EC2 instances. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, the CloudWatch agent will automatically create a basic log group to use.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="jenkins_volume_alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -763,54 +763,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="jenkins_asg_name">
-<HclListItemDescription>
-
-The name of the Auto Scaling Group in which Jenkins is running
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="jenkins_security_group_id">
-<HclListItemDescription>
-
-The ID of the Security Group attached to the Jenkins EC2 Instance
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="jenkins_iam_role_id">
-<HclListItemDescription>
-
-The ID of the IAM role attached to the Jenkins EC2 Instance
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="jenkins_iam_role_arn">
-<HclListItemDescription>
-
-The ARN of the IAM role attached to the Jenkins EC2 Instance
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="jenkins_ebs_volume_id">
-<HclListItemDescription>
-
-The ID of the EBS Volume that will store the JENKINS_HOME directory
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="alb_name">
-<HclListItemDescription>
-
-The name of the ALB deployed in front of Jenkins
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="alb_arn">
 <HclListItemDescription>
@@ -836,34 +788,10 @@ The hosted zone ID of the ALB deployed in front of Jenkins
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alb_security_group_id">
-<HclListItemDescription>
-
-The ID of the security group attached to the ALB deployed in front of Jenkins
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="alb_listener_arns">
-<HclListItemDescription>
-
-The ARNs of the ALB listeners of the ALB deployed in front of Jenkins
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="alb_http_listener_arns">
 <HclListItemDescription>
 
 The ARNs of just the HTTP ALB listeners of the ALB deployed in front of Jenkins
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="alb_https_listener_non_acm_cert_arns">
-<HclListItemDescription>
-
-The ARNs of just the HTTPS ALB listeners that use non-ACM certs of the ALB deployed in front of Jenkins
 
 </HclListItemDescription>
 </HclListItem>
@@ -876,6 +804,52 @@ The ARNs of just the HTTPS ALB listeners that usse ACM certs of the ALB deployed
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="alb_https_listener_non_acm_cert_arns">
+<HclListItemDescription>
+
+The ARNs of just the HTTPS ALB listeners that use non-ACM certs of the ALB deployed in front of Jenkins
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="alb_listener_arns">
+<HclListItemDescription>
+
+The ARNs of the ALB listeners of the ALB deployed in front of Jenkins
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="alb_name">
+<HclListItemDescription>
+
+The name of the ALB deployed in front of Jenkins
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="alb_security_group_id">
+<HclListItemDescription>
+
+The ID of the security group attached to the ALB deployed in front of Jenkins
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="backup_lambda_function_arn">
+</HclListItem>
+
+<HclListItem name="backup_lambda_function_name">
+</HclListItem>
+
+<HclListItem name="jenkins_asg_name">
+<HclListItemDescription>
+
+The name of the Auto Scaling Group in which Jenkins is running
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="jenkins_domain_name">
 <HclListItemDescription>
 
@@ -884,10 +858,36 @@ The public domain name configured for Jenkins
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="backup_lambda_function_name">
+<HclListItem name="jenkins_ebs_volume_id">
+<HclListItemDescription>
+
+The ID of the EBS Volume that will store the JENKINS_HOME directory
+
+</HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="backup_lambda_function_arn">
+<HclListItem name="jenkins_iam_role_arn">
+<HclListItemDescription>
+
+The ARN of the IAM role attached to the Jenkins EC2 Instance
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="jenkins_iam_role_id">
+<HclListItemDescription>
+
+The ID of the IAM role attached to the Jenkins EC2 Instance
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="jenkins_security_group_id">
+<HclListItemDescription>
+
+The ID of the Security Group attached to the Jenkins EC2 Instance
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -897,11 +897,11 @@ The public domain name configured for Jenkins
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Fjenkins%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Fjenkins%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fjenkins%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fjenkins%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d45b4294439465e9cb1ea3ae5b8658f0"
+  "hash": "def93b1f7bcb7c00bf071b11f0fb0a00"
 }
 ##DOCS-SOURCER-END -->

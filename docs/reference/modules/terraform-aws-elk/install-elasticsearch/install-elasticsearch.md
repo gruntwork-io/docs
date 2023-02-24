@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -77,6 +77,6 @@ The `install-elasticsearch` script:
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6e64c22f87689b8c5874b422288fac20"
+  "hash": "aff7b0f6e07f25e66021b846187d777a"
 }
 ##DOCS-SOURCER-END -->

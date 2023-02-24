@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-external-dns-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -89,10 +89,10 @@ If you set this variable to false, this module will not create any resources. Th
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="k8s_external_dns_policy_name">
+<HclListItem name="k8s_external_dns_policy_arn">
 <HclListItemDescription>
 
-The name of the IAM policy created with the permissions for the external-dns Kubernetes app.
+The ARN of the IAM policy created with the permissions for the external-dns Kubernetes app.
 
 </HclListItemDescription>
 </HclListItem>
@@ -105,10 +105,10 @@ The AWS ID of the IAM policy created with the permissions for the external-dns K
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="k8s_external_dns_policy_arn">
+<HclListItem name="k8s_external_dns_policy_name">
 <HclListItemDescription>
 
-The ARN of the IAM policy created with the permissions for the external-dns Kubernetes app.
+The name of the IAM policy created with the permissions for the external-dns Kubernetes app.
 
 </HclListItemDescription>
 </HclListItem>
@@ -125,6 +125,6 @@ The ARN of the IAM policy created with the permissions for the external-dns Kube
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f540cc77753bc4a14f4c6d9c0819cbc9"
+  "hash": "ff2ee7f4021ff39a0e6546270a079575"
 }
 ##DOCS-SOURCER-END -->

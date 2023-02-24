@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fsns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -45,24 +45,6 @@ The name of the SNS topic.
 </HclListItem>
 
 ### Optional
-
-<HclListItem name="display_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The display name of the SNS topic. NOTE: Maximum length is 100 characters.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of key value pairs to apply as tags to the SNS topic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
 
 <HclListItem name="allow_publish_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -115,15 +97,6 @@ A list of protocols that are allowed for subscription.
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="kms_master_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -133,16 +106,43 @@ Enable or disable creation of the resources of this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="display_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The display name of the SNS topic. NOTE: Maximum length is 100 characters.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="kms_master_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of key value pairs to apply as tags to the SNS topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="topic_name">
+<HclListItem name="topic_arn">
 </HclListItem>
 
 <HclListItem name="topic_display_name">
 </HclListItem>
 
-<HclListItem name="topic_arn">
+<HclListItem name="topic_name">
 </HclListItem>
 
 <HclListItem name="topic_policy">
@@ -160,6 +160,6 @@ Enable or disable creation of the resources of this module.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e7d9482bd2d960a561a57a9f8a4a4367"
+  "hash": "ee84432d7556b13696cc846ff0a31ff4"
 }
 ##DOCS-SOURCER-END -->

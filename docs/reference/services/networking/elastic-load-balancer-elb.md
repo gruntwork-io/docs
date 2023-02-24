@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.97.0"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.97.0"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Falb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Falb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,22 +98,6 @@ If the ALB should only accept traffic from within the VPC, set this to true. If 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-ID of the VPC where the ALB will be deployed
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The ids of the subnets that the ALB can use to source its IP
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="num_days_after_which_archive_log_data" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -130,15 +114,190 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="ssl_policy" requirement="optional" type="string">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
+ID of the VPC where the ALB will be deployed
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-2016-08&quot;"/>
+</HclListItem>
+
+<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+The ids of the subnets that the ALB can use to source its IP
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="access_logs_s3_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the S3 bucket where the ALB access logs will be stored. If you set this to null, a name will be generated automatically based on <a href="#alb_name"><code>alb_name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="acm_cert_statuses" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs with the given statuses. Valid values are PENDING_VALIDATION, ISSUED, INACTIVE, EXPIRED, VALIDATION_TIMED_OUT, REVOKED and FAILED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;ISSUED&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="acm_cert_types" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs of the given types. Valid values are AMAZON_ISSUED and IMPORTED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  "AMAZON_ISSUED",
+  "IMPORTED"
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+List of additional SSL certs (non-ACM and ACM) to bind to the given listener port. Note that this must not overlap with the certificates defined in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a> and <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a>. The keys are the listener ports.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(object({
+    # Exactly one of the following must be set, with the other set to null.
+    # The domain name to use when looking up the ACM cert to associate.
+    tls_domain_name = string
+    # The ARN of the TLS cert to associate with the listener.
+    tls_arn = string
+  })))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="allow_all_outbound" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable all outbound traffic on this ALB. If set to false, the ALB will allow no outbound traffic by default. This will make the ALB unusuable, so some other code must then update the ALB Security Group to enable outbound access!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The CIDR-formatted IP Address range from which this ALB will allow incoming requests. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is false, use the default value. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is true, consider setting this to the VPC's CIDR Block, or something even more restrictive.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of IDs of security groups that should have access to the ALB
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="create_route53_entry" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to create a Route 53 DNS A record for this ALB?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="custom_alb_access_logs_s3_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB logs should be stored. Only used if <a href="#enable_custom_alb_access_logs_s3_prefix"><code>enable_custom_alb_access_logs_s3_prefix</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the ALB and its Security Group. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_action_body" requirement="optional" type="string">
+<HclListItemDescription>
+
+If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this body.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="default_action_content_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
+</HclListItem>
+
+<HclListItem name="default_action_status_code" requirement="optional" type="number">
+<HclListItemDescription>
+
+If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this status code.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="404"/>
+</HclListItem>
+
+<HclListItem name="domain_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of domain names for the DNS A record to add for the ALB (e.g. alb.foo.com). Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="drop_invalid_header_fields" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the ALB will drop invalid headers. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_custom_alb_access_logs_s3_prefix" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to use the value of alb_access_logs_s3_prefix for access logs prefix. If false, the alb_name will be used. This is useful if you wish to disable the S3 prefix. Only used if <a href="#enable_alb_access_logs"><code>enable_alb_access_logs</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_deletion_protection" requirement="optional" type="bool">
@@ -150,6 +309,24 @@ Enable deletion protection on the ALB instance. If this is enabled, the load bal
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="force_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean that indicates whether the access logs bucket should be destroyed, even if there are files in it, when you run Terraform destroy. Unless you are using this bucket only for test purposes, you'll want to leave this variable set to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="hosted_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the hosted zone for the DNS A record to add for the ALB. Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="http_listener_ports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -157,44 +334,6 @@ A list of ports for which an HTTP Listener should be created on the ALB. Tip: Wh
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="https_listener_ports_and_ssl_certs" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-A list of the ports for which an HTTPS Listener should be created on the ALB. Each item in the list should be a map with the keys 'port', the port number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS certificate to associate with the Listener to be created. If your certificate is issued by the Amazon Certificate Manager (ACM), specify <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a> instead. Tip: When you define Listener Rules for these Listeners, be sure that, for each Listener, at least one Listener Rule  uses the '*' path to ensure that every possible request path for that Listener is handled by a Listener Rule. Otherwise some requests won't route to any Target Group.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    port    = number
-    tls_arn = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   default = [
-     {
-       port    = 443
-       tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
-     }
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="https_listener_ports_and_acm_ssl_certs" requirement="optional" type="list(object(…))">
@@ -235,116 +374,42 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
+<HclListItem name="https_listener_ports_and_ssl_certs" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-List of additional SSL certs (non-ACM and ACM) to bind to the given listener port. Note that this must not overlap with the certificates defined in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a> and <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a>. The keys are the listener ports.
+A list of the ports for which an HTTPS Listener should be created on the ALB. Each item in the list should be a map with the keys 'port', the port number to listen on, and 'tls_arn', the Amazon Resource Name (ARN) of the SSL/TLS certificate to associate with the Listener to be created. If your certificate is issued by the Amazon Certificate Manager (ACM), specify <a href="#https_listener_ports_and_acm_ssl_certs"><code>https_listener_ports_and_acm_ssl_certs</code></a> instead. Tip: When you define Listener Rules for these Listeners, be sure that, for each Listener, at least one Listener Rule  uses the '*' path to ensure that every possible request path for that Listener is handled by a Listener Rule. Otherwise some requests won't route to any Target Group.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-map(list(object({
-    # Exactly one of the following must be set, with the other set to null.
-    # The domain name to use when looking up the ACM cert to associate.
-    tls_domain_name = string
-    # The ARN of the TLS cert to associate with the listener.
+list(object({
+    port    = number
     tls_arn = string
-  })))
+  }))
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IDs of security groups that should have access to the ALB
-
-</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
 
-<HclListItem name="allow_inbound_from_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
 
-The CIDR-formatted IP Address range from which this ALB will allow incoming requests. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is false, use the default value. If <a href="#is_internal_alb"><code>is_internal_alb</code></a> is true, consider setting this to the VPC's CIDR Block, or something even more restrictive.
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
+   Example:
+   default = [
+     {
+       port    = 443
+       tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
+     }
+   ]
 
-<HclListItem name="access_logs_s3_bucket_name" requirement="optional" type="string">
-<HclListItemDescription>
+```
+</details>
 
-The name to use for the S3 bucket where the ALB access logs will be stored. If you set this to null, a name will be generated automatically based on <a href="#alb_name"><code>alb_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="should_create_access_logs_bucket" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, create a new S3 bucket for access logs with the name in <a href="#access_logs_s3_bucket_name"><code>access_logs_s3_bucket_name</code></a>. If false, assume the S3 bucket for access logs with the name in  <a href="#access_logs_s3_bucket_name"><code>access_logs_s3_bucket_name</code></a> already exists, and don't create a new one. Note that if you set this to false, it's up to you to ensure that the S3 bucket has a bucket policy that grants Elastic Load Balancing permission to write the access logs to your bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="custom_alb_access_logs_s3_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Prefix to use for access logs to create a sub-folder in S3 Bucket name where ALB logs should be stored. Only used if <a href="#enable_custom_alb_access_logs_s3_prefix"><code>enable_custom_alb_access_logs_s3_prefix</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_custom_alb_access_logs_s3_prefix" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to use the value of alb_access_logs_s3_prefix for access logs prefix. If false, the alb_name will be used. This is useful if you wish to disable the S3 prefix. Only used if <a href="#enable_alb_access_logs"><code>enable_alb_access_logs</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="create_route53_entry" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to create a Route 53 DNS A record for this ALB?
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="hosted_zone_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the hosted zone for the DNS A record to add for the ALB. Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="domain_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of domain names for the DNS A record to add for the ALB (e.g. alb.foo.com). Only used if <a href="#create_route53_entry"><code>create_route53_entry</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_all_outbound" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable all outbound traffic on this ALB. If set to false, the ALB will allow no outbound traffic by default. This will make the ALB unusuable, so some other code must then update the ALB Security Group to enable outbound access!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="idle_timeout" requirement="optional" type="number">
@@ -356,96 +421,31 @@ The time in seconds that the client TCP connection to the ALB is allowed to be i
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
-<HclListItem name="drop_invalid_header_fields" requirement="optional" type="bool">
+<HclListItem name="should_create_access_logs_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If true, the ALB will drop invalid headers. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens.
+If true, create a new S3 bucket for access logs with the name in <a href="#access_logs_s3_bucket_name"><code>access_logs_s3_bucket_name</code></a>. If false, assume the S3 bucket for access logs with the name in  <a href="#access_logs_s3_bucket_name"><code>access_logs_s3_bucket_name</code></a> already exists, and don't create a new one. Note that if you set this to false, it's up to you to ensure that the S3 bucket has a bucket policy that grants Elastic Load Balancing permission to write the access logs to your bucket.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItem name="ssl_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
-A map of custom tags to apply to the ALB and its Security Group. The key is the tag name and the value is the tag value.
+The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
-</HclListItem>
-
-<HclListItem name="default_action_body" requirement="optional" type="string">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this body.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="default_action_status_code" requirement="optional" type="number">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this status code.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="404"/>
-</HclListItem>
-
-<HclListItem name="acm_cert_statuses" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs with the given statuses. Valid values are PENDING_VALIDATION, ISSUED, INACTIVE, EXPIRED, VALIDATION_TIMED_OUT, REVOKED and FAILED.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;ISSUED&quot;
-]"/>
-</HclListItem>
-
-<HclListItem name="acm_cert_types" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_certs, only match certs of the given types. Valid values are AMAZON_ISSUED and IMPORTED.
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  "AMAZON_ISSUED",
-  "IMPORTED"
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="force_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A boolean that indicates whether the access logs bucket should be destroyed, even if there are files in it, when you run Terraform destroy. Unless you are using this bucket only for test purposes, you'll want to leave this variable set to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-2016-08&quot;"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="alb_name">
+<HclListItem name="alb_access_logs_bucket">
 <HclListItemDescription>
 
-A human friendly name for the ALB.
+The name of the S3 bucket containing the ALB access logs
 
 </HclListItemDescription>
 </HclListItem>
@@ -466,18 +466,18 @@ The list of DNS records for the ALB as specified in the input.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="original_alb_dns_name">
-<HclListItemDescription>
-
-The AWS-managed DNS name assigned to the ALB.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="alb_hosted_zone_id">
 <HclListItemDescription>
 
 The AWS-managed zone ID for the ALB's DNS record.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="alb_name">
+<HclListItemDescription>
+
+A human friendly name for the ALB.
 
 </HclListItemDescription>
 </HclListItem>
@@ -490,26 +490,10 @@ The ID of the security group associated with the ALB.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="listener_arns">
-<HclListItemDescription>
-
-The map of listener ports to ARNs. This will include all listeners both HTTP and HTTPS.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="http_listener_arns">
 <HclListItemDescription>
 
 The map of HTTP listener ports to ARNs. There will be one listener per entry in <a href="#http_listener_ports"><code>http_listener_ports</code></a>.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="https_listener_non_acm_cert_arns">
-<HclListItemDescription>
-
-The map of HTTPS listener ports to ARNs. There will be one listener per entry in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -522,10 +506,26 @@ The map of HTTPS listener ports to ARNs. There will be one listener per entry in
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alb_access_logs_bucket">
+<HclListItem name="https_listener_non_acm_cert_arns">
 <HclListItemDescription>
 
-The name of the S3 bucket containing the ALB access logs
+The map of HTTPS listener ports to ARNs. There will be one listener per entry in <a href="#https_listener_ports_and_ssl_certs"><code>https_listener_ports_and_ssl_certs</code></a>.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="listener_arns">
+<HclListItemDescription>
+
+The map of listener ports to ARNs. This will include all listeners both HTTP and HTTPS.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="original_alb_dns_name">
+<HclListItemDescription>
+
+The AWS-managed DNS name assigned to the ALB.
 
 </HclListItemDescription>
 </HclListItem>
@@ -537,11 +537,11 @@ The name of the S3 bucket containing the ALB access logs
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Falb%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Falb%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fnetworking%2Falb%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Falb%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Falb%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "258855d4d7cae5fe9fa5b718b9dda1e1"
+  "hash": "ef2dd922bce041a347329fb30f3ea93f"
 }
 ##DOCS-SOURCER-END -->

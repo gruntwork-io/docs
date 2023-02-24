@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-app-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -86,22 +86,6 @@ module "network_acls" {
 
 ### Required
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The id of the VPC
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the VPC (e.g. stage, prod)
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="num_subnets" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -110,10 +94,10 @@ The number of each type of subnet (public, private, private persistence) created
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="public_subnet_ids" requirement="required" type="list(string)">
+<HclListItem name="private_app_subnet_cidr_blocks" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-A list of IDs of the public subnets in the VPC
+A list of CIDR blocks used by the private app subnets in the VPC
 
 </HclListItemDescription>
 </HclListItem>
@@ -122,6 +106,14 @@ A list of IDs of the public subnets in the VPC
 <HclListItemDescription>
 
 A list of IDs of the private app subnets in the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_cidr_blocks" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks used by the private persistence subnets in the VPC
 
 </HclListItemDescription>
 </HclListItem>
@@ -142,18 +134,26 @@ A list of CIDR blocks used by the public subnets in the VPC
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="private_app_subnet_cidr_blocks" requirement="required" type="list(string)">
+<HclListItem name="public_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-A list of CIDR blocks used by the private app subnets in the VPC
+A list of IDs of the public subnets in the VPC
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="private_persistence_subnet_cidr_blocks" requirement="required" type="list(string)">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-A list of CIDR blocks used by the private persistence subnets in the VPC
+The id of the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC (e.g. stage, prod)
 
 </HclListItemDescription>
 </HclListItem>
@@ -167,60 +167,6 @@ If set to true, the network ACLs will allow incoming requests from the Mgmt VPC 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="mgmt_vpc_cidr_block" requirement="optional" type="string">
-<HclListItemDescription>
-
-The CIDR block of the Mgmt VPC. All subnets will allow connections from this CIDR block. Only used if <a href="#allow_access_from_mgmt_vpc"><code>allow_access_from_mgmt_vpc</code></a> is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="vpc_ready" requirement="optional" type="string">
-<HclListItemDescription>
-
-Use this variable to ensure the Network ACL does not get created until the VPC is ready. This can help to work around a Terraform or AWS issue where trying to create certain resources, such as Network ACLs, before the VPC's Gateway and NATs are ready, leads to a huge variety of eventual consistency bugs. You should typically point this variable at the vpc_ready output from the Gruntwork VPCs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="initial_nacl_rule_number" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number to use for the first rule that is created by this module. All rules in this module will be inserted after this number. This is useful to provide additional head room for your NACL rules that should take precedence over the initial rule.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="100"/>
-</HclListItem>
-
-<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
-<HclListItemDescription>
-
-The list of ports to exclude from the inbound allow all rules. This is useful for adhering to certain compliance standards like CIS that explicitly deny any allow rule for administrative ports.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the Network ACLs created by this module. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="create_public_subnet_nacls" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to false, this module will NOT create the NACLs for the public subnet tier. This is useful for VPCs that only need private subnets.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_private_app_subnet_nacls" requirement="optional" type="bool">
@@ -239,6 +185,60 @@ If set to false, this module will NOT create the NACLs for the private persisten
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_public_subnet_nacls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the NACLs for the public subnet tier. This is useful for VPCs that only need private subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the Network ACLs created by this module. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
+<HclListItemDescription>
+
+The list of ports to exclude from the inbound allow all rules. This is useful for adhering to certain compliance standards like CIS that explicitly deny any allow rule for administrative ports.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="initial_nacl_rule_number" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number to use for the first rule that is created by this module. All rules in this module will be inserted after this number. This is useful to provide additional head room for your NACL rules that should take precedence over the initial rule.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100"/>
+</HclListItem>
+
+<HclListItem name="mgmt_vpc_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+The CIDR block of the Mgmt VPC. All subnets will allow connections from this CIDR block. Only used if <a href="#allow_access_from_mgmt_vpc"><code>allow_access_from_mgmt_vpc</code></a> is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="private_app_allow_inbound_ports_from_cidr" requirement="optional" type="map">
@@ -347,25 +347,25 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItem name="vpc_ready" requirement="optional" type="string">
 <HclListItemDescription>
 
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+Use this variable to ensure the Network ACL does not get created until the VPC is ready. This can help to work around a Terraform or AWS issue where trying to create certain resources, such as Network ACLs, before the VPC's Gateway and NATs are ready, leads to a huge variety of eventual consistency bugs. You should typically point this variable at the vpc_ready output from the Gruntwork VPCs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="public_subnets_network_acl_id">
-</HclListItem>
-
 <HclListItem name="private_app_subnets_network_acl_id">
 </HclListItem>
 
 <HclListItem name="private_persistence_subnets_network_acl_id">
+</HclListItem>
+
+<HclListItem name="public_subnets_network_acl_id">
 </HclListItem>
 
 </TabItem>
@@ -380,6 +380,6 @@ If you set this variable to false, this module will not create any resources. Th
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb5858f3494bb9e3b88b32f75a70f875"
+  "hash": "dd1cdcbf27eda30d9a32d66ec736fe87"
 }
 ##DOCS-SOURCER-END -->

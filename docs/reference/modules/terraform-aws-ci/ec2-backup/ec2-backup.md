@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -97,18 +97,10 @@ automatically delete older snapshots. You can specify two parameters to control 
 
 ### Required
 
-<HclListItem name="instance_name" requirement="required" type="string">
+<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-The name of the EC2 Instance to backup. This must be the value of the tag 'Name' on that Instance.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="backup_job_schedule_expression" requirement="required" type="string">
-<HclListItemDescription>
-
-An expression that defines the schedule for how often to run the backup lambda function. For example, cron(0 20 * * ? *) or rate(1 day).
+The ARN of SNS topics to notify if the CloudWatch alarm goes off because the backup job failed.
 
 </HclListItemDescription>
 </HclListItem>
@@ -121,18 +113,10 @@ How often, in seconds, the backup lambda function is expected to run. This is th
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="delete_older_than" requirement="required" type="string">
+<HclListItem name="backup_job_schedule_expression" requirement="required" type="string">
 <HclListItemDescription>
 
-Delete all snapshots older than this value (e.g., 30d, 5h, or 15m). For example, setting this to 30d means all snapshots more than 30 days old will be deleted.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="require_at_least" requirement="required" type="number">
-<HclListItemDescription>
-
-The minimum number of snapshots to keep around. This ensures some number of snapshots are never deleted, regardless of the value of <a href="#delete_older_than"><code>delete_older_than</code></a>.
+An expression that defines the schedule for how often to run the backup lambda function. For example, cron(0 20 * * ? *) or rate(1 day).
 
 </HclListItemDescription>
 </HclListItem>
@@ -153,10 +137,26 @@ The namespace for the CloudWatch Metric the AWS lambda backup function will incr
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list(string)">
+<HclListItem name="delete_older_than" requirement="required" type="string">
 <HclListItemDescription>
 
-The ARN of SNS topics to notify if the CloudWatch alarm goes off because the backup job failed.
+Delete all snapshots older than this value (e.g., 30d, 5h, or 15m). For example, setting this to 30d means all snapshots more than 30 days old will be deleted.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="instance_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the EC2 Instance to backup. This must be the value of the tag 'Name' on that Instance.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="require_at_least" requirement="required" type="number">
+<HclListItemDescription>
+
+The minimum number of snapshots to keep around. This ensures some number of snapshots are never deleted, regardless of the value of <a href="#delete_older_than"><code>delete_older_than</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -175,16 +175,16 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="backup_lambda_function_name">
-</HclListItem>
-
 <HclListItem name="backup_lambda_function_arn">
 </HclListItem>
 
-<HclListItem name="backup_lambda_iam_role_id">
+<HclListItem name="backup_lambda_function_name">
 </HclListItem>
 
 <HclListItem name="backup_lambda_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="backup_lambda_iam_role_id">
 </HclListItem>
 
 </TabItem>
@@ -199,6 +199,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "94a1cc9d20dd48aa153401fda37e4626"
+  "hash": "e8fb27c8162ff3a71bd6c88f0a8e745e"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -285,6 +285,15 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
+<HclListItem name="allow_ssh_from_security_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of Security Group IDs to allow SSH access from. Only used if <a href="#cluster_instance_keypair_name"><code>cluster_instance_keypair_name</code></a> is set. Set to null to allow access from all locations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="aws_partition" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -294,215 +303,6 @@ The AWS partition used for default AWS Resources.
 <HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_role_already_exists" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not the IAM role used for the workers already exists. When false, this module will create a new IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Custom name for the IAM role. When null, a default name based on cluster_name will be used. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of the IAM role to use if iam_role_already_exists = true. When null, uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The names of the node groups. When null, this value is automatically calculated from the node_group_configurations map. This variable must be set if any of the values of the node_group_configurations map depends on a resource that is not available at plan time to work around terraform limitations with for_each.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Default value for subnet_ids field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_min_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for min_size field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_max_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for max_size field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_desired_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for desired_size field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_instance_types" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Default value for instance_types field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;t3.medium&quot;
-]"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for capacity_type field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ON_DEMAND&quot;"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_force_update_version" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to force the roll out of release versions to the EKS workers. When true, this will forcefully delete any pods after 15 minutes if it is not able to safely drain the nodes. When null (default), this setting is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_launch_template" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Default value for launch_template field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    name    = string
-    id      = string
-    version = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_disk_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for disk_size field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_ami_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for ami_type field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_ami_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for ami_version field of node_group_configurations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Default value for tags field of node_group_configurations. Unlike common_tags which will always be merged in, these tags are only used if the tags field is omitted from the configuration.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Default value for labels field of node_group_configurations. Unlike common_labels which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="node_group_default_taints" requirement="optional" type="list(map(…))">
-<HclListItemDescription>
-
-Default value for taint field of node_group_configurations. These taints are only used if the taint field is omitted from the configuration.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(map(string))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Prefix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="name_suffix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Suffix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="kubernetes_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-The version of Kubernetes to use for the AMI. Defaults to the Kubernetes version of the EKS cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="cluster_instance_keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -510,15 +310,6 @@ The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To disabl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_security_groups" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of Security Group IDs to allow SSH access from. Only used if <a href="#cluster_instance_keypair_name"><code>cluster_instance_keypair_name</code></a> is set. Set to null to allow access from all locations.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="common_labels" requirement="optional" type="map(string)">
@@ -548,10 +339,37 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="worker_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItem name="iam_role_already_exists" requirement="optional" type="bool">
 <HclListItemDescription>
 
-ARN of permissions boundary to apply to the worker IAM role - the IAM role created for the EKS worker nodes.
+Whether or not the IAM role used for the workers already exists. When false, this module will create a new IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the IAM role to use if iam_role_already_exists = true. When null, uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom name for the IAM role. When null, a default name based on cluster_name will be used. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kubernetes_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version of Kubernetes to use for the AMI. Defaults to the Kubernetes version of the EKS cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -566,8 +384,206 @@ Tags assigned to a node group are mirrored to the underlaying autoscaling group 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="name_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Prefix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="name_suffix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Suffix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for ami_type field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_ami_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for ami_version field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for capacity_type field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ON_DEMAND&quot;"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_desired_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for desired_size field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_disk_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for disk_size field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_force_update_version" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to force the roll out of release versions to the EKS workers. When true, this will forcefully delete any pods after 15 minutes if it is not able to safely drain the nodes. When null (default), this setting is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_instance_types" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Default value for instance_types field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;t3.medium&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Default value for labels field of node_group_configurations. Unlike common_labels which will always be merged in, these labels are only used if the labels field is omitted from the configuration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_launch_template" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for launch_template field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name    = string
+    id      = string
+    version = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_max_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for max_size field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_min_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for min_size field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Default value for subnet_ids field of node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Default value for tags field of node_group_configurations. Unlike common_tags which will always be merged in, these tags are only used if the tags field is omitted from the configuration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_taints" requirement="optional" type="list(map(…))">
+<HclListItemDescription>
+
+Default value for taint field of node_group_configurations. These taints are only used if the taint field is omitted from the configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(map(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="node_group_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The names of the node groups. When null, this value is automatically calculated from the node_group_configurations map. This variable must be set if any of the values of the node_group_configurations map depends on a resource that is not available at plan time to work around terraform limitations with for_each.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="worker_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of permissions boundary to apply to the worker IAM role - the IAM role created for the EKS worker nodes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="eks_worker_asg_names">
+<HclListItemDescription>
+
+Map of Node Group names to Auto Scaling Group names
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_worker_asg_security_group_ids">
+<HclListItemDescription>
+
+Map of Node Group names to Auto Scaling Group security group IDs. Empty if <a href="#cluster_instance_keypair_name"><code>cluster_instance_keypair_name</code></a> is not set.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="eks_worker_iam_role_arn">
 <HclListItemDescription>
@@ -585,26 +601,10 @@ Name of the IAM role created for the EKS worker nodes.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_worker_asg_names">
-<HclListItemDescription>
-
-Map of Node Group names to Auto Scaling Group names
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="eks_worker_node_group_arns">
 <HclListItemDescription>
 
 Map of Node Group names to ARNs of the created EKS Node Groups
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_worker_asg_security_group_ids">
-<HclListItemDescription>
-
-Map of Node Group names to Auto Scaling Group security group IDs. Empty if <a href="#cluster_instance_keypair_name"><code>cluster_instance_keypair_name</code></a> is not set.
 
 </HclListItemDescription>
 </HclListItem>
@@ -621,6 +621,6 @@ Map of Node Group names to Auto Scaling Group security group IDs. Empty if <a hr
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0fb23f05c19ae6d2f06cae3496262b94"
+  "hash": "95c0687d48ea94934e4525cb046abfdf"
 }
 ##DOCS-SOURCER-END -->

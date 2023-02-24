@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fconfluent-tools-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -223,54 +223,6 @@ respectively.
 
 ### Required
 
-<HclListItem name="cluster_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the Confluent Tools cluster (e.g. confluent-tools-stage). This variable is used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ami_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the AMI to run in this cluster. Should be an AMI that has the Confluent Tools installed by the install-confluent-tool module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="aws_region" requirement="required" type="string">
-<HclListItemDescription>
-
-The AWS region to deploy into.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the VPC in which to deploy the cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The subnet IDs into which the EC2 Instances should be deployed. You should typically pass in one subnet ID per node in the cluster_size variable. We strongly recommend that you run the Confluent tools in private subnets.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="allowed_inbound_cidr_blocks" requirement="required" type="list(string)">
 <HclListItemDescription>
 
@@ -287,26 +239,26 @@ A list of security group IDs that will be allowed to connect to the Confluent to
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="num_allowed_inbound_security_group_ids" requirement="required" type="number">
+<HclListItem name="ami_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The number of security group IDs in <a href="#allowed_inbound_security_group_ids"><code>allowed_inbound_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, we can't: https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+The ID of the AMI to run in this cluster. Should be an AMI that has the Confluent Tools installed by the install-confluent-tool module.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="confluent_tools_elb_security_group_id" requirement="required" type="string">
+<HclListItem name="aws_region" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the Security Group associated with the ELB that fronts the Confluent Tools cluster.
+The AWS region to deploy into.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="user_data" requirement="required" type="string">
+<HclListItem name="cluster_name" requirement="required" type="string">
 <HclListItemDescription>
 
-A User Data script to execute while the server is booting. We remmend passing in a bash script that executes the run-kafka-rest and run-schema-registry scripts, which should have been installed in the AMI with gruntwork-install.
+The name of the Confluent Tools cluster (e.g. confluent-tools-stage). This variable is used to namespace all resources created by this module.
 
 </HclListItemDescription>
 </HclListItem>
@@ -319,24 +271,63 @@ The number of brokers to have in the cluster.
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="attach_eni" requirement="optional" type="bool">
+<HclListItem name="confluent_tools_elb_security_group_id" requirement="required" type="string">
 <HclListItemDescription>
 
-Set to true to attach an Elastic Network Interface (ENI) to each server. This is an IP address that will remain static, even if the underlying servers are replaced.
+The ID of the Security Group associated with the ELB that fronts the Confluent Tools cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="ssh_key_name" requirement="optional" type="string">
+<HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair.
+The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="num_allowed_inbound_security_group_ids" requirement="required" type="number">
+<HclListItemDescription>
+
+The number of security group IDs in <a href="#allowed_inbound_security_group_ids"><code>allowed_inbound_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, we can't: https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+The subnet IDs into which the EC2 Instances should be deployed. You should typically pass in one subnet ID per node in the cluster_size variable. We strongly recommend that you run the Confluent tools in private subnets.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="user_data" requirement="required" type="string">
+<HclListItemDescription>
+
+A User Data script to execute while the server is booting. We remmend passing in a bash script that executes the run-kafka-rest and run-schema-registry scripts, which should have been installed in the AMI with gruntwork-install.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC in which to deploy the cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Security Group IDs that should be added to the Auto Scaling Group's Launch Configuration used to launch the Confluent Tools cluster EC2 Instances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allowed_ssh_cidr_blocks" requirement="optional" type="list(string)">
@@ -366,58 +357,58 @@ If set to true, associate a public IP address with each EC2 Instance in the clus
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItem name="attach_eni" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The tenancy of the instance. Must be one of: default or dedicated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
-</HclListItem>
-
-<HclListItem name="root_volume_ebs_optimized" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launched EC2 instance will be EBS-optimized.
+Set to true to attach an Elastic Network Interface (ENI) to each server. This is an IP address that will remain static, even if the underlying servers are replaced.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-The type of volume. Must be one of: standard, gp2, or io1.
+Custom tags to apply to the Confluent Tools nodes and all related resources (i.e., security groups, EBS Volumes, ENIs).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItem name="deployment_batch_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-The size, in GB, of the root EBS volume.
+How many servers to deploy at a time during a rolling deployment. For example, if you have 10 servers and set this variable to 2, then the deployment will a) undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for the next 2 servers.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="50"/>
+<HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
-<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItem name="dns_name_common_portion" requirement="optional" type="string">
 <HclListItemDescription>
 
-Whether the root volume should be destroyed on instance termination.
+The common portion of the DNS name to assign to each ENI in the Confluent Tools server group. For example, if confluent.acme.com, this module will create DNS records 0.confluent.acme.com, 1.confluent.acme.com, etc. Note that this value must be a valid record name for the Route 53 Hosted Zone ID specified in <a href="#route53_hosted_zone_id"><code>route53_hosted_zone_id</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItem name="dns_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of target group ARNs of Application Load Balanacer (ALB) targets to associate with the Confluent Tools nodes. We recommend using an ELB for health checks. If you're using a Elastic Load Balancer (AKA ELB Classic), use <a href="#elb_names"><code>elb_names</code></a> instead.
+A list of DNS names to assign to the ENIs in the Confluent Tools server group. Make sure the list has n entries, where n = <a href="#cluster_size"><code>cluster_size</code></a>. If this var is specified, it will override <a href="#dns_name_common_portion"><code>dns_name_common_portion</code></a>. Example: [0.acme.com, 1.acme.com, 2.acme.com]. Note that the list entries must be valid records for the Route 53 Hosted Zone ID specified in <a href="#route53_hosted_zone_id"><code>route53_hosted_zone_id</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="dns_ttl" requirement="optional" type="number">
+<HclListItemDescription>
+
+The TTL (Time to Live) to apply to any DNS records created by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
 <HclListItem name="elb_names" requirement="optional" type="list(string)">
@@ -429,22 +420,54 @@ A list of Elastic Load Balancer (ELB) names to associate with the Confluent Tool
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItem name="enable_detailed_monitoring" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior.
+Enable detailed CloudWatch monitoring for the servers. This gives you more granularity with your CloudWatch metrics, but also costs more money.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="health_check_type" requirement="optional" type="string">
+<HclListItem name="enable_elastic_ips" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Controls how health checking is done. Must be one of EC2 or ELB.
+If true, create an Elastic IP Address for each ENI and associate it with the ENI.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   enabled_metrics = [
+      "GroupDesiredCapacity",
+      "GroupInServiceInstances",
+      "GroupMaxSize",
+      "GroupMinSize",
+      "GroupPendingInstances",
+      "GroupStandbyInstances",
+      "GroupTerminatingInstances",
+      "GroupTotalInstances"
+    ]
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="health_check_grace_period" requirement="optional" type="number">
@@ -456,13 +479,22 @@ Time, in seconds, after instance comes into service before checking health.
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItem name="health_check_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-Custom tags to apply to the Confluent Tools nodes and all related resources (i.e., security groups, EBS Volumes, ENIs).
+Controls how health checking is done. Must be one of EC2 or ELB.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
+</HclListItem>
+
+<HclListItem name="health_checker_listener_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port number on which health-checker (https://github.com/gruntwork-io/health-checker) accepts inbound HTTP connections. This is the port the ELB Health Check will actually use. Specify null to disable this Security Group rule.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5500"/>
 </HclListItem>
 
 <HclListItem name="ports" requirement="optional" type="list(object(…))">
@@ -503,67 +535,40 @@ list(object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="health_checker_listener_port" requirement="optional" type="number">
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The port number on which health-checker (https://github.com/gruntwork-io/health-checker) accepts inbound HTTP connections. This is the port the ELB Health Check will actually use. Specify null to disable this Security Group rule.
+Whether the root volume should be destroyed on instance termination.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5500"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="ssh_port" requirement="optional" type="number">
+<HclListItem name="root_volume_ebs_optimized" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The port used for SSH connections
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="22"/>
-</HclListItem>
-
-<HclListItem name="script_log_level" requirement="optional" type="string">
-<HclListItemDescription>
-
-The log level to use with the rolling deploy script. It can be useful to set this to DEBUG when troubleshooting the script.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;INFO&quot;"/>
-</HclListItem>
-
-<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
+If true, the launched EC2 instance will be EBS-optimized.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="skip_health_check" requirement="optional" type="bool">
+<HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-If set to true, skip the health check, and start a rolling deployment without waiting for the server group to be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
+The size, in GB, of the root EBS volume.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="50"/>
 </HclListItem>
 
-<HclListItem name="deployment_batch_size" requirement="optional" type="number">
+<HclListItem name="root_volume_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-How many servers to deploy at a time during a rolling deployment. For example, if you have 10 servers and set this variable to 2, then the deployment will a) undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for the next 2 servers.
+The type of volume. Must be one of: standard, gp2, or io1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="enable_detailed_monitoring" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable detailed CloudWatch monitoring for the servers. This gives you more granularity with your CloudWatch metrics, but also costs more money.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="route53_hosted_zone_id" requirement="optional" type="string">
@@ -575,81 +580,76 @@ The ID of the Route53 Hosted Zone in which we will create the DNS records specif
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="dns_ttl" requirement="optional" type="number">
+<HclListItem name="script_log_level" requirement="optional" type="string">
 <HclListItemDescription>
 
-The TTL (Time to Live) to apply to any DNS records created by this module.
+The log level to use with the rolling deploy script. It can be useful to set this to DEBUG when troubleshooting the script.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
+<HclListItemDefaultValue defaultValue="&quot;INFO&quot;"/>
 </HclListItem>
 
-<HclListItem name="dns_names" requirement="optional" type="list(string)">
+<HclListItem name="skip_health_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A list of DNS names to assign to the ENIs in the Confluent Tools server group. Make sure the list has n entries, where n = <a href="#cluster_size"><code>cluster_size</code></a>. If this var is specified, it will override <a href="#dns_name_common_portion"><code>dns_name_common_portion</code></a>. Example: [0.acme.com, 1.acme.com, 2.acme.com]. Note that the list entries must be valid records for the Route 53 Hosted Zone ID specified in <a href="#route53_hosted_zone_id"><code>route53_hosted_zone_id</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="dns_name_common_portion" requirement="optional" type="string">
-<HclListItemDescription>
-
-The common portion of the DNS name to assign to each ENI in the Confluent Tools server group. For example, if confluent.acme.com, this module will create DNS records 0.confluent.acme.com, 1.confluent.acme.com, etc. Note that this value must be a valid record name for the Route 53 Hosted Zone ID specified in <a href="#route53_hosted_zone_id"><code>route53_hosted_zone_id</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_elastic_ips" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, create an Elastic IP Address for each ENI and associate it with the ENI.
+If set to true, skip the health check, and start a rolling deployment without waiting for the server group to be in a healthy state. This is primarily useful if the server group is in a broken state and you want to force a deployment anyway.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A list of Security Group IDs that should be added to the Auto Scaling Group's Launch Configuration used to launch the Confluent Tools cluster EC2 Instances.
+If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ssh_key_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ssh_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port used for SSH connections
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="22"/>
+</HclListItem>
+
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of target group ARNs of Application Load Balanacer (ALB) targets to associate with the Confluent Tools nodes. We recommend using an ELB for health checks. If you're using a Elastic Load Balancer (AKA ELB Classic), use <a href="#elb_names"><code>elb_names</code></a> instead.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
+<HclListItem name="tenancy" requirement="optional" type="string">
 <HclListItemDescription>
 
-A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
+The tenancy of the instance. Must be one of: default or dedicated.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
 
+<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItemDescription>
 
-```hcl
+A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior.
 
-   Example:
-   enabled_metrics = [
-      "GroupDesiredCapacity",
-      "GroupInServiceInstances",
-      "GroupMaxSize",
-      "GroupMinSize",
-      "GroupPendingInstances",
-      "GroupStandbyInstances",
-      "GroupTerminatingInstances",
-      "GroupTotalInstances"
-    ]
-
-```
-</details>
-
-</HclGeneralListItem>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -658,16 +658,19 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 <HclListItem name="asg_names">
 </HclListItem>
 
+<HclListItem name="cluster_size">
+</HclListItem>
+
 <HclListItem name="dns_names">
 </HclListItem>
 
-<HclListItem name="eni_private_ips">
+<HclListItem name="ebs_volume_ids">
 </HclListItem>
 
 <HclListItem name="eni_elastic_ips">
 </HclListItem>
 
-<HclListItem name="cluster_size">
+<HclListItem name="eni_private_ips">
 </HclListItem>
 
 <HclListItem name="iam_role_arn">
@@ -677,9 +680,6 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 </HclListItem>
 
 <HclListItem name="security_group_id">
-</HclListItem>
-
-<HclListItem name="ebs_volume_ids">
 </HclListItem>
 
 </TabItem>
@@ -694,6 +694,6 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "025a0ad3cc27ead1cb21b0450eeb1694"
+  "hash": "09a71fea9442e0bef57fa5a1a5bf07f4"
 }
 ##DOCS-SOURCER-END -->

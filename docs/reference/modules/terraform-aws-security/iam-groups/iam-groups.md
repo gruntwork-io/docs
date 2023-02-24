@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -139,6 +139,24 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 
 ### Optional
 
+<HclListItem name="auto_deploy_permissions" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If <a href="#should_create_iam_group_auto_deploy"><code>should_create_iam_group_auto_deploy</code></a> is true, the list must have at least one element (e.g. '*').
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group will include permissions to decrypt using this CMK.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -148,121 +166,76 @@ Set to false to have this module create no resources. This weird parameter exist
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_full_access" requirement="optional" type="bool">
+<HclListItem name="cross_account_access_all_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for full access? Allows full access to all AWS resources. (true or false)
+The name of the IAM group that will grant access to all external AWS accounts in <a href="#iam_groups_for_cross_account_access"><code>iam_groups_for_cross_account_access</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;access-all-external-accounts&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_billing" requirement="optional" type="bool">
+<HclListItem name="houston_path" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for billing? Allows read-write access to billing features only. (true or false)
+The path to allow requests to in the Houston API.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_logs" requirement="optional" type="bool">
+<HclListItem name="houston_region" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS Config, and CloudWatch. If <a href="#cloudtrail_kms_key_arn"><code>cloudtrail_kms_key_arn</code></a> is set, will also give decrypt access to a KMS CMK. (true or false)
+The AWS region where Houston is deployed (e.g., us-east-1).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_developers" requirement="optional" type="bool">
+<HclListItem name="houston_stage" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for developers? The permissions of that group are specified via <a href="#iam_group_developers_permitted_services"><code>iam_group_developers_permitted_services</code></a>. (true or false)
+The API Gateway stage to use for Houston.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_read_only" requirement="optional" type="bool">
+<HclListItem name="houston_users_api_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for read-only? Allows read-only access to all AWS resources. (true or false)
+The ID API Gateway has assigned to the Houston API.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_support" requirement="optional" type="bool">
+<HclListItem name="iam_group_developers_permitted_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Should we create the IAM Group for support users? Allows users to access AWS support.
+A list of AWS services for which the developers IAM Group will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access. If you need to grant iam privileges, just grant the user Full Access.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_user_self_mgmt" requirement="optional" type="bool">
+<HclListItem name="iam_group_developers_s3_bucket_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for user self-management? Allows users to manage their own IAM user accounts, but not other IAM users. (true or false)
+The prefix of the S3 Bucket Name to which an individual IAM User will have full access. For example, if the prefix is acme.user-, then IAM User john.doe will have access to S3 Bucket acme.user-john.doe.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;your-org-name.user-&quot;"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
+<HclListItem name="iam_group_name_auto_deploy" requirement="optional" type="string">
 <HclListItemDescription>
 
-Should we create the IAM Group for IAM administrator access? Allows users to manage all IAM entities, effectively granting administrator access. (true or false)
+The name of the IAM Group that allows automated deployment by graning the permissions specified in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="should_create_iam_group_use_existing_iam_roles" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS resources with existing IAM Roles, but no ability to create new IAM Roles. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="should_create_iam_group_auto_deploy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for auto-deploy? Allows automated deployment by granting the permissions specified in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="should_create_iam_group_cross_account_access_all" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for access to all external AWS accounts? 
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_full_access" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Group that grants full access to all AWS resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;_machine.ecs-auto-deploy&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_group_name_billing" requirement="optional" type="string">
@@ -274,15 +247,6 @@ The name to be used for the IAM Group that grants read/write access to all billi
 <HclListItemDefaultValue defaultValue="&quot;billing&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_name_logs" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Group that grants read access to CloudTrail, AWS Config, and CloudWatch in AWS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;logs&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_name_developers" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -292,6 +256,51 @@ The name to be used for the IAM Group that grants IAM Users a reasonable set of 
 <HclListItemDefaultValue defaultValue="&quot;developers&quot;"/>
 </HclListItem>
 
+<HclListItem name="iam_group_name_full_access" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to be used for the IAM Group that grants full access to all AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the IAM Group that allows access to houston CLI.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to be used for the IAM Group that grants IAM administrative access. Effectively grants administrator access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;iam-admin&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_iam_user_self_mgmt" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to be used for the IAM Group that grants IAM Users the permissions to manage their own IAM User account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;iam-user-self-mgmt&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_logs" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to be used for the IAM Group that grants read access to CloudTrail, AWS Config, and CloudWatch in AWS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;logs&quot;"/>
+</HclListItem>
+
 <HclListItem name="iam_group_name_read_only" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -299,6 +308,24 @@ The name to be used for the IAM Group that grants read-only access to all AWS re
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;read-only&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the IAM Group that allows access to AWS Support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;support&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_group_name_use_existing_iam_roles" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to be used for the IAM Group that grants IAM Users the permissions to use existing IAM Roles when launching AWS Resources. This does NOT grant the permission to create new IAM Roles.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;use-existing-iam-roles&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_group_names_ssh_grunt_sudo_users" requirement="optional" type="list(string)">
@@ -333,96 +360,6 @@ The name to be used for the IAM Group that enables its members to SSH as a non-s
 ```
 
 </HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="iam_group_name_use_existing_iam_roles" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Group that grants IAM Users the permissions to use existing IAM Roles when launching AWS Resources. This does NOT grant the permission to create new IAM Roles.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;use-existing-iam-roles&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_auto_deploy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows automated deployment by graning the permissions specified in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;_machine.ecs-auto-deploy&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_support" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to AWS Support.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;support&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_iam_user_self_mgmt" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Group that grants IAM Users the permissions to manage their own IAM User account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;iam-user-self-mgmt&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_policy_iam_user_self_mgmt" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Policy that grants IAM Users the permissions to manage their own IAM User account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;iam-user-self-mgmt&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Group that grants IAM administrative access. Effectively grants administrator access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;iam-admin&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_policy_iam_admin" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to be used for the IAM Policy that grants IAM administrative access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;iam-admin&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_developers_permitted_services" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of AWS services for which the developers IAM Group will receive full permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant developers access only to EC2 and Amazon Machine Learning, use the value ['ec2','machinelearning']. Do NOT add iam to the list of services, or that will grant Developers de facto admin access. If you need to grant iam privileges, just grant the user Full Access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="iam_group_developers_s3_bucket_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-The prefix of the S3 Bucket Name to which an individual IAM User will have full access. For example, if the prefix is acme.user-, then IAM User john.doe will have access to S3 Bucket acme.user-john.doe.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;your-org-name.user-&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_groups_for_cross_account_access" requirement="optional" type="list(object(…))">
@@ -470,151 +407,145 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="cross_account_access_all_group_name" requirement="optional" type="string">
+<HclListItem name="iam_policy_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of the IAM group that will grant access to all external AWS accounts in <a href="#iam_groups_for_cross_account_access"><code>iam_groups_for_cross_account_access</code></a>.
+The name to be used for the IAM Policy that grants IAM administrative access.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;access-all-external-accounts&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;iam-admin&quot;"/>
 </HclListItem>
 
-<HclListItem name="auto_deploy_permissions" requirement="optional" type="list(string)">
+<HclListItem name="iam_policy_iam_user_self_mgmt" requirement="optional" type="string">
 <HclListItemDescription>
 
-A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for doing automated deployments. NOTE: If <a href="#should_create_iam_group_auto_deploy"><code>should_create_iam_group_auto_deploy</code></a> is true, the list must have at least one element (e.g. '*').
+The name to be used for the IAM Policy that grants IAM Users the permissions to manage their own IAM User account.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="&quot;iam-user-self-mgmt&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_region" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group_auto_deploy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The AWS region where Houston is deployed (e.g., us-east-1).
+Should we create the IAM Group for auto-deploy? Allows automated deployment by granting the permissions specified in <a href="#auto_deploy_permissions"><code>auto_deploy_permissions</code></a>. (true or false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="houston_users_api_id" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group_billing" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ID API Gateway has assigned to the Houston API.
+Should we create the IAM Group for billing? Allows read-write access to billing features only. (true or false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="houston_stage" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group_cross_account_access_all" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The API Gateway stage to use for Houston.
+Should we create the IAM Group for access to all external AWS accounts? 
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="houston_path" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group_developers" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The path to allow requests to in the Houston API.
+Should we create the IAM Group for developers? The permissions of that group are specified via <a href="#iam_group_developers_permitted_services"><code>iam_group_developers_permitted_services</code></a>. (true or false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group_full_access" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group will include permissions to decrypt using this CMK.
+Should we create the IAM Group for full access? Allows full access to all AWS resources. (true or false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for IAM administrator access? Allows users to manage all IAM entities, effectively granting administrator access. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_logs" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for logs? Allows read access to CloudTrail, AWS Config, and CloudWatch. If <a href="#cloudtrail_kms_key_arn"><code>cloudtrail_kms_key_arn</code></a> is set, will also give decrypt access to a KMS CMK. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_read_only" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for read-only? Allows read-only access to all AWS resources. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_support" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for support users? Allows users to access AWS support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_use_existing_iam_roles" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for use-existing-iam-roles? Allow launching AWS resources with existing IAM Roles, but no ability to create new IAM Roles. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="should_create_iam_group_user_self_mgmt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should we create the IAM Group for user self-management? Allows users to manage their own IAM user accounts, but not other IAM users. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="billing_iam_group_name">
-</HclListItem>
-
 <HclListItem name="billing_iam_group_arn">
 </HclListItem>
 
-<HclListItem name="logs_iam_group_name">
+<HclListItem name="billing_iam_group_name">
 </HclListItem>
 
-<HclListItem name="logs_iam_group_arn">
+<HclListItem name="cross_account_access_all_group_arn">
 </HclListItem>
 
-<HclListItem name="developers_iam_group_name">
-</HclListItem>
-
-<HclListItem name="developers_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="full_access_iam_group_name">
-</HclListItem>
-
-<HclListItem name="full_access_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_users_group_names">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_users_group_arns">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_sudo_users_group_names">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_sudo_users_group_arns">
-</HclListItem>
-
-<HclListItem name="read_only_iam_group_name">
-</HclListItem>
-
-<HclListItem name="read_only_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="support_iam_group_name">
-</HclListItem>
-
-<HclListItem name="support_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="use_existing_iam_roles_iam_group_name">
-</HclListItem>
-
-<HclListItem name="use_existing_iam_roles_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="iam_self_mgmt_iam_group_name">
-</HclListItem>
-
-<HclListItem name="iam_self_mgmt_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="iam_self_mgmt_iam_policy_arn">
-</HclListItem>
-
-<HclListItem name="iam_admin_iam_group_name">
-</HclListItem>
-
-<HclListItem name="iam_admin_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="iam_admin_iam_policy_arn">
-</HclListItem>
-
-<HclListItem name="require_mfa_policy">
+<HclListItem name="cross_account_access_all_group_name">
 </HclListItem>
 
 <HclListItem name="cross_account_access_group_arns">
@@ -623,10 +554,79 @@ The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group wil
 <HclListItem name="cross_account_access_group_names">
 </HclListItem>
 
-<HclListItem name="cross_account_access_all_group_arn">
+<HclListItem name="developers_iam_group_arn">
 </HclListItem>
 
-<HclListItem name="cross_account_access_all_group_name">
+<HclListItem name="developers_iam_group_name">
+</HclListItem>
+
+<HclListItem name="full_access_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="full_access_iam_group_name">
+</HclListItem>
+
+<HclListItem name="houston_cli_users_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="houston_cli_users_iam_group_name">
+</HclListItem>
+
+<HclListItem name="iam_admin_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="iam_admin_iam_group_name">
+</HclListItem>
+
+<HclListItem name="iam_admin_iam_policy_arn">
+</HclListItem>
+
+<HclListItem name="iam_self_mgmt_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="iam_self_mgmt_iam_group_name">
+</HclListItem>
+
+<HclListItem name="iam_self_mgmt_iam_policy_arn">
+</HclListItem>
+
+<HclListItem name="logs_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="logs_iam_group_name">
+</HclListItem>
+
+<HclListItem name="read_only_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="read_only_iam_group_name">
+</HclListItem>
+
+<HclListItem name="require_mfa_policy">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_sudo_users_group_arns">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_sudo_users_group_names">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_users_group_arns">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_users_group_names">
+</HclListItem>
+
+<HclListItem name="support_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="support_iam_group_name">
+</HclListItem>
+
+<HclListItem name="use_existing_iam_roles_iam_group_arn">
+</HclListItem>
+
+<HclListItem name="use_existing_iam_roles_iam_group_name">
 </HclListItem>
 
 </TabItem>
@@ -641,6 +641,6 @@ The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs group wil
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "887046be7c83634b3534817c1fa5e0c2"
+  "hash": "f5ab71fbfe97d2da01b278ce022dd28d"
 }
 ##DOCS-SOURCER-END -->

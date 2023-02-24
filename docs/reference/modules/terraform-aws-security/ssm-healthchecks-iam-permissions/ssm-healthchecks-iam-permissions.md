@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fssm-healthchecks-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -39,6 +39,6 @@ We recommend using this module with just about every single EC2 Instance and Aut
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a1f6b0bd91a5918ef6bf00d5894820ce"
+  "hash": "fff8585463237dd5ae888b5184dd63cc"
 }
 ##DOCS-SOURCER-END -->

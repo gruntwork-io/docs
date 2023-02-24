@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -108,6 +108,6 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "afe5e316268e09029b8cf45702dfcde1"
+  "hash": "da04f1965a2350414aa7e5c59662e31a"
 }
 ##DOCS-SOURCER-END -->

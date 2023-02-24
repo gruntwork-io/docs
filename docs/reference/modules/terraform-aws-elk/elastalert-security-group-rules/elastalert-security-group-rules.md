@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felastalert-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -75,6 +75,6 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5daf2fb82ddf5006ee1be9217b580a7"
+  "hash": "117fee58850087594ef6e780042321ac"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Frun-schema-registry" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -245,6 +245,6 @@ and `kafkastore.connection.url` will be overwritten, but feel free to add any ot
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f34cecec7511049e68f01f488f4e5833"
+  "hash": "ac31062121356abc7b7d51976208f1b8"
 }
 ##DOCS-SOURCER-END -->

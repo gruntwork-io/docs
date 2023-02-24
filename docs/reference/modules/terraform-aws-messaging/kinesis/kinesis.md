@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fkinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -110,6 +110,78 @@ The name of the Kinesis stream.
 
 ### Optional
 
+<HclListItem name="average_data_size_in_kb" requirement="optional" type="number">
+<HclListItemDescription>
+
+The average size of the data record written to the stream in kilobytes (KB), rounded up to the nearest 1 KB
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="encryption_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of encryption to use (can be KMS or NONE)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;NONE&quot;"/>
+</HclListItem>
+
+<HclListItem name="enforce_consumer_deletion" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean that indicates all registered consumers should be deregistered from the stream so that the stream can be destroyed without error.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ID of the key to use for KMS
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;alias/aws/kinesis&quot;"/>
+</HclListItem>
+
+<HclListItem name="number_of_consumers" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of Amazon Kinesis Streams applications that consume data concurrently and independently from the stream, that is, the consumers
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="number_of_shards" requirement="optional" type="number">
+<HclListItemDescription>
+
+A shard is a group of data records in a stream. When you create a stream, you specify the number of shards for the stream.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="records_per_second" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of data records written to and read from the stream per second
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Length of time data records are accessible after they are added to the stream. The maximum value of a stream's retention period is 168 hours. Minimum value is 24.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="24"/>
+</HclListItem>
+
 <HclListItem name="shard_level_metrics" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -141,78 +213,6 @@ The additional shard-level CloudWatch metrics to enable
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="retention_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-Length of time data records are accessible after they are added to the stream. The maximum value of a stream's retention period is 168 hours. Minimum value is 24.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="24"/>
-</HclListItem>
-
-<HclListItem name="number_of_shards" requirement="optional" type="number">
-<HclListItemDescription>
-
-A shard is a group of data records in a stream. When you create a stream, you specify the number of shards for the stream.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="average_data_size_in_kb" requirement="optional" type="number">
-<HclListItemDescription>
-
-The average size of the data record written to the stream in kilobytes (KB), rounded up to the nearest 1 KB
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="records_per_second" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of data records written to and read from the stream per second
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="number_of_consumers" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of Amazon Kinesis Streams applications that consume data concurrently and independently from the stream, that is, the consumers
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="encryption_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The type of encryption to use (can be KMS or NONE)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;NONE&quot;"/>
-</HclListItem>
-
-<HclListItem name="kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-ID of the key to use for KMS
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;alias/aws/kinesis&quot;"/>
-</HclListItem>
-
-<HclListItem name="enforce_consumer_deletion" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A boolean that indicates all registered consumers should be deregistered from the stream so that the stream can be destroyed without error.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -225,22 +225,22 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="stream_name">
+<HclListItem name="encryption_type">
 </HclListItem>
 
-<HclListItem name="stream_arn">
-</HclListItem>
-
-<HclListItem name="shard_count">
+<HclListItem name="enforce_consumer_deletion">
 </HclListItem>
 
 <HclListItem name="retention_period">
 </HclListItem>
 
-<HclListItem name="encryption_type">
+<HclListItem name="shard_count">
 </HclListItem>
 
-<HclListItem name="enforce_consumer_deletion">
+<HclListItem name="stream_arn">
+</HclListItem>
+
+<HclListItem name="stream_name">
 </HclListItem>
 
 </TabItem>
@@ -255,6 +255,6 @@ A map of key value pairs to apply as tags to the Kinesis stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a5b72215a71fe9a69112f83b1c109b37"
+  "hash": "01473f1eb02bc0099c3a48268a889426"
 }
 ##DOCS-SOURCER-END -->

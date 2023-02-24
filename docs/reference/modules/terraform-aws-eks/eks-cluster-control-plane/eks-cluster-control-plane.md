@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -385,10 +385,10 @@ The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the r
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="endpoint_public_access_cidrs" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
+A list of CIDR blocks that should be allowed network access to the Kubernetes public API endpoint. When null or empty, allow access from the whole world (0.0.0.0/0). Note that this only restricts network reachability to the API, and does not account for authentication to the API. Note also that this only controls access to the public API endpoint, which is used for network access from outside the VPC. If you want to control access to the Kubernetes API from within the VPC, then you must use the endpoint_private_access_cidrs and endpoint_private_access_security_group_ids variables.
 
 </HclListItemDescription>
 </HclListItem>
@@ -401,15 +401,33 @@ A list of the subnets into which the EKS Cluster's control plane nodes will be l
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="endpoint_public_access_cidrs" requirement="required" type="list(string)">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-A list of CIDR blocks that should be allowed network access to the Kubernetes public API endpoint. When null or empty, allow access from the whole world (0.0.0.0/0). Note that this only restricts network reachability to the API, and does not account for authentication to the API. Note also that this only controls access to the public API endpoint, which is used for network access from outside the VPC. If you want to control access to the Kubernetes API from within the VPC, then you must use the endpoint_private_access_cidrs and endpoint_private_access_security_group_ids variables.
+The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="additional_security_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of additional security group IDs to attach to the control plane.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="auto_install_kubergrunt" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Automatically download and install Kubergrunt if it isn't already installed on this OS. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 <HclListItem name="aws_partition" requirement="optional" type="string">
 <HclListItemDescription>
@@ -420,13 +438,49 @@ The AWS partition used for default AWS Resources.
 <HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
 </HclListItem>
 
-<HclListItem name="kubernetes_version" requirement="optional" type="string">
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data in the CloudWatch log group for EKS control plane logs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.24&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the CloudWatch log group for EKS control plane logs. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group for EKS control plane logs, encoded as a map where the keys are tag keys and values are tag values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of permissions boundary to apply to the cluster IAM role - the IAM role created for the EKS cluster as well as the default fargate IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="configure_kubectl" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to automatically configure kubectl on the current operator machine. To use this, you need a working python install with the AWS CLI installed and configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="configure_openid_connect_provider" requirement="optional" type="bool">
@@ -438,22 +492,48 @@ When set to true, this will inform the module to set up the OpenID Connect Provi
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
+<HclListItem name="create_default_fargate_iam_role" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The thumbprint to use for the OpenID Connect Provider. You can retrieve the thumbprint by following the instructions in the AWS docs: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html. When set to null, this module will dynamically retrieve the thumbprint from AWS. You should only set this if you have strict requirements around HTTP access in your organization (e.g., you require an HTTP proxy).
+When true, IAM role will be created and attached to Fargate control plane services. When true, requires that schedule_control_plane_services_on_fargate variable should be set true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_fargate_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the default Fargate execution IAM role that is created when create_default_fargate_iam_role is true. When null, defaults to CLUSTER_NAME-fargate-role.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="secret_envelope_encryption_kms_key_arn" requirement="optional" type="string">
+<HclListItem name="custom_tags_eks_addons" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By default Secrets in EKS are encrypted at rest using shared AWS managed keys. Setting this variable will configure Kubernetes to encrypt Secrets using this KMS key. Can only be used on clusters created after 2020-03-05.
+A map of custom tags to apply to the EKS add-ons. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_tags_eks_cluster" requirement="optional" type="map(string)">
@@ -508,293 +588,6 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="custom_tags_eks_addons" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to the EKS add-ons. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="endpoint_public_access" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable public API endpoints which allow access to the Kubernetes API from outside of the VPC. Note that private access within the VPC is always enabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enabled_cluster_log_types" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of the desired control plane logging to enable. See https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html for the list of available logs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the CloudWatch log group for EKS control plane logs. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data in the CloudWatch log group for EKS control plane logs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group for EKS control plane logs, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="schedule_control_plane_services_on_fargate" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, configures control plane services to run on Fargate so that the cluster can run without worker nodes. When true, requires kubergrunt to be available on the system.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cluster_iam_role_permissions_boundary" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of permissions boundary to apply to the cluster IAM role - the IAM role created for the EKS cluster as well as the default fargate IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_default_fargate_iam_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, IAM role will be created and attached to Fargate control plane services. When true, requires that schedule_control_plane_services_on_fargate variable should be set true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="custom_fargate_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the default Fargate execution IAM role that is created when create_default_fargate_iam_role is true. When null, defaults to CLUSTER_NAME-fargate-role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="vpc_worker_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of the subnets into which the EKS Cluster's administrative pods will be launched. These should usually be all private subnets and include one in each AWS Availability Zone. Required when <a href="#schedule_control_plane_services"><code>schedule_control_plane_services</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="additional_security_groups" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of additional security group IDs to attach to the control plane.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="endpoint_private_access_cidrs" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of CIDR blocks that should be allowed network access to the private Kubernetes API endpoint. Note that worker nodes automatically get access to the private endpoint, so this controls additional access. Note that this only restricts network reachability to the API, and does not account for authentication to the API. Note also that this only controls access to the private API endpoint, which is used for network access from inside the VPC. If you want to control access to the Kubernetes API from outside the VPC, then you must use the endpoint_public_access_cidrs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="endpoint_private_access_security_group_ids" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Same as endpoint_private_access_cidrs, but exposes access to the provided list of security groups instead of CIDR blocks. The keys in the map are unique user defined identifiers that can be used for resource tracking purposes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_enable_prefix_delegation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable prefix delegation mode for the AWS VPC CNI component of the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. Note that by default, AWS VPC CNI will always preallocate 1 full prefix - this means that you can potentially take up 32 IP addresses from the VPC network space even if you only have 1 Pod on the node. You can tweak this behavior by configuring the <a href="#vpc_cni_warm_ip_target"><code>vpc_cni_warm_ip_target</code></a> input variable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_warm_ip_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of free IP addresses each node should maintain. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In prefix delegation mode, determines whether the node will preallocate another full prefix. For example, if this is set to 5 and a node is currently has 9 Pods scheduled, then the node will NOT preallocate a new prefix block of 16 IP addresses. On the other hand, if this was set to the default value, then the node will allocate a new block when the first pod is scheduled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_minimum_ip_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-The minimum number of IP addresses (free and used) each node should start with. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). For example, if this is set to 25, every node will allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to the default value, then each node will allocate only 1 prefix (16 IP addresses).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="fargate_profile_dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the control plane services Fargate Profile in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, precreate the CloudWatch Log Group to use for EKS control plane logging. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, EKS will automatically create a basic log group to use. Note that logs are only streamed to this group if <a href="#enabled_cluster_log_types"><code>enabled_cluster_log_types</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_kubergrunt_verification" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="auto_install_kubergrunt" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Automatically download and install Kubergrunt if it isn't already installed on this OS. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
-<HclListItemDescription>
-
-The URL from which to download Kubergrunt if it's not installed already. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> and <a href="#auto_install_kubergrunt"><code>auto_install_kubergrunt</code></a> are true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt&quot;"/>
-</HclListItem>
-
-<HclListItem name="use_upgrade_cluster_script" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable the kubergrunt eks sync-core-components command using a local-exec provisioner. This script ensures that the Kubernetes core components are upgraded to a matching version everytime the cluster's Kubernetes version is updated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_upgrade_cluster_script` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="use_cleanup_cluster_script" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable the kubergrunt eks cleanup-security-group command using a local-exec provisioner. This script ensures that no known residual resources managed by EKS is left behind after the cluster has been deleted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_vpc_cni_customize_script" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable management of the aws-vpc-cni configuration options using kubergrunt running as a local-exec provisioner. If you set this to false, the vpc_cni_* variables will be ignored.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_eks_addons" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified with `eks_addons`. VPC CNI configurations with `use_vpc_cni_customize_script` isn't fully supported with addons, as the automated add-on lifecycles could potentially undo the configuration changes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="eks_addons" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -833,13 +626,58 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="configure_kubectl" requirement="optional" type="bool">
+<HclListItem name="enable_eks_addons" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to automatically configure kubectl on the current operator machine. To use this, you need a working python install with the AWS CLI installed and configured.
+When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified with `eks_addons`. VPC CNI configurations with `use_vpc_cni_customize_script` isn't fully supported with addons, as the automated add-on lifecycles could potentially undo the configuration changes.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enabled_cluster_log_types" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of the desired control plane logging to enable. See https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html for the list of available logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="endpoint_private_access_cidrs" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks that should be allowed network access to the private Kubernetes API endpoint. Note that worker nodes automatically get access to the private endpoint, so this controls additional access. Note that this only restricts network reachability to the API, and does not account for authentication to the API. Note also that this only controls access to the private API endpoint, which is used for network access from inside the VPC. If you want to control access to the Kubernetes API from outside the VPC, then you must use the endpoint_public_access_cidrs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="endpoint_private_access_security_group_ids" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Same as endpoint_private_access_cidrs, but exposes access to the provided list of security groups instead of CIDR blocks. The keys in the map are unique user defined identifiers that can be used for resource tracking purposes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="endpoint_public_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable public API endpoints which allow access to the Kubernetes API from outside of the VPC. Note that private access within the VPC is always enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="fargate_profile_dependencies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Create a dependency between the control plane services Fargate Profile in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="kubectl_config_context_name" requirement="optional" type="string">
@@ -860,6 +698,114 @@ Path to the kubectl config file. Defaults to $HOME/.kube/config
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
+<HclListItemDescription>
+
+The URL from which to download Kubergrunt if it's not installed already. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> and <a href="#auto_install_kubergrunt"><code>auto_install_kubergrunt</code></a> are true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt&quot;"/>
+</HclListItem>
+
+<HclListItem name="kubernetes_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;1.24&quot;"/>
+</HclListItem>
+
+<HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
+<HclListItemDescription>
+
+The thumbprint to use for the OpenID Connect Provider. You can retrieve the thumbprint by following the instructions in the AWS docs: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html. When set to null, this module will dynamically retrieve the thumbprint from AWS. You should only set this if you have strict requirements around HTTP access in your organization (e.g., you require an HTTP proxy).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="schedule_control_plane_services_on_fargate" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, configures control plane services to run on Fargate so that the cluster can run without worker nodes. When true, requires kubergrunt to be available on the system.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="secret_envelope_encryption_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By default Secrets in EKS are encrypted at rest using shared AWS managed keys. Setting this variable will configure Kubernetes to encrypt Secrets using this KMS key. Can only be used on clusters created after 2020-03-05.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, precreate the CloudWatch Log Group to use for EKS control plane logging. This is useful if you wish to customize the CloudWatch Log Group with various settings such as retention periods and KMS encryption. When false, EKS will automatically create a basic log group to use. Note that logs are only streamed to this group if <a href="#enabled_cluster_log_types"><code>enabled_cluster_log_types</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_upgrade_cluster_script` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_cleanup_cluster_script" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, this will enable the kubergrunt eks cleanup-security-group command using a local-exec provisioner. This script ensures that no known residual resources managed by EKS is left behind after the cluster has been deleted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_kubergrunt_verification" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -869,29 +815,75 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_upgrade_cluster_script" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, this will enable the kubergrunt eks sync-core-components command using a local-exec provisioner. This script ensures that the Kubernetes core components are upgraded to a matching version everytime the cluster's Kubernetes version is updated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_vpc_cni_customize_script" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, this will enable management of the aws-vpc-cni configuration options using kubergrunt running as a local-exec provisioner. If you set this to false, the vpc_cni_* variables will be ignored.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="vpc_cni_enable_prefix_delegation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable prefix delegation mode for the AWS VPC CNI component of the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. Note that by default, AWS VPC CNI will always preallocate 1 full prefix - this means that you can potentially take up 32 IP addresses from the VPC network space even if you only have 1 Pod on the node. You can tweak this behavior by configuring the <a href="#vpc_cni_warm_ip_target"><code>vpc_cni_warm_ip_target</code></a> input variable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="vpc_cni_minimum_ip_target" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum number of IP addresses (free and used) each node should start with. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). For example, if this is set to 25, every node will allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to the default value, then each node will allocate only 1 prefix (16 IP addresses).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="vpc_cni_warm_ip_target" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of free IP addresses each node should maintain. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In prefix delegation mode, determines whether the node will preallocate another full prefix. For example, if this is set to 5 and a node is currently has 9 Pods scheduled, then the node will NOT preallocate a new prefix block of 16 IP addresses. On the other hand, if this was set to the default value, then the node will allocate a new block when the first pod is scheduled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="vpc_worker_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of the subnets into which the EKS Cluster's administrative pods will be launched. These should usually be all private subnets and include one in each AWS Availability Zone. Required when <a href="#schedule_control_plane_services"><code>schedule_control_plane_services</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="eks_cluster_addons">
+<HclListItemDescription>
+
+Map of attribute maps for enabled EKS cluster addons
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="eks_cluster_arn">
 <HclListItemDescription>
 
 AWS ARN identifier of the EKS cluster resource that is created.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_cluster_name">
-<HclListItemDescription>
-
-Short hand name of the EKS cluster resource that is created.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_cluster_endpoint">
-<HclListItemDescription>
-
-URL endpoint of the Kubernetes control plane provided by EKS.
 
 </HclListItemDescription>
 </HclListItem>
@@ -904,10 +896,26 @@ Certificate authority of the Kubernetes control plane provided by EKS encoded in
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_control_plane_security_group_id">
+<HclListItem name="eks_cluster_endpoint">
 <HclListItemDescription>
 
-AWS ID of the security group created for the EKS Control Plane nodes.
+URL endpoint of the Kubernetes control plane provided by EKS.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_cluster_managed_security_group_id">
+<HclListItemDescription>
+
+The ID of the EKS Cluster Security Group, which is automatically attached to managed workers.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_cluster_name">
+<HclListItemDescription>
+
+Short hand name of the EKS cluster resource that is created.
 
 </HclListItemDescription>
 </HclListItem>
@@ -924,6 +932,14 @@ AWS ARN identifier of the IAM role created for the EKS Control Plane nodes.
 <HclListItemDescription>
 
 Name of the IAM role created for the EKS Control Plane nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_control_plane_security_group_id">
+<HclListItemDescription>
+
+AWS ID of the security group created for the EKS Control Plane nodes.
 
 </HclListItemDescription>
 </HclListItem>
@@ -952,14 +968,6 @@ ARN of the OpenID Connect Provider that can be used to attach AWS IAM Roles to K
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_iam_openid_connect_provider_url">
-<HclListItemDescription>
-
-URL of the OpenID Connect Provider that can be used to attach AWS IAM Roles to Kubernetes Service Accounts.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="eks_iam_openid_connect_provider_issuer_url">
 <HclListItemDescription>
 
@@ -968,26 +976,10 @@ The issue URL of the OpenID Connect Provider.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_cluster_managed_security_group_id">
+<HclListItem name="eks_iam_openid_connect_provider_url">
 <HclListItemDescription>
 
-The ID of the EKS Cluster Security Group, which is automatically attached to managed workers.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_cluster_addons">
-<HclListItemDescription>
-
-Map of attribute maps for enabled EKS cluster addons
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_kubeconfig_context_name">
-<HclListItemDescription>
-
-The name of the kubectl config context that was used to setup authentication to the EKS control plane.
+URL of the OpenID Connect Provider that can be used to attach AWS IAM Roles to Kubernetes Service Accounts.
 
 </HclListItemDescription>
 </HclListItem>
@@ -996,6 +988,14 @@ The name of the kubectl config context that was used to setup authentication to 
 <HclListItemDescription>
 
 Minimal configuration for kubectl to authenticate with the created EKS cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_kubeconfig_context_name">
+<HclListItemDescription>
+
+The name of the kubectl config context that was used to setup authentication to the EKS control plane.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1020,6 +1020,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7cf142b3617e476a48cb3a41a30423b5"
+  "hash": "0ff8187b8597edcbd4ab6de8ed8a29dd"
 }
 ##DOCS-SOURCER-END -->

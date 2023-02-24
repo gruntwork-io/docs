@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frun-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -54,18 +54,18 @@ for running it as a data source). Which approach to use depends on your needs:
 
 ### Required
 
-<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="pex_module_path_parts" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Parts of the path (folders and file names) to the python package directory housing the pex file.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
 
 </HclListItemDescription>
 </HclListItem>
@@ -101,13 +101,13 @@ The arguments to pass to the command as a string
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="triggers" requirement="optional" type="map(string)">
+<HclListItem name="enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A map of arbitrary strings that, when changed, will force the null resource to be replaced, re-running any associated provisioners.
+If you set this variable to false, this module will not run the PEX script. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally enable the null_resource within this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="env" requirement="optional" type="map(string)">
@@ -117,15 +117,6 @@ Additional environment variables to set for the command.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you set this variable to false, this module will not run the PEX script. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally enable the null_resource within this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="pass_in_previous_triggers" requirement="optional" type="bool">
@@ -144,6 +135,15 @@ Pass in the json encoded trigger with this string as the option to passing into 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="triggers" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of arbitrary strings that, when changed, will force the null resource to be replaced, re-running any associated provisioners.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -169,6 +169,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d3f3a40c3c76ca6a406b2843246b632"
+  "hash": "a9144620e59d3276d02cf23e122ec9f2"
 }
 ##DOCS-SOURCER-END -->

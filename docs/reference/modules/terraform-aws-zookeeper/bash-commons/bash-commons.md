@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Fbash-commons" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -51,6 +51,6 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1dc12efd17d6f08276369e4157cf6362"
+  "hash": "c9d475e146ed60ad9a9b9219ddacbc21"
 }
 ##DOCS-SOURCER-END -->

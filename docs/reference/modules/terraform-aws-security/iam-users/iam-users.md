@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -290,6 +290,15 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="force_destroy" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -317,15 +326,6 @@ Force the user to reset their password on initial login. Only used for users wit
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -333,6 +333,14 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDescription>
 
 A map of usernames to the ARN for that user's AWS Secrets Manager Secret containing that user's access keys.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="user_access_keys">
+<HclListItemDescription>
+
+A map of usernames to that user's access keys (a map with keys access_key_id and secret_access_key), with the secret_access_key encrypted with that user's PGP key (only shows up for users with create_access_keys = true and pgp_key != null). You can decrypt the secret_access_key on the CLI: echo &lt;secret_access_key> | base64 --decode | keybase pgp decrypt
 
 </HclListItemDescription>
 </HclListItem>
@@ -349,14 +357,6 @@ A map of usernames to the ARN for that IAM user.
 <HclListItemDescription>
 
 A map of usernames to that user's AWS Web Console password, encrypted with that user's PGP key (only shows up for users with create_login_profile = true). You can decrypt the password on the CLI: echo &lt;password> | base64 --decode | keybase pgp decrypt
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="user_access_keys">
-<HclListItemDescription>
-
-A map of usernames to that user's access keys (a map with keys access_key_id and secret_access_key), with the secret_access_key encrypted with that user's PGP key (only shows up for users with create_access_keys = true and pgp_key != null). You can decrypt the secret_access_key on the CLI: echo &lt;secret_access_key> | base64 --decode | keybase pgp decrypt
 
 </HclListItemDescription>
 </HclListItem>
@@ -381,6 +381,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b42a8e81b814310724c7be522917822e"
+  "hash": "ade62a350b22bb8a3be9439bc7587b2a"
 }
 ##DOCS-SOURCER-END -->

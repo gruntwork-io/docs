@@ -14,13 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECR Repositories
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +67,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -153,33 +153,6 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
-<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="default_external_account_ids_with_lambda_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The default list of AWS account IDs for external AWS accounts that should be able to create Lambda functions based on container images in these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_lambda_access property in the repositories map.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="default_automatic_image_scanning" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -220,6 +193,33 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="default_external_account_ids_with_lambda_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to create Lambda functions based on container images in these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_lambda_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_external_account_ids_with_read_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to pull images from these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_read_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_external_account_ids_with_write_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The default list of AWS account IDs for external AWS accounts that should be able to pull and push images to these ECR repos. Can be overridden on a per repo basis by the external_account_ids_with_write_access property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="default_image_tag_mutability" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -227,15 +227,6 @@ The tag mutability setting for all the repos. Must be one of: MUTABLE or IMMUTAB
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;MUTABLE&quot;"/>
-</HclListItem>
-
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="default_lifecycle_policy_rules" requirement="optional" type="any">
@@ -254,6 +245,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags (where the key and value correspond to tag keys and values) that should be assigned to all ECR repositories.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="replication_regions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -265,6 +265,14 @@ List of regions (e.g., us-east-1) to replicate the ECR repository to.
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="ecr_read_policy_actions">
+<HclListItemDescription>
+
+A list of IAM policy actions necessary for ECR read access.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="ecr_repo_arns">
 <HclListItemDescription>
@@ -278,14 +286,6 @@ A map of repository name to its ECR ARN.
 <HclListItemDescription>
 
 A map of repository name to its URL.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecr_read_policy_actions">
-<HclListItemDescription>
-
-A list of IAM policy actions necessary for ECR read access.
 
 </HclListItemDescription>
 </HclListItem>
@@ -305,11 +305,11 @@ A list of IAM policy actions necessary for ECR write access.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fecr-repos%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fecr-repos%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0eb7d4b7bea336e76ec1712f79c441af"
+  "hash": "45aceea7de443cd6812e03f1ded02d72"
 }
 ##DOCS-SOURCER-END -->

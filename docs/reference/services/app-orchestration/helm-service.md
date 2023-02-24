@@ -13,13 +13,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.100.0"/>
 
 # Helm Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fhelm-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fhelm-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -63,9 +63,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -81,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -101,10 +101,10 @@ The name of the application (e.g. my-service-stage). Used for labeling Kubernete
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="namespace" requirement="required" type="string">
+<HclListItem name="helm_chart" requirement="required" type="string">
 <HclListItemDescription>
 
-The Kubernetes Namespace to deploy the helm chart into.
+Chart name to be installed. The chart name can be local path, a URL to a chart, or the name of the chart if repository is specified. It is also possible to use the &lt;repository>/&lt;chart> format here if you are running Terraform on a system that the repository has been added to with helm repo add but this is not recommended.
 
 </HclListItemDescription>
 </HclListItem>
@@ -117,22 +117,32 @@ Repository URL where to locate the requested chart.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="helm_chart" requirement="required" type="string">
+<HclListItem name="namespace" requirement="required" type="string">
 <HclListItemDescription>
 
-Chart name to be installed. The chart name can be local path, a URL to a chart, or the name of the chart if repository is specified. It is also possible to use the &lt;repository>/&lt;chart> format here if you are running Terraform on a system that the repository has been added to with helm repo add but this is not recommended.
+The Kubernetes Namespace to deploy the helm chart into.
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="helm_chart_version" requirement="optional" type="string">
+<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Specify the exact chart version to install. If this is not specified, the latest version is installed.
+Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    openid_connect_provider_arn = string
+    openid_connect_provider_url = string
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -152,49 +162,12 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="iam_role_exists" requirement="optional" type="bool">
+<HclListItem name="helm_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Whether or not the IAM role passed in `iam_role_name` already exists. Set to true if it exists, or false if it needs to be created. Defaults to false.
+Specify the exact chart version to install. If this is not specified, the latest version is installed.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of an IAM role that will be used by the pod to access the AWS API. If `iam_role_exists` is set to false, this role will be created. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="service_account_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of a service account to create for use with the Pods. This service account will be mapped to the IAM role defined in `<a href="#iam_role_name"><code>iam_role_name</code></a>` to give the pod permissions to access the AWS API. Must be unique in this namespace. Leave as an empty string if you do not wish to assign a Service Account to the Pods.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configuration for using the IAM role with Service Accounts feature to provide permissions to the applications. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    openid_connect_provider_arn = string
-    openid_connect_provider_url = string
-  })
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -243,6 +216,42 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="iam_role_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not the IAM role passed in `iam_role_name` already exists. Set to true if it exists, or false if it needs to be created. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an IAM role that will be used by the pod to access the AWS API. If `iam_role_exists` is set to false, this role will be created. Leave as an empty string if you do not wish to use IAM role with Service Accounts.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_account_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a service account to create for use with the Pods. This service account will be mapped to the IAM role defined in `<a href="#iam_role_name"><code>iam_role_name</code></a>` to give the pod permissions to access the AWS API. Must be unique in this namespace. Leave as an empty string if you do not wish to assign a Service Account to the Pods.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="sleep_for_resource_culling" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Sleep for 30 seconds to allow Kubernetes time to remove associated AWS resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="wait" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -261,15 +270,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
-<HclListItem name="sleep_for_resource_culling" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Sleep for 30 seconds to allow Kubernetes time to remove associated AWS resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -282,11 +282,11 @@ Sleep for 30 seconds to allow Kubernetes time to remove associated AWS resources
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fservices%2Fhelm-service%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fhelm-service%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fhelm-service%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fhelm-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ef187e8cd3371abb347c3f8bc7db730f"
+  "hash": "ec3d2ed7f2d2daf185da6b6aaef34e1e"
 }
 ##DOCS-SOURCER-END -->

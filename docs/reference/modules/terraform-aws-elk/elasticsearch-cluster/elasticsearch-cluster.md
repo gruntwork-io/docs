@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -214,6 +214,14 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 
 ### Required
 
+<HclListItem name="ami_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The AMI id of our custom AMI with Elasticsearch installed
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="aws_region" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -222,26 +230,10 @@ The AWS region in which all resources will be created
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="cluster_size" requirement="required" type="number">
 <HclListItemDescription>
 
-The id of the vpc into which we will deploy Elasticsearch
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-The ids of the subnets 
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ami_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The AMI id of our custom AMI with Elasticsearch installed
+The number of nodes this cluster should have
 
 </HclListItemDescription>
 </HclListItem>
@@ -262,20 +254,37 @@ The instance type for each of the cluster members. eg: t2.micro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cluster_size" requirement="required" type="number">
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-The number of nodes this cluster should have
+The ids of the subnets 
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the vpc into which we will deploy Elasticsearch
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="alowable_ssh_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItem name="allow_api_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The CIDR blocks from which SSH connections will be allowed
+The IDs of security groups from which ES API connections will be allowed. If you update this variable, make sure to update <a href="#num_api_security_group_ids"><code>num_api_security_group_ids</code></a> too!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_node_discovery_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of security groups from which ES API connections will be allowed. If you update this variable, make sure to update <a href="#num_node_discovery_security_group_ids"><code>num_node_discovery_security_group_ids</code></a> too!
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -299,85 +308,13 @@ A list of security group IDs from which the EC2 Instances will allow SSH connect
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allow_api_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="alowable_ssh_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The IDs of security groups from which ES API connections will be allowed. If you update this variable, make sure to update <a href="#num_api_security_group_ids"><code>num_api_security_group_ids</code></a> too!
+The CIDR blocks from which SSH connections will be allowed
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="num_api_security_group_ids" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of security group IDs in <a href="#allow_api_from_security_group_ids"><code>allow_api_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_api_from_security_group_ids"><code>allow_api_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="allow_node_discovery_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of security groups from which ES API connections will be allowed. If you update this variable, make sure to update <a href="#num_node_discovery_security_group_ids"><code>num_node_discovery_security_group_ids</code></a> too!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="num_node_discovery_security_group_ids" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of security group IDs in <a href="#allow_node_discovery_from_security_group_ids"><code>allow_node_discovery_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_node_discovery_from_security_group_ids"><code>allow_node_discovery_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of target group ARNs to associate with the Elasticsearch cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="num_enis_per_node" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of ENIs each node in this cluster should have.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="key_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the Amazon EC2 Key Pair you wish to use for accessing this instance. See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html?icmpid=docs_ec2_console#having-ec2-create-your-key-pair
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="user_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-The User Data script to run on each server when it is booting.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="api_port" requirement="optional" type="number">
@@ -398,39 +335,13 @@ A list of Amazon S3 bucket ARNs to grant the Elasticsearch instances access to
 <HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="node_discovery_port" requirement="optional" type="number">
+<HclListItem name="ebs_optimized" requirement="optional" type="bool">
 <HclListItemDescription>
 
-This is the port that is used internally by elasticsearch for cluster node discovery
+If true, the launched EC2 instance will be EBS-optimized.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="9300"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of key value pairs that represent custom tags to propagate to the resources that correspond to this ElasticSearch cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-  
-   default = {
-     foo = "bar"
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="ebs_volumes" requirement="optional" type="list(object(…))">
@@ -478,31 +389,49 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="ebs_optimized" requirement="optional" type="bool">
+<HclListItem name="key_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-If true, the launched EC2 instance will be EBS-optimized.
+The name of the Amazon EC2 Key Pair you wish to use for accessing this instance. See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html?icmpid=docs_ec2_console#having-ec2-create-your-key-pair
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItem name="node_discovery_port" requirement="optional" type="number">
 <HclListItemDescription>
 
-The type of volume. Must be one of: standard, gp2, or io1.
+This is the port that is used internally by elasticsearch for cluster node discovery
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+<HclListItemDefaultValue defaultValue="9300"/>
 </HclListItem>
 
-<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItem name="num_api_security_group_ids" requirement="optional" type="number">
 <HclListItemDescription>
 
-The size, in GB, of the root EBS volume.
+The number of security group IDs in <a href="#allow_api_from_security_group_ids"><code>allow_api_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_api_from_security_group_ids"><code>allow_api_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="50"/>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="num_enis_per_node" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of ENIs each node in this cluster should have.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="num_node_discovery_security_group_ids" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of security group IDs in <a href="#allow_node_discovery_from_security_group_ids"><code>allow_node_discovery_from_security_group_ids</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#allow_node_discovery_from_security_group_ids"><code>allow_node_discovery_from_security_group_ids</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
@@ -514,22 +443,93 @@ Whether the volume should be destroyed on instance termination.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size, in GB, of the root EBS volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="50"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of volume. Must be one of: standard, gp2, or io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of key value pairs that represent custom tags to propagate to the resources that correspond to this ElasticSearch cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   default = {
+     foo = "bar"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of target group ARNs to associate with the Elasticsearch cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="user_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+The User Data script to run on each server when it is booting.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="eni_private_ips">
-</HclListItem>
 
 <HclListItem name="eni_elastic_ips">
 </HclListItem>
 
-<HclListItem name="server_asg_names">
+<HclListItem name="eni_private_ips">
+</HclListItem>
+
+<HclListItem name="iam_role_id">
 </HclListItem>
 
 <HclListItem name="security_group_id">
 </HclListItem>
 
-<HclListItem name="iam_role_id">
+<HclListItem name="server_asg_names">
 </HclListItem>
 
 </TabItem>
@@ -544,6 +544,6 @@ Whether the volume should be destroyed on instance termination.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9af51cbd186e3a583f0a583a153eaefb"
+  "hash": "a6ca6ed7a92cc4cfd032a3566d7b1512"
 }
 ##DOCS-SOURCER-END -->

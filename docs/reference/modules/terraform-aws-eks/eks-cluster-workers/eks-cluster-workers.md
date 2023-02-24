@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -247,14 +247,6 @@ Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) d
 
 ### Required
 
-<HclListItem name="cluster_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all the resources created by these templates.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="autoscaling_group_configurations" requirement="required" type="any">
 <HclListItemDescription>
 
@@ -367,69 +359,23 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="cluster_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all the resources created by these templates.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The AWS partition used for default AWS Resources.
+A list of additional Security Groups IDs to be attached on the EKS Worker.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_role_already_exists" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not the IAM role used for the workers already exists. When false, this module will create a new IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Custom name for the IAM role. When null, a default name based on cluster_name will be used. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of the IAM role to use if iam_role_already_exists = true. When null, uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_instance_profile_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Custom name for the IAM instance profile. When null, the IAM role name will be used. If <a href="#use_resource_name_prefix"><code>use_resource_name_prefix</code></a> is true, this will be used as a name prefix.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="use_existing_cluster_config" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, this module will retrieve vpc config and security group ids from the existing cluster with the provided cluster_name. When false, you must provide <a href="#vpc_id"><code>vpc_id</code></a> and <a href="#eks_control_plane_security_group_id"><code>eks_control_plane_security_group_id</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_cluster_security_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to attach the EKS managed cluster security group to the worker nodes for control plane and cross worker network management. Avoiding the cluster security group allows you to better isolate worker nodes at the network level (E.g., disallowing free flowing traffic between Fargate Pods and self managed workers). It is recommended to use the cluster security group for most use cases. Refer to the module README for more information. If use_existing_cluster_config is false and this is set to true, it is assumed that the cluster security group is provided in <a href="#additional_security_group_ids"><code>additional_security_group_ids</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="allow_all_outbound_network_calls" requirement="optional" type="bool">
@@ -441,109 +387,28 @@ When true, this module will attach a security group rule to the instances that w
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="eks_control_plane_security_group_id" requirement="optional" type="string">
+<HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Security group ID of the EKS Control Plane nodes to enhance to allow access to the control plane from the workers. Only used if `use_cluster_security_group` is `false`. Set to null to use the first security group assigned to the cluster.
+Default value for the enable_detailed_monitoring field of autoscaling_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Prefix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="name_suffix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Suffix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="asg_default_min_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for the min_size field of autoscaling_group_configurations. Any map entry that does not specify min_size will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="asg_default_max_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for the max_size field of autoscaling_group_configurations. Any map entry that does not specify max_size will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for the asg_instance_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_type will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;t3.medium&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_instance_ami" requirement="optional" type="string">
 <HclListItemDescription>
 
 Default value for the asg_instance_ami field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_ami will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_user_data_base64" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for the asg_instance_user_data_base64 field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_user_data_base64 will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for the asg_instance_root_volume_size field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_size will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="40"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_root_volume_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Default value for the asg_instance_root_volume_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_type will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_root_volume_iops" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for the asg_instance_root_volume_iops field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_iops will use this value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="asg_default_instance_root_volume_throughput" requirement="optional" type="number">
-<HclListItemDescription>
-
-Default value for the asg_instance_root_volume_throughput field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_throughput will use this value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -558,33 +423,128 @@ Default value for the asg_instance_root_volume_encryption field of autoscaling_g
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="asg_default_tags" requirement="optional" type="list(object(…))">
+<HclListItem name="asg_default_instance_root_volume_iops" requirement="optional" type="number">
 <HclListItemDescription>
 
-Default value for the tags field of autoscaling_group_configurations. Any map entry that does not specify tags will use this value.
+Default value for the asg_instance_root_volume_iops field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_iops will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the asg_instance_root_volume_size field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_size will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="40"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_root_volume_throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the asg_instance_root_volume_throughput field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_throughput will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_root_volume_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_root_volume_type will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_type field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_type will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;t3.medium&quot;"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_user_data_base64" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_user_data_base64 field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_user_data_base64 will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_max_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the max_size field of autoscaling_group_configurations. Any map entry that does not specify max_size will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="asg_default_min_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+Default value for the min_size field of autoscaling_group_configurations. Any map entry that does not specify min_size will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="asg_default_multi_instance_overrides" requirement="optional" type="any">
+<HclListItemDescription>
+
+Default value for the multi_instance_overrides field of autoscaling_group_configurations. Any map entry that does not specify multi_instance_overrides will use this value.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-list(object({
-    key                 = string
-    value               = string
-    propagate_at_launch = bool
-  }))
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
 
-<HclListItem name="asg_default_use_multi_instances_policy" requirement="optional" type="bool">
-<HclListItemDescription>
 
-Default value for the use_multi_instances_policy field of autoscaling_group_configurations. Any map entry that does not specify use_multi_instances_policy will use this value.
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+   Example:
+   [
+     {
+       instance_type = "t3.micro"
+       weighted_capacity = 2
+     },
+     {
+       instance_type = "t3.medium"
+       weighted_capacity = 1
+     },
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, we would use a concrete type here, but terraform doesn't support optional attributes yet, so we have to
+   resort to the untyped any.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="asg_default_on_demand_allocation_strategy" requirement="optional" type="string">
@@ -641,92 +601,42 @@ Default value for the spot_max_price field of autoscaling_group_configurations. 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="asg_default_multi_instance_overrides" requirement="optional" type="any">
+<HclListItem name="asg_default_tags" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-Default value for the multi_instance_overrides field of autoscaling_group_configurations. Any map entry that does not specify multi_instance_overrides will use this value.
+Default value for the tags field of autoscaling_group_configurations. Any map entry that does not specify tags will use this value.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+list(object({
+    key                 = string
+    value               = string
+    propagate_at_launch = bool
+  }))
 ```
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   [
-     {
-       instance_type = "t3.micro"
-       weighted_capacity = 2
-     },
-     {
-       instance_type = "t3.medium"
-       weighted_capacity = 1
-     },
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   Ideally, we would use a concrete type here, but terraform doesn't support optional attributes yet, so we have to
-   resort to the untyped any.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
+<HclListItem name="asg_default_use_multi_instances_policy" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Default value for the enable_detailed_monitoring field of autoscaling_group_configurations.
+Default value for the use_multi_instances_policy field of autoscaling_group_configurations. Any map entry that does not specify use_multi_instances_policy will use this value.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItem name="aws_partition" requirement="optional" type="string">
 <HclListItemDescription>
 
-Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
+The AWS partition used for default AWS Resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_instance_keypair_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To disable keypairs, pass in blank.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="tenancy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The tenancy of the servers in this cluster. Must be one of: default, dedicated, or host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
@@ -738,13 +648,22 @@ Whether or not to associate a public IP address to the instances of the cluster.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="include_autoscaler_discovery_tags" requirement="optional" type="bool">
+<HclListItem name="cluster_instance_keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Adds additional tags to each ASG that allow a cluster autoscaler to auto-discover them.
+The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To disable keypairs, pass in blank.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
@@ -773,31 +692,13 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="eks_control_plane_security_group_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-A list of additional Security Groups IDs to be attached on the EKS Worker.
+Security group ID of the EKS Control Plane nodes to enhance to allow access to the control plane from the workers. Only used if `use_cluster_security_group` is `false`. Set to null to use the first security group assigned to the cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="load_balancers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of elastic load balancer names to add to the autoscaling group names. Use with ELB classic and NLBs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of aws_alb_target_group ARNs, for use with Application Load Balancing.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
@@ -809,13 +710,67 @@ A list of metrics to collect from the ASG. For a list of allowed values, see htt
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItem name="force_detach_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+Whether to force detaching any policies the role has before destroying it. If policies are attached to the role via the aws_iam_policy_attachment resource and you are modifying the role name or path, the force_detach_policies argument must be set to true and applied before attempting the operation otherwise you will encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource (recommended) does not have this requirement.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_instance_profile_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom name for the IAM instance profile. When null, the IAM role name will be used. If <a href="#use_resource_name_prefix"><code>use_resource_name_prefix</code></a> is true, this will be used as a name prefix.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_role_already_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not the IAM role used for the workers already exists. When false, this module will create a new IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the IAM role to use if iam_role_already_exists = true. When null, uses iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom name for the IAM role. When null, a default name based on cluster_name will be used. One of iam_role_name and iam_role_arn is required (must be non-null) if iam_role_already_exists is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="include_autoscaler_discovery_tags" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Adds additional tags to each ASG that allow a cluster autoscaler to auto-discover them.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="load_balancers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of elastic load balancer names to add to the autoscaling group names. Use with ELB classic and NLBs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
@@ -827,28 +782,55 @@ The maximum amount of time, in seconds, that an instance inside an ASG can be in
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItem name="name_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-VPC id for the EKS cluster deployment.
+Prefix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="force_detach_policies" requirement="optional" type="bool">
+<HclListItem name="name_suffix" requirement="optional" type="string">
 <HclListItemDescription>
 
-Whether to force detaching any policies the role has before destroying it. If policies are attached to the role via the aws_iam_policy_attachment resource and you are modifying the role name or path, the force_detach_policies argument must be set to true and applied before attempting the operation otherwise you will encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource (recommended) does not have this requirement.
+Suffix resource names with this string. When you have multiple worker groups for the cluster, you can use this to namespace the resources.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="use_resource_name_prefix" requirement="optional" type="bool">
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-When true, all the relevant resources will be set to use the name_prefix attribute so that unique names are generated for them. This allows those resources to support recreation through create_before_destroy lifecycle rules. Set to false if you were using any version before 0.45.0 and wish to avoid recreating the entire worker pool on your cluster.
+A list of aws_alb_target_group ARNs, for use with Application Load Balancing.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tenancy of the servers in this cluster. Must be one of: default, dedicated, or host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
+
+<HclListItem name="use_cluster_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to attach the EKS managed cluster security group to the worker nodes for control plane and cross worker network management. Avoiding the cluster security group allows you to better isolate worker nodes at the network level (E.g., disallowing free flowing traffic between Fargate Pods and self managed workers). It is recommended to use the cluster security group for most use cases. Refer to the module README for more information. If use_existing_cluster_config is false and this is set to true, it is assumed that the cluster security group is provided in <a href="#additional_security_group_ids"><code>additional_security_group_ids</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_existing_cluster_config" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will retrieve vpc config and security group ids from the existing cluster with the provided cluster_name. When false, you must provide <a href="#vpc_id"><code>vpc_id</code></a> and <a href="#eks_control_plane_security_group_id"><code>eks_control_plane_security_group_id</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -872,29 +854,31 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_resource_name_prefix" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all the relevant resources will be set to use the name_prefix attribute so that unique names are generated for them. This allows those resources to support recreation through create_before_destroy lifecycle rules. Set to false if you were using any version before 0.45.0 and wish to avoid recreating the entire worker pool on your cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+VPC id for the EKS cluster deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="eks_worker_security_group_id">
+<HclListItem name="eks_worker_asg_arns">
 <HclListItemDescription>
 
-AWS ID of the security group created for the EKS worker nodes.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_worker_iam_role_arn">
-<HclListItemDescription>
-
-AWS ARN identifier of the IAM role created for the EKS worker nodes.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="eks_worker_iam_role_name">
-<HclListItemDescription>
-
-Name of the IAM role created for the EKS worker nodes.
+AWS ARNs of the auto scaling groups for the EKS worker nodes.
 
 </HclListItemDescription>
 </HclListItem>
@@ -915,10 +899,26 @@ Names of the auto scaling groups for the EKS worker nodes.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="eks_worker_asg_arns">
+<HclListItem name="eks_worker_iam_role_arn">
 <HclListItemDescription>
 
-AWS ARNs of the auto scaling groups for the EKS worker nodes.
+AWS ARN identifier of the IAM role created for the EKS worker nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_worker_iam_role_name">
+<HclListItemDescription>
+
+Name of the IAM role created for the EKS worker nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_worker_security_group_id">
+<HclListItemDescription>
+
+AWS ID of the security group created for the EKS worker nodes.
 
 </HclListItemDescription>
 </HclListItem>
@@ -935,6 +935,6 @@ AWS ARNs of the auto scaling groups for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a9d47ef3b4fecbc18bf4e57c44d79247"
+  "hash": "8b8c0f448f254e0c9876527dd17f24b6"
 }
 ##DOCS-SOURCER-END -->

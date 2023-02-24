@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fefs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -76,14 +76,6 @@ The name used to namespace all resources created by these templates, including t
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The id of the VPC in which this file system should be deployed.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
@@ -92,33 +84,23 @@ A list of subnet ids where the file system should be deployed. In the standard G
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC in which this file system should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="aws_efs_security_group_name" requirement="optional" type="string">
+<HclListItem name="allow_access_via_mount_target" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name of the aws_efs_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
+(Optional) Allow access to the EFS file system via mount targets. If set to true, any clients connecting to a mount target (i.e. from within the private app subnet) will be allowed access.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_efs_security_group_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-The description of the aws_efs_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> file system' if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Security Groups that can connect to this file system.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
@@ -130,19 +112,28 @@ A list of CIDR-formatted IP address ranges that can connect to this file system.
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="storage_encrypted" requirement="optional" type="bool">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Specifies whether the EFS file system is encrypted.
+A list of Security Groups that can connect to this file system.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItem name="aws_efs_security_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default EFS KMS key for the account will be used.
+The description of the aws_efs_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> file system' if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_efs_security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_efs_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -155,51 +146,6 @@ A map of custom tags to apply to the EFS file system and the Security Group crea
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="performance_mode" requirement="optional" type="string">
-<HclListItemDescription>
-
-The file system performance mode. Can be either 'generalPurpose' or 'maxIO'. For more details: https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;generalPurpose&quot;"/>
-</HclListItem>
-
-<HclListItem name="throughput_mode" requirement="optional" type="string">
-<HclListItemDescription>
-
-Throughput mode for the file system. Valid values: 'bursting', 'provisioned'. When using 'provisioned', also set 'provisioned_throughput_in_mibps'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;bursting&quot;"/>
-</HclListItem>
-
-<HclListItem name="provisioned_throughput_in_mibps" requirement="optional" type="number">
-<HclListItemDescription>
-
-The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with 'throughput_mode' set to 'provisioned'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="transition_to_ia" requirement="optional" type="string">
-<HclListItemDescription>
-
-If specified, files will be transitioned to the IA storage class after the designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, or AFTER_90_DAYS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enforce_in_transit_encryption" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enforce in-transit encryption for all clients connecting to this EFS file system. If set to true, any clients connecting without in-transit encryption will be denied via an IAM policy.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="efs_access_points" requirement="optional" type="map(object(…))">
@@ -266,38 +212,84 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="allow_access_via_mount_target" requirement="optional" type="bool">
+<HclListItem name="enforce_in_transit_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
-(Optional) Allow access to the EFS file system via mount targets. If set to true, any clients connecting to a mount target (i.e. from within the private app subnet) will be allowed access.
+Enforce in-transit encryption for all clients connecting to this EFS file system. If set to true, any clients connecting without in-transit encryption will be denied via an IAM policy.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default EFS KMS key for the account will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="performance_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The file system performance mode. Can be either 'generalPurpose' or 'maxIO'. For more details: https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;generalPurpose&quot;"/>
+</HclListItem>
+
+<HclListItem name="provisioned_throughput_in_mibps" requirement="optional" type="number">
+<HclListItemDescription>
+
+The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with 'throughput_mode' set to 'provisioned'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="storage_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether the EFS file system is encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="throughput_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Throughput mode for the file system. Valid values: 'bursting', 'provisioned'. When using 'provisioned', also set 'provisioned_throughput_in_mibps'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;bursting&quot;"/>
+</HclListItem>
+
+<HclListItem name="transition_to_ia" requirement="optional" type="string">
+<HclListItemDescription>
+
+If specified, files will be transitioned to the IA storage class after the designated time. Valid values: AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, or AFTER_90_DAYS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="access_point_ids">
+<HclListItemDescription>
+
+A map of EFS access point names to the IDs of the access point (e.g. fsap-52a643fb) for that name.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="arn">
 <HclListItemDescription>
 
 Amazon Resource Name of the file system.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="id">
-<HclListItemDescription>
-
-The ID that identifies the file system (e.g. fs-ccfc0d65).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="security_group_id">
-<HclListItemDescription>
-
-The IDs of the security groups created for the file system.
 
 </HclListItemDescription>
 </HclListItem>
@@ -310,6 +302,14 @@ The DNS name for the filesystem per documented convention: http://docs.aws.amazo
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="id">
+<HclListItemDescription>
+
+The ID that identifies the file system (e.g. fs-ccfc0d65).
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="mount_target_ids">
 <HclListItemDescription>
 
@@ -318,10 +318,10 @@ The IDs of the mount targets (e.g. fsmt-f9a14450).
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="access_point_ids">
+<HclListItem name="security_group_id">
 <HclListItemDescription>
 
-A map of EFS access point names to the IDs of the access point (e.g. fsap-52a643fb) for that name.
+The IDs of the security groups created for the file system.
 
 </HclListItemDescription>
 </HclListItem>
@@ -338,6 +338,6 @@ A map of EFS access point names to the IDs of the access point (e.g. fsap-52a643
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fefs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8ea2b8afbb588250bc210bf849a44ec6"
+  "hash": "b6ba6a09cc77eb11ca8d40bb0df2725f"
 }
 ##DOCS-SOURCER-END -->

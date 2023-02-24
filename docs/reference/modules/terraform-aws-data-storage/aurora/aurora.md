@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Faurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -92,14 +92,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name used to namespace all resources created by these templates, including the cluster and cluster instances (e.g. drupaldb). Must be unique in this region. Must be a lowercase string.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="instance_count" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -116,10 +108,10 @@ The instance type from an Amazon Aurora supported instance class based on a sele
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
-The id of the VPC in which this DB should be deployed.
+The name used to namespace all resources created by these templates, including the cluster and cluster instances (e.g. drupaldb). Must be unique in this region. Must be a lowercase string.
 
 </HclListItemDescription>
 </HclListItem>
@@ -132,34 +124,15 @@ A list of subnet ids where the database instances should be deployed. In the sta
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC in which this DB should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
-
-<HclListItem name="db_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="master_username" requirement="optional" type="string">
-<HclListItemDescription>
-
-The username for the master user. Required unless this is a secondary database in a global Aurora cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="master_password" requirement="optional" type="string">
-<HclListItemDescription>
-
-The password for the master user. Required unless this is a secondary database in a global Aurora cluster. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
 
 <HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -170,112 +143,13 @@ A list of CIDR-formatted IP address ranges that can connect to this DB. In the s
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="monitoring_interval" requirement="optional" type="number">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Be sure this role exists. It will not be created here. You must specify a MonitoringInterval value other than 0 when you specify a MonitoringRoleARN value that is not empty string.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_iam_roles" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They will not be created here. Serverless aurora does not support attaching IAM roles.
+Specifies a list of Security Groups to allow connections from.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port the DB will listen on (e.g. 3306)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="3306"/>
-</HclListItem>
-
-<HclListItem name="backup_retention_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-How many days to keep backup snapshots around before cleaning them up
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="21"/>
-</HclListItem>
-
-<HclListItem name="preferred_backup_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="backtrack_window" requirement="optional" type="number">
-<HclListItemDescription>
-
-Window to allow Aurora Backtrack a special, in-place, destructive rollback for the entire cluster. Must be specified in seconds. 0=disabled, to maximum of 259200
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="preferred_maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The weekly day and time range during which cluster maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows. For cluster instance maintenance, see 'cluster_instances_maintenance_window_start_timestamp'
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Configure the auto minor version upgrade behavior. This is applied to the cluster instances and indicates if the automatic minor version upgrade of the engine is allowed. Default value is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cluster_instances_maintenance_window_start_timestamp" requirement="optional" type="string">
-<HclListItemDescription>
-
-The cluster instances maintenance window start in RFC 3339 timestamp (date and time) format. The default starts at 'wed:00:00-wed:02:00'. Can have any date from any year, only the day of the week will be used. Performance may be degraded or there may even be a downtime during maintenance windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;2017-11-22T00:00:00Z&quot;"/>
-</HclListItem>
-
-<HclListItem name="cluster_instances_minutes_between_maintenance_windows" requirement="optional" type="number">
-<HclListItemDescription>
-
-Amount of time, in minutes, between maintenance windows of the cluster instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="180"/>
-</HclListItem>
-
-<HclListItem name="cluster_instances_maintenance_duration_minutes" requirement="optional" type="number">
-<HclListItemDescription>
-
-Amount of time, in minutes, to allow for DB maintenance windows for the cluster instances
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="120"/>
 </HclListItem>
 
 <HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
@@ -296,49 +170,112 @@ Specifies whether any cluster modifications are applied immediately, or during t
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="storage_encrypted" requirement="optional" type="bool">
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether the DB cluster uses encryption for data at rest in the underlying storage for the DB, its automated backups, Read Replicas, and snapshots. Uses the default aws/rds key in KMS.
+Configure the auto minor version upgrade behavior. This is applied to the cluster instances and indicates if the automatic minor version upgrade of the engine is allowed. Default value is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
+<HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-Specifies a list of Security Groups to allow connections from.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this null, the default RDS KMS key for the account will be used.
+The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_database_authentication_enabled" requirement="optional" type="bool">
+<HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Specifies whether mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled. Disabled by default.
+The name of the aws_db_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItem name="aws_db_subnet_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-A map of custom tags to apply to the Aurora RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value.
+The description of the aws_db_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_db_subnet_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the aws_db_subnet_group that is created, or an existing one to use if create_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backtrack_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+Window to allow Aurora Backtrack a special, in-place, destructive rollback for the entire cluster. Must be specified in seconds. 0=disabled, to maximum of 259200
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many days to keep backup snapshots around before cleaning them up
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="21"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_iam_roles" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They will not be created here. Serverless aurora does not support attaching IAM roles.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_instances_maintenance_duration_minutes" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time, in minutes, to allow for DB maintenance windows for the cluster instances
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="120"/>
+</HclListItem>
+
+<HclListItem name="cluster_instances_maintenance_window_start_timestamp" requirement="optional" type="string">
+<HclListItemDescription>
+
+The cluster instances maintenance window start in RFC 3339 timestamp (date and time) format. The default starts at 'wed:00:00-wed:02:00'. Can have any date from any year, only the day of the week will be used. Performance may be degraded or there may even be a downtime during maintenance windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;2017-11-22T00:00:00Z&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instances_minutes_between_maintenance_windows" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time, in minutes, between maintenance windows of the cluster instances
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="180"/>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -350,40 +287,85 @@ Copy all the Aurora cluster tags to snapshots. Default is false.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="snapshot_identifier" requirement="optional" type="string">
+<HclListItem name="create_subnet_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If non-empty, the Aurora cluster will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the RDS console, e.g: rds:production-2015-06-26-06-05.
+If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be ignored (allow_connections_from_cidr_blocks).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB creating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Aurora RDS Instance and the Security Group created for it. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="db_cluster_parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+A cluster parameter group to associate with the cluster. Parameters in a DB cluster parameter group apply to every DB instance in a DB cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="restore_source_cluster_identifier" requirement="optional" type="string">
+<HclListItem name="db_instance_parameter_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-If non-empty, the Aurora cluster will be restored from the given source cluster using the latest restorable time. Can only be used if snapshot_identifier is null. For more information see https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
+An instance parameter group to associate with the cluster instances. Parameters in a DB parameter group apply to a single DB instance in an Aurora DB cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="restore_type" requirement="optional" type="string">
+<HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Only used if 'restore_source_cluster_identifier' is non-empty. Type of restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
+The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="restore_to_time" requirement="optional" type="string">
+<HclListItem name="deleting_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
-Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+Timeout for DB deleting
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
+</HclListItem>
+
+<HclListItem name="deletion_protection" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
@@ -431,13 +413,85 @@ The Amazon Aurora DB engine version for the selected engine and engine_mode. Not
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="deletion_protection" requirement="optional" type="bool">
+<HclListItem name="final_snapshot_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true.
+The name of the final_snapshot_identifier. Defaults to <a href="#name"><code>name</code></a>-final-snapshot if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="global_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+Global cluster identifier when creating the global secondary cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_database_authentication_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled. Disabled by default.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ignore_password_changes" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Implements a cluster that disables terraform from updating the master_password.  Useful when managing secrets outside of terraform (ex. using AWS Secrets Manager Rotations).  Note changing this value will switch the cluster resource.  To avoid deleting your old database and creating a new one, you will need to run `terraform state mv` when changing this variable
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this null, the default RDS KMS key for the account will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_password" requirement="optional" type="string">
+<HclListItemDescription>
+
+The password for the master user. Required unless this is a secondary database in a global Aurora cluster. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_username" requirement="optional" type="string">
+<HclListItemDescription>
+
+The username for the master user. Required unless this is a secondary database in a global Aurora cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Be sure this role exists. It will not be created here. You must specify a MonitoringInterval value other than 0 when you specify a MonitoringRoleARN value that is not empty string.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
@@ -453,6 +507,78 @@ Specifies whether Performance Insights is enabled or not. On Aurora MySQL, Perfo
 <HclListItemDescription>
 
 The ARN for the KMS key to encrypt Performance Insights data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port the DB will listen on (e.g. 3306)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3306"/>
+</HclListItem>
+
+<HclListItem name="preferred_backup_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The daily time range during which automated backups are created (e.g. 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="preferred_maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The weekly day and time range during which cluster maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows. For cluster instance maintenance, see 'cluster_instances_maintenance_window_start_timestamp'
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="publicly_accessible" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR PRODUCTION USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="replication_source_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="restore_source_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+If non-empty, the Aurora cluster will be restored from the given source cluster using the latest restorable time. Can only be used if snapshot_identifier is null. For more information see https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="restore_to_time" requirement="optional" type="string">
+<HclListItemDescription>
+
+Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="restore_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Only used if 'restore_source_cluster_identifier' is non-empty. Type of restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -476,6 +602,15 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItemDefaultValue defaultValue="256"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum capacity for an Aurora DB cluster in provisioned DB engine mode. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0.5"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_min_capacity" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -483,6 +618,15 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="128"/>
 </HclListItem>
 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause" requirement="optional" type="number">
@@ -503,51 +647,6 @@ The action to take when the timeout is reached. Valid values: ForceApplyCapacity
 <HclListItemDefaultValue defaultValue="&quot;RollbackCapacityChange&quot;"/>
 </HclListItem>
 
-<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum capacity for an Aurora DB cluster in provisioned DB engine mode. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0.5"/>
-</HclListItem>
-
-<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
-<HclListItemDescription>
-
-The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="128"/>
-</HclListItem>
-
-<HclListItem name="db_cluster_parameter_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-A cluster parameter group to associate with the cluster. Parameters in a DB cluster parameter group apply to every DB instance in a DB cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="db_instance_parameter_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-An instance parameter group to associate with the cluster instances. Parameters in a DB parameter group apply to a single DB instance in an Aurora DB cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="publicly_accessible" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If you wish to make your database accessible from the public Internet, set this flag to true (WARNING: NOT RECOMMENDED FOR PRODUCTION USAGE!!). The default is false, which means the database is only accessible from within the VPC, which is much more secure.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -555,6 +654,15 @@ Determines whether a final DB snapshot is created before the DB instance is dele
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="snapshot_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+If non-empty, the Aurora cluster will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the RDS console, e.g: rds:production-2015-06-26-06-05.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="source_region" requirement="optional" type="string">
@@ -566,103 +674,13 @@ Source region for global secondary cluster (if creating a global cluster) or the
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="replication_source_identifier" requirement="optional" type="string">
+<HclListItem name="storage_encrypted" requirement="optional" type="bool">
 <HclListItemDescription>
 
-ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="global_cluster_identifier" requirement="optional" type="string">
-<HclListItemDescription>
-
-Global cluster identifier when creating the global secondary cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_subnet_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be ignored (allow_connections_from_cidr_blocks).
+Specifies whether the DB cluster uses encryption for data at rest in the underlying storage for the DB, its automated backups, Read Replicas, and snapshots. Uses the default aws/rds key in KMS.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="aws_db_subnet_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the aws_db_subnet_group that is created, or an existing one to use if create_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_db_subnet_group_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-The description of the aws_db_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_db_security_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the aws_db_security_group that is created. Defaults to <a href="#name"><code>name</code></a> if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ignore_password_changes" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Implements a cluster that disables terraform from updating the master_password.  Useful when managing secrets outside of terraform (ex. using AWS Secrets Manager Rotations).  Note changing this value will switch the cluster resource.  To avoid deleting your old database and creating a new one, you will need to run `terraform state mv` when changing this variable
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="creating_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-Timeout for DB creating
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
 </HclListItem>
 
 <HclListItem name="updating_timeout" requirement="optional" type="string">
@@ -674,34 +692,28 @@ Timeout for DB updating
 <HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
 </HclListItem>
 
-<HclListItem name="deleting_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-Timeout for DB deleting
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="cluster_arn">
+</HclListItem>
+
 <HclListItem name="cluster_endpoint">
-</HclListItem>
-
-<HclListItem name="reader_endpoint">
-</HclListItem>
-
-<HclListItem name="instance_endpoints">
 </HclListItem>
 
 <HclListItem name="cluster_id">
 </HclListItem>
 
+<HclListItem name="cluster_instances_maintenance_window">
+</HclListItem>
+
 <HclListItem name="cluster_resource_id">
 </HclListItem>
 
-<HclListItem name="cluster_arn">
+<HclListItem name="db_name">
+</HclListItem>
+
+<HclListItem name="instance_endpoints">
 </HclListItem>
 
 <HclListItem name="instance_ids">
@@ -710,13 +722,10 @@ Timeout for DB deleting
 <HclListItem name="port">
 </HclListItem>
 
+<HclListItem name="reader_endpoint">
+</HclListItem>
+
 <HclListItem name="security_group_id">
-</HclListItem>
-
-<HclListItem name="db_name">
-</HclListItem>
-
-<HclListItem name="cluster_instances_maintenance_window">
 </HclListItem>
 
 </TabItem>
@@ -731,6 +740,6 @@ Timeout for DB deleting
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ebfd521b3bbb1917c1de1ff1eadca6a8"
+  "hash": "e48252b4f938688d7229151e40b9c4ed"
 }
 ##DOCS-SOURCER-END -->

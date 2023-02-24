@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fmsk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -192,14 +192,6 @@ The number of brokers to have in the cluster.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="kafka_version" requirement="required" type="string">
-<HclListItemDescription>
-
-Kafka version to install. See https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html for a list of supported versions.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -208,10 +200,10 @@ Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`). 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="kafka_version" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the VPC in which to deploy the cluster.
+Kafka version to install. See https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.html for a list of supported versions.
 
 </HclListItemDescription>
 </HclListItem>
@@ -224,41 +216,86 @@ The subnet IDs into which the broker instances should be deployed. You should ty
 </HclListItemDescription>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="server_properties" requirement="optional" type="map(string)">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-Contents of the server.properties file. Supported properties are documented in the MSK Developer Guide (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
+The ID of the VPC in which to deploy the cluster.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-     {
-       "auto.create.topics.enable" = "true"
-       "default.replication.factor" = "2"
-     }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="enhanced_monitoring" requirement="optional" type="string">
+### Optional
+
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Specify the desired enhanced MSK CloudWatch monitoring level. See https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html for valid values.
+A list of Security Group IDs that should be added to the MSK cluster broker instances.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;DEFAULT&quot;"/>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allowed_inbound_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that will be allowed to connect to the Kafka brokers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allowed_inbound_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of security group IDs that will be allowed to connect to the Kafka brokers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="broker_storage_autoscaling_max_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Max capacity of broker node EBS storage (in GiB)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100"/>
+</HclListItem>
+
+<HclListItem name="broker_storage_autoscaling_target_percentage" requirement="optional" type="number">
+<HclListItemDescription>
+
+Broker storage utilization percentage at which scaling is triggered.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="70"/>
+</HclListItem>
+
+<HclListItem name="client_sasl_scram_secret_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of ARNs for SCRAM secrets stored in the Secrets Manager service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="client_tls_certificate_authority_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Optional list of ACM Certificate Authority Amazon Resource Names (ARNs).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the Cloudwatch Log Group to deliver logs to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -287,78 +324,6 @@ Custom tags to apply to the Kafka broker nodes and all related resources.
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="initial_ebs_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The initial size of the EBS volume (in GiB) for the data drive on each broker node. 
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="50"/>
-</HclListItem>
-
-<HclListItem name="broker_storage_autoscaling_max_capacity" requirement="optional" type="number">
-<HclListItemDescription>
-
-Max capacity of broker node EBS storage (in GiB)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="100"/>
-</HclListItem>
-
-<HclListItem name="broker_storage_autoscaling_target_percentage" requirement="optional" type="number">
-<HclListItemDescription>
-
-Broker storage utilization percentage at which scaling is triggered.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="70"/>
-</HclListItem>
-
-<HclListItem name="disable_broker_storage_scale_in" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Flag indicating whether broker storage should never be scaled in.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="override_broker_storage_autoscaling_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-Override automatically created Service-linked role for storage autoscaling. If not provided, Application Auto Scaling creates the appropriate service-linked role for you.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="allowed_inbound_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of CIDR-formatted IP address ranges that will be allowed to connect to the Kafka brokers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allowed_inbound_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of security group IDs that will be allowed to connect to the Kafka brokers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Security Group IDs that should be added to the MSK cluster broker instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -383,6 +348,69 @@ A map of custom tags to apply to the Security Group for this MSK Cluster. The ke
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="disable_broker_storage_scale_in" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag indicating whether broker storage should never be scaled in.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_client_sasl_iam" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether SASL IAM client authentication is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_client_sasl_scram" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether SASL SCRAM client authentication is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_client_tls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether TLS client authentication is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_logs" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_firehose_logs" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether you want to enable or disable streaming broker logs to Kinesis Data Firehose.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_logs" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether you want to enable or disable streaming broker logs to S3.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="encryption_at_rest_kms_key_arn" requirement="optional" type="string">
@@ -412,49 +440,31 @@ Whether data communication among broker nodes is encrypted. Default value: true.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_client_sasl_scram" requirement="optional" type="bool">
+<HclListItem name="enhanced_monitoring" requirement="optional" type="string">
 <HclListItemDescription>
 
-Whether SASL SCRAM client authentication is enabled.
+Specify the desired enhanced MSK CloudWatch monitoring level. See https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html for valid values.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="&quot;DEFAULT&quot;"/>
 </HclListItem>
 
-<HclListItem name="client_sasl_scram_secret_arns" requirement="optional" type="list(string)">
+<HclListItem name="firehose_delivery_stream" requirement="optional" type="string">
 <HclListItemDescription>
 
-List of ARNs for SCRAM secrets stored in the Secrets Manager service.
+Name of the Kinesis Data Firehose delivery stream to deliver logs to.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_client_sasl_iam" requirement="optional" type="bool">
+<HclListItem name="initial_ebs_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-Whether SASL IAM client authentication is enabled.
+The initial size of the EBS volume (in GiB) for the data drive on each broker node. 
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="enable_client_tls" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether TLS client authentication is enabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="client_tls_certificate_authority_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Optional list of ACM Certificate Authority Amazon Resource Names (ARNs).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="50"/>
 </HclListItem>
 
 <HclListItem name="open_monitoring_enable_jmx_exporter" requirement="optional" type="bool">
@@ -475,49 +485,13 @@ Indicates whether you want to enable or disable the Prometheus Node Exporter.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_cloudwatch_logs" requirement="optional" type="bool">
+<HclListItem name="override_broker_storage_autoscaling_role_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the Cloudwatch Log Group to deliver logs to.
+Override automatically created Service-linked role for storage autoscaling. If not provided, Application Auto Scaling creates the appropriate service-linked role for you.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_firehose_logs" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates whether you want to enable or disable streaming broker logs to Kinesis Data Firehose.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="firehose_delivery_stream" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the Kinesis Data Firehose delivery stream to deliver logs to.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_s3_logs" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates whether you want to enable or disable streaming broker logs to S3.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="s3_logs_bucket" requirement="optional" type="string">
@@ -538,13 +512,63 @@ Prefix to append to the folder name.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="server_properties" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Contents of the server.properties file. Supported properties are documented in the MSK Developer Guide (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+     {
+       "auto.create.topics.enable" = "true"
+       "default.replication.factor" = "2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="cluster_name">
+<HclListItem name="bootstrap_brokers">
 <HclListItemDescription>
 
-Name of the MSK cluster.
+A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="bootstrap_brokers_iam">
+<HclListItemDescription>
+
+A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity using SASL/IAM to the kafka cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="bootstrap_brokers_scram">
+<HclListItemDescription>
+
+A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity using SASL/SCRAM to the kafka cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="bootstrap_brokers_tls">
+<HclListItemDescription>
+
+A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -565,50 +589,26 @@ Current version of the MSK Cluster used for updates
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="bootstrap_brokers">
+<HclListItem name="cluster_group_arn_prefix">
 <HclListItemDescription>
 
-A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster
+Group ARN prefix (without trailing '/') to help creating IAM policies, e.g. 'arn:aws:kafka:us-east-1:0123456789012:group/MyTestCluster'
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="bootstrap_brokers_tls">
+<HclListItem name="cluster_name">
 <HclListItemDescription>
 
-A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster
+Name of the MSK cluster.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="bootstrap_brokers_scram">
+<HclListItem name="cluster_topic_arn_prefix">
 <HclListItemDescription>
 
-A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity using SASL/SCRAM to the kafka cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="bootstrap_brokers_iam">
-<HclListItemDescription>
-
-A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity using SASL/IAM to the kafka cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="zookeeper_connect_string">
-<HclListItemDescription>
-
-A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="zookeeper_connect_string_tls">
-<HclListItemDescription>
-
-A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster
+Topic ARN prefix (without trailing '/') to help creating IAM policies, e.g. 'arn:aws:kafka:us-east-1:0123456789012:topic/MyTestCluster'
 
 </HclListItemDescription>
 </HclListItem>
@@ -645,18 +645,18 @@ The name of the cluster security group.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cluster_topic_arn_prefix">
+<HclListItem name="zookeeper_connect_string">
 <HclListItemDescription>
 
-Topic ARN prefix (without trailing '/') to help creating IAM policies, e.g. 'arn:aws:kafka:us-east-1:0123456789012:topic/MyTestCluster'
+A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cluster_group_arn_prefix">
+<HclListItem name="zookeeper_connect_string_tls">
 <HclListItemDescription>
 
-Group ARN prefix (without trailing '/') to help creating IAM policies, e.g. 'arn:aws:kafka:us-east-1:0123456789012:group/MyTestCluster'
+A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -673,6 +673,6 @@ Group ARN prefix (without trailing '/') to help creating IAM policies, e.g. 'arn
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e597491cad01d529be92e8967bbe0a66"
+  "hash": "f2b5a7a16563c3fbefda55a54cc3c19c"
 }
 ##DOCS-SOURCER-END -->

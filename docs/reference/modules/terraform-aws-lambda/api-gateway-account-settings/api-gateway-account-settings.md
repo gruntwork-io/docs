@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fapi-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -43,15 +43,6 @@ Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tr
 
 ### Optional
 
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM role that will be created to grant API Gateway rights to cloudwatch
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;api_gateway_cloudwatch_global&quot;"/>
-</HclListItem>
-
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -61,13 +52,13 @@ Set to false to have this module create no resources. This weird parameter exist
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItem name="iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+The name of the IAM role that will be created to grant API Gateway rights to cloudwatch
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;api_gateway_cloudwatch_global&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_policy_waiting_time" requirement="optional" type="string">
@@ -77,6 +68,15 @@ Time to wait after creating managed policy, to avoid eventual consistency races.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;60s&quot;"/>
+</HclListItem>
+
+<HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, all IAM policies will be managed as dedicated policies rather than inline policies attached to the IAM roles. Dedicated managed policies are friendlier to automated policy checkers, which may scan a single resource for findings. As such, it is important to avoid inline policies when targeting compliance with various security standards.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -100,6 +100,6 @@ Time to wait after creating managed policy, to avoid eventual consistency races.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c84eb7ef341c904d5eae49f51209f568"
+  "hash": "327051b56f6dc5af9b7f941d83558297"
 }
 ##DOCS-SOURCER-END -->

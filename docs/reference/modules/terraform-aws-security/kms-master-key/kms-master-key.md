@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -225,6 +225,15 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
+<HclListItem name="default_customer_master_key_spec" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default value to use for spec (specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports). Applies to all keys, unless overridden in the customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="default_deletion_window_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -232,15 +241,6 @@ The default value to use for deletion_window_in_days (the number of days to keep
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value  is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="default_enable_key_rotation" requirement="optional" type="bool">
@@ -261,15 +261,6 @@ The default value to use for multi_region (whether to enable multi-region replic
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="default_customer_master_key_spec" requirement="optional" type="string">
-<HclListItemDescription>
-
-The default value to use for spec (specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports). Applies to all keys, unless overridden in the customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -279,8 +270,25 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value  is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="key_alias">
+<HclListItemDescription>
+
+A map of CMK name to CMK alias.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="key_arn">
 <HclListItemDescription>
@@ -298,14 +306,6 @@ A map of CMK name to CMK ID.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="key_alias">
-<HclListItemDescription>
-
-A map of CMK name to CMK alias.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -318,6 +318,6 @@ A map of CMK name to CMK alias.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f41ebc3480b49046102106e3a8da689"
+  "hash": "1b4e75ac051427483efea501cac19757"
 }
 ##DOCS-SOURCER-END -->

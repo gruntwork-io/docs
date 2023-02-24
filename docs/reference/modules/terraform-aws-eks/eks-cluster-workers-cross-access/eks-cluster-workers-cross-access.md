@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -57,18 +57,18 @@ module.
 
 ### Required
 
-<HclListItem name="num_eks_worker_security_group_ids" requirement="required" type="number">
-<HclListItemDescription>
-
-The number of Security Group IDs passed into the module. This should be equal to the length of the <a href="#eks_worker_security_group_ids"><code>eks_worker_security_group_ids</code></a> input list.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="eks_worker_security_group_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 The list of Security Group IDs for EKS workers that should have reciprocating ingress rules for the port information provided in <a href="#ports"><code>ports</code></a>. For each group in the list, there will be an ingress rule created for all ports provided for all the other groups in the list.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="num_eks_worker_security_group_ids" requirement="required" type="number">
+<HclListItemDescription>
+
+The number of Security Group IDs passed into the module. This should be equal to the length of the <a href="#eks_worker_security_group_ids"><code>eks_worker_security_group_ids</code></a> input list.
 
 </HclListItemDescription>
 </HclListItem>
@@ -124,6 +124,6 @@ list(object({
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff46067d24719261fc7876c0fd2aec70"
+  "hash": "373d043a6a1522006f678e10b2803cbd"
 }
 ##DOCS-SOURCER-END -->

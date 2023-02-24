@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -117,6 +117,14 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/m
 
 ### Required
 
+<HclListItem name="external_account_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the external AWS account that shared the DB snapshots with this account
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="rds_db_identifier" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -141,41 +149,15 @@ An expression that defines how often to run the lambda function to copy snapshot
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="external_account_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the external AWS account that shared the DB snapshots with this account
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
-<HclListItem name="report_cloudwatch_metric" requirement="optional" type="bool">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set true, just before the lambda function finishes running, it will report a custom metric to CloudWatch, as specified by <a href="#report_cloudwatch_metric_namespace"><code>report_cloudwatch_metric_namespace</code></a> and <a href="#report_cloudwatch_metric_name"><code>report_cloudwatch_metric_name</code></a>. You can set an alarm on this metric to detect if the backup job failed to run to completion.
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="report_cloudwatch_metric_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-The namespace to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="report_cloudwatch_metric_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="kms_key_id" requirement="optional" type="string">
@@ -196,6 +178,33 @@ Namespace all Lambda resources created by this module with this name. If not spe
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="report_cloudwatch_metric" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set true, just before the lambda function finishes running, it will report a custom metric to CloudWatch, as specified by <a href="#report_cloudwatch_metric_namespace"><code>report_cloudwatch_metric_namespace</code></a> and <a href="#report_cloudwatch_metric_name"><code>report_cloudwatch_metric_name</code></a>. You can set an alarm on this metric to detect if the backup job failed to run to completion.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="report_cloudwatch_metric_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="report_cloudwatch_metric_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="schedule_namespace" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -203,15 +212,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -235,6 +235,6 @@ Set to false to have this module skip creating resources. This weird parameter e
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20f9e426067fe018a9845059793e9b6b"
+  "hash": "75126e833bc6eff35316cdf5bfaf9b89"
 }
 ##DOCS-SOURCER-END -->

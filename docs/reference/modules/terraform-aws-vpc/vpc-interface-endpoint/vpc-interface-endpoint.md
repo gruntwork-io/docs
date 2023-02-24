@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -202,14 +202,6 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ### Required
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the VPC for all modules
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
@@ -218,81 +210,17 @@ A list of IDs of the subnets for all endpoints. Each endpoint will create one EN
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC for all modules
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IDs of the security groups which will apply for all endpoints. Must supply this or create_https_security_group = true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="create_https_security_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, creates a security group that allows ingress on port 443 and applies it to all endpoints. Must set this to true or supply security_group_ids.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="https_security_group_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to the VPC's CIDR if left empty. Only used if create_https_security_group is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="https_security_group_name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name prefix to use on the created SG. A random string will be appended.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-https-&quot;"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to all endpoints.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_config_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a config within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="config_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the config endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="config_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the config endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="config_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="access_analyzer_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -301,2677 +229,13 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="config_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItem name="access_analyzer_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Tags for the Config endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="config_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the config endpoint
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Access Analyzer endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_sqs_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a SQS within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sqs_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SQS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sqs_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SQS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sqs_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SQS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="sqs_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SQS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sqs_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_secretsmanager_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Secrets Manager within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Secrets Manager endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Secrets Manager endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Secrets Manager endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Secrets Manager endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_api_gateway_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an API Gateway within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="api_gateway_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the API Gateway endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="api_gateway_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the API Gateway endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="api_gateway_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the API Gateway endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="api_gateway_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="api_gateway_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the API Gateway endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ec2_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an EC2 within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EC2 endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2 endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EC2 endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the EC2 endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ecr_api_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an ECR API within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the ECR api endpoint. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECR API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the ECR API endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the ECR API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ecr_dkr_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an ECR DKR within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the ECR dkr endpoint. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for ECR DKR endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the ECR DKR endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the ECR DKR endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_kms_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a KMS within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kms_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the KMS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the KMS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the KMS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kms_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the KMS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an ECS within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ecs_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the ECS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the ECS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ecs_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the ECS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_agent_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an ECS Agent within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ecs_agent_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the ECS Agent endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_agent_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the ECS Agent endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_agent_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS Agent endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ecs_agent_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_agent_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the ECS Agent endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ecs_telemetry_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an ECS Agent within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the ECS Telemetry endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the ECS Telemetry endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS Telemetry endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the ECS Telemetry endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_sns_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a SNS within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SNS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SNS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SNS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SNS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_vpc_cloudwatch_monitoring_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CloudWatch Monitoring within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CloudWatch Monitoring endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CloudWatch Monitoring endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Monitoring endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CloudWatch Monitoring endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_elb_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an Elastic Load Balancing within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Elastic Load Balancing endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Elastic Load Balancing endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Load Balancing endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Elastic Load Balancing endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_events_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CloudWatch Events within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CloudWatch Events endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CloudWatch Events endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Events endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CloudWatch Events endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_logs_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CloudWatch Logs within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CloudWatch Logs endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CloudWatch Logs endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Logs endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CloudWatch Logs endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudtrail_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CloudTrail within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CloudTrail endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CloudTrail endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudTrail endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CloudTrail endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_kinesis_streams_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Kinesis Streams within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kinesis_streams_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Kinesis Streams endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kinesis_streams_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Kinesis Streams endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kinesis_streams_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Kinesis Streams endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kinesis_streams_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kinesis_streams_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Kinesis endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_sts_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a STS within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sts_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the STS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sts_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the STS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sts_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the STS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sts_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="sts_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the STS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudformation_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Cloudformation within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Cloudformation endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the theCloudformation endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cloudformation endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CloudFormation endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ssm_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an SSM endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SSM Endpoint endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SSM Endpoint endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SSM Endpoint endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SSM Endpoint endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ssmmessages_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an SSM Messages endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SSM Messages endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SSM Messages endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SSM Messages endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SSM Messages endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_ec2messages_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision an EC2 Messages endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EC2 Messages endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2 Messages endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EC2 Messages endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the EC2 Messages endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="enable_glue_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Glue endpoint within the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the glue endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the glue endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Glue endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Glue endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_ebs_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a EBS endpoint within the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EBS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EBS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the EBS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EBS endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_efs_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a EFS endpoint within the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EFS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EFS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the EFS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EFS endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_lambda_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Lambda endpoint within the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Lambda endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Lambda endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Lambda endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Lambda endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_redshift_data_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Redshift within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Redshift endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Redshift endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Redshift endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Redshift endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_ses_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Simple Email Service within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ses_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Simple Email Service endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ses_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Simple Email Service endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SES is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ses_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Simple Email Service endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="ses_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Simple Email Service endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ses_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_codebuild_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CodeBuild Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CodeBuild endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CodeBuild endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeBuild endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CodeBuild endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeBuild endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_codeartifact_api_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Codeartifact API Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Codeartifact API endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Codeartifact API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Codeartifact API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_api_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CodeArtifact API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeArtifact API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_api_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_codecommit_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CodeCommit Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CodeCommit endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CodeCommit API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeCommit endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CodeCommit endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeCommit endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_git_codecommit_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Git CodeCommit Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Git CodeCommit endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Git CodeCommit API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Git CodeCommit endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Git CodeCommit endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Git CodeCommit API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_ec2_autoscaling_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a EC2-Autoscaling Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EC2-Autoscaling endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, EC2-Autoscaling endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CodeArtifact API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2-Autoscaling endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_transferserver_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Transfer Server Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Transfer Server endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Transfer Server endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Transfer Server endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Transfer Server endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Transfer Server endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_kinesis_firehose_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a KINESIS Firehose Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the KINESIS Firehose endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the KINESIS Firehose endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, KINESIS Firehose endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the KINESIS Firehose endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the KINESIS Firehose endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_codepipeline_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a CodePipeline Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the CodePipeline endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CodePipeline endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodePipeline endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the CodePipeline endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodePipeline endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_appmesh_envoy_management_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a AppMesh Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the AppMesh endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the AppMesh endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppMesh endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the AppMesh endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppMesh endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_servicecatalog_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Service Catalog Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Service Catalog endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Service Catalog endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Service Catalog endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Service Catalog endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Service Catalog endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_storagegateway_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Storage Gateway Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Storage Gateway endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Storage Gateway endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Storage Gateway endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Storage Gateway endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Storage Gateway endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_transfer_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Transfer Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Transfer endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Transfer endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Transfer endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Transfer endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Transfer endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_sagemaker_api_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a SageMaker API Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SageMaker API endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SageMaker API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SageMaker API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SageMaker API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SageMaker API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_sagemaker_runtime_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a SageMaker Runtime Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SageMaker Runtime endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SageMaker Runtime endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SageMaker Runtime endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SageMaker Runtime endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SageMaker Runtime endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_appstream_api_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a AppStream API Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the AppStream API endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the AppStream API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppStream API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the AppStream API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppStream API endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_appstream_streaming_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a AppStream STREAMING Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the AppStream STREAMING endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the AppStream STREAMING endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppStream STREAMING endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the AppStream STREAMING endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppStream STREAMING endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_athena_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Athena Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Athena endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Athena endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Athena endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Athena endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Athena endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_rekognition_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Rekognition Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Rekognition endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Rekognition endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Rekognition endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Rekognition endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Rekognition endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_auto_scaling_plans_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Auto Scaling Plans Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Auto Scaling Plans endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Auto Scaling Plans endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Auto Scaling Plans endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Auto Scaling Plans endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Auto Scaling Plans endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_cloud_directory_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Cloud Directory Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Cloud Directory endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Cloud Directory endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Cloud Directory endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Cloud Directory endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cloud Directory endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_workspaces_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Workspaces Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Workspaces endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Workspaces endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Workspaces endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Workspaces endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Workspaces endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_access_analyzer_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Access Analyzer Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="access_analyzer_endpoint_security_group_ids" requirement="optional" type="list(string)">
@@ -3001,16 +265,7 @@ Tags for the Access Analyzer endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="access_analyzer_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Access Analyzer endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="access_analyzer_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="acm_pca_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3019,445 +274,13 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_datasync_endpoint" requirement="optional" type="bool">
+<HclListItem name="acm_pca_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a Data Sync Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Data Sync endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Data Sync endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Data Sync endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Data Sync endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Data Sync endpoint
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ACM PCA endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_elastic_inference_runtime_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Elastic Inference Runtime Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Elastic Inference Runtime endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Elastic Inference Runtime endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Inference Runtime endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Elastic Inference Runtime endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Inference Runtime endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_sms_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a SMS Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the SMS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the SMS endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SMS endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the SMS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the SMS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_emr_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a EMR Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the EMR endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the EMR endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, EMR endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the EMR endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the EMR endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_qldb_session_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a QLDB Session Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the QLDB Session endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the QLDB Session endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, QLDB Session endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the QLDB Session endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the QLDB Session endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_states_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Step Function Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="states_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Step Function endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="states_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Step Function endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Step Function endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="states_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Step Function endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="states_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Step Function endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="states_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_elasticbeanstalk_health_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Elastic Beanstalk Health Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Elastic Beanstalk Health endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Elastic Beanstalk Health endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Beanstalk Health endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Elastic Beanstalk Health endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Beanstalk Health endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_elasticbeanstalk_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a Elastic Beanstalk Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ID of one or more security groups to associate with the network interface for the Elastic Beanstalk endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Elastic Beanstalk endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Beanstalk endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags for the Elastic Beanstalk endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Beanstalk endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_acm_pca_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want to provision a ACM PCA Endpoint within the VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="acm_pca_endpoint_security_group_ids" requirement="optional" type="list(string)">
@@ -3487,16 +310,7 @@ Tags for the ACM PCA endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="acm_pca_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the ACM PCA endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="acm_pca_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="api_gateway_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3505,52 +319,43 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_rds_endpoint" requirement="optional" type="bool">
+<HclListItem name="api_gateway_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a RDS Endpoint within the VPC
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the API Gateway endpoint
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="rds_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="api_gateway_endpoint_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ID of one or more security groups to associate with the network interface for the RDS endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="rds_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the RDS endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, RDS endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+The ID of one or more security groups to associate with the network interface for the API Gateway endpoint. If none is provided, AWS will associate the default security group for the VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="rds_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItem name="api_gateway_endpoint_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Tags for the RDS endpoint
+The IDs of subnets in which to create a network interface for the API Gateway endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="api_gateway_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the API Gateway endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="rds_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the RDS endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="rds_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="appmesh_envoy_management_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3559,52 +364,43 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_codedeploy_commands_secure_endpoint" requirement="optional" type="bool">
+<HclListItem name="appmesh_envoy_management_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a CodeDeploy Commands Secure Endpoint within the VPC
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppMesh endpoint
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="codedeploy_commands_secure_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="appmesh_envoy_management_endpoint_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ID of one or more security groups to associate with the network interface for the CodeDeploy Commands Secure endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="codedeploy_commands_secure_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the CodeDeploy Commands Secure endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeDeploy Commands Secure endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+The ID of one or more security groups to associate with the network interface for the AppMesh endpoint. If none is provided, AWS will associate the default security group for the VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="codedeploy_commands_secure_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItem name="appmesh_envoy_management_endpoint_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Tags for the CodeDeploy Commands Secure endpoint
+The IDs of subnets in which to create a network interface for the AppMesh endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppMesh endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="appmesh_envoy_management_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the AppMesh endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="codedeploy_commands_secure_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeDeploy Commands Secure endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codedeploy_commands_secure_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="appstream_api_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3613,52 +409,43 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_textract_endpoint" requirement="optional" type="bool">
+<HclListItem name="appstream_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a Textract Endpoint within the VPC
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppStream API endpoint
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="textract_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="appstream_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The ID of one or more security groups to associate with the network interface for the Textract endpoint. If none is provided, AWS will associate the default security group for the VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="textract_endpoint_subnet_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of subnets in which to create a network interface for the Textract endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Textract endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+The ID of one or more security groups to associate with the network interface for the AppStream API endpoint. If none is provided, AWS will associate the default security group for the VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="textract_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItem name="appstream_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Tags for the Textract endpoint
+The IDs of subnets in which to create a network interface for the AppStream API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppStream API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="appstream_api_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the AppStream API endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="textract_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Textract endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="textract_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="appstream_streaming_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3667,13 +454,463 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_codeartifact_repositories_endpoint" requirement="optional" type="bool">
+<HclListItem name="appstream_streaming_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a Codeartifact repositories Endpoint within the VPC
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the AppStream STREAMING endpoint
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="appstream_streaming_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the AppStream STREAMING endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="appstream_streaming_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the AppStream STREAMING endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, AppStream STREAMING endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="appstream_streaming_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the AppStream STREAMING endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="athena_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="athena_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Athena endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="athena_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Athena endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="athena_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Athena endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Athena endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="athena_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Athena endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Auto Scaling Plans endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Auto Scaling Plans endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Auto Scaling Plans endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Auto Scaling Plans endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Auto Scaling Plans endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cloud Directory endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Cloud Directory endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Cloud Directory endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Cloud Directory endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Cloud Directory endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cloudformation endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Cloudformation endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the theCloudformation endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CloudFormation endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudTrail endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CloudTrail endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CloudTrail endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CloudTrail endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Events endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CloudWatch Events endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CloudWatch Events endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CloudWatch Events endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Logs endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CloudWatch Logs endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CloudWatch Logs endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CloudWatch Logs endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CloudWatch Monitoring endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CloudWatch Monitoring endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CloudWatch Monitoring endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CloudWatch Monitoring endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeArtifact API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Codeartifact API endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Codeartifact API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Codeartifact API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodeArtifact API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_repositories_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="codeartifact_repositories_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Codeartifact repositories endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="codeartifact_repositories_endpoint_security_group_ids" requirement="optional" type="list(string)">
@@ -3703,16 +940,7 @@ Tags for the CodeArtifact API endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="codeartifact_repositories_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the Codeartifact repositories endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codeartifact_repositories_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="codebuild_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3721,13 +949,148 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_codedeploy_endpoint" requirement="optional" type="bool">
+<HclListItem name="codebuild_endpoint_private_dns_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true if you want to provision a CodeDeploy Endpoint within the VPC
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeBuild endpoint
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="codebuild_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CodeBuild endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codebuild_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CodeBuild endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeBuild endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codebuild_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodeBuild endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeCommit endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CodeCommit endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CodeCommit API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeCommit endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodeCommit endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeDeploy Commands Secure endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CodeDeploy Commands Secure endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CodeDeploy Commands Secure endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodeDeploy Commands Secure endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodeDeploy Commands Secure endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="codedeploy_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeDeploy endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="codedeploy_endpoint_security_group_ids" requirement="optional" type="list(string)">
@@ -3757,16 +1120,7 @@ Tags for the CodeDeploy endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="codedeploy_endpoint_private_dns_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodeDeploy endpoint
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="codedeploy_endpoint_policy" requirement="optional" type="string">
+<HclListItem name="codepipeline_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
@@ -3775,97 +1129,2684 @@ IAM policy to restrict what resources can call this endpoint. For example, you c
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="codepipeline_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the CodePipeline endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="codepipeline_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the CodePipeline endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codepipeline_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the CodePipeline endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, CodePipeline endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="codepipeline_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodePipeline endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="config_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="config_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the config endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="config_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the config endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="config_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the config endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="config_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Config endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="create_https_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, creates a security group that allows ingress on port 443 and applies it to all endpoints. Must set this to true or supply security_group_ids.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Data Sync endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Data Sync endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Data Sync endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Data Sync endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Data Sync endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EBS endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EBS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EBS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the EBS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2-Autoscaling endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EC2-Autoscaling endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EC2-Autoscaling endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, EC2-Autoscaling endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the CodeArtifact API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2 endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EC2 endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EC2 endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the EC2 endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EC2 Messages endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EC2 Messages endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EC2 Messages endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the EC2 Messages endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECR API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the ECR API endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the ECR api endpoint. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the ECR API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for ECR DKR endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the ECR DKR endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the ECR dkr endpoint. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the ECR DKR endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS Agent endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the ECS Agent endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the ECS Agent endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the ECS Agent endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the ECS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the ECS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the ECS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ECS Telemetry endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the ECS Telemetry endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the ECS Telemetry endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the ECS Telemetry endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="efs_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="efs_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EFS endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="efs_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EFS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="efs_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EFS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="efs_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the EFS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Inference Runtime endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Elastic Inference Runtime endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Elastic Inference Runtime endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Inference Runtime endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Elastic Inference Runtime endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Beanstalk endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Elastic Beanstalk endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Elastic Beanstalk endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Beanstalk endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Elastic Beanstalk endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Beanstalk Health endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Elastic Beanstalk Health endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Elastic Beanstalk Health endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Elastic Beanstalk Health endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Elastic Beanstalk Health endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="elb_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elb_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Elastic Load Balancing endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="elb_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Elastic Load Balancing endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elb_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Elastic Load Balancing endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elb_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Elastic Load Balancing endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="emr_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="emr_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the EMR endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="emr_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the EMR endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="emr_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the EMR endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, EMR endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="emr_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the EMR endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="enable_access_analyzer_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Access Analyzer Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_acm_pca_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a ACM PCA Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_api_gateway_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an API Gateway within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_appmesh_envoy_management_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a AppMesh Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_appstream_api_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a AppStream API Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_appstream_streaming_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a AppStream STREAMING Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_athena_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Athena Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_auto_scaling_plans_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Auto Scaling Plans Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloud_directory_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Cloud Directory Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudformation_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Cloudformation within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudtrail_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CloudTrail within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_events_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CloudWatch Events within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudwatch_logs_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CloudWatch Logs within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codeartifact_api_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Codeartifact API Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codeartifact_repositories_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Codeartifact repositories Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codebuild_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CodeBuild Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codecommit_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CodeCommit Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codedeploy_commands_secure_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CodeDeploy Commands Secure Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codedeploy_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CodeDeploy Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_codepipeline_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CodePipeline Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_config_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a config within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_datasync_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Data Sync Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ebs_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a EBS endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ec2_autoscaling_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a EC2-Autoscaling Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ec2_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an EC2 within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ec2messages_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an EC2 Messages endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ecr_api_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an ECR API within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ecr_dkr_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an ECR DKR within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_agent_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an ECS Agent within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an ECS within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ecs_telemetry_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an ECS Agent within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_efs_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a EFS endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_elastic_inference_runtime_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Elastic Inference Runtime Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_elasticbeanstalk_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Elastic Beanstalk Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_elasticbeanstalk_health_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Elastic Beanstalk Health Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_elb_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an Elastic Load Balancing within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_emr_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a EMR Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_git_codecommit_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Git CodeCommit Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_glue_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Glue endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_kinesis_firehose_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a KINESIS Firehose Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_kinesis_streams_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Kinesis Streams within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_kms_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a KMS within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_lambda_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Lambda endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_qldb_session_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a QLDB Session Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_rds_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a RDS Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_redshift_data_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Redshift within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_rekognition_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Rekognition Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sagemaker_api_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a SageMaker API Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sagemaker_runtime_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a SageMaker Runtime Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_secretsmanager_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Secrets Manager within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_servicecatalog_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Service Catalog Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ses_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Simple Email Service within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sms_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a SMS Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sns_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a SNS within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sqs_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a SQS within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ssm_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an SSM endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_ssmmessages_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision an SSM Messages endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_states_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Step Function Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_storagegateway_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Storage Gateway Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_sts_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a STS within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_textract_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Textract Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_transfer_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Transfer Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_transferserver_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Transfer Server Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_vpc_cloudwatch_monitoring_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a CloudWatch Monitoring within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_workspaces_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Workspaces Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Git CodeCommit API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Git CodeCommit endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Git CodeCommit API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Git CodeCommit endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Git CodeCommit endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="glue_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="glue_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Glue endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="glue_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the glue endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="glue_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the glue endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="glue_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Glue endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="https_security_group_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of CIDR blocks where HTTPS ingress should be allowed from. Defaults to the VPC's CIDR if left empty. Only used if create_https_security_group is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="https_security_group_name_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name prefix to use on the created SG. A random string will be appended.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-https-&quot;"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the KINESIS Firehose endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the KINESIS Firehose endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the KINESIS Firehose endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, KINESIS Firehose endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the KINESIS Firehose endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Kinesis Streams endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Kinesis Streams endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Kinesis Streams endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Kinesis endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="kms_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the KMS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kms_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the KMS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kms_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the KMS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kms_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the KMS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Lambda endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Lambda endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Lambda endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Lambda endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the QLDB Session endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the QLDB Session endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the QLDB Session endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, QLDB Session endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the QLDB Session endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="rds_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="rds_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the RDS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="rds_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the RDS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rds_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the RDS endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, RDS endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rds_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the RDS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Redshift endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Redshift endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Redshift endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Redshift endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Rekognition endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Rekognition endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Rekognition endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Rekognition endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Rekognition endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SageMaker API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SageMaker API endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SageMaker API endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SageMaker API endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SageMaker API endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SageMaker Runtime endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SageMaker Runtime endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SageMaker Runtime endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SageMaker Runtime endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SageMaker Runtime endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Secrets Manager endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Secrets Manager endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Secrets Manager endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Secrets Manager endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IDs of the security groups which will apply for all endpoints. Must supply this or create_https_security_group = true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Service Catalog endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Service Catalog endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Service Catalog endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Service Catalog endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Service Catalog endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ses_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ses_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Simple Email Service endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ses_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Simple Email Service endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ses_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Simple Email Service endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SES is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ses_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Simple Email Service endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sms_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sms_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SMS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sms_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SMS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sms_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SMS endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, SMS endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sms_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SMS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sns_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sns_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SNS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sns_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SNS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sns_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SNS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sns_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SNS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SQS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SQS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SQS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SQS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SSM Endpoint endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SSM Endpoint endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SSM Endpoint endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SSM Endpoint endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the SSM Messages endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the SSM Messages endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the SSM Messages endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the SSM Messages endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="states_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="states_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Step Function endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="states_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Step Function endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="states_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Step Function endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Step Function endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="states_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Step Function endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Storage Gateway endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Storage Gateway endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Storage Gateway endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Storage Gateway endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Storage Gateway endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="sts_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="sts_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the STS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="sts_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the STS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sts_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the STS endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="sts_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the STS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to all endpoints.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="textract_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="textract_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Textract endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="textract_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Textract endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="textract_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Textract endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Textract endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="textract_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Textract endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transfer_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="transfer_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Transfer endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="transfer_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Transfer endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transfer_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Transfer endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Transfer endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transfer_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Transfer endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Transfer Server endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Transfer Server endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Transfer Server endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Transfer Server endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Transfer Server endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Workspaces endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Workspaces endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Workspaces endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, Workspaces endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Workspaces endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="config_endpoint_id">
+<HclListItem name="access_analyzer_endpoint_id">
 </HclListItem>
 
-<HclListItem name="config_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="config_endpoint_url">
+<HclListItem name="access_analyzer_endpoint_url">
 <HclListItemDescription>
 
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="sqs_endpoint_id">
+<HclListItem name="access_analyzer_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="sqs_network_interface_ids">
+<HclListItem name="acm_pca_endpoint_id">
 </HclListItem>
 
-<HclListItem name="sqs_endpoint_url">
+<HclListItem name="acm_pca_endpoint_url">
 <HclListItemDescription>
 
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="secretsmanager_endpoint_id">
-</HclListItem>
-
-<HclListItem name="secretsmanager_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="secretsmanager_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ec2_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ec2_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint. E.g. aws ec2 --endpoint-url https://vpce-008ec8becff9267dc-8qumgjia.ec2.us-east-1.vpce.amazonaws.com/ [...args]
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ecr_api_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ecr_api_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ecr_dkr_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ecr_dkr_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
+<HclListItem name="acm_pca_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="api_gateway_endpoint_id">
-</HclListItem>
-
-<HclListItem name="api_gateway_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="api_gateway_endpoint_url">
@@ -3876,13 +3817,13 @@ If you have private dns enabled, then your API calls would automatically go thro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="kms_endpoint_id">
+<HclListItem name="api_gateway_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="kms_network_interface_ids">
+<HclListItem name="appmesh_envoy_management_endpoint_id">
 </HclListItem>
 
-<HclListItem name="kms_gateway_endpoint_url">
+<HclListItem name="appmesh_envoy_management_endpoint_url">
 <HclListItemDescription>
 
 If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
@@ -3890,13 +3831,13 @@ If you have private dns enabled, then your API calls would automatically go thro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_endpoint_id">
+<HclListItem name="appmesh_envoy_management_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="ecs_network_interface_ids">
+<HclListItem name="appstream_api_endpoint_id">
 </HclListItem>
 
-<HclListItem name="ecs_endpoint_url">
+<HclListItem name="appstream_api_endpoint_url">
 <HclListItemDescription>
 
 If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
@@ -3904,13 +3845,69 @@ If you have private dns enabled, then your API calls would automatically go thro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_agent_endpoint_id">
+<HclListItem name="appstream_api_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="ecs_agent_network_interface_ids">
+<HclListItem name="appstream_streaming_endpoint_id">
 </HclListItem>
 
-<HclListItem name="ecs_agent_endpoint_url">
+<HclListItem name="appstream_streaming_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="appstream_streaming_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="athena_endpoint_id">
+</HclListItem>
+
+<HclListItem name="athena_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="athena_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_id">
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="auto_scaling_plans_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cloud_directory_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloud_directory_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cloudformation_endpoint_url">
 <HclListItemDescription>
 
 If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
@@ -3918,94 +3915,10 @@ If you have private dns enabled, then your API calls would automatically go thro
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_telemetry_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ecs_telemetry_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="sns_endpoint_id">
-</HclListItem>
-
-<HclListItem name="sns_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="sns_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="cloudwatch_monitoring_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="cloudwatch_events_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="elb_endpoint_id">
-</HclListItem>
-
-<HclListItem name="elb_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="elb_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
+<HclListItem name="cloudformation_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="cloudtrail_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloudtrail_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="cloudtrail_endpoint_url">
@@ -4016,13 +3929,682 @@ If you have private dns enabled, then your API calls would automatically go thro
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="cloudtrail_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudwatch_events_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudwatch_monitoring_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codeartifact_api_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codeartifact_api_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codeartifact_repositories_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codeartifact_repositories_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codeartifact_repositories_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codebuild_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codebuild_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codebuild_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codecommit_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codecommit_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codedeploy_commands_secure_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codedeploy_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codedeploy_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codedeploy_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="codepipeline_endpoint_id">
+</HclListItem>
+
+<HclListItem name="codepipeline_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="codepipeline_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="config_endpoint_id">
+</HclListItem>
+
+<HclListItem name="config_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="config_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_id">
+</HclListItem>
+
+<HclListItem name="datasync_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="datasync_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ebs_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ebs_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2_autoscaling_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ec2_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint. E.g. aws ec2 --endpoint-url https://vpce-008ec8becff9267dc-8qumgjia.ec2.us-east-1.vpce.amazonaws.com/ [...args]
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ec2messages_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ec2messages_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ecr_api_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecr_api_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ecr_dkr_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecr_dkr_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ecs_agent_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_agent_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ecs_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_telemetry_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="efs_endpoint_id">
+</HclListItem>
+
+<HclListItem name="efs_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="efs_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_id">
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="elastic_inference_runtime_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_id">
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_id">
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_health_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="elasticbeanstalk_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="elb_endpoint_id">
+</HclListItem>
+
+<HclListItem name="elb_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="elb_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="emr_endpoint_id">
+</HclListItem>
+
+<HclListItem name="emr_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="emr_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_id">
+</HclListItem>
+
+<HclListItem name="git_codecommit_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="git_codecommit_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="glue_endpoint_id">
+</HclListItem>
+
+<HclListItem name="glue_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="glue_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_id">
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_network_interface_ids">
+</HclListItem>
+
 <HclListItem name="kinesis_streams_endpoint_id">
+</HclListItem>
+
+<HclListItem name="kinesis_streams_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="kinesis_streams_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="kinesis_streams_endpoint_url">
+<HclListItem name="kms_endpoint_id">
+</HclListItem>
+
+<HclListItem name="kms_gateway_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kms_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_id">
+</HclListItem>
+
+<HclListItem name="lambda_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="lambda_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_id">
+</HclListItem>
+
+<HclListItem name="qldb_session_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="qldb_session_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="rds_endpoint_id">
+</HclListItem>
+
+<HclListItem name="rds_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="rds_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_id">
+</HclListItem>
+
+<HclListItem name="redshift_data_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="redshift_data_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_id">
+</HclListItem>
+
+<HclListItem name="rekognition_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="rekognition_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_id">
+</HclListItem>
+
+<HclListItem name="sagemaker_api_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sagemaker_api_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_id">
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sagemaker_runtime_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_id">
+</HclListItem>
+
+<HclListItem name="secretsmanager_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="secretsmanager_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_id">
+</HclListItem>
+
+<HclListItem name="servicecatalog_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="servicecatalog_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sms_endpoint_id">
+</HclListItem>
+
+<HclListItem name="sms_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sms_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sns_endpoint_id">
+</HclListItem>
+
+<HclListItem name="sns_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sns_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_id">
+</HclListItem>
+
+<HclListItem name="sqs_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="sqs_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ssm_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ssm_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_id">
+</HclListItem>
+
+<HclListItem name="ssmmessages_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ssmmessages_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="states_endpoint_id">
+</HclListItem>
+
+<HclListItem name="states_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="states_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_id">
+</HclListItem>
+
+<HclListItem name="storagegateway_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="storagegateway_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="sts_endpoint_url">
 <HclListItemDescription>
 
 If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
@@ -4036,592 +4618,7 @@ If you have private dns enabled, then your API calls would automatically go thro
 <HclListItem name="sts_streams_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="sts_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloudformation_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="cloudformation_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ssm_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ssm_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ssmmessages_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ssmmessages_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ec2messages_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ec2messages_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="glue_endpoint_id">
-</HclListItem>
-
-<HclListItem name="glue_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="glue_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ebs_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ebs_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="efs_endpoint_id">
-</HclListItem>
-
-<HclListItem name="efs_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="efs_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_id">
-</HclListItem>
-
-<HclListItem name="lambda_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="lambda_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_id">
-</HclListItem>
-
-<HclListItem name="redshift_data_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="redshift_data_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codebuild_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codebuild_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codecommit_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codecommit_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_id">
-</HclListItem>
-
-<HclListItem name="git_codecommit_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="git_codecommit_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_id">
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="ec2_autoscaling_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_id">
-</HclListItem>
-
-<HclListItem name="transferserver_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="transferserver_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_id">
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="kinesis_firehose_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codepipeline_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codepipeline_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_id">
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="appmesh_envoy_management_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_id">
-</HclListItem>
-
-<HclListItem name="servicecatalog_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="servicecatalog_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_id">
-</HclListItem>
-
-<HclListItem name="storagegateway_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="storagegateway_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_id">
-</HclListItem>
-
-<HclListItem name="transfer_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="transfer_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_id">
-</HclListItem>
-
-<HclListItem name="sagemaker_api_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="sagemaker_api_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_id">
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="sagemaker_runtime_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_id">
-</HclListItem>
-
-<HclListItem name="appstream_api_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="appstream_api_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_id">
-</HclListItem>
-
-<HclListItem name="appstream_streaming_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="appstream_streaming_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="athena_endpoint_id">
-</HclListItem>
-
-<HclListItem name="athena_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="athena_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_id">
-</HclListItem>
-
-<HclListItem name="rekognition_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="rekognition_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_id">
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="auto_scaling_plans_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_id">
-</HclListItem>
-
-<HclListItem name="cloud_directory_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="cloud_directory_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_id">
-</HclListItem>
-
-<HclListItem name="workspaces_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="workspaces_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="access_analyzer_endpoint_id">
-</HclListItem>
-
-<HclListItem name="access_analyzer_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="access_analyzer_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_id">
-</HclListItem>
-
-<HclListItem name="datasync_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="datasync_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_id">
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="elastic_inference_runtime_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="sms_endpoint_id">
-</HclListItem>
-
-<HclListItem name="sms_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="sms_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="emr_endpoint_id">
-</HclListItem>
-
-<HclListItem name="emr_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="emr_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_id">
-</HclListItem>
-
-<HclListItem name="qldb_session_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="qldb_session_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="states_endpoint_id">
-</HclListItem>
-
-<HclListItem name="states_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="states_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_id">
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_health_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_id">
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="elasticbeanstalk_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="acm_pca_endpoint_id">
-</HclListItem>
-
-<HclListItem name="acm_pca_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="acm_pca_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="rds_endpoint_id">
-</HclListItem>
-
-<HclListItem name="rds_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="rds_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="codedeploy_commands_secure_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codedeploy_commands_secure_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codedeploy_commands_secure_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="textract_endpoint_id">
-</HclListItem>
-
-<HclListItem name="textract_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="textract_endpoint_url">
@@ -4632,13 +4629,41 @@ If you have private dns enabled, then your streaming calls would automatically g
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="codeartifact_api_endpoint_id">
+<HclListItem name="textract_network_interface_ids">
 </HclListItem>
 
-<HclListItem name="codeartifact_api_network_interface_ids">
+<HclListItem name="transfer_endpoint_id">
 </HclListItem>
 
-<HclListItem name="codeartifact_api_endpoint_url">
+<HclListItem name="transfer_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transfer_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_id">
+</HclListItem>
+
+<HclListItem name="transferserver_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="transferserver_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_id">
+</HclListItem>
+
+<HclListItem name="workspaces_endpoint_url">
 <HclListItemDescription>
 
 If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
@@ -4646,32 +4671,7 @@ If you have private dns enabled, then your streaming calls would automatically g
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="codeartifact_repositories_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codeartifact_repositories_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codeartifact_repositories_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="codedeploy_endpoint_id">
-</HclListItem>
-
-<HclListItem name="codedeploy_network_interface_ids">
-</HclListItem>
-
-<HclListItem name="codedeploy_endpoint_url">
-<HclListItemDescription>
-
-If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
-
-</HclListItemDescription>
+<HclListItem name="workspaces_network_interface_ids">
 </HclListItem>
 
 </TabItem>
@@ -4686,6 +4686,6 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "706fa314135976097fe8f92f5d1fb85b"
+  "hash": "91322be5e60b72792c98633364c143a9"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fcloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -98,14 +98,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="s3_bucket_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the S3 Bucket where CloudTrail logs will be stored.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="allow_cloudtrail_access_with_iam" requirement="required" type="bool">
 <HclListItemDescription>
 
@@ -114,450 +106,15 @@ If true, an IAM Policy that grants access to CloudTrail will be honored. If fals
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="s3_bucket_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the S3 Bucket where CloudTrail logs will be stored.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
-
-<HclListItem name="num_days_after_which_archive_log_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="num_days_after_which_delete_log_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, log files should be deleted from S3. If null, never delete.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_mfa_delete" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This setting only applies to the bucket used to storage Cloudtrail data. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. For instructions on how to enable MFA Delete, check out the README from the private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do not wish to be CIS-compliant, you can set it to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kms_key_administrator_iam_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have rights to change who can access this extended log data. This is optional if allow_cloudtrail_access_with_iam is true, otherwise it is required.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have read-only access to this extended log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_key_service_principals" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Additional service principals beyond CloudTrail that should have access to the KMS key used to encrypt the logs. This is useful for granting access to the logs for the purposes of constructing metric filters.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    # The name of the service principal (e.g.: s3.amazonaws.com).
-    name = string
-
-    # The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
-    # "kms:GenerateDataKey"]).
-    actions = list(string)
-
-    # List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
-    # permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
-    conditions = list(object({
-      # Name of the IAM condition operator to evaluate.
-      test = string
-
-      # Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
-      # starting with aws: or service-specific variables prefixed with the service name.
-      variable = string
-
-      # Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
-      # of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
-      values = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
-     "kms:GenerateDataKey"]).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
-     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
-       starting with aws: or service-specific variables prefixed with the service name.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
-       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="sns_delivery_topic" requirement="optional" type="string">
-<HclListItemDescription>
-
-SNS topic for S3 log delivery notifications.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_bucket_already_exists" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, that means the S3 bucket you're using already exists, and does not need to be created. This is especially useful when using CloudTrail with multiple AWS accounts, with a common S3 bucket shared by all of them.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="enable_s3_server_access_logging" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables S3 server access logging which sends detailed records for the requests that are made to the bucket. Defaults to false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="external_aws_account_ids_with_write_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of external AWS accounts that should be given write access for CloudTrail logs to this S3 bucket. This is useful when aggregating CloudTrail logs for multiple AWS accounts in one common S3 bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_kms_describe_key_to_external_aws_accounts" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to allow kms:DescribeKey to external AWS accounts with write access to the bucket. This is useful during deployment so that you don't have to pass around the KMS key ARN.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudtrail" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enables logging for the trail. Setting this to false will pause logging. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="is_multi_region_trail" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether CloudTrail will log only API calls in the current region or in all regions. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="is_organization_trail" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the root account and all member accounts. Can only be created in the organization root account. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="organization_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the organization. Required only if an organization wide CloudTrail is being setup. In such a case, this ensures that the entire organization is whitelisted in the CloudTrail bucket write policy.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_trail_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to assign to the CloudTrail 'trail' that will be used to track all API calls in your AWS account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;full-account&quot;"/>
-</HclListItem>
-
-<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to keep this KMS Key (a Customer Master Key) around after it has been marked for deletion.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="15"/>
-</HclListItem>
-
-<HclListItem name="enable_key_rotation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable automatic annual rotation of the KMS key. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kms_key_already_exists" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, that means the KMS key you're using already exists, and does not need to be created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you wish to specify a custom KMS key, then specify the key arn using this variable. This is especially useful when using CloudTrail with multiple AWS accounts, so the logs are all encrypted using the same key.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn_is_alias" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If the kms_key_arn provided is an alias or alias ARN, then this must be set to true so that the module will exchange the alias for a CMK ARN. Setting this to true and using aliases requires <a href="#allow_kms_describe_key_to_external_aws_accounts"><code>allow_kms_describe_key_to_external_aws_accounts</code></a> to also be true for multi-account scenarios.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail itself. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="force_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_logs_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-If defined, creates a CloudWatch Logs group with the specified name and configures the trail to publish logs to the group. If undefined, cloudwatch logs group is not created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-If defined, uses this value as the name of the CloudTrail IAM role. If not defined, and cloudwatch_logs_group_name is defined, uses that name for the role. If cloudwatch_logs_group_name is not defined, this resource is not created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_iam_role_permissions_boundary" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="num_days_to_retain_cloudwatch_logs" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, logs stored in CloudWatch will be deleted. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="data_logging_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, logging of data events will be enabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="data_logging_read_write_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specify if you want your trail to log read-only events, write-only events, or all. Possible values are: ReadOnly, WriteOnly, All.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;All&quot;"/>
-</HclListItem>
-
-<HclListItem name="data_logging_include_management_events" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specify if you want your event selector to include management events for your trail.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="data_logging_resources" requirement="optional" type="map(list(…))">
-<HclListItemDescription>
-
-Data resources for which to log data events. This should be a map, where each key is a data resource type, and each value is a list of data resource values. Possible values for data resource types are: AWS::S3::Object, AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block within the 'event_selector' block of the 'aws_cloudtrail' resource for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(list(string))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="advanced_event_selectors" requirement="optional" type="any">
-<HclListItemDescription>
-
-Map of advanced event selector name to list of field selectors to apply for that event selector. Advanced event selectors allow for more fine grained data logging of events.
-
-Note that you can not configure basic data logging (<a href="#data_logging_enabled"><code>data_logging_enabled</code></a>) if advanced event logging is enabled.
-
-Refer to the AWS docs on data event selection for more details on the difference between basic data logging and advanced data logging.
-
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   Ideally, we will use a more strict type here but since we want to support required and optional values, and since
-   Terraform's type system only supports maps that have the same type for all values, we have to use the less useful
-   `any` type.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Each entry in the map is a list of field selector objects, each of which supports the following attributes:
-   
-   REQUIRED
-   - field             string        : Specifies a field in an event record on which to filter events to be logged. You
-                                       can specify only the following values: readOnly, eventSource, eventName,
-                                       eventCategory, resources.type, resources.ARN.
-   OPTIONAL (one of the following must be set)
-   - equals            list(string)  : A list of values that includes events that match the exact value of the event
-                                       record field specified as the value of field. This is the only valid operator
-                                       that you can use with the readOnly, eventCategory, and resources.type fields.
-   - not_equals        list(string)  : A list of values that excludes events that match the exact value of the event
-                                       record field specified as the value of field.
-   - starts_with       list(string)  : A list of values that includes events that match the first few characters of the
-                                       event record field specified as the value of field.
-   - not_starts_with   list(string)  : A list of values that excludes events that match the first few characters of the
-                                       event record field specified as the value of field.
-   - ends_with         list(string)  : A list of values that includes events that match the last few characters of the
-                                       event record field specified as the value of field.
-   - not_ends_with     list(string)  : A list of values that excludes events that match the last few characters of the
-                                       event record field specified as the value of field.
-  
-   EXAMPLE:
-   advanced_event_selectors = {
-     LogDeleteEvents = [
-       {
-         field  = "eventCategory"
-         equals = ["Data"]
-       },
-       {
-         field       = "eventName"
-         starts_with = ["Delete"]
-       },
-       {
-         field  = "resources.type"
-         equals = ["AWS::S3::Object"]
-       },
-     ]
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
 
 <HclListItem name="access_logging_bucket" requirement="optional" type="string">
 <HclListItemDescription>
@@ -575,77 +132,6 @@ A prefix (i.e., folder path) to use for all access logs stored in access_logging
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="replication_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable replication for this bucket. You can set the role to use for replication using the replication_role parameter and the rules for replication using the replication_rules parameter.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="replication_role" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only used if replication_enabled is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="replication_rules" requirement="optional" type="any">
-<HclListItemDescription>
-
-The rules for managing replication. Only used if replication_enabled is set to true. This should be a map, where the key is a unique ID for each replication rule and the value is an object of the form explained in a comment above.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-  
-   {
-     ExampleConfig = {
-       prefix                    = "config/"
-       status                    = "Enabled"
-       destination_bucket        = "arn:aws:s3:::my-destination-bucket"
-       destination_storage_class = "STANDARD"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   Ideally, this would be a list(object({...})), but the Terraform object type constraint doesn't support optional
-   parameters, whereas replication rules have many optional params. And we can't even use list(any), as the Terraform
-   list type constraint requires all values to have the same type ("shape"), but as each object in the list may specify
-   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="additional_bucket_policy_statements" requirement="optional" type="any">
@@ -734,13 +220,131 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItem name="advanced_event_selectors" requirement="optional" type="any">
 <HclListItemDescription>
 
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+Map of advanced event selector name to list of field selectors to apply for that event selector. Advanced event selectors allow for more fine grained data logging of events.
+
+Note that you can not configure basic data logging (<a href="#data_logging_enabled"><code>data_logging_enabled</code></a>) if advanced event logging is enabled.
+
+Refer to the AWS docs on data event selection for more details on the difference between basic data logging and advanced data logging.
+
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, we will use a more strict type here but since we want to support required and optional values, and since
+   Terraform's type system only supports maps that have the same type for all values, we have to use the less useful
+   `any` type.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Each entry in the map is a list of field selector objects, each of which supports the following attributes:
+   
+   REQUIRED
+   - field             string        : Specifies a field in an event record on which to filter events to be logged. You
+                                       can specify only the following values: readOnly, eventSource, eventName,
+                                       eventCategory, resources.type, resources.ARN.
+   OPTIONAL (one of the following must be set)
+   - equals            list(string)  : A list of values that includes events that match the exact value of the event
+                                       record field specified as the value of field. This is the only valid operator
+                                       that you can use with the readOnly, eventCategory, and resources.type fields.
+   - not_equals        list(string)  : A list of values that excludes events that match the exact value of the event
+                                       record field specified as the value of field.
+   - starts_with       list(string)  : A list of values that includes events that match the first few characters of the
+                                       event record field specified as the value of field.
+   - not_starts_with   list(string)  : A list of values that excludes events that match the first few characters of the
+                                       event record field specified as the value of field.
+   - ends_with         list(string)  : A list of values that includes events that match the last few characters of the
+                                       event record field specified as the value of field.
+   - not_ends_with     list(string)  : A list of values that excludes events that match the last few characters of the
+                                       event record field specified as the value of field.
+  
+   EXAMPLE:
+   advanced_event_selectors = {
+     LogDeleteEvents = [
+       {
+         field  = "eventCategory"
+         equals = ["Data"]
+       },
+       {
+         field       = "eventName"
+         starts_with = ["Delete"]
+       },
+       {
+         field  = "resources.type"
+         equals = ["AWS::S3::Object"]
+       },
+     ]
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="allow_kms_describe_key_to_external_aws_accounts" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to allow kms:DescribeKey to external AWS accounts with write access to the bucket. This is useful during deployment so that you don't have to pass around the KMS key ARN.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+If defined, uses this value as the name of the CloudTrail IAM role. If not defined, and cloudwatch_logs_group_name is defined, uses that name for the role. If cloudwatch_logs_group_name is not defined, this resource is not created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_trail_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to assign to the CloudTrail 'trail' that will be used to track all API calls in your AWS account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;full-account&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_logs_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+If defined, creates a CloudWatch Logs group with the specified name and configures the trail to publish logs to the group. If undefined, cloudwatch logs group is not created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
@@ -750,6 +354,402 @@ Set to false to have this module skip creating resources. This weird parameter e
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="data_logging_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, logging of data events will be enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="data_logging_include_management_events" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specify if you want your event selector to include management events for your trail.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="data_logging_read_write_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify if you want your trail to log read-only events, write-only events, or all. Possible values are: ReadOnly, WriteOnly, All.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;All&quot;"/>
+</HclListItem>
+
+<HclListItem name="data_logging_resources" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+Data resources for which to log data events. This should be a map, where each key is a data resource type, and each value is a list of data resource values. Possible values for data resource types are: AWS::S3::Object, AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block within the 'event_selector' block of the 'aws_cloudtrail' resource for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#data_resource.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudtrail" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables logging for the trail. Setting this to false will pause logging. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_key_rotation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable automatic annual rotation of the KMS key. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_server_access_logging" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables S3 server access logging which sends detailed records for the requests that are made to the bucket. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="external_aws_account_ids_with_write_access" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of external AWS accounts that should be given write access for CloudTrail logs to this S3 bucket. This is useful when aggregating CloudTrail logs for multiple AWS accounts in one common S3 bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="force_destroy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="is_multi_region_trail" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether CloudTrail will log only API calls in the current region or in all regions. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="is_organization_trail" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the root account and all member accounts. Can only be created in the organization root account. (true or false)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kms_key_administrator_iam_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have rights to change who can access this extended log data. This is optional if allow_cloudtrail_access_with_iam is true, otherwise it is required.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kms_key_already_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, that means the KMS key you're using already exists, and does not need to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If you wish to specify a custom KMS key, then specify the key arn using this variable. This is especially useful when using CloudTrail with multiple AWS accounts, so the logs are all encrypted using the same key.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="kms_key_arn_is_alias" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If the kms_key_arn provided is an alias or alias ARN, then this must be set to true so that the module will exchange the alias for a CMK ARN. Setting this to true and using aliases requires <a href="#allow_kms_describe_key_to_external_aws_accounts"><code>allow_kms_describe_key_to_external_aws_accounts</code></a> to also be true for multi-account scenarios.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kms_key_deletion_window_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to keep this KMS Key (a Customer Master Key) around after it has been marked for deletion.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="15"/>
+</HclListItem>
+
+<HclListItem name="kms_key_service_principals" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Additional service principals beyond CloudTrail that should have access to the KMS key used to encrypt the logs. This is useful for granting access to the logs for the purposes of constructing metric filters.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    # The name of the service principal (e.g.: s3.amazonaws.com).
+    name = string
+
+    # The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+    # "kms:GenerateDataKey"]).
+    actions = list(string)
+
+    # List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+    # permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+    conditions = list(object({
+      # Name of the IAM condition operator to evaluate.
+      test = string
+
+      # Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+      # starting with aws: or service-specific variables prefixed with the service name.
+      variable = string
+
+      # Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+      # of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+      values = list(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+     "kms:GenerateDataKey"]).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+       starting with aws: or service-specific variables prefixed with the service name.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="kms_key_user_iam_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have read-only access to this extended log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="num_days_after_which_archive_log_data" requirement="optional" type="number">
+<HclListItemDescription>
+
+After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="num_days_after_which_delete_log_data" requirement="optional" type="number">
+<HclListItemDescription>
+
+After this number of days, log files should be deleted from S3. If null, never delete.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="num_days_to_retain_cloudwatch_logs" requirement="optional" type="number">
+<HclListItemDescription>
+
+After this number of days, logs stored in CloudWatch will be deleted. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="organization_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the organization. Required only if an organization wide CloudTrail is being setup. In such a case, this ensures that the entire organization is whitelisted in the CloudTrail bucket write policy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable replication for this bucket. You can set the role to use for replication using the replication_role parameter and the rules for replication using the replication_rules parameter.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="replication_role" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only used if replication_enabled is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_rules" requirement="optional" type="any">
+<HclListItemDescription>
+
+The rules for managing replication. Only used if replication_enabled is set to true. This should be a map, where the key is a unique ID for each replication rule and the value is an object of the form explained in a comment above.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   {
+     ExampleConfig = {
+       prefix                    = "config/"
+       status                    = "Enabled"
+       destination_bucket        = "arn:aws:s3:::my-destination-bucket"
+       destination_storage_class = "STANDARD"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a list(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas replication rules have many optional params. And we can't even use list(any), as the Terraform
+   list type constraint requires all values to have the same type ("shape"), but as each object in the list may specify
+   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="s3_bucket_already_exists" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, that means the S3 bucket you're using already exists, and does not need to be created. This is especially useful when using CloudTrail with multiple AWS accounts, with a common S3 bucket shared by all of them.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="s3_mfa_delete" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This setting only applies to the bucket used to storage Cloudtrail data. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. For instructions on how to enable MFA Delete, check out the README from the private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do not wish to be CIS-compliant, you can set it to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="sns_delivery_topic" requirement="optional" type="string">
+<HclListItemDescription>
+
+SNS topic for S3 log delivery notifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail itself. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -763,6 +763,86 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="cloudtrail_iam_role_arn">
+<HclListItemDescription>
+
+The ARN of the IAM role used by the cloudwatch log group.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudtrail_iam_role_name">
+<HclListItemDescription>
+
+The name of the IAM role used by the cloudwatch log group.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudwatch_group_arn">
+<HclListItemDescription>
+
+The ARN of the cloudwatch log group.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cloudwatch_group_name">
+<HclListItemDescription>
+
+The name of the cloudwatch log group.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kms_key_alias_name">
+<HclListItemDescription>
+
+The alias of the KMS key used by the S3 bucket to encrypt cloudtrail logs.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kms_key_arn">
+<HclListItemDescription>
+
+The ARN of the KMS key used by the S3 bucket to encrypt cloudtrail logs.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="s3_access_logging_bucket_arn">
+<HclListItemDescription>
+
+The ARN of the S3 bucket where server access logs are delivered.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="s3_access_logging_bucket_name">
+<HclListItemDescription>
+
+The name of the S3 bucket where server access logs are delivered.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="s3_bucket_arn">
+<HclListItemDescription>
+
+The ARN of the S3 bucket where cloudtrail logs are delivered.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="s3_bucket_name">
+<HclListItemDescription>
+
+The name of the S3 bucket where cloudtrail logs are delivered.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="trail_arn">
 <HclListItemDescription>
@@ -780,86 +860,6 @@ The name of the cloudtrail trail.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="s3_bucket_name">
-<HclListItemDescription>
-
-The name of the S3 bucket where cloudtrail logs are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="s3_bucket_arn">
-<HclListItemDescription>
-
-The ARN of the S3 bucket where cloudtrail logs are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="s3_access_logging_bucket_name">
-<HclListItemDescription>
-
-The name of the S3 bucket where server access logs are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="s3_access_logging_bucket_arn">
-<HclListItemDescription>
-
-The ARN of the S3 bucket where server access logs are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="kms_key_arn">
-<HclListItemDescription>
-
-The ARN of the KMS key used by the S3 bucket to encrypt cloudtrail logs.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="kms_key_alias_name">
-<HclListItemDescription>
-
-The alias of the KMS key used by the S3 bucket to encrypt cloudtrail logs.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudwatch_group_name">
-<HclListItemDescription>
-
-The name of the cloudwatch log group.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudwatch_group_arn">
-<HclListItemDescription>
-
-The ARN of the cloudwatch log group.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudtrail_iam_role_name">
-<HclListItemDescription>
-
-The name of the IAM role used by the cloudwatch log group.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="cloudtrail_iam_role_arn">
-<HclListItemDescription>
-
-The ARN of the IAM role used by the cloudwatch log group.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -872,6 +872,6 @@ The ARN of the IAM role used by the cloudwatch log group.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b721467b7b17b61ad26530f34de82b82"
+  "hash": "937171eba0b4d83ce5241d9d4b7c0f5b"
 }
 ##DOCS-SOURCER-END -->
