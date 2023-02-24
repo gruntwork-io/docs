@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -119,132 +119,13 @@ object({
 
 ### Optional
 
-<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItem name="additional_inputs" requirement="optional" type="string">
 <HclListItemDescription>
 
-The AWS partition used for default AWS Resources.
+Can be used to add more inputs. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not wish to forward the logs to CloudWatch Logs.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the CloudWatch Log Group where the logs will be streamed to.
-    region = string
-
-    # The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster. Set to null to use chart
-    # default (`/aws/eks/fluentbit-cloudwatch/logs`).
-    log_group_name = string
-
-    # Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit. Use "" if you do not with to
-    # attach a prefix, or null to use chart default (`fluentbit-`).
-    log_stream_prefix = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster. Set to null to use chart
-     default (`/aws/eks/fluentbit-cloudwatch/logs`).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit. Use "" if you do not with to
-     attach a prefix, or null to use chart default (`fluentbit-`).
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to Kinesis Firehose. Set to null if you do not wish to forward the logs to Firehose.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the Firehose delivery stream.
-    region = string
-
-    # The name of the delivery stream you want log records sent to. This must already exist.
-    delivery_stream_name = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the delivery stream you want log records sent to. This must already exist.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="kinesis_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to Kinesis stream. Set to null if you do not wish to forward the logs to Kinesis.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the Kinesis stream.
-    region = string
-
-    # The name of the stream you want log records sent to. This must already exist.
-    stream_name = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the stream you want log records sent to. This must already exist.
-
-```
-</details>
-
-</HclGeneralListItem>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="aws_elasticsearch_configuration" requirement="optional" type="object(…)">
@@ -323,13 +204,100 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="additional_inputs" requirement="optional" type="string">
+<HclListItem name="aws_for_fluent_bit_chart_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Can be used to add more inputs. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
+The version of the aws-for-fluent-bit helm chart to deploy. Note that this is different from the app/container version (use <a href="#aws_for_fluent_bit_version"><code>aws_for_fluent_bit_version</code></a> to control the app/container version).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;0.1.15&quot;"/>
+</HclListItem>
+
+<HclListItem name="aws_for_fluent_bit_image_repository" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Container repository to use for looking up the aws-for-fluent-bit Container image when deploying the pods. When null, uses the default repository set in the chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_for_fluent_bit_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+Which version of aws-for-fluent-bit to install. When null, uses the default version set in the chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS partition used for default AWS Resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not wish to forward the logs to CloudWatch Logs.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The AWS region that holds the CloudWatch Log Group where the logs will be streamed to.
+    region = string
+
+    # The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster. Set to null to use chart
+    # default (`/aws/eks/fluentbit-cloudwatch/logs`).
+    log_group_name = string
+
+    # Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit. Use "" if you do not with to
+    # attach a prefix, or null to use chart default (`fluentbit-`).
+    log_stream_prefix = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster. Set to null to use chart
+     default (`/aws/eks/fluentbit-cloudwatch/logs`).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit. Use "" if you do not with to
+     attach a prefix, or null to use chart default (`fluentbit-`).
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="extra_filters" requirement="optional" type="string">
@@ -350,13 +318,38 @@ Can be used to fan out the log output to multiple additional clients beyond the 
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="use_cri_parser_conf" requirement="optional" type="bool">
+<HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Optionally use a cri parser instead of the default Docker parser. This should be used for EKS v1.24 and later.
+Configurations for forwarding logs to Kinesis Firehose. Set to null if you do not wish to forward the logs to Firehose.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The AWS region that holds the Firehose delivery stream.
+    region = string
+
+    # The name of the delivery stream you want log records sent to. This must already exist.
+    delivery_stream_name = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The name of the delivery stream you want log records sent to. This must already exist.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_role_name_prefix" requirement="optional" type="string">
@@ -368,66 +361,33 @@ Used to name IAM roles for the service account. Recommended when <a href="#iam_r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="aws_for_fluent_bit_chart_version" requirement="optional" type="string">
+<HclListItem name="kinesis_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The version of the aws-for-fluent-bit helm chart to deploy. Note that this is different from the app/container version (use <a href="#aws_for_fluent_bit_version"><code>aws_for_fluent_bit_version</code></a> to control the app/container version).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;0.1.15&quot;"/>
-</HclListItem>
-
-<HclListItem name="aws_for_fluent_bit_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Which version of aws-for-fluent-bit to install. When null, uses the default version set in the chart.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_for_fluent_bit_image_repository" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Container repository to use for looking up the aws-for-fluent-bit Container image when deploying the pods. When null, uses the default repository set in the chart.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="pod_tolerations" requirement="optional" type="any">
-<HclListItemDescription>
-
-Configure tolerations rules to allow the Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
+Configurations for forwarding logs to Kinesis stream. Set to null if you do not wish to forward the logs to Kinesis.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+object({
+    # The AWS region that holds the Kinesis stream.
+    region = string
+
+    # The name of the stream you want log records sent to. This must already exist.
+    stream_name = string
+  })
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="null"/>
 <HclGeneralListItem title="More details">
 <details>
 
 
 ```hcl
 
-   Each item in the list represents a particular toleration. See
-   https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
-   Example:
-  
-   [
-     {
-       key = "node.kubernetes.io/unreachable"
-       operator = "Exists"
-       effect = "NoExecute"
-       tolerationSeconds = 6000
-     }
-   ]
+     The name of the stream you want log records sent to. This must already exist.
 
 ```
 </details>
@@ -532,13 +492,53 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItem name="pod_tolerations" requirement="optional" type="any">
 <HclListItemDescription>
 
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+Configure tolerations rules to allow the Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Each item in the list represents a particular toleration. See
+   https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
+  
+   Example:
+  
+   [
+     {
+       key = "node.kubernetes.io/unreachable"
+       operator = "Exists"
+       effect = "NoExecute"
+       tolerationSeconds = 6000
+     }
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="use_cri_parser_conf" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Optionally use a cri parser instead of the default Docker parser. This should be used for EKS v1.24 and later.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -567,6 +567,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a21440f58115d4aea12743544129a87"
+  "hash": "88d1e036ca8112c67584e14cdf3a4ed4"
 }
 ##DOCS-SOURCER-END -->

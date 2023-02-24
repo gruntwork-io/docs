@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-cluster-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -51,22 +51,6 @@ Restoring snapshots is handled by the [elasticsearch-cluster-restore module](htt
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the Lambda function. Used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="schedule_expression" requirement="required" type="string">
-<HclListItemDescription>
-
-An expression that defines the schedule for this lambda job. For example, cron(0 20 * * ? *) or rate(5 minutes).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="alarm_period" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -75,18 +59,10 @@ How often, in seconds, the backup lambda function is expected to run. You should
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="elasticsearch_dns" requirement="required" type="string">
+<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-The DNS to the Load Balancer in front of the Elasticsearch cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="repository" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the repository that will be associated with the created snapshots
+The ARN of SNS topics to notify if the CloudWatch alarm goes off because the backup job failed.
 
 </HclListItemDescription>
 </HclListItem>
@@ -115,10 +91,18 @@ The namespace for the CloudWatch Metric the AWS lambda backup function will incr
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="alarm_sns_topic_arns" requirement="required" type="list(string)">
+<HclListItem name="elasticsearch_dns" requirement="required" type="string">
 <HclListItemDescription>
 
-The ARN of SNS topics to notify if the CloudWatch alarm goes off because the backup job failed.
+The DNS to the Load Balancer in front of the Elasticsearch cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the Lambda function. Used to namespace all resources created by this module.
 
 </HclListItemDescription>
 </HclListItem>
@@ -127,6 +111,22 @@ The ARN of SNS topics to notify if the CloudWatch alarm goes off because the bac
 <HclListItemDescription>
 
 The AWS region (e.g us-east-1) where the backup S3 bucket exists.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="repository" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the repository that will be associated with the created snapshots
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="schedule_expression" requirement="required" type="string">
+<HclListItemDescription>
+
+An expression that defines the schedule for this lambda job. For example, cron(0 20 * * ? *) or rate(5 minutes).
 
 </HclListItemDescription>
 </HclListItem>
@@ -140,6 +140,15 @@ The port on which the API requests will be made to the Elasticsearch cluster
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="9200"/>
+</HclListItem>
+
+<HclListItem name="lambda_runtime" requirement="optional" type="string">
+<HclListItemDescription>
+
+The runtime to use for the Lambda function. Should be a Node.js runtime.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;nodejs14.x&quot;"/>
 </HclListItem>
 
 <HclListItem name="protocol" requirement="optional" type="string">
@@ -160,15 +169,6 @@ Set to true to give your Lambda function access to resources within a VPC.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the VPC the Lambda function should be able to access. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -178,22 +178,22 @@ A list of subnet IDs the Lambda function should be able to access within your VP
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="lambda_runtime" requirement="optional" type="string">
+<HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime to use for the Lambda function. Should be a Node.js runtime.
+The ID of the VPC the Lambda function should be able to access. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;nodejs14.x&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="lambda_name">
+<HclListItem name="lambda_arn">
 </HclListItem>
 
-<HclListItem name="lambda_arn">
+<HclListItem name="lambda_name">
 </HclListItem>
 
 </TabItem>
@@ -208,6 +208,6 @@ The runtime to use for the Lambda function. Should be a Node.js runtime.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5eac737bb71c6c8f06eb57b97a1745fa"
+  "hash": "3ec060d7605bcba6a7a051c7a1166a2d"
 }
 ##DOCS-SOURCER-END -->

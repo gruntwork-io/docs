@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.98.0"/>
 
 # S3 Bucket
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fs3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -68,7 +67,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -140,6 +139,44 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   {
+      AllIamUsersReadAccess = {
+        effect     = "Allow"
+        actions    = ["s3:GetObject"]
+        principals = {
+          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
+        }
+      }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
+   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
+   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="access_logging_prefix" requirement="optional" type="string">
@@ -183,6 +220,44 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   {
+      AllIamUsersReadAccess = {
+        effect     = "Allow"
+        actions    = ["s3:GetObject"]
+        principals = {
+          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
+        }
+      }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
+   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
+   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="bucket_sse_algorithm" requirement="optional" type="string">
@@ -208,6 +283,60 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   [
+     {
+       allowed_origins = ["*"]
+       allowed_methods = ["GET", "HEAD"]
+       allowed_headers = ["x-amz-*"]
+       expose_headers  = ["Etag"]
+       max_age_seconds = 3000
+     }
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   The objects that can define the following properties:
+  
+   - allowed_origins list(string)      (required): The origins that you want to allow cross-domain requests from.
+   - allowed_methods list(string)      (required): From the set of GET, PUT, POST, DELETE, HEAD
+   - allowed_headers list(string)      (optional): The AllowedHeader element specifies which headers are allowed in a preflight request through the Access-Control-Request-Headers header.
+   - expose_headers  list(string)      (optional): Each ExposeHeader element identifies a header in the response that you want customers to be able to access from their applications.
+   - max_age_seconds number            (optional): The MaxAgeSeconds element specifies the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Ideally, this would be a list(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas replication rules have many optional params. And we can't even use list(any), as the Terraform
+   list type constraint requires all values to have the same type ("shape"), but as each object in the list may specify
+   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_sse" requirement="optional" type="bool">
@@ -269,6 +398,21 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas lifecycle rules have many optional params. And we can't even use map(any), as the Terraform
+   map type constraint requires all values to have the same type ("shape"), but as each object in the map may specify
+   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="mfa_delete" requirement="optional" type="bool">
@@ -382,6 +526,44 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   {
+      AllIamUsersReadAccess = {
+        effect     = "Allow"
+        actions    = ["s3:GetObject"]
+        principals = {
+          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
+        }
+      }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
+   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
+   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="replica_enable_sse" requirement="optional" type="bool">
@@ -434,6 +616,43 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   {
+     ExampleConfig = {
+       prefix                    = "config/"
+       status                    = "Enabled"
+       destination_bucket        = "arn:aws:s3:::my-destination-bucket"
+       destination_storage_class = "STANDARD"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a list(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas replication rules have many optional params. And we can't even use list(any), as the Terraform
+   list type constraint requires all values to have the same type ("shape"), but as each object in the list may specify
+   different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -511,11 +730,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fs3-bucket%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fs3-bucket%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fs3-bucket%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fs3-bucket%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e8c995a23c8a5f917ba3bab2ddd07829"
+  "hash": "2f7ba5e89ff1eb9ec1960362908bea40"
 }
 ##DOCS-SOURCER-END -->

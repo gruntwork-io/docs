@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -38,10 +38,10 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 
 ### Required
 
-<HclListItem name="rds_db_identifier" requirement="required" type="string">
+<HclListItem name="max_snapshots" requirement="required" type="number">
 <HclListItemDescription>
 
-The identifier of the RDS database
+The maximum number of snapshots to keep around of the given DB. Once this number is exceeded, this lambda function will delete the oldest snapshots.
 
 </HclListItemDescription>
 </HclListItem>
@@ -50,6 +50,14 @@ The identifier of the RDS database
 <HclListItemDescription>
 
 The ARN of the RDS database
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="rds_db_identifier" requirement="required" type="string">
+<HclListItemDescription>
+
+The identifier of the RDS database
 
 </HclListItemDescription>
 </HclListItem>
@@ -70,14 +78,6 @@ An expression that defines how often to run the lambda function to clean up snap
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="max_snapshots" requirement="required" type="number">
-<HclListItemDescription>
-
-The maximum number of snapshots to keep around of the given DB. Once this number is exceeded, this lambda function will delete the oldest snapshots.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
 <HclListItem name="allow_delete_all" requirement="optional" type="bool">
@@ -87,6 +87,15 @@ If set to true, you will be able to set max_snasphots to zero, and the cleanup l
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="lambda_namespace" requirement="optional" type="string">
@@ -116,15 +125,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -146,6 +146,6 @@ Set to false to have this module skip creating resources. This weird parameter e
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "58691eef15af8fc5e4c8030665f4ea8f"
+  "hash": "a33968da9c61e2f120b2cea2e809119b"
 }
 ##DOCS-SOURCER-END -->

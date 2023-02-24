@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fguardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -78,31 +78,13 @@ The AWS Account ID the template should be operated on. This avoids misconfigurat
 
 ### Optional
 
-<HclListItem name="publish_findings_to_sns" requirement="optional" type="bool">
+<HclListItem name="cloudwatch_event_rule_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
+Name of the Cloudwatch event rules.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="findings_sns_topic_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies a name for the created SNS topics where findings are published. publish_findings_to_sns must be set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
-</HclListItem>
-
-<HclListItem name="sns_kms_master_key_ids" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map from AWS region to the ID of a customer master key (CMK) to use to encrypt the SNS topic in that region. This could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g., alias/example-key). If there's no CMK set for a region, the value in <a href="#default_sns_kms_master_key_id"><code>default_sns_kms_master_key_id</code></a> will be used instead. Only used if publish_findings_to_sns is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
 </HclListItem>
 
 <HclListItem name="default_sns_kms_master_key_id" requirement="optional" type="string">
@@ -114,22 +96,13 @@ The ID of the default customer master key (CMK) to use to encrypt the SNS topic 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_event_rule_name" requirement="optional" type="string">
+<HclListItem name="detail_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-Name of the Cloudwatch event rules.
+The type of GuardDuty event to match. Setting this to anything other than the default will generate noise. This usually only needs to be adjusted for automated testing purposes.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
-</HclListItem>
-
-<HclListItem name="finding_publishing_frequency" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies the frequency of notifications sent for subsequent finding occurrences. If the detector is a GuardDuty member account, the value is determined by the GuardDuty administrator account and cannot be modified, otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator accounts, it must be configured in Terraform to enable drift detection. Valid values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;GuardDuty Finding&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable" requirement="optional" type="bool">
@@ -141,25 +114,44 @@ If set to false, suspends GuardDuty (does not destroy data).
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="detail_type" requirement="optional" type="string">
+<HclListItem name="finding_publishing_frequency" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of GuardDuty event to match. Setting this to anything other than the default will generate noise. This usually only needs to be adjusted for automated testing purposes.
+Specifies the frequency of notifications sent for subsequent finding occurrences. If the detector is a GuardDuty member account, the value is determined by the GuardDuty administrator account and cannot be modified, otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator accounts, it must be configured in Terraform to enable drift detection. Valid values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;GuardDuty Finding&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="findings_sns_topic_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies a name for the created SNS topics where findings are published. publish_findings_to_sns must be set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
+</HclListItem>
+
+<HclListItem name="publish_findings_to_sns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="sns_kms_master_key_ids" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map from AWS region to the ID of a customer master key (CMK) to use to encrypt the SNS topic in that region. This could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g., alias/example-key). If there's no CMK set for a region, the value in <a href="#default_sns_kms_master_key_id"><code>default_sns_kms_master_key_id</code></a> will be used instead. Only used if publish_findings_to_sns is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="guardduty_detector_ids">
-<HclListItemDescription>
-
-The IDs of the GuardDuty detectors.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="cloudwatch_event_rule_arns">
 <HclListItemDescription>
@@ -193,6 +185,14 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="guardduty_detector_ids">
+<HclListItemDescription>
+
+The IDs of the GuardDuty detectors.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -205,6 +205,6 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1fbfe521f6abc8a908f30d5b14c5ba9e"
+  "hash": "5a00d514756c09882edd66b0e37f8635"
 }
 ##DOCS-SOURCER-END -->

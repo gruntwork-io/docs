@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Fload-balancer-alb-target-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -34,26 +34,10 @@ See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree
 
 ### Required
 
-<HclListItem name="target_group_name" requirement="required" type="string">
+<HclListItem name="health_check_path" requirement="required" type="string">
 <HclListItemDescription>
 
-The name to use for the Target Group
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="using_server_group" requirement="required" type="bool">
-<HclListItemDescription>
-
-Whether we're using an ASG or Gruntwork's Server Group module. If using ASG, then <a href="#asg_name"><code>asg_name</code></a> must be specified. Otherwise leave it blank
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="port" requirement="required" type="number">
-<HclListItemDescription>
-
-The port the servers are listening on for requests.
+The path to use for health check requests.
 
 </HclListItemDescription>
 </HclListItem>
@@ -66,10 +50,26 @@ The starting priority for the Listener Rules
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="health_check_path" requirement="required" type="string">
+<HclListItem name="port" requirement="required" type="number">
 <HclListItemDescription>
 
-The path to use for health check requests.
+The port the servers are listening on for requests.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="target_group_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name to use for the Target Group
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="using_server_group" requirement="required" type="bool">
+<HclListItemDescription>
+
+Whether we're using an ASG or Gruntwork's Server Group module. If using ASG, then <a href="#asg_name"><code>asg_name</code></a> must be specified. Otherwise leave it blank
 
 </HclListItemDescription>
 </HclListItem>
@@ -93,10 +93,82 @@ The name of the ASG (ASG) in the servers are deployed. Leave this blank if using
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="deregistration_delay" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount time for the Load Balancer to wait before changing the state of a deregistering server from draining to unused. The range is 0-3600 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="enable_stickiness" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable stickiness, so a given user always gets routed to the same server. We recommend enabling this for the Couchbase Web Console.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="health_check_healthy_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of times the health check must pass before a server is considered healthy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="health_check_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The approximate amount of time, in seconds, between health checks of each server. Minimum value 5 seconds, Maximum value 300 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="health_check_matcher" requirement="optional" type="string">
+<HclListItemDescription>
+
+The HTTP codes to use when checking for a successful response from a server. You can specify multiple comma-separated values (for example, '200,202') or a range of values (for example, '200-299').
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
+</HclListItem>
+
+<HclListItem name="health_check_timeout" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time, in seconds, during which no response from a server means a failed health check. Must be between 2 and 60 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="health_check_unhealthy_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of times the health check must fail before a server is considered unhealthy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
 <HclListItem name="http_listener_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 The HTTP ARNs of ALB listeners to which Listener Rules that route to this Target Group should be added.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="https_listener_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The HTTPS ARNs of ALB listeners to which Listener Rules that route to this Target Group should be added.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -111,15 +183,6 @@ The number of HTTP ARNs in <a href="#listener_arns"><code>listener_arns</code></
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="https_listener_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The HTTPS ARNs of ALB listeners to which Listener Rules that route to this Target Group should be added.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="num_https_listener_arns" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -127,6 +190,15 @@ The number of HTTPS ARNs in <a href="#listener_arns"><code>listener_arns</code><
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="protocol" requirement="optional" type="string">
+<HclListItemDescription>
+
+The protocol to use to talk to the servers. Must be one of: HTTP, HTTPS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
 <HclListItem name="routing_condition" requirement="optional" type="list(object(…))">
@@ -161,78 +233,6 @@ list(object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="protocol" requirement="optional" type="string">
-<HclListItemDescription>
-
-The protocol to use to talk to the servers. Must be one of: HTTP, HTTPS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
-</HclListItem>
-
-<HclListItem name="deregistration_delay" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount time for the Load Balancer to wait before changing the state of a deregistering server from draining to unused. The range is 0-3600 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="health_check_interval" requirement="optional" type="number">
-<HclListItemDescription>
-
-The approximate amount of time, in seconds, between health checks of each server. Minimum value 5 seconds, Maximum value 300 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="health_check_timeout" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of time, in seconds, during which no response from a server means a failed health check. Must be between 2 and 60 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="health_check_healthy_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of times the health check must pass before a server is considered healthy.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="health_check_unhealthy_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of times the health check must fail before a server is considered unhealthy.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="health_check_matcher" requirement="optional" type="string">
-<HclListItemDescription>
-
-The HTTP codes to use when checking for a successful response from a server. You can specify multiple comma-separated values (for example, '200,202') or a range of values (for example, '200-299').
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_stickiness" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable stickiness, so a given user always gets routed to the same server. We recommend enabling this for the Couchbase Web Console.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="stickiness_cookie_duration" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -260,6 +260,6 @@ The time period, in seconds, during which requests from a client should be route
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f4ca7e3a478a1d83c6000383cfc76d0a"
+  "hash": "5ecc9cdb95bbc169bd1199d20f53148f"
 }
 ##DOCS-SOURCER-END -->

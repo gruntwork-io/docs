@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Febs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -79,15 +79,6 @@ If set to true, all new EBS volumes will have encryption enabled by default
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="use_existing_kms_keys" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to use the existing keys specified in <a href="#kms_key_arns"><code>kms_key_arns</code></a>. If false (the default), will use the default aws/ebs key. We need this weird parameter because `count` must be a known value at plan time, so we cannot calculate whether or not to use the key dynamically.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="kms_key_arns" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -95,6 +86,15 @@ Optional map of region names to KMS keys to use for EBS volume encryption when <
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="use_existing_kms_keys" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to use the existing keys specified in <a href="#kms_key_arns"><code>kms_key_arns</code></a>. If false (the default), will use the default aws/ebs key. We need this weird parameter because `count` must be a known value at plan time, so we cannot calculate whether or not to use the key dynamically.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
@@ -128,6 +128,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ec18be6325abd5c22c894e7a82f4a347"
+  "hash": "a56c544430ad078a0a31673450f1073c"
 }
 ##DOCS-SOURCER-END -->

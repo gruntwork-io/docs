@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Froute53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -77,6 +77,6 @@ Check out the [route53-helpers example](https://github.com/gruntwork-io/terrafor
     "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "58697c98ebbf8f9fcfbdc4fed24dcdc9"
+  "hash": "63181f6106e271c957d61b6c4a06522d"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Finstall-exhibitor" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -72,6 +72,6 @@ gruntwork-install \
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "716555a2ba864f581cce1d2c9ede72ad"
+  "hash": "a809bb327e7bb55b31bac46e47c14ae3"
 }
 ##DOCS-SOURCER-END -->

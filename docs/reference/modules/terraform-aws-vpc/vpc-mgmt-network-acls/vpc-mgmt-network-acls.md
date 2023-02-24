@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-mgmt-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -57,22 +57,6 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ### Required
 
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The id of the VPC
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the VPC (e.g. mgmt)
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="num_subnets" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -81,10 +65,10 @@ The number of each type of subnet (public, private) created in this VPC. Typical
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="public_subnet_ids" requirement="required" type="list(string)">
+<HclListItem name="private_subnet_cidr_blocks" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-A list of IDs of the public subnets in the VPC
+A list of CIDR blocks used by the private subnets in the VPC
 
 </HclListItemDescription>
 </HclListItem>
@@ -105,10 +89,26 @@ A list of CIDR blocks used by the public subnets in the VPC
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="private_subnet_cidr_blocks" requirement="required" type="list(string)">
+<HclListItem name="public_subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-A list of CIDR blocks used by the private subnets in the VPC
+A list of IDs of the public subnets in the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC (e.g. mgmt)
 
 </HclListItemDescription>
 </HclListItem>
@@ -123,22 +123,13 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 
 ### Optional
 
-<HclListItem name="initial_nacl_rule_number" requirement="optional" type="number">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The number to use for the first rule that is created by this module. All rules in this module will be inserted after this number. This is useful to provide additional head room for your NACL rules that should take precedence over the initial rule.
+If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="100"/>
-</HclListItem>
-
-<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
-<HclListItemDescription>
-
-The list of ports to exclude from the inbound allow all rules. This is useful for adhering to certain compliance standards like CIS that explicitly deny any allow rule for administrative ports.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -150,22 +141,31 @@ A map of tags to apply to the Network ACLs created by this module. The key is th
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
 <HclListItemDescription>
 
-If you set this variable to false, this module will not create any resources. This is used as a workaround because Terraform does not allow you to use the 'count' parameter on modules. By using this parameter, you can optionally create or not create the resources within this module.
+The list of ports to exclude from the inbound allow all rules. This is useful for adhering to certain compliance standards like CIS that explicitly deny any allow rule for administrative ports.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="initial_nacl_rule_number" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number to use for the first rule that is created by this module. All rules in this module will be inserted after this number. This is useful to provide additional head room for your NACL rules that should take precedence over the initial rule.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="public_subnets_network_acl_id">
+<HclListItem name="private_subnets_network_acl_id">
 </HclListItem>
 
-<HclListItem name="private_subnets_network_acl_id">
+<HclListItem name="public_subnets_network_acl_id">
 </HclListItem>
 
 </TabItem>
@@ -180,6 +180,6 @@ If you set this variable to false, this module will not create any resources. Th
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "074937cba7aa74cad4b113278b7cdc06"
+  "hash": "0d767e55c650f9bf479a0a3dc7445584"
 }
 ##DOCS-SOURCER-END -->

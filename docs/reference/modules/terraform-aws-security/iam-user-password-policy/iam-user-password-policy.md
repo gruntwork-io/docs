@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -44,64 +44,19 @@ Are we missing any functionality? Let us know by emailing info@gruntwork.io!
 
 ### Optional
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="minimum_password_length" requirement="optional" type="number">
-<HclListItemDescription>
-
-Minimum length to require for user passwords.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="16"/>
-</HclListItem>
-
-<HclListItem name="require_numbers" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to require numbers for user passwords (true or false).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="require_symbols" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to require symbols for user passwords (true or false).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="require_lowercase_characters" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to require lowercase characters for user passwords (true or false).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="require_uppercase_characters" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to require uppercase characters for user passwords (true or false).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="allow_users_to_change_password" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Whether to allow users to change their own password (true or false).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -125,6 +80,15 @@ The number of days that an user password is valid. Enter 0 for no expiration.
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="minimum_password_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+Minimum length to require for user passwords.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="16"/>
+</HclListItem>
+
 <HclListItem name="password_reuse_prevention" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -134,6 +98,42 @@ The number of previous passwords that users are prevented from reusing.
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
+<HclListItem name="require_lowercase_characters" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to require lowercase characters for user passwords (true or false).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="require_numbers" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to require numbers for user passwords (true or false).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="require_symbols" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to require symbols for user passwords (true or false).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="require_uppercase_characters" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to require uppercase characters for user passwords (true or false).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -141,6 +141,14 @@ The number of previous passwords that users are prevented from reusing.
 <HclListItemDescription>
 
 Whether to allow users to change their own password.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_expire_passwords">
+<HclListItemDescription>
+
+Indicates whether passwords in the account expire.
 
 </HclListItemDescription>
 </HclListItem>
@@ -201,14 +209,6 @@ Whether to require uppercase characters for user passwords.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="iam_password_policy_expire_passwords">
-<HclListItemDescription>
-
-Indicates whether passwords in the account expire.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -221,6 +221,6 @@ Indicates whether passwords in the account expire.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a23e4dde6609da8679445c12e6d6944c"
+  "hash": "c8f5d9387386d58ed8eed909398fa9a6"
 }
 ##DOCS-SOURCER-END -->

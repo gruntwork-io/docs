@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules%2Fs3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -164,10 +164,10 @@ The name of the S3 bucket.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="s3_bucket_is_public_website" requirement="required" type="string">
+<HclListItem name="default_ttl" requirement="required" type="number">
 <HclListItemDescription>
 
-Set to true if your S3 bucket is configured as a website and publicly accessible. Set to false if it's a regular S3 bucket and only privately accessible to CloudFront. If it's a public website, you can use all the S3 website features (e.g. routing, error pages), but users can bypass CloudFront and talk to S3 directly. If it's a private S3 bucket, users can only reach it via CloudFront, but you don't get all the website features.
+The default amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an 'Cache-Control max-age' or 'Expires' header.
 
 </HclListItemDescription>
 </HclListItem>
@@ -176,14 +176,6 @@ Set to true if your S3 bucket is configured as a website and publicly accessible
 <HclListItemDescription>
 
 The path that you want CloudFront to query on the origin server when an end user requests the root URL (e.g. index.html).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="default_ttl" requirement="required" type="number">
-<HclListItemDescription>
-
-The default amount of time, in seconds, that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an 'Cache-Control max-age' or 'Expires' header.
 
 </HclListItemDescription>
 </HclListItem>
@@ -204,89 +196,50 @@ The minimum amount of time that you want objects to stay in CloudFront caches be
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="s3_bucket_is_public_website" requirement="required" type="string">
+<HclListItemDescription>
+
+Set to true if your S3 bucket is configured as a website and publicly accessible. Set to false if it's a regular S3 bucket and only privately accessible to CloudFront. If it's a public website, you can use all the S3 website features (e.g. routing, error pages), but users can bypass CloudFront and talk to S3 directly. If it's a private S3 bucket, users can only reach it via CloudFront, but you don't get all the website features.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="error_responses" requirement="optional" type="map">
+<HclListItem name="access_log_prefix" requirement="optional" type="string">
 <HclListItemDescription>
 
-The error responses you want CloudFront to return to the viewer.
+The folder in the access logs bucket where logs should be written.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ordered_cache_behaviors" requirement="optional" type="list(any)">
+<HclListItem name="access_logs_bucket_suffix" requirement="optional" type="string">
 <HclListItemDescription>
 
-An ordered list of cache behaviors resource for this distribution. List from top to bottom in order of precedence. The topmost cache behavior will have precedence 0.
+The suffix for the access logs bucket where logs should be written.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="&quot;cloudfront-logs&quot;"/>
 </HclListItem>
 
-<HclListItem name="failover_buckets" requirement="optional" type="list(string)">
+<HclListItem name="access_logs_enable_versioning" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The list of the names of the failover S3 buckets. Provide if you wish to configure a CloudFront distribution with an Origin Group.
+Set to true to enable versioning for the access logs S3 bucket. If enabled, instead of overriding objects, the S3 bucket will always create a new version of each object, so all the old values are retained.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="bucket_website_endpoint" requirement="optional" type="string">
+<HclListItem name="access_logs_expiration_time_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
-The website endpoint for this S3 bucket. This value should be of the format &lt;BUCKET_NAME>.s3-website-&lt;AWS_REGION>.amazonaws.com. Only used if <a href="#s3_bucket_is_public_website"><code>s3_bucket_is_public_website</code></a> is true.
+How many days to keep access logs around for before deleting them.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="failover_bucket_website_endpoints" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The website endpoints for each failover S3 bucket. This value of each should be of the format &lt;BUCKET_NAME>.s3-website-&lt;AWS_REGION>.amazonaws.com. Only used if <a href="#s3_bucket_is_public_website"><code>s3_bucket_is_public_website</code></a> is true, and if you are providing a failover S3 bucket to be used in a CloudFront Origin Group configuration.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="failover_status_codes" requirement="optional" type="list(number)">
-<HclListItemDescription>
-
-List of HTTP status codes to configure the Origin Group to fail over on. Provide if you wish to not failover on all provided 4xx and 5xx status codes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  500,
-  502,
-  503,
-  504,
-  404,
-  403
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="use_cloudfront_default_certificate" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true if you want viewers to use HTTPS to request your objects and you're using the CloudFront domain name for your distribution. You must set exactly one of <a href="#use_cloudfront_default_certificate"><code>use_cloudfront_default_certificate</code></a>, <a href="#acm_certificate_arn"><code>acm_certificate_arn</code></a>, or <a href="#iam_certificate_id"><code>iam_certificate_id</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="30"/>
 </HclListItem>
 
 <HclListItem name="acm_certificate_arn" requirement="optional" type="string">
@@ -298,74 +251,42 @@ The ARN of the AWS Certificate Manager certificate that you wish to use with thi
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_certificate_id" requirement="optional" type="string">
+<HclListItem name="additional_bucket_information" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
-The IAM certificate identifier of the custom viewer certificate for this distribution if you are using a custom domain. You must set exactly one of <a href="#use_cloudfront_default_certificate"><code>use_cloudfront_default_certificate</code></a>, <a href="#acm_certificate_arn"><code>acm_certificate_arn</code></a>, or <a href="#iam_certificate_id"><code>iam_certificate_id</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="create_route53_entries" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, create a DNS A Record in Route 53 with each domain name in <a href="#domain_names"><code>domain_names</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="hosted_zone_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#domain_names"><code>domain_names</code></a>. Only used if <a href="#create_route53_entries"><code>create_route53_entries</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="private_zone" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the Route 53 Hosted Zone associated with <a href="#base_domain_name"><code>base_domain_name</code></a> is private.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="base_domain_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The domain name associated with a hosted zone in Route 53. Usually the base domain name of one of the <a href="#domain_names"><code>domain_names</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="base_domain_name_tags" requirement="optional" type="map(any)">
-<HclListItemDescription>
-
-The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
+A Map with the bucket name as key and the additional information about region and v4_auth as values.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+map(object({
+    region  = string
+    v4_auth = bool
+  }))
 ```
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
 
-<HclListItem name="domain_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
 
-The custom domain name to use instead of the default cloudfront.net domain name (e.g. static.foo.com). Only used if <a href="#create_route53_entries"><code>create_route53_entries</code></a> is true.
+```hcl
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+   Example:
+   {
+     bucket-name = {
+       region  = "eu-central-1"
+       v4_auth = true
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="allowed_methods" requirement="optional" type="list(string)">
@@ -410,6 +331,60 @@ Controls which HTTP methods CloudFront will forward to Origin Group. Currently o
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="base_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The domain name associated with a hosted zone in Route 53. Usually the base domain name of one of the <a href="#domain_names"><code>domain_names</code></a> (e.g. foo.com). This is used to find the hosted zone that will be used for the CloudFront distribution.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="base_domain_name_tags" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+The tags associated with <a href="#base_domain_name"><code>base_domain_name</code></a>. If there are multiple hosted zones for the same base_domain_name, this will help filter the hosted zones so that the correct hosted zone is found.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="bucket_origin_config_protocol_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The origin protocol policy to apply to the S3 bucket origin. Must be one of http-only, https-only, and match-viewer.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;http-only&quot;"/>
+</HclListItem>
+
+<HclListItem name="bucket_origin_config_ssl_protocols" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The SSL/TLS protocols that you want CloudFront to use when communicating with the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1, TLSv1.1, and TLSv1.2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;TLSv1.2&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="bucket_website_endpoint" requirement="optional" type="string">
+<HclListItemDescription>
+
+The website endpoint for this S3 bucket. This value should be of the format &lt;BUCKET_NAME>.s3-website-&lt;AWS_REGION>.amazonaws.com. Only used if <a href="#s3_bucket_is_public_website"><code>s3_bucket_is_public_website</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cached_methods" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -437,217 +412,10 @@ Whether you want CloudFront to automatically compress content for web requests t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
+<HclListItem name="create_route53_entries" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-all&quot;"/>
-</HclListItem>
-
-<HclListItem name="forward_query_string" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates whether you want CloudFront to forward query strings to the origin. If set to true, CloudFront will cache all query string parameters.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="forward_cookies" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies whether you want CloudFront to forward cookies to the origin that is associated with this cache behavior. You can specify all, none or whitelist. If whitelist, you must define <a href="#whitelisted_cookie_names"><code>whitelisted_cookie_names</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;none&quot;"/>
-</HclListItem>
-
-<HclListItem name="whitelisted_cookie_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-If you have specified whitelist in <a href="#forward_cookies"><code>forward_cookies</code></a>, the whitelisted cookies that you want CloudFront to forward to your origin.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="forward_headers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The headers you want CloudFront to forward to the origin. Set to * to forward all headers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="s3_bucket_base_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-If set, CloudFront will request all content from the specified folder, rather than the root of the S3 bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the distribution is enabled to accept end user requests for content.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="is_ipv6_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the IPv6 is enabled for the distribution.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="http_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-The maximum HTTP version to support on the distribution. Allowed values are http1.1 and http2.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;http2&quot;"/>
-</HclListItem>
-
-<HclListItem name="price_class" requirement="optional" type="string">
-<HclListItemDescription>
-
-The price class for this distribution. One of PriceClass_All, PriceClass_200, PriceClass_100. Higher price classes support more edge locations, but cost more. See: https://aws.amazon.com/cloudfront/pricing/#price-classes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;PriceClass_100&quot;"/>
-</HclListItem>
-
-<HclListItem name="web_acl_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web ACL that is associated with the distribution.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="disable_logging" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Option to disable cloudfront log delivery to s3.  This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="access_logs_expiration_time_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-How many days to keep access logs around for before deleting them.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="access_log_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-The folder in the access logs bucket where logs should be written.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="access_logs_bucket_suffix" requirement="optional" type="string">
-<HclListItemDescription>
-
-The suffix for the access logs bucket where logs should be written.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;cloudfront-logs&quot;"/>
-</HclListItem>
-
-<HclListItem name="access_logs_enable_versioning" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable versioning for the access logs S3 bucket. If enabled, instead of overriding objects, the S3 bucket will always create a new version of each object, so all the old values are retained.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="force_destroy_access_logs_bucket" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, this will force the delete of the access logs S3 bucket when you run terraform destroy, even if there is still content in it. This is only meant for testing and should not be used in production.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="geo_restriction_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The method that you want to use to restrict distribution of your content by country: none, whitelist, or blacklist.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;none&quot;"/>
-</HclListItem>
-
-<HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is whitelist) or not distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is blacklist).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="minimum_protocol_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are using a custom certificate (specified with acm_certificate_arn or iam_certificate_id), and have specified sni-only in ssl_support_method, TLSv1 must be specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
-</HclListItem>
-
-<HclListItem name="ssl_support_method" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies how you want CloudFront to serve HTTPS requests. One of vip or sni-only. Required if you specify acm_certificate_arn or iam_certificate_id. NOTE: vip causes CloudFront to use a dedicated IP address and may incur extra charges.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sni-only&quot;"/>
-</HclListItem>
-
-<HclListItem name="trusted_signers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of AWS account IDs that you want to allow to create signed URLs for private content.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="trusted_key_groups" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of key group IDs that CloudFront can use to validate signed URLs or signed cookies. Only used if trusted_signers is empty.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="include_cookies_in_logs" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether you want CloudFront to include cookies in access logs.
+If set to true, create a DNS A Record in Route 53 with each domain name in <a href="#domain_names"><code>domain_names</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -660,6 +428,25 @@ A map of custom tags to apply to the S3 bucket and Cloudfront Distribution. The 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="default_function_associations" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+A list of existing CloudFront functions to associate with the default cached behavior. CloudFront functions are lightweight alternatives to Lambda for high-scale, latency sensitive CDN customizations
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    event_type   = string
+    function_arn = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="default_lambda_associations" requirement="optional" type="list(object(…))">
@@ -682,22 +469,266 @@ list(object({
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="default_function_associations" requirement="optional" type="list(object(…))">
+<HclListItem name="disable_logging" requirement="optional" type="bool">
 <HclListItemDescription>
 
-A list of existing CloudFront functions to associate with the default cached behavior. CloudFront functions are lightweight alternatives to Lambda for high-scale, latency sensitive CDN customizations
+Option to disable cloudfront log delivery to s3.  This is required in regions where cloudfront cannot deliver logs to s3, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#access-logs-choosing-s3-bucket
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="domain_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The custom domain name to use instead of the default cloudfront.net domain name (e.g. static.foo.com). Only used if <a href="#create_route53_entries"><code>create_route53_entries</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the distribution is enabled to accept end user requests for content.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="error_responses" requirement="optional" type="map">
+<HclListItemDescription>
+
+The error responses you want CloudFront to return to the viewer.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="failover_bucket_website_endpoints" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The website endpoints for each failover S3 bucket. This value of each should be of the format &lt;BUCKET_NAME>.s3-website-&lt;AWS_REGION>.amazonaws.com. Only used if <a href="#s3_bucket_is_public_website"><code>s3_bucket_is_public_website</code></a> is true, and if you are providing a failover S3 bucket to be used in a CloudFront Origin Group configuration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="failover_buckets" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of the names of the failover S3 buckets. Provide if you wish to configure a CloudFront distribution with an Origin Group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="failover_status_codes" requirement="optional" type="list(number)">
+<HclListItemDescription>
+
+List of HTTP status codes to configure the Origin Group to fail over on. Provide if you wish to not failover on all provided 4xx and 5xx status codes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  500,
+  502,
+  503,
+  504,
+  404,
+  403
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="force_destroy_access_logs_bucket" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, this will force the delete of the access logs S3 bucket when you run terraform destroy, even if there is still content in it. This is only meant for testing and should not be used in production.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="forward_cookies" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies whether you want CloudFront to forward cookies to the origin that is associated with this cache behavior. You can specify all, none or whitelist. If whitelist, you must define <a href="#whitelisted_cookie_names"><code>whitelisted_cookie_names</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;none&quot;"/>
+</HclListItem>
+
+<HclListItem name="forward_headers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The headers you want CloudFront to forward to the origin. Set to * to forward all headers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="forward_query_string" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether you want CloudFront to forward query strings to the origin. If set to true, CloudFront will cache all query string parameters.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="geo_locations_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is whitelist) or not distribute your content (if <a href="#geo_restriction_type"><code>geo_restriction_type</code></a> is blacklist).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="geo_restriction_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The method that you want to use to restrict distribution of your content by country: none, whitelist, or blacklist.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;none&quot;"/>
+</HclListItem>
+
+<HclListItem name="hosted_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the Route 53 Hosted Zone in which to create the DNS A Records specified in <a href="#domain_names"><code>domain_names</code></a>. Only used if <a href="#create_route53_entries"><code>create_route53_entries</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="http_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The maximum HTTP version to support on the distribution. Allowed values are http1.1 and http2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;http2&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_certificate_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The IAM certificate identifier of the custom viewer certificate for this distribution if you are using a custom domain. You must set exactly one of <a href="#use_cloudfront_default_certificate"><code>use_cloudfront_default_certificate</code></a>, <a href="#acm_certificate_arn"><code>acm_certificate_arn</code></a>, or <a href="#iam_certificate_id"><code>iam_certificate_id</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="include_cookies_in_logs" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether you want CloudFront to include cookies in access logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="is_ipv6_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the IPv6 is enabled for the distribution.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="minimum_protocol_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. One of SSLv3 or TLSv1. Default: SSLv3. NOTE: If you are using a custom certificate (specified with acm_certificate_arn or iam_certificate_id), and have specified sni-only in ssl_support_method, TLSv1 must be specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;TLSv1&quot;"/>
+</HclListItem>
+
+<HclListItem name="ordered_cache_behaviors" requirement="optional" type="list(any)">
+<HclListItemDescription>
+
+An ordered list of cache behaviors resource for this distribution. List from top to bottom in order of precedence. The topmost cache behavior will have precedence 0.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-list(object({
-    event_type   = string
-    function_arn = string
-  }))
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="price_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+The price class for this distribution. One of PriceClass_All, PriceClass_200, PriceClass_100. Higher price classes support more edge locations, but cost more. See: https://aws.amazon.com/cloudfront/pricing/#price-classes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;PriceClass_100&quot;"/>
+</HclListItem>
+
+<HclListItem name="private_zone" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the Route 53 Hosted Zone associated with <a href="#base_domain_name"><code>base_domain_name</code></a> is private.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="response_headers_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ID of response headers policy to apply to this CloudFront distribution.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_bucket_base_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+If set, CloudFront will request all content from the specified folder, rather than the root of the S3 bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ssl_support_method" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies how you want CloudFront to serve HTTPS requests. One of vip or sni-only. Required if you specify acm_certificate_arn or iam_certificate_id. NOTE: vip causes CloudFront to use a dedicated IP address and may incur extra charges.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sni-only&quot;"/>
+</HclListItem>
+
+<HclListItem name="trusted_key_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of key group IDs that CloudFront can use to validate signed URLs or signed cookies. Only used if trusted_signers is empty.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="trusted_signers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of AWS account IDs that you want to allow to create signed URLs for private content.
+
+</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
@@ -710,6 +741,24 @@ In older AWS accounts, you must set this variable to true to use the ARN of the 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_default_certificate" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want viewers to use HTTPS to request your objects and you're using the CloudFront domain name for your distribution. You must set exactly one of <a href="#use_cloudfront_default_certificate"><code>use_cloudfront_default_certificate</code></a>, <a href="#acm_certificate_arn"><code>acm_certificate_arn</code></a>, or <a href="#iam_certificate_id"><code>iam_certificate_id</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;allow-all&quot;"/>
+</HclListItem>
+
 <HclListItem name="wait_for_deployment" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -719,75 +768,35 @@ If enabled, the resource will wait for the distribution status to change from In
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="bucket_origin_config_protocol_policy" requirement="optional" type="string">
+<HclListItem name="web_acl_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The origin protocol policy to apply to the S3 bucket origin. Must be one of http-only, https-only, and match-viewer.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;http-only&quot;"/>
-</HclListItem>
-
-<HclListItem name="bucket_origin_config_ssl_protocols" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The SSL/TLS protocols that you want CloudFront to use when communicating with the S3 bucket over HTTPS. A list of one or more of SSLv3, TLSv1, TLSv1.1, and TLSv1.2.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;TLSv1.2&quot;
-]"/>
-</HclListItem>
-
-<HclListItem name="response_headers_policy_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-ID of response headers policy to apply to this CloudFront distribution.
+If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web ACL that is associated with the distribution.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="additional_bucket_information" requirement="optional" type="map(object(…))">
+<HclListItem name="whitelisted_cookie_names" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A Map with the bucket name as key and the additional information about region and v4_auth as values.
+If you have specified whitelist in <a href="#forward_cookies"><code>forward_cookies</code></a>, the whitelisted cookies that you want CloudFront to forward to your origin.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    region  = string
-    v4_auth = bool
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   {
-     bucket-name = {
-       region  = "eu-central-1"
-       v4_auth = true
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="access_logs_bucket_arn">
+</HclListItem>
+
+<HclListItem name="cloudfront_distribution_arn">
+</HclListItem>
+
+<HclListItem name="cloudfront_distribution_domain_name">
+</HclListItem>
 
 <HclListItem name="cloudfront_domain_names">
 </HclListItem>
@@ -795,19 +804,10 @@ map(object({
 <HclListItem name="cloudfront_id">
 </HclListItem>
 
-<HclListItem name="cloudfront_distribution_domain_name">
-</HclListItem>
-
-<HclListItem name="cloudfront_distribution_arn">
-</HclListItem>
-
 <HclListItem name="cloudfront_origin_access_identity_iam_arn">
 </HclListItem>
 
 <HclListItem name="cloudfront_origin_access_identity_s3_canonical_user_id">
-</HclListItem>
-
-<HclListItem name="access_logs_bucket_arn">
 </HclListItem>
 
 </TabItem>
@@ -822,6 +822,6 @@ map(object({
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1216b9eae5b2ea6ec9d365b498d6dac2"
+  "hash": "2b417fd8ef54984d7161e24a77f48caf"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -52,10 +52,10 @@ resource "aws_iam_role_policy_attachment" "example" {
 
 ### Required
 
-<HclListItem name="deploy_runner_invoker_lambda_function_arn" requirement="required" type="string">
+<HclListItem name="deploy_runner_cloudwatch_log_group_name" requirement="required" type="string">
 <HclListItemDescription>
 
-ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
+The name of the CloudWatch Log Group that is used to store the logs for the ECS Deploy Runner tasks.
 
 </HclListItemDescription>
 </HclListItem>
@@ -68,10 +68,10 @@ ARN of the ECS Cluster that is used to run the ECS Deploy Runner tasks.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="deploy_runner_cloudwatch_log_group_name" requirement="required" type="string">
+<HclListItem name="deploy_runner_invoker_lambda_function_arn" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the CloudWatch Log Group that is used to store the logs for the ECS Deploy Runner tasks.
+ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
 
 </HclListItemDescription>
 </HclListItem>
@@ -90,10 +90,10 @@ The name to use for the IAM policy that is created.
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="name">
+<HclListItem name="arn">
 <HclListItemDescription>
 
-The name of the IAM policy created with the permissions for invoking the ECS Deploy Runner.
+The ARN of the IAM policy created with the permissions for invoking the ECS Deploy Runner.
 
 </HclListItemDescription>
 </HclListItem>
@@ -106,10 +106,10 @@ The AWS ID of the IAM policy created with the permissions for invoking the ECS D
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="arn">
+<HclListItem name="name">
 <HclListItemDescription>
 
-The ARN of the IAM policy created with the permissions for invoking the ECS Deploy Runner.
+The name of the IAM policy created with the permissions for invoking the ECS Deploy Runner.
 
 </HclListItemDescription>
 </HclListItem>
@@ -126,6 +126,6 @@ The ARN of the IAM policy created with the permissions for invoking the ECS Depl
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6874d181d873fa2105c8de49d89577ca"
+  "hash": "1c69e9900253b8204e878006c0557518"
 }
 ##DOCS-SOURCER-END -->

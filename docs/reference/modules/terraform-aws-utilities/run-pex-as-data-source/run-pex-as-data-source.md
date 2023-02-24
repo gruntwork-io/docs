@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frun-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -54,18 +54,18 @@ running it as a data source). Which approach to use depends on your needs:
 
 ### Required
 
-<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="pex_module_path_parts" requirement="required" type="list(string)">
 <HclListItemDescription>
 
 Parts of the path (folders and file names) to the python package directory housing the pex file.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="python_pex_path_parts" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+Parts of the path (folders and files names) to the PEX executable for python as a list of strings.
 
 </HclListItemDescription>
 </HclListItem>
@@ -142,6 +142,6 @@ Data source result of executing the PEX binary.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6593551237ba6573f65141c28bff0be7"
+  "hash": "3aa73c3187ee0cd76dd73f008e326ecc"
 }
 ##DOCS-SOURCER-END -->

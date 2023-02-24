@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Flogstash-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -108,6 +108,14 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 
 ### Required
 
+<HclListItem name="ami_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the AMI to run in this cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="aws_region" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -124,14 +132,6 @@ The name of the Logstash cluster (e.g. logstash-stage). This variable is used to
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ami_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the AMI to run in this cluster.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -140,18 +140,18 @@ The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="size" requirement="required" type="number">
+<HclListItem name="lb_target_group_arns" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-The number of nodes to have in the Logstash cluster.
+The ALB taget groups with which to associate instances in this server group
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="size" requirement="required" type="number">
 <HclListItemDescription>
 
-The ID of the VPC in which to deploy the Logstash cluster
+The number of nodes to have in the Logstash cluster.
 
 </HclListItemDescription>
 </HclListItem>
@@ -172,69 +172,15 @@ A User Data script to execute while the server is booting.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="lb_target_group_arns" requirement="required" type="list(string)">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The ALB taget groups with which to associate instances in this server group
+The ID of the VPC in which to deploy the Logstash cluster
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
-
-<HclListItem name="filebeat_port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port on which Filebeat will communicate with the Logstash cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5044"/>
-</HclListItem>
-
-<HclListItem name="collectd_port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port on which CollectD will communicate with the Logstash cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8080"/>
-</HclListItem>
-
-<HclListItem name="beats_port_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IP address ranges in CIDR format from which access to the Filebeat port will be allowed
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="collectd_port_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IP address ranges in CIDR format from which access to the Collectd port will be allowed
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="ssh_key_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
 
 <HclListItem name="allowed_ssh_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -263,6 +209,15 @@ If set to true, associate a public IP address with each EC2 Instance in the clus
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="beats_port_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IP address ranges in CIDR format from which access to the Filebeat port will be allowed
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="beats_port_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -272,13 +227,22 @@ The list of Security Group IDs from which to allow connections to the beats_port
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="num_beats_port_security_groups" requirement="optional" type="number">
+<HclListItem name="collectd_port" requirement="optional" type="number">
 <HclListItemDescription>
 
-The number of security group IDs in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+The port on which CollectD will communicate with the Logstash cluster
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
+<HclListItemDefaultValue defaultValue="8080"/>
+</HclListItem>
+
+<HclListItem name="collectd_port_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IP address ranges in CIDR format from which access to the Collectd port will be allowed
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="collectd_port_security_groups" requirement="optional" type="list(string)">
@@ -290,13 +254,13 @@ The list of Security Group IDs from which to allow connections to the collectd_p
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="num_collectd_port_security_groups" requirement="optional" type="number">
+<HclListItem name="ebs_optimized" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The number of security group IDs in <a href="#collectd_port_security_groups"><code>collectd_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#collectd_port_security_groups"><code>collectd_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+If true, the launched EC2 instance will be EBS-optimized.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="ebs_volumes" requirement="optional" type="list(object(…))">
@@ -344,49 +308,22 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="ebs_optimized" requirement="optional" type="bool">
+<HclListItem name="filebeat_port" requirement="optional" type="number">
 <HclListItemDescription>
 
-If true, the launched EC2 instance will be EBS-optimized.
+The port on which Filebeat will communicate with the Logstash cluster
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="5044"/>
 </HclListItem>
 
-<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItem name="health_check_grace_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-The type of volume. Must be one of: standard, gp2, or io1.
+Time, in seconds, after instance comes into service before checking health.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
-</HclListItem>
-
-<HclListItem name="root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size, in GB, of the root EBS volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="50"/>
-</HclListItem>
-
-<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the volume should be destroyed on instance termination.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+<HclListItemDefaultValue defaultValue="600"/>
 </HclListItem>
 
 <HclListItem name="health_check_type" requirement="optional" type="string">
@@ -398,13 +335,67 @@ The type of health check to use. Must be one of: EC2 or ELB. If you associate an
 <HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
 </HclListItem>
 
-<HclListItem name="health_check_grace_period" requirement="optional" type="number">
+<HclListItem name="num_beats_port_security_groups" requirement="optional" type="number">
 <HclListItemDescription>
 
-Time, in seconds, after instance comes into service before checking health.
+The number of security group IDs in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="num_collectd_port_security_groups" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of security group IDs in <a href="#collectd_port_security_groups"><code>collectd_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#collectd_port_security_groups"><code>collectd_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the volume should be destroyed on instance termination.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size, in GB, of the root EBS volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="50"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of volume. Must be one of: standard, gp2, or io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="skip_rolling_deploy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, skip the rolling deployment, and destroy all the servers immediately. You should typically NOT enable this in prod, as it will cause downtime! The main use case for this flag is to make testing and cleanup easier. It can also be handy in case the rolling deployment code has a bug.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ssh_key_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="ssh_port" requirement="optional" type="number">
@@ -442,16 +433,25 @@ A map of key value pairs that represent custom tags to propagate to the resource
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="server_asg_names">
+<HclListItem name="iam_role_id">
 </HclListItem>
 
 <HclListItem name="security_group_id">
 </HclListItem>
 
-<HclListItem name="iam_role_id">
+<HclListItem name="server_asg_names">
 </HclListItem>
 
 </TabItem>
@@ -466,6 +466,6 @@ A map of key value pairs that represent custom tags to propagate to the resource
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5d785358b25a4ef4c951a877e071b3c"
+  "hash": "e7e9d3a79f368a82fb23509f07931d85"
 }
 ##DOCS-SOURCER-END -->

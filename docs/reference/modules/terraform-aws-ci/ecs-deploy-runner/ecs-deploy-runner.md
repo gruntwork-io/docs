@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -322,15 +322,6 @@ List of VPC Subnet IDs where the ECS task and invoker lambda should run.
 
 ### Optional
 
-<HclListItem name="name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of this instance of the deploy runner stack. Used to namespace all resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ecs-deploy-runner&quot;"/>
-</HclListItem>
-
 <HclListItem name="artifact_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -376,6 +367,149 @@ object({
 
      Key prefix to use if lambda event does not specify. Outputs will be stored at PREFIX/stdout, PREFIX/stderr, and
      PREFIX/interleaved. Note that this will overwrite the output even if the key already exists.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to <a href="#name"><code>name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if <a href="#should_create_cloudwatch_log_group"><code>should_create_cloudwatch_log_group</code></a> is true, and <a href="#container_images"><code>container_images</code></a> is non-empty.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
+<HclListItemDescription>
+
+The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
+<HclListItemDescription>
+
+A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="container_cpu" requirement="optional" type="number">
+<HclListItemDescription>
+
+The default CPU units for the instances that Fargate will spin up. The invoker allows users to override the CPU at run time, but this value will be used if the user provides no value for the CPU. Options here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1024"/>
+</HclListItem>
+
+<HclListItem name="container_default_launch_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default launch type of the ECS deploy runner workers. This launch type will be used if it is not overridden during invocation of the lambda function. Must be FARGATE or EC2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;FARGATE&quot;"/>
+</HclListItem>
+
+<HclListItem name="container_max_cpu" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum CPU units that is allowed to be specified by the user when invoking the deploy runner with the Lambda function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2048"/>
+</HclListItem>
+
+<HclListItem name="container_max_memory" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum memory units that is allowed to be specified by the user when invoking the deploy runner with the Lambda function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8192"/>
+</HclListItem>
+
+<HclListItem name="container_memory" requirement="optional" type="number">
+<HclListItemDescription>
+
+The default memory units for the instances that Fargate will spin up. The invoker allows users to override the memory at run time, but this value will be used if the user provides no value for memory. Options here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2048"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to all the resources created in this module. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
 
 ```
 </details>
@@ -452,156 +586,13 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="container_default_launch_type" requirement="optional" type="string">
+<HclListItem name="ecs_task_exec_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
-The default launch type of the ECS deploy runner workers. This launch type will be used if it is not overridden during invocation of the lambda function. Must be FARGATE or EC2.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;FARGATE&quot;"/>
-</HclListItem>
-
-<HclListItem name="secrets_manager_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note that if this variable is provided, this module will grant read and decrypt access to the KMS key to the ECS task. Only required if a custom KMS key was used to encrypt the secrets manager entry.
+The ARN of the policy that is used to set the permissions boundary for the ECS Task Execution IAM role. This policy should be created outside of this module.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="container_cpu" requirement="optional" type="number">
-<HclListItemDescription>
-
-The default CPU units for the instances that Fargate will spin up. The invoker allows users to override the CPU at run time, but this value will be used if the user provides no value for the CPU. Options here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1024"/>
-</HclListItem>
-
-<HclListItem name="container_memory" requirement="optional" type="number">
-<HclListItemDescription>
-
-The default memory units for the instances that Fargate will spin up. The invoker allows users to override the memory at run time, but this value will be used if the user provides no value for memory. Options here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2048"/>
-</HclListItem>
-
-<HclListItem name="container_max_cpu" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum CPU units that is allowed to be specified by the user when invoking the deploy runner with the Lambda function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2048"/>
-</HclListItem>
-
-<HclListItem name="container_max_memory" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum memory units that is allowed to be specified by the user when invoking the deploy runner with the Lambda function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8192"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-A custom name to set for the CloudWatch Log Group used to stream the container logs. When null, the Log Group will default to <a href="#name"><code>name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the log group. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_destination_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN. Only applicable if <a href="#should_create_cloudwatch_log_group"><code>should_create_cloudwatch_log_group</code></a> is true, and <a href="#container_images"><code>container_images</code></a> is non-empty.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_filter_pattern" requirement="optional" type="string">
-<HclListItemDescription>
-
-A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_log_group_subscription_distribution" requirement="optional" type="string">
-<HclListItemDescription>
-
-The method used to distribute log data to the destination. Only applicable when <a href="#cloudwatch_log_group_subscription_destination_arn"><code>cloudwatch_log_group_subscription_destination_arn</code></a> is a kinesis stream. Valid values are `Random` and `ByLogStream`.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to all the resources created in this module. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="ecs_task_permissions_boundary" requirement="optional" type="string">
@@ -613,19 +604,28 @@ The ARN of the policy that is used to set the permissions boundary for the ECS T
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ecs_task_exec_role_permissions_boundary" requirement="optional" type="string">
+<HclListItem name="invoker_lambda_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ARN of the policy that is used to set the permissions boundary for the ECS Task Execution IAM role. This policy should be created outside of this module.
+The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data for the invoker lambda function.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="repository_credentials_secrets_manager_arn" requirement="optional" type="string">
+<HclListItem name="invoker_lambda_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
-The ARN of a AWS Secrets Manager secret containing credentials to access the private repository. See the docs for details on the format of the secret: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html. Note that appropriate secrets manager permissions need to be added to the task execution role for this to work.
+The number of days to retain log events in the log group for the invoker lambda function. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="invoker_lambda_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply on the CloudWatch Log Group for the invoker lambda function, encoded as a map where the keys are tag keys and values are tag values.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -649,33 +649,6 @@ The amount of reserved concurrent executions for the invoker lambda function. Se
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="invoker_lambda_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of days to retain log events in the log group for the invoker lambda function. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#retention_in_days for all the valid values. When null, the log events are retained forever.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="invoker_lambda_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for encrypting log data for the invoker lambda function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="invoker_lambda_cloudwatch_log_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply on the CloudWatch Log Group for the invoker lambda function, encoded as a map where the keys are tag keys and values are tag values.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="invoker_lambda_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -694,10 +667,37 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of this instance of the deploy runner stack. Used to namespace all resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ecs-deploy-runner&quot;"/>
+</HclListItem>
+
 <HclListItem name="outbound_security_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
 When non-null, set the security group name of the ECS Deploy Runner ECS Task to this string. When null, a unique name will be generated by Terraform to avoid conflicts when deploying multiple instances of the ECS Deploy Runner.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="repository_credentials_secrets_manager_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a AWS Secrets Manager secret containing credentials to access the private repository. See the docs for details on the format of the secret: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html. Note that appropriate secrets manager permissions need to be added to the task execution role for this to work.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="secrets_manager_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the KMS Key used to encrypt the AWS Secrets Manager entries. Note that if this variable is provided, this module will grant read and decrypt access to the KMS key to the ECS task. Only required if a custom KMS key was used to encrypt the secrets manager entry.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -724,26 +724,10 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="ecs_cluster_arn">
+<HclListItem name="cloudwatch_log_group_name">
 <HclListItemDescription>
 
-AWS ARN of the ECS Cluster that can be used to run the deploy runner task.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_ec2_worker_iam_role">
-<HclListItemDescription>
-
-AWS ARN and name of the IAM role associated with the EC2 worker pool of the ECS Cluster that can be used to run the deploy runner task.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_ec2_worker_asg_name">
-<HclListItemDescription>
-
-Name of the Autoscaling Group associated with the EC2 worker pool of the ECS Cluster that can be used to run the deploy runner task.
+Name of the CloudWatch Log Group used to store the log output from the Deploy Runner ECS task.
 
 </HclListItemDescription>
 </HclListItem>
@@ -756,6 +740,30 @@ AWS ARN of the default ECS Task Definition. Can be used to trigger the ECS Task 
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="ecs_cluster_arn">
+<HclListItemDescription>
+
+AWS ARN of the ECS Cluster that can be used to run the deploy runner task.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_ec2_worker_asg_name">
+<HclListItemDescription>
+
+Name of the Autoscaling Group associated with the EC2 worker pool of the ECS Cluster that can be used to run the deploy runner task.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_ec2_worker_iam_role">
+<HclListItemDescription>
+
+AWS ARN and name of the IAM role associated with the EC2 worker pool of the ECS Cluster that can be used to run the deploy runner task.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="ecs_task_arns">
 <HclListItemDescription>
 
@@ -764,10 +772,10 @@ Map of AWS ARNs of the ECS Task Definition. Each entry corresponds to an entry i
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_task_iam_roles">
+<HclListItem name="ecs_task_execution_role_arn">
 <HclListItemDescription>
 
-Map of AWS ARNs and names of the IAM role that will be attached to the ECS task to grant it access to AWS resources. Each container will have its own IAM role, and each entry in this map corresponds to an entry in the <a href="#container_images"><code>container_images</code></a> input map, with the keys aligned.
+ECS Task execution role ARN
 
 </HclListItemDescription>
 </HclListItem>
@@ -780,18 +788,18 @@ Map of the families of the ECS Task Definition that is currently live. Each entr
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_task_revisions">
+<HclListItem name="ecs_task_iam_roles">
 <HclListItemDescription>
 
-Map of the current revision of the ECS Task Definition that is live. Each entry corresponds to an entry in the <a href="#container_images"><code>container_images</code></a> input map, with the keys aligned.
+Map of AWS ARNs and names of the IAM role that will be attached to the ECS task to grant it access to AWS resources. Each container will have its own IAM role, and each entry in this map corresponds to an entry in the <a href="#container_images"><code>container_images</code></a> input map, with the keys aligned.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="invoker_function_name">
+<HclListItem name="ecs_task_revisions">
 <HclListItemDescription>
 
-Name of the invoker lambda function that can be used to invoke a deployment.
+Map of the current revision of the ECS Task Definition that is live. Each entry corresponds to an entry in the <a href="#container_images"><code>container_images</code></a> input map, with the keys aligned.
 
 </HclListItemDescription>
 </HclListItem>
@@ -804,10 +812,10 @@ AWS ARN of the invoker lambda function that can be used to invoke a deployment.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cloudwatch_log_group_name">
+<HclListItem name="invoker_function_name">
 <HclListItemDescription>
 
-Name of the CloudWatch Log Group used to store the log output from the Deploy Runner ECS task.
+Name of the invoker lambda function that can be used to invoke a deployment.
 
 </HclListItemDescription>
 </HclListItem>
@@ -816,14 +824,6 @@ Name of the CloudWatch Log Group used to store the log output from the Deploy Ru
 <HclListItemDescription>
 
 Security Group ID of the ECS task
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="ecs_task_execution_role_arn">
-<HclListItemDescription>
-
-ECS Task execution role ARN
 
 </HclListItemDescription>
 </HclListItem>
@@ -840,6 +840,6 @@ ECS Task execution role ARN
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ecdc1c2988e492555baf0ff811d4adeb"
+  "hash": "bff6bc1a002619f06b4a2840b25d8a99"
 }
 ##DOCS-SOURCER-END -->

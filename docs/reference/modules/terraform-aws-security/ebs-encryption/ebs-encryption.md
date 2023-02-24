@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Febs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -36,6 +36,15 @@ modules. Please see those modules for more information.
 
 ### Optional
 
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources in this module should be created or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_encryption" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -58,15 +67,6 @@ Optional KMS key ARN used for EBS volume encryption when <a href="#use_existing_
 <HclListItemDescription>
 
 Whether or not to use the existing key specified in <a href="#kms_key_arn"><code>kms_key_arn</code></a>. We need this weird parameter because `count` must be a known value at plan time, so we cannot calculate whether or not to use the key dynamically.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources in this module should be created or not.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -103,6 +103,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4232c0f3e5f8037aee2d9a1e6ac265cc"
+  "hash": "311658fccb9d7064a06d72aff3e7840f"
 }
 ##DOCS-SOURCER-END -->

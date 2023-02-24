@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -79,6 +79,6 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9578ef91580e16eff2eb7b28ebddd908"
+  "hash": "b9c7bd9509ecddb3ae996b6d4bdf627a"
 }
 ##DOCS-SOURCER-END -->

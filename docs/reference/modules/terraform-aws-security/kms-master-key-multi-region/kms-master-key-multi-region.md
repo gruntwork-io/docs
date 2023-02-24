@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -241,13 +241,13 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItem name="default_customer_master_key_spec" requirement="optional" type="string">
 <HclListItemDescription>
 
-A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value is the tag value.
+The default value to use for spec (specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports). Applies to all keys, unless overridden in the customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="default_deletion_window_in_days" requirement="optional" type="number">
@@ -268,15 +268,6 @@ The default value to use for enable_key_rotation (whether or not to enable autom
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="default_customer_master_key_spec" requirement="optional" type="string">
-<HclListItemDescription>
-
-The default value to use for spec (specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports). Applies to all keys, unless overridden in the customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -286,6 +277,15 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -293,6 +293,14 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDescription>
 
 Map of CMKs from the input <a href="#customer_master_keys"><code>customer_master_keys</code></a> that had an invalid region, and thus were not created. The structure of the map is the same as the input. This will only include KMS key inputs that were not created because the region attribute was invalid (either not a valid region identifier, the region is not enabled on the account, or the region is not included in the <a href="#opt_in_regions"><code>opt_in_regions</code></a> input).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="key_aliases">
+<HclListItemDescription>
+
+A map from region to aliases of the KMS CMKs (both primary and replica) that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
 
 </HclListItemDescription>
 </HclListItem>
@@ -313,10 +321,10 @@ A map from region to IDs of the KMS CMKs (both primary and replica) that were cr
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="key_aliases">
+<HclListItem name="primary_key_aliases">
 <HclListItemDescription>
 
-A map from region to aliases of the KMS CMKs (both primary and replica) that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
+A map from region to aliases of the primary KMS CMKs that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
 
 </HclListItemDescription>
 </HclListItem>
@@ -337,10 +345,10 @@ A map from region to IDs of the primary KMS CMKs that were created. The value wi
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="primary_key_aliases">
+<HclListItem name="replica_key_aliases">
 <HclListItemDescription>
 
-A map from region to aliases of the primary KMS CMKs that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
+A map from region to aliases of the replica KMS CMKs that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
 
 </HclListItemDescription>
 </HclListItem>
@@ -361,14 +369,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="replica_key_aliases">
-<HclListItemDescription>
-
-A map from region to aliases of the replica KMS CMKs that were created. The value will also be a map of the keys from the <a href="#customer_master_keys"><code>customer_master_keys</code></a> input variable to the corresponding aliases.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -381,6 +381,6 @@ A map from region to aliases of the replica KMS CMKs that were created. The valu
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ad63bccc33549e5ece8714e5f91deed3"
+  "hash": "1bbd8ed4eb39c94206433d3de39e2c11"
 }
 ##DOCS-SOURCER-END -->

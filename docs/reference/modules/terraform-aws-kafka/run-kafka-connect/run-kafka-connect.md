@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Frun-kafka-connect" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -284,6 +284,6 @@ the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/mas
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f18d39b796df41f8d1aa0e30c86da133"
+  "hash": "e5f5022182d957c5a14cc60ab4658a39"
 }
 ##DOCS-SOURCER-END -->

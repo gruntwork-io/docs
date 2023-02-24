@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -140,10 +140,10 @@ Production-ready sample code from the Reference Architecture:
 
 ### Required
 
-<HclListItem name="service_name" requirement="required" type="string">
+<HclListItem name="desired_number_of_tasks" requirement="required" type="number">
 <HclListItemDescription>
 
-The name of the service. This is used to namespace all resources created by this module.
+How many copies of the Task to run across the cluster.
 
 </HclListItemDescription>
 </HclListItem>
@@ -164,23 +164,41 @@ The JSON text of the ECS Task Container Definitions. This portion of the ECS Tas
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="desired_number_of_tasks" requirement="required" type="number">
+<HclListItem name="service_name" requirement="required" type="string">
 <HclListItemDescription>
 
-How many copies of the Task to run across the cluster.
+The name of the service. This is used to namespace all resources created by this module.
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
 
-<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
+<HclListItem name="additional_task_assume_role_policy_principals" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
+A list of additional principals who can assume the task and task execution roles
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_sticky_session_cookie_duration" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time period, in seconds, during which requests from a client should be routed to the same Target. After this time period expires, the load balancer-generated cookie is considered stale. The acceptable range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds). Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="86400"/>
+</HclListItem>
+
+<HclListItem name="alb_sticky_session_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible values. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;lb_cookie&quot;"/>
 </HclListItem>
 
 <HclListItem name="capacity_provider_strategy" requirement="optional" type="list(object(…))">
@@ -228,22 +246,40 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="enable_execute_command" requirement="optional" type="bool">
+<HclListItem name="clb_container_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Specifies whether to enable Amazon ECS Exec for the tasks within the service.
+The name of the container, as it appears in the <a href="#task_arn"><code>task_arn</code></a> Task definition, to associate with a CLB. Currently, ECS can only associate a CLB with a single container per service. Only used if clb_name is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="launch_type" requirement="optional" type="string">
+<HclListItem name="clb_container_port" requirement="optional" type="number">
 <HclListItemDescription>
 
-The launch type of the ECS service. Must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+The port on the container in <a href="#clb_container_name"><code>clb_container_name</code></a> to associate with an CLB. Currently, ECS can only associate a CLB with a single container per service. Only used if clb_name is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="clb_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of a Classic Load Balancer (CLB) to associate with this service. Containers in the service will automatically register with the CLB when booting up. Set to null if using ELBv2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_ecs_service_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom name to use for the ECS service IAM role that is created. Note that this service IAM role is only needed when the ECS service is being used with an ELB. If blank (default), the name will be set to <a href="#service_name"><code>service_name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
@@ -264,56 +300,205 @@ Prefix for name of task execution IAM role and policy that grants access to Clou
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_ecs_service_role_name" requirement="optional" type="string">
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Custom name to use for the ECS service IAM role that is created. Note that this service IAM role is only needed when the ECS service is being used with an ELB. If blank (default), the name will be set to <a href="#service_name"><code>service_name</code></a>.
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="volumes" requirement="optional" type="any">
+<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
 <HclListItemDescription>
 
-(Optional) A map of volume blocks that containers in your task may use. The key should be the name of the volume and the value should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments, but not including the name parameter.
+Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
+</HclListItem>
+
+<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="600"/>
+</HclListItem>
+
+<HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Set enable to 'true' to prevent the task from attempting to continuously redeploy after a failed health check. Set rollback to 'true' to also automatically roll back to the last successful deployment. If this setting is used, both 'enable' and 'rollback' are required fields.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+object({
+    enable   = bool
+    rollback = bool
+  })
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
+<HclListItem name="deployment_controller" requirement="optional" type="string">
+<HclListItemDescription>
+
+Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
+<HclListItemDescription>
+
+The upper limit, as a percentage of <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a>, of the number of running tasks that can be running in a service during a deployment. Setting this to more than 100 means that during deployment, ECS will deploy new instances of a Task before undeploying the old ones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="200"/>
+</HclListItem>
+
+<HclListItem name="deployment_minimum_healthy_percent" requirement="optional" type="number">
+<HclListItemDescription>
+
+The lower limit, as a percentage of <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a>, of the number of running tasks that must remain running and healthy in a service during a deployment. Setting this to less than 100 means that during deployment, ECS may undeploy old instances of a Task before deploying new ones.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100"/>
+</HclListItem>
+
+<HclListItem name="desired_number_of_canary_tasks_to_run" requirement="optional" type="number">
+<HclListItemDescription>
+
+How many Tasks to run of the <a href="#ecs_task_definition_canary"><code>ecs_task_definition_canary</code></a> to deploy for a canary deployment. Typically, only 0 or 1 should be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="discovery_alias_record_evaluate_target_health" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Check alias target health before routing to the service. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="discovery_custom_health_check_failure_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance. Maximum value of 10. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="discovery_dns_routing_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The routing policy that you want to apply to all records that Route 53 creates when you register an instance and specify the service. Valid Values: MULTIVALUE, WEIGHTED. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;MULTIVALUE&quot;"/>
+</HclListItem>
+
+<HclListItem name="discovery_dns_ttl" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time, in seconds, that you want DNS resolvers to cache the settings for this resource record set. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="discovery_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name by which the service can be discovered. It will be used to form the service discovery address along with the namespace name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_namespace_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of the previously created namespace for service discovery. It will be used to form the service discovery address along with the discovery name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_original_public_route53_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the original Route 53 Hosted Zone where associated with the domain registrar. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_public_dns_namespace_route53_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the new Route 53 Hosted Zone created for the public DNS namespace. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="discovery_use_public_dns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to 'true' when using public DNS namespaces. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="ecs_service_network_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The configuration to use when setting up the VPC network mode. Required and only used if ecs_task_definition_network_mode is awsvpc.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
 
 ```hcl
-
-   Example:
-   volumes = {
-     datadog = {
-       host_path = "/var/run/datadog"
-     }
-  
-     logs = {
-       host_path = "/var/log"
-       docker_volume_configuration = {
-         scope         = "shared"
-         autoprovision = true
-         driver        = "local"
-       }
-     }
-   }
-
+object({
+    subnets          = list(string)
+    security_groups  = list(string)
+    assign_public_ip = bool
+  })
 ```
-</details>
 
-</HclGeneralListItem>
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ecs_task_definition_canary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The JSON text of the ECS Task Definition to be run for the canary. This defines the Docker container(s) to be run along with all their properties. It should adhere to the format described at https://goo.gl/ob5U3g.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;[{ &quot;name&quot;:&quot;not-used&quot; }]&quot;"/>
+</HclListItem>
+
+<HclListItem name="ecs_task_definition_network_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
 </HclListItem>
 
 <HclListItem name="efs_volumes" requirement="optional" type="map(object(…))">
@@ -364,22 +549,196 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="service_tags" requirement="optional" type="map(string)">
+<HclListItem name="elb_role_permissions_boundary_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the ELB.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
+<HclListItem name="elb_slow_start" requirement="optional" type="number">
 <HclListItemDescription>
 
-A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
+The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="elb_target_group_deregistration_delay" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="elb_target_group_vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the VPC in which to create the target group. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elb_target_groups" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   `elb_target_groups` should be set to a map of keys to objects with one mapping per desired target group. The keys
+   in the map can be any arbitrary name and are used to link the outputs with the inputs. The values of the map are an
+   object containing these attributes:
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_execute_command" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether to enable Amazon ECS Exec for the tasks within the service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="existing_ecs_task_execution_role_name" requirement="optional">
+<HclListItemDescription>
+
+The name of the existing task execution role to be used in place of creating a new role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="existing_ecs_task_role_name" requirement="optional">
+<HclListItemDescription>
+
+The name of the existing task role to be used in place of creating a new role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="health_check_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enable health checks on the target group. Only applies to ELBv2. For CLBs, health checks are not configurable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="health_check_grace_period_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown, up to 2,147,483,647. Only valid for services configured to use load balancers.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="health_check_healthy_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of consecutive successful health checks required before considering an unhealthy Target healthy. The acceptable range is 2 to 10.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="health_check_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The approximate amount of time, in seconds, between health checks of an individual Target. Minimum value 5 seconds, Maximum value 300 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="health_check_matcher" requirement="optional" type="string">
+<HclListItemDescription>
+
+The HTTP codes to use when checking for a successful response from a Target. You can specify multiple values (e.g. '200,202') or a range of values (e.g. '200-299'). Required when using ALBs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
+</HclListItem>
+
+<HclListItem name="health_check_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ping path that is the destination on the Targets for health checks. Required when using ALBs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
+</HclListItem>
+
+<HclListItem name="health_check_port" requirement="optional" type="string">
+<HclListItemDescription>
+
+The port the ELB uses when performing health checks on Targets. The default is to use the port on which each target receives traffic from the load balancer, indicated by the value 'traffic-port'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;traffic-port&quot;"/>
+</HclListItem>
+
+<HclListItem name="health_check_timeout" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time, in seconds, during which no response from a Target means a failed health check. The acceptable range is 2 to 60 seconds.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="health_check_unhealthy_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of consecutive failed health checks required before considering a target unhealthy. The acceptable range is 2 to 10. For NLBs, this value must be the same as the health_check_healthy_threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="launch_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The launch type of the ECS service. Must be one of EC2 or FARGATE. When using FARGATE, you must set the network mode to awsvpc and configure it. When using EC2, you can configure the placement strategy using the variables placement_strategy_type, placement_strategy_field, placement_constraint_type, placement_constraint_expression. This variable is ignored if <a href="#capacity_provider_strategy"><code>capacity_provider_strategy</code></a> is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;EC2&quot;"/>
 </HclListItem>
 
 <HclListItem name="lb_target_group_tags" requirement="optional" type="map(string)">
@@ -389,6 +748,49 @@ A map of tags to apply to the elb target group. Each item in this list should be
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="listener_rule_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Listener rules list required first to be provisioned before creation of ECS cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="max_number_of_tasks" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum number of ECS Task instances of the ECS Service to run. Auto scaling will never scale out above this number. Must be set when <a href="#use_auto_scaling"><code>use_auto_scaling</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="min_number_of_tasks" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum number of ECS Task instances of the ECS Service to run. Auto scaling will never scale in below this number. Must be set when <a href="#use_auto_scaling"><code>use_auto_scaling</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="placement_constraint_expression" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_constraint_type" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_field" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
+</HclListItem>
+
+<HclListItem name="placement_strategy_type" requirement="optional" type="string">
+<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
 </HclListItem>
 
 <HclListItem name="platform_version" requirement="optional" type="string">
@@ -407,135 +809,6 @@ Whether tags should be propogated to the tasks from the service or from the task
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;SERVICE&quot;"/>
-</HclListItem>
-
-<HclListItem name="additional_task_assume_role_policy_principals" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of additional principals who can assume the task and task execution roles
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="ecs_task_definition_network_mode" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;bridge&quot;"/>
-</HclListItem>
-
-<HclListItem name="ecs_service_network_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-The configuration to use when setting up the VPC network mode. Required and only used if ecs_task_definition_network_mode is awsvpc.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    subnets          = list(string)
-    security_groups  = list(string)
-    assign_public_ip = bool
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="desired_number_of_canary_tasks_to_run" requirement="optional" type="number">
-<HclListItemDescription>
-
-How many Tasks to run of the <a href="#ecs_task_definition_canary"><code>ecs_task_definition_canary</code></a> to deploy for a canary deployment. Typically, only 0 or 1 should be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="ecs_task_definition_canary" requirement="optional" type="string">
-<HclListItemDescription>
-
-The JSON text of the ECS Task Definition to be run for the canary. This defines the Docker container(s) to be run along with all their properties. It should adhere to the format described at https://goo.gl/ob5U3g.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;[{ &quot;name&quot;:&quot;not-used&quot; }]&quot;"/>
-</HclListItem>
-
-<HclListItem name="use_auto_scaling" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to 'true' to tell the ECS service to ignore <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a> and instead use auto scaling to determine how many Tasks of this service to run.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="min_number_of_tasks" requirement="optional" type="number">
-<HclListItemDescription>
-
-The minimum number of ECS Task instances of the ECS Service to run. Auto scaling will never scale in below this number. Must be set when <a href="#use_auto_scaling"><code>use_auto_scaling</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="max_number_of_tasks" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum number of ECS Task instances of the ECS Service to run. Auto scaling will never scale out above this number. Must be set when <a href="#use_auto_scaling"><code>use_auto_scaling</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="deployment_maximum_percent" requirement="optional" type="number">
-<HclListItemDescription>
-
-The upper limit, as a percentage of <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a>, of the number of running tasks that can be running in a service during a deployment. Setting this to more than 100 means that during deployment, ECS will deploy new instances of a Task before undeploying the old ones.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="200"/>
-</HclListItem>
-
-<HclListItem name="deployment_minimum_healthy_percent" requirement="optional" type="number">
-<HclListItemDescription>
-
-The lower limit, as a percentage of <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a>, of the number of running tasks that must remain running and healthy in a service during a deployment. Setting this to less than 100 means that during deployment, ECS may undeploy old instances of a Task before deploying new ones.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="100"/>
-</HclListItem>
-
-<HclListItem name="deployment_controller" requirement="optional" type="string">
-<HclListItemDescription>
-
-Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Set enable to 'true' to prevent the task from attempting to continuously redeploy after a failed health check. Set rollback to 'true' to also automatically roll back to the last successful deployment. If this setting is used, both 'enable' and 'rollback' are required fields.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    enable   = bool
-    rollback = bool
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="proxy_configuration" requirement="optional" type="object(…)">
@@ -582,297 +855,6 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="use_service_discovery" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to 'true' to setup service discovery for the ECS service by automatically registering the task IPs to a registry that is created within this module. Currently this is only supported with the 'awsvpc' networking mode.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="discovery_namespace_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The id of the previously created namespace for service discovery. It will be used to form the service discovery address along with the discovery name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="discovery_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name by which the service can be discovered. It will be used to form the service discovery address along with the namespace name in &lt;discovery_name>.&lt;namespace_name>. So if your discovery name is 'my-service' and your namespace name is 'my-company-staging.local', the hostname for the service will be 'my-service.my-company-staging.local'. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="discovery_custom_health_check_failure_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance. Maximum value of 10. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="discovery_dns_ttl" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of time, in seconds, that you want DNS resolvers to cache the settings for this resource record set. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="discovery_dns_routing_policy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The routing policy that you want to apply to all records that Route 53 creates when you register an instance and specify the service. Valid Values: MULTIVALUE, WEIGHTED. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;MULTIVALUE&quot;"/>
-</HclListItem>
-
-<HclListItem name="discovery_use_public_dns" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set this variable to 'true' when using public DNS namespaces. Only used if <a href="#use_service_discovery"><code>use_service_discovery</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="discovery_original_public_route53_zone_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the original Route 53 Hosted Zone where associated with the domain registrar. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="discovery_public_dns_namespace_route53_zone_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the new Route 53 Hosted Zone created for the public DNS namespace. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="discovery_alias_record_evaluate_target_health" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Check alias target health before routing to the service. Only used if <a href="#discovery_use_public_dns"><code>discovery_use_public_dns</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="clb_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of a Classic Load Balancer (CLB) to associate with this service. Containers in the service will automatically register with the CLB when booting up. Set to null if using ELBv2.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="clb_container_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the container, as it appears in the <a href="#task_arn"><code>task_arn</code></a> Task definition, to associate with a CLB. Currently, ECS can only associate a CLB with a single container per service. Only used if clb_name is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="clb_container_port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port on the container in <a href="#clb_container_name"><code>clb_container_name</code></a> to associate with an CLB. Currently, ECS can only associate a CLB with a single container per service. Only used if clb_name is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="elb_target_groups" requirement="optional" type="any">
-<HclListItemDescription>
-
-Configurations for ELB target groups for ALBs and NLBs that should be associated with the ECS Tasks. Each entry corresponds to a separate target group. Set to the empty object ({}) if you are not using an ALB or NLB.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   `elb_target_groups` should be set to a map of keys to objects with one mapping per desired target group. The keys
-   in the map can be any arbitrary name and are used to link the outputs with the inputs. The values of the map are an
-   object containing these attributes:
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="elb_target_group_vpc_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the VPC in which to create the target group. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="elb_target_group_deregistration_delay" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="elb_slow_start" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="use_alb_sticky_sessions" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the ALB will use use Sticky Sessions as described at https://goo.gl/VLcNbk. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set. Note that this can only be true when associating with an ALB. This cannot be used with CLBs or NLBs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="alb_sticky_session_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible values. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;lb_cookie&quot;"/>
-</HclListItem>
-
-<HclListItem name="alb_sticky_session_cookie_duration" requirement="optional" type="number">
-<HclListItemDescription>
-
-The time period, in seconds, during which requests from a client should be routed to the same Target. After this time period expires, the load balancer-generated cookie is considered stale. The acceptable range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds). Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="86400"/>
-</HclListItem>
-
-<HclListItem name="elb_role_permissions_boundary_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the ELB.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="health_check_grace_period_seconds" requirement="optional" type="number">
-<HclListItemDescription>
-
-Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown, up to 2,147,483,647. Only valid for services configured to use load balancers.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="health_check_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, enable health checks on the target group. Only applies to ELBv2. For CLBs, health checks are not configurable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="health_check_interval" requirement="optional" type="number">
-<HclListItemDescription>
-
-The approximate amount of time, in seconds, between health checks of an individual Target. Minimum value 5 seconds, Maximum value 300 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="health_check_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ping path that is the destination on the Targets for health checks. Required when using ALBs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
-</HclListItem>
-
-<HclListItem name="health_check_port" requirement="optional" type="string">
-<HclListItemDescription>
-
-The port the ELB uses when performing health checks on Targets. The default is to use the port on which each target receives traffic from the load balancer, indicated by the value 'traffic-port'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;traffic-port&quot;"/>
-</HclListItem>
-
-<HclListItem name="health_check_timeout" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of time, in seconds, during which no response from a Target means a failed health check. The acceptable range is 2 to 60 seconds.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="health_check_healthy_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of consecutive successful health checks required before considering an unhealthy Target healthy. The acceptable range is 2 to 10.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="health_check_unhealthy_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of consecutive failed health checks required before considering a target unhealthy. The acceptable range is 2 to 10. For NLBs, this value must be the same as the health_check_healthy_threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="health_check_matcher" requirement="optional" type="string">
-<HclListItemDescription>
-
-The HTTP codes to use when checking for a successful response from a Target. You can specify multiple values (e.g. '200,202') or a range of values (e.g. '200-299'). Required when using ALBs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;200&quot;"/>
-</HclListItem>
-
 <HclListItem name="runtime_platform" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -892,26 +874,37 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="placement_strategy_type" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;binpack&quot;"/>
-</HclListItem>
+<HclListItem name="service_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
 
-<HclListItem name="placement_strategy_field" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;cpu&quot;"/>
-</HclListItem>
+A map of tags to apply to the ECS service. Each item in this list should be a map with the parameters key and value.
 
-<HclListItem name="placement_constraint_type" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;memberOf&quot;"/>
-</HclListItem>
-
-<HclListItem name="placement_constraint_expression" requirement="optional" type="string">
-<HclListItemDefaultValue defaultValue="&quot;attribute:ecs.ami-id != &apos;ami-fake&apos;&quot;"/>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="task_cpu" requirement="optional" type="number">
 <HclListItemDescription>
 
 The CPU units for the instances that Fargate will spin up. Options here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-tasks-size. Required when using FARGATE launch type.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="task_definition_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the task definition. Each item in this list should be a map with the parameters key and value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task execution.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -935,85 +928,110 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="task_execution_role_permissions_boundary_arn" requirement="optional" type="string">
+<HclListItem name="use_alb_sticky_sessions" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARN of the policy that is used to set the permissions boundary for the IAM role for the ECS task execution.
+If true, the ALB will use use Sticky Sessions as described at https://goo.gl/VLcNbk. Only used if <a href="#elb_target_group_name"><code>elb_target_group_name</code></a> is set. Note that this can only be true when associating with an ALB. This cannot be used with CLBs or NLBs.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="existing_ecs_task_role_name" requirement="optional">
+<HclListItem name="use_auto_scaling" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name of the existing task role to be used in place of creating a new role.
+Set this variable to 'true' to tell the ECS service to ignore <a href="#desired_number_of_tasks"><code>desired_number_of_tasks</code></a> and instead use auto scaling to determine how many Tasks of this service to run.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="existing_ecs_task_execution_role_name" requirement="optional">
+<HclListItem name="use_service_discovery" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name of the existing task execution role to be used in place of creating a new role.
+Set this variable to 'true' to setup service discovery for the ECS service by automatically registering the task IPs to a registry that is created within this module. Currently this is only supported with the 'awsvpc' networking mode.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="enable_ecs_deployment_check" requirement="optional" type="bool">
+<HclListItem name="volumes" requirement="optional" type="any">
 <HclListItemDescription>
 
-Whether or not to enable the ECS deployment check binary to make terraform wait for the task to be deployed. See ecs_deploy_check_binaries for more details. You must install the companion binary before the check can be used. Refer to the README for more details.
+(Optional) A map of volume blocks that containers in your task may use. The key should be the name of the volume and the value should be a map compatible with https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-block-arguments, but not including the name parameter.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   volumes = {
+     datadog = {
+       host_path = "/var/run/datadog"
+     }
+  
+     logs = {
+       host_path = "/var/log"
+       docker_volume_configuration = {
+         scope         = "shared"
+         autoprovision = true
+         driver        = "local"
+       }
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="deployment_check_timeout_seconds" requirement="optional" type="number">
+<HclListItem name="wait_for_steady_state" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Seconds to wait before timing out each check for verifying ECS service deployment. See ecs_deploy_check_binaries for more details.
+If true, Terraform will wait for the service to reach a steady state—as in, the ECS tasks you wanted are actually deployed—before 'apply' is considered complete.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="600"/>
-</HclListItem>
-
-<HclListItem name="deployment_check_loglevel" requirement="optional" type="string">
-<HclListItemDescription>
-
-Set the logging level of the deployment check script. You can set this to `error`, `warn`, or `info`, in increasing verbosity.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;info&quot;"/>
-</HclListItem>
-
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="listener_rule_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Listener rules list required first to be provisioned before creation of ECS cluster.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="service_iam_role_name">
+<HclListItem name="aws_ecs_task_definition_arn">
 </HclListItem>
 
-<HclListItem name="service_iam_role_arn">
+<HclListItem name="aws_ecs_task_definition_canary_arn">
+</HclListItem>
+
+<HclListItem name="canary_service_arn">
+</HclListItem>
+
+<HclListItem name="capacity_provider_strategy">
+</HclListItem>
+
+<HclListItem name="ecs_task_execution_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="ecs_task_execution_iam_role_name">
+</HclListItem>
+
+<HclListItem name="ecs_task_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="ecs_task_iam_role_name">
 </HclListItem>
 
 <HclListItem name="service_app_autoscaling_target_arn">
@@ -1025,37 +1043,19 @@ Listener rules list required first to be provisioned before creation of ECS clus
 <HclListItem name="service_arn">
 </HclListItem>
 
-<HclListItem name="canary_service_arn">
+<HclListItem name="service_discovery_arn">
 </HclListItem>
 
-<HclListItem name="ecs_task_iam_role_name">
+<HclListItem name="service_iam_role_arn">
 </HclListItem>
 
-<HclListItem name="ecs_task_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="ecs_task_execution_iam_role_name">
-</HclListItem>
-
-<HclListItem name="ecs_task_execution_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="aws_ecs_task_definition_arn">
-</HclListItem>
-
-<HclListItem name="aws_ecs_task_definition_canary_arn">
-</HclListItem>
-
-<HclListItem name="target_group_names">
+<HclListItem name="service_iam_role_name">
 </HclListItem>
 
 <HclListItem name="target_group_arns">
 </HclListItem>
 
-<HclListItem name="capacity_provider_strategy">
-</HclListItem>
-
-<HclListItem name="service_discovery_arn">
+<HclListItem name="target_group_names">
 </HclListItem>
 
 </TabItem>
@@ -1070,6 +1070,6 @@ Listener rules list required first to be provisioned before creation of ECS clus
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "085aa5ebe76fadb0f8bfbfd446d2b645"
+  "hash": "71a4e3b01a7eaa6cbf9e29ff8559b901"
 }
 ##DOCS-SOURCER-END -->

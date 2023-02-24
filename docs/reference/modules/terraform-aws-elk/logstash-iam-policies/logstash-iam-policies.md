@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Flogstash-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -66,6 +66,6 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0552d2797f9d9134f163a619add76cc5"
+  "hash": "fcea4b223ceb37b5a280e4268a36f772"
 }
 ##DOCS-SOURCER-END -->

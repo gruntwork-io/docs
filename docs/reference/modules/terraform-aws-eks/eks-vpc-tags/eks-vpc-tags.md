@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -52,14 +52,6 @@ Tags for the VPC to use for integration with EKS.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_public_subnet_eks_tags">
-<HclListItemDescription>
-
-Tags for public subnets in the VPC to use for integration with EKS.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="vpc_private_app_subnet_eks_tags">
 <HclListItemDescription>
 
@@ -76,6 +68,14 @@ Tags for private persistence tier subnets in the VPC to use for integration with
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_public_subnet_eks_tags">
+<HclListItemDescription>
+
+Tags for public subnets in the VPC to use for integration with EKS.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -88,6 +88,6 @@ Tags for private persistence tier subnets in the VPC to use for integration with
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a3b7c54231b0b1dc0536670155725bb"
+  "hash": "4ccbb5aabbbc4b162e90033e3dce1ebb"
 }
 ##DOCS-SOURCER-END -->

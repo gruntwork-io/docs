@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-dns-forwarder" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -56,38 +56,6 @@ module. You can use the [vpc-dns-forwarder-rules module](https://github.com/grun
 
 ### Required
 
-<HclListItem name="origin_vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the VPC which is the origin of the DNS resolver queries.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="origin_vpc_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the VPC which is the origin of the DNS resolver queries.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="origin_vpc_route53_resolver_primary_subnet_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the subnet to use for allocating the primary IP address of the DNS resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="origin_vpc_route53_resolver_secondary_subnet_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the subnet to use for allocating the secondary IP address of the DNS resolver in the origin VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="destination_vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -120,7 +88,57 @@ The ID of the subnet to use for allocating the secondary IP address of the DNS r
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="origin_vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC which is the origin of the DNS resolver queries.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC which is the origin of the DNS resolver queries.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_route53_resolver_primary_subnet_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the subnet to use for allocating the primary IP address of the DNS resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_route53_resolver_secondary_subnet_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the subnet to use for allocating the secondary IP address of the DNS resolver in the origin VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the Route 53 Resolvers should be created or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to any resources created which accept them. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 <HclListItem name="destination_vpc_resolver_name" requirement="optional" type="string">
 <HclListItemDescription>
@@ -140,50 +158,8 @@ Name to set for the origin VPC resolver (outbound from origin VPC to destination
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of custom tags to apply to any resources created which accept them. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the Route 53 Resolvers should be created or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="origin_vpc_route53_resolver_endpoint_id">
-<HclListItemDescription>
-
-The ID of the outbound Route 53 Resolver endpoint in the origin VPC
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="origin_vpc_route53_resolver_primary_ip">
-<HclListItemDescription>
-
-The primary IP address of the Route 53 Resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="origin_vpc_route53_resolver_secondary_ip">
-<HclListItemDescription>
-
-The secondary IP address of the DNS resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="destination_vpc_route53_resolver_endpoint_id">
 <HclListItemDescription>
@@ -209,6 +185,30 @@ The secondary IP address of the DNS resolver in the destination VPC. This is the
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="origin_vpc_route53_resolver_endpoint_id">
+<HclListItemDescription>
+
+The ID of the outbound Route 53 Resolver endpoint in the origin VPC
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_route53_resolver_primary_ip">
+<HclListItemDescription>
+
+The primary IP address of the Route 53 Resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_route53_resolver_secondary_ip">
+<HclListItemDescription>
+
+The secondary IP address of the DNS resolver in the origin VPC. This is the IP that the destination VPC resolver will see.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -221,6 +221,6 @@ The secondary IP address of the DNS resolver in the destination VPC. This is the
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c2a22e0d6bfd2a01452ce4779cb5d6e2"
+  "hash": "4788c00f9dbadfb6ca577094251c6f33"
 }
 ##DOCS-SOURCER-END -->

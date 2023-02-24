@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -45,6 +45,6 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee7aac112dcc5d3c72f197cdd4e7cf60"
+  "hash": "c15d0877fda07b1fecb4a3fbba213901"
 }
 ##DOCS-SOURCER-END -->

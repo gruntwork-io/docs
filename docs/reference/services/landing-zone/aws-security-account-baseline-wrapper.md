@@ -14,14 +14,13 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.101.0" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.102.0" lastModifiedVersion="0.98.0"/>
 
 # Account Baseline for security account
 
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/landingzone/account-baseline-security" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-security" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-security" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -60,13 +59,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -82,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -187,6 +186,29 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+  
+   additional_config_rules = {
+     acm-certificate-expiration-check = {
+       description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
+       identifier                  = "ACM_CERTIFICATE_EXPIRATION_CHECK",
+       trigger_type                = "PERIODIC",
+       input_parameters            = { "daysToExpiration": "14"},
+       applies_to_global_resources = false
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
@@ -509,6 +531,52 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+     "kms:GenerateDataKey"]).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+       starting with aws: or service-specific variables prefixed with the service name.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudtrail_kms_key_user_iam_arns" requirement="optional" type="list(string)">
@@ -1079,15 +1147,6 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
 </HclListItem>
 
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1193,6 +1252,32 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   default = [
+     {
+       group_name   = "stage-full-access"
+       iam_role_arns = ["arn:aws:iam::123445678910:role/mgmt-full-access"]
+     },
+     {
+       group_name   = "prod-read-only-access"
+       iam_role_arns = [
+         "arn:aws:iam::9876543210:role/prod-read-only-ec2-access",
+         "arn:aws:iam::9876543210:role/prod-read-only-rds-access"
+       ]
+     }
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_password_policy_allow_users_to_change_password" requirement="optional" type="bool">
@@ -1335,6 +1420,142 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Each entry in the map supports the following attributes:
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - region                                  string                : The region (e.g., us-west-2) where the key should be created. If null or
+                                                                     omitted, the key will be created in all enabled regions. Any keys
+                                                                     targeting an opted out region or invalid region string will show up in the
+                                                                     invalid_cmk_inputs output.
+   - replica_regions                         list(string)          : The regions (e.g., us-west-2) where the key should be replicated using the
+                                                                     multi-region KMS key feature of AWS
+                                                                     (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html).
+                                                                     When the special region "*" is included (e.g., replica_regions = ["*"]),
+                                                                     the key will be replicated in all enabled regions. This is different from
+                                                                     creating the key in every region using region = null - when creating
+                                                                     the key in every region, a new different key is provisioned for each region.
+                                                                     With replica_regions, the same key is replicated in every region such that
+                                                                     it can decrypt the same encrypted data in each region.
+   - cmk_administrator_iam_arns              list(string)          : A list of IAM ARNs for users who should be given
+                                                                     administrator access to this CMK (e.g.
+                                                                     arn:aws:iam::<aws-account-id>:user/<iam-user-arn>).
+   - cmk_user_iam_arns                       list(object[CMKUser]) : A list of IAM ARNs for users who should be given
+                                                                     permissions to use this CMK (e.g.
+                                                                     arn:aws:iam::<aws-account-id>:user/<iam-user-arn>).
+   - cmk_read_only_user_iam_arns             list(object[CMKUser]) : A list of IAM ARNs for users who should be given
+                                                                     read-only (decrypt-only) permissions to use this CMK (e.g.
+                                                                     arn:aws:iam::<aws-account-id>:user/<iam-user-arn>).
+   - cmk_external_user_iam_arns              list(string)          : A list of IAM ARNs for users from external AWS accounts
+   - cmk_describe_only_user_iam_arns         list(object[CMKUser]) : A list of IAM ARNs for users who should be given
+                                                                     describe-only (kms:DescribeKey) permissions to use this CMK (e.g.
+                                                                     arn:aws:iam::<aws-account-id>:user/<iam-user-arn>). This is
+                                                                     useful for deploying services that depend on the
+                                                                     key (e.g., Cloudtrail) in other accounts, to trade
+                                                                     key aliases for CMK ARNs.
+                                                                     who should be given permissions to use this CMK (e.g.
+                                                                     arn:aws:iam::<aws-account-id>:root).
+   - allow_manage_key_permissions_with_iam   bool                  : If true, both the CMK's Key Policy and IAM Policies
+                                                                     (permissions) can be used to grant permissions on the CMK.
+                                                                     If false, only the CMK's Key Policy can be used to grant
+                                                                     permissions on the CMK. False is more secure (and
+                                                                     generally preferred), but true is more flexible and
+                                                                     convenient.
+   - deletion_window_in_days                 number                : The number of days to keep this KMS Master Key around after it has been
+                                                                     marked for deletion.
+   - tags                                    map(string)           : A map of tags to apply to the KMS Key to be created. In this map
+                                                                     variable, the key is the tag name and the value  is the tag value. Note
+                                                                     that this map is merged with var.global_tags, and can be used to override
+                                                                     tags specified in that variable.
+   - enable_key_rotation                     bool                  : Whether or not to enable automatic annual rotation of the KMS key.
+   - spec                                    string                : Specifies whether the key contains a symmetric key or an asymmetric key
+                                                                     pair and the encryption algorithms or signing algorithms that the key
+                                                                     supports. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072, RSA_4096,
+                                                                     ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
+   - cmk_service_principals                  list(object[ServicePrincipal]) : A list of Service Principals that should be given
+                                                                              permissions to use this CMK (e.g. s3.amazonaws.com). See
+                                                                              below for the structure of the object that should be passed
+                                                                              in.
+  
+   Structure of ServicePrincipal object:
+   - name          string                   : The name of the service principal (e.g.: s3.amazonaws.com).
+   - actions       list(string)             : The list of actions that the given service principal is allowed to
+                                              perform (e.g. ["kms:DescribeKey", "kms:GenerateDataKey"]).
+   - conditions    list(object[Condition])  : (Optional) List of conditions to apply to the permissions for the service
+                                              principal. Use this to apply conditions on the permissions for
+                                              accessing the KMS key (e.g., only allow access for certain encryption
+                                              contexts). The condition object accepts the same fields as the condition
+                                              block on the IAM policy document (See
+                                              https://www.terraform.io/docs/providers/aws/d/iam_policy_document.htmlcondition).
+   Structure of CMKUser object:
+   - name          list(string)             : The list of names of the AWS principal (e.g.: arn:aws:iam::0000000000:user/dev).
+   - conditions    list(object[Condition])  : (Optional) List of conditions to apply to the permissions for the CMK User
+                                              Use this to apply conditions on the permissions for accessing the KMS key
+                                              (e.g., only allow access for certain encryption contexts).
+                                              The condition object accepts the same fields as the condition
+                                              block on the IAM policy document (See
+                                              https://www.terraform.io/docs/providers/aws/d/iam_policy_document.htmlcondition).
+   Example:
+   kms_customer_master_keys = {
+     cmk-stage = {
+       region                                = "us-west-1"
+       cmk_administrator_iam_arns            = ["arn:aws:iam::0000000000:user/admin"]
+       cmk_user_iam_arns                     = [
+         {
+           name = ["arn:aws:iam::0000000000:user/dev"]
+           conditions = []
+         }
+       ]
+       cmk_read_only_user_iam_arns           = [
+         {
+           name = ["arn:aws:iam::0000000000:user/qa"]
+           conditions = []
+         }
+       ]
+       cmk_describe_only_user_iam_arns       = [
+         {
+           name = ["arn:aws:iam::0000000000:user/qa"]
+           conditions = []
+         }
+       ]
+       cmk_external_user_iam_arns            = ["arn:aws:iam::1111111111:user/root"]
+       cmk_service_principals                = [
+         {
+           name       = "s3.amazonaws.com"
+           actions    = ["kms:Encrypt"]
+           conditions = []
+         }
+       ]
+     }
+     cmk-prod = {
+       region                                = "us-east-1"
+       cmk_administrator_iam_arns            = ["arn:aws:iam::0000000000:user/admin"]
+       cmk_user_iam_arns                     = [
+         {
+           name = ["arn:aws:iam::0000000000:user/prod"]
+           conditions = []
+         }
+       ]
+       allow_manage_key_permissions_with_iam = true
+        Override the default value for all keys configured with var.default_deletion_window_in_days
+       deletion_window_in_days = 7
+  
+        Set extra tags on the CMK for prod
+       tags = {
+         Environment = "prod"
+       }
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="kms_grant_regions" requirement="optional" type="map(string)">
@@ -1373,6 +1594,32 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The principal that is given permission to perform the operations that the grant permits. This must be in ARN
+     format. For example, the grantee principal for ASG is:
+     arn:aws:iam::111122223333:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     A list of operations that the grant permits. The permitted values are:
+     Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant,
+     RetireGrant, DescribeKey
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="max_session_duration_human_users" requirement="optional" type="number">
@@ -1465,15 +1712,6 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1560,6 +1798,54 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   users = {
+     alice = {
+       groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
+     }
+  
+     bob = {
+       path   = "/"
+       groups = ["user-self-mgmt", "ops", "admins"]
+       tags   = {
+         foo = "bar"
+       }
+     }
+  
+     carol = {
+       groups               = ["user-self-mgmt", "developers", "ssh-users"]
+       pgp_key              = "keybase:carol_on_keybase"
+       create_login_profile = true
+       create_access_keys   = true
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
+   users to be able to specify, say, tags for some users, but not for others. We can't use a map(any) either, as that
+   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
+   we have to lamely fall back to any.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -1598,12 +1884,6 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1638,15 +1918,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -1864,12 +2135,6 @@ The names of the SNS topic where findings are published if <a href="#publish_fin
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -1998,11 +2263,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Faccount-baseline-security%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Faccount-baseline-security%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.101.0/modules%2Flandingzone%2Faccount-baseline-security%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-security%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-security%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-security%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b82e2354cb33ea7acd4602a23d49929f"
+  "hash": "a04fbc8449845a6dd5dab0599c9d72b4"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -110,202 +110,6 @@ List of ARNs of Fargate execution IAM roles that should have permission to talk 
 
 ### Optional
 
-<HclListItem name="aws_partition" requirement="optional" type="string">
-<HclListItemDescription>
-
-The AWS partition used for default AWS Resources.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
-</HclListItem>
-
-<HclListItem name="namespace_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Labels to associate with the aws-observability Namespace
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="namespace_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Annotations to associate with the aws-observability Namespace
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="configmap_labels" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Labels to associate with the aws-logging ConfigMap
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="configmap_annotations" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Annotations to associate with the aws-logging ConfigMap
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="include_kubernetes_metadata" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not Kubernetes metadata is added to the log files
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="kubernetes_metadata_cache_ttl" requirement="optional" type="string">
-<HclListItemDescription>
-
-The time Fluent Bit waits until it communicates with the API server for the latest metadata. The smaller the TTL, the more load is generated on the API server. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;300s&quot;"/>
-</HclListItem>
-
-<HclListItem name="kubernetes_metadata_merge_log" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When enabled, it checks if the log field content is a JSON string map, if so, it append the map fields as part of the log structure. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="kubernetes_metadata_merge_log_key" requirement="optional" type="string">
-<HclListItemDescription>
-
-If Merge_Log_Key is set, all the new structured fields taken from the original log content are inserted under the new key. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudwatch_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not wish to forward the logs to CloudWatch Logs.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the CloudWatch Log Group where the logs will be streamed to.
-    region = string
-
-    # The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster.
-    log_group_name = string
-
-    # Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit.
-    log_stream_prefix = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to Kinesis Firehose. Set to null if you do not wish to forward the logs to Firehose.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the Firehose delivery stream.
-    region = string
-
-    # The name of the delivery stream you want log records sent to. This must already exist.
-    delivery_stream_name = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the delivery stream you want log records sent to. This must already exist.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="kinesis_configuration" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Configurations for forwarding logs to Kinesis stream. Set to null if you do not wish to forward the logs to Kinesis.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # The AWS region that holds the Kinesis stream.
-    region = string
-
-    # The name of the stream you want log records sent to. This must already exist.
-    stream_name = string
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     The name of the stream you want log records sent to. This must already exist.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 <HclListItem name="aws_elasticsearch_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -382,6 +186,80 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS partition used for default AWS Resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
+</HclListItem>
+
+<HclListItem name="cloudwatch_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not wish to forward the logs to CloudWatch Logs.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The AWS region that holds the CloudWatch Log Group where the logs will be streamed to.
+    region = string
+
+    # The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster.
+    log_group_name = string
+
+    # Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit.
+    log_stream_prefix = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The name of the AWS CloudWatch Log Group to use for all the logs shipped by the cluster.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Prefix to append to all CloudWatch Log Streams in the group shipped by fluentbit.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="configmap_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Annotations to associate with the aws-logging ConfigMap
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="configmap_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Labels to associate with the aws-logging ConfigMap
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="extra_filters" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -398,6 +276,128 @@ Can be used to provide custom parsers of the log output. This string should be f
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="firehose_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configurations for forwarding logs to Kinesis Firehose. Set to null if you do not wish to forward the logs to Firehose.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The AWS region that holds the Firehose delivery stream.
+    region = string
+
+    # The name of the delivery stream you want log records sent to. This must already exist.
+    delivery_stream_name = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The name of the delivery stream you want log records sent to. This must already exist.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="include_kubernetes_metadata" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not Kubernetes metadata is added to the log files
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="kinesis_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Configurations for forwarding logs to Kinesis stream. Set to null if you do not wish to forward the logs to Kinesis.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # The AWS region that holds the Kinesis stream.
+    region = string
+
+    # The name of the stream you want log records sent to. This must already exist.
+    stream_name = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     The name of the stream you want log records sent to. This must already exist.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="kubernetes_metadata_cache_ttl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The time Fluent Bit waits until it communicates with the API server for the latest metadata. The smaller the TTL, the more load is generated on the API server. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;300s&quot;"/>
+</HclListItem>
+
+<HclListItem name="kubernetes_metadata_merge_log" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When enabled, it checks if the log field content is a JSON string map, if so, it append the map fields as part of the log structure. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="kubernetes_metadata_merge_log_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+If Merge_Log_Key is set, all the new structured fields taken from the original log content are inserted under the new key. This setting will only have effect, when 'include_kubernetes_metadata' is 'true'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="namespace_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Annotations to associate with the aws-observability Namespace
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="namespace_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Labels to associate with the aws-observability Namespace
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -432,6 +432,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bb7790cd21b96f205ad4740c6618f837"
+  "hash": "2773fa957784617a69518be1a7305cfc"
 }
 ##DOCS-SOURCER-END -->

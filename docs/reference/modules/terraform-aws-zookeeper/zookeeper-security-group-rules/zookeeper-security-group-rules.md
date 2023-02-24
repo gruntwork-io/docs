@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Fzookeeper-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -30,6 +30,6 @@ this module to handle the Security Group details for you.
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9b18e1388f96f50efb21b632f7d934b1"
+  "hash": "1d1fdfe148ba6ed4e24d97ac37ca1dcc"
 }
 ##DOCS-SOURCER-END -->

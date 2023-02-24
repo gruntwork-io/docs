@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Frun-elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -132,6 +132,6 @@ that we are using in our examples. If you need a different/new version then you 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b4d700dc70dfbc0a9289731bbf954ec6"
+  "hash": "0501266dc87b6882ae786fab6585921d"
 }
 ##DOCS-SOURCER-END -->

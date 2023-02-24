@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-cluster-restore" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -48,10 +48,10 @@ The time it takes to restore a snapshot is dependent on the volume of data withi
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
+<HclListItem name="bucket" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the Lambda function. Used to namespace all resources created by this module.
+The S3 bucket that the specified repository will be associated with and where all snapshots will be stored
 
 </HclListItemDescription>
 </HclListItem>
@@ -64,18 +64,18 @@ The DNS to the Load Balancer in front of the Elasticsearch cluster
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="repository" requirement="required" type="string">
+<HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the repository that will be associated with the created snapshots
+The name of the Lambda function. Used to namespace all resources created by this module.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="bucket" requirement="required" type="string">
+<HclListItem name="repository" requirement="required" type="string">
 <HclListItemDescription>
 
-The S3 bucket that the specified repository will be associated with and where all snapshots will be stored
+The name of the repository that will be associated with the created snapshots
 
 </HclListItemDescription>
 </HclListItem>
@@ -89,6 +89,15 @@ The port on which the API requests will be made to the Elasticsearch cluster
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="9200"/>
+</HclListItem>
+
+<HclListItem name="lambda_runtime" requirement="optional" type="string">
+<HclListItemDescription>
+
+The runtime to use for the Lambda function. Should be a Node.js runtime.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;nodejs14.x&quot;"/>
 </HclListItem>
 
 <HclListItem name="protocol" requirement="optional" type="string">
@@ -109,15 +118,6 @@ Set to true to give your Lambda function access to resources within a VPC.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the VPC the Lambda function should be able to access. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -127,22 +127,22 @@ A list of subnet IDs the Lambda function should be able to access within your VP
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="lambda_runtime" requirement="optional" type="string">
+<HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime to use for the Lambda function. Should be a Node.js runtime.
+The ID of the VPC the Lambda function should be able to access. Only used if <a href="#run_in_vpc"><code>run_in_vpc</code></a> is true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;nodejs14.x&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="lambda_name">
+<HclListItem name="lambda_arn">
 </HclListItem>
 
-<HclListItem name="lambda_arn">
+<HclListItem name="lambda_name">
 </HclListItem>
 
 </TabItem>
@@ -157,6 +157,6 @@ The runtime to use for the Lambda function. Should be a Node.js runtime.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1099d83a6267a7573bfe84862136abe5"
+  "hash": "5d983d4627863e26e21e19798f30997a"
 }
 ##DOCS-SOURCER-END -->

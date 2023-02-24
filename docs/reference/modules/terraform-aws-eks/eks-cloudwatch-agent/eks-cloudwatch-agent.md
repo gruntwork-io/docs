@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -61,6 +61,14 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 ### Required
 
+<HclListItem name="eks_cluster_name" requirement="required" type="string">
+<HclListItemDescription>
+
+Name of the EKS cluster where resources are deployed to.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="iam_role_for_service_accounts_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
@@ -79,29 +87,21 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
-<HclListItem name="eks_cluster_name" requirement="required" type="string">
-<HclListItemDescription>
-
-Name of the EKS cluster where resources are deployed to.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
-<HclListItem name="namespace" requirement="optional" type="string">
+<HclListItem name="aws_cloudwatch_agent_image_repository" requirement="optional" type="string">
 <HclListItemDescription>
 
-Namespace to create the resources in.
+The Container repository to use for looking up the cloudwatch-agent Container image when deploying the pods. When null, uses the default repository set in the chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_role_name_prefix" requirement="optional" type="string">
+<HclListItem name="aws_cloudwatch_agent_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-Used to name IAM roles for the service account. Recommended when <a href="#iam_role_for_service_accounts_config"><code>iam_role_for_service_accounts_config</code></a> is configured.
+Which version of amazon/cloudwatch-agent to install. When null, uses the default version set in the chart.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -116,62 +116,31 @@ The version of the aws-cloudwatch-metrics helm chart to deploy. Note that this i
 <HclListItemDefaultValue defaultValue="&quot;0.0.7&quot;"/>
 </HclListItem>
 
-<HclListItem name="aws_cloudwatch_agent_version" requirement="optional" type="string">
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Which version of amazon/cloudwatch-agent to install. When null, uses the default version set in the chart.
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_cloudwatch_agent_image_repository" requirement="optional" type="string">
-<HclListItemDescription>
-
-The Container repository to use for looking up the cloudwatch-agent Container image when deploying the pods. When null, uses the default repository set in the chart.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="pod_tolerations" requirement="optional" type="any">
-<HclListItemDescription>
-
-Configure tolerations rules to allow the Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
-<details>
+</HclListItem>
 
+<HclListItem name="iam_role_name_prefix" requirement="optional" type="string">
+<HclListItemDescription>
 
-```hcl
+Used to name IAM roles for the service account. Recommended when <a href="#iam_role_for_service_accounts_config"><code>iam_role_for_service_accounts_config</code></a> is configured.
 
-   Each item in the list represents a particular toleration. See
-   https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
-   Example:
-  
-   [
-     {
-       key = "node.kubernetes.io/unreachable"
-       operator = "Exists"
-       effect = "NoExecute"
-       tolerationSeconds = 6000
-     }
-   ]
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
-```
-</details>
+<HclListItem name="namespace" requirement="optional" type="string">
+<HclListItemDescription>
 
-</HclGeneralListItem>
+Namespace to create the resources in.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
 </HclListItem>
 
 <HclListItem name="pod_node_affinity" requirement="optional" type="list(object(…))">
@@ -271,13 +240,44 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItem name="pod_tolerations" requirement="optional" type="any">
 <HclListItemDescription>
 
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+Configure tolerations rules to allow the Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Each item in the list represents a particular toleration. See
+   https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
+  
+   Example:
+  
+   [
+     {
+       key = "node.kubernetes.io/unreachable"
+       operator = "Exists"
+       effect = "NoExecute"
+       tolerationSeconds = 6000
+     }
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -297,6 +297,6 @@ Create a dependency between the resources in this module to the interpolated val
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a9ba07c3d7af58b8bc62289160431825"
+  "hash": "cb6929968fec404818753d0fd355964d"
 }
 ##DOCS-SOURCER-END -->

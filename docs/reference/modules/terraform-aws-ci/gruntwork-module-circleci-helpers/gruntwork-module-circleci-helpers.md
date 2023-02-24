@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fgruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -194,6 +194,6 @@ variables](https://circleci.com/docs/environment-variables/).
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ef6277e0514659622ced60cae8731f0c"
+  "hash": "d2610e34a4897c7df2f8be5c7383b61d"
 }
 ##DOCS-SOURCER-END -->

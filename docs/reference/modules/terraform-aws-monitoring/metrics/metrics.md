@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules%2Fmetrics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -33,6 +33,6 @@ Click on each module above to see its documentation. Head over to the [examples 
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ccdf88791dd03920d08ea31c59db3192"
+  "hash": "f2c4c4c19433e0cc85c7da808b1f8906"
 }
 ##DOCS-SOURCER-END -->

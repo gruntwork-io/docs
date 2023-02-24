@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -32,6 +32,14 @@ multi-region replication.
 <TabItem value="inputs" label="Inputs" default>
 
 ### Required
+
+<HclListItem name="cmk_replica_primary_key_arns" requirement="required" type="map(string)">
+<HclListItemDescription>
+
+Map of CMK names to the primary CMK that the replica key is replicating. The primary key must already exist, and must be marked as multi_region = true. Each entry in <a href="#cmk_replicas"><code>cmk_replicas</code></a> must have a corresponding entry here.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="cmk_replicas" requirement="required" type="any">
 <HclListItemDescription>
@@ -165,14 +173,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="cmk_replica_primary_key_arns" requirement="required" type="map(string)">
-<HclListItemDescription>
-
-Map of CMK names to the primary CMK that the replica key is replicating. The primary key must already exist, and must be marked as multi_region = true. Each entry in <a href="#cmk_replicas"><code>cmk_replicas</code></a> must have a corresponding entry here.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
 <HclListItem name="default_deletion_window_in_days" requirement="optional" type="number">
@@ -182,15 +182,6 @@ The default value to use for deletion_window_in_days (the number of days to keep
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="default_enable_key_rotation" requirement="optional" type="bool">
@@ -211,8 +202,25 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to all KMS Keys to be created. In this map variable, the key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="key_alias">
+<HclListItemDescription>
+
+A map of CMK name to CMK alias.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="key_arn">
 <HclListItemDescription>
@@ -230,14 +238,6 @@ A map of CMK name to CMK ID.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="key_alias">
-<HclListItemDescription>
-
-A map of CMK name to CMK alias.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -250,6 +250,6 @@ A map of CMK name to CMK alias.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d6792567fe48945233d82910bd147dd6"
+  "hash": "eecc12a88d86aaa67689829d59f24e02"
 }
 ##DOCS-SOURCER-END -->

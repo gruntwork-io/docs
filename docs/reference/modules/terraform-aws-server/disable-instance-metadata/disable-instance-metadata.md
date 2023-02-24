@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fdisable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -77,6 +77,6 @@ This will result in subsequent calls to the Instance Metadata service to fail.
     "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4135b6445c8c0a5bc8128f8fdc3d7ab5"
+  "hash": "bdc8d556b4d27dcbdebbe8f76ece1ad4"
 }
 ##DOCS-SOURCER-END -->

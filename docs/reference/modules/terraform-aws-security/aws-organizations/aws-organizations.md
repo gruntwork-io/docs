@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -87,54 +87,6 @@ If you want to deploy this repo in production, check out the following resources
 <TabItem value="inputs" label="Inputs" default>
 
 ### Required
-
-<HclListItem name="create_organization" requirement="required" type="bool">
-<HclListItemDescription>
-
-Flag indicating whether the organization should be created.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="organizations_aws_service_access_principals" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of AWS service principal names for which you want to enable integration with your organization. Must have `organizations_feature_set` set to ALL. See https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="organizations_enabled_policy_types" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of Organizations policy types to enable in the Organization Root. See https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="organizations_feature_set" requirement="required" type="string">
-<HclListItemDescription>
-
-Specify `ALL` or `CONSOLIDATED_BILLING`.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="default_iam_user_access_to_billing" requirement="required" type="string">
-<HclListItemDescription>
-
-If set to ALLOW, the new account enables IAM users to access account billing information if they have the required permissions. If set to DENY, then only the root user of the new account can access account billing information.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="default_role_name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the mgmt account, allowing users in the mgmt account to assume the role, as permitted by the mgmt account administrator.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="child_accounts" requirement="required" type="any">
 <HclListItemDescription>
@@ -217,6 +169,54 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="create_organization" requirement="required" type="bool">
+<HclListItemDescription>
+
+Flag indicating whether the organization should be created.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="default_iam_user_access_to_billing" requirement="required" type="string">
+<HclListItemDescription>
+
+If set to ALLOW, the new account enables IAM users to access account billing information if they have the required permissions. If set to DENY, then only the root user of the new account can access account billing information.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="default_role_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the mgmt account, allowing users in the mgmt account to assume the role, as permitted by the mgmt account administrator.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="organizations_aws_service_access_principals" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+List of AWS service principal names for which you want to enable integration with your organization. Must have `organizations_feature_set` set to ALL. See https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="organizations_enabled_policy_types" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+List of Organizations policy types to enable in the Organization Root. See https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="organizations_feature_set" requirement="required" type="string">
+<HclListItemDescription>
+
+Specify `ALL` or `CONSOLIDATED_BILLING`.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
 <HclListItem name="default_tags" requirement="optional" type="map(string)">
@@ -230,6 +230,38 @@ Default tags to add to accounts. Will be appended to ´child_account.*.tags´
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
+
+<HclListItem name="child_accounts">
+<HclListItemDescription>
+
+A map of all accounts created by this module (NOT including the root account). The keys are the names of the accounts and the values are the attributes for the account as defined in the aws_organizations_account resource.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="master_account_arn">
+<HclListItemDescription>
+
+ARN of the master account.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="master_account_email">
+<HclListItemDescription>
+
+Email address of the master account.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="master_account_id">
+<HclListItemDescription>
+
+Identifier of the master account.
+
+</HclListItemDescription>
+</HclListItem>
 
 <HclListItem name="organization_arn">
 <HclListItemDescription>
@@ -255,38 +287,6 @@ Identifier of the root of this organization.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="master_account_arn">
-<HclListItemDescription>
-
-ARN of the master account.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="master_account_id">
-<HclListItemDescription>
-
-Identifier of the master account.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="master_account_email">
-<HclListItemDescription>
-
-Email address of the master account.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="child_accounts">
-<HclListItemDescription>
-
-A map of all accounts created by this module (NOT including the root account). The keys are the names of the accounts and the values are the attributes for the account as defined in the aws_organizations_account resource.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -299,6 +299,6 @@ A map of all accounts created by this module (NOT including the root account). T
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-organizations%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8732369c040d275232e3588db9849d3c"
+  "hash": "dd345d33bd5640b7cc069df33ba2a01b"
 }
 ##DOCS-SOURCER-END -->

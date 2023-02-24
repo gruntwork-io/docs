@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Fauto-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -78,6 +78,6 @@ instead of updating an application's config file and then needing to restart tha
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be91972da61febf413cd7c6c4c62d1d1"
+  "hash": "148d2363ae4eeb2cc17ad1aec1216fa0"
 }
 ##DOCS-SOURCER-END -->

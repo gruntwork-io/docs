@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fapi-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -90,42 +90,10 @@ Configures only the root path to route to the lambda function, and not the other
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="root_method_id">
+<HclListItem name="path_prefix_root_integration_id">
 <HclListItemDescription>
 
-ID of the API Gateway method for the root proxy (only created if path_prefix is empty string).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="root_method_http_method">
-<HclListItemDescription>
-
-HTTP method of the API Gateway method for the root proxy (only created if path_prefix is empty string).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="root_intergration_id">
-<HclListItemDescription>
-
-ID of the API Gateway integration for the root method (only created if path_prefix is empty string).
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="path_prefix_root_resource_id">
-<HclListItemDescription>
-
-ID of the API Gateway method for the root of the path_prefix resource.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="path_prefix_root_method_id">
-<HclListItemDescription>
-
-ID of the API Gateway method for the root of the path_prefix resource.
+ID of the API Gateway integration for the root method of the path_prefix resource.
 
 </HclListItemDescription>
 </HclListItem>
@@ -138,26 +106,26 @@ HTTP method of the API Gateway method for the root of the path_prefix resource.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="path_prefix_root_integration_id">
+<HclListItem name="path_prefix_root_method_id">
 <HclListItemDescription>
 
-ID of the API Gateway integration for the root method of the path_prefix resource.
+ID of the API Gateway method for the root of the path_prefix resource.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="proxy_resource_id">
+<HclListItem name="path_prefix_root_resource_id">
 <HclListItemDescription>
 
-ID of the API Gateway method for the proxy resource.
+ID of the API Gateway method for the root of the path_prefix resource.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="proxy_method_id">
+<HclListItem name="proxy_integration_id">
 <HclListItemDescription>
 
-ID of the API Gateway method for the proxy.
+ID of the API Gateway integration for the proxy method.
 
 </HclListItemDescription>
 </HclListItem>
@@ -170,10 +138,42 @@ HTTP method of the API Gateway method for the proxy.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="proxy_integration_id">
+<HclListItem name="proxy_method_id">
 <HclListItemDescription>
 
-ID of the API Gateway integration for the proxy method.
+ID of the API Gateway method for the proxy.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="proxy_resource_id">
+<HclListItemDescription>
+
+ID of the API Gateway method for the proxy resource.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="root_intergration_id">
+<HclListItemDescription>
+
+ID of the API Gateway integration for the root method (only created if path_prefix is empty string).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="root_method_http_method">
+<HclListItemDescription>
+
+HTTP method of the API Gateway method for the root proxy (only created if path_prefix is empty string).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="root_method_id">
+<HclListItemDescription>
+
+ID of the API Gateway method for the root proxy (only created if path_prefix is empty string).
 
 </HclListItemDescription>
 </HclListItem>
@@ -190,6 +190,6 @@ ID of the API Gateway integration for the proxy method.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9428275dc4302c4ba3b40a232f799942"
+  "hash": "af6d782b77f60dcd296738215948d740"
 }
 ##DOCS-SOURCER-END -->

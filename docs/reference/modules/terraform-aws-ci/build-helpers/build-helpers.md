@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fbuild-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -189,6 +189,6 @@ Note that the following conditions must be true in order to use this feature:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "39fd3ab5a2432e120e8d21c49cc59fc3"
+  "hash": "b541dd310d888b7d9d50c7cf150c7a50"
 }
 ##DOCS-SOURCER-END -->

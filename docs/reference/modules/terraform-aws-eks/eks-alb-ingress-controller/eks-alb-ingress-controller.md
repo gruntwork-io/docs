@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -227,6 +227,6 @@ instances under the hood, and thus the ALB can not be configured to route by ins
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6cfa968c37d677bfea4d248a5b2b7441"
+  "hash": "ebcf3c4c81b75acaa483d70e27110902"
 }
 ##DOCS-SOURCER-END -->

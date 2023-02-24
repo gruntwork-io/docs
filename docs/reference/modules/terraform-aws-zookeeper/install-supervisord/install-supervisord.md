@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Finstall-supervisord" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -49,6 +49,6 @@ example](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/examp
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b26703d33b43ffb51ee1710c41d955f3"
+  "hash": "ea6693a685bb3b3bcaa1fb00eb182950"
 }
 ##DOCS-SOURCER-END -->

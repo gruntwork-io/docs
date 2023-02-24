@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fsingle-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -95,14 +95,6 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name of the server. This will be used to namespace all resources created by this module.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="ami" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -119,10 +111,18 @@ The type of EC2 instance to run (e.g. t2.micro)
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItem name="keypair_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The id of the VPC where this server should be deployed.
+The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the server. This will be used to namespace all resources created by this module.
 
 </HclListItemDescription>
 </HclListItem>
@@ -135,15 +135,376 @@ The id of the subnet where this server should be deployed.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="keypair_name" requirement="required" type="string">
+<HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of a Key Pair that can be used to SSH to this instance. Leave blank if you don't want to enable Key Pair auth.
+The id of the VPC where this server should be deployed.
 
 </HclListItemDescription>
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of optional additional security group ids to assign to the server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allow_rdp_from_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IP address ranges in CIDR format from which rdp access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_rdp_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of security groups from which rdp connections will be allowed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_cidr_list" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of security groups from which SSH connections will be allowed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="associate_public_ip_address" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to associate a public IP address to the instance. When null, defaults to the subnet setting (e.g., if public subnet defaults to associating a public IP, associate one - otherwise, does not associate a public IP).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="assume_role_principals" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of AWS service principals that can assume the instance IAM role. If deploying in AWS China, set this to [ec2.amazonaws.com.cn].
+
+</HclListItemDescription>
+<HclListItemDefaultValue>
+
+```hcl
+[
+  "ec2.amazonaws.com"
+]
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="attach_eip" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Determines if an Elastic IP (EIP) will be created for this instance. Must be set to a boolean (not a string!) true or false value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create a new IAM role to bind to the EC2 instance. Set to false if you wish to use a preexisting IAM role. By default, this module will create an instance profile to pass this IAM role to the EC2 instance. Preexisting IAM roles created through the AWS console instead of programatically (e.g. withTerraform) will automatically create an instance profile with the same name. In that case, set create_instance_profile to false to avoid errors during Terraform apply.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_instance_profile" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create an instance profile to pass the IAM role, either the one created by this module or one passed externally, to the EC2 instance. Set to false if you wish to use a preexisting instance profile. For more information see https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="dedicated_host_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ID of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="disable_api_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enables EC2 Instance Termination Protection.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="dns_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DNS name to add for this server in <a href="#dns_zone_id"><code>dns_zone_id</code></a>. Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set. For example, if <a href="#dns_zone_id"><code>dns_zone_id</code></a> points to the hosted zone for example.com and you set dns_name to foo, this server will have the domain foo.example.com.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="dns_ttl" requirement="optional" type="number">
+<HclListItemDescription>
+
+The TTL, in seconds, of the DNS record for this server.  Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="dns_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DNS record type when adding a DNS record for this server. Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;A&quot;"/>
+</HclListItem>
+
+<HclListItem name="dns_uses_private_ip" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, point the Route 53 DNS record at the private IP of the EIP rather than the public IP.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="dns_zone_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of a route53 hosted zone. Leave blank if you don't want a DNS entry for this server. If you specify this variable, you must also specify <a href="#dns_name"><code>dns_name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="ebs_optimized" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launced EC2 Instance will be EBS-optimized.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="eip_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags to set for the EIP for EC2 Instance. This is optional and if not provided the tags from variable tags will be used
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="force_detach_policies" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether to force detaching any policies the role has before destroying it. If policies are attached to the role via the aws_iam_policy_attachment resource and you are modifying the role name or path, the force_detach_policies argument must be set to true and applied before attempting the operation otherwise you will encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource (recommended) does not have this requirement.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="get_password_data" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to extract Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the bastion host's IAM role and instance profile. If set to an empty string, will use <a href="#name"><code>name</code></a>. Required when create_iam_role is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags to set for instance iam role. This is optional and if not provided the tags from variable tags will be used
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="instance_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags for EC2 Instance. This is optional and if not provided the tags from variable tags will be used
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="monitoring" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launched EC2 instance will have detailed monitoring enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="private_ip" requirement="optional" type="string">
+<HclListItemDescription>
+
+Private IP address to associate with the instance in a VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="revoke_security_group_rules_on_delete" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Instruct Terraform to revoke all of the Security Groups attached ingress and egress rules before deleting the rule itself. This is normally not needed, however certain AWS services such as Elastic Map Reduce may automatically add required rules to security groups used with the service, and those rules may contain a cyclic dependency that prevent the security groups from being destroyed without removing the dependency first.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be deleted when the Instance is terminated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size of the root volume, in gigabytes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
+</HclListItem>
+
+<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to set on the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The root volume type. Must be one of: standard, gp2, io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
+</HclListItem>
+
+<HclListItem name="secondary_private_ips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the bastion host's security group. If set to an empty string, will use <a href="#name"><code>name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="security_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags to set for the Security Group. This is optional and if not provided the tags from variable tags will be used
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="source_dest_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Controls if traffic is routed to the instance when the destination address does not match the instance. Must be set to a boolean (not a string!) true or false value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A set of tags for the EC2 Instance. These are common tags and will be used for Instance, IAM Role, EIP and Security Group. Note that other AWS resources created by this module such as an Elastic IP Address and Route53 Record do not support tags.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tenancy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The tenancy of this server. Must be one of: default, dedicated, or host.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
 
 <HclListItem name="user_data" requirement="optional" type="string">
 <HclListItemDescription>
@@ -172,392 +533,19 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of optional additional security group ids to assign to the server.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_cidr_list" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IP address ranges in CIDR format from which SSH access will be permitted. Attempts to access the server from all other IP addresses will be blocked.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;0.0.0.0/0&quot;
-]"/>
-</HclListItem>
-
-<HclListItem name="allow_ssh_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of security groups from which SSH connections will be allowed.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_rdp_from_cidr_list" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IP address ranges in CIDR format from which rdp access will be permitted. Attempts to access the bastion host from all other IP addresses will be blocked.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_rdp_from_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The IDs of security groups from which rdp connections will be allowed.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
-<HclListItemDescription>
-
-A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="dns_zone_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The id of a route53 hosted zone. Leave blank if you don't want a DNS entry for this server. If you specify this variable, you must also specify <a href="#dns_name"><code>dns_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="dns_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The DNS name to add for this server in <a href="#dns_zone_id"><code>dns_zone_id</code></a>. Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set. For example, if <a href="#dns_zone_id"><code>dns_zone_id</code></a> points to the hosted zone for example.com and you set dns_name to foo, this server will have the domain foo.example.com.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="dns_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The DNS record type when adding a DNS record for this server. Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;A&quot;"/>
-</HclListItem>
-
-<HclListItem name="dns_ttl" requirement="optional" type="number">
-<HclListItemDescription>
-
-The TTL, in seconds, of the DNS record for this server.  Only used if <a href="#dns_zone_id"><code>dns_zone_id</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="dns_uses_private_ip" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, point the Route 53 DNS record at the private IP of the EIP rather than the public IP.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="attach_eip" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Determines if an Elastic IP (EIP) will be created for this instance. Must be set to a boolean (not a string!) true or false value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="tenancy" requirement="optional" type="string">
-<HclListItemDescription>
-
-The tenancy of this server. Must be one of: default, dedicated, or host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
-</HclListItem>
-
-<HclListItem name="source_dest_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Controls if traffic is routed to the instance when the destination address does not match the instance. Must be set to a boolean (not a string!) true or false value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A set of tags for the EC2 Instance. These are common tags and will be used for Instance, IAM Role, EIP and Security Group. Note that other AWS resources created by this module such as an Elastic IP Address and Route53 Record do not support tags.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="ebs_optimized" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launced EC2 Instance will be EBS-optimized.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="root_volume_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-The root volume type. Must be one of: standard, gp2, io1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
-</HclListItem>
-
-<HclListItem name="root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size of the root volume, in gigabytes.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="8"/>
-</HclListItem>
-
-<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, the root volume will be deleted when the Instance is terminated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to set on the root volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="security_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name for the bastion host's security group. If set to an empty string, will use <a href="#name"><code>name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="create_iam_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, this module will create a new IAM role to bind to the EC2 instance. Set to false if you wish to use a preexisting IAM role. By default, this module will create an instance profile to pass this IAM role to the EC2 instance. Preexisting IAM roles created through the AWS console instead of programatically (e.g. withTerraform) will automatically create an instance profile with the same name. In that case, set create_instance_profile to false to avoid errors during Terraform apply.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name for the bastion host's IAM role and instance profile. If set to an empty string, will use <a href="#name"><code>name</code></a>. Required when create_iam_role is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="create_instance_profile" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, this module will create an instance profile to pass the IAM role, either the one created by this module or one passed externally, to the EC2 instance. Set to false if you wish to use a preexisting instance profile. For more information see https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="revoke_security_group_rules_on_delete" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Instruct Terraform to revoke all of the Security Groups attached ingress and egress rules before deleting the rule itself. This is normally not needed, however certain AWS services such as Elastic Map Reduce may automatically add required rules to security groups used with the service, and those rules may contain a cyclic dependency that prevent the security groups from being destroyed without removing the dependency first.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="monitoring" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, the launched EC2 instance will have detailed monitoring enabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="disable_api_termination" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, enables EC2 Instance Termination Protection.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="assume_role_principals" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of AWS service principals that can assume the instance IAM role. If deploying in AWS China, set this to [ec2.amazonaws.com.cn].
-
-</HclListItemDescription>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  "ec2.amazonaws.com"
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="private_ip" requirement="optional" type="string">
-<HclListItemDescription>
-
-Private IP address to associate with the instance in a VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="secondary_private_ips" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="associate_public_ip_address" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to associate a public IP address to the instance. When null, defaults to the subnet setting (e.g., if public subnet defaults to associating a public IP, associate one - otherwise, does not associate a public IP).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="get_password_data" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to extract Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="force_detach_policies" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether to force detaching any policies the role has before destroying it. If policies are attached to the role via the aws_iam_policy_attachment resource and you are modifying the role name or path, the force_detach_policies argument must be set to true and applied before attempting the operation otherwise you will encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource (recommended) does not have this requirement.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="security_group_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A set of tags to set for the Security Group. This is optional and if not provided the tags from variable tags will be used
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="iam_role_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A set of tags to set for instance iam role. This is optional and if not provided the tags from variable tags will be used
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="eip_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A set of tags to set for the EIP for EC2 Instance. This is optional and if not provided the tags from variable tags will be used
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="instance_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-A set of tags for EC2 Instance. This is optional and if not provided the tags from variable tags will be used
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="role_permissions_boundary" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the policy that is used to set the permissions boundary for the IAM role.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="dedicated_host_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-ID of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="ami">
+</HclListItem>
+
 <HclListItem name="arn">
-</HclListItem>
-
-<HclListItem name="id">
-</HclListItem>
-
-<HclListItem name="name">
-</HclListItem>
-
-<HclListItem name="public_ip">
-</HclListItem>
-
-<HclListItem name="private_ip">
-</HclListItem>
-
-<HclListItem name="secondary_private_ips">
 </HclListItem>
 
 <HclListItem name="fqdn">
 </HclListItem>
 
-<HclListItem name="security_group_id">
+<HclListItem name="iam_role_arn">
 </HclListItem>
 
 <HclListItem name="iam_role_id">
@@ -566,16 +554,28 @@ ID of a dedicated host that the instance will be assigned to. Use when an instan
 <HclListItem name="iam_role_name">
 </HclListItem>
 
-<HclListItem name="iam_role_arn">
+<HclListItem name="id">
 </HclListItem>
 
 <HclListItem name="instance_ip">
 </HclListItem>
 
-<HclListItem name="ami">
+<HclListItem name="name">
 </HclListItem>
 
 <HclListItem name="password_data">
+</HclListItem>
+
+<HclListItem name="private_ip">
+</HclListItem>
+
+<HclListItem name="public_ip">
+</HclListItem>
+
+<HclListItem name="secondary_private_ips">
+</HclListItem>
+
+<HclListItem name="security_group_id">
 </HclListItem>
 
 </TabItem>
@@ -590,6 +590,6 @@ ID of a dedicated host that the instance will be assigned to. Use when an instan
     "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f03d7ab6ffb45d4f453c763407c10e62"
+  "hash": "e15f900fc840cba6fcfe18b9ab6da459"
 }
 ##DOCS-SOURCER-END -->

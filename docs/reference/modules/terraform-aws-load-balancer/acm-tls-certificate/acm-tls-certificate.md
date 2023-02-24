@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules%2Facm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -292,13 +292,13 @@ Any types represent complex values of variable type. For details, please consult
 
 ### Optional
 
-<HclListItem name="global_tags" requirement="optional" type="map(string)">
+<HclListItem name="default_create_verification_record" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Global tags to apply to all ACM certificates issued via this module. These global tags will be merged with individual tags specified on each certificate input.
+Whether or not to create a Route 53 DNS record for use in validating the issued certificate. Can be overridden on a per-certificate basis in the acm_tls_certificates input. You may want to set this to false if you are not using Route 53 as your DNS provider.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="default_verify_certificate" requirement="optional" type="bool">
@@ -310,13 +310,13 @@ Whether or not to attempt to verify the issued certificate via DNS entries autom
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="default_create_verification_record" requirement="optional" type="bool">
+<HclListItem name="dependencies" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-Whether or not to create a Route 53 DNS record for use in validating the issued certificate. Can be overridden on a per-certificate basis in the acm_tls_certificates input. You may want to set this to false if you are not using Route 53 as your DNS provider.
+Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="domain_hosted_zone_ids" requirement="optional" type="map(string)">
@@ -328,13 +328,13 @@ Map of domains to hosted zone IDs that can be used in place of looking up with a
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
+<HclListItem name="global_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
+Global tags to apply to all ACM certificates issued via this module. These global tags will be merged with individual tags specified on each certificate input.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -343,13 +343,13 @@ Create a dependency between the resources in this module to the interpolated val
 <HclListItem name="certificate_arns">
 </HclListItem>
 
-<HclListItem name="certificate_ids">
-</HclListItem>
-
 <HclListItem name="certificate_domain_names">
 </HclListItem>
 
 <HclListItem name="certificate_domain_validation_options">
+</HclListItem>
+
+<HclListItem name="certificate_ids">
 </HclListItem>
 
 </TabItem>
@@ -364,6 +364,6 @@ Create a dependency between the resources in this module to the interpolated val
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "955444c664cc9ddf886d17fadfe420ab"
+  "hash": "b6df3cc6306b52557ef3acf6daa25722"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -274,79 +274,6 @@ The ID of the AWS Account.
 
 ### Optional
 
-<HclListItem name="trust_policy_should_require_mfa" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, all the Policies created by this module that are used as Trust Policies for IAM Roles (this that allow sts:AssumeRole) will require an MFA Token to be present to assume that IAM Role. Use <a href="#iam_policy_should_require_mfa"><code>iam_policy_should_require_mfa</code></a> to require MFA for all other types of Policies.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_policy_should_require_mfa" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, all the Policies created by this module that are used to grant IAM permissions will require an MFA Token to be present. Use <a href="#trust_policy_should_require_mfa"><code>trust_policy_should_require_mfa</code></a> to require MFA for IAM Role Trust Policies.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="dev_s3_bucket_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-The prefix of the S3 Bucket Name to which an individual IAM User will have full access. For example, if the prefix is acme.user-, then IAM User john.doe will have access to S3 Bucket acme.user-john.doe.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;your-org-name.user-&quot;"/>
-</HclListItem>
-
-<HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM permissions to grant to developers. For example, ['s3:PutObject', 'sns'] would grant 'PutObject' permissions for S3, and '*' permissions for sns. See https://goo.gl/ZyoHlz to find the IAM Service name. Do NOT add 'iam' to the list of services, or that will grant developers de facto admin access!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_access_to_other_account_arns" requirement="optional" type="map(list(…))">
-<HclListItemDescription>
-
-A map of lists of IAM roles in other accounts that IAM users in this account should be able to assume. Use group names as keys, and a corresponding list of roles for that group as the value. One IAM policy allowing sts:AssumeRole will be created for each key. If the corresponding list has more than one ARN, the policy will be created with AssumeRole permission for each ARN in the list.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(list(string))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   default = {
-     group1 = ["arn:aws:iam::123445678910:role/mgmt-full-access"],
-     group2 = ["arn:aws:iam::9876543210:role/prod-read-only-access"],
-     group3 = [
-        "arn:aws:iam::9876543210:role/prod-read-only-ec2-access",
-        "arn:aws:iam::9876543210:role/prod-read-only-rds-access"
-     ]
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 <HclListItem name="allow_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -406,6 +333,43 @@ A list of IAM Identity Provider ARNs that access to this account will be delegat
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="allow_access_to_other_account_arns" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+A map of lists of IAM roles in other accounts that IAM users in this account should be able to assume. Use group names as keys, and a corresponding list of roles for that group as the value. One IAM policy allowing sts:AssumeRole will be created for each key. If the corresponding list has more than one ARN, the policy will be created with AssumeRole permission for each ARN in the list.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   default = {
+     group1 = ["arn:aws:iam::123445678910:role/mgmt-full-access"],
+     group2 = ["arn:aws:iam::9876543210:role/prod-read-only-access"],
+     group3 = [
+        "arn:aws:iam::9876543210:role/prod-read-only-ec2-access",
+        "arn:aws:iam::9876543210:role/prod-read-only-rds-access"
+     ]
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="allow_auto_deploy_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -440,19 +404,46 @@ A list of IAM permissions (e.g. ec2:*) which will be granted for automated deplo
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="houston_region" requirement="optional" type="string">
+<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The AWS region where Houston is deployed (e.g., us-east-1).
+The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy will include permissions to decrypt using this CMK.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM permissions to grant to developers. For example, ['s3:PutObject', 'sns'] would grant 'PutObject' permissions for S3, and '*' permissions for sns. See https://goo.gl/ZyoHlz to find the IAM Service name. Do NOT add 'iam' to the list of services, or that will grant developers de facto admin access!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="dev_s3_bucket_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The prefix of the S3 Bucket Name to which an individual IAM User will have full access. For example, if the prefix is acme.user-, then IAM User john.doe will have access to S3 Bucket acme.user-john.doe.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;your-org-name.user-&quot;"/>
+</HclListItem>
+
+<HclListItem name="houston_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The path to allow requests to in the Houston API.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_users_api_id" requirement="optional" type="string">
+<HclListItem name="houston_region" requirement="optional" type="string">
 <HclListItemDescription>
 
-The ID API Gateway has assigned to the Houston API.
+The AWS region where Houston is deployed (e.g., us-east-1).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
@@ -467,37 +458,52 @@ The API Gateway stage to use for Houston.
 <HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_path" requirement="optional" type="string">
+<HclListItem name="houston_users_api_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-The path to allow requests to in the Houston API.
+The ID API Gateway has assigned to the Houston API.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
+<HclListItem name="iam_policy_should_require_mfa" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy will include permissions to decrypt using this CMK.
+If set to true, all the Policies created by this module that are used to grant IAM permissions will require an MFA Token to be present. Use <a href="#trust_policy_should_require_mfa"><code>trust_policy_should_require_mfa</code></a> to require MFA for IAM Role Trust Policies.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="trust_policy_should_require_mfa" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, all the Policies created by this module that are used as Trust Policies for IAM Roles (this that allow sts:AssumeRole) will require an MFA Token to be present to assume that IAM Role. Use <a href="#iam_policy_should_require_mfa"><code>iam_policy_should_require_mfa</code></a> to require MFA for all other types of Policies.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="full_access">
+<HclListItem name="allow_access_from_other_accounts">
+</HclListItem>
+
+<HclListItem name="allow_access_to_all_other_accounts">
+</HclListItem>
+
+<HclListItem name="allow_access_to_other_accounts">
+</HclListItem>
+
+<HclListItem name="allow_auto_deploy_from_other_accounts">
+</HclListItem>
+
+<HclListItem name="auto_deploy_permissions">
 </HclListItem>
 
 <HclListItem name="billing">
-</HclListItem>
-
-<HclListItem name="support">
-</HclListItem>
-
-<HclListItem name="logs">
 </HclListItem>
 
 <HclListItem name="developers">
@@ -506,43 +512,37 @@ The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy wi
 <HclListItem name="developers_s3_bucket">
 </HclListItem>
 
-<HclListItem name="read_only">
-</HclListItem>
-
-<HclListItem name="use_existing_iam_roles">
-</HclListItem>
-
-<HclListItem name="iam_user_self_mgmt">
-</HclListItem>
-
-<HclListItem name="iam_admin">
-</HclListItem>
-
-<HclListItem name="allow_access_to_other_accounts">
-</HclListItem>
-
-<HclListItem name="allow_access_to_all_other_accounts">
-</HclListItem>
-
-<HclListItem name="allow_access_from_other_accounts">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_permissions">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_houston_permissions">
+<HclListItem name="full_access">
 </HclListItem>
 
 <HclListItem name="houston_cli_permissions">
 </HclListItem>
 
-<HclListItem name="auto_deploy_permissions">
+<HclListItem name="iam_admin">
 </HclListItem>
 
-<HclListItem name="allow_auto_deploy_from_other_accounts">
+<HclListItem name="iam_user_self_mgmt">
+</HclListItem>
+
+<HclListItem name="logs">
+</HclListItem>
+
+<HclListItem name="read_only">
 </HclListItem>
 
 <HclListItem name="require_mfa_policy">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_houston_permissions">
+</HclListItem>
+
+<HclListItem name="ssh_grunt_permissions">
+</HclListItem>
+
+<HclListItem name="support">
+</HclListItem>
+
+<HclListItem name="use_existing_iam_roles">
 </HclListItem>
 
 </TabItem>
@@ -557,6 +557,6 @@ The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ef3426ecaa2f89664128e3adedaeb1f"
+  "hash": "97024b3e188e3adfbed663136235f0ed"
 }
 ##DOCS-SOURCER-END -->

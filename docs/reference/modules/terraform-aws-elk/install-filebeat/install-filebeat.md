@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-filebeat" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -45,6 +45,6 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2d01d40d580b362f5fde9ea1334fd40"
+  "hash": "6d189fc271821ad65a23f39f372e6c7b"
 }
 ##DOCS-SOURCER-END -->

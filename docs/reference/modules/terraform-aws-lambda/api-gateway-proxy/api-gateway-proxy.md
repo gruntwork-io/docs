@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fapi-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -111,33 +111,10 @@ Map of path prefixes to lambda functions to invoke. Any request that hits paths 
 
 ### Optional
 
-<HclListItem name="enable_root_lambda_function" requirement="optional" type="bool">
+<HclListItem name="api_binary_media_types" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-When true, route the root path (URL or URL/) to the lambda function specified by root_lambda_function_name. This is useful when you want to route just the home route to a specific lambda function when configuring path based routing with <a href="#lambda_functions"><code>lambda_functions</code></a>. Conflicts with the catch all lambda function, which is configured using the empty string key in <a href="#lambda_functions"><code>lambda_functions</code></a>. Do not use this to configure a catch all lambda function.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   MAINTAINER'S NOTE: Ideally, we would add a validation block to ensure that this is not configured if the user has a
-   catch all route (var.lambda_functions[""] is set), but the terraform variable validation expression does not support
-   looking up other variables in the condition block at this time. So we don't configure variable validation here.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="root_lambda_function_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the lambda function to invoke just for the root path (URL or URL/). Only used if enable_root_lambda_function is true.
+List of binary media types supported by the REST API. The default only supports UTF-8 encoded text payloads.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -173,24 +150,6 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="api_binary_media_types" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of binary media types supported by the REST API. The default only supports UTF-8 encoded text payloads.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="api_minimum_compression_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Minimum response size to compress for the REST API. Must be a value between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="api_key_source" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -200,46 +159,10 @@ Source of the API key for requests. Valid values are HEADER (default) and AUTHOR
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_execute_api_endpoint" requirement="optional" type="bool">
+<HclListItem name="api_minimum_compression_size" requirement="optional" type="number">
 <HclListItemDescription>
 
-When true, enables the execute-api endpoint. Set to false if you wish for clients to only access the API via the domain set on <a href="#domain_name"><code>domain_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="custom_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Map of tags (where the key is the tag key and the value is tag value) to apply to the resources in this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="deployment_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-Description to apply to the API Gateway deployment. This can be useful to identify the API Gateway deployment managed by this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="stage_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the stage to create with this API Gateway deployment.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;live&quot;"/>
-</HclListItem>
-
-<HclListItem name="stage_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-Description to set on the stage managed by the stage_name variable.
+Minimum response size to compress for the REST API. Must be a value between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -280,42 +203,6 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="force_deployment" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, force a deployment on every touch. Ideally we can cause a deployment on the API Gateway only when a configuration changes, but terraform does not give reliable mechanisms for triggering a redeployment when any related resource changes. As such, we must either pessimistically redeploy on every touch, or have user control it. You must use the <a href="#deployment_id"><code>deployment_id</code></a> input variable to trigger redeployments if this is false. Note that setting this to true will, by nature, cause a perpetual diff on the module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="deployment_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-An arbitrary identifier to assign to the API Gateway deployment. Updates to this value will trigger a redeploy of the API Gateway, which is necessary when any underlying configuration changes. This is the only way to trigger a redeployment of an existing API Gateway if force_deployment = false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="domain_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Full domain (e.g., api.example.com) you wish to bind to the API Gateway endpoint. Set to null if you do not wish to bind any domain name.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="domain_base_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-Path segment that must be prepended to the path when accessing the API via the given domain. If omitted, the API is exposed at the root of the given domain.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="certificate_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -329,6 +216,101 @@ ARN of the ACM certificate you wish to use for the bound domain name. When null,
 <HclListItemDescription>
 
 The domain to use when looking up the ACM certificate. This is useful for looking up wild card certificates that will match the given domain name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Map of tags (where the key is the tag key and the value is tag value) to apply to the resources in this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="deployment_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+Description to apply to the API Gateway deployment. This can be useful to identify the API Gateway deployment managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="deployment_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+An arbitrary identifier to assign to the API Gateway deployment. Updates to this value will trigger a redeploy of the API Gateway, which is necessary when any underlying configuration changes. This is the only way to trigger a redeployment of an existing API Gateway if force_deployment = false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="domain_base_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+Path segment that must be prepended to the path when accessing the API via the given domain. If omitted, the API is exposed at the root of the given domain.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Full domain (e.g., api.example.com) you wish to bind to the API Gateway endpoint. Set to null if you do not wish to bind any domain name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_execute_api_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enables the execute-api endpoint. Set to false if you wish for clients to only access the API via the domain set on <a href="#domain_name"><code>domain_name</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_root_lambda_function" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, route the root path (URL or URL/) to the lambda function specified by root_lambda_function_name. This is useful when you want to route just the home route to a specific lambda function when configuring path based routing with <a href="#lambda_functions"><code>lambda_functions</code></a>. Conflicts with the catch all lambda function, which is configured using the empty string key in <a href="#lambda_functions"><code>lambda_functions</code></a>. Do not use this to configure a catch all lambda function.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   MAINTAINER'S NOTE: Ideally, we would add a validation block to ensure that this is not configured if the user has a
+   catch all route (var.lambda_functions[""] is set), but the terraform variable validation expression does not support
+   looking up other variables in the condition block at this time. So we don't configure variable validation here.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="force_deployment" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, force a deployment on every touch. Ideally we can cause a deployment on the API Gateway only when a configuration changes, but terraform does not give reliable mechanisms for triggering a redeployment when any related resource changes. As such, we must either pessimistically redeploy on every touch, or have user control it. You must use the <a href="#deployment_id"><code>deployment_id</code></a> input variable to trigger redeployments if this is false. Note that setting this to true will, by nature, cause a perpetual diff on the module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="hosted_zone_domain_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Domain name to use when looking up the Route 53 hosted zone to bind the API Gateway domain to. Only used if hosted_zone_id is null.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -352,22 +334,40 @@ Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="hosted_zone_domain_name" requirement="optional" type="string">
+<HclListItem name="root_lambda_function_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Domain name to use when looking up the Route 53 hosted zone to bind the API Gateway domain to. Only used if hosted_zone_id is null.
+Name of the lambda function to invoke just for the root path (URL or URL/). Only used if enable_root_lambda_function is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="stage_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+Description to set on the stage managed by the stage_name variable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="stage_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of the stage to create with this API Gateway deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;live&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="url">
+<HclListItem name="deployment">
 <HclListItemDescription>
 
-The URL of the API Gateway that you can use to invoke it.
+The API Gateway deployment resource. Contains all the attributes returned by the terraform resource aws_api_gateway_deployment.
 
 </HclListItemDescription>
 </HclListItem>
@@ -380,18 +380,18 @@ The API Gateway REST API resource. Contains all the attributes returned by the T
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="deployment">
-<HclListItemDescription>
-
-The API Gateway deployment resource. Contains all the attributes returned by the terraform resource aws_api_gateway_deployment.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="stage">
 <HclListItemDescription>
 
 The API Gateway stage resource. Contains all the attributes returned by the terraform resource aws_api_gateway_stage.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="url">
+<HclListItemDescription>
+
+The URL of the API Gateway that you can use to invoke it.
 
 </HclListItemDescription>
 </HclListItem>
@@ -408,6 +408,6 @@ The API Gateway stage resource. Contains all the attributes returned by the terr
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f9f52f053210258a5fd92c2ebb943cc"
+  "hash": "c9b66a4c362c9731a09d5f00d2fada64"
 }
 ##DOCS-SOURCER-END -->

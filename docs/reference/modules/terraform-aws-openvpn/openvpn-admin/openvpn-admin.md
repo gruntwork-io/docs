@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Fopenvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -34,6 +34,6 @@ certificates and the OpenVPN server to process those requests.
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "de073dc5176ad20d46f608f921b2c0b3"
+  "hash": "ea23b7183b713a6667b6c568b4298420"
 }
 ##DOCS-SOURCER-END -->

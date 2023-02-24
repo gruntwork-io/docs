@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules%2Fasg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -69,30 +69,6 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 ### Required
 
-<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-A list of subnet ids in the VPC were the EC2 Instances should be deployed
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="min_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The minimum number of EC2 Instances to run in the ASG
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="max_size" requirement="required" type="number">
-<HclListItemDescription>
-
-The maximum number of EC2 Instances to run in the ASG
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="desired_capacity" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -120,111 +96,31 @@ object({
 </HclListItemTypeDetails>
 </HclListItem>
 
+<HclListItem name="max_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The maximum number of EC2 Instances to run in the ASG
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="min_size" requirement="required" type="number">
+<HclListItemDescription>
+
+The minimum number of EC2 Instances to run in the ASG
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids in the VPC were the EC2 Instances should be deployed
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
-
-<HclListItem name="termination_policies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour, Default.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="load_balancers" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see <a href="#target_group_arns"><code>target_group_arns</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Application Load Balancer (ALB) target group ARNs to associate with this ASG. If you're using the Elastic Load Balancer (ELB), see <a href="#load_balancers"><code>load_balancers</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="min_elb_capacity" requirement="optional" type="number">
-<HclListItemDescription>
-
-Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
-<HclListItem name="use_elb_health_checks" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not ELB or ALB health checks should be enabled. If set to true, the load_balancers or target_groups_arns variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="health_check_grace_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-Time, in seconds, after an EC2 Instance comes into service before checking health.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
-</HclListItem>
-
-<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-   enabled_metrics = [
-      "GroupDesiredCapacity",
-      "GroupInServiceInstances",
-      "GroupMaxSize",
-      "GroupMinSize",
-      "GroupPendingInstances",
-      "GroupStandbyInstances",
-      "GroupTerminatingInstances",
-      "GroupTotalInstances"
-    ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="tag_asg_id_key" requirement="optional" type="string">
-<HclListItemDescription>
-
-The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AsgId&quot;"/>
-</HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
@@ -280,6 +176,56 @@ Timeout value for deletion operations on autoscale groups.
 <HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
+<HclListItem name="enabled_metrics" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of metrics the ASG should enable for monitoring all instances in a group. The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+   enabled_metrics = [
+      "GroupDesiredCapacity",
+      "GroupInServiceInstances",
+      "GroupMaxSize",
+      "GroupMinSize",
+      "GroupPendingInstances",
+      "GroupStandbyInstances",
+      "GroupTerminatingInstances",
+      "GroupTotalInstances"
+    ]
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="health_check_grace_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Time, in seconds, after an EC2 Instance comes into service before checking health.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="load_balancers" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you're using the Application Load Balancer (ALB), see <a href="#target_group_arns"><code>target_group_arns</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -289,13 +235,67 @@ The maximum amount of time, in seconds, that an instance inside an ASG can be in
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="min_elb_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+Wait for this number of EC2 Instances to show up healthy in the load balancer on creation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="tag_asg_id_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+The key for the tag that will be used to associate a unique identifier with this ASG. This identifier will persist between redeploys of the ASG, even though the underlying ASG is being deleted and replaced with a different one.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AsgId&quot;"/>
+</HclListItem>
+
+<HclListItem name="target_group_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Application Load Balancer (ALB) target group ARNs to associate with this ASG. If you're using the Elastic Load Balancer (ELB), see <a href="#load_balancers"><code>load_balancers</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="termination_policies" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are OldestInstance, NewestInstance, OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour, Default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="use_elb_health_checks" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not ELB or ALB health checks should be enabled. If set to true, the load_balancers or target_groups_arns variable should be set depending on the load balancer type you are using. Useful for testing connectivity before health check endpoints are available.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="wait_for_capacity_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+A maximum duration that Terraform should wait for the EC2 Instances to be healthy before timing out.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="asg_name">
+<HclListItem name="asg_arn">
 </HclListItem>
 
-<HclListItem name="asg_arn">
+<HclListItem name="asg_name">
 </HclListItem>
 
 <HclListItem name="asg_unique_id">
@@ -313,6 +313,6 @@ The maximum amount of time, in seconds, that an instance inside an ASG can be in
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "efff01b27f7b7457e1fd5c868a3598d6"
+  "hash": "da26b98387da453379c3b4607bb69db0"
 }
 ##DOCS-SOURCER-END -->

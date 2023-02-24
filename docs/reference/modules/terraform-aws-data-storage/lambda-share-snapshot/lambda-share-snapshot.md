@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -44,13 +44,13 @@ The ARN of the RDS database
 
 ### Optional
 
-<HclListItem name="name" requirement="optional" type="string">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name for the lambda function and other resources created by these Terraform configurations
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;share-rds-snapshot&quot;"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="max_retries" requirement="optional" type="number">
@@ -62,6 +62,15 @@ The maximum number of retries the lambda function will make while waiting for th
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
+<HclListItem name="name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the lambda function and other resources created by these Terraform configurations
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;share-rds-snapshot&quot;"/>
+</HclListItem>
+
 <HclListItem name="sleep_between_retries_sec" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -69,15 +78,6 @@ The amount of time, in seconds, between retries.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -101,6 +101,6 @@ Set to false to have this module skip creating resources. This weird parameter e
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a00ed3631492fcf31ed7bf9214791eba"
+  "hash": "cfb452bb46bd137c872ed1fc7e0c90fe"
 }
 ##DOCS-SOURCER-END -->

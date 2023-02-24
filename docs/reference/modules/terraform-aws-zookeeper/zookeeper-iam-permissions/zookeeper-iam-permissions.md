@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Fzookeeper-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -31,6 +31,6 @@ this module to handle the IAM permission details for you.
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cdefe00b3bb4682a4a547526bf4aeb0d"
+  "hash": "9b7610726f45ad613fa6e5d4c84dee39"
 }
 ##DOCS-SOURCER-END -->

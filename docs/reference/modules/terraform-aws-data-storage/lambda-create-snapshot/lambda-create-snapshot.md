@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-create-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -78,18 +78,18 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="rds_db_identifier" requirement="required" type="string">
-<HclListItemDescription>
-
-The identifier of the RDS database
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="rds_db_arn" requirement="required" type="string">
 <HclListItemDescription>
 
 The ARN of the RDS database
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="rds_db_identifier" requirement="required" type="string">
+<HclListItemDescription>
+
+The identifier of the RDS database
 
 </HclListItemDescription>
 </HclListItem>
@@ -112,13 +112,67 @@ An expression that defines how often to run the lambda function to take snapshot
 
 ### Optional
 
-<HclListItem name="share_snapshot_with_another_account" requirement="optional" type="bool">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, after this lambda function takes a snapshot of the RDS DB, it will trigger the lambda function specified in <a href="#share_snapshot_lambda_arn"><code>share_snapshot_lambda_arn</code></a> to share the snapshot with another AWS account.
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="lambda_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+Namespace all Lambda resources created by this module with this name. If not specified, the default is <a href="#rds_db_identifier"><code>rds_db_identifier</code></a> with '-create-snapshot' as a suffix.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="max_retries" requirement="optional" type="number">
+<HclListItemDescription>
+
+If the DB is not in available state when this function runs, it will retry up to max_retries times.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="report_cloudwatch_metric" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set true, just before the lambda function finishes running, it will report a custom metric to CloudWatch, as specified by <a href="#report_cloudwatch_metric_namespace"><code>report_cloudwatch_metric_namespace</code></a> and <a href="#report_cloudwatch_metric_name"><code>report_cloudwatch_metric_name</code></a>. You can set an alarm on this metric to detect if the backup job failed to run to completion.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="report_cloudwatch_metric_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="report_cloudwatch_metric_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="schedule_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+Namespace all Lambda scheduling resources created by this module with this name. If not specified, the default is <a href="#lambda_namespace"><code>lambda_namespace</code></a> with '-scheduled' as a suffix.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="share_snapshot_lambda_arn" requirement="optional" type="string">
@@ -139,40 +193,13 @@ The ID of an AWS account with which to share the RDS snapshot. Only used if <a h
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="report_cloudwatch_metric" requirement="optional" type="bool">
+<HclListItem name="share_snapshot_with_another_account" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set true, just before the lambda function finishes running, it will report a custom metric to CloudWatch, as specified by <a href="#report_cloudwatch_metric_namespace"><code>report_cloudwatch_metric_namespace</code></a> and <a href="#report_cloudwatch_metric_name"><code>report_cloudwatch_metric_name</code></a>. You can set an alarm on this metric to detect if the backup job failed to run to completion.
+If set to true, after this lambda function takes a snapshot of the RDS DB, it will trigger the lambda function specified in <a href="#share_snapshot_lambda_arn"><code>share_snapshot_lambda_arn</code></a> to share the snapshot with another AWS account.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="report_cloudwatch_metric_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-The namespace to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="report_cloudwatch_metric_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name to use for the the custom CloudWatch metric. Only used if <a href="#report_cloudwatch_metric"><code>report_cloudwatch_metric</code></a> is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="max_retries" requirement="optional" type="number">
-<HclListItemDescription>
-
-If the DB is not in available state when this function runs, it will retry up to max_retries times.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
 <HclListItem name="sleep_between_retries_sec" requirement="optional" type="number">
@@ -184,24 +211,6 @@ The amount of time, in seconds, between retries.
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
-<HclListItem name="lambda_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-Namespace all Lambda resources created by this module with this name. If not specified, the default is <a href="#rds_db_identifier"><code>rds_db_identifier</code></a> with '-create-snapshot' as a suffix.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="schedule_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-Namespace all Lambda scheduling resources created by this module with this name. If not specified, the default is <a href="#lambda_namespace"><code>lambda_namespace</code></a> with '-scheduled' as a suffix.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="snapshot_namespace" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -209,15 +218,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if this module should create anything or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 </TabItem>
@@ -241,6 +241,6 @@ Set to false to have this module skip creating resources. This weird parameter e
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-create-snapshot%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ff300b29ee821f44417e4c0a1aa2556"
+  "hash": "c52d878a8a56306930bfb8dcd95568c3"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fguardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -86,46 +86,37 @@ If you want to deploy this module in production, check out the following resourc
 
 ### Optional
 
-<HclListItem name="publish_findings_to_sns" requirement="optional" type="bool">
+<HclListItem name="cloudwatch_event_rule_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Send GuardDuty findings to a SNS topic specified by findings_sns_topic_name.
+Name of the Cloudwatch event rule
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="findings_sns_topic_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specifies a name for the created SNS topic where findings are published. publish_findings_to_sns must be set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
-</HclListItem>
-
-<HclListItem name="sns_kms_master_key_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of a customer master key (CMK) to use to encrypt the SNS topic. This could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g., alias/example-key). Only used if publish_findings_to_sns is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable monitoring and feedback reporting. Setting to false is equivalent to suspending GuardDuty. Defaults to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Enable or disable creation of the resources of this module. Necessary workaround when it is desired to set count = 0 for modules, which is not yet possible as of terraform 0.12.17
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="detail_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of GuardDuty event to match. Setting this to anything other than the default will generate noise. This usually only needs to be adjusted for automated testing purposes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;GuardDuty Finding&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable monitoring and feedback reporting. Setting to false is equivalent to suspending GuardDuty. Defaults to true
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -140,42 +131,35 @@ Specifies the frequency of notifications sent for subsequent finding occurrences
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudwatch_event_rule_name" requirement="optional" type="string">
+<HclListItem name="findings_sns_topic_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-Name of the Cloudwatch event rule
+Specifies a name for the created SNS topic where findings are published. publish_findings_to_sns must be set to true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
 </HclListItem>
 
-<HclListItem name="detail_type" requirement="optional" type="string">
+<HclListItem name="publish_findings_to_sns" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The type of GuardDuty event to match. Setting this to anything other than the default will generate noise. This usually only needs to be adjusted for automated testing purposes.
+Send GuardDuty findings to a SNS topic specified by findings_sns_topic_name.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;GuardDuty Finding&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="sns_kms_master_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a customer master key (CMK) to use to encrypt the SNS topic. This could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g., alias/example-key). Only used if publish_findings_to_sns is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="guardduty_detector_id">
-<HclListItemDescription>
-
-The ID of the GuardDuty detector.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="guardduty_detector_account_id">
-<HclListItemDescription>
-
-The AWS account ID of the GuardDuty detector.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="cloudwatch_event_rule_arn">
 <HclListItemDescription>
@@ -217,6 +201,22 @@ The name of the SNS topic where findings are published if <a href="#publish_find
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="guardduty_detector_account_id">
+<HclListItemDescription>
+
+The AWS account ID of the GuardDuty detector.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="guardduty_detector_id">
+<HclListItemDescription>
+
+The ID of the GuardDuty detector.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -229,6 +229,6 @@ The name of the SNS topic where findings are published if <a href="#publish_find
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c9bdf138f07a37f92b25c1f440bab8f4"
+  "hash": "ed65584b3e91e066e5e864278769bb5f"
 }
 ##DOCS-SOURCER-END -->

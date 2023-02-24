@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -91,10 +91,10 @@ ARNs of the Auto Scaling Groups to grant access to. If this is not specified the
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="k8s_cluster_autoscaler_policy_name">
+<HclListItem name="k8s_cluster_autoscaler_policy_arn">
 <HclListItemDescription>
 
-The name of the IAM policy created with the permissions for the Kubernetes cluster autoscaler.
+The ARN of the IAM policy created with the permissions for the Kubernetes cluster autoscaler.
 
 </HclListItemDescription>
 </HclListItem>
@@ -107,10 +107,10 @@ The AWS ID of the IAM policy created with the permissions for the Kubernetes clu
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="k8s_cluster_autoscaler_policy_arn">
+<HclListItem name="k8s_cluster_autoscaler_policy_name">
 <HclListItemDescription>
 
-The ARN of the IAM policy created with the permissions for the Kubernetes cluster autoscaler.
+The name of the IAM policy created with the permissions for the Kubernetes cluster autoscaler.
 
 </HclListItemDescription>
 </HclListItem>
@@ -127,6 +127,6 @@ The ARN of the IAM policy created with the permissions for the Kubernetes cluste
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9313ea98d72f1902fe8224f84956f52f"
+  "hash": "7efc1603a58cc5b81d5a463196d9564b"
 }
 ##DOCS-SOURCER-END -->

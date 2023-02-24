@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -96,204 +96,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Optional
 
-<HclListItem name="excluded_accounts" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of AWS account identifiers to exclude from the rules.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="maximum_execution_frequency" requirement="optional" type="string">
-<HclListItemDescription>
-
-The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´ rules. See https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;TwentyFour_Hours&quot;"/>
-</HclListItem>
-
-<HclListItem name="enable_iam_password_policy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether the account password policy for IAM users meets the specified requirements.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_require_uppercase_characters" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Require at least one uppercase character in password.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_require_lowercase_characters" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Require at least one lowercase character in password.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_require_symbols" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Require at least one symbol in password.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_require_numbers" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Require at least one number in password.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_minimum_password_length" requirement="optional" type="number">
-<HclListItemDescription>
-
-Password minimum length.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="16"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_password_reuse_prevention" requirement="optional" type="number">
-<HclListItemDescription>
-
-Number of passwords before allowing reuse.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="iam_password_policy_max_password_age" requirement="optional" type="number">
-<HclListItemDescription>
-
-Number of days before password expiration.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="enable_insecure_sg_rules" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="insecure_sg_rules_authorized_tcp_ports" requirement="optional" type="string">
-<HclListItemDescription>
-
-Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are defined by a dash; for example, '443,1020-1025'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="insecure_sg_rules_authorized_udp_ports" requirement="optional" type="string">
-<HclListItemDescription>
-
-Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are defined by a dash; for example, '500,1020-1025'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_s3_bucket_public_read_prohibited" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks that your Amazon S3 buckets do not allow public read access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_s3_bucket_public_write_prohibited" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks that your Amazon S3 buckets do not allow public write access.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_root_account_mfa" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether users of your AWS account require a multi-factor authentication (MFA) device to sign in with root credentials.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_encrypted_volumes" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether the EBS volumes that are in an attached state are encrypted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="encrypted_volumes_kms_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-ID or ARN of the KMS key that is used to encrypt the volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_rds_storage_encrypted" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether storage encryption is enabled for your RDS DB instances.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="rds_storage_encrypted_kms_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-KMS key ID or ARN used to encrypt the storage.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="enable_iam_user_unused_credentials_check" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Checks whether your IAM users have passwords or active access keys that have not been used within the specified number of days.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="iam_user_max_credential_usage_age" requirement="optional" type="number">
-<HclListItemDescription>
-
-Maximum number of days a credential can be not used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
 <HclListItem name="additional_rules" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -345,15 +147,6 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="create_account_rules" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -363,10 +156,10 @@ Set to true to create these rules at the account level or false to create them a
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="enable_global_resource_rules" requirement="optional" type="bool">
+<HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set to true to enable all default config rules that apply to global (non-regional) resources, like IAM roles. This will also control rules included with <a href="#additional_rules"><code>additional_rules</code></a> depending on the attribute, applies_to_global_resources.
+Set to false to have this module skip creating resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the resources should be created or not.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -379,6 +172,213 @@ Create a dependency between the resources in this module to the interpolated val
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="enable_encrypted_volumes" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether the EBS volumes that are in an attached state are encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_global_resource_rules" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable all default config rules that apply to global (non-regional) resources, like IAM roles. This will also control rules included with <a href="#additional_rules"><code>additional_rules</code></a> depending on the attribute, applies_to_global_resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_iam_password_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether the account password policy for IAM users meets the specified requirements.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_iam_user_unused_credentials_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether your IAM users have passwords or active access keys that have not been used within the specified number of days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_insecure_sg_rules" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_rds_storage_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether storage encryption is enabled for your RDS DB instances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_root_account_mfa" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks whether users of your AWS account require a multi-factor authentication (MFA) device to sign in with root credentials.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_bucket_public_read_prohibited" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks that your Amazon S3 buckets do not allow public read access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_s3_bucket_public_write_prohibited" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Checks that your Amazon S3 buckets do not allow public write access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="encrypted_volumes_kms_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ID or ARN of the KMS key that is used to encrypt the volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="excluded_accounts" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of AWS account identifiers to exclude from the rules.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_max_password_age" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of days before password expiration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_minimum_password_length" requirement="optional" type="number">
+<HclListItemDescription>
+
+Password minimum length.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="16"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_password_reuse_prevention" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of passwords before allowing reuse.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_require_lowercase_characters" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Require at least one lowercase character in password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_require_numbers" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Require at least one number in password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_require_symbols" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Require at least one symbol in password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="iam_password_policy_require_uppercase_characters" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Require at least one uppercase character in password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="iam_user_max_credential_usage_age" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum number of days a credential can be not used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="insecure_sg_rules_authorized_tcp_ports" requirement="optional" type="string">
+<HclListItemDescription>
+
+Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are defined by a dash; for example, '443,1020-1025'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="insecure_sg_rules_authorized_udp_ports" requirement="optional" type="string">
+<HclListItemDescription>
+
+Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are defined by a dash; for example, '500,1020-1025'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="maximum_execution_frequency" requirement="optional" type="string">
+<HclListItemDescription>
+
+The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´ rules. See https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.html#maximum_execution_frequency
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;TwentyFour_Hours&quot;"/>
+</HclListItem>
+
+<HclListItem name="rds_storage_encrypted_kms_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+KMS key ID or ARN used to encrypt the storage.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -404,6 +404,6 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "767ab5fb42608d908ae1fbffce04a8af"
+  "hash": "6753eccb48d46b6836afe601531d782c"
 }
 ##DOCS-SOURCER-END -->

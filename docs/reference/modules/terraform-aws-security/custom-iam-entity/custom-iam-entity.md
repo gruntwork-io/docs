@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fcustom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -68,28 +68,7 @@ Should we require that all IAM Users use Multi-Factor Authentication for both AW
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="undefined" requirement="required">
-</HclListItem>
-
 ### Optional
-
-<HclListItem name="should_create_iam_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create an IAM group with the attached policies? (default false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create an IAM role with the attached policies? (default false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
 
 <HclListItem name="assume_role_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -98,15 +77,6 @@ A list of IAM ARNs (users, groups, or roles) that can assume this role. Required
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="assume_role_iam_policy_json" requirement="optional" type="string">
-<HclListItemDescription>
-
-Custom IAM policy JSON for the IAM Role to control assume role settings. Note that when an assume role policy is passed in this manner, <a href="#should_require_mfa"><code>should_require_mfa</code></a> is ignored.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="assume_role_custom_conditions" requirement="optional" type="map(object(…))">
@@ -129,6 +99,42 @@ map(object({
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="assume_role_iam_policy_json" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom IAM policy JSON for the IAM Role to control assume role settings. Note that when an assume role policy is passed in this manner, <a href="#should_require_mfa"><code>should_require_mfa</code></a> is ignored.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the custom inline IAM policy that is attached to the Role/Group when <a href="#iam_policy"><code>iam_policy</code></a> is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM AWS Managed Policy names to attach to the group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_customer_managed_policy_names" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IAM AWS Customer Managed policy names to attach to the group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="iam_group_assume_role_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -145,6 +151,33 @@ The name of an IAM Group to create. Required when <a href="#should_create_iam_gr
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_policy_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of policies (by ARN) to attach to this group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_policy_json" requirement="optional" type="string">
+<HclListItemDescription>
+
+JSON formatted IAM policy that should be attached directly to the IAM role/group.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_policy_json_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the IAM policy that is attached to the Role/Group when <a href="#iam_policy_json"><code>iam_policy_json</code></a> is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;CustomIAMPolicyFromJSON&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_role_name" requirement="optional" type="string">
@@ -165,31 +198,13 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="iam_policy_arns" requirement="optional" type="list(string)">
+<HclListItem name="max_session_duration" requirement="optional" type="number">
 <HclListItemDescription>
 
-A list of policies (by ARN) to attach to this group.
+The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_customer_managed_policy_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM AWS Customer Managed policy names to attach to the group.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM AWS Managed Policy names to attach to the group.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="43200"/>
 </HclListItem>
 
 <HclListItem name="permitted_full_access_services" requirement="optional" type="list(string)">
@@ -201,52 +216,26 @@ A list of AWS services for which the IAM role will receive full permissions. See
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
+<HclListItem name="should_create_iam_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name to use for the custom inline IAM policy that is attached to the Role/Group when <a href="#iam_policy"><code>iam_policy</code></a> is configured.
+Should we create an IAM group with the attached policies? (default false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="iam_policy_json_name" requirement="optional" type="string">
+<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name to use for the IAM policy that is attached to the Role/Group when <a href="#iam_policy_json"><code>iam_policy_json</code></a> is configured.
+Should we create an IAM role with the attached policies? (default false)
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;CustomIAMPolicyFromJSON&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_policy_json" requirement="optional" type="string">
-<HclListItemDescription>
-
-JSON formatted IAM policy that should be attached directly to the IAM role/group.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="max_session_duration" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum allowable session duration, in seconds, for the credentials you get when assuming the IAM roles created by this module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="43200"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="iam_group_name">
-<HclListItemDescription>
-
-The name of the IAM group.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="iam_group_arn">
 <HclListItemDescription>
@@ -256,10 +245,10 @@ The ARN of the IAM group.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="iam_role_name">
+<HclListItem name="iam_group_name">
 <HclListItemDescription>
 
-The name of the IAM role.
+The name of the IAM group.
 
 </HclListItemDescription>
 </HclListItem>
@@ -268,6 +257,14 @@ The name of the IAM role.
 <HclListItemDescription>
 
 The ARN of the IAM role.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="iam_role_name">
+<HclListItemDescription>
+
+The name of the IAM role.
 
 </HclListItemDescription>
 </HclListItem>
@@ -284,6 +281,6 @@ The ARN of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "12bd175c5338a816bbb9a3bf2018941a"
+  "hash": "a407d5629cf4a285048eacc68c12026f"
 }
 ##DOCS-SOURCER-END -->

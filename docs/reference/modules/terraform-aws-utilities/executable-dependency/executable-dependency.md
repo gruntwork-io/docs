@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Fexecutable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -70,18 +70,18 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 
 ### Required
 
-<HclListItem name="executable" requirement="required" type="string">
-<HclListItemDescription>
-
-The executable to look for on the system PATH and in <a href="#install_dir"><code>install_dir</code></a>. If not found, this executable will be downloaded from <a href="#download_url"><code>download_url</code></a>.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="download_url" requirement="required" type="string">
 <HclListItemDescription>
 
 The URL to download the executable from if <a href="#executable"><code>executable</code></a> is not found on the system PATH or in <a href="#install_dir"><code>install_dir</code></a>.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="executable" requirement="required" type="string">
+<HclListItemDescription>
+
+The executable to look for on the system PATH and in <a href="#install_dir"><code>install_dir</code></a>. If not found, this executable will be downloaded from <a href="#download_url"><code>download_url</code></a>.
 
 </HclListItemDescription>
 </HclListItem>
@@ -97,15 +97,6 @@ If set to true, append the operating system and architecture to the URL. E.g., A
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="install_dir" requirement="optional" type="string">
-<HclListItemDescription>
-
-The folder to copy the executable to after downloading it from <a href="#download_url"><code>download_url</code></a>. If set to null (the default), the executable will be copied to a folder in the system temp directory. The folder will be named based on an md5 hash of <a href="#download_url"><code>download_url</code></a>, so for each <a href="#download_url"><code>download_url</code></a>, the executable will only have to be downloaded once.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -113,6 +104,15 @@ Set to false to have disable this module, so it does not try to download the exe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="install_dir" requirement="optional" type="string">
+<HclListItemDescription>
+
+The folder to copy the executable to after downloading it from <a href="#download_url"><code>download_url</code></a>. If set to null (the default), the executable will be copied to a folder in the system temp directory. The folder will be named based on an md5 hash of <a href="#download_url"><code>download_url</code></a>, so for each <a href="#download_url"><code>download_url</code></a>, the executable will only have to be downloaded once.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -138,6 +138,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dae3432affa8411c22d0923c263c2c80"
+  "hash": "1d3dc3e8c6a976544baf75df64669796"
 }
 ##DOCS-SOURCER-END -->

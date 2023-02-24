@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fredshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -78,34 +78,18 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Required
 
-<HclListItem name="name" requirement="required" type="string">
-<HclListItemDescription>
-
-The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="vpc_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The id of the VPC in which this DB should be deployed.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
 The instance type to use for the db (e.g. dc2.large)
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens.
 
 </HclListItemDescription>
 </HclListItem>
@@ -118,66 +102,64 @@ The number of nodes in the cluster
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="subnet_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids where the database should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The id of the VPC in which this DB should be deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
 ### Optional
 
-<HclListItem name="db_name" requirement="optional" type="string">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+A list of CIDR-formatted IP address ranges that can connect to this DB. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC. This is ignored if create_subnet_group=false.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;dev&quot;"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="master_username" requirement="optional" type="string">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+A list of Security Groups that can connect to this DB.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="master_password" requirement="optional" type="string">
+<HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="port" requirement="optional" type="number">
-<HclListItemDescription>
-
-The port the DB will listen on (e.g. 3306)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5439"/>
-</HclListItem>
-
-<HclListItem name="create_subnet_group" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be ignored (allow_connections_from_cidr_blocks)
+Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never automatically applied.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cluster_subnet_group_name" requirement="optional" type="string">
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The name of the cluster_subnet_group that is created, or an existing one to use if cluster_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
+Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version for more details.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cluster_subnet_group_description" requirement="optional" type="string">
+<HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-The description of the cluster_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
+The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -192,51 +174,6 @@ The name of the aws_db_security_group that is created. Defaults to <a href="#nam
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="aws_db_security_group_description" requirement="optional" type="string">
-<HclListItemDescription>
-
-The description of the aws_db_security_group that is created. Defaults to 'Security group for the <a href="#name"><code>name</code></a> DB' if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="final_snapshot_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the final_snapshot_identifier. Defaults to <a href="#name"><code>name</code></a>-final-snapshot if not specified.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="parameter_group_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of a Redshift parameter group to associate.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="publicly_accessible" requirement="optional" type="bool">
-<HclListItemDescription>
-
-WARNING: - In nearly all cases a database should NOT be publicly accessible. Only set this to true if you want the database open to the internet.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="storage_encrypted" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Specifies whether the DB instance is encrypted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -246,67 +183,40 @@ How many days to keep backup snapshots around before cleaning them up. Must be 1
 <HclListItemDefaultValue defaultValue="21"/>
 </HclListItem>
 
-<HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
+<HclListItem name="cluster_subnet_group_description" requirement="optional" type="string">
 <HclListItemDescription>
 
-Determines whether a final DB snapshot is created before the DB instance is deleted. Be very careful setting this to true; if you do, and you delete this DB instance, you will not have any backups of the data!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="maintenance_window" requirement="optional" type="string">
-<HclListItemDescription>
-
-The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
-</HclListItem>
-
-<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. If set to true, you should set <a href="#engine_version"><code>engine_version</code></a> to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7 and not 5.7.11); otherwise, you'll get Terraform state drift. See https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="allow_major_version_upgrade" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be permitted. Note that these updates must always be manually performed and will never automatically applied.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of Security Groups that can connect to this DB.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of CIDR-formatted IP address ranges that can connect to this DB. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC. This is ignored if create_subnet_group=false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
+The description of the cluster_subnet_group that is created. Defaults to 'Subnet group for the <a href="#name"><code>name</code></a> DB' if not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_subnet_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the cluster_subnet_group that is created, or an existing one to use if cluster_subnet_group is false. Defaults to <a href="#name"><code>name</code></a> if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="create_subnet_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be ignored (allow_connections_from_cidr_blocks)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB creating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;75m&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -318,28 +228,37 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="snapshot_identifier" requirement="optional" type="string">
+<HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-If non-null, the Redshift cluster will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the Redshift console, e.g: rs:production-2015-06-26-06-05.
+The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;dev&quot;"/>
 </HclListItem>
 
-<HclListItem name="snapshot_cluster_identifier" requirement="optional" type="string">
+<HclListItem name="deleting_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
-If non-null, the name of the cluster the source snapshot was created from.
+Timeout for DB deleting
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
 </HclListItem>
 
-<HclListItem name="snapshot_owner_account" requirement="optional" type="string">
+<HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Required if you are restoring a snapshot you do not own, optional if you own the snapshot. The AWS customer account used to create or copy the snapshot.
+If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic between the cluster and data repositories to go through your VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="final_snapshot_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the final_snapshot_identifier. Defaults to <a href="#name"><code>name</code></a>-final-snapshot if not specified.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -354,13 +273,13 @@ A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be as
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
+<HclListItem name="kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic between the cluster and data repositories to go through your VPC.
+The ARN of a KMS key that should be used to encrypt data on disk. Only used if <a href="#storage_encrypted"><code>storage_encrypted</code></a> is true. If you leave this blank, the default RDS KMS key for the account will be used.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="logging" requirement="optional" type="object(…)">
@@ -393,13 +312,103 @@ object({
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItem name="maintenance_window" requirement="optional" type="string">
 <HclListItemDescription>
 
-Timeout for DB creating
+The weekly day and time range during which system maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;75m&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="master_password" requirement="optional" type="string">
+<HclListItemDescription>
+
+The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_username" requirement="optional" type="string">
+<HclListItemDescription>
+
+The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a Redshift parameter group to associate.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The port the DB will listen on (e.g. 3306)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5439"/>
+</HclListItem>
+
+<HclListItem name="publicly_accessible" requirement="optional" type="bool">
+<HclListItemDescription>
+
+WARNING: - In nearly all cases a database should NOT be publicly accessible. Only set this to true if you want the database open to the internet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Determines whether a final DB snapshot is created before the DB instance is deleted. Be very careful setting this to true; if you do, and you delete this DB instance, you will not have any backups of the data!
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="snapshot_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+If non-null, the name of the cluster the source snapshot was created from.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="snapshot_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+If non-null, the Redshift cluster will be restored from the given Snapshot ID. This is the Snapshot ID you'd find in the Redshift console, e.g: rs:production-2015-06-26-06-05.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="snapshot_owner_account" requirement="optional" type="string">
+<HclListItemDescription>
+
+Required if you are restoring a snapshot you do not own, optional if you own the snapshot. The AWS customer account used to create or copy the snapshot.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="storage_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether the DB instance is encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="updating_timeout" requirement="optional" type="string">
@@ -411,22 +420,21 @@ Timeout for DB updating
 <HclListItemDefaultValue defaultValue="&quot;75m&quot;"/>
 </HclListItem>
 
-<HclListItem name="deleting_timeout" requirement="optional" type="string">
-<HclListItemDescription>
-
-Timeout for DB deleting
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="endpoint">
+<HclListItem name="arn">
 <HclListItemDescription>
 
-The cluter's connection endpoint
+ Amazon Resource Name (ARN) of cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="db_name">
+<HclListItemDescription>
+
+The name of the Database in the cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -439,6 +447,14 @@ The DNS name of the cluster
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="endpoint">
+<HclListItemDescription>
+
+The cluter's connection endpoint
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="id">
 <HclListItemDescription>
 
@@ -447,10 +463,18 @@ The Redshift Cluster ID
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="arn">
+<HclListItem name="name">
 <HclListItemDescription>
 
- Amazon Resource Name (ARN) of cluster
+The name of the Redshift cluster
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="parameter_group_name">
+<HclListItemDescription>
+
+The name of the parameter group associated with this cluster
 
 </HclListItemDescription>
 </HclListItem>
@@ -471,30 +495,6 @@ The ID of the Security Group that controls access to the cluster
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="name">
-<HclListItemDescription>
-
-The name of the Redshift cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="db_name">
-<HclListItemDescription>
-
-The name of the Database in the cluster
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="parameter_group_name">
-<HclListItemDescription>
-
-The name of the parameter group associated with this cluster
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
@@ -507,6 +507,6 @@ The name of the parameter group associated with this cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fredshift%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1fe493ac654da2fe98c22cb5da0db19d"
+  "hash": "807ab86d4c9400626ccf52b1fedcad66"
 }
 ##DOCS-SOURCER-END -->

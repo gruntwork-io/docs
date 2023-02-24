@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fpersistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -222,6 +222,6 @@ detaching the device.
     "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "08e222d56cbcf94bfe4c1110318ed837"
+  "hash": "10435579c5fe8d7a1a917d5aad4fb68e"
 }
 ##DOCS-SOURCER-END -->

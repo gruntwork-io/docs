@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -110,102 +110,6 @@ for more information.
 <TabItem value="inputs" label="Inputs" default>
 
 ### Required
-
-<HclListItem name="docker_image_builder" requirement="required" type="object(…)">
-<HclListItemDescription>
-
-Configuration options for the docker-image-builder container of the ECS deploy runner stack. This container will be used for building docker images in the CI/CD pipeline. Set to `null` to disable this container.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # Docker repo and image tag to use as the container image for the docker image builder. This should be based on the
-    # Dockerfile in ecs-deploy-runner/docker/kaniko.
-    container_image = object({
-      docker_image = string
-      docker_tag   = string
-    })
-
-    # List of repositories that are allowed to build docker images. These should be the https git URL of the repository
-    # (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
-    allowed_repos = list(string)
-
-    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
-    # (e.g., "https://github\.com/gruntwork-io/.+" ).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
-    allowed_repos_regex = list(string)
-
-    # Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
-    # inject as that variable. Note that these environment variables will be available to the docker build. For the
-    # docker image builder, the following environment variables are recommended:
-    # - GIT_USERNAME : Username to use when cloning https based git repositories. Set as a Github personal access token
-    #                  to clone private repos from github.
-    # - GIT_PASSWORD : Password to use when cloning https based git repositories.
-    # - GITHUB_OAUTH_TOKEN : Personal access token for use with gruntwork-install.
-    secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
-    environment_vars = map(string)
-  })
-```
-
-</HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-     List of repositories that are allowed to build docker images. These should be the https git URL of the repository
-     (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
-     (e.g., "https://github\.com/gruntwork-io/.+" ).
-     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
-     inject as that variable. Note that these environment variables will be available to the docker build. For the
-     docker image builder, the following environment variables are recommended:
-     - GIT_USERNAME : Username to use when cloning https based git repositories. Set as a Github personal access token
-                      to clone private repos from github.
-     - GIT_PASSWORD : Password to use when cloning https based git repositories.
-     - GITHUB_OAUTH_TOKEN : Personal access token for use with gruntwork-install.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Map of environment variable names to values share with the container during runtime.
-     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
 
 <HclListItem name="ami_builder" requirement="required" type="object(…)">
 <HclListItemDescription>
@@ -347,41 +251,39 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="terraform_planner" requirement="required" type="object(…)">
+<HclListItem name="docker_image_builder" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
+Configuration options for the docker-image-builder container of the ECS deploy runner stack. This container will be used for building docker images in the CI/CD pipeline. Set to `null` to disable this container.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
 object({
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in ecs-deploy-runner/docker/deploy-runner.
+    # Docker repo and image tag to use as the container image for the docker image builder. This should be based on the
+    # Dockerfile in ecs-deploy-runner/docker/kaniko.
     container_image = object({
       docker_image = string
       docker_tag   = string
     })
 
-    # List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
-    # git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option such
-    # that users of the pipeline do not need to specify the repo.
-    infrastructure_live_repositories = list(string)
+    # List of repositories that are allowed to build docker images. These should be the https git URL of the repository
+    # (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
+    allowed_repos = list(string)
 
-    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
+    # (e.g., "https://github\.com/gruntwork-io/.+" ).
     # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
-    infrastructure_live_repositories_regex = list(string)
+    allowed_repos_regex = list(string)
 
     # Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
-    # inject as that variable. Note that these environment variables will be available to the
-    # infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
-    # - DEPLOY_SCRIPT_SSH_PRIVATE_KEY : The raw contents of a SSH private key to use when accessing remote git
-    #                                   repositories containing live infrastructure configuration.
+    # inject as that variable. Note that these environment variables will be available to the docker build. For the
+    # docker image builder, the following environment variables are recommended:
+    # - GIT_USERNAME : Username to use when cloning https based git repositories. Set as a Github personal access token
+    #                  to clone private repos from github.
+    # - GIT_PASSWORD : Password to use when cloning https based git repositories.
+    # - GITHUB_OAUTH_TOKEN : Personal access token for use with gruntwork-install.
     secrets_manager_env_vars = map(string)
 
     # Map of environment variable names to values share with the container during runtime.
@@ -397,11 +299,8 @@ object({
 
 ```hcl
 
-     List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
-     configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
-     git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-     NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option such
-     that users of the pipeline do not need to specify the repo.
+     List of repositories that are allowed to build docker images. These should be the https git URL of the repository
+     (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
 
 ```
 </details>
@@ -411,9 +310,8 @@ object({
 
 ```hcl
 
-     List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-     configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-     URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
+     (e.g., "https://github\.com/gruntwork-io/.+" ).
      Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
 
 ```
@@ -425,10 +323,12 @@ object({
 ```hcl
 
      Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
-     inject as that variable. Note that these environment variables will be available to the
-     infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
-     - DEPLOY_SCRIPT_SSH_PRIVATE_KEY : The raw contents of a SSH private key to use when accessing remote git
-                                       repositories containing live infrastructure configuration.
+     inject as that variable. Note that these environment variables will be available to the docker build. For the
+     docker image builder, the following environment variables are recommended:
+     - GIT_USERNAME : Username to use when cloning https based git repositories. Set as a Github personal access token
+                      to clone private repos from github.
+     - GIT_PASSWORD : Password to use when cloning https based git repositories.
+     - GITHUB_OAUTH_TOKEN : Personal access token for use with gruntwork-install.
 
 ```
 </details>
@@ -649,7 +549,118 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="terraform_planner" requirement="required" type="object(…)">
+<HclListItemDescription>
+
+Configuration options for the terraform-planner container of the ECS deploy runner stack. This container will be used for running infrastructure plan (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt. Set to `null` to disable this container.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
+    # Dockerfile in ecs-deploy-runner/docker/deploy-runner.
+    container_image = object({
+      docker_image = string
+      docker_tag   = string
+    })
+
+    # List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
+    # configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
+    # git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option such
+    # that users of the pipeline do not need to specify the repo.
+    infrastructure_live_repositories = list(string)
+
+    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
+    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
+    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+    infrastructure_live_repositories_regex = list(string)
+
+    # Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
+    # inject as that variable. Note that these environment variables will be available to the
+    # infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
+    # - DEPLOY_SCRIPT_SSH_PRIVATE_KEY : The raw contents of a SSH private key to use when accessing remote git
+    #                                   repositories containing live infrastructure configuration.
+    secrets_manager_env_vars = map(string)
+
+    # Map of environment variable names to values share with the container during runtime.
+    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+    environment_vars = map(string)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+     List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
+     git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option such
+     that users of the pipeline do not need to specify the repo.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
+     URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of key value pairs where keys are environment variable names and values are ARNs of secrets manager entries to
+     inject as that variable. Note that these environment variables will be available to the
+     infrastructure-deploy-script. For the terraform planner, the following environment variables are recommended:
+     - DEPLOY_SCRIPT_SSH_PRIVATE_KEY : The raw contents of a SSH private key to use when accessing remote git
+                                       repositories containing live infrastructure configuration.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 ### Optional
+
+<HclListItem name="docker_image_builder_hardcoded_args" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Unlike hardcoded_options, this is used for hardcoded positional args and will always be passed in at the end of the args list.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;--idempotent&quot;
+]"/>
+</HclListItem>
 
 <HclListItem name="docker_image_builder_hardcoded_options" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
@@ -665,17 +676,6 @@ map(list(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="docker_image_builder_hardcoded_args" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Unlike hardcoded_options, this is used for hardcoded positional args and will always be passed in at the end of the args list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;--idempotent&quot;
-]"/>
 </HclListItem>
 
 </TabItem>
@@ -701,6 +701,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3674c20aeb8667a125aeeccc0dfe4e22"
+  "hash": "cbd3a3c2fc88eb97f60a0bfdcaf111eb"
 }
 ##DOCS-SOURCER-END -->

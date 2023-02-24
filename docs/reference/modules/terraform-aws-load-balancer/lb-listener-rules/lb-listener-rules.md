@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules%2Flb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -132,6 +132,138 @@ list(map(any))
    - arn      string: The ARN of the target group.
    OPTIONAL:
    - weight   number: The weight. The range is 0 to 999. Only applies if len(target_group_arns) > 1.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="fixed_response_rules" requirement="optional" type="map(any)">
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+
+   Example:
+    {
+      "health-path" = {
+        priority     = 130
+  
+        content_type = "text/plain"
+        message_body = "HEALTHY"
+        status_code  = "200"
+  
+      Authentication OIDC:
+        authenticate_oidc = {
+          authorization_endpoint = "https://myaccount.oktapreview.com/oauth2/v1/authorize"
+          client_id              = "0123456789aBcDeFgHiJ"
+          client_secret          = "clientsecret"
+          issuer                 = "https://myaccount.oktapreview.com"
+          token_endpoint         = "https://myaccount.oktapreview.com/oauth2/v1/token"
+          user_info_endpoint     = "https://myaccount.oktapreview.com/oauth2/v1/userinfo"
+        }
+  
+      Conditions:
+      You need to provide *at least ONE* per set of rules. It should contain one of the following:
+        host_headers         = ["foo.com", "www.foo.com"]
+        path_patterns        = ["/health"]
+        source_ips           = ["127.0.0.1"]
+        http_request_methods = ["GET"]
+        query_strings = [
+          {
+            key   = "foo"   Key is optional, this can be ommited.
+            value = "bar"
+          }, {
+            value = "hello"
+          }
+        ]
+      }
+    }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More details">
+<details>
+
+
+```hcl
+
+   Each entry in the map supports the following attributes:
+  
+   REQUIRED
+   - content_type string        : The content type. Valid values are `text/plain`, `text/css`, `text/html`,
+                                  `application/javascript` and `application/json`.
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - priority          number       : A value between 1 and 50000. Leaving it unset will automatically set the rule with
+                                      the next available priority after currently existing highest rule. This value
+                                      must be unique for each listener.
+   - listener_ports    list(string) : A list of ports to use to lookup the LB listener from var.default_listener_arns.
+                                      Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
+                                      if omitted.
+   - listener_arns     list(string) : A list of listener ARNs to use for applying the rule. Conflicts with
+                                      listener_ports attribute.
+   - message_body      string       : The message body.
+   - status_code       string       : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
+   - authenticate_oidc map(object)  : OIDC authentication configuration. Only applies, if not null.
+  
+   Wildcard characters:
+   * - matches 0 or more characters
+   ? - matches exactly 1 character
+   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
+  
+   Conditions (need to specify at least one):
+   - path_patterns        list(string)     : A list of paths to match (note that "/foo" is different than "/foo/").
+                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
+                                              It is compared to the path of the URL, not it's query string. To compare
+                                              against query string, use the `query_strings` condition.
+   - host_headers         list(string)     : A list of host header patterns to match. Comparison is case insensitive.
+                                              Wildcard characters supported: * and ?.
+   - source_ips           list(string)     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
+                                              addresses. Wildcards are not supported. Condition is not satisfied by the
+                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
+   - query_strings        list(map(string)): Query string pairs or values to match. Comparison is case insensitive.
+                                              Wildcard characters supported: * and ?. Only one pair needs to match for
+                                              the condition to be satisfied.
+   - http_request_methods list(string)     : A list of HTTP request methods or verbs to match. Only allowed characters are
+                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
+                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
+                                              same way because the response to a HEAD request may be cached.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Authenticate OIDC Blocks:
+   authenticate_oidc:
+   - authorization_endpoint              string     : (Required) The authorization endpoint of the IdP.
+   - client_id                           string     : (Required) The OAuth 2.0 client identifier.
+   - client_secret                       string     : (Required) The OAuth 2.0 client secret.
+   - issuer                              string     : (Required) The OIDC issuer identifier of the IdP.
+   - token_endpoint                      string     : (Required) The token endpoint of the IdP.
+   - user_info_endpoint                  string     : (Required) The user info endpoint of the IdP.
+   - authentication_request_extra_params map(string): (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string     : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
 
 ```
 </details>
@@ -436,153 +568,21 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="fixed_response_rules" requirement="optional" type="map(any)">
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example:
-    {
-      "health-path" = {
-        priority     = 130
-  
-        content_type = "text/plain"
-        message_body = "HEALTHY"
-        status_code  = "200"
-  
-      Authentication OIDC:
-        authenticate_oidc = {
-          authorization_endpoint = "https://myaccount.oktapreview.com/oauth2/v1/authorize"
-          client_id              = "0123456789aBcDeFgHiJ"
-          client_secret          = "clientsecret"
-          issuer                 = "https://myaccount.oktapreview.com"
-          token_endpoint         = "https://myaccount.oktapreview.com/oauth2/v1/token"
-          user_info_endpoint     = "https://myaccount.oktapreview.com/oauth2/v1/userinfo"
-        }
-  
-      Conditions:
-      You need to provide *at least ONE* per set of rules. It should contain one of the following:
-        host_headers         = ["foo.com", "www.foo.com"]
-        path_patterns        = ["/health"]
-        source_ips           = ["127.0.0.1"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-            key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-        ]
-      }
-    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   REQUIRED
-   - content_type string        : The content type. Valid values are `text/plain`, `text/css`, `text/html`,
-                                  `application/javascript` and `application/json`.
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority          number       : A value between 1 and 50000. Leaving it unset will automatically set the rule with
-                                      the next available priority after currently existing highest rule. This value
-                                      must be unique for each listener.
-   - listener_ports    list(string) : A list of ports to use to lookup the LB listener from var.default_listener_arns.
-                                      Conflicts with listener_arns attribute. Defaults to var.default_listener_ports
-                                      if omitted.
-   - listener_arns     list(string) : A list of listener ARNs to use for applying the rule. Conflicts with
-                                      listener_ports attribute.
-   - message_body      string       : The message body.
-   - status_code       string       : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-   - authenticate_oidc map(object)  : OIDC authentication configuration. Only applies, if not null.
-  
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
-   Conditions (need to specify at least one):
-   - path_patterns        list(string)     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         list(string)     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           list(string)     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        list(map(string)): Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods list(string)     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Authenticate OIDC Blocks:
-   authenticate_oidc:
-   - authorization_endpoint              string     : (Required) The authorization endpoint of the IdP.
-   - client_id                           string     : (Required) The OAuth 2.0 client identifier.
-   - client_secret                       string     : (Required) The OAuth 2.0 client secret.
-   - issuer                              string     : (Required) The OIDC issuer identifier of the IdP.
-   - token_endpoint                      string     : (Required) The token endpoint of the IdP.
-   - user_info_endpoint                  string     : (Required) The user info endpoint of the IdP.
-   - authentication_request_extra_params map(string): (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-   - on_unauthenticated_request          string     : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
-   - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
-   - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
-   - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
-
-<HclListItem name="lb_listener_rule_forward_arns">
-<HclListItemDescription>
-
-The ARNs of the rules of type forward. The key is the same key of the rule from the `redirect_rules` variable.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="lb_listener_rule_fixed_response_arns">
 <HclListItemDescription>
 
 The ARNs of the rules of type fixed-response. The key is the same key of the rule from the `redirect_rules` variable.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="lb_listener_rule_forward_arns">
+<HclListItemDescription>
+
+The ARNs of the rules of type forward. The key is the same key of the rule from the `redirect_rules` variable.
 
 </HclListItemDescription>
 </HclListItem>
@@ -607,6 +607,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d087d36ac5b7c7f53deb55c2d057b7d9"
+  "hash": "4bbc63ea31b0a5f0c8adadeeb33ca3a5"
 }
 ##DOCS-SOURCER-END -->

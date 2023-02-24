@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules%2Fnlb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -31,6 +31,6 @@ For information on why the module was removed, refer to the discussion in [PR
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e6546b1a954d9d4aa8ffd4e11ef3234"
+  "hash": "7563d1e52937cf584e0b809bed44dbb9"
 }
 ##DOCS-SOURCER-END -->

@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Flogstash-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -75,14 +75,6 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ### Required
 
-<HclListItem name="security_group_id" requirement="required" type="string">
-<HclListItemDescription>
-
-The ID of the Security Group to which all the rules should be attached.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="beats_port" requirement="required" type="number">
 <HclListItemDescription>
 
@@ -95,6 +87,14 @@ The port to use for BEATS requests. E.g. Filebeat
 <HclListItemDescription>
 
 The port to use for CollectD requests.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="security_group_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the Security Group to which all the rules should be attached.
 
 </HclListItemDescription>
 </HclListItem>
@@ -119,15 +119,6 @@ The list of Security Group IDs from which to allow connections to the beats_port
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="num_beats_port_security_groups" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of security group IDs in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="0"/>
-</HclListItem>
-
 <HclListItem name="collectd_port_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -144,6 +135,15 @@ The list of Security Group IDs from which to allow connections to the collectd_p
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="num_beats_port_security_groups" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of security group IDs in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>. We should be able to compute this automatically, but due to a Terraform limitation, if there are any dynamic resources in <a href="#beats_port_security_groups"><code>beats_port_security_groups</code></a>, then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="num_collectd_port_security_groups" requirement="optional" type="number">
@@ -173,6 +173,6 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f73e4d6ad270b1a4cf8755d165f133b7"
+  "hash": "7a98715b99093f84c34a0b210980e821"
 }
 ##DOCS-SOURCER-END -->

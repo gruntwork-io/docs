@@ -6,7 +6,7 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem} from '../../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Fkibana-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -72,6 +72,6 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5c0aae7ba66113708ff1f9da55d98ff"
+  "hash": "a447a8cd8f078fc6b235ab53d4013b68"
 }
 ##DOCS-SOURCER-END -->
