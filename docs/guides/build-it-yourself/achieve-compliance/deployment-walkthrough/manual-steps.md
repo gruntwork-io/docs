@@ -73,7 +73,7 @@ You can also configure an automated system integration if you have a third party
 Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
-## 6. Add existing buckets to a new Macie classification job.
+## 6. Add existing buckets to a new Macie classification job
 
 Macie is a new AWS service that uses machine learning (ML) and pattern matching to discover and help protect your sensitive
 data. The Landing Zone solution already configured Macie in all deployed accounts. The last step is to specify the S3 buckets to be analyzed.
@@ -138,6 +138,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ce2b91bfd56b1180d1a9593d9d670721"
+  "hash": "2a04133c19a941e49653787d6877206c"
 }
 ##DOCS-SOURCER-END -->
