@@ -73,28 +73,24 @@ You can also configure an automated system integration if you have a third party
 Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
-## 6. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
+## 6. Add existing buckets to a new Macie classification job.
 
 Macie is a new AWS service that uses machine learning (ML) and pattern matching to discover and help protect your sensitive
-data. To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
-you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
-all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
-need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. This list of buckets needs to be maintained in the future as new buckets are created in the account. Please read the
-[documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
-for this variable in order to understand how to structure the list of buckets per region.
+data. The Landing Zone solution already configured Macie in all deployed accounts. The last step is to setup S3 buckets to be analyzed.
+To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. There is a bug
+in the [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws/issues/20726), where the `aws_macie2_classification_job`
+can't be updated. Therefore, we ask you to manually create a new Classification Job and add all desired buckets.
 
-On each account, you can get a full list of existing S3 buckets using the AWS CLI:
+:::
 
-```
-aws s3 ls
-```
+If you are using Steampipe for checking your Compliance status, you should create the job by selecting a list of buckets,
+and **not** by bucket criterea. Steampipe fetchs the bucket list that's being analyzed by Macie, so if you specify critereas
+for the job, Steampipe will not match that the bucket is indeed being analyzed.
 
-For each bucket, the region can also be retrieved using the AWS CLI:
+:::
 
-
-```
-aws s3api get-bucket-location --bucket <BUCKET_NAME>
-```
+You can use either the [AWS Console](https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-create.html), or the
+[AWS CLI](https://docs.aws.amazon.com/de_de/cli/latest/reference/macie2/create-classification-job.html#create-classification-job) to make the change.
 
 
 ## 7. Enable MFA Delete for all S3 buckets
@@ -141,6 +137,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "402d73f62a8fa3b89d18d1decb3ebeba"
+  "hash": "55c33e942915fa7a73d6a2c74329fa04"
 }
 ##DOCS-SOURCER-END -->
