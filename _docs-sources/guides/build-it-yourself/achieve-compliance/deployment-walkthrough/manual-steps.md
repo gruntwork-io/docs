@@ -81,7 +81,7 @@ To set up Macie to analyze the desired S3 buckets, you’ll need to create a **M
 in the [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws/issues/20726), where the `aws_macie2_classification_job`
 can't be updated. Therefore, we ask you to manually create a new Classification Job and add all desired buckets.
 
-:::
+:::note
 
 If you are using Steampipe for checking your Compliance status, you should create the job by selecting a list of buckets,
 and **not** by bucket criterea. Steampipe fetchs the bucket list that's being analyzed by Macie, so if you specify critereas
