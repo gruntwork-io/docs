@@ -5,7 +5,9 @@ sidebar_label: Update references to the Gruntwork Infrastructure as Code Library
 # Step 2: Update references to the Gruntwork Infrastructure as Code Library
 
 To update to the CIS AWS Foundations Benchmark v1.5.0, you need to update your references to the Gruntwork
-Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library modules for compatibility with the new version of the benchmark. As a customer, you need to update to the correct versions of the Gruntwork library to pick up the changes necessary for your infrastructure to be compatible.
+Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library
+modules for compatibility with the new version of the benchmark. As a customer, you need to update to the correct
+versions of the Gruntwork library to pick up the changes necessary for your infrastructure to be compatible.
 
 The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
 compatible with CIS AWS v1.5.0:
@@ -62,7 +64,8 @@ compatible with CIS AWS v1.5.0:
 
 ## 2A Updating with Patcher
 
-Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct versions of the Gruntwork library using a tool we call Patcher.
+Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct
+versions of the Gruntwork library using a tool we call Patcher.
 
 <a id="patcher-compatibility-table" class="snap-top"></a>
 
@@ -137,15 +140,24 @@ Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an a
   </tbody>
 </table>
 
-If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
+If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to
+safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
 
-Included in those more than 200 updates are 4 (@@CHECK NEEDED) breaking changes that need to be applied to your infrastructure. These breaking changes include migrating to our new CIS RDS module. Patcher applies a series of patches modify your infrastructure code to fix 3 of these breaking changes. The manual migration for the last breaking change is included in this guide.
+Included in those more than 200 updates are 4 (@@CHECK NEEDED) breaking changes that need to be applied to your
+infrastructure. These breaking changes include migrating to our new CIS RDS module. Patcher applies a series of patches
+modify your infrastructure code to fix 3 of these breaking changes. The manual migration for the last breaking change
+is included in this guide.
 
-The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0 to remote server administration ports", Patcher also includes a patch that configures terragrunt to scan your infrastructure and enforce this requirement.
+The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0
+to remote server administration ports", Patcher also includes a patch that configures terragrunt to scan your
+infrastructure and enforce this requirement.
 
 ### 2A.1 Installing Patcher
 
 @@ FIX ME
+```
+TODO
+```
 
 ### 2A.2 Running Patcher
 
