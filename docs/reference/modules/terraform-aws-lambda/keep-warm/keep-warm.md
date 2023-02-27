@@ -73,10 +73,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   default = {
+default = {
      "arn:aws:lambda:us-east-1:123456789011:function:my-function-foo" = {}
   
      "arn:aws:lambda:us-east-1:123456789011:function:my-function-bar" = {
@@ -190,6 +187,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59b9e532c4d6b0625cc84063dd5c0518"
+  "hash": "469e346e23e5e308125a9678981c84b3"
 }
 ##DOCS-SOURCER-END -->

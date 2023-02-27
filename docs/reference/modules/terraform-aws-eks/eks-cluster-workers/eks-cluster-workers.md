@@ -515,9 +515,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   [
+[
      {
        instance_type = "t3.micro"
        weighted_capacity = 2
@@ -679,9 +677,7 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 
 
 ```hcl
-
-   Example:
-     {
+{
        key1 = "value1"
        key2 = "value2"
      }
@@ -935,6 +931,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b8c0f448f254e0c9876527dd17f24b6"
+  "hash": "9290d706889698d420ed7caaa60b5d6a"
 }
 ##DOCS-SOURCER-END -->

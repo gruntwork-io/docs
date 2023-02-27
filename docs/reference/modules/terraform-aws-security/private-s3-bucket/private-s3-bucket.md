@@ -173,10 +173,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -234,10 +231,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   [
+[
      {
        allowed_origins = ["*"]
        allowed_methods = ["GET", "HEAD"]
@@ -470,10 +464,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -627,6 +618,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5f09b54ad7575d9897eaa1242737a3f1"
+  "hash": "f77c7de6c55e2a949655b68d799c8943"
 }
 ##DOCS-SOURCER-END -->

@@ -287,9 +287,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        type      = "standard"
        size      = 100
@@ -420,10 +418,7 @@ A map of key value pairs that represent custom tags to propagate to the resource
 
 
 ```hcl
-
-   Example:
-  
-   default = {
+default = {
      foo = "bar"
    }
 
@@ -466,6 +461,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e7e9d3a79f368a82fb23509f07931d85"
+  "hash": "4d47541fe42542b8ac56bdca9634bbd4"
 }
 ##DOCS-SOURCER-END -->

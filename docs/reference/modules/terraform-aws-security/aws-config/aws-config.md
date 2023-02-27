@@ -319,10 +319,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -514,6 +511,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b9464bdd322b3d2e8c6b7e43b195c758"
+  "hash": "f9618fb5b7baa8489a56e28d93f779b5"
 }
 ##DOCS-SOURCER-END -->

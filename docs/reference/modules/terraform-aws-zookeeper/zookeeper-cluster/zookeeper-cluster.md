@@ -513,9 +513,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-
-   Example:
-   enabled_metrics = [
+enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -768,6 +766,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "37a58fe54ae6b1238e17b0c3784647d6"
+  "hash": "bc750b48c447ab9ff889f245aaad176b"
 }
 ##DOCS-SOURCER-END -->

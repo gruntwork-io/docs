@@ -225,9 +225,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   capacity_provider_strategy = [
+capacity_provider_strategy = [
       {
         capacity_provider = "FARGATE"
         weight            = 1
@@ -529,9 +527,7 @@ map(object({
 
 
 ```hcl
-
-   Example:
-   efs_volumes = {
+efs_volumes = {
      jenkins = {
        file_system_id          = "fs-a1bc234d"
        container_path          = "/efs"
@@ -835,9 +831,7 @@ object({
 
 
 ```hcl
-
-   Example:
-   proxy_configuration = {
+proxy_configuration = {
      type           = "APPMESH"
      container_name = "applicationContainerName"
      properties = {
@@ -975,9 +969,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   volumes = {
+volumes = {
      datadog = {
        host_path = "/var/run/datadog"
      }
@@ -1070,6 +1062,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "71a4e3b01a7eaa6cbf9e29ff8559b901"
+  "hash": "118596c409fb0e46d632d135f53251ad"
 }
 ##DOCS-SOURCER-END -->

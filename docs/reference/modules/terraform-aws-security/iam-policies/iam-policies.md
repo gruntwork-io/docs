@@ -287,9 +287,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed to access this a
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -321,9 +319,7 @@ A list of IAM Identity Provider ARNs that access to this account will be delegat
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:saml-provider/Google"
    ]
 
@@ -353,9 +349,7 @@ map(list(string))
 
 
 ```hcl
-
-   Example:
-   default = {
+default = {
      group1 = ["arn:aws:iam::123445678910:role/mgmt-full-access"],
      group2 = ["arn:aws:iam::9876543210:role/prod-read-only-access"],
      group3 = [
@@ -383,9 +377,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed to assume the au
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:role/jenkins"
    ]
 
@@ -557,6 +549,6 @@ If set to true, all the Policies created by this module that are used as Trust P
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97024b3e188e3adfbed663136235f0ed"
+  "hash": "5c806404e23508d0380eb11928bfd6dd"
 }
 ##DOCS-SOURCER-END -->

@@ -523,9 +523,7 @@ A map of custom tags to apply to the EKS add-ons. The key is the tag name and th
 
 
 ```hcl
-
-   Example:
-     {
+{
        key1 = "value1"
        key2 = "value2"
      }
@@ -549,9 +547,7 @@ A map of custom tags to apply to the EKS Cluster. The key is the tag name and th
 
 
 ```hcl
-
-   Example:
-     {
+{
        key1 = "value1"
        key2 = "value2"
      }
@@ -575,9 +571,7 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 
 
 ```hcl
-
-   Example:
-     {
+{
        key1 = "value1"
        key2 = "value2"
      }
@@ -608,9 +602,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-     eks_addons = {
+eks_addons = {
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
@@ -1020,6 +1012,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0ff8187b8597edcbd4ab6de8ed8a29dd"
+  "hash": "cbfef56fb45a5a393b90de4eeaca277d"
 }
 ##DOCS-SOURCER-END -->

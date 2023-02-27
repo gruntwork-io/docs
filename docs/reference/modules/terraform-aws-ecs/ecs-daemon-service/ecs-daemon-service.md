@@ -283,9 +283,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   volumes = {
+volumes = {
      datadog = {
        host_path = "/var/run/datadog"
      }
@@ -348,6 +346,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f4bfa47a66aad3ad92123056694db5c"
+  "hash": "52590ba677687ff336a86c8074a92986"
 }
 ##DOCS-SOURCER-END -->

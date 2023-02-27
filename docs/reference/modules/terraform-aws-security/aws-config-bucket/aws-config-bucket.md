@@ -168,10 +168,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -259,6 +256,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eace54e8ae7cfdc3a345773fb084cde2"
+  "hash": "f700e358ab37a86917847e69d9f7c7d3"
 }
 ##DOCS-SOURCER-END -->

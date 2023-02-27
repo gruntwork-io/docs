@@ -100,10 +100,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -443,6 +440,6 @@ The name of the S3 bucket where flow logs are published.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ecf86bb09a5c71feb43512dc47e98140"
+  "hash": "13faabc39f4590447c93db5d9d932c11"
 }
 ##DOCS-SOURCER-END -->

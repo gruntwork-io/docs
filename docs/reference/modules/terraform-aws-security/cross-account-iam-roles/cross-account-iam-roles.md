@@ -158,9 +158,7 @@ object({
 
 
 ```hcl
-
-   Example:
-   default = {
+default = {
      openid_connect_provider_arn = "ARN"
      openid_connect_provider_url = "URL"
      allowed_sources = {
@@ -210,9 +208,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed to assume the au
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:role/jenkins"
    ]
 
@@ -244,9 +240,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -278,9 +272,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -312,9 +304,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -346,9 +336,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed access to Gruntw
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -371,9 +359,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -396,9 +382,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed read access to t
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -421,9 +405,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed read-only access
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -455,9 +437,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed read access to I
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -480,9 +460,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed read access to G
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -505,9 +483,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed access to AWS su
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -850,6 +826,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c991374c91611184ce0c898d07e122d"
+  "hash": "2cd9d4d4df47b3addaca0e7732f6e84e"
 }
 ##DOCS-SOURCER-END -->

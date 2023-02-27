@@ -147,6 +147,15 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="allow_outbound_connections_from_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that this DB can connect. Use this if the database needs to connect to certain IP addresses for special operation
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -507,6 +516,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fredshift%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "807ab86d4c9400626ccf52b1fedcad66"
+  "hash": "1f47a044d62d72a2b147da894afab460"
 }
 ##DOCS-SOURCER-END -->

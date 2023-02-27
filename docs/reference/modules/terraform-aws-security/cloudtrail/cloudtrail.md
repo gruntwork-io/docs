@@ -154,10 +154,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -683,10 +680,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -872,6 +866,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "937171eba0b4d83ce5241d9d4b7c0f5b"
+  "hash": "1074dfcc0bab9cdc861aa43e2edd9bf1"
 }
 ##DOCS-SOURCER-END -->

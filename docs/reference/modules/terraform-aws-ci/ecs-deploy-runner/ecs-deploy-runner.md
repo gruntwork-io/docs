@@ -504,9 +504,7 @@ A map of custom tags to apply to all the resources created in this module. The k
 
 
 ```hcl
-
-   Example:
-     {
+{
        key1 = "value1"
        key2 = "value2"
      }
@@ -840,6 +838,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bff6bc1a002619f06b4a2840b25d8a99"
+  "hash": "7a35142c6c3e1328fb11d968266c2c8f"
 }
 ##DOCS-SOURCER-END -->

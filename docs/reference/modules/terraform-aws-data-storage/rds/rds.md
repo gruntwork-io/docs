@@ -632,6 +632,15 @@ The amount of time in days to retain Performance Insights data. Either 7 (7 days
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="permissions_boundary_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the role of enhanced monitoring role. This policy should be created outside of this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="publicly_accessible" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -776,6 +785,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "110433b14690a5e1df66056f4b2da359"
+  "hash": "45416a7e52064bc7a90b7ce55bf143a0"
 }
 ##DOCS-SOURCER-END -->

@@ -204,9 +204,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example: 
-    acm_tls_certificates = {
+acm_tls_certificates = {
       "mail.example.com" = {
         subject_alternative_names = ["mailme.example.com"]
         tags = {
@@ -364,6 +362,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b6df3cc6306b52557ef3acf6daa25722"
+  "hash": "ca98e985c61be2e29f9300b5ecd233de"
 }
 ##DOCS-SOURCER-END -->

@@ -177,10 +177,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-  
-   default = [
+default = [
      {
        key                 = "foo"
        value               = "bar"
@@ -239,6 +236,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a59941c84675a73ff832b061d249c3ce"
+  "hash": "e33adbd8177152651ea04b1a8db450ac"
 }
 ##DOCS-SOURCER-END -->

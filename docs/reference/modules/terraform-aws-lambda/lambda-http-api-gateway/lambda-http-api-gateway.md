@@ -36,7 +36,7 @@ they can be invoked on HTTP calls.
 :::note
 
 If you are looking for a simple proxy to route all requests to a Lambda function, refer to the
-[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/api-gateway-proxy) module.
+[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy) module.
 
 :::
 
@@ -426,6 +426,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab420dcdde6bfe3dcd72ff1536844faf"
+  "hash": "081029061154ca9c61de4cc59fa13469"
 }
 ##DOCS-SOURCER-END -->

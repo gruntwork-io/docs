@@ -152,9 +152,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   default = {
+default = {
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
      }
@@ -381,6 +379,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ade62a350b22bb8a3be9439bc7587b2a"
+  "hash": "54f3825972bc106e41c395bdef203880"
 }
 ##DOCS-SOURCER-END -->

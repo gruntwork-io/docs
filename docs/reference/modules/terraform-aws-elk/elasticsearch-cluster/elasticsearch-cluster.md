@@ -368,9 +368,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        type      = "standard"
        size      = 100
@@ -483,10 +481,7 @@ A map of key value pairs that represent custom tags to propagate to the resource
 
 
 ```hcl
-
-   Example:
-  
-   default = {
+default = {
      foo = "bar"
    }
 
@@ -544,6 +539,6 @@ The User Data script to run on each server when it is booting.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6ca6ed7a92cc4cfd032a3566d7b1512"
+  "hash": "c4b51496f0894686fe7cb45959f18966"
 }
 ##DOCS-SOURCER-END -->

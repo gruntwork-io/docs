@@ -154,9 +154,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-    {
+{
       "health-path" = {
         priority     = 130
   
@@ -286,9 +284,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-    {
+{
       "foo" = {
         priority = 120
   
@@ -443,9 +439,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-    {
+{
       "old-website" = {
         priority = 120
         port     = 443
@@ -607,6 +601,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4bbc63ea31b0a5f0c8adadeeb33ca3a5"
+  "hash": "e75f874a1032df51716d16994e1fc9fd"
 }
 ##DOCS-SOURCER-END -->

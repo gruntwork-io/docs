@@ -451,9 +451,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-
-   Example:
-   enabled_metrics = [
+enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -694,6 +692,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "09a71fea9442e0bef57fa5a1a5bf07f4"
+  "hash": "93a3b198c910791d528736a12c9f578e"
 }
 ##DOCS-SOURCER-END -->

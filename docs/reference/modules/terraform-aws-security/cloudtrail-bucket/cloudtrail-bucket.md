@@ -116,10 +116,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -448,10 +445,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
-   {
+{
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -553,6 +547,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f1ea0caca8f93dc8dfbb98265700c6b"
+  "hash": "751e8d70d40066063a40989033418ac8"
 }
 ##DOCS-SOURCER-END -->

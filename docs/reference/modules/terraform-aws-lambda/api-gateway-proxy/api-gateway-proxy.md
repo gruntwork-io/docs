@@ -188,9 +188,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   {
+{
      GET = {
        metrics_enabled = true
        logging_level   = "INFO"
@@ -408,6 +406,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c9b66a4c362c9731a09d5f00d2fada64"
+  "hash": "25419179b0829d313d7055d577d4f822"
 }
 ##DOCS-SOURCER-END -->

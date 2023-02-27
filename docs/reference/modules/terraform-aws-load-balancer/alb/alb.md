@@ -457,9 +457,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        port = 443
        tls_domain_name = "foo.your-company.com"
@@ -504,9 +502,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        port = 443
        tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
@@ -641,6 +637,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1ebd7bdd461d4e2e31bb9dd8aa308bd8"
+  "hash": "027a89f8642029d30ecf665822d2321e"
 }
 ##DOCS-SOURCER-END -->

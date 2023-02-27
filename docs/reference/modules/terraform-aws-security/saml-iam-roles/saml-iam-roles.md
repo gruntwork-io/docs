@@ -104,9 +104,7 @@ A list of IAM ARNs of Identity Providers that will be delegated the auto deploy 
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:role/jenkins"
    ]
 
@@ -138,9 +136,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -172,9 +168,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -206,9 +200,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -240,9 +232,7 @@ A list of IAM ARNs of Identity Providers that will be delegated IAM admin access
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -274,9 +264,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read access to t
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -308,9 +296,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read-only access
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -342,9 +328,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read access to I
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -376,9 +360,7 @@ A list of IAM ARNs of Identity Providers that will be delegated AWS support acce
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -589,6 +571,6 @@ A map of tags to apply to the IAM roles.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28b5f68eb6ccb97d47e1b680ac11d0c9"
+  "hash": "38ffd642b439758b2dc2db6384559db7"
 }
 ##DOCS-SOURCER-END -->

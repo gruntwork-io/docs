@@ -385,9 +385,7 @@ list(object({
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        group_name   = "stage-full-access"
        iam_role_arns = ["arn:aws:iam::123445678910:role/mgmt-full-access"]
@@ -641,6 +639,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5ab71fbfe97d2da01b278ce022dd28d"
+  "hash": "2aac0c0466cf3c2bd0cd8c2b2f77484d"
 }
 ##DOCS-SOURCER-END -->

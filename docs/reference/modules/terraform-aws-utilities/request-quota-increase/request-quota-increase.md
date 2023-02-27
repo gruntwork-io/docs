@@ -143,9 +143,7 @@ A map where the key is the resource and the value is the desired quota. The only
 
 
 ```hcl
-
-   Example:
-   {
+{
      nacl_rules  = 39,
      nat_gateway = 20,
    }
@@ -174,6 +172,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3da68c2cce56a1ed6c5694c78b56043"
+  "hash": "f28b5a8de862a653b696222555fe13c6"
 }
 ##DOCS-SOURCER-END -->

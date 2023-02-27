@@ -345,9 +345,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-   default = [
+default = [
      {
        type      = "standard"
        size      = 100
@@ -422,9 +420,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-
-   Example:
-   enabled_metrics = [
+enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -707,6 +703,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd4b2959b17fafedbc3932605aa6fedb"
+  "hash": "c8087dc45bca71b2f5d1382035a04148"
 }
 ##DOCS-SOURCER-END -->

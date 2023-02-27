@@ -67,9 +67,7 @@ A list of folder and file names to combine into a path, using the proper path se
 
 
 ```hcl
-
-   Example:
-   path_parts = ["foo", "bar", "baz.txt"] => outputs "foo/bar/baz.txt" on Linux
+path_parts = ["foo", "bar", "baz.txt"] => outputs "foo/bar/baz.txt" on Linux
 
 ```
 </details>
@@ -95,6 +93,6 @@ A list of folder and file names to combine into a path, using the proper path se
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42fdd85ec856aa19743780946a890fcd"
+  "hash": "a6c9b6f1ac6a1d5fd3cfbf898f9015e2"
 }
 ##DOCS-SOURCER-END -->

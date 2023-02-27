@@ -274,9 +274,7 @@ map(object({
 
 
 ```hcl
-
-   Example:
-   {
+{
      bucket-name = {
        region  = "eu-central-1"
        v4_auth = true
@@ -822,6 +820,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2b417fd8ef54984d7161e24a77f48caf"
+  "hash": "e715e2d9bc5a0a863b31bdccfc9ac58e"
 }
 ##DOCS-SOURCER-END -->
