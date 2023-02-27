@@ -22,7 +22,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -160,7 +160,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -265,7 +265,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -338,7 +338,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -381,7 +381,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -413,7 +413,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -465,7 +465,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -506,7 +506,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -562,11 +562,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-container-logs%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-container-logs%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-container-logs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88d1e036ca8112c67584e14cdf3a4ed4"
+  "hash": "da288eaade64b85ec9a371e6131ad73d"
 }
 ##DOCS-SOURCER-END -->

@@ -148,7 +148,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -571,6 +571,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9cd0892ee4872ab85b61af29428156c8"
+  "hash": "506d9f8a03c4149fc4e3d213f42abd08"
 }
 ##DOCS-SOURCER-END -->

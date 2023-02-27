@@ -171,9 +171,9 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "f9d86639c9f7b1854790d04741f76bed"

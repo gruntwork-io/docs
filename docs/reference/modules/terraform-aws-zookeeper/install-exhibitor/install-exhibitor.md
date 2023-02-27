@@ -67,9 +67,9 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-exhibitor%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-exhibitor%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-exhibitor%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a809bb327e7bb55b31bac46e47c14ae3"

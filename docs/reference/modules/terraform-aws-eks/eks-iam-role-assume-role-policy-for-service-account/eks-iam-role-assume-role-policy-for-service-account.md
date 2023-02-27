@@ -103,9 +103,9 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-iam-role-assume-role-policy-for-service-account%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-iam-role-assume-role-policy-for-service-account%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-iam-role-assume-role-policy-for-service-account%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "da04f1965a2350414aa7e5c59662e31a"

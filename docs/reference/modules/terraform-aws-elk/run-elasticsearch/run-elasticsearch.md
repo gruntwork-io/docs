@@ -127,9 +127,9 @@ that we are using in our examples. If you need a different/new version then you 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elasticsearch%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elasticsearch%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elasticsearch%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "0501266dc87b6882ae786fab6585921d"

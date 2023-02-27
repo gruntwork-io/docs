@@ -174,7 +174,7 @@ map(object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -349,7 +349,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -504,7 +504,7 @@ A map of custom tags to apply to all the resources created in this module. The k
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -548,7 +548,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -838,6 +838,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a35142c6c3e1328fb11d968266c2c8f"
+  "hash": "785e7613be59cf37acb99342a74c6412"
 }
 ##DOCS-SOURCER-END -->

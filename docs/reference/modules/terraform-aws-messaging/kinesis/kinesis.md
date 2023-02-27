@@ -189,7 +189,7 @@ The additional shard-level CloudWatch metrics to enable
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -250,11 +250,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "01473f1eb02bc0099c3a48268a889426"
+  "hash": "1a6d900b06b06ca0d1dd48065fda80f4"
 }
 ##DOCS-SOURCER-END -->

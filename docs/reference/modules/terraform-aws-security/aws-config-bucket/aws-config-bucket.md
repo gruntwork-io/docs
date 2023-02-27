@@ -168,7 +168,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -181,7 +181,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -251,11 +251,11 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-bucket%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-bucket%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f700e358ab37a86917847e69d9f7c7d3"
+  "hash": "d46331310dfcac7dbf44d73e6427b08a"
 }
 ##DOCS-SOURCER-END -->

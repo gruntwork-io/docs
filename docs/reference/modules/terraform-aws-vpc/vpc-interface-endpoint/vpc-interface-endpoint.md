@@ -190,7 +190,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 
 
@@ -4681,11 +4681,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91322be5e60b72792c98633364c143a9"
+  "hash": "1221cb431bdff3296954f422c8247add"
 }
 ##DOCS-SOURCER-END -->

@@ -172,7 +172,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -603,6 +603,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Ftailscale-subnet-router%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d1dfb27e520508469c5101c39ddb918a"
+  "hash": "dc5635ccb2b1f3c50b978d274c90977b"
 }
 ##DOCS-SOURCER-END -->

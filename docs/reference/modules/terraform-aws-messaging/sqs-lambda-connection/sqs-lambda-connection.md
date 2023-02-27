@@ -66,9 +66,9 @@ The largest number of records that Lambda will retrieve from your event source a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "ec53366ba547b2bce67a72dbc73ae044"

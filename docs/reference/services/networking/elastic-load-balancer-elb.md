@@ -359,8 +359,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        port            = 443
@@ -397,8 +395,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        port    = 443
@@ -542,6 +538,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ef2dd922bce041a347329fb30f3ea93f"
+  "hash": "960a06d640d1847c33341bb7c18b5858"
 }
 ##DOCS-SOURCER-END -->

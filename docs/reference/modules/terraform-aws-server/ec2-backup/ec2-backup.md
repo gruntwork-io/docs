@@ -161,9 +161,9 @@ The name of the IAM role associated with the data lifecycle manager
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fec2-backup%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fec2-backup%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fec2-backup%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a433b44f0c56527547e3d09604299c1b"

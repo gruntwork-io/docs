@@ -71,11 +71,6 @@ manage the CMK, you may wish to use IAM policies. In addition, IAM is a central 
 using just the CMK Key Policy means you now need to update the Key Policy any time the perissions change, which may be
 more onerous.
 
-## TODO
-
-*   Explicitly test that granting another AWS resource such as an S3 Bucket privileges on the KMS Key works as expected
-    for key users.
-
 
 
 
@@ -99,7 +94,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -313,11 +308,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1b4e75ac051427483efea501cac19757"
+  "hash": "cae59d1d93dce52a98ed65209e790023"
 }
 ##DOCS-SOURCER-END -->

@@ -71,9 +71,9 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-kafka%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-kafka%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-kafka%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "59b4802b8ace199ecc3540c7031e869d"

@@ -23,7 +23,7 @@ EBS Volumes, zero-downtime rolling deployment, and auto-recovery of failed nodes
 
 *   See the [root README](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/README.md) for instructions on using Terraform modules.
 *   See the [kafka-zookeeper-standalone-clusters example](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/examples/kafka-zookeeper-standalone-clusters) for sample usage.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/vars.tf) for all the variables you can set on this module.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-cluster/vars.tf) for all the variables you can set on this module.
 *   See [Connecting to Kafka brokers](#connecting-to-kafka-brokers) for instructions on reading / writing to Kafka.
 
 ## Key considerations for using this module
@@ -495,7 +495,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -702,11 +702,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ce977a29621ec96e59470db74f225d68"
+  "hash": "ca3ccd1dc84e08b6c73891b242290751"
 }
 ##DOCS-SOURCER-END -->

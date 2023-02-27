@@ -20,7 +20,7 @@ data, including all the appropriate lifecycle, encryption, and permission settin
 This module is used under the hood in the [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail)
 and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/account-baseline-root) modules.
 
-It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
+It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
 
 
 
@@ -46,7 +46,7 @@ If true, an IAM Policy that grants access to CloudTrail will be honored. If fals
 All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) that governs access to write API calls older than 7 days and all read API calls. The IAM Users specified in this list will have rights to change who can access this extended log data.
 
 </HclListItemDescription>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -116,7 +116,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -137,7 +137,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -323,7 +323,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -445,7 +445,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -458,7 +458,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -542,11 +542,11 @@ The name of the S3 bucket where cloudtrail logs are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail-bucket%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail-bucket%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "751e8d70d40066063a40989033418ac8"
+  "hash": "dafe2478c96d0ed196e4c5bbeeeb2053"
 }
 ##DOCS-SOURCER-END -->

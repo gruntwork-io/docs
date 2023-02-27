@@ -121,9 +121,9 @@ Cloudwatch Event Rule schedule expression
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fscheduled-lambda-job%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fscheduled-lambda-job%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fscheduled-lambda-job%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "f1cfa112d6c81f8a306641b62c285e05"

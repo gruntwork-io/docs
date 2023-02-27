@@ -24,7 +24,7 @@ EBS Volumes, zero-downtime rolling deployment, and auto-recovery of failed nodes
 *   See the [root README](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/README.md) for instructions on using Terraform modules.
 *   See the [kafka-zookeeper-confluent-oss-colocated-clusters example](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/examples/kafka-zookeeper-confluent-oss-colocated-cluster) for sample usage in a non-production environment.
 *   See the [kafka-zookeeper-confluent-oss-standalone-clusters example](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/examples/kafka-zookeeper-confluent-oss-standalone-clusters) for sample usage in a production environment.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/vars.tf) for all the variables you can set on this module.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/vars.tf) for all the variables you can set on this module.
 *   See [Connecting to the Confluent Tools](#connecting-to-the-confluent-tools) for instructions on interacting with the
     open source Confluent tools.
 
@@ -451,7 +451,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -687,11 +687,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "93a3b198c910791d528736a12c9f578e"
+  "hash": "4e49c207efd59c9cf69a6989b2421ed6"
 }
 ##DOCS-SOURCER-END -->

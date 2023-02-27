@@ -145,9 +145,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    {
       AllIamUsersReadAccess = {
         effect     = "Allow"
@@ -162,7 +159,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -226,9 +223,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    {
       AllIamUsersReadAccess = {
         effect     = "Allow"
@@ -243,7 +237,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -289,9 +283,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    [
      {
        allowed_origins = ["*"]
@@ -306,7 +297,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -398,7 +389,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -532,9 +523,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    {
       AllIamUsersReadAccess = {
         effect     = "Allow"
@@ -549,7 +537,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -622,9 +610,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    {
      ExampleConfig = {
        prefix                    = "config/"
@@ -638,7 +623,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -735,6 +720,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fs3-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2f7ba5e89ff1eb9ec1960362908bea40"
+  "hash": "24d07d16d595caafb9ff3ebb01a6c860"
 }
 ##DOCS-SOURCER-END -->

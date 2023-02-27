@@ -14,7 +14,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 # EKS Cluster Managed Workers Module
 
-**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-cluster-workers) module for a module to provision self managed worker groups.**
+**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
 
 This Terraform module launches worker nodes using [EKS Managed Node
 Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html) that you can use to run Kubernetes
@@ -64,7 +64,7 @@ Here is a list of additional tradeoffs to consider between the two flavors:
 
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
-To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-k8s-cluster-autoscaler).
+To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -180,7 +180,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -616,11 +616,11 @@ Map of Node Group names to ARNs of the created EKS Node Groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "95c0687d48ea94934e4525cb046abfdf"
+  "hash": "61a8ae8391cc4a10c92a59f013d148a6"
 }
 ##DOCS-SOURCER-END -->

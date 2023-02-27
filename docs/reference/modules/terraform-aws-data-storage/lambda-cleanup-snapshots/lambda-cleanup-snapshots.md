@@ -26,7 +26,7 @@ Note that to use this module, you must have access to the Gruntwork [Continuous 
 
 This module allows you to configure a number of parameters, such as which database to backup, how often to run the
 backups, what account to share the backups with, and more. For a list of all available variables and their
-descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/variables.tf).
+descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-cleanup-snapshots/variables.tf).
 
 
 
@@ -141,11 +141,11 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a33968da9c61e2f120b2cea2e809119b"
+  "hash": "0871e952ff226a96d83e900718ba833b"
 }
 ##DOCS-SOURCER-END -->

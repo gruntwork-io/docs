@@ -72,9 +72,9 @@ Check out the [route53-helpers example](https://github.com/gruntwork-io/terrafor
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Froute53-helpers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Froute53-helpers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Froute53-helpers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "63181f6106e271c957d61b6c4a06522d"

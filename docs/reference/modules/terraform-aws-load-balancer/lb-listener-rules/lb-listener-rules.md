@@ -121,7 +121,7 @@ list(map(any))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -154,7 +154,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+    {
       "health-path" = {
         priority     = 130
   
@@ -193,7 +193,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -284,7 +284,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+    {
       "foo" = {
         priority = 120
   
@@ -335,7 +335,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -439,7 +439,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+    {
       "old-website" = {
         priority = 120
         port     = 443
@@ -480,7 +480,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -596,11 +596,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e75f874a1032df51716d16994e1fc9fd"
+  "hash": "3b8b093cf29c05dd9d279f436a6d0946"
 }
 ##DOCS-SOURCER-END -->

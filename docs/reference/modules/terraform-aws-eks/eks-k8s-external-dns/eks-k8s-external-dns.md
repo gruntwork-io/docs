@@ -58,7 +58,7 @@ This module uses [`helm` v3](https://helm.sh/docs/) to deploy the controller to 
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage Route 53 Hosted Zones. See [the
-eks-k8s-external-dns-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-k8s-external-dns-iam-policy) for more information.
+eks-k8s-external-dns-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy) for more information.
 
 ## How do I restrict which Hosted Zones the app should manage?
 
@@ -104,11 +104,11 @@ zones_cache_duration  = "3h"
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "46a64c1846673223dbdfb8d2a727ed54"
+  "hash": "dea50063d1787879c6fd546bc2a89288"
 }
 ##DOCS-SOURCER-END -->

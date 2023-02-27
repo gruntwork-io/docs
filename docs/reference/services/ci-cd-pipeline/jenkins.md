@@ -139,7 +139,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -257,7 +257,7 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="86400"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -902,6 +902,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fjenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "def93b1f7bcb7c00bf071b11f0fb0a00"
+  "hash": "c23ecd22c9ee3c99eacc8df561bc37da"
 }
 ##DOCS-SOURCER-END -->

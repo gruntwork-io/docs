@@ -311,7 +311,7 @@ Custom tags to apply to the Kafka broker nodes and all related resources.
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -335,7 +335,7 @@ A map of custom tags to apply to the Security Group for this MSK Cluster. The ke
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -521,7 +521,7 @@ Contents of the server.properties file. Supported properties are documented in t
 
 
 ```hcl
-{
+     {
        "auto.create.topics.enable" = "true"
        "default.replication.factor" = "2"
      }
@@ -662,11 +662,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c505908a7a0c4f570c3c58b6c598e750"
+  "hash": "5923439a75176f39e4fb46015e1fec31"
 }
 ##DOCS-SOURCER-END -->

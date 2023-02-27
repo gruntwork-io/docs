@@ -194,7 +194,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -776,6 +776,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fec2-instance%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3050dc7a0bd2a7433c738965f2c9d6b7"
+  "hash": "8451b123ae893d201037c8752f9a9104"
 }
 ##DOCS-SOURCER-END -->

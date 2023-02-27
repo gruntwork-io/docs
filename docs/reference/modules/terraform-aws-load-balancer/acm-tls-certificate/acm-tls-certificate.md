@@ -204,7 +204,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-acm_tls_certificates = {
+    acm_tls_certificates = {
       "mail.example.com" = {
         subject_alternative_names = ["mailme.example.com"]
         tags = {
@@ -239,7 +239,7 @@ acm_tls_certificates = {
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -357,11 +357,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ca98e985c61be2e29f9300b5ecd233de"
+  "hash": "8bd9ddc1347ba5a18bf75bf35dd6f0e0"
 }
 ##DOCS-SOURCER-END -->

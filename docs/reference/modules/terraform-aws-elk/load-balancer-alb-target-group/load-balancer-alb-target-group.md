@@ -255,9 +255,9 @@ The time period, in seconds, during which requests from a client should be route
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "5ecc9cdb95bbc169bd1199d20f53148f"

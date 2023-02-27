@@ -425,9 +425,9 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "077dc356674cf84875b1376186123d7c"

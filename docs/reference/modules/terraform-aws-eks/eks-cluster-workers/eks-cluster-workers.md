@@ -14,7 +14,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 # EKS Cluster Workers Module
 
-**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
+**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
 
 This Terraform Module launches worker nodes for an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) that you can use to run Kubernetes Pods and
@@ -28,7 +28,7 @@ managing an EKS control plane.
 ## Differences with managed node groups
 
 See the \[Differences with self managed workers] section in the documentation for [eks-cluster-managed-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
 
 ## What should be included in the user-data script?
 
@@ -225,7 +225,7 @@ The following are the steps you can take to perform a blue-green release for thi
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
 To enable auto-scaling in response to resource utilization, you must set the `include_autoscaler_discovery_tags` input
-variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-k8s-cluster-autoscaler).
+variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -260,7 +260,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -515,7 +515,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-[
+   [
      {
        instance_type = "t3.micro"
        weighted_capacity = 2
@@ -530,7 +530,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -677,7 +677,7 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -926,11 +926,11 @@ AWS ID of the security group created for the EKS worker nodes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9290d706889698d420ed7caaa60b5d6a"
+  "hash": "26ddf8d29f73f8f3b4bb9fa76172c751"
 }
 ##DOCS-SOURCER-END -->

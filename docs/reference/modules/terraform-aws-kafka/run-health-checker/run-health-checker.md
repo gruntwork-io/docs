@@ -16,8 +16,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This folder contains:
 
-1.  [run-health-checker](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/bin/run-health-checker): A Bash script for installing, configuring, and running [health-checker](https://github.com/gruntwork-io/health-checker).
-2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/install.sh): A Bash script that installs the `run-health-checker` script.
+1.  [run-health-checker](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-health-checker/bin/run-health-checker): A Bash script for installing, configuring, and running [health-checker](https://github.com/gruntwork-io/health-checker).
+2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-health-checker/install.sh): A Bash script that installs the `run-health-checker` script.
 
 Typically, you would run the `install.sh` script in a [Packer](https://www.packer.io/) template so that you create an Amazon
 Machine Image (AMI) that comes pre-installed with `run-health-checker`. Then, by calling `run-health-checker` in [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html), your server will configure and start health-checker
@@ -101,11 +101,11 @@ the source code.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-health-checker%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-health-checker%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-health-checker%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d7c22296940ee8fc65fe4ddb3781a878"
+  "hash": "caaf58eba2f82385a5999c480a4b7e34"
 }
 ##DOCS-SOURCER-END -->

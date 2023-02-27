@@ -28,8 +28,8 @@ is mounting multiple partitions. We hope to implement more CIS recommendations o
 
 There are two major components to this module:
 
-*   [ami-builder](https://github.com/gruntwork-io/terraform-aws-security/tree/main/ami-builder): This is a Terraform template that launches an EC2 Instance with Packer pre-installed.
-*   [partition-scripts](https://github.com/gruntwork-io/terraform-aws-security/tree/main/partition-scripts): This is a set of bash scripts that create multiple disk partitions, format them
+*   [ami-builder](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/ami-builder): This is a Terraform template that launches an EC2 Instance with Packer pre-installed.
+*   [partition-scripts](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/partition-scripts): This is a set of bash scripts that create multiple disk partitions, format them
     as ext4, and mount them to various paths with various mount options such as `noexec` or `nosuid`. These scripts are
     meant to be run in a Packer template that uses the Packer [amazon-chroot](https://www.packer.io/docs/builders/amazon-chroot.html)
     builder.
@@ -52,7 +52,7 @@ See below for additional details on what this is and how to use it.
 
 ## How to Use this Module
 
-**The best way to use this module is to substantially copy the [os-hardening example code](https://github.com/gruntwork-io/terraform-aws-security/examples/os-hardening).
+**The best way to use this module is to substantially copy the [os-hardening example code](https://github.com/gruntwork-io/terraform-aws-security/tree/main/examples/os-hardening).
 Unlike most Gruntwork examples, the example for this module contains a full Packer build file plus a wrapper script to
 create the AMI with a single command and may be viewed as a "canonical" way to instantiate the os-hardening modules.**
 
@@ -68,11 +68,11 @@ hardened OS will use. Follow these steps:
     and sizes:
 
     *   `partition-volume`: For each desired partition, add an argument like `--partition '/home:4G'`. For additional
-        details see [partition-volume](https://github.com/gruntwork-io/terraform-aws-security/tree/main/partition-scripts/bin/partition-volume). Note that for the last `--partition` entry only,
+        details see [partition-volume](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/partition-scripts/bin/partition-volume). Note that for the last `--partition` entry only,
         you may specify `*` for the size to tell the script to create the largest possible partition based on remaining
         disk space. Also, make sure your partition sizes don't exceed the space available on your EBS Volume!
     *   `cleanup-volume`: For each desired partition, add an argument like `--mount-point '/home'`. For additional details see
-        [cleanup-volume](https://github.com/gruntwork-io/terraform-aws-security/tree/main/partition-scripts/bin/cleanup-volume)
+        [cleanup-volume](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/partition-scripts/bin/cleanup-volume)
 
     Note that you will redundantly pass the same list of partition paths to each of the above scripts, but only
     `partition-volume` needs both the mount point *and* the desired partition size.
@@ -83,10 +83,10 @@ That's it! The Packer template will take care of the rest.
 
 ### How to Build the AMI with Packer
 
-Now we're ready to build the actual AMI. Note: The [os-hardening example](https://github.com/gruntwork-io/terraform-aws-security/examples/os-hardening) contains a script
+Now we're ready to build the actual AMI. Note: The [os-hardening example](https://github.com/gruntwork-io/terraform-aws-security/tree/main/examples/os-hardening) contains a script
 that automates all these steps, but, for the sake of understanding, we'll describe them individually below:
 
-1.  Launch the [ami-builder](https://github.com/gruntwork-io/terraform-aws-security/tree/main/ami-builder) EC2 Instance. We will execute Packer from this EC2 Instance.
+1.  Launch the [ami-builder](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/ami-builder) EC2 Instance. We will execute Packer from this EC2 Instance.
 
 2.  On your local machine run `rsync` so that your local directory is continually synced to the ami-builder:
 
@@ -124,7 +124,7 @@ additional volumes mounted as encrypted volumes.
 
 ### Using Your Hardened OS as a "Base AMI"
 
-A best practice we encourage is to first build your hardened OS Image using these modules and the [os-hardening example](https://github.com/gruntwork-io/terraform-aws-security/examples/os-hardening).
+A best practice we encourage is to first build your hardened OS Image using these modules and the [os-hardening example](https://github.com/gruntwork-io/terraform-aws-security/tree/main/examples/os-hardening).
 You can now view this AMI as your "base AMI", and all other Packer builds can be built on top of this AMI. For example,
 you might have:
 
@@ -263,20 +263,15 @@ needed additional space to build a new AMI was not unreasonable.
 *   Per the [Packer docs for the amazon-chroot builder](https://www.packer.io/docs/builders/amazon-chroot.html), your
     provisioning scripts must not leave any processes running or Packer will be unable to unmount the filesystem.
 
-## TODO
-
-*   Consider setting up new CloudWatch metrics to report available space on multiple disk partitions, not just the root
-    disk partition.
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97f63daa5dac0353df8785ec3fdde44a"
+  "hash": "6c1ce24e7f5144cbab828d025cc3c999"
 }
 ##DOCS-SOURCER-END -->

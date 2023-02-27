@@ -21,7 +21,7 @@ with because they are stateless, which means that opening an inbound port is oft
 which your services use to respond. This can be very easy to forget, so this module adds not only the inbound ports to
 an ACL, but also the ephemeral outbound ports for return traffic.
 
-See the [network-acl-outbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/network-acl-outbound) module for the analogous version of this module, but for opening
+See the [network-acl-outbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-outbound) module for the analogous version of this module, but for opening
 outbound ports.
 
 ## What's a Network ACL?
@@ -35,11 +35,11 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-inbound%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-inbound%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-inbound%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c5567a4e18a7bdaf115f4340efcd35ad"
+  "hash": "d0fe688ed59b379e7a9f807c8d84b65f"
 }
 ##DOCS-SOURCER-END -->

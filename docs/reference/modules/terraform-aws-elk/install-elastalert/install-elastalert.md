@@ -54,9 +54,9 @@ code](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/inst
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elastalert%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elastalert%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elastalert%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "76d574087e0688e37f9efe2c407ea0f8"

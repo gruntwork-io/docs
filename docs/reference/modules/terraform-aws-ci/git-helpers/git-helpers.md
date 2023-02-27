@@ -69,9 +69,9 @@ The main options to pass to `git-add-commit-push` are:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "c70c14de05b805c732e8653014451d52"

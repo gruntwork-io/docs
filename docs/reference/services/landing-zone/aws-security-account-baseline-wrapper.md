@@ -192,9 +192,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
-  
    additional_config_rules = {
      acm-certificate-expiration-check = {
        description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
@@ -531,7 +528,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1258,8 +1255,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        group_name   = "stage-full-access"
@@ -1420,7 +1415,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1594,7 +1589,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1804,8 +1799,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    users = {
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
@@ -1831,7 +1824,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -2268,6 +2261,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-security%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a04fbc8449845a6dd5dab0599c9d72b4"
+  "hash": "aa94445e088877d748faa321dcbf6986"
 }
 ##DOCS-SOURCER-END -->

@@ -184,9 +184,9 @@ Note that the following conditions must be true in order to use this feature:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "b541dd310d888b7d9d50c7cf150c7a50"

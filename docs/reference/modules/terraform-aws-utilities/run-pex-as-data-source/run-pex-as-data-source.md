@@ -17,8 +17,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, to
 be used as an [external data source](https://www.terraform.io/docs/providers/external/data_source.html) in Terraform.
 
-This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/prepare-pex-environment) under the hood. See [What is
-PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
+This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment) under the hood. See [What is
+PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
 for use with this module.
 
 ## Data Source vs Resource
@@ -31,7 +31,7 @@ allow you to call out to arbitrary binaries available on the operator machine. T
 *   [local-exec Provisioners](https://www.terraform.io/docs/provisioners/local-exec.html), where you can run the binary to
     provision a resource.
 
-This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/run-pex-as-resource) for
+This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource) for
 running it as a data source). Which approach to use depends on your needs:
 
 *   Data sources are calculated every time a terraform state needs to be refreshed. This includes all `plan` and `apply`
@@ -87,7 +87,7 @@ The arguments to pass to the command as a string
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -137,11 +137,11 @@ Data source result of executing the PEX binary.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3aa73c3187ee0cd76dd73f008e326ecc"
+  "hash": "6ddb047a3836de65c80953285115b8f7"
 }
 ##DOCS-SOURCER-END -->

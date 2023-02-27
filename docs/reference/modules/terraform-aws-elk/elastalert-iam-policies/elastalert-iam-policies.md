@@ -54,7 +54,7 @@ Note the following parameters:
 *   `iam_role_id`: Use this parameter to specify the ID of the IAM Role to which the policies in this module
     should be added.
 
-You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/variables.tf).
+You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-iam-policies/variables.tf).
 
 Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples/elk-multi-cluster) for working sample code.
 
@@ -62,11 +62,11 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e2587c16c41bb36433269c83bcc18c6"
+  "hash": "9c63db45f979eaf554bdfec3e3d2ad8c"
 }
 ##DOCS-SOURCER-END -->

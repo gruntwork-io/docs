@@ -128,7 +128,7 @@ map(object({
 
 
 ```hcl
-additional_rules = {
+   additional_rules = {
      acm-certificate-expiration-check = {
        description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
        identifier                  = "ACM_CERTIFICATE_EXPIRATION_CHECK",
@@ -401,6 +401,6 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "618d75412690d5e111acc00b5d8ca48c"
+  "hash": "b2d04fb01096b514db67f861b6c08768"
 }
 ##DOCS-SOURCER-END -->

@@ -59,7 +59,7 @@ This will:
 
 We recommend using the `run-collectd` command as part of [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts), so that it executes when the EC2 Instance is first booting.
 
-See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/examples/elk-multi-cluster) for fully working sample code.
+See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples/elk-multi-cluster) for fully working sample code.
 
 ## Command line Arguments
 
@@ -85,11 +85,11 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f0184ecac54b5601a4adb1aa0b55d155"
+  "hash": "8f30203211a6ae9c197ccd7b78c57fad"
 }
 ##DOCS-SOURCER-END -->

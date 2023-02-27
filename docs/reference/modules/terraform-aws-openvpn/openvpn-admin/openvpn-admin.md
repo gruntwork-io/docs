@@ -29,9 +29,9 @@ certificates and the OpenVPN server to process those requests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "ea23b7183b713a6667b6c568b4298420"

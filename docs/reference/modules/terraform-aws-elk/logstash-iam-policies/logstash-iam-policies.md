@@ -53,7 +53,7 @@ Note the following parameters:
 *   `iam_role_id`: Use this parameter to specify the ID of the IAM Role to which the policies in this module
     should be added.
 
-You can find the other parameters in [vars.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/vars.tf).
+You can find the other parameters in [vars.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-iam-policies/vars.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
@@ -61,11 +61,11 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-iam-policies%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-iam-policies%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-iam-policies%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fcea4b223ceb37b5a280e4268a36f772"
+  "hash": "991fbd50885ed687e271e624a230abb3"
 }
 ##DOCS-SOURCER-END -->

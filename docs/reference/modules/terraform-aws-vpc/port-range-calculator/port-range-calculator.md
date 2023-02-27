@@ -98,9 +98,9 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a9de1f4c2f044310e0f8ab54f455b8e0"

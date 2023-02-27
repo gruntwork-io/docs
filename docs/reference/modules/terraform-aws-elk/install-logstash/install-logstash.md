@@ -40,9 +40,9 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-logstash%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-logstash%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-logstash%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "9fd53864f40f6681c339cb1f3e7638ad"

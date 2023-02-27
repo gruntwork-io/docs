@@ -133,9 +133,9 @@ The path to use to run the executable. Will either be the path of the executable
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fexecutable-dependency%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fexecutable-dependency%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fexecutable-dependency%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "1d3dc3e8c6a976544baf75df64669796"

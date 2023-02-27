@@ -80,7 +80,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 ## What if I want to enable MFA?
 
-The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/install-openvpn) support setting up the
+The scripts [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn) and [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) support setting up the
 [duo_openvpn](https://github.com/duosecurity/duo_openvpn) plugin for 2FA authentication. To enable the duo plugin, you
 need to:
 
@@ -93,7 +93,7 @@ need to:
     `--duo-skey`, and `--duo-host` to configure the integration key, secret key, and API hostname respectively. You can
     obtain these by following [the Duo setup instructions for OpenVPN](https://duo.com/docs/openvpn).
 
-See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/examples/openvpn-host-duo) examples for an
+See the [packer-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/examples/packer-duo) and [openvpn-host-duo](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/examples/openvpn-host-duo) examples for an
 example configuration to deploy the OpenVPN server with Duo enabled.
 
 Once the plugin is setup, all authentication for the client will result in a password prompt. To authenticate, you pass
@@ -581,11 +581,11 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "09a1bb021cddc3298a101ac95f511e10"
+  "hash": "7e618a9c27ebe1e39c5102b4a91e458c"
 }
 ##DOCS-SOURCER-END -->

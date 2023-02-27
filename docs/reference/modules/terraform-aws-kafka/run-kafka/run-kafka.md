@@ -210,9 +210,9 @@ so it will replace or add settings to your custom `server.properties` at run tim
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "67fa6a0119f63b513998ce3aef35b9d4"

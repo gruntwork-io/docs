@@ -22,7 +22,7 @@ Note that these documents are Terraform [data sources](https://www.terraform.io/
 so they don't create anything themselves and are not intended to be used on their own. The way to use them is to take
 the outputs from this module (which are all JSON IAM documents) and plug them into other Terraform resources, such
 as `aws_iam_policy`, `aws_iam_user_policy`, `aws_iam_group_policy`, and `aws_iam_role_policy`. See the
-[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/cross-account-iam-roles) modules for examples.
+[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles) modules for examples.
 
 If you're not familiar with IAM concepts, start with the [Background Information](#background-information) section as a
 way to familiarize yourself with the terminology.
@@ -250,10 +250,6 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 *   [aws_iam_role_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_role_policy_attachment.html)
 *   [aws_iam_user_policy_attachment](https://www.terraform.io/docs/providers/aws/r/iam_user_policy_attachment.html)
 
-## TODO
-
-Are we missing any functionality? Let us know by emailing info@gruntwork.io!
-
 
 
 
@@ -287,7 +283,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed to access this a
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -319,7 +315,7 @@ A list of IAM Identity Provider ARNs that access to this account will be delegat
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:saml-provider/Google"
    ]
 
@@ -349,7 +345,7 @@ map(list(string))
 
 
 ```hcl
-default = {
+   default = {
      group1 = ["arn:aws:iam::123445678910:role/mgmt-full-access"],
      group2 = ["arn:aws:iam::9876543210:role/prod-read-only-access"],
      group3 = [
@@ -377,7 +373,7 @@ A list of IAM ARNs from other AWS accounts that will be allowed to assume the au
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:role/jenkins"
    ]
 
@@ -544,11 +540,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5c806404e23508d0380eb11928bfd6dd"
+  "hash": "8e7aca327e37e98ac677ba7d23197e30"
 }
 ##DOCS-SOURCER-END -->

@@ -16,8 +16,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This folder contains:
 
-1.  [run-kafka-connect](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/bin/run-kafka-connect): A Bash script for configuring and running a Kafka Connect worker.
-2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/install.sh): A Bash script that installs the `run-kafka-connect` script.
+1.  [run-kafka-connect](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/bin/run-kafka-connect): A Bash script for configuring and running a Kafka Connect worker.
+2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/install.sh): A Bash script that installs the `run-kafka-connect` script.
 
 Typically, you would run the `install.sh` script in a [Packer](https://www.packer.io/) template so that you create an Amazon
 Machine Image (AMI) that comes pre-installed with `run-kafka-connect`. Then, by calling `run-kafka-connect` in [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html), your server will configure and start a Kafka Connect
@@ -75,7 +75,7 @@ example](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/example
 You can install the `run-kafka-connect` script by running the [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/install.sh)
 file in the `run-kafka-connect` module folder. The `install.sh` script requires the following arguments:
 
-*   `--config-dir-src`: The directory containing the Kafka Connect config files to copy. See the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/config) for details.
+*   `--config-dir-src`: The directory containing the Kafka Connect config files to copy. See the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/config) for details.
 *   `--log4j-config-dir-src`: The directory containing the Log4j config files to copy.
 
 ### Optional Arguments
@@ -148,7 +148,7 @@ the highlights.
 
 ## Kafka Connect Config
 
-The `run-kafka-connect` script dynamically replaces certain variables in a [Kafka Connect configuration file](https://docs.confluent.io/4.0.0/connect/allconfigs.html) as detailed in the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/config).
+The `run-kafka-connect` script dynamically replaces certain variables in a [Kafka Connect configuration file](https://docs.confluent.io/4.0.0/connect/allconfigs.html) as detailed in the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/config).
 
 Here are the key items to pay attention to:
 
@@ -273,17 +273,17 @@ you can use the `--jvm-opts` argument.
 
 Kafka Connect workers have [many other configuration settings](https://docs.confluent.io/4.0.0/connect/allconfigs.html),
 and this module supports arbitrary customization of the Kafka Connect configuration files. For additional details, see
-the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/config).
+the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/config).
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5f5022182d957c5a14cc60ab4658a39"
+  "hash": "14c5d403ad989470e5b28d2c5e402980"
 }
 ##DOCS-SOURCER-END -->

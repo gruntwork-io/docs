@@ -325,8 +325,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    [
      {
        instance_type = "t3.micro"
@@ -342,7 +340,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -490,7 +488,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -666,7 +664,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -734,7 +732,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -847,7 +845,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -884,7 +882,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -930,7 +928,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -977,7 +975,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1024,7 +1022,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1059,8 +1057,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
      eks_addons = {
        coredns    = {}
        kube-proxy = {}
@@ -1090,8 +1086,6 @@ A map of custom tags to apply to the Security Group for the EKS Cluster Control 
 
 
 ```hcl
-
-   Example:
      {
        key1 = "value1"
        key2 = "value2"
@@ -1116,8 +1110,6 @@ A map of custom tags to apply to the EKS Cluster Control Plane. The key is the t
 
 
 ```hcl
-
-   Example:
      {
        key1 = "value1"
        key2 = "value2"
@@ -1145,7 +1137,7 @@ When true, deploy the aws-auth-merger into Fargate. It is recommended to run the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1374,8 +1366,6 @@ map(list(string))
 
 
 ```hcl
-
-   Example:
    {
       "arn:aws:iam::ACCOUNT_ID:role/admin-role" = ["system:masters"]
    }
@@ -1406,8 +1396,6 @@ map(list(string))
 
 
 ```hcl
-
-   Example:
    {
       "arn:aws:iam::ACCOUNT_ID:user/admin-user" = ["system:masters"]
    }
@@ -1450,7 +1438,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -2102,6 +2090,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "40f8dfa682e594ab50abfdc32298f26b"
+  "hash": "670d8f75749a62e3c22557b846abc703"
 }
 ##DOCS-SOURCER-END -->

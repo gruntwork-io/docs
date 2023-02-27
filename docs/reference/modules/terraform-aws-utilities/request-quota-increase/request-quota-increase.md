@@ -48,7 +48,7 @@ module "path" {
 
 The argument to pass is:
 
-*   `request_quota_increase`: A map with the desired resource and the new quota. The current supported resources are `nat_gateway` and `nacl_rules`. Feel free to contribute to this module to add support for more `quota_code` and `service_code` options in [main.tf](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/main.tf)!
+*   `request_quota_increase`: A map with the desired resource and the new quota. The current supported resources are `nat_gateway` and `nacl_rules`. Feel free to contribute to this module to add support for more `quota_code` and `service_code` options in [main.tf](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/main.tf)!
 
 When you run `apply`, the `new_quotas` output variable will confirm to you that a quota request has been made!
 
@@ -143,7 +143,7 @@ A map where the key is the resource and the value is the desired quota. The only
 
 
 ```hcl
-{
+   {
      nacl_rules  = 39,
      nat_gateway = 20,
    }
@@ -167,11 +167,11 @@ A map where the key is the resource and the value is the desired quota. The only
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequest-quota-increase%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequest-quota-increase%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequest-quota-increase%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f28b5a8de862a653b696222555fe13c6"
+  "hash": "541f52e1338acac4e7cd6358bd699c4e"
 }
 ##DOCS-SOURCER-END -->

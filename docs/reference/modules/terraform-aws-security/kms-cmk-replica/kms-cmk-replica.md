@@ -19,7 +19,7 @@ Key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#custome
 [the multi-region replication feature of
 KMS](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html).
 
-This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/kms-master-key) to replicate a KMS
+This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key) to replicate a KMS
 key managed with that module to other regions. Note that the KMS key must be marked as multi-region in order to support
 multi-region replication.
 
@@ -54,7 +54,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -245,11 +245,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eecc12a88d86aaa67689829d59f24e02"
+  "hash": "da1be216bbab6e19f10865d53c99a33f"
 }
 ##DOCS-SOURCER-END -->

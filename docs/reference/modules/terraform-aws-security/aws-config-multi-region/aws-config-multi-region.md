@@ -140,7 +140,7 @@ map(object({
 
 
 ```hcl
-additional_config_rules = {
+   additional_config_rules = {
      acm-certificate-expiration-check = {
        description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
        identifier                  = "ACM_CERTIFICATE_EXPIRATION_CHECK",
@@ -554,7 +554,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -567,7 +567,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -712,6 +712,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f8aa6a29e12ad418cf338f2c1daec99"
+  "hash": "bc1c9d69ecfd044fe4fd7897c071add3"
 }
 ##DOCS-SOURCER-END -->

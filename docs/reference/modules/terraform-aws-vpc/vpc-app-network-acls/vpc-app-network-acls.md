@@ -16,7 +16,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This Terraform Module adds a default set of [Network
 ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) to a VPC created using the
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-app) module. The ACLs enforce the following security settings (based on [A Reference VPC
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app) module. The ACLs enforce the following security settings (based on [A Reference VPC
 Architecture](https://www.whaletech.co/2014/10/02/reference-vpc-architecture.html)):
 
 *   **Public subnet**: Allow all requests.
@@ -248,7 +248,7 @@ A map of unique names to client IP CIDR block and inbound ports that should be e
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -301,7 +301,7 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -375,11 +375,11 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app-network-acls%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app-network-acls%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app-network-acls%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd1cdcbf27eda30d9a32d66ec736fe87"
+  "hash": "28843f3ad595c013f2b1604e45133572"
 }
 ##DOCS-SOURCER-END -->

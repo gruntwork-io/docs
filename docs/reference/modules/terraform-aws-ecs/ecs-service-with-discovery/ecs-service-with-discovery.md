@@ -21,9 +21,9 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-discovery%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-discovery%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-discovery%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "daf0680dd367df72b00ceb9cfa8ff444"

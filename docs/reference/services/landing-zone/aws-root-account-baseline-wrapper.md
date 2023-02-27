@@ -126,7 +126,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -302,9 +302,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
-  
    additional_config_rules = {
      acm-certificate-expiration-check = {
        description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
@@ -509,7 +506,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -732,7 +729,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1325,8 +1322,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        group_name   = "stage-full-access"
@@ -1674,8 +1669,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    default = {
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
@@ -1701,7 +1694,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -2186,6 +2179,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "92f6a690d5d0b4d70ecd2c8cd4acedfa"
+  "hash": "b1898866fa7b9c40f8df97c0aca7ef23"
 }
 ##DOCS-SOURCER-END -->

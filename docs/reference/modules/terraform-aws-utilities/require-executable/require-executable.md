@@ -90,9 +90,9 @@ A map of the executables to the resolved path where they reside.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "ca0dfe48bae8f2ea9089eed114442cf9"

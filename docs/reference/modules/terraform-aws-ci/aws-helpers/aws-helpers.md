@@ -42,9 +42,9 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Faws-helpers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Faws-helpers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Faws-helpers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "c6895b44113c9e95ebd42e92dd7649d1"

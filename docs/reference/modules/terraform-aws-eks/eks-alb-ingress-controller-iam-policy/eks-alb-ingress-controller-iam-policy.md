@@ -111,9 +111,9 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "bf6da515b28fa120a010b4bed46f7c1d"

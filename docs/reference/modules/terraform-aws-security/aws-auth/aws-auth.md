@@ -172,7 +172,7 @@ eval $(aws-auth --serial-number arn:aws:iam::123456789011:mfa/jondoe --token-cod
 
 If you store your secrets in a CLI-friendly password manager, such as [pass](https://www.passwordstore.org/),
 [lpass](https://github.com/lastpass/lastpass-cli) or
-[1Password CLI](https://support.1password.com/command-line-getting-started/), then you can reduce this even further! Instructions on how to set this up for Lastpass / `lpass` can be found [here](https://github.com/gruntwork-io/terraform-aws-security/tree/main/AWS-AUTH-LASTPASS.md) and 1Password / `op` [here](https://github.com/gruntwork-io/terraform-aws-security/tree/main/AWS-AUTH-1PASSWORD.md).
+[1Password CLI](https://support.1password.com/command-line-getting-started/), then you can reduce this even further! Instructions on how to set this up for Lastpass / `lpass` can be found [here](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth/AWS-AUTH-LASTPASS.md) and 1Password / `op` [here](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth/AWS-AUTH-1PASSWORD.md).
 
 First, store your permanent AWS credentials in `pass`:
 
@@ -247,11 +247,11 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9e0b68f939c8e56e7b6fabfe4369fbee"
+  "hash": "e3d68265e919a05aaeb597d3deef4e05"
 }
 ##DOCS-SOURCER-END -->

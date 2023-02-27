@@ -368,7 +368,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        type      = "standard"
        size      = 100
@@ -481,7 +481,7 @@ A map of key value pairs that represent custom tags to propagate to the resource
 
 
 ```hcl
-default = {
+   default = {
      foo = "bar"
    }
 
@@ -534,11 +534,11 @@ The User Data script to run on each server when it is booting.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c4b51496f0894686fe7cb45959f18966"
+  "hash": "970ca8ecb37cf6349b1238c2f0abb174"
 }
 ##DOCS-SOURCER-END -->

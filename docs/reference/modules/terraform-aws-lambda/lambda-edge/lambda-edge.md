@@ -264,7 +264,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -426,11 +426,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76f0093d4cfadf64ec388fe0fc70da13"
+  "hash": "00768489e526e92ffda7d8f875861bc2"
 }
 ##DOCS-SOURCER-END -->

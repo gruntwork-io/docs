@@ -96,9 +96,9 @@ The amount of time, in seconds, between retries.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-share-snapshot%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-share-snapshot%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-share-snapshot%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "cfb452bb46bd137c872ed1fc7e0c90fe"

@@ -63,9 +63,9 @@ The queue URL for the Simple Queue Service (SQS).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "7cd244810492dfeb631d7d1de125220e"

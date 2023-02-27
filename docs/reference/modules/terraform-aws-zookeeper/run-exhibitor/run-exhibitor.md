@@ -144,9 +144,9 @@ argument.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "b8dec2c7195feb1625a33f388d3564f3"

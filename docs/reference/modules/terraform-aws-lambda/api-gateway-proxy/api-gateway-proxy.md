@@ -31,7 +31,7 @@ recommend using a framework like Serverless to avoid the verbose configuration o
 :::note
 
 If you are looking for a module to route different requests and methods to different Lambda functions, refer to the
-[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/lambda-http-api-gateway) module.
+[lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway) module.
 
 :::
 
@@ -55,9 +55,9 @@ before, make sure to read [How to use the Gruntwork Infrastructure as Code Libra
 
 ### Core concepts
 
-*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/core-concepts.md#what-is-api-gateway)
+*   [What is API Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#what-is-api-gateway)
 *   [What is the difference between the different endpoint
-    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
+    types?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#what-is-the-difference-between-the-different-endpoint-types)
 *   [API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html): Amazon's docs
     on API Gateway covering core concepts such as security, monitoring, and invoking APIs.
 
@@ -78,10 +78,10 @@ If you just want to try this repo out for experimenting and learning, check out 
 ### Day-to-day operations
 
 *   [How do I expose AWS Lambda functions using API
-    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
+    Gateway?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#how-do-i-expose-aws-lambda-functions-using-api-gateway)
 *   [Can I expose additional lambda functions in a decentralized
-    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
-*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
+    manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+*   [How do I pass in the us_east\_1 aws provider?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#how-do-i-pass-in-the-us_east\_1-aws-provider)
 
 
 
@@ -188,7 +188,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      GET = {
        metrics_enabled = true
        logging_level   = "INFO"
@@ -280,7 +280,7 @@ When true, route the root path (URL or URL/) to the lambda function specified by
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -401,11 +401,11 @@ The URL of the API Gateway that you can use to invoke it.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "25419179b0829d313d7055d577d4f822"
+  "hash": "f9563e392b1d7b064cd5a04dfa59534b"
 }
 ##DOCS-SOURCER-END -->

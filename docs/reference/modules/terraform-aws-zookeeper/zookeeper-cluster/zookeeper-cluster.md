@@ -24,7 +24,7 @@ deploying an AMI that has both ZooKeeper and [Exhibitor](https://github.com/soab
 
 *   See the [root README](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/README.md) for instructions on using Terraform modules.
 *   See the [zookeeper-cluster example](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/examples/zookeeper-cluster) for sample usage.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/vars.tf) for all the variables you can set on this module.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/vars.tf) for all the variables you can set on this module.
 
 ## Key considerations for using this module
 
@@ -513,7 +513,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -761,11 +761,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc750b48c447ab9ff889f245aaad176b"
+  "hash": "15330807d7098f1506987cc9e68ce534"
 }
 ##DOCS-SOURCER-END -->

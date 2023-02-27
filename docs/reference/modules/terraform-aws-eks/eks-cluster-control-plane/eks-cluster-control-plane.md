@@ -131,7 +131,7 @@ role that is being assumed. Specifically, you need to:
         that role).
 
 You can use the
-[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-iam-role-assume-role-policy-for-service-account) to
+[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account) to
 construct the policy using a more convenient interface. Refer to the module documentation for more info.
 
 Once you have an IAM Role that can be assumed by the Kubernetes Service Account, you can configure your Pods to exchange
@@ -239,7 +239,7 @@ Some additional notes on using Fargate:
     [the `aws_eks_fargate_profile` resource](https://www.terraform.io/docs/providers/aws/r/eks_fargate_profile.html) to
     provision Fargate Profiles with Terraform). The Pod Execution Role created by the module may be reused for other
     Fargate Profiles.
-*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-container-logs)
+*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs)
     module to forward logs to CloudWatch. Instead, you need to manually configure a sidecar `fluentd` container that
     forwards the log entries to CloudWatch Logs. Refer to [this AWS blog
     post](https://aws.amazon.com/blogs/containers/how-to-capture-application-logs-when-using-amazon-eks-on-aws-fargate/)
@@ -281,7 +281,7 @@ If you omit the `addon_version`, correct versions are automatically applied.
 Note that you must update the nodes to use the corresponding `kubelet` version as well. This means that when you update
 minor versions, you will also need to update the AMIs used by the worker nodes to match the version and rotate the
 workers. For more information on rotating worker nodes, refer to [How do I roll out an update to the
-instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
+instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
 module README.
 
 ### Detailed upgrade steps
@@ -523,7 +523,7 @@ A map of custom tags to apply to the EKS add-ons. The key is the tag name and th
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -547,7 +547,7 @@ A map of custom tags to apply to the EKS Cluster. The key is the tag name and th
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -571,7 +571,7 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 
 
 ```hcl
-{
+     {
        key1 = "value1"
        key2 = "value2"
      }
@@ -602,7 +602,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-eks_addons = {
+     eks_addons = {
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
@@ -1007,11 +1007,11 @@ The path to the kubergrunt binary, if in use.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-control-plane%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-control-plane%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-control-plane%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cbfef56fb45a5a393b90de4eeaca277d"
+  "hash": "0087080d67517eb4fdaf4472cc77d5c3"
 }
 ##DOCS-SOURCER-END -->

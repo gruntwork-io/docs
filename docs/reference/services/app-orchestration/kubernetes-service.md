@@ -183,8 +183,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    additional_ports = {
      prometheus = {
        port = 9102
@@ -579,8 +577,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    iam_policy = {
      S3Access = {
        actions = ["s3:*"]
@@ -658,8 +654,6 @@ A list of custom ingress annotations, such as health checks and TLS certificates
 
 
 ```hcl
-
-   Example:
    {
      "alb.ingress.kubernetes.io/shield-advanced-protection" : "true"
    }
@@ -874,7 +868,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1082,8 +1076,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    sidecar_containers = {
      datadog = {
        image = "datadog/agent:latest"
@@ -1104,7 +1096,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1181,6 +1173,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "00e61859b529d4ea67436cc7510bb544"
+  "hash": "3f06c3ff5c903ffd2d3ed480af8884f0"
 }
 ##DOCS-SOURCER-END -->

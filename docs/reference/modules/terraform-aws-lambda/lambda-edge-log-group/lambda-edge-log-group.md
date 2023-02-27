@@ -170,9 +170,9 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "da81eba4cf1ea37fa5a77cbf7559b277"

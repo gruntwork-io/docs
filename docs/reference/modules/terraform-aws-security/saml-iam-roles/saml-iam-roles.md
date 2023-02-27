@@ -104,7 +104,7 @@ A list of IAM ARNs of Identity Providers that will be delegated the auto deploy 
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:role/jenkins"
    ]
 
@@ -136,7 +136,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -168,7 +168,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -200,7 +200,7 @@ A list of IAM ARNs of Identity Providers that will be delegated full (read and w
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -232,7 +232,7 @@ A list of IAM ARNs of Identity Providers that will be delegated IAM admin access
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -264,7 +264,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read access to t
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -296,7 +296,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read-only access
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -328,7 +328,7 @@ A list of IAM ARNs of Identity Providers that will be delegated read access to I
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -360,7 +360,7 @@ A list of IAM ARNs of Identity Providers that will be delegated AWS support acce
 
 
 ```hcl
-default = [
+   default = [
      "arn:aws:iam::123445678910:root"
    ]
 
@@ -566,11 +566,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsaml-iam-roles%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsaml-iam-roles%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsaml-iam-roles%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38ffd642b439758b2dc2db6384559db7"
+  "hash": "20e8ca27e2e71e94ab6f005a113cf0cf"
 }
 ##DOCS-SOURCER-END -->

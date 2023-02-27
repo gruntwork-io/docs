@@ -147,9 +147,9 @@ References:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fsign-binary-helpers%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fsign-binary-helpers%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fsign-binary-helpers%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "47c6e9f347ec927916888c33351277e1"

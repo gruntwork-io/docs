@@ -105,9 +105,9 @@ pyenv shell 3.5.2 3.6.6 3.7.0
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "3bb28fdc14033303bf6f846ad549baa3"

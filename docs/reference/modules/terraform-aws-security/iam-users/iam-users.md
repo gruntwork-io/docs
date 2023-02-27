@@ -152,7 +152,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-default = {
+   default = {
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
      }
@@ -207,7 +207,7 @@ default = {
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -374,11 +374,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "54f3825972bc106e41c395bdef203880"
+  "hash": "edd17dd8ae7099c89ab9ff121d4b733f"
 }
 ##DOCS-SOURCER-END -->

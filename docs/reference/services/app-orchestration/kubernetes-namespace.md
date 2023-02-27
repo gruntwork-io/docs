@@ -146,7 +146,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -211,7 +211,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -292,6 +292,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fk8s-namespace%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9aaac964a471dc7111db87e66bc58b13"
+  "hash": "a876cf13117848b67b487c46bd0400d9"
 }
 ##DOCS-SOURCER-END -->

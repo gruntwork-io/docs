@@ -41,9 +41,9 @@ You can then deploy the AMI using the [kibana-cluster module](https://github.com
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "fa0e9d8568bd7946a5323cdcfcebc79c"

@@ -45,9 +45,9 @@ variables.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a0368e3e0d90788ae2e45cdfb1e26cc3"

@@ -84,7 +84,7 @@ The solution used in this module is to:
 
 The server-group module will perform a zero-downtime, rolling deployment every time you make a change to the code and
 run `terraform apply`. This deployment process is implemented in a Python script called
-[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/main/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
+[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
 provisioner](https://www.terraform.io/docs/provisioners/local-exec.html).
 
 Here is how it works:
@@ -345,7 +345,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-default = [
+   default = [
      {
        type      = "standard"
        size      = 100
@@ -420,7 +420,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -698,11 +698,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c8087dc45bca71b2f5d1382035a04148"
+  "hash": "588eef91618d74cae3803a62ca3f3c38"
 }
 ##DOCS-SOURCER-END -->

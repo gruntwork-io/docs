@@ -66,7 +66,7 @@ Note the following parameters:
     documentation](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/modules-http.html) to understand what ports
     Elasticsearch uses.
 
-You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/variables.tf).
+You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules/variables.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
@@ -74,11 +74,11 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-security-group-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-security-group-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-security-group-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b9c7bd9509ecddb3ae996b6d4bdf627a"
+  "hash": "1e9b12abb6c73cb7c86d7cf5a609974e"
 }
 ##DOCS-SOURCER-END -->

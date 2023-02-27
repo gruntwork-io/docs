@@ -176,7 +176,7 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -276,7 +276,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -323,7 +323,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -370,7 +370,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -417,7 +417,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -464,7 +464,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -511,7 +511,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -558,7 +558,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -643,7 +643,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -892,7 +892,7 @@ The instance type to use for the db (e.g. db.r3.large). Only used when <a href="
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -932,7 +932,7 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1000000000"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -971,7 +971,7 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1208,7 +1208,7 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1390,6 +1390,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "40372c5ac3db161edbc68b1aab3fcc7a"
+  "hash": "37af11235ef75f95a5e53c455eb5b3a0"
 }
 ##DOCS-SOURCER-END -->

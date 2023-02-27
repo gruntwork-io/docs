@@ -24,7 +24,7 @@ This module contains two scripts for working with [Jenkins CI server](https://je
 ## Example code
 
 *   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/examples/jenkins) for working sample code.
-*   See [install.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/install.sh) and [run-jenkins.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/run-jenkins) for all options you can pass to these scripts.
+*   See [install.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/install.sh) and [run-jenkins.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/run-jenkins) for all options you can pass to these scripts.
 
 ## Install Jenkins
 
@@ -71,11 +71,11 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finstall-jenkins%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finstall-jenkins%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finstall-jenkins%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f843d882cfc124640dfac7c3cc1dd67"
+  "hash": "abb12cd87ca39387683b467abd398a4f"
 }
 ##DOCS-SOURCER-END -->

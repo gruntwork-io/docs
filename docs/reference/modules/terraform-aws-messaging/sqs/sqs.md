@@ -112,7 +112,7 @@ A list of CIDR-formatted IP address ranges that are allowed to access this queue
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -307,11 +307,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f9e0c19ac03f2d819614fb6cc015861"
+  "hash": "813546e55fc02e2fc28b2ac7d92781d8"
 }
 ##DOCS-SOURCER-END -->

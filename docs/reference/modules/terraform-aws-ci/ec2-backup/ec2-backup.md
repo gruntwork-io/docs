@@ -49,7 +49,7 @@ DLM:
 ## Example code
 
 *   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/vars.tf) for all parameters you can configure on this module.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/vars.tf) for all parameters you can configure on this module.
 
 ## Specifying an instance
 
@@ -194,11 +194,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fec2-backup%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fec2-backup%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fec2-backup%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e8fb27c8162ff3a71bd6c88f0a8e745e"
+  "hash": "a97f817bd917a07bc70eba461bd11fd0"
 }
 ##DOCS-SOURCER-END -->

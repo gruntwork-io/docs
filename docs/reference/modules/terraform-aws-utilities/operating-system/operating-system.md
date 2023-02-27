@@ -50,9 +50,9 @@ path_separator        = "${module.os.path_separator}"
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "59a335faefa406762d2938c507b24e9b"

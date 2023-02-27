@@ -25,9 +25,9 @@ Instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ffail2ban%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ffail2ban%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ffail2ban%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "0d8376bf186d9d9e324c89f0f260c2d7"

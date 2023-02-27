@@ -183,7 +183,7 @@ map(object({
 
 
 ```hcl
-efs_access_points = {
+   efs_access_points = {
      jenkins = {
        root_access_arns = []
        read_write_access_arns = [
@@ -336,6 +336,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fefs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1be8ab01bb09f85ce85d8ac7b08acf2b"
+  "hash": "953391fa0de39fb7c042ea20aa58bee9"
 }
 ##DOCS-SOURCER-END -->

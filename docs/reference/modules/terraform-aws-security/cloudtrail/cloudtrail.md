@@ -154,7 +154,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -175,7 +175,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -236,7 +236,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -549,7 +549,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -680,7 +680,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -693,7 +693,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -866,6 +866,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1074dfcc0bab9cdc861aa43e2edd9bf1"
+  "hash": "76c87ddb1e14f9893a34f91cd23e1a9c"
 }
 ##DOCS-SOURCER-END -->

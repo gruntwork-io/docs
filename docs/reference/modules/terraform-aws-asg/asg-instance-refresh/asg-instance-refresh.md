@@ -174,7 +174,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        key = "foo"
        value = "bar"
@@ -215,7 +215,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -378,11 +378,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d983dd71ff269458054e683186234bca"
+  "hash": "3d941cb9188128d107c31e58a02bbc28"
 }
 ##DOCS-SOURCER-END -->

@@ -22,7 +22,7 @@ This Gruntwork Terraform Module creates an IAM group and/or role and attaches a 
 
 ### Instructions
 
-Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/examples/custom-iam-entity) for a working example.
+Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/main/examples/custom-iam-entity) for a working example.
 
 #### Resources Created
 
@@ -276,11 +276,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a407d5629cf4a285048eacc68c12026f"
+  "hash": "4600b10739cc9fefaed396e501b1ae2e"
 }
 ##DOCS-SOURCER-END -->

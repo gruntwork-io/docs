@@ -59,7 +59,7 @@ map(object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -105,11 +105,11 @@ map(object({
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3263f0cc3322e036015499dcabe0648"
+  "hash": "43517581ba5fb89fa14c262529f4f7ec"
 }
 ##DOCS-SOURCER-END -->

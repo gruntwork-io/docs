@@ -25,7 +25,7 @@ aware that, in a future release, once we feel the new functionality in `vpc-app`
 
 This Terraform Module adds a default set of [Network
 ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) to a VPC created using the
-[vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-mgmt) module. The ACLs enforce the following security settings  (based on [A Reference VPC
+[vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt) module. The ACLs enforce the following security settings  (based on [A Reference VPC
 Architecture](https://www.whaletech.co/2014/10/02/reference-vpc-architecture.html)):
 
 *   **Public subnet**: Allow all requests.
@@ -175,11 +175,11 @@ The number to use for the first rule that is created by this module. All rules i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt-network-acls%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt-network-acls%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt-network-acls%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d767e55c650f9bf479a0a3dc7445584"
+  "hash": "4daab0e6b49f1a371a2ea6359b670e2f"
 }
 ##DOCS-SOURCER-END -->

@@ -32,7 +32,7 @@ using a commercial CA or public, free CA like [Let's Encrypt](https://letsencryp
 1.  Edit the `docker-compose.yml` file and fill in your desired argument values.
 2.  Now run `docker-compose up` and your TLS certs will output to a local `output` directory!
 
-To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/main/scripts/main.sh) file.
+To see documentation on the arguments in `docker-compose.yml`, see the [main.sh](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private/scripts/main.sh) file.
 
 Note that the Docker Compose file mounts the local machine folder `./output` in the Docker container. Mac and Windows
 users sohuld take note that, in some cases, volume mounting may be extremely slow, or even one-way-only if you use an
@@ -174,11 +174,11 @@ TLS certificates for any public services.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ef2127f50257d640723a12e43e42af96"
+  "hash": "6d8f83dd7c12a2e65f173555316731ed"
 }
 ##DOCS-SOURCER-END -->

@@ -97,8 +97,8 @@ for more information).
 
 ## How do I invoke scripts in a given container?
 
-You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
-to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
+You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
+to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
 for more information.
 
 
@@ -168,7 +168,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -293,7 +293,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -426,7 +426,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -593,7 +593,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -696,11 +696,11 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cbd3a3c2fc88eb97f60a0bfdcaf111eb"
+  "hash": "307cfb8192406ce68deb05e0e56717d5"
 }
 ##DOCS-SOURCER-END -->

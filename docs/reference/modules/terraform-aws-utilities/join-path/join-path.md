@@ -67,7 +67,7 @@ A list of folder and file names to combine into a path, using the proper path se
 
 
 ```hcl
-path_parts = ["foo", "bar", "baz.txt"] => outputs "foo/bar/baz.txt" on Linux
+   path_parts = ["foo", "bar", "baz.txt"] => outputs "foo/bar/baz.txt" on Linux
 
 ```
 </details>
@@ -88,11 +88,11 @@ path_parts = ["foo", "bar", "baz.txt"] => outputs "foo/bar/baz.txt" on Linux
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6c9b6f1ac6a1d5fd3cfbf898f9015e2"
+  "hash": "9cd00da6eb289b7c23e54fcc91a348af"
 }
 ##DOCS-SOURCER-END -->

@@ -457,7 +457,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        port = 443
        tls_domain_name = "foo.your-company.com"
@@ -502,7 +502,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        port = 443
        tls_arn = "arn:aws:iam::123456789012:server-certificate/ProdServerCert"
@@ -632,11 +632,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Falb%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Falb%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Falb%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "027a89f8642029d30ecf665822d2321e"
+  "hash": "fa158ebbb787bd299a91cbd79f491a7d"
 }
 ##DOCS-SOURCER-END -->

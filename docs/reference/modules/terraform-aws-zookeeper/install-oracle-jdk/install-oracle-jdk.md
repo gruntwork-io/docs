@@ -69,9 +69,9 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "80ab0cf4b8fa89511ea76fbf556574f7"

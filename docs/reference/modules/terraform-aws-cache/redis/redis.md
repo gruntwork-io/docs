@@ -408,9 +408,9 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "66c226a7b8fb27ebd9ad72f3fa57ccae"

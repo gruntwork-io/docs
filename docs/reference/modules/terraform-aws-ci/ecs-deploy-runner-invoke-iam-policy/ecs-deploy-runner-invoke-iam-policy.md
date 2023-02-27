@@ -121,9 +121,9 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "1c69e9900253b8204e878006c0557518"

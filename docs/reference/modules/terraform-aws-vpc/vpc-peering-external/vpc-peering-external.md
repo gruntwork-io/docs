@@ -75,9 +75,9 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering-external%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering-external%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering-external%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "f205eb87d54fe429d0a8092f2e177d52"

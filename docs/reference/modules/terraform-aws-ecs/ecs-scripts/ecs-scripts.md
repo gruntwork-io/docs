@@ -28,7 +28,7 @@ You can install the helpers using the [Gruntwork Installer](https://github.com/g
 gruntwork-install --module-name "ecs-scripts" --repo "https://github.com/gruntwork-io/terraform-aws-ecs" --tag "0.0.1"
 ```
 
-For an example, see the [Packer](https://www.packer.io/) template under [/examples/example-ecs-instance-ami/build.json](https://github.com/gruntwork-io/terraform-aws-ecs/examples/example-ecs-instance-ami/build.json).
+For an example, see the [Packer](https://www.packer.io/) template under [/examples/example-ecs-instance-ami/build.json](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/examples/example-ecs-instance-ami/build.json).
 
 ## Using the configure-ecs-instance helper
 
@@ -77,11 +77,11 @@ Run `configure-ecs-instance --help` to see all available options.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-scripts%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-scripts%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-scripts%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "433f86273f1ce0ddde0801a1d13b2e78"
+  "hash": "8bb023f70cfeba23cee9c054f804e645"
 }
 ##DOCS-SOURCER-END -->

@@ -85,9 +85,9 @@ By contrast, Elastalert is limited to alerting and notifications. We chose Elast
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elastalert%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elastalert%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-elastalert%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "dfdc0115814028b711fb268115688dc6"

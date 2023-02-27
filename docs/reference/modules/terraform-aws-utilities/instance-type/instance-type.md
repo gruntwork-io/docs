@@ -95,9 +95,9 @@ The recommended instance type to use in this AWS region. This will be the first 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Finstance-type%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Finstance-type%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Finstance-type%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "55c8a6a71f5149f4c54052b8daf8d5b6"

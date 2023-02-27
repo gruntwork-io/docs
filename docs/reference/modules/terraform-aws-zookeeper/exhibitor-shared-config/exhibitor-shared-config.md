@@ -83,9 +83,9 @@ The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decry
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "d53a03c1c0914c650bad4f027bd34c2c"

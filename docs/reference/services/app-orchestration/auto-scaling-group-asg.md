@@ -115,7 +115,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -323,8 +323,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        key = "foo"
@@ -358,7 +356,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -470,8 +468,6 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-
-   Example:
    enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
@@ -518,8 +514,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "health-path" = {
         priority     = 130
@@ -549,7 +543,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -618,8 +612,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "foo" = {
         priority = 120
@@ -643,7 +635,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -827,8 +819,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    iam_policy = {
      S3Access = {
        actions = ["s3:*"]
@@ -931,8 +921,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "old-website" = {
         priority = 120
@@ -964,7 +952,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1091,9 +1079,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
-  
    server_ports = {
      "default-http" = {
        server_port            = "8080"
@@ -1108,7 +1093,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1324,6 +1309,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fasg-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0d8a89127ec5bf0295527d419800473c"
+  "hash": "88bea399b1a1832fc4fd26c53c19e1c7"
 }
 ##DOCS-SOURCER-END -->

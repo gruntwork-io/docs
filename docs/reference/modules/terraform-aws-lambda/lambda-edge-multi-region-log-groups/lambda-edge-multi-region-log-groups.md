@@ -166,9 +166,9 @@ Map of log group names per region
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "18647a52edd63c6fbef713370001f4ed"

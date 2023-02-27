@@ -16,8 +16,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This folder contains:
 
-1.  [run-kafka-rest](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/bin/run-kafka-rest): A Bash script for configuring and running Confluent REST Proxy.
-2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/install.sh): A Bash script that installs the `run-kafka-rest` script.
+1.  [run-kafka-rest](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/bin/run-kafka-rest): A Bash script for configuring and running Confluent REST Proxy.
+2.  [install.sh](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/install.sh): A Bash script that installs the `run-kafka-rest` script.
 
 Typically, you would run the `install.sh` script in a [Packer](https://www.packer.io/) template so that you create an Amazon
 Machine Image (AMI) that comes pre-installed with `run-kafka-rest`. Then, by calling `run-kafka-rest` in [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html), your server will configure and start REST Proxy on
@@ -286,7 +286,7 @@ wish to override all JVM settings for Kafka, you can use the `--jvm-opts` argume
 REST Proxy has [many, many configuration settings](https://docs.confluent.io/4.0.0/kafka-rest/docs/config.html). The
 `run-kafka-rest` script gives you a convenient way to set just a few of the most important ones, and especially those
 that may differ from environment to environment. To set other types of settings, your best bet is to put them into a custom
-`kafka-rest.properties` file and to install that file using the [install.sh script](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/install.sh) that installs the
+`kafka-rest.properties` file and to install that file using the [install.sh script](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/install.sh) that installs the
 `run-kafka-test` script by setting the `--config-path` argument.
 
 The default `kafka-rest.properties` file has no options defined in it, so you may create a custom config file with a
@@ -297,11 +297,11 @@ to fill in run-time properties, so it will replace or add settings to your custo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "08fa1c37fe890f093805ad2f8d5f623e"
+  "hash": "33a3beebba4b95d64bdd2473453efa8f"
 }
 ##DOCS-SOURCER-END -->

@@ -15,7 +15,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # VPC-App Terraform Module
 
 This Terraform Module launches a single VPC meant to house applications. By contrast, DevOps-related services such as
-Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-mgmt) module.)
+Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt) module.)
 
 ## What's a VPC?
 
@@ -55,8 +55,8 @@ To summarize:
 *   In a given subnet tier, there are usually three or four actual subnets, one for each Availability Zone.
 *   Therefore, if we created a single VPC in the `us-west-2` region, which has Availability Zones `us-west-2a`,`us-west-2b`,
     and `us-west-2c`, each subnet tier would have three subnets (one per Availability Zone) for a total of 9 subnets in all.
-*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-mgmt),
-    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-peering) to make this VPC accessible from the mgmt VPC.
+*   The only way to reach this VPC is from the public Internet via a publicly exposed sevice, or via the [mgmt VPC](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt),
+    which uses [VPC Peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering) to make this VPC accessible from the mgmt VPC.
 *   Philosophically, everything in a VPC should be isolated from all resources in any other VPC. In particular, we want
     to ensure that our stage environment is completely independent from prod. This architecture helps to reinforce that.
 
@@ -71,7 +71,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 
 
@@ -766,11 +766,11 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-app%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "505c42b2e3954ac97b9484c71299f7a4"
+  "hash": "32a6a5eacdce5b15dedf4f15654f812e"
 }
 ##DOCS-SOURCER-END -->

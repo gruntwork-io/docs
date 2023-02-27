@@ -95,9 +95,9 @@ Setting Instance Metadata Service version 2 state to optional
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "d1725aee547557ac65545bc1689b7239"

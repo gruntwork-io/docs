@@ -24,7 +24,7 @@ aware that, in a future release, once we feel the new functionality in `vpc-app`
 `vpc-mgmt` entirely.
 
 This Terraform Module launches a single VPC meant to house DevOps and other management services. By contrast, the apps
-that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-app) module.)
+that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app) module.)
 
 ## What's a VPC?
 
@@ -62,7 +62,7 @@ To summarize:
 
 ## VPC Peering
 
-Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-peering) module.
+Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering) module.
 
 ## SSH Access via the Bastion Host
 
@@ -76,7 +76,7 @@ examples](https://github.com/gruntwork-io/terraform-aws-server/tree/main/example
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 
 
@@ -585,11 +585,11 @@ A null_resource that indicates that the VPC is ready, including all of its resou
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-mgmt%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0907adbf285e257d5cc6113d6a9f1573"
+  "hash": "ce959f9db84a3723ffe4d98e71e90041"
 }
 ##DOCS-SOURCER-END -->

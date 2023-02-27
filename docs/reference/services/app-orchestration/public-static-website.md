@@ -302,9 +302,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
-  
    default = {
      404 = {
        response_code         = 404
@@ -618,6 +615,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3928465ae94ada52ddd67bd0e37a13dd"
+  "hash": "0066cf28f2b23a63726300842f90903e"
 }
 ##DOCS-SOURCER-END -->

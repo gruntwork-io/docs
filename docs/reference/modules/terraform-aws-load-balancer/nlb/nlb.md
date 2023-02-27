@@ -26,9 +26,9 @@ For information on why the module was removed, refer to the discussion in [PR
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Fnlb%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Fnlb%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Fnlb%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "7563d1e52937cf584e0b809bed44dbb9"

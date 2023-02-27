@@ -215,7 +215,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -390,6 +390,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-aws-auth-merger%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fcda51136b1ac0c710eb01ec04e43866"
+  "hash": "e77b623166f6f8561f75e8ad38321db5"
 }
 ##DOCS-SOURCER-END -->

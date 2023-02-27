@@ -220,7 +220,7 @@ Here are the key items to pay attention to:
 Schema Registry has [many, many configuration settings](https://docs.confluent.io/4.0.0/schema-registry/docs/config.html).
 The `run-schema-registry` script gives you a convenient way to set just a few of the most important ones, and especially
 those that may differ from environment to environment. To set other types of settings, your best bet is to put them into
-a custom `schema-registries.properties` file and to install that file using the [install.sh script](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/install.sh) that
+a custom `schema-registries.properties` file and to install that file using the [install.sh script](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-schema-registry/install.sh) that
 installs the `run-schema-registry` script by setting the `--config-path` argument.
 
 The default `schema-registry.properties` file is as follows:
@@ -240,11 +240,11 @@ and `kafkastore.connection.url` will be overwritten, but feel free to add any ot
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-schema-registry%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-schema-registry%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-schema-registry%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ac31062121356abc7b7d51976208f1b8"
+  "hash": "08da22408157dc3b476ce0820eb07849"
 }
 ##DOCS-SOURCER-END -->

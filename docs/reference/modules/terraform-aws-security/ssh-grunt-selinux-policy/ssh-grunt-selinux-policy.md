@@ -81,9 +81,9 @@ $ sudo semodule -i ssh-grunt.pp
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "0cb94c40023026fc3b2d5a37e689c643"

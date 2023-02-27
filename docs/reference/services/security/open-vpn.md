@@ -135,7 +135,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -845,6 +845,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fopenvpn-server%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fafd4defef139ccd64299c11e8684e6e"
+  "hash": "553f2a030490bb3d7d4d013382173f1e"
 }
 ##DOCS-SOURCER-END -->

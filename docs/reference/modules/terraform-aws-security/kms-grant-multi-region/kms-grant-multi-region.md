@@ -110,7 +110,7 @@ map(object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -166,6 +166,6 @@ Create a dependency between the resources in this module to the interpolated val
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-grant-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1bf4bb5f781d3b43e430486f8745d188"
+  "hash": "9747294e1cd38672ed99fc9f360d7acb"
 }
 ##DOCS-SOURCER-END -->

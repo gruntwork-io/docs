@@ -59,7 +59,7 @@ Note the following parameters:
 *   `security_group_id`: Use this parameter to specify the ID of the security group to which the rules in this module
     should be added.
 
-You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/variables.tf).
+You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/variables.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
@@ -67,11 +67,11 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-security-group-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-security-group-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-security-group-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a447a8cd8f078fc6b235ab53d4013b68"
+  "hash": "a8bbb9fe7fe0073a3bdc13b19ad1f2b8"
 }
 ##DOCS-SOURCER-END -->

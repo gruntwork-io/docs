@@ -585,9 +585,9 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "e15f900fc840cba6fcfe18b9ab6da459"

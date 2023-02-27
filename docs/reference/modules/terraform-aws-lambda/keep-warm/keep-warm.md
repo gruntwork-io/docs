@@ -73,7 +73,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-default = {
+   default = {
      "arn:aws:lambda:us-east-1:123456789011:function:my-function-foo" = {}
   
      "arn:aws:lambda:us-east-1:123456789011:function:my-function-bar" = {
@@ -182,11 +182,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fkeep-warm%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fkeep-warm%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fkeep-warm%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "469e346e23e5e308125a9678981c84b3"
+  "hash": "ce717722b664813e6328e0c1acd77e5a"
 }
 ##DOCS-SOURCER-END -->

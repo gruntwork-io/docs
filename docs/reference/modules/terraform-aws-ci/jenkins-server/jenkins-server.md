@@ -27,7 +27,7 @@ to run an ASG for Jenkins that can correctly reattach an EBS volume.
 ## Example code
 
 *   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/examples/jenkins) for working sample code.
-*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/vars.tf) for all parameters you can configure on this module.
+*   See [vars.tf](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server/vars.tf) for all parameters you can configure on this module.
 
 ## Jenkins AMI
 
@@ -641,11 +641,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "859b69538ce27620d8e3cf49dab2b4ec"
+  "hash": "cb04c4e43877d67e414ee07624c8b16d"
 }
 ##DOCS-SOURCER-END -->

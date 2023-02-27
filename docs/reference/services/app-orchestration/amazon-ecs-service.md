@@ -117,8 +117,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    container_definitions = [{
      name  = "nginx"
      image = "nginx:1.21"
@@ -128,7 +126,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -241,8 +239,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    container_definitions = [{
      name  = "nginx"
      image = "nginx:1.21"
@@ -252,7 +248,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -300,8 +296,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    capacity_provider_strategy = [
       {
         capacity_provider = "FARGATE"
@@ -592,8 +586,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    efs_volumes = {
      jenkins = {
        file_system_id          = "fs-a1bc234d"
@@ -653,7 +645,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -729,8 +721,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "health-path" = {
         priority     = 130
@@ -760,7 +750,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -824,8 +814,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "foo" = {
         priority = 120
@@ -863,7 +851,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1116,8 +1104,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    iam_policy = {
      S3Access = {
        actions = ["s3:*"]
@@ -1231,7 +1217,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1364,8 +1350,6 @@ A map of network configuration parameters to provide the Container Network Inter
 
 
 ```hcl
-
-   Example:
    properties = {
      AppPorts         = "8080"
      EgressIgnoredIPs = "169.254.170.2,169.254.169.254"
@@ -1395,8 +1379,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
     {
       "old-website" = {
         priority = 120
@@ -1428,7 +1410,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1672,8 +1654,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    volumes = {
      datadog = {
        host_path = "/var/run/datadog"
@@ -1870,6 +1850,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2c2b5f834b81c08c547cfe658aa08906"
+  "hash": "70aa12ace6e43a8c2275da7e856ad031"
 }
 ##DOCS-SOURCER-END -->

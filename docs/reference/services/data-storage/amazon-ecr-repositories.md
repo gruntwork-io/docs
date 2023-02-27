@@ -92,7 +92,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -310,6 +310,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "45aceea7de443cd6812e03f1ded02d72"
+  "hash": "83147573c636b393d20aa5365962b283"
 }
 ##DOCS-SOURCER-END -->

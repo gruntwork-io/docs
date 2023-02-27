@@ -195,8 +195,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    iam_policy = {
      S3Access = {
        actions = ["s3:*"]
@@ -287,6 +285,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fhelm-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ec3d2ed7f2d2daf185da6b6aaef34e1e"
+  "hash": "b156cf88279091baec6e2a8e6ba11e9e"
 }
 ##DOCS-SOURCER-END -->

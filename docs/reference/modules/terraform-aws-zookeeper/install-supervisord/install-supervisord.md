@@ -44,9 +44,9 @@ example](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/examp
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-supervisord%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-supervisord%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-supervisord%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "ea6693a685bb3b3bcaa1fb00eb182950"

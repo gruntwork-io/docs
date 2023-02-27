@@ -93,9 +93,9 @@ container instead of the command configured in the Task Definition.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "49a2a2a318291123a35c5514a5387ef5"

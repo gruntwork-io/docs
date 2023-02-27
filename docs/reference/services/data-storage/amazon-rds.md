@@ -203,7 +203,7 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -289,8 +289,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
   [
     {
       name    = "arn:aws:iam::0000000000:user/dev"
@@ -376,7 +374,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -461,7 +459,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -508,7 +506,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -555,7 +553,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -602,7 +600,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -649,7 +647,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -696,7 +694,7 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -934,7 +932,7 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1000000000"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -973,7 +971,7 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1228,7 +1226,7 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1419,6 +1417,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f684c60cd20fff43f9f9c59d49e6b69e"
+  "hash": "7371dbb39a4db0c227094ca8d8e897d0"
 }
 ##DOCS-SOURCER-END -->

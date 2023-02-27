@@ -39,7 +39,7 @@ The time it takes to backup a cluster is dependent on the volume of data. Howeve
 
 ## Restoring Backups
 
-Restoring snapshots is handled by the [elasticsearch-cluster-restore module](https://github.com/gruntwork-io/terraform-aws-elk/tree/elasticsearch-cluster-restore).
+Restoring snapshots is handled by the [elasticsearch-cluster-restore module](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore).
 
 
 
@@ -203,11 +203,11 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-backup%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-backup%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-backup%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ec060d7605bcba6a7a051c7a1166a2d"
+  "hash": "158e583006371f31bd6e1e356253104e"
 }
 ##DOCS-SOURCER-END -->

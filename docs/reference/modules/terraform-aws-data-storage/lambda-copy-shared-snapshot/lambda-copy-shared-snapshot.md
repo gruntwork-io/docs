@@ -230,9 +230,9 @@ Namespace all Lambda scheduling resources created by this module with this name.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "75126e833bc6eff35316cdf5bfaf9b89"

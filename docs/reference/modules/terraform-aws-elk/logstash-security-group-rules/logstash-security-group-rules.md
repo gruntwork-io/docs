@@ -61,7 +61,7 @@ Note the following parameters:
 
 *   `beats_port_cidr_blocks`, `beats_port_security_groups`, `num_beats_port_security_groups`: This shows an example of how to configure which IP address ranges and Security Groups are allowed to connect to the `beats` (e.g. `Filebeat`) port that port.
 
-You can find the other parameters in [vars.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/vars.tf).
+You can find the other parameters in [vars.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/vars.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
@@ -168,11 +168,11 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a98715b99093f84c34a0b210980e821"
+  "hash": "4ac0acdfc1a006f2657d1467900b2b22"
 }
 ##DOCS-SOURCER-END -->

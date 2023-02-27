@@ -107,10 +107,6 @@ otherwise enable IAM Users to access the billing console:
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
 the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-policies#background-information).
 
-## TODO
-
-Are we missing any functionality? Let us know by emailing info@gruntwork.io!
-
 
 
 
@@ -385,7 +381,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        group_name   = "stage-full-access"
        iam_role_arns = ["arn:aws:iam::123445678910:role/mgmt-full-access"]
@@ -634,11 +630,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2aac0c0466cf3c2bd0cd8c2b2f77484d"
+  "hash": "58339b4d85ab0c758dca7ddd1d5018d8"
 }
 ##DOCS-SOURCER-END -->

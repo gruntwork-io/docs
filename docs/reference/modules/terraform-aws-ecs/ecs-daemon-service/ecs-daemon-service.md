@@ -30,7 +30,7 @@ environment variables to set, and so on. To actually run an ECS Task, you define
 
 ## How do you create an ECS cluster?
 
-To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/ecs-cluster)
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster)
 for how to create a cluster.
 
 ## How do you add additional IAM policies?
@@ -283,7 +283,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-volumes = {
+   volumes = {
      datadog = {
        host_path = "/var/run/datadog"
      }
@@ -341,11 +341,11 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-daemon-service%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-daemon-service%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-daemon-service%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "52590ba677687ff336a86c8074a92986"
+  "hash": "c620815e3fec7d1192de109d70b89e7b"
 }
 ##DOCS-SOURCER-END -->

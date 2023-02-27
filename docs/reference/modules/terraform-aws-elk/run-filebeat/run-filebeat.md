@@ -95,9 +95,9 @@ The `run-filebeat` script automatically discovers Logstash nodes by using the [a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "cf7c373aacd5626015bbd1406fc8e750"

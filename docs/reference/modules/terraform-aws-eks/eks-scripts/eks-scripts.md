@@ -93,7 +93,7 @@ and you specified `ec2.gruntwork.io/` as your tag prefix (`map-ec2-tags-to-node-
 
 In order for the script to be able to successfully retrieve the tags for EC2 instance, the instances need to be
 associated with an IAM profile that grants it access to retrieve the EC2 tags on the instance. If you launch the workers
-using the [eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-cluster-workers), this is automatically attached to the worker IAM role.
+using the [eks-cluster-workers module](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers), this is automatically attached to the worker IAM role.
 
 ### map_ec2\_tags_to_node_labels.py symlink
 
@@ -105,11 +105,11 @@ tests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-scripts%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-scripts%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-scripts%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d550cdc36b18645babd48f3508cbe6f3"
+  "hash": "30fa66b9fef0911ad744c760c8f1c9e2"
 }
 ##DOCS-SOURCER-END -->

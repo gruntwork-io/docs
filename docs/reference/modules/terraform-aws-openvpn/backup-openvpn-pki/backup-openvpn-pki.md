@@ -15,7 +15,7 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Backup PKI Assets Module
 
 This module is used to backup the OpenVPN Public Key Infrastructure (PKI) to S3 on a server that has been installed using
-the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/install-openvpn) module.
+the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) module.
 
 The PKI is the set of certificates used to verify the server and users' identities for VPN authentication purposes. This
 normally lives on the OpenVPN server in the `/etc/openvpn-ca` and `/etc/openvpn` directories. If we didn't back these files
@@ -25,11 +25,11 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "62bdea65900f34a37e6274305145037c"
+  "hash": "9598109dbbd71ec15b7b388e2ca63926"
 }
 ##DOCS-SOURCER-END -->

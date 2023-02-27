@@ -200,9 +200,9 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fmemcached%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fmemcached%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fmemcached%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a23e29d174c57fa23dee09356ed0757c"

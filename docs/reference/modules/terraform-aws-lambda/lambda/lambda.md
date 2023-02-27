@@ -341,7 +341,7 @@ A map of environment variables to pass to the Lambda function. AWS will automati
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -686,11 +686,11 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c8c91348a2f3664c03fc3c5b009f8ef2"
+  "hash": "daea2cb2948a79f2d804fe21247e19d8"
 }
 ##DOCS-SOURCER-END -->

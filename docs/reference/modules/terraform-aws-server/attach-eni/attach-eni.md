@@ -68,9 +68,9 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "96ae8fc57d7739c570b019b6cbe407aa"

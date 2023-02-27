@@ -217,9 +217,9 @@ detaching the device.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "10435579c5fe8d7a1a917d5aad4fb68e"

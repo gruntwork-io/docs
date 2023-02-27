@@ -98,9 +98,9 @@ The default KMS key used for EBS encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "311658fccb9d7064a06d72aff3e7840f"

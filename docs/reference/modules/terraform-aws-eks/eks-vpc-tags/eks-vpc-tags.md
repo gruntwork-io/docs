@@ -83,9 +83,9 @@ Tags for public subnets in the VPC to use for integration with EKS.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "4ccbb5aabbbc4b162e90033e3dce1ebb"

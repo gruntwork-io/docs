@@ -22,7 +22,7 @@ Bit](https://fluentbit.io/) instance that runs on Fargate worker nodes. This all
 aggregation on Fargate Pods in EKS without setting up a side car container.
 
 **This module is for setting up log aggregation for EKS Fargate Pods. For other pods, take a look at the
-[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/eks-container-logs) module.**
+[eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs) module.**
 
 ## How does this work?
 
@@ -142,7 +142,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -218,7 +218,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -298,7 +298,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -341,7 +341,7 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -427,11 +427,11 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-fargate-container-logs%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-fargate-container-logs%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-fargate-container-logs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2773fa957784617a69518be1a7305cfc"
+  "hash": "9e8a8ae89cf6d6cdeb32fa420b6290e3"
 }
 ##DOCS-SOURCER-END -->

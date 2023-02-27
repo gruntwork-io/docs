@@ -78,9 +78,9 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "e50f7326d2782f5088855ade3ea366f9"

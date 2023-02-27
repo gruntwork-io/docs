@@ -25,9 +25,9 @@ include this module to handle the Security Group details for you.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-security-group-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-security-group-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-security-group-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "a33bafad99009a19d8b26a2febbd31ca"

@@ -30,10 +30,6 @@ downloading a module and setting values with nothing more than a `terraform.tfva
 This module will apply the desired password policy to the given AWS account. Note that this will overwrite any existing
 password policy you already have in place!
 
-## TODO
-
-Are we missing any functionality? Let us know by emailing info@gruntwork.io!
-
 
 
 
@@ -216,11 +212,11 @@ Whether to require uppercase characters for user passwords.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c8f5d9387386d58ed8eed909398fa9a6"
+  "hash": "9929ff286ccb295ee6101fadd5f26f03"
 }
 ##DOCS-SOURCER-END -->

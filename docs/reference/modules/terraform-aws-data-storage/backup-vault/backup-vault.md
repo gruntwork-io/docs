@@ -195,9 +195,9 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "ffcf32f71b44d94af7c9531f57dc9f4d"

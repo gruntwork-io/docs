@@ -16,11 +16,11 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This folder contains modules for working with CloudWatch metrics:
 
-*   [cloudwatch-custom-metrics-iam-policy](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/cloudwatch-custom-metrics-iam-policy): A module that defines
+*   [cloudwatch-custom-metrics-iam-policy](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/cloudwatch-custom-metrics-iam-policy): A module that defines
     an IAM policy that allows reading/writing CloudWatch metrics.
-*   [cloudwatch-dashboard-metric-widget](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/cloudwatch-dashboard-metric-widget): Configures a CloudWatch Dashboard metric widget.
-*   [cloudwatch-dashboard-text-widget](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/cloudwatch-dashboard-text-widget): Configures a CloudWatch Dashboard text widget.
-*   [cloudwatch-dashboard](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/cloudwatch-dashboard): Configures and deploys a CloudWatch Dashboard.
+*   [cloudwatch-dashboard-metric-widget](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/cloudwatch-dashboard-metric-widget): Configures a CloudWatch Dashboard metric widget.
+*   [cloudwatch-dashboard-text-widget](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/cloudwatch-dashboard-text-widget): Configures a CloudWatch Dashboard text widget.
+*   [cloudwatch-dashboard](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/cloudwatch-dashboard): Configures and deploys a CloudWatch Dashboard.
 
 Click on each module above to see its documentation. Head over to the [examples folder](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/examples) for examples.
 
@@ -28,11 +28,11 @@ Click on each module above to see its documentation. Head over to the [examples 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Fmetrics%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Fmetrics%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Fmetrics%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2c4c4c19433e0cc85c7da808b1f8906"
+  "hash": "08903a53838bd108a5a52b9d10386beb"
 }
 ##DOCS-SOURCER-END -->

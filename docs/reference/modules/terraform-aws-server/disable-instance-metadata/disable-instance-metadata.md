@@ -72,9 +72,9 @@ This will result in subsequent calls to the Instance Metadata service to fail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "bdc8d556b4d27dcbdebbe8f76ece1ad4"

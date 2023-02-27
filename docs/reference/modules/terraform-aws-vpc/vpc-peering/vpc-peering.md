@@ -17,8 +17,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
 completely isolated from each other, but sometimes, you want to allow traffic to flow between them, such as allowing
-DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-app)). This module can create peering connections and route table entries that make this sort of
+DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
 cross-VPC communication possible.
 
 ## What's a VPC?
@@ -45,11 +45,11 @@ and production, someone in staging *cannot* access production.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "08658730daed274b72967ec0f38b45ed"
+  "hash": "d586f3eccb0faacb77ffee10a4218af7"
 }
 ##DOCS-SOURCER-END -->

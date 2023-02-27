@@ -46,9 +46,9 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fbash-commons%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fbash-commons%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fbash-commons%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "7f9a8b44f8b8d5d30c6cfbdcf2d1453e"

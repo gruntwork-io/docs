@@ -14,8 +14,8 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 # Prepare PEX Environment Module
 
-**NOTE**: This module should not be used directly. Use [run-pex-as-data-source](https://github.com/gruntwork-io/terraform-aws-utilities/tree/run-pex-as-data-source) or
-[run-pex-as-resource](https://github.com/gruntwork-io/terraform-aws-utilities/tree/run-pex-as-resource) instead.
+**NOTE**: This module should not be used directly. Use [run-pex-as-data-source](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source) or
+[run-pex-as-resource](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource) instead.
 
 This module can be used to prepare an runtime environment that can call out to a PEX binary. Specifically, this module:
 
@@ -27,7 +27,7 @@ This module uses Python under the hood so, the Python must be installed on the O
 
 ## What is PEX?
 
-PEX (or Python EXecutable) is an executable python environment in the spirit of [virtualenvs](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/virtualenv.org). It is
+PEX (or Python EXecutable) is an executable python environment in the spirit of [virtualenvs](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/virtualenv.org). It is
 generated using the [pex](https://github.com/pantsbuild/pex) library, and is an executable zip file containing:
 
 *   An bootstrap script in python that unpacks the requirements and includes them in the `PYTHONPATH` (`sys.path`).
@@ -156,11 +156,11 @@ The python path that should be used for running PEX file. This should be set as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5686f299a83b719aa445fed38248a607"
+  "hash": "ba8e6bc8f8e864d18a2a413ec260f10e"
 }
 ##DOCS-SOURCER-END -->

@@ -191,9 +191,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
-  
    additional_config_rules = {
      acm-certificate-expiration-check = {
        description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
@@ -530,7 +527,7 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1214,7 +1211,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1376,7 +1373,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1767,6 +1764,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "33e118fd6a5b874c305971f9f4aa7531"
+  "hash": "611a6fa3f50e1d54109aa45f4da017fc"
 }
 ##DOCS-SOURCER-END -->

@@ -652,7 +652,7 @@ Whether or not to enable Container Insights on the ECS cluster. Refer to https:/
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -783,11 +783,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f33f36556198cfab344d06352b54e93d"
+  "hash": "e444e9dcd4db352ba84a3a921f227a99"
 }
 ##DOCS-SOURCER-END -->

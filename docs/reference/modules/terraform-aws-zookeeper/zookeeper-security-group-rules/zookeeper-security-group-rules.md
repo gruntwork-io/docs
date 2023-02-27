@@ -25,9 +25,9 @@ this module to handle the Security Group details for you.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-security-group-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-security-group-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fzookeeper-security-group-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "1d1fdfe148ba6ed4e24d97ac37ca1dcc"

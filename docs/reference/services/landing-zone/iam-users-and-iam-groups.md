@@ -317,8 +317,6 @@ list(object({
 
 
 ```hcl
-
-   Example:
    default = [
      {
        group_name   = "stage-full-access"
@@ -521,8 +519,6 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-
-   Example:
    users = {
      alice = {
        groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
@@ -548,7 +544,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -691,6 +687,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fiam-users-and-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "af91cba139c67ac0b43152e27c5318df"
+  "hash": "fb65de405ac50db6728621c0623aa8c7"
 }
 ##DOCS-SOURCER-END -->

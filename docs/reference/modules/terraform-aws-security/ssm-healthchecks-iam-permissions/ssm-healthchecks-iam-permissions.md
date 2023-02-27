@@ -34,9 +34,9 @@ We recommend using this module with just about every single EC2 Instance and Aut
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssm-healthchecks-iam-permissions%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssm-healthchecks-iam-permissions%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssm-healthchecks-iam-permissions%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "fff8585463237dd5ae888b5184dd63cc"

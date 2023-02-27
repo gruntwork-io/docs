@@ -44,7 +44,7 @@ private endpoints internal to the target VPC.
 
 By default, no DNS query will be routed through the Route 53 Resolvers created by this module. You need to create
 forwarding rules that specify which specific domains should be resolved through the Route 53 Resolvers created by this
-module. You can use the [vpc-dns-forwarder-rules module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-dns-forwarder-rules) to construct the forwarding rules.
+module. You can use the [vpc-dns-forwarder-rules module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules) to construct the forwarding rules.
 
 
 
@@ -216,11 +216,11 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4788c00f9dbadfb6ca577094251c6f33"
+  "hash": "eb5bf0ed215e28dbc313507b1a28b05a"
 }
 ##DOCS-SOURCER-END -->

@@ -51,7 +51,7 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
 Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
 `desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
 [external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/main/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
+[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
 `desired_capacity` parameter:
 
 *   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
@@ -146,7 +146,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        key = "foo"
        value = "bar"
@@ -187,7 +187,7 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 
 ```hcl
-enabled_metrics = [
+   enabled_metrics = [
       "GroupDesiredCapacity",
       "GroupInServiceInstances",
       "GroupMaxSize",
@@ -304,11 +304,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20276901736ad025429b02bbca6e1968"
+  "hash": "b13fb54ee09c81e107f206c40d516570"
 }
 ##DOCS-SOURCER-END -->

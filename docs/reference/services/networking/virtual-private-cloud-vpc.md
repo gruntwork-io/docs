@@ -616,7 +616,7 @@ A map of unique names to client IP CIDR block and inbound ports that should be e
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -669,7 +669,7 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -1108,6 +1108,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a1f2c6dd162717a3f46216e2ef5ae9bb"
+  "hash": "75df25d868354cae6cb6fb89d9f4f766"
 }
 ##DOCS-SOURCER-END -->

@@ -15,17 +15,17 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Init OpenVPN Module
 
 This module is used to initialize the OpenVPN server, its Public Key Infrastructure (PKI), Certificate Authority
-(CA) and configuration on a server that has been installed using the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/install-openvpn) module.
+(CA) and configuration on a server that has been installed using the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) module.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ff938eb4a0f7d817dd691dc64c4ce7e"
+  "hash": "444ed5df57602916d4ebcc4e5d52adc5"
 }
 ##DOCS-SOURCER-END -->

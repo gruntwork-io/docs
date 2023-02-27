@@ -46,9 +46,9 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "c9d475e146ed60ad9a9b9219ddacbc21"

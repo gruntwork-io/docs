@@ -54,7 +54,7 @@ Note the following parameters:
 *   `iam_role_id`: Use this parameter to specify the ID of the IAM Role to which the policies in this module
     should be added.
 
-You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/variables.tf).
+You can find the other parameters in [variables.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-iam-policies/variables.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
@@ -62,11 +62,11 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ec7a5c862b7ac369712729777ef1e8e"
+  "hash": "e263b8ad780ad40a5faef3ee39068795"
 }
 ##DOCS-SOURCER-END -->

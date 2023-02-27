@@ -294,7 +294,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -474,6 +474,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f40b1ea1c3ca1101fdb0f56f11b2fdb0"
+  "hash": "43cef1c87c7660669360479ae6553944"
 }
 ##DOCS-SOURCER-END -->

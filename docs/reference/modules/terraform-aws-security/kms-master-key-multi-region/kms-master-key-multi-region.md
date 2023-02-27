@@ -101,7 +101,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -381,6 +381,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key-multi-region%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1bbd8ed4eb39c94206433d3de39e2c11"
+  "hash": "0259a4c9b95ab802e413684da3c712c7"
 }
 ##DOCS-SOURCER-END -->

@@ -296,7 +296,7 @@ A map of environment variables to pass to the Lambda function. AWS will automati
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -371,8 +371,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
    iam_policy = {
      S3Access = {
        actions = ["s3:*"]
@@ -787,6 +785,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Flambda%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0c9d2b27176e4728a5d04be23f2c4157"
+  "hash": "557b6cab7039a40ad97f2a90320b07ce"
 }
 ##DOCS-SOURCER-END -->

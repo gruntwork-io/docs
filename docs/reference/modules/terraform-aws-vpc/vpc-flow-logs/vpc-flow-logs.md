@@ -100,7 +100,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -121,7 +121,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -435,11 +435,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "13faabc39f4590447c93db5d9d932c11"
+  "hash": "89c6aaa76960b81b57c1d4120e078c0a"
 }
 ##DOCS-SOURCER-END -->

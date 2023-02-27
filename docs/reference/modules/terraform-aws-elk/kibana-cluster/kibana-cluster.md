@@ -320,7 +320,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        key                 = "foo"
        value               = "bar"
@@ -377,11 +377,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fkibana-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5072547150fcdaf21a14257f4c32254"
+  "hash": "cc5056ea44c20563faac8efa1bb5f192"
 }
 ##DOCS-SOURCER-END -->

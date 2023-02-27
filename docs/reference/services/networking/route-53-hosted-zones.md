@@ -115,9 +115,6 @@ map(object({
 
 
 ```hcl
-
-   Example:
-  
    private_zones = {
        "backend.com" = {
            comment = "Use for arbitrary comments"
@@ -260,7 +257,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -294,7 +291,7 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -332,7 +329,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -459,6 +456,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Froute53%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a9b88a49d275f6ba5f2744cf50ee5b8a"
+  "hash": "ec542c8eb03beafbc77de1af38cf8f99"
 }
 ##DOCS-SOURCER-END -->

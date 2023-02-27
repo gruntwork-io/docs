@@ -31,7 +31,7 @@ to the lambda runtime. This entrypoint will pull the provided secrets manager en
 secrets manager entry to environment variables that are injected into the lambda runtime.
 
 This module only includes an entrypoint CLI. If you are looking for a module to deploy container based Lambda functions,
-refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/lambda) module.
+refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda) module.
 
 ## Motivation
 
@@ -181,11 +181,11 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "412875d2f93ba5a84651b3f0084a0f7d"
+  "hash": "018df159439be64b05b1c650c792b2ad"
 }
 ##DOCS-SOURCER-END -->

@@ -16,13 +16,13 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 
 This Terraform Module creates [Route 53 Resolver Forwarding
 Rules](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html) for a VPC that will
-utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-dns-forwarder). These forwarding
+utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder). These forwarding
 rules, combined with Route 53 Resolvers, allow DNS queries for specific domains to be resolved by peered VPCs.
 
 ## How do you specify the hostnames that use the forwarder?
 
 By default, no DNS query will be routed through the Route 53 Resolvers created by the [vpc-dns-forwarder
-module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
+module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
 resolved through the Route 53 Resolvers so that they are resolved over the peering connection. You can use this module
 to construct the forwarding rules.
 
@@ -60,11 +60,11 @@ forwarder rule, it will match any domain that ends with `.local` (note the dot),
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder-rules%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder-rules%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder-rules%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ece9f8026c0566eecf08a16addeacc4"
+  "hash": "cf36273b66335e36500a9b6e008a388a"
 }
 ##DOCS-SOURCER-END -->

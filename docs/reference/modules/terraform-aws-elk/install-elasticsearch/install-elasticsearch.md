@@ -72,9 +72,9 @@ The `install-elasticsearch` script:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elasticsearch%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elasticsearch%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-elasticsearch%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "aff7b0f6e07f25e66021b846187d777a"

@@ -287,7 +287,7 @@ list(object({
 
 
 ```hcl
-default = [
+   default = [
      {
        type      = "standard"
        size      = 100
@@ -418,7 +418,7 @@ A map of key value pairs that represent custom tags to propagate to the resource
 
 
 ```hcl
-default = {
+   default = {
      foo = "bar"
    }
 
@@ -456,11 +456,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-cluster%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d47541fe42542b8ac56bdca9634bbd4"
+  "hash": "919e382ede2af9d10611911129442c42"
 }
 ##DOCS-SOURCER-END -->

@@ -173,7 +173,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
       AllIamUsersReadAccess = {
         effect     = "Allow"
         actions    = ["s3:GetObject"]
@@ -194,7 +194,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -231,7 +231,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-[
+   [
      {
        allowed_origins = ["*"]
        allowed_methods = ["GET", "HEAD"]
@@ -245,7 +245,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -355,7 +355,7 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -464,7 +464,7 @@ Any types represent complex values of variable type. For details, please consult
 
 
 ```hcl
-{
+   {
      ExampleConfig = {
        prefix                    = "config/"
        status                    = "Enabled"
@@ -477,7 +477,7 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -613,11 +613,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f77c7de6c55e2a949655b68d799c8943"
+  "hash": "24bfb495fa3ad1449c2fb3dbafdfe2aa"
 }
 ##DOCS-SOURCER-END -->

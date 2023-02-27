@@ -178,7 +178,7 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -854,6 +854,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8ee1f3e3de7cf52b60679f4db1b6f910"
+  "hash": "e6df5d6365653f872ef07400541546fb"
 }
 ##DOCS-SOURCER-END -->

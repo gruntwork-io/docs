@@ -15,18 +15,18 @@ import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListIte
 # Install OpenVPN Module
 
 This module is used to install the OpenVPN package and related template files onto a server. It is expected that
-the [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/init-openvpn) module will be run on the server during boot to configure the OpenVPN server installed by this
+the [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn) module will be run on the server during boot to configure the OpenVPN server installed by this
 package.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finstall-openvpn%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finstall-openvpn%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finstall-openvpn%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b8d5004da99a7271cf2798551deb5967"
+  "hash": "009a97fceefb36ee7b0224f416bed7c8"
 }
 ##DOCS-SOURCER-END -->

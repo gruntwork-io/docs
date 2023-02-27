@@ -21,9 +21,9 @@ certificate revocation requests on the OpenVPN server
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fstart-openvpn-admin%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fstart-openvpn-admin%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fstart-openvpn-admin%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "2049afb07053543471eac60438fdfefe"

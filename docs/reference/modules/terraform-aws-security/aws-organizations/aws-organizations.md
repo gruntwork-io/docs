@@ -101,7 +101,7 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More details">
+<HclGeneralListItem title="More Details">
 <details>
 
 
@@ -299,6 +299,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-organizations%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd345d33bd5640b7cc069df33ba2a01b"
+  "hash": "50c1fb7f14b836a6c31799ea32770470"
 }
 ##DOCS-SOURCER-END -->

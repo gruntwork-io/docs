@@ -152,9 +152,9 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Freadme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Foutputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
   "hash": "5d983d4627863e26e21e19798f30997a"
