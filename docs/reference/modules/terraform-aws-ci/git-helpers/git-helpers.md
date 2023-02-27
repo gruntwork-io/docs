@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fgit-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/git-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,11 +69,11 @@ The main options to pass to `git-add-commit-push` are:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgit-helpers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/git-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/git-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/git-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c70c14de05b805c732e8653014451d52"
+  "hash": "c9407d95fc5550a9b7a1ded50d22af24"
 }
 ##DOCS-SOURCER-END -->

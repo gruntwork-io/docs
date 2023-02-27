@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fprivate-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -613,11 +613,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fprivate-s3-bucket%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "24bfb495fa3ad1449c2fb3dbafdfe2aa"
+  "hash": "ac7991fe4b95bca707f794d28fe2a752"
 }
 ##DOCS-SOURCER-END -->

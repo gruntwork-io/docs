@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fguardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -224,11 +224,11 @@ The ID of the GuardDuty detector.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed65584b3e91e066e5e864278769bb5f"
+  "hash": "4b258eadc37ac068daff7ef7ec10c2c6"
 }
 ##DOCS-SOURCER-END -->

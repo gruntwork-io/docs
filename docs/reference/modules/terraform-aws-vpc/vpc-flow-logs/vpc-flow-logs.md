@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -435,11 +435,11 @@ The name of the S3 bucket where flow logs are published.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-flow-logs%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-flow-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-flow-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "89c6aaa76960b81b57c1d4120e078c0a"
+  "hash": "f1429308d234e8dce6ba4ea8c8bad1ba"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fsns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -63,11 +63,11 @@ The queue URL for the Simple Queue Service (SQS).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns-sqs-connection%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7cd244810492dfeb631d7d1de125220e"
+  "hash": "3c1e21b92fa3b88c4a442fa5023bce87"
 }
 ##DOCS-SOURCER-END -->

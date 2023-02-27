@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -141,11 +141,11 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-cleanup-snapshots%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-cleanup-snapshots/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-cleanup-snapshots/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0871e952ff226a96d83e900718ba833b"
+  "hash": "9d8d6f60d2fe3c26414a4999d8ba5bf4"
 }
 ##DOCS-SOURCER-END -->

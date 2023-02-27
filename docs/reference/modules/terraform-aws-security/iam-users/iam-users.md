@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -374,11 +374,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-users%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-users/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-users/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edd17dd8ae7099c89ab9ff121d4b733f"
+  "hash": "fda37a70e472076da87bda3a7f894273"
 }
 ##DOCS-SOURCER-END -->

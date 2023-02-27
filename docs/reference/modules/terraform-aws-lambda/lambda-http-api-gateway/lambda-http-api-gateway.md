@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Flambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -421,11 +421,11 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-http-api-gateway%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-http-api-gateway%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-http-api-gateway%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-http-api-gateway/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-http-api-gateway/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "36e7b22fa4e7c71bf79b32e28050286f"
+  "hash": "7cd223d262cf8718bf79a21426708b72"
 }
 ##DOCS-SOURCER-END -->

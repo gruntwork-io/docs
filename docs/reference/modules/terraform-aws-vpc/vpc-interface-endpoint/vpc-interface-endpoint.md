@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -4681,11 +4681,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-interface-endpoint%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1221cb431bdff3296954f422c8247add"
+  "hash": "265f2d27c53664f8102424d0544a4bae"
 }
 ##DOCS-SOURCER-END -->

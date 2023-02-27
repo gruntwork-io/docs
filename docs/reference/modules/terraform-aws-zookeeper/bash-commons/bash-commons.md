@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Fbash-commons" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/bash-commons" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -46,11 +46,11 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fbash-commons%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/bash-commons/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/bash-commons/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/bash-commons/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c9d475e146ed60ad9a9b9219ddacbc21"
+  "hash": "645157d23b0b7aecbdca4af1f5854f17"
 }
 ##DOCS-SOURCER-END -->

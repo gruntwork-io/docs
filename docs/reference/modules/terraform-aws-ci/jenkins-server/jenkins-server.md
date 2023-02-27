@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fjenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -641,11 +641,11 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fjenkins-server%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/jenkins-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/jenkins-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb04c4e43877d67e414ee07624c8b16d"
+  "hash": "67c8bacc964bd54c119269d02bee6efb"
 }
 ##DOCS-SOURCER-END -->

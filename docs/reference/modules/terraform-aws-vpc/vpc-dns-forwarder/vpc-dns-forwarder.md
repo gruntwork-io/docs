@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-dns-forwarder" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -216,11 +216,11 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-dns-forwarder%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb5bf0ed215e28dbc313507b1a28b05a"
+  "hash": "ed6ece7fe1cc55830f82bc016b7ebfcf"
 }
 ##DOCS-SOURCER-END -->

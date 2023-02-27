@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -534,11 +534,11 @@ The User Data script to run on each server when it is booting.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "970ca8ecb37cf6349b1238c2f0abb174"
+  "hash": "2dd0c35710b97b6b267e4dfded03f72a"
 }
 ##DOCS-SOURCER-END -->

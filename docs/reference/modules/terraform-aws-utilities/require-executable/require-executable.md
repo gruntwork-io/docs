@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frequire-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -90,11 +90,11 @@ A map of the executables to the resolved path where they reside.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frequire-executable%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ca0dfe48bae8f2ea9089eed114442cf9"
+  "hash": "9c479ff2685d0fb51c101f9768caa733"
 }
 ##DOCS-SOURCER-END -->

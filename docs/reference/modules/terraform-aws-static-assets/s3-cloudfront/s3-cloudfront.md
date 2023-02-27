@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules%2Fs3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -815,11 +815,11 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-cloudfront%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-cloudfront%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-cloudfront%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "40c5de9f680e58a54ffef7477a56d472"
+  "hash": "d5cd1c3e720462ea06c36aafdeed44cc"
 }
 ##DOCS-SOURCER-END -->

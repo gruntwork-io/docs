@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules%2Fserver-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -698,11 +698,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fserver-group%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "588eef91618d74cae3803a62ca3f3c38"
+  "hash": "c349b633e8da68106b9a948936358ea2"
 }
 ##DOCS-SOURCER-END -->

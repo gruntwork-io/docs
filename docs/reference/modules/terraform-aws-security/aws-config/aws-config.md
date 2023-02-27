@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -506,11 +506,11 @@ The ARN of the SNS topic to which Config delivers notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6f065ae3d5cc3ac58217176148da455f"
+  "hash": "b292a087cca4ee52710f334296b2652a"
 }
 ##DOCS-SOURCER-END -->

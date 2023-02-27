@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -385,11 +385,11 @@ The name of the namespace that is used. If create_namespace is true, this output
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-aws-auth-merger%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-aws-auth-merger%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-aws-auth-merger%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-aws-auth-merger/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-aws-auth-merger/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e77b623166f6f8561f75e8ad38321db5"
+  "hash": "e38a91373cd60f2fbfdd9a4399de1a63"
 }
 ##DOCS-SOURCER-END -->

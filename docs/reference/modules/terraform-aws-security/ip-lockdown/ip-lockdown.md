@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -59,11 +59,11 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fip-lockdown%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fip-lockdown%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fip-lockdown%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ip-lockdown/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ip-lockdown/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "09a760d8e0053d499696c519cc56b74a"
+  "hash": "f99c9ae9806387042bde7b85cdd6db96"
 }
 ##DOCS-SOURCER-END -->

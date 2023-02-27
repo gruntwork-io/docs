@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fpersistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/persistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -217,11 +217,11 @@ detaching the device.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fpersistent-ebs-volume%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "10435579c5fe8d7a1a917d5aad4fb68e"
+  "hash": "4b97d36d5f6fbe80041193a53c6be129"
 }
 ##DOCS-SOURCER-END -->

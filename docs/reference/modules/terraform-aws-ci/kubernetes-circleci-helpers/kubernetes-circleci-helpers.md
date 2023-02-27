@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fkubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -96,11 +96,11 @@ job:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fkubernetes-circleci-helpers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fkubernetes-circleci-helpers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fkubernetes-circleci-helpers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7cb7bfc5667def2ebcba8d98c791f472"
+  "hash": "4d4c2cc071c82976ab8b90c7d2fe89a6"
 }
 ##DOCS-SOURCER-END -->

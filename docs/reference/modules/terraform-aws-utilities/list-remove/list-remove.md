@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Flist-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -95,11 +95,11 @@ Any types represent complex values of variable type. For details, please consult
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Flist-remove%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Flist-remove%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Flist-remove%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49f371dbe136f095b373f7f6e134aa7a"
+  "hash": "3a1d3b56a144b7ce7927f6e79883ca13"
 }
 ##DOCS-SOURCER-END -->

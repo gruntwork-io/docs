@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fbackup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -171,11 +171,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-plan%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f9d86639c9f7b1854790d04741f76bed"
+  "hash": "b7511b6d32c9ad93f2f7d7368fb7f3bf"
 }
 ##DOCS-SOURCER-END -->

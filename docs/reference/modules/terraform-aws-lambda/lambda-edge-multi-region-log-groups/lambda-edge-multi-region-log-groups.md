@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Flambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -166,11 +166,11 @@ Map of log group names per region
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-multi-region-log-groups%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-multi-region-log-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-multi-region-log-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "18647a52edd63c6fbef713370001f4ed"
+  "hash": "fdcbfc802a8eb5f8a31c4c2b307210ec"
 }
 ##DOCS-SOURCER-END -->

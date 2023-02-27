@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fguardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -200,11 +200,11 @@ The IDs of the GuardDuty detectors.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty-multi-region%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty-multi-region%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fguardduty-multi-region%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a00d514756c09882edd66b0e37f8635"
+  "hash": "1b9719a199aa546629dcf75aab065413"
 }
 ##DOCS-SOURCER-END -->

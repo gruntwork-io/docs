@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fmsk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -662,11 +662,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fmsk%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5923439a75176f39e4fb46015e1fec31"
+  "hash": "2974f6a93f277cb6285146f7d45b480d"
 }
 ##DOCS-SOURCER-END -->

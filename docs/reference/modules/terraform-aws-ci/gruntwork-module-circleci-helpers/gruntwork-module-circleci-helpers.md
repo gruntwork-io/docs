@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fgruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -189,11 +189,11 @@ variables](https://circleci.com/docs/environment-variables/).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgruntwork-module-circleci-helpers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgruntwork-module-circleci-helpers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fgruntwork-module-circleci-helpers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/gruntwork-module-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/gruntwork-module-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2610e34a4897c7df2f8be5c7383b61d"
+  "hash": "c7379b947a6d81d84c084e93c7c90b0b"
 }
 ##DOCS-SOURCER-END -->

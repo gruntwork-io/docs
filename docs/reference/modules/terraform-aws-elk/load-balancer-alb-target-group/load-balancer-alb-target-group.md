@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Fload-balancer-alb-target-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/load-balancer-alb-target-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -255,11 +255,11 @@ The time period, in seconds, during which requests from a client should be route
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fload-balancer-alb-target-group%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/load-balancer-alb-target-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/load-balancer-alb-target-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/load-balancer-alb-target-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ecc9cdb95bbc169bd1199d20f53148f"
+  "hash": "daa0e2cb34ab190d73ae66bf0b65d403"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -119,11 +119,11 @@ list(object({
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers-cross-access%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers-cross-access%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers-cross-access%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "373d043a6a1522006f678e10b2803cbd"
+  "hash": "5eed66febb602fea3391471b71ff7056"
 }
 ##DOCS-SOURCER-END -->

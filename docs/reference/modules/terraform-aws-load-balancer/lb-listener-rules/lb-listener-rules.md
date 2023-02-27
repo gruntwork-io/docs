@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules%2Flb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -596,11 +596,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Flb-listener-rules%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b8b093cf29c05dd9d279f436a6d0946"
+  "hash": "40c8aa67bdc5a3038689b3e25f6eff25"
 }
 ##DOCS-SOURCER-END -->

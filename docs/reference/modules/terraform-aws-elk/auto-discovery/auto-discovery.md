@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Fauto-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/auto-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -73,11 +73,11 @@ instead of updating an application's config file and then needing to restart tha
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fauto-discovery%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fauto-discovery%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Fauto-discovery%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/auto-discovery/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/auto-discovery/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/auto-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "148d2363ae4eeb2cc17ad1aec1216fa0"
+  "hash": "af7b96cdc22020f2c0695b7d4ee0a477"
 }
 ##DOCS-SOURCER-END -->

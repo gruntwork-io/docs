@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Frequire-instance-metadata-service-version" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -95,11 +95,11 @@ Setting Instance Metadata Service version 2 state to optional
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Frequire-instance-metadata-service-version%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d1725aee547557ac65545bc1689b7239"
+  "hash": "79587f3b8dbd1cac333b6beddeabf35a"
 }
 ##DOCS-SOURCER-END -->

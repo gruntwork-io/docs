@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -105,11 +105,11 @@ pyenv shell 3.5.2 3.6.6 3.7.0
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy-check-binaries%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy-check-binaries/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy-check-binaries/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3bb28fdc14033303bf6f846ad549baa3"
+  "hash": "c6938205b0b1a8ec341045e6791f3cc9"
 }
 ##DOCS-SOURCER-END -->

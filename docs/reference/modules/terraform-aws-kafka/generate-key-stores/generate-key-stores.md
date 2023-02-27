@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fgenerate-key-stores" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/generate-key-stores" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -141,11 +141,11 @@ Additional Info:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fgenerate-key-stores%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fgenerate-key-stores%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fgenerate-key-stores%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2a1f100120f6ffd30bcec62bed71b3c"
+  "hash": "b64d61a2ddfe19f47b2cae286a023d4f"
 }
 ##DOCS-SOURCER-END -->

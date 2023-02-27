@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -376,11 +376,11 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key-multi-region%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key-multi-region%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-master-key-multi-region%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0259a4c9b95ab802e413684da3c712c7"
+  "hash": "36dcf7261d065daecefccc50f80daeed"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Frun-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -85,11 +85,11 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-collectd%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f30203211a6ae9c197ccd7b78c57fad"
+  "hash": "0822de50948c3fbb497158db6e33ff87"
 }
 ##DOCS-SOURCER-END -->

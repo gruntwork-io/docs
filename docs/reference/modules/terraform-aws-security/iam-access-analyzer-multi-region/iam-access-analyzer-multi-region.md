@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -121,11 +121,11 @@ If set to ACCOUNT, the analyzer will only be scanning the current AWS account it
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-access-analyzer-multi-region%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-access-analyzer-multi-region%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-access-analyzer-multi-region%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8dccf773a4785444a2d74bc95b3ee38c"
+  "hash": "6ebe2e6b09e991b83be7415c8bdc1aa0"
 }
 ##DOCS-SOURCER-END -->

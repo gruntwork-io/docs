@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -122,11 +122,11 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler-iam-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler-iam-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-cluster-autoscaler-iam-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7efc1603a58cc5b81d5a463196d9564b"
+  "hash": "e9c4996e1e7aa1b8fb6e39b420b12590"
 }
 ##DOCS-SOURCER-END -->

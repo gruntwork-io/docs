@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fbackup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -195,11 +195,11 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fbackup-vault%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ffcf32f71b44d94af7c9531f57dc9f4d"
+  "hash": "66718487c2147e63bf06259a43784596"
 }
 ##DOCS-SOURCER-END -->

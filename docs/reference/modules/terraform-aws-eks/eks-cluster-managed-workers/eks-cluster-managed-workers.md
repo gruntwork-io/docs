@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -616,11 +616,11 @@ Map of Node Group names to ARNs of the created EKS Node Groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-managed-workers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "61a8ae8391cc4a10c92a59f013d148a6"
+  "hash": "43c89752802e1ce5e3d44ba16fcb3007"
 }
 ##DOCS-SOURCER-END -->

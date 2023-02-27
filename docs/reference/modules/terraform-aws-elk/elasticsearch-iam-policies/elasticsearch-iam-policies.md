@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -62,11 +62,11 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-iam-policies%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e263b8ad780ad40a5faef3ee39068795"
+  "hash": "6f3e5fb0aac3e0b2f336c8428c542a55"
 }
 ##DOCS-SOURCER-END -->

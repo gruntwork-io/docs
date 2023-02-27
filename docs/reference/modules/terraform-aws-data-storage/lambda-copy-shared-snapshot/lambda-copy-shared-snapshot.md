@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Flambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -230,11 +230,11 @@ Namespace all Lambda scheduling resources created by this module with this name.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Flambda-copy-shared-snapshot%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-copy-shared-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-copy-shared-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75126e833bc6eff35316cdf5bfaf9b89"
+  "hash": "60870c2e5f0333b6c223f2cfd99eac17"
 }
 ##DOCS-SOURCER-END -->

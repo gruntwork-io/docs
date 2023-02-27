@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -396,11 +396,11 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-rules%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-rules%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-config-rules%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b2d04fb01096b514db67f861b6c08768"
+  "hash": "0efb1afa071e0e209ba6bd7731f2a560"
 }
 ##DOCS-SOURCER-END -->

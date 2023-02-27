@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules%2Fs3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -469,11 +469,11 @@ A value that can be used to chain resources to depend on the website bucket bein
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-static-website%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-static-website%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules%2Fs3-static-website%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-static-website/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-static-website/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43cef1c87c7660669360479ae6553944"
+  "hash": "66cf8f7eac530722d022f5fcaf67d066"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fdisable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/disable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -72,11 +72,11 @@ This will result in subsequent calls to the Instance Metadata service to fail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fdisable-instance-metadata%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/disable-instance-metadata/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/disable-instance-metadata/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/disable-instance-metadata/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bdc8d556b4d27dcbdebbe8f76ece1ad4"
+  "hash": "edb3b4d8d327c682d72133d6a1f66995"
 }
 ##DOCS-SOURCER-END -->

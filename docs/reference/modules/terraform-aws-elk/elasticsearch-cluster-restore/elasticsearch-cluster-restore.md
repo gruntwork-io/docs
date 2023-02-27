@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felasticsearch-cluster-restore" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -152,11 +152,11 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felasticsearch-cluster-restore%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d983d4627863e26e21e19798f30997a"
+  "hash": "21257d203e416e57b235693f053927a8"
 }
 ##DOCS-SOURCER-END -->

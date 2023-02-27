@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felastalert-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -70,11 +70,11 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-security-group-rules%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-security-group-rules%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-security-group-rules%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dc1cd70fd44b26269efd06b113dfd28f"
+  "hash": "3471279ca6819ae06311edd61bdb7520"
 }
 ##DOCS-SOURCER-END -->

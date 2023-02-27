@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Felastalert-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -62,11 +62,11 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Felastalert-iam-policies%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c63db45f979eaf554bdfec3e3d2ad8c"
+  "hash": "2e851e67c5484715b4d9bc77499ffdad"
 }
 ##DOCS-SOURCER-END -->

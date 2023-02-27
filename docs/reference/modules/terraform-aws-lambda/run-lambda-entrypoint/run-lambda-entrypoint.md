@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Frun-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -181,11 +181,11 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Frun-lambda-entrypoint%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/run-lambda-entrypoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/run-lambda-entrypoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "018df159439be64b05b1c650c792b2ad"
+  "hash": "57debc08861a1cdcc7bdec30e8ee034e"
 }
 ##DOCS-SOURCER-END -->

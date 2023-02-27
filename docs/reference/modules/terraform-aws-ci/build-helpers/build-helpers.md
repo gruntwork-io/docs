@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fbuild-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/build-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -184,11 +184,11 @@ Note that the following conditions must be true in order to use this feature:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fbuild-helpers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/build-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/build-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/build-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b541dd310d888b7d9d50c7cf150c7a50"
+  "hash": "0e05115236b178b0f90ebe32e639255c"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Fopenvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -581,11 +581,11 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-server%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7e618a9c27ebe1e39c5102b4a91e458c"
+  "hash": "7178c6446b48773c78c0a85a7dc37b79"
 }
 ##DOCS-SOURCER-END -->

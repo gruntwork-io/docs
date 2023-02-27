@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -83,11 +83,11 @@ Tags for public subnets in the VPC to use for integration with EKS.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-vpc-tags%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ccbb5aabbbc4b162e90033e3dce1ebb"
+  "hash": "70453b8f0c5e8eedaf60a38d1d43b85d"
 }
 ##DOCS-SOURCER-END -->

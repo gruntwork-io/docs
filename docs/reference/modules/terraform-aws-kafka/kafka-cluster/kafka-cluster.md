@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fkafka-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -702,11 +702,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fkafka-cluster%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/kafka-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/kafka-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/kafka-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ca3ccd1dc84e08b6c73891b242290751"
+  "hash": "3acd3c4cb287b89693faf02c1e4e9e18"
 }
 ##DOCS-SOURCER-END -->

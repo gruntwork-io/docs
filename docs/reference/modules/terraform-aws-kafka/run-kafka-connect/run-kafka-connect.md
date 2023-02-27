@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Frun-kafka-connect" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -279,11 +279,11 @@ the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/mas
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-connect%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "14c5d403ad989470e5b28d2c5e402980"
+  "hash": "976832ed1e2f0740c697ac18222bbc84"
 }
 ##DOCS-SOURCER-END -->

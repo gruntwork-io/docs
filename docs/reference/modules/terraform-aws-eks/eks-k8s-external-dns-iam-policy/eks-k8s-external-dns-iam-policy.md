@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-external-dns-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -120,11 +120,11 @@ The name of the IAM policy created with the permissions for the external-dns Kub
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns-iam-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns-iam-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns-iam-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff2ee7f4021ff39a0e6546270a079575"
+  "hash": "8753c9aa95c9a53389e6443405ba91aa"
 }
 ##DOCS-SOURCER-END -->

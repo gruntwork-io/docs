@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules%2Falarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/alarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -56,11 +56,11 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Falarms%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Falarms%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules%2Falarms%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "433605f48895da9c5f7b227e306de68d"
+  "hash": "ad01db65a67e22d5c4450aa31c386ea5"
 }
 ##DOCS-SOURCER-END -->

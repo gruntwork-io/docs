@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fport-range-calculator" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -98,11 +98,11 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fport-range-calculator%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a9de1f4c2f044310e0f8ab54f455b8e0"
+  "hash": "5e3777a817b3d3e4910da590187c6bba"
 }
 ##DOCS-SOURCER-END -->

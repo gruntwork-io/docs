@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -783,11 +783,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-cluster%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e444e9dcd4db352ba84a3a921f227a99"
+  "hash": "a67bcd08020eb8f92bc0820cf4bdce53"
 }
 ##DOCS-SOURCER-END -->

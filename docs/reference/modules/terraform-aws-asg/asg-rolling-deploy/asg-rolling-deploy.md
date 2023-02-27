@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules%2Fasg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -304,11 +304,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-rolling-deploy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b13fb54ee09c81e107f206c40d516570"
+  "hash": "96fac5773d033431cdef1d30813230d2"
 }
 ##DOCS-SOURCER-END -->

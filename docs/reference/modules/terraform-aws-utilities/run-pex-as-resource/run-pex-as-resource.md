@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frun-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -164,11 +164,11 @@ This output is populated when the pex script successfully runs to completion. As
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-resource%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-resource%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-resource%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-resource/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-resource/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "98b51fc4b9b6f5b3ac923fb2bb9e72a6"
+  "hash": "80cfb184db81105e289b4799ec1418c0"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-role-mapping" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -425,11 +425,11 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-role-mapping%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-role-mapping/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-role-mapping/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "077dc356674cf84875b1376186123d7c"
+  "hash": "abe40c3c02ae6911fee0af09c7e80e07"
 }
 ##DOCS-SOURCER-END -->

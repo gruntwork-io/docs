@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Faws-auth" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -247,11 +247,11 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Faws-auth%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-auth/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-auth/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-auth/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3d68265e919a05aaeb597d3deef4e05"
+  "hash": "b7460a67ecb1fb35950193292c04410c"
 }
 ##DOCS-SOURCER-END -->

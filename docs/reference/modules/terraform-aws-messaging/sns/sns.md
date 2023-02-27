@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fsns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -155,11 +155,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsns%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee84432d7556b13696cc846ff0a31ff4"
+  "hash": "7b966ba8cab505f1dc5e3bb1fbf5422b"
 }
 ##DOCS-SOURCER-END -->

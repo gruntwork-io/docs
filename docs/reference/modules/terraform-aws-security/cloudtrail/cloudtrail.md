@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fcloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -861,11 +861,11 @@ The name of the cloudtrail trail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcloudtrail%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cloudtrail/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cloudtrail/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76c87ddb1e14f9893a34f91cd23e1a9c"
+  "hash": "4033cf64a71aec79c9351e39ba3dd3dd"
 }
 ##DOCS-SOURCER-END -->

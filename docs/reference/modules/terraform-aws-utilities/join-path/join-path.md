@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Fjoin-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -88,11 +88,11 @@ A list of folder and file names to combine into a path, using the proper path se
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fjoin-path%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9cd00da6eb289b7c23e54fcc91a348af"
+  "hash": "15949630c38c1b8328038b75b64618c1"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules%2Fredshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -511,11 +511,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fredshift%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fredshift%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules%2Fredshift%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/redshift/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f47a044d62d72a2b147da894afab460"
+  "hash": "232d4d741fed820ab20f56d6df3ec6aa"
 }
 ##DOCS-SOURCER-END -->

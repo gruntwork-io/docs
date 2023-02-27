@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fapi-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -95,11 +95,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-account-settings%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-account-settings%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-account-settings%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "327051b56f6dc5af9b7f941d83558297"
+  "hash": "f3c292958fec8e2b491c7ea97aa04c00"
 }
 ##DOCS-SOURCER-END -->

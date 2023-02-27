@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Frun-exhibitor" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-exhibitor" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -144,11 +144,11 @@ argument.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Frun-exhibitor%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-exhibitor/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-exhibitor/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-exhibitor/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b8dec2c7195feb1625a33f388d3564f3"
+  "hash": "1c74218456b5eb3f7a8303a45a5e03d9"
 }
 ##DOCS-SOURCER-END -->

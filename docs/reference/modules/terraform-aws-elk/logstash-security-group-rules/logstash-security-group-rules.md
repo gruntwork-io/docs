@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Flogstash-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -168,11 +168,11 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Flogstash-security-group-rules%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ac0acdfc1a006f2657d1467900b2b22"
+  "hash": "000c81079627f53fa8785ce21e3192c8"
 }
 ##DOCS-SOURCER-END -->

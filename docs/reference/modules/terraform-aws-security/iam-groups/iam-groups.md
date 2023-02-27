@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -630,11 +630,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-groups%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "58339b4d85ab0c758dca7ddd1d5018d8"
+  "hash": "7d01ceb4a533219f1037c020f6f2c472"
 }
 ##DOCS-SOURCER-END -->

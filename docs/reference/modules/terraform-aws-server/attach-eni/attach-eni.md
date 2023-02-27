@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fattach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/attach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -68,11 +68,11 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fattach-eni%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/attach-eni/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/attach-eni/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/attach-eni/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "96ae8fc57d7739c570b019b6cbe407aa"
+  "hash": "c7cea9d1b1a11a741dd8f5b1bec79b09"
 }
 ##DOCS-SOURCER-END -->

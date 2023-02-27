@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Fopenvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -29,11 +29,11 @@ certificates and the OpenVPN server to process those requests.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fopenvpn-admin%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-admin/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-admin/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ea23b7183b713a6667b6c568b4298420"
+  "hash": "3e03cdebf7c336e0bab910da969873ce"
 }
 ##DOCS-SOURCER-END -->

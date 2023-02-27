@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Frun-kafka-rest" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -297,11 +297,11 @@ to fill in run-time properties, so it will replace or add settings to your custo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka-rest%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "33a3beebba4b95d64bdd2473453efa8f"
+  "hash": "0afbb79ae34884feed56adc8bef8739a"
 }
 ##DOCS-SOURCER-END -->

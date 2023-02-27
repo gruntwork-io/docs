@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fconfluent-tools-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -26,11 +26,11 @@ or [Kafka](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modul
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-security-group-rules%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-security-group-rules%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-security-group-rules%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0c82b9494f25b4e913d46b7ddc0b586"
+  "hash": "2ad89977a37cb75ea39384f386b5e0f7"
 }
 ##DOCS-SOURCER-END -->

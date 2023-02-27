@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Finfrastructure-deploy-script" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deploy-script" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -58,11 +58,11 @@ If you just want to try this repo out for experimenting and learning, check out 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finfrastructure-deploy-script%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finfrastructure-deploy-script%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Finfrastructure-deploy-script%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deploy-script/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deploy-script/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deploy-script/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5b29c1d2c87d1ef296749448493a069"
+  "hash": "0ab7d83df1e255bb37f1480a9cbef069"
 }
 ##DOCS-SOURCER-END -->

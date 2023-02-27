@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fkms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -245,11 +245,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fkms-cmk-replica%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da1be216bbab6e19f10865d53c99a33f"
+  "hash": "fe0e38059ef2507fd14f498044af80b6"
 }
 ##DOCS-SOURCER-END -->

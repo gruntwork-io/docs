@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Frun-kafka" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -210,11 +210,11 @@ so it will replace or add settings to your custom `server.properties` at run tim
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Frun-kafka%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "67fa6a0119f63b513998ce3aef35b9d4"
+  "hash": "bac6fd08b23310387c50d4c7f1573914"
 }
 ##DOCS-SOURCER-END -->

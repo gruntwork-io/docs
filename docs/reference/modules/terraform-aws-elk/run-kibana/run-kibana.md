@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Frun-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -72,11 +72,11 @@ The `run-kibana` script:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-kibana%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-kibana%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-kibana%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-kibana/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-kibana/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-kibana/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fa98df0c2261ee6c3269a7fc8ea48cb4"
+  "hash": "272d885b2d64f41f962e17996e838e88"
 }
 ##DOCS-SOURCER-END -->

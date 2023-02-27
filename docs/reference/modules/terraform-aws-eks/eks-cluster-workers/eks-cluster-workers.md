@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -926,11 +926,11 @@ AWS ID of the security group created for the EKS worker nodes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-cluster-workers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26ddf8d29f73f8f3b4bb9fa76172c751"
+  "hash": "eba18e78a97795676486a790de7f0fbc"
 }
 ##DOCS-SOURCER-END -->

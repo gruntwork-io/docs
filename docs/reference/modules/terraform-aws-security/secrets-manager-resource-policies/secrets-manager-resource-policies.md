@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fsecrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -105,11 +105,11 @@ map(object({
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fsecrets-manager-resource-policies%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/secrets-manager-resource-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/secrets-manager-resource-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43517581ba5fb89fa14c262529f4f7ec"
+  "hash": "ed6c130cee39c0eda824c7c0b65bcb16"
 }
 ##DOCS-SOURCER-END -->

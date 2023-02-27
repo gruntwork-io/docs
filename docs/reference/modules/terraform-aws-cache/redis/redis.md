@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules%2Fredis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -408,11 +408,11 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules%2Fredis%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/redis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66c226a7b8fb27ebd9ad72f3fa57ccae"
+  "hash": "fd237ec9d8dccb3341e7e6971fb93129"
 }
 ##DOCS-SOURCER-END -->

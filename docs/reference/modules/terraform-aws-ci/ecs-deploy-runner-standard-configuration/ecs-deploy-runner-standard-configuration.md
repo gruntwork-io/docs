@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -696,11 +696,11 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-standard-configuration%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-standard-configuration/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-standard-configuration/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "307cfb8192406ce68deb05e0e56717d5"
+  "hash": "fd34bf3597b43b2bbd94f010167c2fd4"
 }
 ##DOCS-SOURCER-END -->

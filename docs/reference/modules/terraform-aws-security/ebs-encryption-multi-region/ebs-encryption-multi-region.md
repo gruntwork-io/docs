@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Febs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -123,11 +123,11 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption-multi-region%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption-multi-region%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption-multi-region%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a56c544430ad078a0a31673450f1073c"
+  "hash": "4e6089f0c5895fff2007b3ad69bfa6b7"
 }
 ##DOCS-SOURCER-END -->

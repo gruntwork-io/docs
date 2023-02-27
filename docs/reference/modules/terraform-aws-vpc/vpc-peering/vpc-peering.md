@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fvpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -45,11 +45,11 @@ and production, someone in staging *cannot* access production.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fvpc-peering%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d586f3eccb0faacb77ffee10a4218af7"
+  "hash": "af01d77d307b05eefe30a4c2a8cfab27"
 }
 ##DOCS-SOURCER-END -->

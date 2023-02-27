@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -833,11 +833,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "785e7613be59cf37acb99342a74c6412"
+  "hash": "9446e32c2a13c6ae1d4580c8d7c4373e"
 }
 ##DOCS-SOURCER-END -->

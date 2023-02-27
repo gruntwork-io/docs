@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules%2Fnetwork-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -35,11 +35,11 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-outbound%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-outbound%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules%2Fnetwork-acl-outbound%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "590061742d9a34a9b5dd30e4cf07dad1"
+  "hash": "a0b00ede139fd34b083d3b2bd94a23bd"
 }
 ##DOCS-SOURCER-END -->

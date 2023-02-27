@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fcross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -821,11 +821,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcross-account-iam-roles%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcross-account-iam-roles%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcross-account-iam-roles%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cross-account-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cross-account-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c03b4989a4c091406c4d2639de4b4278"
+  "hash": "0c1500012a04e9f0db98790c3d1a091d"
 }
 ##DOCS-SOURCER-END -->

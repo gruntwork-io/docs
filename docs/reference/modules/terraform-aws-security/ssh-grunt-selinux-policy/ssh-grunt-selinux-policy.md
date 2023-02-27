@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -81,11 +81,11 @@ $ sudo semodule -i ssh-grunt.pp
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fssh-grunt-selinux-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0cb94c40023026fc3b2d5a37e689c643"
+  "hash": "579d69cbcf8ef3271c3ad121bcc01f47"
 }
 ##DOCS-SOURCER-END -->

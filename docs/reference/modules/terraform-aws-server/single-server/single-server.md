@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules%2Fsingle-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -585,11 +585,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules%2Fsingle-server%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e15f900fc840cba6fcfe18b9ab6da459"
+  "hash": "38ee7f81b00307fc7af0a83967e972e0"
 }
 ##DOCS-SOURCER-END -->

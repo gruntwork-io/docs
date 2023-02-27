@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Fbackup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -25,11 +25,11 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Fbackup-openvpn-pki%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9598109dbbd71ec15b7b388e2ca63926"
+  "hash": "f68e4745aaf008f73af3d1afd5acc4e3"
 }
 ##DOCS-SOURCER-END -->

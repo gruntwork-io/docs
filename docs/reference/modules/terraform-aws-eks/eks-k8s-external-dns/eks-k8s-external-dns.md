@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-k8s-external-dns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -104,11 +104,11 @@ zones_cache_duration  = "3h"
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-k8s-external-dns%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dea50063d1787879c6fd546bc2a89288"
+  "hash": "4f34b4ac5f1089c46d76c65e95f955eb"
 }
 ##DOCS-SOURCER-END -->

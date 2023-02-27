@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Fconfluent-tools-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -27,11 +27,11 @@ in which case you can include this module to handle the IAM permission details f
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-iam-permissions%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-iam-permissions%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Fconfluent-tools-iam-permissions%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-iam-permissions/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-iam-permissions/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ade1d291b312a4462b92d6d680d4a9c2"
+  "hash": "a1357458d04f7f84c387b25f9632f0f0"
 }
 ##DOCS-SOURCER-END -->

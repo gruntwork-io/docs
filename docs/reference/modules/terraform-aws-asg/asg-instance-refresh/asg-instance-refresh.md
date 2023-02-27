@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules%2Fasg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -378,11 +378,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules%2Fasg-instance-refresh%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-instance-refresh/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-instance-refresh/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d941cb9188128d107c31e58a02bbc28"
+  "hash": "f7d92540b64ab62d025a6cd854654704"
 }
 ##DOCS-SOURCER-END -->

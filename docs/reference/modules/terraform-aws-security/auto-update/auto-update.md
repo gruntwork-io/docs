@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fauto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -70,11 +70,11 @@ If you want to deploy this repo in production, check out the following resources
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fauto-update%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fauto-update%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fauto-update%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/auto-update/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/auto-update/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a5d3da3d13bb00935d3165f32d12317a"
+  "hash": "75996ad2c696d4ecebe6250896839bab"
 }
 ##DOCS-SOURCER-END -->

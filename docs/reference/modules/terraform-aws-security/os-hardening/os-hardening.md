@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fos-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -267,11 +267,11 @@ needed additional space to build a new AMI was not unreasonable.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fos-hardening%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c1ce24e7f5144cbab828d025cc3c999"
+  "hash": "38292e0a230736e5f1220286e0ac6d10"
 }
 ##DOCS-SOURCER-END -->

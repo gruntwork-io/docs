@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -540,11 +540,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-policies%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8e7aca327e37e98ac677ba7d23197e30"
+  "hash": "3c81c53ad2d87c793a89ac994fb6d6a8"
 }
 ##DOCS-SOURCER-END -->

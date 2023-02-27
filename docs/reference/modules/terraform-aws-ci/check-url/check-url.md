@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fcheck-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -78,11 +78,11 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fcheck-url%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e50f7326d2782f5088855ade3ea366f9"
+  "hash": "af85167af0d785d5c2c71f9c2dc54d8d"
 }
 ##DOCS-SOURCER-END -->

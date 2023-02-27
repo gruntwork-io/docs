@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Frun-filebeat" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-filebeat" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -95,11 +95,11 @@ The `run-filebeat` script automatically discovers Logstash nodes by using the [a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Frun-filebeat%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf7c373aacd5626015bbd1406fc8e750"
+  "hash": "bf9dd2c80ccc37d4b9b85afde44bccb2"
 }
 ##DOCS-SOURCER-END -->

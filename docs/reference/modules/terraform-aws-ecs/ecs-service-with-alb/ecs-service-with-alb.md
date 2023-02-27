@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -21,11 +21,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-alb%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-alb%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-service-with-alb%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-service-with-alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-service-with-alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1624a498c0edb98ed61bece1cf2226ea"
+  "hash": "992560fd98c7d506226a000d90bfb04e"
 }
 ##DOCS-SOURCER-END -->

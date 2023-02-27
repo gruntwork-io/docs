@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules%2Finstall-confluent-tools" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-confluent-tools" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -80,11 +80,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-confluent-tools%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-confluent-tools%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules%2Finstall-confluent-tools%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "01e0d7d9f3442469bacf33bd61f79754"
+  "hash": "65cc1574dec5ac2cffe5c30a48b99ed2"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fkinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -250,11 +250,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fkinesis%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/kinesis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/kinesis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a6d900b06b06ca0d1dd48065fda80f4"
+  "hash": "c296d2027dba49b69589d320f9759225"
 }
 ##DOCS-SOURCER-END -->

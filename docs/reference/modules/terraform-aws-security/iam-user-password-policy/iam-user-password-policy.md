@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fiam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -212,11 +212,11 @@ Whether to require uppercase characters for user passwords.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fiam-user-password-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-user-password-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-user-password-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9929ff286ccb295ee6101fadd5f26f03"
+  "hash": "bb72688bd1124e0facce23535d2531aa"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Fprepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -156,11 +156,11 @@ The python path that should be used for running PEX file. This should be set as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Fprepare-pex-environment%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ba8e6bc8f8e864d18a2a413ec260f10e"
+  "hash": "115e6bc88ee93afb624aff64c2e92af4"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules%2Fecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -93,11 +93,11 @@ container instead of the command configured in the Task Definition.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules%2Fecs-deploy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49a2a2a318291123a35c5514a5387ef5"
+  "hash": "e2b68b340f178369345dbb8c37a5ff8e"
 }
 ##DOCS-SOURCER-END -->

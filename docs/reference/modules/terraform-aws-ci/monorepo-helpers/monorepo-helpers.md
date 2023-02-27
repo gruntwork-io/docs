@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fmonorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -74,11 +74,11 @@ If you just want to try this module out for experimenting and learning, check ou
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fmonorepo-helpers%2Freadme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fmonorepo-helpers%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fmonorepo-helpers%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/monorepo-helpers/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/monorepo-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dfab74d664b6d640432c8125df72238d"
+  "hash": "3d011679bae794afcf7e299930d2f14c"
 }
 ##DOCS-SOURCER-END -->

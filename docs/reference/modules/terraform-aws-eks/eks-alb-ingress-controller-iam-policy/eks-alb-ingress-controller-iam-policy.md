@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules%2Feks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -111,11 +111,11 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules%2Feks-alb-ingress-controller-iam-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf6da515b28fa120a010b4bed46f7c1d"
+  "hash": "65f5542ffd442cf59762e4c65a331d6f"
 }
 ##DOCS-SOURCER-END -->

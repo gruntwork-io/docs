@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules%2Finit-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -21,11 +21,11 @@ This module is used to initialize the OpenVPN server, its Public Key Infrastruct
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules%2Finit-openvpn%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/init-openvpn/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/init-openvpn/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/init-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "444ed5df57602916d4ebcc4e5d52adc5"
+  "hash": "5bd906c4cc09cb8862438699a86c9e1d"
 }
 ##DOCS-SOURCER-END -->

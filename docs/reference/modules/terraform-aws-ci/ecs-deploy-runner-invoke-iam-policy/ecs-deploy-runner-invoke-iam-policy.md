@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules%2Fecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -121,11 +121,11 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules%2Fecs-deploy-runner-invoke-iam-policy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-invoke-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c69e9900253b8204e878006c0557518"
+  "hash": "4f53ddf98ad9fbc1a1b81cdf9ce47da5"
 }
 ##DOCS-SOURCER-END -->

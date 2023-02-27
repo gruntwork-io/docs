@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -41,11 +41,11 @@ You can then deploy the AMI using the [kibana-cluster module](https://github.com
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-kibana%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fa0e9d8568bd7946a5323cdcfcebc79c"
+  "hash": "98bdefff63a71845a12c8445512d87c4"
 }
 ##DOCS-SOURCER-END -->

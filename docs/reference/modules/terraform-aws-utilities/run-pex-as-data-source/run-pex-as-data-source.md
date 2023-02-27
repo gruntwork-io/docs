@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Frun-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -137,11 +137,11 @@ Data source result of executing the PEX binary.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Frun-pex-as-data-source%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-data-source/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-data-source/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6ddb047a3836de65c80953285115b8f7"
+  "hash": "7a1f7768013bf67385cf31fefa882864"
 }
 ##DOCS-SOURCER-END -->

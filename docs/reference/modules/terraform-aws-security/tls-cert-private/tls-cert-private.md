@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Ftls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -174,11 +174,11 @@ TLS certificates for any public services.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Ftls-cert-private%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6d8f83dd7c12a2e65f173555316731ed"
+  "hash": "dd43ee93ca6be3b8112cf90723ce2881"
 }
 ##DOCS-SOURCER-END -->

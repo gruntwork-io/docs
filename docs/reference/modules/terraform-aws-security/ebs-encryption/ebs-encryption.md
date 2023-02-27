@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Febs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -98,11 +98,11 @@ The default KMS key used for EBS encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Febs-encryption%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "311658fccb9d7064a06d72aff3e7840f"
+  "hash": "192fa6b95d1b3f97f178bebf064dd2c6"
 }
 ##DOCS-SOURCER-END -->

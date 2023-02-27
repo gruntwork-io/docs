@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Flambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -170,11 +170,11 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Flambda-edge-log-group%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-log-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-log-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da81eba4cf1ea37fa5a77cbf7559b277"
+  "hash": "eafe03ff9d756968b5477aaf4eb450ea"
 }
 ##DOCS-SOURCER-END -->

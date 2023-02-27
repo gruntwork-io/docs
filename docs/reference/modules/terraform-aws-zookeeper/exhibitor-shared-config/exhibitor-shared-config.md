@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Fexhibitor-shared-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/exhibitor-shared-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -83,11 +83,11 @@ The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decry
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Fexhibitor-shared-config%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/exhibitor-shared-config/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/exhibitor-shared-config/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/exhibitor-shared-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d53a03c1c0914c650bad4f027bd34c2c"
+  "hash": "d87f50f3323fa66c3ab8e72e37dc81cc"
 }
 ##DOCS-SOURCER-END -->

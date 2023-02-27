@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules%2Fsqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -66,11 +66,11 @@ The largest number of records that Lambda will retrieve from your event source a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules%2Fsqs-lambda-connection%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs-lambda-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs-lambda-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ec53366ba547b2bce67a72dbc73ae044"
+  "hash": "9d272756a3db782121777d168a0a2b95"
 }
 ##DOCS-SOURCER-END -->

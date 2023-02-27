@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules%2Fcustom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -276,11 +276,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules%2Fcustom-iam-entity%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/custom-iam-entity/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/custom-iam-entity/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4600b10739cc9fefaed396e501b1ae2e"
+  "hash": "696d656cedbe076021928240bc8869d1"
 }
 ##DOCS-SOURCER-END -->

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules%2Foperating-system" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/operating-system" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -50,11 +50,11 @@ path_separator        = "${module.os.path_separator}"
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules%2Foperating-system%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/operating-system/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/operating-system/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/operating-system/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59a335faefa406762d2938c507b24e9b"
+  "hash": "b73ea0c3b0812b9ffe12143a9a7ac2d6"
 }
 ##DOCS-SOURCER-END -->

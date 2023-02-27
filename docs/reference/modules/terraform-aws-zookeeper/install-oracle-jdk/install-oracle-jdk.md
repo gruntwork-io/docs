@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules%2Finstall-oracle-jdk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-oracle-jdk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,11 +69,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules%2Finstall-oracle-jdk%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "80ab0cf4b8fa89511ea76fbf556574f7"
+  "hash": "38aabf8dbed059b94ef7dd366f0c045a"
 }
 ##DOCS-SOURCER-END -->

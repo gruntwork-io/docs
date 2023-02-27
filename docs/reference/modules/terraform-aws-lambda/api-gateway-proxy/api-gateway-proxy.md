@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules%2Fapi-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -401,11 +401,11 @@ The URL of the API Gateway that you can use to invoke it.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules%2Fapi-gateway-proxy%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f9563e392b1d7b064cd5a04dfa59534b"
+  "hash": "5e59644f48aa6d604eaf765a7bf6739e"
 }
 ##DOCS-SOURCER-END -->

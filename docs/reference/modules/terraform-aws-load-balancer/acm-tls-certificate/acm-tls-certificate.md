@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules%2Facm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -357,11 +357,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules%2Facm-tls-certificate%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8bd9ddc1347ba5a18bf75bf35dd6f0e0"
+  "hash": "9033607d17c2d886805b3cc8e4172ac9"
 }
 ##DOCS-SOURCER-END -->

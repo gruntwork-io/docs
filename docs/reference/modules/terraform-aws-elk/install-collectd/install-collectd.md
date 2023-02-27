@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules%2Finstall-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -40,11 +40,11 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-collectd%2Freadme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-collectd%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules%2Finstall-collectd%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-collectd/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-collectd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-collectd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c15d0877fda07b1fecb4a3fbba213901"
+  "hash": "54bc8c766d4ac33df9e1aa4b3d7dfbfe"
 }
 ##DOCS-SOURCER-END -->
