@@ -154,22 +154,46 @@ infrastructure and enforce this requirement.
 
 ### 2A.1 Installing Patcher
 
-@@ FIX ME
-```
-TODO
-```
-
-### 2A.2 Running Patcher
-
 :::info
 
-Patcher only changes the files on your local machine.
+Patcher can only be installed by customers that have been granted access by Gruntwork to the Patcher repositories. If you'd like access
+then please contact sales@gruntwork.io.
 
 :::
 
-`patcher upgrade cis`
+Patcher relies on Docker to run patches in containers. Please ensure that [Docker](https://www.docker.com/) is installed on your system.
+In the future we will support alternative container engines.
 
-@@ FIX ME - add instructions on which folder to run patcher in
+After you've installed Docker, you need to download the appropriate `patcher` binary for your system from the releases repo:
+https://github.com/gruntwork-io/patcher-cli/releases. We only officially support macOS at this stage.
+
+
+:::caution
+
+Your browser or OS may show a warning about the downloaded binary. Please confirm the warnings and ensure the extracted
+binary has been marked as executable: `+x`.
+
+:::
+
+### 2A.2 Running Patcher
+
+Patcher retrieves information about modules and their releases using the GitHub API. To enable this, please create a GitHub Personal
+Access Token with `repo` and `org` scope and set the environment variable `GITHUB_OAUTH_TOKEN` to its value:
+
+```bash
+export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
+```
+
+Next, in your terminal navigate to the directory with your CIS `infrastructure-live` code and run Patcher’s `upgrade cis` command:
+
+
+```bash
+cd <PATH/TO/YOUR/INFRASTRUCTURE-LIVE/CODE>
+patcher upgrade cis
+```
+
+Patcher will then scan your current directory and its subdirectories, looking for the files containing Terraform or Terragrunt
+dependencies.
 
 #### Analysis of module usage
 
@@ -184,6 +208,12 @@ Before upgrading you can view the changelogs for each module.
 @@ FIX ME - add description and screenshot
 
 #### Start the upgrade
+
+:::info
+
+Patcher only changes the files on your local machine and does not run Terraform or Terragrunt `apply` commands. You can review all changes before deciding to run these commands.
+
+:::
 
 Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
 
