@@ -254,6 +254,49 @@ A list of IAM AWS Customer Managed policy names to attach to the group.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="iam_policy" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+An object defining the IAM policy statements that should be attached directly to the IAM role/group. The input is a map of objects where the map keys are SIDs for IAM policy statements, and the object fields are the resources, actions, and the effect of the statement.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    resources = list(string)
+    actions   = list(string)
+    effect    = string
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     iam_policy = {
+       S3Access = {
+         actions = ["s3:*"]
+         resources = ["arn:aws:s3:::mybucket"]
+         effect = "Allow"
+       },
+       EC2Access = {
+         actions = ["ec2:*"]
+         resources = ["*"]
+         effect = "Allow"
+       }
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="iam_policy_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -329,6 +372,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d4fa370992caaf5c87db2ca05d84b71"
+  "hash": "8e54cfb1180f0763d20d01cff6473c5a"
 }
 ##DOCS-SOURCER-END -->
