@@ -76,16 +76,17 @@ docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subsc
 ## 6. Add existing buckets to a new Macie classification job.
 
 Macie is a new AWS service that uses machine learning (ML) and pattern matching to discover and help protect your sensitive
-data. The Landing Zone solution already configured Macie in all deployed accounts. The last step is to setup S3 buckets to be analyzed.
+data. The Landing Zone solution already configured Macie in all deployed accounts. The last step is to specify the S3 buckets to be analyzed.
 To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. There is a bug
 in the [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws/issues/20726), where the `aws_macie2_classification_job`
-can't be updated. Therefore, we ask you to manually create a new Classification Job and add all desired buckets.
+can't be updated. Therefore, until that bug is fixed (it has been open more than 2 years), we ask you to manually create a new Classification Job and add all buckets that might contain sensitive information, across **all accounts**.
 
 :::note
 
-If you are using Steampipe for checking your Compliance status, you should create the job by selecting a list of buckets,
-and **not** by bucket criterea. Steampipe fetchs the bucket list that's being analyzed by Macie, so if you specify critereas
-for the job, Steampipe will not match that the bucket is indeed being analyzed.
+If you are using Steampipe for checking your Compliance status, you should create the job by "selecting specific buckets",
+and **not** by "specifying bucket criteria". Steampipe fetches the bucket list that's being analyzed by Macie, so if you
+specify a filter for finding the buckets, Steampipe will not match which bucket are being analyzed. [See Steampipe's
+query for finding the buckets analyzed by Macie](https://github.com/turbot/steampipe-mod-aws-compliance/blob/c7cea47662c03f4cc4a84a17e41872e8ace611dc/query/s3/s3_bucket_protected_by_macie.sql#L6-L7).
 
 :::
 
@@ -137,6 +138,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "097e94fdf92a51a0d66541c023b2eece"
+  "hash": "ce2b91bfd56b1180d1a9593d9d670721"
 }
 ##DOCS-SOURCER-END -->
