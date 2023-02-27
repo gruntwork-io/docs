@@ -417,3 +417,7 @@ html[data-theme="dark"] .link-button:hover {
     display: none;
   }
 }
+
+.dont_show {
+  display: none;
+}

@@ -102,12 +102,12 @@ const config = {
           },
           {
             type: "dropdown",
-            label: "Reference Docs",
+            label: "Library Reference",
             items: [
               {
                 type: "doc",
                 label: "Modules",
-                docId: "reference/modules/stub",
+                docId: "reference/modules/intro",
               },
               {
                 type: "doc",
