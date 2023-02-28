@@ -143,9 +143,9 @@ versions of Gruntwork's CIS Reference Architecture (part of the Gruntwork librar
 If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to
 safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
 
-Included in those more than 200 updates are 4 (@@CHECK NEEDED) breaking changes that need to be applied to your
+Included in those more than 200 updates are 3 breaking changes that need to be applied to your
 infrastructure. These breaking changes include migrating to our new CIS RDS module. Patcher applies a series of patches
-modify your infrastructure code to fix 3 of these breaking changes. The manual migration for the last breaking change
+modify your infrastructure code to fix 2 of these breaking changes. The manual migration for the last breaking change
 is included in this guide.
 
 The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0
@@ -306,6 +306,6 @@ If you have successfully completed manually updating the modules to the minimum 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "36c9171cf3bb100d324287c51c7a9f26"
+  "hash": "fe418f7746981a8f44ea553710f3754d"
 }
 ##DOCS-SOURCER-END -->
