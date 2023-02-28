@@ -65,7 +65,7 @@ compatible with CIS AWS v1.5.0:
 ## 2A Updating with Patcher
 
 Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct
-versions of the Gruntwork library using a tool we call Patcher.
+versions of Gruntwork's CIS Reference Architecture (part of the Gruntwork library) using a tool we call Patcher.
 
 <a id="patcher-compatibility-table" class="snap-top"></a>
 
