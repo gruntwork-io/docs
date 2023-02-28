@@ -73,27 +73,43 @@ You can also configure an automated system integration if you have a third party
 Follow the steps in the [AWS
 docs](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html) on how to add an HTTPS endpoint as a subscriber to the alerts.
 
-## 6. Manually maintain buckets to analyze in the `buckets_to_analyze` variable
+## 6. Add existing buckets to a new Macie classification job
 
 Macie is a new AWS service that uses machine learning (ML) and pattern matching to discover and help protect your sensitive
-data. To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. Typically,
-you’ll want it to analyze all the buckets in the region. However, the terraform AWS provider does not support specifying
-all the buckets in a region - it requires that an explicit list of buckets be provided. Therefore, you’ll
-need to maintain an explicit list of buckets per region, namely in the variable `buckets_to_analyze`. This list of buckets needs to be maintained in the future as new buckets are created in the account. Please read the
-[documentation](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/blob/master/modules/security/macie/variables.tf#L21-L30)
-for this variable in order to understand how to structure the list of buckets per region.
+data. The Landing Zone solution already configured Macie in all deployed accounts. The last step is to specify the S3 buckets to be analyzed.
+To set up Macie to analyze the desired S3 buckets, you’ll need to create a **Macie classification job**. There is a bug
+in the [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws/issues/20726), where the `aws_macie2_classification_job`
+can't be updated. Therefore, until that bug is fixed (it has been open more than 2 years), we ask you to manually create a new Classification Job and add all buckets that might contain sensitive information, across **all accounts**.
 
-On each account, you can get a full list of existing S3 buckets using the AWS CLI:
+:::note
 
-```
-aws s3 ls
-```
+If you are using Steampipe for checking your Compliance status, you should create the job by "selecting specific buckets",
+and **not** by "specifying bucket criteria". Steampipe fetches the bucket list that's being analyzed by Macie, so if you
+specify a filter for finding the buckets, Steampipe will not match which bucket are being analyzed. [See Steampipe's
+query for finding the buckets analyzed by Macie](https://github.com/turbot/steampipe-mod-aws-compliance/blob/c7cea47662c03f4cc4a84a17e41872e8ace611dc/query/s3/s3_bucket_protected_by_macie.sql#L6-L7).
 
-For each bucket, the region can also be retrieved using the AWS CLI:
+:::
+
+You can use either the [AWS Console](https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-create.html), or the
+[AWS CLI](https://docs.aws.amazon.com/de_de/cli/latest/reference/macie2/create-classification-job.html#create-classification-job) to make the change.
 
 
-```
-aws s3api get-bucket-location --bucket <BUCKET_NAME>
+The script below will fetch a list of all buckets in an AWS account and create a new classification job for them to be weekly
+analyzed. The script needs to be executed while authenticated to each account (shared, security, dev, prod etc), and `aws` CLI and `jq` should be available.
+
+```bash
+#!/bin/bash
+
+# Get Account ID
+ACCOUNT_ID=$(aws sts get-caller-identity --output json | jq '.Account')
+echo "Creating classification job for account $ACCOUNT_ID"
+
+# Get the full list of buckets
+BUCKETS_LIST=$(aws s3api list-buckets --output json | jq '[.Buckets[] | .Name]')
+echo "Creating classification job for list of buckets $BUCKETS_LIST"
+
+# Create a job in Macie that will analyze all buckets once per week, on Mondays
+aws macie2 create-classification-job --name "weekly-analyzis" --job-type "SCHEDULED" --schedule-frequency "{ \"weeklySchedule\": {\"dayOfWeek\": \"MONDAY\" } }" --s3-job-definition "{\"bucketDefinitions\":[{\"accountId\":$ACCOUNT_ID, \"buckets\":$BUCKETS_LIST}]}"
 ```
 
 

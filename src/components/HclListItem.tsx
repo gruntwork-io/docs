@@ -33,14 +33,23 @@ export const HclListItemDescription: React.FunctionComponent = ({
   return <div className={styles.description}>{children}</div>
 }
 
-export const HclListItemTypeDetails: React.FunctionComponent = ({
+export const HclGeneralListItem: React.FunctionComponent<PropsWithChildren<{ title: string }>> = ({
+  title,
   children,
 }) => {
   return (
     <div className={styles.detail}>
-      <label className={styles.label}>Type Details</label>
+      <label className={styles.label}>{title}</label>
       {children}
     </div>
+  )
+}
+
+export const HclListItemTypeDetails: React.FunctionComponent = ({
+  children,
+}) => {
+  return (
+    <HclGeneralListItem title="Type Details" children={children} />
   )
 }
 

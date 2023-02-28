@@ -52,7 +52,6 @@ testing for Terraform, Docker, Packer, Kubernetes, and More](https://blog.gruntw
 
 </div>
 
-
 ## Sections
 
 Feel free to read this guide from start to finish or skip around to whatever sections interest you.
@@ -90,5 +89,8 @@ Feel free to read this guide from start to finish or skip around to whatever sec
 
 
 <!-- ##DOCS-SOURCER-START
-{"sourcePlugin":"local-copier","hash":"ce61548221a65c5a711904397d890781"}
+{
+  "sourcePlugin": "local-copier",
+  "hash": "0d4a701ecaf6b15a54896e84ee9673cf"
+}
 ##DOCS-SOURCER-END -->
