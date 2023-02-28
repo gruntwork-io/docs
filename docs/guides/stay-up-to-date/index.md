@@ -91,6 +91,11 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
 <Card
+title="Update to version 1.5.0"
+href="/guides/stay-up-to-date/cis/cis-1.5.0"
+/>
+
+<Card
   title="Update to version 1.4.0"
   href="/guides/stay-up-to-date/cis/cis-1.4.0"
   />
@@ -108,7 +113,7 @@ href="/guides/stay-up-to-date/terraform/terraform-1.1"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "releases",
-  "hash": "7ea35831433ed92507132ae0bae19621"
+  "sourcePlugin": "local-copier",
+  "hash": "ed1e8236458bdd340ad49fba5f4f0855"
 }
 ##DOCS-SOURCER-END -->
