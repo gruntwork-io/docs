@@ -1,0 +1,306 @@
+---
+sidebar_label: Update references to the Gruntwork Infrastructure as Code Library
+---
+
+# Step 2: Update references to the Gruntwork Infrastructure as Code Library
+
+To update to the CIS AWS Foundations Benchmark v1.5.0, you need to update your references to the Gruntwork
+Infrastructure as Code Library to use compatible versions. We (Gruntwork) have reviewed and updated all the library
+modules for compatibility with the new version of the benchmark. As a customer, you need to update to the correct
+versions of the Gruntwork library to pick up the changes necessary for your infrastructure to be compatible.
+
+The following table provides a summary of all the relevant Gruntwork AWS modules and the respective versions that are
+compatible with CIS AWS v1.5.0:
+
+<a id="compatibility-table" class="snap-top"></a>
+
+<table id="compatibility-table">
+  <colgroup>
+    <col />
+    <col />
+    <col />
+  </colgroup>
+  <tbody>
+    <tr className="odd">
+      <td>
+        <p>Gruntwork Repo</p>
+      </td>
+      <td>
+        <p>
+          <strong>Minimum version with CIS AWS v1.5.0 support</strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="even">
+      <td>
+        <p>terraform-aws-security</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2">
+              v0.67.2
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="odd">
+      <td>
+        <p>terraform-aws-cis-service-catalog</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.9">
+              v0.42.9
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## 2A Updating with Patcher
+
+Beginning with CIS AWS Foundations Benchmark v1.5.0, Gruntwork is providing an automated way update to the correct
+versions of the Gruntwork library using a tool we call Patcher.
+
+<a id="patcher-compatibility-table" class="snap-top"></a>
+
+<table id="patcher-compatibility-table">
+  <colgroup>
+    <col />
+    <col />
+    <col />
+  </colgroup>
+  <tbody>
+    <tr className="odd">
+      <td>
+        <p>Gruntwork Repo</p>
+      </td>
+      <td>
+        <p>
+          <strong>Minimum version with CIS AWS v1.4.0 support</strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>Minimum version to use Patcher</strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="even">
+      <td>
+        <p>terraform-aws-security</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2">
+              v0.54.0
+            </a>
+          </strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.2">
+              v0.65.0
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+    <tr className="odd">
+      <td>
+        <p>terraform-aws-cis-service-catalog</p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.9">
+              v0.27.0
+            </a>
+          </strong>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0">
+              v0.40.0
+            </a>
+          </strong>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to
+safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
+
+Included in those more than 200 updates are 4 (@@CHECK NEEDED) breaking changes that need to be applied to your
+infrastructure. These breaking changes include migrating to our new CIS RDS module. Patcher applies a series of patches
+modify your infrastructure code to fix 3 of these breaking changes. The manual migration for the last breaking change
+is included in this guide.
+
+The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0
+to remote server administration ports", Patcher also includes a patch that configures terragrunt to scan your
+infrastructure and enforce this requirement.
+
+### 2A.1 Installing Patcher
+
+:::info
+
+Patcher can only be installed by customers that have been granted access by Gruntwork to the Patcher repositories. If you'd like access
+then please contact sales@gruntwork.io.
+
+:::
+
+Patcher relies on Docker to run patches in containers. Please ensure that [Docker](https://www.docker.com/) is installed on your system.
+In the future we will support alternative container engines.
+
+After you've installed Docker, you need to download the appropriate `patcher` binary for your system from the releases repo:
+https://github.com/gruntwork-io/patcher-cli/releases. We only officially support macOS at this stage.
+
+
+:::caution
+
+Your browser or OS may show a warning about the downloaded binary. Please confirm the warnings and ensure the extracted
+binary has been marked as executable: `+x`.
+
+:::
+
+### 2A.2 Running Patcher
+
+Patcher retrieves information about modules and their releases using the GitHub API. To enable this, please create a GitHub Personal
+Access Token with `repo` and `org` scope and set the environment variable `GITHUB_OAUTH_TOKEN` to its value:
+
+```bash
+export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
+```
+
+Next, in your terminal navigate to the directory with your CIS `infrastructure-live` code and run Patcher’s `upgrade cis` command:
+
+
+```bash
+cd <PATH/TO/YOUR/INFRASTRUCTURE-LIVE/CODE>
+patcher upgrade cis
+```
+
+Patcher will then scan your current directory and its subdirectories, looking for the files containing Terraform or Terragrunt
+dependencies.
+
+#### Analysis of module usage
+
+The CIS upgrade analyses your module usage and then displays a list of the modules that need to be updated along with the version that is currently being used and the latest available version for each module.
+
+@@ FIX ME - add screenshot of module list
+
+#### View the changelog for each module
+
+Before upgrading you can view the changelogs for each module.
+
+@@ FIX ME - add description and screenshot
+
+#### Start the upgrade
+
+:::info
+
+Patcher only changes the files on your local machine and does not run Terraform or Terragrunt `apply` commands. You can review all changes before deciding to run these commands.
+
+:::
+
+Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
+
+If you agree to the upgrade, Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a patch to your infrastructure code.
+
+@@ FIX ME - add description of a patch and a screenshot of patcher output
+
+### 2A.3 Running the migration scripts
+
+:::caution
+
+You must run the migration scripts. Failing to do so will result in data loss.
+
+:::
+
+When Patcher completes successfully it provides a list migration scripts that need to be run before proceeding.
+
+@@ FIX ME - add screenshot of the summary screen showing list of scripts
+
+### Next Steps
+
+:::caution
+
+Before continuing check that you have completed step 2A.3. Failing to do so will result in data loss.
+
+:::
+
+If you have successfully completed steps 2A.1 thru 2A.3 then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the account baseline modules.
+
+
+## 2B Updating Manually
+
+Refer to our ["Updating to new versions"](/guides/working-with-code/versioning#updating-to-new-versions) guide for instructions on how to update the versions in your code.
+
+Gruntwork follows [semantic versioning](/guides/working-with-code/versioning#semantic-versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0, v0.7.0, v0.8.0, and v0.9.0 to get the full list of backward incompatible updates).
+
+### Module change logs
+
+To make this process easier we have added change logs for each module. The changelog clearly states when you can safely bump the module version. If there is a breaking change the changelog includes the migration guide.
+
+The example below is from the changelog for the new [CIS RDS module](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/master/modules/data-stores/rds).
+
+````md title=terraform-aws-cis-service-catalog/modules/data-stores/rds/CHANGELOG.md
+## [v0.42.8](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.8) - 2023-02-01
+
+### Changed
+- No breaking changes, safe to bump
+
+### Description
+- Updated upstream `rds` module to v0.100.1
+
+### Related Links
+- https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/523
+
+## [v0.42.7](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7) - 2023-01-31
+
+### Changed
+- No breaking changes, safe to bump
+
+### Description
+- Added `maintenance_window` variable to CIS RDS module
+
+### Related Links
+- https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/pull/522
+
+## [v0.42.6](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.6) - 2023-01-18
+
+### Changed
+- No changes, safe to bump
+````
+
+### Next Steps
+
+:::caution
+
+Before continuing check that you have followed all the necessary migration guides. Failing to do so will result in data loss.
+
+:::
+
+If you have successfully completed manually updating the modules to the minimum version with CIS AWS v1.5.0 support then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the account baseline modules.
+
+
+
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "local-copier",
+  "hash": "f0c669acdd940d7c2191c7dd681d4060"
+}
+##DOCS-SOURCER-END -->
