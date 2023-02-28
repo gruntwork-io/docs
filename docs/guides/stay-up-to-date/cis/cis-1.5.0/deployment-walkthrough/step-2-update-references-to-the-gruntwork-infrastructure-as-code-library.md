@@ -150,7 +150,7 @@ is included in this guide.
 
 The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0
 to remote server administration ports", Patcher also includes a patch that configures `tflint` with the [gruntwork-io/tflint-ruleset-aws-cis](https://github.com/gruntwork-patcher-dev/tflint-ruleset-aws-cis) to scan your
-infrastructure and enforce this requirement. Terragrunt now supports running `tflint` as a `before_hooks`.
+infrastructure and enforce this requirement. [Terragrunt now supports running `tflint` as a `before_hooks`](https://terragrunt.gruntwork.io/docs/features/hooks/#tflint-hook).
 
 ### 2A.1 Installing Patcher
 
@@ -199,13 +199,13 @@ dependencies.
 
 The CIS upgrade analyses your module usage and then displays a list of the modules that need to be updated along with the version that is currently being used and the latest available version for each module.
 
-@@ FIX ME - add screenshot of module list
+![Screenshot of Patcher with a list of modules in an infrastructure-live repo.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-modules-list.png)
 
 #### View the changelog for each module
 
 Before upgrading you can view the changelogs for each module.
 
-@@ FIX ME - add description and screenshot
+![Screenshot of Patcher with changelogs for a module.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-changelogs.png)
 
 #### Start the upgrade
 
@@ -217,9 +217,11 @@ Patcher only changes the files on your local machine and does not run Terraform 
 
 Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
 
-If you agree to the upgrade, Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a patch to your infrastructure code.
+If you agree to the upgrade, press `y` and Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a patch to your infrastructure code.
 
-@@ FIX ME - add description of a patch and a screenshot of patcher output
+@@ FIX ME - add description of a patch
+
+![Screenshot of Patcher applying a patch.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-rds-patch.png)
 
 ### 2A.3 Running the migration scripts
 
@@ -231,7 +233,8 @@ You must run the migration scripts. Failing to do so will result in data loss.
 
 When Patcher completes successfully it provides a list migration scripts that need to be run before proceeding.
 
-@@ FIX ME - add screenshot of the summary screen showing list of scripts
+
+![Screenshot of Patcher's summary.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-summary.png)
 
 ### Next Steps
 
@@ -241,7 +244,7 @@ Before continuing check that you have completed step 2A.3. Failing to do so will
 
 :::
 
-If you have successfully completed steps 2A.1 thru 2A.3 then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the account baseline modules.
+If you have successfully completed steps 2A.1 through 2A.3 then you should now move to [step 3](step-3-update-the-account-baseline-modules.md) and complete the manual update for the Landing Zone (`account-baseline-*`) modules.
 
 
 ## 2B Updating Manually
@@ -301,6 +304,6 @@ If you have successfully completed manually updating the modules to the minimum 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9856363d5cc0897861c437b3c82aa67b"
+  "hash": "bf75b17098828c8c149147a113ca78a1"
 }
 ##DOCS-SOURCER-END -->

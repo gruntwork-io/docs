@@ -15,7 +15,7 @@ The steps you need to take to update your code to be compliant with v1.5.0. It i
 
 To make updating to CIS AWS Foundations Benchmark v1.5.0 more straighforward we have:
 - Introduced a new tool called Patcher which automates the process of updating the module versions
-- Added module chnagelogs that make it clear when you can safely bump the module version
+- Added module changelogs that make it clear when you can safely bump the module version
 
 </div>
 

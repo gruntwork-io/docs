@@ -1,8 +1,8 @@
 ---
-sidebar_label: Check your live infrastructure is CIS v1.4 compliant
+sidebar_label: Check your live infrastructure is CIS AWS v1.4 compliant
 ---
 
-# Step 1: Check your live infrastructure is CIS v1.4 compliant
+# Step 1: Check your live infrastructure is CIS AWS v1.4 compliant
 
 The later steps in this guide assume that you are upgrading from CIS AWS Foundations Benchmark v1.4 to v1.5.
 
@@ -55,14 +55,27 @@ cd steampipe-mod-aws-compliance
 
 ## 1.4 Run the CIS v1.4.0 compliance check
 
+Before running, an IAM credential report needs to be generated:
+
+```
+aws iam generate-credential-report
+```
+
 Run the check:
 
 ```
 steampipe check aws_compliance.benchmark.cis_v140
 ```
 
+Example:
+
+```
+aws-vault exec dev -- aws iam generate-credential-report
+aws-vault exec dev -- steampipe check aws_compliance.benchmark.cis_v140
+```
+
 ## Next steps
 
 If you've confirmed that your live infrastructure is compliant with the CIS AWS Foundations Benchmark v1.4 then you're
 ready to move to [step 2](step-2-update-references-to-the-gruntwork-infrastructure-as-code-library.md) and update your
-references to the Gruntwork Infrastructure as Code Library.
+references to the Gruntwork Infrastructure as Code Library. Otherwise, if some checks are failing you should check the [Manual steps](/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/manual-steps) section, that contains extra steps to achieve CIS compliance.
