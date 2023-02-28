@@ -12,16 +12,16 @@ At Gruntwork, we've taken the thousands of hours we spent building infrastructur
 
 ## Why do we have Modules and Services
 
-The Gruntwork IaC Library is a collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably. The library consists of two types of code: Modules and Services. Here's how they differ.
+The Gruntwork IaC Library is a collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably. The library consists of two types of code: Modules and [Services](/reference/services/intro/overview/). Here's how they differ.
 
 **Modules:** Reusable code to deploy and manage one piece of infrastructure. Modules are fairly generic building blocks, so you don't typically deploy a single module directly, but rather, you write code that combines the modules you need for a specific use case. For example, one module might deploy the control plane for Kubernetes and a separate module could deploy worker nodes; you may need to combine both modules together to deploy a Kubernetes cluster. The Gruntwork Infrastructure as Code (IaC) Library contains hundreds of battle-tested, commercially supported and maintained modules that you can use and combine in many different ways.
 
-**Services:** Reusable code that combines multiple modules to configure a service for a specific use case. Services are designed for specific use cases and meant to be deployed directly. For example, the eks-cluster service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. The Gruntwork Service Catalog is a collection of battle-tested, commercially supported and maintained services that you can use to deploy production-grade infrastructure in minutes.
+**Services:** Reusable code that combines multiple modules to configure a service for a specific use case. Services are designed for specific use cases and meant to be deployed directly. For example, the eks-cluster service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. [The Gruntwork Service Catalog](/reference/services/intro/overview/) is a collection of battle-tested, commercially supported and maintained services that you can use to deploy production-grade infrastructure in minutes.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b920ff1271aa10ce2e3e0f15a543fb1c"
+  "hash": "ba67f45930b552d83669cbf50c8b0c1f"
 }
 ##DOCS-SOURCER-END -->
