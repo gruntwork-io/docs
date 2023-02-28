@@ -34,7 +34,7 @@ Version 1.5.0 also updated a few recommendations.
 ## New Gruntwork modules vs. existing modules
 
 To achieve compliance with the new version of the benchmark, we've updated a bunch of existing modules. We've also
-created a new CIS RDS module to satisfy the expanded RDS recommendations.
+created a new CIS RDS and EFS module to satisfy the expanded recommendations.
 
 To ensure compliance with version 1.5.0 of the CIS AWS Foundations Benchmark, you'll need to follow all the
 instructions in the [Deployment walkthrough](deployment-walkthrough/step-1-check-your-live-infrastructure-is-cis-v1.4-compliant.md) section. We've
@@ -44,6 +44,6 @@ expanded the steps in the guide to include checking v1.4.0 compliance before upd
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "83f0df96fda31a522dd578ffd80d4ac0"
+  "hash": "54d2f2090f65963d6cf89dfa8305300e"
 }
 ##DOCS-SOURCER-END -->

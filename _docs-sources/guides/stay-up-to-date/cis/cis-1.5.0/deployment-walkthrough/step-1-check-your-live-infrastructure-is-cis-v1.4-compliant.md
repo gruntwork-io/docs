@@ -61,7 +61,7 @@ Before running, an IAM credential report needs to be generated:
 aws iam generate-credential-report
 ```
 
-Run the check:
+Run the check while authenticated to the AWS account you want to verify:
 
 ```
 steampipe check aws_compliance.benchmark.cis_v140

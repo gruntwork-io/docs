@@ -61,7 +61,7 @@ Before running, an IAM credential report needs to be generated:
 aws iam generate-credential-report
 ```
 
-Run the check:
+Run the check while authenticated to the AWS account you want to verify:
 
 ```
 steampipe check aws_compliance.benchmark.cis_v140
@@ -84,6 +84,6 @@ references to the Gruntwork Infrastructure as Code Library. Otherwise, if some c
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2bc39bf31740ec4fb0d0b6a7cff43c0d"
+  "hash": "62d099236900a6e8c664ee28cc061faf"
 }
 ##DOCS-SOURCER-END -->

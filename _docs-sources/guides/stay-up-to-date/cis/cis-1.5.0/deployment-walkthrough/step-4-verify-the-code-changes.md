@@ -6,15 +6,14 @@ sidebar_label: Verify the code changes
 
 :::caution
 
-We strongly recommend that you verify the changes by following this step before executing Terraform/Terragrunt `apply`
+We strongly recommend that you verify the changes by following this step before executing `terraform/terragrunt apply`
 
 :::
 
 Upgrading to CIS AWS Foundations Benchmark v1.5.0 includes migrating to our new CIS RDS module, this breaking change
 will result in data loss if not updated correctly.
 
-We strongly recommend that you run `terraform plan` or `terragrunt plan` and verify that any RDS resources you have will
-be "updated in-place" and not destroyed with new resources created.
+We strongly recommend that you run `terraform plan` or `terragrunt plan` and verify that any RDS resources you have will not be destroyed with new resources created.
 
 ## The migrations were correctly executed
 

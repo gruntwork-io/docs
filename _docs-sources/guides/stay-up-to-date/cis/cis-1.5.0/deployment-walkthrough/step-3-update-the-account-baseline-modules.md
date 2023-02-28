@@ -4,16 +4,18 @@ sidebar_label: Update the Account Baseline modules
 
 # Step 3: Update the Account Baseline modules
 
-Next, you will need to update the account baseline (landing zone) modules to the version compatible
+Next, you will need to update the account baseline (Landing Zone) modules to the version compatible
 with v1.5.0 of the CIS AWS Foundations Benchmark.
+
+This guide assumes you are using at least
+[v0.40.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0)
+of the CIS Service Catalog repo, which was released in August 2022.
 
 We strongly recommend upgrading straight to at least [v0.42.9](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.9),
 instead of each minor version incrementally.
 
 If you are using Patcher, then it will upgrade to the latest available version automatically.
 
-This guide assumes you are using at least[v0.40.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0)
-of the CIS Service Catalog repo, which was released in August 2022.
 
 The account baseline modules had one breaking change between versions v0.40.0 and v0.42.9. We must manually run
 the migration steps before updating the module versions.
@@ -22,7 +24,7 @@ the migration steps before updating the module versions.
 
 ## 3.1 Add `me-central-1` to your `multi_region_common.hcl`
 
-For terragrunt, add `me-central-1` to the `all_aws_regions` local variable in `multi_region_common.hcl`.
+For Terragrunt, add `me-central-1` to the `all_aws_regions` local variable in `multi_region_common.hcl`.
 
 ```hcl title=multi_region_common.hcl
 # ----------------------------------------------------------------------------------------------------------------
@@ -39,8 +41,10 @@ locals {
   # ... other vars omitted for brevity ...
 ```
 
+For Terraform, follow the migration guide in [the migration guide of the release v0.42.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.0).
+
 ## Next step
 
 If you have successfully completed step 3.1 then you should now move to [step 4](step-4-verify-the-code-changes)
 in order to verify the changes that have been made. We strongly recommend that you verify the changes that have been
-made before executing Terraform/Terragrunt `apply`.
+made before executing `terraform/terragrunt apply`.

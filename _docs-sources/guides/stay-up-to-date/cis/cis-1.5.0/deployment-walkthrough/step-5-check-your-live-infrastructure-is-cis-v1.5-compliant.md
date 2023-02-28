@@ -13,3 +13,5 @@ If you configured Steampipe in [step 1](step-1-check-your-live-infrastructure-is
 cd steampipe-mod-aws-compliance
 steampipe check aws_compliance.benchmark.cis_v150
 ```
+
+If some checks are failing you should check the [Manual steps](/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/manual-steps) section, that contains extra steps to achieve CIS compliance.
