@@ -101,10 +101,20 @@ const config = {
             activeBasePath: "docs/guides",
           },
           {
-            type: "doc",
-            position: "left",
-            label: "Service Catalog API",
-            docId: "reference/services/intro/overview",
+            type: "dropdown",
+            label: "Library Reference",
+            items: [
+              {
+                type: "doc",
+                label: "Modules",
+                docId: "reference/modules/intro",
+              },
+              {
+                type: "doc",
+                label: "Services",
+                docId: "reference/services/intro/overview",
+              },
+            ],
           },
           { to: "/tools", label: "Tools", position: "left" },
           { to: "/courses", label: "Courses", position: "left" },
