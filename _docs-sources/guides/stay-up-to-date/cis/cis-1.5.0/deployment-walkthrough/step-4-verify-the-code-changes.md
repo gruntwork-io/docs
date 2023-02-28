@@ -87,7 +87,7 @@ The output `plan` will contain messages similar to these:
 
 ### If you are using Patcher
 
-If you used Patcher to do the upgrade then start by checking that you completed [step 2A.3](deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library.md).
+If you used Patcher to do the upgrade then start by checking that you completed [step 2A.3](deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library).
 
 ### If you are updating the modules manually
 
@@ -101,5 +101,5 @@ Before proceeding we recommend that you satisfy yourself that:
 
 You can now safely commit the changes to your git repo and apply the changes.
 
-After the changes have been applied we recommend you complete [step 5](deployment-walkthrough/step-5-check-your-live-infrastructure-is-cis-v1.5-compliant.md)
+After the changes have been applied we recommend you complete [step 5](deployment-walkthrough/step-5-check-your-live-infrastructure-is-cis-v1.5-compliant)
 and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0 compliant.

@@ -149,8 +149,8 @@ modify your infrastructure code to fix 3 of these breaking changes. The manual m
 is included in this guide.
 
 The CIS AWS Foundations Benchmark v1.5.0 includes a requirement to "Ensure no security groups allow ingress from ::/0
-to remote server administration ports", Patcher also includes a patch that configures terragrunt to scan your
-infrastructure and enforce this requirement.
+to remote server administration ports", Patcher also includes a patch that configures `tflint` with the [gruntwork-io/tflint-ruleset-aws-cis](https://github.com/gruntwork-patcher-dev/tflint-ruleset-aws-cis) to scan your
+infrastructure and enforce this requirement. Terragrunt now supports running `tflint` as a `before_hooks`.
 
 ### 2A.1 Installing Patcher
 
@@ -301,6 +301,6 @@ If you have successfully completed manually updating the modules to the minimum 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f0c669acdd940d7c2191c7dd681d4060"
+  "hash": "9856363d5cc0897861c437b3c82aa67b"
 }
 ##DOCS-SOURCER-END -->
