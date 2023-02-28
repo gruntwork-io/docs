@@ -92,6 +92,23 @@ query for finding the buckets analyzed by Macie](https://github.com/turbot/steam
 
 You can use either the [AWS Console](https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-create.html), or the
 [AWS CLI](https://docs.aws.amazon.com/de_de/cli/latest/reference/macie2/create-classification-job.html#create-classification-job) to make the change.
+The script below will fetch a list of all buckets in an AWS account and create a new classification job for them to be weekly
+analyzed. The script needs to be executed while authenticated in AWS.
+
+```bash
+#!/bin/bash
+
+# Get Account ID
+ACCOUNT_ID=$(aws sts get-caller-identity --output json | jq '.Account')
+echo "Creating classification job for account $ACCOUNT_ID"
+
+# Get the full list of buckets
+BUCKETS_LIST=$(aws s3api list-buckets --output json | jq '[.Buckets[] | .Name]')
+echo "Creating classification job for list of buckets $BUCKETS_LIST"
+
+# Create a job in Macie that will analyze all buckets once per week, on Mondays
+aws macie2 create-classification-job --name "weekly-analyzis" --job-type "SCHEDULED" --schedule-frequency "{ \"weeklySchedule\": {\"dayOfWeek\": \"MONDAY\" } }" --s3-job-definition "{\"bucketDefinitions\":[{\"accountId\":$ACCOUNT_ID, \"buckets\":$BUCKETS_LIST}]}"
+```
 
 
 ## 7. Enable MFA Delete for all S3 buckets
@@ -138,6 +155,6 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2a04133c19a941e49653787d6877206c"
+  "hash": "0bc13d8603dd4631a6c43095a16186f2"
 }
 ##DOCS-SOURCER-END -->
