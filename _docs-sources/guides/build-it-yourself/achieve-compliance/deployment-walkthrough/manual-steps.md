@@ -92,8 +92,10 @@ query for finding the buckets analyzed by Macie](https://github.com/turbot/steam
 
 You can use either the [AWS Console](https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-create.html), or the
 [AWS CLI](https://docs.aws.amazon.com/de_de/cli/latest/reference/macie2/create-classification-job.html#create-classification-job) to make the change.
+
+
 The script below will fetch a list of all buckets in an AWS account and create a new classification job for them to be weekly
-analyzed. The script needs to be executed while authenticated in AWS.
+analyzed. The script needs to be executed while authenticated to each account (shared, security, dev, prod etc), and `aws` CLI and `jq` should be available.
 
 ```bash
 #!/bin/bash
