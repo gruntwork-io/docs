@@ -41,7 +41,7 @@ locals {
 
 ## Next step
 
-If you have successfully completed step 3.1 then you should now move to [step 4](deployment-walkthrough/step-4-verify-the-code-changes)
+If you have successfully completed step 3.1 then you should now move to [step 4](step-4-verify-the-code-changes)
 in order to verify the changes that have been made. We strongly recommend that you verify the changes that have been
 made before executing Terraform/Terragrunt `apply`.
 
@@ -49,6 +49,6 @@ made before executing Terraform/Terragrunt `apply`.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "1f77dd6cf128c8f26886ddf4998b2376"
+  "hash": "6e8126be7b19c17deb0b76dbc0581065"
 }
 ##DOCS-SOURCER-END -->
