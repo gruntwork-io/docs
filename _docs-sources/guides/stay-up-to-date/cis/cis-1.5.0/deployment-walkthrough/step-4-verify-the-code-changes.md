@@ -15,7 +15,7 @@ will result in data loss if not updated correctly.
 
 We strongly recommend that you run `terraform plan` or `terragrunt plan` and verify that any RDS resources you have will not be destroyed with new resources created.
 
-## The migrations were correctly executed
+## The RDS migrations were correctly executed
 
 If the migrations have been correctly executed then running `terraform plan`  or `terragrunt plan` will output a
 message similar to this one:
@@ -43,7 +43,7 @@ The output of the diff will contain messages similar to these:
     Plan: 0 to add, 6 to change, 0 to destroy.
 
 
-## The migrations were not correctly executed
+## The RDS migrations were not correctly executed
 
 If the migrations have not been correctly executed then running `terraform plan` or `terragrunt plan` will output a
 message similar to this one:
@@ -98,7 +98,13 @@ Before proceeding we recommend that you satisfy yourself that:
 - You have verified that any RDS resources you have will be correctly migrated
 - You understand the changes that will be made
 
-You can now safely commit the changes to your git repo and apply the changes.
+You can now safely commit the changes to your git repo and apply the changes. If you use Gruntwork Pipelines, [we
+recommend you using the `DeployOrder` feature](https://github.com/gruntwork-io/knowledge-base/discussions/112) to handle
+multiple account updates.
+
+When applying the changes manually, you can run `terragrunt run-all apply` inside each environment folder (dev, logs,
+security, shared etc), and waiting them to successful update before applying the changes before the next one, e.g. wait
+for `dev` to successfully finish before applying `prod`.
 
 After the changes have been applied we recommend you complete [step 5](step-5-check-your-live-infrastructure-is-cis-v1.5-compliant)
 and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0 compliant.

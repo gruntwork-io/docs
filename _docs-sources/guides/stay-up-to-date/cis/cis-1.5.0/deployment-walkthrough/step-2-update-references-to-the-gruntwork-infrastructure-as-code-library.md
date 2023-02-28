@@ -217,9 +217,11 @@ Patcher only changes the files on your local machine and does not run Terraform 
 
 Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
 
-If you agree to the upgrade, press `y` and Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a patch to your infrastructure code.
+If you agree to the upgrade, press `y` and Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a _patch_ to your infrastructure code.
 
-@@ FIX ME - add description of a patch
+**What are patches?** A Patch is a YAML file with a set of commands to execute to transform your code. The maintainers
+of the dependencies you're using can create patches to update your code automatically, such as when a new release
+contains backwards incompatible changes. [See the example of a patch in the CIS Service Catalog.](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/c3d5ede211fc3230a7d493ceea43622b337ee88a/.patcher/patches/v0.96.4/switch-to-cis-rds-module/patch.yaml)
 
 ![Screenshot of Patcher applying a patch.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-rds-patch.png)
 
