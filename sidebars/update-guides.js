@@ -49,6 +49,30 @@ const sidebars = {
       ],
     },
   ],
+  cis150: [
+    backLink,
+    {
+      label: "CIS 1.5.0 Update Guide",
+      type: "category",
+      link: {
+        type: "doc",
+        id: "guides/stay-up-to-date/cis/cis-1.5.0/index",
+      },
+      items: [
+        "guides/stay-up-to-date/cis/cis-1.5.0/core-concepts",
+        {
+          "Deployment Walkthrough": [
+            "guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-1-check-your-live-infrastructure-is-cis-v1.4-compliant",
+            "guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-2-update-references-to-the-gruntwork-infrastructure-as-code-library",
+            "guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-3-update-the-account-baseline-modules",
+            "guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-4-verify-the-code-changes",
+            "guides/stay-up-to-date/cis/cis-1.5.0/deployment-walkthrough/step-5-check-your-live-infrastructure-is-cis-v1.5-compliant",
+          ],
+        },
+        "guides/stay-up-to-date/cis/cis-1.5.0/finally",
+      ],
+    },
+  ],
   terraform12: [
     backLink,
     {
