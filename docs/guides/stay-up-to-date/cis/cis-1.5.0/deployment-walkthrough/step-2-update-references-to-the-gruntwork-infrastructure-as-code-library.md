@@ -217,7 +217,7 @@ Patcher only changes the files on your local machine and does not run Terraform 
 
 Patcher prompts you for permission to begin the upgrade before proceeding. Patcher only changes the files on your local machine.
 
-If you agree to the upgrade, press `y` and Patcher will update each module in order. When updating to the next version involves a breaking change, Patcher will apply a _patch_ to your infrastructure code.
+If you agree to the upgrade, press `y` and Patcher will update each module sequentially. When updating to the next version involves a breaking change, Patcher will apply a _patch_ to your infrastructure code.
 
 **What are patches?** A Patch is a YAML file with a set of commands to execute to transform your code. The maintainers
 of the dependencies you're using can create patches to update your code automatically, such as when a new release
@@ -306,6 +306,6 @@ If you have successfully completed manually updating the modules to the minimum 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "fe418f7746981a8f44ea553710f3754d"
+  "hash": "edec39c8ee33888c076155f010db3e38"
 }
 ##DOCS-SOURCER-END -->
