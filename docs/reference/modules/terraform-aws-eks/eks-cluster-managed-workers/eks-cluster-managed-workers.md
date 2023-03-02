@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# EKS Cluster Managed Workers Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# EKS Cluster Managed Workers Module
 
 **This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
 
@@ -148,6 +151,164 @@ The following are the steps you can take to perform a blue-green release for thi
 
 *   Once the workload is transitioned, you can tear down the old worker pool by dropping the old module block and running
     `terraform apply`.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-CLUSTER-MANAGED-WORKERS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "eks-cluster-managed-workers" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.3"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
+  # resources created by these templates.
+  cluster_name = <INPUT REQUIRED>
+
+  # Configure one or more Node Groups to manage the EC2 instances in this cluster.
+  node_group_configurations = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # List of Security Group IDs to allow SSH access from. Only used if
+  # var.cluster_instance_keypair_name is set. Set to null to allow access from all
+  # locations.
+  allow_ssh_from_security_groups = []
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # The EC2 Keypair name used to SSH into the EKS Cluster's EC2 Instances. To
+  # disable keypairs, pass in blank.
+  cluster_instance_keypair_name = null
+
+  # A map of key-value pairs of Kubernetes labels to apply to all EC2 instances,
+  # across all Node Groups.
+  common_labels = {}
+
+  # A map of key-value pairs of AWS tags to apply to all EC2 instances, across all
+  # Node Groups.
+  common_tags = {}
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # Whether or not the IAM role used for the workers already exists. When false,
+  # this module will create a new IAM role.
+  iam_role_already_exists = false
+
+  # ARN of the IAM role to use if iam_role_already_exists = true. When null, uses
+  # iam_role_name to lookup the ARN. One of iam_role_name and iam_role_arn is
+  # required (must be non-null) if iam_role_already_exists is true.
+  iam_role_arn = null
+
+  # Custom name for the IAM role. When null, a default name based on cluster_name
+  # will be used. One of iam_role_name and iam_role_arn is required (must be
+  # non-null) if iam_role_already_exists is true.
+  iam_role_name = null
+
+  # The version of Kubernetes to use for the AMI. Defaults to the Kubernetes version
+  # of the EKS cluster.
+  kubernetes_version = null
+
+  # Tags assigned to a node group are mirrored to the underlaying autoscaling group
+  # by default. If you want to disable this behaviour, set this flag to false. Note
+  # that this assumes that there is a one-to-one mappping between ASGs and Node
+  # Groups. If there is more than one ASG mapped to the Node Group, then this will
+  # only apply the tags on the first one. Due to a limitation in Terraform for_each
+  # where it can not depend on dynamic data, it is currently not possible in the
+  # module to map the tags to all ASGs. If you wish to apply the tags to all
+  # underlying ASGs, then it is recommended to call the aws_autoscaling_group_tag
+  # resource in a separate terraform state file outside of this module, or use a
+  # two-stage apply process.
+  mirror_node_group_tags_to_asg = true
+
+  # Prefix resource names with this string. When you have multiple worker groups for
+  # the cluster, you can use this to namespace the resources.
+  name_prefix = ""
+
+  # Suffix resource names with this string. When you have multiple worker groups for
+  # the cluster, you can use this to namespace the resources.
+  name_suffix = ""
+
+  # Default value for ami_type field of node_group_configurations.
+  node_group_default_ami_type = "AL2_x86_64"
+
+  # Default value for ami_version field of node_group_configurations.
+  node_group_default_ami_version = null
+
+  # Default value for capacity_type field of node_group_configurations.
+  node_group_default_capacity_type = "ON_DEMAND"
+
+  # Default value for desired_size field of node_group_configurations.
+  node_group_default_desired_size = 1
+
+  # Default value for disk_size field of node_group_configurations.
+  node_group_default_disk_size = 30
+
+  # Whether to force the roll out of release versions to the EKS workers. When true,
+  # this will forcefully delete any pods after 15 minutes if it is not able to
+  # safely drain the nodes. When null (default), this setting is false.
+  node_group_default_force_update_version = null
+
+  # Default value for instance_types field of node_group_configurations.
+  node_group_default_instance_types = ["t3.medium"]
+
+  # Default value for labels field of node_group_configurations. Unlike
+  # common_labels which will always be merged in, these labels are only used if the
+  # labels field is omitted from the configuration.
+  node_group_default_labels = {}
+
+  # Default value for launch_template field of node_group_configurations.
+  node_group_default_launch_template = null
+
+  # Default value for max_size field of node_group_configurations.
+  node_group_default_max_size = 1
+
+  # Default value for min_size field of node_group_configurations.
+  node_group_default_min_size = 1
+
+  # Default value for subnet_ids field of node_group_configurations.
+  node_group_default_subnet_ids = null
+
+  # Default value for tags field of node_group_configurations. Unlike common_tags
+  # which will always be merged in, these tags are only used if the tags field is
+  # omitted from the configuration.
+  node_group_default_tags = {}
+
+  # Default value for taint field of node_group_configurations. These taints are
+  # only used if the taint field is omitted from the configuration.
+  node_group_default_taints = []
+
+  # The names of the node groups. When null, this value is automatically calculated
+  # from the node_group_configurations map. This variable must be set if any of the
+  # values of the node_group_configurations map depends on a resource that is not
+  # available at plan time to work around terraform limitations with for_each.
+  node_group_names = null
+
+  # ARN of permissions boundary to apply to the worker IAM role - the IAM role
+  # created for the EKS worker nodes.
+  worker_iam_role_permissions_boundary = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -616,11 +777,11 @@ Map of Node Group names to ARNs of the created EKS Node Groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-managed-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43c89752802e1ce5e3d44ba16fcb3007"
+  "hash": "45710fb474aee432fd21c432eb8b1401"
 }
 ##DOCS-SOURCER-END -->

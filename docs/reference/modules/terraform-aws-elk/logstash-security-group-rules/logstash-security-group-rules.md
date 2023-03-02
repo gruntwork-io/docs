@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Logstash Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Logstash Security Group Rules Module
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by a
 [Logstash](https://www.elastic.co/products/logstash) cluster to control the traffic that is allowed to go in and out of the cluster.
@@ -64,6 +67,73 @@ Note the following parameters:
 You can find the other parameters in [vars.tf](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/vars.tf).
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LOGSTASH-SECURITY-GROUP-RULES MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "logstash-security-group-rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-security-group-rules?ref=v0.11.1"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The port to use for BEATS requests. E.g. Filebeat
+  beats_port = <INPUT REQUIRED>
+
+  # The port to use for CollectD requests.
+  collectd_port = <INPUT REQUIRED>
+
+  # The ID of the Security Group to which all the rules should be attached.
+  security_group_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The list of IP address ranges in CIDR notation from which to allow connections
+  # to the beats_port.
+  beats_port_cidr_blocks = []
+
+  # The list of Security Group IDs from which to allow connections to the
+  # beats_port. If you update this variable, make sure to update
+  # var.num_beats_port_security_groups too!
+  beats_port_security_groups = []
+
+  # The list of IP address ranges in CIDR notation from which to allow connections
+  # to the collectd_port.
+  collectd_port_cidr_blocks = []
+
+  # The list of Security Group IDs from which to allow connections to the
+  # collectd_port. If you update this variable, make sure to update
+  # var.num_collectd_port_security_groups too!
+  collectd_port_security_groups = []
+
+  # The number of security group IDs in var.beats_port_security_groups. We should be
+  # able to compute this automatically, but due to a Terraform limitation, if there
+  # are any dynamic resources in var.beats_port_security_groups, then we won't be
+  # able to: https://github.com/hashicorp/terraform/pull/11482
+  num_beats_port_security_groups = 0
+
+  # The number of security group IDs in var.collectd_port_security_groups. We should
+  # be able to compute this automatically, but due to a Terraform limitation, if
+  # there are any dynamic resources in var.collectd_port_security_groups, then we
+  # won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_collectd_port_security_groups = 0
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -168,11 +238,11 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-security-group-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "000c81079627f53fa8785ce21e3192c8"
+  "hash": "65bf90310f14c4e15db11c929d3c6fdb"
 }
 ##DOCS-SOURCER-END -->

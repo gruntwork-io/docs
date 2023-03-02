@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elasticsearch Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elasticsearch Cluster
 
 This folder contains a [Terraform](https://www.terraform.io/) module to deploy an [Elasticsearch](https://www.elastic.co/products/elasticsearch) cluster in [AWS](https://aws.amazon.com/) on top of an Auto Scaling Group.
 The idea is to create an [Amazon Machine Image (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
@@ -203,6 +206,142 @@ This module attaches a security group to each EC2 Instance that allows inbound r
 You can associate an [EC2 Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) with each
 of the EC2 Instances in this cluster by specifying the Key Pair's name in the `ssh_key_name` variable. If you don't
 want to associate a Key Pair with these servers, set `ssh_key_name` to an empty string.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "elasticsearch-cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster?ref=v0.11.1"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The AMI id of our custom AMI with Elasticsearch installed
+  ami_id = <INPUT REQUIRED>
+
+  # The AWS region in which all resources will be created
+  aws_region = <INPUT REQUIRED>
+
+  # The number of nodes this cluster should have
+  cluster_size = <INPUT REQUIRED>
+
+  # The name you want to give to this Elasticsearch cluster
+  elasticsearch_cluster_name = <INPUT REQUIRED>
+
+  # The instance type for each of the cluster members. eg: t2.micro
+  instance_type = <INPUT REQUIRED>
+
+  # The ids of the subnets 
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the vpc into which we will deploy Elasticsearch
+  vpc_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The IDs of security groups from which ES API connections will be allowed. If you
+  # update this variable, make sure to update var.num_api_security_group_ids too!
+  allow_api_from_security_group_ids = []
+
+  # The IDs of security groups from which ES API connections will be allowed. If you
+  # update this variable, make sure to update
+  # var.num_node_discovery_security_group_ids too!
+  allow_node_discovery_from_security_group_ids = []
+
+  # The CIDR blocks from which we can connect to nodes of this cluster
+  allowed_cidr_blocks = []
+
+  # A list of security group IDs from which the EC2 Instances will allow SSH
+  # connections
+  allowed_ssh_security_group_ids = []
+
+  # The CIDR blocks from which SSH connections will be allowed
+  alowable_ssh_cidr_blocks = []
+
+  # This is the port that is used to access elasticsearch for user queries
+  api_port = 9200
+
+  # A list of Amazon S3 bucket ARNs to grant the Elasticsearch instances access to
+  backup_bucket_arn = "*"
+
+  # If true, the launched EC2 instance will be EBS-optimized.
+  ebs_optimized = false
+
+  # A list that defines the EBS Volumes to create for each server. Each item in the
+  # list should be a map that contains the keys 'type' (one of standard, gp2, or
+  # io1), 'size' (in GB), and 'encrypted' (true or false). Each EBS Volume and
+  # server pair will get matching tags with a name of the format ebs-volume-xxx,
+  # where xxx is the index of the EBS Volume (e.g., ebs-volume-0, ebs-volume-1,
+  # etc). These tags can be used by each server to find and mount its EBS Volume(s).
+  ebs_volumes = []
+
+  # The name of the Amazon EC2 Key Pair you wish to use for accessing this instance.
+  # See
+  # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html?icmpid=do
+  # s_ec2_console#having-ec2-create-your-key-pair
+  key_name = null
+
+  # This is the port that is used internally by elasticsearch for cluster node
+  # discovery
+  node_discovery_port = 9300
+
+  # The number of security group IDs in var.allow_api_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_api_from_security_group_ids,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_api_security_group_ids = 0
+
+  # The number of ENIs each node in this cluster should have.
+  num_enis_per_node = 1
+
+  # The number of security group IDs in
+  # var.allow_node_discovery_from_security_group_ids. We should be able to compute
+  # this automatically, but due to a Terraform limitation, if there are any dynamic
+  # resources in var.allow_node_discovery_from_security_group_ids, then we won't be
+  # able to: https://github.com/hashicorp/terraform/pull/11482
+  num_node_discovery_security_group_ids = 0
+
+  # Whether the volume should be destroyed on instance termination.
+  root_volume_delete_on_termination = true
+
+  # The size, in GB, of the root EBS volume.
+  root_volume_size = 50
+
+  # The type of volume. Must be one of: standard, gp2, or io1.
+  root_volume_type = "gp2"
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup easier.
+  # It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
+  # A map of key value pairs that represent custom tags to propagate to the
+  # resources that correspond to this ElasticSearch cluster.
+  tags = {}
+
+  # A list of target group ARNs to associate with the Elasticsearch cluster.
+  target_group_arns = []
+
+  # The User Data script to run on each server when it is booting.
+  user_data = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -534,11 +673,11 @@ The User Data script to run on each server when it is booting.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2dd0c35710b97b6b267e4dfded03f72a"
+  "hash": "f7d3d022ad2b03a878b7e3296b61eea3"
 }
 ##DOCS-SOURCER-END -->

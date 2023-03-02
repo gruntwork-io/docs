@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# List Remove Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# List Remove Module
 
 This is a module that can be used to remove items in a given list from another list. This functionality is not yet
 available as an interpolation function.
@@ -41,6 +44,36 @@ The output `new_list` should be the list `["us-east-1a", "us-east-1d", "us-east-
 ## Example code
 
 See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/examples/list-remove) for working sample code.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LIST-REMOVE MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "list-remove" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.9.0"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The list of items that you want to remove from the original list.
+  items_to_remove = <INPUT REQUIRED>
+
+  # The list of items where you want to remove items from.
+  original_list = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -95,11 +128,11 @@ Any types represent complex values of variable type. For details, please consult
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/list-remove/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a1d3b56a144b7ce7927f6e79883ca13"
+  "hash": "b7612ad3b6415779ba6fb8af841fcc8c"
 }
 ##DOCS-SOURCER-END -->

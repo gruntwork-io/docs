@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# KMS Master Key Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# KMS Master Key Module
 
 This Terraform Module creates a new [Customer Master
 Key (CMK)](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys) in [Amazon's Key Management
@@ -70,6 +73,72 @@ downside is that it's now possible to lock yourself out of the CMK, so if you're
 manage the CMK, you may wish to use IAM policies. In addition, IAM is a central place for managing all permissions, whereas
 using just the CMK Key Policy means you now need to update the Key Policy any time the perissions change, which may be
 more onerous.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-MASTER-KEY MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "kms-master-key" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v0.67.2"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Map of CMK names to spec for managing each key. Each entry in the map
+  # corresponds to a key that will be created by this template.
+  customer_master_keys = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The default value to use for spec (specifies whether the key contains a
+  # symmetric key or an asymmetric key pair and the encryption algorithms or signing
+  # algorithms that the key supports). Applies to all keys, unless overridden in the
+  # customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072,
+  # RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
+  default_customer_master_key_spec = null
+
+  # The default value to use for deletion_window_in_days (the number of days to keep
+  # this KMS Master Key around after it has been marked for deletion). Applies to
+  # all keys, unless overridden in the customer_master_keys map.
+  default_deletion_window_in_days = 30
+
+  # The default value to use for enable_key_rotation (whether or not to enable
+  # automatic annual rotation of the KMS key). Applies to all keys, unless
+  # overridden in the customer_master_keys map.
+  default_enable_key_rotation = true
+
+  # The default value to use for multi_region (whether to enable multi-region
+  # replication for the KMS key). Applies to all keys, unless overridden in the
+  # customer_master_keys map.
+  default_multi_region = false
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
+  # key is the tag name and the value  is the tag value.
+  global_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -308,11 +377,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "efecf9dac75804fcce222c2f33f4a0e1"
+  "hash": "010ab99e72a654f33bf23025c3e310d1"
 }
 ##DOCS-SOURCER-END -->

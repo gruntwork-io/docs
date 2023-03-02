@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# AWS Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/aws-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS Helpers
 
 This module contains helper scripts that automate common AWS tasks:
 
@@ -42,11 +45,11 @@ dependencies:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/aws-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/aws-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/aws-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/aws-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/aws-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "221a4b884117b24d50c0db951d440f14"
+  "hash": "f66c67af92904ffb1abd8d25e869d339"
 }
 ##DOCS-SOURCER-END -->

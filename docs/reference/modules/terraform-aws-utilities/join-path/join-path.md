@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# Join Path Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Join Path Module
 
 This is a module that can be used to join a list of given path parts (that is, file and folder names) into a single
 path with the appropriate path separator (backslash or forward slash) for the current operating system. This is useful
@@ -44,6 +47,34 @@ You can now get the joined path using the `path` output:
 # Will be set to "foo/bar/baz.txt" on Linux and OS X, "foo\bar\baz.txt" on Windows
 joined_path = "${module.path.path}" 
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S JOIN-PATH MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "join-path" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.9.0"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A list of folder and file names to combine into a path, using the proper path
+  # separator for the current OS.
+  path_parts = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -88,11 +119,11 @@ A list of folder and file names to combine into a path, using the proper path se
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/join-path/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "15949630c38c1b8328038b75b64618c1"
+  "hash": "d1bced0ec31aad6c3ac8980a5890c4c0"
 }
 ##DOCS-SOURCER-END -->

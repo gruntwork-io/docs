@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+
+# API Gateway Account Settings Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# API Gateway Account Settings Module
 
 This module allows you set the regional settings required to allow API Gateway to write to CloudWatch logs.
 
@@ -32,6 +35,51 @@ The corresponding screen from the AWS Console is shown below:
 ## Quick start
 
 Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/examples) for sample code that demonstrates how to use this module.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S API-GATEWAY-ACCOUNT-SETTINGS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "api-gateway-account-settings" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.6"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the API Gateway account
+  # settings should be created or not.
+  create_resources = true
+
+  # The name of the IAM role that will be created to grant API Gateway rights to
+  # cloudwatch
+  iam_role_name = "api_gateway_cloudwatch_global"
+
+  # Time to wait after creating managed policy, to avoid eventual consistency races.
+  # Default: 60s.
+  managed_policy_waiting_time = "60s"
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -95,11 +143,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-account-settings/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f3c292958fec8e2b491c7ea97aa04c00"
+  "hash": "37e64654fc8c558c29e8a542309b8b20"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+
+# ECS Deployment Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# ECS Deployment Scripts
 
 This folder contains scripts that help with ECS deployment:
 
@@ -93,11 +96,11 @@ container instead of the command configured in the Task Definition.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2b68b340f178369345dbb8c37a5ff8e"
+  "hash": "4fbaf8a3f3d90c4a6da97100e18992f6"
 }
 ##DOCS-SOURCER-END -->

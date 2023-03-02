@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# ALB Ingress Controller IAM Policy Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# ALB Ingress Controller IAM Policy Module
 
 This Terraform Module defines an [IAM
 policy](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html#d0e22325) that
@@ -47,6 +50,45 @@ resource "aws_iam_role_policy_attachment" "attach_alb_ingress_controller_iam_pol
     policy_arn = "${module.alb_ingress_controller_iam_policy.alb_ingress_controller_policy_arn}"
 }
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-ALB-INGRESS-CONTROLLER-IAM-POLICY MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "eks-alb-ingress-controller-iam-policy" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.56.3"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A name that uniquely identified in which context this module is being invoked.
+  # This also helps to avoid creating two resources with the same name from
+  # different terraform applies.
+  name_prefix = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -111,11 +153,11 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "65f5542ffd442cf59762e4c65a331d6f"
+  "hash": "e8fe58f3668359e28cbf7a81d7d21f16"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# VPC-Peering Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# VPC-Peering Terraform Module
 
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
@@ -41,15 +44,108 @@ up peering to allow a user logged into a management VPC to carry out maintenance
 VPCs. However, VPC peering relationships are not "transitive": even though the management VPC can access both staging
 and production, someone in staging *cannot* access production.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-PEERING MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-peering" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS account that should own the peering connection.
+  aws_account_id = <INPUT REQUIRED>
+
+  # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
+  destination_vpc_cidr_block = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the destination of the VPC peering connection.
+  destination_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the destination of the VPC peering connection.
+  destination_vpc_name = <INPUT REQUIRED>
+
+  # A list of IDs of route tables in the destination VPC that should have routes
+  # added pointing to origin VPC.
+  destination_vpc_route_table_ids = <INPUT REQUIRED>
+
+  # The number of route table ids in var.destination_vpc_route_table_ids. This
+  # should be computable, but due to a but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_destination_vpc_route_tables = <INPUT REQUIRED>
+
+  # The number of route table ids in var.origin_vpc_route_table_ids. This should be
+  # computable, but due to a but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_origin_vpc_route_tables = <INPUT REQUIRED>
+
+  # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
+  origin_vpc_cidr_block = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the origin of the VPC peering connection.
+  origin_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the origin of the VPC peering connection.
+  origin_vpc_name = <INPUT REQUIRED>
+
+  # A list of IDs of route tables in the origin VPC that should have routes added
+  # pointing to destination VPC.
+  origin_vpc_route_table_ids = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A boolean parameter to allow connection from the classic link to VPC over the
+  # peering connection. 
+  allow_classic_link_to_remote_vpc = false
+
+  # A boolean parameter to enable or disable DNS resolution on both accepter and
+  # requester side of the connection peering. 
+  allow_remote_vpc_dns_resolution = false
+
+  # A boolean parameter to allow connection from the VPC to the classic link over
+  # the peering connection. 
+  allow_vpc_to_remote_classic_link = false
+
+  # A boolean parameter to auto-accept the VPC peering connection.
+  auto_accept = true
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the VPC Peering function
+  # and other resources should be created or not.
+  create_resources = true
+
+  # A map of tags to apply to the VPC Peering Connection. The key is the tag name
+  # and the value is the tag value. Note that the tag 'Name' is automatically added
+  # by this module but may be optionally overwritten by this variable.
+  custom_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "af01d77d307b05eefe30a4c2a8cfab27"
+  "hash": "cc18150c33e6cc4ea45fc0509243ebee"
 }
 ##DOCS-SOURCER-END -->

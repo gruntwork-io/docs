@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Monitoring Modules" version="0.35.8" />
+
+# Alarm modules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/alarms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Alarm modules
 
 This folder contains modules that configure [CloudWatch
 Alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html) to go off and
@@ -56,11 +59,11 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/alarms/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/alarms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/alarms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ad01db65a67e22d5c4450aa31c386ea5"
+  "hash": "8e15b27155a96cf827f57f1d819100ab"
 }
 ##DOCS-SOURCER-END -->

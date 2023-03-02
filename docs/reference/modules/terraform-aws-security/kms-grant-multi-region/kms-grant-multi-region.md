@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS KMS Grants
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS KMS Grants
 
 This repo contains a Module for creating and managing [KMS grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) for managing permissions to use CMKs.
 
@@ -58,114 +61,67 @@ If you just want to try this out for experimenting and learning, check out the f
 
 *   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
 
+## Sample Usage
 
+<ModuleUsage>
 
+```hcl title="main.tf"
 
-## Reference
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-GRANT-MULTI-REGION MODULE
+# ---------------------------------------------------------------------------------------------------------------------
 
-<Tabs>
-<TabItem value="inputs" label="Inputs" default>
+module "kms-grant-multi-region" {
 
-### Required
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.2"
 
-<HclListItem name="aws_account_id" requirement="required" type="string">
-<HclListItemDescription>
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
 
-The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
 
-</HclListItemDescription>
-</HclListItem>
+  # The map of names of KMS grants to the region where the key resides in. There
+  # should be a one to one mapping between entries in this map and the entries of
+  # the kms_grants map. This is used to workaround a terraform limitation where the
+  # for_each value can not depend on resources.
+  kms_grant_regions = <INPUT REQUIRED>
 
-<HclListItem name="kms_grant_regions" requirement="required" type="map(string)">
-<HclListItemDescription>
+  # Create the specified KMS grants to allow entities to use the KMS key without
+  # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
+  # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
+  # to grant properties. The name must be unique per account.
+  kms_grants = <INPUT REQUIRED>
 
-The map of names of KMS grants to the region where the key resides in. There should be a one to one mapping between entries in this map and the entries of the kms_grants map. This is used to workaround a terraform limitation where the for_each value can not depend on resources.
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
 
-</HclListItemDescription>
-</HclListItem>
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
 
-<HclListItem name="kms_grants" requirement="required" type="map(object(…))">
-<HclListItemDescription>
-
-Create the specified KMS grants to allow entities to use the KMS key without modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g. ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name to grant properties. The name must be unique per account.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    # ARN of the KMS CMK that the grant applies to. Note that the region is introspected based on the ARN.
-    kms_cmk_arn = string
-
-    # The principal that is given permission to perform the operations that the grant permits. This must be in ARN
-    # format. For example, the grantee principal for ASG is:
-    # arn:aws:iam::111122223333:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
-    grantee_principal = string
-
-    # A list of operations that the grant permits. The permitted values are:
-    # Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant,
-    # RetireGrant, DescribeKey
-    granted_operations = list(string)
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The principal that is given permission to perform the operations that the grant permits. This must be in ARN
-     format. For example, the grantee principal for ASG is:
-     arn:aws:iam::111122223333:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+}
 
 ```
-</details>
 
-<details>
-
-
-```hcl
-
-     A list of operations that the grant permits. The permitted values are:
-     Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant,
-     RetireGrant, DescribeKey
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-### Optional
-
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-</TabItem>
-<TabItem value="outputs" label="Outputs">
-
-
-
-</TabItem>
-</Tabs>
+</ModuleUsage>
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-grant-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-grant-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-grant-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "41f853169c6d08a334f6152838d02e77"
+  "hash": "0a211d9e531ac8dd26f96bf34b9e9b07"
 }
 ##DOCS-SOURCER-END -->

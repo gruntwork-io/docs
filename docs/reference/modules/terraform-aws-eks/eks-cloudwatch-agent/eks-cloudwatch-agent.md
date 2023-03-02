@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# EKS CloudWatch Agent Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# EKS CloudWatch Agent Module
 
 This Terraform Module installs and configures
 [Amazon CloudWatch Agent](https://github.com/aws/amazon-cloudwatch-agent/) on an EKS cluster, so that
@@ -51,252 +54,97 @@ You can read more about `cloudwatch-agent` in the [GitHub repository](https://gi
 You can also learn more about Container Insights in the [official AWS
 docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights.html).
 
+## Sample Usage
 
+<ModuleUsage>
 
+```hcl title="main.tf"
 
-## Reference
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-CLOUDWATCH-AGENT MODULE
+# ---------------------------------------------------------------------------------------------------------------------
 
-<Tabs>
-<TabItem value="inputs" label="Inputs" default>
+module "eks-cloudwatch-agent" {
 
-### Required
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.56.3"
 
-<HclListItem name="eks_cluster_name" requirement="required" type="string">
-<HclListItemDescription>
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
 
-Name of the EKS cluster where resources are deployed to.
+  # Name of the EKS cluster where resources are deployed to.
+  eks_cluster_name = <INPUT REQUIRED>
 
-</HclListItemDescription>
-</HclListItem>
+  # Configuration for using the IAM role with Service Accounts feature to provide
+  # permissions to the helm charts. This expects a map with two properties:
+  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
+  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
+  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
+  # to null if you do not wish to use IAM role with Service Accounts.
+  iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-<HclListItem name="iam_role_for_service_accounts_config" requirement="required" type="object(…)">
-<HclListItemDescription>
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
 
-Configuration for using the IAM role with Service Accounts feature to provide permissions to the helm charts. This expects a map with two properties: `openid_connect_provider_arn` and `openid_connect_provider_url`. The `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set to null if you do not wish to use IAM role with Service Accounts.
+  # The Container repository to use for looking up the cloudwatch-agent Container
+  # image when deploying the pods. When null, uses the default repository set in the
+  # chart.
+  aws_cloudwatch_agent_image_repository = null
 
-</HclListItemDescription>
-<HclListItemTypeDetails>
+  # Which version of amazon/cloudwatch-agent to install. When null, uses the default
+  # version set in the chart.
+  aws_cloudwatch_agent_version = null
 
-```hcl
-object({
-    openid_connect_provider_arn = string
-    openid_connect_provider_url = string
-  })
-```
+  # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that this
+  # is different from the app/container version (use
+  # var.aws_cloudwatch_agent_version to control the app/container version).
+  aws_cloudwatch_metrics_chart_version = "0.0.7"
 
-</HclListItemTypeDetails>
-</HclListItem>
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
 
-### Optional
+  # Used to name IAM roles for the service account. Recommended when
+  # var.iam_role_for_service_accounts_config is configured.
+  iam_role_name_prefix = null
 
-<HclListItem name="aws_cloudwatch_agent_image_repository" requirement="optional" type="string">
-<HclListItemDescription>
+  # Namespace to create the resources in.
+  namespace = "kube-system"
 
-The Container repository to use for looking up the cloudwatch-agent Container image when deploying the pods. When null, uses the default repository set in the chart.
+  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
+  # item in the list should be a map with the keys `key`, `values`, and `operator`,
+  # corresponding to the 3 properties of matchExpressions. Note that all expressions
+  # must be satisfied to schedule on the node.
+  pod_node_affinity = []
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
+  # Specify the resource limits and requests for the cloudwatch-agent pods. Set to
+  # null (default) to use chart defaults.
+  pod_resources = null
 
-<HclListItem name="aws_cloudwatch_agent_version" requirement="optional" type="string">
-<HclListItemDescription>
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
+  # tainted. Each item in the list specifies a toleration rule.
+  pod_tolerations = []
 
-Which version of amazon/cloudwatch-agent to install. When null, uses the default version set in the chart.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="aws_cloudwatch_metrics_chart_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-The version of the aws-cloudwatch-metrics helm chart to deploy. Note that this is different from the app/container version (use <a href="#aws_cloudwatch_agent_version"><code>aws_cloudwatch_agent_version</code></a> to control the app/container version).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;0.0.7&quot;"/>
-</HclListItem>
-
-<HclListItem name="dependencies" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Create a dependency between the resources in this module to the interpolated values in this list (and thus the source resources). In other words, the resources in this module will now depend on the resources backing the values in this list such that those resources need to be created before the resources in this module, and the resources in this module need to be destroyed before the resources in the list.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="iam_role_name_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Used to name IAM roles for the service account. Recommended when <a href="#iam_role_for_service_accounts_config"><code>iam_role_for_service_accounts_config</code></a> is configured.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-Namespace to create the resources in.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
-</HclListItem>
-
-<HclListItem name="pod_node_affinity" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Configure affinity rules for the Pod to control which nodes to schedule on. Each item in the list should be a map with the keys `key`, `values`, and `operator`, corresponding to the 3 properties of matchExpressions. Note that all expressions must be satisfied to schedule on the node.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    key      = string
-    values   = list(string)
-    operator = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each item in the list represents a matchExpression for requiredDuringSchedulingIgnoredDuringExecution.
-   https://kubernetes.io/docs/concepts/configuration/assign-pod-node/affinity-and-anti-affinity for the various
-   configuration option.
-  
-   Example:
-  
-   [
-     {
-       "key" = "node-label-key"
-       "values" = ["node-label-value", "another-node-label-value"]
-       "operator" = "In"
-     }
-   ]
-  
-   Translates to:
-  
-   nodeAffinity:
-     requiredDuringSchedulingIgnoredDuringExecution:
-       nodeSelectorTerms:
-       - matchExpressions:
-         - key: node-label-key
-           operator: In
-           values:
-           - node-label-value
-           - another-node-label-value
+}
 
 ```
-</details>
 
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="pod_resources" requirement="optional" type="any">
-<HclListItemDescription>
-
-Specify the resource limits and requests for the cloudwatch-agent pods. Set to null (default) to use chart defaults.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   This object is passed through to the resources section of a pod spec as described in
-   https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-   Example:
-  
-   {
-     requests = {
-       cpu    = "250m"
-       memory = "128Mi"
-     }
-     limits = {
-       cpu    = "500m"
-       memory = "256Mi"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="pod_tolerations" requirement="optional" type="any">
-<HclListItemDescription>
-
-Configure tolerations rules to allow the Pod to schedule on nodes that have been tainted. Each item in the list specifies a toleration rule.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each item in the list represents a particular toleration. See
-   https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ for the various rules you can specify.
-  
-   Example:
-  
-   [
-     {
-       key = "node.kubernetes.io/unreachable"
-       operator = "Exists"
-       effect = "NoExecute"
-       tolerationSeconds = 6000
-     }
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-</TabItem>
-<TabItem value="outputs" label="Outputs">
-
-
-
-</TabItem>
-</Tabs>
+</ModuleUsage>
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f8071d29cb650add922e100aa6d3aace"
+  "hash": "2e261caa3739328f0bb8d5298d44fda3"
 }
 ##DOCS-SOURCER-END -->

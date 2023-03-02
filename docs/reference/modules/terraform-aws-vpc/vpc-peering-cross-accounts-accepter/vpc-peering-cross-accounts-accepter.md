@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# vpc-peering-cross-accounts-accepter
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# vpc-peering-cross-accounts-accepter
 
 This module manages the accepter's side of the VPC Peering Connection between two differents accounts that you control.
 
@@ -61,6 +64,73 @@ No modules.
 |------|-------------|
 | <a name="output_vpc_peering_accept_status"></a> [vpc_peering_accept_status](#output_vpc_peering_accept_status) | The status of the VPC Peering Connection request. |
 | <a name="output_vpc_peering_connection_id"></a> [vpc_peering_connection_id](#output_vpc_peering_connection_id) | Peering connection ID. |
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-PEERING-CROSS-ACCOUNTS-ACCEPTER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-peering-cross-accounts-accepter" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The VPC CIDR of the requester VPC.
+  requester_vpc_cidr = <INPUT REQUIRED>
+
+  # List of route tables to add routes to.
+  route_tables = <INPUT REQUIRED>
+
+  # The VPC Peering Connection ID to manage.
+  vpc_peering_connection_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Allow a local VPC to resolve public DNS hostnames to private IP addresses when
+  # queried from instances in the peer VPC.
+  dns_resolution = false
+
+  # Allow a local linked EC2-Classic instance to communicate with instances in a
+  # peer VPC.
+  link_to_local_classic = false
+
+  # Allow a local VPC to communicate with a linked EC2-Classic instance in a peer
+  # VPC.
+  link_to_remote_classic = false
+
+  # The timeout for the creation of the Route Tables. It defines how long to wait
+  # for a route table to be created before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to wait
+  # for a route table to be deleted before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait for
+  # a route table to be updated before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_update_timeout = "2m"
+
+  # A map of tags to assign to created resources.
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -187,11 +257,11 @@ Peering connection ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-accepter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-accepter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff415f327ef8bdbad34231974645f55d"
+  "hash": "4ba30025e037467cc9d6da59b417459d"
 }
 ##DOCS-SOURCER-END -->

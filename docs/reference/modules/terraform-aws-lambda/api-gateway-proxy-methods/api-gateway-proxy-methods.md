@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+
+# API Gateway Lambda Function Proxy Methods Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# API Gateway Lambda Function Proxy Methods Module
 
 This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy) to configure an API
 Gateway REST API to route all requests from a root path to a lambda function.
@@ -20,6 +23,56 @@ Gateway REST API to route all requests from a root path to a lambda function.
 Refer to [the module docs](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/README.md) for the `api-gateway-proxy` module for more details on how to
 use this module. Specifically, see the section [Can I expose additional lambda functions in a decentralized
 manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/core-concepts.md#can-i-expose-additional-lambda-functions-in-a-decentralized-manner)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S API-GATEWAY-PROXY-METHODS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "api-gateway-proxy-methods" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.21.6"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The API Gateway REST API resource as returned by the terraform resource or data
+  # source. This can also be able arbitrary object that has the keys id,
+  # root_resource_id, and execution_arn of the API Gateway REST API.
+  api_gateway_rest_api = <INPUT REQUIRED>
+
+  # Name of the AWS Lambda function that is being invoked for the API requests.
+  lambda_function_name = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The URL path prefix to proxy. Requests to any path under this path prefix will
+  # be routed to the lambda function. Note that if the path prefix is empty string
+  # (default), all requests (including to the root path) will be proxied. Note that
+  # this only supports single levels for now (e.g., you can configure to route `foo`
+  # and everything below that path like `foo/api/v1`, but you cannot configure to
+  # route something like `api/foo/*`). Example: api will route all requests under
+  # api/, such as /api, /api/v1, /api/v2/myresource/action, etc.
+  path_prefix = ""
+
+  # Configures only the root path to route to the lambda function, and not the other
+  # subpaths. When true, the path_prefix must be empty string or no resources will
+  # be created.
+  root_only = false
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -185,11 +238,11 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy-methods/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy-methods/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/modules/api-gateway-proxy-methods/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d3cfb3231781c07c7f51038971686ffa"
+  "hash": "b0b4eb56d902d75139cba0242ad67695"
 }
 ##DOCS-SOURCER-END -->

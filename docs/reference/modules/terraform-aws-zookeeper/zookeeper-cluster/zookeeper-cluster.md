@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+
+# ZooKeeper Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# ZooKeeper Cluster
 
 This folder contains a Terraform module for running a cluster of [Apache ZooKeeper](https://zookeeper.apache.org/)
 nodes. Under the hood, the cluster is powered by the [server-group
@@ -171,6 +174,280 @@ in nature (e.g., the leader of a cluster), and it's unusual for older data to be
 That said, if you need more backup, you can do so from the Exhibitor UI, which offers [Backup/Restore
 functionality](https://github.com/soabase/exhibitor/wiki/Restore-UI) that allows you to index the ZooKeeper transaction
 log and backup and restore specific transactions.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ZOOKEEPER-CLUSTER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "zookeeper-cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-cluster?ref=v0.12.0"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
+  # var.client_port
+  allowed_client_port_inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of security group IDs that will be allowed to connect to var.client_port
+  allowed_client_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
+  # var.exhibitor_port
+  allowed_exhibitor_port_inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of security group IDs that will be allowed to connect to
+  # var.exhibitor_port
+  allowed_exhibitor_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
+  # var.health_check_port
+  allowed_health_check_port_inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of security group IDs that will be allowed to connect to
+  # var.health_check_port
+  allowed_health_check_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The ID of the AMI to run in this cluster. Should be an AMI that has ZooKeeper
+  # and Exhibitor installed by the install-zookeeper and install-exhibitor modules.
+  ami_id = <INPUT REQUIRED>
+
+  # The AWS region to deploy into.
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the ZooKeeper cluster (e.g. zookeeper-stage). This variable is used
+  # to namespace all resources created by this module.
+  cluster_name = <INPUT REQUIRED>
+
+  # The number of nodes to have in the cluster. This MUST be set to an odd number!
+  # We strongly recommend setting this to 3, 5, or 7 for production usage.
+  cluster_size = <INPUT REQUIRED>
+
+  # The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
+  instance_type = <INPUT REQUIRED>
+
+  # The number of security group IDs in
+  # var.allowed_client_port_inbound_security_group_ids. We should be able to compute
+  # this automatically, but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_allowed_client_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The number of security group IDs in
+  # var.allowed_exhibitor_port_inbound_security_group_ids. We should be able to
+  # compute this automatically, but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_allowed_exhibitor_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The number of security group IDs in
+  # var.allowed_health_check_port_inbound_security_group_ids. We should be able to
+  # compute this automatically, but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_allowed_health_check_port_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The name of the S3 bucket to create and use for storing the shared config for
+  # the ZooKeeper cluster.
+  shared_config_s3_bucket_name = <INPUT REQUIRED>
+
+  # The subnet IDs into which the EC2 Instances should be deployed. You should
+  # typically pass in one subnet ID per node in the cluster_size variable. We
+  # strongly recommend that you run ZooKeeper in private subnets.
+  subnet_ids = <INPUT REQUIRED>
+
+  # A User Data script to execute while the server is booting. We remmend passing in
+  # a bash script that executes the run-exhibitor script, which should have been
+  # installed in the AMI by the install-exhibitor module.
+  user_data = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the cluster
+  vpc_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges from which the EC2 Instances will
+  # allow SSH connections
+  allowed_ssh_cidr_blocks = []
+
+  # A list of security group IDs from which the EC2 Instances will allow SSH
+  # connections
+  allowed_ssh_security_group_ids = []
+
+  # If set to true, associate a public IP address with each EC2 Instance in the
+  # cluster. We strongly recommend against making ZooKeeper nodes publicly
+  # accessible.
+  associate_public_ip_address = false
+
+  # The port clients use to connect to ZooKeeper
+  client_port = 2181
+
+  # The port ZooKeeper nodes use to connect to other ZooKeeper nodes
+  connect_port = 2888
+
+  # Custom tags to apply to the ZooKeeper nodes and all related resources (i.e.,
+  # security groups, EBS Volumes, ENIs).
+  custom_tags = {}
+
+  # How many servers to deploy at a time during a rolling deployment. For example,
+  # if you have 10 servers and set this variable to 2, then the deployment will a)
+  # undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for
+  # the next 2 servers. For ZooKeeper in production, we STRONGLY recommend keeping
+  # this at 1.
+  deployment_batch_size = 1
+
+  # The maximum number of times to retry the Load Balancer's Health Check before
+  # giving up on the rolling deployment. After this number is hit, the Python script
+  # will cease checking the failed EC2 Instance deployment but continue with other
+  # EC2 Instance deployments.
+  deployment_health_check_max_retries = 360
+
+  # The common portion of the DNS name to assign to each ENI in the zookeeper server
+  # group. For example, if confluent.acme.com, this module will create DNS records
+  # 0.confluent.acme.com, 1.confluent.acme.com, etc. Note that this value must be a
+  # valid record name for the Route 53 Hosted Zone ID specified in
+  # var.route53_hosted_zone_id.
+  dns_name_common_portion = ""
+
+  # A list of DNS names to assign to the ENIs in the zookeeper server group. Make
+  # sure the list has n entries, where n = var.cluster_size. If this var is
+  # specified, it will override var.dns_name_common_portion. Example: [0.acme.com,
+  # 1.acme.com, 2.acme.com]. Note that the list entries must be valid records for
+  # the Route 53 Hosted Zone ID specified in var.route53_hosted_zone_id.
+  dns_names = []
+
+  # The TTL (Time to Live) to apply to any DNS records created by this module.
+  dns_ttl = 300
+
+  # A list that defines the EBS Volumes to create for each server. Each item in the
+  # list should be a map that contains the keys 'type' (one of standard, gp2, or
+  # io1), 'size' (in GB), and 'encrypted' (true or false). We recommend attaching an
+  # EBS Volume to ZooKeeper to use for transaction logs.
+  ebs_volumes = [{"encrypted":true,"size":50,"type":"gp2"},{"encrypted":true,"size":50,"type":"gp2"}]
+
+  # A list of Elastic Load Balancer (ELB) names to associate with the ZooKeeper
+  # nodes. We recommend using an ALB or ELB for health checks. If you're using an
+  # Application Load Balancer (ALB), use var.target_group_arns instead.
+  elb_names = []
+
+  # The port ZooKeeper nodes use to connect to other ZooKeeper nodes during leader
+  # elections
+  elections_port = 3888
+
+  # Enable detailed CloudWatch monitoring for the servers. This gives you more
+  # granularity with your CloudWatch metrics, but also costs more money.
+  enable_detailed_monitoring = false
+
+  # If true, create an Elastic IP Address for each ENI and associate it with the
+  # ENI.
+  enable_elastic_ips = false
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # The port Exhibitor uses for its Control Panel UI
+  exhibitor_port = 8080
+
+  # If you set this to true, when you run terraform destroy, this tells Terraform to
+  # delete all the objects in the S3 bucket used for shared config storage. You
+  # should NOT set this to true in production! This property is only here so
+  # automated tests can clean up after themselves.
+  force_destroy_shared_config_s3_bucket = false
+
+  # Time, in seconds, after instance comes into service before checking health. For
+  # CentOS servers, we have observed slower overall boot time and recommend a value
+  # of 600.
+  health_check_grace_period = 300
+
+  # The port Health Check uses for incoming requests
+  health_check_port = 5000
+
+  # Controls how health checking is done. Must be one of EC2 or ELB.
+  health_check_type = "EC2"
+
+  # Whether the root volume should be encrypted.
+  root_block_device_encrypted = true
+
+  # Whether the root volume should be destroyed on instance termination.
+  root_volume_delete_on_termination = true
+
+  # If true, the launched EC2 instance will be EBS-optimized.
+  root_volume_ebs_optimized = false
+
+  # The size, in GB, of the root EBS volume.
+  root_volume_size = 50
+
+  # The type of volume. Must be one of: standard, gp2, or io1.
+  root_volume_type = "standard"
+
+  # The ID of the Route53 Hosted Zone in which we will create the DNS records
+  # specified by var.dns_names. Must be non-empty if var.dns_name_common_portion or
+  # var.dns_names is non-empty.
+  route53_hosted_zone_id = ""
+
+  # The log level to use with the rolling deploy script. It can be useful to set
+  # this to DEBUG when troubleshooting the script.
+  script_log_level = "INFO"
+
+  # The Amazon Resource Name (ARN) of the KMS Key that will be used to
+  # encrypt/decrypt shared config files in the S3 bucket. The default value of null
+  # will use the managed aws/s3 key.
+  shared_config_s3_bucket_kms_key_arn = null
+
+  # If set to true, skip the health check, and start a rolling deployment without
+  # waiting for the server group to be in a healthy state. This is primarily useful
+  # if the server group is in a broken state and you want to force a deployment
+  # anyway.
+  skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup easier.
+  # It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
+  # The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this
+  # cluster. Set to an empty string to not associate a Key Pair.
+  ssh_key_name = null
+
+  # The port used for SSH connections
+  ssh_port = 22
+
+  # A list of target group ARNs of Application Load Balanacer (ALB) targets to
+  # associate with ZooKeeper nodes. We recommend using an ALB or ELB for health
+  # checks. If you're using a Elastic Load Balancer (AKA ELB Classic), use
+  # var.elb_names instead.
+  target_group_arns = []
+
+  # The tenancy of the instance. Must be one of: default or dedicated.
+  tenancy = "default"
+
+  # By passing a value to this variable, you can effectively tell this module to
+  # wait to deploy until the given variable's value is resolved, which is a way to
+  # require that this module depend on some other module. Note that the actual value
+  # of this variable doesn't matter.
+  wait_for = ""
+
+  # A maximum duration that Terraform should wait for ASG instances to be healthy
+  # before timing out. Setting this to '0' causes Terraform to skip all Capacity
+  # Waiting behavior.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -761,11 +1038,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/zookeeper-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/zookeeper-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/zookeeper-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6dc5d623684bc965f5fd0714543fa2f9"
+  "hash": "fd768a30de669c3d5d5db66a7b2b0d46"
 }
 ##DOCS-SOURCER-END -->

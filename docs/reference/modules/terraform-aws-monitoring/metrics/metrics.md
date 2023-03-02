@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Monitoring Modules" version="0.35.8" />
+
+# Metrics modules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-monitoring/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Metrics modules
 
 This folder contains modules for working with CloudWatch metrics:
 
@@ -28,11 +31,11 @@ Click on each module above to see its documentation. Head over to the [examples 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/metrics/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/metrics/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/modules/metrics/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/main/modules/metrics/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d31dd6dedfc2c8dfa61f9cc060c84f67"
+  "hash": "cf72d11e4e126a061358223c256a7baf"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.25.0" />
+
+# Backup PKI Assets Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Backup PKI Assets Module
 
 This module is used to backup the OpenVPN Public Key Infrastructure (PKI) to S3 on a server that has been installed using
 the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) module.
@@ -25,11 +28,11 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/modules/backup-openvpn-pki/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f68e4745aaf008f73af3d1afd5acc4e3"
+  "hash": "e1a0f0756b154854aed3fa272a566f07"
 }
 ##DOCS-SOURCER-END -->

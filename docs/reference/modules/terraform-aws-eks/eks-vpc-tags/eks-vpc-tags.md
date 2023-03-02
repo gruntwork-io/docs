@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# EKS VPC Tags Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# EKS VPC Tags Module
 
 This Terraform Module exports a set of known tags for VPCs that are used for an [Elastic Container Service for
 Kubernetes Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
@@ -22,6 +25,33 @@ example, VPC subnets must be tagged with `kubernetes.io/cluster/EKS_CLUSTER_NAME
 plugin](https://github.com/aws/amazon-vpc-cni-k8s) knows which subnet to use to allocate IPs for Kubernetes pods. The
 tags exported by this module are the most common recommended tags to use for a newly created VPC intended to be used
 with EKS.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-VPC-TAGS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "eks-vpc-tags" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.56.3"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Names of the EKS clusters that you would like to associate with this VPC.
+  eks_cluster_names = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -83,11 +113,11 @@ Tags for public subnets in the VPC to use for integration with EKS.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-vpc-tags/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "70453b8f0c5e8eedaf60a38d1d43b85d"
+  "hash": "6c84b04bf2b75397b5c0e1cd200873a0"
 }
 ##DOCS-SOURCER-END -->

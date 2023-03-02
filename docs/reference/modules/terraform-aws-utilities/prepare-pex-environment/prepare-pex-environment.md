@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# Prepare PEX Environment Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Prepare PEX Environment Module
 
 **NOTE**: This module should not be used directly. Use [run-pex-as-data-source](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source) or
 [run-pex-as-resource](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource) instead.
@@ -96,6 +99,38 @@ can use as a template.
     long path name. The pex pathing for imports does not seem to support long path names on Windows, hitting the 255
     character limitation of path names.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S PREPARE-PEX-ENVIRONMENT MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "prepare-pex-environment" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.0"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Parts of the path (folders and file names) to the python package directory
+  # housing the pex file.
+  pex_module_path_parts = <INPUT REQUIRED>
+
+  # Parts of the path (folders and files names) to the PEX executable for python as
+  # a list of strings.
+  python_pex_path_parts = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
+
 
 
 
@@ -156,11 +191,11 @@ The python path that should be used for running PEX file. This should be set as 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/prepare-pex-environment/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "115e6bc88ee93afb624aff64c2e92af4"
+  "hash": "a6b852004bc8bf887de0628b00e45b01"
 }
 ##DOCS-SOURCER-END -->

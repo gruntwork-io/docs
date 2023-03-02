@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# VPC DNS Forwarder Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# VPC DNS Forwarder Terraform Module
 
 This Terraform Module creates [Route 53
 Resolvers](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html) between VPCs so that
@@ -45,6 +48,85 @@ private endpoints internal to the target VPC.
 By default, no DNS query will be routed through the Route 53 Resolvers created by this module. You need to create
 forwarding rules that specify which specific domains should be resolved through the Route 53 Resolvers created by this
 module. You can use the [vpc-dns-forwarder-rules module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules) to construct the forwarding rules.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-dns-forwarder" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The ID of the VPC which is the destination of the DNS resolver queries.
+  destination_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the origin of the DNS resolver queries.
+  destination_vpc_name = <INPUT REQUIRED>
+
+  # The ID of the subnet to use for allocating the primary IP address of the DNS
+  # resolver in the destination VPC. This is the IP address that can be used as a
+  # DNS server endpoint for resolving hostnames in the destination VPC.
+  destination_vpc_route53_resolver_primary_subnet_id = <INPUT REQUIRED>
+
+  # The ID of the subnet to use for allocating the secondary IP address of the DNS
+  # resolver in the destination VPC. This is the IP address that can be used as a
+  # DNS server endpoint for resolving hostnames in the destination VPC.
+  destination_vpc_route53_resolver_secondary_subnet_id = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the origin of the DNS resolver queries.
+  origin_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the origin of the DNS resolver queries.
+  origin_vpc_name = <INPUT REQUIRED>
+
+  # The ID of the subnet to use for allocating the primary IP address of the DNS
+  # resolver in the origin VPC. This is the IP that the destination VPC resolver
+  # will see.
+  origin_vpc_route53_resolver_primary_subnet_id = <INPUT REQUIRED>
+
+  # The ID of the subnet to use for allocating the secondary IP address of the DNS
+  # resolver in the origin VPC.
+  origin_vpc_route53_resolver_secondary_subnet_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the Route 53 Resolvers
+  # should be created or not.
+  create_resources = true
+
+  # A map of custom tags to apply to any resources created which accept them. The
+  # key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+  # Name to set for the destination VPC resolver (inbound from origin VPC to
+  # destination VPC). If null (default), defaults to
+  # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
+  destination_vpc_resolver_name = null
+
+  # Name to set for the origin VPC resolver (outbound from origin VPC to destination
+  # VPC). If null (default), defaults to
+  # 'ORIGIN_VPC_NAME-to-DESTINATION_VPC_NAME-out'.
+  origin_vpc_resolver_name = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -216,11 +298,11 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed6ece7fe1cc55830f82bc016b7ebfcf"
+  "hash": "910e6ec069efb44b09ddf30cabe0b3ea"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Install Confluent Tools
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-confluent-tools" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Install Confluent Tools
 
 This folder contains a script for installing tools provided by [Confluent](https://www.confluent.io/). You can use the
 script to install any [Confluent Package](https://docs.confluent.io/current/installation/available_packages.html#available-packages), but it was originally
@@ -80,11 +83,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-confluent-tools/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-confluent-tools/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-confluent-tools/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-confluent-tools/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "65cc1574dec5ac2cffe5c30a48b99ed2"
+  "hash": "77e3f73fd65980aabc7b65bb9437e370"
 }
 ##DOCS-SOURCER-END -->

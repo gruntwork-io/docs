@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elasticsearch Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elasticsearch Install Script
 
 This script can be used to install Elasticsearch as well as Elasticsearch plugins.
 
@@ -72,11 +75,11 @@ The `install-elasticsearch` script:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elasticsearch/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c822d6a9e66efbafa70f29e444cca02"
+  "hash": "490ebfed973e403d00133cd7cfbbf97f"
 }
 ##DOCS-SOURCER-END -->

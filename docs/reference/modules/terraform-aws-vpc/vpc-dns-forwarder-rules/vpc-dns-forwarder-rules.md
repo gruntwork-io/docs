@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# VPC DNS Forwarder Rules Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# VPC DNS Forwarder Rules Terraform Module
 
 This Terraform Module creates [Route 53 Resolver Forwarding
 Rules](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html) for a VPC that will
@@ -56,15 +59,72 @@ through the created resolvers and resolved in the `app_vpc`.
 **NOTE**: The forwarder endpoints use a domain suffix based match. For example, if you specify the endpoint `local` in the
 forwarder rule, it will match any domain that ends with `.local` (note the dot), but does not match a domain like `test.alblocal`.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER-RULES MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-dns-forwarder-rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The primary ip address of the inbound Route 53 Resolver that should be used to
+  # resolve the endpoints.
+  destination_vpc_route53_resolver_primary_ip = <INPUT REQUIRED>
+
+  # The secondary ip address of the inbound Route 53 Resolver that should be used to
+  # resolve the endpoints.
+  destination_vpc_route53_resolver_secondary_ip = <INPUT REQUIRED>
+
+  # The endpoints that should be resolved by forwarding to the destination VPC DNS
+  # resolver. Only these endpoints will be forwarded, while the rest will be
+  # resolved as normal.
+  endpoints_to_resolve = <INPUT REQUIRED>
+
+  # The number of endpoints in var.endpoints_to_resolve. This should be computable,
+  # but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_endpoints_to_resolve = <INPUT REQUIRED>
+
+  # The ID of the outbound Route 53 Resolver that resides in the VPC where the
+  # queries originate from.
+  origin_vpc_route53_resolver_endpoint_id = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the origin of the DNS resolver queries.
+  vpc_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # A map of custom tags to apply to any resources created which accept them. The
+  # key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-dns-forwarder-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4f895251f538bf13510afae6b07eee39"
+  "hash": "5a77662173384a679c7af24a0d6f4185"
 }
 ##DOCS-SOURCER-END -->

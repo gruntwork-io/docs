@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# K8S Cluster Autoscaler Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# K8S Cluster Autoscaler Module
 
 This Terraform Module installs a [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler)
 to automatically scale up and down the nodes in a cluster in response to resource utilization.
@@ -41,15 +44,165 @@ Service Accounts (IRSA) feature to grant the necessary AWS IAM permissions to th
 `use_iam_role_for_service_accounts`, `eks_openid_connect_provider_arn`, and `eks_openid_connect_provider_url` input
 variables.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "eks-k8s-cluster-autoscaler" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.56.3"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The AWS region that the EKS cluster resides in.
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the EKS cluster (e.g. eks-prod). This is used to assist with
+  # auto-discovery of the cluster workers ASG.
+  eks_cluster_name = <INPUT REQUIRED>
+
+  # Configuration for using the IAM role with Service Accounts feature to provide
+  # permissions to the helm charts. This expects a map with two properties:
+  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
+  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
+  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
+  # to null if you do not wish to use IAM role with Service Accounts.
+  iam_role_for_service_accounts_config = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM role
+  # created for the Autoscaler
+  autoscaler_iam_role_permissions_boundary = null
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # Restrict the cluster autoscaler to a list of absolute ASG ARNs upon initial
+  # apply to ensure no new ASGs can be managed by the autoscaler without explicitly
+  # running another apply. Setting this to false will ensure that the cluster
+  # autoscaler is automatically given access to manage any new ASGs with the
+  # k8s.io/cluster-autoscaler/CLUSTER_NAME tag applied.
+  cluster_autoscaler_absolute_arns = true
+
+  # The version of the cluster-autoscaler helm chart to deploy. Note that this is
+  # different from the app/container version, which is sepecified with
+  # var.cluster_autoscaler_version.
+  cluster_autoscaler_chart_version = "9.21.0"
+
+  # Which docker repository to use to install the cluster autoscaler. Check the
+  # following link for valid repositories to use
+  # https://github.com/kubernetes/autoscaler/releases
+  cluster_autoscaler_repository = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
+
+  # Which version of the cluster autoscaler to install.
+  cluster_autoscaler_version = "v1.24.0"
+
+  # Map of extra arguments to pass to the container.
+  container_extra_args = {}
+
+  # When set to true, create a dedicated Fargate execution role for the cluster
+  # autoscaler. When false, you must provide an existing fargate execution role in
+  # the variable var.pod_execution_iam_role_arn. Only used if
+  # var.create_fargate_profile is true.
+  create_fargate_execution_role = false
+
+  # When set to true, create a dedicated Fargate execution profile for the cluster
+  # autoscaler.
+  create_fargate_profile = false
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # If scaling_strategy is set to 'priority', you can use this variable to define
+  # cluster-autoscaler-priority-expander priorities. See:
+  # https://github.com/kubernetes/autoscaler/blob/b6d53e8/cluster-autoscaler/expande
+  # /priority/readme.md
+  expander_priorities = {}
+
+  # Which Kubernetes Namespace to deploy the chart into.
+  namespace = "kube-system"
+
+  # Annotations to apply to the Pod that is deployed, as key value pairs.
+  pod_annotations = {}
+
+  # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
+  # (default) to create a new one. Only used when var.create_fargate_profile is
+  # true.
+  pod_execution_iam_role_arn = null
+
+  # Labels to apply to the Pod that is deployed, as key value pairs.
+  pod_labels = {}
+
+  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
+  # item in the list should be a map with the keys `key`, `values`, and `operator`,
+  # corresponding to the 3 properties of matchExpressions. Note that all expressions
+  # must be satisfied to schedule on the node.
+  pod_node_affinity = []
+
+  # Configure priorityClassName of pods to allow scheduler to order pending pods by
+  # their priority.
+  pod_priority_class_name = null
+
+  # Number of replicas of the cluster autoscaler Pod to deploy.
+  pod_replica_count = 1
+
+  # Pod resource requests and limits to use. Refer to
+  # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+  # for more information.
+  pod_resources = null
+
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
+  # tainted. Each item in the list specifies a toleration rule.
+  pod_tolerations = []
+
+  # If scaling_strategy is set to 'priority', you can use this to specify
+  # annotations to add to the cluster-autoscaler-priority-expander ConfigMap.
+  priority_config_map_annotations = {}
+
+  # The name of the helm release to use. Using different release names are useful
+  # for deploying different copies of the cluster autoscaler.
+  release_name = "cluster-autoscaler"
+
+  # Specifies an 'expander' for the cluster autoscaler. This helps determine which
+  # ASG to scale when additional resource capacity is needed.
+  scaling_strategy = "least-waste"
+
+  # A list of the subnets into which the EKS Cluster's administrative pods will be
+  # launched. These should usually be all private subnets and include one in each
+  # AWS Availability Zone. Required when var.create_fargate_profile is true.
+  vpc_worker_subnet_ids = []
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "48b3a6cba7f806adf197939f98701e2a"
+  "hash": "b7e85b60abea0091d3f0cea6f3d1d424"
 }
 ##DOCS-SOURCER-END -->

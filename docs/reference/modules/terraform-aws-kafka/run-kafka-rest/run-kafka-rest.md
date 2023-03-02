@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Run Confluent REST Proxy
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Run Confluent REST Proxy
 
 This folder contains:
 
@@ -297,11 +300,11 @@ to fill in run-time properties, so it will replace or add settings to your custo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-rest/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0afbb79ae34884feed56adc8bef8739a"
+  "hash": "8e0cc06d62958e12a0d7e975284f6a91"
 }
 ##DOCS-SOURCER-END -->

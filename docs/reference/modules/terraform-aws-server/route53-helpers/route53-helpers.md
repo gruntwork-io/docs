@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Module Server" version="0.15.3" />
+
+# Route 53 Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/route53-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Route 53 Helpers
 
 This folder contains helper scripts for working with Amazon's DNS Service, [Route 53](https://aws.amazon.com/route53/).
 The helpers are:
@@ -72,11 +75,11 @@ Check out the [route53-helpers example](https://github.com/gruntwork-io/terrafor
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/route53-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/route53-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/route53-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/route53-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/route53-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/route53-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2b6dfd0291fd594b6e0ba2b470c1a9de"
+  "hash": "5ad21fac8d3383ddfdca2a6cc96f6399"
 }
 ##DOCS-SOURCER-END -->

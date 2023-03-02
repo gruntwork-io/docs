@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# \[DEPRECATED] VPC-Mgmt Network ACLs Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# \[DEPRECATED] VPC-Mgmt Network ACLs Terraform Module
 
 **The `vpc-mgmt` module is now deprecated**. The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app`
 had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
@@ -46,6 +49,87 @@ security groups, access controls lists for the network (NACLs), and any other ne
 security, similar to a [security group](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html).
 Whereas a security group controls what inbound and outbound traffic is allowed for a specific resource (e.g. a single
 EC2 instance), a network ACL controls what inbound and outbound traffic is allowed for an entire subnet.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-MGMT-NETWORK-ACLS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-mgmt-network-acls" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The number of each type of subnet (public, private) created in this VPC.
+  # Typically, this is equal to the number of availability zones in the current
+  # region.
+  num_subnets = <INPUT REQUIRED>
+
+  # A list of CIDR blocks used by the private subnets in the VPC
+  private_subnet_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of IDs of the private subnets in the VPC
+  private_subnet_ids = <INPUT REQUIRED>
+
+  # A list of CIDR blocks used by the public subnets in the VPC
+  public_subnet_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of IDs of the public subnets in the VPC
+  public_subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC
+  vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC (e.g. mgmt)
+  vpc_name = <INPUT REQUIRED>
+
+  # Use this variable to ensure the Network ACL does not get created until the VPC
+  # is ready. This can help to work around a Terraform or AWS issue where trying to
+  # create certain resources, such as Network ACLs, before the VPC's Gateway and
+  # NATs are ready, leads to a huge variety of eventual consistency bugs. You should
+  # typically point this variable at the vpc_ready output from the Gruntwork VPCs.
+  vpc_ready = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # A map of tags to apply to the Network ACLs created by this module. The key is
+  # the tag name and the value is the tag value. Note that the tag 'Name' is
+  # automatically added by this module but may be optionally overwritten by this
+  # variable.
+  custom_tags = {}
+
+  # The list of ports to exclude from the inbound allow all rules. This is useful
+  # for adhering to certain compliance standards like CIS that explicitly deny any
+  # allow rule for administrative ports.
+  exclude_ports_from_inbound_all = []
+
+  # The number to use for the first rule that is created by this module. All rules
+  # in this module will be inserted after this number. This is useful to provide
+  # additional head room for your NACL rules that should take precedence over the
+  # initial rule.
+  initial_nacl_rule_number = 100
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -175,11 +259,11 @@ The number to use for the first rule that is created by this module. All rules i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-mgmt-network-acls/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-mgmt-network-acls/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-mgmt-network-acls/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "beb28227eff942183e760c58c20ec125"
+  "hash": "75fb58b1c0ec39142127b1bb791d0add"
 }
 ##DOCS-SOURCER-END -->

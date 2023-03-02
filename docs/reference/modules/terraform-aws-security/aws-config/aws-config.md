@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS Config
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS Config
 
 This Terraform Module configures [AWS Config](https://aws.amazon.com/config/), a service that allows you to assess, audit, and evaluate the configurations of your AWS resources. You can use AWS Config to ensure that AWS resources are configured in a manner that is in compliance with your company policies or regulatory requirements.
 
@@ -71,6 +74,228 @@ If you want to deploy this repo in production, check out the following resources
 *   [What does a configuration item look like, and how do I view it?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/core-concepts.md#what-does-a-configuration-item-look-like-and-how-do-i-view-it)
 
 *   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S AWS-CONFIG MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "aws-config" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v0.67.2"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The name of the S3 Bucket where Config items will be stored. Can be in the same
+  # account or in another account.
+  s3_bucket_name = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The S3 bucket where access logs for this bucket should be stored. Only used if
+  # access_logging_enabled is true.
+  access_logging_bucket = null
+
+  # A prefix (i.e., folder path) to use for all access logs stored in
+  # access_logging_bucket. Only used if access_logging_enabled is true.
+  access_logging_prefix = null
+
+  # Set to true to send the AWS Config data to another account (e.g., a logs
+  # account) for aggregation purposes. You must set the ID of that other account via
+  # the central_account_id variable. This redundant variable has to exist because
+  # Terraform does not allow computed data in count and for_each parameters and
+  # var.central_account_id may be computed if its the ID of a newly-created AWS
+  # account.
+  aggregate_config_data_in_external_account = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  aws_config_iam_role_permissions_boundary = null
+
+  # For multi-account deployments, set this to the account ID of the central account
+  # in which the S3 bucket and SNS topic exist. Only used if
+  # aggregate_config_data_in_external_account is true.
+  central_account_id = null
+
+  # A name for the configuration recorder and delivery channel. If not provided, the
+  # name is set to 'default'.
+  config_name = null
+
+  # Set to true to create config aggregator, typically in the global recorder region
+  # of the security/central account. The variable is needed due to Terraform
+  # limitations, creating the aggregator conditionally based on AWS region might
+  # fail as 'aws_region' datasource might be deferred if the module has 'depend_on'
+  # on other resources.
+  create_config_aggregator = false
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources in this
+  # module should be created or not.
+  create_resources = true
+
+  # The ID of the current AWS account. Normally, we can fetch this automatically
+  # using the aws_caller_identity data source, but due to Terraform limitations, in
+  # some rare situations, this data source returns the wrong ID, so this parameter
+  # needs to be passed manually. Most users can leave this value unset. See
+  # https://github.com/gruntwork-io/terraform-aws-security/pull/308#issuecomment-676
+  # 61441 for context.
+  current_account_id = null
+
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
+  # channel for an externally managed S3 bucket. This must belong to the same region
+  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
+  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
+  # is false - otherwise, var.kms_key_arn is used.
+  delivery_channel_kms_key_arn = null
+
+  # The frequency with which AWS Config delivers configuration snapshots. When null,
+  # defaults to the maximum execution frequency of each rule. Valid values: One_Hour
+  # | Three_Hours | Six_Hours | Twelve_Hours | TwentyFour_Hours
+  delivery_frequency = null
+
+  # When true, enable the AWS Config Configuration Aggregator on all regions
+  # regardless of what is passed into var.opt_in_regions.
+  enable_all_regions_for_config_aggregator = false
+
+  # Enables S3 server access logging which sends detailed records for the requests
+  # that are made to the bucket. Defaults to false.
+  enable_s3_server_access_logging = false
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # bucket so that the bucket can be destroyed without error. Warning: these objects
+  # are not recoverable so only use this if you're absolutely sure you want to
+  # permanently delete everything!
+  force_destroy = false
+
+  # The region in which to create the global recorder for configuration of global
+  # resources such as IAM users, groups, roles, and policies.
+  global_recorder_region = "us-east-1"
+
+  # The name of an IAM role for Config service to assume. Must be unique within the
+  # AWS account.
+  iam_role_name = "AWS_ConfigRole"
+
+  # Optional KMS key to use for encrypting S3 objects AND the SNS topic. This is a
+  # backward compatible interface for configuring a single KMS key for both S3
+  # objects and the SNS topic. When null, falls back to using
+  # var.s3_bucket_kms_key_arn S3 buckets and var.sns_topic_kms_key_arn for SNS
+  # topics.
+  kms_key_arn = null
+
+  # For multi-account deployments, provide a list of AWS account IDs that should
+  # have permissions to write to the S3 bucket and publish to the SNS topic. Use
+  # this in conjunction with var.should_create_s3_bucket and var.sns_topic_name. If
+  # this is a child account, leave this list empty.
+  linked_accounts = []
+
+  # After this number of days, log files should be transitioned from S3 to Glacier.
+  # Enter 0 to never archive log data.
+  num_days_after_which_archive_log_data = 365
+
+  # After this number of days, log files should be deleted from S3. If null, never
+  # delete.
+  num_days_after_which_delete_log_data = 730
+
+  # Enables config aggregation in only the provided regions. If this list is empty,
+  # config aggregation will be enabled in all regions.
+  opt_in_regions = []
+
+  # Set to true to enable replication for this bucket. You can set the role to use
+  # for replication using the replication_role parameter and the rules for
+  # replication using the replication_rules parameter.
+  replication_enabled = false
+
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
+  # used if replication_enabled is set to true.
+  replication_role = null
+
+  # The rules for managing replication. Only used if replication_enabled is set to
+  # true. This should be a map, where the key is a unique ID for each replication
+  # rule and the value is an object of the form explained in a comment above.
+  replication_rules = {}
+
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
+  # the S3 bucket is created within this module (var.should_create_s3_bucket is
+  # true). For encrypting S3 objects on delivery for an externally managed S3
+  # bucket, refer to the var.delivery_channel_kms_key_arn input variable. If null,
+  # data in S3 will be encrypted using the default aws/s3 key. If provided, the key
+  # policy of the provided key must permit the IAM role used by AWS Config. See
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html.
+  s3_bucket_kms_key_arn = null
+
+  # Enable MFA delete for either 'Change the versioning state of your bucket' or
+  # 'Permanently delete an object version'. This setting only applies to the bucket
+  # used to storage AWS Config data. This cannot be used to toggle this setting but
+  # is available to allow managed buckets to reflect the state in AWS. For
+  # instructions on how to enable MFA Delete, check out the README from the
+  # private-s3-bucket module. CIS v1.4 requires this variable to be true. If you do
+  # not wish to be CIS-compliant, you can set it to false.
+  s3_mfa_delete = false
+
+  # A prefix to use when storing Config objects in S3. This will be the beginning of
+  # the path in the S3 object. For example: <s3 bucket
+  # name>:/<prefix>/AWSLogs/<account ID>/Config/*. If this variable is null (the
+  # default), the path will not include any prefix: e.g., it'll be <s3 bucket
+  # name>:/AWSLogs/<account ID>/Config/*.
+  s3_object_prefix = null
+
+  # If set to true, attach an IAM policy, to the AWS Config IAM role that allows the
+  # role to publish messages to the SNS topic defined by either `sns_topic_name` or
+  # `sns_topic_arn`. Set to false if an SNS topic is not used.
+  should_attach_sns_policy = true
+
+  # If set to true, create an IAM role for AWS Config. Customize the name of the
+  # role by setting iam_role_name. If set to false, the name passed in iam_role_name
+  # must already exist.
+  should_create_iam_role = true
+
+  # If set to true, create an S3 bucket for delivering Config objectts. Defaults to
+  # true.
+  should_create_s3_bucket = true
+
+  # The ARN of an existing SNS topic. Can be in the same account or another account.
+  # To create a new topic, set sns_topic_name. One of var.sns_topic_arn or
+  # var.sns_topic_name are required. This module does not support creating AWS
+  # Config without an SNS topic.
+  sns_topic_arn = null
+
+  # Optional KMS key to use for encrypting the SNS topic (var.sns_topic_name is
+  # non-null). When null, the SNS topic will not be encrypted.
+  sns_topic_kms_key_arn = null
+
+  # If set, creates an SNS topic to which Config notifications will be delivered. To
+  # provide an existing topic, set sns_topic_arn. One of var.sns_topic_arn or
+  # var.sns_topic_name are required. One of var.sns_topic_arn or var.sns_topic_name
+  # are required. This module does not support creating AWS Config without an SNS
+  # topic.
+  sns_topic_name = null
+
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
+  # is the tag value.
+  tags = {}
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -506,11 +731,11 @@ The ARN of the SNS topic to which Config delivers notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b292a087cca4ee52710f334296b2652a"
+  "hash": "fc2157101e5292cd12e07f92e7b9adc9"
 }
 ##DOCS-SOURCER-END -->

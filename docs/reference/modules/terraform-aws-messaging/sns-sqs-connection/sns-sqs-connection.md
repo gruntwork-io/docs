@@ -7,14 +7,50 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Messaging" version="0.9.1" />
+
+# Simple Notification Service (SNS) Topic to Simple Queuing Service (SQS) Connection Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
-# Simple Notification Service (SNS) Topic to Simple Queuing Service (SQS) Connection Module
-
 This module makes it easy to subscribe a SQS to a SNS topic after both have been successfully created.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SNS-SQS-CONNECTION MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "sns-sqs-connection" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v0.9.1"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The arn of the topic to subscribe to.
+  sns_topic_arn = <INPUT REQUIRED>
+
+  # The queue arn for the Simple Queue Service (SQS).
+  sqs_arn = <INPUT REQUIRED>
+
+  # The queue URL for the Simple Queue Service (SQS).
+  sqs_queue_url = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -63,11 +99,11 @@ The queue URL for the Simple Queue Service (SQS).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sns-sqs-connection/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c1e21b92fa3b88c4a442fa5023bce87"
+  "hash": "a14b42153450897f9870fb5ca7611db1"
 }
 ##DOCS-SOURCER-END -->

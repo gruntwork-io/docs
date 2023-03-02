@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# IAM Role for GitHub Actions
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# IAM Role for GitHub Actions
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitHub Actions. This requires you to provision an IAM OpenID Connect Provider for GitHub Actions in your account. By
@@ -165,6 +168,87 @@ jobs:
         run: |
           aws ec2 describe-instances
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GITHUB-ACTIONS-IAM-ROLE MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "github-actions-iam-role" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.67.2"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Map of github repositories to the list of branches that are allowed to assume
+  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
+  # gruntwork-io/terrraform-aws-ci).
+  allowed_sources = <INPUT REQUIRED>
+
+  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_arn = <INPUT REQUIRED>
+
+  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
+  github_actions_openid_connect_provider_url = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The string operator to use when evaluating the AWS IAM condition for determining
+  # which GitHub repos are allowed to assume the IAM role. Examples: StringEquals,
+  # StringLike, etc.
+  allowed_sources_condition_operator = "StringEquals"
+
+  # Whether to create the IAM role and attach permissions for GitHub Actions to
+  # assume.
+  create_iam_role = true
+
+  # The name to use for the custom inline IAM policy that is attached to the
+  # Role/Group when var.iam_policy is configured.
+  custom_iam_policy_name = "GrantCustomIAMPolicy"
+
+  # A list of IAM AWS Managed Policy names to attach to the group.
+  iam_aws_managed_policy_names = null
+
+  # A list of IAM AWS Customer Managed policy names to attach to the group.
+  iam_customer_managed_policy_names = null
+
+  # An object defining the IAM policy statements that should be attached directly to
+  # the IAM role/group. The input is a map of objects where the map keys are SIDs
+  # for IAM policy statements, and the object fields are the resources, actions, and
+  # the effect of the statement.
+  iam_policy = {}
+
+  # A list of policies (by ARN) to attach to this group.
+  iam_policy_arns = null
+
+  # The name of an IAM role to create. Required when var.create_iam_role is true.
+  iam_role_name = null
+
+  # The maximum allowable session duration, in seconds, for the credentials you get
+  # when assuming the IAM roles created by this module.
+  max_session_duration = 43200
+
+  # A list of AWS services for which the IAM role will receive full permissions. See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
+  # rces-contextkeys.html to find the service name. For example, to grant developers
+  # access only to EC2 and Amazon Machine Learning, use the value
+  # ["ec2","machinelearning"].
+  permitted_full_access_services = []
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -367,11 +451,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8e54cfb1180f0763d20d01cff6473c5a"
+  "hash": "36c5a9208ca7ad3a214ecc5eb6c48a21"
 }
 ##DOCS-SOURCER-END -->

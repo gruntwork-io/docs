@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# Elastic Block Storage Encryption
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elastic Block Storage Encryption
 
 This module configures EC2 Elastic Block Storage encryption defaults, allowing encryption to be enabled for all new EBS
 volumes and selection of a KMS Customer Managed Key to use by default.
@@ -25,6 +28,48 @@ modules. Please see those modules for more information.
 *   [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) including how default keys
     and the encryption-by-default settings work.
 *   [AWS blog: Opt-in to Default Encryption for New EBS Volumes](https://aws.amazon.com/blogs/aws/new-opt-in-to-default-encryption-for-new-ebs-volumes/)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EBS-ENCRYPTION MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "ebs-encryption" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.2"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources in this
+  # module should be created or not.
+  create_resources = false
+
+  # If set to true, all new EBS volumes will have encryption enabled by default
+  enable_encryption = true
+
+  # Optional KMS key ARN used for EBS volume encryption when
+  # var.use_existing_kms_key is true.
+  kms_key_arn = null
+
+  # Whether or not to use the existing key specified in var.kms_key_arn. We need
+  # this weird parameter because `count` must be a known value at plan time, so we
+  # cannot calculate whether or not to use the key dynamically.
+  use_existing_kms_key = false
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -98,11 +143,11 @@ The default KMS key used for EBS encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ebs-encryption/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "192fa6b95d1b3f97f178bebf064dd2c6"
+  "hash": "b08a30890dbae6f3d0afe40e3a988aa3"
 }
 ##DOCS-SOURCER-END -->

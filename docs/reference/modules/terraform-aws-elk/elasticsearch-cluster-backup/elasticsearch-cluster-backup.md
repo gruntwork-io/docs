@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elasticsearch Cluster Backup
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elasticsearch Cluster Backup
 
 This folder contains a [Terraform](https://www.terraform.io/) module to take and backup snapshots of an [Elasticsearch](https://www.elastic.co/products/kibana) cluster to an S3 bucket. The module is a scheduled lambda function that calls the Elasticsearch API to perform snapshotting and backup related tasks documented [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html);
 
@@ -40,6 +43,92 @@ The time it takes to backup a cluster is dependent on the volume of data. Howeve
 ## Restoring Backups
 
 Restoring snapshots is handled by the [elasticsearch-cluster-restore module](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore).
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-BACKUP MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "elasticsearch-cluster-backup" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-backup?ref=v0.11.1"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # How often, in seconds, the backup lambda function is expected to run. You should
+  # factor in the amount of time it takes to backup your cluster.
+  alarm_period = <INPUT REQUIRED>
+
+  # The ARN of SNS topics to notify if the CloudWatch alarm goes off because the
+  # backup job failed.
+  alarm_sns_topic_arns = <INPUT REQUIRED>
+
+  # The S3 bucket that the specified repository will be associated with and where
+  # all snapshots will be stored
+  bucket = <INPUT REQUIRED>
+
+  # The name for the CloudWatch Metric the AWS lambda backup function will increment
+  # every time the job completes successfully.
+  cloudwatch_metric_name = <INPUT REQUIRED>
+
+  # The namespace for the CloudWatch Metric the AWS lambda backup function will
+  # increment every time the job completes successfully.
+  cloudwatch_metric_namespace = <INPUT REQUIRED>
+
+  # The DNS to the Load Balancer in front of the Elasticsearch cluster
+  elasticsearch_dns = <INPUT REQUIRED>
+
+  # The name of the Lambda function. Used to namespace all resources created by this
+  # module.
+  name = <INPUT REQUIRED>
+
+  # The AWS region (e.g us-east-1) where the backup S3 bucket exists.
+  region = <INPUT REQUIRED>
+
+  # The name of the repository that will be associated with the created snapshots
+  repository = <INPUT REQUIRED>
+
+  # An expression that defines the schedule for this lambda job. For example, cron(0
+  # 20 * * ? *) or rate(5 minutes).
+  schedule_expression = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The port on which the API requests will be made to the Elasticsearch cluster
+  elasticsearch_port = 9200
+
+  # The runtime to use for the Lambda function. Should be a Node.js runtime.
+  lambda_runtime = "nodejs14.x"
+
+  # Specifies the protocol to use when making the request to the Elasticsearch
+  # cluster. Possible values are HTTP or HTTPS
+  protocol = "http"
+
+  # Set to true to give your Lambda function access to resources within a VPC.
+  run_in_vpc = false
+
+  # A list of subnet IDs the Lambda function should be able to access within your
+  # VPC. Only used if var.run_in_vpc is true.
+  subnet_ids = []
+
+  # The ID of the VPC the Lambda function should be able to access. Only used if
+  # var.run_in_vpc is true.
+  vpc_id = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -203,11 +292,11 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "55e86ca15ef7a0775b893a44f0561e92"
+  "hash": "230c5f43c409cd853eb6e386ccfc87f5"
 }
 ##DOCS-SOURCER-END -->

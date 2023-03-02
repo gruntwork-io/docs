@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# vpc-peering-cross-accounts-requester
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# vpc-peering-cross-accounts-requester
 
 This module manages the requester's side of the VPC Peering Connection between two differents accounts that you control.
 
@@ -56,6 +59,67 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_vpc_peering_connection_id"></a> [vpc_peering_connection_id](#output_vpc_peering_connection_id) | Peering connection ID. |
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-PEERING-CROSS-ACCOUNTS-REQUESTER MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "vpc-peering-cross-accounts-requester" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.22.4"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The account ID of the accepter VPC.
+  accepter_owner_id = <INPUT REQUIRED>
+
+  # The region of the accepter VPC.
+  accepter_region = <INPUT REQUIRED>
+
+  # The VPC CIDR of the accepter VPC.
+  accepter_vpc_cidr = <INPUT REQUIRED>
+
+  # The ID of the accepter VPC.
+  accepter_vpc_id = <INPUT REQUIRED>
+
+  # List of route tables to add routes to.
+  route_tables = <INPUT REQUIRED>
+
+  # The VPC ID.
+  vpc_id = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # Allow a local VPC to resolve public DNS hostnames to private IP addresses when
+  # queried from instances in the peer VPC.
+  allow_remote_vpc_dns_resolution = false
+
+  # How long to wait for a route to be created before considering the operation
+  # failed.
+  route_creation_timeout = "2m"
+
+  # How long to wait for a route to be deleted before considering the operation
+  # failed.
+  route_deletion_timeout = "5m"
+
+  # A map of tags to assign to resources.
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -171,11 +235,11 @@ Peering connection ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-requester/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-requester/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/vpc-peering-cross-accounts-requester/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b13113077981b4ff28f309300fa68665"
+  "hash": "760695f9d8036f558554fa512cd76e6e"
 }
 ##DOCS-SOURCER-END -->

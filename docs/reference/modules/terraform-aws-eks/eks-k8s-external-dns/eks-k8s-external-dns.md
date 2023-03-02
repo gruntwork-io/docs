@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# K8S External DNS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# K8S External DNS Module
 
 This Terraform Module installs and configures [the external-dns
 application](https://github.com/kubernetes-incubator/external-dns) on an EKS cluster, so that you can configure Route 53
@@ -100,15 +103,185 @@ batch_change_interval = "10s"
 zones_cache_duration  = "3h"
 ```
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ---------------------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS MODULE
+# ---------------------------------------------------------------------------------------------------------------------
+
+module "eks-k8s-external-dns" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns?ref=v0.56.3"
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The AWS region to deploy ALB resources into.
+  aws_region = <INPUT REQUIRED>
+
+  # Configuration for using the IAM role with Service Accounts feature to provide
+  # permissions to the helm charts. This expects a map with two properties:
+  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
+  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
+  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
+  # to null if you do not wish to use IAM role with Service Accounts, or if you wish
+  # to provide an IAM role directly via service_account_annotations.
+  iam_role_for_service_accounts_config = <INPUT REQUIRED>
+
+  # ---------------------------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ---------------------------------------------------------------------------------------------------------------------
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # Duration string (e.g. 1m) indicating the interval between making changes to
+  # Route 53. When null, use the default defined in the chart (1s).
+  batch_change_interval = null
+
+  # The maximum number of changes that should be applied in a batch. When null, use
+  # the default defined in the chart (1000).
+  batch_change_size = null
+
+  # When set to true, create a dedicated Fargate execution profile for the
+  # external-dns service. Note that this is not necessary to deploy to Fargate. For
+  # example, if you already have an execution profile for the kube-system Namespace,
+  # you do not need another one.
+  create_fargate_profile = false
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # Used to name IAM roles for the service account. Recommended when
+  # var.use_iam_role_for_service_accounts is true. Also used for creating the
+  # Fargate profile when var.create_fargate_profile is true.
+  eks_cluster_name = null
+
+  # Limit sources of endpoints to a specific namespace (default: all namespaces).
+  endpoints_namespace = null
+
+  # Name of the Helm chart for external-dns. This should usually be 'external-dns'
+  # but may differ in the case of overriding the repository URL.
+  external_dns_chart_name = "external-dns"
+
+  # Helm chart repository URL to obtain the external-dns chart from. Useful when
+  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
+  # policy which removes older chart from the main index.
+  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
+
+  # The version of the helm chart to use. Note that this is different from the
+  # app/container version.
+  external_dns_chart_version = "6.12.2"
+
+  # Which format to output external-dns logs in (options: text, json)
+  log_format = "text"
+
+  # Which Kubernetes Namespace to deploy the chart into.
+  namespace = "kube-system"
+
+  # Annotations to apply to the Pod that is deployed, as key value pairs.
+  pod_annotations = {}
+
+  # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
+  # (default) to create a new one. Only used when var.create_fargate_profile is
+  # true.
+  pod_execution_iam_role_arn = null
+
+  # Labels to apply to the Pod that is deployed, as key value pairs.
+  pod_labels = {}
+
+  # Configure affinity rules for the Pod to control which nodes to schedule on. Each
+  # item in the list should be a map with the keys `key`, `values`, and `operator`,
+  # corresponding to the 3 properties of matchExpressions. Note that all expressions
+  # must be satisfied to schedule on the node.
+  pod_node_affinity = []
+
+  # Configure tolerations rules to allow the Pod to schedule on nodes that have been
+  # tainted. Each item in the list specifies a toleration rule.
+  pod_tolerations = []
+
+  # Duration string (e.g. 1m) indicating the polling interval for syncing the
+  # domains. When null, use the default defined in the chart (1m).
+  poll_interval = null
+
+  # Name of helm release for external-dns. Useful when running 2 deployments for
+  # custom configrations such as cross account access.
+  release_name = "external-dns"
+
+  # Only create records in hosted zones that match the provided domain names. Empty
+  # list (default) means match all zones. Zones must satisfy all three constraints
+  # (var.route53_hosted_zone_tag_filters, var.route53_hosted_zone_id_filters, and
+  # var.route53_hosted_zone_domain_filters).
+  route53_hosted_zone_domain_filters = []
+
+  # Only create records in hosted zones that match the provided IDs. Empty list
+  # (default) means match all zones. Zones must satisfy all three constraints
+  # (var.route53_hosted_zone_tag_filters, var.route53_hosted_zone_id_filters, and
+  # var.route53_hosted_zone_domain_filters).
+  route53_hosted_zone_id_filters = []
+
+  # Only create records in hosted zones that match the provided tags. Each item in
+  # the list should specify tag key and tag value as a map. Empty list (default)
+  # means match all zones. Zones must satisfy all three constraints
+  # (var.route53_hosted_zone_tag_filters, var.route53_hosted_zone_id_filters, and
+  # var.route53_hosted_zone_domain_filters).
+  route53_hosted_zone_tag_filters = []
+
+  # Policy for how DNS records are sychronized between sources and providers
+  # (options: sync, upsert-only ).
+  route53_record_update_policy = "upsert-only"
+
+  # Annotations to apply to the ServiceAccount created for the external-dns app,
+  # formatted as key value pairs.
+  service_account_annotations = {}
+
+  # K8s resources type to be observed for new DNS entries by ExternalDNS.
+  sources = ["ingress","service"]
+
+  # When enabled, triggers external-dns run loop on create/update/delete events
+  # (optional, in addition of regular interval)
+  trigger_loop_on_event = false
+
+  # A unique identifier used to identify this instance of external-dns. This is used
+  # to tag the DNS TXT records to know which domains are owned by this instance of
+  # external-dns, in case multiple external-dns services are managing the same
+  # Hosted Zone.
+  txt_owner_id = "default"
+
+  # A list of the subnets into which the EKS Cluster's administrative pods will be
+  # launched. These should usually be all private subnets and include one in each
+  # AWS Availability Zone. Required when var.create_fargate_profile is true.
+  vpc_worker_subnet_ids = []
+
+  # Duration string (e.g. 1m) indicating the amount of time the Hosted Zones are
+  # cached. When null, use the default defined in the chart (0 - no caching).
+  zones_cache_duration = null
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-external-dns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4f34b4ac5f1089c46d76c65e95f955eb"
+  "hash": "04adc2cbf5100152971a0026fa1f1b41"
 }
 ##DOCS-SOURCER-END -->
