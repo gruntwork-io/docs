@@ -36,7 +36,7 @@ with EKS.
 # DEPLOY GRUNTWORK'S EKS-VPC-TAGS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-vpc-tags" {
+module "eks_vpc_tags" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.56.3"
 
@@ -118,6 +118,6 @@ Tags for public subnets in the VPC to use for integration with EKS.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c84b04bf2b75397b5c0e1cd200873a0"
+  "hash": "8e2cdbdfb0b8683d2be7ba2a12aaa955"
 }
 ##DOCS-SOURCER-END -->

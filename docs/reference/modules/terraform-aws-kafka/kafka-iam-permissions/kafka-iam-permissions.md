@@ -35,7 +35,7 @@ include this module to handle the IAM permission details for you.
 # DEPLOY GRUNTWORK'S KAFKA-IAM-PERMISSIONS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kafka-iam-permissions" {
+module "kafka_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-iam-permissions?ref=v0.11.0"
 
@@ -61,6 +61,6 @@ module "kafka-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f6579d7ee7c246678a5a7dafc579f42"
+  "hash": "0fdc5fe9897fd8c40df1faefda8ceeeb"
 }
 ##DOCS-SOURCER-END -->

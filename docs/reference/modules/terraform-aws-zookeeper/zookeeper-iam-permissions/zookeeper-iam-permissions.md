@@ -35,7 +35,7 @@ this module to handle the IAM permission details for you.
 # DEPLOY GRUNTWORK'S ZOOKEEPER-IAM-PERMISSIONS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "zookeeper-iam-permissions" {
+module "zookeeper_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-iam-permissions?ref=v0.12.0"
 
@@ -61,6 +61,6 @@ module "zookeeper-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c809c8506316baf9db3e202eebff35ab"
+  "hash": "3000904b592b11936ecc9c4db3e441c2"
 }
 ##DOCS-SOURCER-END -->

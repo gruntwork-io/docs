@@ -226,7 +226,7 @@ respectively.
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "confluent-tools-cluster" {
+module "confluent_tools_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-cluster?ref=v0.11.0"
 
@@ -911,6 +911,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f770b5efcb93768548d9b6cf23a73373"
+  "hash": "1d34b632fc065085716292e6d22cb82b"
 }
 ##DOCS-SOURCER-END -->

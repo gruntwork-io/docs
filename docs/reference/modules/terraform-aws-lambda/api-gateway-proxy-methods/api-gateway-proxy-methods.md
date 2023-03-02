@@ -34,7 +34,7 @@ manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/
 # DEPLOY GRUNTWORK'S API-GATEWAY-PROXY-METHODS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "api-gateway-proxy-methods" {
+module "api_gateway_proxy_methods" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.21.6"
 
@@ -243,6 +243,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0b4eb56d902d75139cba0242ad67695"
+  "hash": "c12f12dbb1465d0d031232e25282d11c"
 }
 ##DOCS-SOURCER-END -->

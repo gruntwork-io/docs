@@ -63,7 +63,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
 # DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER-IAM-POLICY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-cluster-autoscaler-iam-policy" {
+module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.56.3"
 
@@ -174,6 +174,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2044d5d6f80424de70f2221be0b48c1"
+  "hash": "6cd6f8c0605d9d518ef2af8786bea6d2"
 }
 ##DOCS-SOURCER-END -->

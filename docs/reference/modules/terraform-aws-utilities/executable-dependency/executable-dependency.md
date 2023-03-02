@@ -73,7 +73,7 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 # DEPLOY GRUNTWORK'S EXECUTABLE-DEPENDENCY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "executable-dependency" {
+module "executable_dependency" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.9.0"
 
@@ -194,6 +194,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "119527ec44bb50ae004a25fb7c5b26ed"
+  "hash": "8cda6a56bb8ca5e5a83ef4e5bdd79940"
 }
 ##DOCS-SOURCER-END -->

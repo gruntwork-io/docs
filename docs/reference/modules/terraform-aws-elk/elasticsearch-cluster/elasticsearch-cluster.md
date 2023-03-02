@@ -217,7 +217,7 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-cluster" {
+module "elasticsearch_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster?ref=v0.11.1"
 
@@ -678,6 +678,6 @@ The User Data script to run on each server when it is booting.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f7d3d022ad2b03a878b7e3296b61eea3"
+  "hash": "06d834a22e086f99bade4c8ac34b02f9"
 }
 ##DOCS-SOURCER-END -->

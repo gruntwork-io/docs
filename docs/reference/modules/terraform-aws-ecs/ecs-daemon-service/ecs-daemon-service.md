@@ -79,7 +79,7 @@ EOF
 # DEPLOY GRUNTWORK'S ECS-DAEMON-SERVICE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-daemon-service" {
+module "ecs_daemon_service" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.0"
 
@@ -473,6 +473,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "de8479999c717334ec5bf26a52827105"
+  "hash": "840618b3eb50903cd81a0206c16a48c4"
 }
 ##DOCS-SOURCER-END -->

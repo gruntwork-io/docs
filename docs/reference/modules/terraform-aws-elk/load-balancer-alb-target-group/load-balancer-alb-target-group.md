@@ -37,7 +37,7 @@ See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree
 # DEPLOY GRUNTWORK'S LOAD-BALANCER-ALB-TARGET-GROUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "load-balancer-alb-target-group" {
+module "load_balancer_alb_target_group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/load-balancer-alb-target-group?ref=v0.11.1"
 
@@ -379,6 +379,6 @@ The time period, in seconds, during which requests from a client should be route
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/load-balancer-alb-target-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b49ddb4860c049243e34a7c9e7fb3efc"
+  "hash": "c1a313c7cb92c0d372455fb022fa46eb"
 }
 ##DOCS-SOURCER-END -->

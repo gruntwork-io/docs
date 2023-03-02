@@ -69,7 +69,7 @@ forwarder rule, it will match any domain that ends with `.local` (note the dot),
 # DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-dns-forwarder-rules" {
+module "vpc_dns_forwarder_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.22.4"
 
@@ -125,6 +125,6 @@ module "vpc-dns-forwarder-rules" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a77662173384a679c7af24a0d6f4185"
+  "hash": "c5bee36e77fd7090888e7bd2a919f1f2"
 }
 ##DOCS-SOURCER-END -->

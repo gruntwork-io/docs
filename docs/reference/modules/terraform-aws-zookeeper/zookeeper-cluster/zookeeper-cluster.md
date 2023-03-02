@@ -185,7 +185,7 @@ log and backup and restore specific transactions.
 # DEPLOY GRUNTWORK'S ZOOKEEPER-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "zookeeper-cluster" {
+module "zookeeper_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-cluster?ref=v0.12.0"
 
@@ -1043,6 +1043,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fd768a30de669c3d5d5db66a7b2b0d46"
+  "hash": "e277f90a8597d5ef8f5a658935712fb9"
 }
 ##DOCS-SOURCER-END -->

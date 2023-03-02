@@ -120,7 +120,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 # DEPLOY GRUNTWORK'S IAM-GROUPS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "iam-groups" {
+module "iam_groups" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.2"
 
@@ -843,6 +843,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "039ad784a6a556cae75b169d67d67c0e"
+  "hash": "f79c0f22cb1d9c147f3a3707d033570e"
 }
 ##DOCS-SOURCER-END -->

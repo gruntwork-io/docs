@@ -83,7 +83,7 @@ If you just want to try this out for experimenting and learning, check out the f
 # DEPLOY GRUNTWORK'S KMS-MASTER-KEY-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kms-master-key-multi-region" {
+module "kms_master_key_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.2"
 
@@ -452,6 +452,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0231f8168c459973d930a71d26a084b"
+  "hash": "c6ce7532ce85a47ecf4026d3b0439c30"
 }
 ##DOCS-SOURCER-END -->

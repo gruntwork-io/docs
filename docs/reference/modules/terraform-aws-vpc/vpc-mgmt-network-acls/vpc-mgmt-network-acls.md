@@ -60,7 +60,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 # DEPLOY GRUNTWORK'S VPC-MGMT-NETWORK-ACLS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-mgmt-network-acls" {
+module "vpc_mgmt_network_acls" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.22.4"
 
@@ -264,6 +264,6 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75fb58b1c0ec39142127b1bb791d0add"
+  "hash": "3e3dbc11200808b1782c8493827da352"
 }
 ##DOCS-SOURCER-END -->

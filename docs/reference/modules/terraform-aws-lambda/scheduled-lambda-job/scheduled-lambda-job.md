@@ -36,7 +36,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/mo
 # DEPLOY GRUNTWORK'S SCHEDULED-LAMBDA-JOB MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "scheduled-lambda-job" {
+module "scheduled_lambda_job" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.6"
 
@@ -183,6 +183,6 @@ Cloudwatch Event Rule schedule expression
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0c2f83bf22f3c7554f46e1bcaca86c17"
+  "hash": "d71112f6db01875791bac3886ca1999f"
 }
 ##DOCS-SOURCER-END -->

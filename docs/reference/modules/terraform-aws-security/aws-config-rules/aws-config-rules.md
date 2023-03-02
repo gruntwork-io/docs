@@ -99,7 +99,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S AWS-CONFIG-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "aws-config-rules" {
+module "aws_config_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.67.2"
 
@@ -542,6 +542,6 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ac6b95af03a8ed68e559012dd6de2064"
+  "hash": "7255536c6f4bb29782ce599bc4683d4c"
 }
 ##DOCS-SOURCER-END -->

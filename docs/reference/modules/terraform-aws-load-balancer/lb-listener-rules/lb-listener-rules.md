@@ -92,7 +92,7 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 # DEPLOY GRUNTWORK'S LB-LISTENER-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lb-listener-rules" {
+module "lb_listener_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.3"
 
@@ -652,6 +652,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4fd15a0943496131b2e3e55afe4a874b"
+  "hash": "1e3d98d8cee1928a04d656425b9703b8"
 }
 ##DOCS-SOURCER-END -->

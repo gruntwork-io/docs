@@ -83,7 +83,7 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-security-group-rules" {
+module "elasticsearch_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-security-group-rules?ref=v0.11.1"
 
@@ -146,6 +146,6 @@ module "elasticsearch-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "057fe35666bc70edb49c123862eb9c22"
+  "hash": "653a08a50c1cae95bc5ffa74b84a965e"
 }
 ##DOCS-SOURCER-END -->

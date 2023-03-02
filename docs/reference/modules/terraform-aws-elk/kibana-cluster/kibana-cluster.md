@@ -116,7 +116,7 @@ docs.
 # DEPLOY GRUNTWORK'S KIBANA-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kibana-cluster" {
+module "kibana_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-cluster?ref=v0.11.1"
 
@@ -505,6 +505,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb3791ab7a6266e46449ecf201ea96fc"
+  "hash": "6d6deb93ded91b0df8241382f89fe711"
 }
 ##DOCS-SOURCER-END -->

@@ -98,7 +98,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 # DEPLOY GRUNTWORK'S SINGLE-SERVER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "single-server" {
+module "single_server" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.3"
 
@@ -826,6 +826,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "30173c5a1888c9c812cc0356db064126"
+  "hash": "71d1be7e50e4e369d4a47cea09203372"
 }
 ##DOCS-SOURCER-END -->

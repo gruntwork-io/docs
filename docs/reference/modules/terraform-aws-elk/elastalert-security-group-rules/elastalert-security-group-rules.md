@@ -79,7 +79,7 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 # DEPLOY GRUNTWORK'S ELASTALERT-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elastalert-security-group-rules" {
+module "elastalert_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elastalert-security-group-rules?ref=v0.11.1"
 
@@ -127,6 +127,6 @@ module "elastalert-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1e64d51a6097ca47374b20178bb2cd19"
+  "hash": "5e04cbefb6c00165c3bb5bed348f56a8"
 }
 ##DOCS-SOURCER-END -->

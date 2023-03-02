@@ -70,7 +70,7 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 # DEPLOY GRUNTWORK'S LOGSTASH-IAM-POLICIES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "logstash-iam-policies" {
+module "logstash_iam_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-iam-policies?ref=v0.11.1"
 
@@ -103,6 +103,6 @@ module "logstash-iam-policies" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6384cb61178599050277ccac4d5a2be1"
+  "hash": "e8ae734435ade97a0fba0fa524c5a022"
 }
 ##DOCS-SOURCER-END -->

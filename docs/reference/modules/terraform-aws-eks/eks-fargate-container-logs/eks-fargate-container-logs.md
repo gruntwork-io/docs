@@ -103,7 +103,7 @@ fields @timestamp, @message
 # DEPLOY GRUNTWORK'S EKS-FARGATE-CONTAINER-LOGS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-fargate-container-logs" {
+module "eks_fargate_container_logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.56.3"
 
@@ -535,6 +535,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "12d572979dfec5c232c23a10377b197f"
+  "hash": "3449369f95401b94f1163441eaf26623"
 }
 ##DOCS-SOURCER-END -->

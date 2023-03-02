@@ -75,7 +75,7 @@ This module creates the following IAM roles (all optional):
 # DEPLOY GRUNTWORK'S SAML-IAM-ROLES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "saml-iam-roles" {
+module "saml_iam_roles" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.67.2"
 
@@ -733,6 +733,6 @@ A map of tags to apply to the IAM roles.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3f5e65a7e69f910ffbd84a0304c14e31"
+  "hash": "67964069d81915f2fb008fa30682ed81"
 }
 ##DOCS-SOURCER-END -->

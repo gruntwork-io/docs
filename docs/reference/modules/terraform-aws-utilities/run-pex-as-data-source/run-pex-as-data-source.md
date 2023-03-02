@@ -57,7 +57,7 @@ running it as a data source). Which approach to use depends on your needs:
 # DEPLOY GRUNTWORK'S RUN-PEX-AS-DATA-SOURCE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "run-pex-as-data-source" {
+module "run_pex_as_data_source" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.9.0"
 
@@ -199,6 +199,6 @@ Data source result of executing the PEX binary.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "024ab500b3859cfa85f28b029d9f9fd0"
+  "hash": "8cf97c979a696447199392b9cd0b0b21"
 }
 ##DOCS-SOURCER-END -->

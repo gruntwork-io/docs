@@ -134,7 +134,7 @@ values; once they have been increased, they stay that way!
 # DEPLOY GRUNTWORK'S REQUEST-QUOTA-INCREASE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "request-quota-increase" {
+module "request_quota_increase" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.0"
 
@@ -205,6 +205,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9b13c2330a1df0bcb381f448534f2789"
+  "hash": "2ba1517bb1123653c51c52e402b51dfa"
 }
 ##DOCS-SOURCER-END -->

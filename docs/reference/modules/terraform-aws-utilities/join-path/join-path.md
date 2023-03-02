@@ -58,7 +58,7 @@ joined_path = "${module.path.path}"
 # DEPLOY GRUNTWORK'S JOIN-PATH MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "join-path" {
+module "join_path" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.9.0"
 
@@ -124,6 +124,6 @@ A list of folder and file names to combine into a path, using the proper path se
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d1bced0ec31aad6c3ac8980a5890c4c0"
+  "hash": "521b97ccbc8c0fe85d7e19f01fab63bc"
 }
 ##DOCS-SOURCER-END -->

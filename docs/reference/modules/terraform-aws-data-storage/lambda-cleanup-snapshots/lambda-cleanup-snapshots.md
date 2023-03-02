@@ -41,7 +41,7 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 # DEPLOY GRUNTWORK'S LAMBDA-CLEANUP-SNAPSHOTS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-cleanup-snapshots" {
+module "lambda_cleanup_snapshots" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.26.0"
 
@@ -221,6 +221,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "40a9f42901e34feaac706f3162290372"
+  "hash": "a420fef4830a0eef02d41b2140166ea5"
 }
 ##DOCS-SOURCER-END -->

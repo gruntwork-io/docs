@@ -39,7 +39,7 @@ modules. Please see those modules for more information.
 # DEPLOY GRUNTWORK'S EBS-ENCRYPTION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ebs-encryption" {
+module "ebs_encryption" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.2"
 
@@ -148,6 +148,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b08a30890dbae6f3d0afe40e3a988aa3"
+  "hash": "bbffd6e2df983d623aaeda8fb0e5facb"
 }
 ##DOCS-SOURCER-END -->

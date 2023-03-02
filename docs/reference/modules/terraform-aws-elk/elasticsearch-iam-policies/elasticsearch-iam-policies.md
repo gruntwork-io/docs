@@ -71,7 +71,7 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-IAM-POLICIES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-iam-policies" {
+module "elasticsearch_iam_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-iam-policies?ref=v0.11.1"
 
@@ -105,6 +105,6 @@ module "elasticsearch-iam-policies" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3c2b34591d104c22d57ca3854c900b2"
+  "hash": "4ce3b42bf1646a0b20966355e122b77b"
 }
 ##DOCS-SOURCER-END -->

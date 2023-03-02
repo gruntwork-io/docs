@@ -91,7 +91,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S AWS-ORGANIZATIONS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "aws-organizations" {
+module "aws_organizations" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.2"
 
@@ -364,6 +364,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4780a4e8e78108af5d75607eb8c4b295"
+  "hash": "1c16764a76402d2dc525e3b9eb110fcf"
 }
 ##DOCS-SOURCER-END -->

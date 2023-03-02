@@ -205,7 +205,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 # DEPLOY GRUNTWORK'S VPC-INTERFACE-ENDPOINT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-interface-endpoint" {
+module "vpc_interface_endpoint" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.22.4"
 
@@ -6478,6 +6478,6 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "22c49cc2f01bf7a8a4dcb08a222264d9"
+  "hash": "8fff1ffc186671cff2100148f80199be"
 }
 ##DOCS-SOURCER-END -->

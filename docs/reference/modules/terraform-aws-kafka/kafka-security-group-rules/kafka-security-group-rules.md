@@ -34,7 +34,7 @@ include this module to handle the Security Group details for you.
 # DEPLOY GRUNTWORK'S KAFKA-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kafka-security-group-rules" {
+module "kafka_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-security-group-rules?ref=v0.11.0"
 
@@ -84,6 +84,6 @@ module "kafka-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6e300acbd8243586a4b92d47db14943"
+  "hash": "3a4394a0ac88ee33ce627454e3aa21c5"
 }
 ##DOCS-SOURCER-END -->

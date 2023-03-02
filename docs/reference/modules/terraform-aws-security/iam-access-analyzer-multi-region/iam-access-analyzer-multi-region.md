@@ -75,7 +75,7 @@ If you just want to try this out for experimenting and learning, check out the f
 # DEPLOY GRUNTWORK'S IAM-ACCESS-ANALYZER-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "iam-access-analyzer-multi-region" {
+module "iam_access_analyzer_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.67.2"
 
@@ -117,6 +117,6 @@ module "iam-access-analyzer-multi-region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b7706bd0748bb5b7c834966bc804b54"
+  "hash": "29259494f00953c90aac31b7239d3eb1"
 }
 ##DOCS-SOURCER-END -->

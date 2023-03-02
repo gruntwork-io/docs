@@ -100,7 +100,7 @@ automatically delete older snapshots. You can specify two parameters to control 
 # DEPLOY GRUNTWORK'S EC2-BACKUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ec2-backup" {
+module "ec_2_backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.51.1"
 
@@ -273,6 +273,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6bd9f470454aaeced8a82781531d6fe7"
+  "hash": "88638df4c8ed7c569d53a28d48e6fb95"
 }
 ##DOCS-SOURCER-END -->

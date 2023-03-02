@@ -71,7 +71,7 @@ This module depends on Python being available on your system. Python 2.7, 3.5+ a
 # DEPLOY GRUNTWORK'S GUARDDUTY-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "guardduty-multi-region" {
+module "guardduty_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.2"
 
@@ -282,6 +282,6 @@ The IDs of the GuardDuty detectors.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aaf8d5475766dc2b9aea27ed0c9b4ff3"
+  "hash": "86001c17e044ec1fedab6a4f56973a01"
 }
 ##DOCS-SOURCER-END -->

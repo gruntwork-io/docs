@@ -78,7 +78,7 @@ More information:
 # DEPLOY GRUNTWORK'S LAMBDA-EDGE-MULTI-REGION-LOG-GROUPS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-edge-multi-region-log-groups" {
+module "lambda_edge_multi_region_log_groups" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.6"
 
@@ -238,6 +238,6 @@ Map of log group names per region
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47637b5f1dbd339e05afb52a7931690b"
+  "hash": "1f172d0f3207e2a29ba35f2f6e98692f"
 }
 ##DOCS-SOURCER-END -->

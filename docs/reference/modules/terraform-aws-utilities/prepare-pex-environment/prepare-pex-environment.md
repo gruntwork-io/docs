@@ -109,7 +109,7 @@ can use as a template.
 # DEPLOY GRUNTWORK'S PREPARE-PEX-ENVIRONMENT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "prepare-pex-environment" {
+module "prepare_pex_environment" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.0"
 
@@ -196,6 +196,6 @@ The python path that should be used for running PEX file. This should be set as 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6b852004bc8bf887de0628b00e45b01"
+  "hash": "9e335fe6b0d2d891c8379409246009e9"
 }
 ##DOCS-SOURCER-END -->

@@ -54,7 +54,7 @@ and production, someone in staging *cannot* access production.
 # DEPLOY GRUNTWORK'S VPC-PEERING MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-peering" {
+module "vpc_peering" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.4"
 
@@ -146,6 +146,6 @@ module "vpc-peering" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc18150c33e6cc4ea45fc0509243ebee"
+  "hash": "810a21c90208ac67c1f52f06b83dde96"
 }
 ##DOCS-SOURCER-END -->

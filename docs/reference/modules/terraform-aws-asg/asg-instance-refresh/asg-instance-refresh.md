@@ -86,7 +86,7 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 # DEPLOY GRUNTWORK'S ASG-INSTANCE-REFRESH MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "asg-instance-refresh" {
+module "asg_instance_refresh" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.1"
 
@@ -518,6 +518,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "748a14964bd213e0f36f49cabad08902"
+  "hash": "5110f3b89c188cbef5d843cfb6bc6754"
 }
 ##DOCS-SOURCER-END -->

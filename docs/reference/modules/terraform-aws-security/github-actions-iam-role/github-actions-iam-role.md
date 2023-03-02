@@ -179,7 +179,7 @@ jobs:
 # DEPLOY GRUNTWORK'S GITHUB-ACTIONS-IAM-ROLE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "github-actions-iam-role" {
+module "github_actions_iam_role" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.67.2"
 
@@ -456,6 +456,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "36c5a9208ca7ad3a214ecc5eb6c48a21"
+  "hash": "e7a7420df9abd4b6cdf3a986ca2c8c57"
 }
 ##DOCS-SOURCER-END -->

@@ -55,7 +55,7 @@ See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-util
 # DEPLOY GRUNTWORK'S LIST-REMOVE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "list-remove" {
+module "list_remove" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.9.0"
 
@@ -133,6 +133,6 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7612ad3b6415779ba6fb8af841fcc8c"
+  "hash": "2e22ae0a913eaad834dff84c97822739"
 }
 ##DOCS-SOURCER-END -->

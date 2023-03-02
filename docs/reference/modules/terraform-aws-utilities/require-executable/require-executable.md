@@ -56,7 +56,7 @@ module "require_executables" {
 # DEPLOY GRUNTWORK'S REQUIRE-EXECUTABLE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "require-executable" {
+module "require_executable" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.0"
 
@@ -135,6 +135,6 @@ A map of the executables to the resolved path where they reside.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c3b6369283f5208089a95b47f68805f6"
+  "hash": "94c17ddb992c8ce9cfdf4cf594885189"
 }
 ##DOCS-SOURCER-END -->

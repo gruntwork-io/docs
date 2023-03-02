@@ -231,7 +231,7 @@ instances under the hood, and thus the ALB can not be configured to route by ins
 # DEPLOY GRUNTWORK'S EKS-ALB-INGRESS-CONTROLLER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-alb-ingress-controller" {
+module "eks_alb_ingress_controller" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v0.56.3"
 
@@ -355,6 +355,6 @@ module "eks-alb-ingress-controller" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cbbc5bf8d98543b5d25afbf218dbe0af"
+  "hash": "997a940c3681954bd92dfe5e69df9bfc"
 }
 ##DOCS-SOURCER-END -->

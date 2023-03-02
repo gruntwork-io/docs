@@ -43,7 +43,7 @@ We recommend using this module with just about every single EC2 Instance and Aut
 # DEPLOY GRUNTWORK'S SSM-HEALTHCHECKS-IAM-PERMISSIONS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ssm-healthchecks-iam-permissions" {
+module "ssm_healthchecks_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.67.2"
 
@@ -69,6 +69,6 @@ module "ssm-healthchecks-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6e873397bd3f83959b9d41e524dff466"
+  "hash": "e0d82a641b2e4d8c21115e24f7d9fa7b"
 }
 ##DOCS-SOURCER-END -->

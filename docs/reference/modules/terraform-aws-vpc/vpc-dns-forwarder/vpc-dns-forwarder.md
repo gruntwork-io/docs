@@ -59,7 +59,7 @@ module. You can use the [vpc-dns-forwarder-rules module](https://github.com/grun
 # DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-dns-forwarder" {
+module "vpc_dns_forwarder" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder?ref=v0.22.4"
 
@@ -303,6 +303,6 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "910e6ec069efb44b09ddf30cabe0b3ea"
+  "hash": "6abba71242ea429915ab3db9b04c67fd"
 }
 ##DOCS-SOURCER-END -->

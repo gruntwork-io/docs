@@ -37,7 +37,7 @@ this module to handle the S3 bucket details for you.
 # DEPLOY GRUNTWORK'S EXHIBITOR-SHARED-CONFIG MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "exhibitor-shared-config" {
+module "exhibitor_shared_config" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/exhibitor-shared-config?ref=v0.12.0"
 
@@ -136,6 +136,6 @@ The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decry
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/exhibitor-shared-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c80f26ee5db4cbf92899a0594932ecb"
+  "hash": "02a69f51e8b2fcc7dfee399f68a404c2"
 }
 ##DOCS-SOURCER-END -->

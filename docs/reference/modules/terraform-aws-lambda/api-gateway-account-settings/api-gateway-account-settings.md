@@ -46,7 +46,7 @@ Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tr
 # DEPLOY GRUNTWORK'S API-GATEWAY-ACCOUNT-SETTINGS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "api-gateway-account-settings" {
+module "api_gateway_account_settings" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.6"
 
@@ -148,6 +148,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "37e64654fc8c558c29e8a542309b8b20"
+  "hash": "00788de1359b56d775b0bc13f301c597"
 }
 ##DOCS-SOURCER-END -->

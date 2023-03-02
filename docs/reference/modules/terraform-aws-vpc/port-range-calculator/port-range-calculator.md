@@ -47,7 +47,7 @@ just those ports:
 # DEPLOY GRUNTWORK'S PORT-RANGE-CALCULATOR MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "port-range-calculator" {
+module "port_range_calculator" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/port-range-calculator?ref=v0.22.4"
 
@@ -143,6 +143,6 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "16feba6e5b503ed0823ad67bb1d8b53c"
+  "hash": "8ccd2dfe38dd348bc53fdad24c2172b7"
 }
 ##DOCS-SOURCER-END -->

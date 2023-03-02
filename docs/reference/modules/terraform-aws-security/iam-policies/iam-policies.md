@@ -263,7 +263,7 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 # DEPLOY GRUNTWORK'S IAM-POLICIES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "iam-policies" {
+module "iam_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.2"
 
@@ -646,6 +646,6 @@ If set to true, all the Policies created by this module that are used as Trust P
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87c2a262bf63bc6f22f8608310158dbd"
+  "hash": "0f66c126c0e33510cc98eca2fe0f87c5"
 }
 ##DOCS-SOURCER-END -->

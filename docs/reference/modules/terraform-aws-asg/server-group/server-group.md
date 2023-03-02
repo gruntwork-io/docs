@@ -144,7 +144,7 @@ module in your Terraform code:
 # DEPLOY GRUNTWORK'S SERVER-GROUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "server-group" {
+module "server_group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.1"
 
@@ -973,6 +973,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e56dc30e23e3a1da18c0ce4b211f4544"
+  "hash": "26e49afdcb134fee78cda03f2531b508"
 }
 ##DOCS-SOURCER-END -->

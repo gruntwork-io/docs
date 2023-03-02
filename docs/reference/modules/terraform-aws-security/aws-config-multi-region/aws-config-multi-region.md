@@ -75,7 +75,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 # DEPLOY GRUNTWORK'S AWS-CONFIG-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "aws-config-multi-region" {
+module "aws_config_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.67.2"
 
@@ -1010,6 +1010,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "057c2e797a4a205e4b07c49a0c041c31"
+  "hash": "4e54468dc0569bd10f1f5eb178fff72e"
 }
 ##DOCS-SOURCER-END -->

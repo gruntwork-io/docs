@@ -114,7 +114,7 @@ exactly match the duo username.
 # DEPLOY GRUNTWORK'S OPENVPN-SERVER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "openvpn-server" {
+module "openvpn_server" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.25.0"
 
@@ -817,6 +817,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e84e65f233bf8c57a146bc84982a32b9"
+  "hash": "0665df9d3818057a3376b49558e86cfb"
 }
 ##DOCS-SOURCER-END -->

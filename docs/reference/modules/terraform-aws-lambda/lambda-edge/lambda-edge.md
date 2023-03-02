@@ -91,7 +91,7 @@ triggers:
 # DEPLOY GRUNTWORK'S LAMBDA-EDGE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-edge" {
+module "lambda_edge" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.6"
 
@@ -606,6 +606,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ae69df486a43765eea4be93fb46cc48"
+  "hash": "088cc53a3e924cefb34e313b275b917f"
 }
 ##DOCS-SOURCER-END -->

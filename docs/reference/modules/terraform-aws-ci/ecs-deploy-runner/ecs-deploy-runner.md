@@ -105,7 +105,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-deploy-runner" {
+module "ecs_deploy_runner" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.51.1"
 
@@ -1038,6 +1038,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "566c7d0ece94ec7416eb12e5f67221dc"
+  "hash": "f063bcab120a0db8a8737834183f9e81"
 }
 ##DOCS-SOURCER-END -->

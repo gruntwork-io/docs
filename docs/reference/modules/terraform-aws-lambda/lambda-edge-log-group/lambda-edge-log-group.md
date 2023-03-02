@@ -78,7 +78,7 @@ More information:
 # DEPLOY GRUNTWORK'S LAMBDA-EDGE-LOG-GROUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-edge-log-group" {
+module "lambda_edge_log_group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.6"
 
@@ -249,6 +249,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3824a364bca28abff0003fc70da0e84"
+  "hash": "006feb68a23c623b3dbea22dd0b2718d"
 }
 ##DOCS-SOURCER-END -->

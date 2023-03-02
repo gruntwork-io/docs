@@ -89,7 +89,7 @@ module "network_acls" {
 # DEPLOY GRUNTWORK'S VPC-APP-NETWORK-ACLS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-app-network-acls" {
+module "vpc_app_network_acls" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.22.4"
 
@@ -502,6 +502,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28a6db2b6f4e9ecdf37120a986c083a7"
+  "hash": "ad8960b754505ca93f5e8b0b389f385a"
 }
 ##DOCS-SOURCER-END -->

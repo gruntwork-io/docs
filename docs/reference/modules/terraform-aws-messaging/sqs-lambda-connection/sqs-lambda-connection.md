@@ -29,7 +29,7 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 # DEPLOY GRUNTWORK'S SQS-LAMBDA-CONNECTION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "sqs-lambda-connection" {
+module "sqs_lambda_connection" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.9.1"
 
@@ -112,6 +112,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d36d96c1e0fc2c0034b91d7110f3199a"
+  "hash": "82e3c7d2bac6ad32a32675274f15d741"
 }
 ##DOCS-SOURCER-END -->

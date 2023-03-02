@@ -29,7 +29,7 @@ This module makes it easy to deploy a [data lifecycle manager policy](https://do
 # DEPLOY GRUNTWORK'S EC2-BACKUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ec2-backup" {
+module "ec_2_backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.3"
 
@@ -237,6 +237,6 @@ The name of the IAM role associated with the data lifecycle manager
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0c13cdb151f0dad887c508c6b2291b72"
+  "hash": "0ca61fffc9694f704e92cec17c9ab6ca"
 }
 ##DOCS-SOURCER-END -->

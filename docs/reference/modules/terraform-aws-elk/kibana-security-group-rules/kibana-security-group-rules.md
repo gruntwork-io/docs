@@ -76,7 +76,7 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 # DEPLOY GRUNTWORK'S KIBANA-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kibana-security-group-rules" {
+module "kibana_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-security-group-rules?ref=v0.11.1"
 
@@ -141,6 +141,6 @@ module "kibana-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "730caebf3e857427be808f3c8c338910"
+  "hash": "f3eb23b92ae629a228063666e9bc9a79"
 }
 ##DOCS-SOURCER-END -->

@@ -332,7 +332,7 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 # DEPLOY GRUNTWORK'S EKS-K8S-ROLE-MAPPING MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-role-mapping" {
+module "eks_k_8_s_role_mapping" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.56.3"
 
@@ -489,6 +489,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7069445fc231ef167d77482e3acbfd9d"
+  "hash": "7a54fc29e9fd853c76d7aef29e35c685"
 }
 ##DOCS-SOURCER-END -->

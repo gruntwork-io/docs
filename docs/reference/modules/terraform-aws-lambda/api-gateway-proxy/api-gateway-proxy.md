@@ -96,7 +96,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 # DEPLOY GRUNTWORK'S API-GATEWAY-PROXY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "api-gateway-proxy" {
+module "api_gateway_proxy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.6"
 
@@ -553,6 +553,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a06d3976571c3d8083b2021a0e831633"
+  "hash": "23862dc234e4544040e9b9fbbc71f96d"
 }
 ##DOCS-SOURCER-END -->

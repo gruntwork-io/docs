@@ -36,7 +36,7 @@ multi-region replication.
 # DEPLOY GRUNTWORK'S KMS-CMK-REPLICA MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kms-cmk-replica" {
+module "kms_cmk_replica" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.2"
 
@@ -313,6 +313,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6042752801e93892f6b7acfdcc86d72"
+  "hash": "8e4053bc635850f8b45f2b24d940292e"
 }
 ##DOCS-SOURCER-END -->

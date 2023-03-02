@@ -72,7 +72,7 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 # DEPLOY GRUNTWORK'S ASG-ROLLING-DEPLOY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "asg-rolling-deploy" {
+module "asg_rolling_deploy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.1"
 
@@ -416,6 +416,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "57c088d5c2f937cbc2c8b3cb325d7e64"
+  "hash": "3dffa166e51f3ccd5bdf8ca06b39065b"
 }
 ##DOCS-SOURCER-END -->

@@ -113,7 +113,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 # DEPLOY GRUNTWORK'S CROSS-ACCOUNT-IAM-ROLES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "cross-account-iam-roles" {
+module "cross_account_iam_roles" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.2"
 
@@ -1042,6 +1042,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e03b053a0332f00d5b2d026a594d0cee"
+  "hash": "e33059a22dfdf500261c8d73e2fac9c2"
 }
 ##DOCS-SOURCER-END -->

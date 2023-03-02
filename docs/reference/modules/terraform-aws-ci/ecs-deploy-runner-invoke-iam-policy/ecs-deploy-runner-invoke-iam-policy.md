@@ -55,7 +55,7 @@ resource "aws_iam_role_policy_attachment" "example" {
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-INVOKE-IAM-POLICY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-deploy-runner-invoke-iam-policy" {
+module "ecs_deploy_runner_invoke_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.1"
 
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d1908f9259f4b71fa0155a5bf5ab05d"
+  "hash": "c3b9e59b727911dc09c4e06d1d73f785"
 }
 ##DOCS-SOURCER-END -->

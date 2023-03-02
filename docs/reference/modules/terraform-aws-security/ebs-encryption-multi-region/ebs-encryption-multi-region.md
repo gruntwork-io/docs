@@ -63,7 +63,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 # DEPLOY GRUNTWORK'S EBS-ENCRYPTION-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ebs-encryption-multi-region" {
+module "ebs_encryption_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.2"
 
@@ -176,6 +176,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c4966b81f28c60765b78b0e91812f819"
+  "hash": "ac9d414a7a879482f57630d95736e228"
 }
 ##DOCS-SOURCER-END -->

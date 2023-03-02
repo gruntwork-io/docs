@@ -43,7 +43,7 @@ password policy you already have in place!
 # DEPLOY GRUNTWORK'S IAM-USER-PASSWORD-POLICY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "iam-user-password-policy" {
+module "iam_user_password_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.2"
 
@@ -278,6 +278,6 @@ Whether to require uppercase characters for user passwords.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a45ca6c8184d8a33d70919f0af04f4f0"
+  "hash": "adae842d2fe35a6ee155a563a6ddc783"
 }
 ##DOCS-SOURCER-END -->

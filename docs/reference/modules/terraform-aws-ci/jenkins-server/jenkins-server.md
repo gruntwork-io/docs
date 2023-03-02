@@ -109,7 +109,7 @@ data "aws_iam_policy_document" "example" {
 # DEPLOY GRUNTWORK'S JENKINS-SERVER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "jenkins-server" {
+module "jenkins_server" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.51.1"
 
@@ -893,6 +893,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9514ac36dfb8034c6d52276ec52c627b"
+  "hash": "5a838cd5b30b53c18f572bc3f9f20e0b"
 }
 ##DOCS-SOURCER-END -->

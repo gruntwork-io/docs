@@ -51,7 +51,7 @@ The time it takes to restore a snapshot is dependent on the volume of data withi
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-RESTORE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-cluster-restore" {
+module "elasticsearch_cluster_restore" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-restore?ref=v0.11.1"
 
@@ -223,6 +223,6 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "92c8762bbf914756a939b0df1ad39049"
+  "hash": "e9a536ab2e5154f444f72ad5c3f105ea"
 }
 ##DOCS-SOURCER-END -->

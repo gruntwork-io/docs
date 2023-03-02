@@ -102,7 +102,7 @@ fields @timestamp, @message
 # DEPLOY GRUNTWORK'S EKS-CONTAINER-LOGS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-container-logs" {
+module "eks_container_logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.56.3"
 
@@ -221,6 +221,6 @@ module "eks-container-logs" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2c52a486db73faefd407fdbcb2978de0"
+  "hash": "4df3c462deaa8c89ff23fc396f6fcfbe"
 }
 ##DOCS-SOURCER-END -->

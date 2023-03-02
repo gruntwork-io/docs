@@ -192,7 +192,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/m
 # DEPLOY GRUNTWORK'S ECS-TASK-SCHEDULER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-task-scheduler" {
+module "ecs_task_scheduler" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.0"
 
@@ -463,6 +463,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6e959b9213faef847cd003a2644513d5"
+  "hash": "1c53efac8876486bdf112682165d2c5e"
 }
 ##DOCS-SOURCER-END -->

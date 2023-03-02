@@ -79,7 +79,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S S3-STATIC-WEBSITE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "s3-static-website" {
+module "s_3_static_website" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.16.0"
 
@@ -658,6 +658,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2369f6c27b42f23d352979dcd98ae5d"
+  "hash": "5b0ce274cc9eee174749980bbf2381e6"
 }
 ##DOCS-SOURCER-END -->

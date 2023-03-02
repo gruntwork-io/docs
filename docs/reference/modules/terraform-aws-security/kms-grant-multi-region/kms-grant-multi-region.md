@@ -71,7 +71,7 @@ If you just want to try this out for experimenting and learning, check out the f
 # DEPLOY GRUNTWORK'S KMS-GRANT-MULTI-REGION MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kms-grant-multi-region" {
+module "kms_grant_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.2"
 
@@ -122,6 +122,6 @@ module "kms-grant-multi-region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0a211d9e531ac8dd26f96bf34b9e9b07"
+  "hash": "9ef192defe11471f886de520e7db7abd"
 }
 ##DOCS-SOURCER-END -->

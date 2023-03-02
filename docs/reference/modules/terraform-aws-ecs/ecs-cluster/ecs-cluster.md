@@ -222,7 +222,7 @@ for more information on the script.
 # DEPLOY GRUNTWORK'S ECS-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-cluster" {
+module "ecs_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.0"
 
@@ -1045,6 +1045,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ad8549c3b930db4ed01bb3901be041a6"
+  "hash": "e26ca45202dc127d2b8ee432c142d5b9"
 }
 ##DOCS-SOURCER-END -->

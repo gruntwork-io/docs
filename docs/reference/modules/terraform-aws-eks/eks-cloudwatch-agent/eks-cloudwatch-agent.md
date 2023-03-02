@@ -64,7 +64,7 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 # DEPLOY GRUNTWORK'S EKS-CLOUDWATCH-AGENT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-cloudwatch-agent" {
+module "eks_cloudwatch_agent" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.56.3"
 
@@ -145,6 +145,6 @@ module "eks-cloudwatch-agent" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2e261caa3739328f0bb8d5298d44fda3"
+  "hash": "3fb13e17e60ffefd12e797926ab8e95f"
 }
 ##DOCS-SOURCER-END -->

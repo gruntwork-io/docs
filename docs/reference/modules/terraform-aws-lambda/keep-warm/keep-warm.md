@@ -57,7 +57,7 @@ level](#concurrency) for your functions.
 # DEPLOY GRUNTWORK'S KEEP-WARM MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "keep-warm" {
+module "keep_warm" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v0.21.6"
 
@@ -265,6 +265,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4a4d3993bc45726288e8be0546f01239"
+  "hash": "2c5fae08d2f46e2640a2f171d796c4b5"
 }
 ##DOCS-SOURCER-END -->

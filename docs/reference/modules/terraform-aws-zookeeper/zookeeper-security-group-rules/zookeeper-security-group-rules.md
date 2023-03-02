@@ -34,7 +34,7 @@ this module to handle the Security Group details for you.
 # DEPLOY GRUNTWORK'S ZOOKEEPER-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "zookeeper-security-group-rules" {
+module "zookeeper_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-security-group-rules?ref=v0.12.0"
 
@@ -122,6 +122,6 @@ module "zookeeper-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "32cf11a24bd755318e64fe02e63b0bde"
+  "hash": "104bfadcad61fe39b8cb51619f620a2d"
 }
 ##DOCS-SOURCER-END -->

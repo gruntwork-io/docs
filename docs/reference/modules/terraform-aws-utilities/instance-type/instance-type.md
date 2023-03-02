@@ -64,7 +64,7 @@ will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if y
 # DEPLOY GRUNTWORK'S INSTANCE-TYPE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "instance-type" {
+module "instance_type" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.0"
 
@@ -133,6 +133,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e4d028f0fe8537d76717c70d6683a03a"
+  "hash": "d826abac3c9e1e4a553bf076a66a89ec"
 }
 ##DOCS-SOURCER-END -->

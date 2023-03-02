@@ -37,7 +37,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/m
 # DEPLOY GRUNTWORK'S LAMBDA-SHARE-SNAPSHOT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-share-snapshot" {
+module "lambda_share_snapshot" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.26.0"
 
@@ -152,6 +152,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edd1ba8855bdc8394e88cb28adbe431d"
+  "hash": "a348f393d84cb0c2eed9c773525c7736"
 }
 ##DOCS-SOURCER-END -->

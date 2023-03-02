@@ -143,7 +143,7 @@ Production-ready sample code from the Reference Architecture:
 # DEPLOY GRUNTWORK'S ECS-SERVICE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs-service" {
+module "ecs_service" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.0"
 
@@ -1447,6 +1447,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2184975c854941e795f5f3e976a2fd40"
+  "hash": "4ff85b7aaf86fd6e6e7decf272146fbc"
 }
 ##DOCS-SOURCER-END -->

@@ -237,7 +237,7 @@ that are no longer valid.
 # DEPLOY GRUNTWORK'S KAFKA-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kafka-cluster" {
+module "kafka_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-cluster?ref=v0.11.0"
 
@@ -928,6 +928,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5faa1774b0e0da8b94bc9d1e7069475"
+  "hash": "66163179004847a632312ab63f491481"
 }
 ##DOCS-SOURCER-END -->

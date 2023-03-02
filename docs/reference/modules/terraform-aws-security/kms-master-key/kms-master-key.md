@@ -84,7 +84,7 @@ more onerous.
 # DEPLOY GRUNTWORK'S KMS-MASTER-KEY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "kms-master-key" {
+module "kms_master_key" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v0.67.2"
 
@@ -382,6 +382,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "010ab99e72a654f33bf23025c3e310d1"
+  "hash": "32404f8c6303f2cae6b8536e14a090a9"
 }
 ##DOCS-SOURCER-END -->

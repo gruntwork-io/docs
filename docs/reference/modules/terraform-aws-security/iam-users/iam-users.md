@@ -136,7 +136,7 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 # DEPLOY GRUNTWORK'S IAM-USERS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "iam-users" {
+module "iam_users" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.67.2"
 
@@ -444,6 +444,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "755652aeeaced329488fc7aeba5d883d"
+  "hash": "1e52c5dc1a2889c0a3b807a2be1c8eb3"
 }
 ##DOCS-SOURCER-END -->

@@ -35,7 +35,7 @@ or [Kafka](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modul
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "confluent-tools-security-group-rules" {
+module "confluent_tools_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-security-group-rules?ref=v0.11.0"
 
@@ -94,6 +94,6 @@ module "confluent-tools-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43e29be25a38d8cb5f1b0298310a8127"
+  "hash": "c8f67d6a001de69be3914b36e91f96ea"
 }
 ##DOCS-SOURCER-END -->

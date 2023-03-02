@@ -54,7 +54,7 @@ variables.
 # DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-cluster-autoscaler" {
+module "eks_k_8_s_cluster_autoscaler" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.56.3"
 
@@ -203,6 +203,6 @@ module "eks-k8s-cluster-autoscaler" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7e85b60abea0091d3f0cea6f3d1d424"
+  "hash": "91d540606e849e074ead7e921d946958"
 }
 ##DOCS-SOURCER-END -->

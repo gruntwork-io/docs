@@ -33,7 +33,7 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 # DEPLOY GRUNTWORK'S AWS-CONFIG-BUCKET MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "aws-config-bucket" {
+module "aws_config_bucket" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.2"
 
@@ -377,6 +377,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d17b89f7c0648b2b7fd697f3fa3c5708"
+  "hash": "1b4e6853ab1e2daa2705f421df159f71"
 }
 ##DOCS-SOURCER-END -->

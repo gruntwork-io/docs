@@ -159,7 +159,7 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 # DEPLOY GRUNTWORK'S S3-CLOUDFRONT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "s3-cloudfront" {
+module "s_3_cloudfront" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.16.0"
 
@@ -1115,6 +1115,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "244e9506ac91f6bf624e98f9ea00eb77"
+  "hash": "35e73a818b4e841c6fa94a101f6608c8"
 }
 ##DOCS-SOURCER-END -->

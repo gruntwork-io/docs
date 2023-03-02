@@ -162,7 +162,7 @@ The following are the steps you can take to perform a blue-green release for thi
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-MANAGED-WORKERS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-cluster-managed-workers" {
+module "eks_cluster_managed_workers" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.3"
 
@@ -782,6 +782,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "45710fb474aee432fd21c432eb8b1401"
+  "hash": "d869a08ffa56338c602bb9957229148d"
 }
 ##DOCS-SOURCER-END -->

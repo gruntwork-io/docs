@@ -111,7 +111,7 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 # DEPLOY GRUNTWORK'S LOGSTASH-CLUSTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "logstash-cluster" {
+module "logstash_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-cluster?ref=v0.11.1"
 
@@ -618,6 +618,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1781a16ecc834ee382f6f2a039bd2b41"
+  "hash": "11583c9c7fd7e65863c1c13be0ee1787"
 }
 ##DOCS-SOURCER-END -->

@@ -93,7 +93,7 @@ then you will end up with many potentially large recovery points that you cannot
 # DEPLOY GRUNTWORK'S BACKUP-VAULT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "backup-vault" {
+module "backup_vault" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.26.0"
 
@@ -246,6 +246,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0f5f0752e7491e0db243582a971dc99b"
+  "hash": "24adc5477d98047c3a818a3add12d68a"
 }
 ##DOCS-SOURCER-END -->

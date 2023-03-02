@@ -193,7 +193,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 # DEPLOY GRUNTWORK'S ACM-TLS-CERTIFICATE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "acm-tls-certificate" {
+module "acm_tls_certificate" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.3"
 
@@ -425,6 +425,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c5def864b0e329ffcc05e6af08607e5"
+  "hash": "6c44d73da6f5d9a8458839a27b900c2b"
 }
 ##DOCS-SOURCER-END -->

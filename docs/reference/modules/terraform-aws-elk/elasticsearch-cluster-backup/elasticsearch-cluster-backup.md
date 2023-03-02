@@ -54,7 +54,7 @@ Restoring snapshots is handled by the [elasticsearch-cluster-restore module](htt
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-BACKUP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-cluster-backup" {
+module "elasticsearch_cluster_backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-backup?ref=v0.11.1"
 
@@ -297,6 +297,6 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "230c5f43c409cd853eb6e386ccfc87f5"
+  "hash": "03dd006e095873093ae1aef66e6fefee"
 }
 ##DOCS-SOURCER-END -->

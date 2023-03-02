@@ -57,7 +57,7 @@ for running it as a data source). Which approach to use depends on your needs:
 # DEPLOY GRUNTWORK'S RUN-PEX-AS-RESOURCE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "run-pex-as-resource" {
+module "run_pex_as_resource" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.0"
 
@@ -240,6 +240,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ced1c8beba9f15a0c8f9d26c078365a6"
+  "hash": "68b0b9a2def67b33f1a0df3504d2f61f"
 }
 ##DOCS-SOURCER-END -->

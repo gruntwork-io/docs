@@ -90,7 +90,7 @@ information on route syntax that API Gateway expects.
 # DEPLOY GRUNTWORK'S LAMBDA-HTTP-API-GATEWAY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-http-api-gateway" {
+module "lambda_http_api_gateway" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.6"
 
@@ -550,6 +550,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f7738a8632cf80644a61efef4c1d2c6d"
+  "hash": "89626b77f3dc66bcfe7a3b9e9966944c"
 }
 ##DOCS-SOURCER-END -->

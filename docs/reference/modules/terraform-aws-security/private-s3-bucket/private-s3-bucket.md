@@ -83,7 +83,7 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 # DEPLOY GRUNTWORK'S PRIVATE-S3-BUCKET MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "private-s3-bucket" {
+module "private_s_3_bucket" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.67.2"
 
@@ -816,6 +816,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "20b0a653fd8df577886f26740020b573"
+  "hash": "7190078db84d0d79d01c1c1e60c02c1a"
 }
 ##DOCS-SOURCER-END -->

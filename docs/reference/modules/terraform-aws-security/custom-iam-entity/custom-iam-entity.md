@@ -63,7 +63,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 # DEPLOY GRUNTWORK'S CUSTOM-IAM-ENTITY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "custom-iam-entity" {
+module "custom_iam_entity" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.67.2"
 
@@ -386,6 +386,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ddf372acb1f97f5b32244a2a3f0fbdbe"
+  "hash": "2a8c8b27e02ae51dd5e91e8b1de8720a"
 }
 ##DOCS-SOURCER-END -->

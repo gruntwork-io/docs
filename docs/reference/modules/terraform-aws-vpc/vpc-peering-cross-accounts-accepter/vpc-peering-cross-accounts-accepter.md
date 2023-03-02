@@ -75,7 +75,7 @@ No modules.
 # DEPLOY GRUNTWORK'S VPC-PEERING-CROSS-ACCOUNTS-ACCEPTER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-peering-cross-accounts-accepter" {
+module "vpc_peering_cross_accounts_accepter" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.22.4"
 
@@ -262,6 +262,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ba30025e037467cc9d6da59b417459d"
+  "hash": "56b03bf075b2e6f216f1e9bd01a453be"
 }
 ##DOCS-SOURCER-END -->

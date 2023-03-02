@@ -78,7 +78,7 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 # DEPLOY GRUNTWORK'S LOGSTASH-SECURITY-GROUP-RULES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "logstash-security-group-rules" {
+module "logstash_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-security-group-rules?ref=v0.11.1"
 
@@ -243,6 +243,6 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "65bf90310f14c4e15db11c929d3c6fdb"
+  "hash": "540194ee7b63c445b88114331787b8b4"
 }
 ##DOCS-SOURCER-END -->

@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S EKS-AWS-AUTH-MERGER MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-aws-auth-merger" {
+module "eks_aws_auth_merger" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.56.3"
 
@@ -508,6 +508,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "516ce909bfc8f6811368121714de479b"
+  "hash": "4e702994bc8ce49c0b3aca14154647f2"
 }
 ##DOCS-SOURCER-END -->

@@ -71,7 +71,7 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 # DEPLOY GRUNTWORK'S ELASTALERT-IAM-POLICIES MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "elastalert-iam-policies" {
+module "elastalert_iam_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elastalert-iam-policies?ref=v0.11.1"
 
@@ -108,6 +108,6 @@ module "elastalert-iam-policies" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "80138be6efc2e555cfcbb0558434f6cd"
+  "hash": "3c20c5be01423932423378e99586d11f"
 }
 ##DOCS-SOURCER-END -->

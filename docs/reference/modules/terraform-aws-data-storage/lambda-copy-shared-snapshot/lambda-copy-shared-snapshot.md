@@ -120,7 +120,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/m
 # DEPLOY GRUNTWORK'S LAMBDA-COPY-SHARED-SNAPSHOT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-copy-shared-snapshot" {
+module "lambda_copy_shared_snapshot" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.26.0"
 
@@ -315,6 +315,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fbb12a0f5c62b50146f798eac4efdab0"
+  "hash": "225caa87a736474a2af0f5bb18e69fa5"
 }
 ##DOCS-SOURCER-END -->

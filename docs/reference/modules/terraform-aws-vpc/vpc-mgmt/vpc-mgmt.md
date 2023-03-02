@@ -91,7 +91,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 # DEPLOY GRUNTWORK'S VPC-MGMT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-mgmt" {
+module "vpc_mgmt" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.4"
 
@@ -801,6 +801,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c8b5db24db7b3cad10d3c40a4b4b1072"
+  "hash": "8d614bdb650719b1ffe40b9ff171ca9d"
 }
 ##DOCS-SOURCER-END -->

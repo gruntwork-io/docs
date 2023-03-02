@@ -86,7 +86,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 # DEPLOY GRUNTWORK'S VPC-APP MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc-app" {
+module "vpc_app" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.22.4"
 
@@ -1100,6 +1100,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2d960f0bc64de9e2e5d5ba2d9574f8b"
+  "hash": "22cae9b76d586095f607392564abe532"
 }
 ##DOCS-SOURCER-END -->

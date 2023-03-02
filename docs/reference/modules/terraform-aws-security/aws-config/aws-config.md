@@ -85,7 +85,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S AWS-CONFIG MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "aws-config" {
+module "aws_config" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v0.67.2"
 
@@ -736,6 +736,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fc2157101e5292cd12e07f92e7b9adc9"
+  "hash": "05b86dc3d0ff7f38f35161d1b31a0a90"
 }
 ##DOCS-SOURCER-END -->

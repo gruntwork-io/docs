@@ -36,7 +36,7 @@ in which case you can include this module to handle the IAM permission details f
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-IAM-PERMISSIONS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "confluent-tools-iam-permissions" {
+module "confluent_tools_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-iam-permissions?ref=v0.11.0"
 
@@ -62,6 +62,6 @@ module "confluent-tools-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8bed296342af1abce09a5a4e27fd462"
+  "hash": "8205bd81746c52581fe008a7c8d28bc4"
 }
 ##DOCS-SOURCER-END -->

@@ -81,7 +81,7 @@ If you want to deploy this repo in production, check out the following resources
 # DEPLOY GRUNTWORK'S LAMBDA-CREATE-SNAPSHOT MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "lambda-create-snapshot" {
+module "lambda_create_snapshot" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.26.0"
 
@@ -341,6 +341,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "65a4f93610c445d03ee8566401276b0c"
+  "hash": "146ab50b5c865786981f71e6a8efea8c"
 }
 ##DOCS-SOURCER-END -->

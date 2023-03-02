@@ -35,7 +35,7 @@ It can also be used directly when configuring cross account access, for example 
 # DEPLOY GRUNTWORK'S CLOUDTRAIL-BUCKET MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "cloudtrail-bucket" {
+module "cloudtrail_bucket" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v0.67.2"
 
@@ -720,6 +720,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8f45058b703ef51d861394fca1924393"
+  "hash": "88520de1d4afbf5201dd178988c3492c"
 }
 ##DOCS-SOURCER-END -->

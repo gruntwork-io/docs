@@ -113,7 +113,7 @@ zones_cache_duration  = "3h"
 # DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-external-dns" {
+module "eks_k_8_s_external_dns" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns?ref=v0.56.3"
 
@@ -282,6 +282,6 @@ module "eks-k8s-external-dns" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "04adc2cbf5100152971a0026fa1f1b41"
+  "hash": "55e599a920de1a00041c7521cdafe91f"
 }
 ##DOCS-SOURCER-END -->

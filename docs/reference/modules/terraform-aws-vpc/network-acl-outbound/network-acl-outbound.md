@@ -44,7 +44,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 # DEPLOY GRUNTWORK'S NETWORK-ACL-OUTBOUND MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "network-acl-outbound" {
+module "network_acl_outbound" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.22.4"
 
@@ -131,6 +131,6 @@ module "network-acl-outbound" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "816bb8e924262e63a854c21e03075920"
+  "hash": "523021b49d192ee60aa8c01dd2b428c9"
 }
 ##DOCS-SOURCER-END -->

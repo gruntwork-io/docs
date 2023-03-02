@@ -61,7 +61,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_external_dns_iam_policy" {
 # DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS-IAM-POLICY MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-external-dns-iam-policy" {
+module "eks_k_8_s_external_dns_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.56.3"
 
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for the external-dns Kub
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "72827ef4536b24cbff57837783ae67c8"
+  "hash": "667f91c7899e4433ce7eca37e8cc9c1a"
 }
 ##DOCS-SOURCER-END -->

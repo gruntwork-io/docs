@@ -60,7 +60,7 @@ module.
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS-CROSS-ACCESS MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-cluster-workers-cross-access" {
+module "eks_cluster_workers_cross_access" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v0.56.3"
 
@@ -100,6 +100,6 @@ module "eks-cluster-workers-cross-access" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c7815d7c176deb48be9f3af57c9aae7"
+  "hash": "0266d94331be49d3ea31acabf48623b2"
 }
 ##DOCS-SOURCER-END -->

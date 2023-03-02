@@ -380,7 +380,7 @@ approaches:
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-CONTROL-PLANE MODULE
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "eks-cluster-control-plane" {
+module "eks_cluster_control_plane" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.56.3"
 
@@ -1288,6 +1288,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0a4b07fe789c311f7097d20625c65457"
+  "hash": "912226c79d5134a68d955ca979714729"
 }
 ##DOCS-SOURCER-END -->
