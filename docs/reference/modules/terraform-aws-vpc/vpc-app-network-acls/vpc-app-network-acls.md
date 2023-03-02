@@ -85,17 +85,17 @@ module "network_acls" {
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-APP-NETWORK-ACLS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "vpc_app_network_acls" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.22.4"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The number of each type of subnet (public, private, private persistence) created
   # in this VPC. Typically, this is equal to the number of availability zones in the
@@ -127,9 +127,9 @@ module "vpc_app_network_acls" {
   # The name of the VPC (e.g. stage, prod)
   vpc_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If set to true, the network ACLs will allow incoming requests from the Mgmt VPC
   # CIDR block defined in var.mgmt_vpc_cidr_block.
@@ -502,6 +502,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ad8960b754505ca93f5e8b0b389f385a"
+  "hash": "ddedb16917dcd6dbfb21d018a2c34553"
 }
 ##DOCS-SOURCER-END -->

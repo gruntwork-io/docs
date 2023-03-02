@@ -99,26 +99,26 @@ fields @timestamp, @message
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-FARGATE-CONTAINER-LOGS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "eks_fargate_container_logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # List of ARNs of Fargate execution IAM roles that should have permission to talk
   # to each output target. Policies that grant permissions to each output service
   # will be attached to these IAM roles.
   fargate_execution_iam_role_arns = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
   # you do not wish to forward the logs to ES.
@@ -535,6 +535,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3449369f95401b94f1163441eaf26623"
+  "hash": "26c849c9cd684591d9313fbc6255f6b7"
 }
 ##DOCS-SOURCER-END -->

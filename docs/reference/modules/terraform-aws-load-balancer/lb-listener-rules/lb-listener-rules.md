@@ -88,17 +88,17 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LB-LISTENER-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "lb_listener_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A map of all the listeners on the load balancer. The keys should be the port
   # numbers and the values should be the ARN of the listener for that port.
@@ -110,9 +110,9 @@ module "lb_listener_rules" {
   # listener_ports parameter must exist in var.listener_arns.
   default_listener_ports = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the Target Group to which to route traffic. Required if using forward
   # rules.
@@ -652,6 +652,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1e3d98d8cee1928a04d656425b9703b8"
+  "hash": "c909296913b642a57eed7b0c8f90464d"
 }
 ##DOCS-SOURCER-END -->

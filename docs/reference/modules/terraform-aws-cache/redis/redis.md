@@ -90,17 +90,17 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDIS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "redis" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.18.2"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Specifies whether a read-only replica is automatically promoted to read/write
   # primary if the existing primary fails. It must be enabled for Redis (cluster
@@ -138,9 +138,9 @@ module "redis" {
   # The id of the VPC in which the ElastiCache cluster should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional security group ids to attach
   additional_security_group_ids = []
@@ -571,6 +571,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c85e6f7e95f2ed94979c30bb724324aa"
+  "hash": "a5703700a3c35fac38fb94a363676202"
 }
 ##DOCS-SOURCER-END -->

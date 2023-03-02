@@ -55,17 +55,17 @@ module. You can use the [vpc-dns-forwarder-rules module](https://github.com/grun
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "vpc_dns_forwarder" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder?ref=v0.22.4"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the VPC which is the destination of the DNS resolver queries.
   destination_vpc_id = <INPUT REQUIRED>
@@ -98,9 +98,9 @@ module "vpc_dns_forwarder" {
   # resolver in the origin VPC.
   origin_vpc_route53_resolver_secondary_subnet_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Set to false to have this module create no resources. This weird parameter
   # exists solely because Terraform does not support conditional modules. Therefore,
@@ -303,6 +303,6 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6abba71242ea429915ab3db9b04c67fd"
+  "hash": "c017eae393326ac00e21add3f4f525c2"
 }
 ##DOCS-SOURCER-END -->

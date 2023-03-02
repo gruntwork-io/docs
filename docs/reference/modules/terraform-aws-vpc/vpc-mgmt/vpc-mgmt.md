@@ -87,17 +87,17 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-MGMT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "vpc_mgmt" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.4"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
@@ -113,9 +113,9 @@ module "vpc_mgmt" {
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
   vpc_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules and
   # var.default_nacl_egress_rules on the default NACL of the VPC. Note that every
@@ -801,6 +801,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8d614bdb650719b1ffe40b9ff171ca9d"
+  "hash": "a44683d63201a3f76dc03a550f38f041"
 }
 ##DOCS-SOURCER-END -->

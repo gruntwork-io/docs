@@ -50,17 +50,17 @@ variables.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "eks_k_8_s_cluster_autoscaler" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AWS region that the EKS cluster resides in.
   aws_region = <INPUT REQUIRED>
@@ -77,9 +77,9 @@ module "eks_k_8_s_cluster_autoscaler" {
   # to null if you do not wish to use IAM role with Service Accounts.
   iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # ARN of permissions boundary to apply to the autoscaler IAM role - the IAM role
   # created for the Autoscaler
@@ -203,6 +203,6 @@ module "eks_k_8_s_cluster_autoscaler" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91d540606e849e074ead7e921d946958"
+  "hash": "bedbf016961e51fce1d5cd1d50ca79d3"
 }
 ##DOCS-SOURCER-END -->

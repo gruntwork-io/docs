@@ -31,17 +31,17 @@ It can also be used directly when configuring cross account access, for example 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CLOUDTRAIL-BUCKET MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "cloudtrail_bucket" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v0.67.2"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
@@ -63,9 +63,9 @@ module "cloudtrail_bucket" {
   # The name of the S3 Bucket where CloudTrail logs will be stored.
   s3_bucket_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # When access logging is enabled, set this to the name of a preexisting S3 bucket
   # where access logs should flow to. If null, this module will create a separate
@@ -720,6 +720,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88520de1d4afbf5201dd178988c3492c"
+  "hash": "889f5b8a31a12784d669d1f64b0f19e6"
 }
 ##DOCS-SOURCER-END -->

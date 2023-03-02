@@ -328,25 +328,25 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-K8S-ROLE-MAPPING MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "eks_k_8_s_role_mapping" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
   # role passed in will be set up as a Node role in Kubernetes.
   eks_worker_iam_role_arns = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of string keys and values that can be used to tag the ConfigMap resource
   # that holds the mapping information.
@@ -489,6 +489,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a54fc29e9fd853c76d7aef29e35c685"
+  "hash": "c55ed197e5561adaec49b50468202f52"
 }
 ##DOCS-SOURCER-END -->

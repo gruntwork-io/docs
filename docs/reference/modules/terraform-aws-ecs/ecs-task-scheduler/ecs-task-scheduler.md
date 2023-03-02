@@ -188,17 +188,17 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/m
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-TASK-SCHEDULER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "ecs_task_scheduler" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The arn of the ECS cluster to use.
   ecs_target_cluster_arn = <INPUT REQUIRED>
@@ -206,9 +206,9 @@ module "ecs_task_scheduler" {
   # The task definition ARN for cloudwatch schedule to run.
   ecs_target_task_definition_arn = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Creation of the Eventbridge IAM role within the module. If omitted IAM role ARN
   # must be provided in ecs_task_iam_role variable.
@@ -463,6 +463,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c53efac8876486bdf112682165d2c5e"
+  "hash": "fa1b63ba0be9700db571c8953db28aa2"
 }
 ##DOCS-SOURCER-END -->

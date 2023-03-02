@@ -139,17 +139,17 @@ Production-ready sample code from the Reference Architecture:
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-SERVICE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "ecs_service" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # How many copies of the Task to run across the cluster.
   desired_number_of_tasks = <INPUT REQUIRED>
@@ -166,9 +166,9 @@ module "ecs_service" {
   # module.
   service_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional principals who can assume the task and task execution roles
   additional_task_assume_role_policy_principals = []
@@ -1447,6 +1447,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ff85b7aaf86fd6e6e7decf272146fbc"
+  "hash": "f69b0e58e1315d7d415ceef48773c54f"
 }
 ##DOCS-SOURCER-END -->

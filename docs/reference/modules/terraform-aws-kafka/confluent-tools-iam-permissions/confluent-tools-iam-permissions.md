@@ -32,17 +32,17 @@ in which case you can include this module to handle the IAM permission details f
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-IAM-PERMISSIONS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "confluent_tools_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-iam-permissions?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the IAM Role used by the nodes in the Confluent tools cluster.
   aws_iam_role_id = <INPUT REQUIRED>
@@ -62,6 +62,6 @@ module "confluent_tools_iam_permissions" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8205bd81746c52581fe008a7c8d28bc4"
+  "hash": "3342c944b3ed1e6caf702d5754b8249c"
 }
 ##DOCS-SOURCER-END -->

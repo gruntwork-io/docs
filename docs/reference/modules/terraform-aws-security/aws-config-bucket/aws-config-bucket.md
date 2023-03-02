@@ -29,25 +29,25 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AWS-CONFIG-BUCKET MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "aws_config_bucket" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.2"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
   s3_bucket_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The S3 bucket where access logs for this bucket should be stored. Only used if
   # access_logging_enabled is true.
@@ -377,6 +377,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1b4e6853ab1e2daa2705f421df159f71"
+  "hash": "7d2010a25758c1bc0bfc93502997403a"
 }
 ##DOCS-SOURCER-END -->

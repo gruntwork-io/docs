@@ -87,17 +87,17 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AWS-ORGANIZATIONS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "aws_organizations" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.2"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of child accounts to create. The map key is the name of the account and the
   # value is an object containing account configuration variables.
@@ -130,9 +130,9 @@ module "aws_organizations" {
   # Specify `ALL` or `CONSOLIDATED_BILLING`.
   organizations_feature_set = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Default tags to add to accounts. Will be appended to ´child_account.*.tags´
   default_tags = {}
@@ -364,6 +364,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c16764a76402d2dc525e3b9eb110fcf"
+  "hash": "c44d31363a05079e56525594baa33d5b"
 }
 ##DOCS-SOURCER-END -->

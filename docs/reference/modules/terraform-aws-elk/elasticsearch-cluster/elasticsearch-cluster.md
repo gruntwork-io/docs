@@ -213,17 +213,17 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "elasticsearch_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AMI id of our custom AMI with Elasticsearch installed
   ami_id = <INPUT REQUIRED>
@@ -246,9 +246,9 @@ module "elasticsearch_cluster" {
   # The id of the vpc into which we will deploy Elasticsearch
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The IDs of security groups from which ES API connections will be allowed. If you
   # update this variable, make sure to update var.num_api_security_group_ids too!
@@ -678,6 +678,6 @@ The User Data script to run on each server when it is booting.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "06d834a22e086f99bade4c8ac34b02f9"
+  "hash": "549b24fbaa3b6471ddeef59e735ea18a"
 }
 ##DOCS-SOURCER-END -->

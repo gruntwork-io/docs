@@ -146,17 +146,17 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LAMBDA MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "lambda" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The maximum amount of memory, in MB, your Lambda function will be able to use at
   # runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the
@@ -173,9 +173,9 @@ module "lambda" {
   # run. Must be between 1 and 300 seconds.
   timeout = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of Security Group IDs that should be attached to the Lambda function when
   # running in a VPC. Only used if var.run_in_vpc is true.
@@ -977,6 +977,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d19cbc7e0f69d3663c67a131f56c2412"
+  "hash": "81ceaa5589a62e8edf06acca11bd0212"
 }
 ##DOCS-SOURCER-END -->

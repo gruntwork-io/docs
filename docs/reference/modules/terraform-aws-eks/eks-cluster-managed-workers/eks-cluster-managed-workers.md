@@ -158,17 +158,17 @@ The following are the steps you can take to perform a blue-green release for thi
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-MANAGED-WORKERS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "eks_cluster_managed_workers" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
@@ -177,9 +177,9 @@ module "eks_cluster_managed_workers" {
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   node_group_configurations = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # List of Security Group IDs to allow SSH access from. Only used if
   # var.cluster_instance_keypair_name is set. Set to null to allow access from all
@@ -782,6 +782,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d869a08ffa56338c602bb9957229148d"
+  "hash": "2c898b0269febf708a92759de382867b"
 }
 ##DOCS-SOURCER-END -->

@@ -60,17 +60,17 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLOUDWATCH-AGENT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "eks_cloudwatch_agent" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Name of the EKS cluster where resources are deployed to.
   eks_cluster_name = <INPUT REQUIRED>
@@ -83,9 +83,9 @@ module "eks_cloudwatch_agent" {
   # to null if you do not wish to use IAM role with Service Accounts.
   iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The Container repository to use for looking up the cloudwatch-agent Container
   # image when deploying the pods. When null, uses the default repository set in the
@@ -145,6 +145,6 @@ module "eks_cloudwatch_agent" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3fb13e17e60ffefd12e797926ab8e95f"
+  "hash": "c5841a0e60ffb0a7673734b4a97c7d07"
 }
 ##DOCS-SOURCER-END -->

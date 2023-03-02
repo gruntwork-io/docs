@@ -47,17 +47,17 @@ The time it takes to restore a snapshot is dependent on the volume of data withi
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-RESTORE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "elasticsearch_cluster_restore" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-restore?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The S3 bucket that the specified repository will be associated with and where
   # all snapshots will be stored
@@ -73,9 +73,9 @@ module "elasticsearch_cluster_restore" {
   # The name of the repository that will be associated with the created snapshots
   repository = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port on which the API requests will be made to the Elasticsearch cluster
   elasticsearch_port = 9200
@@ -223,6 +223,6 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9a536ab2e5154f444f72ad5c3f105ea"
+  "hash": "b11bce2cad98d8403cc90c33e4444aff"
 }
 ##DOCS-SOURCER-END -->

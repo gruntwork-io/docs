@@ -50,17 +50,17 @@ Restoring snapshots is handled by the [elasticsearch-cluster-restore module](htt
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-BACKUP MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "elasticsearch_cluster_backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-backup?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # How often, in seconds, the backup lambda function is expected to run. You should
   # factor in the amount of time it takes to backup your cluster.
@@ -99,9 +99,9 @@ module "elasticsearch_cluster_backup" {
   # 20 * * ? *) or rate(5 minutes).
   schedule_expression = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port on which the API requests will be made to the Elasticsearch cluster
   elasticsearch_port = 9200
@@ -297,6 +297,6 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "03dd006e095873093ae1aef66e6fefee"
+  "hash": "7c475ddfc4246f96537ccbf23576298d"
 }
 ##DOCS-SOURCER-END -->

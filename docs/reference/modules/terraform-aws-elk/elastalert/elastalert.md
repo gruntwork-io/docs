@@ -29,17 +29,17 @@ that has ElastAlert installed using the [install-elastalert](https://github.com/
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTALERT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "elastalert" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elastalert?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run in this cluster.
   ami_id = <INPUT REQUIRED>
@@ -56,9 +56,9 @@ module "elastalert" {
   # The ID of the VPC in which to deploy the kibana cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the bastion host from all other IP addresses will
@@ -330,6 +330,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66c8efd0e88e956d3fa63cff9669ff86"
+  "hash": "a02be9cb98f75735b64da68fd50c95e6"
 }
 ##DOCS-SOURCER-END -->

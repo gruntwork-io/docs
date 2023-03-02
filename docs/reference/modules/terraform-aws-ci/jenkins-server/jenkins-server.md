@@ -105,17 +105,17 @@ data "aws_iam_policy_document" "example" {
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S JENKINS-SERVER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "jenkins_server" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.51.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The domain name for which there is an ACM cert in this region that can be used
   # to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
@@ -145,9 +145,9 @@ module "jenkins_server" {
   # The id of the VPC where Jenkins should be deployed (e.g. vpc-abcd1234).
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional ALB target group ARNs. The Jenkins server will be
   # registered in these groups, in addition to the ALB created by this module.
@@ -893,6 +893,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a838cd5b30b53c18f572bc3f9f20e0b"
+  "hash": "b42dcf3dc4b80b399a2c2f327a5b4065"
 }
 ##DOCS-SOURCER-END -->

@@ -101,17 +101,17 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "ecs_deploy_runner" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner?ref=v0.51.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of names to docker image (repo and tag) to use for the ECS task. Each entry
   # corresponds to a different ECS task definition that can be used for
@@ -125,9 +125,9 @@ module "ecs_deploy_runner" {
   # List of VPC Subnet IDs where the ECS task and invoker lambda should run.
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Configuration for storing artifacts from the underlying commands. When set,
   # stdout, stderr, and interleaved output will be stored in the configured S3
@@ -1038,6 +1038,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f063bcab120a0db8a8737834183f9e81"
+  "hash": "d782f3da02882940ca1eb5ec48468729"
 }
 ##DOCS-SOURCER-END -->

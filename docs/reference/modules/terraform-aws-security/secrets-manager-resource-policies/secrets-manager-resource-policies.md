@@ -35,17 +35,17 @@ Note also that you should only manage the policy for any given secret one time. 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SECRETS-MANAGER-RESOURCE-POLICIES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "secrets_manager_resource_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/secrets-manager-resource-policies?ref=v0.67.2"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   secret_policies = <INPUT REQUIRED>
 
@@ -64,6 +64,6 @@ module "secrets_manager_resource_policies" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8479d7cc20db44a1a44ce509b25d85af"
+  "hash": "382e478d5ad8f5887f62a7ccf418a069"
 }
 ##DOCS-SOURCER-END -->

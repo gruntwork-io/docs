@@ -69,17 +69,17 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EXECUTABLE-DEPENDENCY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "executable_dependency" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.9.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The URL to download the executable from if var.executable is not found on the
   # system PATH or in var.install_dir.
@@ -89,9 +89,9 @@ module "executable_dependency" {
   # found, this executable will be downloaded from var.download_url.
   executable = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If set to true, append the operating system and architecture to the URL. E.g.,
   # Append linux_amd64 if this code is being run on a 64 bit Linux OS.
@@ -194,6 +194,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8cda6a56bb8ca5e5a83ef4e5bdd79940"
+  "hash": "2801f5fda149b997f439b6d7155dc2db"
 }
 ##DOCS-SOURCER-END -->

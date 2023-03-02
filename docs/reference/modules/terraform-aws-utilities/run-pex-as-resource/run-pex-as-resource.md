@@ -53,17 +53,17 @@ for running it as a data source). Which approach to use depends on your needs:
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RUN-PEX-AS-RESOURCE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "run_pex_as_resource" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
@@ -78,9 +78,9 @@ module "run_pex_as_resource" {
   # houses the function `main`, then this should be `entrypoint:main`.
   script_main_function = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The arguments to pass to the command as a string
   command_args = ""
@@ -240,6 +240,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "68b0b9a2def67b33f1a0df3504d2f61f"
+  "hash": "52a2d460a9eee5cd649c1d7aaecd345a"
 }
 ##DOCS-SOURCER-END -->

@@ -110,17 +110,17 @@ for more information.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-STANDARD-CONFIGURATION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "ecs_deploy_runner_standard_configuration" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline with
@@ -144,9 +144,9 @@ module "ecs_deploy_runner_standard_configuration" {
   # Set to `null` to disable this container.
   terraform_planner = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Unlike hardcoded_options, this is used for hardcoded positional args and will
   # always be passed in at the end of the args list.
@@ -764,6 +764,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2855a07ad04aa93a32d751b7d22ff5b"
+  "hash": "dea2cc9ff8be9545e3612f8a59a1e628"
 }
 ##DOCS-SOURCER-END -->
