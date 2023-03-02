@@ -113,7 +113,7 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 
 <!-- ##DOCS-SOURCER-START
 {
-  "sourcePlugin": "local-copier",
+  "sourcePlugin": "releases",
   "hash": "b0bc12f6e1200c96577133f51302d7b5"
 }
 ##DOCS-SOURCER-END -->

@@ -33,9 +33,9 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * Improve code architecture by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/138
+  * Prevent conuntinuesly keeping `go-git` instances in memory by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/134
+* Improve code architecture by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/138
 * Switching to Git command  by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/139
-* Prevent conuntinuesly keeping `go-git` instances in memory by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/134
 
 
 This release switches `repo-copier` to using your locally installed `git` instance rather than the embedded `go-git` library. This is because of memory consumption and stack overflow issues with `go-git`. Please ensure you have `git` installed locally and in your `PATH` whenever running `repo-copier` going forward!
@@ -80,6 +80,24 @@ This release switches `repo-copier` to using your locally installed `git` instan
 
 
 ## terraform-aws-cis-service-catalog
+
+
+### [v0.42.7](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 1/31/2023 | Modules affected: data-stores | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.7">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Update tflint patch to latest docker and remove include root
+- Plumb `maintenance_window` variable from CIS RDS module through to base RDS module
+
+
+
+</div>
 
 
 ### [v0.42.6](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.42.6)
@@ -372,6 +390,6 @@ If you wish to maintain backward compatibility with your existing setup of the E
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ee236b0fb3bc36dbd51cfac665fdc64a"
+  "hash": "550110478f5950a385010ca6fb2b98fb"
 }
 ##DOCS-SOURCER-END -->
