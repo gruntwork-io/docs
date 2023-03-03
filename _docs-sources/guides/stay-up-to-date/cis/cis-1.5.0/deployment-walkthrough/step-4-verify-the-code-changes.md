@@ -106,5 +106,11 @@ When applying the changes manually, you can run `terragrunt run-all apply` insid
 security, shared etc), and waiting them to successful update before applying the changes before the next one, e.g. wait
 for `dev` to successfully finish before applying `prod`.
 
+Example of using Terragrunt, after running Patcher in the `dev` folder:
+```
+aws-vault exec dev -- terragrunt run-all init
+aws-vault exec dev -- terragrunt run-all apply
+```
+
 After the changes have been applied we recommend you complete [step 5](step-5-check-your-live-infrastructure-is-cis-v1.5-compliant)
 and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0 compliant.
