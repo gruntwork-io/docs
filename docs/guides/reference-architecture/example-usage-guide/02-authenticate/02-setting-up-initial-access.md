@@ -60,8 +60,14 @@ Once you have access with the IAM user, be sure to do the following to finish co
 
 1. **Enable MFA**. [Follow these instructions to enable
    MFA](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable.html) for your IAM user. It takes
-   less than a minute and*dramatically* improves your security posture. Moreover, MFA is **required** by the Reference
+   less than a minute and *dramatically* improves your security posture. Moreover, MFA is **required** by the Reference
    Architecture, and you won't be able to access any other accounts without it!
+
+:::note
+
+The name of the MFA **must** be named exactly the same as the AWS IAM Username. This allows your AWS user to create and delete only your own MFA credential.
+
+:::
 
 2. **Logout and log back in**. After enabling MFA, you need to log out and then log back in, thereby forcing AWS to
    prompt you for an MFA token. Until you don't do this, you will not be able to access anything else in the web
@@ -141,6 +147,6 @@ To deploy this new code and create the new IAM users, you will need to:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "471a3233265134ad05fc2dc635a9e664"
+  "hash": "6f90ac986b9bce7cc7433489500eb8dd"
 }
 ##DOCS-SOURCER-END -->
