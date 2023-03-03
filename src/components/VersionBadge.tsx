@@ -3,17 +3,19 @@ import styles from "./VersionBadge.module.css"
 
 type VersionBadgeProps = {
   version: string
+  repoTitle?:string;
   lastModifiedVersion?: string
 }
 
 const VersionBadge: React.FunctionComponent<VersionBadgeProps> = ({
   version,
+  repoTitle = "Service Catalog Version",
   lastModifiedVersion,
 }) => {
   return (
     <>
       <span className={styles.versionBadge}>
-        Service Catalog Version {version}
+        {repoTitle} {version}
       </span>
       {lastModifiedVersion && (
         <span className={styles.lastModificationLabel}>

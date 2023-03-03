@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS Organizations Config Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS Organizations Config Rules
 
 This module allows you to configure [AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) for your AWS accounts.
 
@@ -85,6 +88,144 @@ If you want to deploy this repo in production, check out the following resources
 *   [How do I add additional rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/core-concepts.md#how-do-i-add-additional-rules)
 
 *   [How do I exclude specific accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/core-concepts.md#how-do-i-exclude-specific-accounts)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S AWS-CONFIG-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "aws_config_rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.67.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of additional managed rules to add. The key is the name of the rule (e.g.
+  # ´acm-certificate-expiration-check´) and the value is an object specifying the
+  # rule details
+  additional_rules = {}
+
+  # Set to true to create these rules at the account level or false to create them
+  # at the organization level. When you create rules at the organization level, you
+  # must run this module in the root account, and the rules will apply to EVERY
+  # account in the organization. This allows you to manage the rules centrally,
+  # which is convenient, but also has a dependency / ordering issue, as org level
+  # config rules require every child account to have an AWS Config Recorder already
+  # set up, which is very inconvenient (when adding a new account, you first have to
+  # leave the rules disabled for it, then create the account, apply a baseline to it
+  # that creates a Config Recorder, and then go back to the root and enable the
+  # rules). When creating rules at the account level, you have to create and manage
+  # the rules in each account separately, which is inconvenient (but only slightly,
+  # since it's all managed as code), but there are no dependency or ordering issues.
+  create_account_rules = false
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources should be
+  # created or not.
+  create_resources = true
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # Checks whether the EBS volumes that are in an attached state are encrypted.
+  enable_encrypted_volumes = true
+
+  # Set to true to enable all default config rules that apply to global
+  # (non-regional) resources, like IAM roles. This will also control rules included
+  # with var.additional_rules depending on the attribute,
+  # applies_to_global_resources.
+  enable_global_resource_rules = true
+
+  # Checks whether the account password policy for IAM users meets the specified
+  # requirements.
+  enable_iam_password_policy = true
+
+  # Checks whether your IAM users have passwords or active access keys that have not
+  # been used within the specified number of days.
+  enable_iam_user_unused_credentials_check = true
+
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
+  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  enable_insecure_sg_rules = true
+
+  # Checks whether storage encryption is enabled for your RDS DB instances.
+  enable_rds_storage_encrypted = true
+
+  # Checks whether users of your AWS account require a multi-factor authentication
+  # (MFA) device to sign in with root credentials.
+  enable_root_account_mfa = true
+
+  # Checks that your Amazon S3 buckets do not allow public read access.
+  enable_s3_bucket_public_read_prohibited = true
+
+  # Checks that your Amazon S3 buckets do not allow public write access.
+  enable_s3_bucket_public_write_prohibited = true
+
+  # ID or ARN of the KMS key that is used to encrypt the volume.
+  encrypted_volumes_kms_id = null
+
+  # List of AWS account identifiers to exclude from the rules.
+  excluded_accounts = []
+
+  # Number of days before password expiration.
+  iam_password_policy_max_password_age = 30
+
+  # Password minimum length.
+  iam_password_policy_minimum_password_length = 16
+
+  # Number of passwords before allowing reuse.
+  iam_password_policy_password_reuse_prevention = 5
+
+  # Require at least one lowercase character in password.
+  iam_password_policy_require_lowercase_characters = true
+
+  # Require at least one number in password.
+  iam_password_policy_require_numbers = true
+
+  # Require at least one symbol in password.
+  iam_password_policy_require_symbols = true
+
+  # Require at least one uppercase character in password.
+  iam_password_policy_require_uppercase_characters = true
+
+  # Maximum number of days a credential can be not used.
+  iam_user_max_credential_usage_age = 90
+
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
+  # defined by a dash; for example, '443,1020-1025'.
+  insecure_sg_rules_authorized_tcp_ports = null
+
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
+  # defined by a dash; for example, '500,1020-1025'.
+  insecure_sg_rules_authorized_udp_ports = null
+
+  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
+  # rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
+  # ml#maximum_execution_frequency
+  maximum_execution_frequency = "TwentyFour_Hours"
+
+  # KMS key ID or ARN used to encrypt the storage.
+  rds_storage_encrypted_kms_id = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -396,11 +537,11 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-config-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0efb1afa071e0e209ba6bd7731f2a560"
+  "hash": "ffab02c2a6da5d1dc3454b37ad0ac75c"
 }
 ##DOCS-SOURCER-END -->

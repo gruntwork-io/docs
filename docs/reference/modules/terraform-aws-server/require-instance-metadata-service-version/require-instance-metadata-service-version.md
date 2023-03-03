@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Module Server" version="0.15.3" />
+
+# Require Instance Metadata Service version script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Require Instance Metadata Service version script
 
 This folder contains a script (`require-instance-metadata-service-version`) you can use to either:
 
@@ -95,11 +98,11 @@ Setting Instance Metadata Service version 2 state to optional
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/require-instance-metadata-service-version/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "79587f3b8dbd1cac333b6beddeabf35a"
+  "hash": "edba2d66d9137c99d7188e3f2bb997cd"
 }
 ##DOCS-SOURCER-END -->

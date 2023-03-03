@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS IAM Access Analyzer
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS IAM Access Analyzer
 
 This repo contains a Module for creating and enabling [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html)
 
@@ -62,70 +65,58 @@ If you just want to try this out for experimenting and learning, check out the f
 
 *   [What to do with the access analyzer findings?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/core-concepts.md#what-to-do-with-the-access-analyzer-findings?)
 
+## Sample Usage
 
+<ModuleUsage>
 
+```hcl title="main.tf"
 
-## Reference
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S IAM-ACCESS-ANALYZER-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
 
-<Tabs>
-<TabItem value="inputs" label="Inputs" default>
+module "iam_access_analyzer_multi_region" {
 
-### Required
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.67.2"
 
-<HclListItem name="aws_account_id" requirement="required" type="string">
-<HclListItemDescription>
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
 
-The AWS Account ID the template should be operated on. This avoids misconfiguration errors caused by environment variables.
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
 
-</HclListItemDescription>
-</HclListItem>
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
 
-### Optional
+  # A feature flag to enable or disable this module.
+  create_resources = true
 
-<HclListItem name="create_resources" requirement="optional" type="bool">
-<HclListItemDescription>
+  # The name of the IAM Access Analyzer module
+  iam_access_analyzer_name = "iam-access-analyzer"
 
-A feature flag to enable or disable this module.
+  # If set to ACCOUNT, the analyzer will only be scanning the current AWS account
+  # it's in. If set to ORGANIZATION - will scan the organization AWS account and the
+  # child accounts.
+  iam_access_analyzer_type = "ACCOUNT"
 
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
+}
 
-<HclListItem name="iam_access_analyzer_name" requirement="optional" type="string">
-<HclListItemDescription>
+```
 
-The name of the IAM Access Analyzer module
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;iam-access-analyzer&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_access_analyzer_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If set to ACCOUNT, the analyzer will only be scanning the current AWS account it's in. If set to ORGANIZATION - will scan the organization AWS account and the child accounts.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ACCOUNT&quot;"/>
-</HclListItem>
-
-</TabItem>
-<TabItem value="outputs" label="Outputs">
-
-
-
-</TabItem>
-</Tabs>
+</ModuleUsage>
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/iam-access-analyzer-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6ebe2e6b09e991b83be7415c8bdc1aa0"
+  "hash": "92c09e490f106de5ce1e4bfb8345fedb"
 }
 ##DOCS-SOURCER-END -->

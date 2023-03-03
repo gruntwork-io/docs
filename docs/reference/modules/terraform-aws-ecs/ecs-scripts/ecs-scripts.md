@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+
+# ECS Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# ECS Scripts
 
 This folder contains helper scripts for running an ECS Cluster, including:
 
@@ -77,11 +80,11 @@ Run `configure-ecs-instance --help` to see all available options.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-scripts/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-scripts/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/modules/ecs-scripts/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-scripts/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-scripts/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2b49b8934de708a9ff8df9710272d306"
+  "hash": "5d9199ec0152200b5ee9505627b2cc37"
 }
 ##DOCS-SOURCER-END -->

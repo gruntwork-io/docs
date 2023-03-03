@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="AWS Messaging" version="0.9.1" />
+
+# Simple Queuing Service (SQS) Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Simple Queuing Service (SQS) Module
 
 This module makes it easy to deploy an SQS queue along with policies for the topic.
 
@@ -84,6 +87,117 @@ including:
 
 1.  `queue_arn`: The ARN of the created queue
 2.  `dead_letter_queue_arn` The ARN of the dead letter queue
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SQS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "sqs" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.9.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the queue. Note that this module may append '.fifo' to this name
+  # depending on the value of var.fifo_queue.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges that are allowed to access this
+  # queue. Required when var.apply_ip_queue_policy = true.
+  allowed_cidr_blocks = []
+
+  # Should the ip access policy be attached to the queue (using
+  # var.allowed_cidr_blocks)?
+  apply_ip_queue_policy = false
+
+  # Set to true to enable content-based deduplication for FIFO queues.
+  content_based_deduplication = false
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # A map of tags to apply to the dead letter queue, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined here
+  # will override tags defined as custom_tags in case of conflict.
+  custom_dlq_tags = {}
+
+  # A map of custom tags to apply to the sqs queue. The key is the tag name and the
+  # value is the tag value.
+  custom_tags = {}
+
+  # Set to true to enable a dead letter queue. Messages that cannot be
+  # processed/consumed successfully will be sent to a second queue so you can set
+  # aside these messages and analyze what went wrong.
+  dead_letter_queue = false
+
+  # Specifies whether message deduplication occurs at the message group or queue
+  # level. Valid values are messageGroup and queue (default). Only used if
+  # fifo_queue is set to true.
+  deduplication_scope = "queue"
+
+  # The time in seconds that the delivery of all messages in the queue will be
+  # delayed. An integer from 0 to 900 (15 minutes).
+  delay_seconds = 0
+
+  # Set to true to make this a FIFO queue.
+  fifo_queue = false
+
+  # Specifies whether the FIFO queue throughput quota applies to the entire queue or
+  # per message group. Valid values are perQueue (default) and perMessageGroupId.
+  # Only used if fifo_queue is set to true.
+  fifo_throughput_limit = "perQueue"
+
+  # The length of time, in seconds, for which Amazon SQS can reuse a data key to
+  # encrypt or decrypt messages before calling AWS KMS again. An integer
+  # representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24
+  # hours)
+  kms_data_key_reuse_period_seconds = 300
+
+  # The ID of an AWS-managed customer master key (such as 'alias/aws/sqs') for
+  # Amazon SQS or a custom CMK
+  kms_master_key_id = null
+
+  # The limit of how many bytes a message can contain before Amazon SQS rejects it.
+  # An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB).
+  max_message_size = 262144
+
+  # The maximum number of times that a message can be received by consumers. When
+  # this value is exceeded for a message the message will be automatically sent to
+  # the Dead Letter Queue. Only used if var.dead_letter_queue is true.
+  max_receive_count = 3
+
+  # The number of seconds Amazon SQS retains a message. Integer representing
+  # seconds, from 60 (1 minute) to 1209600 (14 days).
+  message_retention_seconds = 345600
+
+  # The time for which a ReceiveMessage call will wait for a message to arrive (long
+  # polling) before returning. An integer from 0 to 20 (seconds). Setting this to 0
+  # means the call will return immediately.
+  receive_wait_time_seconds = 0
+
+  # The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
+  visibility_timeout_seconds = 30
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -307,11 +421,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/modules/sqs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fab1f4c0f2f3bce5f18f677721a7c801"
+  "hash": "a7f7bfbb96b1dedf511487e40ab65c2a"
 }
 ##DOCS-SOURCER-END -->

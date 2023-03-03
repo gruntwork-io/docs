@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# Require Executable Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Require Executable Module
 
 This is a module that can be used to ensure particular executables is available in the `PATH`. This module will search
 the OS `PATH` for the provided named executables and validate that it exists, as well as making sure the OS user running
@@ -42,6 +45,43 @@ module "require_executables" {
   required_executables = ["${var.validate_go ? "go" : ""}"]
 }
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REQUIRE-EXECUTABLE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "require_executable" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of named executables that should exist on the OS PATH.
+  required_executables = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Error message to show if the required executable is not found. This is printed
+  # for each executable that was not found. The module will make the following
+  # substitutions in the string: `__EXECUTABLE_NAME__` will become the name of the
+  # executable that was not found.
+  error_message = "Not found: __EXECUTABLE_NAME__"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -90,11 +130,11 @@ A map of the executables to the resolved path where they reside.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/require-executable/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c479ff2685d0fb51c101f9768caa733"
+  "hash": "dae2e9305555f506d33689bc960043d2"
 }
 ##DOCS-SOURCER-END -->

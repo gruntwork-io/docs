@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# Check Url
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Check Url
 
 This folder contains a script called `check-url`. This script can be used to repeatedly test a URL until either it
 returns an expected response, and the script exits successfully, or the max number of retries is exceeded, and the
@@ -78,11 +81,11 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/check-url/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "af85167af0d785d5c2c71f9c2dc54d8d"
+  "hash": "f5f9bff95bb22e58ba9339cb428bc5d1"
 }
 ##DOCS-SOURCER-END -->

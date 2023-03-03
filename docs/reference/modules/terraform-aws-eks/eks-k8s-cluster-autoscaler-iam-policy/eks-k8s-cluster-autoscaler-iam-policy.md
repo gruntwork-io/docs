@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# K8S Cluster Autoscaler IAM Policy Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# K8S Cluster Autoscaler IAM Policy Module
 
 This Terraform Module defines an [IAM
 policy](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/QuickStartEC2Instance.html#d0e22325) that
@@ -49,6 +52,50 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
     policy_arn = module.k8s_cluster_autoscaler_iam_policy.k8s_cluster_autoscaler_policy_arn
 }
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER-IAM-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "eks_k_8_s_cluster_autoscaler_iam_policy" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.56.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A name that uniquely identified in which context this module is being invoked.
+  # This also helps to avoid creating two resources with the same name from
+  # different terraform applies.
+  name_prefix = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # ARNs of the Auto Scaling Groups to grant access to. If this is not specified the
+  # policy will match based on tags only (specifically, the tag
+  # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
+  eks_worker_asg_arns = []
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -122,11 +169,11 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9c4996e1e7aa1b8fb6e39b420b12590"
+  "hash": "cddc742e551ded45622ab090466c806b"
 }
 ##DOCS-SOURCER-END -->

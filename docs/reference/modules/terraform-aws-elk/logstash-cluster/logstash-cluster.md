@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Logstash Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Logstash Cluster
 
 This folder contains a [Terraform](https://www.terraform.io/) module to deploy an [Logstash](https://www.elastic.co/products/logstash) cluster in [AWS](https://aws.amazon.com/) on top of an Auto Scaling Group.
 The idea is to create an [Amazon Machine Image (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
@@ -97,6 +100,160 @@ This module attaches a security group to each EC2 Instance that allows inbound r
 You can associate an [EC2 Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) with each
 of the EC2 Instances in this cluster by specifying the Key Pair's name in the `ssh_key_name` variable. If you don't
 want to associate a Key Pair with these servers, set `ssh_key_name` to an empty string.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LOGSTASH-CLUSTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "logstash_cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-cluster?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AMI to run in this cluster.
+  ami_id = <INPUT REQUIRED>
+
+  # The AWS region the cluster will be deployed in.
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the Logstash cluster (e.g. logstash-stage). This variable is used to
+  # namespace all resources created by this module.
+  cluster_name = <INPUT REQUIRED>
+
+  # The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
+  instance_type = <INPUT REQUIRED>
+
+  # The ALB taget groups with which to associate instances in this server group
+  lb_target_group_arns = <INPUT REQUIRED>
+
+  # The number of nodes to have in the Logstash cluster.
+  size = <INPUT REQUIRED>
+
+  # The subnet IDs into which the EC2 Instances should be deployed.
+  subnet_ids = <INPUT REQUIRED>
+
+  # A User Data script to execute while the server is booting.
+  user_data = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the Logstash cluster
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges from which the EC2 Instances will
+  # allow SSH connections
+  allowed_ssh_cidr_blocks = []
+
+  # A list of security group IDs from which the EC2 Instances will allow SSH
+  # connections
+  allowed_ssh_security_group_ids = []
+
+  # If set to true, associate a public IP address with each EC2 Instance in the
+  # cluster.
+  associate_public_ip_address = false
+
+  # A list of IP address ranges in CIDR format from which access to the Filebeat
+  # port will be allowed
+  beats_port_cidr_blocks = []
+
+  # The list of Security Group IDs from which to allow connections to the
+  # beats_port. If you update this variable, make sure to update
+  # var.num_beats_port_security_groups too!
+  beats_port_security_groups = []
+
+  # The port on which CollectD will communicate with the Logstash cluster
+  collectd_port = 8080
+
+  # A list of IP address ranges in CIDR format from which access to the Collectd
+  # port will be allowed
+  collectd_port_cidr_blocks = []
+
+  # The list of Security Group IDs from which to allow connections to the
+  # collectd_port. If you update this variable, make sure to update
+  # var.num_collectd_port_security_groups too!
+  collectd_port_security_groups = []
+
+  # If true, the launched EC2 instance will be EBS-optimized.
+  ebs_optimized = false
+
+  # A list that defines the EBS Volumes to create for each server. Each item in the
+  # list should be a map that contains the keys 'type' (one of standard, gp2, or
+  # io1), 'size' (in GB), and 'encrypted' (true or false). Each EBS Volume and
+  # server pair will get matching tags with a name of the format ebs-volume-xxx,
+  # where xxx is the index of the EBS Volume (e.g., ebs-volume-0, ebs-volume-1,
+  # etc). These tags can be used by each server to find and mount its EBS Volume(s).
+  ebs_volumes = []
+
+  # The port on which Filebeat will communicate with the Logstash cluster
+  filebeat_port = 5044
+
+  # Time, in seconds, after instance comes into service before checking health.
+  health_check_grace_period = 600
+
+  # The type of health check to use. Must be one of: EC2 or ELB. If you associate
+  # any load balancers with this server group via var.elb_names or
+  # var.alb_target_group_arns, you should typically set this parameter to ELB.
+  health_check_type = "EC2"
+
+  # The number of security group IDs in var.beats_port_security_groups. We should be
+  # able to compute this automatically, but due to a Terraform limitation, if there
+  # are any dynamic resources in var.beats_port_security_groups, then we won't be
+  # able to: https://github.com/hashicorp/terraform/pull/11482
+  num_beats_port_security_groups = 0
+
+  # The number of security group IDs in var.collectd_port_security_groups. We should
+  # be able to compute this automatically, but due to a Terraform limitation, if
+  # there are any dynamic resources in var.collectd_port_security_groups, then we
+  # won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_collectd_port_security_groups = 0
+
+  # Whether the volume should be destroyed on instance termination.
+  root_volume_delete_on_termination = true
+
+  # The size, in GB, of the root EBS volume.
+  root_volume_size = 50
+
+  # The type of volume. Must be one of: standard, gp2, or io1.
+  root_volume_type = "gp2"
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup easier.
+  # It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
+  # The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this
+  # cluster. Set to an empty string to not associate a Key Pair.
+  ssh_key_name = null
+
+  # The port used for SSH connections
+  ssh_port = 22
+
+  # A map of key value pairs that represent custom tags to propagate to the
+  # resources that correspond to this logstash cluster.
+  tags = {}
+
+  # A maximum duration that Terraform should wait for ASG instances to be healthy
+  # before timing out. Setting this to '0' causes Terraform to skip all Capacity
+  # Waiting behavior.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -456,11 +613,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/logstash-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "485e5896696d85dc86d70be6c3c302fe"
+  "hash": "2f5dab13eca59858e6ec6ff1f272bfc0"
 }
 ##DOCS-SOURCER-END -->

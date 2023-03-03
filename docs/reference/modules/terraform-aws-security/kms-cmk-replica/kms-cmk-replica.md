@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# KMS Customer Managed Key Multi-Region Replication module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# KMS Customer Managed Key Multi-Region Replication module
 
 This Terraform Module replicates an existing [KMS Customer Managed
 Key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) to another region using
@@ -22,6 +25,66 @@ KMS](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-ove
 This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key) to replicate a KMS
 key managed with that module to other regions. Note that the KMS key must be marked as multi-region in order to support
 multi-region replication.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-CMK-REPLICA MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "kms_cmk_replica" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of CMK names to the primary CMK that the replica key is replicating. The
+  # primary key must already exist, and must be marked as multi_region = true. Each
+  # entry in var.cmk_replicas must have a corresponding entry here.
+  cmk_replica_primary_key_arns = <INPUT REQUIRED>
+
+  # Map of CMK names to spec for managing each key. Each entry in the map
+  # corresponds to a key that will be created by this template. Each entry in this
+  # map must have a corresponding entry in var.cmk_replica_primary_key_arns.
+  cmk_replicas = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The default value to use for deletion_window_in_days (the number of days to keep
+  # this KMS Master Key around after it has been marked for deletion). Applies to
+  # all keys, unless overridden in the customer_master_keys map.
+  default_deletion_window_in_days = 30
+
+  # The default value to use for enable_key_rotation (whether or not to enable
+  # automatic annual rotation of the KMS key). Applies to all keys, unless
+  # overridden in the customer_master_keys map.
+  default_enable_key_rotation = true
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
+  # key is the tag name and the value is the tag value.
+  global_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -245,11 +308,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-cmk-replica/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe0e38059ef2507fd14f498044af80b6"
+  "hash": "da8b4a0616169fdd513773b4c63cc743"
 }
 ##DOCS-SOURCER-END -->

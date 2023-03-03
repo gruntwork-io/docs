@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Generate Key Stores
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/generate-key-stores" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Generate Key Stores
 
 This folder contains a script that you can use to generate:
 
@@ -141,11 +144,11 @@ Additional Info:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/generate-key-stores/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/generate-key-stores/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/generate-key-stores/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/generate-key-stores/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b64d61a2ddfe19f47b2cae286a023d4f"
+  "hash": "af39493fc37ce4640a68eee3b6d3a180"
 }
 ##DOCS-SOURCER-END -->

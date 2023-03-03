@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+
+# Backup Plan Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Backup Plan Module
 
 This Terraform Module creates the following AWS Backup resources:
 
@@ -89,6 +92,40 @@ module "backup_plan" {
 ## How do you troubleshoot Backup jobs?
 
 See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S BACKUP-PLAN MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "backup_plan" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v0.26.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  plans = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name to use for the backup service role that is created and attached to
+  # backup plans.
+  backup_service_role_name = "backup-service-role"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -171,11 +208,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-plan/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b7511b6d32c9ad93f2f7d7368fb7f3bf"
+  "hash": "c7aa7d1a347e935da9ace06e01ba58ee"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# ElastAlert Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# ElastAlert Security Group Rules Module
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by
 [ElastAlert](https://github.com/Yelp/elastalert) to control the traffic that is allowed to go in and out of the cluster.
@@ -66,15 +69,64 @@ You can find the other parameters in [variables.tf](https://github.com/gruntwork
 
 Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples/elk-multi-cluster) for working sample code.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTALERT-SECURITY-GROUP-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "elastalert_security_group_rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elastalert-security-group-rules?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the Security Group to which all the rules should be attached.
+  security_group_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses will
+  # be blocked.
+  allow_ssh_from_cidr_blocks = []
+
+  # The IDs of security groups from which SSH connections will be allowed. If you
+  # update this variable, make sure to update var.num_ssh_security_group_ids too!
+  allow_ssh_from_security_group_ids = []
+
+  # The number of security group IDs in var.allow_ssh_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_ssh_from_security_group_ids,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_ssh_security_group_ids = 0
+
+  # The port to use for SSH access.
+  ssh_port = 22
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elastalert-security-group-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3471279ca6819ae06311edd61bdb7520"
+  "hash": "b404ed18854acfdd1a4ee02f0849d50a"
 }
 ##DOCS-SOURCER-END -->

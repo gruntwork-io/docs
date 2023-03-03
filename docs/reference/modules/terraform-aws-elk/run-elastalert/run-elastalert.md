@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Run Elastalert Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Run Elastalert Script
 
 This folder contains a script for configuring and running [ElastAlert](https://github.com/Yelp/elastalert) on an AWS server. This script has been tested on the following operating systems:
 
@@ -85,11 +88,11 @@ By contrast, Elastalert is limited to alerting and notifications. We chose Elast
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elastalert/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elastalert/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elastalert/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76dcb1d20352eb74135a341e270b9f6e"
+  "hash": "ed5b4dc1d7c835f32ce8b5bf64474aa6"
 }
 ##DOCS-SOURCER-END -->

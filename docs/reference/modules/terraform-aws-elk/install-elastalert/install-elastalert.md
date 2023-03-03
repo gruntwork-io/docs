@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elastalert Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elastalert Install Script
 
 This folder contains a script for installing [Elastalert](https://github.com/Yelp/elastalert). Use this script along
 with the [run-elastalert script](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert) to run Elastalert alongside Elasticsearch. See the run-elastalert script for more information about ElastAlert.
@@ -54,11 +57,11 @@ code](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/inst
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elastalert/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elastalert/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-elastalert/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44fe644e86c2ffd04c9d764ca8ba99ca"
+  "hash": "acfec7738be82a2fabf9c47a5d6171e0"
 }
 ##DOCS-SOURCER-END -->

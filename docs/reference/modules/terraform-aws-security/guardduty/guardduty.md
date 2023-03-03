@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS GuardDuty
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS GuardDuty
 
 This Terraform Module configures [AWS GuardDuty](https://aws.amazon.com/guardduty/), a service for detecting threats and continuously monitoring your AWS accounts and workloads against malicious activity and unauthorized behavior.
 
@@ -75,6 +78,68 @@ If you want to deploy this module in production, check out the following resourc
 *   [Terraform Module to enable GuardDuty in all enabled regions of an AWS Account](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region).
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GUARDDUTY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "guardduty" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.67.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the Cloudwatch event rule
+  cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # Enable or disable creation of the resources of this module. Necessary workaround
+  # when it is desired to set count = 0 for modules, which is not yet possible as of
+  # terraform 0.12.17
+  create_resources = true
+
+  # The type of GuardDuty event to match. Setting this to anything other than the
+  # default will generate noise. This usually only needs to be adjusted for
+  # automated testing purposes.
+  detail_type = "GuardDuty Finding"
+
+  # Enable monitoring and feedback reporting. Setting to false is equivalent to
+  # suspending GuardDuty. Defaults to true
+  enable = true
+
+  # Specifies the frequency of notifications sent for subsequent finding
+  # occurrences. If the detector is a GuardDuty member account, the value is
+  # determined by the GuardDuty administrator account and cannot be modified,
+  # otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator
+  # accounts, it must be configured in Terraform to enable drift detection. Valid
+  # values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR,
+  # SIX_HOURS.
+  finding_publishing_frequency = null
+
+  # Specifies a name for the created SNS topic where findings are published.
+  # publish_findings_to_sns must be set to true.
+  findings_sns_topic_name = "guardduty-findings"
+
+  # Send GuardDuty findings to a SNS topic specified by findings_sns_topic_name.
+  publish_findings_to_sns = false
+
+  # The ID of a customer master key (CMK) to use to encrypt the SNS topic. This
+  # could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g.,
+  # alias/example-key). Only used if publish_findings_to_sns is true.
+  sns_kms_master_key_id = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -224,11 +289,11 @@ The ID of the GuardDuty detector.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/guardduty/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4b258eadc37ac068daff7ef7ec10c2c6"
+  "hash": "aac140c7e6c01399beb6d25322dce81a"
 }
 ##DOCS-SOURCER-END -->

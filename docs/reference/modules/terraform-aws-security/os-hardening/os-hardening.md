@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# OS Hardening
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# OS Hardening
 
 This is a Gruntwork Script Module meant to be used with [Packer](http://packer.io) to build an AMI of a hardened Linux
 OS. At present, the only supported Linux distribution is Amazon Linux. If you wish to add another distribution, please
@@ -267,11 +270,11 @@ needed additional space to build a new AMI was not unreasonable.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/os-hardening/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38292e0a230736e5f1220286e0ac6d10"
+  "hash": "6e8b8c5bad711b89e6148f9775b587b0"
 }
 ##DOCS-SOURCER-END -->

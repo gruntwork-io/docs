@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" />
+
+# Load Balancer Listener Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Load Balancer Listener Rules
 
 This Terraform Module provides a simpler, more declarative interface for creating
 [Load Balancer Listener Rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
@@ -78,6 +81,54 @@ The gotcha here is that, because you define the Listener Rules for a single List
 ECS Services or Auto Scaling Groups, take care to make sure that each Listener Rule uses a globally unique priority number.
 
 Note that in most cases, your path definitions should be mutually exclusive and the actual priority value won't matter.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LB-LISTENER-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "lb_listener_rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = <INPUT REQUIRED>
+
+  # The default port numbers on the load balancer to attach listener rules to. You
+  # can override this default on a rule-by-rule basis by setting the listener_ports
+  # parameter in each rule. The port numbers specified in this variable and the
+  # listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the Target Group to which to route traffic. Required if using forward
+  # rules.
+  default_forward_target_group_arns = []
+
+  fixed_response_rules = {}
+
+  forward_rules = {}
+
+  redirect_rules = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -596,11 +647,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/modules/lb-listener-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "40c8aa67bdc5a3038689b3e25f6eff25"
+  "hash": "c909296913b642a57eed7b0c8f90464d"
 }
 ##DOCS-SOURCER-END -->

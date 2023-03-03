@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Install Kafka
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-kafka" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Install Kafka
 
 This folder contains a script for installing [Apache Kafka](https://kafka.apache.org/).
 
@@ -71,11 +74,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-kafka/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-kafka/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/install-kafka/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-kafka/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-kafka/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/install-kafka/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6027262d4b0693af5ee3f96218211d32"
+  "hash": "c78247d6ed825c4735247dfb6df2e644"
 }
 ##DOCS-SOURCER-END -->

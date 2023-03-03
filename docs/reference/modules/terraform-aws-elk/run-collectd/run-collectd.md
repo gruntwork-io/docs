@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# CollectD Run Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-collectd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# CollectD Run Script
 
 This folder contains a script for configuring and running [CollectD](https://collectd.org/) on an [AWS](https://aws.amazon.com/) EC2 instance. This script has been tested on the following operating systems:
 
@@ -85,11 +88,11 @@ Example:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-collectd/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-collectd/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-collectd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-collectd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0822de50948c3fbb497158db6e33ff87"
+  "hash": "6200a4443e474c184b0da147f6db77d2"
 }
 ##DOCS-SOURCER-END -->
