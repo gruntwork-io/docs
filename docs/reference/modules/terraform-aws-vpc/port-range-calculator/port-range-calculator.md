@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+
+# Port Calculator Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Port Calculator Module
 
 > **NOTE:**
 >
@@ -33,6 +36,43 @@ just those ports:
   [3390, 65535],
 ]
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S PORT-RANGE-CALCULATOR MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "port_range_calculator" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/port-range-calculator?ref=v0.22.4"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of ports to exclude from the range.
+  exclude_ports = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The starting range of the port range that is returned.
+  from_port = 0
+
+  # The ending range of the port range that is returned.
+  to_port = 65535
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -98,11 +138,11 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/modules/port-range-calculator/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e3777a817b3d3e4910da590187c6bba"
+  "hash": "faffdc0f403cf219ecc31c7ffaf635cd"
 }
 ##DOCS-SOURCER-END -->

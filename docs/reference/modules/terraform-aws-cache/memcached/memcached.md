@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Cache Modules" version="0.18.2" />
+
+# Memcached Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Memcached Module
 
 This module creates an ElastiCache cluster that runs [Memcached](https://memcached.org/).
 
@@ -30,6 +33,93 @@ also see the variable at the end of each `terraform apply` call or if you run `t
 *   To scale horizontally, increase the number of nodes using the `num_cache_nodes` parameter.
 
 For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.Memcached.html).
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S MEMCACHED MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "memcached" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.18.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
+  # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
+  # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_connections_from_cidr_blocks = <INPUT REQUIRED>
+
+  # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
+  instance_type = <INPUT REQUIRED>
+
+  # The name used to namespace all resources created by these templates, including
+  # the ElastiCache cluster itself (e.g. mycache). Must be unique in this region.
+  # Must be a lowercase string.
+  name = <INPUT REQUIRED>
+
+  # The initial number of cache nodes that the cache cluster will have. Must be
+  # between 1 and 20.
+  num_cache_nodes = <INPUT REQUIRED>
+
+  # A list of subnet ids where the ElastiCache instances should be deployed. For the
+  # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC in which the ElastiCache cluster should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Specifies a list of Security Groups to allow connections from.
+  allow_connections_from_security_groups = []
+
+  # Specifies whether any database modifications are applied immediately, or during
+  # the next maintenance window.
+  apply_immediately = false
+
+  # Specifies whether the nodes in this Memcached node group are created in a single
+  # Availability Zone or created across multiple Availability Zones in the cluster's
+  # region. Valid values for this parameter are single-az or cross-az. If you want
+  # to choose cross-az, num_cache_nodes must be greater than 1.
+  az_mode = "single-az"
+
+  # Specifies the weekly time range for when maintenance on the cache cluster is
+  # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H
+  # Clock UTC). The minimum maintenance window is a 60 minute period.
+  maintenance_window = "sat:07:00-sat:08:00"
+
+  # Version number of memcached to use (e.g. 1.5.16).
+  memcached_version = "1.5.16"
+
+  # Name of the parameter group to associate with this cache cluster. This can be
+  # used to configure custom settings for the cluster.
+  parameter_group_name = null
+
+  # The port number on which each of the cache nodes will accept connections (e.g.
+  # 6379).
+  port = 11211
+
+  # A set of tags to set for the Security Group created as part of this module.
+  security_group_tags = {}
+
+  # A set of tags to set for the ElastiCache Replication Group.
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -200,11 +290,11 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/memcached/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/memcached/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/modules/memcached/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "01d9b40356092bf23b132f3fc39ada17"
+  "hash": "7808b10ae7e5eb07e365be6e967d8c4b"
 }
 ##DOCS-SOURCER-END -->

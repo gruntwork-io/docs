@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# SSH Grunt
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# SSH Grunt
 
 This module can configure a Linux server to manage SSH access to the server via an Identity Provider (IdP). Via AWS [Identity and Access Management (IAM)](https://aws.amazon.com/iam/), developers in certain IAM Groups will be able to SSH to your servers using their IAM user name and the SSH key they uploaded to their IAM user account.
 
@@ -90,11 +93,11 @@ If you want to deploy this module in production, check out the following resourc
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3522814d91d9411a5adc3a6a7c4b2431"
+  "hash": "48e6ae6d4b148148e3fbab94e01c2038"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# Instance Type
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Instance Type
 
 This is a module that can be used to look up a list of EC2 instance types and determine which of them is available in
 all Availability Zones (AZs) in the current AWS Region. This is useful because certain instance types, such as
@@ -50,6 +53,36 @@ region. If no instance type is available in all AZs, you'll get an error.
 For example, as of July, 2020, if you run `apply` on the code above in `eu-west-1`, the `recommended_instance_type`
 will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if you run the same code in
 `ap-northeast-2`, the `recommended_instance_type` will be `t3.micro`, as `t2.micro` is only available in 2 of the 4 AZs.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S INSTANCE-TYPE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "instance_type" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of instance types to look up in the current AWS region. We recommend
+  # putting them in order of preference, as the recommended_instance_type output
+  # variable will contain the first instance type from this list that is available
+  # in all AZs.
+  instance_types = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -95,11 +128,11 @@ The recommended instance type to use in this AWS region. This will be the first 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/instance-type/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/instance-type/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/instance-type/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d03fc629b73b96f7b5492bd07299316"
+  "hash": "e13e67337cae053a81c8453a4f487ee0"
 }
 ##DOCS-SOURCER-END -->

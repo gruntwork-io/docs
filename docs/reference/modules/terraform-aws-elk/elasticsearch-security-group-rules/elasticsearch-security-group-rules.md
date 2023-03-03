@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elasticsearch Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elasticsearch Security Group Rules Module
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by a
 [Elasticsearch](https://www.elastic.co/) cluster to control the traffic that is allowed to go in and out of the cluster.
@@ -70,15 +73,79 @@ You can find the other parameters in [variables.tf](https://github.com/gruntwork
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTICSEARCH-SECURITY-GROUP-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "elasticsearch_security_group_rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-security-group-rules?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the Security Group to which all the rules should be attached.
+  security_group_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The IDs of security groups from which ES API connections will be allowed. If you
+  # update this variable, make sure to update var.num_api_security_group_ids too!
+  allow_api_from_security_group_ids = []
+
+  # The IDs of security groups from which ES API connections will be allowed. If you
+  # update this variable, make sure to update
+  # var.num_node_discovery_security_group_ids too!
+  allow_node_discovery_from_security_group_ids = []
+
+  # The list of IP address ranges in CIDR notation from which to allow connections
+  # to the rest_port.
+  allowed_cidr_blocks = []
+
+  # This is the port that is used to access elasticsearch for user queries
+  api_port = 9200
+
+  # This is the port that is used internally by elasticsearch for cluster node
+  # discovery
+  node_discovery_port = 9300
+
+  # The number of security group IDs in var.allow_api_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_api_from_security_group_ids,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_api_security_group_ids = 0
+
+  # The number of security group IDs in
+  # var.allow_node_discovery_from_security_group_ids. We should be able to compute
+  # this automatically, but due to a Terraform limitation, if there are any dynamic
+  # resources in var.allow_node_discovery_from_security_group_ids, then we won't be
+  # able to: https://github.com/hashicorp/terraform/pull/11482
+  num_node_discovery_security_group_ids = 0
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-security-group-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-security-group-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-security-group-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6251d5c23853907da3e71ccbeb8293cd"
+  "hash": "415f497925547767bb4c531c91267f69"
 }
 ##DOCS-SOURCER-END -->

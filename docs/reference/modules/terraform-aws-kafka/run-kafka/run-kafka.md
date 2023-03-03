@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# [Other settings](#other-settings)
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# [Other settings](#other-settings)
 
 ### ZooKeeper IPs
 
@@ -210,11 +213,11 @@ so it will replace or add settings to your custom `server.properties` at run tim
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bac6fd08b23310387c50d4c7f1573914"
+  "hash": "d941ffd467e98209944197689604534e"
 }
 ##DOCS-SOURCER-END -->

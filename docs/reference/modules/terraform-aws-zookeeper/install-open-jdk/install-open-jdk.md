@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+
+# Install Open JDK
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-open-jdk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Install Open JDK
 
 This folder contains a script for installing the [OpenJDK](http://openjdk.java.net/). The differences between
 the Oracle's JDK and OpenJDK have [gotten smaller over the last few years](https://stackoverflow.com/q/17360011/483528).
@@ -78,11 +81,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-open-jdk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-open-jdk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-open-jdk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-open-jdk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-open-jdk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-open-jdk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c63dabbaf8d9bde0b0916d04b2b91ea7"
+  "hash": "e32749656e4f7d231970fffdc62fb7e7"
 }
 ##DOCS-SOURCER-END -->

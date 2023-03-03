@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Logstash Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Logstash Install Script
 
 Logstash is an open source data collection engine with real-time pipelining capabilities. Logstash can dynamically unify data from disparate sources and normalize the data into destinations of your choice. This folder contains a script for installing [Logstash](https://www.elastic.co/products/logstash).
 
@@ -40,11 +43,11 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-logstash/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-logstash/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-logstash/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1adebd7659f57ea2c86706e5ca135b92"
+  "hash": "cfa57afb32cc637f41e31b6a959118ba"
 }
 ##DOCS-SOURCER-END -->

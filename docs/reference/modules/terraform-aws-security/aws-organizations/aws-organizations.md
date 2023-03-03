@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS Organizations
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS Organizations
 
 This Terraform Module allows you to create and manage your [AWS Organization](https://aws.amazon.com/organizations/) and all child [AWS accounts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html) as code.
 
@@ -77,6 +80,68 @@ If you want to deploy this repo in production, check out the following resources
 *   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
 
 *   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S AWS-ORGANIZATIONS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "aws_organizations" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of child accounts to create. The map key is the name of the account and the
+  # value is an object containing account configuration variables.
+  child_accounts = <INPUT REQUIRED>
+
+  # Flag indicating whether the organization should be created.
+  create_organization = <INPUT REQUIRED>
+
+  # If set to ALLOW, the new account enables IAM users to access account billing
+  # information if they have the required permissions. If set to DENY, then only the
+  # root user of the new account can access account billing information.
+  default_iam_user_access_to_billing = <INPUT REQUIRED>
+
+  # The name of an IAM role that Organizations automatically preconfigures in the
+  # new member account. This role trusts the mgmt account, allowing users in the
+  # mgmt account to assume the role, as permitted by the mgmt account administrator.
+  default_role_name = <INPUT REQUIRED>
+
+  # List of AWS service principal names for which you want to enable integration
+  # with your organization. Must have `organizations_feature_set` set to ALL. See
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
+  # s.html
+  organizations_aws_service_access_principals = <INPUT REQUIRED>
+
+  # List of Organizations policy types to enable in the Organization Root. See
+  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
+  # e.html
+  organizations_enabled_policy_types = <INPUT REQUIRED>
+
+  # Specify `ALL` or `CONSOLIDATED_BILLING`.
+  organizations_feature_set = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Default tags to add to accounts. Will be appended to ´child_account.*.tags´
+  default_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -294,11 +359,11 @@ Identifier of the root of this organization.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-organizations/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-organizations/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/aws-organizations/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "585605fd99bd7f29d8fa55e08fadb75a"
+  "hash": "c44d31363a05079e56525594baa33d5b"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Elasticsearch Cluster Restore
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Elasticsearch Cluster Restore
 
 This folder contains a [Terraform](https://www.terraform.io/) module to restore backups of an [Elasticsearch](https://www.elastic.co/products/kibana) cluster from snapshots saved in S3. The module is a lambda function that calls the Elasticsearch API to perform cluster restore tasks documented [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html);
 
@@ -37,6 +40,69 @@ You should be mindful of the difference in versions of the Elasticsearch cluster
 ### Restore Notification
 
 The time it takes to restore a snapshot is dependent on the volume of data within that snapshot. However, since the restore module is implemened as a Lambda function which has a maximum execution time of 5 minutes a separate notification Lambda is kicked off. The notification Lambda will check the status of the restore operation and re-invoke itself until the operation is complete. The notification Lambda continiously logs the status of the restore operation to Cloudwatch.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-RESTORE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "elasticsearch_cluster_restore" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-restore?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The S3 bucket that the specified repository will be associated with and where
+  # all snapshots will be stored
+  bucket = <INPUT REQUIRED>
+
+  # The DNS to the Load Balancer in front of the Elasticsearch cluster
+  elasticsearch_dns = <INPUT REQUIRED>
+
+  # The name of the Lambda function. Used to namespace all resources created by this
+  # module.
+  name = <INPUT REQUIRED>
+
+  # The name of the repository that will be associated with the created snapshots
+  repository = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The port on which the API requests will be made to the Elasticsearch cluster
+  elasticsearch_port = 9200
+
+  # The runtime to use for the Lambda function. Should be a Node.js runtime.
+  lambda_runtime = "nodejs14.x"
+
+  # Specifies the protocol to use when making the request to the Elasticsearch
+  # cluster. Possible values are HTTP or HTTPS
+  protocol = "http"
+
+  # Set to true to give your Lambda function access to resources within a VPC.
+  run_in_vpc = false
+
+  # A list of subnet IDs the Lambda function should be able to access within your
+  # VPC. Only used if var.run_in_vpc is true.
+  subnet_ids = []
+
+  # The ID of the VPC the Lambda function should be able to access. Only used if
+  # var.run_in_vpc is true.
+  vpc_id = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -152,11 +218,11 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/elasticsearch-cluster-restore/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-restore/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "21257d203e416e57b235693f053927a8"
+  "hash": "b11bce2cad98d8403cc90c33e4444aff"
 }
 ##DOCS-SOURCER-END -->

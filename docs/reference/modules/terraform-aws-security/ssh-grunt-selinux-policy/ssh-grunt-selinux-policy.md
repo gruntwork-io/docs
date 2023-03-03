@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# SSH Grunt SELinux Policy
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# SSH Grunt SELinux Policy
 
 This module installs a SELinux Local Policy Module that is necessary to make [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt) work on
 systems with SELinux, such as CentOS.
@@ -81,11 +84,11 @@ $ sudo semodule -i ssh-grunt.pp
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/ssh-grunt-selinux-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "579d69cbcf8ef3271c3ad121bcc01f47"
+  "hash": "5922269915e7f78a52641bd7d15cdec8"
 }
 ##DOCS-SOURCER-END -->

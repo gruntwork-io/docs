@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# AWS KMS Customer Master Keys (CMK)
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# AWS KMS Customer Master Keys (CMK)
 
 This repo contains a Module for creating and managing [AWS KMS Customer Master Keys](https://aws.amazon.com/kms/) that you can use for encrypting and decrypting data.
 
@@ -69,6 +72,74 @@ If you just want to try this out for experimenting and learning, check out the f
 *   [What is the difference between KMS Grants and Key Policies?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/core-concepts.md#what-is-the-difference-between-kms-grants-and-key-policies)
 
 *   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-MASTER-KEY-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "kms_master_key_multi_region" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.2"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # You can use this variable to create account-level KMS Customer Master Keys
+  # (CMKs) for encrypting and decrypting data. This variable should be a map where
+  # the keys are the names of the CMK and the values are an object that defines the
+  # configuration for that CMK. See the comment below for the configuration options
+  # you can set for each key.
+  customer_master_keys = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The default value to use for spec (specifies whether the key contains a
+  # symmetric key or an asymmetric key pair and the encryption algorithms or signing
+  # algorithms that the key supports). Applies to all keys, unless overridden in the
+  # customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072,
+  # RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
+  default_customer_master_key_spec = null
+
+  # The default value to use for deletion_window_in_days (the number of days to keep
+  # this KMS Master Key around after it has been marked for deletion). Applies to
+  # all keys, unless overridden on a specific key in the customer_master_keys map.
+  default_deletion_window_in_days = 30
+
+  # The default value to use for enable_key_rotation (whether or not to enable
+  # automatic annual rotation of the KMS key). Applies to all keys, unless
+  # overridden in the customer_master_keys map.
+  default_enable_key_rotation = true
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
+  # key is the tag name and the value is the tag value.
+  global_tags = {}
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -376,11 +447,11 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/kms-master-key-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "36dcf7261d065daecefccc50f80daeed"
+  "hash": "49876d355aaa065b79fe9b354a04044c"
 }
 ##DOCS-SOURCER-END -->

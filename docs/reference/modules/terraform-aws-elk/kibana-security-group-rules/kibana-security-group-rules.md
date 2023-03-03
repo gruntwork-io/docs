@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Kibana Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Kibana Security Group Rules Module
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by a
 [Kibana](https://www.elastic.co/products/kibana) cluster to control the traffic that is allowed to go in and out of the cluster.
@@ -63,15 +66,81 @@ You can find the other parameters in [variables.tf](https://github.com/gruntwork
 
 Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/examples) for working sample code.
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KIBANA-SECURITY-GROUP-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "kibana_security_group_rules" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-security-group-rules?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the Security Group to which all the rules should be attached.
+  security_group_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access SSH from all other IP addresses will be blocked.
+  allow_ssh_from_cidr_blocks = []
+
+  # The IDs of security groups from which SSH connections will be allowed. If you
+  # update this variable, make sure to update var.num_ssh_security_group_ids too!
+  allow_ssh_from_security_group_ids = []
+
+  # A list of IP address ranges in CIDR format from which access to the UI will be
+  # permitted. Attempts to access the UI from all other IP addresses will be
+  # blocked.
+  allow_ui_from_cidr_blocks = []
+
+  # The IDs of security groups from which access to the UI will be permitted. If you
+  # update this variable, make sure to update var.num_ui_security_group_ids too!
+  allow_ui_from_security_group_ids = []
+
+  # This is the port that is used to access the Kibana UI.
+  kibana_ui_port = 5601
+
+  # The number of security group IDs in var.allow_ssh_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_ssh_from_security_group_ids,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_ssh_security_group_ids = 0
+
+  # The number of security group IDs in var.allow_ui_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_ui_from_security_group_ids, then
+  # we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_ui_security_group_ids = 0
+
+  # The port to use for SSH access.
+  ssh_port = 22
+
+}
+
+```
+
+</ModuleUsage>
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-security-group-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-security-group-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-security-group-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "21e7f3b930ab5c46b36954980eb473cc"
+  "hash": "45e12dfe08a4ce6b625c6acca1a15ecc"
 }
 ##DOCS-SOURCER-END -->

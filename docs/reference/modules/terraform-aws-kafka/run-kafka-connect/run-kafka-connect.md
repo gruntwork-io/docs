@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Run a Kafka Connect Worker
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Run a Kafka Connect Worker
 
 This folder contains:
 
@@ -279,11 +282,11 @@ the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/mas
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/run-kafka-connect/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "976832ed1e2f0740c697ac18222bbc84"
+  "hash": "e13c543253d7d4706e25148eec1def1f"
 }
 ##DOCS-SOURCER-END -->

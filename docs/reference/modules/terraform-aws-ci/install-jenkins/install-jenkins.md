@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# Install Jenkins Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Install Jenkins Module
 
 This module contains two scripts for working with [Jenkins CI server](https://jenkins.io):
 
@@ -71,11 +74,11 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/install-jenkins/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/install-jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/install-jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5dff8d18fb598c04d7639c9366d1c1c6"
+  "hash": "007376dec29a87a2805fb49a3addf688"
 }
 ##DOCS-SOURCER-END -->

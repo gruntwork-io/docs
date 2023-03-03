@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Kibana Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Kibana Install Script
 
 This folder contains a script for installing [Kibana](https://www.elastic.co/products/kibana).
 
@@ -41,11 +44,11 @@ You can then deploy the AMI using the [kibana-cluster module](https://github.com
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/install-kibana/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-kibana/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-kibana/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-kibana/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "98bdefff63a71845a12c8445512d87c4"
+  "hash": "a93820f6d175cd03831801694dcf56ea"
 }
 ##DOCS-SOURCER-END -->

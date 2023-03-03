@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+
+# Auto Scaling Group with Rolling Deployment Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Auto Scaling Group with Rolling Deployment Module
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -58,6 +61,110 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
     events are not lost.
 *   If the script doesn't find an already-existing ASG, that means this is the first deploy, and we fall back to the
     hard-coded `desired_capacity` value.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ASG-ROLLING-DEPLOY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "asg_rolling_deploy" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
+  # scaling policies may change this value. If you're using auto scaling policies to
+  # dynamically resize the cluster, you should actually leave this value as null.
+  desired_capacity = <INPUT REQUIRED>
+
+  # The ID and version of the Launch Template to use for each EC2 instance in this
+  # ASG. The version value MUST be an output of the Launch Template resource itself.
+  # This ensures that a new ASG is created every time a new Launch Template version
+  # is created.
+  launch_template = <INPUT REQUIRED>
+
+  # The maximum number of EC2 Instances to run in the ASG
+  max_size = <INPUT REQUIRED>
+
+  # The minimum number of EC2 Instances to run in the ASG
+  min_size = <INPUT REQUIRED>
+
+  # A list of subnet ids in the VPC were the EC2 Instances should be deployed
+  vpc_subnet_ids = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
+  # this list should be a map with the parameters key, value, and
+  # propagate_at_launch.
+  custom_tags = []
+
+  # Timeout value for deletion operations on autoscale groups.
+  deletion_timeout = "10m"
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # Time, in seconds, after an EC2 Instance comes into service before checking
+  # health.
+  health_check_grace_period = 300
+
+  # A list of Elastic Load Balancer (ELB) names to associate with this ASG. If
+  # you're using the Application Load Balancer (ALB), see var.target_group_arns.
+  load_balancers = []
+
+  # The maximum amount of time, in seconds, that an instance inside an ASG can be in
+  # service, values must be either equal to 0 or between 604800 and 31536000
+  # seconds.
+  max_instance_lifetime = null
+
+  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
+  # creation.
+  min_elb_capacity = 0
+
+  # The key for the tag that will be used to associate a unique identifier with this
+  # ASG. This identifier will persist between redeploys of the ASG, even though the
+  # underlying ASG is being deleted and replaced with a different one.
+  tag_asg_id_key = "AsgId"
+
+  # A list of Application Load Balancer (ALB) target group ARNs to associate with
+  # this ASG. If you're using the Elastic Load Balancer (ELB), see
+  # var.load_balancers.
+  target_group_arns = []
+
+  # A list of policies to decide how the instances in the auto scale group should be
+  # terminated. The allowed values are OldestInstance, NewestInstance,
+  # OldestLaunchTemplate, AllocationStrategy, ClosestToNextInstanceHour, Default.
+  termination_policies = []
+
+  # Whether or not ELB or ALB health checks should be enabled. If set to true, the
+  # load_balancers or target_groups_arns variable should be set depending on the
+  # load balancer type you are using. Useful for testing connectivity before health
+  # check endpoints are available.
+  use_elb_health_checks = true
+
+  # A maximum duration that Terraform should wait for the EC2 Instances to be
+  # healthy before timing out.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -304,11 +411,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "96fac5773d033431cdef1d30813230d2"
+  "hash": "a82e2194ca664d83b7adaeecc69c9e9c"
 }
 ##DOCS-SOURCER-END -->

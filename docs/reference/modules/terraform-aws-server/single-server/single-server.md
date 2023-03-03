@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Module Server" version="0.15.3" />
+
+# Single Server Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Single Server Module
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -84,6 +87,239 @@ resource "aws_iam_policy_attachment" "attachment" {
   policy_arn = "${aws_iam_policy.my_custom_policy.arn}"
 }
 ```
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SINGLE-SERVER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "single_server" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.15.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AMI to run for this server.
+  ami = <INPUT REQUIRED>
+
+  # The type of EC2 instance to run (e.g. t2.micro)
+  instance_type = <INPUT REQUIRED>
+
+  # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
+  # you don't want to enable Key Pair auth.
+  keypair_name = <INPUT REQUIRED>
+
+  # The name of the server. This will be used to namespace all resources created by
+  # this module.
+  name = <INPUT REQUIRED>
+
+  # The id of the subnet where this server should be deployed.
+  subnet_id = <INPUT REQUIRED>
+
+  # The id of the VPC where this server should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of optional additional security group ids to assign to the server.
+  additional_security_group_ids = []
+
+  # A boolean that specifies whether or not to add a security group rule that allows
+  # all outbound traffic from this server.
+  allow_all_outbound_traffic = true
+
+  # A list of IP address ranges in CIDR format from which rdp access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses will
+  # be blocked.
+  allow_rdp_from_cidr_list = []
+
+  # The IDs of security groups from which rdp connections will be allowed.
+  allow_rdp_from_security_group_ids = []
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the server from all other IP addresses will be
+  # blocked.
+  allow_ssh_from_cidr_list = ["0.0.0.0/0"]
+
+  # The IDs of security groups from which SSH connections will be allowed.
+  allow_ssh_from_security_group_ids = []
+
+  # Whether or not to associate a public IP address to the instance. When null,
+  # defaults to the subnet setting (e.g., if public subnet defaults to associating a
+  # public IP, associate one - otherwise, does not associate a public IP).
+  associate_public_ip_address = null
+
+  # A list of AWS service principals that can assume the instance IAM role. If
+  # deploying in AWS China, set this to [ec2.amazonaws.com.cn].
+  assume_role_principals = ["ec2.amazonaws.com"]
+
+  # Determines if an Elastic IP (EIP) will be created for this instance. Must be set
+  # to a boolean (not a string!) true or false value.
+  attach_eip = true
+
+  # When true, this module will create a new IAM role to bind to the EC2 instance.
+  # Set to false if you wish to use a preexisting IAM role. By default, this module
+  # will create an instance profile to pass this IAM role to the EC2 instance.
+  # Preexisting IAM roles created through the AWS console instead of programatically
+  # (e.g. withTerraform) will automatically create an instance profile with the same
+  # name. In that case, set create_instance_profile to false to avoid errors during
+  # Terraform apply.
+  create_iam_role = true
+
+  # When true, this module will create an instance profile to pass the IAM role,
+  # either the one created by this module or one passed externally, to the EC2
+  # instance. Set to false if you wish to use a preexisting instance profile. For
+  # more information see
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_in
+  # tance-profiles.html.
+  create_instance_profile = true
+
+  # ID of a dedicated host that the instance will be assigned to. Use when an
+  # instance is to be launched on a specific dedicated host.
+  dedicated_host_id = null
+
+  # If true, enables EC2 Instance Termination Protection.
+  disable_api_termination = false
+
+  # The DNS name to add for this server in var.dns_zone_id. Only used if
+  # var.dns_zone_id is set. For example, if var.dns_zone_id points to the hosted
+  # zone for example.com and you set dns_name to foo, this server will have the
+  # domain foo.example.com.
+  dns_name = ""
+
+  # The TTL, in seconds, of the DNS record for this server.  Only used if
+  # var.dns_zone_id is set.
+  dns_ttl = 300
+
+  # The DNS record type when adding a DNS record for this server. Only used if
+  # var.dns_zone_id is set.
+  dns_type = "A"
+
+  # If set to true, point the Route 53 DNS record at the private IP of the EIP
+  # rather than the public IP.
+  dns_uses_private_ip = false
+
+  # The id of a route53 hosted zone. Leave blank if you don't want a DNS entry for
+  # this server. If you specify this variable, you must also specify var.dns_name.
+  dns_zone_id = ""
+
+  # If true, the launced EC2 Instance will be EBS-optimized.
+  ebs_optimized = false
+
+  # A set of tags to set for the EIP for EC2 Instance. This is optional and if not
+  # provided the tags from variable tags will be used
+  eip_tags = {}
+
+  # Whether to force detaching any policies the role has before destroying it. If
+  # policies are attached to the role via the aws_iam_policy_attachment resource and
+  # you are modifying the role name or path, the force_detach_policies argument must
+  # be set to true and applied before attempting the operation otherwise you will
+  # encounter a DeleteConflict error. The aws_iam_role_policy_attachment resource
+  # (recommended) does not have this requirement.
+  force_detach_policies = false
+
+  # Whether or not to extract Base-64 encoded encrypted password data for the
+  # instance. Useful for getting the administrator password for instances running
+  # Microsoft Windows.
+  get_password_data = false
+
+  # The name for the bastion host's IAM role and instance profile. If set to an
+  # empty string, will use var.name. Required when create_iam_role is false.
+  iam_role_name = ""
+
+  # A set of tags to set for instance iam role. This is optional and if not provided
+  # the tags from variable tags will be used
+  iam_role_tags = {}
+
+  # A set of tags for EC2 Instance. This is optional and if not provided the tags
+  # from variable tags will be used
+  instance_tags = {}
+
+  # If true, the launched EC2 instance will have detailed monitoring enabled.
+  monitoring = false
+
+  # Private IP address to associate with the instance in a VPC
+  private_ip = null
+
+  # Instruct Terraform to revoke all of the Security Groups attached ingress and
+  # egress rules before deleting the rule itself. This is normally not needed,
+  # however certain AWS services such as Elastic Map Reduce may automatically add
+  # required rules to security groups used with the service, and those rules may
+  # contain a cyclic dependency that prevent the security groups from being
+  # destroyed without removing the dependency first.
+  revoke_security_group_rules_on_delete = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  role_permissions_boundary = null
+
+  # If set to true, the root volume will be deleted when the Instance is terminated.
+  root_volume_delete_on_termination = true
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # Tags to set on the root volume.
+  root_volume_tags = {}
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "standard"
+
+  # A list of secondary private IPv4 addresses to assign to the instance's primary
+  # network interface (eth0) in a VPC
+  secondary_private_ips = []
+
+  # The name for the bastion host's security group. If set to an empty string, will
+  # use var.name.
+  security_group_name = ""
+
+  # A set of tags to set for the Security Group. This is optional and if not
+  # provided the tags from variable tags will be used
+  security_group_tags = {}
+
+  # Controls if traffic is routed to the instance when the destination address does
+  # not match the instance. Must be set to a boolean (not a string!) true or false
+  # value.
+  source_dest_check = true
+
+  # A set of tags for the EC2 Instance. These are common tags and will be used for
+  # Instance, IAM Role, EIP and Security Group. Note that other AWS resources
+  # created by this module such as an Elastic IP Address and Route53 Record do not
+  # support tags.
+  tags = {}
+
+  # The tenancy of this server. Must be one of: default, dedicated, or host.
+  tenancy = "default"
+
+  # The User Data script to run on this instance when it is booting. If you need to
+  # pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
+  # var.user_data_base64 instead.
+  user_data = null
+
+  # The base64-encoded User Data script to run on the server when it is booting.
+  # This can be used to pass binary User Data, such as a gzipped cloud-init script.
+  # If you wish to pass in plain text (e.g., typical Bash script) for User Data, use
+  # var.user_data instead.
+  user_data_base64 = null
+
+  # When used in combination with user_data or user_data_base64, a user_data change
+  # will trigger a destroy and recreate when set to true. Defaults to null.
+  user_data_replace_on_change = null
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -585,11 +821,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38ee7f81b00307fc7af0a83967e972e0"
+  "hash": "d59db581732e231fe77c3740868c267a"
 }
 ##DOCS-SOURCER-END -->

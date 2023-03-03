@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+
+# Run Health Checker
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Run Health Checker
 
 This folder contains:
 
@@ -117,11 +120,11 @@ the source code.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-health-checker/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-health-checker/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/run-health-checker/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91f444ade68889901771e429e106e70f"
+  "hash": "2bf2aa2ffdb216468f24101a9c59481d"
 }
 ##DOCS-SOURCER-END -->

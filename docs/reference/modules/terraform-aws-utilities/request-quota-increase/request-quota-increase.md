@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+
+# Request AWS Quota Increase
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Request AWS Quota Increase
 
 This module can be used to request a quota increase for an AWS Resource.
 
@@ -121,6 +124,36 @@ When you run `terraform destroy` on this module, it does not affect your current
 existing quota requests. In other words, you don't have to worry about quotas being reset to old
 values; once they have been increased, they stay that way!
 
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REQUEST-QUOTA-INCREASE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "request_quota_increase" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map where the key is the resource and the value is the desired quota. The only
+  # resources supported at the moment are 'nacl_rules' and 'nat_gateway'. You can
+  # also use the `aws_servicequotas_service_quota` resource directly, there are
+  # instructions on how to find the Service Code and Quota Code on the README!
+  resources_to_increase = <INPUT REQUIRED>
+
+}
+
+```
+
+</ModuleUsage>
+
 
 
 
@@ -167,11 +200,11 @@ A map where the key is the resource and the value is the desired quota. The only
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/request-quota-increase/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/request-quota-increase/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/modules/request-quota-increase/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3980767c254d76cb40788e6841b3fc94"
+  "hash": "f1b4afc5d72b81c7d9bd29810ceea81b"
 }
 ##DOCS-SOURCER-END -->

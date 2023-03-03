@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Module Server" version="0.15.3" />
+
+# Persistent EBS Volume Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/persistent-ebs-volume" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Persistent EBS Volume Scripts
 
 This folder contains scripts you can use to work with EBS Volumes that persist between redeploys of an EC2 instance:
 
@@ -217,11 +220,11 @@ detaching the device.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/modules/persistent-ebs-volume/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/persistent-ebs-volume/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/persistent-ebs-volume/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/persistent-ebs-volume/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4b97d36d5f6fbe80041193a53c6be129"
+  "hash": "fc25868f93cd33ac3779ba5befb3e32a"
 }
 ##DOCS-SOURCER-END -->

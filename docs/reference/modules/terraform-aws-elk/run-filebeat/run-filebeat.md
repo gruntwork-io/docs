@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Filebeat Run Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-filebeat" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Filebeat Run Script
 
 This folder contains a script for configuring and running [Filebeat](https://www.elastic.co/products/beats/filebeat) on an [AWS](https://aws.amazon.com/) EC2 instance. This script has been tested on the following operating systems:
 
@@ -95,11 +98,11 @@ The `run-filebeat` script automatically discovers Logstash nodes by using the [a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-filebeat/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-filebeat/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-filebeat/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-filebeat/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf9dd2c80ccc37d4b9b85afde44bccb2"
+  "hash": "e55e22b6e5a6c32ca7e3e547e0d6de22"
 }
 ##DOCS-SOURCER-END -->

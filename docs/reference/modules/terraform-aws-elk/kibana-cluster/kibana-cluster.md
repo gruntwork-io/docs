@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# TODO TODO TODO ABOVE HERE NEEDS TO CHECKED/IMPLEMENTED
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# TODO TODO TODO ABOVE HERE NEEDS TO CHECKED/IMPLEMENTED
 
 ### Security groups
 
@@ -102,6 +105,126 @@ TODO: Should we implement encryption at rest uising the technique described at h
 Some Elasticsearch settings may contain secrets and should be encrypted. You can use the [Elasticsearch Keystore](https://www.elastic.co/guide/en/elasticsearch/reference/current/secure-settings.html) for such settings. The
 `elasticsearch.keystore` is created automatically upon boot of each node, and is available for use as described in the
 docs.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KIBANA-CLUSTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "kibana_cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-cluster?ref=v0.11.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AMI to run in this cluster.
+  ami_id = <INPUT REQUIRED>
+
+  # The name of the kibana cluster (e.g. kibana-stage). This variable is used to
+  # namespace all resources created by this module.
+  cluster_name = <INPUT REQUIRED>
+
+  # The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
+  instance_type = <INPUT REQUIRED>
+
+  # The maximum number of nodes to have in the kibana cluster.
+  max_size = <INPUT REQUIRED>
+
+  # The minimum number of nodes to have in the kibana cluster.
+  min_size = <INPUT REQUIRED>
+
+  # The subnet IDs into which the EC2 Instances should be deployed.
+  subnet_ids = <INPUT REQUIRED>
+
+  # A User Data script to execute while the server is booting.
+  user_data = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the kibana cluster
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access SSH from all other IP addresses will be blocked.
+  allow_ssh_from_cidr_blocks = []
+
+  # The IDs of security groups from which SSH connections will be allowed. If you
+  # update this variable, make sure to update var.num_ssh_security_group_ids too!
+  allow_ssh_from_security_group_ids = []
+
+  # A list of IP address ranges in CIDR format from which access to the UI will be
+  # permitted. Attempts to access the UI from all other IP addresses will be
+  # blocked.
+  allow_ui_from_cidr_blocks = []
+
+  # The IDs of security groups from which access to the UI will be permitted. If you
+  # update this variable, make sure to update var.num_ui_security_group_ids too!
+  allow_ui_from_security_group_ids = []
+
+  # If set to true, associate a public IP address with each EC2 Instance in the
+  # cluster.
+  associate_public_ip_address = false
+
+  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
+  # scaling policies may change this value. If you're using auto scaling policies to
+  # dynamically resize the cluster, you should actually leave this value as null.
+  desired_capacity = null
+
+  # Path in which to create the IAM instance profile.
+  instance_profile_path = "/"
+
+  # This is the port that is used to access kibana UI
+  kibana_ui_port = 5601
+
+  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
+  # creation.
+  min_elb_capacity = 0
+
+  # The number of security group IDs in var.allow_ssh_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_ssh_from_security_group_ids,
+  # then we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_ssh_security_group_ids = 0
+
+  # The number of security group IDs in var.allow_ui_from_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # if there are any dynamic resources in var.allow_ui_from_security_group_ids, then
+  # we won't be able to: https://github.com/hashicorp/terraform/pull/11482
+  num_ui_security_group_ids = 0
+
+  # The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this
+  # cluster. Set to an empty string to not associate a Key Pair.
+  ssh_key_name = null
+
+  # The port used for SSH connections
+  ssh_port = 22
+
+  # List fo extra tag blocks added to the autoscaling group configuration. Each
+  # element in the list is a map containing keys 'key', 'value', and
+  # 'propagate_at_launch' mapped to the respective values.
+  tags = []
+
+  # A list of target group ARNs to associate with the Kibana cluster.
+  target_group_arns = []
+
+  # A maximum duration that Terraform should wait for the EC2 Instances to be
+  # healthy before timing out.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -377,11 +500,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/kibana-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee42d743fdf8f8848ba3c7041542adca"
+  "hash": "1682e1d22f0b3e2d08f40f8859a3f468"
 }
 ##DOCS-SOURCER-END -->

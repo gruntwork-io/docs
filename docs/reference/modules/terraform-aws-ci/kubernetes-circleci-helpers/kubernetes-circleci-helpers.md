@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# Kubernetes CircleCI Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Kubernetes CircleCI Helpers
 
 This module contains helper scripts that can setup Kubernetes tools for use in a CircleCI job, including:
 
@@ -96,11 +99,11 @@ job:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/kubernetes-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d4c2cc071c82976ab8b90c7d2fe89a6"
+  "hash": "4c3f9eaad150149e2bd6720dc926ee48"
 }
 ##DOCS-SOURCER-END -->

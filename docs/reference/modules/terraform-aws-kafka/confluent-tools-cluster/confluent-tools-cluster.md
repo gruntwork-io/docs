@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Kafka" version="0.11.0" />
+
+# Confluent Tools Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Confluent Tools Cluster
 
 This folder contains a Terraform module for running a cluster of [Confluent](https://www.confluent.io/) tools such as
 [Schema Registry](https://docs.confluent.io/current/schema-registry/docs/index.html) and [REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html). Under the hood, the cluster is powered by the [server-group
@@ -212,6 +215,222 @@ and authorization. If it becomes apparent these features are in high demand, we 
 Note that you must generate TLS/SSL certificates separately for the Kafka and Confluent Tools clusters as described
 in the [kafka-ami](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/examples/kafka-ami/README.md) and [confluent-oss-ami](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/examples/confluent-oss-ami/README.md) READMEs,
 respectively.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-CLUSTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "confluent_tools_cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-cluster?ref=v0.11.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
+  # Schema Registry and REST Proxy.
+  allowed_inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of security group IDs that will be allowed to connect to the Confluent
+  # tools cluster (Schema Registry and REST Proxy)
+  allowed_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The ID of the AMI to run in this cluster. Should be an AMI that has the
+  # Confluent Tools installed by the install-confluent-tool module.
+  ami_id = <INPUT REQUIRED>
+
+  # The AWS region to deploy into.
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the Confluent Tools cluster (e.g. confluent-tools-stage). This
+  # variable is used to namespace all resources created by this module.
+  cluster_name = <INPUT REQUIRED>
+
+  # The number of brokers to have in the cluster.
+  cluster_size = <INPUT REQUIRED>
+
+  # The ID of the Security Group associated with the ELB that fronts the Confluent
+  # Tools cluster.
+  confluent_tools_elb_security_group_id = <INPUT REQUIRED>
+
+  # The type of EC2 Instances to run for each node in the cluster (e.g. t2.micro).
+  instance_type = <INPUT REQUIRED>
+
+  # The number of security group IDs in var.allowed_inbound_security_group_ids. We
+  # should be able to compute this automatically, but due to a Terraform limitation,
+  # we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_allowed_inbound_security_group_ids = <INPUT REQUIRED>
+
+  # The subnet IDs into which the EC2 Instances should be deployed. You should
+  # typically pass in one subnet ID per node in the cluster_size variable. We
+  # strongly recommend that you run the Confluent tools in private subnets.
+  subnet_ids = <INPUT REQUIRED>
+
+  # A User Data script to execute while the server is booting. We remmend passing in
+  # a bash script that executes the run-kafka-rest and run-schema-registry scripts,
+  # which should have been installed in the AMI with gruntwork-install.
+  user_data = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the cluster
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of Security Group IDs that should be added to the Auto Scaling Group's
+  # Launch Configuration used to launch the Confluent Tools cluster EC2 Instances.
+  additional_security_group_ids = []
+
+  # A list of CIDR-formatted IP address ranges from which the EC2 Instances will
+  # allow SSH connections
+  allowed_ssh_cidr_blocks = []
+
+  # A list of security group IDs from which the EC2 Instances will allow SSH
+  # connections
+  allowed_ssh_security_group_ids = []
+
+  # If set to true, associate a public IP address with each EC2 Instance in the
+  # cluster. We strongly recommend against making these nodes publicly accessible.
+  associate_public_ip_address = false
+
+  # Set to true to attach an Elastic Network Interface (ENI) to each server. This is
+  # an IP address that will remain static, even if the underlying servers are
+  # replaced.
+  attach_eni = false
+
+  # Custom tags to apply to the Confluent Tools nodes and all related resources
+  # (i.e., security groups, EBS Volumes, ENIs).
+  custom_tags = {}
+
+  # How many servers to deploy at a time during a rolling deployment. For example,
+  # if you have 10 servers and set this variable to 2, then the deployment will a)
+  # undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for
+  # the next 2 servers.
+  deployment_batch_size = 1
+
+  # The common portion of the DNS name to assign to each ENI in the Confluent Tools
+  # server group. For example, if confluent.acme.com, this module will create DNS
+  # records 0.confluent.acme.com, 1.confluent.acme.com, etc. Note that this value
+  # must be a valid record name for the Route 53 Hosted Zone ID specified in
+  # var.route53_hosted_zone_id.
+  dns_name_common_portion = null
+
+  # A list of DNS names to assign to the ENIs in the Confluent Tools server group.
+  # Make sure the list has n entries, where n = var.cluster_size. If this var is
+  # specified, it will override var.dns_name_common_portion. Example: [0.acme.com,
+  # 1.acme.com, 2.acme.com]. Note that the list entries must be valid records for
+  # the Route 53 Hosted Zone ID specified in var.route53_hosted_zone_id.
+  dns_names = []
+
+  # The TTL (Time to Live) to apply to any DNS records created by this module.
+  dns_ttl = 300
+
+  # A list of Elastic Load Balancer (ELB) names to associate with the Confluent
+  # Tools nodes. We recommend using an ELB for health checks. If you're using an
+  # Application Load Balancer (ALB), use var.target_group_arns instead.
+  elb_names = []
+
+  # Enable detailed CloudWatch monitoring for the servers. This gives you more
+  # granularity with your CloudWatch metrics, but also costs more money.
+  enable_detailed_monitoring = false
+
+  # If true, create an Elastic IP Address for each ENI and associate it with the
+  # ENI.
+  enable_elastic_ips = false
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # Time, in seconds, after instance comes into service before checking health.
+  health_check_grace_period = 300
+
+  # Controls how health checking is done. Must be one of EC2 or ELB.
+  health_check_type = "EC2"
+
+  # The port number on which health-checker
+  # (https://github.com/gruntwork-io/health-checker) accepts inbound HTTP
+  # connections. This is the port the ELB Health Check will actually use. Specify
+  # null to disable this Security Group rule.
+  health_checker_listener_port = 5500
+
+  # The port numbers that will be open on the server cluster from the given
+  # var.allowed_inbound_cidr_blocks or var.allowed_inbound_security_group_ids.
+  # Expects a list of maps, where each map has the keys 'port' and 'description',
+  # which correspond to the port to be opened and the description to be added to the
+  # Security Group Rule, respectively.
+  ports = [{"description":"Confluent Schema Registry","port":8081},{"description":"Confluent REST Proxy","port":8082},{"description":"Kafka Connect worker","port":8083}]
+
+  # Whether the root volume should be destroyed on instance termination.
+  root_volume_delete_on_termination = true
+
+  # If true, the launched EC2 instance will be EBS-optimized.
+  root_volume_ebs_optimized = false
+
+  # The size, in GB, of the root EBS volume.
+  root_volume_size = 50
+
+  # The type of volume. Must be one of: standard, gp2, or io1.
+  root_volume_type = "gp2"
+
+  # The ID of the Route53 Hosted Zone in which we will create the DNS records
+  # specified by var.dns_names. Must be non-empty if var.dns_name_common_portion or
+  # var.dns_names is non-empty.
+  route53_hosted_zone_id = null
+
+  # The log level to use with the rolling deploy script. It can be useful to set
+  # this to DEBUG when troubleshooting the script.
+  script_log_level = "INFO"
+
+  # If set to true, skip the health check, and start a rolling deployment without
+  # waiting for the server group to be in a healthy state. This is primarily useful
+  # if the server group is in a broken state and you want to force a deployment
+  # anyway.
+  skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup easier.
+  # It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
+  # The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this
+  # cluster. Set to an empty string to not associate a Key Pair.
+  ssh_key_name = null
+
+  # The port used for SSH connections
+  ssh_port = 22
+
+  # A list of target group ARNs of Application Load Balanacer (ALB) targets to
+  # associate with the Confluent Tools nodes. We recommend using an ELB for health
+  # checks. If you're using a Elastic Load Balancer (AKA ELB Classic), use
+  # var.elb_names instead.
+  target_group_arns = []
+
+  # The tenancy of the instance. Must be one of: default or dedicated.
+  tenancy = "default"
+
+  # A maximum duration that Terraform should wait for ASG instances to be healthy
+  # before timing out. Setting this to '0' causes Terraform to skip all Capacity
+  # Waiting behavior.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -687,11 +906,11 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/modules/confluent-tools-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a47fc0bdd599b94bf847af8052e634cf"
+  "hash": "18e49e33f9587210385fb6ad0399b6a4"
 }
 ##DOCS-SOURCER-END -->

@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+
+# Generate a TLS/SSL Certificate for a Private Service
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Generate a TLS/SSL Certificate for a Private Service
 
 This Gruntwork Docker Module generates the public and private keys of a new TLS/SSL certificate, and also returns the
 public and private keys of the Certificate Authority (CA) used to generate the TLS certificate. The private key of the
@@ -174,11 +177,11 @@ TLS certificates for any public services.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/modules/tls-cert-private/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd43ee93ca6be3b8112cf90723ce2881"
+  "hash": "1471a32e1f5a23718f390239b42c581b"
 }
 ##DOCS-SOURCER-END -->

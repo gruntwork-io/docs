@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+
+# Install Oracle JDK
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-oracle-jdk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Install Oracle JDK
 
 This folder contains a script for installing the [Oracle
 JDK](http://www.oracle.com/technetwork/java/javase/overview/index.html). The main reason to use the Oracle JDK instead
@@ -69,11 +72,11 @@ gruntwork-install \
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/modules/install-oracle-jdk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-oracle-jdk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-oracle-jdk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-oracle-jdk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38aabf8dbed059b94ef7dd366f0c045a"
+  "hash": "f0693b1b4bdf4517ed2d3764ddc6da7d"
 }
 ##DOCS-SOURCER-END -->

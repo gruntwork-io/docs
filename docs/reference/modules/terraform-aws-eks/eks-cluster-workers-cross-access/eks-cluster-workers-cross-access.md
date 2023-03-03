@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+
+# EKS Cluster Workers Cross Access Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# EKS Cluster Workers Cross Access Module
 
 This Terraform Module creates reciprocating ingress security group rules for the ports that are provided, so that you
 can configure network access between separate ASG worker groups.
@@ -47,83 +50,56 @@ Note that this module will configure the security group rules to go both ways fo
 have more complex network topologies, you should manually construct the security group rules instead of using this
 module.
 
+## Sample Usage
 
+<ModuleUsage>
 
+```hcl title="main.tf"
 
-## Reference
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS-CROSS-ACCESS MODULE
+# ------------------------------------------------------------------------------------------------------
 
-<Tabs>
-<TabItem value="inputs" label="Inputs" default>
+module "eks_cluster_workers_cross_access" {
 
-### Required
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v0.56.3"
 
-<HclListItem name="eks_worker_security_group_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
 
-The list of Security Group IDs for EKS workers that should have reciprocating ingress rules for the port information provided in <a href="#ports"><code>ports</code></a>. For each group in the list, there will be an ingress rule created for all ports provided for all the other groups in the list.
+  # The list of Security Group IDs for EKS workers that should have reciprocating
+  # ingress rules for the port information provided in var.ports. For each group in
+  # the list, there will be an ingress rule created for all ports provided for all
+  # the other groups in the list.
+  eks_worker_security_group_ids = <INPUT REQUIRED>
 
-</HclListItemDescription>
-</HclListItem>
+  # The number of Security Group IDs passed into the module. This should be equal to
+  # the length of the var.eks_worker_security_group_ids input list.
+  num_eks_worker_security_group_ids = <INPUT REQUIRED>
 
-<HclListItem name="num_eks_worker_security_group_ids" requirement="required" type="number">
-<HclListItemDescription>
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
 
-The number of Security Group IDs passed into the module. This should be equal to the length of the <a href="#eks_worker_security_group_ids"><code>eks_worker_security_group_ids</code></a> input list.
+  # The list of port ranges that should be allowed into the security groups.
+  ports = [{"from_port":0,"protocol":"-1","to_port":0}]
 
-</HclListItemDescription>
-</HclListItem>
+}
 
-### Optional
-
-<HclListItem name="ports" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-The list of port ranges that should be allowed into the security groups.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    from_port = number
-    to_port   = number
-    protocol  = string
-  }))
 ```
 
-</HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-[
-  {
-    from_port = 0,
-    protocol = "-1",
-    to_port = 0
-  }
-]
-```
-
-</HclListItemDefaultValue>
-</HclListItem>
-
-</TabItem>
-<TabItem value="outputs" label="Outputs">
-
-
-
-</TabItem>
-</Tabs>
+</ModuleUsage>
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/modules/eks-cluster-workers-cross-access/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5eed66febb602fea3391471b71ff7056"
+  "hash": "9adb99af2e182fd7637a459d9e984d86"
 }
 ##DOCS-SOURCER-END -->

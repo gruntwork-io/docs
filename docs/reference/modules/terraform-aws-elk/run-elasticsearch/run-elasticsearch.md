@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+
+# Run Elasticsearch Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Run Elasticsearch Script
 
 This folder contains a script for configuring and running [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 
@@ -127,11 +130,11 @@ that we are using in our examples. If you need a different/new version then you 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elasticsearch/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-elk/tree/modules/run-elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elasticsearch/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47fd52ec7deac34c2c8e0a2e9891db06"
+  "hash": "4f4669511dd4bf64ddd3f6b97bb8d03e"
 }
 ##DOCS-SOURCER-END -->

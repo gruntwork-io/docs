@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+
+# Share Snapshot Lambda Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Share Snapshot Lambda Module
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
@@ -23,6 +26,54 @@ automatically trigger this lambda function after each run.
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
 documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot).
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-SHARE-SNAPSHOT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "lambda_share_snapshot" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.26.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the RDS database
+  rds_db_arn = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if this module should create
+  # anything or not.
+  create_resources = true
+
+  # The maximum number of retries the lambda function will make while waiting for
+  # the snapshot to be available
+  max_retries = 60
+
+  # The name for the lambda function and other resources created by these Terraform
+  # configurations
+  name = "share-rds-snapshot"
+
+  # The amount of time, in seconds, between retries.
+  sleep_between_retries_sec = 60
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -96,11 +147,11 @@ The amount of time, in seconds, between retries.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-share-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-share-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/lambda-share-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ecb95bea826b112d5af17f5b44a4685"
+  "hash": "9fbf84bc44fd6c551803b3411c3dd1f2"
 }
 ##DOCS-SOURCER-END -->

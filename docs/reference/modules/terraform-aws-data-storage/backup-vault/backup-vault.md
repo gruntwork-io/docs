@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+
+# Backup Vault Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Backup Vault Module
 
 This Terraform Module launches a [Backup Vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html) that you can use to store, organize and, optionally, preserve your AWS Backup recovery points against deletion.
 
@@ -79,6 +82,49 @@ For example, the following common conditions could all be true when you are deve
 4.  Your lock takes effect, because you did not delete it during the 3 day cool-down period
 
 then you will end up with many potentially large recovery points that you cannot delete and must pay for the storage of. **Use extreme caution when testing, developing or studying!**
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S BACKUP-VAULT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "backup_vault" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.26.0"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  vaults = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The cooling-off-period during which you can still delete the lock placed on your
+  # vault. The AWS default is 3 days. After this period expires, YOUR LOCK CANNOT BE
+  # DELETED
+  default_changeable_for_days = 7
+
+  # The ceiling of retention days that can be configured via a backup plan for the
+  # given vault
+  default_max_retention_days = 365
+
+  # The minimum number of retention days that can be configured via a backup plan
+  # for the given vault
+  default_min_retention_days = 7
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -195,11 +241,11 @@ A map of tags assigned to the vault resources, including those inherited from th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/modules/backup-vault/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66718487c2147e63bf06259a43784596"
+  "hash": "1ba3e3418e3d8623f10b05706c4b57fc"
 }
 ##DOCS-SOURCER-END -->

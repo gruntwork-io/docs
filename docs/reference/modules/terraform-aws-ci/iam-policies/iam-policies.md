@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# IAM Policies
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# IAM Policies
 
 This folder contains modules that create an IAM Policy with the minimum permissions needed to support specific CI use
 cases. It includes:
@@ -64,11 +67,11 @@ Some modules are configurable to support whatever level of
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "05dfeb4776471c12bad222f142d0719c"
+  "hash": "b3082355b3509c2f3bb4a0f41296bc61"
 }
 ##DOCS-SOURCER-END -->

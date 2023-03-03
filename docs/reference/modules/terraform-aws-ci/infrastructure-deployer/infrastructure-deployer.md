@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+
+# Infrastructure Pipeline: Infrastructure Deployer CLI
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Infrastructure Pipeline: Infrastructure Deployer CLI
 
 This module contains a CLI that can be used to set up a secure CI/CD pipeline for your infrastructure code ([Terraform](https://www.terraform.io), [Terragrunt](https://terragrunt.gruntwork.io), [Packer](https://www.packer.io/), [Docker](https://www.docker.com/), etc). This CLI can be used to in existing CI servers (e.g Jenkins, CircleCI, GitLab) to set up workflows that:
 
@@ -78,11 +81,11 @@ If you just want to try this repo out for experimenting and learning, check out 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deployer/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deployer/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/modules/infrastructure-deployer/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bb278653edbe1a8871c4ada029a8f7e3"
+  "hash": "371f732ad16e24de25baf7e3f15fe89e"
 }
 ##DOCS-SOURCER-END -->

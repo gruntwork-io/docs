@@ -7,12 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
+import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
+
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+
+# Server Group Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
-
-# Server Group Module
 
 This module allows you to run a fixed-size cluster of servers that can:
 
@@ -130,6 +133,273 @@ module in your Terraform code:
     changes will be applied to the launch templates underneath the ASGs, but no new code will be deployed until
     something triggers the ASG to launch new instances. This is primarily useful if the rolling deployment script turns
     out to have some sort of bug in it.
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SERVER-GROUP MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "server_group" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.1"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the Amazon Machine Image (AMI) to run on each server (e.g.,
+  # ami-abcd1234).
+  ami_id = <INPUT REQUIRED>
+
+  # The AWS region to deploy to (e.g. us-east-1).
+  aws_region = <INPUT REQUIRED>
+
+  # The type of EC2 Instance to run (e.g. t3.micro).
+  instance_type = <INPUT REQUIRED>
+
+  # The name for this group of servers. Used as the default Name tag on each EC2
+  # Instance and to namespace all the resources created by this module.
+  name = <INPUT REQUIRED>
+
+  # The number of servers to run in the server group.
+  size = <INPUT REQUIRED>
+
+  # The IDs of the subnets where the servers should be deployed (e.g.,
+  # subnet-abcd1234).
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC where the servers should be deployed (e.g. vpc-abcd1234).
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of Security Group IDs that should be added to the Launch Template and any
+  # ENIs, if applicable, created by this module.
+  additional_security_group_ids = []
+
+  # The ARNs of Application Load Balancer (ALB) Target Groups to associate with the
+  # servers. We recommend associating at least one ELB (via var.elb_names) or ALB
+  # (via this parameter) and setting var.health_check_type to ELB to use a load
+  # balancer for health checks during deployments.
+  alb_target_group_arns = []
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the bastion host from all other IP addresses will
+  # be blocked.
+  allow_ssh_from_cidr_blocks = []
+
+  # The IDs of security groups from which SSH connections will be allowed.
+  allow_ssh_from_security_group_ids = []
+
+  # Set to true to associate a public IP address with each server.
+  associate_public_ip_address = false
+
+  # The name of the device to mount.
+  block_device_name = "/dev/xvdcz"
+
+  # A map of key value pairs that represents custom tags to apply to the EC2
+  # Instances, ENIs, EBS Volumes, and Security Group in this server group.
+  custom_tags = {}
+
+  # How many servers to deploy at a time during a rolling deployment. For example,
+  # if you have 10 servers and set this variable to 2, then the deployment will a)
+  # undeploy 2 servers, b) deploy 2 replacement servers, c) repeat the process for
+  # the next 2 servers.
+  deployment_batch_size = 1
+
+  # The maximum number of times to retry the Load Balancer's Health Check before
+  # giving up on the rolling deployment. After this number is hit, the Python script
+  # will cease checking the failed EC2 Instance deployment but continue with other
+  # EC2 Instance deployments.
+  deployment_health_check_max_retries = 360
+
+  # The amount of time in seconds to wait between checking the status of the Load
+  # Balancer's Health Check status for an EC2 Instance that is being replaced.
+  deployment_health_check_retry_interval_in_seconds = 10
+
+  # The common portion of the DNS name to assign to each server. For example, if you
+  # want DNS records eni-0.0.foo, eni-0.1.foo, eni-0.2.foo, etc., use the value
+  # 'foo' and set var.num_enis to 1. A unique DNS records will be created for each
+  # combination of an ENI and server. Note that this value must be a valid record
+  # name for the Route 53 Hosted Zone ID specified in var.route53_hosted_zone_id.
+  # This var is overriden by var.dns_names if that var is non-empty. Examples:
+  # kafka.aws or kafka.acme.com.
+  dns_name_common_portion = ""
+
+  # A list of DNS names to assign to each ENI in the Server Group. Make sure the
+  # list has n entries, where n = var.num_enis * var.size. If this var is specified,
+  # it will override var.dns_name_common_portion. Example: [0.acme.com, 1.acme.com,
+  # 2.acme.com]
+  dns_names = []
+
+  # The TTL (Time to Live) to apply to any DNS records created by this module.
+  dns_ttl = 300
+
+  # Set to true to make each server EBS-optimized.
+  ebs_optimized = false
+
+  # A list that defines the EBS Volumes to create for each server. Each item in the
+  # list should be a map that contains the keys 'type' (one of standard, gp2, gp3,
+  # io1, io2, sc1 or st1), 'size' (in GB), 'encrypted' (true or false), 'iops' value
+  # if using a disk type of io1, io2 or gp3, and 'snapshot_id' (optional ID to
+  # recover the volume from a snapshot). Each EBS Volume and server pair will get
+  # matching tags with a name of the format ebs-volume-xxx, where xxx is the index
+  # of the EBS Volume (e.g., ebs-volume-0, ebs-volume-1, etc). These tags can be
+  # used by each server to find and mount its EBS Volume(s).
+  ebs_volumes = []
+
+  # The names of Elastic Load Balancers (ELBs) to associate with the servers. We
+  # recommend associating at least one ELB (via this parameter) or ALB (via
+  # var.alb_target_group_arns) and setting var.health_check_type to ELB to use a
+  # load balancer for health checks during deployments.
+  elb_names = []
+
+  # Enable detailed CloudWatch monitoring for the servers. This gives you more
+  # granularity with your CloudWatch metrics, but also costs more money.
+  enable_detailed_monitoring = false
+
+  # If true, create an Elastic IP Address for each ENI and associate it with the
+  # ENI.
+  enable_elastic_ips = false
+
+  # Set this variable to true to enable the Instance Metadata Service (IMDS)
+  # endpoint, which is used to fetch information such as user-data scripts, instance
+  # IP address and region, etc. Set this variable to false if you do not want the
+  # IMDS endpoint enabled for instances launched into the Auto Scaling Group for the
+  # workers.
+  enable_imds = true
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # The time, in seconds, after a server first comes into service before beginning
+  # to check health. This is useful if your server needs time to boot up (e.g., to
+  # warm a cache) without having to worry about failing health checks and being
+  # replaced right away.
+  health_check_grace_period = 30
+
+  # The type of health check to use. Must be one of: EC2 or ELB. If you associate
+  # any load balancers with this server group via var.elb_names or
+  # var.alb_target_group_arns, you should typically set this parameter to ELB.
+  health_check_type = "EC2"
+
+  # The desired HTTP PUT response hop limit for instance metadata requests.
+  http_put_response_hop_limit = null
+
+  # The name of an EC2 Key Pair to associate with each server for SSH access. Set to
+  # null to not associate a Key Pair.
+  key_pair_name = null
+
+  # The ARN for the KMS encryption key. When encrypted is set to true, this
+  # kms_key_id will be used. If encrypted is set to true and this is empty string,
+  # the default aws/ebs AWS managed key.
+  kms_key_id = ""
+
+  # The number of extra Elastic Network Interfaces (ENIs) to create for server. Each
+  # ENI is an IP address that will remain static, even if the underlying server is
+  # replaced. Each ENI and server pair will get matching tags with a name of the
+  # format eni-xxx, where xxx is the index of the ENI (e.g., eni-0, eni-1, etc).
+  # These tags can be used by each server to find and mount its ENI(s).
+  num_enis = 0
+
+  # When true, newly launched instances are automatically protected from termination
+  # by Amazon EC2 Auto Scaling when scaling in.
+  protect_from_scale_in = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # server group role. This policy should be created outside of this module.
+  role_permissions_boundary = null
+
+  # Whether the root volume of each server should be deleted when the server is
+  # terminated.
+  root_block_device_delete_on_termination = true
+
+  # Whether the root volume of each server should be encrypted.
+  root_block_device_encrypted = true
+
+  # The size, in GB, of the root volume of each server.
+  root_block_device_volume_size = 20
+
+  # The type of the root volume of each server. Must be one of: standard, gp2, or
+  # io1.
+  root_block_device_volume_type = "standard"
+
+  # The ID of the Route53 Hosted Zone in which we will create the DNS records
+  # specified by var.dns_name_common_portion. Only used if
+  # var.dns_name_common_portion is non-empty.
+  route53_hosted_zone_id = null
+
+  # The log level to use with the rolling deploy script. It can be useful to set
+  # this to DEBUG when troubleshooting the script.
+  script_log_level = "INFO"
+
+  # If set to true, skip the health check, and start a rolling deployment without
+  # waiting for the server group to be in a healthy state. This is primarily useful
+  # if the server group is in a broken state and you want to force a deployment
+  # anyway.
+  skip_health_check = false
+
+  # If set to true, skip the rolling deployment, and destroy all the servers
+  # immediately. You should typically NOT enable this in prod, as it will cause
+  # downtime! The main use case for this flag is to make testing and cleanup easier.
+  # It can also be handy in case the rolling deployment code has a bug.
+  skip_rolling_deploy = false
+
+  # The port to use for SSH access.
+  ssh_port = 22
+
+  # The tenancy of each server. Must be one of: default, dedicated, or host.
+  tenancy = "default"
+
+  # Set this variable to true to enable the use of Instance Metadata Service Version
+  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
+  # to its special security hardening, we allow this in order to support the use
+  # case of AMIs built outside of these modules that depend on IMDSv1.
+  use_imdsv1 = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+  # The User Data script to run on each server when it is booting. If you need to
+  # pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
+  # var.user_data_base64 instead.
+  user_data = null
+
+  # The base64-encoded User Data script to run on each server when it is booting.
+  # This can be used to pass binary User Data, such as a gzipped cloud-init script.
+  # If you wish to pass in plain text (e.g., typical Bash Script) for User Data, use
+  # var.user_data instead.
+  user_data_base64 = null
+
+  # By passing a value to this variable, you can effectively tell this module to
+  # wait to deploy until the given variable's value is resolved, which is a way to
+  # require that this module depend on some other module. Note that the actual value
+  # of this variable doesn't matter.
+  wait_for = ""
+
+  # A maximum duration to wait for each server to be healthy before timing out (e.g.
+  # 10m). Valid units of time are: s, m, h.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+```
+
+</ModuleUsage>
 
 
 
@@ -698,11 +968,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/modules/server-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c349b633e8da68106b9a948936358ea2"
+  "hash": "637e052aa3eb3a32cc4755cedf39c6e6"
 }
 ##DOCS-SOURCER-END -->
