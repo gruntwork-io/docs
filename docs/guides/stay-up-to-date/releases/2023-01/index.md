@@ -33,7 +33,7 @@ Here are the repos that were updated:
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * Prevent conuntinuesly keeping `go-git` instances in memory by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/134
+  * Prevent continuously keeping `go-git` instances in memory by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/134
 * Improve code architecture by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/138
 * Switching to Git command  by @levkoburburas in https://github.com/gruntwork-io/repo-copier/pull/139
 
@@ -390,6 +390,6 @@ If you wish to maintain backward compatibility with your existing setup of the E
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "550110478f5950a385010ca6fb2b98fb"
+  "hash": "94e7dde5d330983bc64a360d80db7c50"
 }
 ##DOCS-SOURCER-END -->
