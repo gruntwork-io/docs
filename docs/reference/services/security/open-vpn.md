@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.98.0"/>
 
 # OpenVPN Server
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/openvpn-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -135,20 +136,6 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-     documentation for describe-images in the AWS CLI reference
-     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="backup_bucket_name" requirement="required" type="string">
@@ -840,11 +827,11 @@ The security group ID of the OpenVPN server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/openvpn-server/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/openvpn-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/openvpn-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fopenvpn-server%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fopenvpn-server%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fmgmt%2Fopenvpn-server%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c8a75da146bddf7e7ac46b3cae8b8cb9"
+  "hash": "b058176883852b1b90d92312ca2ccb3a"
 }
 ##DOCS-SOURCER-END -->

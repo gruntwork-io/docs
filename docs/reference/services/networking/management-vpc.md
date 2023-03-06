@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.93.1"/>
 
 # Management VPC
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -595,11 +596,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc-mgmt/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc-mgmt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc-mgmt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc-mgmt%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2cce0fa7fa9ca15062585c8276bbd5a5"
+  "hash": "da13a22393bc121186e85a676087db21"
 }
 ##DOCS-SOURCER-END -->

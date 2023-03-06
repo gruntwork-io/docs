@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon Elasticsearch Service
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -800,11 +801,11 @@ Domain-specific endpoint for Kibana without https scheme.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/elasticsearch/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Felasticsearch%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Felasticsearch%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fdata-stores%2Felasticsearch%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "11fbfd2c212b557acb63fd1aa0ae7ece"
+  "hash": "19c1a4447b264a6eb7d8dd5f0e99bcff"
 }
 ##DOCS-SOURCER-END -->

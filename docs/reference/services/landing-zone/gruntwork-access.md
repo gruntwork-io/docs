@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -173,11 +174,11 @@ The name of the IAM role
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/gruntwork-access/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/gruntwork-access/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/gruntwork-access/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fgruntwork-access%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fgruntwork-access%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fgruntwork-access%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "75d584b49d73e52d67f41424d6db5745"
+  "hash": "396ac68a68abc54d0b0db092f888453a"
 }
 ##DOCS-SOURCER-END -->
