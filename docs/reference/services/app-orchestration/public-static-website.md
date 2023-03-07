@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.101.0"/>
 
 # Public Static Website
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -296,24 +297,6 @@ map(object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = {
-     404 = {
-       response_code         = 404
-       response_page_path    = "404.html"
-       error_caching_min_ttl = 0
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="force_destroy" requirement="optional" type="bool">
@@ -610,11 +593,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ff541ab0ce268334e57080ddf46276e7"
+  "hash": "d10f59f7914b0d790469e66c05a66e49"
 }
 ##DOCS-SOURCER-END -->

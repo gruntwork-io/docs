@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECS Cluster
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -178,20 +179,6 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-     documentation for describe-images in the AWS CLI reference
-     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cluster_instance_type" requirement="required" type="string">
@@ -849,11 +836,11 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-cluster%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-cluster%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-cluster%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7479c772ceec59ee77e554c6c6a997b8"
+  "hash": "e7a02db9fb7d7b6c7c99c23541008ed4"
 }
 ##DOCS-SOURCER-END -->
