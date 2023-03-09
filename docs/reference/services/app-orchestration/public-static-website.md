@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.101.0"/>
 
 # Public Static Website
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -296,24 +297,6 @@ map(object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = {
-     404 = {
-       response_code         = 404
-       response_page_path    = "404.html"
-       error_caching_min_ttl = 0
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="force_destroy" requirement="optional" type="bool">
@@ -426,6 +409,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 A json string array containing routing rules for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rule. Use this when routing rules contain empty String values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_bucket_override_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+By default, the s3 bucket hosting the website is named after the domain name. Use this configuration to override it with this value instead.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -610,11 +602,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/public-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fpublic-static-website%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ff541ab0ce268334e57080ddf46276e7"
+  "hash": "7a913bb9af5678136054f0f4dc313e58"
 }
 ##DOCS-SOURCER-END -->

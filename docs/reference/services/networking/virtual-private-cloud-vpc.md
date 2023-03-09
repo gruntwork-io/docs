@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.100.0"/>
 
 # VPC
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -616,50 +617,6 @@ A map of unique names to client IP CIDR block and inbound ports that should be e
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-       A rule number indicating priority. A lower number has precedence. Note that the default rules created by this
-       module start with 100.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Network protocol (tcp, udp, icmp, or all) to expose.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Range of ports to expose.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       ICMP types to expose
-       Required if specifying ICMP for the protocol
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="private_app_allow_outbound_ports_to_destination_cidr" requirement="optional" type="map">
@@ -669,50 +626,6 @@ A map of unique names to destination IP CIDR block and outbound ports that shoul
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-       A rule number indicating priority. A lower number has precedence. Note that the default rules created by this
-       module start with 100.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Network protocol (tcp, udp, icmp, or all) to expose.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Range of ports to expose.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       ICMP types to expose
-       Required if specifying ICMP for the protocol
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="private_app_route_table_custom_tags" requirement="optional" type="map(string)">
@@ -1103,11 +1016,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fnetworking%2Fvpc%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3ec44f9d24e85cc8eb201bbdd1408eda"
+  "hash": "4a4f3499cdb39621d17d81dd61064dda"
 }
 ##DOCS-SOURCER-END -->
