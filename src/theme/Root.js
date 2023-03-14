@@ -14,8 +14,6 @@ import {
   gruntworkGithubOrg,
 } from "/src/components/SubscribersOnlyModal.tsx"
 
-console.log("awsCISRepos", awsCISRepos)
-
 const publicGruntworkRepoNames = [
   "bash-commons",
   "cloud-nuke",
@@ -144,10 +142,7 @@ function Root({ children }) {
   const [enterpriseNoticeLink, setEnterpriseNoticeLink] = useState("")
 
   useEffect(function showModalForPrivateGithubLinks() {
-    console.log("useEffect showModalForPrivateGithubLinks")
     const listener = (event) => {
-      console.log("Event Registered repo")
-      // debugger
       // Sometimes our links wrap components, such as Cards. In these cases, the event
       // target is often a child element of the <a> we're attempting to extract the
       // href data from, and so we search for the closest parent <a>. In the event that
@@ -158,16 +153,12 @@ function Root({ children }) {
         return
       }
 
-      console.log("HREF", targetLink.href)
-      // debugger
-
       // Allow clicks on the external GitHub link FROM the modal notices to work normally
       if (targetLink.dataset.modalExempt) {
         return
       }
 
       if (isGruntworkCisRepo(targetLink.href)) {
-        console.log("CIS repo")
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_CIS_GITHUB_WARNING_KEY
         )
@@ -182,8 +173,6 @@ function Root({ children }) {
       }
 
       if (isGruntworkEnterpriseRepo(targetLink.href)) {
-        console.log("Enterprise repo")
-
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_ENTERPRISE_GITHUB_WARNING_KEY
         )
@@ -198,8 +187,6 @@ function Root({ children }) {
       }
 
       if (isPrivateGruntworkRepo(targetLink.href)) {
-        console.log("Private repo")
-
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
         )
