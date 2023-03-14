@@ -39,6 +39,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-modal": "^3.14.4",
+    "ts-commons": "gruntwork-io/ts-commons#v1.0.0",
     "ts-jest": "^27.1.3",
     "url-loader": "^4.1.1"
   },

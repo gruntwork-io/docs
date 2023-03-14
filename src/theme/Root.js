@@ -1,9 +1,20 @@
+/**
+ * This file is the mechanism for adding stateful logic to a docusaurus
+ * application since the <Root> component is rendered at the very top of the
+ * React tree and never unmounts.
+ * We swizzle(customize) the Root component by creating this file: Root.js
+ * https://docusaurus.io/docs/swizzling#wrapper-your-site-with-root
+ */
+
 import React, { useState, useEffect } from "react"
-import { SubscribersOnlyModal } from "/src/components/SubscribersOnlyModal.tsx"
+import { enterpriseRepos, awsCISRepos } from "ts-commons/lib/repo-sets"
+import {
+  SubscribersOnlyModal,
+  repoNamePattern,
+  gruntworkGithubOrg,
+} from "/src/components/SubscribersOnlyModal.tsx"
 
-const gruntworkGithubOrg = "https://github.com/gruntwork-io/"
-
-const gruntworkCisRepoName = "terraform-aws-cis-service-catalog"
+console.log("awsCISRepos", awsCISRepos)
 
 const publicGruntworkRepoNames = [
   "bash-commons",
@@ -54,28 +65,43 @@ const publicGruntworkRepoNames = [
 ]
 
 /**
- * Checks if a link references a known public Gruntwork repo
+ * Checks if a given list of repo names includes a repo name extracted from a given url that matches the repoNamePattern
  *
- * @param string url
+ * @param {string[]} repoNames
+ * @param {string} url
  * @return {boolean}
  */
-const isPublicGruntworkRepo = (url) => {
+const listIncludesRepo = (repoNames, url) => {
   if (!url) {
     return false
   }
-  // Match a link prefixed by the gruntworkGithubOrg and capture the next path reference
-  const pattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(\/|$)`)
-  // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
-  const repoName = url.match(pattern)[1]
+
+  const repoMatchArray = url.match(repoNamePattern)
+  if (!repoMatchArray) {
+    return false
+  }
+
+  const repoName = repoMatchArray[1] // e.g for a given link https://github.com/gruntwork-io/docs/intro -> `docs`
 
   // returns boolean
-  return publicGruntworkRepoNames.includes(repoName)
+  return repoNames.includes(repoName)
+}
+
+/**
+ * Checks if a link references a known public Gruntwork repo
+ *
+ * @param {string} url
+ * @return {boolean}
+ */
+const isPublicGruntworkRepo = (url) => {
+  // returns boolean
+  return listIncludesRepo(publicGruntworkRepoNames, url)
 }
 
 /**
  * Checks if a link references a private Gruntwork repo
  *
- * @param string url
+ * @param {string} url
  * @return {boolean}
  */
 const isPrivateGruntworkRepo = (url) => {
@@ -85,33 +111,55 @@ const isPrivateGruntworkRepo = (url) => {
 }
 
 /**
- * Checks if a link references the Gruntwork CIS service catalog repo
+ * Checks if a link references a Gruntwork CIS repo
  *
- * @param string url
+ * @param {string} url
  * @return {boolean}
  */
-
 const isGruntworkCisRepo = (url) => {
-  return url && url.startsWith(`${gruntworkGithubOrg}${gruntworkCisRepoName}`)
+  // awsCISRepos is an array of strings, e.g. `gruntwork-io/cis-docs`
+  const cisRepoNames = awsCISRepos.map((repo) => repo.split("/")[1])
+  return listIncludesRepo(cisRepoNames, url)
+}
+
+/**
+ * Checks if a link references a Gruntwork Enterprise repo
+ *
+ * @param {string} url
+ * @return {boolean}
+ */
+const isGruntworkEnterpriseRepo = (url) => {
+  // enterpriseRepos is an array of strings, e.g. `gruntwork-io/enterprise-docs`
+  const enterpriseRepoNames = enterpriseRepos.map((repo) => repo.split("/")[1])
+  return listIncludesRepo(enterpriseRepoNames, url)
 }
 
 export const DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY = "dontWarnGitHubLinks"
 export const DONT_SHOW_CIS_GITHUB_WARNING_KEY = "dontWarnCISLinks"
+export const DONT_SHOW_ENTERPRISE_GITHUB_WARNING_KEY = "dontWarnEnterpriseLinks"
 
 function Root({ children }) {
-  const [displaySubscriberNotice, setDisplaySubscriberNotice] = useState(false)
   const [subscriberNoticeLink, setSubscriberNoticeLink] = useState("")
-
-  const [displayCisNotice, setDisplayCisNotice] = useState(false)
   const [cisNoticeLink, setCisNoticeLink] = useState("")
+  const [enterpriseNoticeLink, setEnterpriseNoticeLink] = useState("")
 
-  useEffect(() => {
+  useEffect(function showModalForPrivateGithubLinks() {
+    console.log("useEffect showModalForPrivateGithubLinks")
     const listener = (event) => {
+      console.log("Event Registered repo")
+      // debugger
       // Sometimes our links wrap components, such as Cards. In these cases, the event
       // target is often a child element of the <a> we're attempting to extract the
       // href data from, and so we search for the closest parent <a>. In the event that
       // an <a> is clicked directly, that <a> itself will be returned.
-      const targetLink = event.target.closest("a")
+      const targetLink = event?.target?.closest("a")
+
+      if (!targetLink || !targetLink.href) {
+        return
+      }
+
+      console.log("HREF", targetLink.href)
+      // debugger
 
       // Allow clicks on the external GitHub link FROM the modal notices to work normally
       if (targetLink.dataset.modalExempt) {
@@ -119,22 +167,39 @@ function Root({ children }) {
       }
 
       if (isGruntworkCisRepo(targetLink.href)) {
+        console.log("CIS repo")
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_CIS_GITHUB_WARNING_KEY
         )
 
         if (dontWarn) {
-          setDisplayCisNotice(false)
           return
         }
 
-        event.preventDefault()
+        event.preventDefault() // This prevents the link from opening & ensures the modal is displayed
         setCisNoticeLink(targetLink.href)
-        setDisplayCisNotice(true)
+        return
+      }
+
+      if (isGruntworkEnterpriseRepo(targetLink.href)) {
+        console.log("Enterprise repo")
+
+        const dontWarn = window.localStorage.getItem(
+          DONT_SHOW_ENTERPRISE_GITHUB_WARNING_KEY
+        )
+
+        if (dontWarn) {
+          return
+        }
+
+        event.preventDefault() // This prevents the link from opening & ensures the modal is displayed
+        setEnterpriseNoticeLink(targetLink.href)
         return
       }
 
       if (isPrivateGruntworkRepo(targetLink.href)) {
+        console.log("Private repo")
+
         const dontWarn = window.localStorage.getItem(
           DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY
         )
@@ -144,9 +209,8 @@ function Root({ children }) {
           return
         }
 
-        event.preventDefault()
+        event.preventDefault() // This prevents the link from opening & ensures the modal is displayed
         setSubscriberNoticeLink(targetLink.href)
-        setDisplaySubscriberNotice(true)
         return
       }
     }
@@ -160,29 +224,24 @@ function Root({ children }) {
   return (
     <>
       <SubscribersOnlyModal
-        showModal={displaySubscriberNotice}
+        showModal={!!subscriberNoticeLink}
         externalLink={subscriberNoticeLink}
         localStorageKey={DONT_SHOW_PRIVATE_GITHUB_WARNING_KEY}
-        handleCancelRequest={() => {
-          setDisplaySubscriberNotice(false)
-          setSubscriberNoticeLink("")
-        }}
-        handleAcceptRequest={() => {
-          setDisplaySubscriberNotice(false)
-        }}
+        clearLink={() => setSubscriberNoticeLink("")}
       />
       <SubscribersOnlyModal
-        showModal={displayCisNotice}
+        showModal={!!cisNoticeLink}
         externalLink={cisNoticeLink}
         localStorageKey={DONT_SHOW_CIS_GITHUB_WARNING_KEY}
         subscriberType="CIS"
-        handleCancelRequest={() => {
-          setDisplayCisNotice(false)
-          setCisNoticeLink("")
-        }}
-        handleAcceptRequest={() => {
-          setDisplayCisNotice(false)
-        }}
+        clearLink={() => setCisNoticeLink("")}
+      />
+      <SubscribersOnlyModal
+        showModal={!!enterpriseNoticeLink}
+        externalLink={enterpriseNoticeLink}
+        localStorageKey={DONT_SHOW_ENTERPRISE_GITHUB_WARNING_KEY}
+        subscriberType="Enterprise"
+        clearLink={() => setEnterpriseNoticeLink("")}
       />
       {children}
     </>
