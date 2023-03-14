@@ -47,4 +47,5 @@ For Terraform, follow the migration guide in [the migration guide of the release
 
 If you have successfully completed step 3.1 then you should now move to [step 4](step-4-verify-the-code-changes)
 in order to verify the changes that have been made. We strongly recommend that you verify the changes that have been
-made before executing `terraform/terragrunt apply`.
+made _before_ executing `terraform/terragrunt apply`.
+

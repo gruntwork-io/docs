@@ -184,16 +184,16 @@ Access Token with `repo` and `org` scope and set the environment variable `G
 export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
 ```
 
-Next, in your terminal navigate to the directory with your CIS `infrastructure-live` code and run Patcher’s `upgrade cis` command:
+Next, in your terminal navigate to the directory with your CIS `infrastructure-live` code and run Patcher’s `upgrade cis` command once on each environment (dev, prod, stage, security etc):
 
 
 ```bash
 cd <PATH/TO/YOUR/INFRASTRUCTURE-LIVE/CODE>
+cd dev
 patcher upgrade cis
 ```
 
-Patcher will then scan your current directory and its subdirectories, looking for the files containing Terraform or Terragrunt
-dependencies.
+Patcher will then scan your current directory and its subdirectories, looking for the files containing Terraform or Terragrunt dependencies.
 
 #### Analysis of module usage
 
@@ -234,9 +234,17 @@ You must run the migration scripts. Failing to do so will result in data loss.
 :::
 
 When Patcher completes successfully it provides a list migration scripts that need to be run before proceeding.
+In order to see the full path of the new scripts, run `git status`, and they will appear as a new file.
 
 
 ![Screenshot of Patcher's summary.](/img/guides/stay-up-to-date/cis-1.5.0/patcher-summary.png)
+
+Example:
+
+```bash
+cd us-west-2/dev/data-stores/rds/
+aws-vault exec dev -- ./01_state_mv_rds_database.sh
+```
 
 ### Next Steps
 
@@ -306,6 +314,6 @@ If you have successfully completed manually updating the modules to the minimum 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "edec39c8ee33888c076155f010db3e38"
+  "hash": "46739fa913b27a01c8a920d59c43c5e3"
 }
 ##DOCS-SOURCER-END -->
