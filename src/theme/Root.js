@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useEffect } from "react"
-import { getRepos } from "utils"
+import { getRepos } from "/utils"
 import {
   SubscribersOnlyModal,
   repoNamePattern,
