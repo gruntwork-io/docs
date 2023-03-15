@@ -86,7 +86,7 @@ Finally, enter the newly created `GitLab-MachineUser-PAT`/`BitBucket-MachineUser
 
 </details>
 
-Explanation
+### Explanation
 
 The reference architecture includes an end-to-end [CI/CD pipeline for infrastructure](https://gruntwork.io/pipelines/). You’ll need to set up a _machine user_ (also known as a _service account_) that will automatically checkout your code, push artifacts (such as Docker images and AMIs), and access the Gruntwork IaC Library.
 
