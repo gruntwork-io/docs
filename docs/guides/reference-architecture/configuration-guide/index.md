@@ -1,6 +1,6 @@
 # Gruntwork Reference Architecture Setup Instructions
 
-This repository is used to generate the code to deploy and manage the [the Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/). When we have finished the initial deployment, all of the code will be committed to this repository. We will then hand off the architecture for you to use, and we will include instructions for copying the code to your own repository outside of the `gruntwork-clients` GitHub organization.
+This repository is used to generate the code to deploy and manage the [the Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/). You will receive an automated email at the end of the deployment indicating that the initial deployment has finished, which includes instructions for copying the code to your own repository outside of the `gruntwork-clients` GitHub organization.
 
 ![Landing Zone Reference Architecture](/img/guides/reference-architecture/configuration-guide/landing-zone-ref-arch.png)
 
@@ -18,135 +18,45 @@ Caveat: at this time, the Reference Architecture does not configure or manage th
 
 :::
 
-## Clone this repository
-
-The very first step is to clone this repository to your local machine. You must have Git installed on your machine. Refer to [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install Git on your platform.
-
-1. Clone the repository.
-
-  ```bash
-  git clone git@github.com:gruntwork-clients/<this-repo>.git
-  ```
-
-1. Check out a new branch with your changes:
-
-  ```bash
-  git checkout -b ref-arch-form
-  ```
-
-## Create and configure AWS Accounts
-
-1. Create the following AWS accounts:
-
-   - Security: for centralized authentication to other accounts, including management of IAM users, groups, and roles.
-   - Logs: A log archive account that contains a central Amazon S3 bucket for storing copies of all AWS CloudTrail and AWS Config log files.
-   - Shared: Shared services account for sharing resources such as Amazon Machine Images (AMIs) and Docker images with other accounts. This account can also be used to provide common infrastructure such as self-hosted CI/CD systems (e.g. Jenkins) and monitoring systems (e.g. Grafana) with other accounts.
-   - Dev: A dedicated app account for development purposes, intended to isolate early development releases from the rest of your infrastructure.
-   - Stage: A dedicated app account for hosting staging, testing, and/or QA environments.
-   - Prod: A dedicated app account for production deployments, intended for live environments used by customers.
-
-1. Once they are created, record the account IDs.
-
-1. These account IDs will go under `AWSAccounts` in the reference architecture form.
-
-For the best results, use [Gruntwork CLI](https://github.com/gruntwork-io/gruntwork) to create the accounts. The Gruntwork CLI automatically grants Gruntwork engineers access to your accounts through an IAM role. However, **if you choose to create the accounts manually and do not use the Gruntwork CLI, you still MUST run the `gruntwork aws grant` command to grant the Gruntwork team access to these accounts**. MFA is enforced for all Gruntwork access. You can use the same tool to revoke access when the deployment is complete. See [CLI documentation](https://github.com/gruntwork-io/gruntwork) for details.
-
-:::info
-
-- The accounts must be new, empty accounts, with no resources present. That means no EC2 instances, RDS databases, CloudTrail trails, AWS Config recorders, etc.
-- Do not apply any Service Control Policies to the accounts as they may interfere with the Terraform resources in the Reference Architecture.
-- You can name the _dev, stage,_ and _prod_ accounts anything you like, but the others must be named _shared_, _logs_, and _security_.
-
-:::
-
-## Purchase and register domain names
-
-The Reference Architecture uses Route 53 to setup public DNS records for several aspects of the infrastructure, such as the network bastion and the [AWS Sample App](https://github.com/gruntwork-io/aws-sample-app/). For this to work, we ask that you set up domains for each application account (_dev_, _stage_, and _prod_) and, if you’re using Jenkins, in the _shared_ account. These domains should be configured as public hosted zones in Route 53. There are two options for domain registration:
-
-### Option A: Register one domain per account (recommended!)
-
-Follow the instructions in the [Gruntwork CLI documentation](https://github.com/gruntwork-io/gruntwork#create-the-aws-accounts) to complete this step.
-
-If you choose not to use the Gruntwork CLI, you may either [register a new domain using Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) yourself, or you may register a domain using an external provider, and [set up Route 53 as the DNS service for that domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html).
-
-#### Explanation
-
-You’ll be using Route 53 to register a separate domain name in the _dev_, _stage_, _prod_ accounts, as well as _shared_ if you are using Jenkins.
-
-This is the more secure option because:
-
-- Reduces the chance of making changes to the wrong domain: e.g., accidentally update prod while working on dev.
-- Less likely to make a mistake such as issuing cookies for the wrong domain: e.g., accidentally create a cookie in dev that is also accepted in prod.
-- Lowers the possibility of issuing TLS certificates for the wrong domain: e.g., accidentally create a TLS cert in dev that is also accepted in prod.
-
-Most domains in Route 53 are just $12, so this should not add much expense.
-
-### Option B: Register one domain with subdomains in each account
-
-Follow the instructions in the [Route 53 documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html) to delegate a subdomain. We recommend that you manage the top-level domain as a hosted zone in either the _security_ or the root account of your AWS Organization, and delegate subdomains to each of the other accounts (e.g. _dev_, _stage_, _prod_, and _shared_ if using Jenkins).
-
-#### Explanation
-
-You’ll be purchasing one domain (e.g. _example.com_), and delegate subdomains to each account (e.g. _dev.example.com_, _stage.example.com_, etc.). The upside of this approach is that there is a single [top-level domain namespace](https://en.wikipedia.org/wiki/Top-level_domain) (e.g. _example.com_) for all of your accounts. However, there are several important downsides:
-
-- You may accidentally make a mistake when managing the top-level domain that may impact all of your subdomains.
-- A subdomain such as `prod.example.com` is less intuitive for users. This can be mitigated by choosing a top-level domain for prod, and subdomains for non-production environments.
-- You must be careful about issuing cookies with the [`Set-Cookie` HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) so that cookies are valid only for the intended subdomain.
-
-## Confirm the domain configuration
-
-Once everything is configured up correctly, check that you can resolve the domains and confirm the nameserver settings using the `dig` command on MacOS or Linux, or `nslookup` on Windows. For example, the hosted zone configuration for the _gruntwork.in_ domain used by Gruntwork for testing looks like this in Route 53:
-
-![](/img/guides/reference-architecture/configuration-guide/gruntwork.in.ns.png)
-
-1. On MacOS or Linux, use `dig` to confirm that the domain can be resolved correctly over the Internet:
-
-  ```bash
-  $ dig gruntwork.in +short ns
-  ns-1202.awsdns-22.org.
-  ns-1749.awsdns-26.co.uk.
-  ns-559.awsdns-05.net.
-  ns-67.awsdns-08.com.
-  ```
-
-1. On Windows, use `nslookup`:
-
-  ```bash
-  $ nslookup -type=mx gruntwork.in
-  Server:             8.8.8.8
-  Address:    8.8.8.8#53
-
-  Non-authoritative answer:
-  gruntwork.in        nameserver = ns-1202.awsdns-22.org.
-  gruntwork.in        nameserver = ns-1749.awsdns-26.co.uk.
-  gruntwork.in        nameserver = ns-559.awsdns-05.net.
-  gruntwork.in        nameserver = ns-67.awsdns-08.com.
-  ```
-
-Notice that the NS records in the image match the values returned by the commands. The same process applies if you’re using subdomains. Make sure to validate each domain or subdomain in this manner.
-
-## Create an infrastructure-live repository
+## 1. Create an infrastructure-live repository
 
 1. Create a new repository in your VCS platform. We recommend naming it _infrastructure-live_.
-2. In the ref arch form, `InfraLiveRepoURL` is where you enter this repo’s HTTPS URL (e.g. <https://github.com/gruntwork-io/infrastructure-live.git>).
-3. `InfraLiveRepoSSHURL` is where you enter this repo’s SSH URL (e.g. <git@github.com>:gruntwork-io/infrastructure-live.git).
-4. `InfraLiveDefaultBranchName` is where you enter your repo’s default branch name (e.g. main).
+1. Keep this repo handy, as you'll be prompted for the following information in a subsequent step:
+    - HTTPS URL (e.g. `https://github.com/gruntwork-io/infrastructure-live`)
+    - SSH URL (e.g. `git@github.com:gruntwork-io/infrastructure-live.git`)
+    - Default branch (e.g. `main` or `master`)
 
-This current repository will contain all of the infrastructure code you need to extend and operate the environment. For you to have access to all the code, you should copy this code into your newly created _infrastructure-live_ repo once the deployment is done.
+## 2. Set up the machine user
 
-## Set up the machine user
+The next step is to configure the Machine User Personal Access Token(s)
 
-Whatever VCS platform you are using, do this:
+If you are using GitHub to host your `infrastructure-live` repository, you will only need the one 
+personal access token as the permissions will allow access to both your `infrastructure-live` repo and 
+Gruntwork's private repositories.
+
+If you are using GitLab or Bitbucket to host your `infrastructure-live` repository, you will need a 
+Personal Access Token for your respective VCS in addition to a GitHub PAT for access to the 
+private Gruntwork GitHub repositories. Note that at this time GitHub is the only supported VCS for 
+Reference Architecture deployments.
+
+First we will create a GitHub Personal Access Token:
 
 1. In GitHub, create a new user account, then create a [Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
 1. In the ref arch form, `MachineUserGitUsername` and `MachineUserGitEmail` is where you enter this account’s details.
 1. In the [Gruntwork developer portal](https://app.gruntwork.io/), add the user to your team, then log in to the portal _as the machine user_ and link the GitHub account. You’ll know it’s set up correctly when you see the Gruntwork icon in the machine user’s GitHub profile, indicating that they are a member of the Gruntwork Organization.
-1. The PAT should be granted `repo`, `user:email`, and `admin:public_key` permissions.
-1. Once you have the PAT, create a new [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) secret in the _shared_ account. You can use any name you wish for this secret. See the section [Appendix: How to create a secret for the VCS token in AWS Secrets Manager](#secrets_manager_howto) for details.
+1. The PAT should be granted `repo`, `user:email`, and `admin:public_key` permissions. You should include `GitHub-MachineUser-PAT` as part of the name/description of the token to be able to identify it later.
+1. Once you have the PAT, create a new [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) secret in the _shared_ account.  You can use any name you wish for this secret, but it's recommended you include `GitHub-MachineUser-PAT` as part of the name to be able to identify it later. See the section [Appendix: How to create a secret for the VCS token in AWS Secrets Manager](#secrets_manager_howto) for details.
 1. Once the secret is created, **make a note of the ARN**.
-1. In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 
-If you are using GitHub as your VCS, you’re done with this section! If you’re using GitLab or BitBucket, do the following:
+If your `infrastructure-live` repository is hosted in GitHub, enter the secrets manager ARN from the above steps into the Ref Arch `VCSPATSecretsManagerARN` field. This token will provide access to both your `infrastructure-live` repo and to the Gruntwork private repositories and you are done setting up the machine user! You can skip to the next section. 
+
+If your `infrastructure-live` repository is hosted in BitBucket or GitLab, expand the `BitBucket / GitLab` tab below for more details.
+
+<details><summary>BitBucket / GitLab</summary>
+
+> Note that at this time, GitHub is the only supported VCS for Reference Architecture deployments.
+
+If you are using GitLab or BitBucket to host your `infrastructure-live` repository, enter the secrets manager ARN from the above steps into the `GitHubPATSecretsManagerARN` field. Since this token will provide access to only the Gruntwork private repositories, we will next need to create the token to access your `infrastructure-live` repo.
 
 - For GitLab, use [these instructions](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html), and
   grant the following scopes (NOTE: `api`, `read_user`, and `read_api` scopes are only used for uploading the public SSH
@@ -158,6 +68,8 @@ If you are using GitHub as your VCS, you’re done with this section! If you’r
   - `read_user`
   - `read_api`
 
+  You should name the token `GitLab-MachineUser-PAT` to be able to identify it later
+
 - For Bitbucket, use [these instructions](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/), and
   grant the following scopes (NOTE: `Account:Write` is only used for uploading the public SSH key for the user. You can
   replace the token with a new one that only has `Repositories:Write` permission after the Reference Architecture is
@@ -166,48 +78,112 @@ If you are using GitHub as your VCS, you’re done with this section! If you’r
   - `Repositories:Write`
   - `Account:Write`
 
-- Then create _another_ secret in AWS Secrets Manager in the _shared_ account containing this PAT. **Note the ARN, as in the GitHub step above**.
+  You should name the token `BitBucket-MachineUser-PAT` to be able to identify it later.
 
-- In the ref arch form, `GitHubPATSecretsManagerARN` is where you enter this ARN.
+Now you will need to create _another_ secret in AWS Secrets Manager in the _shared_ account containing this PAT. You should name the secret following the above naming convention (`GitLab-MachineUser-PAT`/`BitBucket-MachineUser-PAT`). Once the secret is created, **make a note of the ARN**.
+
+Finally, enter the newly created `GitLab-MachineUser-PAT`/`BitBucket-MachineUser-PAT` secrets manager ARN from the above step into the Ref Arch `VCSPATSecretsManagerARN` field.
+
+</details>
 
 ### Explanation
 
 The reference architecture includes an end-to-end [CI/CD pipeline for infrastructure](https://gruntwork.io/pipelines/). You’ll need to set up a _machine user_ (also known as a _service account_) that will automatically checkout your code, push artifacts (such as Docker images and AMIs), and access the Gruntwork IaC Library.
 
-You need one [machine user in GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users) to access the repos in the Gruntwork IaC Library. If you’re not using GitHub, (e.g., in BitBucket or GitLab), you’ll need to create a machine user for that VCS.
+There are two primary uses for the Machine User:
+- Accessing Gruntwork private repositories hosted in GitHub
+- Accessing your `infrastructure-live` repository that is hosted in GitHub, BitBucket, or GitLab
 
-## Fill out the reference architecture form
+You need at least one [machine user in GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users) to access the repos in the Gruntwork IaC Library private repositories. If you are using GitHub to host your `infrastructure-live` repo then this machine user PAT will also grant all the access you will need.
 
-The [reference architecture form](https://github.com/gruntwork-clients/infrastructure-live/blob/main/reference-architecture-form.yml) is a [YAML file](https://en.wikipedia.org/wiki/YAML) that contains all the fields that Gruntwork needs to deploy your reference architecture.
+If you have chosen Bitbucket or GitLab to host your `infrastructure-live` repo, then you will need a second PAT that grants access to that repo. 
 
-You’ll need all the information you’ve noted in the previous steps. This is where you’ll also be able to customize your infrastructure by choosing a compute option (e.g. ASG, ECS, or EKS), a cache cluster (Redis or Memcached), and a database (e.g. MySQL, PostgreSQL, Aurora, etc). The form contains detailed descriptions of each field.
+In the `reference-architecture-form.yml` there are two fields that relate to the machine user PAT(s)
+- `VCSPATSecretsManagerARN` 
+- `GitHubPATSecretsManagerARN`
 
-YAML files are space-sensitive. As you edit the file, be sure to retain the correct whitespace! This should be apparent as you review the file.
+`VCSPATSecretsManagerARN` is for the secrets manager ARN that contains the PAT for your VCS system hosting your `infrastructure-live` repo. If your VCS happens to be GitHub then it automatically grants all the access you need and you can set `GitHubPATSecretsManagerARN` to an empty string as it is not needed.
 
-1. Open `reference-architecture-form.yml` in a text editor.
-1. Update the _replace-me_ placeholder text in each field. Use double quotes (`""`) to wrap the values, as shown in the examples.
+Since BitBucket and GitLab PATs wouldn't grant access to GitHub, the additional `GitHubPATSecretsManagerARN` is needed in order to access Gruntwork Private IaC Library repositories.
 
-If you’re unsure about how to answer any of the questions, email <support@gruntwork.io> and let us know!
+## 3. Clone this repository
 
-## Complete the set up process and open a pull request to engage our GitHub Automations 
+Use Git to clone this repository. If you do not have `git` available on your system, refer to [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install Git on your platform.
 
-1. Review your changes. If you notice any errors, correct them, and rerun:
+1. Clone the repository.
 
-  ```bash
-  git diff
-  ```
+   ```bash
+   git clone git@github.com:gruntwork-clients/<this-repo>.git
+   ```
 
-1. Commit the changes and push to the remote repository:
+## 4. Authenticate to AWS on your command line
 
-  ```bash
-  git add reference-architecture-form.yml
-  git commit -m 'Completed reference architecture form.'
-  git push origin ref-arch-form
-  ```
+The bootstrap script will prepare your AWS accounts for deployment. To use the bootstrap script and form filling wizard,
+the CLI will need access to your AWS Root account you would like to use for the Reference Architecture. The Root account
+is where the AWS Organization is defined.
 
-1. [Open a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request). 
+1. If you do not have a Root account (an AWS account with AWS Organizations setup) already, create one. We recommend
+   creating a brand new account to use as the Root account if you are not already using AWS Organizations, and import
+   your existing AWS Account(s) to it as members.
+1. Setup AWS Organizations in your Root account if you haven't already. Refer to [this
+   documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tutorials_basic.html) for instructions
+   on how to setup AWS Organizations.
+1. If you do not have one already, [create an IAM
+   User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with administrator permissions (attach
+   the `AdministratorAccess` IAM policy). Make sure to create AWS Access Keys for the IAM User as well.
+1. Once you have an IAM User and AWS Access Keys for accessing the Root account, configure your terminal to be able to
+   authenticate to the IAM User. If you do not know how to do this, refer to our [Comprehensive Guide to Authenticating
+   to AWS on the Command
+   Line](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799).
 
-##  Use Preflight Checks to iterate on your form and fix any configuration issues 
+## 5. Run the bootstrap script
+
+We're ready to run the wizard to fill in your `reference-architecture-form.yml` with valid values.
+
+Before running the wizard, ensure you have completed steps 1, 2 and 3 and that you have the following values ready at hand:
+
+- Personal Access Token for YOUR GitHub user. This token is used to create the Pull Request for the Reference Architecture form.
+    - If you do not have one, generate a new Personal Access Token with `repo` level permissions.
+- GitHub Machine User Personal Access Token (required in all cases)
+- VCS Machine User Personal Access Token (only required if your ultimate infrastructure-live destination is NOT GitHub)
+- The HTTPS URL to your VCS `infrastructure-live` repo (e.g., `https://github.com/gruntwork-io/infrastructure-live.git`)
+- The SSH URL to your same VCS `infrastructure-live` repo (e.g., `git@github.com:gruntwork-io/infrastructure-live.git`)
+
+In your repo, you will find two scripts:
+
+- `bootstrap_unix.sh`
+- `bootstrap_windows.py`
+
+Both scripts will:
+
+1. Sanity check that you have access to the required organizations.
+2. Install the Gruntwork command line tool, which does all the heavy lifting for you
+3. Run the Gruntwork wizard for you, which helps you:
+   - Provision your AWS accounts
+   - Register domains
+   - Set up your VCS token secrets
+   - Fill in your reference-architecture-form.yml file with valid values
+   - Commit and push your form to GitHub and open a pull request
+
+Run the corresponding script based on your platform:
+
+### Linux or Mac OS
+
+```bash
+export GITHUB_OAUTH_TOKEN=<YOUR GITHUB PERSONAL ACCESS TOKEN>
+./bootstrap_unix.sh
+```
+
+### Windows
+
+Install python, and then run:
+
+```
+$env:GITHUB_OAUTH_TOKEN = 'YOUR GITHUB PERSONAL ACCESS TOKEN'
+python3 bootstrap_windows.py
+```
+
+## 6. Iterate on your form and push your changes up to run your Preflight Checks
 
 ![Gruntwork Preflight Checks on GitHub](/img/guides/reference-architecture/configuration-guide/preflight-checks.png)
 
@@ -215,9 +191,7 @@ Once your form is filled in and pushed to GitHub, our GitHub automations will ta
 
 ![Gruntwork Preflight Checks](/img/guides/reference-architecture/configuration-guide/preflight-checks-preview.png)
 
-You can then locally iterate on your form by editing `reference-architecture-form.yml` on the `ref-arch-form` branch and pushing your changes up to GitHub. Each time you make a new commit and push it, the Gruntwork _Preflight Checks_ will be run against your form. 
-
-Keep iterating on your form and pushing new commits up until the Preflight Checks check passes and you see no more error annotations on your pull request.
+You can then locally iterate on your form by editing `reference-architecture-form.yml` on the `ref-arch-form` branch and pushing your changes up to GitHub. Each time you make a new commit and push it, the Gruntwork _Preflight Checks_ will be run against your form.
 
 ## Next Steps
 
@@ -231,7 +205,98 @@ Gruntwork engineers rotate through all active deployments to fix up issues preve
 
 Gruntwork engineers will reach out to you to communicate a status update or next steps if your deployment requires additional intervention to complete.
 
-## Appendix: How to create a secret for the VCS token in AWS Secrets Manager
+## Manual setup instructions
+
+<details>
+<summary>
+Click here if you would like to perform the setup actions manually
+</summary>
+
+Visit [the Gruntwork releases page](https://github.com/gruntwork-io/gruntwork/releases)
+
+Find and download the correct binary for your platform.
+
+### Mac and Linux instructions
+
+Mac and Linux users, move it into `/usr/local/bin/`. For example, assuming you downloaded `gruntwork_linux_amd64`:
+
+`sudo mv ~/Downloads/gruntwork_linux_amd64 /usr/local/bin/gruntwork`
+
+Make the binary executable
+
+`chmod +x /usr/local/bin/gruntwork`
+
+Run the setup wizard
+
+`gruntwork wizard`
+
+### Windows users
+
+Download and move your binary to your `C:\Program Files` directory.
+
+Append the full path to your `gruntwork` binary to your system's PATH.
+
+Run the setup wizard
+
+`gruntwork wizard`
+
+</details>
+
+## Frequently Asked Questions (F.A.Q)
+
+<details>
+<summary>Click to expand the FAQ section</summary>
+
+_Why do I need to create another repository? Can't I use this repository for my infrastructure code?_
+
+Our Reference Architecture deployment process depends on having access to the code. In lieu of requesting for access to
+a repository that you own, we use this current repository in the `gruntwork-clients` GitHub organization to stage the
+code for the Reference Architecture deployment.
+
+This code should be moved to a repository that you have full control over once everything is deployed.
+
+
+_Why do I need a machine user?_
+
+The reference architecture includes an end-to-end [CI/CD pipeline for infrastructure](https://gruntwork.io/pipelines/). You’ll need to set up a _machine user_ (also known as a _service account_) that will automatically checkout your code, push artifacts (such as Docker images and AMIs), and access the Gruntwork IaC Library.
+
+You need one [machine user in GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users) to access the repos in the Gruntwork IaC Library. 
+
+
+_What are the various Ref Arch accounts used for?_
+
+This is the breakdown of AWS accounts in the Reference Architecture:
+
+- **Security**: for centralized authentication to other accounts, including management of IAM users, groups, and roles.
+- **Logs**: A log archive account that contains a central Amazon S3 bucket for storing copies of all AWS CloudTrail and AWS Config log files.
+- **Shared**: Shared services account for sharing resources such as Amazon Machine Images (AMIs) and Docker images with other accounts. This account can also be used to provide common infrastructure such as monitoring systems (e.g. Grafana) with other accounts.
+- **Dev**: A dedicated app account for development purposes, intended to isolate early development releases from the rest of your infrastructure.
+- **Stage**: A dedicated app account for hosting staging, testing, and/or QA environments.
+- **Prod**: A dedicated app account for production deployments, intended for live environments used by customers.
+
+
+_Where can I read the Ref Arch Setup FAQ?_
+
+Please find our [Reference Architecture Pre-Deployment FAQ page here](https://docs.gruntwork.io/faq/ref-arch-predeployment/).
+
+
+_How do I commit and push my form changes?_
+
+Committing changes and pushing to the remote repository:
+
+```bash
+git add reference-architecture-form.yml
+git commit -m 'Completed reference architecture form.'
+git push origin ref-arch-form
+```
+
+
+_How do I open a pull request with my changes?_
+
+[See the GitHub docs on how to open a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+
+_How do I create a secret for the VCS token in AWS Secrets Manager?_
 
 To create a secret in AWS Secrets Manager, first open the AWS console for the _shared_ AWS account, and navigate to the Secrets Manager console.
 
@@ -255,10 +320,11 @@ Choose a name for the secret (we’ve chosen _GitHubPAT_ here), then click _Next
 
 In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 
+</details>
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3cfd9930ece7baaa5154d8565fcb6ae4"
+  "hash": "59d4e6a65fe7285afd4030eb4b11e002"
 }
 ##DOCS-SOURCER-END -->
