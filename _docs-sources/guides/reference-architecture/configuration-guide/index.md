@@ -30,10 +30,6 @@ Caveat: at this time, the Reference Architecture does not configure or manage th
 
 The next step is to configure the Machine User Personal Access Token(s)
 
-There are two primary uses for the Machine User:
-- Accessing Gruntwork private repositories hosted in GitHub
-- Accessing your `infrastructure-live` repository that is hosted in GitHub, BitBucket, or GitLab
-
 If you are using GitHub to host your `infrastructure-live` repository, you will only need the one 
 personal access token as the permissions will allow access to both your `infrastructure-live` repo and 
 Gruntwork's private repositories.
@@ -90,11 +86,25 @@ Finally, enter the newly created `GitLab-MachineUser-PAT`/`BitBucket-MachineUser
 
 </details>
 
-### Explanation
+Explanation
 
 The reference architecture includes an end-to-end [CI/CD pipeline for infrastructure](https://gruntwork.io/pipelines/). You’ll need to set up a _machine user_ (also known as a _service account_) that will automatically checkout your code, push artifacts (such as Docker images and AMIs), and access the Gruntwork IaC Library.
 
-You need one [machine user in GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users) to access the repos in the Gruntwork IaC Library. If you’re not using GitHub, (e.g., in BitBucket or GitLab), you’ll need to create a machine user for that VCS.
+There are two primary uses for the Machine User:
+- Accessing Gruntwork private repositories hosted in GitHub
+- Accessing your `infrastructure-live` repository that is hosted in GitHub, BitBucket, or GitLab
+
+You need at least one [machine user in GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users) to access the repos in the Gruntwork IaC Library private repositories. If you are using GitHub to host your `infrastructure-live` repo then this machine user PAT will also grant all the access you will need.
+
+If you have chosen Bitbucket or GitLab to host your `infrastructure-live` repo, then you will need a second PAT that grants access to that repo. 
+
+In the `reference-architecture-form.yml` there are two fields that relate to the machine user PAT(s)
+- `VCSPATSecretsManagerARN` 
+- `GitHubPATSecretsManagerARN`
+
+`VCSPATSecretsManagerARN` is for the secrets manager ARN that contains the PAT for your VCS system hosting your `infrastructure-live` repo. If your VCS happens to be GitHub then it automatically grants all the access you need and you can set `GitHubPATSecretsManagerARN` to an empty string as it is not needed.
+
+Since BitBucket and GitLab PATs wouldn't grant access to GitHub, the additional `GitHubPATSecretsManagerARN` is needed in order to access Gruntwork Private IaC Library repositories.
 
 ## 3. Clone this repository
 
