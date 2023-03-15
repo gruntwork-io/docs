@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useEffect } from "react"
-import { enterpriseRepos, awsCISRepos } from "ts-commons/lib/repo-sets"
+import { getRepos } from "utils"
 import {
   SubscribersOnlyModal,
   repoNamePattern,
@@ -61,6 +61,8 @@ const publicGruntworkRepoNames = [
   "toc",
   "website-comments",
 ]
+
+const { awsCISRepos, enterpriseRepos } = getRepos()
 
 /**
  * Checks if a given list of repo names includes a repo name extracted from a given url that matches the repoNamePattern
