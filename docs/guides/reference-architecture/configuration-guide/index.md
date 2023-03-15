@@ -1,6 +1,6 @@
 # Gruntwork Reference Architecture Setup Instructions
 
-This repository is used to generate the code to deploy and manage the [the Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/). When we have finished the initial deployment, all of the code will be committed to this repository. We will then hand off the architecture for you to use, and we will include instructions for copying the code to your own repository outside of the `gruntwork-clients` GitHub organization.
+This repository is used to generate the code to deploy and manage the [the Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/). You will receive an automated email. Yada yada yada....
 
 ![Landing Zone Reference Architecture](/img/guides/reference-architecture/configuration-guide/landing-zone-ref-arch.png)
 
@@ -259,6 +259,6 @@ In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3cfd9930ece7baaa5154d8565fcb6ae4"
+  "hash": "b867da3147b1286ab15feea3936947c9"
 }
 ##DOCS-SOURCER-END -->
