@@ -28,7 +28,7 @@ Caveat: at this time, the Reference Architecture does not configure or manage th
 
 ## 2. Set up the machine user
 
-The next step is to configure the Machine User Personal Access Token(s)
+The next step is to configure the Machine User Personal Access Token(s) (PAT)
 
 If you are using GitHub to host your `infrastructure-live` repository, you will only need the one 
 personal access token as the permissions will allow access to both your `infrastructure-live` repo and 
@@ -41,12 +41,12 @@ Reference Architecture deployments.
 
 First we will create a GitHub Personal Access Token:
 
-1. In GitHub, create a new user account, then create a [Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+1. In GitHub, create a new user account, then create a [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
 1. In the ref arch form, `MachineUserGitUsername` and `MachineUserGitEmail` is where you enter this account’s details.
 1. In the [Gruntwork developer portal](https://app.gruntwork.io/), add the user to your team, then log in to the portal _as the machine user_ and link the GitHub account. You’ll know it’s set up correctly when you see the Gruntwork icon in the machine user’s GitHub profile, indicating that they are a member of the Gruntwork Organization.
 1. The PAT should be granted `repo`, `user:email`, and `admin:public_key` permissions. You should include `GitHub-MachineUser-PAT` as part of the name/description of the token to be able to identify it later.
 1. Once you have the PAT, create a new [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) secret in the _shared_ account.  You can use any name you wish for this secret, but it's recommended you include `GitHub-MachineUser-PAT` as part of the name to be able to identify it later. See the section [Appendix: How to create a secret for the VCS token in AWS Secrets Manager](#secrets_manager_howto) for details.
-1. Once the secret is created, **make a note of the ARN**.
+1. Once the secret is created, **copy the ARN** to your favorite text editor for later use.
 
 If your `infrastructure-live` repository is hosted in GitHub, enter the secrets manager ARN from the above steps into the Ref Arch `VCSPATSecretsManagerARN` field. This token will provide access to both your `infrastructure-live` repo and to the Gruntwork private repositories and you are done setting up the machine user! You can skip to the next section. 
 
@@ -149,9 +149,9 @@ We're ready to run the wizard to fill in your `reference-architecture-form.yml` 
 Before running the wizard, ensure you have completed steps 1, 2 and 3 and that you have the following values ready at hand:
 
 - Personal Access Token for YOUR GitHub user. This token is used to create the Pull Request for the Reference Architecture form.
-    - If you do not have one, generate a new Personal Access Token with `repo` level permissions.
-- GitHub Machine User Personal Access Token (required in all cases)
-- VCS Machine User Personal Access Token (only required if your ultimate infrastructure-live destination is NOT GitHub)
+    - If you do not have one, generate a new PAT with `repo` level permissions.
+- GitHub Machine User PAT (required in all cases)
+- VCS Machine User PAT (only required if your ultimate infrastructure-live destination is NOT GitHub)
 - The HTTPS URL to your VCS `infrastructure-live` repo (e.g., `https://github.com/gruntwork-io/infrastructure-live.git`)
 - The SSH URL to your same VCS `infrastructure-live` repo (e.g., `git@github.com:gruntwork-io/infrastructure-live.git`)
 
@@ -193,7 +193,7 @@ python3 bootstrap_windows.py
 
 ![Gruntwork Preflight Checks on GitHub](/img/guides/reference-architecture/configuration-guide/preflight-checks.png)
 
-Once your form is filled in and pushed to GitHub, our GitHub automations will take over. You'll notice a special GitHub check called _Preflight Checks_ that will run against your `reference-architecture-form.yml` file and flag any errors for you directly in your pull request, like so:
+Once your form is filled in and pushed to GitHub, our automations will take over via GitHub Actions. You'll notice a special GitHub check called _Preflight Checks_ that will run against your `reference-architecture-form.yml` file and flag any errors for you directly in your pull request, like so:
 
 ![Gruntwork Preflight Checks](/img/guides/reference-architecture/configuration-guide/preflight-checks-preview.png)
 
@@ -331,6 +331,6 @@ In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "770deed0834909a527128ed4a44a680e"
+  "hash": "680352530586b7b98f33d10374134997"
 }
 ##DOCS-SOURCER-END -->
