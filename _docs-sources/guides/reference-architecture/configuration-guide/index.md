@@ -52,7 +52,7 @@ If your `infrastructure-live` repository is hosted in GitHub, enter the secrets 
 
 If your `infrastructure-live` repository is hosted in BitBucket or GitLab, expand the `BitBucket / GitLab` tab below for more details.
 
-<details><summary>BitBucket / GitLab</summary>
+<details><summary>BitBucket / GitLab Guide</summary>
 
 > Note that at this time, GitHub is the only supported VCS for Reference Architecture deployments.
 
@@ -86,7 +86,7 @@ Finally, enter the newly created `GitLab-MachineUser-PAT`/`BitBucket-MachineUser
 
 </details>
 
-### Explanation
+<details><summary>Explanation</summary>
 
 The reference architecture includes an end-to-end [CI/CD pipeline for infrastructure](https://gruntwork.io/pipelines/). You’ll need to set up a _machine user_ (also known as a _service account_) that will automatically checkout your code, push artifacts (such as Docker images and AMIs), and access the Gruntwork IaC Library.
 
@@ -105,6 +105,12 @@ In the `reference-architecture-form.yml` there are two fields that relate to the
 `VCSPATSecretsManagerARN` is for the secrets manager ARN that contains the PAT for your VCS system hosting your `infrastructure-live` repo. If your VCS happens to be GitHub then it automatically grants all the access you need and you can set `GitHubPATSecretsManagerARN` to an empty string as it is not needed.
 
 Since BitBucket and GitLab PATs wouldn't grant access to GitHub, the additional `GitHubPATSecretsManagerARN` is needed in order to access Gruntwork Private IaC Library repositories.
+
+![VCSPATSecretsManagerARN](/img/guides/reference-architecture/configuration-guide/vcs-pat.png) 
+
+![GitHubPATSecretsManagerARN](/img/guides/reference-architecture/configuration-guide/vcs-github-pat.png)
+
+</details>
 
 ## 3. Clone this repository
 
