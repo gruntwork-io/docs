@@ -2,8 +2,8 @@
  * Get repos from ts-commons package if available. Otherwise return empty arrays.
  *
  * ts-commons package is a private package so some users may not have access to
- * it. Use this function to check if it is available before usage to avoid
- * errors.
+ * it. Use this function to safely pull in an optional package to avoid both
+ * build-time and runtime errors.
  *
  * @return {*}  {{
  *   awsCISRepos: string[]
