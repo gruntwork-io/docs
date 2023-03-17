@@ -31,11 +31,11 @@ Caveat: at this time, the Reference Architecture does not configure or manage th
 The next step is to configure the Machine User Personal Access Token(s) (PAT)
 
 If you are using GitHub to host your `infrastructure-live` repository, you will only need the one 
-personal access token as the permissions will allow access to both your `infrastructure-live` repo and 
+PAT as the permissions will allow access to both your `infrastructure-live` repo and 
 Gruntwork's private repositories.
 
 If you are using GitLab or Bitbucket to host your `infrastructure-live` repository, you will need a 
-Personal Access Token for your respective VCS in addition to a GitHub PAT for access to the 
+PAT for your respective VCS in addition to a GitHub PAT for access to the 
 private Gruntwork GitHub repositories. Note that at this time GitHub is the only supported VCS for 
 Reference Architecture deployments.
 
@@ -46,8 +46,8 @@ First we will create a GitHub Personal Access Token:
 1. In the [Gruntwork developer portal](https://app.gruntwork.io/), add the user to your team, then log in to the portal _as the machine user_ and link the GitHub account. You’ll know it’s set up correctly when you see the Gruntwork icon in the machine user’s GitHub profile, indicating that they are a member of the Gruntwork Organization.
 1. The PAT should be granted `repo`, `user:email`, and `admin:public_key` permissions. You should include `GitHub-MachineUser-PAT` as part of the name/description of the token to be able to identify it later.
 1. Once you have the PAT, create a new [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) secret in the _shared_ account.  You can use any name you wish for this secret, but it's recommended you include `GitHub-MachineUser-PAT` as part of the name to be able to identify it later. See the section [Appendix: How to create a secret for the VCS token in AWS Secrets Manager](#secrets_manager_howto) for details.
-1. Once the secret is created, **copy the ARN** to your favorite text editor for later use.
-
+1. Once the secret is created, **copy the ARN** to your favorite text editor for the next step.
+ß
 If your `infrastructure-live` repository is hosted in GitHub, enter the secrets manager ARN from the above steps into the Ref Arch `VCSPATSecretsManagerARN` field. This token will provide access to both your `infrastructure-live` repo and to the Gruntwork private repositories and you are done setting up the machine user! You can skip to the next section. 
 
 If your `infrastructure-live` repository is hosted in BitBucket or GitLab, expand the `BitBucket / GitLab` tab below for more details.
@@ -80,7 +80,7 @@ If you are using GitLab or BitBucket to host your `infrastructure-live` reposito
 
   You should name the token `BitBucket-MachineUser-PAT` to be able to identify it later.
 
-Now you will need to create _another_ secret in AWS Secrets Manager in the _shared_ account containing this PAT. You should name the secret following the above naming convention (`GitLab-MachineUser-PAT`/`BitBucket-MachineUser-PAT`). Once the secret is created, **make a note of the ARN**.
+Now you will need to create _another_ secret in AWS Secrets Manager in the _shared_ account containing this PAT. You should name the secret following the above naming convention (`GitLab-MachineUser-PAT`/`BitBucket-MachineUser-PAT`). Once the secret is created, **copy the ARN** to your favorite text editor for the next step.
 
 Finally, enter the newly created `GitLab-MachineUser-PAT`/`BitBucket-MachineUser-PAT` secrets manager ARN from the above step into the Ref Arch `VCSPATSecretsManagerARN` field.
 
@@ -148,7 +148,7 @@ We're ready to run the wizard to fill in your `reference-architecture-form.yml` 
 
 Before running the wizard, ensure you have completed steps 1, 2 and 3 and that you have the following values ready at hand:
 
-- Personal Access Token for YOUR GitHub user. This token is used to create the Pull Request for the Reference Architecture form.
+- PAT for YOUR GitHub user. This token is used to create the Pull Request for the Reference Architecture form.
     - If you do not have one, generate a new PAT with `repo` level permissions.
 - GitHub Machine User PAT (required in all cases)
 - VCS Machine User PAT (only required if your ultimate infrastructure-live destination is NOT GitHub)
@@ -331,6 +331,6 @@ In the ref arch form, `VCSPATSecretsManagerARN` is where you enter this ARN.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "680352530586b7b98f33d10374134997"
+  "hash": "94256d4ff46ebef9e16f61a6d70ca1f0"
 }
 ##DOCS-SOURCER-END -->
