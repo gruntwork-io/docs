@@ -2,13 +2,17 @@ import React from "react"
 import { Modal } from "./Modal"
 import styles from "./Modal.module.css"
 
+export const gruntworkGithubOrg = "https://github.com/gruntwork-io/"
+
+/** @type {RegExp} Match a link prefixed by the gruntworkGithubOrg and capture the next path reference */
+export const repoNamePattern = new RegExp(`^${gruntworkGithubOrg}(.*?)(\/|$)`)
+
 interface SubscribersOnlyModalProps {
   externalLink: string
   localStorageKey: string
   subscriberType?: string
   showModal: boolean
-  handleCancelRequest: () => void
-  handleAcceptRequest?: () => void
+  clearLink: () => void
 }
 
 export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
@@ -16,8 +20,7 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
   localStorageKey,
   subscriberType,
   showModal,
-  handleCancelRequest,
-  handleAcceptRequest,
+  clearLink,
 }) => {
   const onRequestClose = (e) => {
     // If the user checked to never see this notice but subsequently cancels we will disregard their selection. We will
@@ -26,15 +29,18 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
       window.localStorage.removeItem(localStorageKey)
     }
 
-    handleCancelRequest()
-
-    // prevent the browser from handling a Cancel button click and scrolling to top
-    e.preventDefault()
+    clearLink()
+    e.preventDefault() // prevent the browser from handling a Cancel button click and scrolling to top
   }
 
-  const gitHubRepoName = externalLink.match(
-    /https:\/\/github.com\/gruntwork-io\/([^/]*)/
-  )
+  const repoNameMatchArray: RegExpMatchArray | null =
+    externalLink.match(repoNamePattern)
+
+  if (!repoNameMatchArray) {
+    return <></> // The link is not a Gruntwork Github repo link
+  }
+
+  const repoName = repoNameMatchArray[1]
 
   const setDontWarnMe = (event) => {
     event.stopPropagation()
@@ -51,8 +57,8 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
       shouldCloseOnEsc={true}
       shouldAcceptOnEnter={false}
       shouldCloseOnOverlayClick={true}
-      handleCancelRequest={handleCancelRequest}
-      handleAcceptRequest={handleAcceptRequest}
+      handleCancelRequest={clearLink}
+      handleAcceptRequest={clearLink}
     >
       <h2>
         {subscriberType
@@ -60,18 +66,16 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
           : "For Subscribers Only"}
       </h2>
       <p>
-        This link leads to the private{" "}
-        {gitHubRepoName && gitHubRepoName.length >= 1 && (
-          <code>{gitHubRepoName[1]}</code>
-        )}{" "}
-        repository visible only to subscribers; everyone else will see a 404.
+        This link leads to the private <code>{repoName}</code> repository
+        visible only to {subscriberType && `${subscriberType} `}
+        subscribers; everyone else will see a 404.
       </p>
       <div>
         <input type="checkbox" onClick={setDontWarnMe} />
         <label>Don't warn me again</label>
       </div>
       <div className={styles.buttonsContainer}>
-        <a onClick={(e) => onRequestClose(e)} href="#">
+        <a onClick={onRequestClose} href="#">
           Cancel
         </a>
         <a
@@ -79,7 +83,7 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
           target="_blank"
           data-modal-exempt={true}
           onClick={() => {
-            handleAcceptRequest()
+            setTimeout(clearLink, 500) // Wait .5seconds to allow propagation to external link before clearing the link from state
           }}
         >
           Continue to GitHub
