@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.98.0"/>
 
 # IAM Users and IAM Groups
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/iam-users-and-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -311,30 +312,6 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = [
-     {
-       group_name   = "stage-full-access"
-       iam_role_arns = ["arn:aws:iam::123445678910:role/mgmt-full-access"]
-     },
-     {
-       group_name   = "prod-read-only-access"
-       iam_role_arns = [
-         "arn:aws:iam::9876543210:role/prod-read-only-ec2-access",
-         "arn:aws:iam::9876543210:role/prod-read-only-rds-access"
-       ]
-     }
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_policy_iam_user_self_mgmt" requirement="optional" type="string">
@@ -513,52 +490,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   users = {
-     alice = {
-       groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
-     }
-  
-     bob = {
-       path   = "/"
-       groups = ["user-self-mgmt", "ops", "admins"]
-       tags   = {
-         foo = "bar"
-       }
-     }
-  
-     carol = {
-       groups               = ["user-self-mgmt", "developers", "ssh-users"]
-       pgp_key              = "keybase:carol_on_keybase"
-       create_login_profile = true
-       create_access_keys   = true
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
-   users to be able to specify, say, tags for some users, but not for others. We can't use a map(any) either, as that
-   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
-   we have to lamely fall back to any.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -682,11 +613,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/iam-users-and-groups/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/iam-users-and-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/landingzone/iam-users-and-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fiam-users-and-groups%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fiam-users-and-groups%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Flandingzone%2Fiam-users-and-groups%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "128357cf04993a430bf027354c82066b"
+  "hash": "4c4ecf32287b35def3dd295e5fd69a64"
 }
 ##DOCS-SOURCER-END -->
