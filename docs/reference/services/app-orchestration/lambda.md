@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.94.1"/>
 
 # Lambda
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -296,19 +297,6 @@ A map of environment variables to pass to the Lambda function. AWS will automati
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Lambda does not permit you to pass it an empty map of environment variables, so our default value has to contain
-   this totally useless placeholder.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="evaluation_periods" requirement="optional" type="number">
@@ -365,29 +353,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   iam_policy = {
-     S3Access = {
-       actions = ["s3:*"]
-       resources = ["arn:aws:s3:::mybucket"]
-       effect = "Allow"
-     },
-     SecretsManagerAccess = {
-       actions = ["secretsmanager:GetSecretValue"],
-       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
-       effect = "Allow"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="image_uri" requirement="optional" type="string">
@@ -780,11 +745,11 @@ Latest published version of your Lambda Function
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/lambda/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Flambda%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Flambda%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Flambda%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "48d5adfa4c91590a73da95cc4476f0ec"
+  "hash": "9fb5c882b76f2c8a8c7c901b23b1df19"
 }
 ##DOCS-SOURCER-END -->
