@@ -14,13 +14,14 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.0" lastModifiedVersion="0.96.1"/>
+<VersionBadge version="0.102.1" lastModifiedVersion="0.96.1"/>
 
 # Auto Scaling Group
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/asg-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/services/asg-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fasg-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -55,7 +56,7 @@ access to this repo, email <support@gruntwork.io>.
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
     Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
-*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/asg-service/core-concepts.md)
+*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
 
@@ -63,7 +64,7 @@ access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +72,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -115,20 +116,6 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-     documentation for describe-images in the AWS CLI reference
-     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="instance_type" requirement="required" type="string">
@@ -317,29 +304,6 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = [
-     {
-       key = "foo"
-       value = "bar"
-       propagate_at_launch = true
-     },
-     {
-       key = "baz"
-       value = "blah"
-       propagate_at_launch = true
-     }
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="default_forward_target_group_arns" requirement="optional" type="list(any)">
@@ -356,22 +320,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-   REQUIRED:
-   - arn    [string]: The ARN of the target group.
-   OPTIONAL:
-   - weight [number]: The weight. The range is 0 to 999. Only applies if len(target_group_arns) > 1.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="default_user" requirement="optional" type="string">
@@ -462,27 +410,6 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   enabled_metrics = [
-      "GroupDesiredCapacity",
-      "GroupInServiceInstances",
-      "GroupMaxSize",
-      "GroupMinSize",
-      "GroupPendingInstances",
-      "GroupStandbyInstances",
-      "GroupTerminatingInstances",
-      "GroupTotalInstances"
-    ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="external_account_ssh_grunt_role_arn" requirement="optional" type="string">
@@ -508,88 +435,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "health-path" = {
-        priority     = 130
-  
-        content_type = "text/plain"
-        message_body = "HEALTHY"
-        status_code  = "200"
-  
-      Conditions:
-      You need to provide *at least ONE* per set of rules. It should contain one of the following:
-        host_headers         = ["foo.com", "www.foo.com"]
-        path_patterns        = ["/health"]
-        source_ips           = ["127.0.0.1"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-            key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-        ]
-      }
-    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   REQUIRED
-   - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
-                            and `application/json`.
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
-                                   available priority after currently existing highest rule. This value must be unique for each
-                                   listener.
-   - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
-   - message_body  [string]      : The message body.
-   - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-  
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="forward_listener_rules" requirement="optional" type="any">
@@ -606,94 +451,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "foo" = {
-        priority = 120
-  
-        host_headers         = ["www.foo.com", "*.foo.com"]
-        path_patterns        = ["/foo/*"]
-        source_ips           = ["127.0.0.1/32"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-             key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-       ]
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
-                                                    the rule with the next available priority after currently existing highest
-                                                     rule. This value must be unique for each listener.
-   - listener_arns     [list(string)]              : A list of listener ARNs to override `var.listener_arns`
-   - stickiness        [map(object[Stickiness])]   : Target group stickiness for the rule. Only applies if more than one
-                                                    target_group_arn is defined.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="health_check_grace_period" requirement="optional" type="number">
@@ -813,29 +570,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   iam_policy = {
-     S3Access = {
-       actions = ["s3:*"]
-       resources = ["arn:aws:s3:::mybucket"]
-       effect = "Allow"
-     },
-     SecretsManagerAccess = {
-       actions = ["secretsmanager:GetSecretValue"],
-       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
-       effect = "Allow"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="key_pair_name" requirement="optional" type="string">
@@ -915,94 +649,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "old-website" = {
-        priority = 120
-        port     = 443
-        protocol = "HTTPS"
-  
-        status_code = "HTTP_301"
-        host  = "gruntwork.in"
-        path  = "/signup"
-        query = "foo"
-  
-      Conditions:
-        host_headers         = ["foo.com", "www.foo.com"]
-        path_patterns        = ["/health"]
-        source_ips           = ["127.0.0.1"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-            key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-        ]
-      }
-    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
-                           available priority after currently existing highest rule. This value must be unique for each
-                           listener.
-   - listener_arns [list(string)]: A list of listener ARNs to override `var.listener_arns`
-   - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-  
-   The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
-   the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
-   modify retain their original values.
-   - host        [string]: The hostname. The hostname can contain {host}.
-   - path        [string]: The absolute path, starting with the leading "/". The path can contain `host`, `path`, and `port`.
-   - port        [string]: The port. Specify a value from 1 to 65525.
-   - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
-   - query       [string]: The query params. Do not include the leading "?".
-  
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="route53_health_check_provider_external_id" requirement="optional" type="string">
@@ -1073,72 +719,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   server_ports = {
-     "default-http" = {
-       server_port            = "8080"
-       protocol               = "HTTP"
-       health_check_path      = "/health"
-       r53_health_check_path  = "/health"
-       enable_lb_health_check = false
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   REQUIRED:
-   - server_port        number      : The port of the endpoint to be checked (e.g. 80).
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - target_group_name                   string      : A unique name to use for the corresponding target group. If
-                                                       omitted, defaults to "SERVICE_NAME-ENTRY_KEY" where SERVICE_NAME
-                                                       corresponds to var.name and ENTRY_KEY corresponds to the map key
-                                                       for this server port entry.
-   - tags                                map(string) : A map of tags to apply to the metric alarm. The key is the tag
-                                                       name and the value is the tag value.
-   - protocol                            string      : The protocol to use for health checks. See:
-                                                       https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_groupprotocol
-   - health_check_path                   string      : The path that the health check should use for requests (e.g. /health or /status).
-   - r53_health_check_path               string      : The path that you want Amazon Route 53 to request when
-                                                         performing health checks (e.g. /status). Defaults to "/".
-   - r53_health_check_type               string      : The protocol to use when performing health checks. Valid
-                                                       values are HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH,
-                                                       TCP, CALCULATED and CLOUDWATCH_METRIC. Defaults to HTTP.
-   - r53_health_check_failure_threshold  number      : The number of consecutive health checks that must pass
-                                                       or fail for the health check to declare your site up or
-                                                       down. Defaults to 2.
-   - r53_health_check_request_interval   number      : The number of seconds between health checks. Defaults to 30.
-  
-   - enable_lb_health_check  bool   : Set to false if you want to disable Target Group health's check.
-                                      Defaults to true.
-   - lb_healthy_threshold    number : The number of consecutive health checks *successes* required before
-                                      considering an unhealthy target healthy. Defaults to 3.
-   - lb_unhealthy_threshold  number : The number of consecutive health check *failures* required before
-                                      considering the target unhealthy. Defaults to 3.
-   - lb_request_interval     number : The approximate amount of time, in seconds, between health checks
-                                      of an individual target. Defaults to 30.
-   - lb_timeout              number : The amount of time, in seconds, during which no response means a
-                                      failed health check. Defaults to 10.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1304,11 +884,11 @@ The ID of the Security Group that belongs to the ASG.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/asg-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/asg-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/asg-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fasg-service%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fasg-service%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fasg-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "20e7e6a69e14fd8216f6d287fbc61781"
+  "hash": "bc13507b267cc5f6158d382ca0c303b6"
 }
 ##DOCS-SOURCER-END -->

@@ -14,13 +14,14 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.0" lastModifiedVersion="0.102.0"/>
+<VersionBadge version="0.102.1" lastModifiedVersion="0.102.1"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/data-stores/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +70,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +78,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 ## Reference
 
@@ -203,18 +204,6 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default to hourly
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
@@ -283,27 +272,6 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-  [
-    {
-      name    = "arn:aws:iam::0000000000:user/dev"
-      conditions = [{
-        test     = "StringLike"
-        variable = "kms:ViaService"
-        values   = ["s3.ca-central-1.amazonaws.com"]
-      }]
-    },
-  ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -374,48 +342,6 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The family of the DB parameter group.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The parameters to configure on the created parameter group.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Vaue to set the parameter.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       When to apply the parameter. "immediate" or "pending-reboot".
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -459,19 +385,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object(…)">
@@ -506,19 +419,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object(…)">
@@ -553,19 +453,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object(…)">
@@ -600,19 +487,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object(…)">
@@ -647,19 +521,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object(…)">
@@ -694,19 +555,6 @@ object({
 ```
 
 </HclListItemDefaultValue>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
-     space.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
@@ -932,18 +780,6 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1000000000"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default is 1GB (1 billion bytes)
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
@@ -971,18 +807,6 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default is 100MB (100 million bytes)
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
@@ -1226,19 +1050,6 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   The max number of connections allowed by RDS depends a) the type of DB, b) the DB instance type, and c) the
-   use case, and it can vary from ~30 all the way up to 5,000, so we cannot pick a reasonable default here.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="too_many_db_connections_treat_missing_data" requirement="optional" type="string">
@@ -1412,11 +1223,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fdata-stores%2Frds%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fdata-stores%2Frds%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fdata-stores%2Frds%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "021f9a3c332292e0e70d1425bdb0c90a"
+  "hash": "39089b60d62f7cae58bc8614c4030e96"
 }
 ##DOCS-SOURCER-END -->

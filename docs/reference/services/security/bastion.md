@@ -14,13 +14,14 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.0" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.102.1" lastModifiedVersion="0.95.1"/>
 
 # Bastion Host
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/bastion-host" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/mgmt/bastion-host" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -87,7 +88,7 @@ The bastion host AMI is defined using the [Packer](https://www.packer.io/) templ
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -95,7 +96,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -148,20 +149,6 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-     documentation for describe-images in the AWS CLI reference
-     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="subnet_id" requirement="required" type="string">
@@ -566,11 +553,11 @@ The fully qualified name of the bastion host.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/bastion-host/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/bastion-host/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/mgmt/bastion-host/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fmgmt%2Fbastion-host%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fmgmt%2Fbastion-host%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d74aa97a9ce679f12966e6a8bf6cbec3"
+  "hash": "767c972a12a858240ef5bddbac03e5e5"
 }
 ##DOCS-SOURCER-END -->
