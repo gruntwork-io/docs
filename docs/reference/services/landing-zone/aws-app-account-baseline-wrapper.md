@@ -555,6 +555,15 @@ Set to false to create an S3 bucket of name <a href="#cloudtrail_s3_bucket_name"
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="cloudtrail_s3_bucket_key_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1549,6 +1558,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Flandingzone%2Faccount-baseline-app%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5004e4bfffaf64c6e96cba2c1074f1b0"
+  "hash": "395495fd897e9bc1daccf66dc360b786"
 }
 ##DOCS-SOURCER-END -->

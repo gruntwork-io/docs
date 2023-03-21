@@ -368,22 +368,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_additional_bucket_policy_statements" requirement="optional" type="any">
-<HclListItemDescription>
-
-Additional IAM policies to apply to cloudtrail S3 bucket. You can use this to grant read/write access beyond what is provided to Cloudtrail. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment below.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="cloudtrail_advanced_event_selectors" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1899,6 +1883,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "658748d1fe3e3914623f8550e116eeb9"
+  "hash": "4161b9b890d891ec4b311feb92d93e28"
 }
 ##DOCS-SOURCER-END -->
