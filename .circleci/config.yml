@@ -31,7 +31,7 @@ references:
   build_docs: &build_docs
     run:
       name: build
-      command: yarn --ignore-optional && yarn build
+      command: yarn && yarn build
 
   test_docs: &test_docs
     run:
@@ -156,16 +156,12 @@ workflows:
   validate_build:
     jobs:
       - validate-build:
-          context:
-            - GitHub OAuth Token
           filters:
             branches:
               ignore: master
   stage_deployment:
     jobs:
       - validate-build:
-          context:
-            - GitHub OAuth Token
           filters:
             branches:
               only: master
@@ -181,8 +177,6 @@ workflows:
   prod_deployment:
     jobs:
       - validate-build:
-          context:
-            - GitHub OAuth Token
           filters:
             tags:
               only: /^v.*/
