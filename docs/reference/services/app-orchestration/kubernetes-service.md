@@ -14,13 +14,14 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.0" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.102.1" lastModifiedVersion="0.100.0"/>
 
 # Kubernetes Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/k8s-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules/services/k8s-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-service" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
 
@@ -74,9 +75,9 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -84,7 +85,7 @@ don’t have access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -92,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -177,23 +178,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   additional_ports = {
-     prometheus = {
-       port = 9102
-       protocol = "TCP"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="alb_acm_certificate_arns" requirement="optional" type="list(string)">
@@ -314,24 +298,6 @@ map(map(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: This will inject the foo key of the ConfigMap myconfig as the environment variable MY_CONFIG.
-   {
-     myconfig = {
-       foo = "MY_CONFIG"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="configmaps_as_volumes" requirement="optional" type="map(any)">
@@ -348,31 +314,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: This will mount the ConfigMap myconfig to the path /etc/myconfig
-   {
-     myconfig = {
-       mount_path = "/etc/myconfig"
-     }
-   }
-   Example: This will mount the ConfigMap myconfig to the path /etc/nginx/nginx.conf
-   {
-     myconfig = {
-       mount_path = "/etc/nginx/nginx.conf"
-       sub_path = "nginx.conf"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="container_protocol" requirement="optional" type="string">
@@ -391,30 +332,6 @@ The map that lets you define Kubernetes resources you want installed and configu
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: the following example creates a custom ConfigMap from a string and a Secret from a file.
-   {
-     custom_configmap = <<EOF
-   apiVersion: v1
-   kind: ConfigMap
-   metadata:
-     name: example
-   stringData:
-     key: value
-   EOF
-     custom_secret = file("${path.module}/secret.yaml")
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="desired_number_of_canary_pods" requirement="optional" type="number">
@@ -571,29 +488,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   iam_policy = {
-     S3Access = {
-       actions = ["s3:*"]
-       resources = ["arn:aws:s3:::mybucket"]
-       effect = "Allow"
-     },
-     SecretsManagerAccess = {
-       actions = ["secretsmanager:GetSecretValue"],
-       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
-       effect = "Allow"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_role_exists" requirement="optional" type="bool">
@@ -648,20 +542,6 @@ A list of custom ingress annotations, such as health checks and TLS certificates
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-     "alb.ingress.kubernetes.io/shield-advanced-protection" : "true"
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="ingress_backend_protocol" requirement="optional" type="string">
@@ -868,20 +748,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally we would define a concrete type here, but since the input value spec for the chart has dynamic optional
-   values, we can't use a concrete object type for Terraform. Also, setting a type spec here will defeat the purpose of
-   the escape hatch since it requires defining new input values here before users can use it.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="readiness_probe_grace_period_seconds" requirement="optional" type="number">
@@ -936,22 +802,6 @@ Paths that should be allocated as tmpfs volumes in the Deployment container. Eac
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: This will mount the tmpfs volume "foo" to the path "/mnt/scratch"
-   {
-     foo = "/mnt/scratch"
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="secrets_as_env_vars" requirement="optional" type="map(map(…))">
@@ -968,24 +818,6 @@ map(map(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: This will inject the foo key of the Secret mysecret as the environment variable MY_SECRET.
-   {
-     mysecret = {
-       foo = "MY_SECRET"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="secrets_as_volumes" requirement="optional" type="map(any)">
@@ -1002,31 +834,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-
-   Example: This will mount the Secret mysecret to the path /etc/mysecret
-   {
-     mysecret = {
-       mount_path = "/etc/mysecret"
-     }
-   }
-   Example: This will mount the Secret mysecret to the path /etc/nginx/nginx.conf
-   {
-     mysecret = {
-       mount_path = "/etc/nginx/nginx.conf"
-       sub_path = "nginx.conf"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="service_account_exists" requirement="optional" type="bool">
@@ -1070,45 +877,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   sidecar_containers = {
-     datadog = {
-       image = "datadog/agent:latest"
-       env = [
-         {
-           name = "DD_API_KEY"
-           value = "ASDF-1234"
-         },
-         {
-           name = "SD_BACKEND"
-           value = "docker"
-         },
-       ]
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally we would define a concrete type here, but since the container spec for Pods have dynamic optional values, we
-   can't use a concrete object type for Terraform.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="termination_grace_period_seconds" requirement="optional" type="number">
@@ -1168,11 +936,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/k8s-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/k8s-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/k8s-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fk8s-service%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fk8s-service%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.1/modules%2Fservices%2Fk8s-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "35ae5bb0f9eb9948ebb56849bd0f7443"
+  "hash": "e0c9156648f75e0ee9b72167408977f9"
 }
 ##DOCS-SOURCER-END -->
