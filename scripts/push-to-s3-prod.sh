@@ -11,6 +11,6 @@ export ALGOLIA_API_KEY="49a495ba4c210780a28feed306d05522" # This is a search onl
 
 export CONFIG_POSTHOG_API_KEY="phc_zJYg43ctbPl1BzsnODjop1op9KSsctiGm6DNNt3zHZT"
 
-yarn --ignore-optional && yarn build
+yarn && yarn build
 
 aws s3 sync build/ s3://docs.gruntwork.io --delete # Delete option ensures deleted files get removed from the bucket
