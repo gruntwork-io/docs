@@ -130,7 +130,7 @@ versions of Gruntwork's CIS Reference Architecture (part of the Gruntwork librar
       <td>
         <p>
           <strong>
-            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0">
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.1">
               v0.40.1
             </a>
           </strong>
