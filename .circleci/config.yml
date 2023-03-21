@@ -31,7 +31,7 @@ references:
   build_docs: &build_docs
     run:
       name: build
-      command: yarn --ignore-optional && yarn build
+      command: yarn && yarn build
 
   test_docs: &test_docs
     run:
