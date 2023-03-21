@@ -14,11 +14,12 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.0" lastModifiedVersion="0.100.6"/>
 
 # Amazon ECS Service
+
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -111,34 +112,6 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   container_definitions = [{
-     name  = "nginx"
-     image = "nginx:1.21"
-   }]
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally we can use a concrete type here, but container definitions have many optional fields which Terraform does
-   not yet have good support for.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="default_listener_arns" requirement="required" type="map(string)">
@@ -233,34 +206,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   container_definitions = [{
-     name  = "nginx"
-     image = "nginx:1.21"
-   }]
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally we can use a concrete type here, but container definitions have many optional fields which Terraform does
-   not yet have good support for.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="canary_version" requirement="optional" type="string">
@@ -290,29 +235,6 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   capacity_provider_strategy = [
-      {
-        capacity_provider = "FARGATE"
-        weight            = 1
-        base              = 2
-      },
-      {
-        capacity_provider = "FARGATE_SPOT"
-        weight            = 2
-        base              = null
-      },
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="clb_container_name" requirement="optional" type="string">
@@ -580,28 +502,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   efs_volumes = {
-     jenkins = {
-       file_system_id          = "fs-a1bc234d"
-       container_path          = "/efs"
-       root_directory          = "/jenkins"
-       transit_encryption      = "ENABLED"
-       transit_encryption_port = 2999
-       access_point_id         = "fsap-123a4b5c5d7891234"
-       iam                     = "ENABLED"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="elb_slow_start" requirement="optional" type="number">
@@ -645,20 +545,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   `elb_target_groups` should be set to a map of keys to objects with one mapping per desired target group. The keys
-   in the map can be any arbitrary name and are used to link the outputs with the inputs. The values of the map are an
-   object containing these attributes:
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -715,88 +601,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "health-path" = {
-        priority     = 130
-  
-        content_type = "text/plain"
-        message_body = "HEALTHY"
-        status_code  = "200"
-  
-      Conditions:
-      You need to provide *at least ONE* per set of rules. It should contain one of the following:
-        host_headers         = ["foo.com", "www.foo.com"]
-        path_patterns        = ["/health"]
-        source_ips           = ["127.0.0.1"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-            key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-        ]
-      }
-    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   REQUIRED
-   - content_type [string]: The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript`
-                            and `application/json`.
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority      [number]       : A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
-                                   available priority after currently existing highest rule. This value must be unique for each
-                                   listener.
-   - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
-   - message_body  [string]      : The message body.
-   - status_code   [string]      : The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
-  
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="forward_rules" requirement="optional" type="any">
@@ -808,132 +612,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "foo" = {
-        priority = 120
-  
-        host_headers         = ["www.foo.com", "*.foo.com"]
-        path_patterns        = ["/foo/*"]
-        source_ips           = ["127.0.0.1/32"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-             key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-       ]
-     },
-     "auth" = {
-       priority       = 128
-       listener_ports = ["443"]
-  
-       host_headers      = ["intern.example.com]
-       path_patterns     = ["/admin", "/admin/*]
-       authenticate_oidc = {
-         authorization_endpoint = "https://myaccount.oktapreview.com/oauth2/v1/authorize"
-         client_id              = "0123456789aBcDeFgHiJ"
-         client_secret          = "clientsecret"
-         issuer                 = "https://myaccount.oktapreview.com"
-         token_endpoint         = "https://myaccount.oktapreview.com/oauth2/v1/token"
-         user_info_endpoint     = "https://myaccount.oktapreview.com/oauth2/v1/userinfo"
-       }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority          [number]                    : A value between 1 and 50000. Leaving it unset will automatically set
-                                                    the rule with the next available priority after currently existing highest
-                                                     rule. This value must be unique for each listener.
-   - listener_arns     [list(string)]              : A list of listener ARNs to override `var.default_listener_arns`
-   - stickiness        [map(object[Stickiness])]   : Target group stickiness for the rule. Only applies if more than one
-                                                    target_group_arn is defined.
-   - authenticate_oidc map(object)                 : OIDC authentication configuration. Only applies, if not null.
-  
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Authenticate OIDC Blocks:
-   authenticate_oidc:
-   - authorization_endpoint              string     : (Required) The authorization endpoint of the IdP.
-   - client_id                           string     : (Required) The OAuth 2.0 client identifier.
-   - client_secret                       string     : (Required) The OAuth 2.0 client secret.
-   - issuer                              string     : (Required) The OIDC issuer identifier of the IdP.
-   - token_endpoint                      string     : (Required) The token endpoint of the IdP.
-   - user_info_endpoint                  string     : (Required) The user info endpoint of the IdP.
-   - authentication_request_extra_params map(string): (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-   - on_unauthenticated_request          string     : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
-   - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
-   - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
-   - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="health_check_enabled" requirement="optional" type="bool">
@@ -1098,29 +776,6 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   iam_policy = {
-     S3Access = {
-       actions = ["s3:*"]
-       resources = ["arn:aws:s3:::mybucket"]
-       effect = "Allow"
-     },
-     SecretsManagerAccess = {
-       actions = ["secretsmanager:GetSecretValue"],
-       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
-       effect = "Allow"
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="launch_type" requirement="optional" type="string">
@@ -1217,52 +872,6 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The ID of the VPC used for the Fargate worker network. Must be non-null when security_group_rules are provided.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Security Group Rules to apply to the ECS Fargate worker. This module will create a new security group for the
-     worker and attach these rules. Each entry accepts the same attributes as the aws_security_group_rule resource,
-     except for security_group_id which will be set to the security group created within the module.
-     Each entry corresponds to a rule. The key is a unique, user provided, arbitrary value that can be used by
-     Terraform to know which rules to update across changes.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Additional existing Security Groups that should be bound to the ECS Fargate worker.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Whether or not the ECS Fargate worker should get a public IP address.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="network_mode" requirement="optional" type="string">
@@ -1344,24 +953,6 @@ A map of network configuration parameters to provide the Container Network Inter
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   properties = {
-     AppPorts         = "8080"
-     EgressIgnoredIPs = "169.254.170.2,169.254.169.254"
-     IgnoredUID       = "1337"
-     ProxyEgressPort  = 15001
-     ProxyIngressPort = 15000
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="redirect_rules" requirement="optional" type="map(any)">
@@ -1373,94 +964,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-    {
-      "old-website" = {
-        priority = 120
-        port     = 443
-        protocol = "HTTPS"
-  
-        status_code = "HTTP_301"
-        host  = "gruntwork.in"
-        path  = "/signup"
-        query = "foo"
-  
-      Conditions:
-        host_headers         = ["foo.com", "www.foo.com"]
-        path_patterns        = ["/health"]
-        source_ips           = ["127.0.0.1"]
-        http_request_methods = ["GET"]
-        query_strings = [
-          {
-            key   = "foo"   Key is optional, this can be ommited.
-            value = "bar"
-          }, {
-            value = "hello"
-          }
-        ]
-      }
-    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority       [number]: A value between 1 and 50000. Leaving it unset will automatically set the rule with the next
-                           available priority after currently existing highest rule. This value must be unique for each
-                           listener.
-   - listener_arns [list(string)]: A list of listener ARNs to override `var.default_listener_arns`
-   - status_code   [string]: The HTTP redirect code. The redirect is either permanent `HTTP_301` or temporary `HTTP_302`.
-  
-   The URI consists of the following components: `protocol://hostname:port/path?query`. You must modify at least one of
-   the following components to avoid a redirect loop: protocol, hostname, port, or path. Any components that you do not
-   modify retain their original values.
-   - host        [string]: The hostname. The hostname can contain {host}.
-   - path        [string]: The absolute path, starting with the leading "/". The path can contain `host`, `path`, and `port`.
-   - port        [string]: The port. Specify a value from 1 to 65525.
-   - protocol    [string]: The protocol. Valid values are `HTTP` and `HTTPS`. You cannot redirect HTTPS to HTTP.
-   - query       [string]: The query params. Do not include the leading "?".
-  
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-  
-   Conditions (need to specify at least one):
-   - path_patterns        [list(string)]     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         [list(string)]     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           [list(string)]     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        [list(map(string))]: Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods [list(string)]     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="route53_health_check_path" requirement="optional" type="string">
@@ -1648,31 +1151,6 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   volumes = {
-     datadog = {
-       host_path = "/var/run/datadog"
-     }
-  
-     logs = {
-       host_path = "/var/log"
-       docker_volume_configuration = {
-         scope         = "shared"
-         autoprovision = true
-         driver        = "local"
-       }
-     }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -1845,11 +1323,11 @@ The names of the ECS service's load balancer's target groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules/services/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-service%2FREADME.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-service%2Fvariables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.0/modules%2Fservices%2Fecs-service%2Foutputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "17890ae06755c8d99e06345e8368b94f"
+  "hash": "eff2566ad2aac7f7534acc22c6fcc90d"
 }
 ##DOCS-SOURCER-END -->
