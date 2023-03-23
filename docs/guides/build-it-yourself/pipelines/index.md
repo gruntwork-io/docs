@@ -17,6 +17,6 @@ In the meantime, if you are a Gruntwork customer looking to get hands-on with Gr
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "af79446fd34c141811965f2e708ba157"
+  "hash": "27d9d37b06e4fca1b2da565d1069829e"
 }
 ##DOCS-SOURCER-END -->
