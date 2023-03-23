@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.95.1"/>
 
 # Amazon ECR Repositories
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -93,6 +92,63 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Each entry in the map supports the following attributes:
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - external_account_ids_with_read_access   list(string)             : List of account IDs that should have read
+                                                                        access on the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_read_access.
+   - external_account_ids_with_write_access  list(string)             : List of account IDs that should have write
+                                                                        access on the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_write_access.
+   - external_account_ids_with_lambda_access list(string)             : List of account IDs that should have
+                                                                        access to create lambda functions with
+                                                                        container images in the repo. If omitted, use
+                                                                        var.default_external_account_ids_with_lambda_access.
+   - enable_automatic_image_scanning         bool                     : Whether or not to enable image scanning. If
+                                                                        omitted use var.default_automatic_image_scanning.
+   - encryption_config                       object[EncryptionConfig] : Whether or not to enable encryption at rest for
+                                                                        the container images, and how to encrypt. If
+                                                                        omitted, use var.default_encryption_config. See
+                                                                        below for the type schema.
+   - image_tag_mutability                    string                   : The tag mutability setting for the repo. If
+                                                                        omitted use var.default_image_tag_mutability.
+   - tags                                    map(string)              : Map of tags (where the key and value correspond
+                                                                        to tag keys and values) that should be assigned
+                                                                        to the ECR repository. Merged with
+                                                                        var.global_tags.
+   - lifecycle_policy_rules                  list(object[LifecycleRule]) : List of lifecycle rules to apply to the ECR
+                                                                           repository. See below for the schema of the
+                                                                           lifecycle rule.
+  
+   Structure of EncryptionConfig object:
+   - encryption_type  string  : The encryption type to use for the repository. Must be AES256 or KMS.
+   - kms_key          string  : The KMS key to use for encrypting the images. Only used when encryption_type is KMS. If
+                                not specified, defaults to the default AWS managed key for ECR.
+  
+  
+   Structure of LifecycleRule object:
+     Refer to the AWS documentation on supported policy parameters:
+     https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.htmllifecycle_policy_parameters
+  
+   Example:
+  
+   repositories = {
+     myapp1 = {
+       external_account_ids_with_read_access = ["11111111"]
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 ### Optional
@@ -249,11 +305,11 @@ A list of IAM policy actions necessary for ECR write access.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fecr-repos%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fecr-repos%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fecr-repos%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/ecr-repos/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/ecr-repos/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e9477ae7a6e990a78837fdf18507b83f"
+  "hash": "4c51f06bb1eb4511528c574a7dfb6c4d"
 }
 ##DOCS-SOURCER-END -->

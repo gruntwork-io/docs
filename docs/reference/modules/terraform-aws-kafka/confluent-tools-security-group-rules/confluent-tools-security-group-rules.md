@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.6.0"/>
 
 # Confluent Tools Security Group Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates the Security Group rules that allow traffic in and out of a server running one or more of the Confluent
 tools (Schema Registry, REST Proxy, or Kafka Connect).
@@ -31,17 +31,17 @@ or [Kafka](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modul
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-SECURITY-GROUP-RULES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "confluent_tools_security_group_rules" {
+module "confluent-tools-security-group-rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-security-group-rules?ref=v0.11.0"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.ports
@@ -63,9 +63,9 @@ module "confluent_tools_security_group_rules" {
   # The ID of the security group to which we should add the security group rules
   security_group_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The port number on which health-checker
   # (https://github.com/gruntwork-io/health-checker) is accepting inbound HTTP
@@ -94,6 +94,6 @@ module "confluent_tools_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a2309ca1c672fc7f2280af43380f561d"
+  "hash": "c90edeee59a13f5a7608a1665efa8998"
 }
 ##DOCS-SOURCER-END -->

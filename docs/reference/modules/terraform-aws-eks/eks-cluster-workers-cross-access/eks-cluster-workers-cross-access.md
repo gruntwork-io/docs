@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.0"/>
 
 # EKS Cluster Workers Cross Access Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates reciprocating ingress security group rules for the ports that are provided, so that you
 can configure network access between separate ASG worker groups.
@@ -56,17 +56,17 @@ module.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS-CROSS-ACCESS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "eks_cluster_workers_cross_access" {
+module "eks-cluster-workers-cross-access" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v0.56.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The list of Security Group IDs for EKS workers that should have reciprocating
   # ingress rules for the port information provided in var.ports. For each group in
@@ -78,9 +78,9 @@ module "eks_cluster_workers_cross_access" {
   # the length of the var.eks_worker_security_group_ids input list.
   num_eks_worker_security_group_ids = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The list of port ranges that should be allowed into the security groups.
   ports = [{"from_port":0,"protocol":"-1","to_port":0}]
@@ -100,6 +100,6 @@ module "eks_cluster_workers_cross_access" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9adb99af2e182fd7637a459d9e984d86"
+  "hash": "516afb5ae1db75f3e5bbc83170b30d3d"
 }
 ##DOCS-SOURCER-END -->

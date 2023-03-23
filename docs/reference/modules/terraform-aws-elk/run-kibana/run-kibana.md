@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.10.0"/>
 
 # Run Kibana Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-kibana" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script for configuring and running [Kibana](https://www.elastic.co/products/kibana)
 
@@ -80,6 +80,6 @@ The `run-kibana` script:
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-kibana/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9851436c51e031415168509d3ee3ed9"
+  "hash": "1711c284d9ba2e3308ac64312455ebe4"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.3"/>
 
 # EKS Container Logs Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures
 [aws-for-fluent-bit](https://github.com/aws/aws-for-fluent-bit) on an EKS cluster, so that
@@ -98,17 +98,17 @@ fields @timestamp, @message
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CONTAINER-LOGS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "eks_container_logs" {
+module "eks-container-logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.56.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -118,9 +118,9 @@ module "eks_container_logs" {
   # to null if you do not wish to use IAM role with Service Accounts.
   iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
@@ -221,6 +221,6 @@ module "eks_container_logs" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "539edf04d6a4ebeeaecd798ba3e44a30"
+  "hash": "edc16f4968f15921a10325ed72960dbc"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # Logstash IAM Policies
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the IAM Policies used by an
 [Logstash](https://www.elastic.co/products/logstash) cluster. These policies are defined in a separate module
@@ -66,24 +66,24 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOGSTASH-IAM-POLICIES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "logstash_iam_policies" {
+module "logstash-iam-policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-iam-policies?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the IAM Role to which these IAM policies should be attached
   iam_role_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of Amazon S3 bucket ARNs to grant the Logstash instance access to
   bucket_arns = ["*"]
@@ -103,6 +103,6 @@ module "logstash_iam_policies" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "efc4bfe53252170473955724838eb807"
+  "hash": "c50451dd24570b20c36343cb56a1f966"
 }
 ##DOCS-SOURCER-END -->

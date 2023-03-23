@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.1"/>
 
 # Elasticsearch Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This script can be used to install Elasticsearch as well as Elasticsearch plugins.
 
@@ -80,6 +80,6 @@ The `install-elasticsearch` script:
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "490ebfed973e403d00133cd7cfbbf97f"
+  "hash": "b5bbb3aeeeec7cc9487941f71b1d718c"
 }
 ##DOCS-SOURCER-END -->

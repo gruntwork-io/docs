@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.1"/>
 
 # EKS Cluster Workers Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
 
@@ -246,17 +246,17 @@ Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) d
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "eks_cluster_workers" {
+module "eks-cluster-workers" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.56.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
   # this cluster. If any of the values are not provided, the specified default
@@ -267,9 +267,9 @@ module "eks_cluster_workers" {
   # the resources created by these templates.
   cluster_name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of additional Security Groups IDs to be attached on the EKS Worker.
   additional_security_group_ids = []
@@ -1204,6 +1204,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e356e341169f682075da323e804b8887"
+  "hash": "2f46afac5c49cc091f9d1c8daedf68d2"
 }
 ##DOCS-SOURCER-END -->

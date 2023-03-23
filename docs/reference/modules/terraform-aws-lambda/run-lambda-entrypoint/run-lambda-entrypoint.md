@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.3"/>
 
 <!-- Frontmatter
 type: service
@@ -24,7 +24,7 @@ built-with: go
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 # Lambda Container Entrypoint Command
 
@@ -189,6 +189,6 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "12e8f71a588a43f8cc6a268d297840f7"
+  "hash": "2fa7ead883a4b4a3221f40278cae44af"
 }
 ##DOCS-SOURCER-END -->

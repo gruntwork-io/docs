@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.8.0"/>
 
 # Operating System Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/operating-system" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to figure out what operating system is being used to run Terraform. This may be used
 to modify Terraform's behavior depending on the OS, such as modifying the way you format file paths on Linux vs
@@ -58,6 +58,6 @@ path_separator        = "${module.os.path_separator}"
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/operating-system/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4549a3746b5e8a0b68e01bd7f5fab56c"
+  "hash": "106c79db1428867e215870407b798983"
 }
 ##DOCS-SOURCER-END -->

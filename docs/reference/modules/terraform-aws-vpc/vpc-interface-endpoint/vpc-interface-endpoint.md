@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.6"/>
 
 # Interface VPC Endpoint
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -201,17 +201,17 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-INTERFACE-ENDPOINT MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc_interface_endpoint" {
+module "vpc-interface-endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.22.6"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IDs of the subnets for all endpoints. Each endpoint will create one
   # ENI (Elastic Network Interface) per subnet.
@@ -220,9 +220,9 @@ module "vpc_interface_endpoint" {
   # The ID of the VPC for all modules
   vpc_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # IAM policy to restrict what resources can call this endpoint. For example, you
   # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
@@ -6130,6 +6130,14 @@ If you have private dns enabled, then your API calls would automatically go thro
 <HclListItem name="glue_network_interface_ids">
 </HclListItem>
 
+<HclListItem name="https_security_group_id">
+<HclListItemDescription>
+
+If you allow the creation of the HTTPS security group, the id of the created group will be output here.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="kinesis_firehose_endpoint_id">
 </HclListItem>
 
@@ -6478,6 +6486,6 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dbe8965bb4e3f138047ddabf39c1f37b"
+  "hash": "5cbd36ae07eddc5691039f9a32a7ff37"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.3"/>
 
 # Custom IAM Entity
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
 
@@ -59,25 +59,25 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CUSTOM-IAM-ENTITY MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "custom_iam_entity" {
+module "custom-iam-entity" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IAM ARNs (users, groups, or roles) that can assume this role. Required
   # if should_create_iam_role is true.
@@ -386,6 +386,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47c8ac3fae90a75df9b19019f1365ebe"
+  "hash": "1709fac3fba7539994cce867fd06c680"
 }
 ##DOCS-SOURCER-END -->

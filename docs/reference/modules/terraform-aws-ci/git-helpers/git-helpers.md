@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.11"/>
 
 # Git Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/git-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains helper scripts that automate common git tasks:
 
@@ -77,6 +77,6 @@ The main options to pass to `git-add-commit-push` are:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/git-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "50a577eaeeeb0ed22a79f1041c8b6d12"
+  "hash": "5a67f8f78675d544f9c600fcb9aa7e18"
 }
 ##DOCS-SOURCER-END -->

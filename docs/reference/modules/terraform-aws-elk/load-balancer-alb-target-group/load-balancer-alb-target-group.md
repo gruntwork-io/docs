@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # Load Balancer Target Group Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/load-balancer-alb-target-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create a [Target
 Group](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html) and
@@ -33,17 +33,17 @@ See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOAD-BALANCER-ALB-TARGET-GROUP MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "load_balancer_alb_target_group" {
+module "load-balancer-alb-target-group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/load-balancer-alb-target-group?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The path to use for health check requests.
   health_check_path = <INPUT REQUIRED>
@@ -64,9 +64,9 @@ module "load_balancer_alb_target_group" {
   # The ID of the VPC in which to deploy the Target Group
   vpc_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the ASG (ASG) in the servers are deployed. Leave this blank if using
   # with a Server Group
@@ -379,6 +379,6 @@ The time period, in seconds, during which requests from a client should be route
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/load-balancer-alb-target-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3ea3e2f6be2844da3cc66af1a16f12ac"
+  "hash": "0405fc7e368fd16f2b829a7295b96a83"
 }
 ##DOCS-SOURCER-END -->

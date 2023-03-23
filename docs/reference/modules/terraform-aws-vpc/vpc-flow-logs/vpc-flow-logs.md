@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.4"/>
 
 # VPC Flow Logs Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-flow-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates a [VPC flow log](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html). The flow log will capture IP traffic information for a given VPC, subnet, or [Elastic Network Interface (ENI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html). Flow logs can be configured to capture all traffic, only traffic that is accepted, or only traffic that is rejected. The logs can be published to [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) or an S3 bucket.
 
@@ -79,17 +79,17 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-FLOW-LOGS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc_flow_logs" {
+module "vpc-flow-logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.22.6"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You can
   # use this to grant read/write access beyond what is provided to the VPC. This
@@ -566,6 +566,6 @@ The name of the S3 bucket where flow logs are published.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f4ac9472e8228567d78c630095a2aa34"
+  "hash": "dc39409f71f5b2230a8ae453e84d04cc"
 }
 ##DOCS-SOURCER-END -->

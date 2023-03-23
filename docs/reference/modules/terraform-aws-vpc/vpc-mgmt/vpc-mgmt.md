@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
 
 # \[DEPRECATED] VPC-Mgmt Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **The `vpc-mgmt` module is now deprecated**. The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app`
 had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
@@ -87,17 +87,17 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-MGMT MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc_mgmt" {
+module "vpc-mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.6"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
@@ -113,9 +113,9 @@ module "vpc_mgmt" {
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
   vpc_name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # If true, will apply the default NACL rules in var.default_nacl_ingress_rules and
   # var.default_nacl_egress_rules on the default NACL of the VPC. Note that every
@@ -801,6 +801,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a44683d63201a3f76dc03a550f38f041"
+  "hash": "e28cf72f70b1a5d0821142f97fe4fe3c"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.1"/>
 
 # Elasticsearch Cluster Backup
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module to take and backup snapshots of an [Elasticsearch](https://www.elastic.co/products/kibana) cluster to an S3 bucket. The module is a scheduled lambda function that calls the Elasticsearch API to perform snapshotting and backup related tasks documented [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html);
 
@@ -50,17 +50,17 @@ Restoring snapshots is handled by the [elasticsearch-cluster-restore module](htt
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-CLUSTER-BACKUP MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "elasticsearch_cluster_backup" {
+module "elasticsearch-cluster-backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-cluster-backup?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # How often, in seconds, the backup lambda function is expected to run. You should
   # factor in the amount of time it takes to backup your cluster.
@@ -99,9 +99,9 @@ module "elasticsearch_cluster_backup" {
   # 20 * * ? *) or rate(5 minutes).
   schedule_expression = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The port on which the API requests will be made to the Elasticsearch cluster
   elasticsearch_port = 9200
@@ -297,6 +297,6 @@ The ID of the VPC the Lambda function should be able to access. Only used if <a 
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c475ddfc4246f96537ccbf23576298d"
+  "hash": "86a492dbd40f86ab23b8ebf7c9f24ad2"
 }
 ##DOCS-SOURCER-END -->

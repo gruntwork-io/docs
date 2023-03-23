@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.51.0"/>
 
 # CircleCI Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains helper scripts specially for CircleCI jobs, including:
 
@@ -72,6 +72,6 @@ dependencies:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cd22bbb5af979ef4deacbc831eb0de91"
+  "hash": "b323a425da7c393aab4412709d70594d"
 }
 ##DOCS-SOURCER-END -->

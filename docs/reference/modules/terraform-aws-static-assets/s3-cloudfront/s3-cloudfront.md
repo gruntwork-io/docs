@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.16.0" />
+<VersionBadge repoTitle="Static Assets Modules" version="0.16.1" lastModifiedVersion="0.15.9"/>
 
 # S3 CloudFront Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.15.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys a [CloudFront](https://aws.amazon.com/cloudfront/) distribution as a Content Distribution Network
 (CDN) in front of an [S3 bucket](https://aws.amazon.com/s3/). This reduces latency for your users, by caching your
@@ -155,17 +155,17 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S S3-CLOUDFRONT MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "s_3_cloudfront" {
+module "s3-cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.16.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.16.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the S3 bucket.
   bucket_name = <INPUT REQUIRED>
@@ -198,9 +198,9 @@ module "s_3_cloudfront" {
   # via CloudFront, but you don't get all the website features.
   s3_bucket_is_public_website = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The folder in the access logs bucket where logs should be written.
   access_log_prefix = null
@@ -1115,6 +1115,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4cd55020ea9b08d3a14eab50f6723448"
+  "hash": "aa07a3194e20a8b283621202ec3a8e34"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.3"/>
 
 # \[DEPRECATED] VPC-Mgmt Network ACLs Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **The `vpc-mgmt` module is now deprecated**. The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app`
 had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
@@ -56,17 +56,17 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-MGMT-NETWORK-ACLS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "vpc_mgmt_network_acls" {
+module "vpc-mgmt-network-acls" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.22.6"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The number of each type of subnet (public, private) created in this VPC.
   # Typically, this is equal to the number of availability zones in the current
@@ -98,9 +98,9 @@ module "vpc_mgmt_network_acls" {
   # typically point this variable at the vpc_ready output from the Gruntwork VPCs.
   vpc_ready = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # If you set this variable to false, this module will not create any resources.
   # This is used as a workaround because Terraform does not allow you to use the
@@ -264,6 +264,6 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "50bfa11c3fabf9f8e99054d978dc1ae0"
+  "hash": "3246956f4756b8f77b67d7106e2dca53"
 }
 ##DOCS-SOURCER-END -->

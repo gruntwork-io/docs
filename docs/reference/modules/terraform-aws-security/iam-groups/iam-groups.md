@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # A Best-Practices Set of IAM Groups
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets up a set of IAM Groups that will make sense for most organizations and attaches to
 them a set of IAM Policies (permissions) that make it easier to manage different permissions levels in your AWS account.
@@ -116,17 +116,17 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S IAM-GROUPS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "iam_groups" {
+module "iam-groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
   aws_account_id = <INPUT REQUIRED>
@@ -135,9 +135,9 @@ module "iam_groups" {
   # AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
   # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
@@ -843,6 +843,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75e412fd41ba03e9eea708afca250c5c"
+  "hash": "95bdb4e6ae0ab5cc637af4f3afc027ca"
 }
 ##DOCS-SOURCER-END -->

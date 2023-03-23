@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.3" />
+<VersionBadge repoTitle="Module Server" version="0.15.3" lastModifiedVersion="0.13.4"/>
 
 # Disable Instance Metadata Access script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/disable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script you can use to disable access to [the Instance Metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) once it is no longer required.
 
@@ -80,6 +80,6 @@ This will result in subsequent calls to the Instance Metadata service to fail.
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/disable-instance-metadata/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3bbd281a3abf991c098984863db5317"
+  "hash": "13cbd95402ae9b58d5747b3f082a9bba"
 }
 ##DOCS-SOURCER-END -->

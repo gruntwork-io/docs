@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # A best-practices set of IAM roles for cross-account access
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to allow IAM users from other AWS accounts to access your AWS accounts (i.e. [cross-account
 access](https://aws.amazon.com/blogs/security/enable-a-new-feature-in-the-aws-management-console-cross-account-access/)).
@@ -109,17 +109,17 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CROSS-ACCOUNT-IAM-ROLES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "cross_account_iam_roles" {
+module "cross-account-iam-roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
   aws_account_id = <INPUT REQUIRED>
@@ -128,9 +128,9 @@ module "cross_account_iam_roles" {
   # AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID Connect
   # Provider. Refer to the docs for github-actions-iam-role for more information.
@@ -1042,6 +1042,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd0f8829a7ba3605ea9f50a43f603398"
+  "hash": "bbf461bb3b388346ae2299f80e759ade"
 }
 ##DOCS-SOURCER-END -->

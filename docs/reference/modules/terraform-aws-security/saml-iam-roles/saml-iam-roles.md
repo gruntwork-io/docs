@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.0"/>
 
 # A best-practices set of IAM roles for SAML access
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to allow users authenticated via external Security Assertion Markup Language (SAML) identity
 providers such as Google, Amazon SSO, Microsoft Active Directory Federation Services (ADFS), Okta, and OneLogin to access
@@ -71,24 +71,24 @@ This module creates the following IAM roles (all optional):
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SAML-IAM-ROLES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "saml_iam_roles" {
+module "saml-iam-roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
   aws_account_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A flag to indicate if auto deploy access will be delegated to SAML providers.
   allow_auto_deploy_access_from_saml_provider = false
@@ -733,6 +733,6 @@ A map of tags to apply to the IAM roles.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b380814f9c53f2665a3de29f899bdfa"
+  "hash": "cb2720d4a76c72d52568d919d8ed4ae4"
 }
 ##DOCS-SOURCER-END -->

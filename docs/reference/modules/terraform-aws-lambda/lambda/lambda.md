@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.7"/>
 
 # Lambda Function Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda](https://aws.amazon.com/lambda/) function. Lambda gives
 you a way to run code on-demand in AWS without having to manage servers.
@@ -146,17 +146,17 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LAMBDA MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.7"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The maximum amount of memory, in MB, your Lambda function will be able to use at
   # runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the
@@ -173,9 +173,9 @@ module "lambda" {
   # run. Must be between 1 and 300 seconds.
   timeout = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of Security Group IDs that should be attached to the Lambda function when
   # running in a VPC. Only used if var.run_in_vpc is true.
@@ -977,6 +977,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81ceaa5589a62e8edf06acca11bd0212"
+  "hash": "73d0232e0078f673b190f6392d01c05f"
 }
 ##DOCS-SOURCER-END -->

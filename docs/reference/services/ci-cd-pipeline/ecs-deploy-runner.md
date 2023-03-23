@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.98.0"/>
 
 # ECS Deploy Runner
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -181,6 +180,116 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
+     ami builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
+     fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
+     Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
+     variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
+     iam_policy = {
+       S3Access = {
+         actions = ["s3:*"]
+         resources = ["arn:aws:s3:::mybucket"]
+         effect = "Allow"
+       },
+       EC2Access = {
+         actions = ["ec2:*"],
+         resources = ["*"]
+         effect = "Allow"
+       }
+     }
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of repositories that are allowed to build docker images. These should be the SSH git URL of the repository
+     (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of repositories (matching the regex) that are allowed to build AMIs. These should be the SSH git URL of the repository
+     (e.g., "(git@github.com:gruntwork-io/)+" ).
+     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
+     git repositories containing packer templates.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
+     The following keys are supported:
+    
+     - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
+                                             Personal Access Token for accessing git repos over HTTPS.
+                                             bitbucket_username is required if this is set.
+     - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
+                                             passed in with bitbucket_token_secrets_manager_arn.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     ARNs of AWS Secrets Manager entries that you would like to expose to the packer process as environment
+     variables. For example,
+     secrets_manager_env_vars = {
+       GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
+     }
+     Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
+     in the container that can then be passed through to the AMI via the `env` directive in the packer template.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="docker_image_builder_config" requirement="required" type="object(…)">
@@ -270,6 +379,110 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the docker
+     image builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
+     fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
+     Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
+     variables (git_config and secrets_manager_env_vars).
+     iam_policy = {
+       S3Access = {
+         actions = ["s3:*"]
+         resources = ["arn:aws:s3:::mybucket"]
+         effect = "Allow"
+       },
+       EC2Access = {
+         actions = ["ec2:*"],
+         resources = ["*"]
+         effect = "Allow"
+       }
+     }
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of repositories that are allowed to build docker images. These should be the https git URL of the repository
+     (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
+     (e.g., "https://github.com/gruntwork-io/.+" ).
+     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     ARNs of AWS Secrets Manager entries that can be used for authenticating to HTTPS based git repos that contain the
+     Dockerfile for building the images. The associated user is recommended to be limited to read access only.
+    
+     Settings for each git service provider:
+    
+     Github:
+     - `username_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
+     - `password_secrets_manager_arn` should be set to null.
+    
+     BitBucket:
+     - `username_secrets_manager_arn` should contain the bitbucket username for the corresponding machine user.
+     - `password_secrets_manager_arn` should contain a valid App password for the corresponding machine user.
+    
+     GitLab:
+     - `username_secrets_manager_arn` should contain the hardcoded string "oauth2" (without the quotes).
+     - `password_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     ARNs of AWS Secrets Manager entries that you would like to expose to the docker build process as environment
+     variables that can be passed in as build args. For example,
+     secrets_manager_env_vars = {
+       GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
+     }
+     Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
+     in the container that can then be passed through to the docker build if you pass in
+     `--build-arg GITHUB_OAUTH_TOKEN`.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="private_subnet_ids" requirement="required" type="list(string)">
@@ -383,6 +596,154 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
+     terraform applier. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
+     fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
+     Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
+     variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
+     iam_policy = {
+       S3Access = {
+         actions = ["s3:*"]
+         resources = ["arn:aws:s3:::mybucket"]
+         effect = "Allow"
+       },
+       EC2Access = {
+         actions = ["ec2:*"],
+         resources = ["*"]
+         effect = "Allow"
+       }
+     }
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
+     URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
+     URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of variable names that are allowed to be automatically updated by the CI/CD pipeline. Recommended to set to:
+     ["tag", "docker_tag", "ami_version_tag", "ami"]
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     A list of Git Refs (branch or tag) that are approved for running apply on. Any git ref that does not match this
+     list will not be allowed to run `apply` or `apply-all`. This is useful for protecting against internal threats
+     where users have access to the CI script and bypass the approval flow by commiting a new CI flow on their branch.
+     Set to null to allow all refs to apply.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     User information to use when commiting updates to the infrastructure live configuration.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
+     repository containing the live infrastructure configuration. This SSH key should be for a machine user that has write
+     access to the code when using with terraform-update-variable.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
+     The following keys are supported:
+    
+     - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
+                                             Personal Access Token for accessing git repos over HTTPS.
+                                             bitbucket_username is required if this is set.
+     - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
+                                             passed in with bitbucket_token_secrets_manager_arn.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
+     environment variables. For example,
+     secrets_manager_env_vars = {
+       GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
+     }
+     Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
+     in the container that can then be accessed through terraform/terragrunt.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="terraform_planner_config" requirement="required" type="object(…)">
@@ -471,6 +832,119 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
+     terraform planner. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
+     fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
+     Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
+     variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
+     iam_policy = {
+       S3Access = {
+         actions = ["s3:*"]
+         resources = ["arn:aws:s3:::mybucket"]
+         effect = "Allow"
+       },
+       EC2Access = {
+         actions = ["ec2:*"],
+         resources = ["*"]
+         effect = "Allow"
+       }
+     }
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of git repositories containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
+     git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
+     configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
+     URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
+     Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing the
+     infrastructure live repository.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
+     The following keys are supported:
+    
+     - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
+                                             Personal Access Token for accessing git repos over HTTPS.
+     - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
+                                             Personal Access Token for accessing git repos over HTTPS.
+                                             bitbucket_username is required if this is set.
+     - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
+                                             passed in with bitbucket_token_secrets_manager_arn.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
+     environment variables. For example,
+     secrets_manager_env_vars = {
+       GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
+     }
+     Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
+     in the container that can then be accessed through terraform/terragrunt.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="vpc_id" requirement="required" type="string">
@@ -556,6 +1030,134 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Map of environment variable names to secret manager arns of secrets to share with the container during runtime.
+     Note that the container processes will not be able to directly read these secrets directly using the Secrets
+     Manager API (they are only available implicitly through the env vars).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Map of environment variable names to values share with the container during runtime.
+     Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of additional secrets manager entries that the container should have access to, but not directly injected as
+     environment variables. These secrets can be read by the container processes using the Secrets Manager API, unlike
+     those shared as environment variables with `secrets_manager_env_vars`.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Security configuration for each script for each container. Each entry in the map corresponds to a script in the
+     triggers directory. If a script is not included in the map, then the default is to allow no additional args to be
+     passed in when invoked.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Unlike hardcoded_options, this is used for hardcoded positional args and will always be passed in at the end of
+       the args list.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Whether or not positional args are allowed to be passed in.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       This is a list of option keys that are explicitly allowed. When set, any option key that is not present in this
+       list will cause an exception. Note that `null` means allow any option, as opposed to `[]` which means allow no
+       option. Only one of `allowed_options` or `restricted_options` should be used.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       List of options without arguments
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       This is a list of option keys that are not allowed. When set, any option key passed in that is in this list will
+       cause an exception. Empty list means allow any option (unless restricted by allowed_options).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       This is a map of option keys to a regex for specifying what args are allowed to be passed in for that option key.
+       There is no restriction to the option if there is no entry in this map.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Whether or not the particular container is the default container for the pipeline. This container is used when no
+     name is provided to the infrastructure deployer. Exactly one must be marked as the default. An arbitrary container
+     will be picked amongst the list of defaults when multiple are marked as default.
+     If no containers are marked as default, then the invoker lambda function always requires a container name to be
+     provided.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="artifact_config" requirement="optional" type="object(…)">
@@ -585,6 +1187,29 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     S3 bucket and region (us-east-1) where the outputs will be stored.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     Key prefix to use if lambda event does not specify. Outputs will be stored at PREFIX/stdout, PREFIX/stderr, and
+     PREFIX/interleaved. Note that this will overwrite the output even if the key already exists.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudwatch_log_group_for_ec2_kms_key_id" requirement="optional" type="string">
@@ -700,6 +1325,62 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   ec2_worker_pool_configuration = {
+     ami_filters = {
+       owners = ["self"]
+       filters = [{
+         name   = "tag:version_tag"
+         values = ["v0.20.4"]
+       }]
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   We expect the following attributes on this object:
+   - ami [string] (REQUIRED) : The ID of an AMI to use when deploying the instance. Either ami or ami_filters must be
+                               provided.
+   - ami_filters [AMIFilter] (REQUIRED) : Properties on the AMI that can be used to lookup a prevuild AMI for use with
+                                          the EC2 worker pool.
+   - min_size [number] (default: 1) : The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for
+                                      auto-scaling limits.
+   - max_size [number] (default: 2) : The maximum number of EC2 Instances that must be running for this ECS Cluster. We
+                                      recommend making this twice min_size, even if you don't plan on scaling the
+                                      cluster up and down, as the extra capacity will be used to deploy updates to the
+                                      cluster.
+   - instance_type [string] (default: m5.large) : Instance type (e.g. t2.micro) to use for the EC2 instances. We
+                                                  recommend using at least large class instances.
+   - cloud_init_parts [map(CloudInitPart)] (default: {}) : Cloud init scripts to run on the host while it
+                                                           boots. See the part blocks in
+                                                           https://www.terraform.io/docs/providers/template/d/cloudinit_config.html
+                                                           for syntax.
+   - enable_cloudwatch_log_aggregation [bool] (default: true) : Whether or not to send server logs to the CloudWatch
+                                                                Logs service.
+   - enable_cloudwatch_metrics [bool] (default: true) : Whether or not to send metrics to the CloudWatch service.
+   - enable_asg_cloudwatch_alarms [bool] (default: true) : Whether or not to configure cloudwatch alarms for the ASG.
+   - enable_fail2ban [bool] (default: true) : Whether or not to enable the fail2ban service on the server.
+   - enable_ip_lockdown [bool] (default: true) : Whether or not to enable the ip-lockdown service on the server.
+   - alarms_sns_topic_arn [string] (default: null) : The ARN of an SNS topic for cloudwatch to send alerts to.
+   - default_user [string] (default: ec2-user) : The default OS user that is created on the server.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="ecs_deploy_runner_tags" requirement="optional" type="map(string)">
@@ -845,6 +1526,38 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The script within the container that should be invoked (e.g., infrastructure-deploy-script).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The args that should be passed to the script.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     An expression that defines the schedule. For example, cron(0 20 * * ? *) or rate(5 minutes).
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="invoker_lambda_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -913,6 +1626,31 @@ Create multi-region resources in the specified regions. The best practice is to 
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     By default, skip regions that are not enabled in most AWS accounts:
+    
+      "af-south-1",      Cape Town
+      "ap-east-1",       Hong Kong
+      "eu-south-1",      Milan
+      "me-central-1",    UAE
+      "me-south-1",      Bahrain
+      "us-gov-east-1",   GovCloud
+      "us-gov-west-1",   GovCloud
+      "cn-north-1",      China
+      "cn-northwest-1",  China
+    
+     This region is enabled by default but is brand-new and some services like AWS Config don't work.
+     "ap-northeast-3",  Asia Pacific (Osaka)
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="name" requirement="optional" type="string">
@@ -1084,11 +1822,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fecs-deploy-runner%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fecs-deploy-runner%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fecs-deploy-runner%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/ecs-deploy-runner/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/ecs-deploy-runner/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8c68c959fe2b055c02e1ec61c1516975"
+  "hash": "74a4bda237402918e8602bd386ae85d2"
 }
 ##DOCS-SOURCER-END -->

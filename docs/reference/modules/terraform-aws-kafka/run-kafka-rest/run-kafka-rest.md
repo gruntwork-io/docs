@@ -15,7 +15,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=run-kafka-rest" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains:
 
@@ -305,6 +305,6 @@ to fill in run-time properties, so it will replace or add settings to your custo
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-rest/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8e0cc06d62958e12a0d7e975284f6a91"
+  "hash": "4f518171066e81d2598982ed6011e6c9"
 }
 ##DOCS-SOURCER-END -->

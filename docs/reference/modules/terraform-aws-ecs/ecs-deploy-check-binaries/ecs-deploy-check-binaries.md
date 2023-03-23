@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+<VersionBadge repoTitle="Amazon ECS" version="0.35.1" lastModifiedVersion="0.35.1"/>
 
 # ECS Deploy Check Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy-check-binaries" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains helper binaries used to check the status of an ECS deployment from the terraform modules. These
 binaries are used to workaround the limitations of terraform in checking the successful deployment of ECS services.
@@ -39,7 +39,7 @@ status. These binaries are designed to ensure the task has actually been schedul
 ### Requirements for running
 
 The host machine must have a valid python interpreter available in the `PATH` under the name `python`. The binary
-supports python versions  3.5, 3.6, and 3.7.
+supports python versions  3.8, 3.9, 3.10 and 3.11.
 
 ## Using the check-ecs-service-deployment helper
 
@@ -91,7 +91,7 @@ versions of python and multiple OS platforms.
 
 To build the binary, you will need the following:
 
-*   A working python environment with python 3.5, 3.6, and 3.7
+*   A working python environment with python 3.8, 3.9, 3.10, and 3.11.
 *   tox and pex installed (use `pip3 install -r dev_requirements.txt`)
 
 You can then build the binary using the helper script `build.sh` which will build the binary and copy it to the `bin`
@@ -101,7 +101,7 @@ It is recommended to use [`pyenv`](https://github.com/pyenv/pyenv) to help setup
 interpreters. The latest binaries are built with the following python environment:
 
 ```bash
-pyenv shell 3.5.2 3.6.6 3.7.0
+pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
 ```
 
 
@@ -113,6 +113,6 @@ pyenv shell 3.5.2 3.6.6 3.7.0
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6170c6c0dea60695749e01dee1f8841b"
+  "hash": "2e4d6a43977d3acc1b28e3ecf0d6852a"
 }
 ##DOCS-SOURCER-END -->

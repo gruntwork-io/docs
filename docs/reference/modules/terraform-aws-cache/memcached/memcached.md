@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.18.2" />
+<VersionBadge repoTitle="Cache Modules" version="0.19.0" lastModifiedVersion="0.19.0"/>
 
 # Memcached Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Memcached](https://memcached.org/).
 
@@ -40,17 +40,17 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S MEMCACHED MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 module "memcached" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.18.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.19.0"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
@@ -76,9 +76,9 @@ module "memcached" {
   # The id of the VPC in which the ElastiCache cluster should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
@@ -295,6 +295,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7808b10ae7e5eb07e365be6e967d8c4b"
+  "hash": "eae35c0a7d9d181ebb3f11caaa543a03"
 }
 ##DOCS-SOURCER-END -->

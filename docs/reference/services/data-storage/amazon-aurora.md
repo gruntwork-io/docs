@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.96.3"/>
 
 # Amazon Aurora
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -177,6 +176,18 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Default to hourly
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
@@ -265,6 +276,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_db_connections_widget_parameters" requirement="optional" type="object(…)">
@@ -299,6 +323,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_space_widget_parameters" requirement="optional" type="object(…)">
@@ -333,6 +370,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_widget_parameters" requirement="optional" type="object(…)">
@@ -367,6 +417,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_read_latency_widget_parameters" requirement="optional" type="object(…)">
@@ -401,6 +464,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_write_latency_widget_parameters" requirement="optional" type="object(…)">
@@ -435,6 +511,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
@@ -469,6 +558,48 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The family of the DB cluster parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The parameters to configure on the created parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Vaue to set the parameter.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       When to apply the parameter. "immediate" or "pending-reboot".
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
@@ -512,6 +643,48 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The family of the DB cluster parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The parameters to configure on the created parameter group.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Vaue to set the parameter.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       When to apply the parameter. "immediate" or "pending-reboot".
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="db_name" requirement="optional" type="string">
@@ -719,6 +892,19 @@ The instance type to use for the db (e.g. db.r3.large). Only used when <a href="
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.html for the instance types supported by
+   Aurora
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -746,6 +932,18 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1000000000"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Default is 1GB (1 billion bytes)
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
@@ -773,6 +971,18 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="100000000"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Default is 100MB (100 million bytes)
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
@@ -998,6 +1208,19 @@ Trigger an alarm if the number of connections to the DB instance goes above this
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   The max number of connections allowed by RDS depends a) the type of DB, b) the DB instance type, and c) the
+   use case, and it can vary from ~30 all the way up to 5,000, so we cannot pick a reasonable default here.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -1162,11 +1385,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Faurora%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Faurora%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Faurora%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4c715154ec2a057e9a3222c513ca7cc1"
+  "hash": "4f5b6f8d18ff455dd54ddf963d4e4026"
 }
 ##DOCS-SOURCER-END -->

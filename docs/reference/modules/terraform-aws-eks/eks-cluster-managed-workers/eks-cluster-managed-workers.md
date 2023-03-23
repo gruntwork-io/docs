@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.1"/>
 
 # EKS Cluster Managed Workers Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
 
@@ -158,17 +158,17 @@ The following are the steps you can take to perform a blue-green release for thi
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-MANAGED-WORKERS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "eks_cluster_managed_workers" {
+module "eks-cluster-managed-workers" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
@@ -177,9 +177,9 @@ module "eks_cluster_managed_workers" {
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   node_group_configurations = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # List of Security Group IDs to allow SSH access from. Only used if
   # var.cluster_instance_keypair_name is set. Set to null to allow access from all
@@ -782,6 +782,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2c898b0269febf708a92759de382867b"
+  "hash": "accfa28654110ecb373dff89f8844a27"
 }
 ##DOCS-SOURCER-END -->

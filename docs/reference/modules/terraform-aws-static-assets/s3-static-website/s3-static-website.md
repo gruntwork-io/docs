@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.16.0" />
+<VersionBadge repoTitle="Static Assets Modules" version="0.16.1" lastModifiedVersion="0.16.1"/>
 
 # S3 Static Website
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.16.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an AWS S3 bucket that can be used to host a static website. That is, the website can contain static HTML, CSS, JS, and images.
 
@@ -75,24 +75,24 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S S3-STATIC-WEBSITE MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "s_3_static_website" {
+module "s3-static-website" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.16.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.16.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the website and the S3 bucket to create (e.g. static.foo.com).
   website_domain_name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The folder in the access logs bucket where logs should be written.
   access_log_prefix = null
@@ -225,6 +225,10 @@ module "s_3_static_website" {
   # ObjectWriter or BucketOwnerEnforced.
   # https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.htm
   s3_bucket_object_ownership = "ObjectWriter"
+
+  # By default, the s3 buckets are named after the domain name. Use this
+  # configuration to override it with this value instead.
+  s3_bucket_override_bucket_name = null
 
   # List of IAM policy documents, in stringified JSON format, that are merged into
   # the S3 bucket policy.
@@ -556,6 +560,15 @@ The S3 bucket object ownership. Valid values are BucketOwnerPreferred, ObjectWri
 <HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
+<HclListItem name="s3_bucket_override_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+By default, the s3 buckets are named after the domain name. Use this configuration to override it with this value instead.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="s3_bucket_override_policy_documents" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -658,6 +671,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eaffee6f5c38fe06c26ae2c9e8d5d4d6"
+  "hash": "847c538b9fd1de635e4adf65b5250b15"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.3"/>
 
 # KMS Customer Managed Key Multi-Region Replication module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module replicates an existing [KMS Customer Managed
 Key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) to another region using
@@ -32,17 +32,17 @@ multi-region replication.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KMS-CMK-REPLICA MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "kms_cmk_replica" {
+module "kms-cmk-replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Map of CMK names to the primary CMK that the replica key is replicating. The
   # primary key must already exist, and must be marked as multi_region = true. Each
@@ -54,9 +54,9 @@ module "kms_cmk_replica" {
   # map must have a corresponding entry in var.cmk_replica_primary_key_arns.
   cmk_replicas = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The default value to use for deletion_window_in_days (the number of days to keep
   # this KMS Master Key around after it has been marked for deletion). Applies to
@@ -313,6 +313,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da8b4a0616169fdd513773b4c63cc743"
+  "hash": "2ee646fe95b126cfd13f8ca84ecda637"
 }
 ##DOCS-SOURCER-END -->

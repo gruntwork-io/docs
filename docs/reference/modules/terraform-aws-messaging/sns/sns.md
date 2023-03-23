@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.9.1" />
+<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.10.1"/>
 
 # Simple Notification Service (SNS) Topic Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a SNS topic along with the publisher and subscriber policies for the topic.
 
@@ -35,24 +35,24 @@ including:
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SNS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.10.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic.
   name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IAM ARNs that will be given the rights to publish to the SNS topic.
   allow_publish_accounts = []
@@ -70,8 +70,19 @@ module "sns" {
   # Enable or disable creation of the resources of this module.
   create_resources = true
 
+  # (optional) Delivery policy for sns topic.
+  delivery_policy = null
+
   # The display name of the SNS topic. NOTE: Maximum length is 100 characters.
   display_name = ""
+
+  # ARN of the http failure feedback role - when using delivery policy for sns
+  # topic.
+  http_failure_feedback_role_arn = null
+
+  # ARN of the http success feedback role - when using delivery policy for sns
+  # topic.
+  http_success_feedback_role_arn = null
 
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom
   # CMK
@@ -166,6 +177,22 @@ Enable or disable creation of the resources of this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="delivery_policy" requirement="optional" type="any">
+<HclListItemDescription>
+
+(optional) Delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="display_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -173,6 +200,24 @@ The display name of the SNS topic. NOTE: Maximum length is 100 characters.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="http_failure_feedback_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the http failure feedback role - when using delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="http_success_feedback_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the http success feedback role - when using delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="kms_master_key_id" requirement="optional" type="string">
@@ -220,6 +265,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "24bcb3a58244d7656ae12a8a8bea6bc8"
+  "hash": "0c13dac111c2f238cd30c3848e65ae85"
 }
 ##DOCS-SOURCER-END -->

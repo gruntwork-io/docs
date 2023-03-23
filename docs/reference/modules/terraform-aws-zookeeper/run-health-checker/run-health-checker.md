@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" lastModifiedVersion="0.11.1"/>
 
 # Run Health Checker
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains:
 
@@ -125,6 +125,6 @@ the source code.
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/run-health-checker/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2bf2aa2ffdb216468f24101a9c59481d"
+  "hash": "a51d27c508c07984c94cf29a2da2c5e2"
 }
 ##DOCS-SOURCER-END -->

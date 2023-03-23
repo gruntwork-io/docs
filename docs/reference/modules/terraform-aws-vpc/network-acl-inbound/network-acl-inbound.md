@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.3"/>
 
 # Network ACL Inbound Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-inbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches is a simple helper for adding inbound rules to a [Network
 ACL](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html). Network ACLs can be a bit tricky to work
@@ -40,17 +40,17 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S NETWORK-ACL-INBOUND MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "network_acl_inbound" {
+module "network-acl-inbound" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-inbound?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-inbound?ref=v0.22.6"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The number to use for the egress rule that will be added. Each egress rule in a
   # network ACL must have a unique rule number.
@@ -84,9 +84,9 @@ module "network_acl_inbound" {
   # any port is allowed (so the from_port and to_port settings are ignored!).
   protocol = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # If you set this variable to false, this module will not create any resources.
   # This is used as a workaround because Terraform does not allow you to use the
@@ -130,6 +130,6 @@ module "network_acl_inbound" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-inbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81828652d0cfce2b20d1004927153723"
+  "hash": "ca93c2ed8e6768022a5f9eacf3ef0c1c"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.0"/>
 
 # Scheduled Lambda Job Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/scheduled-lambda-job" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to run an [AWS Lambda](https://aws.amazon.com/lambda/) function (such as one created with the
 [lambda module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda)) on a scheduled basis. This is useful for periodic background jobs, such as taking a
@@ -32,17 +32,17 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/mo
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SCHEDULED-LAMBDA-JOB MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "scheduled_lambda_job" {
+module "scheduled-lambda-job" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.7"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ARN of the lambda function.
   lambda_function_arn = <INPUT REQUIRED>
@@ -54,9 +54,9 @@ module "scheduled_lambda_job" {
   # 20 * * ? *) or rate(5 minutes).
   schedule_expression = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Set to false to have this module skip creating resources. This weird parameter
   # exists solely because Terraform does not support conditional modules. Therefore,
@@ -183,6 +183,6 @@ Cloudwatch Event Rule schedule expression
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5f4c6fe7ef1ecd7789e444aeffbb5fc"
+  "hash": "866db2d6b60c8111d7fb628e3f72fffa"
 }
 ##DOCS-SOURCER-END -->

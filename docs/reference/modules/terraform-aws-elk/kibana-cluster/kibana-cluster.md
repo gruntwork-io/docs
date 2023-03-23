@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # TODO TODO TODO ABOVE HERE NEEDS TO CHECKED/IMPLEMENTED
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 ### Security groups
 
@@ -112,17 +112,17 @@ docs.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KIBANA-CLUSTER MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "kibana_cluster" {
+module "kibana-cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-cluster?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run in this cluster.
   ami_id = <INPUT REQUIRED>
@@ -149,9 +149,9 @@ module "kibana_cluster" {
   # The ID of the VPC in which to deploy the kibana cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access SSH from all other IP addresses will be blocked.
@@ -505,6 +505,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1682e1d22f0b3e2d08f40f8859a3f468"
+  "hash": "7d0d2a54dc5895f124ff0850601e0b97"
 }
 ##DOCS-SOURCER-END -->

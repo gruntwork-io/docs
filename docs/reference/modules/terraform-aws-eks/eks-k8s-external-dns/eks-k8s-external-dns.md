@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.1"/>
 
 # K8S External DNS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures [the external-dns
 application](https://github.com/kubernetes-incubator/external-dns) on an EKS cluster, so that you can configure Route 53
@@ -109,17 +109,17 @@ zones_cache_duration  = "3h"
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "eks_k_8_s_external_dns" {
+module "eks-k8s-external-dns" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns?ref=v0.56.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy ALB resources into.
   aws_region = <INPUT REQUIRED>
@@ -133,9 +133,9 @@ module "eks_k_8_s_external_dns" {
   # to provide an IAM role directly via service_account_annotations.
   iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -282,6 +282,6 @@ module "eks_k_8_s_external_dns" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b12470a31ea52edcd205d6c8b9ade0fe"
+  "hash": "b87374e6d1c8688ad25a7a43860c1dc4"
 }
 ##DOCS-SOURCER-END -->

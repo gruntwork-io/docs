@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" lastModifiedVersion="0.12.0"/>
 
 # ZooKeeper Security Group Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates the Security Group rules that allow traffic in and out of a server running ZooKeeper and Exhibitor.
 
@@ -30,17 +30,17 @@ this module to handle the Security Group details for you.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ZOOKEEPER-SECURITY-GROUP-RULES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "zookeeper_security_group_rules" {
+module "zookeeper-security-group-rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-security-group-rules?ref=v0.12.0"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.client_port
@@ -87,9 +87,9 @@ module "zookeeper_security_group_rules" {
   # rules
   security_group_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The port clients use to connect to ZooKeeper
   client_port = 2181
@@ -122,6 +122,6 @@ module "zookeeper_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "53babc5703956ab8490c1ab370b4b7c6"
+  "hash": "dd30f7474f752d00a580be3f21d83d6b"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" />
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" lastModifiedVersion="0.29.3"/>
 
 # Application Load Balancer (ALB) Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -184,17 +184,17 @@ There are two ways for you to override this behavior:
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ALB MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
 module "alb" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the ALB. Do not include the environment name since this module will
   # automatically append it to the value of this variable.
@@ -218,9 +218,9 @@ module "alb" {
   # should be public subnets. Otherwise, they should be private subnets.
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # When looking up the ACM certs passed in via
   # https_listener_ports_and_acm_ssl_certs, only match certs with the given
@@ -841,6 +841,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e64f6b5247f39f510e36e6d6361827c6"
+  "hash": "ac5413e26956fe8a0969029167551dab"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.0"/>
 
 # API Gateway Lambda Function Proxy Methods Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module must be used in conjunction with [the api-gateway-proxy module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy) to configure an API
 Gateway REST API to route all requests from a root path to a lambda function.
@@ -30,17 +30,17 @@ manner?](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S API-GATEWAY-PROXY-METHODS MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "api_gateway_proxy_methods" {
+module "api-gateway-proxy-methods" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy-methods?ref=v0.21.7"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The API Gateway REST API resource as returned by the terraform resource or data
   # source. This can also be able arbitrary object that has the keys id,
@@ -50,9 +50,9 @@ module "api_gateway_proxy_methods" {
   # Name of the AWS Lambda function that is being invoked for the API requests.
   lambda_function_name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The URL path prefix to proxy. Requests to any path under this path prefix will
   # be routed to the lambda function. Note that if the path prefix is empty string
@@ -243,6 +243,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "387bb781f523bffb0eef3fbcfd3c3e6b"
+  "hash": "96cafeca8a40ab92a09d799e1e1644fd"
 }
 ##DOCS-SOURCER-END -->

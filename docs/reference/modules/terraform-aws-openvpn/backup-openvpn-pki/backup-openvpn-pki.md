@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.25.0" />
+<VersionBadge repoTitle="Open VPN Package Infrastructure Package" version="0.25.0" lastModifiedVersion="0.19.0"/>
 
 # Backup PKI Assets Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module is used to backup the OpenVPN Public Key Infrastructure (PKI) to S3 on a server that has been installed using
 the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) module.
@@ -33,6 +33,6 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1a0f0756b154854aed3fa272a566f07"
+  "hash": "738ffd61f5cb5a77023c0e5950b8ad3b"
 }
 ##DOCS-SOURCER-END -->

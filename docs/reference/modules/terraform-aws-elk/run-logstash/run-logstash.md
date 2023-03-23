@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.10.0"/>
 
 # Run Logstash Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-logstash" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script for configuring and running [Logstash](https://www.elastic.co/products/logstash) on an [AWS](https://aws.amazon.com/) EC2 instance. This script has been tested on the following operating systems:
 
@@ -75,6 +75,6 @@ Example:
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-logstash/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "45798c42c127b868057ca5ca453e5e56"
+  "hash": "ab4688a1d3179abf4d8328f0abbcb05f"
 }
 ##DOCS-SOURCER-END -->

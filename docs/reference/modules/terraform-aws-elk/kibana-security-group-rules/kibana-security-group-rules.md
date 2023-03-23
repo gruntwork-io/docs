@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # Kibana Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by a
 [Kibana](https://www.elastic.co/products/kibana) cluster to control the traffic that is allowed to go in and out of the cluster.
@@ -72,24 +72,24 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KIBANA-SECURITY-GROUP-RULES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "kibana_security_group_rules" {
+module "kibana-security-group-rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-security-group-rules?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The ID of the Security Group to which all the rules should be attached.
   security_group_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access SSH from all other IP addresses will be blocked.
@@ -141,6 +141,6 @@ module "kibana_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "45e12dfe08a4ce6b625c6acca1a15ecc"
+  "hash": "59cfb9eba169e8444f38da905f28580a"
 }
 ##DOCS-SOURCER-END -->

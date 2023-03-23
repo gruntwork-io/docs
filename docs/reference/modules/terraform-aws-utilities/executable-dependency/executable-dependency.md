@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.8.0"/>
 
 # Executable Dependency
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to check if an executable is already installed, and if it's not, download it from a
 URL. This is useful if your Terraform code has an external dependency and you want that dependency to be auto installed
@@ -69,17 +69,17 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EXECUTABLE-DEPENDENCY MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "executable_dependency" {
+module "executable-dependency" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.9.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.9.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The URL to download the executable from if var.executable is not found on the
   # system PATH or in var.install_dir.
@@ -89,9 +89,9 @@ module "executable_dependency" {
   # found, this executable will be downloaded from var.download_url.
   executable = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # If set to true, append the operating system and architecture to the URL. E.g.,
   # Append linux_amd64 if this code is being run on a 64 bit Linux OS.
@@ -194,6 +194,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2801f5fda149b997f439b6d7155dc2db"
+  "hash": "99c92afe2376b1f49eccf9abbe349b26"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.5"/>
 
 # CloudTrail Bucket
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing CloudTrail data and a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for CloudTrail.
@@ -31,17 +31,17 @@ It can also be used directly when configuring cross account access, for example 
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CLOUDTRAIL-BUCKET MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "cloudtrail_bucket" {
+module "cloudtrail-bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v0.67.5"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
@@ -63,9 +63,9 @@ module "cloudtrail_bucket" {
   # The name of the S3 Bucket where CloudTrail logs will be stored.
   s3_bucket_name = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # When access logging is enabled, set this to the name of a preexisting S3 bucket
   # where access logs should flow to. If null, this module will create a separate
@@ -86,6 +86,9 @@ module "cloudtrail_bucket" {
   # access to the bucket. This is useful during deployment so that you don't have to
   # pass around the KMS key ARN.
   allow_kms_describe_key_to_external_aws_accounts = false
+
+  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
+  bucket_key_enabled = false
 
   # The name to assign to the CloudTrail 'trail' that will be used to track all API
   # calls in your AWS account.
@@ -356,6 +359,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 Whether or not to allow kms:DescribeKey to external AWS accounts with write access to the bucket. This is useful during deployment so that you don't have to pass around the KMS key ARN.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="bucket_key_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -720,6 +732,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "889f5b8a31a12784d669d1f64b0f19e6"
+  "hash": "2439382bf9d944639366177a93d354e2"
 }
 ##DOCS-SOURCER-END -->

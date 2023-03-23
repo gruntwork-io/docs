@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" lastModifiedVersion="0.21.1"/>
 
 # Auto Scaling Group Module with Instance Refresh
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new version of your app will automatically roll out across your Auto Scaling Group. Note that this module *only* creates the ASG and it's up to you to create all the other related resources, such as the launch configuration, ELB, and security groups.
 
@@ -82,17 +82,17 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ASG-INSTANCE-REFRESH MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "asg_instance_refresh" {
+module "asg-instance-refresh" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The name of the ASG.
   asg_name = <INPUT REQUIRED>
@@ -111,9 +111,9 @@ module "asg_instance_refresh" {
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The number of seconds to wait after a checkpoint.
   checkpoint_delay = null
@@ -518,6 +518,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c0a0786d52bcbf6d8b38fab2ed1e7ed"
+  "hash": "ff6c5c562f035e2a79349ccb6466fbf9"
 }
 ##DOCS-SOURCER-END -->

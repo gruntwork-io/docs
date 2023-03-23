@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.102.1"/>
 
 # Account Baseline for root account
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -127,6 +126,106 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
+   users to be able to specify, say, tags for some accounts, but not for others. We can't use a map(any) either, as that
+   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
+   we have to lamely fall back to any.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Expected value for the `child_accounts` is a map of child accounts. The map key is the name of the account and
+   the value is another map with one required key (email) and several optional keys:
+  
+   - email (required):
+     Email address for the account.
+  
+   - is_logs_account:
+     Set to `true` to mark this account as the "logs" account, which is the one to use to aggregate AWS Config and
+     CloudTrail data. This module will create an S3 bucket for AWS Config and an S3 bucket and KMS CMK for CloudTrail
+     in this child account, configure the root account to send all its AWS Config and CloudTrail data there, and return
+     the names of the buckets and ARN of the KMS CMK as output variables. When you apply account baselines to the
+     other child accounts (e.g., using the account-baseline-app or account-baseline-security modules), you'll want to
+     configure those accounts to send AWS Config and CloudTrail data to the same S3 buckets and use the same KMS CMK.
+     If is_logs_account is not set on any child account (not recommended!), then either you must disable AWS Config
+     and CloudTrail (via the enable_config and enable_cloudtrail variables) or configure this module to use S3 buckets
+     and a KMS CMK that ALREADY exist!
+  
+   - parent_id:
+     Parent Organizational Unit ID or Root ID for the account
+     Defaults to the Organization default Root ID.
+  
+   - role_name:
+     The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts
+     the master account, allowing users in the master account to assume the role, as permitted by the master account
+     administrator. The role has administrator permissions in the new member account. Note that the Organizations API
+     provides no method for reading this information after account creation.
+     If no value is present and no ´default_role_name´ is provided, AWS automatically assigns a value.
+  
+   - iam_user_access_to_billing:
+     If set to ´ALLOW´, the new account enables IAM users to access account billing information if they have the required
+     permissions. If set to ´DENY´, then only the root user of the new account can access account billing information.
+     Defaults to ´default_iam_user_access_to_billing´.
+  
+  
+   - enable_config_rules:
+     Set to `true` to enable org-level AWS Config Rules for this child account. This is only used if
+     var.config_create_account_rules is false (which is NOT recommened) to force org-level rules. If you do go with
+     org-level rules, you can only set enable_config_rules to true after deploying a Config Recorder in the child
+     account. That means you have to: (1) initially set enable_config_rules to false, (2) run 'apply' in this root
+     module to create the child account, (3) go to the child account and create a config recorder in it, e.g., by
+     running 'apply' on a security baseline in that account, (4) come back to this root module and set
+     enable_config_rules to true, (5) run 'apply' again. This is a brittle, error-prone, multi-step process, which is
+     why we recommend using account-level rules (the default) and avoiding it entirely!
+  
+   - tags:
+     Key-value mapping of resource tags.
+  
+  
+   Example:
+  
+   child_accounts = {
+     logs = {
+       email                       = "root-accounts+logs@acme.com"
+       is_logs_account             = true
+     }
+     security = {
+       email                       = "root-accounts+security@acme.com"
+       role_name                   = "OrganizationAccountAccessRole"
+       iam_user_access_to_billing  = "DENY"
+       tags = {
+         Tag-Key = "tag-value"
+       }
+     }
+     shared-services = {
+       email                       = "root-accounts+shared-services@acme.com"
+     }
+     dev = {
+       email                       = "root-accounts+dev@acme.com"
+     }
+     stage = {
+       email                       = "root-accounts+stage@acme.com"
+     }
+     prod = {
+       email                       = "root-accounts+prod@acme.com"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="config_opt_in_regions" requirement="required" type="list(string)">
@@ -197,6 +296,26 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   additional_config_rules = {
+     acm-certificate-expiration-check = {
+       description                 = "Checks whether ACM Certificates in your account are marked for expiration within the specified number of days.",
+       identifier                  = "ACM_CERTIFICATE_EXPIRATION_CHECK",
+       trigger_type                = "PERIODIC",
+       input_parameters            = { "daysToExpiration": "14"},
+       applies_to_global_resources = false
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="allow_auto_deploy_from_github_actions_for_sources" requirement="optional" type="map(list(…))">
@@ -382,6 +501,73 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+      AllIamUsersReadAccess = {
+        effect     = "Allow"
+        actions    = ["s3:GetObject"]
+        principals = {
+          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
+        }
+        condition = {
+          SourceVPCCheck = {
+            test = "StringEquals"
+            variable = "aws:SourceVpc"
+            values = ["vpc-abcd123"]
+          }
+        }
+      }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   See the 'statement' block in the aws_iam_policy_document data
+   source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
+  
+   - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
+   - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
+   - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
+   - principals                                  map(list(string)) (optional): The principals to which this statement applies. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
+   - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
+   - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
+   - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
+  
+   condition is a map from a unique ID for the condition to an object that can define the following properties:
+  
+   - test                                        string            (required): The name of the IAM condition operator to evaluate.
+   - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
+   - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
+   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
+   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudtrail_advanced_event_selectors" requirement="optional" type="any">
@@ -403,6 +589,67 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, we will use a more strict type here but since we want to support required and optional values, and since
+   Terraform's type system only supports maps that have the same type for all values, we have to use the less useful
+   `any` type.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Each entry in the map is a list of field selector objects, each of which supports the following attributes:
+  
+   REQUIRED
+   - field             string        : Specifies a field in an event record on which to filter events to be logged. You
+                                       can specify only the following values: readOnly, eventSource, eventName,
+                                       eventCategory, resources.type, resources.ARN.
+   OPTIONAL (one of the following must be set)
+   - equals            list(string)  : A list of values that includes events that match the exact value of the event
+                                       record field specified as the value of field. This is the only valid operator
+                                       that you can use with the readOnly, eventCategory, and resources.type fields.
+   - not_equals        list(string)  : A list of values that excludes events that match the exact value of the event
+                                       record field specified as the value of field.
+   - starts_with       list(string)  : A list of values that includes events that match the first few characters of the
+                                       event record field specified as the value of field.
+   - not_starts_with   list(string)  : A list of values that excludes events that match the first few characters of the
+                                       event record field specified as the value of field.
+   - ends_with         list(string)  : A list of values that includes events that match the last few characters of the
+                                       event record field specified as the value of field.
+   - not_ends_with     list(string)  : A list of values that excludes events that match the last few characters of the
+                                       event record field specified as the value of field.
+  
+   EXAMPLE:
+   cloudtrail_advanced_event_selectors = {
+     LogDeleteEvents = [
+       {
+         field  = "eventCategory"
+         equals = ["Data"]
+       },
+       {
+         field       = "eventName"
+         starts_with = ["Delete"]
+       },
+       {
+         field  = "resources.type"
+         equals = ["AWS::S3::Object"]
+       },
+     ]
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudtrail_allow_kms_describe_key_to_external_aws_accounts" requirement="optional" type="bool">
@@ -565,6 +812,52 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
+     "kms:GenerateDataKey"]).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
+     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
+       starting with aws: or service-specific variables prefixed with the service name.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
+       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cloudtrail_kms_key_user_iam_arns" requirement="optional" type="list(string)">
@@ -1106,6 +1399,30 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   default = [
+     {
+       group_name   = "stage-full-access"
+       iam_role_arns = ["arn:aws:iam::123445678910:role/mgmt-full-access"]
+     },
+     {
+       group_name   = "prod-read-only-access"
+       iam_role_arns = [
+         "arn:aws:iam::9876543210:role/prod-read-only-ec2-access",
+         "arn:aws:iam::9876543210:role/prod-read-only-rds-access"
+       ]
+     }
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_password_policy_allow_users_to_change_password" requirement="optional" type="bool">
@@ -1429,6 +1746,52 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   default = {
+     alice = {
+       groups = ["user-self-mgmt", "developers", "ssh-sudo-users"]
+     }
+  
+     bob = {
+       path   = "/"
+       groups = ["user-self-mgmt", "ops", "admins"]
+       tags   = {
+         foo = "bar"
+       }
+     }
+  
+     carol = {
+       groups               = ["user-self-mgmt", "developers", "ssh-users"]
+       pgp_key              = "keybase:carol_on_keybase"
+       create_login_profile = true
+       create_access_keys   = true
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
+   users to be able to specify, say, tags for some users, but not for others. We can't use a map(any) either, as that
+   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
+   we have to lamely fall back to any.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 </TabItem>
@@ -1894,11 +2257,11 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Flandingzone%2Faccount-baseline-root%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Flandingzone%2Faccount-baseline-root%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Flandingzone%2Faccount-baseline-root%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/account-baseline-root/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/account-baseline-root/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "15f5dc90210dc50e814c4d19d5dd9449"
+  "hash": "4acbe8a0b246e084bf654bc69ba4979a"
 }
 ##DOCS-SOURCER-END -->

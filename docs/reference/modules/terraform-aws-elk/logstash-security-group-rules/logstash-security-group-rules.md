@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # Logstash Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by a
 [Logstash](https://www.elastic.co/products/logstash) cluster to control the traffic that is allowed to go in and out of the cluster.
@@ -74,17 +74,17 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOGSTASH-SECURITY-GROUP-RULES MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "logstash_security_group_rules" {
+module "logstash-security-group-rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-security-group-rules?ref=v0.11.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The port to use for BEATS requests. E.g. Filebeat
   beats_port = <INPUT REQUIRED>
@@ -95,9 +95,9 @@ module "logstash_security_group_rules" {
   # The ID of the Security Group to which all the rules should be attached.
   security_group_id = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The list of IP address ranges in CIDR notation from which to allow connections
   # to the beats_port.
@@ -243,6 +243,6 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "99127a0db24a574875dd3bfebfce1e70"
+  "hash": "70000f9e8245d7eaf2106ba559d817ef"
 }
 ##DOCS-SOURCER-END -->

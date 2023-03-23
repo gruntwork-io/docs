@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.11"/>
 
 # Build Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/build-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains several helper scripts for automatically building deployable, versioned artifacts of your apps:
 
@@ -192,6 +192,6 @@ Note that the following conditions must be true in order to use this feature:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/build-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "35064cbdd1d3db65af57e344e44b9290"
+  "hash": "9fff4096e3487ff696a3c937d704244b"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # AWS Auth Helper
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module is a small wrapper script for the [AWS CLI](https://aws.amazon.com/cli/) that makes it much easier to
 authenticate to AWS when:
@@ -255,6 +255,6 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bcb36be11916c536ae25bf489cbcf76e"
+  "hash": "34807de8e360b44fe6aaf8683929187a"
 }
 ##DOCS-SOURCER-END -->

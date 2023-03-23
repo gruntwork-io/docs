@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" />
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" lastModifiedVersion="0.29.0"/>
 
 # ACM TLS Certificate
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to issue and validate free, auto-renewing TLS certificates using [AWS Certificate
 Manager (ACM)](https://aws.amazon.com/certificate-manager/). It supports issuing and validating multiple ACM certificates.
@@ -189,23 +189,23 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ACM-TLS-CERTIFICATE MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "acm_tls_certificate" {
+module "acm-tls-certificate" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.3"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   acm_tls_certificates = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Whether or not to create a Route 53 DNS record for use in validating the issued
   # certificate. Can be overridden on a per-certificate basis in the
@@ -425,6 +425,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9927d985aa27a28465aff686677cd40b"
+  "hash": "1b2791274aaf63c987c507c8ce7c43d8"
 }
 ##DOCS-SOURCER-END -->

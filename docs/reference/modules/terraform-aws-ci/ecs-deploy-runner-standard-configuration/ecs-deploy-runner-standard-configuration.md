@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.6"/>
 
 # ECS Deploy Runner Standard Configuration module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a streamlined interface to configure the [ecs-deploy-runner
 module](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
@@ -110,17 +110,17 @@ for more information.
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-STANDARD-CONFIGURATION MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "ecs_deploy_runner_standard_configuration" {
+module "ecs-deploy-runner-standard-configuration" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline with
@@ -144,9 +144,9 @@ module "ecs_deploy_runner_standard_configuration" {
   # Set to `null` to disable this container.
   terraform_planner = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # Unlike hardcoded_options, this is used for hardcoded positional args and will
   # always be passed in at the end of the args list.
@@ -764,6 +764,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dea2cc9ff8be9545e3612f8a59a1e628"
+  "hash": "a530745766390fe9f367663628341073"
 }
 ##DOCS-SOURCER-END -->

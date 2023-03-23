@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" lastModifiedVersion="0.21.0"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -23,10 +23,12 @@ version of your app will automatically roll out across your Auto Scaling Group. 
 creates the ASG and it's up to you to create all the other related resources, such as the launch template, ELB,
 and security groups.
 
-\*\* Note: This module used to use Launch configurations but has been updated to use Launch templates. This has been
-[recommended by AWS for some
-time](https://aws.amazon.com/blogs/compute/amazon-ec2-auto-scaling-will-no-longer-add-support-for-new-ec2-features-to-launch-configurations/)
-and Launch configurations will finally be deprecated entirely on Dec 31st 2023.
+:::note
+
+This module used to use Launch configurations but has been updated to use Launch templates. This has been
+[recommended by AWS for some time](https://aws.amazon.com/blogs/compute/amazon-ec2-auto-scaling-will-no-longer-add-support-for-new-ec2-features-to-launch-configurations/) and Launch configurations will finally be deprecated entirely on Dec 31st 2023.
+
+:::
 
 ## What's an Auto Scaling Group?
 
@@ -68,17 +70,17 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 ```hcl title="main.tf"
 
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ASG-ROLLING-DEPLOY MODULE
-# ------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
 
-module "asg_rolling_deploy" {
+module "asg-rolling-deploy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.1"
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
@@ -100,9 +102,9 @@ module "asg_rolling_deploy" {
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ----------------------------------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------------------------------------------------
 
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
   # this list should be a map with the parameters key, value, and
@@ -416,6 +418,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a82e2194ca664d83b7adaeecc69c9e9c"
+  "hash": "f7b8946155ce2c71604e194f78d0b605"
 }
 ##DOCS-SOURCER-END -->

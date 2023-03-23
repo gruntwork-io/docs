@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.3" />
+<VersionBadge repoTitle="Module Server" version="0.15.3" lastModifiedVersion="0.15.3"/>
 
 # Attach ENI Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/attach-eni" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains scripts you can use to attach [Elastic Network Interfaces
 (ENIs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to your EC2 Instances.
@@ -76,6 +76,6 @@ This tells the script to try find and attach an ENI with the same `Name` tag as 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/attach-eni/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "16143c0d9833da8cfa28453b6b43d5b1"
+  "hash": "36a67dd78150ac1ba86c0828df183a9d"
 }
 ##DOCS-SOURCER-END -->
