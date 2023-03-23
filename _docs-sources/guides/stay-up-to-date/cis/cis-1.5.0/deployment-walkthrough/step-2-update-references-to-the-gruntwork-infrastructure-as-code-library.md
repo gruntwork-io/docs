@@ -130,8 +130,8 @@ versions of Gruntwork's CIS Reference Architecture (part of the Gruntwork librar
       <td>
         <p>
           <strong>
-            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.0">
-              v0.40.0
+            <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.40.1">
+              v0.40.1
             </a>
           </strong>
         </p>
@@ -140,8 +140,7 @@ versions of Gruntwork's CIS Reference Architecture (part of the Gruntwork librar
   </tbody>
 </table>
 
-If you're a customer who signed up for the Gruntwork CIS RefArch from October 1, 2022 then you can use Patcher to
-safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
+If you're a customer who signed up for the Gruntwork CIS RefArch from August 4, 2022 onwards then you can use Patcher to safely apply the more than 200 version updates that are necessary to be compatible with CIS AWS v1.5.0.
 
 Included in those more than 200 updates are 3 breaking changes that need to be applied to your
 infrastructure. These breaking changes include migrating to our new CIS RDS module. Patcher applies a series of patches
