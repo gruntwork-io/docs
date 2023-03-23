@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.100.0"/>
 
 # TLS Scripts
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/tls-scripts" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/tls-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=tls-scripts" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=tls-scripts" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -102,11 +101,11 @@ If you’ve never used the Service Catalog before, make sure to read
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Ftls-scripts%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Ftls-scripts%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Ftls-scripts%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/tls-scripts/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/tls-scripts/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/tls-scripts/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6500063ddf91af77b149d0f0f0565c00"
+  "hash": "9839477b4e03277038e39c2bf9ae5799"
 }
 ##DOCS-SOURCER-END -->

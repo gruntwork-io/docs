@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.0"/>
 
 # VPC-Peering Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
@@ -56,7 +56,7 @@ and production, someone in staging *cannot* access production.
 
 module "vpc_peering" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -146,6 +146,6 @@ module "vpc_peering" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "695b6ec05b0ba61d0966b779de913a8e"
+  "hash": "331a016429e8ef1caa746696c369cb75"
 }
 ##DOCS-SOURCER-END -->

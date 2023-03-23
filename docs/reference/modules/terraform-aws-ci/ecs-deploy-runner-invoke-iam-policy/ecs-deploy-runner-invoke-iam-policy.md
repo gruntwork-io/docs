@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.48.0"/>
 
 # ECS Deploy Runner Invoke IAM Policies module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.48.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module defines an [IAM
 policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1ec48f6afcd3fcf1baeacf529a75100a"
+  "hash": "6f55184a467d33d68a49a4ce07a07a5a"
 }
 ##DOCS-SOURCER-END -->

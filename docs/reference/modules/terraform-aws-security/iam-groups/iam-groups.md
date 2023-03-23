@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # A Best-Practices Set of IAM Groups
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets up a set of IAM Groups that will make sense for most organizations and attaches to
 them a set of IAM Policies (permissions) that make it easier to manage different permissions levels in your AWS account.
@@ -122,7 +122,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "iam_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -843,6 +843,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75e412fd41ba03e9eea708afca250c5c"
+  "hash": "8d189e322ffa93007e008835b3823a7b"
 }
 ##DOCS-SOURCER-END -->

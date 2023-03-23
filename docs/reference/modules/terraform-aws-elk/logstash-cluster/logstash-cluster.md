@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # Logstash Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module to deploy an [Logstash](https://www.elastic.co/products/logstash) cluster in [AWS](https://aws.amazon.com/) on top of an Auto Scaling Group.
 The idea is to create an [Amazon Machine Image (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
@@ -618,6 +618,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f5dab13eca59858e6ec6ff1f272bfc0"
+  "hash": "3cd0c826636216c161b98c4aaa03005f"
 }
 ##DOCS-SOURCER-END -->

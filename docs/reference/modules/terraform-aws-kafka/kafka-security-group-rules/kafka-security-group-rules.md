@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.6.0"/>
 
 # Kafka Security Group Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates the Security Group rules that allow traffic in and out of a server running a Kafka broker.
 
@@ -84,6 +84,6 @@ module "kafka_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e7143f04a3530132d64e41635d50ab7e"
+  "hash": "aa5e24929d6a38eb8bc9ebca8d7cc20c"
 }
 ##DOCS-SOURCER-END -->

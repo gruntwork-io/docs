@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.10.0"/>
 
 # Elastalert Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script for installing [Elastalert](https://github.com/Yelp/elastalert). Use this script along
 with the [run-elastalert script](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/run-elastalert) to run Elastalert alongside Elasticsearch. See the run-elastalert script for more information about ElastAlert.
@@ -62,6 +62,6 @@ code](https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/inst
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-elastalert/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "acfec7738be82a2fabf9c47a5d6171e0"
+  "hash": "d8f83b6045ffe3b0626042dbcd1299d5"
 }
 ##DOCS-SOURCER-END -->

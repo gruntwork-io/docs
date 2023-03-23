@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" />
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" lastModifiedVersion="0.29.0"/>
 
 # Load Balancer Listener Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a simpler, more declarative interface for creating
 [Load Balancer Listener Rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
@@ -652,6 +652,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c909296913b642a57eed7b0c8f90464d"
+  "hash": "f6940bde5167012811af65c8ac245b5b"
 }
 ##DOCS-SOURCER-END -->

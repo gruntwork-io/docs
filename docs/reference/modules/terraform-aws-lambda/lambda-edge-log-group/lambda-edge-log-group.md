@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.0"/>
 
 # Log group for Lambda Edge
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-log-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a Cloudwatch log group to receive Lambda Edge function logs in one single AWS Region. This module is meant to be used as a building block for the [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups).
 
@@ -80,7 +80,7 @@ More information:
 
 module "lambda_edge_log_group" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-log-group?ref=v0.21.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -249,6 +249,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1ab6383e5429c04888ae000d56559d0f"
+  "hash": "554c4bd2cd8f7e4a532aeee993110e97"
 }
 ##DOCS-SOURCER-END -->

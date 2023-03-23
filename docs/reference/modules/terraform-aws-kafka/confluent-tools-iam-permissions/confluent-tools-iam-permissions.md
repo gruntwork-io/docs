@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.6.0"/>
 
 # Confluent Tools IAM Permissions
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-iam-permissions" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module attaches the IAM permissions required by any of the Confluent tools (Schema Registry, REST Proxy, Kafka
 Connect) to an IAM role. These are primarily permissions used to discover the existing cluster and other clusters, such
@@ -62,6 +62,6 @@ module "confluent_tools_iam_permissions" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3342c944b3ed1e6caf702d5754b8249c"
+  "hash": "2a80d12f250ccce718b1aa75d28c8d14"
 }
 ##DOCS-SOURCER-END -->

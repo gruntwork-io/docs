@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.8.0"/>
 
 # Run PEX as Resource
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, in
 the context of a [local-exec provisioner](https://www.terraform.io/docs/provisioners/local-exec.html) in Terraform.
@@ -59,7 +59,7 @@ for running it as a data source). Which approach to use depends on your needs:
 
 module "run_pex_as_resource" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-resource?ref=v0.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -240,6 +240,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "52a2d460a9eee5cd649c1d7aaecd345a"
+  "hash": "ef3ae0fb82c72dd8084897cb962ae2ef"
 }
 ##DOCS-SOURCER-END -->

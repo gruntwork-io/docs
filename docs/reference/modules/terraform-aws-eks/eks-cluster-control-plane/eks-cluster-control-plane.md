@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.2"/>
 
 # EKS Cluster Control Plane Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
@@ -1288,6 +1288,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "32834fb4f3f5965ec710a8cf52a36bca"
+  "hash": "60838f8230d8b2f0b1c7cc27b3d2e20d"
 }
 ##DOCS-SOURCER-END -->

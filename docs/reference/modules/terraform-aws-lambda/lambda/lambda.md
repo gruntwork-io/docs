@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.7"/>
 
 # Lambda Function Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda](https://aws.amazon.com/lambda/) function. Lambda gives
 you a way to run code on-demand in AWS without having to manage servers.
@@ -152,7 +152,7 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v0.21.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -977,6 +977,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81ceaa5589a62e8edf06acca11bd0212"
+  "hash": "5ddf522fd6e18eb0e56c69b54d108e33"
 }
 ##DOCS-SOURCER-END -->

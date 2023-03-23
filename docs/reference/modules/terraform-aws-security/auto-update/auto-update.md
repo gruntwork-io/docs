@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # Security Modules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can configure a Linux server to automatically install critical security updates.
 
@@ -78,6 +78,6 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8cc65d13703f659c3b9f70c40acc542f"
+  "hash": "c90140d253a64821a8578ea1aacc2bcf"
 }
 ##DOCS-SOURCER-END -->

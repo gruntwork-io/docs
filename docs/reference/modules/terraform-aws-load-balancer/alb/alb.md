@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" />
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" lastModifiedVersion="0.29.3"/>
 
 # Application Load Balancer (ALB) Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.29.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -841,6 +841,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e64f6b5247f39f510e36e6d6361827c6"
+  "hash": "c70b893c89c40d5c3be8760efe587cc8"
 }
 ##DOCS-SOURCER-END -->

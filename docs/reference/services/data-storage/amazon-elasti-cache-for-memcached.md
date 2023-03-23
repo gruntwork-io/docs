@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.96.1"/>
 
 # Amazon ElastiCache for Memcached
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/memcached" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fmemcached" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fmemcached" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -266,11 +265,11 @@ The configuration endpoint to allow host discovery.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fmemcached%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fmemcached%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fdata-stores%2Fmemcached%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/memcached/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/memcached/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "64aee25ab48b77639e0cea4a33eaf5d4"
+  "hash": "667aef82c114dbb931f7c1b96a0dcdb8"
 }
 ##DOCS-SOURCER-END -->

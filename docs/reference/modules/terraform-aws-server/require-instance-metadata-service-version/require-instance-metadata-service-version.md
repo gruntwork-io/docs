@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.3" />
+<VersionBadge repoTitle="Module Server" version="0.15.3" lastModifiedVersion="0.13.6"/>
 
 # Require Instance Metadata Service version script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script (`require-instance-metadata-service-version`) you can use to either:
 
@@ -103,6 +103,6 @@ Setting Instance Metadata Service version 2 state to optional
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/require-instance-metadata-service-version/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edba2d66d9137c99d7188e3f2bb997cd"
+  "hash": "0cce4c1e8966bdd1d826cd88b33fd57a"
 }
 ##DOCS-SOURCER-END -->

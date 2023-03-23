@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.20.0"/>
 
 # vpc-peering-cross-accounts-requester
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module manages the requester's side of the VPC Peering Connection between two differents accounts that you control.
 
@@ -72,7 +72,7 @@ No modules.
 
 module "vpc_peering_cross_accounts_requester" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -240,6 +240,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "21ec1157b759953a29da6d0420978b08"
+  "hash": "c09291d206623cddbb1565a3246941db"
 }
 ##DOCS-SOURCER-END -->

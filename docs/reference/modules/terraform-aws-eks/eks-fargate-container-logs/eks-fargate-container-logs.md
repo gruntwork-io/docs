@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.0"/>
 
 # EKS Fargate Container Logs Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module supports collecting logs from Fargate Pods and shipping them to CloudWatch Logs, Elasticsearch, Kinesis
 Streams, or Kinesis Firehose.
@@ -535,6 +535,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26c849c9cd684591d9313fbc6255f6b7"
+  "hash": "0d8445241fb501e675a7f25ba8eb0848"
 }
 ##DOCS-SOURCER-END -->

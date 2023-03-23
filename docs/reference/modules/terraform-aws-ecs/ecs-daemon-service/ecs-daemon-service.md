@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+<VersionBadge repoTitle="Amazon ECS" version="0.35.1" lastModifiedVersion="0.34.0"/>
 
 # ECS Daemon Service Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.34.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [ECS Daemon Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 that you can use to deploy exactly one task on each active container instance that meets all of the task placement constraints
@@ -81,7 +81,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -473,6 +473,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8216420676fe0f248cdb11523366fd43"
+  "hash": "f2dd3974a96ae404786e81ab54e9c68d"
 }
 ##DOCS-SOURCER-END -->

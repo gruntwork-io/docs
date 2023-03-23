@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.26.0"/>
 
 # Backup Plan Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates the following AWS Backup resources:
 
@@ -213,6 +213,6 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c7aa7d1a347e935da9ace06e01ba58ee"
+  "hash": "976d446a9ff536897174e23389ea6ce6"
 }
 ##DOCS-SOURCER-END -->

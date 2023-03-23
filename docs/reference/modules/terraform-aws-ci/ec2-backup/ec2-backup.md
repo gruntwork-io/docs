@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.51.1"/>
 
 # EC2 Backup Lambda Function Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE: This module is deprecated and will be removed in the future. Use [the Data Lifecycle
 Manager](https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup) based backup system instead.**
@@ -273,6 +273,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b2b1e7c6f0fd106457cc505802e6208f"
+  "hash": "76482bb016ae0619d955743b8c5fd21b"
 }
 ##DOCS-SOURCER-END -->

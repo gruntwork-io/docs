@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.55.2"/>
 
 # EKS Scripts Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.55.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains helper scripts for running an EKS Cluster, including:
 
@@ -113,6 +113,6 @@ tests.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "46254e64a29359af68d45235a8590125"
+  "hash": "9de929fcc1fa62a76a7eae8f0d20beb2"
 }
 ##DOCS-SOURCER-END -->

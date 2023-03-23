@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.0"/>
 
 # AWS Organizations Config Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to configure [AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) for your AWS accounts.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_config_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -542,6 +542,6 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ffab02c2a6da5d1dc3454b37ad0ac75c"
+  "hash": "a7913fab409318cb68813699b8c49906"
 }
 ##DOCS-SOURCER-END -->

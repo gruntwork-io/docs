@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+<VersionBadge repoTitle="Amazon ECS" version="0.35.1" lastModifiedVersion="0.34.2"/>
 
 # ECS Task Scheduler Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.34.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This terraform module allows for [scheduling of ECS tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduling_tasks.html)
 
@@ -194,7 +194,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/m
 
 module "ecs_task_scheduler" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -463,6 +463,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fa1b63ba0be9700db571c8953db28aa2"
+  "hash": "f5ca83f862df78ab36b5fdd97044974d"
 }
 ##DOCS-SOURCER-END -->

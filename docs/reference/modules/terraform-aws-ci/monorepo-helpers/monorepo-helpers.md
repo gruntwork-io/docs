@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" />
+<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.8"/>
 
 # Infrastructure Pipeline: Monorepo Helpers
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/monorepo-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains scripts that help with adapting CI/CD pipelines for infrastructure code to monorepo setups. These scripts can be used to setup pipelines that only run tests on the infrastructure modules that changed, as opposed to always running all tests on every change. By only running the relevant tests for each commit, you can drastically reduce the runtime of your CI/CD pipelines (as only a subset of the tests run each time).
 
@@ -82,6 +82,6 @@ If you just want to try this module out for experimenting and learning, check ou
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "010eb3916dad78ead7c03a82960b928e"
+  "hash": "25a12f16c32e99eafce7cd01e7201c04"
 }
 ##DOCS-SOURCER-END -->

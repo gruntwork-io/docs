@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.4.0"/>
 
 # Bash Commons
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/bash-commons" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 Many of the scripts in this repo use a generic set of bash functions that any proper general purpose programming language
 would have in its core libraries. We try to approximate this experience for bash by creating our own "bash commons".
@@ -54,6 +54,6 @@ Better yet, in your `docker-compose.yml`, mount the bash-commons module director
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/bash-commons/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38c9f48895cf998b1c814b376c6edb14"
+  "hash": "00d5a167c3b73e1e0dc3ad7ac7731352"
 }
 ##DOCS-SOURCER-END -->

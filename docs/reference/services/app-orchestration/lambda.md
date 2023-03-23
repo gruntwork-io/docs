@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.94.1"/>
 
 # Lambda
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/lambda" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Flambda" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Flambda" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -297,6 +296,19 @@ A map of environment variables to pass to the Lambda function. AWS will automati
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Lambda does not permit you to pass it an empty map of environment variables, so our default value has to contain
+   this totally useless placeholder.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="evaluation_periods" requirement="optional" type="number">
@@ -353,6 +365,29 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   iam_policy = {
+     S3Access = {
+       actions = ["s3:*"]
+       resources = ["arn:aws:s3:::mybucket"]
+       effect = "Allow"
+     },
+     SecretsManagerAccess = {
+       actions = ["secretsmanager:GetSecretValue"],
+       resources = ["arn:aws:secretsmanager:us-east-1:0123456789012:secret:mysecert"]
+       effect = "Allow"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="image_uri" requirement="optional" type="string">
@@ -745,11 +780,11 @@ Latest published version of your Lambda Function
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Flambda%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Flambda%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Flambda%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/lambda/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "63b210701391d22bd35673901432285f"
+  "hash": "c31150bd2188c2a2d4c8e4af8ba2fbee"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
 
 # \[DEPRECATED] VPC-Mgmt Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **The `vpc-mgmt` module is now deprecated**. The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app`
 had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
@@ -93,7 +93,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -801,6 +801,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a44683d63201a3f76dc03a550f38f041"
+  "hash": "ba6fb97d43a3fc1c8530a4728813141a"
 }
 ##DOCS-SOURCER-END -->

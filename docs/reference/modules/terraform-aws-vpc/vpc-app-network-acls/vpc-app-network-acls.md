@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
 
 # VPC-App Network ACLs Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app-network-acls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module adds a default set of [Network
 ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) to a VPC created using the
@@ -91,7 +91,7 @@ module "network_acls" {
 
 module "vpc_app_network_acls" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-network-acls?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -502,6 +502,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ddedb16917dcd6dbfb21d018a2c34553"
+  "hash": "e77cb0a5630d45b17782a3a07131a084"
 }
 ##DOCS-SOURCER-END -->

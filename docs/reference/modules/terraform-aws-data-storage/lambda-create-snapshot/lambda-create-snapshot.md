@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.26.0"/>
 
 # Database backup
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module, along with the [lambda-share-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot) and [lambda-copy-shared-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot) modules, can be used to backup your RDS database to another AWS account (e.g., for disaster recovery) on a configurable schedule. Under the hood, each module runs a Lambda function that instructs your database to take a snapshot (this module), share the snapshot with another account (the `lambda-share-snapshot` module), and make a copy of the snapshot (`lambda-copy-shared-snapshot`).
 
@@ -341,6 +341,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6b471cc878a77f951328da48b10b37f"
+  "hash": "045d95986bdf0a4b885519e4fcaccb3e"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.3"/>
 
 # IAM Role for GitHub Actions
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitHub Actions. This requires you to provision an IAM OpenID Connect Provider for GitHub Actions in your account. By
@@ -181,7 +181,7 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -456,6 +456,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb99b991465e02c58cbcf2ee06cf25af"
+  "hash": "a4ac15bdd95483fa9ef8dd669b9bfad7"
 }
 ##DOCS-SOURCER-END -->

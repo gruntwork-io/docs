@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.7"/>
 
 <!-- Frontmatter
 type: service
@@ -24,7 +24,7 @@ built-with: terraform
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 # Lambda Function HTTP API Gateway
 
@@ -47,6 +47,7 @@ If you are looking for a simple proxy to route all requests to a Lambda function
 
 *   Expose serverless applications using API Gateway.
 *   Route different HTTP methods and paths to different Lambda functions.
+*   Use request authorizers to protect routes
 
 ## Learn
 
@@ -92,7 +93,7 @@ information on route syntax that API Gateway expects.
 
 module "lambda_http_api_gateway" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -192,6 +193,10 @@ module "lambda_http_api_gateway" {
   # written.
   hosted_zone_id = null
 
+  # Authorizers for the API Gateway, encoded as a map from authorizer name to
+  # authorizer configuration. The keys should be the authorizer name.
+  lambda_authorizers = {}
+
   # A map of tags to assign to the API Gateway stage.
   stage_tags = {}
 
@@ -260,6 +265,8 @@ Any types represent complex values of variable type. For details, please consult
    - payload_format_version  string   : The format of the payload to use as specified by API Gateway. Defaults to 1.0.
    - timeout_milliseconds    number   : Custom timeout between 50 and 30,000 milliseconds for HTTP APIs. The default
                                         timeout is 30 seconds.
+   - authorizer_name         string   : The name of the authorizer to use for this route. The name should match the
+                                        name of an authorizer defined in var.lambda_authorizers.
   
    Example:
    {
@@ -269,6 +276,7 @@ Any types represent complex values of variable type. For details, please consult
      "GET /pet" = {
        lambda_function_arn  = "pet-function-arn"
        timeout_milliseconds = 100
+       authorizer_name      = lambda-authorizer
      }
    }
 
@@ -486,6 +494,54 @@ The ID of the Route 53 hosted zone into which the Route 53 DNS record should be 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="lambda_authorizers" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Authorizers for the API Gateway, encoded as a map from authorizer name to authorizer configuration. The keys should be the authorizer name.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "lambda-authorizer"                 = {
+       authorizer_payload_format_version = "1.0"
+       authorizer_uri                    = "lambda-authorizer-uri"
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   The values support the following attributes:
+  
+   REQUIRED (must be provided for every entry):
+   - authorizer_name   string   : The name of the authorizer Lambda function.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="stage_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -550,6 +606,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2bbe186e83c6e70b3ab229ac8655bca"
+  "hash": "9f3ccb96163b611e51f4b6dbbded83e6"
 }
 ##DOCS-SOURCER-END -->

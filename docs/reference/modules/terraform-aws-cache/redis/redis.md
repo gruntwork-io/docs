@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.18.2" />
+<VersionBadge repoTitle="Cache Modules" version="0.19.0" lastModifiedVersion="0.19.0"/>
 
 # Redis Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -46,6 +46,8 @@ Behind the scenes, ElastiCache runs on EC2 Instances located in subnets and prot
 *   When connecting to Redis (cluster mode enabled) from your app, direct all reads/writes to the **Configuration Endpoint** of the **Cluster.** Ensure you have a client that supports Redis Cluster (redis 3.2). You can still read from individual node enpoints.
 
 *   In both "cluster mode enabled" and "cluster mode disabled" deployment models you can still direct reads to any of the **Read Endpoints** of the nodes in the Cluster, however you now risk reading a slightly out-of-date copy of the data in the event that you read from a node before the primary's latest data has synced to it.
+
+*   (Optional) It is possible to link a `user_group_id` and provide a list of user_id's to add additional layers of security for your cluster or replication group. Refer to the [ElasticCache RBAC Access](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html) documentation for further information.
 
 This module outputs [Terraform output variables](https://www.terraform.io/intro/getting-started/outputs.html) that contain the address of the primary endpoint and read endpoints. You can programmatically extract these variables in your Terraform templates and pass them to other resources (e.g. as environment variables in an EC2 Instance) You'll also see the variables at the end of each `terraform apply` call or if you run `terraform output`.
 
@@ -96,7 +98,7 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.18.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -113,7 +115,7 @@ module "redis" {
   # greater than 1 for replication_group_size.
   enable_multi_az = <INPUT REQUIRED>
 
-  # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
+  # The compute and memory capacity of the nodes (e.g. cache.t3.medium).
   instance_type = <INPUT REQUIRED>
 
   # The name used to namespace all resources created by these templates, including
@@ -179,7 +181,9 @@ module "redis" {
 
   # Specifies the number of shards and replicas per shard in the cluster. The list
   # should contain a single map with keys 'num_node_groups' and
-  # 'replicas_per_node_group' set to desired integer values.
+  # 'replicas_per_node_group' set to desired integer values. You need to set
+  # `enable_automatic_failover` to true to use this configuration. Only 1
+  # cluster_mode block is allowed.
   cluster_mode = []
 
   # Whether to enable encryption at rest.
@@ -233,6 +237,15 @@ module "redis" {
   # A set of tags to set for the ElastiCache Replication Group.
   tags = {}
 
+  # The group id of the AWS Elasticache group which can be used to provide access to
+  # a Redis replication group or cluster and allow for RBAC access
+  user_group_id = null
+
+  # This is a list of user IDs  that should be added to the group defined in the
+  # 'user_group_id' variable. This list should always include the 'default' user in
+  # addition to user Ids
+  user_ids = []
+
 }
 
 ```
@@ -268,7 +281,7 @@ Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only rep
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The compute and memory capacity of the nodes (e.g. cache.m3.medium).
+The compute and memory capacity of the nodes (e.g. cache.t3.medium).
 
 </HclListItemDescription>
 </HclListItem>
@@ -399,7 +412,7 @@ The name of the aws_elasticache_subnet_group that is created. Defaults to <a hre
 <HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
-Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
+Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values. You need to set `enable_automatic_failover` to true to use this configuration. Only 1 cluster_mode block is allowed.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -532,6 +545,37 @@ A set of tags to set for the ElastiCache Replication Group.
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="user_group_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The group id of the AWS Elasticache group which can be used to provide access to a Redis replication group or cluster and allow for RBAC access
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="user_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+This is a list of user IDs  that should be added to the group defined in the 'user_group_id' variable. This list should always include the 'default' user in addition to user Ids
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   When a Redis cluster is created, there is always a default user, and that
+   user always must be added to the group.
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -571,6 +615,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a5703700a3c35fac38fb94a363676202"
+  "hash": "d28180296e2ee16c7c395ca79826f263"
 }
 ##DOCS-SOURCER-END -->

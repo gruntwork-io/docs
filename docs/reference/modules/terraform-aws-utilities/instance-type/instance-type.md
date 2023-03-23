@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.9.0"/>
 
 # Instance Type
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to look up a list of EC2 instance types and determine which of them is available in
 all Availability Zones (AZs) in the current AWS Region. This is useful because certain instance types, such as
@@ -66,7 +66,7 @@ will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if y
 
 module "instance_type" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -133,6 +133,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e13e67337cae053a81c8453a4f487ee0"
+  "hash": "cf01160dea8e8d4775fdabd9c5931960"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.26.0"/>
 
 # Copy Snapshot Lambda Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that runs periodically and makes local
 copies of snapshots of an [Amazon Relational Database (RDS)](https://aws.amazon.com/rds/) database that were shared
@@ -315,6 +315,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "717136c08dce3fdbdff0707602e0d3ba"
+  "hash": "9a04cb18936eb868d7991c5ca255d7dc"
 }
 ##DOCS-SOURCER-END -->

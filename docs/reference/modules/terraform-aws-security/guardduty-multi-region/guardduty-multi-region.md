@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
 
 # AWS GuardDuty Multi Region Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module wraps the [guardduty core module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/README.adoc) to configure [AWS GuardDuty](https://aws.amazon.com/guardduty/) in all enabled regions for the AWS Account.
 
@@ -73,7 +73,7 @@ This module depends on Python being available on your system. Python 2.7, 3.5+ a
 
 module "guardduty_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -282,6 +282,6 @@ The IDs of the GuardDuty detectors.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bed11cdc6e09705ab7491f95200e022c"
+  "hash": "9395c22b15cdb425b6dde36d11e717d9"
 }
 ##DOCS-SOURCER-END -->

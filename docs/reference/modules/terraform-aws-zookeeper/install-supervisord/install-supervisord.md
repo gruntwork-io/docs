@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" lastModifiedVersion="0.11.0"/>
 
 # Install Supervisord
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-supervisord" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script for installing the [Supervisord](http://supervisord.org/), a process supervisor that can
 run on most \*nix operating systems.
@@ -52,6 +52,6 @@ example](https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/examp
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/install-supervisord/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "020a4f0b1ec6a1a09512454c28162fbe"
+  "hash": "07824b27040e40cef7d822b153de2382"
 }
 ##DOCS-SOURCER-END -->

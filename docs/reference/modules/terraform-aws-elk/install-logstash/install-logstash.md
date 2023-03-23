@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.1"/>
 
 # Logstash Install Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 Logstash is an open source data collection engine with real-time pipelining capabilities. Logstash can dynamically unify data from disparate sources and normalize the data into destinations of your choice. This folder contains a script for installing [Logstash](https://www.elastic.co/products/logstash).
 
@@ -48,6 +48,6 @@ We recommend running this module as part of a [Packer](https://www.packer.io/) t
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/install-logstash/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cfa57afb32cc637f41e31b6a959118ba"
+  "hash": "7f394f8a7c140c55dcaad65f5b7deee7"
 }
 ##DOCS-SOURCER-END -->

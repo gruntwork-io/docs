@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.9.1" />
+<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.10.1"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module configures and launches an [Amazon MSK](https://aws.amazon.com/msk/) cluster.
 
@@ -181,7 +181,7 @@ the security group for ZooKeeper, follow these instructions: https://docs.aws.am
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.10.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -224,11 +224,11 @@ module "msk" {
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # the Kafka brokers.
-  allowed_inbound_cidr_blocks = []
+  allow_connections_from_cidr_blocks = []
 
   # A list of security group IDs that will be allowed to connect to the Kafka
   # brokers.
-  allowed_inbound_security_group_ids = []
+  allow_connections_from_security_groups = []
 
   # Max capacity of broker node EBS storage (in GiB)
   broker_storage_autoscaling_max_capacity = 100
@@ -397,7 +397,7 @@ A list of Security Group IDs that should be added to the MSK cluster broker inst
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allowed_inbound_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that will be allowed to connect to the Kafka brokers.
@@ -406,7 +406,7 @@ A list of CIDR-formatted IP address ranges that will be allowed to connect to th
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="allowed_inbound_security_group_ids" requirement="optional" type="list(string)">
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
 A list of security group IDs that will be allowed to connect to the Kafka brokers.
@@ -829,6 +829,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b993003f2adda9c387fac3f10d7c3751"
+  "hash": "50aeef8b8967625c71283fb348e830d2"
 }
 ##DOCS-SOURCER-END -->

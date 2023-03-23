@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.15.3" />
+<VersionBadge repoTitle="Module Server" version="0.15.3" lastModifiedVersion="0.15.2"/>
 
 # Single Server Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -826,6 +826,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d59db581732e231fe77c3740868c267a"
+  "hash": "4aafadb4867f871f190bbfbaa6a88564"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.44.10"/>
 
 # ip-lockdown Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ip-lockdown" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.44.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can lock down specified outgoing ip addresses on a Linux server such that only specific OS users can access them.
 The main motivation for locking down EC2 metadata is as follows:
@@ -67,6 +67,6 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b2e4059bd8f7577d2621c3a70e092ed7"
+  "hash": "2279f769be5ca0ab0b662c2cd05f74b3"
 }
 ##DOCS-SOURCER-END -->

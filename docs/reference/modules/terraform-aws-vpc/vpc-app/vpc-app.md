@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.5"/>
 
 # VPC-App Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches a single VPC meant to house applications. By contrast, DevOps-related services such as
 Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt) module.)
@@ -88,7 +88,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1100,6 +1100,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "997d68eca8312fa5691c24b9ae700704"
+  "hash": "ee3cdd67ae7a4ddd8e52b3c150ae0ab2"
 }
 ##DOCS-SOURCER-END -->

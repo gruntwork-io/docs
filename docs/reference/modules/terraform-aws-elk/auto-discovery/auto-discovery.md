@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.10.0"/>
 
 # Auto Discovery Script
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/auto-discovery" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a script that allows auto discovery of nodes in a cluster. This script has been tested on the following operating systems:
 
@@ -81,6 +81,6 @@ instead of updating an application's config file and then needing to restart tha
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/auto-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "54d64f9c036b28850fd825afb78a3e9b"
+  "hash": "d92789639d00c9711c5c197f4673a464"
 }
 ##DOCS-SOURCER-END -->

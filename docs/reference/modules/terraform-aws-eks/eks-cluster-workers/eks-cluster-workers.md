@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.1"/>
 
 # EKS Cluster Workers Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
 
@@ -1204,6 +1204,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e356e341169f682075da323e804b8887"
+  "hash": "ce9fdabb2b96bba24a6c72193d24426d"
 }
 ##DOCS-SOURCER-END -->

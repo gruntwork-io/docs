@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.0"/>
 
 # VPC DNS Forwarder Rules Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [Route 53 Resolver Forwarding
 Rules](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html) for a VPC that will
@@ -71,7 +71,7 @@ forwarder rule, it will match any domain that ends with `.local` (note the dot),
 
 module "vpc_dns_forwarder_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -125,6 +125,6 @@ module "vpc_dns_forwarder_rules" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7625ccfc03ac7c98b4657fa23ba9cea3"
+  "hash": "eca9f9a640cab543d5b1bf7119cbc57b"
 }
 ##DOCS-SOURCER-END -->

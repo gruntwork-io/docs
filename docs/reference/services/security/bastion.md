@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.95.1"/>
 
 # Bastion Host
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/bastion-host" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/bastion-host" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fbastion-host" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -149,6 +148,20 @@ object({
 ```
 
 </HclListItemTypeDetails>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+     documentation for describe-images in the AWS CLI reference
+     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="subnet_id" requirement="required" type="string">
@@ -553,11 +566,11 @@ The fully qualified name of the bastion host.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fbastion-host%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fbastion-host%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fmgmt%2Fbastion-host%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/bastion-host/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/bastion-host/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "29db9562a80d63ca207013865c40958f"
+  "hash": "80c577504918b4c073a4a42e8acd5254"
 }
 ##DOCS-SOURCER-END -->

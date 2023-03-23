@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" lastModifiedVersion="0.20.0"/>
 
 # Server Group Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.20.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to run a fixed-size cluster of servers that can:
 
@@ -156,9 +156,6 @@ module "server_group" {
   # ami-abcd1234).
   ami_id = <INPUT REQUIRED>
 
-  # The AWS region to deploy to (e.g. us-east-1).
-  aws_region = <INPUT REQUIRED>
-
   # The type of EC2 Instance to run (e.g. t3.micro).
   instance_type = <INPUT REQUIRED>
 
@@ -200,6 +197,10 @@ module "server_group" {
 
   # Set to true to associate a public IP address with each server.
   associate_public_ip_address = false
+
+  # Specify the AWS region to deploy to (e.g. us-east-1) instead of inferring it
+  # from the provider.
+  aws_region = ""
 
   # The name of the device to mount.
   block_device_name = "/dev/xvdcz"
@@ -419,14 +420,6 @@ The ID of the Amazon Machine Image (AMI) to run on each server (e.g., ami-abcd12
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="aws_region" requirement="required" type="string">
-<HclListItemDescription>
-
-The AWS region to deploy to (e.g. us-east-1).
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -512,6 +505,15 @@ Set to true to associate a public IP address with each server.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="aws_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the AWS region to deploy to (e.g. us-east-1) instead of inferring it from the provider.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="block_device_name" requirement="optional" type="string">
@@ -973,6 +975,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "637e052aa3eb3a32cc4755cedf39c6e6"
+  "hash": "a021f2466531d1f9de97bca0163533f7"
 }
 ##DOCS-SOURCER-END -->

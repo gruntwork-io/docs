@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.7.1"/>
 
 # Confluent Tools Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.7.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a Terraform module for running a cluster of [Confluent](https://www.confluent.io/) tools such as
 [Schema Registry](https://docs.confluent.io/current/schema-registry/docs/index.html) and [REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html). Under the hood, the cluster is powered by the [server-group
@@ -911,6 +911,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "18e49e33f9587210385fb6ad0399b6a4"
+  "hash": "14edebb6b57b8ab3a8d2dcbc9c90456c"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
 
 # AWS Config Multi Region Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
 
@@ -77,7 +77,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "aws_config_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1010,6 +1010,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ce1a0737a074e093ea285fd74ef308e"
+  "hash": "0e43004a9837002ec4c2ef81c0fd0020"
 }
 ##DOCS-SOURCER-END -->

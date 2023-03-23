@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" lastModifiedVersion="0.12.0"/>
 
 # ZooKeeper Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a Terraform module for running a cluster of [Apache ZooKeeper](https://zookeeper.apache.org/)
 nodes. Under the hood, the cluster is powered by the [server-group
@@ -1043,6 +1043,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0dfa8fb5b6aeb06c57ee63997d40331b"
+  "hash": "365a270da2d815ba726d7a2bf8a683aa"
 }
 ##DOCS-SOURCER-END -->

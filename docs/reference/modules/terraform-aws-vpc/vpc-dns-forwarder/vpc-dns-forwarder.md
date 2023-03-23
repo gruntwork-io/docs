@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.4" />
+<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.0"/>
 
 # VPC DNS Forwarder Terraform Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [Route 53
 Resolvers](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html) between VPCs so that
@@ -61,7 +61,7 @@ module. You can use the [vpc-dns-forwarder-rules module](https://github.com/grun
 
 module "vpc_dns_forwarder" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder?ref=v0.22.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder?ref=v0.22.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -303,6 +303,6 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c017eae393326ac00e21add3f4f525c2"
+  "hash": "87c89058921dfee0b7cdafe2e20353bc"
 }
 ##DOCS-SOURCER-END -->

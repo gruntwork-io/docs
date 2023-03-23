@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.0"/>
 
 # Set a Password Policy for IAM Users
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-user-password-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets the [AWS Account Password Policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html) that will govern password
 requirements for IAM Users.
@@ -45,7 +45,7 @@ password policy you already have in place!
 
 module "iam_user_password_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -278,6 +278,6 @@ Whether to require uppercase characters for user passwords.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "62162fa33fa7c1fd83e3b37bca02f3a8"
+  "hash": "67840eb3bb32ee801c8f7adab686b482"
 }
 ##DOCS-SOURCER-END -->

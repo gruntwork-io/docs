@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ZooKeeper" version="0.12.0" />
+<VersionBadge repoTitle="ZooKeeper" version="0.12.0" lastModifiedVersion="0.12.0"/>
 
 # Exhibitor Shared Config
 
 <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/exhibitor-shared-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket and IAM permissions that can be used by
 [Exhibitor](https://github.com/soabase/exhibitor/) to store [shared ZooKeeper
@@ -136,6 +136,6 @@ The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decry
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/exhibitor-shared-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2a0925ce883a99dc1170df73773a5495"
+  "hash": "1f76411fd53e93e0541709bf0cf40491"
 }
 ##DOCS-SOURCER-END -->

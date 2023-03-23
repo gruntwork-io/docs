@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+<VersionBadge repoTitle="Amazon ECS" version="0.35.1" lastModifiedVersion="0.24.1"/>
 
 # ECS Service with ALB
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service-with-alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **NOTE**: The `ecs-service-with-alb` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
 guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
@@ -29,6 +29,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service-with-alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8a8d392f8a3440004fc787866cb29ac"
+  "hash": "32e7e2d053d2675ee2f770cf25e8d675"
 }
 ##DOCS-SOURCER-END -->

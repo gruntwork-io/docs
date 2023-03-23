@@ -15,7 +15,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-health-checker" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=run-health-checker" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains:
 
@@ -109,6 +109,6 @@ the source code.
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-health-checker/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47474facb96f85ee160cc8676f96375e"
+  "hash": "ac69eac3b28ce309e0a7a51ce7f5f19c"
 }
 ##DOCS-SOURCER-END -->

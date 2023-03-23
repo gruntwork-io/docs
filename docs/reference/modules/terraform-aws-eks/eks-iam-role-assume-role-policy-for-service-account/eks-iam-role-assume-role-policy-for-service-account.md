@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.0"/>
 
 # EKS IAM Role Assume Role Policy for Kubernetes Service Accounts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies for IAM Roles such that they can be used with
 Kubernetes Service Accounts. This requires a compatible EKS cluster that supports the [IAM Roles for Service
@@ -162,6 +162,6 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9da4325d10e8dc6f03ac56ba8741c30f"
+  "hash": "1f2a4e5711a0a25d452ac2c0db1ca0c3"
 }
 ##DOCS-SOURCER-END -->

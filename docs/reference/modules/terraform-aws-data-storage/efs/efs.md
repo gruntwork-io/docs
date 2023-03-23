@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" />
+<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.25.0"/>
 
 # EFS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.25.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used with other AWS services, such as EC2 instances.
 
@@ -441,6 +441,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d58f1ce42261e2dbcf648f1812a17d83"
+  "hash": "923bb2a6ee3aa33d39f07b5477946049"
 }
 ##DOCS-SOURCER-END -->

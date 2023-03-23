@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.4"/>
 
 # Private S3 Bucket
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create and manage an [Amazon S3](https://aws.amazon.com/s3/) bucket that enforces
 best practices for private access:
@@ -85,7 +85,7 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 
 module "private_s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -124,9 +124,11 @@ module "private_s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to this S3 bucket:
   # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object), BucketOwnerEnforced
+  # [Recommended] (the bucket owner automatically owns and has full control over
+  # every object in the bucket), or null (don't configure this feature). Note that
+  # BucketOwnerEnforced disables ACLs, and ObjectWriter only takes effect if the
+  # object is uploaded with the bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
   bucket_ownership = null
@@ -345,7 +347,7 @@ Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
 <HclListItem name="bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), BucketOwnerEnforced [Recommended] (the bucket owner automatically owns and has full control over every object in the bucket), or null (don't configure this feature). Note that BucketOwnerEnforced disables ACLs, and ObjectWriter only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -816,6 +818,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6cf5d4e9dfc7337219e6cc0d4d592adf"
+  "hash": "a1f7a77d0fb8b84fe104ed950dd8d9e2"
 }
 ##DOCS-SOURCER-END -->

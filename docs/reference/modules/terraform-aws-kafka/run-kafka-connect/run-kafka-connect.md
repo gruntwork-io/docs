@@ -15,7 +15,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=run-kafka-connect" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains:
 
@@ -287,6 +287,6 @@ the [config folder](https://github.com/gruntwork-io/terraform-aws-kafka/tree/mas
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/run-kafka-connect/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e13c543253d7d4706e25148eec1def1f"
+  "hash": "ebc9163335481facbf34536fe1d1180e"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
 
 # AWS KMS Customer Master Keys (CMK)
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This repo contains a Module for creating and managing [AWS KMS Customer Master Keys](https://aws.amazon.com/kms/) that you can use for encrypting and decrypting data.
 
@@ -85,7 +85,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_master_key_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -452,6 +452,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49876d355aaa065b79fe9b354a04044c"
+  "hash": "3954229b02095509899a898c72cf1a3c"
 }
 ##DOCS-SOURCER-END -->

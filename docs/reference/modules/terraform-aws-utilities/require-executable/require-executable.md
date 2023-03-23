@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.9.1"/>
 
 # Require Executable Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a module that can be used to ensure particular executables is available in the `PATH`. This module will search
 the OS `PATH` for the provided named executables and validate that it exists, as well as making sure the OS user running
@@ -58,7 +58,7 @@ module "require_executables" {
 
 module "require_executable" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -135,6 +135,6 @@ A map of the executables to the resolved path where they reside.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dae2e9305555f506d33689bc960043d2"
+  "hash": "42240bb69ab162bdcda0bcf55ff429f4"
 }
 ##DOCS-SOURCER-END -->

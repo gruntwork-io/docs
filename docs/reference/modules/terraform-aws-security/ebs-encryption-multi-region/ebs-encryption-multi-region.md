@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
 
 # EBS Encryption Multi Region Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module wraps the [ebs-encryption core module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/README.md) to configure [AWS EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) in all enabled regions for the AWS Account.
 
@@ -65,7 +65,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "ebs_encryption_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -176,6 +176,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66040ab6e52a94d713e55cbf6f065858"
+  "hash": "5158207a627221a52ae4536d84e709a7"
 }
 ##DOCS-SOURCER-END -->

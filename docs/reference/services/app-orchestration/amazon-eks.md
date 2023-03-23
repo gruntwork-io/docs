@@ -14,16 +14,15 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
-import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue } from '../../../../src/components/HclListItem.tsx';
+import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
 <VersionBadge version="0.102.2" lastModifiedVersion="0.100.0"/>
 
 # Amazon EKS
 
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/eks-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
 ## Overview
 
@@ -320,6 +319,40 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   [
+     {
+       instance_type = "t3.micro"
+       weighted_capacity = 2
+     },
+     {
+       instance_type = "t3.medium"
+       weighted_capacity = 1
+     },
+   ]
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, we would use a concrete type here, but terraform doesn't support optional attributes yet, so we have to
+   resort to the untyped any.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="asg_default_on_demand_allocation_strategy" requirement="optional" type="string">
@@ -455,6 +488,108 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Each configuration must be keyed by a unique string that will be used as a suffix for the ASG name. The values
+   support the following attributes:
+  
+   REQUIRED (must be provided for every entry):
+   - subnet_ids  list(string)  : A list of the subnets into which the EKS Cluster's worker nodes will be launched.
+                                 These should usually be all private subnets and include one in each AWS Availability
+                                 Zone. NOTE: If using a cluster autoscaler, each ASG may only belong to a single
+                                 availability zone.
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - min_size            number             : (Defaults to value from var.asg_default_min_size) The minimum number of
+                                              EC2 Instances representing workers launchable for this EKS Cluster.
+                                              Useful for auto-scaling limits.
+   - max_size            number             : (Defaults to value from var.asg_default_max_size) The maximum number of
+                                              EC2 Instances representing workers that must be running for this EKS
+                                              Cluster. We recommend making this at least twice the min_size, even if
+                                              you don't plan on scaling the cluster up and down, as the extra capacity
+                                              will be used to deploy updates to the cluster.
+   - asg_instance_type   string             : (Defaults to value from var.asg_default_instance_type) The type of
+                                              instances to use for the ASG (e.g., t2.medium).
+   - asg_instance_root_volume_size   number : (Defaults to value from var.asg_default_instance_root_volume_size) The root volume size of
+                                              instances to use for the ASG in GB (e.g., 40).
+   - asg_instance_root_volume_type   string : (Defaults to value from var.asg_default_instance_root_volume_type) The root volume type of
+                                              instances to use for the ASG (e.g., "standard").
+   - asg_instance_root_volume_iops   number : (Defaults to value from var.asg_default_instance_root_volume_iops) The root volume iops of
+                                              instances to use for the ASG (e.g., 200).
+   - asg_instance_root_volume_throughput   number : (Defaults to value from var.asg_default_instance_root_volume_throughput) The root volume throughput in MiBPS of
+                                              instances to use for the ASG (e.g., 125).
+   - asg_instance_root_volume_encryption   bool  : (Defaults to value from var.asg_default_instance_root_volume_encryption)
+                                               Whether or not to enable root volume encryption for instances of the ASG.
+   - max_pods_allowed    number             : (Defaults to value from var.asg_default_max_pods_allowed) The
+                                              maximum number of Pods allowed to be scheduled on the node. When null,
+                                              the max will be automatically calculated based on the availability of
+                                              total IP addresses to the instance type.
+   - tags                list(object[Tag])  : (Defaults to value from var.asg_default_tags) Custom tags to apply to the
+                                              EC2 Instances in this ASG. Refer to structure definition below for the
+                                              object type of each entry in the list.
+   - enable_detailed_monitoring   bool      : (Defaults to value from
+                                              var.asg_default_enable_detailed_monitoring) Whether to enable
+                                              detailed monitoring on the EC2 instances that comprise the ASG.
+   - use_multi_instances_policy   bool       : (Defaults to value from var.asg_default_use_multi_instances_policy)
+                                               Whether or not to use a multi_instances_policy for the ASG.
+   - multi_instance_overrides     list(MultiInstanceOverride) : (Defaults to value from var.asg_default_multi_instance_overrides)
+                                               List of multi instance overrides to apply. Each element in the list is
+                                               an object that specifies the instance_type to use for the override, and
+                                               the weighted_capacity.
+   - on_demand_allocation_strategy   string  : (Defaults to value from var.asg_default_on_demand_allocation_strategy)
+                                               When using a multi_instances_policy the strategy to use when launching on-demand instances. Valid values: prioritized.
+   - on_demand_base_capacity   number        : (Defaults to value from var.asg_default_on_demand_base_capacity)
+                                               When using a multi_instances_policy the absolute minimum amount of desired capacity that must be fulfilled by on-demand instances.
+   - on_demand_percentage_above_base_capacity   number : (Defaults to value from var.asg_default_on_demand_percentage_above_base_capacity)
+                                               When using a multi_instances_policy the percentage split between on-demand and Spot instances above the base on-demand capacity.
+   - spot_allocation_strategy   string       : (Defaults to value from var.asg_default_spot_allocation_strategy)
+                                               When using a multi_instances_policy how to allocate capacity across the Spot pools. Valid values: lowest-price, capacity-optimized.
+   - spot_instance_pools   number            : (Defaults to value from var.asg_default_spot_instance_pools)
+                                               When using a multi_instances_policy the Number of Spot pools per availability zone to allocate capacity.
+                                               EC2 Auto Scaling selects the cheapest Spot pools and evenly allocates Spot capacity across the number of Spot pools that you specify.
+   - spot_max_price   string                 : (Defaults to value from var.asg_default_spot_max_price, an empty string which means the on-demand price.)
+                                               When using a multi_instances_policy the maximum price per unit hour that the user is willing to pay for the Spot instances.
+   - eks_kubelet_extra_args        string    : Extra args to pass to the kubelet process on node boot.
+   - eks_bootstrap_script_options  string    : Extra option args to pass to the bootstrap.sh script. This will be
+                                               passed through directly to the bootstrap script.
+   - cloud_init_parts    map(string)         : (Defaults to value from var.cloud_init_parts)
+                                               Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
+   - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
+                                               desired HTTP PUT response hop limit for instance metadata requests.
+  
+   Structure of Tag object:
+   - key                  string  : The key for the tag to apply to the instance.
+   - value                string  : The value for the tag to apply to the instance.
+   - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
+  
+  
+   Example:
+   autoscaling_group_configurations = {
+     "asg1" = {
+       asg_instance_type = "t2.medium"
+       subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[0]]
+     },
+     "asg2" = {
+       max_size          = 3
+       asg_instance_type = "t2.large"
+       subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[1]]
+  
+       tags = [{
+         key                 = "size"
+         value               = "large"
+         propagate_at_launch = true
+       }]
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="autoscaling_group_include_autoscaler_discovery_tags" requirement="optional" type="bool">
@@ -529,6 +664,29 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     A MIME-style content type to report in the header for the part. For example, use "text/x-shellscript" for a shell
+     script.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The contents of the boot script to be called. This should be the full text of the script as a raw string.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cluster_iam_role_permissions_boundary" requirement="optional" type="string">
@@ -574,6 +732,20 @@ object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+     documentation for describe-images in the AWS CLI reference
+     (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="cluster_instance_associate_public_ip_address" requirement="optional" type="bool">
@@ -673,6 +845,18 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The target of the traffic. Only one of the following can be defined; the others must be configured to null.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_worker_ingress_security_group_rules" requirement="optional" type="map(object(…))">
@@ -698,6 +882,18 @@ map(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The source of the traffic. Only one of the following can be defined; the others must be configured to null.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_cpu_usage_widget_parameters" requirement="optional" type="object(…)">
@@ -732,6 +928,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_disk_usage_widget_parameters" requirement="optional" type="object(…)">
@@ -766,6 +975,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="dashboard_memory_usage_widget_parameters" requirement="optional" type="object(…)">
@@ -800,6 +1022,19 @@ object({
 ```
 
 </HclListItemDefaultValue>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     The width and height of the widget in grid units in a 24 column grid. E.g., a value of 12 will take up half the
+     space.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="eks_addons" requirement="optional" type="any">
@@ -816,6 +1051,26 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     eks_addons = {
+       coredns    = {}
+       kube-proxy = {}
+       vpc-cni    = {
+         addon_version            = "1.10.1-eksbuild.1"
+         resolve_conflicts        = "NONE"
+         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+       }
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="eks_cluster_security_group_tags" requirement="optional" type="map(string)">
@@ -825,6 +1080,21 @@ A map of custom tags to apply to the Security Group for the EKS Cluster Control 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="eks_cluster_tags" requirement="optional" type="map(string)">
@@ -834,6 +1104,21 @@ A map of custom tags to apply to the EKS Cluster Control Plane. The key is the t
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_aws_auth_merger" requirement="optional" type="bool">
@@ -852,6 +1137,22 @@ When true, deploy the aws-auth-merger into Fargate. It is recommended to run the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Since we will manage the IAM role mapping for the workers using the merger, we need to schedule the deployment onto
+   Fargate. Otherwise, there is a chicken and egg problem where the workers won't be able to auth until the
+   aws-auth-merger is deployed, but the aws-auth-merger can't be deployed until the workers are setup. Fargate IAM
+   auth is automatically configured by AWS when we create the Fargate Profile, so we can break the cycle if we use
+   Fargate.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -1059,6 +1360,20 @@ map(list(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+      "arn:aws:iam::ACCOUNT_ID:role/admin-role" = ["system:masters"]
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="iam_user_to_rbac_group_mapping" requirement="optional" type="map(list(…))">
@@ -1075,6 +1390,20 @@ map(list(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+      "arn:aws:iam::ACCOUNT_ID:user/admin-user" = ["system:masters"]
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
@@ -1109,6 +1438,110 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Each configuration must be keyed by a unique string that will be used as a suffix for the node group name. The
+   values support the following attributes:
+  
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - subnet_ids          list(string)       : (Defaults to value from var.node_group_default_subnet_ids) A list of the
+                                              subnets into which the EKS Cluster's managed nodes will be launched.
+                                              These should usually be all private subnets and include one in each AWS
+                                              Availability Zone. NOTE: If using a cluster autoscaler with EBS volumes,
+                                              each ASG may only belong to a single availability zone.
+   - min_size            number             : (Defaults to value from var.node_group_default_min_size) The minimum
+                                              number of EC2 Instances representing workers launchable for this EKS
+                                              Cluster. Useful for auto-scaling limits.
+   - max_size            number             : (Defaults to value from var.node_group_default_max_size) The maximum
+                                              number of EC2 Instances representing workers that must be running for
+                                              this EKS Cluster. We recommend making this at least twice the min_size,
+                                              even if you don't plan on scaling the cluster up and down, as the extra
+                                              capacity will be used to deploy updates to the cluster.
+   - desired_size        number             : (Defaults to value from var.node_group_default_desired_size) The current
+                                              desired number of EC2 Instances representing workers that must be running
+                                              for this EKS Cluster.
+   - instance_types      list(string)       : (Defaults to value from var.node_group_default_instance_types) A list of
+                                              instance types (e.g., t2.medium) to use for the EKS Cluster's worker
+                                              nodes. EKS will choose from this list of instance types when launching
+                                              new instances. When using launch templates, this setting will override
+                                              the configured instance type of the launch template.
+   - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
+                                              associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
+   - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
+                                              Launch template to use for the node. Specify either Name or ID of launch
+                                              template. Must include version. Although the API supports using the
+                                              values "$Latest" and "$Default" to configure the version, this can lead
+                                              to a perpetual diff. Use the `latest_version` or `default_version` output
+                                              of the aws_launch_template data source or resource instead. See
+                                              https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_node_grouplaunch_template-configuration-block
+                                              for more information.
+   - instance_root_volume_size   number     : (Defaults to value from var.node_group_default_instance_root_volume_size)
+                                              The root volume size of instances to use for the ASG in GB (e.g., 40).
+   - instance_root_volume_type   string     : (Defaults to value from var.node_group_default_instance_root_volume_type)
+                                              The root volume type of instances to use for the ASG (e.g., "standard").
+   - instance_root_volume_encryption  bool  : (Defaults to value from var.node_group_default_instance_root_volume_encryption)
+                                               Whether or not to enable root volume encryption for instances of the ASG.
+   - max_pods_allowed    number             : (Defaults to value from var.node_group_default_max_pods_allowed) The
+                                              maximum number of Pods allowed to be scheduled on the node. When null,
+                                              the max will be automatically calculated based on the availability of
+                                              total IP addresses to the instance type.
+   - http_put_response_hop_limit  number    : (Defaults to value from
+                                              var.node_group_default_http_put_response_hop_limit) The desired
+                                              HTTP PUT response hop limit for instance metadata requests from the
+                                              underlying EC2 Instances.
+   - tags                map(string)        : (Defaults to value from var.node_group_default_tags) Custom tags to apply
+                                              to the EC2 Instances in this node group. This should be a key value pair,
+                                              where the keys are tag keys and values are the tag values. Merged with
+                                              var.common_tags.
+   - labels              map(string)        : (Defaults to value from var.node_group_default_labels) Custom Kubernetes
+                                              Labels to apply to the EC2 Instances in this node group. This should be a
+                                              key value pair, where the keys are label keys and values are the label
+                                              values. Merged with var.common_labels.
+   - taints              list(map(string))  : (Defaults to value from var.node_group_default_taints) Custom Kubernetes
+                                              taint to apply to the EC2 Instances in this node group. See below for
+                                              structure of taints.
+   - enable_detailed_monitoring    bool     : (Defaults to value from
+                                              var.node_group_default_enable_detailed_monitoring) Whether to enable
+                                              detailed monitoring on the EC2 instances that comprise the Managed node
+                                              group.
+   - eks_kubelet_extra_args        string   : Extra args to pass to the kubelet process on node boot.
+   - eks_bootstrap_script_options  string   : Extra option args to pass to the bootstrap.sh script. This will be
+                                              passed through directly to the bootstrap script.
+   - cloud_init_parts    map(string)        : (Defaults to value from var.cloud_init_parts)
+                                              Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
+  
+   Structure of LaunchTemplate object:
+   - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
+   - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
+   - version  string  : The version of the Launch Template to use.
+  
+   Example:
+   managed_node_group_configurations = {
+     ngroup1 = {
+       desired_size = 1
+       min_size     = 1
+       max_size     = 3
+       subnet_ids  = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[0]]
+     }
+     asg2 = {
+       desired_size   = 1
+       min_size       = 1
+       max_size       = 3
+       subnet_ids     = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[0]]
+       disk_size      = 50
+     }
+     ngroup2 = {}   Only defaults
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
@@ -1652,11 +2085,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Feks-cluster%2FREADME.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Feks-cluster%2Fvariables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules%2Fservices%2Feks-cluster%2Foutputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "088bbf735421388a08fa298e01769eb5"
+  "hash": "e0f5b9ab3aa3f506afe9ac641b7737df"
 }
 ##DOCS-SOURCER-END -->

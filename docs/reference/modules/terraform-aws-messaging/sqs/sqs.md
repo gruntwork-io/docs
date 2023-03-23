@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.9.1" />
+<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.10.1"/>
 
 # Simple Queuing Service (SQS) Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an SQS queue along with policies for the topic.
 
@@ -100,7 +100,7 @@ including:
 
 module "sqs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.10.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -426,6 +426,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a7f7bfbb96b1dedf511487e40ab65c2a"
+  "hash": "3c6bcf669d459d1b3c7a824abd6ad463"
 }
 ##DOCS-SOURCER-END -->

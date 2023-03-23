@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" />
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" lastModifiedVersion="0.21.0"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -23,10 +23,12 @@ version of your app will automatically roll out across your Auto Scaling Group. 
 creates the ASG and it's up to you to create all the other related resources, such as the launch template, ELB,
 and security groups.
 
-\*\* Note: This module used to use Launch configurations but has been updated to use Launch templates. This has been
-[recommended by AWS for some
-time](https://aws.amazon.com/blogs/compute/amazon-ec2-auto-scaling-will-no-longer-add-support-for-new-ec2-features-to-launch-configurations/)
-and Launch configurations will finally be deprecated entirely on Dec 31st 2023.
+:::note
+
+This module used to use Launch configurations but has been updated to use Launch templates. This has been
+[recommended by AWS for some time](https://aws.amazon.com/blogs/compute/amazon-ec2-auto-scaling-will-no-longer-add-support-for-new-ec2-features-to-launch-configurations/) and Launch configurations will finally be deprecated entirely on Dec 31st 2023.
+
+:::
 
 ## What's an Auto Scaling Group?
 
@@ -416,6 +418,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a82e2194ca664d83b7adaeecc69c9e9c"
+  "hash": "d2e885eb4a2f8994c9cebfcf23158d54"
 }
 ##DOCS-SOURCER-END -->

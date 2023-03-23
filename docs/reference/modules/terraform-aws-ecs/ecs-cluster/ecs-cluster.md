@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.35.0" />
+<VersionBadge repoTitle="Amazon ECS" version="0.35.1" lastModifiedVersion="0.35.0"/>
 
 # ECS Cluster Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.35.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
@@ -224,7 +224,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.35.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1045,6 +1045,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b17c9adc03556b4cabda19895bc9b2ca"
+  "hash": "1e63ecd6b506d75f68ed6bec23aa5992"
 }
 ##DOCS-SOURCER-END -->

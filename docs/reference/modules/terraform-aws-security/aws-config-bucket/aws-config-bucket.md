@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.0"/>
 
 # AWS Config Bucket
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
@@ -35,7 +35,7 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 
 module "aws_config_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -377,6 +377,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d2010a25758c1bc0bfc93502997403a"
+  "hash": "5c6d23fca4bab40c46395ad03f2cd75e"
 }
 ##DOCS-SOURCER-END -->

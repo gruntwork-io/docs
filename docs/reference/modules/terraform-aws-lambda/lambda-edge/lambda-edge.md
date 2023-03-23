@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.6" />
+<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.4"/>
 
 # Lambda@Edge Function Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) function.
 Lambda@Edge gives you a way to run code on-demand in AWS Edge locations without having to manage servers.
@@ -93,7 +93,7 @@ triggers:
 
 module "lambda_edge" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v0.21.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -606,6 +606,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c86925bc7e5dd2a0958f8b40daf77b7"
+  "hash": "b8aa1b04ca16a0b34189c40efe46601d"
 }
 ##DOCS-SOURCER-END -->

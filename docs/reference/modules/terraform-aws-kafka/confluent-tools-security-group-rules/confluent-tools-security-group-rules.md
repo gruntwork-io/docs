@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Kafka" version="0.11.0" />
+<VersionBadge repoTitle="Kafka" version="0.11.0" lastModifiedVersion="0.6.0"/>
 
 # Confluent Tools Security Group Rules
 
 <a href="https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates the Security Group rules that allow traffic in and out of a server running one or more of the Confluent
 tools (Schema Registry, REST Proxy, or Kafka Connect).
@@ -94,6 +94,6 @@ module "confluent_tools_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a2309ca1c672fc7f2280af43380f561d"
+  "hash": "f7a7f03647028f29df5d8acbc7c42fcb"
 }
 ##DOCS-SOURCER-END -->

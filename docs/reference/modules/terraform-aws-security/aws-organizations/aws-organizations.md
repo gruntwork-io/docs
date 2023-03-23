@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.2" />
+<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
 
 # AWS Organizations
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module allows you to create and manage your [AWS Organization](https://aws.amazon.com/organizations/) and all child [AWS accounts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html) as code.
 
@@ -93,7 +93,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_organizations" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -364,6 +364,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c44d31363a05079e56525594baa33d5b"
+  "hash": "4f47d915695fd0b2cff7d17205860ad5"
 }
 ##DOCS-SOURCER-END -->

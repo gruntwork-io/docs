@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.0" />
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.9.1" lastModifiedVersion="0.9.1"/>
 
 # Request AWS Quota Increase
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to request a quota increase for an AWS Resource.
 
@@ -136,7 +136,7 @@ values; once they have been increased, they stay that way!
 
 module "request_quota_increase" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -205,6 +205,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f1b4afc5d72b81c7d9bd29810ceea81b"
+  "hash": "08887460454854eda84ec84572b526cd"
 }
 ##DOCS-SOURCER-END -->

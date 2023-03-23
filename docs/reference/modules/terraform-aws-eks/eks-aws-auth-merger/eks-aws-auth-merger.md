@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" />
+<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.0"/>
 
 # EKS AWS Auth Merger
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains a go CLI, docker container, and terraform module for deploying a Kubernetes controller for managing mappings between AWS IAM roles and users to RBAC groups in Kubernetes. The official way to manage the mapping is to add values in a single, central `ConfigMap`. This module allows you to break up the central `ConfigMap` across multiple, separate `ConfigMaps` each configuring a subset of the mappings you ultimately want to use, allowing you to update entries in the `ConfigMap` in isolated modules (e.g., when you add a new IAM role in a separate module from the EKS cluster). The `aws-auth-merger` watches for `aws-auth` compatible `ConfigMaps` that can be merged to manage the `aws-auth` authentication `ConfigMap` for EKS.
 
@@ -508,6 +508,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "12b30fd705381009a57c7d366b838107"
+  "hash": "38fca95dc5aaa51b739bad824ac8e1b0"
 }
 ##DOCS-SOURCER-END -->

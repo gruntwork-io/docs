@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.0"/>
 
 # ElastAlert Security Group Rules Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module that defines the Security Group rules used by
 [ElastAlert](https://github.com/Yelp/elastalert) to control the traffic that is allowed to go in and out of the cluster.
@@ -127,6 +127,6 @@ module "elastalert_security_group_rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b404ed18854acfdd1a4ee02f0849d50a"
+  "hash": "cc45d924a9427bc0dafdf68b0e282bc9"
 }
 ##DOCS-SOURCER-END -->

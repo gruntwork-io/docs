@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" />
+<VersionBadge repoTitle="ELK AWS Module" version="0.11.1" lastModifiedVersion="0.11.1"/>
 
 # Elasticsearch Cluster
 
 <a href="https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases?q=" className="link-button" title="Release notes for only the service catalog versions which impacted this service.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a [Terraform](https://www.terraform.io/) module to deploy an [Elasticsearch](https://www.elastic.co/products/elasticsearch) cluster in [AWS](https://aws.amazon.com/) on top of an Auto Scaling Group.
 The idea is to create an [Amazon Machine Image (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
@@ -678,6 +678,6 @@ The User Data script to run on each server when it is booting.
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "549b24fbaa3b6471ddeef59e735ea18a"
+  "hash": "04c5a3ce2e9a788a0da385e647199aa6"
 }
 ##DOCS-SOURCER-END -->
