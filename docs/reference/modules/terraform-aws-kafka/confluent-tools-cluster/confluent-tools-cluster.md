@@ -222,17 +222,17 @@ respectively.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "confluent-tools-cluster" {
+module "confluent_tools_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-cluster?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # Schema Registry and REST Proxy.
@@ -282,9 +282,9 @@ module "confluent-tools-cluster" {
   # The ID of the VPC in which to deploy the cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of Security Group IDs that should be added to the Auto Scaling Group's
   # Launch Configuration used to launch the Confluent Tools cluster EC2 Instances.
@@ -911,6 +911,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c69c148e26724c79ed2f5290e63b61bc"
+  "hash": "14edebb6b57b8ab3a8d2dcbc9c90456c"
 }
 ##DOCS-SOURCER-END -->

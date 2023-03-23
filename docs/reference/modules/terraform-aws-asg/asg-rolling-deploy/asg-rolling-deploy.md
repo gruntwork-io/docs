@@ -70,17 +70,17 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ASG-ROLLING-DEPLOY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "asg-rolling-deploy" {
+module "asg_rolling_deploy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
@@ -102,9 +102,9 @@ module "asg-rolling-deploy" {
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
   # this list should be a map with the parameters key, value, and
@@ -418,6 +418,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f7b8946155ce2c71604e194f78d0b605"
+  "hash": "d2e885eb4a2f8994c9cebfcf23158d54"
 }
 ##DOCS-SOURCER-END -->

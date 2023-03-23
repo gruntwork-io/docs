@@ -59,25 +59,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EBS-ENCRYPTION-MULTI-REGION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ebs-encryption-multi-region" {
+module "ebs_encryption_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
   aws_account_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If set to true, all new EBS volumes will have encryption enabled by default
   enable_encryption = true
@@ -176,6 +176,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "907077c95b1007ecbf3f2b6ca1df8be8"
+  "hash": "5158207a627221a52ae4536d84e709a7"
 }
 ##DOCS-SOURCER-END -->

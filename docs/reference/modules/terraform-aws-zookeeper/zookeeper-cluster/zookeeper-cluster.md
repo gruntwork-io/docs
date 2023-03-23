@@ -181,17 +181,17 @@ log and backup and restore specific transactions.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ZOOKEEPER-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "zookeeper-cluster" {
+module "zookeeper_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-cluster?ref=v0.12.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.client_port
@@ -269,9 +269,9 @@ module "zookeeper-cluster" {
   # The ID of the VPC in which to deploy the cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges from which the EC2 Instances will
   # allow SSH connections
@@ -1043,6 +1043,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "78a8b8a236f4c843d669330ae5fc30b6"
+  "hash": "365a270da2d815ba726d7a2bf8a683aa"
 }
 ##DOCS-SOURCER-END -->

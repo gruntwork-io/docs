@@ -31,17 +31,17 @@ include this module to handle the IAM permission details for you.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KAFKA-IAM-PERMISSIONS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kafka-iam-permissions" {
+module "kafka_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-iam-permissions?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the IAM Role used by the nodes in the Kafka cluster
   kafka_aws_iam_role_id = <INPUT REQUIRED>
@@ -61,6 +61,6 @@ module "kafka-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed8eab3cca1f90f520a18ada09a5146a"
+  "hash": "a0203b26bab028b6d23de7067ce31df0"
 }
 ##DOCS-SOURCER-END -->

@@ -175,17 +175,17 @@ jobs:
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S GITHUB-ACTIONS-IAM-ROLE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "github-actions-iam-role" {
+module "github_actions_iam_role" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of github repositories to the list of branches that are allowed to assume
   # the IAM role. The repository should be encoded as org/repo-name (e.g.,
@@ -198,9 +198,9 @@ module "github-actions-iam-role" {
   # URL of the OpenID Connect Provider provisioned for GitHub Actions.
   github_actions_openid_connect_provider_url = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The string operator to use when evaluating the AWS IAM condition for determining
   # which GitHub repos are allowed to assume the IAM role. Examples: StringEquals,
@@ -456,6 +456,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c1cc2eb770567f19e09071cdc7fef865"
+  "hash": "a4ac15bdd95483fa9ef8dd669b9bfad7"
 }
 ##DOCS-SOURCER-END -->

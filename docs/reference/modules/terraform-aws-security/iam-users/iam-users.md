@@ -132,17 +132,17 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S IAM-USERS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "iam-users" {
+module "iam_users" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A map of users to create. The keys are the user names and the values are an
   # object with the optional keys 'groups' (a list of IAM groups to add the user
@@ -157,9 +157,9 @@ module "iam-users" {
   # to their security credentials for use with `ssh-grunt`).
   users = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -444,6 +444,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f428ae9963c2f6e87de9d7c090411262"
+  "hash": "a89356d57427065744383dc3356b7478"
 }
 ##DOCS-SOURCER-END -->

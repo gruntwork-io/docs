@@ -39,17 +39,17 @@ We recommend using this module with just about every single EC2 Instance and Aut
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SSM-HEALTHCHECKS-IAM-PERMISSIONS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ssm-healthchecks-iam-permissions" {
+module "ssm_healthchecks_iam_permissions" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The Id of the IAM role to which we should add SSM healthcheck permissions
   iam_role_id = <INPUT REQUIRED>
@@ -69,6 +69,6 @@ module "ssm-healthchecks-iam-permissions" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ef495b00543a690f5c8d569b15234c53"
+  "hash": "82f5fda736bf7a91c6f7e83943b4e372"
 }
 ##DOCS-SOURCER-END -->

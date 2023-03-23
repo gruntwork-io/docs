@@ -107,17 +107,17 @@ want to associate a Key Pair with these servers, set `ssh_key_name` to an empty 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOGSTASH-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "logstash-cluster" {
+module "logstash_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-cluster?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run in this cluster.
   ami_id = <INPUT REQUIRED>
@@ -147,9 +147,9 @@ module "logstash-cluster" {
   # The ID of the VPC in which to deploy the Logstash cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges from which the EC2 Instances will
   # allow SSH connections
@@ -618,6 +618,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9ff2dc6f862f46e5d6bb04c44c11573b"
+  "hash": "3cd0c826636216c161b98c4aaa03005f"
 }
 ##DOCS-SOURCER-END -->

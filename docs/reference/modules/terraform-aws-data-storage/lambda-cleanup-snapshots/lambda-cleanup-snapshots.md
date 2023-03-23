@@ -37,17 +37,17 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LAMBDA-CLEANUP-SNAPSHOTS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "lambda-cleanup-snapshots" {
+module "lambda_cleanup_snapshots" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.26.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The maximum number of snapshots to keep around of the given DB. Once this number
   # is exceeded, this lambda function will delete the oldest snapshots.
@@ -67,9 +67,9 @@ module "lambda-cleanup-snapshots" {
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
   schedule_expression = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If set to true, you will be able to set max_snasphots to zero, and the cleanup
   # lambda job will be allowed to delete ALL snapshots. In production usage, you
@@ -221,6 +221,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9ce5c5e549267fc6a39d00834abe8def"
+  "hash": "840c74bbe16959f909f7c25213580790"
 }
 ##DOCS-SOURCER-END -->

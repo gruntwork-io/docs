@@ -112,17 +112,17 @@ docs.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KIBANA-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kibana-cluster" {
+module "kibana_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/kibana-cluster?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run in this cluster.
   ami_id = <INPUT REQUIRED>
@@ -149,9 +149,9 @@ module "kibana-cluster" {
   # The ID of the VPC in which to deploy the kibana cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access SSH from all other IP addresses will be blocked.
@@ -505,6 +505,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/kibana-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d0d2a54dc5895f124ff0850601e0b97"
+  "hash": "73e1941bbb4c35cc82173350fa186840"
 }
 ##DOCS-SOURCER-END -->

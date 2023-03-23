@@ -32,17 +32,17 @@ with EKS.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-VPC-TAGS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-vpc-tags" {
+module "eks_vpc_tags" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Names of the EKS clusters that you would like to associate with this VPC.
   eks_cluster_names = <INPUT REQUIRED>
@@ -118,6 +118,6 @@ Tags for public subnets in the VPC to use for integration with EKS.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ec79f3544833f982e62ed1fc283c9c7e"
+  "hash": "2c4c9ddfe5e709b5d10f3d8f0c4b2b7c"
 }
 ##DOCS-SOURCER-END -->

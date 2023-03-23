@@ -246,17 +246,17 @@ Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) d
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-cluster-workers" {
+module "eks_cluster_workers" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
   # this cluster. If any of the values are not provided, the specified default
@@ -267,9 +267,9 @@ module "eks-cluster-workers" {
   # the resources created by these templates.
   cluster_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional Security Groups IDs to be attached on the EKS Worker.
   additional_security_group_ids = []
@@ -1204,6 +1204,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f46afac5c49cc091f9d1c8daedf68d2"
+  "hash": "ce9fdabb2b96bba24a6c72193d24426d"
 }
 ##DOCS-SOURCER-END -->

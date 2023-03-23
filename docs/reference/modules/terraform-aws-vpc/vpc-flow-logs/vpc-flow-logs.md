@@ -79,17 +79,17 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-FLOW-LOGS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-flow-logs" {
+module "vpc_flow_logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You can
   # use this to grant read/write access beyond what is provided to the VPC. This
@@ -566,6 +566,6 @@ The name of the S3 bucket where flow logs are published.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dc39409f71f5b2230a8ae453e84d04cc"
+  "hash": "310c2f799439a3f8082c8aea2265df58"
 }
 ##DOCS-SOURCER-END -->

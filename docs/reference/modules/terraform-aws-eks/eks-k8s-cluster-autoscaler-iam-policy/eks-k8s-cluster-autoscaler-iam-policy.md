@@ -59,26 +59,26 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER-IAM-POLICY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-cluster-autoscaler-iam-policy" {
+module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
   name_prefix = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If you set this variable to false, this module will not create any resources.
   # This is used as a workaround because Terraform does not allow you to use the
@@ -174,6 +174,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9059b60a5eea25ac36cbb6db5b8da087"
+  "hash": "94d018c1eae9bcc68a643051fc5a800d"
 }
 ##DOCS-SOURCER-END -->

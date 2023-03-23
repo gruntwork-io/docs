@@ -92,17 +92,17 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDIS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "redis" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Specifies whether a read-only replica is automatically promoted to read/write
   # primary if the existing primary fails. It must be enabled for Redis (cluster
@@ -140,9 +140,9 @@ module "redis" {
   # The id of the VPC in which the ElastiCache cluster should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional security group ids to attach
   additional_security_group_ids = []
@@ -615,6 +615,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a05b1f67c917ea3f4515a112c663499"
+  "hash": "d28180296e2ee16c7c395ca79826f263"
 }
 ##DOCS-SOURCER-END -->

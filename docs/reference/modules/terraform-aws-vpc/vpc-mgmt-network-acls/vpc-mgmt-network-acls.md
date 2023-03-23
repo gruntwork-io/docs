@@ -56,17 +56,17 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-MGMT-NETWORK-ACLS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-mgmt-network-acls" {
+module "vpc_mgmt_network_acls" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt-network-acls?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The number of each type of subnet (public, private) created in this VPC.
   # Typically, this is equal to the number of availability zones in the current
@@ -98,9 +98,9 @@ module "vpc-mgmt-network-acls" {
   # typically point this variable at the vpc_ready output from the Gruntwork VPCs.
   vpc_ready = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If you set this variable to false, this module will not create any resources.
   # This is used as a workaround because Terraform does not allow you to use the
@@ -264,6 +264,6 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3246956f4756b8f77b67d7106e2dca53"
+  "hash": "2d4e257731c423ef0f0cd98ab961d234"
 }
 ##DOCS-SOURCER-END -->

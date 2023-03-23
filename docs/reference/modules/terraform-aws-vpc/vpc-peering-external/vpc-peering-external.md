@@ -80,17 +80,17 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-PEERING-EXTERNAL MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-peering-external" {
+module "vpc_peering_external" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IDs of all Network ACLs in your VPC. This is used to add a global DENY
   # rule that prevents inbound traffic from the external VPC, other than anything
@@ -166,9 +166,9 @@ module "vpc-peering-external" {
   # Once you accept it, you'll be able to see the ID.
   vpc_peering_connection_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Set this to false if you do not wish to create a blanket `deny` ACL that will
   # help to avoid problems with overly permissive rules. Defaults to true.
@@ -197,6 +197,6 @@ module "vpc-peering-external" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6049a9b5fe9d8a6a939e5b32c8876787"
+  "hash": "2afd95ff44d4d2aca282b759ecb4859c"
 }
 ##DOCS-SOURCER-END -->

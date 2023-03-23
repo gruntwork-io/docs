@@ -52,24 +52,24 @@ module "require_executables" {
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REQUIRE-EXECUTABLE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "require-executable" {
+module "require_executable" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of named executables that should exist on the OS PATH.
   required_executables = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Error message to show if the required executable is not found. This is printed
   # for each executable that was not found. The module will make the following
@@ -135,6 +135,6 @@ A map of the executables to the resolved path where they reside.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "41a276055f10e60d0cba2c25386c06cc"
+  "hash": "42240bb69ab162bdcda0bcf55ff429f4"
 }
 ##DOCS-SOURCER-END -->

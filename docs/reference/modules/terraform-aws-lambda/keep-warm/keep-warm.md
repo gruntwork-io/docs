@@ -53,17 +53,17 @@ level](#concurrency) for your functions.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KEEP-WARM MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "keep-warm" {
+module "keep_warm" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v0.21.7"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A map where the keys are the ARNs of Lambda functions to invoke (to keep them
   # warm) and the values are the event objects to send to those functions when
@@ -78,9 +78,9 @@ module "keep-warm" {
   # var.function_to_event_map. For example, cron(0 20 * * ? *) or rate(5 minutes).
   schedule_expression = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data.
@@ -265,6 +265,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e908c9c34e4d2a1e2c8b8210814c4578"
+  "hash": "5e4b4db48fadc80a0d8589c2f3e0eb3c"
 }
 ##DOCS-SOURCER-END -->

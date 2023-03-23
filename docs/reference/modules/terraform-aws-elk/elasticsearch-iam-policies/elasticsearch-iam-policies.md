@@ -67,24 +67,24 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH-IAM-POLICIES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "elasticsearch-iam-policies" {
+module "elasticsearch_iam_policies" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elasticsearch-iam-policies?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the IAM Role to which these IAM policies should be attached
   iam_role_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The Amazon S3 bucket ARNs to grant the Elasticsearch instances access to for
   # storing backup snapshots
@@ -105,6 +105,6 @@ module "elasticsearch-iam-policies" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elasticsearch-iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "35efce168b5f7ad904f4d34a2cb61b48"
+  "hash": "915412d9130a7c08bd292822ecc7f68e"
 }
 ##DOCS-SOURCER-END -->

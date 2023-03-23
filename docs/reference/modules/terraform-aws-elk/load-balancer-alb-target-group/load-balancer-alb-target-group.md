@@ -33,17 +33,17 @@ See the [examples folder](https://github.com/gruntwork-io/terraform-aws-elk/tree
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOAD-BALANCER-ALB-TARGET-GROUP MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "load-balancer-alb-target-group" {
+module "load_balancer_alb_target_group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/load-balancer-alb-target-group?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The path to use for health check requests.
   health_check_path = <INPUT REQUIRED>
@@ -64,9 +64,9 @@ module "load-balancer-alb-target-group" {
   # The ID of the VPC in which to deploy the Target Group
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the ASG (ASG) in the servers are deployed. Leave this blank if using
   # with a Server Group
@@ -379,6 +379,6 @@ The time period, in seconds, during which requests from a client should be route
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/load-balancer-alb-target-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0405fc7e368fd16f2b829a7295b96a83"
+  "hash": "c5ea2259cad5d05fd3bc29eb8063b112"
 }
 ##DOCS-SOURCER-END -->

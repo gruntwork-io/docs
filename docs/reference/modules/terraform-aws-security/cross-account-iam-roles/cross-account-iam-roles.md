@@ -109,17 +109,17 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CROSS-ACCOUNT-IAM-ROLES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "cross-account-iam-roles" {
+module "cross_account_iam_roles" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
   aws_account_id = <INPUT REQUIRED>
@@ -128,9 +128,9 @@ module "cross-account-iam-roles" {
   # AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID Connect
   # Provider. Refer to the docs for github-actions-iam-role for more information.
@@ -1042,6 +1042,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bbf461bb3b388346ae2299f80e759ade"
+  "hash": "6daa8e3a58e52c490392d85da379223c"
 }
 ##DOCS-SOURCER-END -->

@@ -71,17 +71,17 @@ No modules.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-PEERING-CROSS-ACCOUNTS-ACCEPTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-peering-cross-accounts-accepter" {
+module "vpc_peering_cross_accounts_accepter" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The VPC CIDR of the requester VPC.
   requester_vpc_cidr = <INPUT REQUIRED>
@@ -92,9 +92,9 @@ module "vpc-peering-cross-accounts-accepter" {
   # The VPC Peering Connection ID to manage.
   vpc_peering_connection_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Allow a local VPC to resolve public DNS hostnames to private IP addresses when
   # queried from instances in the peer VPC.
@@ -262,6 +262,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee72527a0cb6d4aec9c483a0d5668330"
+  "hash": "6210f2faa1876986f54166b7ebfccdce"
 }
 ##DOCS-SOURCER-END -->

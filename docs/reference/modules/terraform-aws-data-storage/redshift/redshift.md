@@ -77,17 +77,17 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDSHIFT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "redshift" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.26.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The instance type to use for the db (e.g. dc2.large)
   instance_type = <INPUT REQUIRED>
@@ -107,9 +107,9 @@ module "redshift" {
   # The id of the VPC in which this DB should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
   # typically be the CIDR blocks of the private app subnet in this VPC plus the
@@ -698,6 +698,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "293b0b21994853aac9079009076a6142"
+  "hash": "5ca516110a2a36a853a2c96c0d7492ad"
 }
 ##DOCS-SOURCER-END -->

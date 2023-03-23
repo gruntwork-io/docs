@@ -75,17 +75,17 @@ EOF
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-DAEMON-SERVICE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ecs-daemon-service" {
+module "ecs_daemon_service" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
   ecs_cluster_arn = <INPUT REQUIRED>
@@ -99,9 +99,9 @@ module "ecs-daemon-service" {
   # module.
   service_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of additional principals who can assume the task and task execution roles
   additional_task_assume_role_policy_principals = []
@@ -473,6 +473,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "30878befc57d71be6d9217e999be614a"
+  "hash": "f2dd3974a96ae404786e81ab54e9c68d"
 }
 ##DOCS-SOURCER-END -->

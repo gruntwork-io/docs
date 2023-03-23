@@ -30,17 +30,17 @@ this module to handle the Security Group details for you.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ZOOKEEPER-SECURITY-GROUP-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "zookeeper-security-group-rules" {
+module "zookeeper_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/zookeeper-security-group-rules?ref=v0.12.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.client_port
@@ -87,9 +87,9 @@ module "zookeeper-security-group-rules" {
   # rules
   security_group_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port clients use to connect to ZooKeeper
   client_port = 2181
@@ -122,6 +122,6 @@ module "zookeeper-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/zookeeper-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd30f7474f752d00a580be3f21d83d6b"
+  "hash": "b135e8016b9b208be1348504faf48034"
 }
 ##DOCS-SOURCER-END -->

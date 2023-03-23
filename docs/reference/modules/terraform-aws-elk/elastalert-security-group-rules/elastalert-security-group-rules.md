@@ -75,24 +75,24 @@ Check out the [elk-multi-cluster example](https://github.com/gruntwork-io/terraf
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTALERT-SECURITY-GROUP-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "elastalert-security-group-rules" {
+module "elastalert_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/elastalert-security-group-rules?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the Security Group to which all the rules should be attached.
   security_group_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the bastion host from all other IP addresses will
@@ -127,6 +127,6 @@ module "elastalert-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/elastalert-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2916ec1662da9be70694d10490388ca"
+  "hash": "cc45d924a9427bc0dafdf68b0e282bc9"
 }
 ##DOCS-SOURCER-END -->

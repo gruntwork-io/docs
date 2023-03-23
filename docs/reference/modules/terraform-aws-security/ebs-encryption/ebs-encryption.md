@@ -35,17 +35,17 @@ modules. Please see those modules for more information.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EBS-ENCRYPTION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ebs-encryption" {
+module "ebs_encryption" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Set to false to have this module skip creating resources. This weird parameter
   # exists solely because Terraform does not support conditional modules. Therefore,
@@ -148,6 +148,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8bc3ad11db9e431c797633cdc0a2caae"
+  "hash": "df0629455b3270649689dc006b14c18d"
 }
 ##DOCS-SOURCER-END -->

@@ -96,17 +96,17 @@ automatically delete older snapshots. You can specify two parameters to control 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EC2-BACKUP MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ec2-backup" {
+module "ec_2_backup" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.51.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ARN of SNS topics to notify if the CloudWatch alarm goes off because the
   # backup job failed.
@@ -144,9 +144,9 @@ module "ec2-backup" {
   # snapshots are never deleted, regardless of the value of var.delete_older_than.
   require_at_least = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # When true, all IAM policies will be managed as dedicated policies rather than
   # inline policies attached to the IAM roles. Dedicated managed policies are
@@ -273,6 +273,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a452c3d0880ae15c8fe9bf2b0a37be1"
+  "hash": "76482bb016ae0619d955743b8c5fd21b"
 }
 ##DOCS-SOURCER-END -->

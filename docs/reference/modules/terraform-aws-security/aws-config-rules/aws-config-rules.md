@@ -95,17 +95,17 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AWS-CONFIG-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "aws-config-rules" {
+module "aws_config_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of additional managed rules to add. The key is the name of the rule (e.g.
   # ´acm-certificate-expiration-check´) and the value is an object specifying the
@@ -542,6 +542,6 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5667ff92b388689ae91e3006cedf79a0"
+  "hash": "a7913fab409318cb68813699b8c49906"
 }
 ##DOCS-SOURCER-END -->

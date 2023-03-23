@@ -85,17 +85,17 @@ If you want to deploy this module in production, check out the following resourc
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S GUARDDUTY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "guardduty" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Name of the Cloudwatch event rule
   cloudwatch_event_rule_name = "guardduty-finding-events"
@@ -294,6 +294,6 @@ The ID of the GuardDuty detector.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a0810f228697d016ddb134a898b941bb"
+  "hash": "e7ee267208087179e9b81cbaecc674e3"
 }
 ##DOCS-SOURCER-END -->

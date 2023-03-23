@@ -79,17 +79,17 @@ If you just want to try this out for experimenting and learning, check out the f
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KMS-MASTER-KEY-MULTI-REGION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kms-master-key-multi-region" {
+module "kms_master_key_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
@@ -102,9 +102,9 @@ module "kms-master-key-multi-region" {
   # you can set for each key.
   customer_master_keys = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The default value to use for spec (specifies whether the key contains a
   # symmetric key or an asymmetric key pair and the encryption algorithms or signing
@@ -452,6 +452,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dbc25f3304bbb90c96928da6e350bb99"
+  "hash": "3954229b02095509899a898c72cf1a3c"
 }
 ##DOCS-SOURCER-END -->

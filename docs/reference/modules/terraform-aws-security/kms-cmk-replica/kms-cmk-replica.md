@@ -32,17 +32,17 @@ multi-region replication.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KMS-CMK-REPLICA MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kms-cmk-replica" {
+module "kms_cmk_replica" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Map of CMK names to the primary CMK that the replica key is replicating. The
   # primary key must already exist, and must be marked as multi_region = true. Each
@@ -54,9 +54,9 @@ module "kms-cmk-replica" {
   # map must have a corresponding entry in var.cmk_replica_primary_key_arns.
   cmk_replicas = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The default value to use for deletion_window_in_days (the number of days to keep
   # this KMS Master Key around after it has been marked for deletion). Applies to
@@ -313,6 +313,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2ee646fe95b126cfd13f8ca84ecda637"
+  "hash": "2770028ce60fe8914e2353832ecb5a02"
 }
 ##DOCS-SOURCER-END -->

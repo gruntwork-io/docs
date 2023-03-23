@@ -56,17 +56,17 @@ module.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CLUSTER-WORKERS-CROSS-ACCESS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-cluster-workers-cross-access" {
+module "eks_cluster_workers_cross_access" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The list of Security Group IDs for EKS workers that should have reciprocating
   # ingress rules for the port information provided in var.ports. For each group in
@@ -78,9 +78,9 @@ module "eks-cluster-workers-cross-access" {
   # the length of the var.eks_worker_security_group_ids input list.
   num_eks_worker_security_group_ids = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The list of port ranges that should be allowed into the security groups.
   ports = [{"from_port":0,"protocol":"-1","to_port":0}]
@@ -100,6 +100,6 @@ module "eks-cluster-workers-cross-access" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "516afb5ae1db75f3e5bbc83170b30d3d"
+  "hash": "587dd973506c016edcb155c5f7695b38"
 }
 ##DOCS-SOURCER-END -->

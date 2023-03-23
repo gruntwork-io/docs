@@ -184,17 +184,17 @@ There are two ways for you to override this behavior:
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ALB MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "alb" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v0.29.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the ALB. Do not include the environment name since this module will
   # automatically append it to the value of this variable.
@@ -218,9 +218,9 @@ module "alb" {
   # should be public subnets. Otherwise, they should be private subnets.
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # When looking up the ACM certs passed in via
   # https_listener_ports_and_acm_ssl_certs, only match certs with the given
@@ -841,6 +841,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ac5413e26956fe8a0969029167551dab"
+  "hash": "c70b893c89c40d5c3be8760efe587cc8"
 }
 ##DOCS-SOURCER-END -->

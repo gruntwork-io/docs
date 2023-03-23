@@ -57,26 +57,26 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_external_dns_iam_policy" {
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS-IAM-POLICY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-k8s-external-dns-iam-policy" {
+module "eks_k_8_s_external_dns_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
   name_prefix = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for the external-dns Kub
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fddfb26c80ad2e88ee714341369f19e8"
+  "hash": "416271972685b0ae43842ef14e114836"
 }
 ##DOCS-SOURCER-END -->

@@ -140,17 +140,17 @@ module in your Terraform code:
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SERVER-GROUP MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "server-group" {
+module "server_group" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the Amazon Machine Image (AMI) to run on each server (e.g.,
   # ami-abcd1234).
@@ -173,9 +173,9 @@ module "server-group" {
   # The id of the VPC where the servers should be deployed (e.g. vpc-abcd1234).
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of Security Group IDs that should be added to the Launch Template and any
   # ENIs, if applicable, created by this module.
@@ -975,6 +975,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a9170636fdd8cf70fd4ec277056d1f6"
+  "hash": "a021f2466531d1f9de97bca0163533f7"
 }
 ##DOCS-SOURCER-END -->

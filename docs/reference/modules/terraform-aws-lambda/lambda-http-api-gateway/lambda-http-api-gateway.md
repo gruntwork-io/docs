@@ -87,17 +87,17 @@ information on route syntax that API Gateway expects.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LAMBDA-HTTP-API-GATEWAY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "lambda-http-api-gateway" {
+module "lambda_http_api_gateway" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.7"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the API Gateway. This will be used to namespace all resources
   # created by this module.
@@ -108,9 +108,9 @@ module "lambda-http-api-gateway" {
   # 'GET /pet').
   route_config = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data. Only used if var.access_log_cloudwatch_log_group_name is
@@ -606,6 +606,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3af55008e889f2dc1b67a156ae329353"
+  "hash": "9f3ccb96163b611e51f4b6dbbded83e6"
 }
 ##DOCS-SOURCER-END -->

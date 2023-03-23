@@ -92,17 +92,17 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S API-GATEWAY-PROXY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "api-gateway-proxy" {
+module "api_gateway_proxy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.7"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Name of the API Gateway REST API.
   api_name = <INPUT REQUIRED>
@@ -116,9 +116,9 @@ module "api-gateway-proxy" {
   # the example for more info.
   lambda_functions = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # List of binary media types supported by the REST API. The default only supports
   # UTF-8 encoded text payloads.
@@ -553,6 +553,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6ec9e6cbeb2c4993162b93e1081574ac"
+  "hash": "90cd78ccab01c29b997bfb10ad0600f5"
 }
 ##DOCS-SOURCER-END -->

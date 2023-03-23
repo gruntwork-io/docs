@@ -67,17 +67,17 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EFS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "efs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.26.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name used to namespace all resources created by these templates, including
   # the EFS file system. Must be unique for this region. May contain only lowercase
@@ -91,9 +91,9 @@ module "efs" {
   # The id of the VPC in which this file system should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # (Optional) Allow access to the EFS file system via mount targets. If set to
   # true, any clients connecting to a mount target (i.e. from within the private app
@@ -441,6 +441,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc993edc3f0dd94b23771f499b9ad838"
+  "hash": "923bb2a6ee3aa33d39f07b5477946049"
 }
 ##DOCS-SOURCER-END -->

@@ -130,17 +130,17 @@ values; once they have been increased, they stay that way!
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REQUEST-QUOTA-INCREASE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "request-quota-increase" {
+module "request_quota_increase" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A map where the key is the resource and the value is the desired quota. The only
   # resources supported at the moment are 'nacl_rules' and 'nat_gateway'. You can
@@ -205,6 +205,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f9d5c67f972e11554d376fb4f4045109"
+  "hash": "08887460454854eda84ec84572b526cd"
 }
 ##DOCS-SOURCER-END -->

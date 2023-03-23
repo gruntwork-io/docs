@@ -155,17 +155,17 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S S3-CLOUDFRONT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "s3-cloudfront" {
+module "s_3_cloudfront" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v0.16.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the S3 bucket.
   bucket_name = <INPUT REQUIRED>
@@ -198,9 +198,9 @@ module "s3-cloudfront" {
   # via CloudFront, but you don't get all the website features.
   s3_bucket_is_public_website = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The folder in the access logs bucket where logs should be written.
   access_log_prefix = null
@@ -1115,6 +1115,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa07a3194e20a8b283621202ec3a8e34"
+  "hash": "cb1856fc8bf155bb06246c075a49dae6"
 }
 ##DOCS-SOURCER-END -->

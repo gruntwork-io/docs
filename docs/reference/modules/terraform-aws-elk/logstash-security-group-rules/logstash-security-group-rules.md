@@ -74,17 +74,17 @@ Check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-el
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S LOGSTASH-SECURITY-GROUP-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "logstash-security-group-rules" {
+module "logstash_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-elk.git//modules/logstash-security-group-rules?ref=v0.11.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port to use for BEATS requests. E.g. Filebeat
   beats_port = <INPUT REQUIRED>
@@ -95,9 +95,9 @@ module "logstash-security-group-rules" {
   # The ID of the Security Group to which all the rules should be attached.
   security_group_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The list of IP address ranges in CIDR notation from which to allow connections
   # to the beats_port.
@@ -243,6 +243,6 @@ The number of security group IDs in <a href="#collectd_port_security_groups"><co
     "https://github.com/gruntwork-io/terraform-aws-elk/tree/master/modules/logstash-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "70000f9e8245d7eaf2106ba559d817ef"
+  "hash": "35b7a4d2b4d898bf25fa07b9d6291d46"
 }
 ##DOCS-SOURCER-END -->

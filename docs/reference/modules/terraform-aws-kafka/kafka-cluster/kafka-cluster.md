@@ -233,17 +233,17 @@ that are no longer valid.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KAFKA-CLUSTER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kafka-cluster" {
+module "kafka_cluster" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-cluster?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # the Kafka brokers
@@ -289,9 +289,9 @@ module "kafka-cluster" {
   # The ID of the VPC in which to deploy the cluster
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of Security Group IDs that should be added to the Auto Scaling Group's
   # Launch Configuration used to launch the Kafka cluster EC2 Instances.
@@ -928,6 +928,6 @@ A maximum duration that Terraform should wait for ASG instances to be healthy be
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5bb91aebecd693fcca2c668dcf74e572"
+  "hash": "630d39f6f4bce1ccc6675a1a9c3ff2ad"
 }
 ##DOCS-SOURCER-END -->

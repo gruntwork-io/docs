@@ -51,17 +51,17 @@ resource "aws_iam_role_policy_attachment" "example" {
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-INVOKE-IAM-POLICY MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "ecs-deploy-runner-invoke-iam-policy" {
+module "ecs_deploy_runner_invoke_iam_policy" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the CloudWatch Log Group that is used to store the logs for the ECS
   # Deploy Runner tasks.
@@ -73,9 +73,9 @@ module "ecs-deploy-runner-invoke-iam-policy" {
   # ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
   deploy_runner_invoker_lambda_function_arn = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name to use for the IAM policy that is created.
   name = "invoke-ecs-deploy-runner"
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4045938867456861ada2ba2aaa6c7704"
+  "hash": "6f55184a467d33d68a49a4ce07a07a5a"
 }
 ##DOCS-SOURCER-END -->

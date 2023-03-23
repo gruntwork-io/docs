@@ -25,17 +25,17 @@ This module makes it easy to subscribe a SQS to a SNS topic after both have been
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S SNS-SQS-CONNECTION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "sns-sqs-connection" {
+module "sns_sqs_connection" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v0.10.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The arn of the topic to subscribe to.
   sns_topic_arn = <INPUT REQUIRED>
@@ -104,6 +104,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4e21a3002f63bba488433b515a61e804"
+  "hash": "24d5937aa6eeaea4166648904417596a"
 }
 ##DOCS-SOURCER-END -->

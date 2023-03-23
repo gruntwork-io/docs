@@ -67,17 +67,17 @@ If you just want to try this out for experimenting and learning, check out the f
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KMS-GRANT-MULTI-REGION MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kms-grant-multi-region" {
+module "kms_grant_multi_region" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
@@ -95,9 +95,9 @@ module "kms-grant-multi-region" {
   # to grant properties. The name must be unique per account.
   kms_grants = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -122,6 +122,6 @@ module "kms-grant-multi-region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5a1a98881a138a9f98e05dc4a18aa486"
+  "hash": "cd12d8daabc0b19ad405db4c50885522"
 }
 ##DOCS-SOURCER-END -->

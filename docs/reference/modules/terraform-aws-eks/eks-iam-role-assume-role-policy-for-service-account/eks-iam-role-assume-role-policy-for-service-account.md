@@ -31,17 +31,17 @@ up IRSA and how it works.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-IAM-ROLE-ASSUME-ROLE-POLICY-FOR-SERVICE-ACCOUNT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-iam-role-assume-role-policy-for-service-account" {
+module "eks_iam_role_assume_role_policy_for_service_account" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # ARN of the OpenID Connect Provider provisioned for the EKS cluster.
   eks_openid_connect_provider_arn = <INPUT REQUIRED>
@@ -61,9 +61,9 @@ module "eks-iam-role-assume-role-policy-for-service-account" {
   # this will allow all namespaces and all service accounts.
   service_accounts = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The string operator to use when evaluating the AWS IAM condition for determining
   # which Service Accounts are allowed to assume the IAM role. Examples:
@@ -162,6 +162,6 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2be6798b5a732e86f55cf171e6666db"
+  "hash": "1f2a4e5711a0a25d452ac2c0db1ca0c3"
 }
 ##DOCS-SOURCER-END -->

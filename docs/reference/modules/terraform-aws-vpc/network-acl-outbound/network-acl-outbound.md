@@ -40,17 +40,17 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S NETWORK-ACL-OUTBOUND MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "network-acl-outbound" {
+module "network_acl_outbound" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The number to use for the egress rule that will be added. Each egress rule in an
   # network ACL must have a unique rule number.
@@ -84,9 +84,9 @@ module "network-acl-outbound" {
   # any port is allowed (so the from_port and to_port settings are ignored!).
   protocol = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If you set this variable to false, this module will not create any resources.
   # This is used as a workaround because Terraform does not allow you to use the
@@ -131,6 +131,6 @@ module "network-acl-outbound" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1358b2ab01aee67170b781e9e99ff08e"
+  "hash": "3e628d1b140944b78698a343f6d42065"
 }
 ##DOCS-SOURCER-END -->

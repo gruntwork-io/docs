@@ -30,17 +30,17 @@ include this module to handle the Security Group details for you.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S KAFKA-SECURITY-GROUP-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "kafka-security-group-rules" {
+module "kafka_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/kafka-security-group-rules?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.client_port
@@ -59,9 +59,9 @@ module "kafka-security-group-rules" {
   # rules
   security_group_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port clients use to connect to Kafka brokers
   broker_port = 9092
@@ -84,6 +84,6 @@ module "kafka-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/kafka-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0da5971122da808261b0f5d94513a622"
+  "hash": "aa5e24929d6a38eb8bc9ebca8d7cc20c"
 }
 ##DOCS-SOURCER-END -->

@@ -40,17 +40,17 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S MEMCACHED MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 module "memcached" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.19.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
@@ -76,9 +76,9 @@ module "memcached" {
   # The id of the VPC in which the ElastiCache cluster should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
@@ -295,6 +295,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eae35c0a7d9d181ebb3f11caaa543a03"
+  "hash": "c574b229f054c57ad32ebed4bc2b639d"
 }
 ##DOCS-SOURCER-END -->

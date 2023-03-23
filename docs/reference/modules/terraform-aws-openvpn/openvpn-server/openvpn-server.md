@@ -110,17 +110,17 @@ exactly match the duo username.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S OPENVPN-SERVER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "openvpn-server" {
+module "openvpn_server" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.25.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
   ami = <INPUT REQUIRED>
@@ -166,9 +166,9 @@ module "openvpn-server" {
   # The id of the VPC where this server should be deployed.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A boolean that specifies if this server will allow SSH connections from the list
   # of CIDR blocks specified in var.allow_ssh_from_cidr_list.
@@ -817,6 +817,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "322e4d3f0400d6aa10b968e9589976f2"
+  "hash": "9ea9febed619a3d55e674789e422c234"
 }
 ##DOCS-SOURCER-END -->

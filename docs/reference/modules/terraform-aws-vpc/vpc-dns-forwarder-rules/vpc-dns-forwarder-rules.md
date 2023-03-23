@@ -65,17 +65,17 @@ forwarder rule, it will match any domain that ends with `.local` (note the dot),
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-DNS-FORWARDER-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-dns-forwarder-rules" {
+module "vpc_dns_forwarder_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-dns-forwarder-rules?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The primary ip address of the inbound Route 53 Resolver that should be used to
   # resolve the endpoints.
@@ -102,9 +102,9 @@ module "vpc-dns-forwarder-rules" {
   # The ID of the VPC which is the origin of the DNS resolver queries.
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A map of custom tags to apply to any resources created which accept them. The
   # key is the tag name and the value is the tag value.
@@ -125,6 +125,6 @@ module "vpc-dns-forwarder-rules" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dc3b680ca45e006fdfe46e34ee98c6ae"
+  "hash": "eca9f9a640cab543d5b1bf7119cbc57b"
 }
 ##DOCS-SOURCER-END -->

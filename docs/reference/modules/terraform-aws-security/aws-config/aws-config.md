@@ -81,25 +81,25 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AWS-CONFIG MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "aws-config" {
+module "aws_config" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
   s3_bucket_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The S3 bucket where access logs for this bucket should be stored. Only used if
   # access_logging_enabled is true.
@@ -736,6 +736,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "13775b002007fafefe4e07e4caeba438"
+  "hash": "87aed92cca26ae9ac8522b32bb5794eb"
 }
 ##DOCS-SOURCER-END -->

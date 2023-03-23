@@ -201,17 +201,17 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-INTERFACE-ENDPOINT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-interface-endpoint" {
+module "vpc_interface_endpoint" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IDs of the subnets for all endpoints. Each endpoint will create one
   # ENI (Elastic Network Interface) per subnet.
@@ -220,9 +220,9 @@ module "vpc-interface-endpoint" {
   # The ID of the VPC for all modules
   vpc_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # IAM policy to restrict what resources can call this endpoint. For example, you
   # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
@@ -6486,6 +6486,6 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5cbd36ae07eddc5691039f9a32a7ff37"
+  "hash": "a7540ca2d1d8b8d1593cc5ccaf21624a"
 }
 ##DOCS-SOURCER-END -->

@@ -105,17 +105,17 @@ can use as a template.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S PREPARE-PEX-ENVIRONMENT MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "prepare-pex-environment" {
+module "prepare_pex_environment" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
@@ -196,6 +196,6 @@ The python path that should be used for running PEX file. This should be set as 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2b01235d69ebc83805f878f3c9b8675b"
+  "hash": "b2e193761f6baca94041008935e34544"
 }
 ##DOCS-SOURCER-END -->

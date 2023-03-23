@@ -116,17 +116,17 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S IAM-GROUPS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "iam-groups" {
+module "iam_groups" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.5"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
   aws_account_id = <INPUT REQUIRED>
@@ -135,9 +135,9 @@ module "iam-groups" {
   # AWS API calls and the AWS Web Console? (true or false)
   should_require_mfa = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
   # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
@@ -843,6 +843,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "95bdb4e6ae0ab5cc637af4f3afc027ca"
+  "hash": "8d189e322ffa93007e008835b3823a7b"
 }
 ##DOCS-SOURCER-END -->

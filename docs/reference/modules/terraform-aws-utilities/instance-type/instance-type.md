@@ -60,17 +60,17 @@ will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if y
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S INSTANCE-TYPE MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "instance-type" {
+module "instance_type" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of instance types to look up in the current AWS region. We recommend
   # putting them in order of preference, as the recommended_instance_type output
@@ -133,6 +133,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1329077098a879c7a8fcdbc0710f6741"
+  "hash": "cf01160dea8e8d4775fdabd9c5931960"
 }
 ##DOCS-SOURCER-END -->

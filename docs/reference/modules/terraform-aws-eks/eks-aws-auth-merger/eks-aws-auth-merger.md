@@ -85,17 +85,17 @@ If you want to deploy this repo in production, check out the following resources
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-AWS-AUTH-MERGER MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-aws-auth-merger" {
+module "eks_aws_auth_merger" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-aws-auth-merger?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Location of the container image to use for the aws-auth-merger app.
   aws_auth_merger_image = <INPUT REQUIRED>
@@ -104,9 +104,9 @@ module "eks-aws-auth-merger" {
   # in this Namespace to merge into the aws-auth ConfigMap.
   namespace = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Labels to apply to ConfigMaps that are created automatically by the
   # aws-auth-merger when snapshotting the existing main ConfigMap. This must match
@@ -508,6 +508,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "233c0ebc5daeeeea692155fe5740987f"
+  "hash": "38fca95dc5aaa51b739bad824ac8e1b0"
 }
 ##DOCS-SOURCER-END -->

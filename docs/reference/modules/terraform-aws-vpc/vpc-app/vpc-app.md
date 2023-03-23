@@ -82,17 +82,17 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S VPC-APP MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "vpc-app" {
+module "vpc_app" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.22.6"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
@@ -108,9 +108,9 @@ module "vpc-app" {
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
   vpc_name = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Should the private persistence subnet be allowed outbound access to the
   # internet?
@@ -1100,6 +1100,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8c8fc0a507128317b0dda067fcbae83"
+  "hash": "ee3cdd67ae7a4ddd8e52b3c150ae0ab2"
 }
 ##DOCS-SOURCER-END -->

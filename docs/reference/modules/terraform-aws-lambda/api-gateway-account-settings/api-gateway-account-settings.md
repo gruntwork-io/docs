@@ -42,17 +42,17 @@ Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tr
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S API-GATEWAY-ACCOUNT-SETTINGS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "api-gateway-account-settings" {
+module "api_gateway_account_settings" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-account-settings?ref=v0.21.7"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Set to false to have this module create no resources. This weird parameter
   # exists solely because Terraform does not support conditional modules. Therefore,
@@ -148,6 +148,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "77fa91817f84e00d87a15b5901c7aa41"
+  "hash": "189b6f523244f23bf124a7f9ab2e8c72"
 }
 ##DOCS-SOURCER-END -->

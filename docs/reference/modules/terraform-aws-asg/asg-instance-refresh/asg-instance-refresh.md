@@ -82,17 +82,17 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ASG-INSTANCE-REFRESH MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "asg-instance-refresh" {
+module "asg_instance_refresh" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.1"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name of the ASG.
   asg_name = <INPUT REQUIRED>
@@ -111,9 +111,9 @@ module "asg-instance-refresh" {
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
   vpc_subnet_ids = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The number of seconds to wait after a checkpoint.
   checkpoint_delay = null
@@ -518,6 +518,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff6c5c562f035e2a79349ccb6466fbf9"
+  "hash": "7fa4a1f291b7f29da29aa681c8180bd2"
 }
 ##DOCS-SOURCER-END -->

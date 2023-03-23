@@ -98,17 +98,17 @@ fields @timestamp, @message
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EKS-CONTAINER-LOGS MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "eks-container-logs" {
+module "eks_container_logs" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.56.3"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -118,9 +118,9 @@ module "eks-container-logs" {
   # to null if you do not wish to use IAM role with Service Accounts.
   iam_role_for_service_accounts_config = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # Can be used to add more inputs. This string should be formatted according to
   # Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
@@ -221,6 +221,6 @@ module "eks-container-logs" {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edc16f4968f15921a10325ed72960dbc"
+  "hash": "1b8e807df49b569414011b1d3892703e"
 }
 ##DOCS-SOURCER-END -->

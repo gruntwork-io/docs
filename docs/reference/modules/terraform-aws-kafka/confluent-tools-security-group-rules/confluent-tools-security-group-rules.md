@@ -31,17 +31,17 @@ or [Kafka](https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modul
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S CONFLUENT-TOOLS-SECURITY-GROUP-RULES MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "confluent-tools-security-group-rules" {
+module "confluent_tools_security_group_rules" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-kafka.git//modules/confluent-tools-security-group-rules?ref=v0.11.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # A list of CIDR-formatted IP address ranges that will be allowed to connect to
   # var.ports
@@ -63,9 +63,9 @@ module "confluent-tools-security-group-rules" {
   # The ID of the security group to which we should add the security group rules
   security_group_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The port number on which health-checker
   # (https://github.com/gruntwork-io/health-checker) is accepting inbound HTTP
@@ -94,6 +94,6 @@ module "confluent-tools-security-group-rules" {
     "https://github.com/gruntwork-io/terraform-aws-kafka/tree/master/modules/confluent-tools-security-group-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c90edeee59a13f5a7608a1665efa8998"
+  "hash": "f7a7f03647028f29df5d8acbc7c42fcb"
 }
 ##DOCS-SOURCER-END -->

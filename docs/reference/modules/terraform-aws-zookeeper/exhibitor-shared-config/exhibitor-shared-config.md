@@ -33,17 +33,17 @@ this module to handle the S3 bucket details for you.
 
 ```hcl title="main.tf"
 
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S EXHIBITOR-SHARED-CONFIG MODULE
-# ---------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
-module "exhibitor-shared-config" {
+module "exhibitor_shared_config" {
 
   source = "git::git@github.com:gruntwork-io/terraform-aws-zookeeper.git//modules/exhibitor-shared-config?ref=v0.12.0"
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # The name to use for the S3 bucket that will store shared ZooKeeper config
   s3_bucket_name = <INPUT REQUIRED>
@@ -51,9 +51,9 @@ module "exhibitor-shared-config" {
   # The ID of the IAM Role used by the nodes in the ZooKeeper cluster
   zookeeper_aws_iam_role_id = <INPUT REQUIRED>
 
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
-  # ---------------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------------
 
   # If you set this to true, when you run terraform destroy, this tells Terraform to
   # delete all the objects in the S3 bucket used for shared config storage. You
@@ -136,6 +136,6 @@ The Amazon Resource Name (ARN) of the KMS Key that will be used to encrypt/decry
     "https://github.com/gruntwork-io/terraform-aws-zookeeper/tree/main/modules/exhibitor-shared-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cd7aab15009fbc38b2f39fbf41e4ca54"
+  "hash": "1f76411fd53e93e0541709bf0cf40491"
 }
 ##DOCS-SOURCER-END -->
