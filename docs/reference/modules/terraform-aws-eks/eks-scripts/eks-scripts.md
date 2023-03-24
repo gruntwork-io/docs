@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.55.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.55.2"/>
 
 # EKS Scripts Module
 
@@ -113,6 +113,6 @@ tests.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9de929fcc1fa62a76a7eae8f0d20beb2"
+  "hash": "1fe6b5c14363363cc223d15cf8609792"
 }
 ##DOCS-SOURCER-END -->
