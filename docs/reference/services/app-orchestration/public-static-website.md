@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.2" lastModifiedVersion="0.101.0"/>
+<VersionBadge version="0.102.3" lastModifiedVersion="0.101.0"/>
 
 # Public Static Website
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 ### Core concepts
 
 This module deploys a public website, so the S3 bucket and objects with it are readable by the public. It also is
-hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/variables.tf),
+hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/variables.tf),
 or you may provide the `base_domain_name` associated with your Public Hosted Zone in Route 53, optionally along with
 any tags that must match that zone in `base_domain_name_tags`. If you do the latter, this module will find the hosted
 zone id for you.
@@ -71,17 +71,17 @@ website, and how to configure SSL, check out the documentation for the
 and [s3-cloudfront](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/master/modules/s3-cloudfront)
 modules.
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/core-concepts.md#quick-start)
 *   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
 *   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-handle-www—root-domains)
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -89,7 +89,7 @@ modules.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -97,12 +97,215 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-learning-and-testing/services/public-static-website/example-website):
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-learning-and-testing/services/public-static-website/example-website):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S PUBLIC-STATIC-WEBSITE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "public_static_website" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/public-static-website?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only
+  # used if var.create_route53_entry is true. Set to blank otherwise.
+  acm_certificate_domain_name = <INPUT REQUIRED>
+
+  # The name of the website and the S3 bucket to create (e.g. static.foo.com).
+  website_domain_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The domain name associated with a hosted zone in Route 53. Usually the base
+  # domain name of var.website_domain_name (e.g. foo.com). This is used to find the
+  # hosted zone that will be used for the CloudFront distribution. If
+  # var.create_route53_entry is true, one of var.base_domain_name or
+  # var.hosted_zone_id must be provided.
+  base_domain_name = null
+
+  # The tags associated with var.base_domain_name. If there are multiple hosted
+  # zones for the same var.base_domain_name, this will help filter the hosted zones
+  # so that the correct hosted zone is found.
+  base_domain_name_tags = {}
+
+  # A configuration for CORS on the S3 bucket. Default value comes from AWS. Can
+  # override for custom CORS by passing the object structure define in the
+  # documentation
+  # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#using-cors.
+  cors_rule = []
+
+  # If set to true, create a DNS A Record in Route 53. If var.create_route53_entry
+  # is true, one of var.base_domain_name or var.hosted_zone_id must be provided.
+  create_route53_entry = true
+
+  # A map of custom tags to apply to the S3 bucket containing the website and the
+  # CloudFront distribution created for it. The key is the tag name and the value is
+  # the tag value.
+  custom_tags = {}
+
+  # A list of existing CloudFront functions to associate with the default cached
+  # behavior. CloudFront functions are lightweight alternatives to Lambda for
+  # high-scale, latency sensitive CDN customizations.
+  default_function_associations = []
+
+  # A list of existing Lambda@Edge functions to associate with CloudFront. Lambda
+  # version must be a published version and cannot be `$LATEST` (See
+  # https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#lambd
+  # _function_association for available options).
+  default_lambda_associations = []
+
+  # The default amount of time, in seconds, that an object is in a CloudFront cache
+  # before CloudFront forwards another request in the absence of an 'Cache-Control
+  # max-age' or 'Expires' header.
+  default_ttl = 30
+
+  # Option to disable cloudfront log delivery to s3. This is required in regions
+  # where cloudfront cannot deliver logs to s3, see
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.ht
+  # l#access-logs-choosing-s3-bucket
+  disable_cloudfront_logging = false
+
+  # If set to true, a CloudFront function to implement default directory index
+  # (looking up index.html in an S3 directory when path ends in /) is deployed. Only
+  # relevant when var.restrict_bucket_access_to_cloudfront is set to true.
+  enable_default_directory_index_function = false
+
+  # The path to the error document in the S3 bucket (e.g. error.html).
+  error_document = "error.html"
+
+  # The error responses you want CloudFront to return to the viewer.
+  error_responses = {"404":{"error_caching_min_ttl":0,"response_code":404,"response_page_path":"404.html"},"500":{"error_caching_min_ttl":0,"response_code":500,"response_page_path":"500.html"}}
+
+  # If set to true, this will force the deletion of the website, redirect, and
+  # access log S3 buckets when you run terraform destroy, even if there is still
+  # content in those buckets. This is only meant for testing and should not be used
+  # in production.
+  force_destroy = false
+
+  # The headers you want CloudFront to forward to the origin. Set to * to forward
+  # all headers.
+  forward_headers = []
+
+  # The ISO 3166-1-alpha-2 codes for which you want CloudFront either to distribute
+  # your content (if var.geo_restriction_type is whitelist) or not distribute your
+  # content (if var.geo_restriction_type is blacklist).
+  geo_locations_list = []
+
+  # The method that you want to use to restrict distribution of your content by
+  # country: none, whitelist, or blacklist.
+  geo_restriction_type = "none"
+
+  # The ID of the Route 53 Hosted Zone in which to create the DNS A Records
+  # specified in var.website_domain_name. If var.create_route53_entry is true, one
+  # of var.base_domain_name or var.hosted_zone_id must be provided.
+  hosted_zone_id = null
+
+  # The path to the index document in the S3 bucket (e.g. index.html).
+  index_document = "index.html"
+
+  # The maximum amount of time, in seconds, that an object is in a CloudFront cache
+  # before CloudFront forwards another request to your origin to determine whether
+  # the object has been updated. Only effective in the presence of 'Cache-Control
+  # max-age', 'Cache-Control s-maxage', and 'Expires' headers.
+  max_ttl = 60
+
+  # The minimum amount of time that you want objects to stay in CloudFront caches
+  # before CloudFront queries your origin to see whether the object has been
+  # updated.
+  min_ttl = 0
+
+  # The minimum version of the SSL protocol that you want CloudFront to use for
+  # HTTPS connections. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # front_distribution#minimum_protocol_version for possible values.
+  minimum_protocol_version = "TLSv1"
+
+  # If set to true, the S3 bucket will only be accessible via CloudFront, and not
+  # directly. NOTE: this is only known to work if the S3 Bucket is in us-east-1.
+  restrict_bucket_access_to_cloudfront = false
+
+  # A map describing the routing_rule for the aws_s3_website_configuration resource.
+  # Describes redirect behavior and conditions when redirects are applied. Conflicts
+  # with routing_rules. Use routing_rules if rules contain empty String values.
+  routing_rule = {}
+
+  # A json string array containing routing rules for the
+  # aws_s3_website_configuration resource. Describes redirect behavior and
+  # conditions when redirects are applied. Conflicts with routing_rule. Use this
+  # when routing rules contain empty String values.
+  routing_rules = null
+
+  # The policy directives and their values that CloudFront includes as values for
+  # the Content-Security-Policy HTTP response header. When null, the header is
+  # omitted.
+  security_header_content_security_policy = "default-src 'self'; base-uri 'self'; block-all-mixed-content; font-src 'self' https: data:; form-action 'self'; frame-ancestors 'self'; img-src 'self' data:; object-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'; upgrade-insecure-requests"
+
+  # Determines whether CloudFront includes the X-Content-Type-Options HTTP response
+  # header with its value set to nosniff.
+  security_header_enable_nosniff_content_type_options = true
+
+  # Determines whether CloudFront includes the X-Frame-Options HTTP response header
+  # and the header’s value. When null, the header is omitted.
+  security_header_frame_option = "SAMEORIGIN"
+
+  # Determines whether CloudFront includes the Strict-Transport-Security HTTP
+  # response header and the header’s value. When null, the header is omitted.
+  security_header_hsts = {"include_subdomains":true,"max_age":15552000,"preload":false}
+
+  # Determines whether CloudFront includes the Referrer-Policy HTTP response header
+  # and the header’s value. When null, the header is omitted.
+  security_header_referrer_policy = "no-referrer"
+
+  # Determine whether CloudFront includes the X-Xss-Protection HTTP response header
+  # and the header’s value. When null, the header is omitted.
+  security_header_xss_protection = {"mode_block":false,"protection":false,"report_uri":null}
+
+  # In older AWS accounts, you must set this variable to true to use the ARN of the
+  # CloudFront log delivery AWS account in the access log bucket policy. In newer
+  # AWS accounts, you must set this variable to false to use the CanonicalUser ID of
+  # the CloudFront log delivery account. If you pick the wrong value, you'll get a
+  # perpetual diff on the IAM policy. See
+  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for
+  # context.
+  use_cloudfront_arn_for_bucket_policy = false
+
+  # Use this element to specify the protocol that users can use to access the files
+  # in the origin specified by TargetOriginId when a request matches the path
+  # pattern in PathPattern. One of allow-all, https-only, or redirect-to-https.
+  viewer_protocol_policy = "allow-all"
+
+  # If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
+  # ACL that is associated with the distribution. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # front_distribution#web_acl_id for more details.
+  web_acl_id = null
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -610,11 +813,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/public-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "53178b356303216665b1cf32dfa17e95"
+  "hash": "f048a7c225112907fd0535a009155b12"
 }
 ##DOCS-SOURCER-END -->

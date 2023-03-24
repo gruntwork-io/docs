@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.56.2"/>
 
 # EKS Cluster Control Plane Module
 
@@ -382,7 +382,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.56.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.56.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1288,6 +1288,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "60838f8230d8b2f0b1c7cc27b3d2e20d"
+  "hash": "1540f82374a56b52b9a1c33f46b88619"
 }
 ##DOCS-SOURCER-END -->

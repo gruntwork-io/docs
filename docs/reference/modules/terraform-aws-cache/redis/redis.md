@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.19.0" lastModifiedVersion="0.19.0"/>
+<VersionBadge repoTitle="Cache Modules" version="0.19.1" lastModifiedVersion="0.19.1"/>
 
 # Redis Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -98,7 +98,7 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -615,6 +615,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d28180296e2ee16c7c395ca79826f263"
+  "hash": "81fb31832a468cc7c67a44e8cfe64d52"
 }
 ##DOCS-SOURCER-END -->

@@ -272,7 +272,7 @@ module "rds" {
   ignore_password_changes = false
 
   # The amount of provisioned IOPS for the primary instance. Setting this implies a
-  # storage_type of 'io1' or 'io2'. Set to 0 to disable.
+  # storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
   iops = 0
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
@@ -408,9 +408,16 @@ module "rds" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The storage throughput value for the DB instance. Can only be set when
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage value is
+  # below a per-engine threshold. See the RDS User Guide:
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-sto
+  # age
+  storage_throughput = null
+
   # The type of storage to use for the primary instance. Must be one of 'standard'
-  # (magnetic), 'gp2' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2'
-  # (2nd gen provisioned IOPS SSD).
+  # (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1'
+  # (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
   # Timeout for DB updating
@@ -799,7 +806,7 @@ Creates an instance that disables terraform from updating the master_password.  
 <HclListItem name="iops" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1' or 'io2'. Set to 0 to disable.
+The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
@@ -1057,10 +1064,19 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_throughput" requirement="optional" type="string">
+<HclListItemDescription>
+
+The storage throughput value for the DB instance. Can only be set when <a href="#storage_type"><code>storage_type</code></a> is 'gp3'. Cannot be specified if the allocated_storage value is below a per-engine threshold. See the RDS User Guide: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
@@ -1129,6 +1145,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8cdc2602b0ae9f1c946305ed21cdf2d4"
+  "hash": "6588c74a117c7ae5aa470fe060e2a4ea"
 }
 ##DOCS-SOURCER-END -->

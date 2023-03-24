@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.53.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.53.1"/>
 
 # EKS Cluster Managed Workers Module
 
@@ -164,7 +164,7 @@ The following are the steps you can take to perform a blue-green release for thi
 
 module "eks_cluster_managed_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v0.56.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -782,6 +782,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ccc6cc156492fc8bdb6e1d95f9621745"
+  "hash": "182293bcad3e0a14a057c749c79dd565"
 }
 ##DOCS-SOURCER-END -->

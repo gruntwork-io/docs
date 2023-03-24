@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.48.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.48.0"/>
 
 # ECS Deploy Runner Invoke IAM Policies module
 
@@ -57,7 +57,7 @@ resource "aws_iam_role_policy_attachment" "example" {
 
 module "ecs_deploy_runner_invoke_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -170,6 +170,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6f55184a467d33d68a49a4ce07a07a5a"
+  "hash": "354196f32047a258cec0c2c29a1316c1"
 }
 ##DOCS-SOURCER-END -->

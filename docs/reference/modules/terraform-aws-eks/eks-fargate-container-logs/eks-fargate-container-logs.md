@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.3" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.56.0"/>
 
 # EKS Fargate Container Logs Module
 
@@ -105,7 +105,7 @@ fields @timestamp, @message
 
 module "eks_fargate_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.56.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.56.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -535,6 +535,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0d8445241fb501e675a7f25ba8eb0848"
+  "hash": "4a7033d6e027888742614656ac7c676a"
 }
 ##DOCS-SOURCER-END -->

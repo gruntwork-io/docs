@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.8"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.50.8"/>
 
 # Install Jenkins Module
 
@@ -79,6 +79,6 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2547597c436d036e4b90058f4b34f966"
+  "hash": "e18639742b09efb9f812afe9a082bc63"
 }
 ##DOCS-SOURCER-END -->

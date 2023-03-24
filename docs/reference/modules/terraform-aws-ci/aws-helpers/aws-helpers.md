@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.1" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.50.11"/>
 
 # AWS Helpers
 
@@ -50,6 +50,6 @@ dependencies:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ce1d69afceaef9b7b69dff802a00cc3f"
+  "hash": "13fe771e857f062c649cd2ebef118237"
 }
 ##DOCS-SOURCER-END -->

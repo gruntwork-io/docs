@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.2" lastModifiedVersion="0.83.0"/>
+<VersionBadge version="0.102.3" lastModifiedVersion="0.83.0"/>
 
 # Kubernetes Namespace
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/k8s-namespace" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/k8s-namespace" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-namespace" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ subscriber and don’t have access to this repo, email <support@gruntwork.io>.
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ subscriber and don’t have access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,12 +83,81 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S K8S-NAMESPACE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "k_8_s_namespace" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-namespace?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the Namespace to create.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of string key default pairs that can be used to store arbitrary metadata on
+  # the namespace and roles. See the Kubernetes Reference for more info
+  # (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+  annotations = {}
+
+  # Name of the EKS cluster where the Namespace will be created. Required when
+  # var.schedule_pods_on_fargate is `true`.
+  eks_cluster_name = null
+
+  # The list of RBAC entities that should have full access to the Namespace.
+  full_access_rbac_entities = []
+
+  # Map of string key value pairs that can be used to organize and categorize the
+  # namespace and roles. See the Kubernetes Reference for more info
+  # (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+  labels = {}
+
+  # ARN of IAM Role to use as the Pod execution role for Fargate. Required if
+  # var.schedule_pods_on_fargate is true.
+  pod_execution_iam_role_arn = null
+
+  # The list of RBAC entities that should have read only access to the Namespace.
+  read_only_access_rbac_entities = []
+
+  # When true, will create a Fargate Profile that matches all Pods in the Namespace.
+  # This means that all Pods in the Namespace will be scheduled on Fargate. Note
+  # that this value is only used if var.kubeconfig_auth_type is eks, as Fargate
+  # profiles can only be created against EKS clusters.
+  schedule_pods_on_fargate = false
+
+  # The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to
+  # Fargate. At least 1 subnet is required if var.schedule_pods_on_fargate is true.
+  worker_vpc_subnet_ids = []
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -287,11 +356,11 @@ The name of the rbac role that grants read only permissions on the namespace.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/k8s-namespace/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/k8s-namespace/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/services/k8s-namespace/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/k8s-namespace/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/k8s-namespace/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a3c93a211773aab300bbbc2b402611b2"
+  "hash": "0ef2ff4264edfe842c75b271ec3edea5"
 }
 ##DOCS-SOURCER-END -->

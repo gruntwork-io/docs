@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.2" lastModifiedVersion="0.20.0"/>
+<VersionBadge version="0.102.3" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/landingzone/gruntwork-access" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Fgruntwork-access" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,13 +71,73 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
     infrastructure.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GRUNTWORK-ACCESS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "gruntwork_access" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/gruntwork-access?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to true to grant your security account, with the account ID specified in
+  # var.security_account_id, access to the IAM role. This is required for deploying
+  # a Reference Architecture.
+  grant_security_account_access = <INPUT REQUIRED>
+
+  # The ID of your security account (where IAM users are defined). Required for
+  # deploying a Reference Architecture, as the Gruntwork team deploys an EC2
+  # instance in the security account, and that instance assumes this IAM role to get
+  # access to all the other child accounts and bootstrap the deployment process.
+  security_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS account that will be allowed to assume the IAM role.
+  gruntwork_aws_account_id = "583800379690"
+
+  # The name to use for the IAM role
+  iam_role_name = "GruntworkAccountAccessRole"
+
+  # The name of the AWS Managed Policy to attach to the IAM role. To deploy a
+  # Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is
+  # the default.
+  managed_policy_name = "AdministratorAccess"
+
+  # If set to true, require MFA to assume the IAM role from the Gruntwork account.
+  require_mfa = true
+
+  # Tags to apply to all resources created by this module
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -173,11 +233,11 @@ The name of the IAM role
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/gruntwork-access/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/gruntwork-access/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.2/modules/landingzone/gruntwork-access/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/landingzone/gruntwork-access/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/landingzone/gruntwork-access/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ba0d03b7383aa2d28a7e975fa7ae2488"
+  "hash": "03395d33d917f38096bf0643a671060d"
 }
 ##DOCS-SOURCER-END -->
