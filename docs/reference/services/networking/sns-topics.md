@@ -70,7 +70,72 @@ If you want to deploy this repo in production, check out the following resources
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SNS-TOPICS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "sns_topics" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the SNS topic
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IAM ARNs that will be given the rights to publish to the SNS topic.
+  allow_publish_accounts = []
+
+  # A list of AWS services that will be given the rights to publish to the SNS
+  # topic.
+  allow_publish_services = []
+
+  # A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
+  allow_subscribe_accounts = []
+
+  # A list of protocols that can be used to subscribe to the SNS topic.
+  allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources should be
+  # created or not.
+  create_resources = true
+
+  # The display name of the SNS topic
+  display_name = ""
+
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom
+  # CMK
+  kms_master_key_id = "alias/aws/sns"
+
+  # The ARN of a Secrets Manager entry that contains the Slack Webhook URL (e.g.,
+  # https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are sent to.
+  slack_webhook_url_secrets_manager_arn = null
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -197,6 +262,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0a73f30b7f302861ffb0c5126d46478a"
+  "hash": "32a3b283b6b1dbcb1174313f8ffd5448"
 }
 ##DOCS-SOURCER-END -->

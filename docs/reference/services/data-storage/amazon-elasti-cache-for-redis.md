@@ -80,7 +80,163 @@ If you want to deploy this repo in production, check out the following resources
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REDIS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "redis" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/redis?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
+  # replica is automatically promoted to a read-write primary cluster if the
+  # existing primary cluster fails. If you specify true, you must specify a value
+  # greater than 1 for replication_group_size.
+  enable_automatic_failover = <INPUT REQUIRED>
+
+  # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
+  # replica is automatically promoted to a read-write primary cluster if the
+  # existing primary cluster fails. If you specify true, you must specify a value
+  # greater than 1 for replication_group_size.
+  enable_multi_az = <INPUT REQUIRED>
+
+  # The compute and memory capacity of the nodes (e.g. cache.m4.large).
+  instance_type = <INPUT REQUIRED>
+
+  # The name used to namespace all resources created by these templates, including
+  # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
+  # Must be a lowercase string.
+  name = <INPUT REQUIRED>
+
+  # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
+  # the primary node, 2 represents the primary plus a single Read Replica.
+  replication_group_size = <INPUT REQUIRED>
+
+  # The list of IDs of the subnets in which to deploy the ElasticCache instances.
+  # The list must only contain subnets in var.vpc_id.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy RDS.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
+
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
+  # space usage) should send notifications.
+  alarms_sns_topic_arns = []
+
+  # The list of network CIDR blocks to allow network access to ElastiCache from. One
+  # of var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the ElastiCache
+  # instances to be reachable.
+  allow_connections_from_cidr_blocks = []
+
+  # The list of IDs or Security Groups to allow network access to ElastiCache from.
+  # All security groups must either be in the VPC specified by var.vpc_id, or a
+  # peered VPC with the VPC specified by var.vpc_id. One of
+  # var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the ElastiCache
+  # instances to be reachable.
+  allow_connections_from_security_groups = []
+
+  # Specifies whether any modifications are applied immediately, or during the next
+  # maintenance window.
+  apply_immediately = false
+
+  # The password used to access a password protected server. Can be specified only
+  # if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric
+  # characters or symbols (excluding @, <double-quotes>, and /)
+  auth_token = null
+
+  # Specifies the number of shards and replicas per shard in the cluster. The list
+  # should contain a single map with keys 'num_node_groups' and
+  # 'replicas_per_node_group' set to desired integer values.
+  cluster_mode = []
+
+  # Whether to enable encryption at rest.
+  enable_at_rest_encryption = true
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arn.
+  enable_cloudwatch_alarms = true
+
+  # Whether to enable encryption in transit.
+  enable_transit_encryption = true
+
+  # Specifies the weekly time range for when maintenance on the cache cluster is
+  # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H
+  # Clock UTC). The minimum maintenance window is a 60 minute period.
+  maintenance_window = "sat:07:00-sat:08:00"
+
+  # Name of the parameter group to associate with this cache cluster. This can be
+  # used to configure custom settings for the cluster.
+  parameter_group_name = null
+
+  # The port number on which each of the cache nodes will accept connections (e.g.
+  # 6379).
+  port = 6379
+
+  # Version number of redis to use (e.g. 5.0.6).
+  redis_version = "5.0.6"
+
+  # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3.
+  # You can use this parameter to restore from an externally created snapshot. If
+  # you have an ElastiCache snapshot, use snapshot_name.
+  snapshot_arn = null
+
+  # The name of a snapshot from which to restore the Redis cluster. You can use this
+  # to restore from an ElastiCache snapshot. If you have an externally created
+  # snapshot, use snapshot_arn.
+  snapshot_name = null
+
+  # The number of days for which ElastiCache will retain automatic cache cluster
+  # snapshots before deleting them. Set to 0 to disable snapshots.
+  snapshot_retention_limit = 15
+
+  # The daily time range during which automated backups are created (e.g.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # Set to empty string to disable snapshots.
+  snapshot_window = "06:00-07:00"
+
+  # The ARN of the SNS Topic to which notifications will be sent when a Replication
+  # Group event happens, such as an automatic failover (e.g.
+  # arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if
+  # you do not wish to receive notifications via SNS.
+  sns_topic_for_notifications = ""
+
+  # A set of tags to set for the ElastiCache Replication Group.
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -406,6 +562,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2f274fe805fb4a3776909007d57ce7f3"
+  "hash": "2863c27d1ad36b07234adf3fc0e4c08c"
 }
 ##DOCS-SOURCER-END -->

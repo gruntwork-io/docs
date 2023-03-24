@@ -72,7 +72,85 @@ If you want to deploy this repo in production, check out the following resources
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECR-REPOS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "ecr_repos" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecr-repos?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of repo names to configurations for that repository.
+  repositories = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Whether or not to enable image scanning on all the repos. Can be overridden on a
+  # per repo basis by the enable_automatic_image_scanning property in the
+  # repositories map.
+  default_automatic_image_scanning = true
+
+  # The default encryption configuration to apply to the created ECR repository.
+  # When null, the images in the ECR repo will not be encrypted at rest. Can be
+  # overridden on a per repo basis by the encryption_config property in the
+  # repositories map.
+  default_encryption_config = {"encryption_type":"AES256","kms_key":null}
+
+  # The default list of AWS account IDs for external AWS accounts that should be
+  # able to create Lambda functions based on container images in these ECR repos.
+  # Can be overridden on a per repo basis by the
+  # external_account_ids_with_lambda_access property in the repositories map.
+  default_external_account_ids_with_lambda_access = []
+
+  # The default list of AWS account IDs for external AWS accounts that should be
+  # able to pull images from these ECR repos. Can be overridden on a per repo basis
+  # by the external_account_ids_with_read_access property in the repositories map.
+  default_external_account_ids_with_read_access = []
+
+  # The default list of AWS account IDs for external AWS accounts that should be
+  # able to pull and push images to these ECR repos. Can be overridden on a per repo
+  # basis by the external_account_ids_with_write_access property in the repositories
+  # map.
+  default_external_account_ids_with_write_access = []
+
+  # The tag mutability setting for all the repos. Must be one of: MUTABLE or
+  # IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability
+  # property in the repositories map.
+  default_image_tag_mutability = "MUTABLE"
+
+  # Add lifecycle policy to ECR repo.
+  default_lifecycle_policy_rules = []
+
+  # A map of tags (where the key and value correspond to tag keys and values) that
+  # should be assigned to all ECR repositories.
+  global_tags = {}
+
+  # List of regions (e.g., us-east-1) to replicate the ECR repository to.
+  replication_regions = []
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -310,6 +388,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "482e909106dea9657c965ce1cc5cdc29"
+  "hash": "9d90f38f8b5b520c3800ba6a38053219"
 }
 ##DOCS-SOURCER-END -->

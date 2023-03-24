@@ -82,7 +82,369 @@ If you want to deploy this repo in production, check out the following resources
 
 *   [Amazon Elasticsearch Service pricing](https://aws.amazon.com/elasticsearch-service/pricing/)
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "elasticsearch" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/elasticsearch?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the Elasticsearch cluster. It must be unique to your account and
+  # region, start with a lowercase letter, contain between 3 and 28 characters, and
+  # contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
+  domain_name = <INPUT REQUIRED>
+
+  # The number of instances to deploy in the Elasticsearch cluster. This must be an
+  # even number if zone_awareness_enabled is true.
+  instance_count = <INPUT REQUIRED>
+
+  # The instance type to use for Elasticsearch data nodes (e.g.,
+  # t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types
+  # see
+  # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supp
+  # rted-instance-types.html.
+  instance_type = <INPUT REQUIRED>
+
+  # The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or
+  # 512). For volume size limits see
+  # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limi
+  # s.html.
+  volume_size = <INPUT REQUIRED>
+
+  # The type of EBS volumes to use in the cluster. Must be one of: standard, gp2,
+  # io1, sc1, or st1. For a comparison of EBS volume types, see
+  # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+  volume_type = <INPUT REQUIRED>
+
+  # Whether to deploy the Elasticsearch nodes across two Availability Zones instead
+  # of one. Note that if you enable this, the instance_count MUST be an even number.
+  zone_awareness_enabled = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Key-value string pairs to specify advanced configuration options. Note that the
+  # values for these configuration options must be strings (wrapped in quotes).
+  advanced_options = {}
+
+  # Enable fine grain access control
+  advanced_security_options = false
+
+  # ARNs of the SNS topics associated with the CloudWatch alarms for the
+  # Elasticsearch cluster.
+  alarm_sns_topic_arns = []
+
+  # The list of network CIDR blocks to allow network access to Aurora from. One of
+  # var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the database to
+  # be reachable.
+  allow_connections_from_cidr_blocks = []
+
+  # The list of IDs or Security Groups to allow network access to Aurora from. All
+  # security groups must either be in the VPC specified by var.vpc_id, or a peered
+  # VPC with the VPC specified by var.vpc_id. One of
+  # var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the database to
+  # be reachable.
+  allow_connections_from_security_groups = []
+
+  # Hour during which the service takes an automated daily snapshot of the indices
+  # in the domain. This setting has no effect on Elasticsearch 5.3 and later.
+  automated_snapshot_start_hour = 0
+
+  # Number of Availability Zones for the domain to use with
+  # var.zone_awareness_enabled. Defaults to 2. Valid values: 2 or 3.
+  availability_zone_count = 2
+
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  cluster_high_cpu_utilization_period = 60
+
+  # Trigger an alarm if the Elasticsearch cluster has a CPU utilization percentage
+  # above this threshold
+  cluster_high_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_high_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the JVM heap usage percentage
+  cluster_high_jvm_memory_pressure_period = 60
+
+  # Trigger an alarm if the JVM heap usage percentage goes above this threshold
+  cluster_high_jvm_memory_pressure_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_high_jvm_memory_pressure_treat_missing_data = "missing"
+
+  # The maximum amount of time, in seconds, that ClusterIndexWritesBlocked can be in
+  # red status before triggering an alarm
+  cluster_index_writes_blocked_period = 300
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_index_writes_blocked_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the CPU credit balance
+  cluster_low_cpu_credit_balance_period = 60
+
+  # Trigger an alarm if the CPU credit balance drops below this threshold. Only used
+  # if var.instance_type is t2.xxx.
+  cluster_low_cpu_credit_balance_threshold = 10
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_low_cpu_credit_balance_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the available free storage space
+  cluster_low_free_storage_space_period = 60
+
+  # Trigger an alarm if the amount of free storage space, in Megabytes, on the
+  # Elasticsearch cluster drops below this threshold
+  cluster_low_free_storage_space_threshold = 1024
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_low_free_storage_space_treat_missing_data = "missing"
+
+  # The maximum amount of time, in seconds, during with the AutomatedSnapshotFailure
+  # can be in red status before triggering an alarm
+  cluster_snapshot_period = 60
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_snapshot_treat_missing_data = "missing"
+
+  # The maximum amount of time, in seconds, during which the cluster can be in red
+  # status before triggering an alarm
+  cluster_status_red_period = 300
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_status_red_treat_missing_data = "missing"
+
+  # The maximum amount of time, in seconds, during which the cluster can be in
+  # yellow status before triggering an alarm
+  cluster_status_yellow_period = 300
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  cluster_status_yellow_treat_missing_data = "missing"
+
+  # Whether or not the Service Linked Role for Elasticsearch should be created
+  # within this module. Normally the service linked role is created automatically by
+  # AWS when creating the Elasticsearch domain in the web console, but API does not
+  # implement this logic. You can either have AWS automatically manage this by
+  # creating a domain manually in the console, or manage it in terraform using the
+  # landing zone modules or this variable.
+  create_service_linked_role = false
+
+  # Fully qualified domain for your custom endpoint.
+  custom_endpoint = null
+
+  # ACM certificate ARN for your custom endpoint.
+  custom_endpoint_certificate_arn = null
+
+  # Whether to enable custom endpoint for the Elasticsearch domain.
+  custom_endpoint_enabled = false
+
+  # A map of custom tags to apply to the ElasticSearch Domain. The key is the tag
+  # name and the value is the tag value.
+  custom_tags = {}
+
+  # The number of dedicated master nodes to run. We recommend setting this to 3 for
+  # production deployments. Only used if var.dedicated_master_enabled is true.
+  dedicated_master_count = null
+
+  # Whether to deploy separate nodes specifically for performing cluster management
+  # tasks (e.g. tracking number of nodes, monitoring health, replicating changes).
+  # This increases the stability of large clusters and is required for clusters with
+  # more than 10 nodes.
+  dedicated_master_enabled = false
+
+  # The instance type for the dedicated master nodes. These nodes can use a
+  # different instance type than the rest of the cluster. Only used if
+  # var.dedicated_master_enabled is true.
+  dedicated_master_type = null
+
+  # Set to false to disable EBS volumes. This is useful for nodes that have
+  # optimized instance storage, like hosts running the i3 instance type.
+  ebs_enabled = true
+
+  # The version of Elasticsearch to deploy.
+  elasticsearch_version = "7.7"
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arns.
+  enable_cloudwatch_alarms = true
+
+  # False by default because encryption at rest is not included in the free tier.
+  # When true, the Elasticsearch domain storage will be encrypted at rest using the
+  # KMS key described with var.encryption_kms_key_id. We strongly recommend
+  # configuring a custom KMS key instead of using the shared service key for a
+  # better security posture when configuring encryption at rest.
+  enable_encryption_at_rest = true
+
+  # Whether to enable node-to-node encryption. 
+  enable_node_to_node_encryption = true
+
+  # The ID of the KMS key to use to encrypt the Elasticsearch domain storage. Only
+  # used if enable_encryption_at_rest. When null, uses the aws/es service KMS key.
+  encryption_kms_key_id = null
+
+  # The ARNS of the IAM users and roles to which to allow full access to the
+  # Elasticsearch cluster. Setting this to a restricted list is useful when using a
+  # public access cluster.
+  iam_principal_arns = ["*"]
+
+  # Whether the internal user database is enabled. Enable this to use master
+  # accounts. Only used if advanced_security_options is set to true.
+  internal_user_database_enabled = false
+
+  # The baseline input/output (I/O) performance of EBS volumes attached to data
+  # nodes. Must be between 1000 and 4000. Applicable only if var.volume_type is io1.
+  iops = null
+
+  # Whether the cluster is publicly accessible.
+  is_public = false
+
+  # The maximum amount of time, in seconds, that KMSKeyError can be in red status
+  # before triggering an alarm
+  kms_key_error_period = 60
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  kms_key_error_treat_missing_data = "missing"
+
+  # The maximum amount of time, in seconds, that KMSKeyInaccessible can be in red
+  # status before triggering an alarm
+  kms_key_inaccessible_period = 60
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  kms_key_inaccessible_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the master nodes' CPU utilization
+  master_cpu_utilization_period = 900
+
+  # Trigger an alarm if the Elasticsearch cluster master nodes have a CPU
+  # utilization percentage above this threshold
+  master_cpu_utilization_threshold = 50
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  master_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the master nodes' JVM memory
+  # pressure
+  master_jvm_memory_pressure_period = 900
+
+  # Trigger an alarm if the Elasticsearch cluster master nodes have a JVM memory
+  # pressure percentage above this threshold
+  master_jvm_memory_pressure_threshold = 80
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  master_jvm_memory_pressure_treat_missing_data = "missing"
+
+  # ARN of the master user. Only used if advanced_security_options and
+  # internal_user_database_enabled are set to true.
+  master_user_arn = null
+
+  # Master account user name. Only used if advanced_security_options and
+  # internal_user_database_enabled are set to true.
+  master_user_name = null
+
+  # Master account user password. Only used if advanced_security_options and
+  # internal_user_database_enabled are set to true. WARNING: this password will be
+  # stored in Terraform state.
+  master_user_password = null
+
+  # Whether to monitor KMS key statistics
+  monitor_kms_key = false
+
+  # Whether to monitor master node statistics
+  monitor_master_nodes = false
+
+  # The period, in seconds, over which to measure the master nodes' CPU utilization
+  node_count_period = 86400
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  node_count_treat_missing_data = "missing"
+
+  #  List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in.
+  # If var.zone_awareness_enabled is true, the first 2 or 3 provided subnet ids are
+  # used, depending on var.availability_zone_count. Otherwise only the first one is
+  # used.
+  subnet_ids = []
+
+  # The name of the TLS security policy that needs to be applied to the HTTPS
+  # endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and
+  # Policy-Min-TLS-1-2-2019-07. Terraform performs drift detection if this is
+  # configured.
+  tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
+
+  # How long to wait for updates to the ES cluster before timing out and reporting
+  # an error.
+  update_timeout = "90m"
+
+  # The id of the VPC to deploy into. It must be in the same region as the
+  # Elasticsearch domain and its tenancy must be set to Default. If
+  # zone_awareness_enabled is false, the Elasticsearch cluster will have an endpoint
+  # in one subnet of the VPC; otherwise it will have endpoints in two subnets.
+  vpc_id = null
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -805,6 +1167,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d9cd26436fb67b0be28b93e782080674"
+  "hash": "23b3918bc6e1a0350fd5859d547812ac"
 }
 ##DOCS-SOURCER-END -->

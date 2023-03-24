@@ -77,7 +77,109 @@ If you want to deploy this repo in production, check out the following resources
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S MEMCACHED MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "memcached" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/memcached?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Specifies whether the nodes in this Memcached node group are created in a single
+  # Availability Zone or created across multiple Availability Zones in the cluster's
+  # region. Valid values for this parameter are single-az or cross-az. If you want
+  # to choose cross-az, num_cache_nodes must be greater than 1.
+  az_mode = <INPUT REQUIRED>
+
+  # The compute and memory capacity of the nodes (e.g. cache.m4.large).
+  instance_type = <INPUT REQUIRED>
+
+  # The name used to namespace all resources created by these templates, including
+  # the ElastiCache cluster itself. Must be unique in this region. Must be a
+  # lowercase string.
+  name = <INPUT REQUIRED>
+
+  # The initial number of cache nodes that the cache cluster will have. Must be
+  # between 1 and 20.
+  num_cache_nodes = <INPUT REQUIRED>
+
+  # The list of IDs of the subnets in which to deploy the ElasticCache instances.
+  # The list must only contain subnets in var.vpc_id.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy RDS.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
+
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
+  # space usage) should send notifications.
+  alarms_sns_topic_arns = []
+
+  # The list of network CIDR blocks to allow network access to ElastiCache from. One
+  # of var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the ElastiCache
+  # instances to be reachable.
+  allow_connections_from_cidr_blocks = []
+
+  # The list of IDs or Security Groups to allow network access to ElastiCache from.
+  # All security groups must either be in the VPC specified by var.vpc_id, or a
+  # peered VPC with the VPC specified by var.vpc_id. One of
+  # var.allow_connections_from_cidr_blocks or
+  # var.allow_connections_from_security_groups must be specified for the ElastiCache
+  # instances to be reachable.
+  allow_connections_from_security_groups = []
+
+  # Specifies whether any database modifications are applied immediately, or during
+  # the next maintenance window.
+  apply_immediately = false
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arn.
+  enable_cloudwatch_alarms = true
+
+  # Specifies the weekly time range for when maintenance on the cache cluster is
+  # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H
+  # Clock UTC). The minimum maintenance window is a 60 minute period.
+  maintenance_window = "sat:07:00-sat:08:00"
+
+  # Version number of memcached to use (e.g. 1.5.16).
+  memcached_version = "1.5.16"
+
+  # The port number on which each of the cache nodes will accept connections (e.g.
+  # 11211).
+  port = 11211
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -270,6 +372,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e4911cea9bb163efae831fa41b2305c6"
+  "hash": "842209a09ca9c576ee437d280b6eb8a7"
 }
 ##DOCS-SOURCER-END -->

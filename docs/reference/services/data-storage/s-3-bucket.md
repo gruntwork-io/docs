@@ -74,7 +74,231 @@ If you want to deploy this repo in production, check out the following resources
 
 *   [How to enable MFA Delete?](https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/private-s3-bucket#how-do-you-enable-mfa-delete): step-by-step guide on enabling MFA delete for your S3 buckets.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S S3-BUCKET MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "s_3_bucket" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # What to name the S3 bucket. Note that S3 bucket names must be globally unique
+  # across all AWS users!
+  primary_bucket = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The S3 bucket where access logs for this bucket should be stored. Set to null to
+  # disable access logging.
+  access_logging_bucket = null
+
+  # The lifecycle rules for the access logs bucket. See var.lifecycle_rules for
+  # details.
+  access_logging_bucket_lifecycle_rules = {}
+
+  # Configure who will be the default owner of objects uploaded to the access logs
+  # S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
+  # ObjectWriter (the writer of each object owns that object), or null (don't
+  # configure this feature). Note that this setting only takes effect if the object
+  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
+  # more info.
+  access_logging_bucket_ownership = null
+
+  # The IAM policy to apply to the S3 bucket used to store access logs. You can use
+  # this to grant read/write access. This should be a map, where each key is a
+  # unique statement ID (SID), and each value is an object that contains the
+  # parameters defined in the comment above.
+  access_logging_bucket_policy_statements = {}
+
+  # A prefix (i.e., folder path) to use for all access logs stored in
+  # access_logging_bucket. Only used if access_logging_bucket is specified.
+  access_logging_prefix = null
+
+  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
+  bucket_key_enabled = false
+
+  # Optional KMS key to use for encrypting data in the S3 bucket. If null, data in
+  # S3 will be encrypted using the default aws/s3 key. If provided, the key policy
+  # of the provided key must allow whoever is writing to this bucket to use that
+  # key.
+  bucket_kms_key_arn = null
+
+  # Configure who will be the default owner of objects uploaded to this S3 bucket:
+  # must be one of BucketOwnerPreferred (the bucket owner owns objects),
+  # ObjectWriter (the writer of each object owns that object), or null (don't
+  # configure this feature). Note that this setting only takes effect if the object
+  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
+  # more info.
+  bucket_ownership = null
+
+  # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
+  # access. This should be a map, where each key is a unique statement ID (SID), and
+  # each value is an object that contains the parameters defined in the comment
+  # above.
+  bucket_policy_statements = {}
+
+  # The server-side encryption algorithm to use on the bucket. Valid values are
+  # AES256 and aws:kms. To disable server-side encryption, set var.enable_sse to
+  # false.
+  bucket_sse_algorithm = "aws:kms"
+
+  # CORS rules to set on this S3 bucket
+  cors_rules = []
+
+  # Set to true to enable server-side encryption for this bucket. You can control
+  # the algorithm using var.sse_algorithm.
+  enable_sse = true
+
+  # Set to true to enable versioning for this bucket. If enabled, instead of
+  # overriding objects, the S3 bucket will always create a new version of each
+  # object, so all the old values are retained.
+  enable_versioning = true
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # logs bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you want
+  # to permanently delete everything!
+  force_destroy_logs = false
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # primary bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you want
+  # to permanently delete everything!
+  force_destroy_primary = false
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # replica bucket so that the bucket can be destroyed without error. Warning: these
+  # objects are not recoverable so only use this if you're absolutely sure you want
+  # to permanently delete everything!
+  force_destroy_replica = false
+
+  # The lifecycle rules for this S3 bucket. These can be used to change storage
+  # types or delete objects based on customizable rules. This should be a map, where
+  # each key is a unique ID for the lifecycle rule, and each value is an object that
+  # contains the parameters defined in the comment above.
+  lifecycle_rules = {}
+
+  # Enable MFA delete for either 'Change the versioning state of your bucket' or
+  # 'Permanently delete an object version'. This cannot be used to toggle this
+  # setting but is available to allow managed buckets to reflect the state in AWS.
+  # Only used if enable_versioning is true. For instructions on how to enable MFA
+  # Delete, check out the README from the terraform-aws-security/private-s3-bucket
+  # module.
+  mfa_delete = false
+
+  # The number of days that you want to specify for the default retention period for
+  # Object Locking. Only one of object_lock_days or object_lock_years can be
+  # configured. Only used if object_lock_enabled and
+  # object_lock_default_retention_enabled are true.
+  object_lock_days = null
+
+  # Set to true to configure a default retention period for object locks when Object
+  # Locking is enabled. When disabled, objects will not be protected with locking by
+  # default unless explicitly configured at object creation time. Only used if
+  # object_lock_enabled is true.
+  object_lock_default_retention_enabled = true
+
+  # Set to true to enable Object Locking. This prevents objects from being deleted
+  # for a customizable period of time. Note that this MUST be configured at bucket
+  # creation time - you cannot update an existing bucket to enable object locking
+  # unless you go through AWS support. Additionally, this is not reversible - once a
+  # bucket is created with object lock enabled, you cannot disable object locking
+  # even with this setting. Note that enabling object locking will automatically
+  # enable bucket versioning.
+  object_lock_enabled = false
+
+  # The default Object Lock retention mode you want to apply to new objects placed
+  # in this bucket. Valid values are GOVERNANCE and COMPLIANCE. Only used if
+  # object_lock_enabled and object_lock_default_retention_enabled are true.
+  object_lock_mode = null
+
+  # The number of years that you want to specify for the default retention period
+  # for Object Locking. Only one of object_lock_days or object_lock_years can be
+  # configured. Only used if object_lock_enabled and
+  # object_lock_default_retention_enabled are true.
+  object_lock_years = null
+
+  # The S3 bucket that will be the replica of this bucket. Set to null to disable
+  # replication.
+  replica_bucket = null
+
+  # If set to true, replica bucket will be expected to already exist.
+  replica_bucket_already_exists = false
+
+  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS for the replica
+  # bucket.
+  replica_bucket_key_enabled = false
+
+  # The lifecycle rules for the replica bucket. See var.lifecycle_rules for details.
+  replica_bucket_lifecycle_rules = {}
+
+  # Configure who will be the default owner of objects uploaded to the replica S3
+  # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
+  # ObjectWriter (the writer of each object owns that object), or null (don't
+  # configure this feature). Note that this setting only takes effect if the object
+  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
+  # more info.
+  replica_bucket_ownership = null
+
+  # The IAM policy to apply to the replica S3 bucket. You can use this to grant
+  # read/write access. This should be a map, where each key is a unique statement ID
+  # (SID), and each value is an object that contains the parameters defined in the
+  # comment above.
+  replica_bucket_policy_statements = {}
+
+  # Set to true to enable server-side encryption for the replica bucket. You can
+  # control the algorithm using var.replica_sse_algorithm.
+  replica_enable_sse = true
+
+  # The AWS region for the replica bucket.
+  replica_region = null
+
+  # The server-side encryption algorithm to use on the replica bucket. Valid values
+  # are AES256 and aws:kms. To disable server-side encryption, set
+  # var.replica_enable_sse to false.
+  replica_sse_algorithm = "aws:kms"
+
+  # The ARN of the IAM role for Amazon S3 to assume when replicating objects. Only
+  # used if replication_bucket is specified.
+  replication_role = null
+
+  # The rules for managing replication. Only used if replication_bucket is
+  # specified. This should be a map, where the key is a unique ID for each
+  # replication rule and the value is an object of the form explained in a comment
+  # above.
+  replication_rules = {}
+
+  # A map of tags to apply to the S3 Bucket. These tags will also be applied to the
+  # access logging and replica buckets (if any). The key is the tag name and the
+  # value is the tag value.
+  tags = {}
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -738,6 +962,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "470d17412ef0ede5913a66d38d6c8ed1"
+  "hash": "c8aebab08458346df9394784849f4c2f"
 }
 ##DOCS-SOURCER-END -->

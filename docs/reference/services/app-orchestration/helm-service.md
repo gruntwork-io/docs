@@ -86,7 +86,109 @@ If you want to deploy this repo in production, check out the following resources
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S HELM-SERVICE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "helm_service" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/helm-service?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the application (e.g. my-service-stage). Used for labeling
+  # Kubernetes resources.
+  application_name = <INPUT REQUIRED>
+
+  # Chart name to be installed. The chart name can be local path, a URL to a chart,
+  # or the name of the chart if repository is specified. It is also possible to use
+  # the <repository>/<chart> format here if you are running Terraform on a system
+  # that the repository has been added to with helm repo add but this is not
+  # recommended.
+  helm_chart = <INPUT REQUIRED>
+
+  # Repository URL where to locate the requested chart.
+  helm_repository = <INPUT REQUIRED>
+
+  # The Kubernetes Namespace to deploy the helm chart into.
+  namespace = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Configuration for using the IAM role with Service Accounts feature to provide
+  # permissions to the applications. This expects a map with two properties:
+  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
+  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
+  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL.
+  # Leave as an empty string if you do not wish to use IAM role with Service
+  # Accounts.
+  eks_iam_role_for_service_accounts_config = null
+
+  # Map of values to pass to the Helm chart. Leave empty to use chart default
+  # values.
+  helm_chart_values = {}
+
+  # Specify the exact chart version to install. If this is not specified, the latest
+  # version is installed.
+  helm_chart_version = null
+
+  # An object defining the policy to attach to `iam_role_name` if the IAM role is
+  # going to be created. Accepts a map of objects, where the map keys are sids for
+  # IAM policy statements, and the object fields are the resources, actions, and the
+  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
+  # provided. Leave as null if you do not wish to use IAM role with Service
+  # Accounts.
+  iam_policy = null
+
+  # Whether or not the IAM role passed in `iam_role_name` already exists. Set to
+  # true if it exists, or false if it needs to be created. Defaults to false.
+  iam_role_exists = false
+
+  # The name of an IAM role that will be used by the pod to access the AWS API. If
+  # `iam_role_exists` is set to false, this role will be created. Leave as an empty
+  # string if you do not wish to use IAM role with Service Accounts.
+  iam_role_name = ""
+
+  # The name of a service account to create for use with the Pods. This service
+  # account will be mapped to the IAM role defined in `var.iam_role_name` to give
+  # the pod permissions to access the AWS API. Must be unique in this namespace.
+  # Leave as an empty string if you do not wish to assign a Service Account to the
+  # Pods.
+  service_account_name = ""
+
+  # Sleep for 30 seconds to allow Kubernetes time to remove associated AWS
+  # resources.
+  sleep_for_resource_culling = false
+
+  # When true, wait until Pods are up and healthy or wait_timeout seconds before
+  # exiting terraform.
+  wait = true
+
+  # Number of seconds to wait for Pods to become healthy before marking the
+  # deployment as a failure.
+  wait_timeout = 300
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -285,6 +387,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e4e2491b533fbe0574265476dea5c8ef"
+  "hash": "5750e93db006b7c802b3454404e243ba"
 }
 ##DOCS-SOURCER-END -->

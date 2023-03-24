@@ -94,7 +94,412 @@ If you want to deploy this repo in production, check out the following resources
 *   [How to deploy a production-grade Kubernetes cluster on AWS](https://docs.gruntwork.io/guides/build-it-yourself/kubernetes-cluster/deployment-walkthrough/pre-requisites):
     A step-by-step guide for deploying a production-grade EKS cluster on AWS using the code in this repo.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-CORE-SERVICES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "eks_core_services" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-core-services?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS region in which all resources will be created
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the EKS cluster where the core services will be deployed into.
+  eks_cluster_name = <INPUT REQUIRED>
+
+  # Configuration for using the IAM role with Service Accounts feature to provide
+  # permissions to the applications. This expects a map with two properties:
+  # `openid_connect_provider_arn` and `openid_connect_provider_url`. The
+  # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
+  # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
+  # to null if you do not wish to use IAM role with Service Accounts.
+  eks_iam_role_for_service_accounts_config = <INPUT REQUIRED>
+
+  # ARN of IAM Role to use as the Pod execution role for Fargate. Required if any of
+  # the services are being scheduled on Fargate. Set to null if none of the Pods are
+  # being scheduled on Fargate.
+  pod_execution_iam_role_arn = <INPUT REQUIRED>
+
+  # The ID of the VPC where the EKS cluster is deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to
+  # Fargate. Required if any of the services are being scheduled on Fargate. Set to
+  # empty list if none of the Pods are being scheduled on Fargate.
+  worker_vpc_subnet_ids = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The version of the aws-load-balancer-controller helmchart to use.
+  alb_ingress_controller_chart_version = "1.4.1"
+
+  # The repository of the aws-load-balancer-controller docker image that should be
+  # deployed.
+  alb_ingress_controller_docker_image_repo = "602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller"
+
+  # The tag of the aws-load-balancer-controller docker image that should be
+  # deployed.
+  alb_ingress_controller_docker_image_tag = "v2.4.1"
+
+  # Configure affinity rules for the ALB Ingress Controller Pod to control which
+  # nodes to schedule on. Each item in the list should be a map with the keys `key`,
+  # `values`, and `operator`, corresponding to the 3 properties of matchExpressions.
+  # Note that all expressions must be satisfied to schedule on the node.
+  alb_ingress_controller_pod_node_affinity = []
+
+  # Configure tolerations rules to allow the ALB Ingress Controller Pod to schedule
+  # on nodes that have been tainted. Each item in the list specifies a toleration
+  # rule.
+  alb_ingress_controller_pod_tolerations = []
+
+  # Minimum time to wait after a scale up event before any node is considered for
+  # scale down.
+  autoscaler_down_delay_after_add = "10m"
+
+  # Number for the log level verbosity. Lower numbers are less verbose, higher
+  # numbers are more verbose. (Default: 4)
+  autoscaler_log_level_verbosity = 4
+
+  # Minimum time to wait since the node became unused before the node is considered
+  # for scale down by the autoscaler.
+  autoscaler_scale_down_unneeded_time = "10m"
+
+  # If true cluster autoscaler will never delete nodes with pods with local storage,
+  # e.g. EmptyDir or HostPath
+  autoscaler_skip_nodes_with_local_storage = true
+
+  # The Container repository to use for looking up the cloudwatch-agent Container
+  # image when deploying the pods. When null, uses the default repository set in the
+  # chart. Only applies to non-fargate workers.
+  aws_cloudwatch_agent_image_repository = null
+
+  # Configure affinity rules for the AWS CloudWatch Agent Pod to control which nodes
+  # to schedule on. Each item in the list should be a map with the keys `key`,
+  # `values`, and `operator`, corresponding to the 3 properties of matchExpressions.
+  # Note that all expressions must be satisfied to schedule on the node.
+  aws_cloudwatch_agent_pod_node_affinity = []
+
+  # Pod resource requests and limits to use. Refer to
+  # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+  # for more information.
+  aws_cloudwatch_agent_pod_resources = null
+
+  # Configure tolerations rules to allow the AWS CloudWatch Agent Pods to schedule
+  # on nodes that have been tainted. Each item in the list specifies a toleration
+  # rule.
+  aws_cloudwatch_agent_pod_tolerations = []
+
+  # Which version of amazon/cloudwatch-agent to install. When null, uses the default
+  # version set in the chart. Only applies to non-fargate workers.
+  aws_cloudwatch_agent_version = null
+
+  # Annotations to apply to the cluster autoscaler pod(s), as key value pairs.
+  cluster_autoscaler_pod_annotations = {}
+
+  # Labels to apply to the cluster autoscaler pod(s), as key value pairs.
+  cluster_autoscaler_pod_labels = {}
+
+  # Configure affinity rules for the cluster-autoscaler Pod to control which nodes
+  # to schedule on. Each item in the list should be a map with the keys `key`,
+  # `values`, and `operator`, corresponding to the 3 properties of matchExpressions.
+  # Note that all expressions must be satisfied to schedule on the node.
+  cluster_autoscaler_pod_node_affinity = []
+
+  # Pod resource requests and limits to use. Refer to
+  # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+  # for more information. This is most useful for configuring CPU+Memory
+  # availability for Fargate, which defaults to 0.25 vCPU and 256MB RAM.
+  cluster_autoscaler_pod_resources = {"limits":{"cpu":"250m","memory":"1024Mi"},"requests":{"cpu":"250m","memory":"1024Mi"}}
+
+  # Configure tolerations rules to allow the cluster-autoscaler Pod to schedule on
+  # nodes that have been tainted. Each item in the list specifies a toleration rule.
+  cluster_autoscaler_pod_tolerations = []
+
+  # The name to use for the helm release for cluster-autoscaler. This is useful to
+  # force a redeployment of the cluster-autoscaler component.
+  cluster_autoscaler_release_name = "cluster-autoscaler"
+
+  # Which docker repository to use to install the cluster autoscaler. Check the
+  # following link for valid repositories to use
+  # https://github.com/kubernetes/autoscaler/releases
+  cluster_autoscaler_repository = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
+
+  # Specifies an 'expander' for the cluster autoscaler. This helps determine which
+  # ASG to scale when additional resource capacity is needed.
+  cluster_autoscaler_scaling_strategy = "least-waste"
+
+  # Which version of the cluster autoscaler to install. This should match the
+  # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
+  # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
+  # for a list of versions.
+  cluster_autoscaler_version = "v1.24.0"
+
+  # Whether or not to enable the AWS LB Ingress controller.
+  enable_alb_ingress_controller = true
+
+  # Whether to enable the AWS CloudWatch Agent DaemonSet for collecting container
+  # and node metrics from worker nodes (self-managed ASG or managed node groups).
+  enable_aws_cloudwatch_agent = true
+
+  # Whether or not to enable cluster-autoscaler for Autoscaling EKS worker nodes.
+  enable_cluster_autoscaler = true
+
+  # Whether or not to enable external-dns for DNS entry syncing with Route 53 for
+  # Services and Ingresses.
+  enable_external_dns = true
+
+  # Whether or not to enable fluent-bit on EKS Fargate workers for log aggregation.
+  enable_fargate_fluent_bit = true
+
+  # Whether or not to enable fluent-bit for log aggregation.
+  enable_fluent_bit = true
+
+  # Duration string (e.g. 1m) indicating the interval between making changes to
+  # Route 53 by external-dns. When null, use the default defined in the chart (1s).
+  external_dns_batch_change_interval = null
+
+  # The maximum number of changes that should be applied in a batch by external-dns.
+  # When null, use the default defined in the chart (1000).
+  external_dns_batch_change_size = null
+
+  # Name of the Helm chart for external-dns. This should usually be 'external-dns'
+  # but may differ in the case of overriding the repository URL.
+  external_dns_chart_name = "external-dns"
+
+  # Helm chart repository URL to obtain the external-dns chart from. Useful when
+  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
+  # policy which removes older chart from the main index.
+  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
+
+  # The version of the helm chart to use. Note that this is different from the
+  # app/container version.
+  external_dns_chart_version = "6.12.2"
+
+  # Configure affinity rules for the external-dns Pod to control which nodes to
+  # schedule on. Each item in the list should be a map with the keys `key`,
+  # `values`, and `operator`, corresponding to the 3 properties of matchExpressions.
+  # Note that all expressions must be satisfied to schedule on the node.
+  external_dns_pod_node_affinity = []
+
+  # Configure tolerations rules to allow the external-dns Pod to schedule on nodes
+  # that have been tainted. Each item in the list specifies a toleration rule.
+  external_dns_pod_tolerations = []
+
+  # Duration string (e.g. 1m) indicating the polling interval for syncing the
+  # domains by external-dns. When null, use the default defined in the chart (1m).
+  external_dns_poll_interval = null
+
+  # Only create records in hosted zones that match the provided domain names. Empty
+  # list (default) means match all zones. Zones must satisfy all three constraints
+  # (var.external_dns_route53_hosted_zone_tag_filters,
+  # var.external_dns_route53_hosted_zone_id_filters, and
+  # var.external_dns_route53_hosted_zone_domain_filters).
+  external_dns_route53_hosted_zone_domain_filters = []
+
+  # Only create records in hosted zones that match the provided IDs. Empty list
+  # (default) means match all zones. Zones must satisfy all three constraints
+  # (var.external_dns_route53_hosted_zone_tag_filters,
+  # var.external_dns_route53_hosted_zone_id_filters, and
+  # var.external_dns_route53_hosted_zone_domain_filters).
+  external_dns_route53_hosted_zone_id_filters = []
+
+  # Only create records in hosted zones that match the provided tags. Each item in
+  # the list should specify tag key and tag value as a map. Empty list (default)
+  # means match all zones. Zones must satisfy all three constraints
+  # (var.external_dns_route53_hosted_zone_tag_filters,
+  # var.external_dns_route53_hosted_zone_id_filters, and
+  # var.external_dns_route53_hosted_zone_domain_filters).
+  external_dns_route53_hosted_zone_tag_filters = []
+
+  # Duration string (e.g. 1m) indicating the amount of time the Hosted Zones are
+  # cached in external-dns. When null, use the default defined in the chart (0 - no
+  # caching).
+  external_dns_route53_zones_cache_duration = null
+
+  # K8s resources type to be observed for new DNS entries by ExternalDNS.
+  external_dns_sources = ["ingress","service"]
+
+  # When enabled, triggers external-dns run loop on create/update/delete events
+  # (optional, in addition of regular interval)
+  external_dns_trigger_loop_on_event = false
+
+  # List of ARNs of Fargate execution IAM Roles that should get permissions to ship
+  # logs using fluent-bit. This must be provided if enable_fargate_fluent_bit is
+  # true.
+  fargate_fluent_bit_execution_iam_role_arns = []
+
+  # Additional filters that fluent-bit should apply to log output. This string
+  # should be formatted according to the Fluent-bit docs
+  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
+  # tion-file#config_filter).
+  fargate_fluent_bit_extra_filters = ""
+
+  # Additional parsers that fluent-bit should export logs to. This string should be
+  # formatted according to the Fluent-bit docs
+  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
+  # tion-file#config_output).
+  fargate_fluent_bit_extra_parsers = ""
+
+  # Whether or not Kubernetes metadata is added to the log files
+  fargate_fluent_bit_include_kubernetes_metadata = true
+
+  # Prefix string to use for the CloudWatch Log Stream that gets created for each
+  # Fargate pod.
+  fargate_fluent_bit_log_stream_prefix = "fargate"
+
+  # A list of availability zones in the region that we CANNOT use to deploy the EKS
+  # Fargate workers. You can use this to avoid availability zones that may not be
+  # able to provision the resources (e.g ran out of capacity). If empty, will allow
+  # all availability zones.
+  fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
+
+  # Can be used to add more inputs. This string should be formatted according to
+  # Fluent Bit docs
+  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-
+  # ode/configuration-file#config_input).
+  fluent_bit_additional_inputs = ""
+
+  # Additional filters that fluent-bit should apply to log output. This string
+  # should be formatted according to the Fluent-bit docs
+  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
+  # tion-file#config_filter).
+  fluent_bit_extra_filters = ""
+
+  # Additional output streams that fluent-bit should export logs to. This string
+  # should be formatted according to the Fluent-bit docs
+  # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
+  # tion-file#config_output).
+  fluent_bit_extra_outputs = ""
+
+  # The Container repository to use for looking up the aws-for-fluent-bit Container
+  # image when deploying the pods. When null, uses the default repository set in the
+  # chart. Only applies to non-fargate workers.
+  fluent_bit_image_repository = null
+
+  # If set to true, that means that the CloudWatch Log Group fluent-bit should use
+  # for streaming logs already exists and does not need to be created.
+  fluent_bit_log_group_already_exists = false
+
+  # The ARN of the KMS key to use to encrypt the logs in the CloudWatch Log Group
+  # used for storing container logs streamed with FluentBit. Set to null to disable
+  # encryption.
+  fluent_bit_log_group_kms_key_id = null
+
+  # Name of the CloudWatch Log Group fluent-bit should use to stream logs to. When
+  # null (default), uses the eks_cluster_name as the Log Group name.
+  fluent_bit_log_group_name = null
+
+  # number of days to retain log events. Possible values are: 1, 3, 5, 7, 14, 30,
+  # 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0. Select 0 to never
+  # expire.
+  fluent_bit_log_group_retention = 0
+
+  # ARN of the lambda function to trigger when events arrive at the fluent bit log
+  # group.
+  fluent_bit_log_group_subscription_arn = null
+
+  # Filter pattern for the CloudWatch subscription. Only used if
+  # var.fluent_bit_log_group_subscription_arn is set.
+  fluent_bit_log_group_subscription_filter = ""
+
+  # Prefix string to use for the CloudWatch Log Stream that gets created for each
+  # pod. When null (default), the prefix is set to 'fluentbit'.
+  fluent_bit_log_stream_prefix = null
+
+  # Configure affinity rules for the fluent-bit Pods to control which nodes to
+  # schedule on. Each item in the list should be a map with the keys `key`,
+  # `values`, and `operator`, corresponding to the 3 properties of matchExpressions.
+  # Note that all expressions must be satisfied to schedule on the node.
+  fluent_bit_pod_node_affinity = []
+
+  # Configure tolerations rules to allow the fluent-bit Pods to schedule on nodes
+  # that have been tainted. Each item in the list specifies a toleration rule.
+  fluent_bit_pod_tolerations = []
+
+  # Optionally use a cri parser instead of the default Docker parser. This should be
+  # used for EKS v1.24 and later.
+  fluent_bit_use_cri_parser_conf = true
+
+  # Which version of aws-for-fluent-bit to install. When null, uses the default
+  # version set in the chart. Only applies to non-fargate workers.
+  fluent_bit_version = null
+
+  # A map of PriorityClass configurations, with the key as the PriorityClass name.
+  # https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+  # priorityclass
+  kubernetes_priority_classes = {}
+
+  # Policy for how DNS records are sychronized between sources and providers
+  # (options: sync, upsert-only).
+  route53_record_update_policy = "sync"
+
+  # When true, the ALB ingress controller pods will be scheduled on Fargate.
+  schedule_alb_ingress_controller_on_fargate = false
+
+  # When true, the cluster autoscaler pods will be scheduled on Fargate. It is
+  # recommended to run the cluster autoscaler on Fargate to avoid the autoscaler
+  # scaling down a node where it is running (and thus shutting itself down during a
+  # scale down event). However, since Fargate is only supported on a handful of
+  # regions, we don't default to true here.
+  schedule_cluster_autoscaler_on_fargate = false
+
+  # When true, the external-dns pods will be scheduled on Fargate.
+  schedule_external_dns_on_fargate = false
+
+  # Configure Kubernetes Services to lookup external DNS records. This can be useful
+  # to bind friendly internal service names to domains (e.g. the RDS database
+  # endpoint).
+  service_dns_mappings = {}
+
+  # If this variable is set to true, then use an exec-based plugin to authenticate
+  # and fetch tokens for EKS. This is useful because EKS clusters use short-lived
+  # authentication tokens that can expire in the middle of an 'apply' or 'destroy',
+  # and since the native Kubernetes provider in Terraform doesn't have a way to
+  # fetch up-to-date tokens, we recommend using an exec-based provider as a
+  # workaround. Use the use_kubergrunt_to_fetch_token input variable to control
+  # whether kubergrunt or aws is used to fetch tokens.
+  use_exec_plugin_for_auth = true
+
+  # EKS clusters use short-lived authentication tokens that can expire in the middle
+  # of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to
+  # fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt
+  # to fetch the token (in which case, kubergrunt must be installed and on PATH); if
+  # this variable is set to false, we'll use the aws CLI to fetch the token (in
+  # which case, aws must be installed and on PATH). Note this functionality is only
+  # enabled if use_exec_plugin_for_auth is set to true.
+  use_kubergrunt_to_fetch_token = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -1434,6 +1839,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6bce657ae8706aeee90ea1b4981afa52"
+  "hash": "fa360363155c915cc2359708d94e73e3"
 }
 ##DOCS-SOURCER-END -->

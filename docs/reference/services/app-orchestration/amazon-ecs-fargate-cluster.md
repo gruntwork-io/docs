@@ -92,7 +92,49 @@ If you want to deploy this repo in production, check out the following resources
 For information on how to manage your ECS cluster, see the documentation in the
 [terraform-aws-ecs](https://github.com/gruntwork-io/terraform-aws-ecs) repo.
 
+
+## Sample Usage
+
+<ModuleUsage>
+
+```hcl title="main.tf"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-FARGATE-CLUSTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+module "ecs_fargate_cluster" {
+
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-fargate-cluster?ref=v0.102.3"
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the ECS cluster
+  cluster_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of custom tags to apply to the ECS Cluster. The key is the tag name and
+  # the value is the tag value.
+  custom_tags = {}
+
+  # Whether or not to enable container insights monitoring on the ECS cluster.
+  enable_container_insights = true
+
+}
+
+```
+
+</ModuleUsage>
+
+
+
 ## Reference
+
 
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
@@ -158,6 +200,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.3/modules/services/ecs-fargate-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "31b617749d180b8c2367c79f168f530a"
+  "hash": "71d9510d02f8c49eaab70b46ecc1c0ba"
 }
 ##DOCS-SOURCER-END -->
