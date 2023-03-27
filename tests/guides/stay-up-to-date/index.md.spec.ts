@@ -5,11 +5,18 @@ const stayUpToDateIndexFile = fs.readFileSync(
   "utf8"
 )
 
+const stayUpToDateIndexFileInDocsSources = fs.readFileSync(
+  "docs_sources/guides/stay-up-to-date/index.md",
+  "utf8"
+)
+
 const releasesPlaceholder =
   "<!-- replaced-by-docs-sourcer-automatically-do-not-edit -->"
 
 describe("Guides: stay-up-to-date index file", () => {
-  it("should not contain releases placeholder", () => {
+  it("should have releases placeholder in only docs_sources", () => {
+    expect(stayUpToDateIndexFileInDocsSources).toContain(releasesPlaceholder)
+
     // This a temporary workaround to prevent the index.page from being overwritten
     // with the releases placeholder & committed to the main branch. The local plugin
     // of the docs-sourcer package automatically copies `_docs_sources_/` into `docs`
