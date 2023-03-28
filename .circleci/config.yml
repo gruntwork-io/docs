@@ -167,8 +167,9 @@ workflows:
               only: master
       - deploy-to-stage:
           context:
-            - Gruntwork Platform CI
-            - GitHub OAuth Token
+            - SLACK__WEBHOOK__team-platform
+            - AWS__DOGFOOD_SECURITY__gruntwork-website-ci
+            - GITHUB__PAT__gruntwork-ci
           requires:
             - validate-build
           filters:
@@ -184,8 +185,9 @@ workflows:
               ignore: /.*/
       - deploy-to-prod:
           context:
-            - Gruntwork Platform CI
-            - GitHub OAuth Token
+            - SLACK__WEBHOOK__team-platform
+            - AWS__DOGFOOD_SECURITY__gruntwork-website-ci
+            - GITHUB__PAT__gruntwork-ci
           requires:
             - validate-build
           filters:
