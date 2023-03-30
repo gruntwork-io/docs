@@ -558,7 +558,7 @@ Any types represent complex values of variable type. For details, please consult
                                               you don't plan on scaling the cluster up and down, as the extra capacity
                                               will be used to deploy updates to the cluster.
    - asg_instance_type   string             : (Defaults to value from var.asg_default_instance_type) The type of
-                                              instances to use for the ASG (e.g., t2.medium).
+                                              instances to use for the ASG (e.g., t3.medium).
    - asg_instance_ami   string              : (Defaults to value from var.asg_default_instance_ami) The ami that
                                               instances should use for the ASG .
    - asg_instance_user_data_base64   string : (Defaults to value from var.asg_default_instance_user_data_base64) The base64 user-data content of
@@ -610,12 +610,12 @@ Any types represent complex values of variable type. For details, please consult
    Example:
    autoscaling_group_configurations = {
      "asg1" = {
-       asg_instance_type = "t2.medium"
+       asg_instance_type = "t3.medium"
        subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[0]]
      },
      "asg2" = {
        max_size          = 3
-       asg_instance_type = "t2.large"
+       asg_instance_type = "t3.large"
        subnet_ids        = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[1]]
   
        tags = [{
@@ -1204,6 +1204,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a910bde70ddf402cc87c0e36168c65e"
+  "hash": "53746b2c5f49da629c5b5f8c1df6b7ad"
 }
 ##DOCS-SOURCER-END -->

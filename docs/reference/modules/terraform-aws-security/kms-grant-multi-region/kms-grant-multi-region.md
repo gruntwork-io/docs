@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
 
 # AWS KMS Grants
 
@@ -73,7 +73,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_grant_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -122,6 +122,6 @@ module "kms_grant_multi_region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cd12d8daabc0b19ad405db4c50885522"
+  "hash": "df3e0d28ac76b3bf6be6b3ca7d34aeca"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.11"/>
 
 # Build Helpers
 
@@ -192,6 +192,6 @@ Note that the following conditions must be true in order to use this feature:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/build-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c764327437d2357d49a5dea1c3920ab"
+  "hash": "6787737d0df0d223216582b38ccb6d8b"
 }
 ##DOCS-SOURCER-END -->

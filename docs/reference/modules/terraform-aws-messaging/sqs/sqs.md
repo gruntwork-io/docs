@@ -154,6 +154,27 @@ module "sqs" {
   # delayed. An integer from 0 to 900 (15 minutes).
   delay_seconds = 0
 
+  # The time in seconds that the delivery of all messages in the dead letter queue
+  # will be delayed. An integer from 0 to 900 (15 minutes). The default value is set
+  # to the same value as `delay_seconds`
+  dlq_delay_seconds = null
+
+  # The number of seconds Amazon dead letter SQS retains a message. Integer
+  # representing seconds, from 60 (1 minute) to 1209600 (14 days). The default value
+  # is set to the same value as `message_retention_seconds`.
+  dlq_message_retention_seconds = null
+
+  # The time for which a ReceiveMessage call will wait for a dead letter queue
+  # message to arrive (long polling) before returning. An integer from 0 to 20
+  # (seconds). Setting this to 0 means the call will return immediately. The default
+  # value is set to the same value as `receive_wait_time_seconds`
+  dlq_receive_wait_time_seconds = null
+
+  # The visibility timeout for the dead letter queue. An integer from 0 to 43200 (12
+  # hours). The default value is set to the same value as
+  # `visibility_timeout_seconds`
+  dlq_visibility_timeout_seconds = null
+
   # Set to true to make this a FIFO queue.
   fifo_queue = false
 
@@ -312,6 +333,42 @@ The time in seconds that the delivery of all messages in the queue will be delay
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="dlq_delay_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time in seconds that the delivery of all messages in the dead letter queue will be delayed. An integer from 0 to 900 (15 minutes). The default value is set to the same value as `delay_seconds`
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dlq_message_retention_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of seconds Amazon dead letter SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). The default value is set to the same value as `message_retention_seconds`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dlq_receive_wait_time_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time for which a ReceiveMessage call will wait for a dead letter queue message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). Setting this to 0 means the call will return immediately. The default value is set to the same value as `receive_wait_time_seconds`
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dlq_visibility_timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The visibility timeout for the dead letter queue. An integer from 0 to 43200 (12 hours). The default value is set to the same value as `visibility_timeout_seconds`
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="fifo_queue" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -426,6 +483,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c6bcf669d459d1b3c7a824abd6ad463"
+  "hash": "6f715e7555f30299898bd81369bb6770"
 }
 ##DOCS-SOURCER-END -->

@@ -118,10 +118,16 @@ module "lb_listener_rules" {
   # rules.
   default_forward_target_group_arns = []
 
+  # Listener rules for a fixed-response action. See comments below for information
+  # about the parameters.
   fixed_response_rules = {}
 
+  # Listener rules for a forward action that distributes requests among one or more
+  # target groups. See comments below for information about the parameters.
   forward_rules = {}
 
+  # Listener rules for a redirect action. See comments below for information about
+  # the parameters.
   redirect_rules = {}
 
 }
@@ -191,6 +197,11 @@ list(map(any))
 </HclListItem>
 
 <HclListItem name="fixed_response_rules" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Listener rules for a fixed-response action. See comments below for information about the parameters.
+
+</HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
@@ -321,6 +332,11 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="forward_rules" requirement="optional" type="any">
+<HclListItemDescription>
+
+Listener rules for a forward action that distributes requests among one or more target groups. See comments below for information about the parameters.
+
+</HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
@@ -476,6 +492,11 @@ Any types represent complex values of variable type. For details, please consult
 </HclListItem>
 
 <HclListItem name="redirect_rules" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Listener rules for a redirect action. See comments below for information about the parameters.
+
+</HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
@@ -619,7 +640,7 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="lb_listener_rule_fixed_response_arns">
 <HclListItemDescription>
 
-The ARNs of the rules of type fixed-response. The key is the same key of the rule from the `redirect_rules` variable.
+The ARNs of the rules of type fixed-response. The key is the same key of the rule from the `fixed_response_rules` variable.
 
 </HclListItemDescription>
 </HclListItem>
@@ -627,7 +648,7 @@ The ARNs of the rules of type fixed-response. The key is the same key of the rul
 <HclListItem name="lb_listener_rule_forward_arns">
 <HclListItemDescription>
 
-The ARNs of the rules of type forward. The key is the same key of the rule from the `redirect_rules` variable.
+The ARNs of the rules of type forward. The key is the same key of the rule from the `forward_rules` variable.
 
 </HclListItemDescription>
 </HclListItem>
@@ -652,6 +673,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f6940bde5167012811af65c8ac245b5b"
+  "hash": "725a87fa2964fd547236b9e47fb00b9a"
 }
 ##DOCS-SOURCER-END -->

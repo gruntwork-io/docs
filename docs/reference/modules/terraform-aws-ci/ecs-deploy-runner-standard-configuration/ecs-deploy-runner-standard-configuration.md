@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.50.6"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.6"/>
 
 # ECS Deploy Runner Standard Configuration module
 
@@ -116,7 +116,7 @@ for more information.
 
 module "ecs_deploy_runner_standard_configuration" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -764,6 +764,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d1de6cc1b3baa5ca413d12b0ead4d091"
+  "hash": "2836030fd5c4eed91127b2a538c3da6c"
 }
 ##DOCS-SOURCER-END -->

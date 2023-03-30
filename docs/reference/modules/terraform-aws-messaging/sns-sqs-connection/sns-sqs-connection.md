@@ -46,6 +46,16 @@ module "sns_sqs_connection" {
   # The queue URL for the Simple Queue Service (SQS).
   sqs_queue_url = <INPUT REQUIRED>
 
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # (Optional) JSON String with the filter policy that will be used in the
+  # subscription to filter messages seen by the target resource. Refer to the SNS
+  # docs for more details
+  # https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html.
+  filter_policy = null
+
 }
 
 ```
@@ -86,6 +96,17 @@ The queue URL for the Simple Queue Service (SQS).
 </HclListItemDescription>
 </HclListItem>
 
+### Optional
+
+<HclListItem name="filter_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) JSON String with the filter policy that will be used in the subscription to filter messages seen by the target resource. Refer to the SNS docs for more details https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -104,6 +125,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "24d5937aa6eeaea4166648904417596a"
+  "hash": "9337067f0f181d69833b6c2be39a83c5"
 }
 ##DOCS-SOURCER-END -->

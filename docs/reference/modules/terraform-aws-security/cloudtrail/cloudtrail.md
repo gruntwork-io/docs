@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.5"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.67.6"/>
 
 # AWS CloudTrail
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), a service for logging every API call made against your AWS account.
 
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "cloudtrail" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -230,6 +230,10 @@ Refer to the
   # are not recoverable so only use this if you're absolutely sure you want to
   # permanently delete everything!
   force_destroy = false
+
+  # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
+  # ApiErrorRateInsight.
+  insight_selector = []
 
   # Specifies whether CloudTrail will log only API calls in the current region or in
   # all regions. (true or false)
@@ -715,6 +719,15 @@ If set to true, when you run 'terraform destroy', delete all objects from the bu
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="insight_selector" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Type of insights to log on a trail. Valid values are: ApiCallRateInsight and ApiErrorRateInsight.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="is_multi_region_trail" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1131,6 +1144,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "295b6f5cc47d48f2b1d2bc29291d54f5"
+  "hash": "0ff739ac470f20b4150fcf4f0a753124"
 }
 ##DOCS-SOURCER-END -->

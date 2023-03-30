@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
 
 # SSH Grunt
 
@@ -98,6 +98,6 @@ If you want to deploy this module in production, check out the following resourc
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ca59cda3af33f699843199a651b0a10"
+  "hash": "34b47e2a743d643b1030263e9bdf11a9"
 }
 ##DOCS-SOURCER-END -->
