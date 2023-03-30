@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.50.12"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.12"/>
 
 # Gruntwork Module CircleCI Helpers
 
@@ -197,6 +197,6 @@ variables](https://circleci.com/docs/environment-variables/).
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88ccf2e17e8d15a796c144ff88f12456"
+  "hash": "d42de47e999756dd39d2b390c358c050"
 }
 ##DOCS-SOURCER-END -->

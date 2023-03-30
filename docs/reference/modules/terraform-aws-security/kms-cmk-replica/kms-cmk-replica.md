@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.67.3"/>
 
 # KMS Customer Managed Key Multi-Region Replication module
 
@@ -38,7 +38,7 @@ multi-region replication.
 
 module "kms_cmk_replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-cmk-replica?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -313,6 +313,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2770028ce60fe8914e2353832ecb5a02"
+  "hash": "f474398dbcfb42c4e5f36d34d6fde5d3"
 }
 ##DOCS-SOURCER-END -->

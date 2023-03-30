@@ -369,7 +369,7 @@ Any types represent complex values of variable type. For details, please consult
                                               desired number of EC2 Instances representing workers that must be running
                                               for this EKS Cluster.
    - instance_types      list(string)       : (Defaults to value from var.node_group_default_instance_types) A list of
-                                              instance types (e.g., t2.medium) to use for the EKS Cluster's worker
+                                              instance types (e.g., t3.medium) to use for the EKS Cluster's worker
                                               nodes. EKS will choose from this list of instance types when launching
                                               new instances. When using launch templates, this setting will override
                                               the configured instance type of the launch template.
@@ -782,6 +782,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "182293bcad3e0a14a057c749c79dd565"
+  "hash": "2b7a06dad40b6ae1bf6a7881e77f4802"
 }
 ##DOCS-SOURCER-END -->

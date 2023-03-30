@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.13.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.13.0"/>
 
 # ssh-iam has been renamed!
 
@@ -29,6 +29,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7b58f5ea035de0d0c5f990fd74154a65"
+  "hash": "4002125f7dea4c0168fc67f81bfc2ee6"
 }
 ##DOCS-SOURCER-END -->

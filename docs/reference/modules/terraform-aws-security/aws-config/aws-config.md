@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.67.6"/>
 
 # AWS Config
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.66.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS Config](https://aws.amazon.com/config/), a service that allows you to assess, audit, and evaluate the configurations of your AWS resources. You can use AWS Config to ensure that AWS resources are configured in a manner that is in compliance with your company policies or regulatory requirements.
 
@@ -87,7 +87,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_config" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v0.67.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v0.67.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -269,9 +269,10 @@ module "aws_config" {
   # Config without an SNS topic.
   sns_topic_arn = null
 
-  # Optional KMS key to use for encrypting the SNS topic (var.sns_topic_name is
-  # non-null). When null, the SNS topic will not be encrypted.
-  sns_topic_kms_key_arn = null
+  # The ID of an AWS-managed(default) or customer-managed customer master key (CMK)
+  # to use for encrypting the Amazon SNS topic (var.sns_topic_name is non-null).
+  # Specify null explicitly to disable encryption of SNS topic.
+  sns_topic_kms_key_arn = "alias/aws/sns"
 
   # If set, creates an SNS topic to which Config notifications will be delivered. To
   # provide an existing topic, set sns_topic_arn. One of var.sns_topic_arn or
@@ -640,10 +641,10 @@ The ARN of an existing SNS topic. Can be in the same account or another account.
 <HclListItem name="sns_topic_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-Optional KMS key to use for encrypting the SNS topic (<a href="#sns_topic_name"><code>sns_topic_name</code></a> is non-null). When null, the SNS topic will not be encrypted.
+The ID of an AWS-managed(default) or customer-managed customer master key (CMK) to use for encrypting the Amazon SNS topic (<a href="#sns_topic_name"><code>sns_topic_name</code></a> is non-null). Specify null explicitly to disable encryption of SNS topic.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;alias/aws/sns&quot;"/>
 </HclListItem>
 
 <HclListItem name="sns_topic_name" requirement="optional" type="string">
@@ -736,6 +737,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87aed92cca26ae9ac8522b32bb5794eb"
+  "hash": "7bdb2a6cf3768a151052c66e8a18337e"
 }
 ##DOCS-SOURCER-END -->

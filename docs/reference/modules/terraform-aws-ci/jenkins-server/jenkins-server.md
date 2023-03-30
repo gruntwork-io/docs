@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.2" lastModifiedVersion="0.51.1"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.51.1"/>
 
 # Jenkins server
 
@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "example" {
 
 module "jenkins_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.51.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/jenkins-server?ref=v0.51.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -893,6 +893,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7bf37fb27ad730d5a16422388e8aec11"
+  "hash": "1602de8cd4445ef40c79d6d0d79d37fd"
 }
 ##DOCS-SOURCER-END -->

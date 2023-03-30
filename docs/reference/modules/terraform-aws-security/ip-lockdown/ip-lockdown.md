@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.44.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.44.10"/>
 
 # ip-lockdown Module
 
@@ -67,6 +67,6 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2279f769be5ca0ab0b662c2cd05f74b3"
+  "hash": "46bca0afe1ffcb10246ae8b46a5cd4c5"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.5" lastModifiedVersion="0.44.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.44.10"/>
 
 # SSH Grunt SELinux Policy
 
@@ -89,6 +89,6 @@ $ sudo semodule -i ssh-grunt.pp
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2516db4344946875229ab7130fc57071"
+  "hash": "b2301e562195d55b6455c563bc7e7e59"
 }
 ##DOCS-SOURCER-END -->
