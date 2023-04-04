@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.7" lastModifiedVersion="0.97.0"/>
+<VersionBadge version="0.102.8" lastModifiedVersion="0.97.0"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.102.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/alb?ref=v0.102.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -726,11 +726,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.7/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9308731d08cbd4986eda3f1ad7c99678"
+  "hash": "36e0c5426d3c00de2f141ae4005ea0d7"
 }
 ##DOCS-SOURCER-END -->
