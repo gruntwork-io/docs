@@ -186,6 +186,11 @@ module "public_static_website" {
   # relevant when var.restrict_bucket_access_to_cloudfront is set to true.
   enable_default_directory_index_function = false
 
+  # Set to true to enable versioning. This means the bucket will retain all old
+  # versions of all files. This is useful for backup purposes (e.g. you can rollback
+  # to an older version), but it may mean your bucket uses more storage.
+  enable_versioning = true
+
   # The path to the error document in the S3 bucket (e.g. error.html).
   error_document = "error.html"
 
@@ -250,6 +255,10 @@ module "public_static_website" {
   # conditions when redirects are applied. Conflicts with routing_rule. Use this
   # when routing rules contain empty String values.
   routing_rules = null
+
+  # By default, the s3 bucket hosting the website is named after the domain name.
+  # Use this configuration to override it with this value instead.
+  s3_bucket_override_bucket_name = null
 
   # The policy directives and their values that CloudFront includes as values for
   # the Content-Security-Policy HTTP response header. When null, the header is
@@ -455,6 +464,15 @@ If set to true, a CloudFront function to implement default directory index (look
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_versioning" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable versioning. This means the bucket will retain all old versions of all files. This is useful for backup purposes (e.g. you can rollback to an older version), but it may mean your bucket uses more storage.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="error_document" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -629,6 +647,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 A json string array containing routing rules for the aws_s3_website_configuration resource. Describes redirect behavior and conditions when redirects are applied. Conflicts with routing_rule. Use this when routing rules contain empty String values.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_bucket_override_bucket_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+By default, the s3 bucket hosting the website is named after the domain name. Use this configuration to override it with this value instead.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -818,6 +845,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "51afaca3e3a455f5d5a2b2b80119e02f"
+  "hash": "0fb93a1ec7f2e2b3a2fb655655ff1d72"
 }
 ##DOCS-SOURCER-END -->
