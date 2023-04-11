@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.65.9"/>
 
 # A best-practices set of IAM roles for cross-account access
 
@@ -105,7 +105,8 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -115,7 +116,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "cross_account_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -312,9 +313,224 @@ module "cross_account_iam_roles" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S CROSS-ACCOUNT-IAM-ROLES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS Account.
+  aws_account_id = <INPUT REQUIRED>
+
+  # Should we require that all IAM Users use Multi-Factor Authentication for both
+  # AWS API calls and the AWS Web Console? (true or false)
+  should_require_mfa = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Allow GitHub Actions to assume the auto deploy IAM role using an OpenID Connect
+  # Provider. Refer to the docs for github-actions-iam-role for more information.
+  # Note that this is mutually exclusive with
+  # var.allow_auto_deploy_from_other_account_arns.
+  allow_auto_deploy_from_github_actions = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
+  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  allow_auto_deploy_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_auto_deploy_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to the billing info for this account.
+  allow_billing_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_billing_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to the services in this account specified in
+  # var.dev_permitted_services.
+  allow_dev_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_dev_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to this account.
+  allow_full_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_full_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to
+  # Gruntwork Houston's CLI APIs. This is typically used for CI servers to be able
+  # to talk to Houston.
+  allow_houston_cli_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
+  # to this account.
+  allow_iam_admin_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
+  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is set, will also grant decrypt permissions for the
+  # KMS CMK.
+  allow_logs_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
+  # to this account.
+  allow_read_only_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_read_only_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
+  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  allow_ssh_grunt_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
+  # Gruntwork Houston's users API. This is used for ssh-grunt.
+  allow_ssh_grunt_houston_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
+  # support for this account.
+  allow_support_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  allow_support_access_iam_role_permissions_boundary = null
+
+  # What to name the auto deploy IAM role
+  auto_deploy_access_iam_role_name = "allow-auto-deploy-from-other-accounts"
+
+  # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
+  # deployment.
+  auto_deploy_permissions = []
+
+  # What to name the billing access IAM role
+  billing_access_iam_role_name = "allow-billing-only-access-from-other-accounts"
+
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM role
+  # will include permissions to decrypt using this CMK.
+  cloudtrail_kms_key_arn = null
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources should be
+  # created or not.
+  create_resources = true
+
+  # What to name the dev access IAM role
+  dev_access_iam_role_name = "allow-dev-access-from-other-accounts"
+
+  # A list of AWS services for which the developers from the accounts in
+  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-reso
+  # rces-contextkeys.html to find the service name. For example, to grant developers
+  # access only to EC2 and Amazon Machine Learning, use the value
+  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
+  # grant Developers de facto admin access.
+  dev_permitted_services = []
+
+  # What to name the full access IAM role
+  full_access_iam_role_name = "allow-full-access-from-other-accounts"
+
+  # What to name the Houston CLI access IAM role
+  houston_cli_access_iam_role_name = "allow-houston-cli-access-from-other-accounts"
+
+  # The path to allow requests to in the Houston API.
+  houston_path = "*"
+
+  # The AWS region where Houston is deployed (e.g., us-east-1).
+  houston_region = "*"
+
+  # The API Gateway stage to use for Houston.
+  houston_stage = "*"
+
+  # The ID API Gateway has assigned to the Houston API.
+  houston_users_api_id = "*"
+
+  # What to name the IAM admin access IAM role
+  iam_admin_access_iam_role_name = "allow-iam-admin-access-from-other-accounts"
+
+  # Include this value as a prefix in the name of every IAM role created by this
+  # module. This is useful to prepend, for example, '<account-name>-' to every IAM
+  # role name: e.g., allow-full-access-from-other-accounts becomes
+  # stage-allow-full-access-from-other-accounts.
+  iam_role_name_prefix = ""
+
+  # What to name the logs access IAM role
+  logs_access_iam_role_name = "allow-logs-access-from-other-accounts"
+
+  # The maximum allowable session duration, in seconds, for the credentials you get
+  # when assuming the IAM roles created by this module. This variable applies to all
+  # IAM roles created by this module that are intended for people to use, such as
+  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # var.max_session_duration_machine_users.
+  max_session_duration_human_users = 43200
+
+  # The maximum allowable session duration, in seconds, for the credentials you get
+  # when assuming the IAM roles created by this module. This variable  applies to
+  # all IAM roles created by this module that are intended for machine users, such
+  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
+  # human users, such as allow-read-only-access-from-other-accounts, see
+  # var.max_session_duration_human_users.
+  max_session_duration_machine_users = 3600
+
+  # What to name the read-only access IAM role
+  read_only_access_iam_role_name = "allow-read-only-access-from-other-accounts"
+
+  # What to name the ssh-grunt access IAM role
+  ssh_grunt_access_iam_role_name = "allow-ssh-grunt-access-from-other-accounts"
+
+  # What to name the ssh-grunt Houston access IAM role
+  ssh_grunt_houston_access_iam_role_name = "allow-ssh-grunt-houston-access-from-other-accounts"
+
+  # What to name the support access IAM role
+  support_access_iam_role_name = "allow-support-access-from-other-accounts"
+
+  # A map of tags to apply to the IAM roles.
+  tags = {}
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -1042,6 +1258,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b3422683489d078fbfdd585c1ef159a"
+  "hash": "0967943a46542546599fe0d209473b85"
 }
 ##DOCS-SOURCER-END -->

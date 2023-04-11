@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.66.0"/>
 
 # EBS Encryption Multi Region Module
 
@@ -55,7 +55,8 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -65,7 +66,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "ebs_encryption_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -94,9 +95,56 @@ module "ebs_encryption_multi_region" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EBS-ENCRYPTION-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption-multi-region?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If set to true, all new EBS volumes will have encryption enabled by default
+  enable_encryption = true
+
+  # Optional map of region names to KMS keys to use for EBS volume encryption when
+  # var.use_existing_kms_keys is enabled.
+  kms_key_arns = {}
+
+  # Whether or not to use the existing keys specified in var.kms_key_arns. If false
+  # (the default), will use the default aws/ebs key. We need this weird parameter
+  # because `count` must be a known value at plan time, so we cannot calculate
+  # whether or not to use the key dynamically.
+  use_existing_kms_keys = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -176,6 +224,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c5cb8588e5cbbe73a02600c3241bc870"
+  "hash": "1ca913f6c6c6cf33f88deecf56ddc22b"
 }
 ##DOCS-SOURCER-END -->

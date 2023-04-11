@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.66.0"/>
 
 # Elastic Block Storage Encryption
 
@@ -31,7 +31,8 @@ modules. Please see those modules for more information.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -41,7 +42,7 @@ modules. Please see those modules for more information.
 
 module "ebs_encryption" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -67,9 +68,53 @@ module "ebs_encryption" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EBS-ENCRYPTION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ebs-encryption?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources in this
+  # module should be created or not.
+  create_resources = false
+
+  # If set to true, all new EBS volumes will have encryption enabled by default
+  enable_encryption = true
+
+  # Optional KMS key ARN used for EBS volume encryption when
+  # var.use_existing_kms_key is true.
+  kms_key_arn = null
+
+  # Whether or not to use the existing key specified in var.kms_key_arn. We need
+  # this weird parameter because `count` must be a known value at plan time, so we
+  # cannot calculate whether or not to use the key dynamically.
+  use_existing_kms_key = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -148,6 +193,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9bef4e032d69823c473e9449fec0941a"
+  "hash": "e0f8e0cc543cae00edfc5870cdbf5848"
 }
 ##DOCS-SOURCER-END -->

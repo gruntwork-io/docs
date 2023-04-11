@@ -67,7 +67,8 @@ No modules.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -128,9 +129,78 @@ module "vpc_peering_cross_accounts_accepter" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-PEERING-CROSS-ACCOUNTS-ACCEPTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.22.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The VPC CIDR of the requester VPC.
+  requester_vpc_cidr = <INPUT REQUIRED>
+
+  # List of route tables to add routes to.
+  route_tables = <INPUT REQUIRED>
+
+  # The VPC Peering Connection ID to manage.
+  vpc_peering_connection_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Allow a local VPC to resolve public DNS hostnames to private IP addresses when
+  # queried from instances in the peer VPC.
+  dns_resolution = false
+
+  # Allow a local linked EC2-Classic instance to communicate with instances in a
+  # peer VPC.
+  link_to_local_classic = false
+
+  # Allow a local VPC to communicate with a linked EC2-Classic instance in a peer
+  # VPC.
+  link_to_remote_classic = false
+
+  # The timeout for the creation of the Route Tables. It defines how long to wait
+  # for a route table to be created before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to wait
+  # for a route table to be deleted before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait for
+  # a route table to be updated before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_update_timeout = "2m"
+
+  # A map of tags to assign to created resources.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -262,6 +332,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6210f2faa1876986f54166b7ebfccdce"
+  "hash": "663b267b009346a2169267320e72c50f"
 }
 ##DOCS-SOURCER-END -->

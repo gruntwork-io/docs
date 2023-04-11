@@ -185,7 +185,8 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -239,9 +240,71 @@ module "acm_tls_certificate" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ACM-TLS-CERTIFICATE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v0.29.3"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  acm_tls_certificates = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Whether or not to create a Route 53 DNS record for use in validating the issued
+  # certificate. Can be overridden on a per-certificate basis in the
+  # acm_tls_certificates input. You may want to set this to false if you are not
+  # using Route 53 as your DNS provider.
+  default_create_verification_record = true
+
+  # Whether or not to attempt to verify the issued certificate via DNS entries
+  # automatically created via Route 53 records. You may want to set this to false on
+  # your certificate inputs if you are not using Route 53 as your DNS provider.
+  default_verify_certificate = true
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # Map of domains to hosted zone IDs that can be used in place of looking up with a
+  # data source. This is useful to avoid limitations of Terraform that prevent you
+  # from passing in dynamic Hosted Zone IDs in the acm_tls_certificates map due to
+  # for_each and count.
+  domain_hosted_zone_ids = {}
+
+  # Global tags to apply to all ACM certificates issued via this module. These
+  # global tags will be merged with individual tags specified on each certificate
+  # input.
+  global_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -425,6 +488,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d2890f869bbceb10a657346d0ec1e69"
+  "hash": "d29914e8cba3a822f71a816c042343d1"
 }
 ##DOCS-SOURCER-END -->

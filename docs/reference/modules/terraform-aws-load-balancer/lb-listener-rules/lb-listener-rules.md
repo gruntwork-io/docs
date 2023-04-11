@@ -84,7 +84,8 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -132,9 +133,65 @@ module "lb_listener_rules" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LB-LISTENER-RULES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v0.29.3"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  default_listener_arns = <INPUT REQUIRED>
+
+  # The default port numbers on the load balancer to attach listener rules to. You
+  # can override this default on a rule-by-rule basis by setting the listener_ports
+  # parameter in each rule. The port numbers specified in this variable and the
+  # listener_ports parameter must exist in var.listener_arns.
+  default_listener_ports = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the Target Group to which to route traffic. Required if using forward
+  # rules.
+  default_forward_target_group_arns = []
+
+  # Listener rules for a fixed-response action. See comments below for information
+  # about the parameters.
+  fixed_response_rules = {}
+
+  # Listener rules for a forward action that distributes requests among one or more
+  # target groups. See comments below for information about the parameters.
+  forward_rules = {}
+
+  # Listener rules for a redirect action. See comments below for information about
+  # the parameters.
+  redirect_rules = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -673,6 +730,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "725a87fa2964fd547236b9e47fb00b9a"
+  "hash": "29739ec6927f4a799032cef46639b1bd"
 }
 ##DOCS-SOURCER-END -->

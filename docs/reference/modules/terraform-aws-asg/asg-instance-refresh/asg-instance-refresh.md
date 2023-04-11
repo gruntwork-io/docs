@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.1" lastModifiedVersion="0.21.1"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.2" lastModifiedVersion="0.21.1"/>
 
 # Auto Scaling Group Module with Instance Refresh
 
@@ -78,7 +78,8 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -88,7 +89,7 @@ The Terraform [instance_refresh](https://registry.terraform.io/providers/hashico
 
 module "asg_instance_refresh" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -204,9 +205,143 @@ module "asg_instance_refresh" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ASG-INSTANCE-REFRESH MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-instance-refresh?ref=v0.21.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the ASG.
+  asg_name = <INPUT REQUIRED>
+
+  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
+  # scaling policies may change this value. If you're using auto scaling policies to
+  # dynamically resize the cluster, you should actually leave this value as null.
+  desired_capacity = <INPUT REQUIRED>
+
+  # The maximum number of EC2 Instances to run in the ASG
+  max_size = <INPUT REQUIRED>
+
+  # The minimum number of EC2 Instances to run in the ASG
+  min_size = <INPUT REQUIRED>
+
+  # A list of subnet ids in the VPC were the EC2 Instances should be deployed
+  vpc_subnet_ids = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The number of seconds to wait after a checkpoint.
+  checkpoint_delay = null
+
+  # List of percentages for each checkpoint. Values must be unique and in ascending
+  # order. To replace all instances, the final number must be 100.
+  checkpoint_percentages = null
+
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
+  # this list should be a map with the parameters key, value, and
+  # propagate_at_launch.
+  custom_tags = []
+
+  # Timeout value for deletion operations on autoscale groups.
+  deletion_timeout = "10m"
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # Time, in seconds, after an EC2 Instance comes into service before checking
+  # health.
+  health_check_grace_period = 300
+
+  # The number of seconds until a newly launched instance is configured and ready to
+  # use.
+  instance_warmup = null
+
+  # This is DEPRECATED and will be removed on Dec 31st 2023. Please switch to using
+  # Launch Template below. The name of the Launch Configuration to use for each EC2
+  # Instance in this ASG. This value MUST be an output of the Launch Configuration
+  # resource itself. This ensures a new ASG is created every time the Launch
+  # Configuration changes, rolling out your changes automatically. One of
+  # var.launch_configuration_name or var.launch_template must be set.
+  launch_configuration_name = null
+
+  # The ID and version of the Launch Template to use for each EC2 instance in this
+  # ASG. The version value MUST be an output of the Launch Template resource itself.
+  # This ensures that a new ASG is created every time a new Launch Template version
+  # is created. One of var.launch_configuration_name or var.launch_template must be
+  # set.
+  launch_template = null
+
+  # A list of Elastic Load Balancer (ELB) names to associate with this ASG. If
+  # you're using the Application Load Balancer (ALB), see var.target_group_arns.
+  load_balancers = []
+
+  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
+  # creation.
+  min_elb_capacity = 0
+
+  # The amount of capacity in the Auto Scaling group that must remain healthy during
+  # an instance refresh to allow the operation to continue, as a percentage of the
+  # desired capacity
+  min_healthy_percentage = null
+
+  # The key for the tag that will be used to associate a unique identifier with this
+  # ASG. This identifier will persist between redeploys of the ASG, even though the
+  # underlying ASG is being deleted and replaced with a different one.
+  tag_asg_id_key = "AsgId"
+
+  # A list of Application Load Balancer (ALB) target group ARNs to associate with
+  # this ASG. If you're using the Elastic Load Balancer (ELB), see
+  # var.load_balancers.
+  target_group_arns = []
+
+  # A list of policies to decide how the instances in the auto scale group should be
+  # terminated. The allowed values are OldestInstance, NewestInstance,
+  # OldestLaunchConfiguration, ClosestToNextInstanceHour, Default.
+  termination_policies = []
+
+  # Set of additional property names that will trigger an Instance Refresh. A
+  # refresh will always be triggered by a change in any of launch_configuration,
+  # launch_template, or mixed_instances_policy.
+  triggers = null
+
+  # Whether or not ELB or ALB health checks should be enabled. If set to true, the
+  # load_balancers or target_groups_arns variable should be set depending on the
+  # load balancer type you are using. Useful for testing connectivity before health
+  # check endpoints are available.
+  use_elb_health_checks = true
+
+  # A maximum duration that Terraform should wait for the EC2 Instances to be
+  # healthy before timing out.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -518,6 +653,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7fa4a1f291b7f29da29aa681c8180bd2"
+  "hash": "3320f2e1e5b21b675b7fb93b1b23d089"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.66.0"/>
 
 # AWS GuardDuty Multi Region Module
 
@@ -63,7 +63,8 @@ This module depends on Python being available on your system. Python 2.7, 3.5+ a
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -73,7 +74,7 @@ This module depends on Python being available on your system. Python 2.7, 3.5+ a
 
 module "guardduty_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -131,9 +132,85 @@ module "guardduty_multi_region" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GUARDDUTY-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the Cloudwatch event rules.
+  cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # The ID of the default customer master key (CMK) to use to encrypt the SNS topic
+  # for any region that isn't defined in var.sns_kms_master_key_ids. This could be
+  # an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g.,
+  # alias/example-key). For example, you might set this variable to 'aws/sns' to use
+  # the AWS managed CMK for encryption in all regions. Only used if
+  # publish_findings_to_sns is true.
+  default_sns_kms_master_key_id = null
+
+  # The type of GuardDuty event to match. Setting this to anything other than the
+  # default will generate noise. This usually only needs to be adjusted for
+  # automated testing purposes.
+  detail_type = "GuardDuty Finding"
+
+  # If set to false, suspends GuardDuty (does not destroy data).
+  enable = true
+
+  # Specifies the frequency of notifications sent for subsequent finding
+  # occurrences. If the detector is a GuardDuty member account, the value is
+  # determined by the GuardDuty administrator account and cannot be modified,
+  # otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator
+  # accounts, it must be configured in Terraform to enable drift detection. Valid
+  # values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR,
+  # SIX_HOURS.
+  finding_publishing_frequency = null
+
+  # Specifies a name for the created SNS topics where findings are published.
+  # publish_findings_to_sns must be set to true.
+  findings_sns_topic_name = "guardduty-findings"
+
+  # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
+  publish_findings_to_sns = false
+
+  # A map from AWS region to the ID of a customer master key (CMK) to use to encrypt
+  # the SNS topic in that region. This could be an AWS managed CMK (e.g., aws/sns)
+  # or customer managed CMK (e.g., alias/example-key). If there's no CMK set for a
+  # region, the value in var.default_sns_kms_master_key_id will be used instead.
+  # Only used if publish_findings_to_sns is true.
+  sns_kms_master_key_ids = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -282,6 +359,6 @@ The IDs of the GuardDuty detectors.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0189e4bd515834bef66f6093fa42ce29"
+  "hash": "c08ea1e1881a1ec1196f6ac962e4f693"
 }
 ##DOCS-SOURCER-END -->

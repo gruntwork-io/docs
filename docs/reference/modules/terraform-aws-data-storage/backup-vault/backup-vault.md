@@ -85,7 +85,8 @@ then you will end up with many potentially large recovery points that you cannot
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -122,9 +123,54 @@ module "backup_vault" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S BACKUP-VAULT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-vault?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  vaults = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The cooling-off-period during which you can still delete the lock placed on your
+  # vault. The AWS default is 3 days. After this period expires, YOUR LOCK CANNOT BE
+  # DELETED
+  default_changeable_for_days = 7
+
+  # The ceiling of retention days that can be configured via a backup plan for the
+  # given vault
+  default_max_retention_days = 365
+
+  # The minimum number of retention days that can be configured via a backup plan
+  # for the given vault
+  default_min_retention_days = 7
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -246,6 +292,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d4bdb92fcd3b297e2c1ada9ac1d7701"
+  "hash": "21216abb0650e80bb7079a54ad94fe65"
 }
 ##DOCS-SOURCER-END -->

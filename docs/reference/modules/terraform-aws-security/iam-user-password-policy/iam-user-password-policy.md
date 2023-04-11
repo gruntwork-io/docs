@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.65.0"/>
 
 # Set a Password Policy for IAM Users
 
@@ -35,7 +35,8 @@ password policy you already have in place!
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -45,7 +46,7 @@ password policy you already have in place!
 
 module "iam_user_password_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -87,9 +88,69 @@ module "iam_user_password_policy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S IAM-USER-PASSWORD-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-user-password-policy?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Whether to allow users to change their own password (true or false).
+  allow_users_to_change_password = true
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources should be
+  # created or not.
+  create_resources = true
+
+  # Whether users are prevented from setting a new password after their password has
+  # expired (i.e. require administrator reset) (true or false).
+  hard_expiry = true
+
+  # The number of days that an user password is valid. Enter 0 for no expiration.
+  max_password_age = 0
+
+  # Minimum length to require for user passwords.
+  minimum_password_length = 16
+
+  # The number of previous passwords that users are prevented from reusing.
+  password_reuse_prevention = 5
+
+  # Whether to require lowercase characters for user passwords (true or false).
+  require_lowercase_characters = true
+
+  # Whether to require numbers for user passwords (true or false).
+  require_numbers = true
+
+  # Whether to require symbols for user passwords (true or false).
+  require_symbols = true
+
+  # Whether to require uppercase characters for user passwords (true or false).
+  require_uppercase_characters = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -278,6 +339,6 @@ Whether to require uppercase characters for user passwords.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-user-password-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7681272ecafdb42542d80f7ddb83b75a"
+  "hash": "94180e84e95f15a27e76071471f13b4c"
 }
 ##DOCS-SOURCER-END -->

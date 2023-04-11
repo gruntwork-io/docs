@@ -36,7 +36,8 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -118,9 +119,99 @@ module "network_acl_outbound" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S NETWORK-ACL-OUTBOUND MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.22.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The number to use for the egress rule that will be added. Each egress rule in an
+  # network ACL must have a unique rule number.
+  egress_rule_number = <INPUT REQUIRED>
+
+  # The starting number to use for ingress rules that are added. Each ingress rule
+  # in an network ACL must have a unique rule number.
+  ingress_rule_number = <INPUT REQUIRED>
+
+  # The id of the network ACL to which the new rules should be attached
+  network_acl_id = <INPUT REQUIRED>
+
+  # The number of CIDR blocks in var.outbound_cidr_blocks. We should be able to
+  # compute this automatically, but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_outbound_cidr_blocks = <INPUT REQUIRED>
+
+  # A list of CIDR blocks to which outbound connections should be allowed at
+  # var.outbound_ports
+  outbound_cidr_blocks = <INPUT REQUIRED>
+
+  # Allow all outbound traffic on ports between var.outbound_from_port and
+  # var.outbound_to_port, inclusive
+  outbound_from_port = <INPUT REQUIRED>
+
+  # Allow all outbound traffic on ports between var.outbound_from_port and
+  # var.outbound_to_port, inclusive
+  outbound_to_port = <INPUT REQUIRED>
+
+  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
+  # any port is allowed (so the from_port and to_port settings are ignored!).
+  protocol = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
+  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  ephemeral_from_port = 1024
+
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
+  # var.ephemeral_to_port, inclusive, from var.outbound_cidr_blocks
+  ephemeral_to_port = 65535
+
+  # The list of ports to exclude from the inbound return traffic rules. This is
+  # useful for adhering to certain compliance standards like CIS that explicitly
+  # deny any allow rule for administrative ports. This can not be set if protocol is
+  # icmp.
+  exclude_ephemeral_ports = []
+
+  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the value
+  # of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard ICMP code).
+  icmp_code = null
+
+  # The ICMP type. Required if specifying icmp for the protocol. When type set to -1
+  # this results in a wildcard ICMP type
+  icmp_type = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -131,6 +222,6 @@ module "network_acl_outbound" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3e628d1b140944b78698a343f6d42065"
+  "hash": "2e974390a29c443795f3bdaa55bea0a1"
 }
 ##DOCS-SOURCER-END -->

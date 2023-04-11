@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.8"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.50.8"/>
 
 # Infrastructure Pipeline: Monorepo Helpers
 
@@ -82,6 +82,6 @@ If you just want to try this module out for experimenting and learning, check ou
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47c33579c2a016c78a944d01bba76d55"
+  "hash": "5f80088a6c31b9089d21b9de1a25e319"
 }
 ##DOCS-SOURCER-END -->

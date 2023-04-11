@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.65.9"/>
 
 # AWS Auth Helper
 
@@ -255,6 +255,6 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-auth/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c91f0097a4dcc5896a56d915332c0e0"
+  "hash": "f563638b43e7523a36a865388e008763"
 }
 ##DOCS-SOURCER-END -->

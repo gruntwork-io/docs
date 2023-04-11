@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.10.1"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.10.2" lastModifiedVersion="0.10.1"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
@@ -171,7 +171,8 @@ the security group for ZooKeeper, follow these instructions: https://docs.aws.am
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -181,7 +182,7 @@ the security group for ZooKeeper, follow these instructions: https://docs.aws.am
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.10.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.10.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -300,10 +301,10 @@ module "msk" {
   initial_ebs_volume_size = 50
 
   # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
-  open_monitoring_enable_jmx_exporter = true
+  open_monitoring_enable_jmx_exporter = false
 
   # Indicates whether you want to enable or disable the Prometheus Node Exporter.
-  open_monitoring_enable_node_exporter = true
+  open_monitoring_enable_node_exporter = false
 
   # Override automatically created Service-linked role for storage autoscaling. If
   # not provided, Application Auto Scaling creates the appropriate service-linked
@@ -324,9 +325,170 @@ module "msk" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S MSK MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.10.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the Kafka cluster (e.g. kafka-stage). This variable is used to
+  # namespace all resources created by this module.
+  cluster_name = <INPUT REQUIRED>
+
+  # The number of brokers to have in the cluster.
+  cluster_size = <INPUT REQUIRED>
+
+  # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
+  # See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
+  # ker-instance-types for available instance types.
+  instance_type = <INPUT REQUIRED>
+
+  # Kafka version to install. See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
+  # ml for a list of supported versions.
+  kafka_version = <INPUT REQUIRED>
+
+  # The subnet IDs into which the broker instances should be deployed. You should
+  # typically pass in one subnet ID per node in the cluster_size variable. The
+  # number of broker nodes must be a multiple of subnets. We strongly recommend that
+  # you run Kafka in private subnets.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the cluster.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of Security Group IDs that should be added to the MSK cluster broker
+  # instances.
+  additional_security_group_ids = []
+
+  # A list of CIDR-formatted IP address ranges that will be allowed to connect to
+  # the Kafka brokers.
+  allow_connections_from_cidr_blocks = []
+
+  # A list of security group IDs that will be allowed to connect to the Kafka
+  # brokers.
+  allow_connections_from_security_groups = []
+
+  # Max capacity of broker node EBS storage (in GiB)
+  broker_storage_autoscaling_max_capacity = 100
+
+  # Broker storage utilization percentage at which scaling is triggered.
+  broker_storage_autoscaling_target_percentage = 70
+
+  # List of ARNs for SCRAM secrets stored in the Secrets Manager service.
+  client_sasl_scram_secret_arns = []
+
+  # Optional list of ACM Certificate Authority Amazon Resource Names (ARNs).
+  client_tls_certificate_authority_arns = []
+
+  # Name of the Cloudwatch Log Group to deliver logs to.
+  cloudwatch_log_group = null
+
+  # Custom tags to apply to the Kafka broker nodes and all related resources.
+  custom_tags = {}
+
+  # A map of custom tags to apply to the Security Group for this MSK Cluster. The
+  # key is the tag name and the value is the tag value.
+  custom_tags_security_group = {}
+
+  # Flag indicating whether broker storage should never be scaled in.
+  disable_broker_storage_scale_in = false
+
+  # Whether SASL IAM client authentication is enabled.
+  enable_client_sasl_iam = false
+
+  # Whether SASL SCRAM client authentication is enabled.
+  enable_client_sasl_scram = false
+
+  # Whether TLS client authentication is enabled.
+  enable_client_tls = false
+
+  # Indicates whether you want to enable or disable streaming broker logs to
+  # Cloudwatch Logs.
+  enable_cloudwatch_logs = false
+
+  # Indicates whether you want to enable or disable streaming broker logs to Kinesis
+  # Data Firehose.
+  enable_firehose_logs = false
+
+  # Indicates whether you want to enable or disable streaming broker logs to S3.
+  enable_s3_logs = false
+
+  # You may specify a KMS key short ID or ARN (it will always output an ARN) to use
+  # for encrypting your data at rest. If no key is specified, an AWS managed KMS
+  # ('aws/msk' managed service) key will be used for encrypting the data at rest.
+  encryption_at_rest_kms_key_arn = null
+
+  # Encryption setting for data in transit between clients and brokers. Valid
+  # values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is `TLS`.
+  encryption_in_transit_client_broker = "TLS"
+
+  # Whether data communication among broker nodes is encrypted. Default value: true.
+  encryption_in_transit_in_cluster = true
+
+  # Specify the desired enhanced MSK CloudWatch monitoring level. See
+  # https://docs.aws.amazon.com/msk/latest/developerguide/metrics-details.html for
+  # valid values.
+  enhanced_monitoring = "DEFAULT"
+
+  # Name of the Kinesis Data Firehose delivery stream to deliver logs to.
+  firehose_delivery_stream = null
+
+  # The initial size of the EBS volume (in GiB) for the data drive on each broker
+  # node. 
+  initial_ebs_volume_size = 50
+
+  # Indicates whether you want to enable or disable the Prometheus JMX Exporter.
+  open_monitoring_enable_jmx_exporter = false
+
+  # Indicates whether you want to enable or disable the Prometheus Node Exporter.
+  open_monitoring_enable_node_exporter = false
+
+  # Override automatically created Service-linked role for storage autoscaling. If
+  # not provided, Application Auto Scaling creates the appropriate service-linked
+  # role for you.
+  override_broker_storage_autoscaling_role_arn = null
+
+  # Name of the S3 bucket to deliver logs to.
+  s3_logs_bucket = null
+
+  # Prefix to append to the folder name.
+  s3_logs_prefix = null
+
+  # Contents of the server.properties file. Supported properties are documented in
+  # the MSK Developer Guide
+  # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-propert
+  # es.html).
+  server_properties = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -631,7 +793,7 @@ The initial size of the EBS volume (in GiB) for the data drive on each broker no
 Indicates whether you want to enable or disable the Prometheus JMX Exporter.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="open_monitoring_enable_node_exporter" requirement="optional" type="bool">
@@ -640,7 +802,7 @@ Indicates whether you want to enable or disable the Prometheus JMX Exporter.
 Indicates whether you want to enable or disable the Prometheus Node Exporter.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="override_broker_storage_autoscaling_role_arn" requirement="optional" type="string">
@@ -829,6 +991,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "50aeef8b8967625c71283fb348e830d2"
+  "hash": "d65f46f2c3017fc58e8b04f86f8ec4eb"
 }
 ##DOCS-SOURCER-END -->

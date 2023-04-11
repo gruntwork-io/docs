@@ -78,7 +78,8 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -398,9 +399,337 @@ module "vpc_app" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-APP MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.22.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The IP address range of the VPC in CIDR notation. A prefix of /16 is
+  # recommended. Do not use a prefix higher than /27. Examples include
+  # '10.100.0.0/16', '10.200.0.0/16', etc.
+  cidr_block = <INPUT REQUIRED>
+
+  # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
+  # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
+  # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
+  # suffice.
+  num_nat_gateways = <INPUT REQUIRED>
+
+  # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
+  vpc_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Should the private persistence subnet be allowed outbound access to the
+  # internet?
+  allow_private_persistence_internet_access = false
+
+  # If true, will apply the default NACL rules in var.default_nacl_ingress_rules and
+  # var.default_nacl_egress_rules on the default NACL of the VPC. Note that every
+  # VPC must have a default NACL - when this is false, the original default NACL
+  # rules managed by AWS will be used.
+  apply_default_nacl_rules = false
+
+  # If true, will associate the default NACL to the public, private, and persistence
+  # subnets created by this module. Only used if var.apply_default_nacl_rules is
+  # true. Note that this does not guarantee that the subnets are associated with the
+  # default NACL. Subnets can only be associated with a single NACL. The default
+  # NACL association will be dropped if the subnets are associated with a custom
+  # NACL later.
+  associate_default_nacl_to_subnets = true
+
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
+  # List of excluded Availability Zone names.
+  availability_zone_exclude_names = []
+
+  # List of specific Availability Zone IDs to use. If null (default), all
+  # availability zones in the configured AWS region will be used.
+  availability_zone_ids = null
+
+  # Allows to filter list of Availability Zones based on their current state. Can be
+  # either "available", "information", "impaired" or "unavailable". By default the
+  # list includes a complete set of Availability Zones to which the underlying AWS
+  # account has access, regardless of their state.
+  availability_zone_state = null
+
+  # DEPRECATED. The AWS Region where this VPC will exist. This variable is no longer
+  # used and only kept around for backwards compatibility. We now automatically
+  # fetch the region using a data source.
+  aws_region = ""
+
+  # If the VPC will create an Internet Gateway. There are use cases when the VPC is
+  # desired to not be routable from the internet, and hence, they should not have an
+  # Internet Gateway. For example, when it is desired that public subnets exist but
+  # they are not directly public facing, since they can be routed from other VPC
+  # hosting the IGW.
+  create_igw = true
+
+  # If set to false, this module will NOT create the private app subnet tier.
+  create_private_app_subnets = true
+
+  # If set to false, this module will NOT create the private persistence subnet
+  # tier.
+  create_private_persistence_subnets = true
+
+  # If set to false, this module will NOT create the public subnet tier. This is
+  # useful for VPCs that only need private subnets. Note that setting this to false
+  # also means the module will NOT create an Internet Gateway or the NAT gateways,
+  # so if you want any public Internet access in the VPC (even outbound access—e.g.,
+  # to run apt get), you'll need to provide it yourself via some other mechanism
+  # (e.g., via VPC peering, a Transit Gateway, Direct Connect, etc).
+  create_public_subnets = true
+
+  # Create VPC endpoints for S3 and DynamoDB.
+  create_vpc_endpoints = true
+
+  # The list of EIPs (allocation ids) to use for the NAT gateways. Their number has
+  # to match the one given in 'num_nat_gateways'. Must be set if
+  # var.use_custom_nat_eips us true.
+  custom_nat_eips = []
+
+  # A map of tags to apply to the VPC, Subnets, Route Tables, Internet Gateway,
+  # default security group, and default NACLs. The key is the tag name and the value
+  # is the tag value. Note that the tag 'Name' is automatically added by this module
+  # but may be optionally overwritten by this variable.
+  custom_tags = {}
+
+  # The egress rules to apply to the default NACL in the VPC. This is the security
+  # group that is used by any subnet that doesn't have its own NACL attached. The
+  # value for this variable must be a map where the keys are a unique name for each
+  # rule and the values are objects with the same fields as the egress block in the
+  # aws_default_network_acl resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_network_acl.
+  default_nacl_egress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+
+  # The ingress rules to apply to the default NACL in the VPC. This is the NACL that
+  # is used by any subnet that doesn't have its own NACL attached. The value for
+  # this variable must be a map where the keys are a unique name for each rule and
+  # the values are objects with the same fields as the ingress block in the
+  # aws_default_network_acl resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_network_acl.
+  default_nacl_ingress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+
+  # The egress rules to apply to the default security group in the VPC. This is the
+  # security group that is used by any resource that doesn't have its own security
+  # group attached. The value for this variable must be a map where the keys are a
+  # unique name for each rule and the values are objects with the same fields as the
+  # egress block in the aws_default_security_group resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_security_group#egress-block.
+  default_security_group_egress_rules = {"AllowAllOutbound":{"cidr_blocks":["0.0.0.0/0"],"from_port":0,"ipv6_cidr_blocks":["::/0"],"protocol":"-1","to_port":0}}
+
+  # The ingress rules to apply to the default security group in the VPC. This is the
+  # security group that is used by any resource that doesn't have its own security
+  # group attached. The value for this variable must be a map where the keys are a
+  # unique name for each rule and the values are objects with the same fields as the
+  # ingress block in the aws_default_security_group resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_security_group#ingress-block.
+  default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
+
+  # IAM policy to restrict what resources can call this endpoint. For example, you
+  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
+  # other types of resources. If not specified, all resources will be allowed to
+  # call this endpoint.
+  dynamodb_endpoint_policy = null
+
+  # If set to false, the default security groups will NOT be created. This variable
+  # is a workaround to a terraform limitation where overriding
+  # var.default_security_group_ingress_rules = {} and
+  # var.default_security_group_egress_rules = {} does not remove the rules. More
+  # information at:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_security_group#removing-aws_default_security_group-from-your-configuration
+  enable_default_security_group = true
+
+  # Specify true to indicate that instances launched into the public subnet should
+  # be assigned a public IP address (versus a private IP address)
+  map_public_ip_on_launch = false
+
+  # A map of tags to apply to the NAT gateways, on top of the custom_tags. The key
+  # is the tag name and the value is the tag value. Note that tags defined here will
+  # override tags defined as custom_tags in case of conflict.
+  nat_gateway_custom_tags = {}
+
+  # How many AWS Availability Zones (AZs) to use. One subnet of each type (public,
+  # private app, private persistence) will be created in each AZ. All AZs will be
+  # used if you provide a value that is more than the number of AZs in a region. A
+  # value of null means all AZs should be used. For example, if you specify 3 in a
+  # region with 5 AZs, subnets will be created in just 3 AZs instead of all 5. On
+  # the other hand, if you specify 6 in the same region, all 5 AZs will be used with
+  # no duplicates (same as setting this to 5).
+  num_availability_zones = null
+
+  # If set to true, create one route table shared amongst all the public subnets; if
+  # set to false, create a separate route table per public subnet. Historically, we
+  # created one route table for all the public subnets, as they all routed through
+  # the Internet Gateway anyway, but in certain use cases (e.g., for use with
+  # Network Firewall), you may want to have separate route tables for each public
+  # subnet.
+  one_route_table_public_subnets = true
+
+  # A list of Virtual Private Gateways that will propagate routes to persistence
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of persistence subnets. If left empty,
+  # no routes will be propagated.
+  persistence_propagating_vgws = []
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors.  See cidrsubnet interpolation in terraform config for more
+  # information.
+  persistence_subnet_bits = 5
+
+  # The amount of spacing between the private persistence subnets. Default: 2 times
+  # the value of private_subnet_spacing.
+  persistence_subnet_spacing = null
+
+  # A map of tags to apply to the private-app route table(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note that
+  # tags defined here will override tags defined as custom_tags in case of conflict.
+  private_app_route_table_custom_tags = {}
+
+  # A map listing the specific CIDR blocks desired for each private-app subnet. The
+  # key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of
+  # Availability Zones. If left blank, we will compute a reasonable CIDR block for
+  # each subnet.
+  private_app_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the private-app Subnet, on top of the custom_tags. The
+  # key is the tag name and the value is the tag value. Note that tags defined here
+  # will override tags defined as custom_tags in case of conflict.
+  private_app_subnet_custom_tags = {}
+
+  # A map of tags to apply to the private-persistence route tables(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note that
+  # tags defined here will override tags defined as custom_tags in case of conflict.
+  private_persistence_route_table_custom_tags = {}
+
+  # A map listing the specific CIDR blocks desired for each private-persistence
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number
+  # of Availability Zones. If left blank, we will compute a reasonable CIDR block
+  # for each subnet.
+  private_persistence_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the private-persistence Subnet, on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note that
+  # tags defined here will override tags defined as custom_tags in case of conflict.
+  private_persistence_subnet_custom_tags = {}
+
+  # A list of Virtual Private Gateways that will propagate routes to private
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of private subnets. If left empty, no
+  # routes will be propagated.
+  private_propagating_vgws = []
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors.  See cidrsubnet interpolation in terraform config for more
+  # information.
+  private_subnet_bits = 5
+
+  # The amount of spacing between private app subnets.
+  private_subnet_spacing = null
+
+  # A list of Virtual Private Gateways that will propagate routes to public subnets.
+  # All routes from VPN connections that use Virtual Private Gateways listed here
+  # will appear in route tables of public subnets. If left empty, no routes will be
+  # propagated.
+  public_propagating_vgws = []
+
+  # A map of tags to apply to the public route table(s), on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  public_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors.  See cidrsubnet interpolation in terraform config for more
+  # information.
+  public_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each public subnet. The key
+  # must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability
+  # Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+  public_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the public Subnet, on top of the custom_tags. The key
+  # is the tag name and the value is the tag value. Note that tags defined here will
+  # override tags defined as custom_tags in case of conflict.
+  public_subnet_custom_tags = {}
+
+  # The timeout for the creation of the Route Tables. It defines how long to wait
+  # for a route table to be created before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_creation_timeout = "5m"
+
+  # The timeout for the deletion of the Route Tables. It defines how long to wait
+  # for a route table to be deleted before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_deletion_timeout = "5m"
+
+  # The timeout for the update of the Route Tables. It defines how long to wait for
+  # a route table to be updated before considering the operation failed. Ref:
+  # https://www.terraform.io/language/resources/syntax#operation-timeouts
+  route_table_update_timeout = "2m"
+
+  # IAM policy to restrict what resources can call this endpoint. For example, you
+  # can add an IAM policy that allows EC2 instances to talk to this endpoint but no
+  # other types of resources. If not specified, all resources will be allowed to
+  # call this endpoint.
+  s3_endpoint_policy = null
+
+  # A map of tags to apply to the default Security Group, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags defined
+  # here will override tags defined as custom_tags in case of conflict.
+  security_group_tags = {}
+
+  # The amount of spacing between the different subnet types
+  subnet_spacing = 10
+
+  # The allowed tenancy of instances launched into the selected VPC. Must be one of:
+  # default, dedicated, or host.
+  tenancy = "default"
+
+  # Set to true to use existing EIPs, passed in via var.custom_nat_eips, for the NAT
+  # gateway(s), instead of creating new ones.
+  use_custom_nat_eips = false
+
+  # A map of tags to apply just to the VPC itself, but not any of the other
+  # resources. The key is the tag name and the value is the tag value. Note that
+  # tags defined here will override tags defined as custom_tags in case of conflict.
+  vpc_custom_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -1100,6 +1429,6 @@ A map of all public subnets, with the subnet name as the key, and all `aws-subne
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee3cdd67ae7a4ddd8e52b3c150ae0ab2"
+  "hash": "b7f8aadccbeb93454bc4455e183a34b2"
 }
 ##DOCS-SOURCER-END -->

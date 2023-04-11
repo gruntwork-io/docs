@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.65.10"/>
 
 # IAM Users
 
@@ -128,7 +128,8 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -138,7 +139,7 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 module "iam_users" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -184,9 +185,73 @@ module "iam_users" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S IAM-USERS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of users to create. The keys are the user names and the values are an
+  # object with the optional keys 'groups' (a list of IAM groups to add the user
+  # to), 'tags' (a map of tags to apply to the user), 'pgp_key' (either a base-64
+  # encoded PGP public key, or a keybase username in the form keybase:username, used
+  # to encrypt the user's credentials; required if create_login_profile or
+  # create_access_keys is true), 'create_login_profile' (if set to true, create a
+  # password to login to the AWS Web Console), 'create_access_keys' (if set to true,
+  # create access keys for the user), 'path' (the path), 'permissions_boundary' (the
+  # ARN of the policy that is used to set the permissions boundary for the user),
+  # and 'ssh_public_key' (the public part of the user's SSH key that will be added
+  # to their security credentials for use with `ssh-grunt`).
+  users = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # When destroying this user, destroy even if it has non-Terraform-managed IAM
+  # access keys, login profile, or MFA devices. Without force_destroy a user with
+  # non-Terraform-managed access keys and login profile will fail to be destroyed.
+  force_destroy = false
+
+  # The length for the generated AWS Web Console password. Only used for users with
+  # create_login_profile set to true.
+  password_length = 20
+
+  # Force the user to reset their password on initial login. Only used for users
+  # with create_login_profile set to true.
+  password_reset_required = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -444,6 +509,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76d0af7bbc5f3521de2a3b00255018a4"
+  "hash": "e582646dc9aa16fc28acff3c6f7d87f2"
 }
 ##DOCS-SOURCER-END -->

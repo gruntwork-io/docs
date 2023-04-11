@@ -50,7 +50,8 @@ joined_path = "${module.path.path}"
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -72,9 +73,39 @@ module "join_path" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S JOIN-PATH MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/join-path?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of folder and file names to combine into a path, using the proper path
+  # separator for the current OS.
+  path_parts = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -124,6 +155,6 @@ A list of folder and file names to combine into a path, using the proper path se
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "212d773c44d8dd3ec95fe080052067d2"
+  "hash": "e0b4d1fd8b14830ce4927dec5de87afe"
 }
 ##DOCS-SOURCER-END -->

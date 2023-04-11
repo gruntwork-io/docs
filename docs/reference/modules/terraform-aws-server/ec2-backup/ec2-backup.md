@@ -21,7 +21,8 @@ This module makes it easy to deploy a [data lifecycle manager policy](https://do
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -83,9 +84,79 @@ module "ec_2_backup" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EC2-BACKUP MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v0.15.3"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the data lifecyle management schedule
+  schedule_name = <INPUT REQUIRED>
+
+  # A map of tag keys and their values. Any EBS volumes tagged with any of these
+  # tags will be targeted for snapshots.
+  target_tags = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to true to enable backups. Set to false to disable backups
+  backup_enabled = true
+
+  # Set this to true to have the tags present on the target volume at the time of
+  # backup to be copied to the resulting snapshot
+  copy_tags = true
+
+  # The name for the IAM role associated with the data lifecycle manager. If this
+  # variable is null, the default of dlm-lifecycle-role will be used
+  dlm_role_name = null
+
+  # How often this lifecycle policy should be evaluated. Units for this value are
+  # defined in var.interval_unit
+  interval = 24
+
+  # The measurement of time to use for the schedule's interval. Note that currently
+  # this value must be HOURS, as this is the only supported interval unit
+  interval_unit = "HOURS"
+
+  # How many snapshots to keep. Must be an integer between 1 and 1000
+  number_of_snapshots_to_retain = 14
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  role_permissions_boundary = null
+
+  # This tag will be added to the Snapshot taken by the data lifecycle manager
+  tags_to_add = {}
+
+  # A list of times in 24 hour clock format that sets when the lifecyle policy
+  # should be evaluated. Max of 1.
+  times = ["23:45"]
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -237,6 +308,6 @@ The name of the IAM role associated with the data lifecycle manager
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc139d73e20f05e53a8464a16334bae4"
+  "hash": "f81d2a164916254f14d0568f0f2caf63"
 }
 ##DOCS-SOURCER-END -->

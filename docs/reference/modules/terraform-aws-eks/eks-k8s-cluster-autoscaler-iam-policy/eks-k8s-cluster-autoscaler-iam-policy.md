@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.54.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.54.0"/>
 
 # K8S Cluster Autoscaler IAM Policy Module
 
@@ -55,7 +55,8 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -65,7 +66,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_cluster_autoscaler_iam_pol
 
 module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -93,9 +94,55 @@ module "eks_k_8_s_cluster_autoscaler_iam_policy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-CLUSTER-AUTOSCALER-IAM-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-cluster-autoscaler-iam-policy?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A name that uniquely identified in which context this module is being invoked.
+  # This also helps to avoid creating two resources with the same name from
+  # different terraform applies.
+  name_prefix = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # ARNs of the Auto Scaling Groups to grant access to. If this is not specified the
+  # policy will match based on tags only (specifically, the tag
+  # 'k8s.io/cluster-autoscaler/NAME_PREFIX').
+  eks_worker_asg_arns = []
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -174,6 +221,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6efc8a6f981047717e51a9ca250c4178"
+  "hash": "136216f0be87ce58801444a3dd5ec69c"
 }
 ##DOCS-SOURCER-END -->

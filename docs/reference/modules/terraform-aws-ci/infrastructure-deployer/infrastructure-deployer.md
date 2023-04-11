@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.8"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.50.8"/>
 
 # Infrastructure Pipeline: Infrastructure Deployer CLI
 
@@ -86,6 +86,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deployer/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f866c168161f319ec9cd5bd958301d5"
+  "hash": "e8c44ea30931623c50847a32501ec6d2"
 }
 ##DOCS-SOURCER-END -->

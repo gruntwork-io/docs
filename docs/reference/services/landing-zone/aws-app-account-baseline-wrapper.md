@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.8" lastModifiedVersion="0.102.2"/>
+<VersionBadge version="0.102.10" lastModifiedVersion="0.102.2"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -99,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -739,9 +740,667 @@ module "account_baseline_app" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ACCOUNT-BASELINE-APP MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.10"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # The AWS Region to use as the global config recorder and seed region for
+  # GuardDuty.
+  aws_region = <INPUT REQUIRED>
+
+  # Creates resources in the specified regions. The best practice is to enable AWS
+  # Config in all enabled regions in your AWS account. This variable must NOT be set
+  # to null or empty. Otherwise, we won't know which regions to use and authenticate
+  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
+  # etc). To get the list of regions enabled in your AWS account, you can use the
+  # AWS CLI: aws ec2 describe-regions.
+  config_opt_in_regions = <INPUT REQUIRED>
+
+  # Creates resources in the specified regions. The best practice is to enable EBS
+  # Encryption in all enabled regions in your AWS account. This variable must NOT be
+  # set to null or empty. Otherwise, we won't know which regions to use and
+  # authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
+  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
+  # global_recorder_region must be in this list.
+  ebs_opt_in_regions = <INPUT REQUIRED>
+
+  # Creates resources in the specified regions. The best practice is to enable
+  # GuardDuty in all enabled regions in your AWS account. This variable must NOT be
+  # set to null or empty. Otherwise, we won't know which regions to use and
+  # authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
+  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
+  # global_recorder_region must be in this list.
+  guardduty_opt_in_regions = <INPUT REQUIRED>
+
+  # Creates resources in the specified regions. The best practice is to enable IAM
+  # Access Analyzer in all enabled regions in your AWS account. This variable must
+  # NOT be set to null or empty. Otherwise, we won't know which regions to use and
+  # authenticate to, and may use some not enabled in your AWS account (e.g.,
+  # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
+  # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
+  # global_recorder_region must be in this list.
+  iam_access_analyzer_opt_in_regions = <INPUT REQUIRED>
+
+  # Creates resources in the specified regions. This variable must NOT be set to
+  # null or empty. Otherwise, we won't know which regions to use and authenticate
+  # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
+  # etc). To get the list of regions enabled in your AWS account, you can use the
+  # AWS CLI: aws ec2 describe-regions. The value provided for global_recorder_region
+  # must be in this list.
+  kms_cmk_opt_in_regions = <INPUT REQUIRED>
+
+  # The name used to prefix AWS Config and Cloudtrail resources, including the S3
+  # bucket names and SNS topics used for each.
+  name_prefix = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of additional managed rules to add. The key is the name of the rule (e.g.
+  # ´acm-certificate-expiration-check´) and the value is an object specifying the
+  # rule details
+  additional_config_rules = {}
+
+  # Map of github repositories to the list of branches that are allowed to assume
+  # the IAM role. The repository should be encoded as org/repo-name (e.g.,
+  # gruntwork-io/terrraform-aws-ci). Allows GitHub Actions to assume the auto deploy
+  # IAM role using an OpenID Connect Provider for the given repositories. Refer to
+  # the docs for github-actions-iam-role for more information. Note that this is
+  # mutually exclusive with var.allow_auto_deploy_from_other_account_arns. Only used
+  # if var.enable_github_actions_access is true. 
+  allow_auto_deploy_from_github_actions_for_sources = {}
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
+  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  allow_auto_deploy_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_auto_deploy_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to the billing info for this account.
+  allow_billing_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_billing_access_iam_role_permissions_boundary = null
+
+  # If true, an IAM Policy that grants access to CloudTrail will be honored. If
+  # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
+  # CloudTrail and any IAM Policy grants will be ignored. (true or false)
+  allow_cloudtrail_access_with_iam = true
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to the services in this account specified in
+  # var.dev_permitted_services.
+  allow_dev_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_dev_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed full (read and
+  # write) access to this account.
+  allow_full_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_full_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
+  # the logs in CloudTrail, AWS Config, and CloudWatch for this account. If
+  # var.cloudtrail_kms_key_arn is specified, will also be given permissions to
+  # decrypt with the KMS CMK that is used to encrypt CloudTrail logs.
+  allow_logs_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read-only access
+  # to this account.
+  allow_read_only_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_read_only_access_iam_role_permissions_boundary = null
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
+  # IAM groups and publish SSH keys. This is used for ssh-grunt.
+  allow_ssh_grunt_access_from_other_account_arns = []
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
+  # support for this account.
+  allow_support_access_from_other_account_arns = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  allow_support_access_iam_role_permissions_boundary = null
+
+  # A list of IAM permissions (e.g. ec2:*) that will be added to an IAM Group for
+  # doing automated deployments. NOTE: If var.should_create_iam_group_auto_deploy is
+  # true, the list must have at least one element (e.g. '*').
+  auto_deploy_permissions = []
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  aws_config_iam_role_permissions_boundary = null
+
+  # Whether or not to allow kms:DescribeKey to external AWS accounts with write
+  # access to the CloudTrail bucket. This is useful during deployment so that you
+  # don't have to pass around the KMS key ARN.
+  cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
+
+  # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs to.
+  # This log group exists in the current account. Set this value to `null` to avoid
+  # publishing the trail logs to the logs group. The recommended configuration for
+  # CloudTrail is (a) for each child account to aggregate its logs in an S3 bucket
+  # in a single central account, such as a logs account and (b) to also store 14
+  # days work of logs in CloudWatch in the child account itself for local debugging.
+  cloudtrail_cloudwatch_logs_group_name = "cloudtrail-logs"
+
+  # If true, logging of data events will be enabled.
+  cloudtrail_data_logging_enabled = false
+
+  # Specify if you want your event selector to include management events for your
+  # trail.
+  cloudtrail_data_logging_include_management_events = true
+
+  # Specify if you want your trail to log read-only events, write-only events, or
+  # all. Possible values are: ReadOnly, WriteOnly, All.
+  cloudtrail_data_logging_read_write_type = "All"
+
+  # Data resources for which to log data events. This should be a map, where each
+  # key is a data resource type, and each value is a list of data resource values.
+  # Possible values for data resource types are: AWS::S3::Object,
+  # AWS::Lambda::Function and AWS::DynamoDB::Table. See the 'data_resource' block
+  # within the 'event_selector' block of the 'aws_cloudtrail' resource for context:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # trail#data_resource.
+  cloudtrail_data_logging_resources = {}
+
+  # Provide a list of AWS account IDs that will be allowed to send CloudTrail logs
+  # to this account. This is only required if you are aggregating CloudTrail logs in
+  # this account (e.g., this is the logs account) from other accounts.
+  cloudtrail_external_aws_account_ids_with_write_access = []
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # bucket so that the bucket can be destroyed without error. Warning: these objects
+  # are not recoverable so only use this if you're absolutely sure you want to
+  # permanently delete everything!
+  cloudtrail_force_destroy = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role
+  cloudtrail_iam_role_permissions_boundary = null
+
+  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that
+  # governs access to write API calls older than 7 days and all read API calls. If
+  # you are aggregating CloudTrail logs and creating the CMK in this account (e.g.,
+  # if this is the logs account), you MUST specify at least one IAM user (or other
+  # IAM ARN) that will be given administrator permissions for CMK, including the
+  # ability to change who can access this CMK and the extended log data it protects.
+  # If you are aggregating CloudTrail logs in another AWS account and the CMK
+  # already exists (e.g., if this is the stage or prod account), set this parameter
+  # to an empty list.
+  cloudtrail_kms_key_administrator_iam_arns = []
+
+  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that
+  # governs access to write API calls older than 7 days and all read API calls. If
+  # that CMK already exists (e.g., if this is the stage or prod account and you want
+  # to use a CMK that already exists in the logs account), set this to the ARN of
+  # that CMK. Otherwise (e.g., if this is the logs account), set this to null, and a
+  # new CMK will be created.
+  cloudtrail_kms_key_arn = null
+
+  # If the kms_key_arn provided is an alias or alias ARN, then this must be set to
+  # true so that the module will exchange the alias for a CMK ARN. Setting this to
+  # true and using aliases requires
+  # var.cloudtrail_allow_kms_describe_key_to_external_aws_accounts to also be true
+  # for multi-account scenarios.
+  cloudtrail_kms_key_arn_is_alias = false
+
+  # Additional service principals beyond CloudTrail that should have access to the
+  # KMS key used to encrypt the logs. This is useful for granting access to the logs
+  # for the purposes of constructing metric filters.
+  cloudtrail_kms_key_service_principals = []
+
+  # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that
+  # governs access to write API calls older than 7 days and all read API calls. If
+  # you are aggregating CloudTrail logs and creating the CMK in this account (e.g.,
+  # this is the logs account), you MUST specify at least one IAM user (or other IAM
+  # ARN) that will be given user access to this CMK, which will allow this user to
+  # read CloudTrail Logs. If you are aggregating CloudTrail logs in another AWS
+  # account and the CMK already exists, set this parameter to an empty list (e.g.,
+  # if this is the stage or prod account).
+  cloudtrail_kms_key_user_iam_arns = []
+
+  # After this number of days, log files should be transitioned from S3 to Glacier.
+  # Enter 0 to never archive log data.
+  cloudtrail_num_days_after_which_archive_log_data = 30
+
+  # After this number of days, log files should be deleted from S3. Enter 0 to never
+  # delete log data.
+  cloudtrail_num_days_after_which_delete_log_data = 365
+
+  # After this number of days, logs stored in CloudWatch will be deleted. Possible
+  # values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827,
+  # 3653, and 0 (default). When set to 0, logs will be retained indefinitely.
+  cloudtrail_num_days_to_retain_cloudwatch_logs = 0
+
+  # Set to false to create an S3 bucket of name var.cloudtrail_s3_bucket_name in
+  # this account for storing CloudTrail logs (e.g., if this is the logs account).
+  # Set to true to assume the bucket specified in var.cloudtrail_s3_bucket_name
+  # already exists in another AWS account (e.g., if this is the stage or prod
+  # account and var.cloudtrail_s3_bucket_name is the name of a bucket in the logs
+  # account).
+  cloudtrail_s3_bucket_already_exists = true
+
+  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
+  cloudtrail_s3_bucket_key_enabled = false
+
+  # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
+  # bucket in this AWS account (e.g., if this is the logs account) or the name of a
+  # bucket in another AWS account where logs should be sent (e.g., if this is the
+  # stage or prod account and you're specifying the name of a bucket in the logs
+  # account).
+  cloudtrail_s3_bucket_name = null
+
+  # Enable MFA delete for either 'Change the versioning state of your bucket' or
+  # 'Permanently delete an object version'. This setting only applies to the bucket
+  # used to storage Cloudtrail data. This cannot be used to toggle this setting but
+  # is available to allow managed buckets to reflect the state in AWS. For
+  # instructions on how to enable MFA Delete, check out the README from the
+  # terraform-aws-security/private-s3-bucket module.
+  cloudtrail_s3_mfa_delete = false
+
+  # Tags to apply to the CloudTrail resources.
+  cloudtrail_tags = {}
+
+  # Set to true to send the AWS Config data to another account (e.g., a logs
+  # account) for aggregation purposes. You must set the ID of that other account via
+  # the config_central_account_id variable. This redundant variable has to exist
+  # because Terraform does not allow computed data in count and for_each parameters
+  # and var.config_central_account_id may be computed if its the ID of a
+  # newly-created AWS account.
+  config_aggregate_config_data_in_external_account = false
+
+  # If the S3 bucket and SNS topics used for AWS Config live in a different AWS
+  # account, set this variable to the ID of that account (e.g., if this is the stage
+  # or prod account, set this to the ID of the logs account). If the S3 bucket and
+  # SNS topics live in this account (e.g., this is the logs account), set this
+  # variable to null. Only used if
+  # var.config_aggregate_config_data_in_external_account is true.
+  config_central_account_id = null
+
+  # Set to true to create AWS Config rules directly in this account. Set false to
+  # not create any Config rules in this account (i.e., if you created the rules at
+  # the organization level already). We recommend setting this to true to use
+  # account-level rules because org-level rules create a chicken-and-egg problem
+  # with creating new accounts.
+  config_create_account_rules = true
+
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config delivery
+  # channel for an externally managed S3 bucket. This must belong to the same region
+  # as the destination S3 bucket. If null, AWS Config will default to encrypting the
+  # delivered data with AES-256 encryption. Only used if var.should_create_s3_bucket
+  # is false - otherwise, var.config_s3_bucket_kms_key_arn is used.
+  config_delivery_channel_kms_key_arn = null
+
+  # Same as var.config_delivery_channel_kms_key_arn, except the value is a name of a
+  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
+  # for the delivery region (indexed by the name) will be used. Note that if both
+  # var.config_delivery_channel_kms_key_arn and
+  # var.config_delivery_channel_kms_key_by_name are configured, the key in
+  # var.config_delivery_channel_kms_key_arn will always be used.
+  config_delivery_channel_kms_key_by_name = null
+
+  # If set to true, when you run 'terraform destroy', delete all objects from the
+  # bucket so that the bucket can be destroyed without error. Warning: these objects
+  # are not recoverable so only use this if you're absolutely sure you want to
+  # permanently delete everything!
+  config_force_destroy = false
+
+  # Provide a list of AWS account IDs that will be allowed to send AWS Config data
+  # to this account. This is only required if you are aggregating config data in
+  # this account (e.g., this is the logs account) from other accounts.
+  config_linked_accounts = []
+
+  # After this number of days, log files should be transitioned from S3 to Glacier.
+  # Enter 0 to never archive log data.
+  config_num_days_after_which_archive_log_data = 365
+
+  # After this number of days, log files should be deleted from S3. Enter 0 to never
+  # delete log data.
+  config_num_days_after_which_delete_log_data = 730
+
+  # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket, when
+  # the S3 bucket is created within this module (var.config_should_create_s3_bucket
+  # is true). For encrypting S3 objects on delivery for an externally managed S3
+  # bucket, refer to the var.config_delivery_channel_kms_key_arn input variable. If
+  # null, data in S3 will be encrypted using the default aws/s3 key. If provided,
+  # the key policy of the provided key must permit the IAM role used by AWS Config.
+  # See https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html. Note that
+  # the KMS key must reside in the global recorder region (as configured by
+  # var.aws_region).
+  config_s3_bucket_kms_key_arn = null
+
+  # Same as var.config_s3_bucket_kms_key_arn, except the value is a name of a KMS
+  # key configured with var.kms_customer_master_keys. The module created KMS key for
+  # the global recorder region (indexed by the name) will be used. Note that if both
+  # var.config_s3_bucket_kms_key_arn and var.config_s3_bucket_kms_key_by_name are
+  # configured, the key in var.config_s3_bucket_kms_key_arn will always be used.
+  config_s3_bucket_kms_key_by_name = null
+
+  # The name of the S3 Bucket where Config items will be stored. Can be in the same
+  # account or in another account.
+  config_s3_bucket_name = null
+
+  # Enable MFA delete for either 'Change the versioning state of your bucket' or
+  # 'Permanently delete an object version'. This setting only applies to the bucket
+  # used to storage AWS Config data. This cannot be used to toggle this setting but
+  # is available to allow managed buckets to reflect the state in AWS. For
+  # instructions on how to enable MFA Delete, check out the README from the
+  # terraform-aws-security/private-s3-bucket module.
+  config_s3_mfa_delete = false
+
+  # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
+  # account for storing AWS Config data (e.g., if this is the logs account). Set to
+  # false to assume the bucket specified in var.config_s3_bucket_name already exists
+  # in another AWS account (e.g., if this is the stage or prod account and
+  # var.config_s3_bucket_name is the name of a bucket in the logs account).
+  config_should_create_s3_bucket = false
+
+  # set to true to create an sns topic in this account for sending aws config
+  # notifications (e.g., if this is the logs account). set to false to assume the
+  # topic specified in var.config_sns_topic_name already exists in another aws
+  # account (e.g., if this is the stage or prod account and
+  # var.config_sns_topic_name is the name of an sns topic in the logs account).
+  config_should_create_sns_topic = false
+
+  # Same as var.config_sns_topic_kms_key_region_map, except the value is a name of a
+  # KMS key configured with var.kms_customer_master_keys. The module created KMS key
+  # for each region (indexed by the name) will be used. Note that if an entry exists
+  # for a region in both var.config_sns_topic_kms_key_region_map and
+  # var.config_sns_topic_kms_key_by_name_region_map, then the key in
+  # var.config_sns_topic_kms_key_region_map will always be used.
+  config_sns_topic_kms_key_by_name_region_map = null
+
+  # Optional KMS key to use for each region for configuring default encryption for
+  # the SNS topic (encoded as a map from region - e.g. us-east-1 - to ARN of KMS
+  # key). If null or the region key is missing, encryption will not be configured
+  # for the SNS topic in that region.
+  config_sns_topic_kms_key_region_map = null
+
+  # the name of the sns topic in where aws config notifications will be sent. can be
+  # in the same account or in another account.
+  config_sns_topic_name = "ConfigTopic"
+
+  # A map of tags to apply to the S3 Bucket. The key is the tag name and the value
+  # is the tag value.
+  config_tags = {}
+
+  # The maximum frequency with which AWS Config runs evaluations for the ´PERIODIC´
+  # rules. See
+  # https://www.terraform.io/docs/providers/aws/r/config_organization_managed_rule.h
+  # ml#maximum_execution_frequency
+  configrules_maximum_execution_frequency = "TwentyFour_Hours"
+
+  # A custom name to use for the Cloudtrail Trail. If null, defaults to the
+  # var.name_prefix input variable.
+  custom_cloudtrail_trail_name = null
+
+  # A list of AWS services for which the developers from the accounts in
+  # var.allow_dev_access_from_other_account_arns will receive full permissions. See
+  # https://goo.gl/ZyoHlz to find the IAM Service name. For example, to grant
+  # developers access only to EC2 and Amazon Machine Learning, use the value
+  # ["ec2","machinelearning"]. Do NOT add iam to the list of services, or that will
+  # grant Developers de facto admin access.
+  dev_permitted_services = []
+
+  # If set to true (default), all new EBS volumes will have encryption enabled by
+  # default
+  ebs_enable_encryption = true
+
+  # The name of the KMS CMK to use by default for encrypting EBS volumes, if
+  # var.enable_encryption and var.use_existing_kms_keys are enabled. The name must
+  # match the name given the var.kms_customer_master_keys variable.
+  ebs_kms_key_name = ""
+
+  # If set to true, the KMS Customer Managed Keys (CMK) with the name in
+  # var.ebs_kms_key_name will be set as the default for EBS encryption. When false
+  # (default), the AWS-managed aws/ebs key will be used.
+  ebs_use_existing_kms_keys = false
+
+  # Set to true (default) to enable CloudTrail in this app account. Set to false to
+  # disable CloudTrail (note: all other CloudTrail variables will be ignored). Note
+  # that if you have enabled organization trail in the root (parent) account, you
+  # should set this to false; the organization trail will enable CloudTrail on child
+  # accounts by default.
+  enable_cloudtrail = true
+
+  # Set to true to enable AWS Config in this app account. Set to false to disable
+  # AWS Config (note: all other AWS config variables will be ignored).
+  enable_config = true
+
+  # Checks whether the EBS volumes that are in an attached state are encrypted.
+  enable_encrypted_volumes = true
+
+  # When true, create an Open ID Connect Provider that GitHub actions can use to
+  # assume IAM roles in the account. Refer to
+  # https://docs.github.com/en/actions/deployment/security-hardening-your-deployment
+  # /configuring-openid-connect-in-amazon-web-services for more information.
+  enable_github_actions_access = false
+
+  # Set to true (default) to enable GuardDuty in this app account. Set to false to
+  # disable GuardDuty (note: all other GuardDuty variables will be ignored). Note
+  # that if you have enabled organization level GuardDuty in the root (parent)
+  # account, you should set this to false; the organization GuardDuty will enable
+  # GuardDuty on child accounts by default.
+  enable_guardduty = true
+
+  # A feature flag to enable or disable this module.
+  enable_iam_access_analyzer = false
+
+  # A feature flag to enable or disable this module.
+  enable_iam_cross_account_roles = true
+
+  # Checks whether the account password policy for IAM users meets the specified
+  # requirements.
+  enable_iam_password_policy = true
+
+  # Set to true (default) to enable the IAM User Password Policies in this app
+  # account. Set to false to disable the policies. (Note: all other IAM User
+  # Password Policy variables will be ignored).
+  enable_iam_user_password_policy = true
+
+  # Checks whether the security group with 0.0.0.0/0 of any Amazon Virtual Private
+  # Cloud (Amazon VPC) allows only specific inbound TCP or UDP traffic.
+  enable_insecure_sg_rules = true
+
+  # Checks whether storage encryption is enabled for your RDS DB instances.
+  enable_rds_storage_encrypted = true
+
+  # Checks whether users of your AWS account require a multi-factor authentication
+  # (MFA) device to sign in with root credentials.
+  enable_root_account_mfa = true
+
+  # Checks that your Amazon S3 buckets do not allow public read access.
+  enable_s3_bucket_public_read_prohibited = true
+
+  # Checks that your Amazon S3 buckets do not allow public write access.
+  enable_s3_bucket_public_write_prohibited = true
+
+  # ID or ARN of the KMS key that is used to encrypt the volume. Used for
+  # configuring the encrypted volumes config rule.
+  encrypted_volumes_kms_id = null
+
+  # When set, use the statically provided hardcoded list of thumbprints rather than
+  # looking it up dynamically. This is useful if you want to trade reliability of
+  # the OpenID Connect Provider across certificate renewals with a static list that
+  # is obtained using a trustworthy mechanism, to mitigate potential damage from a
+  # domain hijacking attack on GitHub domains.
+  github_actions_openid_connect_provider_thumbprint_list = null
+
+  # Name of the Cloudwatch event rules.
+  guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # Specifies the frequency of notifications sent for subsequent finding
+  # occurrences. If the detector is a GuardDuty member account, the value is
+  # determined by the GuardDuty master account and cannot be modified, otherwise
+  # defaults to SIX_HOURS. For standalone and GuardDuty master accounts, it must be
+  # configured in Terraform to enable drift detection. Valid values for standalone
+  # and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
+  guardduty_finding_publishing_frequency = null
+
+  # Specifies a name for the created SNS topics where findings are published.
+  # publish_findings_to_sns must be set to true.
+  guardduty_findings_sns_topic_name = "guardduty-findings"
+
+  # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
+  guardduty_publish_findings_to_sns = false
+
+  # The name of the IAM Access Analyzer module
+  iam_access_analyzer_name = "baseline_app-iam_access_analyzer"
+
+  # If set to ORGANIZATION, the analyzer will be scanning the current organization
+  # and any policies that refer to linked resources such as S3, IAM, Lambda and SQS
+  # policies.
+  iam_access_analyzer_type = "ORGANIZATION"
+
+  # Allow users to change their own password.
+  iam_password_policy_allow_users_to_change_password = true
+
+  # Password expiration requires administrator reset.
+  iam_password_policy_hard_expiry = true
+
+  # Number of days before password expiration.
+  iam_password_policy_max_password_age = 30
+
+  # Password minimum length.
+  iam_password_policy_minimum_password_length = 16
+
+  # Number of passwords before allowing reuse.
+  iam_password_policy_password_reuse_prevention = 5
+
+  # Require at least one lowercase character in password.
+  iam_password_policy_require_lowercase_characters = true
+
+  # Require at least one number in password.
+  iam_password_policy_require_numbers = true
+
+  # Require at least one symbol in password.
+  iam_password_policy_require_symbols = true
+
+  # Require at least one uppercase character in password.
+  iam_password_policy_require_uppercase_characters = true
+
+  # The tags to apply to all the IAM role resources.
+  iam_role_tags = {}
+
+  # Comma-separated list of TCP ports authorized to be open to 0.0.0.0/0. Ranges are
+  # defined by a dash; for example, '443,1020-1025'.
+  insecure_sg_rules_authorized_tcp_ports = "443"
+
+  # Comma-separated list of UDP ports authorized to be open to 0.0.0.0/0. Ranges are
+  # defined by a dash; for example, '500,1020-1025'.
+  insecure_sg_rules_authorized_udp_ports = null
+
+  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
+  # key is the tag name and the value is the tag value.
+  kms_cmk_global_tags = {}
+
+  # You can use this variable to create account-level KMS Customer Master Keys
+  # (CMKs) for encrypting and decrypting data. This variable should be a map where
+  # the keys are the names of the CMK and the values are an object that defines the
+  # configuration for that CMK. See the comment below for the configuration options
+  # you can set for each key.
+  kms_customer_master_keys = {}
+
+  # The map of names of KMS grants to the region where the key resides in. There
+  # should be a one to one mapping between entries in this map and the entries of
+  # the kms_grants map. This is used to workaround a terraform limitation where the
+  # for_each value can not depend on resources.
+  kms_grant_regions = {}
+
+  # Create the specified KMS grants to allow entities to use the KMS key without
+  # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
+  # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
+  # to grant properties. The name must be unique per account.
+  kms_grants = {}
+
+  # The maximum allowable session duration, in seconds, for the credentials you get
+  # when assuming the IAM roles created by this module. This variable applies to all
+  # IAM roles created by this module that are intended for people to use, such as
+  # allow-read-only-access-from-other-accounts. For IAM roles that are intended for
+  # machine users, such as allow-auto-deploy-from-other-accounts, see
+  # var.max_session_duration_machine_users.
+  max_session_duration_human_users = 43200
+
+  # The maximum allowable session duration, in seconds, for the credentials you get
+  # when assuming the IAM roles created by this module. This variable  applies to
+  # all IAM roles created by this module that are intended for machine users, such
+  # as allow-auto-deploy-from-other-accounts. For IAM roles that are intended for
+  # human users, such as allow-read-only-access-from-other-accounts, see
+  # var.max_session_duration_human_users.
+  max_session_duration_machine_users = 3600
+
+  # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
+  # storage encryption config rule.
+  rds_storage_encrypted_kms_id = null
+
+  # Create service-linked roles for this set of services. You should pass in the
+  # URLs of the services, but without the protocol (e.g., http://) in front: e.g.,
+  # use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or es.amazonaws.com for
+  # Amazon Elasticsearch. Service-linked roles are predefined by the service, can
+  # typically only be assumed by that service, and include all the permissions that
+  # the service requires to call other AWS services on your behalf. You can
+  # typically only create one such role per AWS account, which is why this parameter
+  # exists in the account baseline. See
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-wor
+  # -with-iam.html for the list of services that support service-linked roles.
+  service_linked_roles = []
+
+  # Should we require that all IAM Users use Multi-Factor Authentication for both
+  # AWS API calls and the AWS Web Console? (true or false)
+  should_require_mfa = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -2428,11 +3087,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d209fa13f7b20f2cd29a27df3e3ee4c1"
+  "hash": "fc0da62e1fda4455f7aa0aa6aac862be"
 }
 ##DOCS-SOURCER-END -->

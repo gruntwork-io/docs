@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.50.11"/>
 
 # Git Helpers
 
@@ -77,6 +77,6 @@ The main options to pass to `git-add-commit-push` are:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/git-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97f50aca72a43ce5b965632786073dab"
+  "hash": "57cb34f70a1c58000f68736bfb8b58c5"
 }
 ##DOCS-SOURCER-END -->

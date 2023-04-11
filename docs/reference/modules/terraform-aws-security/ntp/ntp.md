@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.67.1"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.67.1"/>
 
 # NTP Module
 
@@ -40,6 +40,6 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d50b112418a74e3854a58fa2bbbf90c6"
+  "hash": "496d4503c14e4bdc457d80ed71fe58e1"
 }
 ##DOCS-SOURCER-END -->

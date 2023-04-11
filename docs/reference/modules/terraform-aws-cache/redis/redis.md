@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.19.1" lastModifiedVersion="0.19.1"/>
+<VersionBadge repoTitle="Cache Modules" version="0.19.2" lastModifiedVersion="0.19.2"/>
 
 # Redis Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Redis](http://redis.io/).
 
@@ -88,7 +88,8 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -98,7 +99,7 @@ For more info on scaling "cluster mode enabled" Redis clusters, see [Scaling Mul
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -196,6 +197,13 @@ module "redis" {
   # at_rest_encryption_enabled = true.
   kms_key_id = null
 
+  # Specifies the destination and format of Redis SLOWLOG or Redis Engine Log. See
+  # the documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elas
+  # icache_replication_group#log-delivery-configuration.
+  log_delivery_configuration = null
+
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H
   # Clock UTC). The minimum maintenance window is a 60 minute period.
@@ -248,9 +256,184 @@ module "redis" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REDIS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis?ref=v0.19.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Specifies whether a read-only replica is automatically promoted to read/write
+  # primary if the existing primary fails. It must be enabled for Redis (cluster
+  # mode enabled) replication groups.
+  enable_automatic_failover = <INPUT REQUIRED>
+
+  # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
+  # replica is automatically promoted to a read-write primary cluster if the
+  # existing primary cluster fails. If you specify true, you must specify a value
+  # greater than 1 for replication_group_size.
+  enable_multi_az = <INPUT REQUIRED>
+
+  # The compute and memory capacity of the nodes (e.g. cache.t3.medium).
+  instance_type = <INPUT REQUIRED>
+
+  # The name used to namespace all resources created by these templates, including
+  # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
+  # Must be a lowercase string.
+  name = <INPUT REQUIRED>
+
+  # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
+  # the primary node, 2 represents the primary plus a single Read Replica.
+  replication_group_size = <INPUT REQUIRED>
+
+  # The ARN of the SNS Topic to which notifications will be sent when a Replication
+  # Group event happens, such as an automatic failover (e.g.
+  # arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if
+  # you do not wish to receive notifications via SNS.
+  sns_topic_for_notifications = <INPUT REQUIRED>
+
+  # A list of subnet ids where the ElastiCache instances should be deployed. For the
+  # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC in which the ElastiCache cluster should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of additional security group ids to attach
+  additional_security_group_ids = []
+
+  # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
+  # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
+  # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_connections_from_cidr_blocks = []
+
+  # Specifies a list of Security Groups to allow connections from.
+  allow_connections_from_security_groups = []
+
+  # Specifies whether any database modifications are applied immediately, or during
+  # the next maintenance window.
+  apply_immediately = false
+
+  # The password used to access a password protected server. Can be specified only
+  # if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric
+  # characters or symbols (excluding @, <double-quotes>, and /)
+  auth_token = null
+
+  # The description of the aws_elasticache_security_group that is created. Defaults
+  # to 'Security group for the var.name ElastiCache cluster' if not specified.
+  aws_elasticache_security_group_description = null
+
+  # The name of the aws_elasticache_security_group that is created. Defaults to
+  # var.name if not specified.
+  aws_elasticache_security_group_name = null
+
+  # Subnet group for the var.name ElastiCache cluster.
+  aws_elasticache_subnet_group_description = null
+
+  # The name of the aws_elasticache_subnet_group that is created. Defaults to
+  # var.name-subnet-group if not specified.
+  aws_elasticache_subnet_group_name = null
+
+  # Specifies the number of shards and replicas per shard in the cluster. The list
+  # should contain a single map with keys 'num_node_groups' and
+  # 'replicas_per_node_group' set to desired integer values. You need to set
+  # `enable_automatic_failover` to true to use this configuration. Only 1
+  # cluster_mode block is allowed.
+  cluster_mode = []
+
+  # Whether to enable encryption at rest.
+  enable_at_rest_encryption = true
+
+  # Whether to enable encryption in transit.
+  enable_transit_encryption = true
+
+  # The KMS key ARN used to encrypt data at rest. Can be specified only if
+  # at_rest_encryption_enabled = true.
+  kms_key_id = null
+
+  # Specifies the destination and format of Redis SLOWLOG or Redis Engine Log. See
+  # the documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elas
+  # icache_replication_group#log-delivery-configuration.
+  log_delivery_configuration = null
+
+  # Specifies the weekly time range for when maintenance on the cache cluster is
+  # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi (24H
+  # Clock UTC). The minimum maintenance window is a 60 minute period.
+  maintenance_window = "sat:07:00-sat:08:00"
+
+  # Name of the parameter group to associate with this cache cluster. This can be
+  # used to configure custom settings for the cluster.
+  parameter_group_name = null
+
+  # The port number on which each of the cache nodes will accept connections (e.g.
+  # 6379).
+  port = 6379
+
+  # Version number of redis to use (e.g. 5.0.5). Set to 6.x to use redis 6.
+  redis_version = "5.0.5"
+
+  # A set of tags to set for the Security Group created as part of this module.
+  security_group_tags = {}
+
+  # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3.
+  # You can use this parameter to restore from an externally created snapshot. If
+  # you have an ElastiCache snapshot, use snapshot_name.
+  snapshot_arn = null
+
+  # The name of a snapshot from which to restore the Redis cluster. You can use this
+  # to restore from an ElastiCache snapshot. If you have an externally created
+  # snapshot, use snapshot_arn.
+  snapshot_name = null
+
+  # The number of days for which ElastiCache will retain automatic cache cluster
+  # snapshots before deleting them. Set to 0 to disable snapshots.
+  snapshot_retention_limit = 7
+
+  # The daily time range during which automated backups are created (e.g.
+  # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup runs.
+  # Set to empty string to disable snapshots.
+  snapshot_window = "06:00-07:00"
+
+  # A set of tags to set for the ElastiCache Replication Group.
+  tags = {}
+
+  # The group id of the AWS Elasticache group which can be used to provide access to
+  # a Redis replication group or cluster and allow for RBAC access
+  user_group_id = null
+
+  # This is a list of user IDs  that should be added to the group defined in the
+  # 'user_group_id' variable. This list should always include the 'default' user in
+  # addition to user Ids
+  user_ids = []
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -455,6 +638,27 @@ The KMS key ARN used to encrypt data at rest. Can be specified only if at_rest_e
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis SLOWLOG or Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+    log_type         = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="maintenance_window" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -615,6 +819,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81fb31832a468cc7c67a44e8cfe64d52"
+  "hash": "08d871885b7f36b3f506f14ec277a452"
 }
 ##DOCS-SOURCER-END -->

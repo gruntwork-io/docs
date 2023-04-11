@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.65.9"/>
 
 # AWS Organizations
 
@@ -83,7 +83,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -93,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_organizations" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -139,9 +140,73 @@ module "aws_organizations" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S AWS-ORGANIZATIONS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of child accounts to create. The map key is the name of the account and the
+  # value is an object containing account configuration variables.
+  child_accounts = <INPUT REQUIRED>
+
+  # Flag indicating whether the organization should be created.
+  create_organization = <INPUT REQUIRED>
+
+  # If set to ALLOW, the new account enables IAM users to access account billing
+  # information if they have the required permissions. If set to DENY, then only the
+  # root user of the new account can access account billing information.
+  default_iam_user_access_to_billing = <INPUT REQUIRED>
+
+  # The name of an IAM role that Organizations automatically preconfigures in the
+  # new member account. This role trusts the mgmt account, allowing users in the
+  # mgmt account to assume the role, as permitted by the mgmt account administrator.
+  default_role_name = <INPUT REQUIRED>
+
+  # List of AWS service principal names for which you want to enable integration
+  # with your organization. Must have `organizations_feature_set` set to ALL. See
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
+  # s.html
+  organizations_aws_service_access_principals = <INPUT REQUIRED>
+
+  # List of Organizations policy types to enable in the Organization Root. See
+  # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
+  # e.html
+  organizations_enabled_policy_types = <INPUT REQUIRED>
+
+  # Specify `ALL` or `CONSOLIDATED_BILLING`.
+  organizations_feature_set = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Default tags to add to accounts. Will be appended to ´child_account.*.tags´
+  default_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -364,6 +429,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2bca6711d8a30d6cdd7cc2d757c848e7"
+  "hash": "2fa4d316154708a6a29cb858400e64be"
 }
 ##DOCS-SOURCER-END -->

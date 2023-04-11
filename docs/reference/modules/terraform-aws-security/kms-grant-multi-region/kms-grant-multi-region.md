@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.66.0"/>
 
 # AWS KMS Grants
 
@@ -63,7 +63,8 @@ If you just want to try this out for experimenting and learning, check out the f
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -73,7 +74,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_grant_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -109,9 +110,63 @@ module "kms_grant_multi_region" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-GRANT-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-grant-multi-region?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # The map of names of KMS grants to the region where the key resides in. There
+  # should be a one to one mapping between entries in this map and the entries of
+  # the kms_grants map. This is used to workaround a terraform limitation where the
+  # for_each value can not depend on resources.
+  kms_grant_regions = <INPUT REQUIRED>
+
+  # Create the specified KMS grants to allow entities to use the KMS key without
+  # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
+  # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
+  # to grant properties. The name must be unique per account.
+  kms_grants = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -122,6 +177,6 @@ module "kms_grant_multi_region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df3e0d28ac76b3bf6be6b3ca7d34aeca"
+  "hash": "f44417c9cc943d191fb64539dbefd2e5"
 }
 ##DOCS-SOURCER-END -->

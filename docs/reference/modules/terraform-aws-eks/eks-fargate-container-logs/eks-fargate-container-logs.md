@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.56.0"/>
 
 # EKS Fargate Container Logs Module
 
@@ -95,7 +95,8 @@ fields @timestamp, @message
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -105,7 +106,7 @@ fields @timestamp, @message
 
 module "eks_fargate_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -189,9 +190,111 @@ module "eks_fargate_container_logs" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-FARGATE-CONTAINER-LOGS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-fargate-container-logs?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of ARNs of Fargate execution IAM roles that should have permission to talk
+  # to each output target. Policies that grant permissions to each output service
+  # will be attached to these IAM roles.
+  fargate_execution_iam_role_arns = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Configurations for forwarding logs to AWS managed Elasticsearch. Set to null if
+  # you do not wish to forward the logs to ES.
+  aws_elasticsearch_configuration = null
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # Configurations for forwarding logs to CloudWatch Logs. Set to null if you do not
+  # wish to forward the logs to CloudWatch Logs.
+  cloudwatch_configuration = null
+
+  # Annotations to associate with the aws-logging ConfigMap
+  configmap_annotations = {}
+
+  # Labels to associate with the aws-logging ConfigMap
+  configmap_labels = {}
+
+  # Can be used to provide custom filtering of the log output. This string should be
+  # formatted according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  extra_filters = ""
+
+  # Can be used to provide custom parsers of the log output. This string should be
+  # formatted according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  extra_parsers = ""
+
+  # Configurations for forwarding logs to Kinesis Firehose. Set to null if you do
+  # not wish to forward the logs to Firehose.
+  firehose_configuration = null
+
+  # Whether or not Kubernetes metadata is added to the log files
+  include_kubernetes_metadata = true
+
+  # Configurations for forwarding logs to Kinesis stream. Set to null if you do not
+  # wish to forward the logs to Kinesis.
+  kinesis_configuration = null
+
+  # The time Fluent Bit waits until it communicates with the API server for the
+  # latest metadata. The smaller the TTL, the more load is generated on the API
+  # server. This setting will only have effect, when 'include_kubernetes_metadata'
+  # is 'true'.
+  kubernetes_metadata_cache_ttl = "300s"
+
+  # When enabled, it checks if the log field content is a JSON string map, if so, it
+  # append the map fields as part of the log structure. This setting will only have
+  # effect, when 'include_kubernetes_metadata' is 'true'.
+  kubernetes_metadata_merge_log = false
+
+  # If Merge_Log_Key is set, all the new structured fields taken from the original
+  # log content are inserted under the new key. This setting will only have effect,
+  # when 'include_kubernetes_metadata' is 'true'.
+  kubernetes_metadata_merge_log_key = null
+
+  # Annotations to associate with the aws-observability Namespace
+  namespace_annotations = {}
+
+  # Labels to associate with the aws-observability Namespace
+  namespace_labels = {}
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -535,6 +638,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4a7033d6e027888742614656ac7c676a"
+  "hash": "feefbbb2bf41e89503120d762c3cc064"
 }
 ##DOCS-SOURCER-END -->

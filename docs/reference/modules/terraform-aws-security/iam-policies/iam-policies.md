@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.67.3"/>
 
 # A Best-Practices Set of IAM Policy Documents
 
@@ -255,7 +255,8 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -265,7 +266,7 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 
 module "iam_policies" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -347,9 +348,109 @@ module "iam_policies" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S IAM-POLICIES MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS Account.
+  aws_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed to access this
+  # account.
+  allow_access_from_other_account_arns = []
+
+  # A flag to indicate if access will be delegated to SAML providers. The ARNs of
+  # the specific IdPs to trust are specified through the allow_access_from_saml_arns
+  # variable below. 
+  allow_access_from_saml = false
+
+  # A list of IAM Identity Provider ARNs that access to this account will be
+  # delegated to. This variable is only used if allow_access_from_saml is true.
+  allow_access_from_saml_arns = []
+
+  # A map of lists of IAM roles in other accounts that IAM users in this account
+  # should be able to assume. Use group names as keys, and a corresponding list of
+  # roles for that group as the value. One IAM policy allowing sts:AssumeRole will
+  # be created for each key. If the corresponding list has more than one ARN, the
+  # policy will be created with AssumeRole permission for each ARN in the list.
+  allow_access_to_other_account_arns = {}
+
+  # A list of IAM ARNs from other AWS accounts that will be allowed to assume the
+  # auto deploy IAM role that has the permissions in var.auto_deploy_permissions.
+  allow_auto_deploy_from_other_account_arns = []
+
+  # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
+  # deployment.
+  auto_deploy_permissions = []
+
+  # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs policy
+  # will include permissions to decrypt using this CMK.
+  cloudtrail_kms_key_arn = null
+
+  # A list of IAM permissions to grant to developers. For example, ['s3:PutObject',
+  # 'sns'] would grant 'PutObject' permissions for S3, and '*' permissions for sns.
+  # See https://goo.gl/ZyoHlz to find the IAM Service name. Do NOT add 'iam' to the
+  # list of services, or that will grant developers de facto admin access!
+  dev_permitted_services = []
+
+  # The prefix of the S3 Bucket Name to which an individual IAM User will have full
+  # access. For example, if the prefix is acme.user-, then IAM User john.doe will
+  # have access to S3 Bucket acme.user-john.doe.
+  dev_s3_bucket_prefix = "your-org-name.user-"
+
+  # The path to allow requests to in the Houston API.
+  houston_path = "*"
+
+  # The AWS region where Houston is deployed (e.g., us-east-1).
+  houston_region = "*"
+
+  # The API Gateway stage to use for Houston.
+  houston_stage = "*"
+
+  # The ID API Gateway has assigned to the Houston API.
+  houston_users_api_id = "*"
+
+  # If set to true, all the Policies created by this module that are used to grant
+  # IAM permissions will require an MFA Token to be present. Use
+  # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust Policies.
+  iam_policy_should_require_mfa = true
+
+  # If set to true, all the Policies created by this module that are used as Trust
+  # Policies for IAM Roles (this that allow sts:AssumeRole) will require an MFA
+  # Token to be present to assume that IAM Role. Use
+  # var.iam_policy_should_require_mfa to require MFA for all other types of
+  # Policies.
+  trust_policy_should_require_mfa = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -646,6 +747,6 @@ If set to true, all the Policies created by this module that are used as Trust P
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f28a0fd7dc656ae899dad12eb27a7782"
+  "hash": "0ccedec701395e1b350449d24406f193"
 }
 ##DOCS-SOURCER-END -->

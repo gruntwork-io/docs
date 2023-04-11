@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.8" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.102.10" lastModifiedVersion="0.95.1"/>
 
 # Tailscale Subnet Router
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -94,7 +94,7 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
@@ -136,7 +136,8 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -146,7 +147,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 module "tailscale_subnet_router" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -355,9 +356,236 @@ module "tailscale_subnet_router" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S TAILSCALE-SUBNET-ROUTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.10"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AMI to run on the Tailscale subnet router. This should be built from the
+  # Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or
+  # var.ami_filters is required. Set to null if looking up the ami with filters.
+  ami = <INPUT REQUIRED>
+
+  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
+  # Tailscale subnet router. You can build the AMI using the Packer template
+  # tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of
+  # var.ami or var.ami_filters is required. Set to null if passing the ami ID
+  # directly.
+  ami_filters = <INPUT REQUIRED>
+
+  # The ARN of a Secrets Manager entry containing the Tailscale auth key to use for
+  # authenticating the server.
+  auth_key_secrets_manager_arn = <INPUT REQUIRED>
+
+  # The name of the server. This will be used to namespace all resources created by
+  # this module.
+  name = <INPUT REQUIRED>
+
+  # The ids of the subnets where this server should be deployed.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC where this server should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of IDs of AWS Security Groups that should be attached to the tailscale
+  # relay server.
+  additional_security_groups = []
+
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
+  # space usage) should send notifications.
+  alarms_sns_topic_arn = []
+
+  # Cloud init scripts to run on the Tailscale subnet router while it boots. See the
+  # part blocks in
+  # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
+  # syntax.
+  cloud_init_parts = {}
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values.
+  cloudwatch_log_group_tags = null
+
+  # The default OS user for the Tailscale subnet router AMI. For AWS Ubuntu AMIs,
+  # which is what the Packer template in tailscale-subnet-router-ubuntu.json uses,
+  # the default OS user is 'ubuntu'.
+  default_user = "ubuntu"
+
+  # If true, the launched EC2 instance will be EBS-optimized. Note that for most
+  # instance types, EBS optimization does not incur additional cost, and that many
+  # newer EC2 instance types have EBS optimization enabled by default. However, if
+  # you are running previous generation instances, there may be an additional cost
+  # per hour to run your instances with EBS optimization enabled. Please see:
+  # https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances
+  ebs_optimized = true
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arn.
+  enable_cloudwatch_alarms = true
+
+  # Set to true to send logs to CloudWatch. This is useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
+  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  enable_cloudwatch_log_aggregation = true
+
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
+  # useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
+  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your
+  # Tailscale subnet router.
+  enable_cloudwatch_metrics = true
+
+  # Enable fail2ban to block brute force log in attempts. Defaults to true.
+  enable_fail2ban = true
+
+  # Set this variable to true to enable the Instance Metadata Service (IMDS)
+  # endpoint, which is used to fetch information such as user-data scripts, instance
+  # IP address and region, etc. Set this variable to false if you do not want the
+  # IMDS endpoint enabled for instances launched into the Auto Scaling Group.
+  enable_imds = true
+
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to true.
+  enable_ip_lockdown = true
+
+  # Set to true to add IAM permissions for ssh-grunt
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
+  # runt), which will allow you to manage SSH access via IAM groups.
+  enable_ssh_grunt = true
+
+  # Whether to configure DNS to Tailscale on the EC2 instance. By default we disable
+  # the tailnet DNS as it is generally best to let Amazon handle the DNS
+  # configuration on EC2 instances. This is most useful when the subnet router needs
+  # to communicate with other services on your tailnet.
+  enable_tailscale_dns = false
+
+  # If you are using ssh-grunt and your IAM users / groups are defined in a separate
+  # AWS account, you can use this variable to specify the ARN of an IAM role that
+  # ssh-grunt can assume to retrieve IAM group and public SSH key info from that
+  # account. To omit this variable, set it to an empty string (do NOT use null, or
+  # Terraform will complain).
+  external_account_ssh_grunt_role_arn = ""
+
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
+  # The type of EC2 instance to run (e.g. t2.micro)
+  instance_type = "t3.nano"
+
+  # The number of seconds until a newly launched instance is configured and ready to
+  # use.
+  instance_warmup = null
+
+  # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
+  # you don't want to enable Key Pair auth.
+  keypair_name = null
+
+  # List of CIDR blocks to expose as routes on the tailnet through this server. If
+  # null, defaults to the entire VPC CIDR block.
+  routes = null
+
+  # When true, precreate the CloudWatch Log Group to use for log aggregation from
+  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
+  # Group with various settings such as retention periods and KMS encryption. When
+  # false, the CloudWatch agent will automatically create a basic log group to use.
+  should_create_cloudwatch_log_group = true
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to this Tailscale subnet router. This value is only used
+  # if enable_ssh_grunt=true.
+  ssh_grunt_iam_group = "ssh-grunt-users"
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to this Tailscale subnet router with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
+  ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
+
+  # Advertised hostname of the server on the tailnet. If null, defaults to the
+  # var.name input value.
+  tailnet_hostname = null
+
+  # Set this variable to true to enable the use of Instance Metadata Service Version
+  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
+  # to its special security hardening, we allow this in order to support the use
+  # case of AMIs built outside of these modules that depend on IMDSv1.
+  use_imdsv1 = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -827,11 +1055,11 @@ ID of the primary security group attached to the Tailscale relay server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/mgmt/tailscale-subnet-router/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/mgmt/tailscale-subnet-router/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.8/modules/mgmt/tailscale-subnet-router/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/mgmt/tailscale-subnet-router/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/mgmt/tailscale-subnet-router/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4c51536e7d5da67598eff7359703d497"
+  "hash": "9174d52306b1129da60b0bbbe3ed4850"
 }
 ##DOCS-SOURCER-END -->

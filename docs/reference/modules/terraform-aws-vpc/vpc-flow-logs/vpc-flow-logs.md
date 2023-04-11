@@ -75,7 +75,8 @@ TODO: Publish flow logs to an S3 bucket or CloudWatch Logs group in another acco
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -192,9 +193,134 @@ module "vpc_flow_logs" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-FLOW-LOGS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-flow-logs?ref=v0.22.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Additional IAM policies to apply to the S3 bucket to store flow logs. You can
+  # use this to grant read/write access beyond what is provided to the VPC. This
+  # should be a map, where each key is a unique statement ID (SID), and each value
+  # is an object that contains the parameters defined in the comment below.
+  additional_s3_bucket_policy_statements = null
+
+  # The name to use for the flow log IAM role.
+  cloudwatch_iam_role_name = null
+
+  # The name to use for the CloudWatch Log group.
+  cloudwatch_log_group_name = null
+
+  # The number of days to retain logs in the log group. Valid values: 1, 3, 5, 7,
+  # 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+  cloudwatch_log_retention = 731
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # A map of custom tags to apply to any resources created which accept them. The
+  # key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+  # The id of an ENI. The flow log will be associated with a single elastic network
+  # interface. Exactly one of vpc_id, subnet_id, or eni_id is required.
+  eni_id = null
+
+  # Boolean to determine whether flow logs should be deleted if the S3 bucket is
+  # removed by terraform. Defaults to false.
+  force_destroy_bucket = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  iam_role_permissions_boundary = null
+
+  # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will
+  # be created if this is not supplied.
+  kms_key_arn = null
+
+  # The number of days to keep this KMS Key (a Customer Master Key) around after it
+  # has been marked for deletion. Setting to null defaults to the provider default,
+  # which is the maximum possible value (30 days).
+  kms_key_deletion_window_in_days = null
+
+  # A list of IAM user ARNs with access to the KMS key used with the VPC flow logs.
+  # Required if kms_key_arn is not defined.
+  kms_key_users = null
+
+  # The destination for the flow log. Valid values are cloud-watch-logs or s3.
+  # Defaults to cloud-watch-logs.
+  log_destination_type = "cloud-watch-logs"
+
+  # The fields to include in the flow log record, in the order in which they should
+  # appear. See
+  # https://aws.amazon.com/blogs/aws/learn-from-your-vpc-flow-logs-with-additional-m
+  # ta-data/ for more information including the list of allowed fields.
+  log_format = null
+
+  # The name to use for the S3 bucket.
+  s3_bucket_name = null
+
+  # For s3 log destinations, the number of days after which to expire (permanently
+  # delete) flow logs. Defaults to 365.
+  s3_expiration_transition = 365
+
+  # For s3 log destinations, the number of days after which to transition the flow
+  # log objects to glacier. Defaults to 180.
+  s3_glacier_transition = 180
+
+  # For s3 log destinations, the number of days after which to transition the flow
+  # log objects to infrequent access. Defaults to 30.
+  s3_infrequent_access_transition = 30
+
+  # if log_destination_type is s3, optionally specify a subfolder for log delivery.
+  s3_subfolder = ""
+
+  # The id of VPC subnet. The flow log will be associated with all network
+  # interfaces in the subnet. Exactly one of vpc_id, subnet_id, or eni_id is
+  # required.
+  subnet_id = null
+
+  # The type of traffic to capture in this VPC flow log. Valid values include
+  # ACCEPT, REJECT, or ALL. Defaults to REJECT.
+  traffic_type = "REJECT"
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+  # The id of a VPC. The flow log will be associated with all network interfaces in
+  # the VPC. Exactly one of vpc_id, subnet_id, or eni_id is required.
+  vpc_id = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -566,6 +692,6 @@ The name of the S3 bucket where flow logs are published.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-flow-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "310c2f799439a3f8082c8aea2265df58"
+  "hash": "21a0cfbbe8471e212b2c6cc2fe3deee5"
 }
 ##DOCS-SOURCER-END -->

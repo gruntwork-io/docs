@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.9.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.10.2" lastModifiedVersion="0.9.0"/>
 
 # Simple Queuing Service (SQS) To Lambda Connection Module
 
@@ -21,7 +21,8 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -31,7 +32,7 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 module "sqs_lambda_connection" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.10.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.10.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -53,9 +54,49 @@ module "sqs_lambda_connection" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SQS-LAMBDA-CONNECTION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.10.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The arn of the lambda.
+  lambda_arn = <INPUT REQUIRED>
+
+  # The arn of the queue.
+  sqs_arn = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The largest number of records that Lambda will retrieve from your event source
+  # at the time of invocation. Defaults to 10 for SQS
+  batch_size = 10
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -112,6 +153,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "105d4856d9f4cb403c6dd73c0b068b6c"
+  "hash": "a964108418e4a845751c52a8a39e523f"
 }
 ##DOCS-SOURCER-END -->

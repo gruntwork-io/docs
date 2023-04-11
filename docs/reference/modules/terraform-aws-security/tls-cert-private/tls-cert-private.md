@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.47.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.7" lastModifiedVersion="0.47.0"/>
 
 # Generate a TLS/SSL Certificate for a Private Service
 
@@ -182,6 +182,6 @@ TLS certificates for any public services.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d348e246665c04e04acbb2fcf176481d"
+  "hash": "0275e1eb5b423d14cedb7d2a078ad0df"
 }
 ##DOCS-SOURCER-END -->
