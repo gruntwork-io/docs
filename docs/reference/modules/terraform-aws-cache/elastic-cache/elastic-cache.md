@@ -1,5 +1,5 @@
 ---
-title: "Memcached Module"
+title: "ElasticCache Module"
 hide_title: true
 ---
 
@@ -9,24 +9,24 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.19.2" lastModifiedVersion="0.19.0"/>
+<VersionBadge repoTitle="Cache Modules" version="0.19.2" />
 
-# Memcached Module
+# ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=elastic-cache" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an ElastiCache cluster that runs [Memcached](https://memcached.org/).
+This module creates an ElastiCache cluster, which manages either a Memcached cluster, a single-node Redis instance.
 
-## How do you connect to the Memcached cluster?
+## How do you connect to the ElasticCache cluster?
 
 This module outputs a [Terraform output variable](https://www.terraform.io/intro/getting-started/outputs.html) that
-contains a comma-separated list of addresses of the Memcached nodes. You can programmatically extract this variable in
+contains a comma-separated list of addresses of the ElasticCache nodes. You can programmatically extract this variable in
 your Terraform templates and pass it to other resources (e.g. as an environment variable in an EC2 instance). You'll
 also see the variable at the end of each `terraform apply` call or if you run `terraform output`.
 
-## How do you scale this Memcached cluster?
+## How do you scale this ElasticCache cluster?
 
 *   To scale vertically, increase the size of the nodes using the `instance_type` parameter (see
     [here](https://aws.amazon.com/elasticache/details/#Available_Cache_Node_Types) for valid values).
@@ -42,12 +42,12 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S MEMCACHED MODULE
+# DEPLOY GRUNTWORK'S ELASTIC-CACHE MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "memcached" {
+module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.19.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -57,6 +57,13 @@ module "memcached" {
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = <INPUT REQUIRED>
+
+  # Name of the cache engine to be used for this cache cluster. Valid values are
+  # memcached or redis.
+  engine = <INPUT REQUIRED>
+
+  # Version number of ElasticCache cluster to use.
+  engine_version = <INPUT REQUIRED>
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
   instance_type = <INPUT REQUIRED>
@@ -99,9 +106,6 @@ module "memcached" {
   # Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
-  # Version number of memcached to use (e.g. 1.5.16).
-  memcached_version = "1.5.16"
-
   # Name of the parameter group to associate with this cache cluster. This can be
   # used to configure custom settings for the cluster.
   parameter_group_name = null
@@ -113,7 +117,7 @@ module "memcached" {
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
 
-  # A set of tags to set for the ElastiCache Replication Group.
+  # A set of tags to set for the ElastiCache Cluster.
   tags = {}
 
 }
@@ -127,11 +131,11 @@ module "memcached" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S MEMCACHED MODULE
+# DEPLOY GRUNTWORK'S ELASTIC-CACHE MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/memcached?ref=v0.19.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.2"
 }
 
 inputs = {
@@ -144,6 +148,13 @@ inputs = {
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = <INPUT REQUIRED>
+
+  # Name of the cache engine to be used for this cache cluster. Valid values are
+  # memcached or redis.
+  engine = <INPUT REQUIRED>
+
+  # Version number of ElasticCache cluster to use.
+  engine_version = <INPUT REQUIRED>
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
   instance_type = <INPUT REQUIRED>
@@ -186,9 +197,6 @@ inputs = {
   # Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
 
-  # Version number of memcached to use (e.g. 1.5.16).
-  memcached_version = "1.5.16"
-
   # Name of the parameter group to associate with this cache cluster. This can be
   # used to configure custom settings for the cluster.
   parameter_group_name = null
@@ -200,7 +208,7 @@ inputs = {
   # A set of tags to set for the Security Group created as part of this module.
   security_group_tags = {}
 
-  # A set of tags to set for the ElastiCache Replication Group.
+  # A set of tags to set for the ElastiCache Cluster.
   tags = {}
 
 }
@@ -225,6 +233,22 @@ inputs = {
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that can connect to this ElastiCache cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="engine" requirement="required" type="string">
+<HclListItemDescription>
+
+Name of the cache engine to be used for this cache cluster. Valid values are memcached or redis.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="engine_version" requirement="required" type="string">
+<HclListItemDescription>
+
+Version number of ElasticCache cluster to use.
 
 </HclListItemDescription>
 </HclListItem>
@@ -307,15 +331,6 @@ Specifies the weekly time range for when maintenance on the cache cluster is per
 <HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
 </HclListItem>
 
-<HclListItem name="memcached_version" requirement="optional" type="string">
-<HclListItemDescription>
-
-Version number of memcached to use (e.g. 1.5.16).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.5.16&quot;"/>
-</HclListItem>
-
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -346,7 +361,7 @@ A set of tags to set for the Security Group created as part of this module.
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
-A set of tags to set for the ElastiCache Replication Group.
+A set of tags to set for the ElastiCache Cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -380,11 +395,11 @@ A set of tags to set for the ElastiCache Replication Group.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d6324723f8d8b0d0545d1cc6b645f98"
+  "hash": "c0409644a878023fcc814d1023d6a05f"
 }
 ##DOCS-SOURCER-END -->

@@ -184,7 +184,8 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/m
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -262,9 +263,95 @@ module "ecs_task_scheduler" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-TASK-SCHEDULER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-scheduler?ref=v0.35.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The arn of the ECS cluster to use.
+  ecs_target_cluster_arn = <INPUT REQUIRED>
+
+  # The task definition ARN for cloudwatch schedule to run.
+  ecs_target_task_definition_arn = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Creation of the Eventbridge IAM role within the module. If omitted IAM role ARN
+  # must be provided in ecs_task_iam_role variable.
+  create_iam_role = true
+
+  # String of JSON that defines container overrides that are passed to the task.
+  ecs_target_container_overrides = null
+
+  # Whether or not to enable the execute command functionality for the containers in
+  # this task.
+  ecs_target_enable_execute_command = null
+
+  # Specifies an ECS task group for the task.
+  ecs_target_group = null
+
+  # Specifies the launch type on which your task is running.
+  ecs_target_launch_type = null
+
+  # Object that defines the target network configuration.
+  ecs_target_network_configuration = null
+
+  # An array of placement constraint objects to use for the task.
+  ecs_target_placement_constraints = []
+
+  # Specifies the platform version for the task.
+  ecs_target_platform_version = null
+
+  # Specifies whether to propagate the tags from the task definition to the task.
+  ecs_target_propagate_tags = null
+
+  # The number of tasks to create based on the TaskDefinition.
+  ecs_target_task_count = 1
+
+  # ARN of IAM role for eventbridge to use. Only use if create_iam_role is set to
+  # true
+  ecs_task_iam_role = null
+
+  # Specifies whether to enable Amazon ECS managed tags for the task.
+  enable_ecs_managed_tags = null
+
+  # Set to true to enable the rule and false to disable
+  is_enabled = true
+
+  # The event pattern to use. See README for usage examples. Leave null if using
+  # task_schedule_expression.
+  task_event_pattern = null
+
+  # The scheduling expression to use (rate or cron - see README for usage examples).
+  # Leave null if using task_event_pattern.
+  task_schedule_expression = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -463,6 +550,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5ca83f862df78ab36b5fdd97044974d"
+  "hash": "be03fae73337bbb8c019a627280a9f44"
 }
 ##DOCS-SOURCER-END -->

@@ -106,7 +106,8 @@ exactly match the duo username.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -328,9 +329,239 @@ module "openvpn_server" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S OPENVPN-SERVER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-openvpn.git//modules/openvpn-server?ref=v0.25.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AMI to run for this server.
+  ami = <INPUT REQUIRED>
+
+  # The AWS account ID where the OpenVPN Server will be created. Note that all IAM
+  # Users who receive OpenVPN access must also reside in this AWS account.
+  aws_account_id = <INPUT REQUIRED>
+
+  # The AWS region in which the resources will be created.
+  aws_region = <INPUT REQUIRED>
+
+  # The name of the s3 bucket that will be used to backup PKI secrets
+  backup_bucket_name = <INPUT REQUIRED>
+
+  # The type of EC2 instance to run (e.g. t2.micro)
+  instance_type = <INPUT REQUIRED>
+
+  # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
+  # you don't want to enable Key Pair auth.
+  keypair_name = <INPUT REQUIRED>
+
+  # The Amazon Resource Name (ARN) of the KMS Key that will be used to
+  # encrypt/decrypt backup files.
+  kms_key_arn = <INPUT REQUIRED>
+
+  # The name of the server. This will be used to namespace all resources created by
+  # this module.
+  name = <INPUT REQUIRED>
+
+  # The name of the sqs queue that will be used to receive new certificate requests.
+  # Note that the queue name will be automatically prefixed with
+  # 'openvpn-requests-'.
+  request_queue_name = <INPUT REQUIRED>
+
+  # The name of the sqs queue that will be used to receive certification revocation
+  # requests. Note that the queue name will be automatically prefixed with
+  # 'openvpn-revocations-'.
+  revocation_queue_name = <INPUT REQUIRED>
+
+  # The ids of the subnets where this server should be deployed.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC where this server should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A boolean that specifies if this server will allow SSH connections from the list
+  # of CIDR blocks specified in var.allow_ssh_from_cidr_list.
+  allow_ssh_from_cidr = false
+
+  # A list of IP address ranges in CIDR format from which SSH access will be
+  # permitted. Attempts to access the VPN server from all other IP addresses will be
+  # blocked. This is only used if var.allow_ssh_from_cidr is true.
+  allow_ssh_from_cidr_list = []
+
+  # A boolean that specifies if this server will allow SSH connections from the
+  # security group specified in var.allow_ssh_from_security_group_id.
+  allow_ssh_from_security_group = false
+
+  # The ID of a security group from which SSH connections will be allowed. Only used
+  # if var.allow_ssh_from_security_group is true.
+  allow_ssh_from_security_group_id = null
+
+  # A list of IP address ranges in CIDR format from which VPN access will be
+  # permitted. Attempts to access the VPN server from all other IP addresses will be
+  # blocked.
+  allow_vpn_from_cidr_list = ["0.0.0.0/0"]
+
+  # When a terraform destroy is run, should the backup s3 bucket be destroyed even
+  # if it contains files. Should only be set to true for testing/development
+  backup_bucket_force_destroy = false
+
+  # Number of days that non current versions of file should be kept. Only used if
+  # var.enable_backup_bucket_noncurrent_version_expiration is true
+  backup_bucket_noncurrent_version_expiration_days = 30
+
+  # When set, stream S3 server access logs to the bucket denoted by this name. When
+  # null, but var.enable_backup_bucket_server_access_logging is set to true, create
+  # a new access log bucket for the backup bucket. Only used when
+  # var.enable_backup_bucket_server_access_logging is true.
+  backup_bucket_server_access_logging_bucket_name = null
+
+  # When set, stream S3 server access logs to the prefix in an S3 bucket denoted by
+  # this name. when defined var.backup_bucket_server_access_logging_bucket_name is
+  # used to determine which bucket is used. Only applicable when
+  # var.enable_backup_bucket_server_access_logging is true.
+  backup_bucket_server_access_logging_prefix = null
+
+  # The name of the device to mount.
+  block_device_name = "/dev/xvdcz"
+
+  # When true, create default IAM Groups that you can use to manage permissions for
+  # accessing the SQS queue for requesting and revoking OpenVPN certificates.
+  create_iam_groups = true
+
+  # If true, the launched EC2 instance will be EBS-optimized. Note that for most
+  # instance types, EBS optimization does not incur additional cost, and that many
+  # newer EC2 instance types have EBS optimization enabled by default. However, if
+  # you are running previous generation instances, there may be an additional cost
+  # per hour to run your instances with EBS optimization enabled. Please see:
+  # https://aws.amazon.com/ec2/pricing/on-demand/#EBS-Optimized_Instances
+  ebs_optimized = true
+
+  # Should lifecycle policy to expire noncurrent versions be enabled.
+  enable_backup_bucket_noncurrent_version_expiration = false
+
+  # When true, enable S3 server access logging on the backup bucket. The bucket
+  # where the access logs are streamed to is determined by the
+  # var.backup_bucket_server_access_logging_bucket_name input variable.
+  enable_backup_bucket_server_access_logging = false
+
+  # When set to true AWS will create an eip for the OpenVPN server and output it so
+  # it can be attached during boot with the user data script when set to false no
+  # eip will be created
+  enable_eip = true
+
+  # Set this variable to true to enable the Instance Metadata Service (IMDS)
+  # endpoint, which is used to fetch information such as user-data scripts, instance
+  # IP address and region, etc. Set this variable to false if you do not want the
+  # IMDS endpoint enabled for instances launched into the Auto Scaling Group.
+  enable_imds = true
+
+  # The ARNs of external AWS accounts where your IAM users are defined. If not
+  # empty, this module will create IAM roles that users in those accounts will be
+  # able to assume to get access to the request/revocation SQS queues.
+  external_account_arns = []
+
+  # The length of time, in seconds, for which Amazon SQS can reuse a data key to
+  # encrypt or decrypt messages before calling AWS KMS again. An integer
+  # representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24
+  # hours)
+  kms_data_key_reuse_period_seconds = 300
+
+  # The ID of an AWS-managed customer master key (such as 'alias/aws/sqs') for
+  # Amazon SQS or a custom CMK
+  kms_master_key_id = null
+
+  # The required duration in minutes. This value must be a multiple of 60.
+  market_block_duration_minutes = null
+
+  # The behavior when a Spot Instance is interrupted. Can be hibernate, stop, or
+  # terminate. (Default: terminate).
+  market_instance_interruption_behavior = "terminate"
+
+  # The Spot Instance request type. Can be one-time, or persistent.
+  market_spot_instance_type = null
+
+  # The end date of the request.
+  market_valid_until = null
+
+  # Set to true to request spot instances. Set cluster_instance_spot_price variable
+  # to set a maximum spot price limit.
+  request_spot_instances = false
+
+  # If set to true, the root volume will be deleted when the Instance is terminated.
+  root_volume_delete_on_termination = true
+
+  # The amount of provisioned IOPS. This is only valid for volume_type of io1, and
+  # must be specified if using that type.
+  root_volume_iops = 0
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "gp2"
+
+  # This parameter controls the maximum price to use for reserving spot instances.
+  # This can save you a lot of money on the VPN server, but it also risks that the
+  # server will be down if your requested spot instance price cannot be met.
+  spot_price = null
+
+  # Tags to apply to every resource created by this module.
+  tags = {}
+
+  # The tenancy of this server. Must be one of: default, dedicated, or host.
+  tenancy = "default"
+
+  # Set this variable to true to enable the use of Instance Metadata Service Version
+  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
+  # to its special security hardening, we allow this in order to support the use
+  # case of AMIs built outside of these modules that depend on IMDSv1.
+  use_imdsv1 = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+  # The User Data script to run on this instance when it is booting. If you need to
+  # pass gzipped, base64-encoded data (e.g., for a cloud-init script), use
+  # var.user_data_base64 instead. Either user_data or user_data_base64 are required.
+  user_data = null
+
+  # The base64-encoded User Data script to run on the server when it is booting.
+  # This can be used to pass binary User Data, such as a gzipped cloud-init script.
+  # If you wish to pass in plain text (e.g., typical Bash script) for User Data, use
+  # var.user_data instead. Either user_data or user_data_base64 are required.
+  user_data_base64 = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -817,6 +1048,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9ea9febed619a3d55e674789e422c234"
+  "hash": "9e9ee41f382310f5bb35ee0a597d892b"
 }
 ##DOCS-SOURCER-END -->

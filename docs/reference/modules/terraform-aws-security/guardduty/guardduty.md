@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.66.0"/>
 
 # AWS GuardDuty
 
@@ -81,7 +81,8 @@ If you want to deploy this module in production, check out the following resourc
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -91,7 +92,7 @@ If you want to deploy this module in production, check out the following resourc
 
 module "guardduty" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.67.8"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -137,9 +138,73 @@ module "guardduty" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GUARDDUTY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.67.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the Cloudwatch event rule
+  cloudwatch_event_rule_name = "guardduty-finding-events"
+
+  # Enable or disable creation of the resources of this module. Necessary workaround
+  # when it is desired to set count = 0 for modules, which is not yet possible as of
+  # terraform 0.12.17
+  create_resources = true
+
+  # The type of GuardDuty event to match. Setting this to anything other than the
+  # default will generate noise. This usually only needs to be adjusted for
+  # automated testing purposes.
+  detail_type = "GuardDuty Finding"
+
+  # Enable monitoring and feedback reporting. Setting to false is equivalent to
+  # suspending GuardDuty. Defaults to true
+  enable = true
+
+  # Specifies the frequency of notifications sent for subsequent finding
+  # occurrences. If the detector is a GuardDuty member account, the value is
+  # determined by the GuardDuty administrator account and cannot be modified,
+  # otherwise defaults to SIX_HOURS. For standalone and GuardDuty administrator
+  # accounts, it must be configured in Terraform to enable drift detection. Valid
+  # values for standalone and administrator accounts: FIFTEEN_MINUTES, ONE_HOUR,
+  # SIX_HOURS.
+  finding_publishing_frequency = null
+
+  # Specifies a name for the created SNS topic where findings are published.
+  # publish_findings_to_sns must be set to true.
+  findings_sns_topic_name = "guardduty-findings"
+
+  # Send GuardDuty findings to a SNS topic specified by findings_sns_topic_name.
+  publish_findings_to_sns = false
+
+  # The ID of a customer master key (CMK) to use to encrypt the SNS topic. This
+  # could be an AWS managed CMK (e.g., aws/sns) or customer managed CMK (e.g.,
+  # alias/example-key). Only used if publish_findings_to_sns is true.
+  sns_kms_master_key_id = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -294,6 +359,6 @@ The ID of the GuardDuty detector.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6e25a7b10a9febf5f0458a72def9aa33"
+  "hash": "a9995a43f71b736720ad243209b54220"
 }
 ##DOCS-SOURCER-END -->

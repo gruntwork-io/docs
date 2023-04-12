@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.66.0"/>
 
 # AWS IAM Access Analyzer
 
@@ -67,7 +67,8 @@ If you just want to try this out for experimenting and learning, check out the f
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -77,7 +78,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "iam_access_analyzer_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.67.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -104,9 +105,54 @@ module "iam_access_analyzer_multi_region" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S IAM-ACCESS-ANALYZER-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.67.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A feature flag to enable or disable this module.
+  create_resources = true
+
+  # The name of the IAM Access Analyzer module
+  iam_access_analyzer_name = "iam-access-analyzer"
+
+  # If set to ACCOUNT, the analyzer will only be scanning the current AWS account
+  # it's in. If set to ORGANIZATION - will scan the organization AWS account and the
+  # child accounts.
+  iam_access_analyzer_type = "ACCOUNT"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -117,6 +163,6 @@ module "iam_access_analyzer_multi_region" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c7573b8f5401998dd698bc19b4843300"
+  "hash": "2281e4882a0b09dacac86ccfd4604d51"
 }
 ##DOCS-SOURCER-END -->

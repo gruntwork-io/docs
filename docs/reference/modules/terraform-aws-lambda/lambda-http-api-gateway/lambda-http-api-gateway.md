@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.7"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.21.7"/>
 
 <!-- Frontmatter
 type: service
@@ -83,7 +83,8 @@ information on route syntax that API Gateway expects.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -93,7 +94,7 @@ information on route syntax that API Gateway expects.
 
 module "lambda_http_api_gateway" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -202,9 +203,136 @@ module "lambda_http_api_gateway" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-HTTP-API-GATEWAY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v0.21.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the API Gateway. This will be used to namespace all resources
+  # created by this module.
+  name = <INPUT REQUIRED>
+
+  # Routing configurations for the API Gateway, encoded as a map from route to
+  # lambda function configuration. The keys should be the routes to match (e.g.,
+  # 'GET /pet').
+  route_config = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data. Only used if var.access_log_cloudwatch_log_group_name is
+  # set.
+  access_log_cloudwatch_log_group_kms_key_id = null
+
+  # The name of the CloudWatch Log Group where API Gateway access logs should be
+  # stored. When null, access logs will be disabled.
+  access_log_cloudwatch_log_group_name = null
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever. Only used if
+  # var.access_log_cloudwatch_log_group_name is set.
+  access_log_cloudwatch_log_group_retention_in_days = null
+
+  # The ARN of the destination to deliver matching log events to. Kinesis stream or
+  # Lambda function ARN. Only used if var.access_log_cloudwatch_log_group_name is
+  # set.
+  access_log_cloudwatch_log_group_subscription_destination_arn = null
+
+  # The method used to distribute log data to the destination. Only applicable when
+  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
+  # values are `Random` and `ByLogStream`.
+  access_log_cloudwatch_log_group_subscription_distribution = null
+
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
+  # log events. Only used if var.access_log_cloudwatch_log_group_name is set.
+  access_log_cloudwatch_log_group_subscription_filter_pattern = ""
+
+  # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
+  # ingested log events to the destination. Only applicable when
+  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
+  access_log_cloudwatch_log_group_subscription_role_arn = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values. Only used if
+  # var.access_log_cloudwatch_log_group_name is set.
+  access_log_cloudwatch_log_group_tags = null
+
+  # The format of the access logs as they are logged by API Gateway. Refer to
+  # https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html
+  # apigateway-cloudwatch-log-formats for how each format appears. When set to
+  # CUSTOM, the format specified in var.custom_access_log_format will be used. Valid
+  # values are CLF, JSON, and CUSTOM. Only used when
+  # var.access_log_cloudwatch_log_group_name is set.
+  access_log_format_type = "JSON"
+
+  # A map of tags to assign to the API.
+  api_tags = {}
+
+  # A version identifier for the API.
+  api_version = null
+
+  # The domain to use when looking up the ACM certificate. This is useful for
+  # looking up wild card certificates that will match the given domain name. When
+  # null (default), var.domain_name will be used to look up the certificate.
+  certificate_domain = null
+
+  # The cross-origin resource sharing (CORS) configuration to apply to the API.
+  cors_configuration = null
+
+  # Set to true if you want a DNS record automatically created and pointed at the
+  # API Gateway endpoint.
+  create_route53_entry = false
+
+  # A single line format of the access logs of data, as specified by selected
+  # $context variables. Only used when var.access_log_format_type is CUSTOM.
+  custom_access_log_format = null
+
+  # The description of the API.
+  description = null
+
+  # The domain name to create a route 53 record for. This DNS record will point to
+  # the API Gateway endpoint.
+  domain_name = null
+
+  # The ID of the Route 53 hosted zone into which the Route 53 DNS record should be
+  # written.
+  hosted_zone_id = null
+
+  # Authorizers for the API Gateway, encoded as a map from authorizer name to
+  # authorizer configuration. The keys should be the authorizer name.
+  lambda_authorizers = {}
+
+  # A map of tags to assign to the API Gateway stage.
+  stage_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -606,6 +734,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9f3ccb96163b611e51f4b6dbbded83e6"
+  "hash": "dea49c7034b9972a7d79cf266d62b52c"
 }
 ##DOCS-SOURCER-END -->

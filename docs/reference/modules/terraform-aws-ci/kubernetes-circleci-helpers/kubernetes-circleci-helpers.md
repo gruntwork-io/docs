@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.51.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.51.0"/>
 
 # Kubernetes CircleCI Helpers
 
@@ -104,6 +104,6 @@ job:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ac0cb0f475ddc90e6521a8112d0fae14"
+  "hash": "48ef955a849cf20500c3525a4f556e42"
 }
 ##DOCS-SOURCER-END -->

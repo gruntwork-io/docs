@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.9"/>
 
 # Security Modules
 
@@ -78,6 +78,6 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d31c1e82761c588b2db12c624fdaace6"
+  "hash": "d345452b41c21acac9a37331d05c4e63"
 }
 ##DOCS-SOURCER-END -->

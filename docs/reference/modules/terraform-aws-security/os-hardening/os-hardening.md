@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.67.7"/>
 
 # OS Hardening
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Gruntwork Script Module meant to be used with [Packer](http://packer.io) to build an AMI of a hardened Linux
 OS. At present, the only supported Linux distribution is Amazon Linux. If you wish to add another distribution, please
@@ -275,6 +275,6 @@ needed additional space to build a new AMI was not unreasonable.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bffad41944c6011de711591c739aa829"
+  "hash": "c642a080ba30f9ead819c7c714846bf5"
 }
 ##DOCS-SOURCER-END -->

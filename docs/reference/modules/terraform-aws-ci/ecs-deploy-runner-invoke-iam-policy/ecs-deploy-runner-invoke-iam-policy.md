@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.48.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.48.0"/>
 
 # ECS Deploy Runner Invoke IAM Policies module
 
@@ -47,7 +47,8 @@ resource "aws_iam_role_policy_attachment" "example" {
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -57,7 +58,7 @@ resource "aws_iam_role_policy_attachment" "example" {
 
 module "ecs_deploy_runner_invoke_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -82,9 +83,52 @@ module "ecs_deploy_runner_invoke_iam_policy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-INVOKE-IAM-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-invoke-iam-policy?ref=v0.51.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the CloudWatch Log Group that is used to store the logs for the ECS
+  # Deploy Runner tasks.
+  deploy_runner_cloudwatch_log_group_name = <INPUT REQUIRED>
+
+  # ARN of the ECS Cluster that is used to run the ECS Deploy Runner tasks.
+  deploy_runner_ecs_cluster_arn = <INPUT REQUIRED>
+
+  # ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
+  deploy_runner_invoker_lambda_function_arn = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name to use for the IAM policy that is created.
+  name = "invoke-ecs-deploy-runner"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -170,6 +214,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6481bd57d67b2112bd1623baf254461d"
+  "hash": "b2816eccb4fd98da667fdca2157dcb17"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.20.0"/>
 
 # Keep Warm Module
 
@@ -49,7 +49,8 @@ level](#concurrency) for your functions.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -59,7 +60,7 @@ level](#concurrency) for your functions.
 
 module "keep_warm" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v0.21.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v0.21.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -118,9 +119,86 @@ module "keep_warm" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KEEP-WARM MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v0.21.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map where the keys are the ARNs of Lambda functions to invoke (to keep them
+  # warm) and the values are the event objects to send to those functions when
+  # invoking them.
+  function_to_event_map = <INPUT REQUIRED>
+
+  # The name for this Lambda function. Also used to namespace the other resources
+  # created by this module.
+  name = <INPUT REQUIRED>
+
+  # An expression that defines how often to invoke the functions in
+  # var.function_to_event_map. For example, cron(0 20 * * ? *) or rate(5 minutes).
+  schedule_expression = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values.
+  cloudwatch_log_group_tags = null
+
+  # How many concurrent requests to send to each Lambda function in
+  # var.function_to_event_map. With Lambda, each concurrent requests to the same
+  # function spins up a new container that must be kept warm, so you'll want to set
+  # this number to roughly the expected concurrency you see in real-world usage.
+  concurrency = 1
+
+  # When true, precreate the CloudWatch Log Group to use for log aggregation from
+  # the lambda function execution. This is useful if you wish to customize the
+  # CloudWatch Log Group with various settings such as retention periods and KMS
+  # encryption. When false, AWS Lambda will automatically create a basic log group
+  # to use.
+  should_create_cloudwatch_log_group = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -265,6 +343,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e4b4db48fadc80a0d8589c2f3e0eb3c"
+  "hash": "23d61108052080a450509ff71dc5934f"
 }
 ##DOCS-SOURCER-END -->

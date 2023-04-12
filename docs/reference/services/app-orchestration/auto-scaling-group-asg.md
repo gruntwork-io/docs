@@ -79,7 +79,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -426,9 +427,364 @@ module "asg_service" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ASG-SERVICE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.102.11"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AMI to run on each instance in the ASG. The AMI needs to have
+  # `ec2-baseline` installed, since by default it will run `start_ec2_baseline` on
+  # the User Data.
+  ami = <INPUT REQUIRED>
+
+  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
+  # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
+  # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
+  # to null if passing the ami ID directly.
+  ami_filters = <INPUT REQUIRED>
+
+  # The type of instance to run in the ASG (e.g. t3.medium)
+  instance_type = <INPUT REQUIRED>
+
+  # The maximum number of EC2 Instances to run in this ASG
+  max_size = <INPUT REQUIRED>
+
+  # Wait for this number of EC2 Instances to show up healthy in the load balancer on
+  # creation.
+  min_elb_capacity = <INPUT REQUIRED>
+
+  # The minimum number of EC2 Instances to run in this ASG
+  min_size = <INPUT REQUIRED>
+
+  # The name for the ASG and all other resources created by these templates.
+  name = <INPUT REQUIRED>
+
+  # The list of IDs of the subnets in which to deploy ASG. The list must only
+  # contain subnets in var.vpc_id.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The ID of the VPC in which to deploy the Auto Scaling Group
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of SNS topic ARNs to notify when the health check changes to ALARM, OK,
+  # or INSUFFICIENT_DATA state. Note: these SNS topics MUST be in us-east-1! This is
+  # because Route 53 only sends CloudWatch metrics to us-east-1, so we must create
+  # the alarm in that region, and therefore, can only notify SNS topics in that
+  # region.
+  alarm_sns_topic_arns_us_east_1 = []
+
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
+  # space usage) should send notifications. Also used for the alarms if the Jenkins
+  # backup job fails.
+  alarms_sns_topic_arn = []
+
+  # The CIDR blocks from which to allow access to the ports in var.server_ports
+  allow_inbound_from_cidr_blocks = []
+
+  # The security group IDs from which to allow access to the ports in
+  # var.server_ports
+  allow_inbound_from_security_group_ids = []
+
+  # The CIDR blocks from which to allow SSH access
+  allow_ssh_from_cidr_blocks = []
+
+  # The security group IDs from which to allow SSH access
+  allow_ssh_security_group_ids = []
+
+  # Cloud init scripts to run on the ASG instances during boot. See the part blocks
+  # in https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
+  # syntax
+  cloud_init_parts = {}
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values.
+  cloudwatch_log_group_tags = null
+
+  # Set to true to create a DNS A record in Route 53 for this service.
+  create_route53_entry = false
+
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
+  # this list should be a map with the parameters key, value, and
+  # propagate_at_launch.
+  custom_tags = []
+
+  # The ARN of the Target Group to which to route traffic.
+  default_forward_target_group_arns = []
+
+  # The default OS user for the service AMI. For example, for AWS Ubuntu AMIs, the
+  # default OS user is 'ubuntu'.
+  default_user = "ubuntu"
+
+  # The desired number of EC2 Instances to run in the ASG initially. Note that auto
+  # scaling policies may change this value. If you're using auto scaling policies to
+  # dynamically resize the cluster, you should actually leave this value as null.
+  desired_capacity = null
+
+  # The domain name to register in var.hosted_zone_id (e.g. foo.example.com). Only
+  # used if var.create_route53_entry is true.
+  domain_name = null
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arn.
+  enable_cloudwatch_alarms = true
+
+  # Set to true to add AIM permissions to send logs to CloudWatch. This is useful in
+  # combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/log
+  # /cloudwatch-log-aggregation-scripts to do log aggregation in CloudWatch.
+  enable_cloudwatch_log_aggregation = true
+
+  # Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
+  # useful in combination with
+  # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/age
+  # ts/cloudwatch-agent to get memory and disk metrics in CloudWatch for your Auto
+  # Scaling Group
+  enable_cloudwatch_metrics = true
+
+  # Enable fail2ban to block brute force log in attempts. Defaults to true
+  enable_fail2ban = true
+
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to true
+  enable_ip_lockdown = true
+
+  # If set to true, use Route 53 to perform health checks on var.domain_name.
+  enable_route53_health_check = false
+
+  # A list of metrics the ASG should enable for monitoring all instances in a group.
+  # The allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity,
+  # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
+  # GroupTerminatingInstances, GroupTotalInstances.
+  enabled_metrics = []
+
+  # Since our IAM users are defined in a separate AWS account, this variable is used
+  # to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group
+  # and public SSH key info from that account.
+  external_account_ssh_grunt_role_arn = ""
+
+  # Listener rules for a fixed-response action. See comments below for information
+  # about the parameters.
+  fixed_response_listener_rules = {}
+
+  # Listener rules for a forward action that distributes requests among one or more
+  # target groups. By default, sends traffic to the target groups created for the
+  # ports in var.server_ports. See comments below for information about the
+  # parameters.
+  forward_listener_rules = {}
+
+  # Time, in seconds, after an EC2 Instance comes into service before checking
+  # health.
+  health_check_grace_period = 300
+
+  # The period, in seconds, over which to measure the CPU utilization percentage for
+  # the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
+  # above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization percentage
+  # for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
+  # above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
+  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
+  # or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
+  # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
+  # Auto Scaling Group. Optional if create_route53_entry = false.
+  hosted_zone_id = null
+
+  # An object defining the policy to attach to `iam_role_name` if the IAM role is
+  # going to be created. Accepts a map of objects, where the map keys are sids for
+  # IAM policy statements, and the object fields are the resources, actions, and the
+  # effect ("Allow" or "Deny") of the statement. Ignored if `iam_role_arn` is
+  # provided. Leave as null if you do not wish to use IAM role with Service
+  # Accounts.
+  iam_policy = null
+
+  # The name of a Key Pair that can be used to SSH to the EC2 Instances in the ASG.
+  # Set to null if you don't want to enable Key Pair auth.
+  key_pair_name = null
+
+  # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
+  # Auto Scaling Group. Optional if create_route53_entry = false.
+  lb_hosted_zone_id = null
+
+  # A map of all the listeners on the load balancer. The keys should be the port
+  # numbers and the values should be the ARN of the listener for that port.
+  listener_arns = {}
+
+  # The ports the ALB listens on for requests
+  listener_ports = []
+
+  # A list of Elastic Load Balancer (ELB) names to associate with this ASG. If
+  # you're using the Application Load Balancer (ALB), see var.target_group_arns.
+  load_balancers = []
+
+  # List of users on the ASG EC2 instances that should be permitted access to the
+  # EC2 metadata.
+  metadata_users = []
+
+  # The DNS name that was assigned by AWS to the load balancer upon creation
+  original_lb_dns_name = null
+
+  # Listener rules for a redirect action. See comments below for information about
+  # the parameters.
+  redirect_listener_rules = {}
+
+  # The optional external_id to be used in the us-east-1 provider block defined in
+  # the route53-health-check-alarms module.  This module configures its own AWS
+  # provider to ensure resources are created in us-east-1.
+  route53_health_check_provider_external_id = null
+
+  # The optional AWS profile to be used in the us-east-1 provider block defined in
+  # the route53-health-check-alarms module.  This module configures its own AWS
+  # provider to ensure resources are created in us-east-1.
+  route53_health_check_provider_profile = null
+
+  # The optional role_arn to be used in the us-east-1 provider block defined in the
+  # route53-health-check-alarms module.  This module configures its own AWS provider
+  # to ensure resources are created in us-east-1.
+  route53_health_check_provider_role_arn = null
+
+  # The optional session_name to be used in the us-east-1 provider block defined in
+  # the route53-health-check-alarms module.  This module configures its own AWS
+  # provider to ensure resources are created in us-east-1.
+  route53_health_check_provider_session_name = null
+
+  # The optional path to a credentials file used in the us-east-1 provider block
+  # defined in the route53-health-check-alarms module.  This module configures its
+  # own AWS provider to ensure resources are created in us-east-1.
+  route53_health_check_provider_shared_credentials_file = null
+
+  # A list of ARNs of Secrets Manager secrets that the task should have permissions
+  # to read. The IAM role for the task will be granted
+  # `secretsmanager:GetSecretValue` for each secret in the list. The ARN can be
+  # either the complete ARN, including the randomly generated suffix, or the ARN
+  # without the suffix. If the latter, the module will look up the full ARN
+  # automatically. This is helpful in cases where you don't yet know the randomly
+  # generated suffix because the rest of the ARN is a predictable value.
+  secrets_access = []
+
+  # The ports the EC2 instances listen on for requests. A Target Group will be
+  # created for each port and any rules specified in var.forward_rules will forward
+  # traffic to these Target Groups.
+  server_ports = {}
+
+  # When true, precreate the CloudWatch Log Group to use for log aggregation from
+  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
+  # Group with various settings such as retention periods and KMS encryption. When
+  # false, the CloudWatch agent will automatically create a basic log group to use.
+  should_create_cloudwatch_log_group = true
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to the instances. To omit this variable, set it to an
+  # empty string (do NOT use null, or Terraform will complain).
+  ssh_grunt_iam_group = "ssh-grunt-sudo-users"
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to the instances with sudo permissions. To omit this
+  # variable, set it to an empty string (do NOT use null, or Terraform will
+  # complain).
+  ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
+
+  # The port at which SSH will be allowed from var.allow_ssh_from_cidr_blocks and
+  # var.allow_ssh_security_group_ids
+  ssh_port = 22
+
+  # The key for the tag that will be used to associate a unique identifier with this
+  # ASG. This identifier will persist between redeploys of the ASG, even though the
+  # underlying ASG is being deleted and replaced with a different one.
+  tag_asg_id_key = "AsgId"
+
+  # A list of policies to decide how the instances in the auto scale group should be
+  # terminated. The allowed values are OldestInstance, NewestInstance,
+  # OldestLaunchConfiguration, ClosestToNextInstanceHour, Default.
+  termination_policies = []
+
+  # Whether or not ELB or ALB health checks should be enabled. If set to true, the
+  # load_balancers or target_groups_arns variable should be set depending on the
+  # load balancer type you are using. Useful for testing connectivity before health
+  # check endpoints are available.
+  use_elb_health_checks = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+  # A maximum duration that Terraform should wait for the EC2 Instances to be
+  # healthy before timing out.
+  wait_for_capacity_timeout = "10m"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -1666,6 +2022,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1e994a9d055db84df30ed728729ebbb0"
+  "hash": "a042c63ca371d373d4ecccb3a484e66d"
 }
 ##DOCS-SOURCER-END -->

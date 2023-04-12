@@ -56,7 +56,8 @@ will be `t2.micro`, as that's available in all AZs in `eu-west-1`. However, if y
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -80,9 +81,41 @@ module "instance_type" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S INSTANCE-TYPE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/instance-type?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of instance types to look up in the current AWS region. We recommend
+  # putting them in order of preference, as the recommended_instance_type output
+  # variable will contain the first instance type from this list that is available
+  # in all AZs.
+  instance_types = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -133,6 +166,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf01160dea8e8d4775fdabd9c5931960"
+  "hash": "3eebf57769c098f3c87a10970ea93c4b"
 }
 ##DOCS-SOURCER-END -->

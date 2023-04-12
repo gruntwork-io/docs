@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.20.0"/>
 
 # Scheduled Lambda Job Module
 
@@ -28,7 +28,8 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/mo
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -38,7 +39,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/mo
 
 module "scheduled_lambda_job" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -76,9 +77,65 @@ module "scheduled_lambda_job" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SCHEDULED-LAMBDA-JOB MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/scheduled-lambda-job?ref=v0.21.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the lambda function.
+  lambda_function_arn = <INPUT REQUIRED>
+
+  # The name of the lambda function.
+  lambda_function_name = <INPUT REQUIRED>
+
+  # An expression that defines the schedule for this lambda job. For example, cron(0
+  # 20 * * ? *) or rate(5 minutes).
+  schedule_expression = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if this module should create
+  # anything or not.
+  create_resources = true
+
+  # JSON text that will be passed to the lambda function on each invoke.
+  lambda_function_input = null
+
+  # The namespace to use for all resources created by this module. If not set,
+  # var.lambda_function_name, with '-scheduled' as a suffix, is used.
+  namespace = null
+
+  # A map of tags to apply to the event rule.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -183,6 +240,6 @@ Cloudwatch Event Rule schedule expression
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88a19f19546cb1508eb94f457becdf02"
+  "hash": "c13f9c64211d355634fca7288a0df226"
 }
 ##DOCS-SOURCER-END -->

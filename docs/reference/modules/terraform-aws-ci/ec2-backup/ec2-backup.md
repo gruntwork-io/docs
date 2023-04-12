@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.51.1"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.51.1"/>
 
 # EC2 Backup Lambda Function Module
 
@@ -92,7 +92,8 @@ automatically delete older snapshots. You can specify two parameters to control 
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -102,7 +103,7 @@ automatically delete older snapshots. You can specify two parameters to control 
 
 module "ec_2_backup" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.51.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.51.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -157,9 +158,82 @@ module "ec_2_backup" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EC2-BACKUP MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ec2-backup?ref=v0.51.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of SNS topics to notify if the CloudWatch alarm goes off because the
+  # backup job failed.
+  alarm_sns_topic_arns = <INPUT REQUIRED>
+
+  # How often, in seconds, the backup lambda function is expected to run. This is
+  # the same as var.backup_job_schedule_expression, but unfortunately, Terraform
+  # offers no way to convert rate expressions to seconds. We add a CloudWatch alarm
+  # that triggers if the value of var.cloudwatch_metric_name and
+  # var.cloudwatch_metric_namespace isn't updated within this time period, as that
+  # indicates the backup failed to run.
+  backup_job_alarm_period = <INPUT REQUIRED>
+
+  # An expression that defines the schedule for how often to run the backup lambda
+  # function. For example, cron(0 20 * * ? *) or rate(1 day).
+  backup_job_schedule_expression = <INPUT REQUIRED>
+
+  # The name for the CloudWatch Metric the AWS lambda backup function will increment
+  # every time the job completes successfully.
+  cloudwatch_metric_name = <INPUT REQUIRED>
+
+  # The namespace for the CloudWatch Metric the AWS lambda backup function will
+  # increment every time the job completes successfully.
+  cloudwatch_metric_namespace = <INPUT REQUIRED>
+
+  # Delete all snapshots older than this value (e.g., 30d, 5h, or 15m). For example,
+  # setting this to 30d means all snapshots more than 30 days old will be deleted.
+  delete_older_than = <INPUT REQUIRED>
+
+  # The name of the EC2 Instance to backup. This must be the value of the tag 'Name'
+  # on that Instance.
+  instance_name = <INPUT REQUIRED>
+
+  # The minimum number of snapshots to keep around. This ensures some number of
+  # snapshots are never deleted, regardless of the value of var.delete_older_than.
+  require_at_least = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -273,6 +347,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab6d444b3dd989674654e76a1b06d863"
+  "hash": "86968ddce70c404b12b0cde78dde0969"
 }
 ##DOCS-SOURCER-END -->

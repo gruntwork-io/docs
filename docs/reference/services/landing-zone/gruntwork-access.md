@@ -80,7 +80,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -130,9 +131,67 @@ module "gruntwork_access" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S GRUNTWORK-ACCESS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/gruntwork-access?ref=v0.102.11"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to true to grant your security account, with the account ID specified in
+  # var.security_account_id, access to the IAM role. This is required for deploying
+  # a Reference Architecture.
+  grant_security_account_access = <INPUT REQUIRED>
+
+  # The ID of your security account (where IAM users are defined). Required for
+  # deploying a Reference Architecture, as the Gruntwork team deploys an EC2
+  # instance in the security account, and that instance assumes this IAM role to get
+  # access to all the other child accounts and bootstrap the deployment process.
+  security_account_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS account that will be allowed to assume the IAM role.
+  gruntwork_aws_account_id = "583800379690"
+
+  # The name to use for the IAM role
+  iam_role_name = "GruntworkAccountAccessRole"
+
+  # The name of the AWS Managed Policy to attach to the IAM role. To deploy a
+  # Reference Architecture, the Gruntwork team needs AdministratorAccess, so this is
+  # the default.
+  managed_policy_name = "AdministratorAccess"
+
+  # If set to true, require MFA to assume the IAM role from the Gruntwork account.
+  require_mfa = true
+
+  # Tags to apply to all resources created by this module
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -238,6 +297,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "91b3ff468ecd28a17384dbaf50316d68"
+  "hash": "b281ab8c33119526cc47527ddac25f9d"
 }
 ##DOCS-SOURCER-END -->

@@ -95,7 +95,8 @@ See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-d
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -123,9 +124,45 @@ module "backup_plan" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S BACKUP-PLAN MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  plans = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name to use for the backup service role that is created and attached to
+  # backup plans.
+  backup_service_role_name = "backup-service-role"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -213,6 +250,6 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "976d446a9ff536897174e23389ea6ce6"
+  "hash": "da1342839b8ab55da7679cc0d34a0444"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.48.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.48.0"/>
 
 # IAM Policies
 
@@ -72,6 +72,6 @@ Some modules are configurable to support whatever level of
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "307b1dbd3f9400c878197d948b29fd55"
+  "hash": "a4aeb7682dd54e923ebb86630b8084f9"
 }
 ##DOCS-SOURCER-END -->

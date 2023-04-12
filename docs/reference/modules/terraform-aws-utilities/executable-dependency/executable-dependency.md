@@ -65,7 +65,8 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -112,9 +113,64 @@ module "executable_dependency" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EXECUTABLE-DEPENDENCY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The URL to download the executable from if var.executable is not found on the
+  # system PATH or in var.install_dir.
+  download_url = <INPUT REQUIRED>
+
+  # The executable to look for on the system PATH and in var.install_dir. If not
+  # found, this executable will be downloaded from var.download_url.
+  executable = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If set to true, append the operating system and architecture to the URL. E.g.,
+  # Append linux_amd64 if this code is being run on a 64 bit Linux OS.
+  append_os_arch = true
+
+  # Set to false to have disable this module, so it does not try to download the
+  # executable, and always returns its path unchanged. This weird parameter exists
+  # solely because Terraform does not support conditional modules. Therefore, this
+  # is a hack to allow you to conditionally decide if this module should run or not.
+  enabled = true
+
+  # The folder to copy the executable to after downloading it from var.download_url.
+  # If set to null (the default), the executable will be copied to a folder in the
+  # system temp directory. The folder will be named based on an md5 hash of
+  # var.download_url, so for each var.download_url, the executable will only have to
+  # be downloaded once.
+  install_dir = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -194,6 +250,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b525b9c565ec37f4fb12f992d067badc"
+  "hash": "0dfe956315e9e6f4287d5b64e0f340d7"
 }
 ##DOCS-SOURCER-END -->

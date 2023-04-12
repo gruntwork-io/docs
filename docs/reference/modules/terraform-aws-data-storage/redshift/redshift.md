@@ -73,7 +73,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -175,6 +176,9 @@ module "redshift" {
   # Timeout for DB deleting
   deleting_timeout = "40m"
 
+  # Elastic IP that will be associated with the cluster
+  elastic_ip = null
+
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
   enhanced_vpc_routing = false
@@ -246,9 +250,193 @@ module "redshift" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REDSHIFT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The instance type to use for the db (e.g. dc2.large)
+  instance_type = <INPUT REQUIRED>
+
+  # The name used to namespace all resources created by these templates, including
+  # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
+  # only lowercase alphanumeric characters, hyphens.
+  name = <INPUT REQUIRED>
+
+  # The number of nodes in the cluster
+  number_of_nodes = <INPUT REQUIRED>
+
+  # A list of subnet ids where the database should be deployed. In the standard
+  # Gruntwork VPC setup, these should be the private persistence subnet ids.
+  subnet_ids = <INPUT REQUIRED>
+
+  # The id of the VPC in which this DB should be deployed.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of CIDR-formatted IP address ranges that can connect to this DB. Should
+  # typically be the CIDR blocks of the private app subnet in this VPC plus the
+  # private subnet in the mgmt VPC. This is ignored if create_subnet_group=false.
+  allow_connections_from_cidr_blocks = []
+
+  # A list of Security Groups that can connect to this DB.
+  allow_connections_from_security_groups = []
+
+  # Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be
+  # permitted. Note that these updates must always be manually performed and will
+  # never automatically applied.
+  allow_major_version_upgrade = true
+
+  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
+  # the database needs to connect to certain IP addresses for special operation
+  allow_outbound_connections_from_cidr_blocks = []
+
+  # Indicates that minor engine upgrades will be applied automatically to the DB
+  # instance during the maintenance window. If set to true, you should set
+  # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
+  # and not 5.7.11); otherwise, you'll get Terraform state drift. See
+  # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
+  # for more details.
+  auto_minor_version_upgrade = true
+
+  # The description of the aws_db_security_group that is created. Defaults to
+  # 'Security group for the var.name DB' if not specified.
+  aws_db_security_group_description = null
+
+  # The name of the aws_db_security_group that is created. Defaults to var.name if
+  # not specified.
+  aws_db_security_group_name = null
+
+  # How many days to keep backup snapshots around before cleaning them up. Must be 1
+  # or greater to support read replicas.
+  backup_retention_period = 21
+
+  # The description of the cluster_subnet_group that is created. Defaults to 'Subnet
+  # group for the var.name DB' if not specified.
+  cluster_subnet_group_description = null
+
+  # The name of the cluster_subnet_group that is created, or an existing one to use
+  # if cluster_subnet_group is false. Defaults to var.name if not specified.
+  cluster_subnet_group_name = null
+
+  # If false, the DB will bind to aws_db_subnet_group_name and the CIDR will be
+  # ignored (allow_connections_from_cidr_blocks)
+  create_subnet_group = true
+
+  # Timeout for DB creating
+  creating_timeout = "75m"
+
+  # A map of custom tags to apply to the RDS Instance and the Security Group created
+  # for it. The key is the tag name and the value is the tag value.
+  custom_tags = {}
+
+  # The name for your database of up to 8 alpha-numeric characters. If you do not
+  # provide a name, Amazon RDS will not create a database in the DB cluster you are
+  # creating.
+  db_name = "dev"
+
+  # Timeout for DB deleting
+  deleting_timeout = "40m"
+
+  # Elastic IP that will be associated with the cluster
+  elastic_ip = null
+
+  # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
+  # between the cluster and data repositories to go through your VPC.
+  enhanced_vpc_routing = false
+
+  # The name of the final_snapshot_identifier. Defaults to var.name-final-snapshot
+  # if not specified.
+  final_snapshot_name = null
+
+  # A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be
+  # associated to the cluster at any time.
+  iam_roles = null
+
+  # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
+  # var.storage_encrypted is true. If you leave this blank, the default RDS KMS key
+  # for the account will be used.
+  kms_key_arn = null
+
+  # Configures logging information such as queries and connection attempts for the
+  # specified Amazon Redshift cluster. If enable is set to true. The bucket_name and
+  # s3_key_prefix must be set. The bucket must be in the same region as the cluster
+  # and the cluster must have read bucket and put object permission.
+  logging = {"bucket_name":null,"enable":false,"s3_key_prefix":null}
+
+  # The weekly day and time range during which system maintenance can occur (e.g.
+  # wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may
+  # even be a downtime during maintenance windows.
+  maintenance_window = "sun:07:00-sun:08:00"
+
+  # The password for the master user. If var.snapshot_identifier is non-empty, this
+  # value is ignored. Required unless var.replicate_source_db is set.
+  master_password = null
+
+  # The username for the master user. Required unless var.replicate_source_db is
+  # set.
+  master_username = null
+
+  # Name of a Redshift parameter group to associate.
+  parameter_group_name = null
+
+  # The port the DB will listen on (e.g. 3306)
+  port = 5439
+
+  # WARNING: - In nearly all cases a database should NOT be publicly accessible.
+  # Only set this to true if you want the database open to the internet.
+  publicly_accessible = false
+
+  # Determines whether a final DB snapshot is created before the DB instance is
+  # deleted. Be very careful setting this to true; if you do, and you delete this DB
+  # instance, you will not have any backups of the data!
+  skip_final_snapshot = false
+
+  # If non-null, the name of the cluster the source snapshot was created from.
+  snapshot_cluster_identifier = null
+
+  # If non-null, the Redshift cluster will be restored from the given Snapshot ID.
+  # This is the Snapshot ID you'd find in the Redshift console, e.g:
+  # rs:production-2015-06-26-06-05.
+  snapshot_identifier = null
+
+  # Required if you are restoring a snapshot you do not own, optional if you own the
+  # snapshot. The AWS customer account used to create or copy the snapshot.
+  snapshot_owner_account = null
+
+  # Specifies whether the DB instance is encrypted.
+  storage_encrypted = true
+
+  # Timeout for DB updating
+  updating_timeout = "75m"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -435,6 +623,15 @@ Timeout for DB deleting
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
+</HclListItem>
+
+<HclListItem name="elastic_ip" requirement="optional" type="string">
+<HclListItemDescription>
+
+Elastic IP that will be associated with the cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
@@ -698,6 +895,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ca516110a2a36a853a2c96c0d7492ad"
+  "hash": "d2059774571319c68879af8788d36020"
 }
 ##DOCS-SOURCER-END -->

@@ -29,7 +29,8 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/m
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -71,9 +72,59 @@ module "lambda_share_snapshot" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-SHARE-SNAPSHOT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the RDS database
+  rds_db_arn = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if this module should create
+  # anything or not.
+  create_resources = true
+
+  # The maximum number of retries the lambda function will make while waiting for
+  # the snapshot to be available
+  max_retries = 60
+
+  # The name for the lambda function and other resources created by these Terraform
+  # configurations
+  name = "share-rds-snapshot"
+
+  # The amount of time, in seconds, between retries.
+  sleep_between_retries_sec = 60
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -152,6 +203,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d281cba334269158f49bd77fea8003d"
+  "hash": "6ff21946a156cf9ae9352603f8f78bd7"
 }
 ##DOCS-SOURCER-END -->

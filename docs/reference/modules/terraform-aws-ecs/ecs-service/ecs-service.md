@@ -135,7 +135,8 @@ Production-ready sample code from the Reference Architecture:
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -511,9 +512,393 @@ module "ecs_service" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-SERVICE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.35.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # How many copies of the Task to run across the cluster.
+  desired_number_of_tasks = <INPUT REQUIRED>
+
+  # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
+  ecs_cluster_arn = <INPUT REQUIRED>
+
+  # The JSON text of the ECS Task Container Definitions. This portion of the ECS
+  # Task Definition defines the Docker container(s) to be run along with all their
+  # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
+  ecs_task_container_definitions = <INPUT REQUIRED>
+
+  # The name of the service. This is used to namespace all resources created by this
+  # module.
+  service_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of additional principals who can assume the task and task execution roles
+  additional_task_assume_role_policy_principals = []
+
+  # The time period, in seconds, during which requests from a client should be
+  # routed to the same Target. After this time period expires, the load
+  # balancer-generated cookie is considered stale. The acceptable range is 1 second
+  # to 1 week (604800 seconds). The default value is 1 day (86400 seconds). Only
+  # used if var.elb_target_group_name is set.
+  alb_sticky_session_cookie_duration = 86400
+
+  # The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible
+  # values. Only used if var.elb_target_group_name is set.
+  alb_sticky_session_type = "lb_cookie"
+
+  # The capacity provider strategy to use for the service. Note that the capacity
+  # providers have to be present on ECS cluster before deploying ECS service. When
+  # provided, var.launch_type is ignored.
+  capacity_provider_strategy = []
+
+  # The name of the container, as it appears in the var.task_arn Task definition, to
+  # associate with a CLB. Currently, ECS can only associate a CLB with a single
+  # container per service. Only used if clb_name is set.
+  clb_container_name = null
+
+  # The port on the container in var.clb_container_name to associate with an CLB.
+  # Currently, ECS can only associate a CLB with a single container per service.
+  # Only used if clb_name is set.
+  clb_container_port = null
+
+  # The name of a Classic Load Balancer (CLB) to associate with this service.
+  # Containers in the service will automatically register with the CLB when booting
+  # up. Set to null if using ELBv2.
+  clb_name = null
+
+  # Custom name to use for the ECS service IAM role that is created. Note that this
+  # service IAM role is only needed when the ECS service is being used with an ELB.
+  # If blank (default), the name will be set to var.service_name.
+  custom_ecs_service_role_name = null
+
+  # Prefix for name of the IAM role used by the ECS task. If not provide, will be
+  # set to var.service_name.
+  custom_iam_role_name_prefix = null
+
+  # Prefix for name of task execution IAM role and policy that grants access to
+  # CloudWatch and ECR. If not provide, will be set to var.service_name.
+  custom_task_execution_name_prefix = null
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # Set the logging level of the deployment check script. You can set this to
+  # `error`, `warn`, or `info`, in increasing verbosity.
+  deployment_check_loglevel = "info"
+
+  # Seconds to wait before timing out each check for verifying ECS service
+  # deployment. See ecs_deploy_check_binaries for more details.
+  deployment_check_timeout_seconds = 600
+
+  # Set enable to 'true' to prevent the task from attempting to continuously
+  # redeploy after a failed health check. Set rollback to 'true' to also
+  # automatically roll back to the last successful deployment. If this setting is
+  # used, both 'enable' and 'rollback' are required fields.
+  deployment_circuit_breaker = null
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
+
+  # The upper limit, as a percentage of var.desired_number_of_tasks, of the number
+  # of running tasks that can be running in a service during a deployment. Setting
+  # this to more than 100 means that during deployment, ECS will deploy new
+  # instances of a Task before undeploying the old ones.
+  deployment_maximum_percent = 200
+
+  # The lower limit, as a percentage of var.desired_number_of_tasks, of the number
+  # of running tasks that must remain running and healthy in a service during a
+  # deployment. Setting this to less than 100 means that during deployment, ECS may
+  # undeploy old instances of a Task before deploying new ones.
+  deployment_minimum_healthy_percent = 100
+
+  # How many Tasks to run of the var.ecs_task_definition_canary to deploy for a
+  # canary deployment. Typically, only 0 or 1 should be used.
+  desired_number_of_canary_tasks_to_run = 0
+
+  # Check alias target health before routing to the service. Only used if
+  # var.discovery_use_public_dns is true.
+  discovery_alias_record_evaluate_target_health = true
+
+  # The number of 30-second intervals that you want service discovery to wait before
+  # it changes the health status of a service instance. Maximum value of 10. Only
+  # used if var.use_service_discovery is true.
+  discovery_custom_health_check_failure_threshold = 1
+
+  # The routing policy that you want to apply to all records that Route 53 creates
+  # when you register an instance and specify the service. Valid Values: MULTIVALUE,
+  # WEIGHTED. Only used if var.use_service_discovery is true.
+  discovery_dns_routing_policy = "MULTIVALUE"
+
+  # The amount of time, in seconds, that you want DNS resolvers to cache the
+  # settings for this resource record set. Only used if var.use_service_discovery is
+  # true.
+  discovery_dns_ttl = 60
+
+  # The name by which the service can be discovered. It will be used to form the
+  # service discovery address along with the namespace name in
+  # <discovery_name>.<namespace_name>. So if your discovery name is 'my-service' and
+  # your namespace name is 'my-company-staging.local', the hostname for the service
+  # will be 'my-service.my-company-staging.local'. Only used if
+  # var.use_service_discovery is true.
+  discovery_name = null
+
+  # The id of the previously created namespace for service discovery. It will be
+  # used to form the service discovery address along with the discovery name in
+  # <discovery_name>.<namespace_name>. So if your discovery name is 'my-service' and
+  # your namespace name is 'my-company-staging.local', the hostname for the service
+  # will be 'my-service.my-company-staging.local'. Only used if
+  # var.use_service_discovery is true.
+  discovery_namespace_id = null
+
+  # The ID of the original Route 53 Hosted Zone where associated with the domain
+  # registrar. Only used if var.discovery_use_public_dns is true.
+  discovery_original_public_route53_zone_id = null
+
+  # The ID of the new Route 53 Hosted Zone created for the public DNS namespace.
+  # Only used if var.discovery_use_public_dns is true.
+  discovery_public_dns_namespace_route53_zone_id = null
+
+  # Set this variable to 'true' when using public DNS namespaces. Only used if
+  # var.use_service_discovery is true.
+  discovery_use_public_dns = false
+
+  # The configuration to use when setting up the VPC network mode. Required and only
+  # used if ecs_task_definition_network_mode is awsvpc.
+  ecs_service_network_configuration = null
+
+  # The JSON text of the ECS Task Definition to be run for the canary. This defines
+  # the Docker container(s) to be run along with all their properties. It should
+  # adhere to the format described at https://goo.gl/ob5U3g.
+  ecs_task_definition_canary = "[{ \"name\":\"not-used\" }]"
+
+  # The Docker networking mode to use for the containers in the task. The valid
+  # values are none, bridge, awsvpc, and host
+  ecs_task_definition_network_mode = "bridge"
+
+  # (Optional) A map of EFS volumes that containers in your task may use. Each item
+  # in the list should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#efs-volum
+  # -configuration-arguments.
+  efs_volumes = {}
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role for the ELB.
+  elb_role_permissions_boundary_arn = null
+
+  # The amount time for targets to warm up before the load balancer sends them a
+  # full share of requests. The range is 30-900 seconds or 0 to disable. The default
+  # value is 0 seconds. Only used if var.elb_target_group_name is set.
+  elb_slow_start = 0
+
+  # The amount of time for Elastic Load Balancing to wait before changing the state
+  # of a deregistering target from draining to unused. The range is 0-3600 seconds.
+  # Only used if var.elb_target_group_name is set.
+  elb_target_group_deregistration_delay = 300
+
+  # The ID of the VPC in which to create the target group. Only used if
+  # var.elb_target_group_name is set.
+  elb_target_group_vpc_id = null
+
+  # Configurations for ELB target groups for ALBs and NLBs that should be associated
+  # with the ECS Tasks. Each entry corresponds to a separate target group. Set to
+  # the empty object ({}) if you are not using an ALB or NLB.
+  elb_target_groups = {}
+
+  # Whether or not to enable the ECS deployment check binary to make terraform wait
+  # for the task to be deployed. See ecs_deploy_check_binaries for more details. You
+  # must install the companion binary before the check can be used. Refer to the
+  # README for more details.
+  enable_ecs_deployment_check = true
+
+  # Specifies whether to enable Amazon ECS Exec for the tasks within the service.
+  enable_execute_command = false
+
+  # The name of the existing task execution role to be used in place of creating a
+  # new role.
+  existing_ecs_task_execution_role_name = null
+
+  # The name of the existing task role to be used in place of creating a new role.
+  existing_ecs_task_role_name = null
+
+  # If true, enable health checks on the target group. Only applies to ELBv2. For
+  # CLBs, health checks are not configurable.
+  health_check_enabled = true
+
+  # Seconds to ignore failing load balancer health checks on newly instantiated
+  # tasks to prevent premature shutdown, up to 2,147,483,647. Only valid for
+  # services configured to use load balancers.
+  health_check_grace_period_seconds = 0
+
+  # The number of consecutive successful health checks required before considering
+  # an unhealthy Target healthy. The acceptable range is 2 to 10.
+  health_check_healthy_threshold = 5
+
+  # The approximate amount of time, in seconds, between health checks of an
+  # individual Target. Minimum value 5 seconds, Maximum value 300 seconds.
+  health_check_interval = 30
+
+  # The HTTP codes to use when checking for a successful response from a Target. You
+  # can specify multiple values (e.g. '200,202') or a range of values (e.g.
+  # '200-299'). Required when using ALBs.
+  health_check_matcher = "200"
+
+  # The ping path that is the destination on the Targets for health checks. Required
+  # when using ALBs.
+  health_check_path = "/"
+
+  # The port the ELB uses when performing health checks on Targets. The default is
+  # to use the port on which each target receives traffic from the load balancer,
+  # indicated by the value 'traffic-port'.
+  health_check_port = "traffic-port"
+
+  # The amount of time, in seconds, during which no response from a Target means a
+  # failed health check. The acceptable range is 2 to 60 seconds.
+  health_check_timeout = 5
+
+  # The number of consecutive failed health checks required before considering a
+  # target unhealthy. The acceptable range is 2 to 10. For NLBs, this value must be
+  # the same as the health_check_healthy_threshold.
+  health_check_unhealthy_threshold = 2
+
+  # The launch type of the ECS service. Must be one of EC2 or FARGATE. When using
+  # FARGATE, you must set the network mode to awsvpc and configure it. When using
+  # EC2, you can configure the placement strategy using the variables
+  # placement_strategy_type, placement_strategy_field, placement_constraint_type,
+  # placement_constraint_expression. This variable is ignored if
+  # var.capacity_provider_strategy is provided.
+  launch_type = "EC2"
+
+  # A map of tags to apply to the elb target group. Each item in this list should be
+  # a map with the parameters key and value.
+  lb_target_group_tags = {}
+
+  # Listener rules list required first to be provisioned before creation of ECS
+  # cluster.
+  listener_rule_ids = []
+
+  # The maximum number of ECS Task instances of the ECS Service to run. Auto scaling
+  # will never scale out above this number. Must be set when var.use_auto_scaling is
+  # true.
+  max_number_of_tasks = null
+
+  # The minimum number of ECS Task instances of the ECS Service to run. Auto scaling
+  # will never scale in below this number. Must be set when var.use_auto_scaling is
+  # true.
+  min_number_of_tasks = null
+
+  placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
+
+  placement_constraint_type = "memberOf"
+
+  placement_strategy_field = "cpu"
+
+  placement_strategy_type = "binpack"
+
+  # The platform version on which to run your service. Only applicable for
+  # launch_type set to FARGATE. Defaults to LATEST.
+  platform_version = null
+
+  # Whether tags should be propogated to the tasks from the service or from the task
+  # definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE.
+  # If set to null, no tags are created for tasks.
+  propagate_tags = "SERVICE"
+
+  # Configuration block for the App Mesh proxy. The only supported value for `type`
+  # is "APPMESH". Use the name of the Envoy proxy container from
+  # `container_definitions` as the `container_name`. `properties` is a map of
+  # network configuration parameters to provide the Container Network Interface
+  # (CNI) plugin.
+  proxy_configuration = null
+
+  # Define runtime platform options
+  runtime_platform = null
+
+  # A map of tags to apply to the ECS service. Each item in this list should be a
+  # map with the parameters key and value.
+  service_tags = {}
+
+  # The CPU units for the instances that Fargate will spin up. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
+  # ate-tasks-size. Required when using FARGATE launch type.
+  task_cpu = null
+
+  # A map of tags to apply to the task definition. Each item in this list should be
+  # a map with the parameters key and value.
+  task_definition_tags = {}
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role for the ECS task execution.
+  task_execution_role_permissions_boundary_arn = null
+
+  # The memory units for the instances that Fargate will spin up. Options here:
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#far
+  # ate-tasks-size. Required when using FARGATE launch type.
+  task_memory = null
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role for the ECS task.
+  task_role_permissions_boundary_arn = null
+
+  # If true, the ALB will use use Sticky Sessions as described at
+  # https://goo.gl/VLcNbk. Only used if var.elb_target_group_name is set. Note that
+  # this can only be true when associating with an ALB. This cannot be used with
+  # CLBs or NLBs.
+  use_alb_sticky_sessions = false
+
+  # Set this variable to 'true' to tell the ECS service to ignore
+  # var.desired_number_of_tasks and instead use auto scaling to determine how many
+  # Tasks of this service to run.
+  use_auto_scaling = false
+
+  # Set this variable to 'true' to setup service discovery for the ECS service by
+  # automatically registering the task IPs to a registry that is created within this
+  # module. Currently this is only supported with the 'awsvpc' networking mode.
+  use_service_discovery = false
+
+  # (Optional) A map of volume blocks that containers in your task may use. The key
+  # should be the name of the volume and the value should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-bl
+  # ck-arguments, but not including the name parameter.
+  volumes = {}
+
+  # If true, Terraform will wait for the service to reach a steady state—as in, the
+  # ECS tasks you wanted are actually deployed—before 'apply' is considered
+  # complete.
+  wait_for_steady_state = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -1447,6 +1832,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ca6eabcbd661c4da699e1ff1812eba3b"
+  "hash": "8128f936b9cc7fc13f620eae3f9d589e"
 }
 ##DOCS-SOURCER-END -->

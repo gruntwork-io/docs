@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.3"/>
+<VersionBadge repoTitle="VPC Modules" version="0.22.7" lastModifiedVersion="0.22.3"/>
 
 # Network ACL Inbound Terraform Module
 
@@ -36,7 +36,8 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -46,7 +47,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "network_acl_inbound" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-inbound?ref=v0.22.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-inbound?ref=v0.22.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -117,9 +118,98 @@ module "network_acl_inbound" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S NETWORK-ACL-INBOUND MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-inbound?ref=v0.22.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The number to use for the egress rule that will be added. Each egress rule in a
+  # network ACL must have a unique rule number.
+  egress_rule_number = <INPUT REQUIRED>
+
+  # A list of CIDR blocks from which inbound connections should be allowed to
+  # var.inbound_ports
+  inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # Allow all inbound traffic on ports between var.inbound_from_port and
+  # var.inbound_to_port, inclusive
+  inbound_from_port = <INPUT REQUIRED>
+
+  # Allow all inbound traffic on ports between var.inbound_from_port and
+  # var.inbound_to_port, inclusive
+  inbound_to_port = <INPUT REQUIRED>
+
+  # The starting number to use for ingress rules that are added. Each ingress rule
+  # in a network ACL must have a unique rule number.
+  ingress_rule_number = <INPUT REQUIRED>
+
+  # The id of the network ACL to which the new rules should be attached
+  network_acl_id = <INPUT REQUIRED>
+
+  # The number of CIDR blocks in var.inbound_cidr_blocks. We should be able to
+  # compute this automatically, but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_inbound_cidr_blocks = <INPUT REQUIRED>
+
+  # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
+  # any port is allowed (so the from_port and to_port settings are ignored!).
+  protocol = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
+  # var.ephemeral_to_port, inclusive, from var.inbound_cidr_blocks
+  ephemeral_from_port = 1024
+
+  # Return traffic will be allowed on all ports between var.ephemeral_from_port and
+  # var.ephemeral_to_port, inclusive, from var.inbound_cidr_blocks
+  ephemeral_to_port = 65535
+
+  # The list of ports to exclude from the inbound rules. This is useful for adhering
+  # to certain compliance standards like CIS that explicitly deny any allow rule for
+  # administrative ports. This can not be set if protocol is icmp.
+  exclude_ports = []
+
+  # The ICMP code. Required if specifying ICMP for the protocol. Note: If the value
+  # of icmp_type is -1 , the icmp_code must also be set to -1 (wildcard ICMP code).
+  icmp_code = null
+
+  # The ICMP type. Required if specifying icmp for the protocol. When type set to -1
+  # this results in a wildcard ICMP type
+  icmp_type = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -130,6 +220,6 @@ module "network_acl_inbound" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-inbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bb4551b688391859dc1a252a3b19ee78"
+  "hash": "2ce3375225e2e341f3604b748ca55652"
 }
 ##DOCS-SOURCER-END -->

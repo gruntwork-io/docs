@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.20.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.20.0"/>
 
 # API Gateway Proxy Module
 
@@ -88,7 +88,8 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -98,7 +99,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 module "api_gateway_proxy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -226,9 +227,155 @@ module "api_gateway_proxy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S API-GATEWAY-PROXY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/api-gateway-proxy?ref=v0.21.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the API Gateway REST API.
+  api_name = <INPUT REQUIRED>
+
+  # Map of path prefixes to lambda functions to invoke. Any request that hits paths
+  # under the prefix will be routed to the lambda function. Note that this only
+  # supports single levels for now (e.g., you can configure to route `foo` and
+  # everything below that path like `foo/api/v1`, but you cannot configure to route
+  # something like `api/foo/*`). Use empty string for the path prefix if you wish to
+  # route all requests, including the root path, to the lambda function. Refer to
+  # the example for more info.
+  lambda_functions = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of binary media types supported by the REST API. The default only supports
+  # UTF-8 encoded text payloads.
+  api_binary_media_types = null
+
+  # Description to set on the API Gateway REST API. If empty string, defaults to
+  # 'REST API that proxies to lambda function LAMBDA_FUNCTION_NAME'. Set to null if
+  # you wish to have an API with no description.
+  api_description = ""
+
+  # Configuration of the API endpoint for the API Gateway REST API. Defaults to EDGE
+  # configuration.
+  api_endpoint_configuration = null
+
+  # Source of the API key for requests. Valid values are HEADER (default) and
+  # AUTHORIZER.
+  api_key_source = null
+
+  # Minimum response size to compress for the REST API. Must be a value between -1
+  # and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1
+  # disables compression (default).
+  api_minimum_compression_size = null
+
+  # Map of HTTP methods (e.g., GET, POST, etc - * for all methods) to the API
+  # settings to apply for that method. Refer to the terraform resource docs for
+  # available settings:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_
+  # ateway_method_settings#settings.
+  api_settings = {}
+
+  # ARN of the ACM certificate you wish to use for the bound domain name. When null,
+  # the module will look up an issued certificate that is bound to the given domain
+  # name, unless var.certificate_domain is set.
+  certificate_arn = null
+
+  # The domain to use when looking up the ACM certificate. This is useful for
+  # looking up wild card certificates that will match the given domain name.
+  certificate_domain = null
+
+  # Map of tags (where the key is the tag key and the value is tag value) to apply
+  # to the resources in this module.
+  custom_tags = {}
+
+  # Description to apply to the API Gateway deployment. This can be useful to
+  # identify the API Gateway deployment managed by this module.
+  deployment_description = null
+
+  # An arbitrary identifier to assign to the API Gateway deployment. Updates to this
+  # value will trigger a redeploy of the API Gateway, which is necessary when any
+  # underlying configuration changes. This is the only way to trigger a redeployment
+  # of an existing API Gateway if force_deployment = false.
+  deployment_id = ""
+
+  # Path segment that must be prepended to the path when accessing the API via the
+  # given domain. If omitted, the API is exposed at the root of the given domain.
+  domain_base_path = null
+
+  # Full domain (e.g., api.example.com) you wish to bind to the API Gateway
+  # endpoint. Set to null if you do not wish to bind any domain name.
+  domain_name = null
+
+  # When true, enables the execute-api endpoint. Set to false if you wish for
+  # clients to only access the API via the domain set on var.domain_name.
+  enable_execute_api_endpoint = true
+
+  # When true, route the root path (URL or URL/) to the lambda function specified by
+  # root_lambda_function_name. This is useful when you want to route just the home
+  # route to a specific lambda function when configuring path based routing with
+  # var.lambda_functions. Conflicts with the catch all lambda function, which is
+  # configured using the empty string key in var.lambda_functions. Do not use this
+  # to configure a catch all lambda function.
+  enable_root_lambda_function = false
+
+  # When true, force a deployment on every touch. Ideally we can cause a deployment
+  # on the API Gateway only when a configuration changes, but terraform does not
+  # give reliable mechanisms for triggering a redeployment when any related resource
+  # changes. As such, we must either pessimistically redeploy on every touch, or
+  # have user control it. You must use the var.deployment_id input variable to
+  # trigger redeployments if this is false. Note that setting this to true will, by
+  # nature, cause a perpetual diff on the module.
+  force_deployment = true
+
+  # Domain name to use when looking up the Route 53 hosted zone to bind the API
+  # Gateway domain to. Only used if hosted_zone_id is null.
+  hosted_zone_domain_name = null
+
+  # ID of the Route 53 zone where the domain should be configured. If null, this
+  # module will lookup the hosted zone using the domain name, or the provided
+  # parameters.
+  hosted_zone_id = null
+
+  # Tags to use when looking up the Route 53 hosted zone to bind the domain to. Only
+  # used if hosted_zone_id is null.
+  hosted_zone_tags = {}
+
+  # Name of the lambda function to invoke just for the root path (URL or URL/). Only
+  # used if enable_root_lambda_function is true.
+  root_lambda_function_name = null
+
+  # Description to set on the stage managed by the stage_name variable.
+  stage_description = null
+
+  # Name of the stage to create with this API Gateway deployment.
+  stage_name = "live"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -553,6 +700,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "90cd78ccab01c29b997bfb10ad0600f5"
+  "hash": "ac728d22d123c909e31e437f8a087cb4"
 }
 ##DOCS-SOURCER-END -->

@@ -112,7 +112,8 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/m
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -183,9 +184,88 @@ module "lambda_copy_shared_snapshot" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-COPY-SHARED-SNAPSHOT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-copy-shared-snapshot?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the external AWS account that shared the DB snapshots with this
+  # account
+  external_account_id = <INPUT REQUIRED>
+
+  # The identifier of the RDS database
+  rds_db_identifier = <INPUT REQUIRED>
+
+  # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
+  # it's running some other database, such as MySQL, Postgres, Oracle, etc.
+  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+
+  # An expression that defines how often to run the lambda function to copy
+  # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
+  schedule_expression = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if this module should create
+  # anything or not.
+  create_resources = true
+
+  # The ARN, key ID, or alias of a KMS key to use to encrypt the copied snapshot.
+  kms_key_id = null
+
+  # Namespace all Lambda resources created by this module with this name. If not
+  # specified, the default is var.rds_db_identifier with '-copy-snapshot' as a
+  # suffix.
+  lambda_namespace = null
+
+  # If set true, just before the lambda function finishes running, it will report a
+  # custom metric to CloudWatch, as specified by
+  # var.report_cloudwatch_metric_namespace and var.report_cloudwatch_metric_name.
+  # You can set an alarm on this metric to detect if the backup job failed to run to
+  # completion.
+  report_cloudwatch_metric = false
+
+  # The name to use for the the custom CloudWatch metric. Only used if
+  # var.report_cloudwatch_metric is set to true.
+  report_cloudwatch_metric_name = null
+
+  # The namespace to use for the the custom CloudWatch metric. Only used if
+  # var.report_cloudwatch_metric is set to true.
+  report_cloudwatch_metric_namespace = null
+
+  # Namespace all Lambda scheduling resources created by this module with this name.
+  # If not specified, the default is var.lambda_namespace with '-scheduled' as a
+  # suffix.
+  schedule_namespace = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -315,6 +395,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a04cb18936eb868d7991c5ca255d7dc"
+  "hash": "418789cfcbdd0545193388c8cd41092d"
 }
 ##DOCS-SOURCER-END -->

@@ -101,7 +101,8 @@ can use as a template.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -127,9 +128,43 @@ module "prepare_pex_environment" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S PREPARE-PEX-ENVIRONMENT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/prepare-pex-environment?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Parts of the path (folders and file names) to the python package directory
+  # housing the pex file.
+  pex_module_path_parts = <INPUT REQUIRED>
+
+  # Parts of the path (folders and files names) to the PEX executable for python as
+  # a list of strings.
+  python_pex_path_parts = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -196,6 +231,6 @@ The python path that should be used for running PEX file. This should be set as 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b2e193761f6baca94041008935e34544"
+  "hash": "e585c56f7084a4edaaefef510348bde1"
 }
 ##DOCS-SOURCER-END -->

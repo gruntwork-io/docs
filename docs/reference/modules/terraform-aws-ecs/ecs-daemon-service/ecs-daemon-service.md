@@ -71,7 +71,8 @@ EOF
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -189,9 +190,135 @@ module "ecs_daemon_service" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-DAEMON-SERVICE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.35.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
+  ecs_cluster_arn = <INPUT REQUIRED>
+
+  # The JSON text of the ECS Task Container Definitions. This portion of the ECS
+  # Task Definition defines the Docker container(s) to be run along with all their
+  # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
+  ecs_task_container_definitions = <INPUT REQUIRED>
+
+  # The name of the service. This is used to namespace all resources created by this
+  # module.
+  service_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of additional principals who can assume the task and task execution roles
+  additional_task_assume_role_policy_principals = []
+
+  # Prefix for name of the IAM role used by the ECS task. If not provide, will be
+  # set to var.service_name.
+  custom_iam_role_name_prefix = null
+
+  # A map of tags to apply to all resources created by this module. Each item in
+  # this list should be a map with the parameters key and value.
+  custom_tags = {}
+
+  # Prefix for name of iam role and policy that allows cloudwatch and ecr access
+  custom_task_execution_name_prefix = null
+
+  # Set the logging level of the deployment check script. You can set this to
+  # `error`, `warn`, or `info`, in increasing verbosity.
+  deployment_check_loglevel = "info"
+
+  # Seconds to wait before timing out each check for verifying ECS service
+  # deployment. See ecs_deploy_check_binaries for more details.
+  deployment_check_timeout_seconds = 600
+
+  # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
+  deployment_controller = null
+
+  # (Optional) The lower limit (as a percentage of the service's desiredCount) of
+  # the number of running tasks that must remain running and healthy in a service
+  # during a deployment
+  deployment_minimum_healthy_percent = null
+
+  # The Docker networking mode to use for the containers in the task. The valid
+  # values are none, bridge, awsvpc, and host
+  ecs_task_definition_network_mode = "bridge"
+
+  # The process namespace to use for the containers in the task. The valid values
+  # are host and task.
+  ecs_task_definition_pid_mode = "task"
+
+  # Whether or not to enable the ECS deployment check binary to make terraform wait
+  # for the task to be deployed. See ecs_deploy_check_binaries for more details. You
+  # must install the companion binary before the check can be used. Refer to the
+  # README for more details.
+  enable_ecs_deployment_check = true
+
+  # The launch type on which to run your service. The valid values are EC2 and
+  # FARGATE. Defaults to EC2
+  launch_type = "EC2"
+
+  placement_constraint_expression = "attribute:ecs.ami-id != 'ami-fake'"
+
+  placement_constraint_type = "memberOf"
+
+  # Whether tags should be propogated to the tasks from the service or from the task
+  # definition. Valid values are SERVICE and TASK_DEFINITION. Defaults to SERVICE.
+  # If set to null, no tags are created for tasks.
+  propagate_tags = "SERVICE"
+
+  # A map of tags to apply to the ECS service. Each item in this list should be a
+  # map with the parameters key and value.
+  service_tags = {}
+
+  # A map of tags to apply to the task definition. Each item in this list should be
+  # a map with the parameters key and value.
+  task_definition_tags = {}
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role for the ECS task execution.
+  task_execution_role_permissions_boundary_arn = null
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role for the ECS task.
+  task_role_permissions_boundary_arn = null
+
+  # (Optional) A map of volume blocks that containers in your task may use. The key
+  # should be the name of the volume and the value should be a map compatible with
+  # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html#volume-bl
+  # ck-arguments, but not including the name parameter.
+  volumes = {}
+
+  # If true, Terraform will wait for the service to reach a steady state—as in, the
+  # ECS tasks you wanted are actually deployed—before 'apply' is considered
+  # complete.
+  wait_for_steady_state = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -473,6 +600,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2dd3974a96ae404786e81ab54e9c68d"
+  "hash": "35bed95d6c3b803c9f726e1d1573faeb"
 }
 ##DOCS-SOURCER-END -->

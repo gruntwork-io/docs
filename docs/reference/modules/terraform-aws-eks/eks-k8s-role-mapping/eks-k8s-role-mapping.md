@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.56.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.56.0"/>
 
 # EKS K8S Role Mapping Module
 
@@ -324,7 +324,8 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -334,7 +335,7 @@ ConfigMap and as such does not have the cyclic dependency problem of Helm.
 
 module "eks_k_8_s_role_mapping" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -374,9 +375,67 @@ module "eks_k_8_s_role_mapping" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-ROLE-MAPPING MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-role-mapping?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
+  # role passed in will be set up as a Node role in Kubernetes.
+  eks_worker_iam_role_arns = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of string keys and values that can be used to tag the ConfigMap resource
+  # that holds the mapping information.
+  config_map_labels = {}
+
+  # List of AWS ARNs of the IAM roles associated with launching fargate pods. Each
+  # IAM role passed in will be set up as a Node role in Kubernetes.
+  eks_fargate_profile_executor_iam_role_arns = []
+
+  # Mapping of AWS IAM roles to RBAC groups, where the keys are AWS ARN of IAM roles
+  # and values are the mapped k8s RBAC group names as a list.
+  iam_role_to_rbac_group_mappings = {}
+
+  # Mapping of AWS IAM users to RBAC groups, where the keys are AWS ARN of IAM users
+  # and values are the mapped k8s RBAC group names as a list.
+  iam_user_to_rbac_group_mappings = {}
+
+  # Name to apply to the ConfigMap that is created. Note that this must be called
+  # aws-auth, unless you are using the aws-auth-merger.
+  name = "aws-auth"
+
+  # Namespace to create the ConfigMap in. Note that this must be kube-system, unless
+  # you are using the aws-auth-merger.
+  namespace = "kube-system"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -489,6 +548,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d14a130d261d7f9e170f3560ca8a185d"
+  "hash": "7f107a02439d9777b65e9d529783345d"
 }
 ##DOCS-SOURCER-END -->

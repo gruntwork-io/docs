@@ -47,7 +47,8 @@ See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-util
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -71,9 +72,41 @@ module "list_remove" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LIST-REMOVE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The list of items that you want to remove from the original list.
+  items_to_remove = <INPUT REQUIRED>
+
+  # The list of items where you want to remove items from.
+  original_list = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -133,6 +166,6 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe9cb556bdfa2d05299056f3f200a3b1"
+  "hash": "e7255c95f1dad29cd9c6f21c0a9effd1"
 }
 ##DOCS-SOURCER-END -->

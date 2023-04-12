@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.0"/>
 
 # SSM Healthchecks IAM Permissions
 
@@ -35,7 +35,8 @@ We recommend using this module with just about every single EC2 Instance and Aut
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -45,7 +46,7 @@ We recommend using this module with just about every single EC2 Instance and Aut
 
 module "ssm_healthchecks_iam_permissions" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.67.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -56,9 +57,38 @@ module "ssm_healthchecks_iam_permissions" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SSM-HEALTHCHECKS-IAM-PERMISSIONS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/ssm-healthchecks-iam-permissions?ref=v0.67.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The Id of the IAM role to which we should add SSM healthcheck permissions
+  iam_role_id = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -69,6 +99,6 @@ module "ssm_healthchecks_iam_permissions" {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ea848e62bccbf3dca526934c0b981d08"
+  "hash": "b42f3e39af37258a5291220cd1e85c87"
 }
 ##DOCS-SOURCER-END -->

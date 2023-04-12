@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.67.8"/>
 
 # SSH Grunt
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can configure a Linux server to manage SSH access to the server via an Identity Provider (IdP). Via AWS [Identity and Access Management (IAM)](https://aws.amazon.com/iam/), developers in certain IAM Groups will be able to SSH to your servers using their IAM user name and the SSH key they uploaded to their IAM user account.
 
@@ -98,6 +98,6 @@ If you want to deploy this module in production, check out the following resourc
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "34b47e2a743d643b1030263e9bdf11a9"
+  "hash": "4126c60564c0388950bece507596fa94"
 }
 ##DOCS-SOURCER-END -->
