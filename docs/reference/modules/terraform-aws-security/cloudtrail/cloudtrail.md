@@ -113,10 +113,10 @@ module "cloudtrail" {
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
-  allow_cloudtrail_access_with_iam = bool
+  allow_cloudtrail_access_with_iam = <bool>
 
   # The name of the S3 Bucket where CloudTrail logs will be stored.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -370,10 +370,10 @@ inputs = {
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
-  allow_cloudtrail_access_with_iam = bool
+  allow_cloudtrail_access_with_iam = <bool>
 
   # The name of the S3 Bucket where CloudTrail logs will be stored.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1404,6 +1404,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6214a8b19d70f798e8853f1b08d62dd8"
+  "hash": "f811f5b4a4c68fb8b2ec504fbdb3eb97"
 }
 ##DOCS-SOURCER-END -->

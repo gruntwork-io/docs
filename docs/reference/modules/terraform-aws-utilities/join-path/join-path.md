@@ -69,7 +69,7 @@ module "join_path" {
 
   # A list of folder and file names to combine into a path, using the proper path
   # separator for the current OS.
-  path_parts = list(string)
+  path_parts = <list(string)>
 
 }
 
@@ -97,7 +97,7 @@ inputs = {
 
   # A list of folder and file names to combine into a path, using the proper path
   # separator for the current OS.
-  path_parts = list(string)
+  path_parts = <list(string)>
 
 }
 
@@ -155,6 +155,6 @@ A list of folder and file names to combine into a path, using the proper path se
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "217a9a99e35e4a4da357d339d3dff255"
+  "hash": "e9a479eccb42c99502d7fb5b6b8dba0a"
 }
 ##DOCS-SOURCER-END -->

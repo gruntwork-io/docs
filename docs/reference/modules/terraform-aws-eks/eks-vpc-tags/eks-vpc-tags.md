@@ -46,7 +46,7 @@ module "eks_vpc_tags" {
   # ----------------------------------------------------------------------------------------------------
 
   # Names of the EKS clusters that you would like to associate with this VPC.
-  eks_cluster_names = list(string)
+  eks_cluster_names = <list(string)>
 
 }
 
@@ -73,7 +73,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Names of the EKS clusters that you would like to associate with this VPC.
-  eks_cluster_names = list(string)
+  eks_cluster_names = <list(string)>
 
 }
 
@@ -148,6 +148,6 @@ Tags for public subnets in the VPC to use for integration with EKS.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3fdfc7d34bd393c130f37ad8e1ca94c7"
+  "hash": "867f0b6f33417493831facc282cff938"
 }
 ##DOCS-SOURCER-END -->

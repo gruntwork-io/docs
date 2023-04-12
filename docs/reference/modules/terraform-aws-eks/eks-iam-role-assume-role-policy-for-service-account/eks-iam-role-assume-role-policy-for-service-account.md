@@ -45,25 +45,25 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
   # ----------------------------------------------------------------------------------------------------
 
   # ARN of the OpenID Connect Provider provisioned for the EKS cluster.
-  eks_openid_connect_provider_arn = string
+  eks_openid_connect_provider_arn = <string>
 
   # URL of the OpenID Connect Provider provisioned for the EKS cluster.
-  eks_openid_connect_provider_url = string
+  eks_openid_connect_provider_url = <string>
 
   # The Kubernetes Namespaces that are allowed to assume the attached IAM Role. Only
   # one of `var.namespaces` or `var.service_accounts` can be set. If both are set,
   # you may end up with an impossible rule! If both are set to null, then this will
   # allow all namespaces and all service accounts.
-  namespaces = list(string)
+  namespaces = <list(string)>
 
   # The Kubernetes Service Accounts that are allowed to assume the attached IAM
   # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If both
   # are set, you may end up with an impossible rule! If both are set to null, then
   # this will allow all namespaces and all service accounts.
-  service_accounts = list(object(
+  service_accounts = <list(object(
     name      = string
     namespace = string
-  ))
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -99,25 +99,25 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # ARN of the OpenID Connect Provider provisioned for the EKS cluster.
-  eks_openid_connect_provider_arn = string
+  eks_openid_connect_provider_arn = <string>
 
   # URL of the OpenID Connect Provider provisioned for the EKS cluster.
-  eks_openid_connect_provider_url = string
+  eks_openid_connect_provider_url = <string>
 
   # The Kubernetes Namespaces that are allowed to assume the attached IAM Role. Only
   # one of `var.namespaces` or `var.service_accounts` can be set. If both are set,
   # you may end up with an impossible rule! If both are set to null, then this will
   # allow all namespaces and all service accounts.
-  namespaces = list(string)
+  namespaces = <list(string)>
 
   # The Kubernetes Service Accounts that are allowed to assume the attached IAM
   # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If both
   # are set, you may end up with an impossible rule! If both are set to null, then
   # this will allow all namespaces and all service accounts.
-  service_accounts = list(object(
+  service_accounts = <list(object(
     name      = string
     namespace = string
-  ))
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -222,6 +222,6 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f5a30a8a717e3bc0d4fa6d6720fe3291"
+  "hash": "c3c3e580371b1b04e5a14f08d8de0633"
 }
 ##DOCS-SOURCER-END -->

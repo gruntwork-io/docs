@@ -99,14 +99,14 @@ module "eks_aws_auth_merger" {
   # ----------------------------------------------------------------------------------------------------
 
   # Location of the container image to use for the aws-auth-merger app.
-  aws_auth_merger_image = object(
+  aws_auth_merger_image = <object(
     repo = string
     tag = string
-  )
+  )>
 
   # Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps
   # in this Namespace to merge into the aws-auth ConfigMap.
-  namespace = string
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -217,14 +217,14 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Location of the container image to use for the aws-auth-merger app.
-  aws_auth_merger_image = object(
+  aws_auth_merger_image = <object(
     repo = string
     tag = string
-  )
+  )>
 
   # Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps
   # in this Namespace to merge into the aws-auth ConfigMap.
-  namespace = string
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -632,6 +632,6 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44a019d80247e39aa3fd3d58f3751b58"
+  "hash": "72d49ea50b6abda95b1ebcef7b792481"
 }
 ##DOCS-SOURCER-END -->

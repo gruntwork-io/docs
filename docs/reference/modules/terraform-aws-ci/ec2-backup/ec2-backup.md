@@ -111,7 +111,7 @@ module "ec_2_backup" {
 
   # The ARN of SNS topics to notify if the CloudWatch alarm goes off because the
   # backup job failed.
-  alarm_sns_topic_arns = list(string)
+  alarm_sns_topic_arns = <list(string)>
 
   # How often, in seconds, the backup lambda function is expected to run. This is
   # the same as var.backup_job_schedule_expression, but unfortunately, Terraform
@@ -119,31 +119,31 @@ module "ec_2_backup" {
   # that triggers if the value of var.cloudwatch_metric_name and
   # var.cloudwatch_metric_namespace isn't updated within this time period, as that
   # indicates the backup failed to run.
-  backup_job_alarm_period = number
+  backup_job_alarm_period = <number>
 
   # An expression that defines the schedule for how often to run the backup lambda
   # function. For example, cron(0 20 * * ? *) or rate(1 day).
-  backup_job_schedule_expression = string
+  backup_job_schedule_expression = <string>
 
   # The name for the CloudWatch Metric the AWS lambda backup function will increment
   # every time the job completes successfully.
-  cloudwatch_metric_name = string
+  cloudwatch_metric_name = <string>
 
   # The namespace for the CloudWatch Metric the AWS lambda backup function will
   # increment every time the job completes successfully.
-  cloudwatch_metric_namespace = string
+  cloudwatch_metric_namespace = <string>
 
   # Delete all snapshots older than this value (e.g., 30d, 5h, or 15m). For example,
   # setting this to 30d means all snapshots more than 30 days old will be deleted.
-  delete_older_than = string
+  delete_older_than = <string>
 
   # The name of the EC2 Instance to backup. This must be the value of the tag 'Name'
   # on that Instance.
-  instance_name = string
+  instance_name = <string>
 
   # The minimum number of snapshots to keep around. This ensures some number of
   # snapshots are never deleted, regardless of the value of var.delete_older_than.
-  require_at_least = number
+  require_at_least = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -182,7 +182,7 @@ inputs = {
 
   # The ARN of SNS topics to notify if the CloudWatch alarm goes off because the
   # backup job failed.
-  alarm_sns_topic_arns = list(string)
+  alarm_sns_topic_arns = <list(string)>
 
   # How often, in seconds, the backup lambda function is expected to run. This is
   # the same as var.backup_job_schedule_expression, but unfortunately, Terraform
@@ -190,31 +190,31 @@ inputs = {
   # that triggers if the value of var.cloudwatch_metric_name and
   # var.cloudwatch_metric_namespace isn't updated within this time period, as that
   # indicates the backup failed to run.
-  backup_job_alarm_period = number
+  backup_job_alarm_period = <number>
 
   # An expression that defines the schedule for how often to run the backup lambda
   # function. For example, cron(0 20 * * ? *) or rate(1 day).
-  backup_job_schedule_expression = string
+  backup_job_schedule_expression = <string>
 
   # The name for the CloudWatch Metric the AWS lambda backup function will increment
   # every time the job completes successfully.
-  cloudwatch_metric_name = string
+  cloudwatch_metric_name = <string>
 
   # The namespace for the CloudWatch Metric the AWS lambda backup function will
   # increment every time the job completes successfully.
-  cloudwatch_metric_namespace = string
+  cloudwatch_metric_namespace = <string>
 
   # Delete all snapshots older than this value (e.g., 30d, 5h, or 15m). For example,
   # setting this to 30d means all snapshots more than 30 days old will be deleted.
-  delete_older_than = string
+  delete_older_than = <string>
 
   # The name of the EC2 Instance to backup. This must be the value of the tag 'Name'
   # on that Instance.
-  instance_name = string
+  instance_name = <string>
 
   # The minimum number of snapshots to keep around. This ensures some number of
   # snapshots are never deleted, regardless of the value of var.delete_older_than.
-  require_at_least = number
+  require_at_least = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -347,6 +347,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d9f2bf9ed57b7fe547b5388d3fe473e6"
+  "hash": "f7a1e8ec2cf9b3367a8155081195f79a"
 }
 ##DOCS-SOURCER-END -->

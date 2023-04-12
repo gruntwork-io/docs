@@ -113,7 +113,7 @@ module "kinesis" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the Kinesis stream.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -187,7 +187,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the Kinesis stream.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -418,6 +418,6 @@ A map of key value pairs to apply as tags to the Kinesis stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0470949770ca1ff61da06e883f38906f"
+  "hash": "f70eb5c83fe5b0386c338b2b72e3850b"
 }
 ##DOCS-SOURCER-END -->

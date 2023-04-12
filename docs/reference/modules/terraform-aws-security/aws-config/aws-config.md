@@ -96,7 +96,7 @@ module "aws_config" {
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -319,7 +319,7 @@ inputs = {
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -963,6 +963,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b12edca6f17de956e142a33027c903e"
+  "hash": "b1b7c5860f6afd5c558186f5ffaea0ca"
 }
 ##DOCS-SOURCER-END -->

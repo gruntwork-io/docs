@@ -109,7 +109,7 @@ module "k_8_s_namespace" {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the Namespace to create.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -174,7 +174,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the Namespace to create.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -429,6 +429,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eb2fb4a243dad913f0d5c93a39b5631d"
+  "hash": "79e0fc11279f699df8ce5f837a6c7604"
 }
 ##DOCS-SOURCER-END -->

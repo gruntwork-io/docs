@@ -109,7 +109,7 @@ module "sqs" {
 
   # The name of the queue. Note that this module may append '.fifo' to this name
   # depending on the value of var.fifo_queue.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -248,7 +248,7 @@ inputs = {
 
   # The name of the queue. Note that this module may append '.fifo' to this name
   # depending on the value of var.fifo_queue.
-  name = string
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -641,6 +641,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0cb62fd63a64ec4ba161f7ec89d2a898"
+  "hash": "928fe0a52b864f3287747537cce01dd5"
 }
 ##DOCS-SOURCER-END -->

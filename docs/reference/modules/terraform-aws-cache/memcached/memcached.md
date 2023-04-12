@@ -56,26 +56,26 @@ module "memcached" {
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_cidr_blocks = list(string)
+  allow_connections_from_cidr_blocks = <list(string)>
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
-  instance_type = string
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. mycache). Must be unique in this region.
   # Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = number
+  num_cache_nodes = <number>
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = list(string)
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -143,26 +143,26 @@ inputs = {
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_cidr_blocks = list(string)
+  allow_connections_from_cidr_blocks = <list(string)>
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
-  instance_type = string
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. mycache). Must be unique in this region.
   # Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = number
+  num_cache_nodes = <number>
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = list(string)
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -385,6 +385,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "71de413336b98aac36aa2a86e40e2efa"
+  "hash": "04675f597fa6f49d8fac302cfbf6814a"
 }
 ##DOCS-SOURCER-END -->

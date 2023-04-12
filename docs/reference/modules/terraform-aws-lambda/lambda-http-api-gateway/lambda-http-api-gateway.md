@@ -102,12 +102,12 @@ module "lambda_http_api_gateway" {
 
   # The name of the API Gateway. This will be used to namespace all resources
   # created by this module.
-  name = string
+  name = <string>
 
   # Routing configurations for the API Gateway, encoded as a map from route to
   # lambda function configuration. The keys should be the routes to match (e.g.,
   # 'GET /pet').
-  route_config = any
+  route_config = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -227,12 +227,12 @@ inputs = {
 
   # The name of the API Gateway. This will be used to namespace all resources
   # created by this module.
-  name = string
+  name = <string>
 
   # Routing configurations for the API Gateway, encoded as a map from route to
   # lambda function configuration. The keys should be the routes to match (e.g.,
   # 'GET /pet').
-  route_config = any
+  route_config = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -734,6 +734,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "602ff1f1b94c3e07df69bb9ac7bf55de"
+  "hash": "786041d87ca698bd2f7c3c6233e043e4"
 }
 ##DOCS-SOURCER-END -->

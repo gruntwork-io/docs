@@ -44,7 +44,7 @@ module "aws_config_bucket" {
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -162,7 +162,7 @@ inputs = {
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = string
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -498,6 +498,6 @@ The name of the S3 bucket used by AWS Config to store configuration items.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "82a18bda5c29a63e1a6e4461999fb215"
+  "hash": "e58ad7ff4cadfba7ca67012faa9883ce"
 }
 ##DOCS-SOURCER-END -->

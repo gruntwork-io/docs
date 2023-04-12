@@ -199,11 +199,11 @@ module "alb" {
 
   # The name of the ALB. Do not include the environment name since this module will
   # automatically append it to the value of this variable.
-  alb_name = string
+  alb_name = <string>
 
   # If the ALB should only accept traffic from within the VPC, set this to true. If
   # it should accept traffic from the public Internet, set it to false.
-  is_internal_alb = bool
+  is_internal_alb = <bool>
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
   # here:
@@ -212,12 +212,12 @@ module "alb" {
   # policy for general use but this policy includes TLSv1.0 which is rapidly being
   # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
   # include TLSv1.0.
-  ssl_policy = string
+  ssl_policy = <string>
 
   # A list of the subnets into which the ALB will place its underlying nodes.
   # Include one subnet per Availabability Zone. If the ALB is public-facing, these
   # should be public subnets. Otherwise, they should be private subnets.
-  vpc_subnet_ids = list(string)
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -411,11 +411,11 @@ inputs = {
 
   # The name of the ALB. Do not include the environment name since this module will
   # automatically append it to the value of this variable.
-  alb_name = string
+  alb_name = <string>
 
   # If the ALB should only accept traffic from within the VPC, set this to true. If
   # it should accept traffic from the public Internet, set it to false.
-  is_internal_alb = bool
+  is_internal_alb = <bool>
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found
   # here:
@@ -424,12 +424,12 @@ inputs = {
   # policy for general use but this policy includes TLSv1.0 which is rapidly being
   # phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't
   # include TLSv1.0.
-  ssl_policy = string
+  ssl_policy = <string>
 
   # A list of the subnets into which the ALB will place its underlying nodes.
   # Include one subnet per Availabability Zone. If the ALB is public-facing, these
   # should be public subnets. Otherwise, they should be private subnets.
-  vpc_subnet_ids = list(string)
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1085,6 +1085,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1fb086bbbecb9a8d93b921f07906d645"
+  "hash": "9879a18b6dba166bc475cc900679c51c"
 }
 ##DOCS-SOURCER-END -->

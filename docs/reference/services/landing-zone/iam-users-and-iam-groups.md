@@ -121,7 +121,7 @@ module "iam_users_and_groups" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -340,7 +340,7 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1132,6 +1132,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/iam-users-and-groups/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a50e863f9027323370dd56ca9f36ded5"
+  "hash": "93e0811c3d9afa7ac29ae5241d518087"
 }
 ##DOCS-SOURCER-END -->

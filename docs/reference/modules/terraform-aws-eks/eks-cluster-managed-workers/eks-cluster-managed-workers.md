@@ -173,10 +173,10 @@ module "eks_cluster_managed_workers" {
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = string
+  cluster_name = <string>
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
-  node_group_configurations = any
+  node_group_configurations = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -331,10 +331,10 @@ inputs = {
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = string
+  cluster_name = <string>
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
-  node_group_configurations = any
+  node_group_configurations = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -943,6 +943,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b036c48667d435bae913edefaae48551"
+  "hash": "0dce7def2566b6053a2224c7430f1055"
 }
 ##DOCS-SOURCER-END -->

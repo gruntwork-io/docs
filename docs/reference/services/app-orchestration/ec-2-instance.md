@@ -120,56 +120,56 @@ module "ec_2_instance" {
   # ----------------------------------------------------------------------------------------------------
 
   # Accept inbound traffic on these port ranges from the specified CIDR blocks
-  allow_port_from_cidr_blocks = map(object(
+  allow_port_from_cidr_blocks = <map(object(
     from_port   = number
     to_port     = number
     protocol    = string
     cidr_blocks = list(string)
-  ))
+  ))>
 
   # Accept inbound traffic on these port ranges from the specified security groups
-  allow_port_from_security_group_ids = map(object(
+  allow_port_from_security_group_ids = <map(object(
     from_port                = number
     to_port                  = number
     protocol                 = string
     source_security_group_id = string
-  ))
+  ))>
 
   # Accept inbound SSH from these CIDR blocks
-  allow_ssh_from_cidr_blocks = list(string)
+  allow_ssh_from_cidr_blocks = <list(string)>
 
   # Accept inbound SSH from these security groups
-  allow_ssh_from_security_group_ids = list(string)
+  allow_ssh_from_security_group_ids = <list(string)>
 
   # The AMI to run on the EC2 instance. This should be built from the Packer
   # template under ec2-instance.json. One of var.ami or var.ami_filters is required.
   # Set to null if looking up the ami with filters.
-  ami = string
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # EC2 instance. You can build the AMI using the Packer template ec2-instance.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = object(
+  ami_filters = <object(
     owners = list(string)
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )
+  )>
 
   # Specify whether we're selecting a private or public Route 53 DNS Zone
-  dns_zone_is_private = bool
+  dns_zone_is_private = <bool>
 
   # The EBS volumes to attach to the instance. This must be a map of key/value
   # pairs.
-  ebs_volumes = any
+  ebs_volumes = <any>
 
   # The type of instance to run for the EC2 instance
-  instance_type = string
+  instance_type = <string>
 
   # The name of the EC2 instance and the other resources created by these templates
-  name = string
+  name = <string>
 
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset of
   # fully_qualified_domain_name: e.g., my-company.com. Only one of
@@ -179,14 +179,14 @@ module "ec_2_instance" {
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of route53_lookup_domain_name
   # or route53_zone_id should be used.
-  route53_zone_id = string
+  route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in
   # var.vpc_id.
-  subnet_id = string
+  subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -417,56 +417,56 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Accept inbound traffic on these port ranges from the specified CIDR blocks
-  allow_port_from_cidr_blocks = map(object(
+  allow_port_from_cidr_blocks = <map(object(
     from_port   = number
     to_port     = number
     protocol    = string
     cidr_blocks = list(string)
-  ))
+  ))>
 
   # Accept inbound traffic on these port ranges from the specified security groups
-  allow_port_from_security_group_ids = map(object(
+  allow_port_from_security_group_ids = <map(object(
     from_port                = number
     to_port                  = number
     protocol                 = string
     source_security_group_id = string
-  ))
+  ))>
 
   # Accept inbound SSH from these CIDR blocks
-  allow_ssh_from_cidr_blocks = list(string)
+  allow_ssh_from_cidr_blocks = <list(string)>
 
   # Accept inbound SSH from these security groups
-  allow_ssh_from_security_group_ids = list(string)
+  allow_ssh_from_security_group_ids = <list(string)>
 
   # The AMI to run on the EC2 instance. This should be built from the Packer
   # template under ec2-instance.json. One of var.ami or var.ami_filters is required.
   # Set to null if looking up the ami with filters.
-  ami = string
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # EC2 instance. You can build the AMI using the Packer template ec2-instance.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = object(
+  ami_filters = <object(
     owners = list(string)
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )
+  )>
 
   # Specify whether we're selecting a private or public Route 53 DNS Zone
-  dns_zone_is_private = bool
+  dns_zone_is_private = <bool>
 
   # The EBS volumes to attach to the instance. This must be a map of key/value
   # pairs.
-  ebs_volumes = any
+  ebs_volumes = <any>
 
   # The type of instance to run for the EC2 instance
-  instance_type = string
+  instance_type = <string>
 
   # The name of the EC2 instance and the other resources created by these templates
-  name = string
+  name = <string>
 
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset of
   # fully_qualified_domain_name: e.g., my-company.com. Only one of
@@ -476,14 +476,14 @@ inputs = {
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of route53_lookup_domain_name
   # or route53_zone_id should be used.
-  route53_zone_id = string
+  route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in
   # var.vpc_id.
-  subnet_id = string
+  subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1377,6 +1377,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bd59e2e531ec8a37b0453d86b901a77b"
+  "hash": "3a1ab2c435d66e7f63b9f80593434132"
 }
 ##DOCS-SOURCER-END -->

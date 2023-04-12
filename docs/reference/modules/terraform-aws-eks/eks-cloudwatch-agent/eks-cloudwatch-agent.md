@@ -74,7 +74,7 @@ module "eks_cloudwatch_agent" {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the EKS cluster where resources are deployed to.
-  eks_cluster_name = string
+  eks_cluster_name = <string>
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -82,10 +82,10 @@ module "eks_cloudwatch_agent" {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = object(
+  iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )
+  )>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -159,7 +159,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the EKS cluster where resources are deployed to.
-  eks_cluster_name = string
+  eks_cluster_name = <string>
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -167,10 +167,10 @@ inputs = {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = object(
+  iam_role_for_service_accounts_config = <object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )
+  )>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -236,6 +236,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6a20ad24ea08c1e8792d291826e6ec1"
+  "hash": "6e46535dcae2cd080e997111a0464edc"
 }
 ##DOCS-SOURCER-END -->

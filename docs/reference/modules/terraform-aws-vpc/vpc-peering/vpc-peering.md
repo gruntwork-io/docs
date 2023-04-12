@@ -64,43 +64,43 @@ module "vpc_peering" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS account that should own the peering connection.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
-  destination_vpc_cidr_block = string
+  destination_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the destination of the VPC peering connection.
-  destination_vpc_id = string
+  destination_vpc_id = <string>
 
   # The name of the VPC which is the destination of the VPC peering connection.
-  destination_vpc_name = string
+  destination_vpc_name = <string>
 
   # A list of IDs of route tables in the destination VPC that should have routes
   # added pointing to origin VPC.
-  destination_vpc_route_table_ids = list(string)
+  destination_vpc_route_table_ids = <list(string)>
 
   # The number of route table ids in var.destination_vpc_route_table_ids. This
   # should be computable, but due to a but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_destination_vpc_route_tables = number
+  num_destination_vpc_route_tables = <number>
 
   # The number of route table ids in var.origin_vpc_route_table_ids. This should be
   # computable, but due to a but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_origin_vpc_route_tables = number
+  num_origin_vpc_route_tables = <number>
 
   # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
-  origin_vpc_cidr_block = string
+  origin_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the origin of the VPC peering connection.
-  origin_vpc_id = string
+  origin_vpc_id = <string>
 
   # The name of the VPC which is the origin of the VPC peering connection.
-  origin_vpc_name = string
+  origin_vpc_name = <string>
 
   # A list of IDs of route tables in the origin VPC that should have routes added
   # pointing to destination VPC.
-  origin_vpc_route_table_ids = list(string)
+  origin_vpc_route_table_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -157,43 +157,43 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS account that should own the peering connection.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
-  destination_vpc_cidr_block = string
+  destination_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the destination of the VPC peering connection.
-  destination_vpc_id = string
+  destination_vpc_id = <string>
 
   # The name of the VPC which is the destination of the VPC peering connection.
-  destination_vpc_name = string
+  destination_vpc_name = <string>
 
   # A list of IDs of route tables in the destination VPC that should have routes
   # added pointing to origin VPC.
-  destination_vpc_route_table_ids = list(string)
+  destination_vpc_route_table_ids = <list(string)>
 
   # The number of route table ids in var.destination_vpc_route_table_ids. This
   # should be computable, but due to a but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_destination_vpc_route_tables = number
+  num_destination_vpc_route_tables = <number>
 
   # The number of route table ids in var.origin_vpc_route_table_ids. This should be
   # computable, but due to a but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_origin_vpc_route_tables = number
+  num_origin_vpc_route_tables = <number>
 
   # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
-  origin_vpc_cidr_block = string
+  origin_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the origin of the VPC peering connection.
-  origin_vpc_id = string
+  origin_vpc_id = <string>
 
   # The name of the VPC which is the origin of the VPC peering connection.
-  origin_vpc_name = string
+  origin_vpc_name = <string>
 
   # A list of IDs of route tables in the origin VPC that should have routes added
   # pointing to destination VPC.
-  origin_vpc_route_table_ids = list(string)
+  origin_vpc_route_table_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -242,6 +242,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "381308a5ea0989d8452f9592551ff757"
+  "hash": "66a6a42bcadb11a879a6369569f00483"
 }
 ##DOCS-SOURCER-END -->

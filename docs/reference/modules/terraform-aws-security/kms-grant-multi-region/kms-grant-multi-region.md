@@ -82,23 +82,23 @@ module "kms_grant_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # The map of names of KMS grants to the region where the key resides in. There
   # should be a one to one mapping between entries in this map and the entries of
   # the kms_grants map. This is used to workaround a terraform limitation where the
   # for_each value can not depend on resources.
-  kms_grant_regions = map(string)
+  kms_grant_regions = <map(string)>
 
   # Create the specified KMS grants to allow entities to use the KMS key without
   # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
   # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
   # to grant properties. The name must be unique per account.
-  kms_grants = map(object(
+  kms_grants = <map(object(
     kms_cmk_arn = string
     grantee_principal = string
     granted_operations = list(string)
-  ))
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -138,23 +138,23 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = string
+  aws_account_id = <string>
 
   # The map of names of KMS grants to the region where the key resides in. There
   # should be a one to one mapping between entries in this map and the entries of
   # the kms_grants map. This is used to workaround a terraform limitation where the
   # for_each value can not depend on resources.
-  kms_grant_regions = map(string)
+  kms_grant_regions = <map(string)>
 
   # Create the specified KMS grants to allow entities to use the KMS key without
   # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
   # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
   # to grant properties. The name must be unique per account.
-  kms_grants = map(object(
+  kms_grants = <map(object(
     kms_cmk_arn = string
     grantee_principal = string
     granted_operations = list(string)
-  ))
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -185,6 +185,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "320f6035b037133a97cba0b7db0c4269"
+  "hash": "f2a821df322f97d1c1975da0aa13bc42"
 }
 ##DOCS-SOURCER-END -->

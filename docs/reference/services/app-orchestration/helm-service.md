@@ -108,20 +108,20 @@ module "helm_service" {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = string
+  application_name = <string>
 
   # Chart name to be installed. The chart name can be local path, a URL to a chart,
   # or the name of the chart if repository is specified. It is also possible to use
   # the <repository>/<chart> format here if you are running Terraform on a system
   # that the repository has been added to with helm repo add but this is not
   # recommended.
-  helm_chart = string
+  helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
-  helm_repository = string
+  helm_repository = <string>
 
   # The Kubernetes Namespace to deploy the helm chart into.
-  namespace = string
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -206,20 +206,20 @@ inputs = {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = string
+  application_name = <string>
 
   # Chart name to be installed. The chart name can be local path, a URL to a chart,
   # or the name of the chart if repository is specified. It is also possible to use
   # the <repository>/<chart> format here if you are running Terraform on a system
   # that the repository has been added to with helm repo add but this is not
   # recommended.
-  helm_chart = string
+  helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
-  helm_repository = string
+  helm_repository = <string>
 
   # The Kubernetes Namespace to deploy the helm chart into.
-  namespace = string
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -488,6 +488,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "93539468859db13639e4e673268fbd21"
+  "hash": "51af9a360915bb69aa1202cd4d3c834d"
 }
 ##DOCS-SOURCER-END -->

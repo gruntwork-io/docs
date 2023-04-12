@@ -110,38 +110,38 @@ module "redis" {
   # Specifies whether a read-only replica is automatically promoted to read/write
   # primary if the existing primary fails. It must be enabled for Redis (cluster
   # mode enabled) replication groups.
-  enable_automatic_failover = bool
+  enable_automatic_failover = <bool>
 
   # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_multi_az = bool
+  enable_multi_az = <bool>
 
   # The compute and memory capacity of the nodes (e.g. cache.t3.medium).
-  instance_type = string
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
   # Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
   # the primary node, 2 represents the primary plus a single Read Replica.
-  replication_group_size = number
+  replication_group_size = <number>
 
   # The ARN of the SNS Topic to which notifications will be sent when a Replication
   # Group event happens, such as an automatic failover (e.g.
   # arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if
   # you do not wish to receive notifications via SNS.
-  sns_topic_for_notifications = string
+  sns_topic_for_notifications = <string>
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = list(string)
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -286,38 +286,38 @@ inputs = {
   # Specifies whether a read-only replica is automatically promoted to read/write
   # primary if the existing primary fails. It must be enabled for Redis (cluster
   # mode enabled) replication groups.
-  enable_automatic_failover = bool
+  enable_automatic_failover = <bool>
 
   # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_multi_az = bool
+  enable_multi_az = <bool>
 
   # The compute and memory capacity of the nodes (e.g. cache.t3.medium).
-  instance_type = string
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
   # Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
   # the primary node, 2 represents the primary plus a single Read Replica.
-  replication_group_size = number
+  replication_group_size = <number>
 
   # The ARN of the SNS Topic to which notifications will be sent when a Replication
   # Group event happens, such as an automatic failover (e.g.
   # arn:aws:sns:*:123456789012:my_sns_topic). An empty string is a valid value if
   # you do not wish to receive notifications via SNS.
-  sns_topic_for_notifications = string
+  sns_topic_for_notifications = <string>
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = list(string)
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -836,6 +836,6 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "82202c3e998e5fa302a3e92abb193b81"
+  "hash": "90919ba47881eed567b3396e8e2cf9a2"
 }
 ##DOCS-SOURCER-END -->

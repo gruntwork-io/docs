@@ -68,16 +68,16 @@ module "run_pex_as_resource" {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = list(string)
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = list(string)
+  python_pex_path_parts = <list(string)>
 
   # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
   # if the main function of the script is in a file named `entrypoint.py` which
   # houses the function `main`, then this should be `entrypoint:main`.
-  script_main_function = string
+  script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -136,16 +136,16 @@ inputs = {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = list(string)
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = list(string)
+  python_pex_path_parts = <list(string)>
 
   # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
   # if the main function of the script is in a file named `entrypoint.py` which
   # houses the function `main`, then this should be `entrypoint:main`.
-  script_main_function = string
+  script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -311,6 +311,6 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91764354d5fc075440f72b940b9d6f7a"
+  "hash": "53e075d5b4d60f8020e8fbe97130f870"
 }
 ##DOCS-SOURCER-END -->

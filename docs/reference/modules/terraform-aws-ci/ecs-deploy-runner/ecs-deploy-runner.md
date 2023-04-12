@@ -118,7 +118,7 @@ module "ecs_deploy_runner" {
   # corresponds to a different ECS task definition that can be used for
   # infrastructure pipelines. The key corresponds to a user defined name that can be
   # used with the invoker function to determine which task definition to use.
-  container_images = map(object(
+  container_images = <map(object(
     docker_image = string
     docker_tag   = string
     secrets_manager_env_vars = map(string)
@@ -134,13 +134,13 @@ module "ecs_deploy_runner" {
       restricted_options_regex = map(string)
     ))
     default = bool
-  ))
+  ))>
 
   # AWS ID of the VPC where the ECS task and invoker lambda should run.
-  vpc_id = string
+  vpc_id = <string>
 
   # List of VPC Subnet IDs where the ECS task and invoker lambda should run.
-  vpc_subnet_ids = list(string)
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -331,7 +331,7 @@ inputs = {
   # corresponds to a different ECS task definition that can be used for
   # infrastructure pipelines. The key corresponds to a user defined name that can be
   # used with the invoker function to determine which task definition to use.
-  container_images = map(object(
+  container_images = <map(object(
     docker_image = string
     docker_tag   = string
     secrets_manager_env_vars = map(string)
@@ -347,13 +347,13 @@ inputs = {
       restricted_options_regex = map(string)
     ))
     default = bool
-  ))
+  ))>
 
   # AWS ID of the VPC where the ECS task and invoker lambda should run.
-  vpc_id = string
+  vpc_id = <string>
 
   # List of VPC Subnet IDs where the ECS task and invoker lambda should run.
-  vpc_subnet_ids = list(string)
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1270,6 +1270,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "84dea609e43805d8cbb7d2c15757f629"
+  "hash": "77168bda0c2df6ffdc2e9bc766e741aa"
 }
 ##DOCS-SOURCER-END -->

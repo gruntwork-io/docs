@@ -169,27 +169,27 @@ module "s_3_cloudfront" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the S3 bucket.
-  bucket_name = string
+  bucket_name = <string>
 
   # The default amount of time, in seconds, that an object is in a CloudFront cache
   # before CloudFront forwards another request in the absence of an 'Cache-Control
   # max-age' or 'Expires' header.
-  default_ttl = number
+  default_ttl = <number>
 
   # The path that you want CloudFront to query on the origin server when an end user
   # requests the root URL (e.g. index.html).
-  index_document = string
+  index_document = <string>
 
   # The maximum amount of time, in seconds, that an object is in a CloudFront cache
   # before CloudFront forwards another request to your origin to determine whether
   # the object has been updated. Only effective in the presence of 'Cache-Control
   # max-age', 'Cache-Control s-maxage', and 'Expires' headers.
-  max_ttl = number
+  max_ttl = <number>
 
   # The minimum amount of time that you want objects to stay in CloudFront caches
   # before CloudFront queries your origin to see whether the object has been
   # updated.
-  min_ttl = number
+  min_ttl = <number>
 
   # Set to true if your S3 bucket is configured as a website and publicly
   # accessible. Set to false if it's a regular S3 bucket and only privately
@@ -197,7 +197,7 @@ module "s_3_cloudfront" {
   # website features (e.g. routing, error pages), but users can bypass CloudFront
   # and talk to S3 directly. If it's a private S3 bucket, users can only reach it
   # via CloudFront, but you don't get all the website features.
-  s3_bucket_is_public_website = string
+  s3_bucket_is_public_website = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -461,27 +461,27 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the S3 bucket.
-  bucket_name = string
+  bucket_name = <string>
 
   # The default amount of time, in seconds, that an object is in a CloudFront cache
   # before CloudFront forwards another request in the absence of an 'Cache-Control
   # max-age' or 'Expires' header.
-  default_ttl = number
+  default_ttl = <number>
 
   # The path that you want CloudFront to query on the origin server when an end user
   # requests the root URL (e.g. index.html).
-  index_document = string
+  index_document = <string>
 
   # The maximum amount of time, in seconds, that an object is in a CloudFront cache
   # before CloudFront forwards another request to your origin to determine whether
   # the object has been updated. Only effective in the presence of 'Cache-Control
   # max-age', 'Cache-Control s-maxage', and 'Expires' headers.
-  max_ttl = number
+  max_ttl = <number>
 
   # The minimum amount of time that you want objects to stay in CloudFront caches
   # before CloudFront queries your origin to see whether the object has been
   # updated.
-  min_ttl = number
+  min_ttl = <number>
 
   # Set to true if your S3 bucket is configured as a website and publicly
   # accessible. Set to false if it's a regular S3 bucket and only privately
@@ -489,7 +489,7 @@ inputs = {
   # website features (e.g. routing, error pages), but users can bypass CloudFront
   # and talk to S3 directly. If it's a private S3 bucket, users can only reach it
   # via CloudFront, but you don't get all the website features.
-  s3_bucket_is_public_website = string
+  s3_bucket_is_public_website = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1410,6 +1410,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "64f767a7a179c12c2ed64b57960df1f7"
+  "hash": "876f3b7262de9517c116a9b55ead51ae"
 }
 ##DOCS-SOURCER-END -->

@@ -91,18 +91,18 @@ module "lambda_create_snapshot" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = string
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = string
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = bool
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = string
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -188,18 +188,18 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = string
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = string
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = bool
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = string
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -441,6 +441,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9735d678fce8a0036c0863a44a67a988"
+  "hash": "217c8285c5321e66204bea4f3e094098"
 }
 ##DOCS-SOURCER-END -->

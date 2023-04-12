@@ -104,15 +104,15 @@ module "aurora" {
 
   # The list of IDs of the subnets in which to deploy Aurora. The list must only
   # contain subnets in var.vpc_id.
-  aurora_subnet_ids = list(string)
+  aurora_subnet_ids = <list(string)>
 
   # The name used to namespace all the Aurora resources created by these templates,
   # including the cluster and cluster instances (e.g. drupaldb). Must be unique in
   # this region. Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The ID of the VPC in which to deploy Aurora.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -512,15 +512,15 @@ inputs = {
 
   # The list of IDs of the subnets in which to deploy Aurora. The list must only
   # contain subnets in var.vpc_id.
-  aurora_subnet_ids = list(string)
+  aurora_subnet_ids = <list(string)>
 
   # The name used to namespace all the Aurora resources created by these templates,
   # including the cluster and cluster instances (e.g. drupaldb). Must be unique in
   # this region. Must be a lowercase string.
-  name = string
+  name = <string>
 
   # The ID of the VPC in which to deploy Aurora.
-  vpc_id = string
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2213,6 +2213,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "edadb981c74a0231286ad8dbfb6248f3"
+  "hash": "7b5506de2e35cc78c9189c9977b5499c"
 }
 ##DOCS-SOURCER-END -->

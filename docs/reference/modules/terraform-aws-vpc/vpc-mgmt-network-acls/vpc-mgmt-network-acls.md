@@ -72,32 +72,32 @@ module "vpc_mgmt_network_acls" {
   # The number of each type of subnet (public, private) created in this VPC.
   # Typically, this is equal to the number of availability zones in the current
   # region.
-  num_subnets = number
+  num_subnets = <number>
 
   # A list of CIDR blocks used by the private subnets in the VPC
-  private_subnet_cidr_blocks = list(string)
+  private_subnet_cidr_blocks = <list(string)>
 
   # A list of IDs of the private subnets in the VPC
-  private_subnet_ids = list(string)
+  private_subnet_ids = <list(string)>
 
   # A list of CIDR blocks used by the public subnets in the VPC
-  public_subnet_cidr_blocks = list(string)
+  public_subnet_cidr_blocks = <list(string)>
 
   # A list of IDs of the public subnets in the VPC
-  public_subnet_ids = list(string)
+  public_subnet_ids = <list(string)>
 
   # The id of the VPC
-  vpc_id = string
+  vpc_id = <string>
 
   # The name of the VPC (e.g. mgmt)
-  vpc_name = string
+  vpc_name = <string>
 
   # Use this variable to ensure the Network ACL does not get created until the VPC
   # is ready. This can help to work around a Terraform or AWS issue where trying to
   # create certain resources, such as Network ACLs, before the VPC's Gateway and
   # NATs are ready, leads to a huge variety of eventual consistency bugs. You should
   # typically point this variable at the vpc_ready output from the Gruntwork VPCs.
-  vpc_ready = string
+  vpc_ready = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -153,32 +153,32 @@ inputs = {
   # The number of each type of subnet (public, private) created in this VPC.
   # Typically, this is equal to the number of availability zones in the current
   # region.
-  num_subnets = number
+  num_subnets = <number>
 
   # A list of CIDR blocks used by the private subnets in the VPC
-  private_subnet_cidr_blocks = list(string)
+  private_subnet_cidr_blocks = <list(string)>
 
   # A list of IDs of the private subnets in the VPC
-  private_subnet_ids = list(string)
+  private_subnet_ids = <list(string)>
 
   # A list of CIDR blocks used by the public subnets in the VPC
-  public_subnet_cidr_blocks = list(string)
+  public_subnet_cidr_blocks = <list(string)>
 
   # A list of IDs of the public subnets in the VPC
-  public_subnet_ids = list(string)
+  public_subnet_ids = <list(string)>
 
   # The id of the VPC
-  vpc_id = string
+  vpc_id = <string>
 
   # The name of the VPC (e.g. mgmt)
-  vpc_name = string
+  vpc_name = <string>
 
   # Use this variable to ensure the Network ACL does not get created until the VPC
   # is ready. This can help to work around a Terraform or AWS issue where trying to
   # create certain resources, such as Network ACLs, before the VPC's Gateway and
   # NATs are ready, leads to a huge variety of eventual consistency bugs. You should
   # typically point this variable at the vpc_ready output from the Gruntwork VPCs.
-  vpc_ready = string
+  vpc_ready = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -348,6 +348,6 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "02d657620215fb09774d40a09f1030ea"
+  "hash": "a31ee7fdd4e18b2070d751812a17ae52"
 }
 ##DOCS-SOURCER-END -->
