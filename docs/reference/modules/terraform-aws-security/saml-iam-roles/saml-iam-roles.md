@@ -85,7 +85,7 @@ module "saml_iam_roles" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -244,7 +244,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -895,6 +895,6 @@ A map of tags to apply to the IAM roles.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "31d42d0380ffe1f7b2da6d59c5aaa80d"
+  "hash": "66ad87619ba9699b350b1efc3fd91abb"
 }
 ##DOCS-SOURCER-END -->

@@ -202,10 +202,10 @@ module "ecs_task_scheduler" {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the ECS cluster to use.
-  ecs_target_cluster_arn = <INPUT REQUIRED>
+  ecs_target_cluster_arn = <string>
 
   # The task definition ARN for cloudwatch schedule to run.
-  ecs_target_task_definition_arn = <INPUT REQUIRED>
+  ecs_target_task_definition_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -286,10 +286,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the ECS cluster to use.
-  ecs_target_cluster_arn = <INPUT REQUIRED>
+  ecs_target_cluster_arn = <string>
 
   # The task definition ARN for cloudwatch schedule to run.
-  ecs_target_task_definition_arn = <INPUT REQUIRED>
+  ecs_target_task_definition_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -550,6 +550,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be03fae73337bbb8c019a627280a9f44"
+  "hash": "c31d31c44dd90d05b5cce5e790f49fa5"
 }
 ##DOCS-SOURCER-END -->

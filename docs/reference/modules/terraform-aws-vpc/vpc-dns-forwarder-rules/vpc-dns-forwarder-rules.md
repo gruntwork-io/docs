@@ -80,28 +80,28 @@ module "vpc_dns_forwarder_rules" {
 
   # The primary ip address of the inbound Route 53 Resolver that should be used to
   # resolve the endpoints.
-  destination_vpc_route53_resolver_primary_ip = <INPUT REQUIRED>
+  destination_vpc_route53_resolver_primary_ip = <string>
 
   # The secondary ip address of the inbound Route 53 Resolver that should be used to
   # resolve the endpoints.
-  destination_vpc_route53_resolver_secondary_ip = <INPUT REQUIRED>
+  destination_vpc_route53_resolver_secondary_ip = <string>
 
   # The endpoints that should be resolved by forwarding to the destination VPC DNS
   # resolver. Only these endpoints will be forwarded, while the rest will be
   # resolved as normal.
-  endpoints_to_resolve = <INPUT REQUIRED>
+  endpoints_to_resolve = <list(string)>
 
   # The number of endpoints in var.endpoints_to_resolve. This should be computable,
   # but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_endpoints_to_resolve = <INPUT REQUIRED>
+  num_endpoints_to_resolve = <number>
 
   # The ID of the outbound Route 53 Resolver that resides in the VPC where the
   # queries originate from.
-  origin_vpc_route53_resolver_endpoint_id = <INPUT REQUIRED>
+  origin_vpc_route53_resolver_endpoint_id = <string>
 
   # The ID of the VPC which is the origin of the DNS resolver queries.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -137,28 +137,28 @@ inputs = {
 
   # The primary ip address of the inbound Route 53 Resolver that should be used to
   # resolve the endpoints.
-  destination_vpc_route53_resolver_primary_ip = <INPUT REQUIRED>
+  destination_vpc_route53_resolver_primary_ip = <string>
 
   # The secondary ip address of the inbound Route 53 Resolver that should be used to
   # resolve the endpoints.
-  destination_vpc_route53_resolver_secondary_ip = <INPUT REQUIRED>
+  destination_vpc_route53_resolver_secondary_ip = <string>
 
   # The endpoints that should be resolved by forwarding to the destination VPC DNS
   # resolver. Only these endpoints will be forwarded, while the rest will be
   # resolved as normal.
-  endpoints_to_resolve = <INPUT REQUIRED>
+  endpoints_to_resolve = <list(string)>
 
   # The number of endpoints in var.endpoints_to_resolve. This should be computable,
   # but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_endpoints_to_resolve = <INPUT REQUIRED>
+  num_endpoints_to_resolve = <number>
 
   # The ID of the outbound Route 53 Resolver that resides in the VPC where the
   # queries originate from.
-  origin_vpc_route53_resolver_endpoint_id = <INPUT REQUIRED>
+  origin_vpc_route53_resolver_endpoint_id = <string>
 
   # The ID of the VPC which is the origin of the DNS resolver queries.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -185,6 +185,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81b8f80c48f465573c37efe312ee9a83"
+  "hash": "06eadd674395cefa7199d83ad63a66c2"
 }
 ##DOCS-SOURCER-END -->

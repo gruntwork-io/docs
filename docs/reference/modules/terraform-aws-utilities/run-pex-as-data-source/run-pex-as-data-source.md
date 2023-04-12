@@ -68,16 +68,16 @@ module "run_pex_as_data_source" {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = <INPUT REQUIRED>
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = <INPUT REQUIRED>
+  python_pex_path_parts = <list(string)>
 
   # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
   # if the main function of the script is in a file named `entrypoint.py` which
   # houses the function `main`, then this should be `entrypoint:main`.
-  script_main_function = <INPUT REQUIRED>
+  script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -122,16 +122,16 @@ inputs = {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = <INPUT REQUIRED>
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = <INPUT REQUIRED>
+  python_pex_path_parts = <list(string)>
 
   # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
   # if the main function of the script is in a file named `entrypoint.py` which
   # houses the function `main`, then this should be `entrypoint:main`.
-  script_main_function = <INPUT REQUIRED>
+  script_main_function = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -256,6 +256,6 @@ Data source result of executing the PEX binary.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e298e464722855c3b9045b60411cfc9b"
+  "hash": "2aaeb9944395b4ab1f1f6ffe9c3976e3"
 }
 ##DOCS-SOURCER-END -->

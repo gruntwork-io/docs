@@ -73,11 +73,11 @@ module "eks_cluster_workers_cross_access" {
   # ingress rules for the port information provided in var.ports. For each group in
   # the list, there will be an ingress rule created for all ports provided for all
   # the other groups in the list.
-  eks_worker_security_group_ids = <INPUT REQUIRED>
+  eks_worker_security_group_ids = <list(string)>
 
   # The number of Security Group IDs passed into the module. This should be equal to
   # the length of the var.eks_worker_security_group_ids input list.
-  num_eks_worker_security_group_ids = <INPUT REQUIRED>
+  num_eks_worker_security_group_ids = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -114,11 +114,11 @@ inputs = {
   # ingress rules for the port information provided in var.ports. For each group in
   # the list, there will be an ingress rule created for all ports provided for all
   # the other groups in the list.
-  eks_worker_security_group_ids = <INPUT REQUIRED>
+  eks_worker_security_group_ids = <list(string)>
 
   # The number of Security Group IDs passed into the module. This should be equal to
   # the length of the var.eks_worker_security_group_ids input list.
-  num_eks_worker_security_group_ids = <INPUT REQUIRED>
+  num_eks_worker_security_group_ids = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -144,6 +144,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed114c3e58de9194168b692ad85dc7cc"
+  "hash": "fe77c61995d6a4697346b7763484ea38"
 }
 ##DOCS-SOURCER-END -->

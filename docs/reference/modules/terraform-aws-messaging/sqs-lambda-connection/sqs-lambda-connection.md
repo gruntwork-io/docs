@@ -39,10 +39,10 @@ module "sqs_lambda_connection" {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the lambda.
-  lambda_arn = <INPUT REQUIRED>
+  lambda_arn = <string>
 
   # The arn of the queue.
-  sqs_arn = <INPUT REQUIRED>
+  sqs_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -77,10 +77,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the lambda.
-  lambda_arn = <INPUT REQUIRED>
+  lambda_arn = <string>
 
   # The arn of the queue.
-  sqs_arn = <INPUT REQUIRED>
+  sqs_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -153,6 +153,6 @@ The largest number of records that Lambda will retrieve from your event source a
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a964108418e4a845751c52a8a39e523f"
+  "hash": "174381085b705aa0d8f4856da72a43be"
 }
 ##DOCS-SOURCER-END -->

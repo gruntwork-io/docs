@@ -112,7 +112,7 @@ module "backup_plan" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  plans = <INPUT REQUIRED>
+  plans = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -146,7 +146,7 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  plans = <INPUT REQUIRED>
+  plans = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -250,6 +250,6 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da1342839b8ab55da7679cc0d34a0444"
+  "hash": "b94edf70d684d8e2a0bd89b0791f0fb1"
 }
 ##DOCS-SOURCER-END -->

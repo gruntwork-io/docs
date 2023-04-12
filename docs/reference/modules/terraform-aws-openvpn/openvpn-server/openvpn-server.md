@@ -124,48 +124,48 @@ module "openvpn_server" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # The AWS account ID where the OpenVPN Server will be created. Note that all IAM
   # Users who receive OpenVPN access must also reside in this AWS account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The AWS region in which the resources will be created.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The name of the s3 bucket that will be used to backup PKI secrets
-  backup_bucket_name = <INPUT REQUIRED>
+  backup_bucket_name = <string>
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <INPUT REQUIRED>
+  keypair_name = <string>
 
   # The Amazon Resource Name (ARN) of the KMS Key that will be used to
   # encrypt/decrypt backup files.
-  kms_key_arn = <INPUT REQUIRED>
+  kms_key_arn = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The name of the sqs queue that will be used to receive new certificate requests.
   # Note that the queue name will be automatically prefixed with
   # 'openvpn-requests-'.
-  request_queue_name = <INPUT REQUIRED>
+  request_queue_name = <string>
 
   # The name of the sqs queue that will be used to receive certification revocation
   # requests. Note that the queue name will be automatically prefixed with
   # 'openvpn-revocations-'.
-  revocation_queue_name = <INPUT REQUIRED>
+  revocation_queue_name = <string>
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -352,48 +352,48 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # The AWS account ID where the OpenVPN Server will be created. Note that all IAM
   # Users who receive OpenVPN access must also reside in this AWS account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The AWS region in which the resources will be created.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The name of the s3 bucket that will be used to backup PKI secrets
-  backup_bucket_name = <INPUT REQUIRED>
+  backup_bucket_name = <string>
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <INPUT REQUIRED>
+  keypair_name = <string>
 
   # The Amazon Resource Name (ARN) of the KMS Key that will be used to
   # encrypt/decrypt backup files.
-  kms_key_arn = <INPUT REQUIRED>
+  kms_key_arn = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The name of the sqs queue that will be used to receive new certificate requests.
   # Note that the queue name will be automatically prefixed with
   # 'openvpn-requests-'.
-  request_queue_name = <INPUT REQUIRED>
+  request_queue_name = <string>
 
   # The name of the sqs queue that will be used to receive certification revocation
   # requests. Note that the queue name will be automatically prefixed with
   # 'openvpn-revocations-'.
-  revocation_queue_name = <INPUT REQUIRED>
+  revocation_queue_name = <string>
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1048,6 +1048,6 @@ The base64-encoded User Data script to run on the server when it is booting. Thi
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9e9ee41f382310f5bb35ee0a597d892b"
+  "hash": "c9935661198bd8a206543fec7864b42b"
 }
 ##DOCS-SOURCER-END -->

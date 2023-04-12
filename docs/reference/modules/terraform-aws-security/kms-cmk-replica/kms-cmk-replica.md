@@ -48,12 +48,12 @@ module "kms_cmk_replica" {
   # Map of CMK names to the primary CMK that the replica key is replicating. The
   # primary key must already exist, and must be marked as multi_region = true. Each
   # entry in var.cmk_replicas must have a corresponding entry here.
-  cmk_replica_primary_key_arns = <INPUT REQUIRED>
+  cmk_replica_primary_key_arns = <map(string)>
 
   # Map of CMK names to spec for managing each key. Each entry in the map
   # corresponds to a key that will be created by this template. Each entry in this
   # map must have a corresponding entry in var.cmk_replica_primary_key_arns.
-  cmk_replicas = <INPUT REQUIRED>
+  cmk_replicas = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -108,12 +108,12 @@ inputs = {
   # Map of CMK names to the primary CMK that the replica key is replicating. The
   # primary key must already exist, and must be marked as multi_region = true. Each
   # entry in var.cmk_replicas must have a corresponding entry here.
-  cmk_replica_primary_key_arns = <INPUT REQUIRED>
+  cmk_replica_primary_key_arns = <map(string)>
 
   # Map of CMK names to spec for managing each key. Each entry in the map
   # corresponds to a key that will be created by this template. Each entry in this
   # map must have a corresponding entry in var.cmk_replica_primary_key_arns.
-  cmk_replicas = <INPUT REQUIRED>
+  cmk_replicas = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -376,6 +376,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6131a01ac69ce6e8261265d206a25b5d"
+  "hash": "70ce0fb3ac8d9007fc0d50b200b0c3af"
 }
 ##DOCS-SOURCER-END -->

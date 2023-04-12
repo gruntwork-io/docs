@@ -123,16 +123,16 @@ module "eks_cluster" {
   # ----------------------------------------------------------------------------------------------------
 
   # The list of CIDR blocks to allow inbound access to the Kubernetes API.
-  allow_inbound_api_access_from_cidr_blocks = <INPUT REQUIRED>
+  allow_inbound_api_access_from_cidr_blocks = <list(string)>
 
   # The name of the EKS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # List of IDs of the subnets that can be used for the EKS Control Plane.
-  control_plane_vpc_subnet_ids = <INPUT REQUIRED>
+  control_plane_vpc_subnet_ids = <list(string)>
 
   # ID of the VPC where the EKS resources will be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -792,16 +792,16 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The list of CIDR blocks to allow inbound access to the Kubernetes API.
-  allow_inbound_api_access_from_cidr_blocks = <INPUT REQUIRED>
+  allow_inbound_api_access_from_cidr_blocks = <list(string)>
 
   # The name of the EKS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # List of IDs of the subnets that can be used for the EKS Control Plane.
-  control_plane_vpc_subnet_ids = <INPUT REQUIRED>
+  control_plane_vpc_subnet_ids = <list(string)>
 
   # ID of the VPC where the EKS resources will be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -3435,6 +3435,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "916962232cace24fd592caaaa12ead31"
+  "hash": "025f58c6d0b06de1f0ed0725a3b9cfaf"
 }
 ##DOCS-SOURCER-END -->

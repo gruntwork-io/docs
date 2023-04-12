@@ -120,11 +120,11 @@ module "prepare_pex_environment" {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = <INPUT REQUIRED>
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = <INPUT REQUIRED>
+  python_pex_path_parts = <list(string)>
 
 }
 
@@ -152,11 +152,11 @@ inputs = {
 
   # Parts of the path (folders and file names) to the python package directory
   # housing the pex file.
-  pex_module_path_parts = <INPUT REQUIRED>
+  pex_module_path_parts = <list(string)>
 
   # Parts of the path (folders and files names) to the PEX executable for python as
   # a list of strings.
-  python_pex_path_parts = <INPUT REQUIRED>
+  python_pex_path_parts = <list(string)>
 
 }
 
@@ -231,6 +231,6 @@ The python path that should be used for running PEX file. This should be set as 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e585c56f7084a4edaaefef510348bde1"
+  "hash": "df99c863cf8ebc3c5a9cb31515c7b63e"
 }
 ##DOCS-SOURCER-END -->

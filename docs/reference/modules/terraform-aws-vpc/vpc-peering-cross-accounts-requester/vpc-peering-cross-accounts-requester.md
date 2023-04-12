@@ -80,22 +80,22 @@ module "vpc_peering_cross_accounts_requester" {
   # ----------------------------------------------------------------------------------------------------
 
   # The account ID of the accepter VPC.
-  accepter_owner_id = <INPUT REQUIRED>
+  accepter_owner_id = <string>
 
   # The region of the accepter VPC.
-  accepter_region = <INPUT REQUIRED>
+  accepter_region = <string>
 
   # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <INPUT REQUIRED>
+  accepter_vpc_cidr = <string>
 
   # The ID of the accepter VPC.
-  accepter_vpc_id = <INPUT REQUIRED>
+  accepter_vpc_id = <string>
 
   # List of route tables to add routes to.
-  route_tables = <INPUT REQUIRED>
+  route_tables = <list(string)>
 
   # The VPC ID.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -141,22 +141,22 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The account ID of the accepter VPC.
-  accepter_owner_id = <INPUT REQUIRED>
+  accepter_owner_id = <string>
 
   # The region of the accepter VPC.
-  accepter_region = <INPUT REQUIRED>
+  accepter_region = <string>
 
   # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <INPUT REQUIRED>
+  accepter_vpc_cidr = <string>
 
   # The ID of the accepter VPC.
-  accepter_vpc_id = <INPUT REQUIRED>
+  accepter_vpc_id = <string>
 
   # List of route tables to add routes to.
-  route_tables = <INPUT REQUIRED>
+  route_tables = <list(string)>
 
   # The VPC ID.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -304,6 +304,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "69c42a06a9e8f45841e800f00d322868"
+  "hash": "a9b94594903c49f3de735e87e61fdaad"
 }
 ##DOCS-SOURCER-END -->

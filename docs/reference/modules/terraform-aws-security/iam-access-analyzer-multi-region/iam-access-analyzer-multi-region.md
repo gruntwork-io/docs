@@ -86,7 +86,7 @@ module "iam_access_analyzer_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -129,7 +129,7 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -163,6 +163,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2281e4882a0b09dacac86ccfd4604d51"
+  "hash": "1a02dab85a6f442c71e8d67f11ffd106"
 }
 ##DOCS-SOURCER-END -->

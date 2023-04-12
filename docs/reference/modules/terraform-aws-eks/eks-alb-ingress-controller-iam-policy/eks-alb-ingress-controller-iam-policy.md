@@ -73,7 +73,7 @@ module "eks_alb_ingress_controller_iam_policy" {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -112,7 +112,7 @@ inputs = {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -200,6 +200,6 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5769cee951330f2e0ad6274832c97ba4"
+  "hash": "313ba3c9d1cf89381e4064f6b69edd98"
 }
 ##DOCS-SOURCER-END -->

@@ -153,19 +153,19 @@ module "ecs_service" {
   # ----------------------------------------------------------------------------------------------------
 
   # How many copies of the Task to run across the cluster.
-  desired_number_of_tasks = <INPUT REQUIRED>
+  desired_number_of_tasks = <number>
 
   # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The JSON text of the ECS Task Container Definitions. This portion of the ECS
   # Task Definition defines the Docker container(s) to be run along with all their
   # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
-  ecs_task_container_definitions = <INPUT REQUIRED>
+  ecs_task_container_definitions = <string>
 
   # The name of the service. This is used to namespace all resources created by this
   # module.
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -535,19 +535,19 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # How many copies of the Task to run across the cluster.
-  desired_number_of_tasks = <INPUT REQUIRED>
+  desired_number_of_tasks = <number>
 
   # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The JSON text of the ECS Task Container Definitions. This portion of the ECS
   # Task Definition defines the Docker container(s) to be run along with all their
   # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
-  ecs_task_container_definitions = <INPUT REQUIRED>
+  ecs_task_container_definitions = <string>
 
   # The name of the service. This is used to namespace all resources created by this
   # module.
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1832,6 +1832,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8128f936b9cc7fc13f620eae3f9d589e"
+  "hash": "5aa81cae2163ad50ae6d3cc8ced499fa"
 }
 ##DOCS-SOURCER-END -->

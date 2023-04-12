@@ -73,7 +73,7 @@ module "eks_k_8_s_external_dns_iam_policy" {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -115,7 +115,7 @@ inputs = {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -215,6 +215,6 @@ The name of the IAM policy created with the permissions for the external-dns Kub
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7ef40f412d6eadc1300bff43d27734a0"
+  "hash": "7b48084c41f5f3507a202f6c97a25807"
 }
 ##DOCS-SOURCER-END -->

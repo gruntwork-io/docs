@@ -82,7 +82,7 @@ module "guardduty_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -156,7 +156,7 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -359,6 +359,6 @@ The IDs of the GuardDuty detectors.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1140ac70d0e341e6fc1193b3d6e068f5"
+  "hash": "9f903c614a2dbdca52665a9ce3c7fcca"
 }
 ##DOCS-SOURCER-END -->

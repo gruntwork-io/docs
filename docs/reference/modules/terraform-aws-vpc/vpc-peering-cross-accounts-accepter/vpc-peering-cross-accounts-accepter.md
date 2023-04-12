@@ -85,13 +85,13 @@ module "vpc_peering_cross_accounts_accepter" {
   # ----------------------------------------------------------------------------------------------------
 
   # The VPC CIDR of the requester VPC.
-  requester_vpc_cidr = <INPUT REQUIRED>
+  requester_vpc_cidr = <string>
 
   # List of route tables to add routes to.
-  route_tables = <INPUT REQUIRED>
+  route_tables = <list(string)>
 
   # The VPC Peering Connection ID to manage.
-  vpc_peering_connection_id = <INPUT REQUIRED>
+  vpc_peering_connection_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -152,13 +152,13 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The VPC CIDR of the requester VPC.
-  requester_vpc_cidr = <INPUT REQUIRED>
+  requester_vpc_cidr = <string>
 
   # List of route tables to add routes to.
-  route_tables = <INPUT REQUIRED>
+  route_tables = <list(string)>
 
   # The VPC Peering Connection ID to manage.
-  vpc_peering_connection_id = <INPUT REQUIRED>
+  vpc_peering_connection_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -332,6 +332,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1de60565a0cfe571cc8d17e85f457d31"
+  "hash": "122cb482e010c54e7e2dc99e3b663096"
 }
 ##DOCS-SOURCER-END -->

@@ -130,11 +130,11 @@ module "iam_groups" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -335,11 +335,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1051,6 +1051,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ba91d38f48082b0956599afe4ddd8e93"
+  "hash": "0d21666e980624bb70220011039f7bc1"
 }
 ##DOCS-SOURCER-END -->

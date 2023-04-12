@@ -66,13 +66,13 @@ module "ecs_deploy_runner_invoke_iam_policy" {
 
   # The name of the CloudWatch Log Group that is used to store the logs for the ECS
   # Deploy Runner tasks.
-  deploy_runner_cloudwatch_log_group_name = <INPUT REQUIRED>
+  deploy_runner_cloudwatch_log_group_name = <string>
 
   # ARN of the ECS Cluster that is used to run the ECS Deploy Runner tasks.
-  deploy_runner_ecs_cluster_arn = <INPUT REQUIRED>
+  deploy_runner_ecs_cluster_arn = <string>
 
   # ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
-  deploy_runner_invoker_lambda_function_arn = <INPUT REQUIRED>
+  deploy_runner_invoker_lambda_function_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -107,13 +107,13 @@ inputs = {
 
   # The name of the CloudWatch Log Group that is used to store the logs for the ECS
   # Deploy Runner tasks.
-  deploy_runner_cloudwatch_log_group_name = <INPUT REQUIRED>
+  deploy_runner_cloudwatch_log_group_name = <string>
 
   # ARN of the ECS Cluster that is used to run the ECS Deploy Runner tasks.
-  deploy_runner_ecs_cluster_arn = <INPUT REQUIRED>
+  deploy_runner_ecs_cluster_arn = <string>
 
   # ARN of the AWS Lambda function that can be used to invoke the ECS Deploy Runner.
-  deploy_runner_invoker_lambda_function_arn = <INPUT REQUIRED>
+  deploy_runner_invoker_lambda_function_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -214,6 +214,6 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-invoke-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b2816eccb4fd98da667fdca2157dcb17"
+  "hash": "ae59f3919adf47361c0e57282a397748"
 }
 ##DOCS-SOURCER-END -->

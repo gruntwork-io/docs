@@ -156,28 +156,39 @@ module "tailscale_subnet_router" {
   # The AMI to run on the Tailscale subnet router. This should be built from the
   # Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or
   # var.ami_filters is required. Set to null if looking up the ami with filters.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Tailscale subnet router. You can build the AMI using the Packer template
   # tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of
   # var.ami or var.ami_filters is required. Set to null if passing the ami ID
   # directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The ARN of a Secrets Manager entry containing the Tailscale auth key to use for
   # authenticating the server.
-  auth_key_secrets_manager_arn = <INPUT REQUIRED>
+  auth_key_secrets_manager_arn = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -381,28 +392,39 @@ inputs = {
   # The AMI to run on the Tailscale subnet router. This should be built from the
   # Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or
   # var.ami_filters is required. Set to null if looking up the ami with filters.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Tailscale subnet router. You can build the AMI using the Packer template
   # tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of
   # var.ami or var.ami_filters is required. Set to null if passing the ami ID
   # directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The ARN of a Secrets Manager entry containing the Tailscale auth key to use for
   # authenticating the server.
-  auth_key_secrets_manager_arn = <INPUT REQUIRED>
+  auth_key_secrets_manager_arn = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1060,6 +1082,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5ad6389cd3433b59a66dafcb4ae46d39"
+  "hash": "b0e97e3736f050f5f0a521cd0098ade6"
 }
 ##DOCS-SOURCER-END -->

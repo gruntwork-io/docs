@@ -99,36 +99,47 @@ module "asg_service" {
   # The ID of the AMI to run on each instance in the ASG. The AMI needs to have
   # `ec2-baseline` installed, since by default it will run `start_ec2_baseline` on
   # the User Data.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The type of instance to run in the ASG (e.g. t3.medium)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The maximum number of EC2 Instances to run in this ASG
-  max_size = <INPUT REQUIRED>
+  max_size = <number>
 
   # Wait for this number of EC2 Instances to show up healthy in the load balancer on
   # creation.
-  min_elb_capacity = <INPUT REQUIRED>
+  min_elb_capacity = <number>
 
   # The minimum number of EC2 Instances to run in this ASG
-  min_size = <INPUT REQUIRED>
+  min_size = <number>
 
   # The name for the ASG and all other resources created by these templates.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The list of IDs of the subnets in which to deploy ASG. The list must only
   # contain subnets in var.vpc_id.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the Auto Scaling Group
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -452,36 +463,47 @@ inputs = {
   # The ID of the AMI to run on each instance in the ASG. The AMI needs to have
   # `ec2-baseline` installed, since by default it will run `start_ec2_baseline` on
   # the User Data.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The type of instance to run in the ASG (e.g. t3.medium)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The maximum number of EC2 Instances to run in this ASG
-  max_size = <INPUT REQUIRED>
+  max_size = <number>
 
   # Wait for this number of EC2 Instances to show up healthy in the load balancer on
   # creation.
-  min_elb_capacity = <INPUT REQUIRED>
+  min_elb_capacity = <number>
 
   # The minimum number of EC2 Instances to run in this ASG
-  min_size = <INPUT REQUIRED>
+  min_size = <number>
 
   # The name for the ASG and all other resources created by these templates.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The list of IDs of the subnets in which to deploy ASG. The list must only
   # contain subnets in var.vpc_id.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the Auto Scaling Group
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2022,6 +2044,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a042c63ca371d373d4ecccb3a484e66d"
+  "hash": "84b84025dc61d0694c763f171977458e"
 }
 ##DOCS-SOURCER-END -->

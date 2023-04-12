@@ -83,14 +83,14 @@ module "efs" {
   # The name used to namespace all resources created by these templates, including
   # the EFS file system. Must be unique for this region. May contain only lowercase
   # alphanumeric characters, hyphens, underscores, periods, and spaces.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # A list of subnet ids where the file system should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this file system should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -185,14 +185,14 @@ inputs = {
   # The name used to namespace all resources created by these templates, including
   # the EFS file system. Must be unique for this region. May contain only lowercase
   # alphanumeric characters, hyphens, underscores, periods, and spaces.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # A list of subnet ids where the file system should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this file system should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -546,6 +546,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7bd324a860d9476db334510f6b899561"
+  "hash": "a14e3f66ef824e19a2d40c84934a093d"
 }
 ##DOCS-SOURCER-END -->

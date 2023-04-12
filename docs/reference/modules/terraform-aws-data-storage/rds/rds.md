@@ -102,7 +102,7 @@ module "rds" {
 
   # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db is
   # set.
-  engine = <INPUT REQUIRED>
+  engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
   # var.auto_minor_version_upgrade is set to true, set the version number to
@@ -110,27 +110,27 @@ module "rds" {
   # state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
-  engine_version = <INPUT REQUIRED>
+  engine_version = <string>
 
   # The instance type to use for the db (e.g. db.t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens, underscores, periods, and
   # spaces.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The port the DB will listen on (e.g. 3306)
-  port = <INPUT REQUIRED>
+  port = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids. This is
   # ignored if create_subnet_group=false.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -450,7 +450,7 @@ inputs = {
 
   # The DB engine to use (e.g. mysql). Required unless var.replicate_source_db is
   # set.
-  engine = <INPUT REQUIRED>
+  engine = <string>
 
   # The version of var.engine to use (e.g. 5.7.11 for mysql). If
   # var.auto_minor_version_upgrade is set to true, set the version number to
@@ -458,27 +458,27 @@ inputs = {
   # state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
   # for more details.
-  engine_version = <INPUT REQUIRED>
+  engine_version = <string>
 
   # The instance type to use for the db (e.g. db.t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens, underscores, periods, and
   # spaces.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The port the DB will listen on (e.g. 3306)
-  port = <INPUT REQUIRED>
+  port = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids. This is
   # ignored if create_subnet_group=false.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1496,6 +1496,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "99adac3897461839f083dab2f3b58bdf"
+  "hash": "f0a4755325a11dcb3ecc9b211693f9ca"
 }
 ##DOCS-SOURCER-END -->

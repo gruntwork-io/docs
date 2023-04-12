@@ -102,34 +102,34 @@ module "aws_organizations" {
 
   # Map of child accounts to create. The map key is the name of the account and the
   # value is an object containing account configuration variables.
-  child_accounts = <INPUT REQUIRED>
+  child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
-  create_organization = <INPUT REQUIRED>
+  create_organization = <bool>
 
   # If set to ALLOW, the new account enables IAM users to access account billing
   # information if they have the required permissions. If set to DENY, then only the
   # root user of the new account can access account billing information.
-  default_iam_user_access_to_billing = <INPUT REQUIRED>
+  default_iam_user_access_to_billing = <string>
 
   # The name of an IAM role that Organizations automatically preconfigures in the
   # new member account. This role trusts the mgmt account, allowing users in the
   # mgmt account to assume the role, as permitted by the mgmt account administrator.
-  default_role_name = <INPUT REQUIRED>
+  default_role_name = <string>
 
   # List of AWS service principal names for which you want to enable integration
   # with your organization. Must have `organizations_feature_set` set to ALL. See
   # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
   # s.html
-  organizations_aws_service_access_principals = <INPUT REQUIRED>
+  organizations_aws_service_access_principals = <list(string)>
 
   # List of Organizations policy types to enable in the Organization Root. See
   # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
   # e.html
-  organizations_enabled_policy_types = <INPUT REQUIRED>
+  organizations_enabled_policy_types = <list(string)>
 
   # Specify `ALL` or `CONSOLIDATED_BILLING`.
-  organizations_feature_set = <INPUT REQUIRED>
+  organizations_feature_set = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -164,34 +164,34 @@ inputs = {
 
   # Map of child accounts to create. The map key is the name of the account and the
   # value is an object containing account configuration variables.
-  child_accounts = <INPUT REQUIRED>
+  child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
-  create_organization = <INPUT REQUIRED>
+  create_organization = <bool>
 
   # If set to ALLOW, the new account enables IAM users to access account billing
   # information if they have the required permissions. If set to DENY, then only the
   # root user of the new account can access account billing information.
-  default_iam_user_access_to_billing = <INPUT REQUIRED>
+  default_iam_user_access_to_billing = <string>
 
   # The name of an IAM role that Organizations automatically preconfigures in the
   # new member account. This role trusts the mgmt account, allowing users in the
   # mgmt account to assume the role, as permitted by the mgmt account administrator.
-  default_role_name = <INPUT REQUIRED>
+  default_role_name = <string>
 
   # List of AWS service principal names for which you want to enable integration
   # with your organization. Must have `organizations_feature_set` set to ALL. See
   # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_servic
   # s.html
-  organizations_aws_service_access_principals = <INPUT REQUIRED>
+  organizations_aws_service_access_principals = <list(string)>
 
   # List of Organizations policy types to enable in the Organization Root. See
   # https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyTy
   # e.html
-  organizations_enabled_policy_types = <INPUT REQUIRED>
+  organizations_enabled_policy_types = <list(string)>
 
   # Specify `ALL` or `CONSOLIDATED_BILLING`.
-  organizations_feature_set = <INPUT REQUIRED>
+  organizations_feature_set = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -429,6 +429,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b6aab9e57c69220fa7a206ed07c8d1a"
+  "hash": "7fb2d5d295da0df1e6fb4952c7ee5961"
 }
 ##DOCS-SOURCER-END -->

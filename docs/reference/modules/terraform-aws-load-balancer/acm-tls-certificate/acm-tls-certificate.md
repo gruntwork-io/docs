@@ -202,7 +202,7 @@ module "acm_tls_certificate" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  acm_tls_certificates = <INPUT REQUIRED>
+  acm_tls_certificates = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -262,7 +262,7 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  acm_tls_certificates = <INPUT REQUIRED>
+  acm_tls_certificates = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -488,6 +488,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "99dec7e2898e3a9cbdd299d4f260b855"
+  "hash": "f8998e517a64ec1b5c37baf2bb1ce981"
 }
 ##DOCS-SOURCER-END -->

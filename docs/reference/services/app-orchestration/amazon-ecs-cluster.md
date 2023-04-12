@@ -162,32 +162,43 @@ module "ecs_cluster" {
   # The AMI to run on each instance in the ECS cluster. You can build the AMI using
   # the Packer template ecs-node-al2.json. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required.
-  cluster_instance_ami = <INPUT REQUIRED>
+  cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with ECS
   # workers. You can build the AMI using the Packer template ecs-node-al2.json. Only
   # used if var.cluster_instance_ami is null. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. Set to null if
   # cluster_instance_ami is set.
-  cluster_instance_ami_filters = <INPUT REQUIRED>
+  cluster_instance_ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The type of instances to run in the ECS cluster (e.g. t2.medium)
-  cluster_instance_type = <INPUT REQUIRED>
+  cluster_instance_type = <string>
 
   # The maxiumum number of instances to run in the ECS cluster
-  cluster_max_size = <INPUT REQUIRED>
+  cluster_max_size = <number>
 
   # The minimum number of instances to run in the ECS cluster
-  cluster_min_size = <INPUT REQUIRED>
+  cluster_min_size = <number>
 
   # The name of the ECS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # The ID of the VPC in which the ECS cluster should be launched
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # The IDs of the subnets in which to deploy the ECS cluster instances
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -440,32 +451,43 @@ inputs = {
   # The AMI to run on each instance in the ECS cluster. You can build the AMI using
   # the Packer template ecs-node-al2.json. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required.
-  cluster_instance_ami = <INPUT REQUIRED>
+  cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with ECS
   # workers. You can build the AMI using the Packer template ecs-node-al2.json. Only
   # used if var.cluster_instance_ami is null. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. Set to null if
   # cluster_instance_ami is set.
-  cluster_instance_ami_filters = <INPUT REQUIRED>
+  cluster_instance_ami_filters = <object(
+    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+    owners = list(string)
+
+    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
+    # documentation for describe-images in the AWS CLI reference
+    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The type of instances to run in the ECS cluster (e.g. t2.medium)
-  cluster_instance_type = <INPUT REQUIRED>
+  cluster_instance_type = <string>
 
   # The maxiumum number of instances to run in the ECS cluster
-  cluster_max_size = <INPUT REQUIRED>
+  cluster_max_size = <number>
 
   # The minimum number of instances to run in the ECS cluster
-  cluster_min_size = <INPUT REQUIRED>
+  cluster_min_size = <number>
 
   # The name of the ECS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # The ID of the VPC in which the ECS cluster should be launched
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # The IDs of the subnets in which to deploy the ECS cluster instances
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1417,6 +1439,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6b1ee037312bc403325e7fe2456f58e4"
+  "hash": "c6c1c3e751843c23fe42104d2b4db378"
 }
 ##DOCS-SOURCER-END -->

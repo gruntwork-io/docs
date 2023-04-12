@@ -82,19 +82,32 @@ module "kms_grant_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The map of names of KMS grants to the region where the key resides in. There
   # should be a one to one mapping between entries in this map and the entries of
   # the kms_grants map. This is used to workaround a terraform limitation where the
   # for_each value can not depend on resources.
-  kms_grant_regions = <INPUT REQUIRED>
+  kms_grant_regions = <map(string)>
 
   # Create the specified KMS grants to allow entities to use the KMS key without
   # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
   # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
   # to grant properties. The name must be unique per account.
-  kms_grants = <INPUT REQUIRED>
+  kms_grants = <map(object(
+    # ARN of the KMS CMK that the grant applies to. Note that the region is introspected based on the ARN.
+    kms_cmk_arn = string
+
+    # The principal that is given permission to perform the operations that the grant permits. This must be in ARN
+    # format. For example, the grantee principal for ASG is:
+    # arn:aws:iam::111122223333:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+    grantee_principal = string
+
+    # A list of operations that the grant permits. The permitted values are:
+    # Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant,
+    # RetireGrant, DescribeKey
+    granted_operations = list(string)
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -134,19 +147,32 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The map of names of KMS grants to the region where the key resides in. There
   # should be a one to one mapping between entries in this map and the entries of
   # the kms_grants map. This is used to workaround a terraform limitation where the
   # for_each value can not depend on resources.
-  kms_grant_regions = <INPUT REQUIRED>
+  kms_grant_regions = <map(string)>
 
   # Create the specified KMS grants to allow entities to use the KMS key without
   # modifying the KMS policy or IAM. This is necessary to allow AWS services (e.g.
   # ASG) to use CMKs encrypt and decrypt resources. The input is a map of grant name
   # to grant properties. The name must be unique per account.
-  kms_grants = <INPUT REQUIRED>
+  kms_grants = <map(object(
+    # ARN of the KMS CMK that the grant applies to. Note that the region is introspected based on the ARN.
+    kms_cmk_arn = string
+
+    # The principal that is given permission to perform the operations that the grant permits. This must be in ARN
+    # format. For example, the grantee principal for ASG is:
+    # arn:aws:iam::111122223333:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+    grantee_principal = string
+
+    # A list of operations that the grant permits. The permitted values are:
+    # Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant,
+    # RetireGrant, DescribeKey
+    granted_operations = list(string)
+  ))>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -177,6 +203,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ce6a4fcd67c0448e0cf627a7baa1f83b"
+  "hash": "d69fdbd696635af477f58d61c2f36b3a"
 }
 ##DOCS-SOURCER-END -->

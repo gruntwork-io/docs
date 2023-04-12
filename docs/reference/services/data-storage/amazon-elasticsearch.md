@@ -105,33 +105,33 @@ module "elasticsearch" {
   # The name of the Elasticsearch cluster. It must be unique to your account and
   # region, start with a lowercase letter, contain between 3 and 28 characters, and
   # contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
-  domain_name = <INPUT REQUIRED>
+  domain_name = <string>
 
   # The number of instances to deploy in the Elasticsearch cluster. This must be an
   # even number if zone_awareness_enabled is true.
-  instance_count = <INPUT REQUIRED>
+  instance_count = <number>
 
   # The instance type to use for Elasticsearch data nodes (e.g.,
   # t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types
   # see
   # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supp
   # rted-instance-types.html.
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or
   # 512). For volume size limits see
   # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limi
   # s.html.
-  volume_size = <INPUT REQUIRED>
+  volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard, gp2,
   # io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
-  volume_type = <INPUT REQUIRED>
+  volume_type = <string>
 
   # Whether to deploy the Elasticsearch nodes across two Availability Zones instead
   # of one. Note that if you enable this, the instance_count MUST be an even number.
-  zone_awareness_enabled = <INPUT REQUIRED>
+  zone_awareness_enabled = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -463,33 +463,33 @@ inputs = {
   # The name of the Elasticsearch cluster. It must be unique to your account and
   # region, start with a lowercase letter, contain between 3 and 28 characters, and
   # contain only lowercase letters a-z, the numbers 0-9, and the hyphen (-).
-  domain_name = <INPUT REQUIRED>
+  domain_name = <string>
 
   # The number of instances to deploy in the Elasticsearch cluster. This must be an
   # even number if zone_awareness_enabled is true.
-  instance_count = <INPUT REQUIRED>
+  instance_count = <number>
 
   # The instance type to use for Elasticsearch data nodes (e.g.,
   # t2.small.elasticsearch, or m4.large.elasticsearch). For supported instance types
   # see
   # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supp
   # rted-instance-types.html.
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or
   # 512). For volume size limits see
   # https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limi
   # s.html.
-  volume_size = <INPUT REQUIRED>
+  volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard, gp2,
   # io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
-  volume_type = <INPUT REQUIRED>
+  volume_type = <string>
 
   # Whether to deploy the Elasticsearch nodes across two Availability Zones instead
   # of one. Note that if you enable this, the instance_count MUST be an even number.
-  zone_awareness_enabled = <INPUT REQUIRED>
+  zone_awareness_enabled = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1528,6 +1528,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ee93319a5129079853997bae1460bae1"
+  "hash": "733b0ddcb2131495bad83260c5528c81"
 }
 ##DOCS-SOURCER-END -->
