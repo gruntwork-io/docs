@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.22.6" lastModifiedVersion="0.22.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.22.7" lastModifiedVersion="0.22.0"/>
 
 # VPC-Peering Terraform Module
 
@@ -46,7 +46,8 @@ and production, someone in staging *cannot* access production.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -56,7 +57,7 @@ and production, someone in staging *cannot* access production.
 
 module "vpc_peering" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -133,9 +134,104 @@ module "vpc_peering" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-PEERING MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.22.7"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID of the AWS account that should own the peering connection.
+  aws_account_id = <INPUT REQUIRED>
+
+  # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
+  destination_vpc_cidr_block = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the destination of the VPC peering connection.
+  destination_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the destination of the VPC peering connection.
+  destination_vpc_name = <INPUT REQUIRED>
+
+  # A list of IDs of route tables in the destination VPC that should have routes
+  # added pointing to origin VPC.
+  destination_vpc_route_table_ids = <INPUT REQUIRED>
+
+  # The number of route table ids in var.destination_vpc_route_table_ids. This
+  # should be computable, but due to a but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_destination_vpc_route_tables = <INPUT REQUIRED>
+
+  # The number of route table ids in var.origin_vpc_route_table_ids. This should be
+  # computable, but due to a but due to a Terraform limitation, we can't:
+  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
+  num_origin_vpc_route_tables = <INPUT REQUIRED>
+
+  # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
+  origin_vpc_cidr_block = <INPUT REQUIRED>
+
+  # The ID of the VPC which is the origin of the VPC peering connection.
+  origin_vpc_id = <INPUT REQUIRED>
+
+  # The name of the VPC which is the origin of the VPC peering connection.
+  origin_vpc_name = <INPUT REQUIRED>
+
+  # A list of IDs of route tables in the origin VPC that should have routes added
+  # pointing to destination VPC.
+  origin_vpc_route_table_ids = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A boolean parameter to allow connection from the classic link to VPC over the
+  # peering connection. 
+  allow_classic_link_to_remote_vpc = false
+
+  # A boolean parameter to enable or disable DNS resolution on both accepter and
+  # requester side of the connection peering. 
+  allow_remote_vpc_dns_resolution = false
+
+  # A boolean parameter to allow connection from the VPC to the classic link over
+  # the peering connection. 
+  allow_vpc_to_remote_classic_link = false
+
+  # A boolean parameter to auto-accept the VPC peering connection.
+  auto_accept = true
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the VPC Peering function
+  # and other resources should be created or not.
+  create_resources = true
+
+  # A map of tags to apply to the VPC Peering Connection. The key is the tag name
+  # and the value is the tag value. Note that the tag 'Name' is automatically added
+  # by this module but may be optionally overwritten by this variable.
+  custom_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 <!-- ##DOCS-SOURCER-START
@@ -146,6 +242,6 @@ module "vpc_peering" {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "331a016429e8ef1caa746696c369cb75"
+  "hash": "98007582d1790e43a235b62ff6262f36"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.53.0"/>
 
 # ALB Ingress Controller IAM Policy Module
 
@@ -53,7 +53,8 @@ resource "aws_iam_role_policy_attachment" "attach_alb_ingress_controller_iam_pol
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -63,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "attach_alb_ingress_controller_iam_pol
 
 module "eks_alb_ingress_controller_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -86,9 +87,50 @@ module "eks_alb_ingress_controller_iam_policy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-ALB-INGRESS-CONTROLLER-IAM-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller-iam-policy?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A name that uniquely identified in which context this module is being invoked.
+  # This also helps to avoid creating two resources with the same name from
+  # different terraform applies.
+  name_prefix = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -158,6 +200,6 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "68414a2f23cfcf2705968c5557903f1c"
+  "hash": "5769cee951330f2e0ad6274832c97ba4"
 }
 ##DOCS-SOURCER-END -->

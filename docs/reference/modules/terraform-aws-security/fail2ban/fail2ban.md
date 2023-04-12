@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.9"/>
 
 # Fail2Ban Module
 
@@ -33,6 +33,6 @@ Instance.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bad11a9f31bec9dce64a3f20cff46db7"
+  "hash": "7ee43d8fda38003b146a18f5e5f3b63c"
 }
 ##DOCS-SOURCER-END -->

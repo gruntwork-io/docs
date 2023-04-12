@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.6"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.50.6"/>
 
 # ECS Deploy Runner Standard Configuration module
 
@@ -106,7 +106,8 @@ for more information.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -116,7 +117,7 @@ for more information.
 
 module "ecs_deploy_runner_standard_configuration" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -160,9 +161,71 @@ module "ecs_deploy_runner_standard_configuration" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-DEPLOY-RUNNER-STANDARD-CONFIGURATION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.51.6"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Configuration options for the ami-builder container of the ECS deploy runner
+  # stack. This container will be used for building AMIs in the CI/CD pipeline with
+  # packer. Set to `null` to disable this container.
+  ami_builder = <INPUT REQUIRED>
+
+  # Configuration options for the docker-image-builder container of the ECS deploy
+  # runner stack. This container will be used for building docker images in the
+  # CI/CD pipeline. Set to `null` to disable this container.
+  docker_image_builder = <INPUT REQUIRED>
+
+  # Configuration options for the terraform-applier container of the ECS deploy
+  # runner stack. This container will be used for running infrastructure deployment
+  # actions (including automated variable updates) in the CI/CD pipeline with
+  # Terraform / Terragrunt. Set to `null` to disable this container.
+  terraform_applier = <INPUT REQUIRED>
+
+  # Configuration options for the terraform-planner container of the ECS deploy
+  # runner stack. This container will be used for running infrastructure plan
+  # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
+  # Set to `null` to disable this container.
+  terraform_planner = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Unlike hardcoded_options, this is used for hardcoded positional args and will
+  # always be passed in at the end of the args list.
+  docker_image_builder_hardcoded_args = ["--idempotent"]
+
+  # Which options and args to always pass in alongside the ones provided by the
+  # command. This is a map of option keys to args to pass in. Each arg in the list
+  # will be passed in as a separate option. This will be passed in first, before the
+  # args provided by the user in the event data.
+  docker_image_builder_hardcoded_options = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -764,6 +827,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2836030fd5c4eed91127b2a538c3da6c"
+  "hash": "35521a665273e87d5ba80f525c333130"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.9.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.10.2" lastModifiedVersion="0.10.2"/>
 
 # Kinesis Stream Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a Kinesis stream
 
@@ -95,7 +95,8 @@ module "kinesis" {
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -105,7 +106,7 @@ module "kinesis" {
 
 module "kinesis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.10.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.10.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -122,8 +123,9 @@ module "kinesis" {
   # rounded up to the nearest 1 KB
   average_data_size_in_kb = 0
 
-  # The type of encryption to use (can be KMS or NONE)
-  encryption_type = "NONE"
+  # The type of encryption to use (can be KMS or NONE). Default to use KMS key for
+  # encryption at rest.
+  encryption_type = "KMS"
 
   # A boolean that indicates all registered consumers should be deregistered from
   # the stream so that the stream can be destroyed without error.
@@ -151,14 +153,96 @@ module "kinesis" {
   # The additional shard-level CloudWatch metrics to enable
   shard_level_metrics = []
 
+  # Specifies the capacity mode of the stream. Must be either PROVISIONED or
+  # ON_DEMAND. When you are using PROVISIONED mode, you must set either the
+  # shard_count directly or set the average_data_size_in_kb, records_per_second, and
+  # number_of_consumers
+  stream_mode = null
+
   # A map of key value pairs to apply as tags to the Kinesis stream.
   tags = {}
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KINESIS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis?ref=v0.10.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the Kinesis stream.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The average size of the data record written to the stream in kilobytes (KB),
+  # rounded up to the nearest 1 KB
+  average_data_size_in_kb = 0
+
+  # The type of encryption to use (can be KMS or NONE). Default to use KMS key for
+  # encryption at rest.
+  encryption_type = "KMS"
+
+  # A boolean that indicates all registered consumers should be deregistered from
+  # the stream so that the stream can be destroyed without error.
+  enforce_consumer_deletion = false
+
+  # ID of the key to use for KMS
+  kms_key_id = "alias/aws/kinesis"
+
+  # The number of Amazon Kinesis Streams applications that consume data concurrently
+  # and independently from the stream, that is, the consumers
+  number_of_consumers = 0
+
+  # A shard is a group of data records in a stream. When you create a stream, you
+  # specify the number of shards for the stream.
+  number_of_shards = null
+
+  # The number of data records written to and read from the stream per second
+  records_per_second = 0
+
+  # Length of time data records are accessible after they are added to the stream.
+  # The maximum value of a stream's retention period is 168 hours. Minimum value is
+  # 24.
+  retention_period = 24
+
+  # The additional shard-level CloudWatch metrics to enable
+  shard_level_metrics = []
+
+  # Specifies the capacity mode of the stream. Must be either PROVISIONED or
+  # ON_DEMAND. When you are using PROVISIONED mode, you must set either the
+  # shard_count directly or set the average_data_size_in_kb, records_per_second, and
+  # number_of_consumers
+  stream_mode = null
+
+  # A map of key value pairs to apply as tags to the Kinesis stream.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -192,10 +276,10 @@ The average size of the data record written to the stream in kilobytes (KB), rou
 <HclListItem name="encryption_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of encryption to use (can be KMS or NONE)
+The type of encryption to use (can be KMS or NONE). Default to use KMS key for encryption at rest.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;NONE&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;KMS&quot;"/>
 </HclListItem>
 
 <HclListItem name="enforce_consumer_deletion" requirement="optional" type="bool">
@@ -283,6 +367,15 @@ The additional shard-level CloudWatch metrics to enable
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="stream_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specifies the capacity mode of the stream. Must be either PROVISIONED or ON_DEMAND. When you are using PROVISIONED mode, you must set either the shard_count directly or set the average_data_size_in_kb, records_per_second, and number_of_consumers
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -325,6 +418,6 @@ A map of key value pairs to apply as tags to the Kinesis stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "547a0bb0db79a90060f9f54f35268ba6"
+  "hash": "644a7df3de0613d76306c7d56cedae72"
 }
 ##DOCS-SOURCER-END -->

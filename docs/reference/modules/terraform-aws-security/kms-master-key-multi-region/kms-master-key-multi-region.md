@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.6" lastModifiedVersion="0.66.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.66.0"/>
 
 # AWS KMS Customer Master Keys (CMK)
 
@@ -75,7 +75,8 @@ If you just want to try this out for experimenting and learning, check out the f
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -85,7 +86,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_master_key_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,9 +138,79 @@ module "kms_master_key_multi_region" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S KMS-MASTER-KEY-MULTI-REGION MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.67.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS Account ID the template should be operated on. This avoids
+  # misconfiguration errors caused by environment variables.
+  aws_account_id = <INPUT REQUIRED>
+
+  # You can use this variable to create account-level KMS Customer Master Keys
+  # (CMKs) for encrypting and decrypting data. This variable should be a map where
+  # the keys are the names of the CMK and the values are an object that defines the
+  # configuration for that CMK. See the comment below for the configuration options
+  # you can set for each key.
+  customer_master_keys = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The default value to use for spec (specifies whether the key contains a
+  # symmetric key or an asymmetric key pair and the encryption algorithms or signing
+  # algorithms that the key supports). Applies to all keys, unless overridden in the
+  # customer_master_keys map. Valid values: SYMMETRIC_DEFAULT, RSA_2048, RSA_3072,
+  # RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, or ECC_SECG_P256K1.
+  default_customer_master_key_spec = null
+
+  # The default value to use for deletion_window_in_days (the number of days to keep
+  # this KMS Master Key around after it has been marked for deletion). Applies to
+  # all keys, unless overridden on a specific key in the customer_master_keys map.
+  default_deletion_window_in_days = 30
+
+  # The default value to use for enable_key_rotation (whether or not to enable
+  # automatic annual rotation of the KMS key). Applies to all keys, unless
+  # overridden in the customer_master_keys map.
+  default_enable_key_rotation = true
+
+  # Create a dependency between the resources in this module to the interpolated
+  # values in this list (and thus the source resources). In other words, the
+  # resources in this module will now depend on the resources backing the values in
+  # this list such that those resources need to be created before the resources in
+  # this module, and the resources in this module need to be destroyed before the
+  # resources in the list.
+  dependencies = []
+
+  # A map of tags to apply to all KMS Keys to be created. In this map variable, the
+  # key is the tag name and the value is the tag value.
+  global_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -452,6 +523,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d36dbd7cb039f50634ea4e3a31ea2abf"
+  "hash": "2df8fae928e766b1ab923bce09e50054"
 }
 ##DOCS-SOURCER-END -->

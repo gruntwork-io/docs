@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.10.1" lastModifiedVersion="0.10.1"/>
+<VersionBadge repoTitle="AWS Messaging" version="0.10.2" lastModifiedVersion="0.10.2"/>
 
 # Simple Notification Service (SNS) Topic Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a SNS topic along with the publisher and subscriber policies for the topic.
 
@@ -31,7 +31,8 @@ including:
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -41,7 +42,7 @@ including:
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.10.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.10.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -93,9 +94,79 @@ module "sns" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SNS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v0.10.2"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the SNS topic.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IAM ARNs that will be given the rights to publish to the SNS topic.
+  allow_publish_accounts = []
+
+  # A list of AWS services that will be given the rights to publish to the SNS
+  # topic.
+  allow_publish_services = []
+
+  # A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
+  allow_subscribe_accounts = []
+
+  # A list of protocols that are allowed for subscription.
+  allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
+
+  # Enable or disable creation of the resources of this module.
+  create_resources = true
+
+  # (optional) Delivery policy for sns topic.
+  delivery_policy = null
+
+  # The display name of the SNS topic. NOTE: Maximum length is 100 characters.
+  display_name = ""
+
+  # ARN of the http failure feedback role - when using delivery policy for sns
+  # topic.
+  http_failure_feedback_role_arn = null
+
+  # ARN of the http success feedback role - when using delivery policy for sns
+  # topic.
+  http_success_feedback_role_arn = null
+
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom
+  # CMK
+  kms_master_key_id = null
+
+  # A map of key value pairs to apply as tags to the SNS topic.
+  tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -265,6 +336,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a41d3eeba1b8c158b860d6f1f946c6c"
+  "hash": "923c18888080a83c09b99b1683b88f12"
 }
 ##DOCS-SOURCER-END -->

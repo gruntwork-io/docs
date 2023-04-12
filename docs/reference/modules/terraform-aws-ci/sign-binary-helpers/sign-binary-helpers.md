@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.51.2"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.51.2"/>
 
 # Binary signing Helpers
 
@@ -155,6 +155,6 @@ References:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2156643ad321f94bedeafbf8bfd0008c"
+  "hash": "4fc4cd8179dc4c7ef7f09f9c334b5743"
 }
 ##DOCS-SOURCER-END -->

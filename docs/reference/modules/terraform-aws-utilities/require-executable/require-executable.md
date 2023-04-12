@@ -48,7 +48,8 @@ module "require_executables" {
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -79,9 +80,48 @@ module "require_executable" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REQUIRE-EXECUTABLE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/require-executable?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of named executables that should exist on the OS PATH.
+  required_executables = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Error message to show if the required executable is not found. This is printed
+  # for each executable that was not found. The module will make the following
+  # substitutions in the string: `__EXECUTABLE_NAME__` will become the name of the
+  # executable that was not found.
+  error_message = "Not found: __EXECUTABLE_NAME__"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -135,6 +175,6 @@ A map of the executables to the resolved path where they reside.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42240bb69ab162bdcda0bcf55ff429f4"
+  "hash": "d4f0751994f18a37d2d0f8a130fb5c28"
 }
 ##DOCS-SOURCER-END -->

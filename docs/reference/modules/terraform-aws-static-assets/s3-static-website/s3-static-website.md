@@ -71,7 +71,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -250,9 +251,196 @@ module "s_3_static_website" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S S3-STATIC-WEBSITE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.16.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the website and the S3 bucket to create (e.g. static.foo.com).
+  website_domain_name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The folder in the access logs bucket where logs should be written.
+  access_log_prefix = null
+
+  # Set to true to enable versioning for the access logs S3 bucket. If enabled,
+  # instead of overriding objects, the S3 bucket will always create a new version of
+  # each object, so all the old values are retained.
+  access_logs_enable_versioning = false
+
+  # How many days to keep access logs around for before deleting them.
+  access_logs_expiration_time_in_days = 30
+
+  # Optional KMS key to use for encrypting data in the access logs S3 bucket. If
+  # null, data in the access logs S3 bucket will be encrypted using the default
+  # aws/s3 key. If provided, the key policy of the provided key must allow whoever
+  # is writing to this bucket to use that key.
+  access_logs_kms_key_arn = null
+
+  # The server-side encryption algorithm to use on data in the access logs S3
+  # bucket. Valid values are AES256 and aws:kms.
+  access_logs_sse_algorithm = "aws:kms"
+
+  # Whether the bucket should have a random string appended to the name (by default
+  # a random string is not appended)
+  add_random_id_name_suffix = false
+
+  # The domain name associated with a hosted zone in Route 53. Usually the base
+  # domain name of one of the var.website_domain_name (e.g. foo.com). This is used
+  # to find the hosted zone that will be used for the CloudFront distribution.
+  base_domain_name = null
+
+  # The tags associated with var.base_domain_name. If there are multiple hosted
+  # zones for the same base_domain_name, this will help filter the hosted zones so
+  # that the correct hosted zone is found.
+  base_domain_name_tags = {}
+
+  # The IAM ARN of the CloudFront origin access identity. Only used if
+  # var.restrict_access_to_cloudfront is true. In older AWS accounts, you must use
+  # this in place of var.cloudfront_origin_access_identity_s3_canonical_user_id.
+  # Otherwise, you will end up with a perpetual diff on the IAM policy. See
+  # https://github.com/terraform-providers/terraform-provider-aws/issues/10158 for
+  # context.
+  cloudfront_origin_access_identity_iam_arn = null
+
+  # The ID of the s3 Canonical User for Cloudfront Origin Identity. Only used if
+  # var.restrict_access_to_cloudfront is true. See:
+  # https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html#exa
+  # ple-bucket-policies-use-case-6. If you are getting a perpetual diff, set
+  # var.cloudfront_origin_access_identity_iam_arn.
+  cloudfront_origin_access_identity_s3_canonical_user_id = null
+
+  # A configuration for CORS on the S3 bucket. Default value comes from AWS. Can
+  # override for custom CORS by passing the object structure define in the
+  # documentation
+  # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#using-cors.
+  cors_rule = []
+
+  # If set to true, create a DNS A Record in Route 53 with the domain name in
+  # var.website_domain_name. If you're using CloudFront, you should configure the
+  # domain name in the CloudFront module and not in this module.
+  create_route53_entry = false
+
+  # A map of custom tags to apply to the S3 bucket. The key is the tag name and the
+  # value is the tag value.
+  custom_tags = {}
+
+  # Set to true to enable versioning. This means the bucket will retain all old
+  # versions of all files. This is useful for backup purposes (e.g. you can rollback
+  # to an older version), but it may mean your bucket uses more storage.
+  enable_versioning = true
+
+  # The path to the error document in the S3 bucket (e.g. error.html).
+  error_document = "error.html"
+
+  # If set to true, this will force the delete of the access logs S3 bucket when you
+  # run terraform destroy, even if there is still content in it. This is only meant
+  # for testing and should not be used in production.
+  force_destroy_access_logs_bucket = false
+
+  # If set to true, this will force the delete of the redirect S3 bucket when you
+  # run terraform destroy, even if there is still content in it. This is only meant
+  # for testing and should not be used in production.
+  force_destroy_redirect = false
+
+  # If set to true, this will force the delete of the website S3 bucket when you run
+  # terraform destroy, even if there is still content in it. This is only meant for
+  # testing and should not be used in production.
+  force_destroy_website = false
+
+  # The ID of the Route 53 Hosted Zone in which to create the DNS A Record specified
+  # in var.website_domain_name. Only used if var.create_route53_entry is true.
+  hosted_zone_id = null
+
+  # The path to the index document in the S3 bucket (e.g. index.html).
+  index_document = "index.html"
+
+  # The lifecycle rules for this S3 bucket. These can be used to change storage
+  # types or delete objects based on customizable rules. This should be a map, where
+  # each key is a unique ID for the lifecycle rule, and each value is an object that
+  # contains the parameters defined in the comment above.
+  lifecycle_rules = {}
+
+  # Whether the Route 53 Hosted Zone associated with var.base_domain_name is
+  # private.
+  private_zone = false
+
+  # A string of the URL to redirect all requests to. Only used if
+  # var.should_redirect_all_requests is true.
+  redirect_all_requests_to = null
+
+  # If set to true, the S3 bucket will only be accessible via CloudFront, and not
+  # directly. You must specify var.cloudfront_origin_access_identity_iam_arn if you
+  # set this variable to true.
+  restrict_access_to_cloudfront = false
+
+  # A map describing the routing_rule for the aws_s3_website_configuration resource.
+  # Describes redirect behavior and conditions when redirects are applied. Conflicts
+  # with redirect_all_requests_to and routing_rules. Use routing_rules if rules
+  # contain empty String values.
+  routing_rule = {}
+
+  # A json string array containing routing rules for the
+  # aws_s3_website_configuration resource. Describes redirect behavior and
+  # conditions when redirects are applied. Conflicts with routing_rule and
+  # redirect_all_requests_to. Use this when routing rules contain empty String
+  # values.
+  routing_rules = null
+
+  # The S3 bucket object ownership. Valid values are BucketOwnerPreferred,
+  # ObjectWriter or BucketOwnerEnforced.
+  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.htm
+  s3_bucket_object_ownership = "ObjectWriter"
+
+  # By default, the s3 buckets are named after the domain name. Use this
+  # configuration to override it with this value instead.
+  s3_bucket_override_bucket_name = null
+
+  # List of IAM policy documents, in stringified JSON format, that are merged into
+  # the S3 bucket policy.
+  s3_bucket_override_policy_documents = null
+
+  # A configuration for server side encryption (SSE) on the S3 bucket. Defaults to
+  # AES256. The list should contain the object structure defined in the
+  # documentation
+  # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#enable-default-serv
+  # r-side-encryption. To opt out of encryption set the variable to an empty list
+  # [].
+  server_side_encryption_configuration = [{"rule":[{"apply_server_side_encryption_by_default":[{"kms_master_key_id":"","sse_algorithm":"AES256"}]}]}]
+
+  # If set to true, this implies that this S3 bucket is only for redirecting all
+  # requests to another domain name specified in var.redirect_all_requests_to. This
+  # is useful to setup a bucket to redirect, for example, foo.com to www.foo.com.
+  # Conflicts with routing_rule.
+  should_redirect_all_requests = false
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -671,6 +859,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "889fc533be4240df61c9bbaa5c2842bf"
+  "hash": "51d3b5567fc2e2dd327f30966c0a1313"
 }
 ##DOCS-SOURCER-END -->

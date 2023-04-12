@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="0.29.3" lastModifiedVersion="0.23.0"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="0.29.4" lastModifiedVersion="0.23.0"/>
 
 # Network Load Balancer (NLB) Module
 
@@ -34,6 +34,6 @@ For information on why the module was removed, refer to the discussion in [PR
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/nlb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d7c868288964987c6a1669aa9dd5f41"
+  "hash": "1a490fb90e4a5a8f3e4cabd17f001c8f"
 }
 ##DOCS-SOURCER-END -->

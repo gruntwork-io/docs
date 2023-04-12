@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.56.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.57.0"/>
 
 # EKS Cluster Control Plane Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.57.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
@@ -372,7 +372,8 @@ approaches:
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -382,7 +383,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -527,11 +528,11 @@ module "eks_cluster_control_plane" {
   # The URL from which to download Kubergrunt if it's not installed already. Only
   # used if var.use_kubergrunt_verification and var.auto_install_kubergrunt are
   # true.
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt"
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.0-alpha.1/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.24"
+  kubernetes_version = "1.25"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -639,9 +640,284 @@ module "eks_cluster_control_plane" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-CLUSTER-CONTROL-PLANE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
+  # resources created by these templates.
+  cluster_name = <INPUT REQUIRED>
+
+  # A list of CIDR blocks that should be allowed network access to the Kubernetes
+  # public API endpoint. When null or empty, allow access from the whole world
+  # (0.0.0.0/0). Note that this only restricts network reachability to the API, and
+  # does not account for authentication to the API. Note also that this only
+  # controls access to the public API endpoint, which is used for network access
+  # from outside the VPC. If you want to control access to the Kubernetes API from
+  # within the VPC, then you must use the endpoint_private_access_cidrs and
+  # endpoint_private_access_security_group_ids variables.
+  endpoint_public_access_cidrs = <INPUT REQUIRED>
+
+  # A list of the subnets into which the EKS Cluster's control plane nodes will be
+  # launched. These should usually be all private subnets and include one in each
+  # AWS Availability Zone.
+  vpc_control_plane_subnet_ids = <INPUT REQUIRED>
+
+  # The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
+  vpc_id = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of additional security group IDs to attach to the control plane.
+  additional_security_groups = []
+
+  # Automatically download and install Kubergrunt if it isn't already installed on
+  # this OS. Only used if var.use_kubergrunt_verification is true.
+  auto_install_kubergrunt = true
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data in the CloudWatch log group for EKS control plane logs.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The number of days to retain log events in the CloudWatch log group for EKS
+  # control plane logs. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # Tags to apply on the CloudWatch Log Group for EKS control plane logs, encoded as
+  # a map where the keys are tag keys and values are tag values.
+  cloudwatch_log_group_tags = null
+
+  # ARN of permissions boundary to apply to the cluster IAM role - the IAM role
+  # created for the EKS cluster as well as the default fargate IAM role.
+  cluster_iam_role_permissions_boundary = null
+
+  # Whether or not to automatically configure kubectl on the current operator
+  # machine. To use this, you need a working python install with the AWS CLI
+  # installed and configured.
+  configure_kubectl = false
+
+  # When set to true, this will inform the module to set up the OpenID Connect
+  # Provider for use with the IAM Roles for Service Accounts feature of EKS.
+  configure_openid_connect_provider = true
+
+  # When true, IAM role will be created and attached to Fargate control plane
+  # services. When true, requires that schedule_control_plane_services_on_fargate
+  # variable should be set true.
+  create_default_fargate_iam_role = true
+
+  # The name to use for the default Fargate execution IAM role that is created when
+  # create_default_fargate_iam_role is true. When null, defaults to
+  # CLUSTER_NAME-fargate-role.
+  custom_fargate_iam_role_name = null
+
+  # A map of custom tags to apply to the EKS add-ons. The key is the tag name and
+  # the value is the tag value.
+  custom_tags_eks_addons = {}
+
+  # A map of custom tags to apply to the EKS Cluster. The key is the tag name and
+  # the value is the tag value.
+  custom_tags_eks_cluster = {}
+
+  # A map of custom tags to apply to the Security Group for this EKS Cluster. The
+  # key is the tag name and the value is the tag value.
+  custom_tags_security_group = {}
+
+  # Map of EKS add-ons, where key is name of the add-on and value is a map of add-on
+  # properties.
+  eks_addons = {}
+
+  # When set to true, the module configures EKS add-ons
+  # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified
+  # with `eks_addons`. VPC CNI configurations with `use_vpc_cni_customize_script`
+  # isn't fully supported with addons, as the automated add-on lifecycles could
+  # potentially undo the configuration changes.
+  enable_eks_addons = false
+
+  # A list of the desired control plane logging to enable. See
+  # https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html for the
+  # list of available logs.
+  enabled_cluster_log_types = []
+
+  # A list of CIDR blocks that should be allowed network access to the private
+  # Kubernetes API endpoint. Note that worker nodes automatically get access to the
+  # private endpoint, so this controls additional access. Note that this only
+  # restricts network reachability to the API, and does not account for
+  # authentication to the API. Note also that this only controls access to the
+  # private API endpoint, which is used for network access from inside the VPC. If
+  # you want to control access to the Kubernetes API from outside the VPC, then you
+  # must use the endpoint_public_access_cidrs.
+  endpoint_private_access_cidrs = []
+
+  # Same as endpoint_private_access_cidrs, but exposes access to the provided list
+  # of security groups instead of CIDR blocks. The keys in the map are unique user
+  # defined identifiers that can be used for resource tracking purposes.
+  endpoint_private_access_security_group_ids = {}
+
+  # Whether or not to enable public API endpoints which allow access to the
+  # Kubernetes API from outside of the VPC. Note that private access within the VPC
+  # is always enabled.
+  endpoint_public_access = true
+
+  # Create a dependency between the control plane services Fargate Profile in this
+  # module to the interpolated values in this list (and thus the source resources).
+  # In other words, the resources in this module will now depend on the resources
+  # backing the values in this list such that those resources need to be created
+  # before the resources in this module, and the resources in this module need to be
+  # destroyed before the resources in the list.
+  fargate_profile_dependencies = []
+
+  # Name of the kubectl config file context for accessing the EKS cluster.
+  kubectl_config_context_name = ""
+
+  # Path to the kubectl config file. Defaults to $HOME/.kube/config
+  kubectl_config_path = ""
+
+  # The URL from which to download Kubergrunt if it's not installed already. Only
+  # used if var.use_kubergrunt_verification and var.auto_install_kubergrunt are
+  # true.
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.0-alpha.1/kubergrunt"
+
+  # Version of Kubernetes to use. Refer to EKS docs for list of available versions
+  # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
+  kubernetes_version = "1.25"
+
+  # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
+  # thumbprint by following the instructions in the AWS docs:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_
+  # erify-thumbprint.html. When set to null, this module will dynamically retrieve
+  # the thumbprint from AWS. You should only set this if you have strict
+  # requirements around HTTP access in your organization (e.g., you require an HTTP
+  # proxy).
+  openid_connect_provider_thumbprint = null
+
+  # When true, configures control plane services to run on Fargate so that the
+  # cluster can run without worker nodes. When true, requires kubergrunt to be
+  # available on the system.
+  schedule_control_plane_services_on_fargate = false
+
+  # ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By default
+  # Secrets in EKS are encrypted at rest using shared AWS managed keys. Setting this
+  # variable will configure Kubernetes to encrypt Secrets using this KMS key. Can
+  # only be used on clusters created after 2020-03-05.
+  secret_envelope_encryption_kms_key_arn = null
+
+  # When true, precreate the CloudWatch Log Group to use for EKS control plane
+  # logging. This is useful if you wish to customize the CloudWatch Log Group with
+  # various settings such as retention periods and KMS encryption. When false, EKS
+  # will automatically create a basic log group to use. Note that logs are only
+  # streamed to this group if var.enabled_cluster_log_types is true.
+  should_create_cloudwatch_log_group = true
+
+  # When set to true, the sync-core-components command will skip updating coredns.
+  # This variable is ignored if `use_upgrade_cluster_script` is false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_upgrade_cluster_script` is false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_upgrade_cluster_script` is false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_upgrade_cluster_script` is false.
+  upgrade_cluster_script_wait_for_rollout = true
+
+  # When set to true, this will enable the kubergrunt eks cleanup-security-group
+  # command using a local-exec provisioner. This script ensures that no known
+  # residual resources managed by EKS is left behind after the cluster has been
+  # deleted.
+  use_cleanup_cluster_script = true
+
+  # When set to true, this will enable kubergrunt verification to wait for the
+  # Kubernetes API server to come up before completing. If false, reverts to a 30
+  # second timed wait instead.
+  use_kubergrunt_verification = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+  # When set to true, this will enable the kubergrunt eks sync-core-components
+  # command using a local-exec provisioner. This script ensures that the Kubernetes
+  # core components are upgraded to a matching version everytime the cluster's
+  # Kubernetes version is updated.
+  use_upgrade_cluster_script = true
+
+  # When set to true, this will enable management of the aws-vpc-cni configuration
+  # options using kubergrunt running as a local-exec provisioner. If you set this to
+  # false, the vpc_cni_* variables will be ignored.
+  use_vpc_cni_customize_script = true
+
+  # When true, enable prefix delegation mode for the AWS VPC CNI component of the
+  # EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP
+  # addresses (/28) instead of 1, allowing you to pack more Pods per node. Note that
+  # by default, AWS VPC CNI will always preallocate 1 full prefix - this means that
+  # you can potentially take up 32 IP addresses from the VPC network space even if
+  # you only have 1 Pod on the node. You can tweak this behavior by configuring the
+  # var.vpc_cni_warm_ip_target input variable.
+  vpc_cni_enable_prefix_delegation = false
+
+  # The minimum number of IP addresses (free and used) each node should start with.
+  # When null, defaults to the aws-vpc-cni application setting (currently 16 as of
+  # version 1.9.0). For example, if this is set to 25, every node will allocate 2
+  # prefixes (32 IP addresses). On the other hand, if this was set to the default
+  # value, then each node will allocate only 1 prefix (16 IP addresses).
+  vpc_cni_minimum_ip_target = null
+
+  # The number of free IP addresses each node should maintain. When null, defaults
+  # to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In
+  # prefix delegation mode, determines whether the node will preallocate another
+  # full prefix. For example, if this is set to 5 and a node is currently has 9 Pods
+  # scheduled, then the node will NOT preallocate a new prefix block of 16 IP
+  # addresses. On the other hand, if this was set to the default value, then the
+  # node will allocate a new block when the first pod is scheduled.
+  vpc_cni_warm_ip_target = null
+
+  # A list of the subnets into which the EKS Cluster's administrative pods will be
+  # launched. These should usually be all private subnets and include one in each
+  # AWS Availability Zone. Required when var.schedule_control_plane_services is
+  # true.
+  vpc_worker_subnet_ids = []
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -972,7 +1248,7 @@ Path to the kubectl config file. Defaults to $HOME/.kube/config
 The URL from which to download Kubergrunt if it's not installed already. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> and <a href="#auto_install_kubergrunt"><code>auto_install_kubergrunt</code></a> are true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.11.0-alpha.1/kubergrunt&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -981,7 +1257,7 @@ The URL from which to download Kubergrunt if it's not installed already. Only us
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.24&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.25&quot;"/>
 </HclListItem>
 
 <HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
@@ -1288,6 +1564,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1540f82374a56b52b9a1c33f46b88619"
+  "hash": "4e418d06777796cdd3302110e8670abf"
 }
 ##DOCS-SOURCER-END -->

@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.53.0"/>
 
 # K8S External DNS IAM Policy Module
 
@@ -53,7 +53,8 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_external_dns_iam_policy" {
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -63,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "attach_k8s_external_dns_iam_policy" {
 
 module "eks_k_8_s_external_dns_iam_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -89,9 +90,53 @@ module "eks_k_8_s_external_dns_iam_policy" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-K8S-EXTERNAL-DNS-IAM-POLICY MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-external-dns-iam-policy?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A name that uniquely identified in which context this module is being invoked.
+  # This also helps to avoid creating two resources with the same name from
+  # different terraform applies.
+  name_prefix = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
+  # If you set this variable to false, this module will not create any resources.
+  # This is used as a workaround because Terraform does not allow you to use the
+  # 'count' parameter on modules. By using this parameter, you can optionally create
+  # or not create the resources within this module.
+  create_resources = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -170,6 +215,6 @@ The name of the IAM policy created with the permissions for the external-dns Kub
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3464b78d8c0cc4f52f5f28f72406453d"
+  "hash": "7ef40f412d6eadc1300bff43d27734a0"
 }
 ##DOCS-SOURCER-END -->

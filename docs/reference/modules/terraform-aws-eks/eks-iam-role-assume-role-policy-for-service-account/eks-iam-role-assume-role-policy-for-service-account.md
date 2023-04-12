@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.53.0"/>
 
 # EKS IAM Role Assume Role Policy for Kubernetes Service Accounts
 
@@ -27,7 +27,8 @@ up IRSA and how it works.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -37,7 +38,7 @@ up IRSA and how it works.
 
 module "eks_iam_role_assume_role_policy_for_service_account" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -72,9 +73,62 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-IAM-ROLE-ASSUME-ROLE-POLICY-FOR-SERVICE-ACCOUNT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # ARN of the OpenID Connect Provider provisioned for the EKS cluster.
+  eks_openid_connect_provider_arn = <INPUT REQUIRED>
+
+  # URL of the OpenID Connect Provider provisioned for the EKS cluster.
+  eks_openid_connect_provider_url = <INPUT REQUIRED>
+
+  # The Kubernetes Namespaces that are allowed to assume the attached IAM Role. Only
+  # one of `var.namespaces` or `var.service_accounts` can be set. If both are set,
+  # you may end up with an impossible rule! If both are set to null, then this will
+  # allow all namespaces and all service accounts.
+  namespaces = <INPUT REQUIRED>
+
+  # The Kubernetes Service Accounts that are allowed to assume the attached IAM
+  # Role. Only one of `var.namespaces` or `var.service_accounts` can be set. If both
+  # are set, you may end up with an impossible rule! If both are set to null, then
+  # this will allow all namespaces and all service accounts.
+  service_accounts = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The string operator to use when evaluating the AWS IAM condition for determining
+  # which Service Accounts are allowed to assume the IAM role. Examples:
+  # StringEquals, StringLike, etc.
+  service_accounts_condition_operator = "StringEquals"
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -162,6 +216,6 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "32d64a24a450b94cc6e264546a6480c3"
+  "hash": "066d0e90a41abba8fa88d1515fcc40fa"
 }
 ##DOCS-SOURCER-END -->

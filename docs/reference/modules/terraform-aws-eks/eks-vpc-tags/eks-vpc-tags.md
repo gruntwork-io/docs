@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.56.4" lastModifiedVersion="0.53.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.57.0" lastModifiedVersion="0.53.0"/>
 
 # EKS VPC Tags Module
 
@@ -28,7 +28,8 @@ with EKS.
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -38,7 +39,7 @@ with EKS.
 
 module "eks_vpc_tags" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.56.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.57.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -49,9 +50,38 @@ module "eks_vpc_tags" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S EKS-VPC-TAGS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-vpc-tags?ref=v0.57.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Names of the EKS clusters that you would like to associate with this VPC.
+  eks_cluster_names = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -118,6 +148,6 @@ Tags for public subnets in the VPC to use for integration with EKS.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75d0c3391f4e0aa4c3bb4212b856cb4e"
+  "hash": "4117780a3869ce0386deb39c122a25b5"
 }
 ##DOCS-SOURCER-END -->

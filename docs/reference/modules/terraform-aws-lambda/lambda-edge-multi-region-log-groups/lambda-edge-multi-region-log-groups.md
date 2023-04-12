@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="0.21.7" lastModifiedVersion="0.21.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="0.21.8" lastModifiedVersion="0.21.0"/>
 
 # Multiregional Log groups for Lambda Edge
 
@@ -70,7 +70,8 @@ More information:
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -80,7 +81,7 @@ More information:
 
 module "lambda_edge_multi_region_log_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -128,9 +129,75 @@ module "lambda_edge_multi_region_log_groups" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-EDGE-MULTI-REGION-LOG-GROUPS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge-multi-region-log-groups?ref=v0.21.8"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name used to namespace all log groups.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # The ARN of the destination to deliver matching log events to. Kinesis stream or
+  # Lambda function ARN. Only applicable if var.should_create_cloudwatch_log_group
+  # is true.
+  cloudwatch_log_group_subscription_destination_arn = null
+
+  # The method used to distribute log data to the destination. Only applicable when
+  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream. Valid
+  # values are `Random` and `ByLogStream`.
+  cloudwatch_log_group_subscription_distribution = null
+
+  # A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of
+  # log events.
+  cloudwatch_log_group_subscription_filter_pattern = ""
+
+  # ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver
+  # ingested log events to the destination. Only applicable when
+  # var.cloudwatch_log_group_subscription_destination_arn is a kinesis stream.
+  cloudwatch_log_group_subscription_role_arn = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values.
+  cloudwatch_log_group_tags = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -238,6 +305,6 @@ Map of log group names per region
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "294beee90e22c500deac586f3eac4dc5"
+  "hash": "605207ced75f6dc05f080d399ea662c6"
 }
 ##DOCS-SOURCER-END -->

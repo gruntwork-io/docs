@@ -142,7 +142,8 @@ For information on how to manage your ECS cluster, see the documentation in the
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -414,9 +415,289 @@ module "ecs_cluster" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ECS-CLUSTER MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-cluster?ref=v0.102.11"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AMI to run on each instance in the ECS cluster. You can build the AMI using
+  # the Packer template ecs-node-al2.json. One of var.cluster_instance_ami or
+  # var.cluster_instance_ami_filters is required.
+  cluster_instance_ami = <INPUT REQUIRED>
+
+  # Properties on the AMI that can be used to lookup a prebuilt AMI for use with ECS
+  # workers. You can build the AMI using the Packer template ecs-node-al2.json. Only
+  # used if var.cluster_instance_ami is null. One of var.cluster_instance_ami or
+  # var.cluster_instance_ami_filters is required. Set to null if
+  # cluster_instance_ami is set.
+  cluster_instance_ami_filters = <INPUT REQUIRED>
+
+  # The type of instances to run in the ECS cluster (e.g. t2.medium)
+  cluster_instance_type = <INPUT REQUIRED>
+
+  # The maxiumum number of instances to run in the ECS cluster
+  cluster_max_size = <INPUT REQUIRED>
+
+  # The minimum number of instances to run in the ECS cluster
+  cluster_min_size = <INPUT REQUIRED>
+
+  # The name of the ECS cluster
+  cluster_name = <INPUT REQUIRED>
+
+  # The ID of the VPC in which the ECS cluster should be launched
+  vpc_id = <INPUT REQUIRED>
+
+  # The IDs of the subnets in which to deploy the ECS cluster instances
+  vpc_subnet_ids = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk
+  # space usage) should send notifications
+  alarms_sns_topic_arn = []
+
+  # The IP address ranges in CIDR format from which to allow incoming SSH requests
+  # to the ECS instances.
+  allow_ssh_from_cidr_blocks = []
+
+  # The IDs of security groups from which to allow incoming SSH requests to the ECS
+  # instances.
+  allow_ssh_from_security_group_ids = []
+
+  # Protect EC2 instances running ECS tasks from being terminated due to scale in
+  # (spot instances do not support lifecycle modifications). Note that the behavior
+  # of termination protection differs between clusters with capacity providers and
+  # clusters without. When capacity providers is turned on and this flag is true,
+  # only instances that have 0 ECS tasks running will be scaled in, regardless of
+  # capacity_provider_target. If capacity providers is turned off and this flag is
+  # true, this will prevent ANY instances from being scaled in.
+  autoscaling_termination_protection = false
+
+  # Enable a capacity provider to autoscale the EC2 ASG created for this ECS
+  # cluster.
+  capacity_provider_enabled = false
+
+  # Maximum step adjustment size to the ASG's desired instance count. A number
+  # between 1 and 10000.
+  capacity_provider_max_scale_step = null
+
+  # Minimum step adjustment size to the ASG's desired instance count. A number
+  # between 1 and 10000.
+  capacity_provider_min_scale_step = null
+
+  # Target cluster utilization for the ASG capacity provider; a number from 1 to
+  # 100. This number influences when scale out happens, and when instances should be
+  # scaled in. For example, a setting of 90 means that new instances will be
+  # provisioned when all instances are at 90% utilization, while instances that are
+  # only 10% utilized (CPU and Memory usage from tasks = 10%) will be scaled in.
+  capacity_provider_target = null
+
+  # Cloud init scripts to run on the ECS cluster instances during boot. See the part
+  # blocks in
+  # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
+  # syntax
+  cloud_init_parts = {}
+
+  # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
+  # encrypting log data.
+  cloudwatch_log_group_kms_key_id = null
+
+  # The name of the log group to create in CloudWatch. Defaults to
+  # `var.cluster_name-logs`.
+  cloudwatch_log_group_name = ""
+
+  # The number of days to retain log events in the log group. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/clou
+  # watch_log_group#retention_in_days for all the valid values. When null, the log
+  # events are retained forever.
+  cloudwatch_log_group_retention_in_days = null
+
+  # Tags to apply on the CloudWatch Log Group, encoded as a map where the keys are
+  # tag keys and values are tag values.
+  cloudwatch_log_group_tags = null
+
+  # Specify a list of Security Groups that will have access to the ECS cluster. Only
+  # used if var.enable_cluster_access_ports is set to true
+  cluster_access_from_sgs = []
+
+  # Whether to associate a public IP address with an instance in a VPC
+  cluster_instance_associate_public_ip_address = false
+
+  # The name of the Key Pair that can be used to SSH to each instance in the ECS
+  # cluster
+  cluster_instance_keypair_name = null
+
+  # A list of custom tags to apply to the EC2 Instances in this ASG. Each item in
+  # this list should be a map with the parameters key, value, and
+  # propagate_at_launch.
+  custom_tags_ec2_instances = []
+
+  # Custom tags to apply to the ECS cluster
+  custom_tags_ecs_cluster = {}
+
+  # A map of custom tags to apply to the Security Group for this ECS Cluster. The
+  # key is the tag name and the value is the tag value.
+  custom_tags_security_group = {}
+
+  # The default OS user for the ECS worker AMI. For AWS Amazon Linux AMIs, which is
+  # what the Packer template in ecs-node-al2.json uses, the default OS user is
+  # 'ec2-user'.
+  default_user = "ec2-user"
+
+  # A list of availability zones in the region that should be skipped when deploying
+  # ECS. You can use this to avoid availability zones that may not be able to
+  # provision the resources (e.g instance type does not exist). If empty, allows all
+  # availability zones.
+  disallowed_availability_zones = []
+
+  # Set to true to enable Cloudwatch log aggregation for the ECS cluster
+  enable_cloudwatch_log_aggregation = true
+
+  # Set to true to enable Cloudwatch metrics collection for the ECS cluster
+  enable_cloudwatch_metrics = true
+
+  # Specify a list of ECS Cluster ports which should be accessible from the security
+  # groups given in cluster_access_from_sgs
+  enable_cluster_access_ports = []
+
+  # Set to true to enable several basic Cloudwatch alarms around CPU usage, memory
+  # usage, and disk space usage. If set to true, make sure to specify SNS topics to
+  # send notifications to using var.alarms_sns_topic_arn
+  enable_ecs_cloudwatch_alarms = true
+
+  # Enable fail2ban to block brute force log in attempts. Defaults to true
+  enable_fail2ban = true
+
+  # Set this variable to true to enable the Instance Metadata Service (IMDS)
+  # endpoint, which is used to fetch information such as user-data scripts, instance
+  # IP address and region, etc. Set this variable to false if you do not want the
+  # IMDS endpoint enabled for instances launched into the Auto Scaling Group for the
+  # workers.
+  enable_imds = true
+
+  # Enable ip-lockdown to block access to the instance metadata. Defaults to true
+  enable_ip_lockdown = true
+
+  # Set to true to add IAM permissions for ssh-grunt
+  # (https://github.com/gruntwork-io/terraform-aws-security/tree/master/modules/ssh-
+  # runt), which will allow you to manage SSH access via IAM groups.
+  enable_ssh_grunt = true
+
+  # Since our IAM users are defined in a separate AWS account, this variable is used
+  # to specify the ARN of an IAM role that allows ssh-grunt to retrieve IAM group
+  # and public SSH key info from that account.
+  external_account_ssh_grunt_role_arn = ""
+
+  # The number of periods over which data is compared to the specified threshold
+  high_cpu_utilization_evaluation_periods = 2
+
+  # The period, in seconds, over which to measure the CPU utilization percentage.
+  # Only used if var.enable_ecs_cloudwatch_alarms is set to true
+  high_cpu_utilization_period = 300
+
+  # The statistic to apply to the alarm's high CPU metric. Either of the following
+  # is supported: SampleCount, Average, Sum, Minimum, Maximum
+  high_cpu_utilization_statistic = "Average"
+
+  # Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this
+  # threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
+  high_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
+  # The number of periods over which data is compared to the specified threshold
+  high_memory_utilization_evaluation_periods = 2
+
+  # The period, in seconds, over which to measure the memory utilization percentage.
+  # Only used if var.enable_ecs_cloudwatch_alarms is set to true
+  high_memory_utilization_period = 300
+
+  # The statistic to apply to the alarm's high CPU metric. Either of the following
+  # is supported: SampleCount, Average, Sum, Minimum, Maximum
+  high_memory_utilization_statistic = "Average"
+
+  # Trigger an alarm if the ECS Cluster has a memory utilization percentage above
+  # this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
+  high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be
+  # one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
+
+  # The desired HTTP PUT response hop limit for instance metadata requests for the
+  # workers.
+  http_put_response_hop_limit = null
+
+  # The Security Group ID for the internal ALB
+  internal_alb_sg_ids = []
+
+  # Enable a multi-az capacity provider to autoscale the EC2 ASGs created for this
+  # ECS cluster, only if capacity_provider_enabled = true
+  multi_az_capacity_provider = false
+
+  # The Security Group ID for the public ALB
+  public_alb_sg_ids = []
+
+  # When true, precreate the CloudWatch Log Group to use for log aggregation from
+  # the EC2 instances. This is useful if you wish to customize the CloudWatch Log
+  # Group with various settings such as retention periods and KMS encryption. When
+  # false, the CloudWatch agent will automatically create a basic log group to use.
+  should_create_cloudwatch_log_group = true
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to the nodes in this ECS cluster. This value is only used
+  # if enable_ssh_grunt=true.
+  ssh_grunt_iam_group = "ssh-grunt-users"
+
+  # If you are using ssh-grunt, this is the name of the IAM group from which users
+  # will be allowed to SSH to the nodes in this ECS cluster with sudo permissions.
+  # This value is only used if enable_ssh_grunt=true.
+  ssh_grunt_iam_group_sudo = "ssh-grunt-sudo-users"
+
+  # The tenancy of this server. Must be one of: default, dedicated, or host.
+  tenancy = "default"
+
+  # Set this variable to true to enable the use of Instance Metadata Service Version
+  # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
+  # to its special security hardening, we allow this in order to support the use
+  # case of AMIs built outside of these modules that depend on IMDSv1.
+  use_imdsv1 = true
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -1136,6 +1417,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "db708d631d39d3d14f7386a5fe8fceaa"
+  "hash": "6b1ee037312bc403325e7fe2456f58e4"
 }
 ##DOCS-SOURCER-END -->

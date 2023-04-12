@@ -77,7 +77,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -111,9 +112,51 @@ module "route_53" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S ROUTE53 MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/route53?ref=v0.102.11"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map of private Route 53 Hosted Zones. In this map, the key should be the
+  # domain name. See examples below.
+  private_zones = {}
+
+  # A map of public Route 53 Hosted Zones. In this map, the key should be the domain
+  # name. See examples below.
+  public_zones = {}
+
+  # A map of domain names to configurations for setting up a new private namespace
+  # in AWS Cloud Map.
+  service_discovery_private_namespaces = {}
+
+  # A map of domain names to configurations for setting up a new public namespace in
+  # AWS Cloud Map. Note that the domain name must be registered with Route 53.
+  service_discovery_public_namespaces = {}
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -509,6 +552,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3b5cabe6858974b9f459287d53ff4c7f"
+  "hash": "9ab77ff5f651898d5a213c4535d36d2b"
 }
 ##DOCS-SOURCER-END -->

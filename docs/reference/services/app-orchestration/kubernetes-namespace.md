@@ -91,7 +91,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -150,9 +151,76 @@ module "k_8_s_namespace" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S K8S-NAMESPACE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/k8s-namespace?ref=v0.102.11"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Name of the Namespace to create.
+  name = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Map of string key default pairs that can be used to store arbitrary metadata on
+  # the namespace and roles. See the Kubernetes Reference for more info
+  # (https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+  annotations = {}
+
+  # Name of the EKS cluster where the Namespace will be created. Required when
+  # var.schedule_pods_on_fargate is `true`.
+  eks_cluster_name = null
+
+  # The list of RBAC entities that should have full access to the Namespace.
+  full_access_rbac_entities = []
+
+  # Map of string key value pairs that can be used to organize and categorize the
+  # namespace and roles. See the Kubernetes Reference for more info
+  # (https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+  labels = {}
+
+  # ARN of IAM Role to use as the Pod execution role for Fargate. Required if
+  # var.schedule_pods_on_fargate is true.
+  pod_execution_iam_role_arn = null
+
+  # The list of RBAC entities that should have read only access to the Namespace.
+  read_only_access_rbac_entities = []
+
+  # When true, will create a Fargate Profile that matches all Pods in the Namespace.
+  # This means that all Pods in the Namespace will be scheduled on Fargate. Note
+  # that this value is only used if var.kubeconfig_auth_type is eks, as Fargate
+  # profiles can only be created against EKS clusters.
+  schedule_pods_on_fargate = false
+
+  # The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to
+  # Fargate. At least 1 subnet is required if var.schedule_pods_on_fargate is true.
+  worker_vpc_subnet_ids = []
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -361,6 +429,6 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "aa1e31af04415c57112d34d24bb39e46"
+  "hash": "5c53bda0a82422b4b6014d92246475d1"
 }
 ##DOCS-SOURCER-END -->

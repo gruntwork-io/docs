@@ -73,7 +73,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -164,9 +165,108 @@ module "lambda_create_snapshot" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S LAMBDA-CREATE-SNAPSHOT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-create-snapshot?ref=v0.26.0"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The ARN of the RDS database
+  rds_db_arn = <INPUT REQUIRED>
+
+  # The identifier of the RDS database
+  rds_db_identifier = <INPUT REQUIRED>
+
+  # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
+  # it's running some other database, such as MySQL, Postgres, Oracle, etc.
+  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+
+  # An expression that defines how often to run the lambda function to take
+  # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
+  schedule_expression = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Set to false to have this module skip creating resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if this module should create
+  # anything or not.
+  create_resources = true
+
+  # Namespace all Lambda resources created by this module with this name. If not
+  # specified, the default is var.rds_db_identifier with '-create-snapshot' as a
+  # suffix.
+  lambda_namespace = null
+
+  # If the DB is not in available state when this function runs, it will retry up to
+  # max_retries times.
+  max_retries = 60
+
+  # If set true, just before the lambda function finishes running, it will report a
+  # custom metric to CloudWatch, as specified by
+  # var.report_cloudwatch_metric_namespace and var.report_cloudwatch_metric_name.
+  # You can set an alarm on this metric to detect if the backup job failed to run to
+  # completion.
+  report_cloudwatch_metric = false
+
+  # The name to use for the the custom CloudWatch metric. Only used if
+  # var.report_cloudwatch_metric is set to true.
+  report_cloudwatch_metric_name = null
+
+  # The namespace to use for the the custom CloudWatch metric. Only used if
+  # var.report_cloudwatch_metric is set to true.
+  report_cloudwatch_metric_namespace = null
+
+  # Namespace all Lambda scheduling resources created by this module with this name.
+  # If not specified, the default is var.lambda_namespace with '-scheduled' as a
+  # suffix.
+  schedule_namespace = null
+
+  # The ARN of a lambda job to trigger to share the DB snapshot with another AWS
+  # account. Only used if var.share_snapshot_with_another_account is set to true.
+  share_snapshot_lambda_arn = null
+
+  # The ID of an AWS account with which to share the RDS snapshot. Only used if
+  # var.share_snapshot_with_another_account is set to true.
+  share_snapshot_with_account_id = null
+
+  # If set to true, after this lambda function takes a snapshot of the RDS DB, it
+  # will trigger the lambda function specified in var.share_snapshot_lambda_arn to
+  # share the snapshot with another AWS account.
+  share_snapshot_with_another_account = false
+
+  # The amount of time, in seconds, between retries.
+  sleep_between_retries_sec = 60
+
+  # Namespace all snapshots created by this module's jobs with this suffix. If not
+  # specified, only the database identifier and timestamp are used.
+  snapshot_namespace = ""
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -341,6 +441,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "045d95986bdf0a4b885519e4fcaccb3e"
+  "hash": "47a0a8a7a90da78b996879fd3706b169"
 }
 ##DOCS-SOURCER-END -->

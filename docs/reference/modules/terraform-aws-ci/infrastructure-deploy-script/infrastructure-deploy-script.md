@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.8"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.51.5"/>
 
 # Infrastructure Pipeline: Infrastructure Deploy Scripts
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deploy-script" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module contains a script for deploying arbitrary infrastructure code stored in version control using [Terraform](https://www.terraform.io) and [Terragrunt](https://terragrunt.gruntwork.io). The deployment script can be used to set up secure CI/CD pipelines for infrastructure code. The deployment script can run in any environment (e.g directly in CI servers, ECS task, EKS pod) to remotely run infrastructure code based on version control events. Refer to the [ecs-deploy-runner module](https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/ecs-deploy-runner) to run the deployment in an isolated ECS task, separate from the CI servers.
 
@@ -66,6 +66,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/infrastructure-deploy-script/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e315191de803acbc7d00b82565713f66"
+  "hash": "a87c2d85fcc5836ab89dbe1624a185fa"
 }
 ##DOCS-SOURCER-END -->

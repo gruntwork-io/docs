@@ -126,7 +126,8 @@ values; once they have been increased, they stay that way!
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -150,9 +151,41 @@ module "request_quota_increase" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S REQUEST-QUOTA-INCREASE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A map where the key is the resource and the value is the desired quota. The only
+  # resources supported at the moment are 'nacl_rules' and 'nat_gateway'. You can
+  # also use the `aws_servicequotas_service_quota` resource directly, there are
+  # instructions on how to find the Service Code and Quota Code on the README!
+  resources_to_increase = <INPUT REQUIRED>
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -205,6 +238,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "08887460454854eda84ec84572b526cd"
+  "hash": "1e98eec77fd8fd8548379690d3929736"
 }
 ##DOCS-SOURCER-END -->

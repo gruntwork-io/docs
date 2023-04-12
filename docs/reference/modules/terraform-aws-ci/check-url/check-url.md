@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.51.3" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="0.51.6" lastModifiedVersion="0.50.11"/>
 
 # Check Url
 
@@ -86,6 +86,6 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "11c2fb1961d0bf9319c468355a1e75e9"
+  "hash": "30fbc430fc852c62315ce7ef54bf878d"
 }
 ##DOCS-SOURCER-END -->

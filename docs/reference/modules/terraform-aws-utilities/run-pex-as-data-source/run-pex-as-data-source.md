@@ -49,7 +49,8 @@ running it as a data source). Which approach to use depends on your needs:
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -97,9 +98,65 @@ module "run_pex_as_data_source" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S RUN-PEX-AS-DATA-SOURCE MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.9.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # Parts of the path (folders and file names) to the python package directory
+  # housing the pex file.
+  pex_module_path_parts = <INPUT REQUIRED>
+
+  # Parts of the path (folders and files names) to the PEX executable for python as
+  # a list of strings.
+  python_pex_path_parts = <INPUT REQUIRED>
+
+  # Main function of the script, encoded as SCRIPT_MODULE:FUNCTION. So for example,
+  # if the main function of the script is in a file named `entrypoint.py` which
+  # houses the function `main`, then this should be `entrypoint:main`.
+  script_main_function = <INPUT REQUIRED>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The arguments to pass to the command as a string
+  command_args = ""
+
+  # The query for the command run as a data source.
+  command_query = {}
+
+  # If you set this variable to false, this module will not run the PEX script. This
+  # is used as a workaround because Terraform does not allow you to use the 'count'
+  # parameter on modules. By using this parameter, you can optionally enable the
+  # data source within this module. Note that when false, the 'result' output will
+  # be null.
+  enabled = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -199,6 +256,6 @@ Data source result of executing the PEX binary.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44046aa0a4b0e4fe52d0a221e2260be4"
+  "hash": "e298e464722855c3b9045b60411cfc9b"
 }
 ##DOCS-SOURCER-END -->
