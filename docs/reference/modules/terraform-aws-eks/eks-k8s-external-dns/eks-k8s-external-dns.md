@@ -123,7 +123,7 @@ module "eks_k_8_s_external_dns" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy ALB resources into.
-  aws_region = <string>
+  aws_region = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -132,10 +132,10 @@ module "eks_k_8_s_external_dns" {
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts, or if you wish
   # to provide an IAM role directly via service_account_annotations.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -296,7 +296,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy ALB resources into.
-  aws_region = <string>
+  aws_region = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -305,10 +305,10 @@ inputs = {
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts, or if you wish
   # to provide an IAM role directly via service_account_annotations.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -461,6 +461,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2019f071e517c178032ba4856e7a171"
+  "hash": "c5c573a9f60dd79d4259fb9cf4c07cc5"
 }
 ##DOCS-SOURCER-END -->

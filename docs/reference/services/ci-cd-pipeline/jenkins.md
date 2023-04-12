@@ -106,54 +106,49 @@ module "jenkins" {
 
   # The domain name used for an SSL certificate issued by the Amazon Certificate
   # Manager (ACM).
-  acm_ssl_certificate_domain = <string>
+  acm_ssl_certificate_domain = string
 
   # The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins.
   # Must be subnets in var.vpc_id.
-  alb_subnet_ids = <list(string)>
+  alb_subnet_ids = list(string)
 
   # The ID of the AMI to run on the Jenkins server. This should be the AMI build
   # from the Packer template jenkins-ubuntu.json. One of var.ami or var.ami_filters
   # is required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com).
   # Must be in the domain managed by var.hosted_zone_id.
-  domain_name = <string>
+  domain_name = string
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for
   # Jenkins.
-  hosted_zone_id = <string>
+  hosted_zone_id = string
 
   # The instance type to use for the Jenkins server (e.g. t2.medium)
-  instance_type = <string>
+  instance_type = string
 
   # The ID of the subnet in which to deploy Jenkins. Must be a subnet in var.vpc_id.
-  jenkins_subnet_id = <string>
+  jenkins_subnet_id = string
 
   # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and
   # -Xmx settings.
-  memory = <string>
+  memory = string
 
   # The ID of the VPC in which to deploy Jenkins
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -451,54 +446,49 @@ inputs = {
 
   # The domain name used for an SSL certificate issued by the Amazon Certificate
   # Manager (ACM).
-  acm_ssl_certificate_domain = <string>
+  acm_ssl_certificate_domain = string
 
   # The IDs of the subnets in which to deploy the ALB that runs in front of Jenkins.
   # Must be subnets in var.vpc_id.
-  alb_subnet_ids = <list(string)>
+  alb_subnet_ids = list(string)
 
   # The ID of the AMI to run on the Jenkins server. This should be the AMI build
   # from the Packer template jenkins-ubuntu.json. One of var.ami or var.ami_filters
   # is required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # Jenkins. You can build the AMI using the Packer template jenkins-ubuntu.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The domain name for the DNS A record to add for Jenkins (e.g. jenkins.foo.com).
   # Must be in the domain managed by var.hosted_zone_id.
-  domain_name = <string>
+  domain_name = string
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for
   # Jenkins.
-  hosted_zone_id = <string>
+  hosted_zone_id = string
 
   # The instance type to use for the Jenkins server (e.g. t2.medium)
-  instance_type = <string>
+  instance_type = string
 
   # The ID of the subnet in which to deploy Jenkins. Must be a subnet in var.vpc_id.
-  jenkins_subnet_id = <string>
+  jenkins_subnet_id = string
 
   # The amount of memory to give Jenkins (e.g., 1g or 512m). Used for the -Xms and
   # -Xmx settings.
-  memory = <string>
+  memory = string
 
   # The ID of the VPC in which to deploy Jenkins
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1599,6 +1589,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "16e68d94ccd09a213e76ca68196cff72"
+  "hash": "90d93d12b460d71cfca5c7b5ca29edf7"
 }
 ##DOCS-SOURCER-END -->

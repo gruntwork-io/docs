@@ -75,7 +75,7 @@ module "eks_k_8_s_cluster_autoscaler_iam_policy" {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <string>
+  name_prefix = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -119,7 +119,7 @@ inputs = {
   # A name that uniquely identified in which context this module is being invoked.
   # This also helps to avoid creating two resources with the same name from
   # different terraform applies.
-  name_prefix = <string>
+  name_prefix = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -221,6 +221,6 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a1eaa4c5c5c96f3144a052e7c5ea452f"
+  "hash": "163d49c96aa0511a2e11f1c60c1f7880"
 }
 ##DOCS-SOURCER-END -->

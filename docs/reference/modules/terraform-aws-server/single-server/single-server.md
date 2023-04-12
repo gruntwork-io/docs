@@ -108,24 +108,24 @@ module "single_server" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <string>
+  ami = string
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <string>
+  instance_type = string
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <string>
+  keypair_name = string
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <string>
+  name = string
 
   # The id of the subnet where this server should be deployed.
-  subnet_id = <string>
+  subnet_id = string
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -341,24 +341,24 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <string>
+  ami = string
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <string>
+  instance_type = string
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <string>
+  keypair_name = string
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <string>
+  name = string
 
   # The id of the subnet where this server should be deployed.
-  subnet_id = <string>
+  subnet_id = string
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1062,6 +1062,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "67e6313f97acb73d571e155099cc4337"
+  "hash": "293230b22c976ad35968054bea23d1de"
 }
 ##DOCS-SOURCER-END -->

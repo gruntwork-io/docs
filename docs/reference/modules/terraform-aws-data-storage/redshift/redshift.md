@@ -91,22 +91,22 @@ module "redshift" {
   # ----------------------------------------------------------------------------------------------------
 
   # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens.
-  name = <string>
+  name = string
 
   # The number of nodes in the cluster
-  number_of_nodes = <number>
+  number_of_nodes = number
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -273,22 +273,22 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens.
-  name = <string>
+  name = string
 
   # The number of nodes in the cluster
-  number_of_nodes = <number>
+  number_of_nodes = number
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -895,6 +895,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1fcc31ac7afb7b4769577ba92507a25c"
+  "hash": "f8a82b3e0451e8f8299f2ed89cd47e06"
 }
 ##DOCS-SOURCER-END -->

@@ -120,31 +120,31 @@ module "jenkins_server" {
 
   # The domain name for which there is an ACM cert in this region that can be used
   # to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
-  acm_cert_domain_name = <string>
+  acm_cert_domain_name = string
 
   # The IDs of the subnets where the Jenkins ALB should be deployed (e.g.,
   # subnet-abcd1234).
-  alb_subnet_ids = <list(string)>
+  alb_subnet_ids = list(string)
 
   # The ID of the Amazon Machine Image (AMI) to run for Jenkins (e.g.,
   # ami-abcd1234).
-  ami_id = <string>
+  ami_id = string
 
   # The AWS region to deploy to (e.g. us-east-1).
-  aws_region = <string>
+  aws_region = string
 
   # The type of EC2 Instance to run (e.g. t2.micro).
-  instance_type = <string>
+  instance_type = string
 
   # The ID of the subnet where Jenkins should be deployed (e.g., subnet-abcd1234).
-  jenkins_subnet_id = <string>
+  jenkins_subnet_id = string
 
   # The name for the Jenkins ASG and to namespace all the resources created by this
   # module.
-  name = <string>
+  name = string
 
   # The id of the VPC where Jenkins should be deployed (e.g. vpc-abcd1234).
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -368,31 +368,31 @@ inputs = {
 
   # The domain name for which there is an ACM cert in this region that can be used
   # to do SSL termination for the Jenkins ALB (e.g. *.foo.com).
-  acm_cert_domain_name = <string>
+  acm_cert_domain_name = string
 
   # The IDs of the subnets where the Jenkins ALB should be deployed (e.g.,
   # subnet-abcd1234).
-  alb_subnet_ids = <list(string)>
+  alb_subnet_ids = list(string)
 
   # The ID of the Amazon Machine Image (AMI) to run for Jenkins (e.g.,
   # ami-abcd1234).
-  ami_id = <string>
+  ami_id = string
 
   # The AWS region to deploy to (e.g. us-east-1).
-  aws_region = <string>
+  aws_region = string
 
   # The type of EC2 Instance to run (e.g. t2.micro).
-  instance_type = <string>
+  instance_type = string
 
   # The ID of the subnet where Jenkins should be deployed (e.g., subnet-abcd1234).
-  jenkins_subnet_id = <string>
+  jenkins_subnet_id = string
 
   # The name for the Jenkins ASG and to namespace all the resources created by this
   # module.
-  name = <string>
+  name = string
 
   # The id of the VPC where Jenkins should be deployed (e.g. vpc-abcd1234).
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1157,6 +1157,6 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/jenkins-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "195a98c4926c65548362a71addde86cb"
+  "hash": "408a50d0e324cddfc2e8aee63ad8d557"
 }
 ##DOCS-SOURCER-END -->

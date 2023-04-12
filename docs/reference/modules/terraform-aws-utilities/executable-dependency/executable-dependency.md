@@ -84,11 +84,11 @@ module "executable_dependency" {
 
   # The URL to download the executable from if var.executable is not found on the
   # system PATH or in var.install_dir.
-  download_url = <string>
+  download_url = string
 
   # The executable to look for on the system PATH and in var.install_dir. If not
   # found, this executable will be downloaded from var.download_url.
-  executable = <string>
+  executable = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -137,11 +137,11 @@ inputs = {
 
   # The URL to download the executable from if var.executable is not found on the
   # system PATH or in var.install_dir.
-  download_url = <string>
+  download_url = string
 
   # The executable to look for on the system PATH and in var.install_dir. If not
   # found, this executable will be downloaded from var.download_url.
-  executable = <string>
+  executable = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -250,6 +250,6 @@ The path to use to run the executable. Will either be the path of the executable
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6fe240eea6485afaf69bcb698f39737c"
+  "hash": "e28511dbafecc1068bb596f510670053"
 }
 ##DOCS-SOURCER-END -->

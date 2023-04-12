@@ -55,35 +55,35 @@ module "network_acl_inbound" {
 
   # The number to use for the egress rule that will be added. Each egress rule in a
   # network ACL must have a unique rule number.
-  egress_rule_number = <number>
+  egress_rule_number = number
 
   # A list of CIDR blocks from which inbound connections should be allowed to
   # var.inbound_ports
-  inbound_cidr_blocks = <list(string)>
+  inbound_cidr_blocks = list(string)
 
   # Allow all inbound traffic on ports between var.inbound_from_port and
   # var.inbound_to_port, inclusive
-  inbound_from_port = <number>
+  inbound_from_port = number
 
   # Allow all inbound traffic on ports between var.inbound_from_port and
   # var.inbound_to_port, inclusive
-  inbound_to_port = <number>
+  inbound_to_port = number
 
   # The starting number to use for ingress rules that are added. Each ingress rule
   # in a network ACL must have a unique rule number.
-  ingress_rule_number = <number>
+  ingress_rule_number = number
 
   # The id of the network ACL to which the new rules should be attached
-  network_acl_id = <string>
+  network_acl_id = string
 
   # The number of CIDR blocks in var.inbound_cidr_blocks. We should be able to
   # compute this automatically, but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_inbound_cidr_blocks = <number>
+  num_inbound_cidr_blocks = number
 
   # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
   # any port is allowed (so the from_port and to_port settings are ignored!).
-  protocol = <string>
+  protocol = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -142,35 +142,35 @@ inputs = {
 
   # The number to use for the egress rule that will be added. Each egress rule in a
   # network ACL must have a unique rule number.
-  egress_rule_number = <number>
+  egress_rule_number = number
 
   # A list of CIDR blocks from which inbound connections should be allowed to
   # var.inbound_ports
-  inbound_cidr_blocks = <list(string)>
+  inbound_cidr_blocks = list(string)
 
   # Allow all inbound traffic on ports between var.inbound_from_port and
   # var.inbound_to_port, inclusive
-  inbound_from_port = <number>
+  inbound_from_port = number
 
   # Allow all inbound traffic on ports between var.inbound_from_port and
   # var.inbound_to_port, inclusive
-  inbound_to_port = <number>
+  inbound_to_port = number
 
   # The starting number to use for ingress rules that are added. Each ingress rule
   # in a network ACL must have a unique rule number.
-  ingress_rule_number = <number>
+  ingress_rule_number = number
 
   # The id of the network ACL to which the new rules should be attached
-  network_acl_id = <string>
+  network_acl_id = string
 
   # The number of CIDR blocks in var.inbound_cidr_blocks. We should be able to
   # compute this automatically, but due to a Terraform limitation, we can't:
   # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_inbound_cidr_blocks = <number>
+  num_inbound_cidr_blocks = number
 
   # The protocol (e.g. TCP). If you set this value to -1 or 'all', any protocol and
   # any port is allowed (so the from_port and to_port settings are ignored!).
-  protocol = <string>
+  protocol = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -220,6 +220,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/network-acl-inbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e10bed8f518069d10aab099055eaf14b"
+  "hash": "a803e175409695bd2b425e559fed7bd2"
 }
 ##DOCS-SOURCER-END -->

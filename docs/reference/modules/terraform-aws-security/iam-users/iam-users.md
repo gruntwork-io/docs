@@ -156,7 +156,7 @@ module "iam_users" {
   # ARN of the policy that is used to set the permissions boundary for the user),
   # and 'ssh_public_key' (the public part of the user's SSH key that will be added
   # to their security credentials for use with `ssh-grunt`).
-  users = <any>
+  users = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -218,7 +218,7 @@ inputs = {
   # ARN of the policy that is used to set the permissions boundary for the user),
   # and 'ssh_public_key' (the public part of the user's SSH key that will be added
   # to their security credentials for use with `ssh-grunt`).
-  users = <any>
+  users = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -509,6 +509,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8d39018b4868cd82172086c6e00771e3"
+  "hash": "6be0a95adbaa61d7325517f3a3c3452e"
 }
 ##DOCS-SOURCER-END -->

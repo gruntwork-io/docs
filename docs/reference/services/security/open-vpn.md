@@ -111,51 +111,46 @@ module "openvpn_server" {
   # A list of IP address ranges in CIDR format from which VPN access will be
   # permitted. Attempts to access the OpenVPN Server from all other IP addresses
   # will be blocked.
-  allow_vpn_from_cidr_list = <list(string)>
+  allow_vpn_from_cidr_list = list(string)
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
   # template under openvpn-server.json. One of var.ami or var.ami_filters is
   # required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # OpenVPN server. You can build the AMI using the Packer template
   # openvpn-server.json. Only used if var.ami is null. One of var.ami or
   # var.ami_filters is required. Set to null if passing the ami ID directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The name of the S3 bucket that will be used to backup PKI secrets. This is a
   # required variable because bucket names must be globally unique across all AWS
   # customers.
-  backup_bucket_name = <string>
+  backup_bucket_name = string
 
   # An object with fields for the country, state, locality, organization,
   # organizational unit, and email address to use with the OpenVPN CA certificate.
-  ca_cert_fields = <object(
+  ca_cert_fields = object(
     ca_country  = string
     ca_state    = string
     ca_locality = string
     ca_org      = string
     ca_org_unit = string
     ca_email    = string
-  )>
+  )
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy the OpenVPN server.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -446,51 +441,46 @@ inputs = {
   # A list of IP address ranges in CIDR format from which VPN access will be
   # permitted. Attempts to access the OpenVPN Server from all other IP addresses
   # will be blocked.
-  allow_vpn_from_cidr_list = <list(string)>
+  allow_vpn_from_cidr_list = list(string)
 
   # The AMI to run on the OpenVPN Server. This should be built from the Packer
   # template under openvpn-server.json. One of var.ami or var.ami_filters is
   # required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # OpenVPN server. You can build the AMI using the Packer template
   # openvpn-server.json. Only used if var.ami is null. One of var.ami or
   # var.ami_filters is required. Set to null if passing the ami ID directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The name of the S3 bucket that will be used to backup PKI secrets. This is a
   # required variable because bucket names must be globally unique across all AWS
   # customers.
-  backup_bucket_name = <string>
+  backup_bucket_name = string
 
   # An object with fields for the country, state, locality, organization,
   # organizational unit, and email address to use with the OpenVPN CA certificate.
-  ca_cert_fields = <object(
+  ca_cert_fields = object(
     ca_country  = string
     ca_state    = string
     ca_locality = string
     ca_org      = string
     ca_org_unit = string
     ca_email    = string
-  )>
+  )
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy the OpenVPN server.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1522,6 +1512,6 @@ The security group ID of the OpenVPN server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/openvpn-server/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7e876e3c37cd6727075b3ee39c476f41"
+  "hash": "08ed7f134dbe43ef7311ffddb691c2df"
 }
 ##DOCS-SOURCER-END -->

@@ -57,7 +57,7 @@ module "port_range_calculator" {
   # ----------------------------------------------------------------------------------------------------
 
   # List of ports to exclude from the range.
-  exclude_ports = <list(number)>
+  exclude_ports = list(number)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -94,7 +94,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # List of ports to exclude from the range.
-  exclude_ports = <list(number)>
+  exclude_ports = list(number)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -183,6 +183,6 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f207fc2e700cdaa876f9e83a3b2ab632"
+  "hash": "0985a7bffc9e4d552c92d1b0c99b86b5"
 }
 ##DOCS-SOURCER-END -->

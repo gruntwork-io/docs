@@ -109,22 +109,22 @@ module "lambda" {
 
   # A list of SNS topic ARNs to notify when the lambda alarms change to ALARM, OK,
   # or INSUFFICIENT_DATA state
-  alarm_sns_topic_arns = <list(string)>
+  alarm_sns_topic_arns = list(string)
 
   # The maximum amount of memory, in MB, your Lambda function will be able to use at
   # runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the
   # amount of CPU power given to a Lambda function is proportional to the amount of
   # memory you request, so a Lambda function with 256MB of memory has twice as much
   # CPU power as one with 128MB.
-  memory_size = <number>
+  memory_size = number
 
   # The name of the Lambda function. Used to namespace all resources created by this
   # module.
-  name = <string>
+  name = string
 
   # The maximum amount of time, in seconds, your Lambda function will be allowed to
   # run. Must be between 1 and 900 seconds.
-  timeout = <number>
+  timeout = number
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -397,22 +397,22 @@ inputs = {
 
   # A list of SNS topic ARNs to notify when the lambda alarms change to ALARM, OK,
   # or INSUFFICIENT_DATA state
-  alarm_sns_topic_arns = <list(string)>
+  alarm_sns_topic_arns = list(string)
 
   # The maximum amount of memory, in MB, your Lambda function will be able to use at
   # runtime. Can be set in 64MB increments from 128MB up to 1536MB. Note that the
   # amount of CPU power given to a Lambda function is proportional to the amount of
   # memory you request, so a Lambda function with 256MB of memory has twice as much
   # CPU power as one with 128MB.
-  memory_size = <number>
+  memory_size = number
 
   # The name of the Lambda function. Used to namespace all resources created by this
   # module.
-  name = <string>
+  name = string
 
   # The maximum amount of time, in seconds, your Lambda function will be allowed to
   # run. Must be between 1 and 900 seconds.
-  timeout = <number>
+  timeout = number
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1368,6 +1368,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fdac86538a37840d51c3e179d0045f3e"
+  "hash": "295eaf1980ea9c6ab7b2cc8cd22be075"
 }
 ##DOCS-SOURCER-END -->

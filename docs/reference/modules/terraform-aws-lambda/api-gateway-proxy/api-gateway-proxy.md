@@ -106,7 +106,7 @@ module "api_gateway_proxy" {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the API Gateway REST API.
-  api_name = <string>
+  api_name = string
 
   # Map of path prefixes to lambda functions to invoke. Any request that hits paths
   # under the prefix will be routed to the lambda function. Note that this only
@@ -115,7 +115,7 @@ module "api_gateway_proxy" {
   # something like `api/foo/*`). Use empty string for the path prefix if you wish to
   # route all requests, including the root path, to the lambda function. Refer to
   # the example for more info.
-  lambda_functions = <map(string)>
+  lambda_functions = map(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -250,7 +250,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # Name of the API Gateway REST API.
-  api_name = <string>
+  api_name = string
 
   # Map of path prefixes to lambda functions to invoke. Any request that hits paths
   # under the prefix will be routed to the lambda function. Note that this only
@@ -259,7 +259,7 @@ inputs = {
   # something like `api/foo/*`). Use empty string for the path prefix if you wish to
   # route all requests, including the root path, to the lambda function. Refer to
   # the example for more info.
-  lambda_functions = <map(string)>
+  lambda_functions = map(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -700,6 +700,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63c353b37cab0d45caba218a74d1c641"
+  "hash": "30f80e514f690294f482acba1f30354c"
 }
 ##DOCS-SOURCER-END -->

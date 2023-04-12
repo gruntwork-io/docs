@@ -86,26 +86,26 @@ module "asg_rolling_deploy" {
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
   # dynamically resize the cluster, you should actually leave this value as null.
-  desired_capacity = <number>
+  desired_capacity = number
 
   # The ID and version of the Launch Template to use for each EC2 instance in this
   # ASG. The version value MUST be an output of the Launch Template resource itself.
   # This ensures that a new ASG is created every time a new Launch Template version
   # is created.
-  launch_template = <object(
+  launch_template = object(
     id      = string
     name    = string
     version = string
-  )>
+  )
 
   # The maximum number of EC2 Instances to run in the ASG
-  max_size = <number>
+  max_size = number
 
   # The minimum number of EC2 Instances to run in the ASG
-  min_size = <number>
+  min_size = number
 
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -197,26 +197,26 @@ inputs = {
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
   # dynamically resize the cluster, you should actually leave this value as null.
-  desired_capacity = <number>
+  desired_capacity = number
 
   # The ID and version of the Launch Template to use for each EC2 instance in this
   # ASG. The version value MUST be an output of the Launch Template resource itself.
   # This ensures that a new ASG is created every time a new Launch Template version
   # is created.
-  launch_template = <object(
+  launch_template = object(
     id      = string
     name    = string
     version = string
-  )>
+  )
 
   # The maximum number of EC2 Instances to run in the ASG
-  max_size = <number>
+  max_size = number
 
   # The minimum number of EC2 Instances to run in the ASG
-  min_size = <number>
+  min_size = number
 
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -548,6 +548,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa5faf71b8b56d8d628b05b012f36ebb"
+  "hash": "8c70d390e2edc5ec5f230e552821ac67"
 }
 ##DOCS-SOURCER-END -->

@@ -147,7 +147,7 @@ module "request_quota_increase" {
   # resources supported at the moment are 'nacl_rules' and 'nat_gateway'. You can
   # also use the `aws_servicequotas_service_quota` resource directly, there are
   # instructions on how to find the Service Code and Quota Code on the README!
-  resources_to_increase = <map(number)>
+  resources_to_increase = map(number)
 
 }
 
@@ -177,7 +177,7 @@ inputs = {
   # resources supported at the moment are 'nacl_rules' and 'nat_gateway'. You can
   # also use the `aws_servicequotas_service_quota` resource directly, there are
   # instructions on how to find the Service Code and Quota Code on the README!
-  resources_to_increase = <map(number)>
+  resources_to_increase = map(number)
 
 }
 
@@ -238,6 +238,6 @@ A map where the key is the resource and the value is the desired quota. The only
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fdd3269b226868389a117145e48b4d14"
+  "hash": "bc679134b0c78ba218dcc92a512ae875"
 }
 ##DOCS-SOURCER-END -->

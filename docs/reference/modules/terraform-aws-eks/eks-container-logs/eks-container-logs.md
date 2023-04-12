@@ -117,10 +117,10 @@ module "eks_container_logs" {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -245,10 +245,10 @@ inputs = {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -360,6 +360,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f42524de307d907c38db436ba1d788d0"
+  "hash": "f1d57f4acff58eba53e86cc3d3d0691d"
 }
 ##DOCS-SOURCER-END -->

@@ -232,36 +232,36 @@ module "ecs_cluster" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AMI to run on each of the ECS Cluster's EC2 Instances.
-  cluster_instance_ami = <string>
+  cluster_instance_ami = string
 
   # The EC2 Keypair name used to SSH into the ECS Cluster's EC2 Instances.
-  cluster_instance_keypair_name = <string>
+  cluster_instance_keypair_name = string
 
   # The type of EC2 instance to run for each of the ECS Cluster's EC2 Instances
   # (e.g. t2.medium).
-  cluster_instance_type = <string>
+  cluster_instance_type = string
 
   # The maximum number of EC2 Instances that must be running for this ECS Cluster.
   # We recommend making this twice var.cluster_min_size, even if you don't plan on
   # scaling the cluster up and down, as the extra capacity will be used to deploy
   # udpates to the cluster.
-  cluster_max_size = <number>
+  cluster_max_size = number
 
   # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for
   # auto-scaling limits.
-  cluster_min_size = <number>
+  cluster_min_size = number
 
   # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = <string>
+  cluster_name = string
 
   # The ID of the VPC in which the ECS Cluster's EC2 Instances will reside.
-  vpc_id = <string>
+  vpc_id = string
 
   # A list of the subnets into which the ECS Cluster's EC2 Instances will be
   # launched. These should usually be all private subnets and include one in each
   # AWS Availability Zone.
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -486,36 +486,36 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AMI to run on each of the ECS Cluster's EC2 Instances.
-  cluster_instance_ami = <string>
+  cluster_instance_ami = string
 
   # The EC2 Keypair name used to SSH into the ECS Cluster's EC2 Instances.
-  cluster_instance_keypair_name = <string>
+  cluster_instance_keypair_name = string
 
   # The type of EC2 instance to run for each of the ECS Cluster's EC2 Instances
   # (e.g. t2.medium).
-  cluster_instance_type = <string>
+  cluster_instance_type = string
 
   # The maximum number of EC2 Instances that must be running for this ECS Cluster.
   # We recommend making this twice var.cluster_min_size, even if you don't plan on
   # scaling the cluster up and down, as the extra capacity will be used to deploy
   # udpates to the cluster.
-  cluster_max_size = <number>
+  cluster_max_size = number
 
   # The minimum number of EC2 Instances launchable for this ECS Cluster. Useful for
   # auto-scaling limits.
-  cluster_min_size = <number>
+  cluster_min_size = number
 
   # The name of the ECS cluster (e.g. ecs-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = <string>
+  cluster_name = string
 
   # The ID of the VPC in which the ECS Cluster's EC2 Instances will reside.
-  vpc_id = <string>
+  vpc_id = string
 
   # A list of the subnets into which the ECS Cluster's EC2 Instances will be
   # launched. These should usually be all private subnets and include one in each
   # AWS Availability Zone.
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1302,6 +1302,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/main/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d3c68fa25c7191fd4240bd76c48d8279"
+  "hash": "f119500ac11a94236ad44ff9220a8325"
 }
 ##DOCS-SOURCER-END -->

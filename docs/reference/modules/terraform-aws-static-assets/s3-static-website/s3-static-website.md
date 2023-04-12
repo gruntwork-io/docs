@@ -89,7 +89,7 @@ module "s_3_static_website" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the website and the S3 bucket to create (e.g. static.foo.com).
-  website_domain_name = <string>
+  website_domain_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -274,7 +274,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the website and the S3 bucket to create (e.g. static.foo.com).
-  website_domain_name = <string>
+  website_domain_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -859,6 +859,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf264424282327985b3edc8e22fe4a70"
+  "hash": "880dacd7d1ebdfbe65b29ce03979a364"
 }
 ##DOCS-SOURCER-END -->

@@ -96,21 +96,21 @@ module "asg_instance_refresh" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ASG.
-  asg_name = <string>
+  asg_name = string
 
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
   # dynamically resize the cluster, you should actually leave this value as null.
-  desired_capacity = <number>
+  desired_capacity = number
 
   # The maximum number of EC2 Instances to run in the ASG
-  max_size = <number>
+  max_size = number
 
   # The minimum number of EC2 Instances to run in the ASG
-  min_size = <number>
+  min_size = number
 
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -228,21 +228,21 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ASG.
-  asg_name = <string>
+  asg_name = string
 
   # The desired number of EC2 Instances to run in the ASG initially. Note that auto
   # scaling policies may change this value. If you're using auto scaling policies to
   # dynamically resize the cluster, you should actually leave this value as null.
-  desired_capacity = <number>
+  desired_capacity = number
 
   # The maximum number of EC2 Instances to run in the ASG
-  max_size = <number>
+  max_size = number
 
   # The minimum number of EC2 Instances to run in the ASG
-  min_size = <number>
+  min_size = number
 
   # A list of subnet ids in the VPC were the EC2 Instances should be deployed
-  vpc_subnet_ids = <list(string)>
+  vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -653,6 +653,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ef06c26fe85c65b4b3c0ff035f7a8049"
+  "hash": "136ed8c4daee963ee34db2aa3e3f9b34"
 }
 ##DOCS-SOURCER-END -->

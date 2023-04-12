@@ -101,26 +101,26 @@ module "memcached" {
   # Availability Zone or created across multiple Availability Zones in the cluster's
   # region. Valid values for this parameter are single-az or cross-az. If you want
   # to choose cross-az, num_cache_nodes must be greater than 1.
-  az_mode = <string>
+  az_mode = string
 
   # The compute and memory capacity of the nodes (e.g. cache.m4.large).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself. Must be unique in this region. Must be a
   # lowercase string.
-  name = <string>
+  name = string
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = <number>
+  num_cache_nodes = number
 
   # The list of IDs of the subnets in which to deploy the ElasticCache instances.
   # The list must only contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -199,26 +199,26 @@ inputs = {
   # Availability Zone or created across multiple Availability Zones in the cluster's
   # region. Valid values for this parameter are single-az or cross-az. If you want
   # to choose cross-az, num_cache_nodes must be greater than 1.
-  az_mode = <string>
+  az_mode = string
 
   # The compute and memory capacity of the nodes (e.g. cache.m4.large).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself. Must be unique in this region. Must be a
   # lowercase string.
-  name = <string>
+  name = string
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = <number>
+  num_cache_nodes = number
 
   # The list of IDs of the subnets in which to deploy the ElasticCache instances.
   # The list must only contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -473,6 +473,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1007a24215666c826552e2022b9298c3"
+  "hash": "b2614c372d62770bac08fb3e48fb04b1"
 }
 ##DOCS-SOURCER-END -->

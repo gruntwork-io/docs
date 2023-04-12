@@ -46,14 +46,14 @@ module "scheduled_lambda_job" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the lambda function.
-  lambda_function_arn = <string>
+  lambda_function_arn = string
 
   # The name of the lambda function.
-  lambda_function_name = <string>
+  lambda_function_name = string
 
   # An expression that defines the schedule for this lambda job. For example, cron(0
   # 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <string>
+  schedule_expression = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -100,14 +100,14 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the lambda function.
-  lambda_function_arn = <string>
+  lambda_function_arn = string
 
   # The name of the lambda function.
-  lambda_function_name = <string>
+  lambda_function_name = string
 
   # An expression that defines the schedule for this lambda job. For example, cron(0
   # 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <string>
+  schedule_expression = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -240,6 +240,6 @@ Cloudwatch Event Rule schedule expression
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "422a433f1a6e20626d5488fa56e8d9e9"
+  "hash": "6658fb8fd56bb6f46c5a809a5f5bbc34"
 }
 ##DOCS-SOURCER-END -->

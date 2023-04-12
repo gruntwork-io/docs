@@ -130,14 +130,14 @@ module "eks_workers" {
   # Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2
   # instances in this cluster. Set to empty object ({}) if you do not wish to
   # configure self-managed ASGs.
-  autoscaling_group_configurations = <any>
+  autoscaling_group_configurations = any
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI using
   # the Packer template eks-node-al2.json. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. Only used if
   # var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
-  cluster_instance_ami = <string>
+  cluster_instance_ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
@@ -145,25 +145,20 @@ module "eks_workers" {
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
-  cluster_instance_ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  cluster_instance_ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The name of the EKS cluster. The cluster must exist/already be deployed.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
-  managed_node_group_configurations = <any>
+  managed_node_group_configurations = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -641,14 +636,14 @@ inputs = {
   # Configure one or more self-managed Auto Scaling Groups (ASGs) to manage the EC2
   # instances in this cluster. Set to empty object ({}) if you do not wish to
   # configure self-managed ASGs.
-  autoscaling_group_configurations = <any>
+  autoscaling_group_configurations = any
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI using
   # the Packer template eks-node-al2.json. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. Only used if
   # var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
-  cluster_instance_ami = <string>
+  cluster_instance_ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
@@ -656,25 +651,20 @@ inputs = {
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
-  cluster_instance_ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  cluster_instance_ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The name of the EKS cluster. The cluster must exist/already be deployed.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
-  managed_node_group_configurations = <any>
+  managed_node_group_configurations = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2662,6 +2652,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2968354f90a28b1009601e9c7f86dfde"
+  "hash": "b13254e14fbb7bf5e741c5ff9db63807"
 }
 ##DOCS-SOURCER-END -->

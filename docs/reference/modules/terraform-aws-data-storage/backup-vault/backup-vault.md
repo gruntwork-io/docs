@@ -102,7 +102,7 @@ module "backup_vault" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  vaults = <any>
+  vaults = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -145,7 +145,7 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  vaults = <any>
+  vaults = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -292,6 +292,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5461623ae40d7110bd21235ea19930eb"
+  "hash": "1ac4416a66a1b5b673edcdad3401789b"
 }
 ##DOCS-SOURCER-END -->

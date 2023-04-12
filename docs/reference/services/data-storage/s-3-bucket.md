@@ -96,7 +96,7 @@ module "s_3_bucket" {
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
-  primary_bucket = <string>
+  primary_bucket = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -316,7 +316,7 @@ inputs = {
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
-  primary_bucket = <string>
+  primary_bucket = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1185,6 +1185,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0df0276acebdbd3bf39f035b18e8e7ce"
+  "hash": "64f9718c211c57a5b485f75bd482b06c"
 }
 ##DOCS-SOURCER-END -->

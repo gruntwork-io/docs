@@ -114,16 +114,16 @@ module "vpc" {
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/18', '10.200.0.0/18', etc.
-  cidr_block = <string>
+  cidr_block = string
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <number>
+  num_nat_gateways = number
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -495,16 +495,16 @@ inputs = {
   # The IP address range of the VPC in CIDR notation. A prefix of /18 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/18', '10.200.0.0/18', etc.
-  cidr_block = <string>
+  cidr_block = string
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <number>
+  num_nat_gateways = number
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1877,6 +1877,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f0d3a6872055ce0d59738c00ac1e8c12"
+  "hash": "9b5c3f99347c8e1b85b9f209b237ea78"
 }
 ##DOCS-SOURCER-END -->

@@ -391,7 +391,7 @@ module "eks_cluster_control_plane" {
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = <string>
+  cluster_name = string
 
   # A list of CIDR blocks that should be allowed network access to the Kubernetes
   # public API endpoint. When null or empty, allow access from the whole world
@@ -401,15 +401,15 @@ module "eks_cluster_control_plane" {
   # from outside the VPC. If you want to control access to the Kubernetes API from
   # within the VPC, then you must use the endpoint_private_access_cidrs and
   # endpoint_private_access_security_group_ids variables.
-  endpoint_public_access_cidrs = <list(string)>
+  endpoint_public_access_cidrs = list(string)
 
   # A list of the subnets into which the EKS Cluster's control plane nodes will be
   # launched. These should usually be all private subnets and include one in each
   # AWS Availability Zone.
-  vpc_control_plane_subnet_ids = <list(string)>
+  vpc_control_plane_subnet_ids = list(string)
 
   # The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -664,7 +664,7 @@ inputs = {
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to namespace all the
   # resources created by these templates.
-  cluster_name = <string>
+  cluster_name = string
 
   # A list of CIDR blocks that should be allowed network access to the Kubernetes
   # public API endpoint. When null or empty, allow access from the whole world
@@ -674,15 +674,15 @@ inputs = {
   # from outside the VPC. If you want to control access to the Kubernetes API from
   # within the VPC, then you must use the endpoint_private_access_cidrs and
   # endpoint_private_access_security_group_ids variables.
-  endpoint_public_access_cidrs = <list(string)>
+  endpoint_public_access_cidrs = list(string)
 
   # A list of the subnets into which the EKS Cluster's control plane nodes will be
   # launched. These should usually be all private subnets and include one in each
   # AWS Availability Zone.
-  vpc_control_plane_subnet_ids = <list(string)>
+  vpc_control_plane_subnet_ids = list(string)
 
   # The ID of the VPC in which the EKS Cluster's EC2 Instances will reside.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1564,6 +1564,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "71c1a8cf72a6b002b05d3627000b3a95"
+  "hash": "b423a761199cf597214c9768a95aba06"
 }
 ##DOCS-SOURCER-END -->

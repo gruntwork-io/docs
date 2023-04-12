@@ -48,22 +48,13 @@ module "secrets_manager_resource_policies" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  secret_policies = <map(object(
-    # Secret manager secret ARN for which the policy applies to.
+  secret_policies = map(object(
     arn = string
 
-    # NOTE: Either (`iam_entities_with_read_access` and/or `iam_entities_with_write_access`) OR `policy_statement_json`
-    # may be provided, but not both.
-
-    # List of IAM entity ARNs (account, user, or role) that should have read access to the secret
     iam_entities_with_read_access = list(string)
-
-    # List of IAM entity ARNs (account, user, or role) that should have full access ("*") to the secret
     iam_entities_with_full_access = list(string)
-
-    # JSON string providing an IAM policy statement. This should be constructed using the aws_iam_policy_document data source.
     policy_statement_json = string
-  ))>
+  ))
 
 }
 
@@ -89,22 +80,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  secret_policies = <map(object(
-    # Secret manager secret ARN for which the policy applies to.
+  secret_policies = map(object(
     arn = string
 
-    # NOTE: Either (`iam_entities_with_read_access` and/or `iam_entities_with_write_access`) OR `policy_statement_json`
-    # may be provided, but not both.
-
-    # List of IAM entity ARNs (account, user, or role) that should have read access to the secret
     iam_entities_with_read_access = list(string)
-
-    # List of IAM entity ARNs (account, user, or role) that should have full access ("*") to the secret
     iam_entities_with_full_access = list(string)
-
-    # JSON string providing an IAM policy statement. This should be constructed using the aws_iam_policy_document data source.
     policy_statement_json = string
-  ))>
+  ))
 
 }
 
@@ -123,6 +105,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b6e72d493ea9a1cbc6726828f81cd9cd"
+  "hash": "da629931a2a9da7ce733a87e3945f968"
 }
 ##DOCS-SOURCER-END -->

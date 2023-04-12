@@ -103,16 +103,16 @@ module "vpc_mgmt" {
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <string>
+  cidr_block = string
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <number>
+  num_nat_gateways = number
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -311,16 +311,16 @@ inputs = {
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <string>
+  cidr_block = string
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <number>
+  num_nat_gateways = number
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1012,6 +1012,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "10e5863b5ef3b3b7c08b2c42d5a15ae4"
+  "hash": "c9e1fc7906cfd10ce875754e93abb990"
 }
 ##DOCS-SOURCER-END -->

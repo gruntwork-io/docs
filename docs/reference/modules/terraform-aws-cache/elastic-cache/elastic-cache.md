@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="0.19.2" />
+<VersionBadge repoTitle="Cache Modules" version="0.19.3" lastModifiedVersion="0.19.3"/>
 
 # ElasticCache Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases?q=elastic-cache" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.19.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster, which manages either a Memcached cluster, a single-node Redis instance.
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -56,33 +56,33 @@ module "elastic_cache" {
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_cidr_blocks = <list(string)>
+  allow_connections_from_cidr_blocks = list(string)
 
   # Name of the cache engine to be used for this cache cluster. Valid values are
   # memcached or redis.
-  engine = <string>
+  engine = string
 
   # Version number of ElasticCache cluster to use.
-  engine_version = <string>
+  engine_version = string
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. mycache). Must be unique in this region.
   # Must be a lowercase string.
-  name = <string>
+  name = string
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = <number>
+  num_cache_nodes = number
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -135,7 +135,7 @@ module "elastic_cache" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v0.19.3"
 }
 
 inputs = {
@@ -147,33 +147,33 @@ inputs = {
   # A list of CIDR-formatted IP address ranges that can connect to this ElastiCache
   # cluster. For the standard Gruntwork VPC setup, these should be the CIDR blocks
   # of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_cidr_blocks = <list(string)>
+  allow_connections_from_cidr_blocks = list(string)
 
   # Name of the cache engine to be used for this cache cluster. Valid values are
   # memcached or redis.
-  engine = <string>
+  engine = string
 
   # Version number of ElasticCache cluster to use.
-  engine_version = <string>
+  engine_version = string
 
   # The compute and memory capacity of the nodes (e.g. cache.m3.medium).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. mycache). Must be unique in this region.
   # Must be a lowercase string.
-  name = <string>
+  name = string
 
   # The initial number of cache nodes that the cache cluster will have. Must be
   # between 1 and 20.
-  num_cache_nodes = <number>
+  num_cache_nodes = number
 
   # A list of subnet ids where the ElastiCache instances should be deployed. For the
   # standard Gruntwork VPC setup, these should be the private peristence subnet ids.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC in which the ElastiCache cluster should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -400,6 +400,6 @@ A set of tags to set for the ElastiCache Cluster.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/main/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "13f0277e5a761720c7c282a3d8f094c0"
+  "hash": "6bab97c6ac0ffa38d9764e3d896a7a73"
 }
 ##DOCS-SOURCER-END -->

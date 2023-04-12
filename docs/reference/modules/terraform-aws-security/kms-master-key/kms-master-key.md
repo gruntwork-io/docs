@@ -95,7 +95,7 @@ module "kms_master_key" {
 
   # Map of CMK names to spec for managing each key. Each entry in the map
   # corresponds to a key that will be created by this template.
-  customer_master_keys = <any>
+  customer_master_keys = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -161,7 +161,7 @@ inputs = {
 
   # Map of CMK names to spec for managing each key. Each entry in the map
   # corresponds to a key that will be created by this template.
-  customer_master_keys = <any>
+  customer_master_keys = any
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -451,6 +451,6 @@ A map of CMK name to CMK ID.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "56956cd49b21ae07076dbce47977966c"
+  "hash": "fd5a0f7b548af97506c86f5ed58a0cff"
 }
 ##DOCS-SOURCER-END -->

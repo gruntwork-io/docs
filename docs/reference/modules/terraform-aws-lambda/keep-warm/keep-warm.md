@@ -69,15 +69,15 @@ module "keep_warm" {
   # A map where the keys are the ARNs of Lambda functions to invoke (to keep them
   # warm) and the values are the event objects to send to those functions when
   # invoking them.
-  function_to_event_map = <any>
+  function_to_event_map = any
 
   # The name for this Lambda function. Also used to namespace the other resources
   # created by this module.
-  name = <string>
+  name = string
 
   # An expression that defines how often to invoke the functions in
   # var.function_to_event_map. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <string>
+  schedule_expression = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -144,15 +144,15 @@ inputs = {
   # A map where the keys are the ARNs of Lambda functions to invoke (to keep them
   # warm) and the values are the event objects to send to those functions when
   # invoking them.
-  function_to_event_map = <any>
+  function_to_event_map = any
 
   # The name for this Lambda function. Also used to namespace the other resources
   # created by this module.
-  name = <string>
+  name = string
 
   # An expression that defines how often to invoke the functions in
   # var.function_to_event_map. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <string>
+  schedule_expression = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -343,6 +343,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "94ed274d4461b0e2b42851c557e5cdbb"
+  "hash": "e488ec8b04fc6bf31bd245f4c9f1450f"
 }
 ##DOCS-SOURCER-END -->

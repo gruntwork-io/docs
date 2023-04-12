@@ -102,31 +102,31 @@ module "vpc_app_network_acls" {
   # in this VPC. Typically, this is equal to the number of availability zones in the
   # current region. We should be able to compute this automatically, but due to a
   # Terraform bug, we can't: https://github.com/hashicorp/terraform/issues/3888
-  num_subnets = <number>
+  num_subnets = number
 
   # A list of CIDR blocks used by the private app subnets in the VPC
-  private_app_subnet_cidr_blocks = <list(string)>
+  private_app_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the private app subnets in the VPC
-  private_app_subnet_ids = <list(string)>
+  private_app_subnet_ids = list(string)
 
   # A list of CIDR blocks used by the private persistence subnets in the VPC
-  private_persistence_subnet_cidr_blocks = <list(string)>
+  private_persistence_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the private persistence subnets in the VPC
-  private_persistence_subnet_ids = <list(string)>
+  private_persistence_subnet_ids = list(string)
 
   # A list of CIDR blocks used by the public subnets in the VPC
-  public_subnet_cidr_blocks = <list(string)>
+  public_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the public subnets in the VPC
-  public_subnet_ids = <list(string)>
+  public_subnet_ids = list(string)
 
   # The id of the VPC
-  vpc_id = <string>
+  vpc_id = string
 
   # The name of the VPC (e.g. stage, prod)
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -221,31 +221,31 @@ inputs = {
   # in this VPC. Typically, this is equal to the number of availability zones in the
   # current region. We should be able to compute this automatically, but due to a
   # Terraform bug, we can't: https://github.com/hashicorp/terraform/issues/3888
-  num_subnets = <number>
+  num_subnets = number
 
   # A list of CIDR blocks used by the private app subnets in the VPC
-  private_app_subnet_cidr_blocks = <list(string)>
+  private_app_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the private app subnets in the VPC
-  private_app_subnet_ids = <list(string)>
+  private_app_subnet_ids = list(string)
 
   # A list of CIDR blocks used by the private persistence subnets in the VPC
-  private_persistence_subnet_cidr_blocks = <list(string)>
+  private_persistence_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the private persistence subnets in the VPC
-  private_persistence_subnet_ids = <list(string)>
+  private_persistence_subnet_ids = list(string)
 
   # A list of CIDR blocks used by the public subnets in the VPC
-  public_subnet_cidr_blocks = <list(string)>
+  public_subnet_cidr_blocks = list(string)
 
   # A list of IDs of the public subnets in the VPC
-  public_subnet_ids = <list(string)>
+  public_subnet_ids = list(string)
 
   # The id of the VPC
-  vpc_id = <string>
+  vpc_id = string
 
   # The name of the VPC (e.g. stage, prod)
-  vpc_name = <string>
+  vpc_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -624,6 +624,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-app-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c4b9c7b92fe329cf2e4888cf9340ca38"
+  "hash": "2ffa23b119d986a1782180ce458778af"
 }
 ##DOCS-SOURCER-END -->

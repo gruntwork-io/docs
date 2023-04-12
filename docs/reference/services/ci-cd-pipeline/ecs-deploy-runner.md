@@ -113,338 +113,103 @@ module "ecs_deploy_runner" {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline using
   # packer. Set to `null` to disable this container.
-  ami_builder_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  ami_builder_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # ami builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of repositories that are allowed to build docker images. These should be the SSH git URL of the repository
-    # (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
     allowed_repos = list(string)
-
-    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the SSH git URL of the repository
-    # (e.g., "(git@github.com:gruntwork-io/)+" ).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     allowed_repos_regex = list(string)
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
-    # git repositories containing packer templates.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the packer process as environment
-    # variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be passed through to the AMI via the `env` directive in the packer template.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder_config = <object(
-    # Docker repo and image tag to use as the container image for the docker image builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/kaniko.
+  docker_image_builder_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the docker
-    # image builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (git_config and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of repositories that are allowed to build docker images. These should be the https git URL of the repository
-    # (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
     allowed_repos = list(string)
-
-    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
-    # (e.g., "https://github.com/gruntwork-io/.+" ).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     allowed_repos_regex = list(string)
-
-    # ARNs of AWS Secrets Manager entries that can be used for authenticating to HTTPS based git repos that contain the
-    # Dockerfile for building the images. The associated user is recommended to be limited to read access only.
-    #
-    # Settings for each git service provider:
-    #
-    # Github:
-    # - `username_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
-    # - `password_secrets_manager_arn` should be set to null.
-    #
-    # BitBucket:
-    # - `username_secrets_manager_arn` should contain the bitbucket username for the corresponding machine user.
-    # - `password_secrets_manager_arn` should contain a valid App password for the corresponding machine user.
-    #
-    # GitLab:
-    # - `username_secrets_manager_arn` should contain the hardcoded string "oauth2" (without the quotes).
-    # - `password_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
     git_config = object(
       username_secrets_manager_arn = string
       password_secrets_manager_arn = string
     )
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the docker build process as environment
-    # variables that can be passed in as build args. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be passed through to the docker build if you pass in
-    # `--build-arg GITHUB_OAUTH_TOKEN`.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # List of IDs of private subnets that can be used for running the ECS task and
   # Lambda function.
-  private_subnet_ids = <list(string)>
+  private_subnet_ids = list(string)
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  terraform_applier_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # terraform applier. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
     infrastructure_live_repositories = list(string)
-
-    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
-
-    # List of variable names that are allowed to be automatically updated by the CI/CD pipeline. Recommended to set to:
-    # ["tag", "docker_tag", "ami_version_tag", "ami"]
     allowed_update_variable_names = list(string)
-
-    # A list of Git Refs (branch or tag) that are approved for running apply on. Any git ref that does not match this
-    # list will not be allowed to run `apply` or `apply-all`. This is useful for protecting against internal threats
-    # where users have access to the CI script and bypass the approval flow by commiting a new CI flow on their branch.
-    # Set to null to allow all refs to apply.
     allowed_apply_git_refs = list(string)
-
-    # User information to use when commiting updates to the infrastructure live configuration.
     machine_user_git_info = object(
       name  = string
       email = string
     )
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
-    # repository containing the live infrastructure configuration. This SSH key should be for a machine user that has write
-    # access to the code when using with terraform-update-variable.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
-    # environment variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be accessed through terraform/terragrunt.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  terraform_planner_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # terraform planner. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of git repositories containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
-    # git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
     infrastructure_live_repositories = list(string)
-
-    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing the
-    # infrastructure live repository.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
-    # environment variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be accessed through terraform/terragrunt.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # ID of the VPC where the ECS task and Lambda function should run.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -682,338 +447,103 @@ inputs = {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline using
   # packer. Set to `null` to disable this container.
-  ami_builder_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  ami_builder_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # ami builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of repositories that are allowed to build docker images. These should be the SSH git URL of the repository
-    # (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
     allowed_repos = list(string)
-
-    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the SSH git URL of the repository
-    # (e.g., "(git@github.com:gruntwork-io/)+" ).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     allowed_repos_regex = list(string)
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
-    # git repositories containing packer templates.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the packer process as environment
-    # variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be passed through to the AMI via the `env` directive in the packer template.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder_config = <object(
-    # Docker repo and image tag to use as the container image for the docker image builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/kaniko.
+  docker_image_builder_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the docker
-    # image builder. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (git_config and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of repositories that are allowed to build docker images. These should be the https git URL of the repository
-    # (e.g., https://github.com/gruntwork-io/terraform-aws-ci.git).
     allowed_repos = list(string)
-
-    # List of repositories (matching the regex) that are allowed to build AMIs. These should be the https git URL of the repository
-    # (e.g., "https://github.com/gruntwork-io/.+" ).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     allowed_repos_regex = list(string)
-
-    # ARNs of AWS Secrets Manager entries that can be used for authenticating to HTTPS based git repos that contain the
-    # Dockerfile for building the images. The associated user is recommended to be limited to read access only.
-    #
-    # Settings for each git service provider:
-    #
-    # Github:
-    # - `username_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
-    # - `password_secrets_manager_arn` should be set to null.
-    #
-    # BitBucket:
-    # - `username_secrets_manager_arn` should contain the bitbucket username for the corresponding machine user.
-    # - `password_secrets_manager_arn` should contain a valid App password for the corresponding machine user.
-    #
-    # GitLab:
-    # - `username_secrets_manager_arn` should contain the hardcoded string "oauth2" (without the quotes).
-    # - `password_secrets_manager_arn` should contain a valid Personal Access Token for the corresponding machine user.
     git_config = object(
       username_secrets_manager_arn = string
       password_secrets_manager_arn = string
     )
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the docker build process as environment
-    # variables that can be passed in as build args. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be passed through to the docker build if you pass in
-    # `--build-arg GITHUB_OAUTH_TOKEN`.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # List of IDs of private subnets that can be used for running the ECS task and
   # Lambda function.
-  private_subnet_ids = <list(string)>
+  private_subnet_ids = list(string)
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  terraform_applier_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # terraform applier. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of Git repository containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
     infrastructure_live_repositories = list(string)
-
-    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
-
-    # List of variable names that are allowed to be automatically updated by the CI/CD pipeline. Recommended to set to:
-    # ["tag", "docker_tag", "ami_version_tag", "ami"]
     allowed_update_variable_names = list(string)
-
-    # A list of Git Refs (branch or tag) that are approved for running apply on. Any git ref that does not match this
-    # list will not be allowed to run `apply` or `apply-all`. This is useful for protecting against internal threats
-    # where users have access to the CI script and bypass the approval flow by commiting a new CI flow on their branch.
-    # Set to null to allow all refs to apply.
     allowed_apply_git_refs = list(string)
-
-    # User information to use when commiting updates to the infrastructure live configuration.
     machine_user_git_info = object(
       name  = string
       email = string
     )
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing remote
-    # repository containing the live infrastructure configuration. This SSH key should be for a machine user that has write
-    # access to the code when using with terraform-update-variable.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
-    # environment variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be accessed through terraform/terragrunt.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner_config = <object(
-    # Docker repo and image tag to use as the container image for the ami builder. This should be based on the
-    # Dockerfile in terraform-aws-ci/modules/ecs-deploy-runner/docker/deploy-runner.
+  terraform_planner_config = object(
     container_image = object(
       docker_image = string
       docker_tag   = string
     )
-
-    # An object defining the IAM policy statements to attach to the IAM role associated with the ECS task for the
-    # terraform planner. Accepts a map of objects, where the map keys are sids for IAM policy statements, and the object
-    # fields are the resources, actions, and the effect (\"Allow\" or \"Deny\") of the statement.
-    # Note that you do not need to explicitly grant read access to the secrets manager entries set on the other
-    # variables (repo_access_ssh_key_secrets_manager_arn and secrets_manager_env_vars).
-    # iam_policy = 
-    #   S3Access = 
-    #     actions = ["s3:*"]
-    #     resources = ["arn:aws:s3:::mybucket"]
-    #     effect = "Allow"
-    #   ,
-    #   EC2Access = 
-    #     actions = ["ec2:*"],
-    #     resources = ["*"]
-    #     effect = "Allow"
-    #   
-    # 
     iam_policy = map(object(
       resources = list(string)
       actions   = list(string)
       effect    = string
     ))
-
-    # List of git repositories containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to run plan on. These should be the SSH
-    # git URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # NOTE: when only a single repository is provided, this will automatically be included as a hardcoded option.
     infrastructure_live_repositories = list(string)
-
-    # List of Git repositories (matching the regex) containing infrastructure live configuration (top level terraform or terragrunt
-    # configuration to deploy infrastructure) that the deploy runner is allowed to deploy. These should be the SSH git
-    # URL of the repository (e.g., git@github.com:gruntwork-io/terraform-aws-ci.git).
-    # Note that this is a list of individual regex because HCL doesn't allow bitwise operator: https://github.com/hashicorp/terraform/issues/25326
     infrastructure_live_repositories_regex = list(string)
-
-    # The ARN of a secrets manager entry containing the raw contents of a SSH private key to use when accessing the
-    # infrastructure live repository.
     repo_access_ssh_key_secrets_manager_arn = string
-
-    # Configurations for setting up private git repo access to https based git URLs for each supported VCS platform.
-    # The following keys are supported:
-    #
-    # - github_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitHub
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - gitlab_token_secrets_manager_arn    : The ARN of an AWS Secrets Manager entry containing contents of a GitLab
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    # - bitbucket_token_secrets_manager_arn : The ARN of an AWS Secrets Manager entry containing contents of a BitBucket
-    #                                         Personal Access Token for accessing git repos over HTTPS.
-    #                                         bitbucket_username is required if this is set.
-    # - bitbucket_username                  : The username of the BitBucket user associated with the bitbucket token
-    #                                         passed in with bitbucket_token_secrets_manager_arn.
     repo_access_https_tokens = map(string)
-
-    # ARNs of AWS Secrets Manager entries that you would like to expose to the terraform/terragrunt process as
-    # environment variables. For example,
-    # secrets_manager_env_vars = 
-    #   GITHUB_OAUTH_TOKEN = "ARN_OF_PAT"
-    # 
-    # Will inject the secret value stored in the secrets manager entry ARN_OF_PAT as the env var `GITHUB_OAUTH_TOKEN`
-    # in the container that can then be accessed through terraform/terragrunt.
     secrets_manager_env_vars = map(string)
-
-    # Map of environment variable names to values share with the container during runtime.
-    # Do NOT use this for sensitive variables! Use secrets_manager_env_vars for secrets.
     environment_vars = map(string)
-  )>
+  )
 
   # ID of the VPC where the ECS task and Lambda function should run.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2972,6 +2502,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3c824663f69a74e21c5b8ebf7dc14a0d"
+  "hash": "7f478cb8fb9f728e16354ddcce3ffa75"
 }
 ##DOCS-SOURCER-END -->

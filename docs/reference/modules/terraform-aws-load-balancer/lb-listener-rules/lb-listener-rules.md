@@ -103,13 +103,13 @@ module "lb_listener_rules" {
 
   # A map of all the listeners on the load balancer. The keys should be the port
   # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
+  default_listener_arns = map(string)
 
   # The default port numbers on the load balancer to attach listener rules to. You
   # can override this default on a rule-by-rule basis by setting the listener_ports
   # parameter in each rule. The port numbers specified in this variable and the
   # listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
+  default_listener_ports = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -157,13 +157,13 @@ inputs = {
 
   # A map of all the listeners on the load balancer. The keys should be the port
   # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <map(string)>
+  default_listener_arns = map(string)
 
   # The default port numbers on the load balancer to attach listener rules to. You
   # can override this default on a rule-by-rule basis by setting the listener_ports
   # parameter in each rule. The port numbers specified in this variable and the
   # listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <list(string)>
+  default_listener_ports = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -730,6 +730,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/main/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7b8dd5041055ddd252341e4c71425343"
+  "hash": "0aa7325805e345f8ae49ac0c05d9d8f9"
 }
 ##DOCS-SOURCER-END -->

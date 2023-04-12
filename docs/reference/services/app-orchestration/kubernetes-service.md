@@ -119,27 +119,24 @@ module "k_8_s_service" {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <string>
+  application_name = string
 
   # The Docker image to run.
-  container_image = <object(
-    # Repository of the docker image (e.g. gruntwork/frontend-service)
+  container_image = object(
     repository = string
-    # The tag of the docker image to deploy.
     tag = string
-    # The image pull policy. Can be one of IfNotPresent, Always, or Never.
     pull_policy = string
-  )>
+  )
 
   # The port number on which this service's Docker container accepts incoming
   # traffic.
-  container_port = <number>
+  container_port = number
 
   # The number of Pods to run on the Kubernetes cluster for this service.
-  desired_number_of_pods = <number>
+  desired_number_of_pods = number
 
   # The Kubernetes Namespace to deploy the application into.
-  namespace = <string>
+  namespace = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -506,27 +503,24 @@ inputs = {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <string>
+  application_name = string
 
   # The Docker image to run.
-  container_image = <object(
-    # Repository of the docker image (e.g. gruntwork/frontend-service)
+  container_image = object(
     repository = string
-    # The tag of the docker image to deploy.
     tag = string
-    # The image pull policy. Can be one of IfNotPresent, Always, or Never.
     pull_policy = string
-  )>
+  )
 
   # The port number on which this service's Docker container accepts incoming
   # traffic.
-  container_port = <number>
+  container_port = number
 
   # The number of Pods to run on the Kubernetes cluster for this service.
-  desired_number_of_pods = <number>
+  desired_number_of_pods = number
 
   # The Kubernetes Namespace to deploy the application into.
-  namespace = <string>
+  namespace = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1954,6 +1948,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7861636759ad3b6670033ae455f5489b"
+  "hash": "be69a5957a3bf7824f7ce2a3d1dc8023"
 }
 ##DOCS-SOURCER-END -->

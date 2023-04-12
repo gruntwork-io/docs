@@ -156,39 +156,34 @@ module "tailscale_subnet_router" {
   # The AMI to run on the Tailscale subnet router. This should be built from the
   # Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or
   # var.ami_filters is required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Tailscale subnet router. You can build the AMI using the Packer template
   # tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of
   # var.ami or var.ami_filters is required. Set to null if passing the ami ID
   # directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The ARN of a Secrets Manager entry containing the Tailscale auth key to use for
   # authenticating the server.
-  auth_key_secrets_manager_arn = <string>
+  auth_key_secrets_manager_arn = string
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <string>
+  name = string
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -392,39 +387,34 @@ inputs = {
   # The AMI to run on the Tailscale subnet router. This should be built from the
   # Packer template under tailscale-subnet-router-ubuntu.json. One of var.ami or
   # var.ami_filters is required. Set to null if looking up the ami with filters.
-  ami = <string>
+  ami = string
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Tailscale subnet router. You can build the AMI using the Packer template
   # tailscale-subnet-router-ubuntu.json. Only used if var.ami is null. One of
   # var.ami or var.ami_filters is required. Set to null if passing the ami ID
   # directly.
-  ami_filters = <object(
-    # List of owners to limit the search. Set to null if you do not wish to limit the search by AMI owners.
+  ami_filters = object(
     owners = list(string)
-
-    # Name/Value pairs to filter the AMI off of. There are several valid keys, for a full reference, check out the
-    # documentation for describe-images in the AWS CLI reference
-    # (https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html).
     filters = list(object(
       name   = string
       values = list(string)
     ))
-  )>
+  )
 
   # The ARN of a Secrets Manager entry containing the Tailscale auth key to use for
   # authenticating the server.
-  auth_key_secrets_manager_arn = <string>
+  auth_key_secrets_manager_arn = string
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <string>
+  name = string
 
   # The ids of the subnets where this server should be deployed.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1082,6 +1072,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b0e97e3736f050f5f0a521cd0098ade6"
+  "hash": "45cde62e2de3259ef33991c894f420bf"
 }
 ##DOCS-SOURCER-END -->

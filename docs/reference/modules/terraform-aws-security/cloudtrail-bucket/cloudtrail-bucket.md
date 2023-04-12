@@ -47,22 +47,22 @@ module "cloudtrail_bucket" {
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
-  allow_cloudtrail_access_with_iam = <bool>
+  allow_cloudtrail_access_with_iam = bool
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API calls.
   # The IAM Users specified in this list will have rights to change who can access
   # this extended log data.
-  kms_key_administrator_iam_arns = <list(string)>
+  kms_key_administrator_iam_arns = list(string)
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API calls.
   # The IAM Users specified in this list will have read-only access to this extended
   # log data.
-  kms_key_user_iam_arns = <list(string)>
+  kms_key_user_iam_arns = list(string)
 
   # The name of the S3 Bucket where CloudTrail logs will be stored.
-  s3_bucket_name = <string>
+  s3_bucket_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -220,22 +220,22 @@ inputs = {
   # If true, an IAM Policy that grants access to CloudTrail will be honored. If
   # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
   # CloudTrail and any IAM Policy grants will be ignored. (true or false)
-  allow_cloudtrail_access_with_iam = <bool>
+  allow_cloudtrail_access_with_iam = bool
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API calls.
   # The IAM Users specified in this list will have rights to change who can access
   # this extended log data.
-  kms_key_administrator_iam_arns = <list(string)>
+  kms_key_administrator_iam_arns = list(string)
 
   # All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API calls.
   # The IAM Users specified in this list will have read-only access to this extended
   # log data.
-  kms_key_user_iam_arns = <list(string)>
+  kms_key_user_iam_arns = list(string)
 
   # The name of the S3 Bucket where CloudTrail logs will be stored.
-  s3_bucket_name = <string>
+  s3_bucket_name = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -908,6 +908,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7cfba2eced20045296cadca90db4be1d"
+  "hash": "686c4572e6fa162d61b730e9bfd9546e"
 }
 ##DOCS-SOURCER-END -->

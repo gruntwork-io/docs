@@ -64,11 +64,11 @@ module "eks_k_8_s_cluster_autoscaler" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region that the EKS cluster resides in.
-  aws_region = <string>
+  aws_region = string
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to assist with
   # auto-discovery of the cluster workers ASG.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -76,10 +76,10 @@ module "eks_k_8_s_cluster_autoscaler" {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -217,11 +217,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region that the EKS cluster resides in.
-  aws_region = <string>
+  aws_region = string
 
   # The name of the EKS cluster (e.g. eks-prod). This is used to assist with
   # auto-discovery of the cluster workers ASG.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -229,10 +229,10 @@ inputs = {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <object(
+  iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -362,6 +362,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "691f937da510093e8756baca72a61096"
+  "hash": "b051b48fcb8a5fc46e499fad03a4379f"
 }
 ##DOCS-SOURCER-END -->

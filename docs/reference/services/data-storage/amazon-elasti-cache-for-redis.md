@@ -104,32 +104,32 @@ module "redis" {
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_automatic_failover = <bool>
+  enable_automatic_failover = bool
 
   # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_multi_az = <bool>
+  enable_multi_az = bool
 
   # The compute and memory capacity of the nodes (e.g. cache.m4.large).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
   # Must be a lowercase string.
-  name = <string>
+  name = string
 
   # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
   # the primary node, 2 represents the primary plus a single Read Replica.
-  replication_group_size = <number>
+  replication_group_size = number
 
   # The list of IDs of the subnets in which to deploy the ElasticCache instances.
   # The list must only contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -256,32 +256,32 @@ inputs = {
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_automatic_failover = <bool>
+  enable_automatic_failover = bool
 
   # Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only
   # replica is automatically promoted to a read-write primary cluster if the
   # existing primary cluster fails. If you specify true, you must specify a value
   # greater than 1 for replication_group_size.
-  enable_multi_az = <bool>
+  enable_multi_az = bool
 
   # The compute and memory capacity of the nodes (e.g. cache.m4.large).
-  instance_type = <string>
+  instance_type = string
 
   # The name used to namespace all resources created by these templates, including
   # the ElastiCache cluster itself (e.g. rediscache). Must be unique in this region.
   # Must be a lowercase string.
-  name = <string>
+  name = string
 
   # The total number of nodes in the Redis Replication Group. E.g. 1 represents just
   # the primary node, 2 represents the primary plus a single Read Replica.
-  replication_group_size = <number>
+  replication_group_size = number
 
   # The list of IDs of the subnets in which to deploy the ElasticCache instances.
   # The list must only contain subnets in var.vpc_id.
-  subnet_ids = <list(string)>
+  subnet_ids = list(string)
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <string>
+  vpc_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -717,6 +717,6 @@ Security Group ID used for redis cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "03acdc0b7d847adb368d5d543eb2ea63"
+  "hash": "973602038a83398207d55a7d3efe33b2"
 }
 ##DOCS-SOURCER-END -->

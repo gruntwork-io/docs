@@ -69,35 +69,35 @@ module "vpc_dns_forwarder" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the VPC which is the destination of the DNS resolver queries.
-  destination_vpc_id = <string>
+  destination_vpc_id = string
 
   # The name of the VPC which is the origin of the DNS resolver queries.
-  destination_vpc_name = <string>
+  destination_vpc_name = string
 
   # The ID of the subnet to use for allocating the primary IP address of the DNS
   # resolver in the destination VPC. This is the IP address that can be used as a
   # DNS server endpoint for resolving hostnames in the destination VPC.
-  destination_vpc_route53_resolver_primary_subnet_id = <string>
+  destination_vpc_route53_resolver_primary_subnet_id = string
 
   # The ID of the subnet to use for allocating the secondary IP address of the DNS
   # resolver in the destination VPC. This is the IP address that can be used as a
   # DNS server endpoint for resolving hostnames in the destination VPC.
-  destination_vpc_route53_resolver_secondary_subnet_id = <string>
+  destination_vpc_route53_resolver_secondary_subnet_id = string
 
   # The ID of the VPC which is the origin of the DNS resolver queries.
-  origin_vpc_id = <string>
+  origin_vpc_id = string
 
   # The name of the VPC which is the origin of the DNS resolver queries.
-  origin_vpc_name = <string>
+  origin_vpc_name = string
 
   # The ID of the subnet to use for allocating the primary IP address of the DNS
   # resolver in the origin VPC. This is the IP that the destination VPC resolver
   # will see.
-  origin_vpc_route53_resolver_primary_subnet_id = <string>
+  origin_vpc_route53_resolver_primary_subnet_id = string
 
   # The ID of the subnet to use for allocating the secondary IP address of the DNS
   # resolver in the origin VPC.
-  origin_vpc_route53_resolver_secondary_subnet_id = <string>
+  origin_vpc_route53_resolver_secondary_subnet_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -148,35 +148,35 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the VPC which is the destination of the DNS resolver queries.
-  destination_vpc_id = <string>
+  destination_vpc_id = string
 
   # The name of the VPC which is the origin of the DNS resolver queries.
-  destination_vpc_name = <string>
+  destination_vpc_name = string
 
   # The ID of the subnet to use for allocating the primary IP address of the DNS
   # resolver in the destination VPC. This is the IP address that can be used as a
   # DNS server endpoint for resolving hostnames in the destination VPC.
-  destination_vpc_route53_resolver_primary_subnet_id = <string>
+  destination_vpc_route53_resolver_primary_subnet_id = string
 
   # The ID of the subnet to use for allocating the secondary IP address of the DNS
   # resolver in the destination VPC. This is the IP address that can be used as a
   # DNS server endpoint for resolving hostnames in the destination VPC.
-  destination_vpc_route53_resolver_secondary_subnet_id = <string>
+  destination_vpc_route53_resolver_secondary_subnet_id = string
 
   # The ID of the VPC which is the origin of the DNS resolver queries.
-  origin_vpc_id = <string>
+  origin_vpc_id = string
 
   # The name of the VPC which is the origin of the DNS resolver queries.
-  origin_vpc_name = <string>
+  origin_vpc_name = string
 
   # The ID of the subnet to use for allocating the primary IP address of the DNS
   # resolver in the origin VPC. This is the IP that the destination VPC resolver
   # will see.
-  origin_vpc_route53_resolver_primary_subnet_id = <string>
+  origin_vpc_route53_resolver_primary_subnet_id = string
 
   # The ID of the subnet to use for allocating the secondary IP address of the DNS
   # resolver in the origin VPC.
-  origin_vpc_route53_resolver_secondary_subnet_id = <string>
+  origin_vpc_route53_resolver_secondary_subnet_id = string
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -385,6 +385,6 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2d20ca2e7a5a1ab7f446f04d24b90ad5"
+  "hash": "f8b5cbbcc633089dff66ac6f3a79fef8"
 }
 ##DOCS-SOURCER-END -->

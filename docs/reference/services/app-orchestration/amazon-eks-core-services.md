@@ -115,10 +115,10 @@ module "eks_core_services" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region in which all resources will be created
-  aws_region = <string>
+  aws_region = string
 
   # The name of the EKS cluster where the core services will be deployed into.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the applications. This expects a map with two properties:
@@ -126,23 +126,23 @@ module "eks_core_services" {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  eks_iam_role_for_service_accounts_config = <object(
+  eks_iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Required if any of
   # the services are being scheduled on Fargate. Set to null if none of the Pods are
   # being scheduled on Fargate.
-  pod_execution_iam_role_arn = <string>
+  pod_execution_iam_role_arn = string
 
   # The ID of the VPC where the EKS cluster is deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to
   # Fargate. Required if any of the services are being scheduled on Fargate. Set to
   # empty list if none of the Pods are being scheduled on Fargate.
-  worker_vpc_subnet_ids = <list(string)>
+  worker_vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -519,10 +519,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region in which all resources will be created
-  aws_region = <string>
+  aws_region = string
 
   # The name of the EKS cluster where the core services will be deployed into.
-  eks_cluster_name = <string>
+  eks_cluster_name = string
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the applications. This expects a map with two properties:
@@ -530,23 +530,23 @@ inputs = {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  eks_iam_role_for_service_accounts_config = <object(
+  eks_iam_role_for_service_accounts_config = object(
     openid_connect_provider_arn = string
     openid_connect_provider_url = string
-  )>
+  )
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Required if any of
   # the services are being scheduled on Fargate. Set to null if none of the Pods are
   # being scheduled on Fargate.
-  pod_execution_iam_role_arn = <string>
+  pod_execution_iam_role_arn = string
 
   # The ID of the VPC where the EKS cluster is deployed.
-  vpc_id = <string>
+  vpc_id = string
 
   # The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to
   # Fargate. Required if any of the services are being scheduled on Fargate. Set to
   # empty list if none of the Pods are being scheduled on Fargate.
-  worker_vpc_subnet_ids = <list(string)>
+  worker_vpc_subnet_ids = list(string)
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2249,6 +2249,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "395787afdccfa3f3d42b9fcb3ebc9722"
+  "hash": "3b8a33c2629b696b4a9e9f8e099307f8"
 }
 ##DOCS-SOURCER-END -->
