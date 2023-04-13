@@ -112,20 +112,20 @@ module "vpc_mgmt" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy into
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <INPUT REQUIRED>
+  cidr_block = <string>
 
   # The number of NAT Gateways to launch for this VPC. The management VPC defaults
   # to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust
   # this to add additional NAT Gateways.
-  num_nat_gateways = <INPUT REQUIRED>
+  num_nat_gateways = <number>
 
   # The name of the VPC. Defaults to mgmt.
-  vpc_name = <INPUT REQUIRED>
+  vpc_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -314,20 +314,20 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy into
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <INPUT REQUIRED>
+  cidr_block = <string>
 
   # The number of NAT Gateways to launch for this VPC. The management VPC defaults
   # to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust
   # this to add additional NAT Gateways.
-  num_nat_gateways = <INPUT REQUIRED>
+  num_nat_gateways = <number>
 
   # The name of the VPC. Defaults to mgmt.
-  vpc_name = <INPUT REQUIRED>
+  vpc_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1011,6 +1011,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bcb057bfbbbbcdaff74bc41a1d628ebb"
+  "hash": "d3501fd993a25330c2d3cc346213bc31"
 }
 ##DOCS-SOURCER-END -->

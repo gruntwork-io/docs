@@ -123,11 +123,11 @@ module "cross_account_iam_roles" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -336,11 +336,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1258,6 +1258,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ae88a77572864e906ae9ba65c5cc7f32"
+  "hash": "708323379e32741d480b7421845e387e"
 }
 ##DOCS-SOURCER-END -->

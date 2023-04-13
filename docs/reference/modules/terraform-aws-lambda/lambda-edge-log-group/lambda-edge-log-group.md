@@ -88,7 +88,7 @@ module "lambda_edge_log_group" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the log group.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -159,7 +159,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the log group.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -323,6 +323,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9eb0749db7ef5368ff48df4a004771b"
+  "hash": "a89c2b4ea8ceef4e88230d37e0e448b5"
 }
 ##DOCS-SOURCER-END -->

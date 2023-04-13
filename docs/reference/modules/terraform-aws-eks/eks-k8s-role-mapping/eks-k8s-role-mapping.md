@@ -343,7 +343,7 @@ module "eks_k_8_s_role_mapping" {
 
   # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
   # role passed in will be set up as a Node role in Kubernetes.
-  eks_worker_iam_role_arns = <INPUT REQUIRED>
+  eks_worker_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -399,7 +399,7 @@ inputs = {
 
   # List of AWS ARNs of the IAM roles associated with the EKS worker nodes. Each IAM
   # role passed in will be set up as a Node role in Kubernetes.
-  eks_worker_iam_role_arns = <INPUT REQUIRED>
+  eks_worker_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -548,6 +548,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1d35659f1884117179fa38bce2d0c94"
+  "hash": "aa78b6f9825527e0c9326b0a4370f48d"
 }
 ##DOCS-SOURCER-END -->

@@ -39,13 +39,13 @@ module "sns_sqs_connection" {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the topic to subscribe to.
-  sns_topic_arn = <INPUT REQUIRED>
+  sns_topic_arn = <string>
 
   # The queue arn for the Simple Queue Service (SQS).
-  sqs_arn = <INPUT REQUIRED>
+  sqs_arn = <string>
 
   # The queue URL for the Simple Queue Service (SQS).
-  sqs_queue_url = <INPUT REQUIRED>
+  sqs_queue_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -82,13 +82,13 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The arn of the topic to subscribe to.
-  sns_topic_arn = <INPUT REQUIRED>
+  sns_topic_arn = <string>
 
   # The queue arn for the Simple Queue Service (SQS).
-  sqs_arn = <INPUT REQUIRED>
+  sqs_arn = <string>
 
   # The queue URL for the Simple Queue Service (SQS).
-  sqs_queue_url = <INPUT REQUIRED>
+  sqs_queue_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -171,6 +171,6 @@ The queue URL for the Simple Queue Service (SQS).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee70a69373aed6abb655ac181c68149f"
+  "hash": "00de8b599bc214c4d49c549472388b0e"
 }
 ##DOCS-SOURCER-END -->

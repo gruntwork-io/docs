@@ -108,24 +108,24 @@ module "single_server" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <INPUT REQUIRED>
+  keypair_name = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The id of the subnet where this server should be deployed.
-  subnet_id = <INPUT REQUIRED>
+  subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -341,24 +341,24 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AMI to run for this server.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # The type of EC2 instance to run (e.g. t2.micro)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name of a Key Pair that can be used to SSH to this instance. Leave blank if
   # you don't want to enable Key Pair auth.
-  keypair_name = <INPUT REQUIRED>
+  keypair_name = <string>
 
   # The name of the server. This will be used to namespace all resources created by
   # this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The id of the subnet where this server should be deployed.
-  subnet_id = <INPUT REQUIRED>
+  subnet_id = <string>
 
   # The id of the VPC where this server should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1062,6 +1062,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ff22bf619b701d0e484a27e4c604353"
+  "hash": "4bcb3f99ecd27a2821f66d35c6274161"
 }
 ##DOCS-SOURCER-END -->

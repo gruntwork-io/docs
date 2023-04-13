@@ -103,16 +103,16 @@ module "vpc_mgmt" {
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <INPUT REQUIRED>
+  cidr_block = <string>
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <INPUT REQUIRED>
+  num_nat_gateways = <number>
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <INPUT REQUIRED>
+  vpc_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -311,16 +311,16 @@ inputs = {
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <INPUT REQUIRED>
+  cidr_block = <string>
 
   # The number of NAT Gateways to launch for this VPC. For production VPCs, a NAT
   # Gateway should be placed in each Availability Zone (so likely 3 total), whereas
   # for non-prod VPCs, just one Availability Zone (and hence 1 NAT Gateway) will
   # suffice.
-  num_nat_gateways = <INPUT REQUIRED>
+  num_nat_gateways = <number>
 
   # Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
-  vpc_name = <INPUT REQUIRED>
+  vpc_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1012,6 +1012,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42c5fee35e2c2515f284a3ba7153b32c"
+  "hash": "a40e8261df3007fa358b7f503d1d5fb5"
 }
 ##DOCS-SOURCER-END -->

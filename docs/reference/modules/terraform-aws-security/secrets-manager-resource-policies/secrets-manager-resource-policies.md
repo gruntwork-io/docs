@@ -48,7 +48,13 @@ module "secrets_manager_resource_policies" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  secret_policies = <INPUT REQUIRED>
+  secret_policies = <map(object(
+    arn = string
+
+    iam_entities_with_read_access = list(string)
+    iam_entities_with_full_access = list(string)
+    policy_statement_json = string
+  ))>
 
 }
 
@@ -74,7 +80,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  secret_policies = <INPUT REQUIRED>
+  secret_policies = <map(object(
+    arn = string
+
+    iam_entities_with_read_access = list(string)
+    iam_entities_with_full_access = list(string)
+    policy_statement_json = string
+  ))>
 
 }
 
@@ -93,6 +105,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df84eeb5b19e8743101dfdc372122443"
+  "hash": "e42b6be83bde7017f10d9e6f039824e6"
 }
 ##DOCS-SOURCER-END -->

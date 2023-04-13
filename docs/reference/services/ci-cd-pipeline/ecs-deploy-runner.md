@@ -113,31 +113,103 @@ module "ecs_deploy_runner" {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline using
   # packer. Set to `null` to disable this container.
-  ami_builder_config = <INPUT REQUIRED>
+  ami_builder_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder_config = <INPUT REQUIRED>
+  docker_image_builder_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    git_config = object(
+      username_secrets_manager_arn = string
+      password_secrets_manager_arn = string
+    )
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # List of IDs of private subnets that can be used for running the ECS task and
   # Lambda function.
-  private_subnet_ids = <INPUT REQUIRED>
+  private_subnet_ids = <list(string)>
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier_config = <INPUT REQUIRED>
+  terraform_applier_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    allowed_update_variable_names = list(string)
+    allowed_apply_git_refs = list(string)
+    machine_user_git_info = object(
+      name  = string
+      email = string
+    )
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner_config = <INPUT REQUIRED>
+  terraform_planner_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # ID of the VPC where the ECS task and Lambda function should run.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -375,31 +447,103 @@ inputs = {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline using
   # packer. Set to `null` to disable this container.
-  ami_builder_config = <INPUT REQUIRED>
+  ami_builder_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder_config = <INPUT REQUIRED>
+  docker_image_builder_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    git_config = object(
+      username_secrets_manager_arn = string
+      password_secrets_manager_arn = string
+    )
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # List of IDs of private subnets that can be used for running the ECS task and
   # Lambda function.
-  private_subnet_ids = <INPUT REQUIRED>
+  private_subnet_ids = <list(string)>
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier_config = <INPUT REQUIRED>
+  terraform_applier_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    allowed_update_variable_names = list(string)
+    allowed_apply_git_refs = list(string)
+    machine_user_git_info = object(
+      name  = string
+      email = string
+    )
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner_config = <INPUT REQUIRED>
+  terraform_planner_config = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    iam_policy = map(object(
+      resources = list(string)
+      actions   = list(string)
+      effect    = string
+    ))
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # ID of the VPC where the ECS task and Lambda function should run.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2358,6 +2502,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e4605793ac48f05726a57dbadb9f91c9"
+  "hash": "13af64f5a346b4eadb6c936bc6adc772"
 }
 ##DOCS-SOURCER-END -->

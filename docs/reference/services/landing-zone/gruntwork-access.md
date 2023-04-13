@@ -100,13 +100,13 @@ module "gruntwork_access" {
   # Set to true to grant your security account, with the account ID specified in
   # var.security_account_id, access to the IAM role. This is required for deploying
   # a Reference Architecture.
-  grant_security_account_access = <INPUT REQUIRED>
+  grant_security_account_access = <bool>
 
   # The ID of your security account (where IAM users are defined). Required for
   # deploying a Reference Architecture, as the Gruntwork team deploys an EC2
   # instance in the security account, and that instance assumes this IAM role to get
   # access to all the other child accounts and bootstrap the deployment process.
-  security_account_id = <INPUT REQUIRED>
+  security_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -156,13 +156,13 @@ inputs = {
   # Set to true to grant your security account, with the account ID specified in
   # var.security_account_id, access to the IAM role. This is required for deploying
   # a Reference Architecture.
-  grant_security_account_access = <INPUT REQUIRED>
+  grant_security_account_access = <bool>
 
   # The ID of your security account (where IAM users are defined). Required for
   # deploying a Reference Architecture, as the Gruntwork team deploys an EC2
   # instance in the security account, and that instance assumes this IAM role to get
   # access to all the other child accounts and bootstrap the deployment process.
-  security_account_id = <INPUT REQUIRED>
+  security_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -297,6 +297,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b281ab8c33119526cc47527ddac25f9d"
+  "hash": "cd46f950371ba701e943964a596d137b"
 }
 ##DOCS-SOURCER-END -->

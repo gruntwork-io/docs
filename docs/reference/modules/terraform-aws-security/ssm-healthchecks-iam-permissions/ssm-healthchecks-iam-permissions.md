@@ -53,7 +53,7 @@ module "ssm_healthchecks_iam_permissions" {
   # ----------------------------------------------------------------------------------------------------
 
   # The Id of the IAM role to which we should add SSM healthcheck permissions
-  iam_role_id = <INPUT REQUIRED>
+  iam_role_id = <string>
 
 }
 
@@ -80,7 +80,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The Id of the IAM role to which we should add SSM healthcheck permissions
-  iam_role_id = <INPUT REQUIRED>
+  iam_role_id = <string>
 
 }
 
@@ -99,6 +99,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6d32f6138fadd3c1541cf053172d21c6"
+  "hash": "b2ad4c5cea96219153f19b01f1b43d2e"
 }
 ##DOCS-SOURCER-END -->

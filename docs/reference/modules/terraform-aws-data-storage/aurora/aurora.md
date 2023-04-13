@@ -106,7 +106,7 @@ module "aurora" {
 
   # How many instances to launch. RDS will automatically pick a leader and configure
   # the others as replicas.
-  instance_count = <INPUT REQUIRED>
+  instance_count = <number>
 
   # The instance type from an Amazon Aurora supported instance class based on a
   # selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory
@@ -115,20 +115,20 @@ module "aurora" {
   # documentation on Amazon Aurora supported instance class types:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstance
   # lass.html#Concepts.DBInstanceClass.Types
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the cluster and cluster instances (e.g. drupaldb). Must be unique in this
   # region. Must be a lowercase string.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # A list of subnet ids where the database instances should be deployed. In the
   # standard Gruntwork VPC setup, these should be the private persistence subnet
   # ids. This is ignored if create_subnet_group=false.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -443,7 +443,7 @@ inputs = {
 
   # How many instances to launch. RDS will automatically pick a leader and configure
   # the others as replicas.
-  instance_count = <INPUT REQUIRED>
+  instance_count = <number>
 
   # The instance type from an Amazon Aurora supported instance class based on a
   # selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory
@@ -452,20 +452,20 @@ inputs = {
   # documentation on Amazon Aurora supported instance class types:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstance
   # lass.html#Concepts.DBInstanceClass.Types
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the cluster and cluster instances (e.g. drupaldb). Must be unique in this
   # region. Must be a lowercase string.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # A list of subnet ids where the database instances should be deployed. In the
   # standard Gruntwork VPC setup, these should be the private persistence subnet
   # ids. This is ignored if create_subnet_group=false.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1420,6 +1420,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc0d31177fd3fa2d09f17adb3a811dfa"
+  "hash": "8694b5f9a368ce34e79d1bef3b849cc4"
 }
 ##DOCS-SOURCER-END -->

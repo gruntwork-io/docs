@@ -52,21 +52,21 @@ module "lambda_cleanup_snapshots" {
 
   # The maximum number of snapshots to keep around of the given DB. Once this number
   # is exceeded, this lambda function will delete the oldest snapshots.
-  max_snapshots = <INPUT REQUIRED>
+  max_snapshots = <number>
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to clean up
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -124,21 +124,21 @@ inputs = {
 
   # The maximum number of snapshots to keep around of the given DB. Once this number
   # is exceeded, this lambda function will delete the oldest snapshots.
-  max_snapshots = <INPUT REQUIRED>
+  max_snapshots = <number>
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to clean up
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -296,6 +296,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf005dffb175675a5ba60305911f0786"
+  "hash": "64c67ebc7886316f2a5a3e54ccfbf2c9"
 }
 ##DOCS-SOURCER-END -->

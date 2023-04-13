@@ -94,14 +94,14 @@ module "kms_master_key_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # You can use this variable to create account-level KMS Customer Master Keys
   # (CMKs) for encrypting and decrypting data. This variable should be a map where
   # the keys are the names of the CMK and the values are an object that defines the
   # configuration for that CMK. See the comment below for the configuration options
   # you can set for each key.
-  customer_master_keys = <INPUT REQUIRED>
+  customer_master_keys = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -162,14 +162,14 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # You can use this variable to create account-level KMS Customer Master Keys
   # (CMKs) for encrypting and decrypting data. This variable should be a map where
   # the keys are the names of the CMK and the values are an object that defines the
   # configuration for that CMK. See the comment below for the configuration options
   # you can set for each key.
-  customer_master_keys = <INPUT REQUIRED>
+  customer_master_keys = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -523,6 +523,6 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2ba0f7e30401b7da2fb573bae9a9b23e"
+  "hash": "7966ece0b927616f02df8fda2b30ef94"
 }
 ##DOCS-SOURCER-END -->

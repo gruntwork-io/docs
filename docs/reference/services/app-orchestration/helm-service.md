@@ -108,20 +108,20 @@ module "helm_service" {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <INPUT REQUIRED>
+  application_name = <string>
 
   # Chart name to be installed. The chart name can be local path, a URL to a chart,
   # or the name of the chart if repository is specified. It is also possible to use
   # the <repository>/<chart> format here if you are running Terraform on a system
   # that the repository has been added to with helm repo add but this is not
   # recommended.
-  helm_chart = <INPUT REQUIRED>
+  helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
-  helm_repository = <INPUT REQUIRED>
+  helm_repository = <string>
 
   # The Kubernetes Namespace to deploy the helm chart into.
-  namespace = <INPUT REQUIRED>
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -206,20 +206,20 @@ inputs = {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <INPUT REQUIRED>
+  application_name = <string>
 
   # Chart name to be installed. The chart name can be local path, a URL to a chart,
   # or the name of the chart if repository is specified. It is also possible to use
   # the <repository>/<chart> format here if you are running Terraform on a system
   # that the repository has been added to with helm repo add but this is not
   # recommended.
-  helm_chart = <INPUT REQUIRED>
+  helm_chart = <string>
 
   # Repository URL where to locate the requested chart.
-  helm_repository = <INPUT REQUIRED>
+  helm_repository = <string>
 
   # The Kubernetes Namespace to deploy the helm chart into.
-  namespace = <INPUT REQUIRED>
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -488,6 +488,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c21f68c38afeaeb5b1853e9029338e84"
+  "hash": "51af9a360915bb69aa1202cd4d3c834d"
 }
 ##DOCS-SOURCER-END -->

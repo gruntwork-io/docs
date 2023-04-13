@@ -39,11 +39,11 @@ module "ec_2_backup" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the data lifecyle management schedule
-  schedule_name = <INPUT REQUIRED>
+  schedule_name = <string>
 
   # A map of tag keys and their values. Any EBS volumes tagged with any of these
   # tags will be targeted for snapshots.
-  target_tags = <INPUT REQUIRED>
+  target_tags = <map(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -107,11 +107,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the data lifecyle management schedule
-  schedule_name = <INPUT REQUIRED>
+  schedule_name = <string>
 
   # A map of tag keys and their values. Any EBS volumes tagged with any of these
   # tags will be targeted for snapshots.
-  target_tags = <INPUT REQUIRED>
+  target_tags = <map(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -308,6 +308,6 @@ The name of the IAM role associated with the data lifecycle manager
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "498b2df48f48977f67c1c19a6168888a"
+  "hash": "75fbca15fc39dbbe7f08b0738a10807b"
 }
 ##DOCS-SOURCER-END -->

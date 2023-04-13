@@ -119,20 +119,24 @@ module "k_8_s_service" {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <INPUT REQUIRED>
+  application_name = <string>
 
   # The Docker image to run.
-  container_image = <INPUT REQUIRED>
+  container_image = <object(
+    repository = string
+    tag = string
+    pull_policy = string
+  )>
 
   # The port number on which this service's Docker container accepts incoming
   # traffic.
-  container_port = <INPUT REQUIRED>
+  container_port = <number>
 
   # The number of Pods to run on the Kubernetes cluster for this service.
-  desired_number_of_pods = <INPUT REQUIRED>
+  desired_number_of_pods = <number>
 
   # The Kubernetes Namespace to deploy the application into.
-  namespace = <INPUT REQUIRED>
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -499,20 +503,24 @@ inputs = {
 
   # The name of the application (e.g. my-service-stage). Used for labeling
   # Kubernetes resources.
-  application_name = <INPUT REQUIRED>
+  application_name = <string>
 
   # The Docker image to run.
-  container_image = <INPUT REQUIRED>
+  container_image = <object(
+    repository = string
+    tag = string
+    pull_policy = string
+  )>
 
   # The port number on which this service's Docker container accepts incoming
   # traffic.
-  container_port = <INPUT REQUIRED>
+  container_port = <number>
 
   # The number of Pods to run on the Kubernetes cluster for this service.
-  desired_number_of_pods = <INPUT REQUIRED>
+  desired_number_of_pods = <number>
 
   # The Kubernetes Namespace to deploy the application into.
-  namespace = <INPUT REQUIRED>
+  namespace = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1940,6 +1948,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "509d711c672cb7848e5deb83b75310cb"
+  "hash": "4076f818fd4e91c718b262c3c91312fc"
 }
 ##DOCS-SOURCER-END -->

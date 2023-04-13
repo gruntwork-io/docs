@@ -66,7 +66,7 @@ module "require_executable" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of named executables that should exist on the OS PATH.
-  required_executables = <INPUT REQUIRED>
+  required_executables = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -103,7 +103,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of named executables that should exist on the OS PATH.
-  required_executables = <INPUT REQUIRED>
+  required_executables = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -175,6 +175,6 @@ A map of the executables to the resolved path where they reside.
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/require-executable/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "509eabced1c12afaaa4e585689d20794"
+  "hash": "f51a79d245170ae0fb82ebd49779d294"
 }
 ##DOCS-SOURCER-END -->

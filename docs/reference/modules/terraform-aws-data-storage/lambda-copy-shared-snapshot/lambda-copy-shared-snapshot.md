@@ -131,18 +131,18 @@ module "lambda_copy_shared_snapshot" {
 
   # The ID of the external AWS account that shared the DB snapshots with this
   # account
-  external_account_id = <INPUT REQUIRED>
+  external_account_id = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to copy
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -208,18 +208,18 @@ inputs = {
 
   # The ID of the external AWS account that shared the DB snapshots with this
   # account
-  external_account_id = <INPUT REQUIRED>
+  external_account_id = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to copy
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -395,6 +395,6 @@ Namespace all Lambda scheduling resources created by this module with this name.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-copy-shared-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ddd53bcf61b79789d845cc04aca05447"
+  "hash": "b15e82e2285120496673cfaafe7866a4"
 }
 ##DOCS-SOURCER-END -->

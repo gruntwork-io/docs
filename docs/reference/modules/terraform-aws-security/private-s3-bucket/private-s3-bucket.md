@@ -94,7 +94,7 @@ module "private_s_3_bucket" {
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -291,7 +291,7 @@ inputs = {
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1018,6 +1018,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "11c8810827142ed2aa915bb867eb654b"
+  "hash": "f4f518b855b3080dc036e0c9a9ff0c44"
 }
 ##DOCS-SOURCER-END -->

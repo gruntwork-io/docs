@@ -155,24 +155,24 @@ module "server_group" {
 
   # The ID of the Amazon Machine Image (AMI) to run on each server (e.g.,
   # ami-abcd1234).
-  ami_id = <INPUT REQUIRED>
+  ami_id = <string>
 
   # The type of EC2 Instance to run (e.g. t3.micro).
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name for this group of servers. Used as the default Name tag on each EC2
   # Instance and to namespace all the resources created by this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The number of servers to run in the server group.
-  size = <INPUT REQUIRED>
+  size = <number>
 
   # The IDs of the subnets where the servers should be deployed (e.g.,
   # subnet-abcd1234).
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where the servers should be deployed (e.g. vpc-abcd1234).
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -423,24 +423,24 @@ inputs = {
 
   # The ID of the Amazon Machine Image (AMI) to run on each server (e.g.,
   # ami-abcd1234).
-  ami_id = <INPUT REQUIRED>
+  ami_id = <string>
 
   # The type of EC2 Instance to run (e.g. t3.micro).
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name for this group of servers. Used as the default Name tag on each EC2
   # Instance and to namespace all the resources created by this module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The number of servers to run in the server group.
-  size = <INPUT REQUIRED>
+  size = <number>
 
   # The IDs of the subnets where the servers should be deployed (e.g.,
   # subnet-abcd1234).
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC where the servers should be deployed (e.g. vpc-abcd1234).
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1246,6 +1246,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fb183459031635c7930029d3ee2f7606"
+  "hash": "e0bc77ecb451aa6c3deadf095765f73d"
 }
 ##DOCS-SOURCER-END -->

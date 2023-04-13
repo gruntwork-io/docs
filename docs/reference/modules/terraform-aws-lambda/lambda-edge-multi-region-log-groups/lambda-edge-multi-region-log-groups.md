@@ -88,7 +88,7 @@ module "lambda_edge_multi_region_log_groups" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name used to namespace all log groups.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -152,7 +152,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name used to namespace all log groups.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -305,6 +305,6 @@ Map of log group names per region
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e7b1977f29f42716b9298f8e95ddfcdc"
+  "hash": "7fe08a7745e8b6c82c5a467c0f5dfbab"
 }
 ##DOCS-SOURCER-END -->

@@ -262,11 +262,11 @@ module "eks_cluster_workers" {
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
   # this cluster. If any of the values are not provided, the specified default
   # variable will be used to lookup a default value.
-  autoscaling_group_configurations = <INPUT REQUIRED>
+  autoscaling_group_configurations = <any>
 
   # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all
   # the resources created by these templates.
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -532,11 +532,11 @@ inputs = {
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances in
   # this cluster. If any of the values are not provided, the specified default
   # variable will be used to lookup a default value.
-  autoscaling_group_configurations = <INPUT REQUIRED>
+  autoscaling_group_configurations = <any>
 
   # The name of the EKS cluster (e.g. eks-prod). This is also used to namespace all
   # the resources created by these templates.
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1477,6 +1477,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ebf7a96dc63b63578fc8f2be9351a64e"
+  "hash": "387504fc0291f9ca0d713dbd468790da"
 }
 ##DOCS-SOURCER-END -->

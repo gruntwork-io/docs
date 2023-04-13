@@ -93,7 +93,7 @@ module "ecr_repos" {
   # ----------------------------------------------------------------------------------------------------
 
   # A map of repo names to configurations for that repository.
-  repositories = <INPUT REQUIRED>
+  repositories = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -167,7 +167,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A map of repo names to configurations for that repository.
-  repositories = <INPUT REQUIRED>
+  repositories = <any>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -465,6 +465,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8928e6d2c66d1286099d781693cf186d"
+  "hash": "c25a22967b7601e705b44ee992fc8096"
 }
 ##DOCS-SOURCER-END -->

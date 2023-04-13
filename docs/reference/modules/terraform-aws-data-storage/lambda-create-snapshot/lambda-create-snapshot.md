@@ -91,18 +91,18 @@ module "lambda_create_snapshot" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -188,18 +188,18 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # The identifier of the RDS database
-  rds_db_identifier = <INPUT REQUIRED>
+  rds_db_identifier = <string>
 
   # If set to true, this RDS database is an Amazon Aurora cluster. If set to false,
   # it's running some other database, such as MySQL, Postgres, Oracle, etc.
-  rds_db_is_aurora_cluster = <INPUT REQUIRED>
+  rds_db_is_aurora_cluster = <bool>
 
   # An expression that defines how often to run the lambda function to take
   # snapshots. For example, cron(0 20 * * ? *) or rate(5 minutes).
-  schedule_expression = <INPUT REQUIRED>
+  schedule_expression = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -441,6 +441,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b52da3fcdb142ac428f4fa07c8c836c0"
+  "hash": "40afe2291725a82b8e5de1cabf883563"
 }
 ##DOCS-SOURCER-END -->
