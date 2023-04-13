@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Kinesis Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/kinesis" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.10.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -413,11 +413,11 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/main/modules/kinesis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/kinesis/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/kinesis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "644a7df3de0613d76306c7d56cedae72"
+  "hash": "361fc53067fba1a3276c7851193c4182"
 }
 ##DOCS-SOURCER-END -->

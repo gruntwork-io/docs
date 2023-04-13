@@ -13,22 +13,22 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # ssh-iam has been renamed!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt). Please update all links to point to
-[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-grunt)!
+`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt). Please update all links to point to
+[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt)!
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-iam/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-iam/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/ssh-iam/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-iam/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-iam/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e6568c0ca6ed462c77f533c9e8023277"
+  "hash": "14bea5849505e3ff268318539448dc7a"
 }
 ##DOCS-SOURCER-END -->

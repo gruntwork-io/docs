@@ -13,15 +13,15 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Run PEX as Data Source
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, to
 be used as an [external data source](https://www.terraform.io/docs/providers/external/data_source.html) in Terraform.
 
-This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment) under the hood. See [What is
-PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
+This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment) under the hood. See [What is
+PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
 for use with this module.
 
 ## Data Source vs Resource
@@ -34,7 +34,7 @@ allow you to call out to arbitrary binaries available on the operator machine. T
 *   [local-exec Provisioners](https://www.terraform.io/docs/provisioners/local-exec.html), where you can run the binary to
     provision a resource.
 
-This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-resource) for
+This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-resource) for
 running it as a data source). Which approach to use depends on your needs:
 
 *   Data sources are calculated every time a terraform state needs to be refreshed. This includes all `plan` and `apply`
@@ -251,11 +251,11 @@ Data source result of executing the PEX binary.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/run-pex-as-data-source/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e298e464722855c3b9045b60411cfc9b"
+  "hash": "cb9ed0af8dc98c2a6c20b8ef39df6a37"
 }
 ##DOCS-SOURCER-END -->

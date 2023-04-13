@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -125,10 +125,6 @@ module "redshift" {
   # never automatically applied.
   allow_major_version_upgrade = true
 
-  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
-  # the database needs to connect to certain IP addresses for special operation
-  allow_outbound_connections_from_cidr_blocks = []
-
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
   # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
@@ -175,9 +171,6 @@ module "redshift" {
 
   # Timeout for DB deleting
   deleting_timeout = "40m"
-
-  # Elastic IP that will be associated with the cluster
-  elastic_ip = null
 
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
@@ -307,10 +300,6 @@ inputs = {
   # never automatically applied.
   allow_major_version_upgrade = true
 
-  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
-  # the database needs to connect to certain IP addresses for special operation
-  allow_outbound_connections_from_cidr_blocks = []
-
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
   # var.engine_version to MAJOR.MINOR and omit the .PATCH at the end (e.g., use 5.7
@@ -357,9 +346,6 @@ inputs = {
 
   # Timeout for DB deleting
   deleting_timeout = "40m"
-
-  # Elastic IP that will be associated with the cluster
-  elastic_ip = null
 
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
@@ -517,15 +503,6 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="allow_outbound_connections_from_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of CIDR-formatted IP address ranges that this DB can connect. Use this if the database needs to connect to certain IP addresses for special operation
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 <HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -623,15 +600,6 @@ Timeout for DB deleting
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
-</HclListItem>
-
-<HclListItem name="elastic_ip" requirement="optional" type="string">
-<HclListItemDescription>
-
-Elastic IP that will be associated with the cluster
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
@@ -890,11 +858,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2059774571319c68879af8788d36020"
+  "hash": "1c201b9e0861adcb3ec642ec681ad23b"
 }
 ##DOCS-SOURCER-END -->

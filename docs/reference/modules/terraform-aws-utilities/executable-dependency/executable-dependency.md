@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Executable Dependency
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,7 +27,7 @@ if it's not installed already: e.g., [terraform-aws-eks](https://github.com/grun
 
 ## Example code
 
-See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/examples/executable-dependency) for working sample code.
+See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/examples/executable-dependency) for working sample code.
 
 ## Usage
 
@@ -245,11 +245,11 @@ The path to use to run the executable. Will either be the path of the executable
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/executable-dependency/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/executable-dependency/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/executable-dependency/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0dfe956315e9e6f4287d5b64e0f340d7"
+  "hash": "465718a033e6b271a232cb32f2009126"
 }
 ##DOCS-SOURCER-END -->

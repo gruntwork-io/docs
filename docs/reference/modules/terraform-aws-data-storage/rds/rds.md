@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -41,9 +41,9 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/core-concepts.md#what-is-amazon-rds)
+*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/core-concepts.md#what-is-amazon-rds)
 
-*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/core-concepts.md#common-gotchas)
+*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/core-concepts.md#common-gotchas)
 
 *   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
 
@@ -55,7 +55,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -67,13 +67,13 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How to connect to an RDS instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/core-concepts.md#how-do-you-connect-to-the-database)
+*   [How to connect to an RDS instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/core-concepts.md#how-do-you-connect-to-the-database)
 
 *   [How to authenticate to RDS with IAM](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAM.html)
 
-*   [How to scale RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/core-concepts.md#how-do-you-scale-this-database)
+*   [How to scale RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/core-concepts.md#how-do-you-scale-this-database)
 
-*   [How to backup RDS snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
+*   [How to backup RDS snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
 
 ### Major changes
 
@@ -273,7 +273,7 @@ module "rds" {
   ignore_password_changes = false
 
   # The amount of provisioned IOPS for the primary instance. Setting this implies a
-  # storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  # storage_type of 'io1' or 'io2'. Set to 0 to disable.
   iops = 0
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
@@ -409,16 +409,9 @@ module "rds" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
-  # The storage throughput value for the DB instance. Can only be set when
-  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage value is
-  # below a per-engine threshold. See the RDS User Guide:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-sto
-  # age
-  storage_throughput = null
-
   # The type of storage to use for the primary instance. Must be one of 'standard'
-  # (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1'
-  # (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # (magnetic), 'gp2' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2'
+  # (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
   # Timeout for DB updating
@@ -621,7 +614,7 @@ inputs = {
   ignore_password_changes = false
 
   # The amount of provisioned IOPS for the primary instance. Setting this implies a
-  # storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+  # storage_type of 'io1' or 'io2'. Set to 0 to disable.
   iops = 0
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used if
@@ -757,16 +750,9 @@ inputs = {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
-  # The storage throughput value for the DB instance. Can only be set when
-  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage value is
-  # below a per-engine threshold. See the RDS User Guide:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-sto
-  # age
-  storage_throughput = null
-
   # The type of storage to use for the primary instance. Must be one of 'standard'
-  # (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1'
-  # (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # (magnetic), 'gp2' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2'
+  # (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
   # Timeout for DB updating
@@ -1157,7 +1143,7 @@ Creates an instance that disables terraform from updating the master_password.  
 <HclListItem name="iops" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1','io2, or 'gp3'. Set to 0 to disable.
+The amount of provisioned IOPS for the primary instance. Setting this implies a storage_type of 'io1' or 'io2'. Set to 0 to disable.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
@@ -1415,19 +1401,10 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="storage_throughput" requirement="optional" type="string">
-<HclListItemDescription>
-
-The storage throughput value for the DB instance. Can only be set when <a href="#storage_type"><code>storage_type</code></a> is 'gp3'. Cannot be specified if the allocated_storage value is below a per-engine threshold. See the RDS User Guide: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
@@ -1491,11 +1468,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "99adac3897461839f083dab2f3b58bdf"
+  "hash": "b97a766110b9b5d427600ac52e89c033"
 }
 ##DOCS-SOURCER-END -->

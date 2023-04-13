@@ -13,22 +13,22 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Init OpenVPN Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/init-openvpn" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.18.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module is used to initialize the OpenVPN server, its Public Key Infrastructure (PKI), Certificate Authority
-(CA) and configuration on a server that has been installed using the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/install-openvpn) module.
+(CA) and configuration on a server that has been installed using the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/install-openvpn) module.
 
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/init-openvpn/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/init-openvpn/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/init-openvpn/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/init-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "23949bd714b0eb8ed5cdd60eb1a4d871"
+  "hash": "073339d80de6c2653a5b39bc08c9d923"
 }
 ##DOCS-SOURCER-END -->

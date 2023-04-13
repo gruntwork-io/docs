@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -1057,11 +1057,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "465b3b2ea058d63a66c91ca2d2491e43"
+  "hash": "5ff22bf619b701d0e484a27e4c604353"
 }
 ##DOCS-SOURCER-END -->

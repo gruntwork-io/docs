@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EC2 Backup Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -303,11 +303,11 @@ The name of the IAM role associated with the data lifecycle manager
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/main/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.15.3/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f81d2a164916254f14d0568f0f2caf63"
+  "hash": "498b2df48f48977f67c1c19a6168888a"
 }
 ##DOCS-SOURCER-END -->

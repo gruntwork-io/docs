@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Auto Scaling Group Module with Instance Refresh
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/asg-instance-refresh" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -648,11 +648,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/main/modules/asg-instance-refresh/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/asg-instance-refresh/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/asg-instance-refresh/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3320f2e1e5b21b675b7fb93b1b23d089"
+  "hash": "50a0aeed6dc40a314f4952171ad60a39"
 }
 ##DOCS-SOURCER-END -->

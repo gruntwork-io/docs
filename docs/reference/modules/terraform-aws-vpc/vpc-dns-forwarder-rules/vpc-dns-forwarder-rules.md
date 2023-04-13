@@ -13,19 +13,19 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # VPC DNS Forwarder Rules Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.22.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [Route 53 Resolver Forwarding
 Rules](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html) for a VPC that will
-utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder). These forwarding
+utilize Route 53 Resolver Endpoints created with the [vpc-dns-forwarder module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder). These forwarding
 rules, combined with Route 53 Resolvers, allow DNS queries for specific domains to be resolved by peered VPCs.
 
 ## How do you specify the hostnames that use the forwarder?
 
 By default, no DNS query will be routed through the Route 53 Resolvers created by the [vpc-dns-forwarder
-module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
+module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder). You need to create forwarding rules that specify which specific domains should be
 resolved through the Route 53 Resolvers so that they are resolved over the peering connection. You can use this module
 to construct the forwarding rules.
 
@@ -180,11 +180,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/main/modules/vpc-dns-forwarder-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81b8f80c48f465573c37efe312ee9a83"
+  "hash": "567a0205ce5aa9b76a679c7a60db1724"
 }
 ##DOCS-SOURCER-END -->

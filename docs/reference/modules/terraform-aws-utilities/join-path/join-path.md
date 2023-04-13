@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Join Path Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/join-path" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.7.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ This module uses Python under the hood so, the Python must be installed on the O
 
 ## Example code
 
-See the [join-path example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/examples/join-path) for working sample code.
+See the [join-path example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/examples/join-path) for working sample code.
 
 ## Usage
 
@@ -150,11 +150,11 @@ A list of folder and file names to combine into a path, using the proper path se
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/main/modules/join-path/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/join-path/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/join-path/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0b4d1fd8b14830ce4927dec5de87afe"
+  "hash": "8204a67a8f5e1434230e0e5532e6c406"
 }
 ##DOCS-SOURCER-END -->

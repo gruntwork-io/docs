@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -43,9 +43,9 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/core-concepts.md#what-is-amazon-rds)
+*   [What is Amazon RDS?](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#what-is-amazon-rds)
 
-*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/core-concepts.md#common-gotchas)
+*   [Common gotchas with RDS](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#common-gotchas)
 
 *   [RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html): Amazon’s docs for RDS that cover core concepts such as the types of databases supported, security, backup & restore, and monitoring.
 
@@ -57,7 +57,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -69,13 +69,13 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How to connect to an Aurora instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/core-concepts.md#how-do-you-connect-to-the-database)
+*   [How to connect to an Aurora instance](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#how-do-you-connect-to-the-database)
 
 *   [How to authenticate to RDS with IAM](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAM.html)
 
-*   [How to scale Aurora](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/core-concepts.md#how-do-you-scale-this-database)
+*   [How to scale Aurora](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/core-concepts.md#how-do-you-scale-this-database)
 
-*   [How to backup Aurora snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
+*   [How to backup Aurora snapshots to a separate AWS account](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-create-snapshot#how-do-you-backup-your-rds-snapshots-to-a-separate-aws-account)
 
 ### Major changes
 
@@ -1415,11 +1415,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ad4fc315c015153bafe3b93a8d3f1278"
+  "hash": "cc0d31177fd3fa2d09f17adb3a811dfa"
 }
 ##DOCS-SOURCER-END -->
