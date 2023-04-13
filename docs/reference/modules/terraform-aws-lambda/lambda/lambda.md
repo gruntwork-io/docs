@@ -164,15 +164,15 @@ module "lambda" {
   # amount of CPU power given to a Lambda function is proportional to the amount of
   # memory you request, so a Lambda function with 256MB of memory has twice as much
   # CPU power as one with 128MB.
-  memory_size = <INPUT REQUIRED>
+  memory_size = <number>
 
   # The name of the Lambda function. Used to namespace all resources created by this
   # module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The maximum amount of time, in seconds, your Lambda function will be allowed to
   # run. Must be between 1 and 300 seconds.
-  timeout = <INPUT REQUIRED>
+  timeout = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -457,15 +457,15 @@ inputs = {
   # amount of CPU power given to a Lambda function is proportional to the amount of
   # memory you request, so a Lambda function with 256MB of memory has twice as much
   # CPU power as one with 128MB.
-  memory_size = <INPUT REQUIRED>
+  memory_size = <number>
 
   # The name of the Lambda function. Used to namespace all resources created by this
   # module.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The maximum amount of time, in seconds, your Lambda function will be allowed to
   # run. Must be between 1 and 300 seconds.
-  timeout = <INPUT REQUIRED>
+  timeout = <number>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1301,6 +1301,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b838d0a7ea33fc27de2bfdaa1514c2ea"
+  "hash": "af23323bc30fc6a07c9cb641b48dfc7b"
 }
 ##DOCS-SOURCER-END -->

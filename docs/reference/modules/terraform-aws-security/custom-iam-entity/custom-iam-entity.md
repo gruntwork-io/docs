@@ -74,7 +74,7 @@ module "custom_iam_entity" {
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -176,7 +176,7 @@ inputs = {
 
   # Should we require that all IAM Users use Multi-Factor Authentication for both
   # AWS API calls and the AWS Web Console? (true or false)
-  should_require_mfa = <INPUT REQUIRED>
+  should_require_mfa = <bool>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -491,6 +491,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a15a9e2272683524a581f7ae388ab566"
+  "hash": "23ce754af42de8faa5a72cff55eb85a5"
 }
 ##DOCS-SOURCER-END -->

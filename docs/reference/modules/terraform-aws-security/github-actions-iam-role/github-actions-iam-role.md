@@ -191,13 +191,13 @@ module "github_actions_iam_role" {
   # Map of github repositories to the list of branches that are allowed to assume
   # the IAM role. The repository should be encoded as org/repo-name (e.g.,
   # gruntwork-io/terrraform-aws-ci).
-  allowed_sources = <INPUT REQUIRED>
+  allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = <INPUT REQUIRED>
+  github_actions_openid_connect_provider_arn = <string>
 
   # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = <INPUT REQUIRED>
+  github_actions_openid_connect_provider_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -272,13 +272,13 @@ inputs = {
   # Map of github repositories to the list of branches that are allowed to assume
   # the IAM role. The repository should be encoded as org/repo-name (e.g.,
   # gruntwork-io/terrraform-aws-ci).
-  allowed_sources = <INPUT REQUIRED>
+  allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = <INPUT REQUIRED>
+  github_actions_openid_connect_provider_arn = <string>
 
   # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = <INPUT REQUIRED>
+  github_actions_openid_connect_provider_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -540,6 +540,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6033bef24977ab7119eab75f102e80ca"
+  "hash": "1a2e5f42d304bff2ca08c4ffb932008e"
 }
 ##DOCS-SOURCER-END -->

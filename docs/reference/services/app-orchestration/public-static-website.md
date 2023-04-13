@@ -124,10 +124,10 @@ module "public_static_website" {
 
   # The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only
   # used if var.create_route53_entry is true. Set to blank otherwise.
-  acm_certificate_domain_name = <INPUT REQUIRED>
+  acm_certificate_domain_name = <string>
 
   # The name of the website and the S3 bucket to create (e.g. static.foo.com).
-  website_domain_name = <INPUT REQUIRED>
+  website_domain_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -332,10 +332,10 @@ inputs = {
 
   # The domain name for which an ACM cert has been issued (e.g. *.foo.com). Only
   # used if var.create_route53_entry is true. Set to blank otherwise.
-  acm_certificate_domain_name = <INPUT REQUIRED>
+  acm_certificate_domain_name = <string>
 
   # The name of the website and the S3 bucket to create (e.g. static.foo.com).
-  website_domain_name = <INPUT REQUIRED>
+  website_domain_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1056,6 +1056,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bc04540fdcce4d3dc76c0ae61cf5f4f5"
+  "hash": "68827a28306963c2ea820043b536f202"
 }
 ##DOCS-SOURCER-END -->

@@ -112,16 +112,16 @@ module "account_baseline_root" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The AWS Region to use as the global config recorder and seed region for
   # GuardDuty.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # Map of child accounts to create. The map key is the name of the account and the
   # value is an object containing account configuration variables. See the comments
   # below for what keys and values this object should contain.
-  child_accounts = <INPUT REQUIRED>
+  child_accounts = <any>
 
   # Creates resources in the specified regions. The best practice is to enable AWS
   # Config in all enabled regions in your AWS account. This variable must NOT be set
@@ -129,7 +129,7 @@ module "account_baseline_root" {
   # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
   # etc). To get the list of regions enabled in your AWS account, you can use the
   # AWS CLI: aws ec2 describe-regions.
-  config_opt_in_regions = <INPUT REQUIRED>
+  config_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable EBS
   # Encryption in all enabled regions in your AWS account. This variable must NOT be
@@ -138,7 +138,7 @@ module "account_baseline_root" {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  ebs_opt_in_regions = <INPUT REQUIRED>
+  ebs_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable
   # GuardDuty in all enabled regions in your AWS account. This variable must NOT be
@@ -147,7 +147,7 @@ module "account_baseline_root" {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  guardduty_opt_in_regions = <INPUT REQUIRED>
+  guardduty_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable IAM
   # Access Analyzer in all enabled regions in your AWS account. This variable must
@@ -156,11 +156,11 @@ module "account_baseline_root" {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  iam_access_analyzer_opt_in_regions = <INPUT REQUIRED>
+  iam_access_analyzer_opt_in_regions = <list(string)>
 
   # The name used to prefix AWS Config and Cloudtrail resources, including the S3
   # bucket names and SNS topics used for each.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -852,16 +852,16 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The AWS Region to use as the global config recorder and seed region for
   # GuardDuty.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # Map of child accounts to create. The map key is the name of the account and the
   # value is an object containing account configuration variables. See the comments
   # below for what keys and values this object should contain.
-  child_accounts = <INPUT REQUIRED>
+  child_accounts = <any>
 
   # Creates resources in the specified regions. The best practice is to enable AWS
   # Config in all enabled regions in your AWS account. This variable must NOT be set
@@ -869,7 +869,7 @@ inputs = {
   # to, and may use some not enabled in your AWS account (e.g., GovCloud, China,
   # etc). To get the list of regions enabled in your AWS account, you can use the
   # AWS CLI: aws ec2 describe-regions.
-  config_opt_in_regions = <INPUT REQUIRED>
+  config_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable EBS
   # Encryption in all enabled regions in your AWS account. This variable must NOT be
@@ -878,7 +878,7 @@ inputs = {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  ebs_opt_in_regions = <INPUT REQUIRED>
+  ebs_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable
   # GuardDuty in all enabled regions in your AWS account. This variable must NOT be
@@ -887,7 +887,7 @@ inputs = {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  guardduty_opt_in_regions = <INPUT REQUIRED>
+  guardduty_opt_in_regions = <list(string)>
 
   # Creates resources in the specified regions. The best practice is to enable IAM
   # Access Analyzer in all enabled regions in your AWS account. This variable must
@@ -896,11 +896,11 @@ inputs = {
   # GovCloud, China, etc). To get the list of regions enabled in your AWS account,
   # you can use the AWS CLI: aws ec2 describe-regions. The value provided for
   # global_recorder_region must be in this list.
-  iam_access_analyzer_opt_in_regions = <INPUT REQUIRED>
+  iam_access_analyzer_opt_in_regions = <list(string)>
 
   # The name used to prefix AWS Config and Cloudtrail resources, including the S3
   # bucket names and SNS topics used for each.
-  name_prefix = <INPUT REQUIRED>
+  name_prefix = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -3749,6 +3749,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a57ee7f201f12fe62aa524d716c58d9f"
+  "hash": "ee7c71cd2a725b972c079cc1df0d3ff9"
 }
 ##DOCS-SOURCER-END -->

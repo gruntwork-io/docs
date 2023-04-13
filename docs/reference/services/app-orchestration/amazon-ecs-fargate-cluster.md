@@ -113,7 +113,7 @@ module "ecs_fargate_cluster" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ECS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -151,7 +151,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ECS cluster
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -241,6 +241,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ecs-fargate-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c4727d0e6a4886b7af3e1ee5acb9fd25"
+  "hash": "56c3abab818cc7765d2358ca453feff0"
 }
 ##DOCS-SOURCER-END -->

@@ -115,7 +115,7 @@ module "eks_fargate_container_logs" {
   # List of ARNs of Fargate execution IAM roles that should have permission to talk
   # to each output target. Policies that grant permissions to each output service
   # will be attached to these IAM roles.
-  fargate_execution_iam_role_arns = <INPUT REQUIRED>
+  fargate_execution_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -215,7 +215,7 @@ inputs = {
   # List of ARNs of Fargate execution IAM roles that should have permission to talk
   # to each output target. Policies that grant permissions to each output service
   # will be attached to these IAM roles.
-  fargate_execution_iam_role_arns = <INPUT REQUIRED>
+  fargate_execution_iam_role_arns = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -638,6 +638,6 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4367ff8f46e2b1eba3afffa16a4625df"
+  "hash": "fa62b9b5b3468a134ab4f62e8cb0a00c"
 }
 ##DOCS-SOURCER-END -->

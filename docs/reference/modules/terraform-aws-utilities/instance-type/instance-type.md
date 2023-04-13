@@ -77,7 +77,7 @@ module "instance_type" {
   # putting them in order of preference, as the recommended_instance_type output
   # variable will contain the first instance type from this list that is available
   # in all AZs.
-  instance_types = <INPUT REQUIRED>
+  instance_types = <list(string)>
 
 }
 
@@ -107,7 +107,7 @@ inputs = {
   # putting them in order of preference, as the recommended_instance_type output
   # variable will contain the first instance type from this list that is available
   # in all AZs.
-  instance_types = <INPUT REQUIRED>
+  instance_types = <list(string)>
 
 }
 
@@ -166,6 +166,6 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1161978b4fd3c89a22868fef40cfc816"
+  "hash": "80f984da9fa1b5281e8420334eba49b6"
 }
 ##DOCS-SOURCER-END -->

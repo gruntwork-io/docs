@@ -124,25 +124,31 @@ module "bastion_host" {
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the bastion host from all other IP addresses will
   # be blocked. This is only used if var.allow_ssh_from_cidr is true.
-  allow_ssh_from_cidr_list = <INPUT REQUIRED>
+  allow_ssh_from_cidr_list = <list(string)>
 
   # The AMI to run on the bastion host. This should be built from the Packer
   # template under bastion-host.json. One of var.ami or var.ami_filters is required.
   # Set to null if looking up the ami with filters.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    owners = list(string)
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The ID of the subnet in which to deploy the bastion. Must be a subnet in
   # var.vpc_id.
-  subnet_id = <INPUT REQUIRED>
+  subnet_id = <string>
 
   # The ID of the VPC in which to deploy the bastion.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -335,25 +341,31 @@ inputs = {
   # A list of IP address ranges in CIDR format from which SSH access will be
   # permitted. Attempts to access the bastion host from all other IP addresses will
   # be blocked. This is only used if var.allow_ssh_from_cidr is true.
-  allow_ssh_from_cidr_list = <INPUT REQUIRED>
+  allow_ssh_from_cidr_list = <list(string)>
 
   # The AMI to run on the bastion host. This should be built from the Packer
   # template under bastion-host.json. One of var.ami or var.ami_filters is required.
   # Set to null if looking up the ami with filters.
-  ami = <INPUT REQUIRED>
+  ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with the
   # Bastion Host. You can build the AMI using the Packer template bastion-host.json.
   # Only used if var.ami is null. One of var.ami or var.ami_filters is required. Set
   # to null if passing the ami ID directly.
-  ami_filters = <INPUT REQUIRED>
+  ami_filters = <object(
+    owners = list(string)
+    filters = list(object(
+      name   = string
+      values = list(string)
+    ))
+  )>
 
   # The ID of the subnet in which to deploy the bastion. Must be a subnet in
   # var.vpc_id.
-  subnet_id = <INPUT REQUIRED>
+  subnet_id = <string>
 
   # The ID of the VPC in which to deploy the bastion.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1000,6 +1012,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7742a5fbe37a2bb4c1d740f10864db23"
+  "hash": "854e2339f9bba02f826a3a7a44029077"
 }
 ##DOCS-SOURCER-END -->

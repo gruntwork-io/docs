@@ -126,24 +126,70 @@ module "ecs_deploy_runner_standard_configuration" {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline with
   # packer. Set to `null` to disable this container.
-  ami_builder = <INPUT REQUIRED>
+  ami_builder = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder = <INPUT REQUIRED>
+  docker_image_builder = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier = <INPUT REQUIRED>
+  terraform_applier = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    allowed_update_variable_names = list(string)
+    allowed_apply_git_refs = list(string)
+    machine_user_git_info = object(
+      name  = string
+      email = string
+    )
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner = <INPUT REQUIRED>
+  terraform_planner = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -186,24 +232,70 @@ inputs = {
   # Configuration options for the ami-builder container of the ECS deploy runner
   # stack. This container will be used for building AMIs in the CI/CD pipeline with
   # packer. Set to `null` to disable this container.
-  ami_builder = <INPUT REQUIRED>
+  ami_builder = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the docker-image-builder container of the ECS deploy
   # runner stack. This container will be used for building docker images in the
   # CI/CD pipeline. Set to `null` to disable this container.
-  docker_image_builder = <INPUT REQUIRED>
+  docker_image_builder = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    allowed_repos = list(string)
+    allowed_repos_regex = list(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-applier container of the ECS deploy
   # runner stack. This container will be used for running infrastructure deployment
   # actions (including automated variable updates) in the CI/CD pipeline with
   # Terraform / Terragrunt. Set to `null` to disable this container.
-  terraform_applier = <INPUT REQUIRED>
+  terraform_applier = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    allowed_update_variable_names = list(string)
+    allowed_apply_git_refs = list(string)
+    machine_user_git_info = object(
+      name  = string
+      email = string
+    )
+    repo_access_ssh_key_secrets_manager_arn = string
+    repo_access_https_tokens = map(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # Configuration options for the terraform-planner container of the ECS deploy
   # runner stack. This container will be used for running infrastructure plan
   # (including validate) actions in the CI/CD pipeline with Terraform / Terragrunt.
   # Set to `null` to disable this container.
-  terraform_planner = <INPUT REQUIRED>
+  terraform_planner = <object(
+    container_image = object(
+      docker_image = string
+      docker_tag   = string
+    )
+    infrastructure_live_repositories = list(string)
+    infrastructure_live_repositories_regex = list(string)
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+  )>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -827,6 +919,6 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be566c1b15ebec7822ebda73a3c5a7cf"
+  "hash": "1d560605b3a15025632a97fb2dc49774"
 }
 ##DOCS-SOURCER-END -->

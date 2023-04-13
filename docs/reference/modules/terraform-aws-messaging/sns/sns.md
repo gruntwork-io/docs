@@ -49,7 +49,7 @@ module "sns" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -117,7 +117,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -336,6 +336,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4013bd888b9aa6b755e604e881d80905"
+  "hash": "bec26c164cf7139ad0501c9f9f6fd696"
 }
 ##DOCS-SOURCER-END -->

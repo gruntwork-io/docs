@@ -74,7 +74,7 @@ module "ebs_encryption_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -119,7 +119,7 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -224,6 +224,6 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2be26a9fd62c18cfc6d95c0e32bfad36"
+  "hash": "ee2c461ea7e9b2aeaff2b5bae5770eda"
 }
 ##DOCS-SOURCER-END -->

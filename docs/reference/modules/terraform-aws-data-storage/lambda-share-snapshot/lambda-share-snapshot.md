@@ -47,7 +47,7 @@ module "lambda_share_snapshot" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -95,7 +95,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ARN of the RDS database
-  rds_db_arn = <INPUT REQUIRED>
+  rds_db_arn = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -203,6 +203,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4445f445ea3715d26d920139af22b405"
+  "hash": "4ce420444be5b35b8d6b5dfd724bec56"
 }
 ##DOCS-SOURCER-END -->

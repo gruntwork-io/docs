@@ -113,26 +113,26 @@ module "ecs_service" {
 
   # List of container definitions to use for the ECS task. Each entry corresponds to
   # a different ECS container definition.
-  container_definitions = <INPUT REQUIRED>
+  container_definitions = <any>
 
   # A map of all the listeners on the load balancer. The keys should be the port
   # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <INPUT REQUIRED>
+  default_listener_arns = <map(string)>
 
   # The default port numbers on the load balancer to attach listener rules to. You
   # can override this default on a rule-by-rule basis by setting the listener_ports
   # parameter in each rule. The port numbers specified in this variable and the
   # listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <INPUT REQUIRED>
+  default_listener_ports = <list(string)>
 
   # The ARN of the cluster to which the ecs service should be deployed.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The name of the ecs cluster to deploy the ecs service onto.
-  ecs_cluster_name = <INPUT REQUIRED>
+  ecs_cluster_name = <string>
 
   # The name of the ECS service (e.g. my-service-stage)
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -613,26 +613,26 @@ inputs = {
 
   # List of container definitions to use for the ECS task. Each entry corresponds to
   # a different ECS container definition.
-  container_definitions = <INPUT REQUIRED>
+  container_definitions = <any>
 
   # A map of all the listeners on the load balancer. The keys should be the port
   # numbers and the values should be the ARN of the listener for that port.
-  default_listener_arns = <INPUT REQUIRED>
+  default_listener_arns = <map(string)>
 
   # The default port numbers on the load balancer to attach listener rules to. You
   # can override this default on a rule-by-rule basis by setting the listener_ports
   # parameter in each rule. The port numbers specified in this variable and the
   # listener_ports parameter must exist in var.listener_arns.
-  default_listener_ports = <INPUT REQUIRED>
+  default_listener_ports = <list(string)>
 
   # The ARN of the cluster to which the ecs service should be deployed.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The name of the ecs cluster to deploy the ecs service onto.
-  ecs_cluster_name = <INPUT REQUIRED>
+  ecs_cluster_name = <string>
 
   # The name of the ECS service (e.g. my-service-stage)
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2857,6 +2857,6 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bc9e21f73abfea5322a0b45a61fc0748"
+  "hash": "0f77e0a9b950f9815b1c9eac523f6e2e"
 }
 ##DOCS-SOURCER-END -->

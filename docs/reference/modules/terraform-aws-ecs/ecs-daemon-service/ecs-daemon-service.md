@@ -89,16 +89,16 @@ module "ecs_daemon_service" {
   # ----------------------------------------------------------------------------------------------------
 
   # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The JSON text of the ECS Task Container Definitions. This portion of the ECS
   # Task Definition defines the Docker container(s) to be run along with all their
   # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
-  ecs_task_container_definitions = <INPUT REQUIRED>
+  ecs_task_container_definitions = <string>
 
   # The name of the service. This is used to namespace all resources created by this
   # module.
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -213,16 +213,16 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The Amazon Resource Name (ARN) of the ECS Cluster where this service should run.
-  ecs_cluster_arn = <INPUT REQUIRED>
+  ecs_cluster_arn = <string>
 
   # The JSON text of the ECS Task Container Definitions. This portion of the ECS
   # Task Definition defines the Docker container(s) to be run along with all their
   # properties. It should adhere to the format described at https://goo.gl/ob5U3g.
-  ecs_task_container_definitions = <INPUT REQUIRED>
+  ecs_task_container_definitions = <string>
 
   # The name of the service. This is used to namespace all resources created by this
   # module.
-  service_name = <INPUT REQUIRED>
+  service_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -600,6 +600,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.35.1/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b88760d95bf4431cc708ec35f2e4c3bb"
+  "hash": "fc7c59ef97bd50e93e09ddf4a5702544"
 }
 ##DOCS-SOURCER-END -->

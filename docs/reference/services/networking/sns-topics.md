@@ -91,7 +91,7 @@ module "sns_topics" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -152,7 +152,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -326,6 +326,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ce1a3784fbafda44fb8a3d06b9f9b9c0"
+  "hash": "9f166cc4cc51e8c87083c4982b7fcf2b"
 }
 ##DOCS-SOURCER-END -->

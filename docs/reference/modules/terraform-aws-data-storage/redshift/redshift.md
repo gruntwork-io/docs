@@ -91,22 +91,22 @@ module "redshift" {
   # ----------------------------------------------------------------------------------------------------
 
   # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The number of nodes in the cluster
-  number_of_nodes = <INPUT REQUIRED>
+  number_of_nodes = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -266,22 +266,22 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The instance type to use for the db (e.g. dc2.large)
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # The name used to namespace all resources created by these templates, including
   # the DB instance (e.g. drupaldb). Must be unique for this region. May contain
   # only lowercase alphanumeric characters, hyphens.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The number of nodes in the cluster
-  number_of_nodes = <INPUT REQUIRED>
+  number_of_nodes = <number>
 
   # A list of subnet ids where the database should be deployed. In the standard
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The id of the VPC in which this DB should be deployed.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -863,6 +863,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c201b9e0861adcb3ec642ec681ad23b"
+  "hash": "aec24a3bd57de8eb1cd9f3710e17abde"
 }
 ##DOCS-SOURCER-END -->

@@ -273,7 +273,7 @@ module "iam_policies" {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -371,7 +371,7 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The ID of the AWS Account.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -747,6 +747,6 @@ If set to true, all the Policies created by this module that are used as Trust P
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49fd1fbb99a00876b181a2f924ca0086"
+  "hash": "1281e65924724f26d08fb45b40886a71"
 }
 ##DOCS-SOURCER-END -->

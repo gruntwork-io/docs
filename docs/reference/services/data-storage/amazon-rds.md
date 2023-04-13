@@ -105,22 +105,22 @@ module "rds" {
   # ----------------------------------------------------------------------------------------------------
 
   # The amount of storage space the DB should use, in GB.
-  allocated_storage = <INPUT REQUIRED>
+  allocated_storage = <number>
 
   # The version of var.engine to use (e.g. 8.0.17 for mysql).
-  engine_version = <INPUT REQUIRED>
+  engine_version = <string>
 
   # The name used to namespace all the RDS resources created by these templates,
   # including the cluster and cluster instances (e.g. mysql-stage). Must be unique
   # in this region. Must be a lowercase string.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The list of IDs of the subnets in which to deploy RDS. The list must only
   # contain subnets in var.vpc_id.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -544,22 +544,22 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The amount of storage space the DB should use, in GB.
-  allocated_storage = <INPUT REQUIRED>
+  allocated_storage = <number>
 
   # The version of var.engine to use (e.g. 8.0.17 for mysql).
-  engine_version = <INPUT REQUIRED>
+  engine_version = <string>
 
   # The name used to namespace all the RDS resources created by these templates,
   # including the cluster and cluster instances (e.g. mysql-stage). Must be unique
   # in this region. Must be a lowercase string.
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # The list of IDs of the subnets in which to deploy RDS. The list must only
   # contain subnets in var.vpc_id.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy RDS.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2302,6 +2302,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "263922906b29a3734428945477545dde"
+  "hash": "8aec9752d53048d1527af360b645dc4e"
 }
 ##DOCS-SOURCER-END -->

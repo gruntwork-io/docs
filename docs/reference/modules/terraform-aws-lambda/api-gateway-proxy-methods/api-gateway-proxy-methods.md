@@ -46,10 +46,10 @@ module "api_gateway_proxy_methods" {
   # The API Gateway REST API resource as returned by the terraform resource or data
   # source. This can also be able arbitrary object that has the keys id,
   # root_resource_id, and execution_arn of the API Gateway REST API.
-  api_gateway_rest_api = <INPUT REQUIRED>
+  api_gateway_rest_api = <any>
 
   # Name of the AWS Lambda function that is being invoked for the API requests.
-  lambda_function_name = <INPUT REQUIRED>
+  lambda_function_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -96,10 +96,10 @@ inputs = {
   # The API Gateway REST API resource as returned by the terraform resource or data
   # source. This can also be able arbitrary object that has the keys id,
   # root_resource_id, and execution_arn of the API Gateway REST API.
-  api_gateway_rest_api = <INPUT REQUIRED>
+  api_gateway_rest_api = <any>
 
   # Name of the AWS Lambda function that is being invoked for the API requests.
-  lambda_function_name = <INPUT REQUIRED>
+  lambda_function_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -296,6 +296,6 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8474569d1237894635475d082a8bb437"
+  "hash": "d9996a83db132e4f3a94dc42fdb3a0ee"
 }
 ##DOCS-SOURCER-END -->

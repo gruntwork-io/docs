@@ -86,11 +86,11 @@ module "aws_config_multi_region" {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = <INPUT REQUIRED>
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -381,11 +381,11 @@ inputs = {
 
   # The AWS Account ID the template should be operated on. This avoids
   # misconfiguration errors caused by environment variables.
-  aws_account_id = <INPUT REQUIRED>
+  aws_account_id = <string>
 
   # The name of the S3 Bucket where Config items will be stored. Can be in the same
   # account or in another account.
-  s3_bucket_name = <INPUT REQUIRED>
+  s3_bucket_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1308,6 +1308,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a9b21717d3d0ddfdabc33d451e659df9"
+  "hash": "ace8026a6982740b05dab84e3099621a"
 }
 ##DOCS-SOURCER-END -->

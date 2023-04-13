@@ -96,25 +96,25 @@ module "alb" {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ALB.
-  alb_name = <INPUT REQUIRED>
+  alb_name = <string>
 
   # If the ALB should only accept traffic from within the VPC, set this to true. If
   # it should accept traffic from the public Internet, set it to false.
-  is_internal_alb = <INPUT REQUIRED>
+  is_internal_alb = <bool>
 
   # After this number of days, log files should be transitioned from S3 to Glacier.
   # Enter 0 to never archive log data.
-  num_days_after_which_archive_log_data = <INPUT REQUIRED>
+  num_days_after_which_archive_log_data = <number>
 
   # After this number of days, log files should be deleted from S3. Enter 0 to never
   # delete log data.
-  num_days_after_which_delete_log_data = <INPUT REQUIRED>
+  num_days_after_which_delete_log_data = <number>
 
   # ID of the VPC where the ALB will be deployed
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # The ids of the subnets that the ALB can use to source its IP
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -285,25 +285,25 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the ALB.
-  alb_name = <INPUT REQUIRED>
+  alb_name = <string>
 
   # If the ALB should only accept traffic from within the VPC, set this to true. If
   # it should accept traffic from the public Internet, set it to false.
-  is_internal_alb = <INPUT REQUIRED>
+  is_internal_alb = <bool>
 
   # After this number of days, log files should be transitioned from S3 to Glacier.
   # Enter 0 to never archive log data.
-  num_days_after_which_archive_log_data = <INPUT REQUIRED>
+  num_days_after_which_archive_log_data = <number>
 
   # After this number of days, log files should be deleted from S3. Enter 0 to never
   # delete log data.
-  num_days_after_which_delete_log_data = <INPUT REQUIRED>
+  num_days_after_which_delete_log_data = <number>
 
   # ID of the VPC where the ALB will be deployed
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # The ids of the subnets that the ALB can use to source its IP
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -923,6 +923,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5203f74a0d5c0a5e255ef0972ac87a73"
+  "hash": "06771f086d00d7ae7316489e0071f39b"
 }
 ##DOCS-SOURCER-END -->

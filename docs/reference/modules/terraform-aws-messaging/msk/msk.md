@@ -190,30 +190,30 @@ module "msk" {
 
   # The name of the Kafka cluster (e.g. kafka-stage). This variable is used to
   # namespace all resources created by this module.
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # The number of brokers to have in the cluster.
-  cluster_size = <INPUT REQUIRED>
+  cluster_size = <number>
 
   # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
   # See
   # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
   # ker-instance-types for available instance types.
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # Kafka version to install. See
   # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
   # ml for a list of supported versions.
-  kafka_version = <INPUT REQUIRED>
+  kafka_version = <string>
 
   # The subnet IDs into which the broker instances should be deployed. You should
   # typically pass in one subnet ID per node in the cluster_size variable. The
   # number of broker nodes must be a multiple of subnets. We strongly recommend that
   # you run Kafka in private subnets.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the cluster.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -349,30 +349,30 @@ inputs = {
 
   # The name of the Kafka cluster (e.g. kafka-stage). This variable is used to
   # namespace all resources created by this module.
-  cluster_name = <INPUT REQUIRED>
+  cluster_name = <string>
 
   # The number of brokers to have in the cluster.
-  cluster_size = <INPUT REQUIRED>
+  cluster_size = <number>
 
   # Specify the instance type to use for the kafka brokers (e.g. `kafka.m5.large`).
   # See
   # https://docs.aws.amazon.com/msk/latest/developerguide/msk-create-cluster.html#br
   # ker-instance-types for available instance types.
-  instance_type = <INPUT REQUIRED>
+  instance_type = <string>
 
   # Kafka version to install. See
   # https://docs.aws.amazon.com/msk/latest/developerguide/supported-kafka-versions.h
   # ml for a list of supported versions.
-  kafka_version = <INPUT REQUIRED>
+  kafka_version = <string>
 
   # The subnet IDs into which the broker instances should be deployed. You should
   # typically pass in one subnet ID per node in the cluster_size variable. The
   # number of broker nodes must be a multiple of subnets. We strongly recommend that
   # you run Kafka in private subnets.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC in which to deploy the cluster.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -991,6 +991,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.10.2/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9db118fba98f7042b86d318c4be29920"
+  "hash": "1ba60853d34b3e11e7a2ae1efb43d61e"
 }
 ##DOCS-SOURCER-END -->

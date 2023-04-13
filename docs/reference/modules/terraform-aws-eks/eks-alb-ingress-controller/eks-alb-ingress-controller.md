@@ -241,12 +241,12 @@ module "eks_alb_ingress_controller" {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy ALB resources into.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The ALB Ingress Controller application uses this to find resources (e.g.
   # subnets) to associate with ALBs. Additionally, AWS resources created by the
   # Ingress controller will be prefixed with this value.
-  eks_cluster_name = <INPUT REQUIRED>
+  eks_cluster_name = <string>
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -254,11 +254,14 @@ module "eks_alb_ingress_controller" {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <INPUT REQUIRED>
+  iam_role_for_service_accounts_config = <object(
+    openid_connect_provider_arn = string
+    openid_connect_provider_url = string
+  )>
 
   # The ID of the VPC where the EKS cluster resides. Used for determining where to
   # deploy the ALB.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -366,12 +369,12 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy ALB resources into.
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The ALB Ingress Controller application uses this to find resources (e.g.
   # subnets) to associate with ALBs. Additionally, AWS resources created by the
   # Ingress controller will be prefixed with this value.
-  eks_cluster_name = <INPUT REQUIRED>
+  eks_cluster_name = <string>
 
   # Configuration for using the IAM role with Service Accounts feature to provide
   # permissions to the helm charts. This expects a map with two properties:
@@ -379,11 +382,14 @@ inputs = {
   # `openid_connect_provider_arn` is the ARN of the OpenID Connect Provider for EKS
   # to retrieve IAM credentials, while `openid_connect_provider_url` is the URL. Set
   # to null if you do not wish to use IAM role with Service Accounts.
-  iam_role_for_service_accounts_config = <INPUT REQUIRED>
+  iam_role_for_service_accounts_config = <object(
+    openid_connect_provider_arn = string
+    openid_connect_provider_url = string
+  )>
 
   # The ID of the VPC where the EKS cluster resides. Used for determining where to
   # deploy the ALB.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -483,6 +489,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4d0185aa48351556b25d64cbe4afbfe4"
+  "hash": "182a4c7d59e4092f28c307ec38e78563"
 }
 ##DOCS-SOURCER-END -->

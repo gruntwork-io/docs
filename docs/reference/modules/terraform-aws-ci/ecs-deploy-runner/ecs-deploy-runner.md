@@ -118,13 +118,29 @@ module "ecs_deploy_runner" {
   # corresponds to a different ECS task definition that can be used for
   # infrastructure pipelines. The key corresponds to a user defined name that can be
   # used with the invoker function to determine which task definition to use.
-  container_images = <INPUT REQUIRED>
+  container_images = <map(object(
+    docker_image = string
+    docker_tag   = string
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+    additional_secrets_manager_arns = list(string)
+    script_config = map(object(
+      hardcoded_options = map(list(string))
+      hardcoded_args = list(string)
+      allow_positional_args = bool
+      allowed_options = list(string)
+      allowed_options_without_args = list(string)
+      restricted_options = list(string)
+      restricted_options_regex = map(string)
+    ))
+    default = bool
+  ))>
 
   # AWS ID of the VPC where the ECS task and invoker lambda should run.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # List of VPC Subnet IDs where the ECS task and invoker lambda should run.
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -315,13 +331,29 @@ inputs = {
   # corresponds to a different ECS task definition that can be used for
   # infrastructure pipelines. The key corresponds to a user defined name that can be
   # used with the invoker function to determine which task definition to use.
-  container_images = <INPUT REQUIRED>
+  container_images = <map(object(
+    docker_image = string
+    docker_tag   = string
+    secrets_manager_env_vars = map(string)
+    environment_vars = map(string)
+    additional_secrets_manager_arns = list(string)
+    script_config = map(object(
+      hardcoded_options = map(list(string))
+      hardcoded_args = list(string)
+      allow_positional_args = bool
+      allowed_options = list(string)
+      allowed_options_without_args = list(string)
+      restricted_options = list(string)
+      restricted_options_regex = map(string)
+    ))
+    default = bool
+  ))>
 
   # AWS ID of the VPC where the ECS task and invoker lambda should run.
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # List of VPC Subnet IDs where the ECS task and invoker lambda should run.
-  vpc_subnet_ids = <INPUT REQUIRED>
+  vpc_subnet_ids = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -1238,6 +1270,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aec59afb3b0eb22755da3dccc9945c3f"
+  "hash": "fd1eb4bf075e15c15a4ed4d4028eed92"
 }
 ##DOCS-SOURCER-END -->

@@ -65,10 +65,10 @@ module "list_remove" {
   # ----------------------------------------------------------------------------------------------------
 
   # The list of items that you want to remove from the original list.
-  items_to_remove = <INPUT REQUIRED>
+  items_to_remove = <list(any)>
 
   # The list of items where you want to remove items from.
-  original_list = <INPUT REQUIRED>
+  original_list = <list(any)>
 
 }
 
@@ -95,10 +95,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # The list of items that you want to remove from the original list.
-  items_to_remove = <INPUT REQUIRED>
+  items_to_remove = <list(any)>
 
   # The list of items where you want to remove items from.
-  original_list = <INPUT REQUIRED>
+  original_list = <list(any)>
 
 }
 
@@ -166,6 +166,6 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.9.1/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "81693e272fa1cfc8a02fdead6ae80377"
+  "hash": "93f7e48ad3cc474cd8842133677b71e3"
 }
 ##DOCS-SOURCER-END -->

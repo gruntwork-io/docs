@@ -216,10 +216,10 @@ module "vpc_interface_endpoint" {
 
   # A list of IDs of the subnets for all endpoints. Each endpoint will create one
   # ENI (Elastic Network Interface) per subnet.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC for all modules
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -2005,10 +2005,10 @@ inputs = {
 
   # A list of IDs of the subnets for all endpoints. Each endpoint will create one
   # ENI (Elastic Network Interface) per subnet.
-  subnet_ids = <INPUT REQUIRED>
+  subnet_ids = <list(string)>
 
   # The ID of the VPC for all modules
-  vpc_id = <INPUT REQUIRED>
+  vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -8278,6 +8278,6 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.22.7/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a7ea60eb19d7220010741b187163b5b"
+  "hash": "e76638e8269f3dec8775ff884020e189"
 }
 ##DOCS-SOURCER-END -->
