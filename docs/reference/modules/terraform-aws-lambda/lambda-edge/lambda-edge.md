@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -814,11 +814,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3001aa275fbb3bffe37a81156c9748bd"
+  "hash": "4eb202e1bdb835083afd792e273f3ef5"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Gruntwork Module CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.51.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -192,11 +192,11 @@ variables](https://circleci.com/docs/environment-variables/).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/main/modules/gruntwork-module-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/gruntwork-module-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/gruntwork-module-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.51.6/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f997f7f687a267b0806b2a825f15c1f0"
+  "hash": "05093e46f2038cf76d6e838e132ff2a4"
 }
 ##DOCS-SOURCER-END -->

@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EKS VPC Tags Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-vpc-tags" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -143,11 +143,11 @@ Tags for public subnets in the VPC to use for integration with EKS.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-vpc-tags/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-vpc-tags/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-vpc-tags/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-vpc-tags/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4117780a3869ce0386deb39c122a25b5"
+  "hash": "dd91553325814193e18cb4d5b907aed9"
 }
 ##DOCS-SOURCER-END -->

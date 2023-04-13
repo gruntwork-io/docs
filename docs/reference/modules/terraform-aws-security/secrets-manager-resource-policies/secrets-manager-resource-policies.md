@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Resource-based policies for Secrets Manager secrets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/secrets-manager-resource-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -88,11 +88,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/secrets-manager-resource-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/secrets-manager-resource-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/secrets-manager-resource-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "714a8e70c635c326d232c9dd83a21ee3"
+  "hash": "df84eeb5b19e8743101dfdc372122443"
 }
 ##DOCS-SOURCER-END -->

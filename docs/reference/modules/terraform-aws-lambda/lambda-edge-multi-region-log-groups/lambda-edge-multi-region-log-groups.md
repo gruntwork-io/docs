@@ -13,11 +13,11 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Multiregional Log groups for Lambda Edge
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module uses the [`lambda-edge-log-group` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-log-group) to create a Cloudwatch log group to receive Lambda Edge function logs in multiple AWS Regions.
+This module uses the [`lambda-edge-log-group` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-log-group) to create a Cloudwatch log group to receive Lambda Edge function logs in multiple AWS Regions.
 
 ## Why are the resources in this module not created within the Lambda Edge Module?
 
@@ -27,8 +27,8 @@ region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-
 
 Unfortunately, it is not possible to use a `for_each` on provider blocks and there are multiple issues related to
 using nested providers. That means that, currently, the only way to create multi-regional modules is by code generating each
-block and passing down the providers using the [`codegen`](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/codegen/) module. A full example of creating the providers and using
-this module can be found at the [lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/examples/lambda-edge).
+block and passing down the providers using the [`codegen`](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/codegen/) module. A full example of creating the providers and using
+this module can be found at the [lambda-edge example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/examples/lambda-edge).
 
 ## Which regions have regional edge caches?
 
@@ -300,11 +300,11 @@ Map of log group names per region
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/lambda-edge-multi-region-log-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "605207ced75f6dc05f080d399ea662c6"
+  "hash": "e7b1977f29f42716b9298f8e95ddfcdc"
 }
 ##DOCS-SOURCER-END -->

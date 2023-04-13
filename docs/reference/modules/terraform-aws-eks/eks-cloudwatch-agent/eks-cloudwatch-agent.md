@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # EKS CloudWatch Agent Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.53.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -225,11 +225,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/master/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.57.0/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87f3adde3631f9034801c84a0235fb85"
+  "hash": "da47589a938d4303f963fd991cab93ec"
 }
 ##DOCS-SOURCER-END -->

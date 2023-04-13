@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # KMS Customer Managed Key Multi-Region Replication module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-cmk-replica" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ Key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#custome
 [the multi-region replication feature of
 KMS](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html).
 
-This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-master-key) to replicate a KMS
+This module is intended to be used in conjunction with the [kms-master-key module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-master-key) to replicate a KMS
 key managed with that module to other regions. Note that the KMS key must be marked as multi-region in order to support
 multi-region replication.
 
@@ -371,11 +371,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/kms-cmk-replica/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-cmk-replica/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-cmk-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/kms-cmk-replica/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6131a01ac69ce6e8261265d206a25b5d"
+  "hash": "1c92d325d1a20091d951c29404e70ea5"
 }
 ##DOCS-SOURCER-END -->

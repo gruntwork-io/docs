@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # API Gateway Account Settings Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-account-settings" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.21.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ The corresponding screen from the AWS Console is shown below:
 
 ## Quick start
 
-Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/examples) for sample code that demonstrates how to use this module.
+Check out the [examples](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/examples) for sample code that demonstrates how to use this module.
 
 ## Sample Usage
 
@@ -191,11 +191,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/main/modules/api-gateway-account-settings/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-account-settings/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-account-settings/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v0.21.8/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e1909080df124ee1d551ce24f578783"
+  "hash": "2b99e08d9fe5a26b6b91ab9a0a2a17fd"
 }
 ##DOCS-SOURCER-END -->

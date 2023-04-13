@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Fail2Ban Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -28,11 +28,11 @@ Instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/fail2ban/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/fail2ban/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/fail2ban/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/fail2ban/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/fail2ban/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7ee43d8fda38003b146a18f5e5f3b63c"
+  "hash": "5ee123f1ea49e6dff2c268ced5d603be"
 }
 ##DOCS-SOURCER-END -->

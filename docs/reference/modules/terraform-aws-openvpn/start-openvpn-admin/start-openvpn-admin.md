@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # Start OpenVPN Admin
 
-<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/start-openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/start-openvpn-admin" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-openvpn/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,11 +24,11 @@ certificate revocation requests on the OpenVPN server
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/start-openvpn-admin/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/start-openvpn-admin/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/main/modules/start-openvpn-admin/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/start-openvpn-admin/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/start-openvpn-admin/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v0.25.0/modules/start-openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d564e5e36ed1a91d7bda4be453dc885f"
+  "hash": "2ca3e13c98d458503e118d175e3c4614"
 }
 ##DOCS-SOURCER-END -->

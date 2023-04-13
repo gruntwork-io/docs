@@ -13,7 +13,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 # S3 CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.15.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,13 +21,13 @@ This module deploys a [CloudFront](https://aws.amazon.com/cloudfront/) distribut
 (CDN) in front of an [S3 bucket](https://aws.amazon.com/s3/). This reduces latency for your users, by caching your
 static content in servers around the world. It also allows you to use SSL with the static content in an S3 bucket.
 
-See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-static-website) for how to deploy static content in an S3 bucket.
+See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-static-website) for how to deploy static content in an S3 bucket.
 
 ## Quick Start
 
-*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/examples/cloudfront-s3-public) and
-    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/examples/cloudfront-s3-private) examples for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/examples/cloudfront-s3-public) and
+    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/examples/cloudfront-s3-private) examples for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Public vs private S3 buckets
 
@@ -130,7 +130,7 @@ most use cases, but is not particularly flexible. In particular, the limitations
 *   Only one default cache behavior is supported
     ([cache behaviors](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#cache-behavior-arguments)
     is an inline block). You can control the default cache settings using a number of parameters, including
-    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/vars.tf) for the full list).
+    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront/vars.tf) for the full list).
 
 *   Only two error responses are supported
     ([error responses](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#custom-error-response-arguments)
@@ -1405,11 +1405,11 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/main/modules/s3-cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.16.1/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee2d070128a69ee11cb1d5fe7724de9b"
+  "hash": "2e85d483328f13ec064d85e1818ab0dc"
 }
 ##DOCS-SOURCER-END -->
