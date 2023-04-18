@@ -389,6 +389,11 @@ module "eks_core_services" {
   # tion-file#config_output).
   fluent_bit_extra_outputs = ""
 
+  # Can be used to add additional log parsers. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  fluent_bit_extra_parsers = ""
+
   # The Container repository to use for looking up the aws-for-fluent-bit Container
   # image when deploying the pods. When null, uses the default repository set in the
   # chart. Only applies to non-fargate workers.
@@ -792,6 +797,11 @@ inputs = {
   # (https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/configur
   # tion-file#config_output).
   fluent_bit_extra_outputs = ""
+
+  # Can be used to add additional log parsers. This string should be formatted
+  # according to Fluent Bit docs, as it will be injected directly into the
+  # fluent-bit.conf file.
+  fluent_bit_extra_parsers = ""
 
   # The Container repository to use for looking up the aws-for-fluent-bit Container
   # image when deploying the pods. When null, uses the default repository set in the
@@ -1902,6 +1912,15 @@ Additional output streams that fluent-bit should export logs to. This string sho
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="fluent_bit_extra_parsers" requirement="optional" type="string">
+<HclListItemDescription>
+
+Can be used to add additional log parsers. This string should be formatted according to Fluent Bit docs, as it will be injected directly into the fluent-bit.conf file.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="fluent_bit_image_repository" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2249,6 +2268,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "395787afdccfa3f3d42b9fcb3ebc9722"
+  "hash": "71207af5f793dae7f67729cf4ae887c3"
 }
 ##DOCS-SOURCER-END -->
