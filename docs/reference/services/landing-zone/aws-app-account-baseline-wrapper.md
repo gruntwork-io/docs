@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.102.2"/>
+<VersionBadge version="0.102.12" lastModifiedVersion="0.102.2"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -361,9 +361,6 @@ module "account_baseline_app" {
   # account and var.cloudtrail_s3_bucket_name is the name of a bucket in the logs
   # account).
   cloudtrail_s3_bucket_already_exists = true
-
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
 
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
   # bucket in this AWS account (e.g., if this is the logs account) or the name of a
@@ -753,7 +750,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/account-baseline-app?ref=v0.102.12"
 }
 
 inputs = {
@@ -1017,9 +1014,6 @@ inputs = {
   # account and var.cloudtrail_s3_bucket_name is the name of a bucket in the logs
   # account).
   cloudtrail_s3_bucket_already_exists = true
-
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
 
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could be a
   # bucket in this AWS account (e.g., if this is the logs account) or the name of a
@@ -1939,15 +1933,6 @@ Set to false to create an S3 bucket of name <a href="#cloudtrail_s3_bucket_name"
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_s3_bucket_key_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="cloudtrail_s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2819,6 +2804,12 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -2853,6 +2844,15 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -3087,11 +3087,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "59d89e7ad5eff3d6734d859507005ca9"
+  "hash": "12d5052607b59e53696ec77c00ff829e"
 }
 ##DOCS-SOURCER-END -->

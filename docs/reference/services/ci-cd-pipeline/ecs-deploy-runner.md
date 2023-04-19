@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.98.0"/>
+<VersionBadge version="0.102.12" lastModifiedVersion="0.98.0"/>
 
 # ECS Deploy Runner
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/mgmt/ecs-deploy-runner" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fecs-deploy-runner" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -85,7 +85,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
+*   [shared account ecs-deploy-runner configuration in the for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-production/infrastructure-live/shared/us-west-2/mgmt/ecs-deploy-runner/):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecs_deploy_runner" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.102.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -435,7 +435,7 @@ module "ecs_deploy_runner" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ecs-deploy-runner?ref=v0.102.12"
 }
 
 inputs = {
@@ -2312,7 +2312,6 @@ Create multi-region resources in the specified regions. The best practice is to 
       "af-south-1",      Cape Town
       "ap-east-1",       Hong Kong
       "eu-south-1",      Milan
-      "me-central-1",    UAE
       "me-south-1",      Bahrain
       "us-gov-east-1",   GovCloud
       "us-gov-west-1",   GovCloud
@@ -2497,11 +2496,11 @@ Security Group ID of the ECS task
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/ecs-deploy-runner/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/mgmt/ecs-deploy-runner/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/mgmt/ecs-deploy-runner/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/mgmt/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "13af64f5a346b4eadb6c936bc6adc772"
+  "hash": "4d3719390048376938201535d9077d1c"
 }
 ##DOCS-SOURCER-END -->

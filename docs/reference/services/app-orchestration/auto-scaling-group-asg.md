@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.96.1"/>
+<VersionBadge version="0.102.12" lastModifiedVersion="0.96.1"/>
 
 # Auto Scaling Group
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fasg-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -54,8 +54,8 @@ Under the hood, this is all implemented using Terraform modules from the Gruntwo
 access to this repo, email <support@gruntwork.io>.
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
-    Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
-*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/core-concepts.md)
+    Amazon’s docs for ASG that cover core concepts such as launch templates, launch configuration and auto scaling groups.
+*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
 
@@ -63,7 +63,7 @@ access to this repo, email <support@gruntwork.io>.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -90,7 +90,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "asg_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.102.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -260,48 +260,6 @@ module "asg_service" {
   # health.
   health_check_grace_period = 300
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
   hosted_zone_id = null
@@ -446,7 +404,7 @@ module "asg_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/asg-service?ref=v0.102.12"
 }
 
 inputs = {
@@ -618,48 +576,6 @@ inputs = {
   # Time, in seconds, after an EC2 Instance comes into service before checking
   # health.
   health_check_grace_period = 300
-
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
@@ -1430,87 +1346,6 @@ Time, in seconds, after an EC2 Instance comes into service before checking healt
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1974,18 +1809,18 @@ The Fully Qualified Domain Name built using the zone domain and name.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_template_id">
+<HclListItem name="launch_configuration_id">
 <HclListItemDescription>
 
-The ID of the launch template used for the ASG.
+The ID of the launch configuration used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_template_name">
+<HclListItem name="launch_configuration_name">
 <HclListItemDescription>
 
-The name of the launch template used for the ASG.
+The name of the launch configuration used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2029,11 +1864,11 @@ The ID of the Security Group that belongs to the ASG.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/asg-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/asg-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/asg-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6e9d8eedb2df884a3a8c4f6805fa3ac8"
+  "hash": "dac2b18894adb194f769d604412a316d"
 }
 ##DOCS-SOURCER-END -->

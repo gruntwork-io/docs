@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.100.0"/>
+<VersionBadge version="0.102.12" lastModifiedVersion="0.100.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.102.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -465,48 +465,6 @@ module "eks_cluster" {
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_worker_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_worker_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_worker_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_worker_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_worker_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_worker_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_memory_utilization_treat_missing_data = "missing"
-
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to the
   # user.
   iam_role_to_rbac_group_mapping = {}
@@ -515,15 +473,9 @@ module "eks_cluster" {
   # user.
   iam_user_to_rbac_group_mapping = {}
 
-  # The URL from which to download Kubergrunt if it's not installed already. Use to
-  # specify a version of kubergrunt that is compatible with your specified
-  # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt"
-
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.24"
+  kubernetes_version = "1.22"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -782,7 +734,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/eks-cluster?ref=v0.102.12"
 }
 
 inputs = {
@@ -1134,48 +1086,6 @@ inputs = {
   # all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
-  # The period, in seconds, over which to measure the CPU utilization percentage for
-  # the ASG.
-  high_worker_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization percentage
-  # above this threshold.
-  high_worker_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_worker_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_worker_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization percentage
-  # for the ASG.
-  high_worker_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization percentage
-  # above this threshold.
-  high_worker_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEma
-  # l.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching'
-  # or 'notBreaching'.
-  high_worker_memory_utilization_treat_missing_data = "missing"
-
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to the
   # user.
   iam_role_to_rbac_group_mapping = {}
@@ -1184,15 +1094,9 @@ inputs = {
   # user.
   iam_user_to_rbac_group_mapping = {}
 
-  # The URL from which to download Kubergrunt if it's not installed already. Use to
-  # specify a version of kubergrunt that is compatible with your specified
-  # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt"
-
   # Version of Kubernetes to use. Refer to EKS docs for list of available versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.24"
+  kubernetes_version = "1.22"
 
   # Configure one or more Node Groups to manage the EC2 instances in this cluster.
   # Set to empty object ({}) if you do not wish to configure managed node groups.
@@ -2610,87 +2514,6 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
-<HclListItem name="high_worker_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_worker_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_worker_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_worker_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_worker_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_worker_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_worker_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_worker_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_worker_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_role_to_rbac_group_mapping" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
@@ -2751,22 +2574,13 @@ map(list(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
-<HclListItemDescription>
-
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt'
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.10.0/kubergrunt&quot;"/>
-</HclListItem>
-
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.24&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.22&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -3430,11 +3244,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.12/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "025f58c6d0b06de1f0ed0725a3b9cfaf"
+  "hash": "e8c7f190657ffec9128b7419f3068e6d"
 }
 ##DOCS-SOURCER-END -->
