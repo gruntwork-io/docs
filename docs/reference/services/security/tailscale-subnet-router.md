@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.102.13" lastModifiedVersion="0.95.1"/>
 
 # Tailscale Subnet Router
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -94,7 +94,7 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
@@ -147,7 +147,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 module "tailscale_subnet_router" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.13"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -354,6 +354,10 @@ module "tailscale_subnet_router" {
   # var.name input value.
   tailnet_hostname = null
 
+  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
+  # to control ACLs in Tailscale.
+  tailscale_advertise_tags = []
+
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
   # to its special security hardening, we allow this in order to support the use
@@ -375,7 +379,7 @@ module "tailscale_subnet_router" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.13"
 }
 
 inputs = {
@@ -584,6 +588,10 @@ inputs = {
   # Advertised hostname of the server on the tailnet. If null, defaults to the
   # var.name input value.
   tailnet_hostname = null
+
+  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
+  # to control ACLs in Tailscale.
+  tailscale_advertise_tags = []
 
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
@@ -1008,6 +1016,15 @@ Advertised hostname of the server on the tailnet. If null, defaults to the <a hr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="tailscale_advertise_tags" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Advertise tags for Tailscale subnet router. These are used on the 'up' command to control ACLs in Tailscale.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1067,11 +1084,11 @@ ID of the primary security group attached to the Tailscale relay server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/mgmt/tailscale-subnet-router/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "da7e986274e3828e48549abe6e0020d5"
+  "hash": "9e71fb8735f2606affdcee7dbc8c8acb"
 }
 ##DOCS-SOURCER-END -->
