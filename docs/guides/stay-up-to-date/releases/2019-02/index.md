@@ -14,8 +14,6 @@ Here are the repos that were updated:
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -23,7 +21,6 @@ Here are the repos that were updated:
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -127,61 +124,6 @@ Here are the repos that were updated:
 
 
 * https://github.com/gruntwork-io/module-ecs/pull/119
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.2.8](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/12/2019 | Modules affected: run-logstash, install-logstash | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-- `run-logstash`
-- `install-logstash`
-
-
-This release adds ability for the user to pass through custom JVM options for logstash.  Previously we were relying on default JVM options.
-
-Now - our installation will pass through a templated `jvm.options` file. The user can then pass parameters through terraform/user-data script to the `run-logstash` script via a new parameter `--auto-fill-jvm` (eg:  `--auto-fill-jvm &apos;&lt;__XMS__&gt;=4g&apos;`)
-
-https://github.com/gruntwork-io/package-elk/issues/70
-https://github.com/gruntwork-io/package-elk/pull/69
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.5.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/22/2019 | Modules affected: confluent-tools-cluster, kafka-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `confluent-tools-cluster`
-* `kafka-cluster`
-
-
-*  Update `module-asg` dependency to `v0.6.25` and `package-zookeeper` to `v0.5.3` to address skipped ALB/ELB health checks when using python3.
-
-
-* https://github.com/gruntwork-io/package-kafka/pull/47
-
 
 </div>
 
@@ -387,30 +329,6 @@ This release introduces automated tests for the nvme features of the `mount-ebs-
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/22/2019 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `zookeeper-cluster`
-
-
-* Update `module-asg` dependency  to `v0.6.25` to address skipped ALB/ELB health checks when using python3.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/41
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -495,6 +413,6 @@ Other changes:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c4beb2d3e2605faf2048c11762158a4e"
+  "hash": "d653d0afb19a592b76cd367155ac1855"
 }
 ##DOCS-SOURCER-END -->

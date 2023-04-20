@@ -14,7 +14,6 @@ Here are the repos that were updated:
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
-- [terraform-aws-ci-pipeline-example](#terraform-aws-ci-pipeline-example)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
@@ -185,23 +184,6 @@ that uses it. This can break our tests when those versions have
 incompatibilities.
 
 
-
-</div>
-
-
-
-## terraform-aws-ci-pipeline-example
-
-
-### [02062020](https://github.com/gruntwork-io/terraform-aws-ci-pipeline-example/releases/tag/02062020)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 2/7/2020 | <a href="https://github.com/gruntwork-io/terraform-aws-ci-pipeline-example/releases/tag/02062020">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Initial release of pipeline examples
 
 </div>
 
@@ -734,6 +716,6 @@ Now it&apos;s possible to fully deactivate the `vpc-flow-logs` module passing th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "98cc01cf8656a345dcb8c44e226cf991"
+  "hash": "32d1cccfecc9e1a23608b1e82e394a80"
 }
 ##DOCS-SOURCER-END -->

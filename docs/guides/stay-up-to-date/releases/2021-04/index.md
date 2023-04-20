@@ -19,8 +19,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
@@ -33,7 +31,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -674,99 +671,6 @@ Refer to the migration guide to avoid recreating the IAM roles when updating to 
 
 - The naming logic of the default Fargate execution IAM role has been modified to support longer cluster names. You can now directly set the IAM role name using the new `custom_fargate_iam_role_name` input variable. Note that the default name has also been shortened, using the suffix `-fargate-role` instead of `-default-fargate-execution-role`. To avoid recreating the IAM role, you can set `var.custom_fargate_iam_role_name` to `CLUSTER_NAME-default-fargate-execution-role`.
 - Update documentation to use the new repository names in cross references.
-
-
-
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.9.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/28/2021 | Modules affected: beats-iam-policies, elastalert-iam-policies, elastalert-security-group-rules, elastalert | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.9.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-
-</div>
-
-
-### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.8.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/1/2021 | Modules affected: elastalert-iam-policies, elastalert-security-group-rules, elastalert, elasticsearch-cluster-backup | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.8.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.9.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/28/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.9.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-</div>
-
-
-### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.8.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/9/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.8.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -1772,34 +1676,10 @@ adds a number of conditional variables to the App Account Baseline in order to o
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.10.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/28/2021 | Modules affected: bash-commons, exhibitor-shared-config, install-exhibitor, install-open-jdk | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.10.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.15 upgrade**: We have verified that this repo is compatible with Terraform `0.15.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.15.x` against this repo, so we recommend updating to `0.15.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.15.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.15.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-- **Enable encryption by default**: With this release, we are enabling encryption by default for all EBS volumes (including the root volume). This is a change we are making across all our repos. See the migration guide for upgrade instructions.
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "fa00d39328dadb09ae6251671dbe48c0"
+  "hash": "ed003ec991b72c11187113ece3ee0470"
 }
 ##DOCS-SOURCER-END -->

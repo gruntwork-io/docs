@@ -11,13 +11,11 @@ documentation](/guides/working-with-code/using-modules#updating).
 Here are the repos that were updated:
 
 - [gruntwork](#gruntwork)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -32,30 +30,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   https://github.com/gruntwork-io/gruntwork/pull/48 : Add support for bootstrapping GCP Reference Architecture. This version introduces a new set of commands under the subcommand `gcp` for setting up your GCP org for deploying the Gruntwork GCP Reference Architecture.
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.6.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/1/2019 | Modules affected: **No | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.6.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* **No changes to underlying modules.**
-
-
-All the examples and tests have been updated to include Ubuntu 18.04 to verify compatibility with that OS platform.
-
-
-- https://github.com/gruntwork-io/package-kafka/pull/60
 
 </div>
 
@@ -309,30 +283,10 @@ The module has support for the following features:
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.3](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/20/2019 | Modules affected: install-open-jdk | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-- Fixed a bug where `install-openjdk` failed when specifying a version other than 6.
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a1f56f71ba6cfb43db1dcdca38b687ac"
+  "hash": "0c696676ecbf69381d28b8be6208168a"
 }
 ##DOCS-SOURCER-END -->

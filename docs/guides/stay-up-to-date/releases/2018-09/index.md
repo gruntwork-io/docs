@@ -14,7 +14,6 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
@@ -110,129 +109,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   https://github.com/gruntwork-io/module-ecs/pull/91: The `ecs-service-with-discovery` module now outputs the security group ID via the output variable `ecs_task_security_group_id`.
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.2.5](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/27/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-Also added proper plumbing for `allow_ssh_from_security_group_ids` to be specified in the `elastalert` module and then be passed all the way through to the underlying `elastalert-security-group-rules` module
-
-</div>
-
-
-### [v0.2.4](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.2.3](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/25/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.2.2](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Resolved #46 with PR #49. We were missing an equals sign. There was some inconsistent behavior with some customers reporting issues as a result while other tests running and passing without issue.
-
-</div>
-
-
-### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/24/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Resolved issue: #47 with PR: #48.
-
-All other cluster outputs (elastalert, elasticsearch, kibana) have an iam_role_id output but logstash-cluster was missing this variable:
-
-```Hcl
-output &quot;iam_role_id&quot; &#x7B;
-  value = &quot;$&#x7B;module.logstash_cluster.iam_role_id&#x7D;&quot;
-&#x7D;
-```
-
-This variable is useful for adding ssh-grunt IAM policies to this ASG. Thank you to @Merlz for pointing out the oversight.
-
-</div>
-
-
-### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This release includes some major changes:
-
-1. Adds support for alerting on patterns with [Elastalert](https://github.com/Yelp/elastalert) 
-1. Replaces the usage of an NLB with an ALB instead
-1. Adds an auto discovery script to the Filebeat deployment to bypass the need for a load balancer between the application server and Logstash cluster.
-
-Here&apos;s why we removed the NLB:
-
-* The NLB can&apos;t [route back requests to the same node that initiated the request](https://forums.aws.amazon.com/thread.jspa?threadID=265344).
-* An internal NLB in a private subnet can&apos;t be accessed from a peered VPC. In a production environment (especially the one deployed with our reference architecture), this makes it impossible to access the NLB.
-
-This release is backwards incompatible with previous releases. To upgrade you need to follow the following steps:
-
-1. Remove your use of the `nlb` module and replace with an `alb`. See example here: https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L436
-1. Replace your use of the `load-balancer-target-group` module with `load-balancer-alb-target-group`. See example of using the new module https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L71
-1. Finally update the various `target_group_arns` arguments passed to the cluster modules. https://github.com/gruntwork-io/package-elk/blob/master/examples/elk-multi-cluster/main.tf#L40
-1. If you&apos;re using SSL with the ALB, you&apos;ll need to take note of the upgrade notes here: https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.12.0
-
-</div>
-
-
-### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.1.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/4/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.1.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-Going forward, the ALB will be our &quot;front facing&quot; load balancer that will be how users access apps like Kibana. The ultimate goal will be to remove the NLB entirely rather than having to run both kinds of load balancers. We should be able to achieve this goal with #43 
 
 </div>
 
@@ -341,6 +217,6 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2ea7257d7ea11dfc2b8f1834ceee76e6"
+  "hash": "aea8d354d2758d930daefd805e33b905"
 }
 ##DOCS-SOURCER-END -->

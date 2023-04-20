@@ -20,7 +20,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
@@ -30,7 +29,6 @@ Here are the repos that were updated:
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -613,27 +611,6 @@ Allow restoring snapshots from different AWS accounts using the news `snapshot_c
   
 
 - You can now force detach policies on destroy for the IAM role created with self managed workers through the `eks-cluster-workers` module.
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.7.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/18/2021 | Modules affected: kafka-cluster, confluent-tools-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.7.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- You can now configure which CloudWatch metrics to enable for the ASGs in the `kafka-cluster` and `confluent-tools-cluster` modules using the new `enabled_metrics` input variable.
 
 
 
@@ -1483,36 +1460,10 @@ Support for optional resource creation via the `create_resources` parameter was 
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.9.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.9.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/25/2021 | Modules affected: exhibitor-shared-config, zookeeper-cluster, zookeeper-iam-permissions, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.9.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-- **Terraform 0.14 upgrade**: We have verified that this repo is compatible with Terraform `0.14.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.14.x` against this repo, so we recommend updating to `0.14.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.12.26` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.14.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.14.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7a91989eff5fb7a59c7982051e14a066"
+  "hash": "06d834f3ea5ba985a31f59b691406e23"
 }
 ##DOCS-SOURCER-END -->
