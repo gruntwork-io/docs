@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.100.6"/>
+<VersionBadge version="0.102.13" lastModifiedVersion="0.100.6"/>
 
 # EC2 Instance
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,9 +58,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -85,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -93,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ec_2_instance" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.102.13"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -407,7 +407,7 @@ module "ec_2_instance" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/ec2-instance?ref=v0.102.13"
 }
 
 inputs = {
@@ -1372,11 +1372,11 @@ The input parameters for the EBS volumes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/services/ec2-instance/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3a1ab2c435d66e7f63b9f80593434132"
+  "hash": "0e19476c81f6cd079a0cdbdc20ace74b"
 }
 ##DOCS-SOURCER-END -->
