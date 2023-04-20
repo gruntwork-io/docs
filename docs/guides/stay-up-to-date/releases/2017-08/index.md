@@ -14,7 +14,6 @@ Here are the repos that were updated:
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-mongodb](#terraform-aws-mongodb)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -22,7 +21,6 @@ Here are the repos that were updated:
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -133,81 +131,6 @@ NOTE: This release a has a bug! Please use [v0.2.10](https://github.com/gruntwor
 NOTE: This release also updates the ECS Cluster module so that it [no longer adds a rule to the ALB Security Group](https://github.com/gruntwork-io/module-ecs/pull/37/files#diff-d72db0b293516646f6d2af03f815cde2L149) to allow outbound traffic from the ALB to the ECS Cluster. That&apos;s because, as of [v0.6.0 of the ALB Module](https://github.com/gruntwork-io/module-load-balancer/releases/tag/v0.6.0), the ALB now enables all outbound traffic by default. 
 
 Therefore, be sure to also upgrade to [v0.6.0 or higher of module alb](https://github.com/gruntwork-io/module-load-balancer/releases) when using this release!
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/19/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/5: First official release!
-
-The changes include:
-
-1. Expose several new important settings via the `run-kafka` script around replication and availability.
-1. Increase the file descriptors limit for Kafka. Kafka uses a lot of file descriptors and the default of 1024 is way too low.
-1. Switch the Key Store generator module to use RSA for the private key. Otherwise, SSL does not work with the golang Kafka client.
-
-</div>
-
-
-### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/17/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/4: Add documentation. Move `run-kafka` into a separate module.
-
-</div>
-
-
-### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/3: Add SSL support.
-
-</div>
-
-
-### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/2: The `custom_tags` parameter is now a map and gets applied to all resources.
-
-</div>
-
-
-### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/1: First release!
 
 </div>
 
@@ -479,66 +402,10 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/18/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  First official release!
-
-</div>
-
-
-### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/16/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/4: Add documentation. Move `run-exhibitor` into its own module.
-
-</div>
-
-
-### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/3: The `custom_tags` parameter is now a map and gets applied to all resources.
-
-</div>
-
-
-### [v0.0.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/15/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/2: The zookeeper-cluster module now runs on top of the server-group module.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a9944f9fcfdcd0016eb96f4f66f788ee"
+  "hash": "fe8d65864e65f6f97e6f922505ae157d"
 }
 ##DOCS-SOURCER-END -->

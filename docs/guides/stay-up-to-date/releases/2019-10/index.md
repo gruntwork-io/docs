@@ -21,7 +21,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -453,19 +452,6 @@ The EIP resource in `openvpn-server` is now optional. You can set the `enable_ei
 </div>
 
 
-### [v0.20.1-alpha.1: Bump Go version for ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.20.1-alpha.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/23/2019 | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.20.1-alpha.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This alpha release bumps the version of Go used with `ssh-grunt` from `1.11` to `1.13.3` to address an issue with long delays under certain (mysterious) conditions. We&apos;ll confirm the fix before releasing `v0.20.1`.
-
-</div>
-
-
 ### [v0.20.1: Bump Go version for ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.20.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -620,30 +606,6 @@ NACLs setup using `vpc-mgmt-network-acls` for the mgmt VPC will now allow outbou
 
 
 
-## terraform-aws-zookeeper
-
-
-### [EBS volume for Zookeeper data dir](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/22/2019 | Modules affected: zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-This release addresses an issue where the transaction logs are stored on an EBS volumes but the data is not. If autoscaling deletes a node, the snapshots in the data volume are lost. The only fix then is to rm the `transaction-logs/version-2` directory and restart zookeeper, allowing it to sync from the other nodes in the ensemble.
-
-With this fix, data is stored on a separate EBS volume. If the node is terminated, the volume is reattached to a new node, and the data will remain intact.
-
-
-
-
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -722,6 +684,6 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "931ea36a7936ff7577f48de7b011ad5a"
+  "hash": "9c6995849e70467c394964220957bec5"
 }
 ##DOCS-SOURCER-END -->

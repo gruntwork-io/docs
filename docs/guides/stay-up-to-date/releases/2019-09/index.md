@@ -15,7 +15,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
@@ -23,7 +22,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -277,42 +275,6 @@ This release ships the tool [`generate-aws-config`](https://github.com/gruntwork
 `eks-cluster-control-plane` module now supports upgrading Kubernetes components to the expected version for the Kubernetes version deployed on EKS. This is handled using a python script that is run everytime the kubernetes version is updated on the cluster. The deployed versions of each component follows what is described in [the official upgrade guide](https://docs.aws.amazon.com/eks/latest/userguide/update-cluster.html)
 
 Additionally, this release includes a few code formatting and example updates that do not affect the underlying modules.
-
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.5.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.5.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/16/2019 | Modules affected: install-logstash, install-kibana, install-filebeat, install-elasticsearch | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.5.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-This release updates the modules and examples to ensure that they are compatible with Ubuntu 18.04. Note that this includes:
-
-- Support for OpenJDK 11.
-- Upgrading the default ELK version to `6.8.3`
-
-Note that in order to use the modules with Ubuntu 18.04, you need to:
-
-- Install OpenJDK 11 using the [install-open-jdk module](https://github.com/gruntwork-io/package-zookeeper/tree/master/modules/install-open-jdk)
-- Use version `5.7.2` of `collectd` (`gruntwork-install --module-name &apos;install-collectd&apos; --repo &apos;https://github.com/gruntwork-io/package-elk&apos; --tag &apos;v0.5.0&apos; --module-param &apos;apt-version=5.7.2&apos;&quot;`)
-- Use an ELK version that is compatible with Ubuntu 18.04. The following versions are known to be compatible:
-    - 6.7.2
-    - 6.8.3
-    - 7.0.1
-    - 7.1.0
-    - 7.2.0
-    - 7.3.0 
-
 
 
 </div>
@@ -603,31 +565,10 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.4](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/6/2019 | Modules affected: install-open-jdk | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-`install-open-jdk` now supports installing OpenJDK 11 for CentOS and Ubuntu 18.04. See [the compatibility information](https://github.com/gruntwork-io/package-zookeeper/tree/master/modules/install-open-jdk#os-version-compatibility) for more info.
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b773d9817618d974c357085319d84767"
+  "hash": "eb1dcbf974bafd66a3511e234f1b49dd"
 }
 ##DOCS-SOURCER-END -->

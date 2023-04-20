@@ -16,7 +16,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -207,31 +206,6 @@ This release updates the `eks-alb-ingress-controller` to use the new chart locat
 
 - Fix a bug in the `eks-container-logs` where Elasticsearch output was being enabled by default. This also fixes a bug where the boolean encoding in the helm chart values were incorrect.
 - Expose the ability to configure `pod_resources` for the DaemonSet in `eks-container-logs`.
-
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.7.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.7.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/6/2020 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.7.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 0.13 upgrade**: We have verified that this repo is compatible with Terraform `0.13.x`! 
-    - From this release onward, we will only be running tests with Terraform `0.13.x` against this repo, so we recommend updating to `0.13.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform 0.12.26 and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `0.13.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `0.13.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
 
 
 
@@ -882,6 +856,6 @@ This release updates the default names set for the VPC DNS resolvers. The names 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "bdbd05cd5b13ffc17f8924425bedf087"
+  "hash": "526438323887dbdca57f2c3580eca0c3"
 }
 ##DOCS-SOURCER-END -->

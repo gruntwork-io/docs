@@ -13,7 +13,6 @@ Here are the repos that were updated:
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
@@ -92,27 +91,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   https://github.com/gruntwork-io/module-ecs/pull/70: You can now optionally customize the ALB Target Group name in `ecs-service-with-alb` using the `alb_target_group_name` parameter.
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.0.3](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This pre-release introduces both Logstash as well as Kibana modules along with rudimentary examples of how they can be deployed in an Auto Scaling Group in AWS.
-
-PRs: #14 and #15 
-
-This is another pre-release as these modules are still very green and require additional features, such as SSL, to be implemented.
 
 </div>
 
@@ -299,6 +277,6 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1703257e06be0434d794daeb7deeecc5"
+  "hash": "460b8d17a863c44465b4778721685ccf"
 }
 ##DOCS-SOURCER-END -->

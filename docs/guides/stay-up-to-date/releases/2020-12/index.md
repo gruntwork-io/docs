@@ -24,7 +24,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -926,27 +925,6 @@ The `vpc-flow-logs` module has been refactored to use the `private-s3-bucket` mo
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.8.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/2/2020 | Modules affected: exhibitor-shared-config, zookeeper-cluster | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.8.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  **This release contains backwards incompatible changes. Make sure to follow the instructions in the migration guide below!**
-
-The `exhibitor-shared-config` module has been refactored to use the `private-s3-bucket` module under the hood to configure the S3 bucket.
-
-
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -968,6 +946,6 @@ The `exhibitor-shared-config` module has been refactored to use the `private-s3-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "08b0a982262c281316a8648cee931537"
+  "hash": "e85e7874fa2c594923423fbfc77d254c"
 }
 ##DOCS-SOURCER-END -->

@@ -18,7 +18,6 @@ Here are the repos that were updated:
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntkms
@@ -357,27 +356,10 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.9](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/5/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5d1eeca96c0b2e3eac47c85853a8fa90"
+  "hash": "f31d811ba682a89167678834d0f6bca8"
 }
 ##DOCS-SOURCER-END -->

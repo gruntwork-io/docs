@@ -14,7 +14,6 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
@@ -205,31 +204,6 @@ to using the new naming scheme, as they will be updated to use the sprig version
 This release confirms that `external-dns` and ALB ingress controller support ACM certificates. Additionally, this release extends the timeout for EKS cluster creation as some regions take longer than 15 minutes to provision the EKS cluster.
 
 
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.2.9](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 5/17/2019 | Modules affected: elasticsearch-cluster-backup, elasticsearch-cluster-restore | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.2.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `elasticsearch-cluster-backup`
-* `elasticsearch-cluster-restore`
-
-
-* Switched both modules over to using Node 8.10 as the runtime, as 6.10 has been deprecated. The runtime is now also configurable via the `lambda_runtime` input variable.
-
-
-* https://github.com/gruntwork-io/package-elk/pull/80
 
 </div>
 
@@ -471,6 +445,6 @@ The other modules have backwards compatible minor changes in the way dependencie
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "3569b5b8aa1b42051d948aff9d3c4cc7"
+  "hash": "35033a6739df329bed6ad9b834fd60a8"
 }
 ##DOCS-SOURCER-END -->

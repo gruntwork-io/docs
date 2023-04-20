@@ -13,7 +13,6 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
@@ -150,52 +149,6 @@ This release does not introduce any changes to the underlying module features. I
 
 
 
-## terraform-aws-kafka
-
-
-### [v0.5.3](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.3)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/29/2019 | Modules affected: install-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.3">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `install-kafka`
-
-
-*  apache has moved certain versions of kafka to the https://archive.apache.org/dist/kafka/ url rather than the https://www-us.apache.org/dist/kafka. This release addresses this by first trying to download the version from the mainline location and if an error occurs, it tries to download from the archive location.
-
-
-* https://github.com/gruntwork-io/package-kafka/pull/56
-
-
-</div>
-
-
-### [v0.5.2](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/21/2019 | Modules affected: run-kafka | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.5.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `run-kafka`
-
-
-*  Advertise Kafka health-check listener on private IP instead of 127.0.0.1 
-
-
-* #55 
-
-
-</div>
-
-
-
 ## terraform-aws-messaging
 
 
@@ -279,6 +232,6 @@ The `kinesis` module now supports server-side encryption.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "88dbf9bda48a4f76f4362342a54d41c8"
+  "hash": "0811d6a2c900787079323d96eba58b5d"
 }
 ##DOCS-SOURCER-END -->

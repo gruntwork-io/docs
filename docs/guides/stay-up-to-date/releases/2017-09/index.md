@@ -11,12 +11,10 @@ documentation](/guides/working-with-code/using-modules#updating).
 Here are the repos that were updated:
 
 - [terraform-aws-asg](#terraform-aws-asg)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## terraform-aws-asg
@@ -44,36 +42,6 @@ Here are the repos that were updated:
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
   https://github.com/gruntwork-io/module-asg/pull/10: The `server-group` module now assigns EBS permissions based on the `ServerGroupName` tag instead of the `Name` tag, as the latter is too brittle. This change is backwards incompatible, so we&apos;re bumping the patch version number, but unless you are doing something weird and overriding `ServerGroupName` (very unlikely!), you shouldn&apos;t have to do anything to make this work with your code.
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/7: Update to the new module-asg and package-zookeeper, with the server-group module fix that uses the `ServerGroupName` tag instead of the `Name` tag to assign EBS volume permissions, which should make things less brittle.
-
-</div>
-
-
-### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/6: You can now run Kafka on Ubuntu! The major change is actually not in package-kafka itself, but in the updated `attach-eni` script that now supports Ubuntu as of [v0.2.0](https://github.com/gruntwork-io/module-server/releases/tag/v0.2.0). See the [kafka-ami](https://github.com/gruntwork-io/package-kafka/tree/master/examples/kafka-ami) example for working sample code.
 
 </div>
 
@@ -235,40 +203,10 @@ https://github.com/gruntwork-io/package-static-assets/pull/3: The `s3-cloudfront
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/29/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/7: Update to the new module-asg, with the server-group module fix that uses the `ServerGroupName` tag instead of the `Name` tag to assign EBS volume permissions, which should make things less brittle.
-
-</div>
-
-
-### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 9/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/6: You can now run ZooKeeper on Ubuntu! The major change is actually not in package-zookeeper itself, but in the updated `attach-eni` script that now supports Ubuntu as of [v0.2.0](https://github.com/gruntwork-io/module-server/releases/tag/v0.2.0). See the [zookeeper-ami example](https://github.com/gruntwork-io/package-zookeeper/tree/master/examples/zookeeper-ami) for working sample code.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8a6374d2defa5976b21ea46fa6fdc485"
+  "hash": "b354dd118fff831264fddcc539782e94"
 }
 ##DOCS-SOURCER-END -->

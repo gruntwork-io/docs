@@ -23,7 +23,6 @@ Here are the repos that were updated:
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -459,29 +458,10 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.0.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/26/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  First release! 
-
-The basic implementation and example code is in place, but docs and tests are still a TODO, so I&apos;m marking this as a pre-release.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "089d1458b000318e102abf570b28a344"
+  "hash": "c518aac4eb180e424d8a6ed9bc741d1e"
 }
 ##DOCS-SOURCER-END -->

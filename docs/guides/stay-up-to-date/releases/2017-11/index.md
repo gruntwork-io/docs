@@ -14,12 +14,10 @@ Here are the repos that were updated:
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-mongodb](#terraform-aws-mongodb)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -246,23 +244,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-kafka
-
-
-### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.1.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.1.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/11: Update to the latest package-zookeeper.
-
-</div>
-
-
-
 ## terraform-aws-load-balancer
 
 
@@ -442,40 +423,10 @@ https_listener_ports_and_acm_ssl_certs = [
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.1.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - #12: Update to the latest version of Exhibitor.
-
-</div>
-
-
-### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 11/14/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.1.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/11: Update to ZooKeeper 3.4.11, as 3.4.9 was mysteriously deleted. Update to Oracle JDK 8u152, as 8u144 was mysteriously deleted. 
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "80306ca869ea0df18de235753d5520e8"
+  "hash": "20c5a0f9df60811ff40b0ae3189bcca5"
 }
 ##DOCS-SOURCER-END -->
