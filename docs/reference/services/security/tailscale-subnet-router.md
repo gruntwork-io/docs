@@ -354,6 +354,10 @@ module "tailscale_subnet_router" {
   # var.name input value.
   tailnet_hostname = null
 
+  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
+  # to control ACLs in Tailscale.
+  tailscale_advertise_tags = []
+
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
   # to its special security hardening, we allow this in order to support the use
@@ -584,6 +588,10 @@ inputs = {
   # Advertised hostname of the server on the tailnet. If null, defaults to the
   # var.name input value.
   tailnet_hostname = null
+
+  # Advertise tags for Tailscale subnet router. These are used on the 'up' command
+  # to control ACLs in Tailscale.
+  tailscale_advertise_tags = []
 
   # Set this variable to true to enable the use of Instance Metadata Service Version
   # 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due
@@ -1008,6 +1016,15 @@ Advertised hostname of the server on the tailnet. If null, defaults to the <a hr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="tailscale_advertise_tags" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Advertise tags for Tailscale subnet router. These are used on the 'up' command to control ACLs in Tailscale.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1072,6 +1089,6 @@ ID of the primary security group attached to the Tailscale relay server.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.15/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "39786181215001130672c38eaed00274"
+  "hash": "8cd9e87399fa0b5fbdda301c952f410f"
 }
 ##DOCS-SOURCER-END -->
