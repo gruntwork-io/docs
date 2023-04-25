@@ -43,7 +43,6 @@ by AWS and automatically handles standby failover, read replicas, backups, patch
 *   Automatic scaling of storage
 *   Scale to 0 with Aurora Serverless
 *   Integrate with Kubernetes Service Discovery
-*   Support Aurora Serverless v2
 
 ## Learn
 
@@ -438,14 +437,10 @@ module "aurora" {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
-  scaling_configuration_max_capacity_V2 = null
-
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
-
-  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -850,14 +845,10 @@ inputs = {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
-  scaling_configuration_max_capacity_V2 = null
-
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
-
-  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -1952,10 +1943,6 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItemDefaultValue defaultValue="256"/>
 </HclListItem>
 
-<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="scaling_configuration_min_capacity" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1963,10 +1950,6 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
-</HclListItem>
-
-<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause" requirement="optional" type="number">
@@ -2230,6 +2213,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.15/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1141d6856436296f9fa69493195ac6b7"
+  "hash": "2fa56c2f6bd043d7e8b63b9e62528e5d"
 }
 ##DOCS-SOURCER-END -->
