@@ -16,6 +16,9 @@ Be sure to open the `terragrunt.hcl` file in the copied folders and sanity check
 no hard coded parameters that are specific to the dev account. If you have not touched the configuration since the
 Reference Architecture was deployed, you won't need to change anything.
 
+Open the 'common.hcl' file in the root folder of the repo and add a CIDR network range for the new account mgmt vpc 
+in the 'mgmt_vpc_cidrs' map.
+
 Once the configuration looks correct, go in to the `mgmt` folder and use `terragrunt run-all apply` to deploy the ECS
 Deploy Runner:
 

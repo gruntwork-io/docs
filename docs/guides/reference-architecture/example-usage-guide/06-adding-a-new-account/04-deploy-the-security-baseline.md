@@ -56,13 +56,41 @@ instructions) using the access credentials for the temporary IAM user you create
 When running `apply`, you will see the plan for applying all the security baseline to the new account. Verify the plan
 looks correct, and then approve it roll out the security baseline.
 
+Copy over the 'ops-admin-role' from one of the application accounts and place it in
+the `_global` folder:
+
+```bash
+cp -r dev/_global/ops-admin-role <REPLACE_WITH_NAME_OF_ACCOUNT>/_global/ops-admin-role
+```
+
+Open the `terragrunt.hcl` file in the `ops-admin-role` folder and sanity check the configuration. Make sure there are
+no hard coded parameters that are specific to the dev account. If you have not touched the configuration since the
+Reference Architecture was deployed, you won't need to change anything.
+
+```bash
+.
+└── new-account
+    ├── account.hcl
+    └── _global
+        ├── region.hcl
+        └── account-baseline
+            └── terragrunt.hcl
+        └── ops-admin-role
+            └── terragrunt.hcl
+```
+
+Once the folder structure looks correct and you have confirmed the `terragrunt.hcl` configuration is accurate, you are
+ready to deploy the security baseline. Authenticate to the new account on the CLI (see [this blog
+post](https://blog.gruntwork.io/a-comprehensive-guide-to-authenticating-to-aws-on-the-command-line-63656a686799) for
+instructions) using the access credentials for the temporary IAM user you created above and run `terragrunt apply`.
+
 At this point, you can now use the cross account access from the `security` account to authenticate to the new account.
-Use your security account IAM user to assume the `allow-full-access-from-other-accounts` IAM role in the new account to
+Use your security account IAM user to assume the `allow-ops-admin-access-from-other-accounts` IAM role in the new account to
 confirm this. Refer to the [authentication section of this guide](../02-authenticate/01-intro.md) for more details on how to do
 this.
 
 Once you confirm you have access to the new account from the `security` account, login using the
-`allow-full-access-from-other-accounts` IAM role and remove the temporary IAM user as you will no longer need to use it.
+`allow-ops-admin-access-from-other-accounts` IAM role and remove the temporary IAM user as you will no longer need to use it.
 
 
 <!-- ##DOCS-SOURCER-START
