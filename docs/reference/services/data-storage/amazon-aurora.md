@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.11" lastModifiedVersion="0.96.3"/>
+<VersionBadge version="0.102.16" lastModifiedVersion="0.102.14"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -43,6 +43,7 @@ by AWS and automatically handles standby failover, read replicas, backups, patch
 *   Automatic scaling of storage
 *   Scale to 0 with Aurora Serverless
 *   Integrate with Kubernetes Service Discovery
+*   Support Aurora Serverless v2
 
 ## Learn
 
@@ -70,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -78,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -96,7 +97,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.102.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -437,10 +438,14 @@ module "aurora" {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -501,7 +506,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.102.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/aurora?ref=v0.102.16"
 }
 
 inputs = {
@@ -845,10 +850,14 @@ inputs = {
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to the
   # maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128, and 256.
   # Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
   # Valid values are 300 through 86400. Only used when var.engine_mode is set to
@@ -1943,6 +1952,10 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItemDefaultValue defaultValue="256"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_min_capacity" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1950,6 +1963,10 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause" requirement="optional" type="number">
@@ -2208,11 +2225,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.11/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7b5506de2e35cc78c9189c9977b5499c"
+  "hash": "b04fc96da591f641420f07e18ffbf901"
 }
 ##DOCS-SOURCER-END -->
