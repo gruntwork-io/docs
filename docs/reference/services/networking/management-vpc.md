@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.10" lastModifiedVersion="0.93.1"/>
+<VersionBadge version="0.103.1" lastModifiedVersion="0.93.1"/>
 
 # Management VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/vpc-mgmt" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc-mgmt" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized or direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -94,7 +94,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -104,27 +105,27 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc_mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc-mgmt?ref=v0.102.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc-mgmt?ref=v0.103.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # The AWS region to deploy into
-  aws_region = <INPUT REQUIRED>
+  aws_region = <string>
 
   # The IP address range of the VPC in CIDR notation. A prefix of /16 is
   # recommended. Do not use a prefix higher than /27. Examples include
   # '10.100.0.0/16', '10.200.0.0/16', etc.
-  cidr_block = <INPUT REQUIRED>
+  cidr_block = <string>
 
   # The number of NAT Gateways to launch for this VPC. The management VPC defaults
   # to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust
   # this to add additional NAT Gateways.
-  num_nat_gateways = <INPUT REQUIRED>
+  num_nat_gateways = <number>
 
   # The name of the VPC. Defaults to mgmt.
-  vpc_name = <INPUT REQUIRED>
+  vpc_name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -290,9 +291,213 @@ module "vpc_mgmt" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S VPC-MGMT MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/vpc-mgmt?ref=v0.103.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The AWS region to deploy into
+  aws_region = <string>
+
+  # The IP address range of the VPC in CIDR notation. A prefix of /16 is
+  # recommended. Do not use a prefix higher than /27. Examples include
+  # '10.100.0.0/16', '10.200.0.0/16', etc.
+  cidr_block = <string>
+
+  # The number of NAT Gateways to launch for this VPC. The management VPC defaults
+  # to 1 NAT Gateway to save on cost, but to increase redundancy, you can adjust
+  # this to add additional NAT Gateways.
+  num_nat_gateways = <number>
+
+  # The name of the VPC. Defaults to mgmt.
+  vpc_name = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # If true, will apply the default NACL rules in var.default_nacl_ingress_rules and
+  # var.default_nacl_egress_rules on the default NACL of the VPC. Note that every
+  # VPC must have a default NACL - when this is false, the original default NACL
+  # rules managed by AWS will be used.
+  apply_default_nacl_rules = false
+
+  # If true, will associate the default NACL to the public, private, and persistence
+  # subnets created by this module. Only used if var.apply_default_nacl_rules is
+  # true. Note that this does not guarantee that the subnets are associated with the
+  # default NACL. Subnets can only be associated with a single NACL. The default
+  # NACL association will be dropped if the subnets are associated with a custom
+  # NACL later.
+  associate_default_nacl_to_subnets = true
+
+  # List of excluded Availability Zone IDs.
+  availability_zone_exclude_ids = []
+
+  # List of excluded Availability Zone names.
+  availability_zone_exclude_names = []
+
+  # Allows to filter list of Availability Zones based on their current state. Can be
+  # either "available", "information", "impaired" or "unavailable". By default the
+  # list includes a complete set of Availability Zones to which the underlying AWS
+  # account has access, regardless of their state.
+  availability_zone_state = null
+
+  # If you set this variable to false, this module will not create VPC Flow Logs
+  # resources. This is used as a workaround because Terraform does not allow you to
+  # use the 'count' parameter on modules. By using this parameter, you can
+  # optionally create or not create the resources within this module.
+  create_flow_logs = true
+
+  # If set to false, this module will NOT create Network ACLs. This is useful if you
+  # don't want to use Network ACLs or you want to provide your own Network ACLs
+  # outside of this module.
+  create_network_acls = true
+
+  # A map of tags to apply to the VPC, Subnets, Route Tables, and Internet Gateway.
+  # The key is the tag name and the value is the tag value. Note that the tag 'Name'
+  # is automatically added by this module but may be optionally overwritten by this
+  # variable.
+  custom_tags = {}
+
+  # A map of tags to apply just to the VPC itself, but not any of the other
+  # resources. The key is the tag name and the value is the tag value. Note that
+  # tags defined here will override tags defined as custom_tags in case of conflict.
+  custom_tags_vpc_only = {}
+
+  # The egress rules to apply to the default NACL in the VPC. This is the security
+  # group that is used by any subnet that doesn't have its own NACL attached. The
+  # value for this variable must be a map where the keys are a unique name for each
+  # rule and the values are objects with the same fields as the egress block in the
+  # aws_default_network_acl resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_network_acl.
+  default_nacl_egress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+
+  # The ingress rules to apply to the default NACL in the VPC. This is the NACL that
+  # is used by any subnet that doesn't have its own NACL attached. The value for
+  # this variable must be a map where the keys are a unique name for each rule and
+  # the values are objects with the same fields as the ingress block in the
+  # aws_default_network_acl resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_network_acl.
+  default_nacl_ingress_rules = {"AllowAll":{"action":"allow","cidr_block":"0.0.0.0/0","from_port":0,"protocol":"-1","rule_no":100,"to_port":0}}
+
+  # The egress rules to apply to the default security group in the VPC. This is the
+  # security group that is used by any resource that doesn't have its own security
+  # group attached. The value for this variable must be a map where the keys are a
+  # unique name for each rule and the values are objects with the same fields as the
+  # egress block in the aws_default_security_group resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_security_group#egress-block.
+  default_security_group_egress_rules = {"AllowAllOutbound":{"cidr_blocks":["0.0.0.0/0"],"from_port":0,"ipv6_cidr_blocks":["::/0"],"protocol":"-1","to_port":0}}
+
+  # The ingress rules to apply to the default security group in the VPC. This is the
+  # security group that is used by any resource that doesn't have its own security
+  # group attached. The value for this variable must be a map where the keys are a
+  # unique name for each rule and the values are objects with the same fields as the
+  # ingress block in the aws_default_security_group resource:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/defa
+  # lt_security_group#ingress-block.
+  default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
+
+  # If set to false, the default security groups will NOT be created.
+  enable_default_security_group = false
+
+  # The ARN of the policy that is used to set the permissions boundary for the IAM
+  # role.
+  iam_role_permissions_boundary = null
+
+  # The ARN of a KMS key to use for encrypting VPC the flow log. A new KMS key will
+  # be created if this is not supplied.
+  kms_key_arn = null
+
+  # The number of days to retain this KMS Key (a Customer Master Key) after it has
+  # been marked for deletion. Setting to null defaults to the provider default,
+  # which is the maximum possible value (30 days).
+  kms_key_deletion_window_in_days = null
+
+  # VPC Flow Logs will be encrypted with a KMS Key (a Customer Master Key). The IAM
+  # Users specified in this list will have access to this key.
+  kms_key_user_iam_arns = null
+
+  # A map of tags to apply to the NAT gateways, on top of the custom_tags. The key
+  # is the tag name and the value is the tag value. Note that tags defined here will
+  # override tags defined as custom_tags in case of conflict.
+  nat_gateway_custom_tags = {}
+
+  # How many AWS Availability Zones (AZs) to use. One subnet of each type (public,
+  # private app) will be created in each AZ. Note that this must be less than or
+  # equal to the total number of AZs in a region. A value of null means all AZs
+  # should be used. For example, if you specify 3 in a region with 5 AZs, subnets
+  # will be created in just 3 AZs instead of all 5. Defaults to 3.
+  num_availability_zones = null
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors.  See cidrsubnet interpolation in terraform config for more
+  # information.
+  private_subnet_bits = 4
+
+  # A map listing the specific CIDR blocks desired for each private subnet. The key
+  # must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability
+  # Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+  private_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the private Subnet, on top of the custom_tags. The key
+  # is the tag name and the value is the tag value. Note that tags defined here will
+  # override tags defined as custom_tags in case of conflict.
+  private_subnet_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges.  MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors.  See cidrsubnet interpolation in terraform config for more
+  # information.
+  public_subnet_bits = 4
+
+  # A map listing the specific CIDR blocks desired for each public subnet. The key
+  # must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability
+  # Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+  public_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the public Subnet, on top of the custom_tags. The key
+  # is the tag name and the value is the tag value. Note that tags defined here will
+  # override tags defined as custom_tags in case of conflict.
+  public_subnet_custom_tags = {}
+
+  # The amount of spacing between the different subnet types
+  subnet_spacing = 8
+
+  # When true, all IAM policies will be managed as dedicated policies rather than
+  # inline policies attached to the IAM roles. Dedicated managed policies are
+  # friendlier to automated policy checkers, which may scan a single resource for
+  # findings. As such, it is important to avoid inline policies when targeting
+  # compliance with various security standards.
+  use_managed_iam_policies = true
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -801,11 +1006,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/vpc-mgmt/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/vpc-mgmt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/vpc-mgmt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/vpc-mgmt/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/vpc-mgmt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fa3d86b67914b035c43927afd3cb2e70"
+  "hash": "7e723ddbb778f078c66f8f378f4f0b48"
 }
 ##DOCS-SOURCER-END -->

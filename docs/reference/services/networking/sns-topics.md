@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.10" lastModifiedVersion="0.96.1"/>
+<VersionBadge version="0.103.1" lastModifiedVersion="0.96.1"/>
 
 # Amazon Simple Notification Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fsns-topics" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -48,8 +48,8 @@ If you’ve never used the Service Catalog before, make sure to read
 :::
 
 *   [SNS Documentation](https://docs.aws.amazon.com/sns/): Amazon’s docs for SNS that cover core concepts and configuration
-*   [How do SNS topics work?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics/core-concepts.md#how-do-sns-topics-work)
-*   [How do I get notified when a message is published to an SNS Topic?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics/core-concepts.md#how-do-i-get-notified)
+*   [How do SNS topics work?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics/core-concepts.md#how-do-sns-topics-work)
+*   [How do I get notified when a message is published to an SNS Topic?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics/core-concepts.md#how-do-i-get-notified)
 
 ## Deploy
 
@@ -57,7 +57,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -65,7 +65,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -73,7 +73,8 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Sample Usage
 
-<ModuleUsage>
+<Tabs>
+<TabItem value="terraform" label="Terraform" default>
 
 ```hcl title="main.tf"
 
@@ -83,14 +84,14 @@ If you want to deploy this repo in production, check out the following resources
 
 module "sns_topics" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.102.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.103.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # The name of the SNS topic
-  name = <INPUT REQUIRED>
+  name = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -128,9 +129,72 @@ module "sns_topics" {
 
 }
 
+
 ```
 
-</ModuleUsage>
+</TabItem>
+<TabItem value="terragrunt" label="Terragrunt" default>
+
+```hcl title="terragrunt.hcl"
+
+# ------------------------------------------------------------------------------------------------------
+# DEPLOY GRUNTWORK'S SNS-TOPICS MODULE
+# ------------------------------------------------------------------------------------------------------
+
+terraform {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/sns-topics?ref=v0.103.1"
+}
+
+inputs = {
+
+  # ----------------------------------------------------------------------------------------------------
+  # REQUIRED VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The name of the SNS topic
+  name = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # A list of IAM ARNs that will be given the rights to publish to the SNS topic.
+  allow_publish_accounts = []
+
+  # A list of AWS services that will be given the rights to publish to the SNS
+  # topic.
+  allow_publish_services = []
+
+  # A list of IAM ARNs that will be given the rights to subscribe to the SNS topic.
+  allow_subscribe_accounts = []
+
+  # A list of protocols that can be used to subscribe to the SNS topic.
+  allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
+
+  # Set to false to have this module create no resources. This weird parameter
+  # exists solely because Terraform does not support conditional modules. Therefore,
+  # this is a hack to allow you to conditionally decide if the resources should be
+  # created or not.
+  create_resources = true
+
+  # The display name of the SNS topic
+  display_name = ""
+
+  # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom
+  # CMK
+  kms_master_key_id = "alias/aws/sns"
+
+  # The ARN of a Secrets Manager entry that contains the Slack Webhook URL (e.g.,
+  # https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are sent to.
+  slack_webhook_url_secrets_manager_arn = null
+
+}
+
+
+```
+
+</TabItem>
+</Tabs>
 
 
 
@@ -257,11 +321,11 @@ The ARN of the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.10/modules/networking/sns-topics/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.1/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "957659558349340286f88f7f87b2a2cf"
+  "hash": "ae24db2a77ebb1e54da2a5dbab487ae5"
 }
 ##DOCS-SOURCER-END -->
