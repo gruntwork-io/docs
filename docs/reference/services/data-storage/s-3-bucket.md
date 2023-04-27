@@ -129,6 +129,10 @@ module "s_3_bucket" {
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
 
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
+
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
@@ -237,6 +241,10 @@ module "s_3_bucket" {
   # The S3 bucket that will be the replica of this bucket. Set to null to disable
   # replication.
   replica_bucket = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
 
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
@@ -349,6 +357,10 @@ inputs = {
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
 
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
+
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
@@ -457,6 +469,10 @@ inputs = {
   # The S3 bucket that will be the replica of this bucket. Set to null to disable
   # replication.
   replica_bucket = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
 
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
@@ -627,6 +643,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 A prefix (i.e., folder path) to use for all access logs stored in access_logging_bucket. Only used if access_logging_bucket is specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -925,6 +950,15 @@ The S3 bucket that will be the replica of this bucket. Set to null to disable re
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="replica_bucket_acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replica_bucket_already_exists" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1185,6 +1219,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.0/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2c55ef049ac4793c53331c720e0a495c"
+  "hash": "5ae6526cfa7eb1fe8e47e1d4c9d029b1"
 }
 ##DOCS-SOURCER-END -->
