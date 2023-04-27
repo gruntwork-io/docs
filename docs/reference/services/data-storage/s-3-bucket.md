@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.16" lastModifiedVersion="0.102.11"/>
+<VersionBadge version="0.103.2" lastModifiedVersion="0.103.1"/>
 
 # S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +67,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.102.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.103.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -128,6 +128,10 @@ module "s_3_bucket" {
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
@@ -237,6 +241,10 @@ module "s_3_bucket" {
   # The S3 bucket that will be the replica of this bucket. Set to null to disable
   # replication.
   replica_bucket = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
 
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
@@ -305,7 +313,7 @@ module "s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.102.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.103.2"
 }
 
 inputs = {
@@ -348,6 +356,10 @@ inputs = {
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
@@ -457,6 +469,10 @@ inputs = {
   # The S3 bucket that will be the replica of this bucket. Set to null to disable
   # replication.
   replica_bucket = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
 
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
@@ -627,6 +643,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 A prefix (i.e., folder path) to use for all access logs stored in access_logging_bucket. Only used if access_logging_bucket is specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -925,6 +950,15 @@ The S3 bucket that will be the replica of this bucket. Set to null to disable re
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="replica_bucket_acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replica_bucket_already_exists" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1180,11 +1214,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/s3-bucket/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.16/modules/data-stores/s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/modules/data-stores/s3-bucket/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/modules/data-stores/s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.103.2/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f0f01cb1264b59db36636053c6737202"
+  "hash": "300706a371c8821e6ca03f94d0e985b3"
 }
 ##DOCS-SOURCER-END -->
