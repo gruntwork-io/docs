@@ -93,6 +93,11 @@ If you want to deploy this repo in production, check out the following resources
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AURORA MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "aurora" {
@@ -370,7 +375,7 @@ module "aurora" {
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id. A value here overrides the value in
   # db_config_secrets_manager_id.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -503,6 +508,11 @@ module "aurora" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AURORA MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
@@ -782,7 +792,7 @@ inputs = {
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id. A value here overrides the value in
   # db_config_secrets_manager_id.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -2230,6 +2240,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6f7c4fdafc6ba7f616db101fce29aa29"
+  "hash": "514dc8e2d630bb7d994d6548e9442be5"
 }
 ##DOCS-SOURCER-END -->
