@@ -92,6 +92,11 @@ If you want to deploy this repo in production, check out the following resources
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "elasticsearch" {
@@ -397,7 +402,7 @@ module "elasticsearch" {
   # Master account user password. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true. WARNING: this password will be
   # stored in Terraform state.
-  master_user_password = null
+  master_user_password = null # SENSITIVE
 
   # Whether to monitor KMS key statistics
   monitor_kms_key = false
@@ -448,6 +453,11 @@ module "elasticsearch" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
@@ -755,7 +765,7 @@ inputs = {
   # Master account user password. Only used if advanced_security_options and
   # internal_user_database_enabled are set to true. WARNING: this password will be
   # stored in Terraform state.
-  master_user_password = null
+  master_user_password = null # SENSITIVE
 
   # Whether to monitor KMS key statistics
   monitor_kms_key = false
@@ -1528,6 +1538,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "43f94dc6f578caefd4ca55206b261cc7"
+  "hash": "ff93e25b3f16032c6eb115c9dbdf5efb"
 }
 ##DOCS-SOURCER-END -->

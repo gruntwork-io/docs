@@ -94,6 +94,11 @@ If you want to deploy this repo in production, check out the following resources
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "rds" {
@@ -399,7 +404,7 @@ module "rds" {
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -531,6 +536,11 @@ module "rds" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
+# When using values other than defaults for these variables; set through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
@@ -838,7 +848,7 @@ inputs = {
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -2302,6 +2312,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bc957e8b04c01d26aae3385b16d158fd"
+  "hash": "fc9beb2ea71064cebf84ddabcb4ea290"
 }
 ##DOCS-SOURCER-END -->
