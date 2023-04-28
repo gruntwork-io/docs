@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.2" lastModifiedVersion="0.21.2"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.5" lastModifiedVersion="0.21.5"/>
 
 # Server Group Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to run a fixed-size cluster of servers that can:
 
@@ -37,7 +37,7 @@ Scaling Group (ASG).
 
 ## Quick start
 
-Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/examples/server-group) for sample code that demonstrates how to use this module.
+Check out the [server-group examples](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/examples/server-group) for sample code that demonstrates how to use this module.
 
 ## Background
 
@@ -50,7 +50,7 @@ Check out the [server-group examples](https://github.com/gruntwork-io/terraform-
 The first question you may ask is, how is this different than an [Auto Scaling Group
 (ASG)](http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html)? While an ASG does allow you to
 run a cluster of servers, automaticaly replace failed servers, and do zero-downtime deployment (see the
-[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
+[asg-rolling-deploy module](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/asg-rolling-deploy)), attaching ENIs and EBS Volumes to servers in an ASG is very
 tricky:
 
 1.  Using ENIs and EBS Volumes with ASGs is not natively supported by Terraform. The
@@ -87,7 +87,7 @@ The solution used in this module is to:
 
 The server-group module will perform a zero-downtime, rolling deployment every time you make a change to the code and
 run `terraform apply`. This deployment process is implemented in a Python script called
-[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
+[rolling_deployment.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/server-group/rolling-deploy/rolling_deployment.py) which runs in a [local-exec
 provisioner](https://www.terraform.io/docs/provisioners/local-exec.html).
 
 Here is how it works:
@@ -147,7 +147,7 @@ module in your Terraform code:
 
 module "server_group" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -284,6 +284,10 @@ module "server_group" {
   # GroupTerminatingInstances, GroupTotalInstances.
   enabled_metrics = []
 
+  # Specify the name of an existing IAM role to attach to the instance profile if
+  # you don't want this module to create one.
+  existing_iam_role_name = null
+
   # The time, in seconds, after a server first comes into service before beginning
   # to check health. This is useful if your server needs time to boot up (e.g., to
   # warm a cache) without having to worry about failing health checks and being
@@ -322,6 +326,9 @@ module "server_group" {
   # server group role. This policy should be created outside of this module.
   role_permissions_boundary = null
 
+  # The name prefix that is used for the server group role.
+  role_prefix = "server-group-"
+
   # Whether the root volume of each server should be deleted when the server is
   # terminated.
   root_block_device_delete_on_termination = true
@@ -344,6 +351,9 @@ module "server_group" {
   # The log level to use with the rolling deploy script. It can be useful to set
   # this to DEBUG when troubleshooting the script.
   script_log_level = "INFO"
+
+  # The name prefix that is used for the security group
+  security_group_prefix = "server-group-"
 
   # If set to true, skip the health check, and start a rolling deployment without
   # waiting for the server group to be in a healthy state. This is primarily useful
@@ -412,7 +422,7 @@ module "server_group" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/server-group?ref=v0.21.5"
 }
 
 inputs = {
@@ -552,6 +562,10 @@ inputs = {
   # GroupTerminatingInstances, GroupTotalInstances.
   enabled_metrics = []
 
+  # Specify the name of an existing IAM role to attach to the instance profile if
+  # you don't want this module to create one.
+  existing_iam_role_name = null
+
   # The time, in seconds, after a server first comes into service before beginning
   # to check health. This is useful if your server needs time to boot up (e.g., to
   # warm a cache) without having to worry about failing health checks and being
@@ -590,6 +604,9 @@ inputs = {
   # server group role. This policy should be created outside of this module.
   role_permissions_boundary = null
 
+  # The name prefix that is used for the server group role.
+  role_prefix = "server-group-"
+
   # Whether the root volume of each server should be deleted when the server is
   # terminated.
   root_block_device_delete_on_termination = true
@@ -612,6 +629,9 @@ inputs = {
   # The log level to use with the rolling deploy script. It can be useful to set
   # this to DEBUG when troubleshooting the script.
   script_log_level = "INFO"
+
+  # The name prefix that is used for the security group
+  security_group_prefix = "server-group-"
 
   # If set to true, skip the health check, and start a rolling deployment without
   # waiting for the server group to be in a healthy state. This is primarily useful
@@ -980,6 +1000,15 @@ A list of metrics the ASG should enable for monitoring all instances in a group.
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="existing_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the name of an existing IAM role to attach to the instance profile if you don't want this module to create one.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="health_check_grace_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1052,6 +1081,15 @@ The ARN of the policy that is used to set the permissions boundary for the serve
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="role_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name prefix that is used for the server group role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;server-group-&quot;"/>
+</HclListItem>
+
 <HclListItem name="root_block_device_delete_on_termination" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1104,6 +1142,15 @@ The log level to use with the rolling deploy script. It can be useful to set thi
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;INFO&quot;"/>
+</HclListItem>
+
+<HclListItem name="security_group_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name prefix that is used for the security group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;server-group-&quot;"/>
 </HclListItem>
 
 <HclListItem name="skip_health_check" requirement="optional" type="bool">
@@ -1241,11 +1288,11 @@ Other modules can depend on this variable to ensure those modules only deploy af
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.2/modules/server-group/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/server-group/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/server-group/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.5/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0bc77ecb451aa6c3deadf095765f73d"
+  "hash": "f51315be14d8dde1a71986861ad78b38"
 }
 ##DOCS-SOURCER-END -->

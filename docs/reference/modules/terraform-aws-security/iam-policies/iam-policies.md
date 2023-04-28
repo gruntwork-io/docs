@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.67.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.1" lastModifiedVersion="0.67.10"/>
 
 # A Best-Practices Set of IAM Policy Documents
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets up a set of IAM Policy Documents that can be used in IAM users, groups, and roles.
 The documents represent a reasonable collection of permissions that will make sense for most organizations for
@@ -25,7 +25,7 @@ Note that these documents are Terraform [data sources](https://www.terraform.io/
 so they don't create anything themselves and are not intended to be used on their own. The way to use them is to take
 the outputs from this module (which are all JSON IAM documents) and plug them into other Terraform resources, such
 as `aws_iam_policy`, `aws_iam_user_policy`, `aws_iam_group_policy`, and `aws_iam_role_policy`. See the
-[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles) modules for examples.
+[iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-groups) and [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/cross-account-iam-roles) modules for examples.
 
 If you're not familiar with IAM concepts, start with the [Background Information](#background-information) section as a
 way to familiarize yourself with the terminology.
@@ -82,11 +82,8 @@ This module creates the following IAM Policy documents:
     certain IAM roles in other AWS accounts (e.g. stage, prod). The documents that are created and which IAM roles they
     have access to is controlled by the variable `var.allow_access_from_other_account_arns`.
 
-*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt) needs to validate SSH keys with
+*   **ssh_grunt_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/ssh-grunt) needs to validate SSH keys with
     IAM.
-
-*   **ssh_grunt_houston_permissions**: provides the permissions [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt) needs to validate SSH
-    keys with Houston.
 
 *   **auto_deploy_permissions**: provides the permissions in `var.auto_deploy_permissions` to do automated deployment.
     The primary use case is to add these permissions to the IAM role of a CI server (e.g. Jenkins).
@@ -266,7 +263,7 @@ Instead, use these Terraform resources so you don't have to worry about this pro
 
 module "iam_policies" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -322,18 +319,6 @@ module "iam_policies" {
   # have access to S3 Bucket acme.user-john.doe.
   dev_s3_bucket_prefix = "your-org-name.user-"
 
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
-
   # If set to true, all the Policies created by this module that are used to grant
   # IAM permissions will require an MFA Token to be present. Use
   # var.trust_policy_should_require_mfa to require MFA for IAM Role Trust Policies.
@@ -361,7 +346,7 @@ module "iam_policies" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-policies?ref=v0.68.1"
 }
 
 inputs = {
@@ -419,18 +404,6 @@ inputs = {
   # access. For example, if the prefix is acme.user-, then IAM User john.doe will
   # have access to S3 Bucket acme.user-john.doe.
   dev_s3_bucket_prefix = "your-org-name.user-"
-
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
 
   # If set to true, all the Policies created by this module that are used to grant
   # IAM permissions will require an MFA Token to be present. Use
@@ -621,42 +594,6 @@ The prefix of the S3 Bucket Name to which an individual IAM User will have full 
 <HclListItemDefaultValue defaultValue="&quot;your-org-name.user-&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-The path to allow requests to in the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_region" requirement="optional" type="string">
-<HclListItemDescription>
-
-The AWS region where Houston is deployed (e.g., us-east-1).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_stage" requirement="optional" type="string">
-<HclListItemDescription>
-
-The API Gateway stage to use for Houston.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_users_api_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID API Gateway has assigned to the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_policy_should_require_mfa" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -705,9 +642,6 @@ If set to true, all the Policies created by this module that are used as Trust P
 <HclListItem name="full_access">
 </HclListItem>
 
-<HclListItem name="houston_cli_permissions">
-</HclListItem>
-
 <HclListItem name="iam_admin">
 </HclListItem>
 
@@ -721,9 +655,6 @@ If set to true, all the Policies created by this module that are used as Trust P
 </HclListItem>
 
 <HclListItem name="require_mfa_policy">
-</HclListItem>
-
-<HclListItem name="ssh_grunt_houston_permissions">
 </HclListItem>
 
 <HclListItem name="ssh_grunt_permissions">
@@ -742,11 +673,11 @@ If set to true, all the Policies created by this module that are used as Trust P
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1281e65924724f26d08fb45b40886a71"
+  "hash": "55fd817246232ddc7c6f67e4e84119c9"
 }
 ##DOCS-SOURCER-END -->

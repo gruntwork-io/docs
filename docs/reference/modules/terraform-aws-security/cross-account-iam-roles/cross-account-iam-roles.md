@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.1" lastModifiedVersion="0.67.10"/>
 
 # A best-practices set of IAM roles for cross-account access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to allow IAM users from other AWS accounts to access your AWS accounts (i.e. [cross-account
 access](https://aws.amazon.com/blogs/security/enable-a-new-feature-in-the-aws-management-console-cross-account-access/)).
@@ -34,7 +34,7 @@ This module creates the following IAM roles (all optional):
 These IAM Roles are intended to be assumed by human users (i.e., IAM Users in another AWS account). The default
 maximum session expiration for these roles is 12 hours (configurable via the `var.max_session_duration_human_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-auth)).
 
 *   **allow-read-only-access-from-other-accounts**: Users from the accounts in
     `var.allow_read_only_access_from_other_account_arns` will get read-only access to all services in this account.
@@ -65,17 +65,12 @@ making API calls to assume the IAM role (see [aws-auth](https://github.com/grunt
 These IAM Roles are intended to be assumed by machine users (i.e., an EC2 Instance in another AWS account). The default
 maximum session expiration for these roles is 1 hour (configurable via the `var.max_session_duration_machine_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-auth)).
 
 *   **allow-ssh-grunt-access-from-other-accounts**: Users (or more likely, EC2 Instances) from the accounts in
     `var.allow_ssh_grunt_access_from_other_account_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
-
-*   **allow-ssh-grunt-houston-access-from-other-accounts**: Users (or more likely, EC2 Instances) from the accounts in
-    `var.allow_ssh_grunt_houston_access_from_other_account_arns` will get read access to Gruntwork Houston. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
-    connections against Gruntwork Houston running in this AWS account.
 
 *   **allow-auto-deploy-access-from-other-accounts**: Users from the accounts in `var.allow_auto_deploy_from_other_account_arns`
     will get automated deployment access to all services in this account with the permissions specified in
@@ -101,7 +96,7 @@ roles with the AWS CLI takes quite a few steps, so use the [aws-auth script](htt
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -116,7 +111,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "cross_account_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -172,11 +167,6 @@ module "cross_account_iam_roles" {
   # role.
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to
-  # Gruntwork Houston's CLI APIs. This is typically used for CI servers to be able
-  # to talk to Houston.
-  allow_houston_cli_access_from_other_account_arns = []
-
   # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
   # to this account.
   allow_iam_admin_access_from_other_account_arns = []
@@ -198,10 +188,6 @@ module "cross_account_iam_roles" {
   # A list of IAM ARNs from other AWS accounts that will be allowed read access to
   # IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
-
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # Gruntwork Houston's users API. This is used for ssh-grunt.
-  allow_ssh_grunt_houston_access_from_other_account_arns = []
 
   # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
   # support for this account.
@@ -246,21 +232,6 @@ module "cross_account_iam_roles" {
   # What to name the full access IAM role
   full_access_iam_role_name = "allow-full-access-from-other-accounts"
 
-  # What to name the Houston CLI access IAM role
-  houston_cli_access_iam_role_name = "allow-houston-cli-access-from-other-accounts"
-
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
-
   # What to name the IAM admin access IAM role
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-other-accounts"
 
@@ -295,9 +266,6 @@ module "cross_account_iam_roles" {
   # What to name the ssh-grunt access IAM role
   ssh_grunt_access_iam_role_name = "allow-ssh-grunt-access-from-other-accounts"
 
-  # What to name the ssh-grunt Houston access IAM role
-  ssh_grunt_houston_access_iam_role_name = "allow-ssh-grunt-houston-access-from-other-accounts"
-
   # What to name the support access IAM role
   support_access_iam_role_name = "allow-support-access-from-other-accounts"
 
@@ -326,7 +294,7 @@ module "cross_account_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.68.1"
 }
 
 inputs = {
@@ -385,11 +353,6 @@ inputs = {
   # role.
   allow_full_access_iam_role_permissions_boundary = null
 
-  # A list of IAM ARNs from other AWS accounts that will be allowed access to
-  # Gruntwork Houston's CLI APIs. This is typically used for CI servers to be able
-  # to talk to Houston.
-  allow_houston_cli_access_from_other_account_arns = []
-
   # A list of IAM ARNs from other AWS accounts that will be allowed IAM admin access
   # to this account.
   allow_iam_admin_access_from_other_account_arns = []
@@ -411,10 +374,6 @@ inputs = {
   # A list of IAM ARNs from other AWS accounts that will be allowed read access to
   # IAM groups and publish SSH keys. This is used for ssh-grunt.
   allow_ssh_grunt_access_from_other_account_arns = []
-
-  # A list of IAM ARNs from other AWS accounts that will be allowed read access to
-  # Gruntwork Houston's users API. This is used for ssh-grunt.
-  allow_ssh_grunt_houston_access_from_other_account_arns = []
 
   # A list of IAM ARNs from other AWS accounts that will be allowed access to AWS
   # support for this account.
@@ -459,21 +418,6 @@ inputs = {
   # What to name the full access IAM role
   full_access_iam_role_name = "allow-full-access-from-other-accounts"
 
-  # What to name the Houston CLI access IAM role
-  houston_cli_access_iam_role_name = "allow-houston-cli-access-from-other-accounts"
-
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
-
   # What to name the IAM admin access IAM role
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-other-accounts"
 
@@ -507,9 +451,6 @@ inputs = {
 
   # What to name the ssh-grunt access IAM role
   ssh_grunt_access_iam_role_name = "allow-ssh-grunt-access-from-other-accounts"
-
-  # What to name the ssh-grunt Houston access IAM role
-  ssh_grunt_houston_access_iam_role_name = "allow-ssh-grunt-houston-access-from-other-accounts"
 
   # What to name the support access IAM role
   support_access_iam_role_name = "allow-support-access-from-other-accounts"
@@ -755,29 +696,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_account_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM ARNs from other AWS accounts that will be allowed access to Gruntwork Houston's CLI APIs. This is typically used for CI servers to be able to talk to Houston.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = [
-     "arn:aws:iam::123445678910:root"
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_account_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -860,29 +778,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDescription>
 
 A list of IAM ARNs from other AWS accounts that will be allowed read access to IAM groups and publish SSH keys. This is used for ssh-grunt.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   default = [
-     "arn:aws:iam::123445678910:root"
-   ]
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_account_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of IAM ARNs from other AWS accounts that will be allowed read access to Gruntwork Houston's users API. This is used for ssh-grunt.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1006,51 +901,6 @@ What to name the full access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-full-access-from-other-accounts&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_cli_access_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-What to name the Houston CLI access IAM role
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-houston-cli-access-from-other-accounts&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-The path to allow requests to in the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_region" requirement="optional" type="string">
-<HclListItemDescription>
-
-The AWS region where Houston is deployed (e.g., us-east-1).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_stage" requirement="optional" type="string">
-<HclListItemDescription>
-
-The API Gateway stage to use for Houston.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_users_api_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID API Gateway has assigned to the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_admin_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1112,15 +962,6 @@ What to name the ssh-grunt access IAM role
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;allow-ssh-grunt-access-from-other-accounts&quot;"/>
-</HclListItem>
-
-<HclListItem name="ssh_grunt_houston_access_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-What to name the ssh-grunt Houston access IAM role
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;allow-ssh-grunt-houston-access-from-other-accounts&quot;"/>
 </HclListItem>
 
 <HclListItem name="support_access_iam_role_name" requirement="optional" type="string">
@@ -1186,12 +1027,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1228,15 +1063,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
 </HclListItem>
 
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
-</HclListItem>
-
-<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
-</HclListItem>
-
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -1253,11 +1079,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/cross-account-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/cross-account-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/cross-account-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "708323379e32741d480b7421845e387e"
+  "hash": "a613891b9dfebeb0b368e9d457fcd030"
 }
 ##DOCS-SOURCER-END -->
