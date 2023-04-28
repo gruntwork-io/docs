@@ -55,9 +55,10 @@ In `v0.2.x`, the only available command is `patcher report`. This is a read-only
 :::info
 Some modules do not have a CHANGELOGS.md file. In this case, press `o` to open the releases page for that repository.
 
+:::
+
 ![Patcher Changelogs screenshot](/img/guides/stay-up-to-date/patcher/patcher-no-changelogs.png)
 
-:::
 
 ### CIS AWS v1.5 Upgrade
 
