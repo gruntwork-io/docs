@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.26.0" lastModifiedVersion="0.26.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.27.0" lastModifiedVersion="0.27.0"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.26.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and automatically handles leader nodes, worker nodes, backups, patching, and encryption.
 
@@ -47,7 +47,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -84,7 +84,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.26.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -124,6 +124,10 @@ module "redshift" {
   # permitted. Note that these updates must always be manually performed and will
   # never automatically applied.
   allow_major_version_upgrade = true
+
+  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
+  # the database needs to connect to certain IP addresses for special operation
+  allow_outbound_connections_from_cidr_blocks = []
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
@@ -171,6 +175,9 @@ module "redshift" {
 
   # Timeout for DB deleting
   deleting_timeout = "40m"
+
+  # Elastic IP that will be associated with the cluster
+  elastic_ip = null
 
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
@@ -256,7 +263,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.26.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.27.0"
 }
 
 inputs = {
@@ -299,6 +306,10 @@ inputs = {
   # permitted. Note that these updates must always be manually performed and will
   # never automatically applied.
   allow_major_version_upgrade = true
+
+  # A list of CIDR-formatted IP address ranges that this DB can connect. Use this if
+  # the database needs to connect to certain IP addresses for special operation
+  allow_outbound_connections_from_cidr_blocks = []
 
   # Indicates that minor engine upgrades will be applied automatically to the DB
   # instance during the maintenance window. If set to true, you should set
@@ -346,6 +357,9 @@ inputs = {
 
   # Timeout for DB deleting
   deleting_timeout = "40m"
+
+  # Elastic IP that will be associated with the cluster
+  elastic_ip = null
 
   # If true , enhanced VPC routing is enabled. Forces COPY and UNLOAD traffic
   # between the cluster and data repositories to go through your VPC.
@@ -503,6 +517,15 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="allow_outbound_connections_from_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR-formatted IP address ranges that this DB can connect. Use this if the database needs to connect to certain IP addresses for special operation
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -600,6 +623,15 @@ Timeout for DB deleting
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
+</HclListItem>
+
+<HclListItem name="elastic_ip" requirement="optional" type="string">
+<HclListItemDescription>
+
+Elastic IP that will be associated with the cluster
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enhanced_vpc_routing" requirement="optional" type="bool">
@@ -858,11 +890,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.26.0/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.27.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aec24a3bd57de8eb1cd9f3710e17abde"
+  "hash": "82090efaa4592f23faf621f1b5fbb8f6"
 }
 ##DOCS-SOURCER-END -->

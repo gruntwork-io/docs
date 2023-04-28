@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.1" lastModifiedVersion="0.67.10"/>
 
 # A Best-Practices Set of IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Gruntwork Terraform Module sets up a set of IAM Groups that will make sense for most organizations and attaches to
 them a set of IAM Policies (permissions) that make it easier to manage different permissions levels in your AWS account.
@@ -52,7 +52,7 @@ This module optionally creates the following IAM Groups:
     since users can grant arbitrary permissions!
 *   **use-existing-iam-roles:** IAM Users in this group can pass *existing* IAM Roles to AWS resources to which they have
     been granted access. These IAM Users cannot create *new* IAM Roles, only use existing ones. See
-    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
+    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
 *   **ssh-grunt-sudo-users:** IAM Users in this group have SSH access with `sudo` privileges to any EC2 Instance configured
     to use this group to manage SSH logins.
 *   **ssh-grunt-users:** IAM Users in this group have SSH access without `sudo` privileges to any EC2 Instance configured
@@ -83,7 +83,7 @@ own account unless this IAM Policy is attached to his account.
 
 ### IAM Users
 
-This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-users) to create users.
+This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-users) to create users.
 
 ### IAM Roles
 
@@ -108,7 +108,7 @@ otherwise enable IAM Users to access the billing console:
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -123,7 +123,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "iam_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -159,18 +159,6 @@ module "iam_groups" {
   # var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "access-all-external-accounts"
 
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
-
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
   # example, to grant developers access only to EC2 and Amazon Machine Learning, use
@@ -199,9 +187,6 @@ module "iam_groups" {
   # The name to be used for the IAM Group that grants full access to all AWS
   # resources.
   iam_group_name_full_access = "full-access"
-
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
 
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
@@ -278,10 +263,6 @@ module "iam_groups" {
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
-
-  # Should we create the IAM Group for houston CLI users? Allows users to use the
-  # houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
@@ -325,7 +306,7 @@ module "iam_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.68.1"
 }
 
 inputs = {
@@ -364,18 +345,6 @@ inputs = {
   # var.iam_groups_for_cross_account_access.
   cross_account_access_all_group_name = "access-all-external-accounts"
 
-  # The path to allow requests to in the Houston API.
-  houston_path = "*"
-
-  # The AWS region where Houston is deployed (e.g., us-east-1).
-  houston_region = "*"
-
-  # The API Gateway stage to use for Houston.
-  houston_stage = "*"
-
-  # The ID API Gateway has assigned to the Houston API.
-  houston_users_api_id = "*"
-
   # A list of AWS services for which the developers IAM Group will receive full
   # permissions. See https://goo.gl/ZyoHlz to find the IAM Service name. For
   # example, to grant developers access only to EC2 and Amazon Machine Learning, use
@@ -404,9 +373,6 @@ inputs = {
   # The name to be used for the IAM Group that grants full access to all AWS
   # resources.
   iam_group_name_full_access = "full-access"
-
-  # The name of the IAM Group that allows access to houston CLI.
-  iam_group_name_houston_cli = "houston-cli-users"
 
   # The name to be used for the IAM Group that grants IAM administrative access.
   # Effectively grants administrator access.
@@ -483,10 +449,6 @@ inputs = {
   # Should we create the IAM Group for full access? Allows full access to all AWS
   # resources. (true or false)
   should_create_iam_group_full_access = true
-
-  # Should we create the IAM Group for houston CLI users? Allows users to use the
-  # houston CLI for managing and deploying services.
-  should_create_iam_group_houston_cli_users = false
 
   # Should we create the IAM Group for IAM administrator access? Allows users to
   # manage all IAM entities, effectively granting administrator access. (true or
@@ -587,42 +549,6 @@ The name of the IAM group that will grant access to all external AWS accounts in
 <HclListItemDefaultValue defaultValue="&quot;access-all-external-accounts&quot;"/>
 </HclListItem>
 
-<HclListItem name="houston_path" requirement="optional" type="string">
-<HclListItemDescription>
-
-The path to allow requests to in the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_region" requirement="optional" type="string">
-<HclListItemDescription>
-
-The AWS region where Houston is deployed (e.g., us-east-1).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_stage" requirement="optional" type="string">
-<HclListItemDescription>
-
-The API Gateway stage to use for Houston.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
-<HclListItem name="houston_users_api_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID API Gateway has assigned to the Houston API.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;*&quot;"/>
-</HclListItem>
-
 <HclListItem name="iam_group_developers_permitted_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -675,15 +601,6 @@ The name to be used for the IAM Group that grants full access to all AWS resourc
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;full-access&quot;"/>
-</HclListItem>
-
-<HclListItem name="iam_group_name_houston_cli" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the IAM Group that allows access to houston CLI.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;houston-cli-users&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_group_name_iam_admin" requirement="optional" type="string">
@@ -880,15 +797,6 @@ Should we create the IAM Group for full access? Allows full access to all AWS re
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_group_houston_cli_users" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Should we create the IAM Group for houston CLI users? Allows users to use the houston CLI for managing and deploying services.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="should_create_iam_group_iam_admin" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -976,12 +884,6 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <HclListItem name="full_access_iam_group_name">
 </HclListItem>
 
-<HclListItem name="houston_cli_users_iam_group_arn">
-</HclListItem>
-
-<HclListItem name="houston_cli_users_iam_group_name">
-</HclListItem>
-
 <HclListItem name="iam_admin_iam_group_arn">
 </HclListItem>
 
@@ -1046,11 +948,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/iam-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ea1d32ca704dc82da58302553408433d"
+  "hash": "a4bdd1c0d22b0bca8b58f0fdb1c12778"
 }
 ##DOCS-SOURCER-END -->

@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.65.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.1" lastModifiedVersion="0.68.0"/>
 
 # AWS Config Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
 
-This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/account-baseline-root) modules. Please see those modules for more information.
+This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-config)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/account-baseline-root) modules. Please see those modules for more information.
 
 ## Sample Usage
 
@@ -36,7 +36,7 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 
 module "aws_config_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.68.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -151,7 +151,7 @@ module "aws_config_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.68.1"
 }
 
 inputs = {
@@ -493,11 +493,11 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/aws-config-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-config-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-config-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6fbe4028714ac7ab0eb965f5a0aecb14"
+  "hash": "9d49cbd9ae52d36f85d21f4f1d2ba6a3"
 }
 ##DOCS-SOURCER-END -->
