@@ -12,6 +12,7 @@ Here are the repos that were updated:
 
 - [aws-sample-app](#aws-sample-app)
 - [gruntwork](#gruntwork)
+- [terraform-aws-architecture-catalog](#terraform-aws-architecture-catalog)
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-cis-service-catalog](#terraform-aws-cis-service-catalog)
@@ -82,6 +83,56 @@ Here are the repos that were updated:
 
 
 **Full Changelog**: https://github.com/gruntwork-io/gruntwork/compare/v0.4.11...v0.4.12
+
+</div>
+
+
+
+## terraform-aws-architecture-catalog
+
+
+### [v0.0.33](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.33)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2023 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v0.0.33">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Update default branch references (backward compatible) by @rhoboat in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/791
+* Changed default reserved_concurrent_executions from 1 to -1 by @pete0emerson in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/793
+* Remove unnecessary Git SSH Key references by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/795
+* Residual reference to ssh key needs to be removed by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/796
+* Only schedule cluster-autoscaler on Fargate for non-fargate EKS by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/797
+* Update the GitLab instructions to assume the env vars are not setup by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/799
+* Update CODEOWNERS by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/800
+* Include the kubernetes metadata filters in the Fargate Pods logs by @yorinasub17 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/794
+* Make changes to deprecate set-output command in Github action by @hongil0316 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/802
+* Update Docs for CIS v1.5 by @robmorgan in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/803
+* Use BuildKit pattern for passing secrets by @hongil0316 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/804
+* Update k8s by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/806
+* Add new AWS regions by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/808
+* Update default version for aws ci version and kubergrunt version by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/810
+* update version of client authentication k8s api by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/811
+* swap to the buildkit version of docker by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/812
+* [CORE-326] Improve documentation about MFA requirements for new accounts by @pete0emerson in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/814
+* Enable ap-northeast-3 by @marinalimeira in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/816
+* Update deep link to CIS manual steps to upgrade version by @bethadele in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/813
+* Enable the Organizations Filter for all accounts by @marinalimeira in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/820
+* Update templates/infrastructure-live/docs/01 to help customer confusion by @iangrunt in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/819
+* Core 310 launch templates by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/821
+* bump node size for eks by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/822
+* bump the flyway version for postgres 14 by @ellisonc in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/823
+* chore: increment sample app backend image version for EKS by @MoonMoon1919 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/824
+* [skip ci] Refactor contexts by @eak12913 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/826
+* chore(CORE-656): Update git ref used to build files to plan/apply against by @MoonMoon1919 in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/825
+
+* @ellisonc made their first contribution in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/806
+* @bethadele made their first contribution in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/813
+* @MoonMoon1919 made their first contribution in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/824
+* @eak12913 made their first contribution in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/826
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v0.0.32...v0.0.33
 
 </div>
 
@@ -252,6 +303,24 @@ Update kubergrunt version to latest stable
 
 
 ## terraform-aws-eks
+
+
+### [v0.57.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.57.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2023 | Modules affected: eks-aws-auth-merger, eks-cluster-managed-workers, eks-cluster-workers, eks-cluster-control-plane | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.57.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+Bump golang.org/x/text from 0.3.6 to 0.3.8 in /modules/eks-aws-auth-merger/aws-auth-merger
+[skip ci] Refactor contexts
+Feature/k8s 125 - added support for k8s 1.25 and removed deprecated 1.21
+
+
+</div>
 
 
 ### [v0.56.4](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.56.4)
@@ -667,6 +736,6 @@ ingress from 443 is created.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f1b99a6c2aa4bbfa47435b222c7e9f01"
+  "hash": "b2bcd4da5b18d5e740f536fc84cdecc1"
 }
 ##DOCS-SOURCER-END -->
