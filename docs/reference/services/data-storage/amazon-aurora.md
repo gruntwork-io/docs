@@ -94,8 +94,8 @@ If you want to deploy this repo in production, check out the following resources
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AURORA MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -509,8 +509,8 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S AURORA MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -2240,6 +2240,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "514dc8e2d630bb7d994d6548e9442be5"
+  "hash": "a32b11466b5c64d7e6639ed0e57f9c7c"
 }
 ##DOCS-SOURCER-END -->

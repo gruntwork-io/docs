@@ -112,12 +112,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to the access logs
   # S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  access_logging_bucket_ownership = null
+  access_logging_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the S3 bucket used to store access logs. You can use
   # this to grant read/write access. This should be a map, where each key is a
@@ -144,12 +144,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to this S3 bucket:
   # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -258,12 +258,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to the replica S3
   # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  replica_bucket_ownership = null
+  replica_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the replica S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique statement ID
@@ -340,12 +340,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to the access logs
   # S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  access_logging_bucket_ownership = null
+  access_logging_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the S3 bucket used to store access logs. You can use
   # this to grant read/write access. This should be a map, where each key is a
@@ -372,12 +372,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to this S3 bucket:
   # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -486,12 +486,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to the replica S3
   # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  replica_bucket_ownership = null
+  replica_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the replica S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique statement ID
@@ -582,10 +582,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="access_logging_bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="access_logging_bucket_policy_statements" requirement="optional" type="any">
@@ -678,10 +678,10 @@ Optional KMS key to use for encrypting data in the S3 bucket. If null, data in S
 <HclListItem name="bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -996,10 +996,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="replica_bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="replica_bucket_policy_statements" requirement="optional" type="any">
@@ -1219,6 +1219,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b88eb87087c4a8850a173f4b040671a5"
+  "hash": "26fee9ed62b8245d788ef65c3c293f6f"
 }
 ##DOCS-SOURCER-END -->

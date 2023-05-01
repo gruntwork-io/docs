@@ -93,8 +93,8 @@ If you want to deploy this repo in production, check out the following resources
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -454,8 +454,8 @@ module "elasticsearch" {
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S ELASTICSEARCH MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -1538,6 +1538,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ff93e25b3f16032c6eb115c9dbdf5efb"
+  "hash": "110216071c1d9a913b915ad2438c8b0e"
 }
 ##DOCS-SOURCER-END -->

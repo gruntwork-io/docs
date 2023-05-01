@@ -95,8 +95,8 @@ If you want to deploy this repo in production, check out the following resources
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -537,8 +537,8 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
 #
-# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE"
-# When using values other than defaults for these variables; set through environment variables or
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
 # another secure method.
 #
 # ------------------------------------------------------------------------------------------------------
@@ -2312,6 +2312,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.1/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fc9beb2ea71064cebf84ddabcb4ea290"
+  "hash": "6569ead41dcb976effa9dca3ae572893"
 }
 ##DOCS-SOURCER-END -->
