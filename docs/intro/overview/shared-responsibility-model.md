@@ -17,7 +17,6 @@ The implementation and maintenance of Gruntwork products in AWS is a shared resp
         1. A complete sample app with underlying database and caching layer
         1. The Gruntwork Pipeline for deploying changes to infrastructure
         1. An overview of how to use the Reference Architecture
-        1. Manual steps the customer needs to take that can only be done by the customer
     1. Deploying the initial Reference Architecture into the customer’s brand new empty AWS accounts.
     1. Delivering the initial Reference Architecture Infrastructure as Code to the customer.
     1. Providing resources to the customer for deeply understanding the inner workings of the Reference Architecture.
@@ -34,10 +33,11 @@ The implementation and maintenance of Gruntwork products in AWS is a shared resp
 1. Adding additional Infrastructure as Code to customize it for your company.
 1. Communicating with AWS to fix account issues and limitations beyond Gruntwork’s control (quotas, account verification, et cetera).
 1. For Reference Architecture customers:
-    1. Following all provided manual steps in the Reference Architecture documents where automation is not possible.
-    1. Extending and customizing Gruntwork Pipelines beyond the basic CI/CD pipeline that Gruntwork has provided to suit their deployment requirements.
-    1. Designing and implementing their AWS infrastructure beyond the Reference Architecture.
-        1. Understanding and awareness of AWS resource costs for all infrastructure deployed into their AWS accounts ([Knowledge Base #307](https://github.com/gruntwork-io/knowledge-base/discussions/307) for Ref Arch baseline).
+    1. Following all provided manual steps in the Reference Architecture documents where automation is not possible. There are certain steps a Reference Architecture customer must perform on their own. Please keep an eye out for emails from Gruntwork engineers when you are configuring your Reference Architecture form for 
+    deployment. 
+    1. Extending and customizing Gruntwork Pipelines beyond the basic CI/CD pipeline that Gruntwork has provided to suit your deployment requirements.
+    1. Designing and implementing your AWS infrastructure beyond the Reference Architecture.
+        1. Understanding and awareness of AWS resource costs for all infrastructure deployed into your AWS accounts ([Knowledge Base #307](https://github.com/gruntwork-io/knowledge-base/discussions/307) for Ref Arch baseline).
     1. Once deployed, maintaining the Reference Architecture to keep it secure and up to date.
         1. Keeping the Reference Architecture secure in accordance with their company needs.
         1. Understanding and accepting the security implications of any changes made to the Reference Architecture.
@@ -48,6 +48,6 @@ The implementation and maintenance of Gruntwork products in AWS is a shared resp
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8cd4291d0db9fbf7c8e00d72b03ca195"
+  "hash": "7c6a3318381f1d2e939d82db1c179334"
 }
 ##DOCS-SOURCER-END -->
