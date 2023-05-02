@@ -18,14 +18,11 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -538,51 +535,6 @@ It also removes the `iam_group_name_cross_account_access_all` variable.
   
 
 - Add support for skipping individual components during cluster upgrades. Note that you will need `kubergrunt` version `v0.7.1` and above to take advantage of the skip feature.
-
-
-
-</div>
-
-
-
-## terraform-aws-elk
-
-
-### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2021 | Modules affected: auto-discovery, install-collectd, install-elastalert, install-elasticsearch | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.10.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Add support for Ubuntu 20.04. Note that starting this release, support for Ubuntu 16.04 is dropped.
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.10.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.10.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/15/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.10.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Ubuntu 20.04 and Amazon Linux 2 update**: All the modules are now tested and verified with Ubuntu 20.04.
-- **Ubuntu 16.04 and Amazon Linux 1 deprecated**: We are no longer testing and supporting compatibility with Ubuntu 16.04 and Amazon Linux 1. If you are still using Ubuntu 16.04 or Amazon Linux 1, update to Ubuntu 18.04, 20.04, or Amazon Linux 2.
-
-
 
 
 
@@ -1216,32 +1168,10 @@ Adds support for tags to the redis module.
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.11.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/10/2021 | Modules affected: install-open-jdk, install-supervisord | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Add support for Ubuntu 20.04.
-- Starting this release, we no longer support Ubuntu 16.04. If you were using Ubuntu 16.04 in your base images, upgrade to Ubuntu 18.04 or Ubuntu 20.04.
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "03ee6480a406606590c61d24560b244e"
+  "hash": "fd89e624240a58f8d7b14f98dc9cddfa"
 }
 ##DOCS-SOURCER-END -->

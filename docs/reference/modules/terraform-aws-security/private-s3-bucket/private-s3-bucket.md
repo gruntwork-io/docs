@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.67.8" lastModifiedVersion="0.67.4"/>
+<VersionBadge repoTitle="Security Modules" version="0.68.1" lastModifiedVersion="0.68.0"/>
 
 # Private S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.67.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.68.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create and manage an [Amazon S3](https://aws.amazon.com/s3/) bucket that enforces
 best practices for private access:
@@ -86,11 +86,16 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 
 module "private_s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs. See
+  # comment above for the list of possible ACLs. If not `null` bucket_ownership
+  # cannot be BucketOwnerEnforced
+  acl = <string>
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
@@ -117,9 +122,6 @@ module "private_s_3_bucket" {
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # The canned ACL to apply. See comment above for the list of possible ACLs.
-  acl = "private"
-
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
@@ -132,7 +134,7 @@ module "private_s_3_bucket" {
   # object is uploaded with the bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "BucketOwnerEnforced"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -280,7 +282,7 @@ module "private_s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.67.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.68.1"
 }
 
 inputs = {
@@ -288,6 +290,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The canned ACL to apply. This can be 'null' if you don't want to use ACLs. See
+  # comment above for the list of possible ACLs. If not `null` bucket_ownership
+  # cannot be BucketOwnerEnforced
+  acl = <string>
 
   # What to name the S3 bucket. Note that S3 bucket names must be globally unique
   # across all AWS users!
@@ -314,9 +321,6 @@ inputs = {
   # access_logging_bucket. Only used if access_logging_enabled is true.
   access_logging_prefix = null
 
-  # The canned ACL to apply. See comment above for the list of possible ACLs.
-  acl = "private"
-
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
 
@@ -329,7 +333,7 @@ inputs = {
   # object is uploaded with the bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "BucketOwnerEnforced"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -480,6 +484,14 @@ inputs = {
 
 ### Required
 
+<HclListItem name="acl" requirement="required" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. This can be 'null' if you don't want to use ACLs. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -526,15 +538,6 @@ A prefix (i.e., folder path) to use for all access logs stored in access_logging
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="acl" requirement="optional" type="string">
-<HclListItemDescription>
-
-The canned ACL to apply. See comment above for the list of possible ACLs.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;private&quot;"/>
-</HclListItem>
-
 <HclListItem name="bucket_key_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -550,7 +553,7 @@ Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
 Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), BucketOwnerEnforced [Recommended] (the bucket owner automatically owns and has full control over every object in the bucket), or null (don't configure this feature). Note that BucketOwnerEnforced disables ACLs, and ObjectWriter only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;BucketOwnerEnforced&quot;"/>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -1013,11 +1016,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/private-s3-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/private-s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.67.8/modules/private-s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.68.1/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f4f518b855b3080dc036e0c9a9ff0c44"
+  "hash": "61319c6bf67978a7ac270a3059098f22"
 }
 ##DOCS-SOURCER-END -->

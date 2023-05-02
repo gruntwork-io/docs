@@ -15,7 +15,6 @@ Here are the repos that were updated:
 - [terraform-aws-cache](#terraform-aws-cache)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
@@ -24,7 +23,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -170,44 +168,6 @@ Running `apply` a second time seems to complete without errors.
 
   
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#network_mode 
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.2.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.2.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/2/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.2.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/26: Update `server-group` module to fix issues with the rolling deployment script on Windows.
-
-Please note that this is a **pre-release**.  See [v0.2.0](https://github.com/gruntwork-io/package-kafka/releases/tag/v0.2.0) for an explanation.
-
-</div>
-
-
-### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.2.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/1/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.2.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  We&apos;ve updated the Kafka module to include support for Confluent Schema Registry, REST Proxy, and Kafka Connect! These services also include support for SSL. We&apos;ve also introduced a new, simpler configuration file approach where you can specify any number of well-defined &quot;replacement variables&quot; that will automatically be updated when you call the appropriate `run-xxx` script at boot in user data (e.g. `run-schema-registry`).
-
-Unfortunately, our automated tests consistently fail for Amazon Linux only, and we encountered what appear to be several bugs with Schema Registry itself in how forwarding is handled. Diagnosing these issues has proven to be very trying because after we make a fix, it takes another 45 minutes for a full build to complete, leading to an incredibly long feedback loop.
-
-As a result, we&apos;re marking this as **pre-release**. That means that you are free to begin using this code, but you should know that, until our automated tests pass, you may encounter subtle issues, especially around forwarding from non-master nodes.
-
-Going forward, we will immediately be investing in a new approach to writing modules that makes our cycle time about 10x faster. In particular, we intend to run the Confluent Stack using Docker Compose for local testing so that we can restart it multiple times without having to wait either for Packer to build a new AMI or for AWS to launch a whole cluster of EC2 Instances. Stay tuned!
 
 </div>
 
@@ -466,76 +426,10 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/30/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - #23: Previously, we installed `mvn` (Maven) using `yum` and found that this actually installs the OpenJDK along with it! In some cases, OpenJDK even became the default Java installation, over the Oracle JDK we had already installed. This release updates our Maven installation method so that it no longer installs OpenJDK.
-
-</div>
-
-
-### [v0.4.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - #22: This repo now has its own standalone &quot;bash commons&quot; module.
-
-   Recently, we&apos;ve begun introducing Docker containers into our repos to enable a much faster cycle time when building the module. As part of this effort, we&apos;ve consolidated all our generic bash functions into a &quot;bash commons&quot; library that can be shared among multiple modules in this repo.
-
-   With this update we place the bash-commons libraries into their own module. Although the interface to all the script modules in this repo remains unchanged, you now have to `gruntwork-install` the bash-commons module in order for many of the modules to work. You can install the bash-commons module like this:
-
-   ```
-   gruntwork-install --module-name &apos;bash-commons&apos; --tag &apos;~&gt;0.4.0&apos; --repo https://github.com/gruntwork-io/package-zookeeper
-   ```
-
-</div>
-
-
-### [v0.3.2](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.2)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/16/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.2">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - #20, #21: We now support running Zookeeper on CentOS 7!
-
-- As part of this release, we also invested in creating a Docker-based local dev environment to make iterating development much faster.
-
-</div>
-
-
-### [v0.3.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/2/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/19: Updated the `server-group` module version to fix the deployment script on Windows.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8a43269a02939f4430d666805617cbeb"
+  "hash": "00f3590fe1ab2ee49d4f3a37731be872"
 }
 ##DOCS-SOURCER-END -->

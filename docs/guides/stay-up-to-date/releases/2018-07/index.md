@@ -12,10 +12,8 @@ Here are the repos that were updated:
 
 - [gruntwork](#gruntwork)
 - [terraform-aws-asg](#terraform-aws-asg)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-security](#terraform-aws-security)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -78,78 +76,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-elk
-
-
-### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/31/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-Documentation is still a work-in-progress. There will be a follow-up PR for that shortly. 
-
-</div>
-
-
-### [v0.0.7](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/27/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.0.6](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.0.5](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/23/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.0.4](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/2/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  This pre-release introduces support for forwarding Cloudwatch and Cloudtrail (S3) logs to Logstash. 
-
-PRs #25 #29 
-
-</div>
-
-
-
 ## terraform-aws-openvpn
 
 
@@ -188,27 +114,10 @@ PRs #25 #29
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.5](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.5)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.5">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6fd88d7c66da46d25f0d766e59cc4a64"
+  "hash": "865cbef8e14389ff2fd4ee59faf8268f"
 }
 ##DOCS-SOURCER-END -->

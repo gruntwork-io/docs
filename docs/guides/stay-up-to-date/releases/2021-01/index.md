@@ -20,7 +20,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
 - [terraform-aws-messaging](#terraform-aws-messaging)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
@@ -487,31 +486,6 @@ The core services modules are now compatible with helm provider 2.x. Note that s
 
 
 
-## terraform-aws-elk
-
-
-### [v0.7.1](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/27/2021 | Modules affected: (none) | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.7.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Updated the `elk-multi-cluster` example to show how you can dynamically source the authentication hash from secrets manager when configuring readonlyrest in the Elasticsearch cluster.
-- Fixed CircleCI contexts
-- Added a TF placeholder for TFC/TFE/PMR
-- Fixed internal link references in the docs
-
-
-
-
-</div>
-
-
-
 ## terraform-aws-messaging
 
 
@@ -881,6 +855,6 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b09f779d4b4e1150132a9f1bc715d68c"
+  "hash": "81f87dd500fa5c28bc69f593b4597a54"
 }
 ##DOCS-SOURCER-END -->

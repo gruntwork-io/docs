@@ -23,7 +23,6 @@ Here are the repos that were updated:
 - [terraform-aws-server](#terraform-aws-server)
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## gruntwork
@@ -331,42 +330,10 @@ add new tests for num_nat_gateways=0
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.3.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/19/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.3.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/17: In the previous release, we tried to move away from the webupd8 JDK installer for Ubuntu, which stopped working for the latest version of JDK8, to a custom one, but it turns out the webupd8 had a huge amount of custom code (e.g., creating symlinks, configuring fonts, setting up env vars, etc) that we were missing. In this release, we&apos;ve gone back to the webupd8, but with a patch that makes it work again with the latest JDK8. That means that we are back to the `--version` flag for Ubuntu installs and `--download-url` and `--checksum` for Amazon Linux / CentOS.
-
-</div>
-
-
-### [v0.2.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 1/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.2.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  - BREAKING CHANGE: The `install-oracle-jdk` module now installs Oracle JDK directly from Oracle for Debian and Ubuntu Linux. We also updated the default Oracle Java version to the latest JDK8 as of January 16, 2018. (#14 )
-
-   This is barely a breaking change, but it still qualified as breaking. Previously, `install-oracle-jdk` accepted a `--version` argument used to install a particular major version of the JDK (e.g. `8`). Now, if you wish to specify a version of the JDK other than our default, you can pass in custom values for `--download-url` and `--checksum` for both Debian/Ubuntu and RHEL/CentOS/Amazon Linux.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "01a260348b1816c0f90927cc89485eb7"
+  "hash": "6af6c79cdd1ef92a80e15c43e070071e"
 }
 ##DOCS-SOURCER-END -->

@@ -28,7 +28,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -700,31 +699,10 @@ This release introduces the ability to tag just the VPC, but not any of the othe
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.6.6](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 12/19/2019 | Modules affected: install-exhibitor | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.6.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-Bump maven version to install exhibitor since 3.6.1 is no longer available
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dda7bc4e1720eede9484ffe8d7bc5edf"
+  "hash": "036322bdb17bda678c0505396783aa4a"
 }
 ##DOCS-SOURCER-END -->

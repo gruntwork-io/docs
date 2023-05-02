@@ -14,12 +14,10 @@ Here are the repos that were updated:
 - [gruntkms](#gruntkms)
 - [terraform-aws-asg](#terraform-aws-asg)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-openvpn](#terraform-aws-openvpn)
 - [terraform-aws-server](#terraform-aws-server)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -155,36 +153,6 @@ Here are the repos that were updated:
 
 
 
-## terraform-aws-kafka
-
-
-### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/9/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/10: pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20, https://github.com/gruntwork-io/module-asg/pull/13, and https://github.com/gruntwork-io/package-zookeeper/pull/10.
-
-</div>
-
-
-### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.0.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-kafka/pull/9: This picks up the fix from https://github.com/gruntwork-io/module-asg/pull/12 that cleans up the tmp-folder before trying to extract boto3 into it.
-
-</div>
-
-
-
 ## terraform-aws-lambda
 
 
@@ -295,53 +263,10 @@ This change is backwards compatible from a code perspective, but it changes the 
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.0.10](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.10)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.10">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/10: Pick up the ENI and concurrency fixes from https://github.com/gruntwork-io/module-server/pull/20 and https://github.com/gruntwork-io/module-asg/pull/13.
-
-</div>
-
-
-### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/8/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/9: Add execute permissions on run-exhibitor script, as they seem to get lost after a Packer build.
-
-</div>
-
-
-### [v0.0.8](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.8)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 10/3/2017 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.0.8">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/8: This picks up the fix from gruntwork-io/module-asg#12 that cleans up the tmp-folder before trying to extract boto3 into it.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f71d5fc40322ebcc98b1229774280099"
+  "hash": "bad59cc4525b1d7ffa5fb38ae7628fab"
 }
 ##DOCS-SOURCER-END -->

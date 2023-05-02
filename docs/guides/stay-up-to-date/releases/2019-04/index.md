@@ -23,7 +23,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 - [terraform-kubernetes-helm](#terraform-kubernetes-helm)
 
 
@@ -639,32 +638,6 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.5.4](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.4)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/25/2019 | Modules affected: zookeeper-cluster, install-open-jdk | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.5.4">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-* `zookeeper-cluster`
-* `install-open-jdk`
-
-
-* Update `module-asg` dependency  to `v0.6.26` to address an eventual consistency issue in health checks. See https://github.com/gruntwork-io/module-asg/releases/tag/v0.6.26 for more info.
-* Introduced the new `install-open-jdk` module that helps with installing OpenJDK.
-
-
-* https://github.com/gruntwork-io/package-zookeeper/pull/44
-
-</div>
-
-
-
 ## terraform-kubernetes-helm
 
 
@@ -690,6 +663,6 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "71020b8e360eaa97bb8043c922e21447"
+  "hash": "c09a1d21c604965fb1dba06adb850523"
 }
 ##DOCS-SOURCER-END -->

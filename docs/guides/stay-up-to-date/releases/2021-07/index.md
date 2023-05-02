@@ -17,8 +17,6 @@ Here are the repos that were updated:
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
 - [terraform-aws-eks](#terraform-aws-eks)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-lambda](#terraform-aws-lambda)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-messaging](#terraform-aws-messaging)
@@ -31,7 +29,6 @@ Here are the repos that were updated:
 - [terraform-aws-static-assets](#terraform-aws-static-assets)
 - [terraform-aws-utilities](#terraform-aws-utilities)
 - [terraform-aws-vpc](#terraform-aws-vpc)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## terraform-aws-asg
@@ -699,74 +696,6 @@ Update the `multi_instance_overrides` field to:
 
 
 
-## terraform-aws-elk
-
-
-### [v0.11.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/27/2021 | Modules affected: beats-iam-policies, elastalert-iam-policies, elastalert-security-group-rules, elastalert | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.11.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.11.0](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.11.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/29/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.11.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-https://github.com/gruntwork-io/terraform-aws-kafka/pull/81
-
-</div>
-
-
-### [v0.10.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.10.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/9/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.10.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Replace `go fmt` in the pre-commit configuration with `goimports`
-
-
-
-
-
-</div>
-
-
-
 ## terraform-aws-lambda
 
 
@@ -1416,19 +1345,6 @@ For the `private-s3-bucket` module, and all modules that depend on it (e.g., `aw
 </div>
 
 
-### [v0.0.1-alpha1](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.1-alpha1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/21/2021 | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.0.1-alpha1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  Do not use this release, for testing destroy pipeline.
-
-</div>
-
-
 ### [v0.51.4](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.51.4)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1865,55 +1781,10 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.12.0](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/28/2021 | Modules affected: exhibitor-shared-config, zookeeper-cluster, zookeeper-iam-permissions, zookeeper-security-group-rules | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.12.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- **Terraform 1.0 upgrade**: We have verified that this repo is compatible with Terraform `1.0.x`! 
-    - From this release onward, we will only be running tests with Terraform `1.0.x` against this repo, so we recommend updating to `1.0.x` soon! 
-    - To give you more time to upgrade, for the time being, all modules will still support Terraform `0.15.1` and above, as that version has several features in it (`required_providers` with `source` URLs) that make it more forwards compatible with `1.0.x`. 
-    - Once all Gruntwork repos have been upgrade to work with `1.0.x`, we will publish a migration guide with a version compatibility table and announce it all via the Gruntwork Newsletter.
-
-
-
-
-</div>
-
-
-### [v0.11.1](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/13/2021 | Modules affected: install-exhibitor, install-open-jdk, install-oracle-jdk, install-zookeeper | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.11.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- Replace `local readonly` for `local -r` in the bash scripts
-- Add Terraform Validate test
-- Replace `gofmt` with `goimports`
-
-
-
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "64e45c6da093f5a15734b5765be2b41f"
+  "hash": "1755c3edb57eb33ea8d90537e41b8462"
 }
 ##DOCS-SOURCER-END -->

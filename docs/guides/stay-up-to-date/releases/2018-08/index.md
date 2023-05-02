@@ -14,11 +14,8 @@ Here are the repos that were updated:
 - [terraform-aws-ci](#terraform-aws-ci)
 - [terraform-aws-data-storage](#terraform-aws-data-storage)
 - [terraform-aws-ecs](#terraform-aws-ecs)
-- [terraform-aws-elk](#terraform-aws-elk)
-- [terraform-aws-kafka](#terraform-aws-kafka)
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-security](#terraform-aws-security)
-- [terraform-aws-zookeeper](#terraform-aws-zookeeper)
 
 
 ## boilerplate
@@ -212,53 +209,6 @@ Unfortunately, this does constitute a breaking change for the `ecs-service` modu
 
 
 
-## terraform-aws-elk
-
-
-### [v0.1.0](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.1.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.1.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.0.9](https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.9)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/3/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-elk/releases/tag/v0.0.9">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-
-## terraform-aws-kafka
-
-
-### [v0.4.1](https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.1)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/7/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-kafka/releases/tag/v0.4.1">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-
 ## terraform-aws-load-balancer
 
 
@@ -339,40 +289,10 @@ Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ 
 
 
 
-## terraform-aws-zookeeper
-
-
-### [v0.4.7](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.7)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/17/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.7">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-</div>
-
-
-### [v0.4.6](https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.6)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 8/3/2018 | <a href="https://github.com/gruntwork-io/terraform-aws-zookeeper/releases/tag/v0.4.6">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  https://github.com/gruntwork-io/package-zookeeper/pull/29: You can now configure DNS names for your ZooKeeper nodes using the new (optional) input variables `route53_hosted_zone_id`, `dns_name_common_portion`, `dns_names`, `dns_ttl`, and `enable_elastic_ips`.
-
-</div>
-
-
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "d5553f3752b51e277ca4989f2b7e51b0"
+  "hash": "209430fd3bd7044a87b27329427f002d"
 }
 ##DOCS-SOURCER-END -->

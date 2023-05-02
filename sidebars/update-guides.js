@@ -246,6 +246,18 @@ const sidebars = {
       ],
     },
   ],
+  patcher: [
+    backLink,
+    {
+      label: "Keep up-to-date with Patcher",
+      type: "category",
+      link: {
+        type: "doc",
+        id: "guides/stay-up-to-date/patcher/index",
+      },
+      items: []
+    }
+  ]
 }
 
 module.exports = sidebars
