@@ -13,10 +13,11 @@ Patcher runs as a single binary called `patcher`. Make sure it's available withi
 ```bash
 mv patcher_linux_amd64 patcher
 ```
-3. Move `patcher` to a location available in your `PATH`.
+3. Move `patcher` to a location available in your `PATH`. In the example below, we move to `/usr-local/bin`.
 ```bash
-echo $PATH
-mv patcher /usr/local/bin
+$ echo $PATH
+/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/grunty/bin:/Users/grunty/go/bin
+$ mv patcher /usr/local/bin
 ```
 
 ## Before Running Patcher
