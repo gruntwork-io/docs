@@ -30,8 +30,8 @@ The implementation and maintenance of Gruntwork products in AWS is a shared resp
 
 1. Staffing appropriately (as described in the [Prerequisites Guide](/intro/overview/reference-architecture-prerequisites-guide/)) to maintain and customize the modules and (if applicable) the Reference Architecture and to understand how the Gruntwork product works so that changes can be made to customize it to the customer’s needs.
     1. Raise limitations of Gruntwork modules as a feature request or a pull request.
-    1. Gruntwork does not guarantee any turn-around time on getting features built or PRs reviewed and merged. Gruntwork modules must also be applicable to a wide range of companies, and will be selective about features to be added.
-1. Adding additional Infrastructure as Code to customize it for their company.
+        1. N.B., Gruntwork does not guarantee any turn-around time on getting features built or PRs reviewed and merged. Gruntwork modules must also be applicable to a wide range of companies, so we will be selective about features added and pull requests accepted.
+1. Adding additional Infrastructure as Code to customize it for your company.
 1. Communicating with AWS to fix account issues and limitations beyond Gruntwork’s control (quotas, account verification, et cetera).
 1. For Reference Architecture customers:
     1. Following all provided manual steps in the Reference Architecture documents where automation is not possible.
