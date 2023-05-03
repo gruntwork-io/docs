@@ -6,6 +6,8 @@ sidebar_class_name: dont_show
 pagination_next: null
 ---
 
+import SearchArea from "/src/components/SearchArea"
+
 # Gruntwork Module Catalog
 
 At Gruntwork, we've taken the thousands of hours we spent building infrastructure on AWS and condensed all that experience and code into pre-built packages or modules. Each module is a battle-tested, best-practices definition of a piece of infrastructure, such as a VPC, ECS cluster, or an Auto Scaling Group. Modules are versioned using Semantic Versioning to allow Gruntwork clients to keep up to date with the latest infrastructure best practices in a systematic way.
@@ -18,10 +20,12 @@ The Gruntwork IaC Library is a collection of reusable code that enables you to d
 
 **Services:** Reusable code that combines multiple modules to configure a service for a specific use case. Services are designed for specific use cases and meant to be deployed directly. For example, the eks-cluster service combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on. [The Gruntwork Service Catalog](/reference/services/intro/overview/) is a collection of battle-tested, commercially supported and maintained services that you can use to deploy production-grade infrastructure in minutes.
 
+<SearchArea />
+
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ba67f45930b552d83669cbf50c8b0c1f"
+  "hash": "b0c46890a9861830a660e60deaea031e"
 }
 ##DOCS-SOURCER-END -->

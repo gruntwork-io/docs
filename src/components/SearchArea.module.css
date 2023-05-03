@@ -1,0 +1,50 @@
+/* BASIC STRUCTURE */
+
+.container {
+  max-width: 600px;
+  margin-top: 4rem;
+
+}
+
+.card_container_max_width {
+  max-width: 400px;
+  max-height: 200px;
+  margin: 0 auto;
+}
+
+.card_result {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;
+}
+
+.SearchInput {
+  align-items: center;
+  background: var(--docsearch-searchbox-background);
+  border: 0;
+  border-radius: 40px;
+  color: var(--docsearch-muted-color);
+  /* cursor: pointer; */
+  display: flex;
+  font-weight: 500;
+  height: 36px;
+  justify-content: space-between;
+  padding: 0 8px;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 50%;
+}
+
+.SearchSubmit {
+  display: none;
+}
+
+.SearchReset {
+  display: none;
+}
+
+.searchModal {
+  width: 50%;
+  height: 400px;
+}
