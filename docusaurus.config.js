@@ -101,6 +101,12 @@ const config = {
             activeBasePath: "docs/guides",
           },
           {
+            type: "doc",
+            position: "left",
+            label: "IaC",
+            docId: "iac/whats-this/index",
+          },
+          {
             type: "dropdown",
             label: "Library Reference",
             items: [
