@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.13" lastModifiedVersion="0.102.11"/>
+<VersionBadge version="0.104.2" lastModifiedVersion="0.104.2"/>
 
 # S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,7 +59,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +67,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.102.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.104.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -112,12 +112,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to the access logs
   # S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  access_logging_bucket_ownership = null
+  access_logging_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the S3 bucket used to store access logs. You can use
   # this to grant read/write access. This should be a map, where each key is a
@@ -128,6 +128,10 @@ module "s_3_bucket" {
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
@@ -140,12 +144,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to this S3 bucket:
   # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -238,6 +242,10 @@ module "s_3_bucket" {
   # replication.
   replica_bucket = null
 
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
+
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
 
@@ -250,12 +258,12 @@ module "s_3_bucket" {
 
   # Configure who will be the default owner of objects uploaded to the replica S3
   # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  replica_bucket_ownership = null
+  replica_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the replica S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique statement ID
@@ -305,7 +313,7 @@ module "s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.102.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/s3-bucket?ref=v0.104.2"
 }
 
 inputs = {
@@ -332,12 +340,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to the access logs
   # S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  access_logging_bucket_ownership = null
+  access_logging_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the S3 bucket used to store access logs. You can use
   # this to grant read/write access. This should be a map, where each key is a
@@ -348,6 +356,10 @@ inputs = {
   # A prefix (i.e., folder path) to use for all access logs stored in
   # access_logging_bucket. Only used if access_logging_bucket is specified.
   access_logging_prefix = null
+
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  acl = null
 
   # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
   bucket_key_enabled = false
@@ -360,12 +372,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to this S3 bucket:
   # must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  bucket_ownership = null
+  bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to this S3 bucket. You can use this to grant read/write
   # access. This should be a map, where each key is a unique statement ID (SID), and
@@ -458,6 +470,10 @@ inputs = {
   # replication.
   replica_bucket = null
 
+  # The canned ACL to apply. See comment above for the list of possible ACLs. If not
+  # `null` bucket_ownership cannot be BucketOwnerEnforced
+  replica_bucket_acl = null
+
   # If set to true, replica bucket will be expected to already exist.
   replica_bucket_already_exists = false
 
@@ -470,12 +486,12 @@ inputs = {
 
   # Configure who will be the default owner of objects uploaded to the replica S3
   # bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects),
-  # ObjectWriter (the writer of each object owns that object), or null (don't
-  # configure this feature). Note that this setting only takes effect if the object
-  # is uploaded with the bucket-owner-full-control canned ACL. See
+  # ObjectWriter (the writer of each object owns that object). Note that this
+  # setting only takes effect if the object is uploaded with the
+  # bucket-owner-full-control canned ACL. See
   # https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for
   # more info.
-  replica_bucket_ownership = null
+  replica_bucket_ownership = "ObjectWriter"
 
   # The IAM policy to apply to the replica S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique statement ID
@@ -566,10 +582,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="access_logging_bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to the access logs S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="access_logging_bucket_policy_statements" requirement="optional" type="any">
@@ -632,6 +648,15 @@ A prefix (i.e., folder path) to use for all access logs stored in access_logging
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="bucket_key_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -653,10 +678,10 @@ Optional KMS key to use for encrypting data in the S3 bucket. If null, data in S
 <HclListItem name="bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to this S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -925,6 +950,15 @@ The S3 bucket that will be the replica of this bucket. Set to null to disable re
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="replica_bucket_acl" requirement="optional" type="string">
+<HclListItemDescription>
+
+The canned ACL to apply. See comment above for the list of possible ACLs. If not `null` bucket_ownership cannot be BucketOwnerEnforced
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replica_bucket_already_exists" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -962,10 +996,10 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="replica_bucket_ownership" requirement="optional" type="string">
 <HclListItemDescription>
 
-Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object), or null (don't configure this feature). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
+Configure who will be the default owner of objects uploaded to the replica S3 bucket: must be one of BucketOwnerPreferred (the bucket owner owns objects), ObjectWriter (the writer of each object owns that object). Note that this setting only takes effect if the object is uploaded with the bucket-owner-full-control canned ACL. See https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html for more info.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;ObjectWriter&quot;"/>
 </HclListItem>
 
 <HclListItem name="replica_bucket_policy_statements" requirement="optional" type="any">
@@ -1180,11 +1214,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/data-stores/s3-bucket/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/data-stores/s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/data-stores/s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/s3-bucket/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "69dff83e457699e51fe8c22bfbc9cba3"
+  "hash": "9a6bce27bf11e34aa00a6caddf79f002"
 }
 ##DOCS-SOURCER-END -->

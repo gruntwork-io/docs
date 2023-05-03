@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.102.13" lastModifiedVersion="0.95.1"/>
+<VersionBadge version="0.104.2" lastModifiedVersion="0.95.1"/>
 
 # Tailscale Subnet Router
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Ftailscale-subnet-router" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -77,7 +77,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -94,18 +94,21 @@ access services within your VPC through the tailnet.
 
 ### What AMI should I use?
 
-Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
+Any AMI can be used with this module, provided that the [install-tailscale](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router/scripts/install-tailscale.sh) script is installed
 into the AMI. The `install-tailscale` script ensures that Tailscale is installed with the `init-tailscale-subnet-router` boot
 script, which can be used to load the auth key from AWS Secrets Manager to authenticate to Tailscale at boot time.
 
 ### How do I authenticate the server to Tailscale?
 
 This module expects the server to authenticate to Tailscale using [an auth
-key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. The auth key must be **Reusable**
-to allow the server to automatically rejoin the network when recovering from a failure.
+key](https://tailscale.com/kb/1085/auth-keys/) that is stored in AWS Secrets Manager. When creating the Secrets Manager secret first select the `Other type of secret` option, then select the `Plaintext` tab, and finally input your Tailscale auth key.
+
+The auth key must be **Reusable** to allow the server to automatically rejoin the network when recovering from a failure.
 
 We also recommend using a unique auth key for each subnet router instance, and to tag each key so that you can
 differentiate between the different VPC networks in your [Tailscale ACL rules](https://tailscale.com/kb/1018/acls/).
+
+You can specify the ACL tags your server will advertise by using the [tailscale_advertise_tags](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/e865799422cf334940a3a01c52d84f0377f494c6/modules/mgmt/tailscale-subnet-router/variables.tf#L71) variable, which will grant access to the server automatically based on tag-based ACLs in Tailscale. For more information see [Server role account using ACL tags](https://tailscale.com/kb/1068/acl-tags/).
 
 ### How do I add IAM policies to the Tailscale subnet router IAM role?
 
@@ -147,7 +150,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
 module "tailscale_subnet_router" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.104.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -379,7 +382,7 @@ module "tailscale_subnet_router" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.102.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/tailscale-subnet-router?ref=v0.104.2"
 }
 
 inputs = {
@@ -1084,11 +1087,11 @@ ID of the primary security group attached to the Tailscale relay server.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.102.13/modules/mgmt/tailscale-subnet-router/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.104.2/modules/mgmt/tailscale-subnet-router/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9e71fb8735f2606affdcee7dbc8c8acb"
+  "hash": "483979639017cf5921193a5a4ef01826"
 }
 ##DOCS-SOURCER-END -->
