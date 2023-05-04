@@ -113,7 +113,7 @@ of the code. You’ll see an example of this soon.
 The code above will ONLY allow you to run it with a specific Terraform version. This is a safety measure to ensure
 you don’t accidentally pick up a new version of Terraform until you’re ready. This is important because once you’ve
 upgraded to a newer version, Terraform will no longer allow you to deploy that code with any older version.
-For example, if a single person on your team upgrades to `1.1.8` and runs `apply`, then you’ll no longer be able to 
+For example, if a single person on your team upgrades to `1.1.8` and runs `apply`, then you’ll no longer be able to
 use the state file with `1.1.7`, and you’ll be forced to upgrade everyone on your team and all your CI servers to
 `1.1.8`. It’s best to do this explicitly, rather than accidentally, so we recommend pinning Terraform versions.
 
@@ -148,7 +148,7 @@ This code pulls in a module using Terraform’s native `module` functionality. F
 
 The `source` URL in the code above uses a Git URL with SSH authentication (see
 [module sources](https://www.terraform.io/docs/modules/sources.html) for all the types of `source` URLs you can use).
-If you have established your account and linked your GitHub ID according to the instruction in [Accessing the Dev Portal](/intro/dev-portal/create-account), this will allow you to access private repos in the Gruntwork
+If you have established your account and linked your GitHub ID according to the instruction in [Accessing the Dev Portal](/developer-portal/create-account), this will allow you to access private repos in the Gruntwork
 Infrastructure as Code Library without having to hard-code a password in your Terraform code.
 
 #### Versioned URL
@@ -240,6 +240,6 @@ output "private_persistence_subnet_ids" {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "22ca9d71da618bade6675c2eabc553f5"
+  "hash": "94359cfbd3f728015bab4ced5e77c675"
 }
 ##DOCS-SOURCER-END -->
